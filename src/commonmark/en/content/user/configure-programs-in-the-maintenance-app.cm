@@ -1,0 +1,2516 @@
+# Configure programs in the Maintenance app
+
+## About programs
+
+Traditionally, public health information systems have been reporting
+aggregated data of service provision across its health programs. This
+does not allow you to trace the people provided with these services. In
+DHIS2, you can define your own programs with stages. These programs are
+a essential part of the "tracker" functionality which lets you track
+individual records. You can also track other ‘entities’ such as wells or
+insurances. You can create two types of programs:
+
+<table>
+<caption>Program types</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Program type</p></th>
+<th><p>Description</p></th>
+<th><p>Examples of use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Event program</p></td>
+<td><p>Single event <em>without</em> registration program (anonymous program or SEWoR)</p>
+<p>Anonymous, individual events are tracked through the health system. No person or entity is attached to these individual transactions.</p>
+<p>Has only one program stage.</p></td>
+<td><p>To record health cases without registering any informationinto the system.</p>
+To record survey data or surveillance line-listing.</td>
+</tr>
+<tr class="even">
+<td><p>Tracker program</p></td>
+<td><p>Single event <em>with</em> registration program (SEWR)</p>
+<p>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system</p>
+<p>Has only one program stage.</p>
+<p>A tracked entity instance (TEI) can only enroll in the program once.</p></td>
+<td><p>To record birth certificate and death certificate.</p></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Multi events <em>with</em> registration program (MEWR)</p>
+<p>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system</p>
+<p>Has multiple program stages.</p></td>
+<td><p>Mother Health Program with stages as ANC Visit (2-4+), Delivery, PNC Visit.</p></td>
+</tr>
+</tbody>
+</table>
+
+To create a program, you must first configure several types of metadata
+objects. You create these metadata objects in the **Maintenance** app or
+the **Program / Attributes** (legacy) app.
+
+<table>
+<caption>Program metadata objects in the Maintenance app</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Object type</p></th>
+<th>Description</th>
+<th><p>Available functions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Event program</p></td>
+<td><p>A program to record single event without registration</p></td>
+<td><p>Create, edit, share, delete, show details and translate</p></td>
+</tr>
+<tr class="even">
+<td><p>Program indicator</p></td>
+<td><p>An expression based on data elements and attributes of tracked entities which you use to calculate values based on a formula.</p></td>
+<td><p>Create, edit, share, delete, show details and translate</p></td>
+</tr>
+<tr class="odd">
+<td><p>Program rule</p></td>
+<td><p>Allows you to create and control dynamic behavior of the user interface in the <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps.</p></td>
+<td><p>Create, edit, delete, show details and translate</p></td>
+</tr>
+<tr class="even">
+<td><p>Program rulevariable</p></td>
+<td><p>Variables you use to create program rule expressions.</p></td>
+<td><p>Create, edit, delete, show details and translate</p></td>
+</tr>
+<tr class="odd">
+<td><p>Relationship type</p></td>
+<td><p>Defines the relationship between tracked entity A and tracked entity B, for example mother and child.</p></td>
+<td><p>Create, edit, clone, delete, show details and translate</p></td>
+</tr>
+<tr class="even">
+<td><p>Tracked entity</p></td>
+<td><p>Types of entities which can be tracked through the system. Can be anything from persons to commodities, for example a medicine or a person.</p>
+<p>A program must have one tracked entity. To enrol a tracked entity instance into a program, the tracked entity of an entity and tracked entity of a program must be the same.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>A program must be specified with only one tracked entity. Only tracked entity as same as the tracked entity of program can enroll into that program.</p>
+</blockquote></td>
+<td><p>Create, edit, clone, delete, show details and translate</p></td>
+</tr>
+<tr class="odd">
+<td><p>Tracked entity attribute</p></td>
+<td><p>Used to register extra information for a tracked entity.</p>
+<p>Can be shared between programs.</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption>Program metadata objects in the Program / Attributesapp</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Object type</p></th>
+<th>Description</th>
+<th><p>Available functions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Program</p></td>
+<td><p>A program consist of program stages.</p></td>
+<td><p>Create, edit, share, delete, assign to organisation units, show details and translate</p></td>
+</tr>
+<tr class="even">
+<td><p>Program stage</p></td>
+<td><p>A program stage defines which actions should be taken at each stage.</p></td>
+<td><p>Create, edit, change sort order, delete, show details and translate</p></td>
+</tr>
+<tr class="odd">
+<td><p>Program stage section</p></td>
+<td><p>N/A</p></td>
+<td><p>Create, edit, change sort order, delete, show details and translate</p></td>
+</tr>
+<tr class="even">
+<td><p>Program indicator group</p></td>
+<td><p>A group of program indicators</p></td>
+<td><p>Create, edit, delete, show details and translate</p></td>
+</tr>
+<tr class="odd">
+<td><p>Validation rule</p></td>
+<td><p>A validation rule is based on an expression which defines a relationship between data element values.</p></td>
+<td><p>Create, edit and delete</p></td>
+</tr>
+<tr class="even">
+<td><p>Program notification</p></td>
+<td><p>Automated message reminder</p>
+<p>Set reminders to be automatically sent to enrolled tracked entity instances before scheduled appointments and after missed visits.</p></td>
+<td><p>Create, edit and delete</p></td>
+</tr>
+<tr class="odd">
+<td><p>Program stage notification</p></td>
+<td><p>-</p></td>
+<td><p>Create, edit and delete</p></td>
+</tr>
+<tr class="even">
+<td><p>Design custom registration form</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+
+## Configure event programs in the Maintenance app
+
+### About event programs
+
+Single event *without* registration programs are called event programs.
+You configure them in the **Maintenance** app. Event programs can have
+three types of data entry forms:
+
+<table>
+<caption>Types of data entry forms for event programs</caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Form type</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Basic</p></td>
+<td><p>Lists all data elements which belong to the program. You can change the order of the data elements.</p></td>
+</tr>
+<tr class="even">
+<td><p>Section</p></td>
+<td><p>A section groups data elements. You can then arrange the order of the sections to create the desired layout of the data entry form.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Custom</p></td>
+<td><p>Defines the data entry form as HTML page.</p></td>
+</tr>
+</tbody>
+</table>
+
+> **Note**
+> 
+>   - Custom forms takes precedence over section forms if both are
+>     present.
+> 
+>   - If no custom or section form are defined, the basic form will be
+>     used.
+> 
+>   - The Android apps only supports section forms.
+
+You can create *program notifications* for event programs. The
+notifications are sent either via the internal DHIS2 messaging system,
+via e-mail or via text messages (SMS). You can use program notifications
+to, for example, send an automatic reminder to a tracked entity 10 days
+before a scheduled appointment. You use the program’s tracked entity
+attributes (for example first name) and program parameters (for example
+enrollment date) to create a notification template. In the
+**Parameters** field, you'll find a list of available tracked entity
+attributes and program parameters.
+
+### Workflow: Create an event program
+
+1.  Enter the event program details.
+
+2.  Assign data elements.
+
+3.  Create data entry form(s): **Basic**, **Section** or **Custom**.
+
+4.  Assign the program to organisation unit(s).
+
+5.  Create program notification(s).
+
+### Create or edit an event program
+
+#### Enter event program details
+
+1.  Open the **Maintenance** app and click **Program** \> **Program**.
+
+2.  Click the add button.
+
+3.  Enter program details, then click next.
+    
+    <table>
+    <colgroup>
+    <col style="width: 50%" />
+    <col style="width: 50%" />
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th><p>Field</p></th>
+    <th><p>Description</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p><strong>Name</strong></p></td>
+    <td><p>The name of the program.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Color</strong></p></td>
+    <td><p>Color used for this program in the data capture apps.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p><strong>Icon</strong></p></td>
+    <td><p>Icon used for this program in the data capture apps.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Short name</strong></p></td>
+    <td><p>A short name of the program. The short name is used as the default chart or table title in the analytics apps.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p><strong>Description</strong></p></td>
+    <td><p>A detailed description of the program.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Version</strong></p></td>
+    <td><p>The version of the program. This is used for example when people collect data offline in an Android implementation. When they go online and synchronize their metadata, they should get the latest version of the program.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p><strong>Category combination</strong></p></td>
+    <td><p>The category combination you want to use. The default setting is <strong>None</strong>.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Data approval workflow</strong></p></td>
+    <td><p>The data approval workflow you want to use. The default setting is <strong>Novalue</strong>.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p><strong>Completed events expiry date</strong></p></td>
+    <td><p>Defines the number of days for which you can edit a completed event. This means that when an event is completed and the specified number of expiry days has passed, the event is locked.</p>
+    <p>If you set &quot;Completed events expiry days&quot; to 10&quot;, an event is locked ten days after the completion date. After this date you can no longer edit the event.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Expiry period type</strong></p>
+    <p><strong>Expiry days</strong></p></td>
+    <td><p>The expiry days defines for how many days after the end of the previous period, an event can be edited. The period type is defined by the expiry period type. This means that when the specified number of expiry days has passed since the end date of the previous period, the events from that period are locked.</p>
+    <p>If you set the expiry type to &quot;Monthly&quot; and the expiry days to &quot;10&quot; and the month is October, then you can't add or edit an event to October after the 10th of November.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><strong>Block entry form after completed</strong></td>
+    <td><p>Select checkbox to block the entry form after completion of the event of this program.</p>
+    <p>This means that the data in the entry form can't be changed until you reset the status to incomplete.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Select checkbox to capture an event's coordinates.</p>
+    <p>Many types of events may be recorded at a facility or be owned-by a health worker at a facility, but actually take place somewhere in the community.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><strong>Complete allowed only if validation passes</strong></td>
+    <td>Select checkbox to enforce that an event created by this program is only completed when all validation rules have passed.</td>
+    </tr>
+    <tr class="even">
+    <td><strong>Pre-generate event UID</strong></td>
+    <td>Select checkbox to pre-generate unique event id numbers.</td>
+    </tr>
+    <tr class="odd">
+    <td><strong>Description of report date</strong></td>
+    <td><p>Type a description of the report date.</p>
+    <p>This description is displayed in the case entry form.</p></td>
+    </tr>
+    </tbody>
+    </table>
+
+4.  Click next.
+
+#### Assign data elements
+
+1.  Click **Assign data elements**.
+
+2.  In the list of available items, double-click the data elements you
+    want to assign to the event program.
+
+3.  (Optional) For each data element, add additional settings:
+    
+    <table>
+    <colgroup>
+    <col style="width: 50%" />
+    <col style="width: 50%" />
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th><p>Setting</p></th>
+    <th><p>Description</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p><strong>Compulsory</strong></p></td>
+    <td><p>The value of this data element must be filled into data entry form before you can comple the event.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Allow provided elsewhere</strong></p></td>
+    <td><p>Specify if the value of this data element comes from other facility, not in the facility where this data is entered.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p><strong>Display in reports</strong></p></td>
+    <td><p>Displays the value of this data element into the single event without registration data entry function.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Date in future</strong></p></td>
+    <td><p>Will allow user to select a date in future for date data elements.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p><strong>Mobile render type</strong></p></td>
+    <td><p>Can be used to select different render types for mobile devices. Available options vary depending on the data element's value type. For example, for a numerical value you may select &quot;Default&quot;, &quot;Value&quot;, &quot;Slider&quot;, &quot;Linear scale&quot;, and &quot;Spinner&quot;.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Desktop render type</strong></p></td>
+    <td><p>WARNING: NOT IMPLEMENTED YET.</p>
+    <p>Can be used to select different render types for desktop (i.e. the web interface). Available options vary depending on the data element's value type. For example, for a numerical value you may select &quot;Default&quot;, &quot;Value&quot;, &quot;Slider&quot;, &quot;Linear scale&quot;, and &quot;Spinner&quot;.</p></td>
+    </tr>
+    </tbody>
+    </table>
+
+4.  Click next.
+
+#### Create data entry forms
+
+The data entry forms decide how the data elements will be displayed to
+the user in the **Event Capture** app.
+
+1.  Click **Create data entry form**.
+
+2.  Click **Basic**, **Section** or **Custom**.
+
+3.  To create a **Basic** data entry form: Drag and drop the data
+    elements in the order you want.
+
+4.  To create a **Section** data entry form:
+    
+    1.  Click the add button and enter a section's name, description and
+        render type for desktop and mobile.
+    
+    2.  Click the section so it's highlighted by a black line.
+    
+    3.  Add data elements by clicking the plus sign next to the data
+        elements' names.
+    
+    4.  Repeat above steps until you've all the sections you need.
+    
+    5.  Change the section order: click the optionsmenu, then drag the
+        section to the place you want.
+
+5.  To create a **Custom** data entry from: Use the WYSIWYG editor to
+    create a completely customized form. If you select **Source**, you
+    can paste HTML code directly in the editing area. You can also
+    insert images for example flags or logos.
+
+6.  Click next.
+
+#### Access
+
+Access options decide who can capture data for the program or view/edit
+the program's metadata. A program can be shared to organisation units,
+and in addition, the main program and any program stages' access options
+can be configured through the **Sharing dialog**. Access options are
+available in the **Access** tab.
+
+Assign organization units:
+
+1.  In the organisation tree, double-click the organisation units you
+    want to add to the program to.
+    
+    You can locate an organisation unit in the tree by expanding the
+    branches (click on the arrow symbol), or by searching for it by
+    name. The selected organisation units display in orange.
+
+Change roles and access:
+
+1.  Scroll down to the **Roles and access** section.
+    
+    The first row shows the main program's access options, and each
+    subsequent row shows the options of one program stage. Program
+    stages with a warning icon (exclamation mark) contain access options
+    that deviate from the main program, meaning they are accessed by a
+    different combination of users.
+
+2.  Click on either of the rows and the **Sharing dialog** will show.
+
+3.  Modify the access options accordingly. See documentation on the
+    sharing dialog for details.
+
+4.  Click the **Apply** button.
+
+5.  Repeat the process for each program/program stage. You can also copy
+    all access options from the main program to your child programs:
+    
+    1.  Select the program stages you want to have similar access
+        options as the main program by toggling the checkboxes on the
+        righthand side of the program stages. You can also choose to
+        **Select all** program stages, **Deselect all** program stages
+        or **Select similar** stages, in terms of access options, to
+        that of the main program. Similar stages are toggled by default.
+    
+    2.  Click **Apply to selected stages**
+
+#### Create program notifications
+
+1.  Create the message you want to send:
+    
+    1.  Click **What to send?**.
+    
+    2.  Enter a **Name**.
+    
+    3.  Create the **Subject template**: Double-click the parameters in
+        the **Template variables** field to add them to your subject.
+        
+        > **Note**
+        > 
+        > The subject is not included in text messages.
+    
+    4.  Create the **Message template**: Double-click the parameter
+        names in the **Template variables** list to add them to your
+        message.
+        
+        Dear A{w75KJ2mc4zz}, You're now enrolled in V{program\_name}.
+
+2.  Define *when* you want to send the message:
+    
+    1.  Click **When to send it?**.
+    
+    2.  Select a **Notification trigger**.
+        
+        <table>
+        <colgroup>
+        <col style="width: 50%" />
+        <col style="width: 50%" />
+        </colgroup>
+        <thead>
+        <tr class="header">
+        <th><p>Notification trigger</p></th>
+        <th><p>Description</p></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="odd">
+        <td><p>Program stage completion</p></td>
+        <td><p>The program stage notification is sent when the program stage is completed</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>Days scheduled (due date)</p></td>
+        <td><p>The program stage notification is sent XX number of days before or after the due date</p>
+        <p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
+        </tr>
+        </tbody>
+        </table>
+
+3.  Define *who* you want to send the message to:
+    
+    1.  Click **Who to send it to?**.
+    
+    2.  Select a **Notification recipient**.
+        
+        <table>
+        <colgroup>
+        <col style="width: 50%" />
+        <col style="width: 50%" />
+        </colgroup>
+        <thead>
+        <tr class="header">
+        <th><p>Notification recipient</p></th>
+        <th><p>Description</p></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="odd">
+        <td><p>Tracked entity instance</p></td>
+        <td><p>Receives program notifications via e-mail or text message.</p>
+        <p>To receive a program notification, the recipient must have an e-mail address or a phone number attribute.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>Organisation unit contact</p></td>
+        <td><p>Receives program notifications via e-mail or text message.</p>
+        <p>To receive a program notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>Users at organisation unit</p></td>
+        <td><p>All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>User group</p></td>
+        <td><p>All members of the selected user group receive the program notifications via the internal DHIS2 messaging system</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>Program</p></td>
+        <td><p>TBA</p></td>
+        </tr>
+        </tbody>
+        </table>
+    
+    3.  Click **Save**.
+
+4.  Repeat above steps to create all the program notifications you need.
+
+5.  Click **Save**.
+
+> **Note**
+> 
+> You configure when the program notifications are sent in the **Data
+> Administration** app \> **Scheduling** \> **Program notifications
+> scheduler**.
+> 
+>   - Click **Run now** to send the program notifications immediately.
+> 
+>   - Select a time and click **Start** to schedule the program
+>     notifications to be send at a specific time.
+
+### Reference information: Program notification parameters
+
+<table>
+<caption>Program notification parameters to use in program notifications</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Notification type</p></th>
+<th><p>Variable name</p></th>
+<th><p>Variable code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Program</p></td>
+<td><p>Current date</p></td>
+<td><pre><code>V{current_date}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Days since enrollment date</p></td>
+<td><pre><code>V{days_since_enrollment_date}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Enrollment date</p></td>
+<td><pre><code>V{enrollment_date}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Incident date</p></td>
+<td><pre><code>V{incident_date}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Organisation unit name</p></td>
+<td><pre><code>V{org_unit_name}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Program name</p></td>
+<td><pre><code>V{program_name}</code></pre></td>
+</tr>
+<tr class="odd">
+<td><p>Program stage</p></td>
+<td><p>Current date</p></td>
+<td><pre><code>V{current_date}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Days since due date</p></td>
+<td><pre><code>V{days_since_due_date}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Days until due date</p></td>
+<td><pre><code>V{days_until_due_date}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Due date</p></td>
+<td><pre><code>V{due_date}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Organisation unit name</p></td>
+<td><pre><code>V{org_unit_name}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Program name</p></td>
+<td><pre><code>V{program_name}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Program stage name</p></td>
+<td><pre><code>V{program_stage_name}</code></pre></td>
+</tr>
+</tbody>
+</table>
+
+## Configure tracker programs in the Maintenanceapp
+
+> **Note**
+> 
+> From release 2.27, you create event programs (programs without
+> registration) in the **Maintenance** app. You still create tracker
+> programs (programs with registration) in the **Program / Attributes**
+> app.
+
+## Configure program indicators
+
+### About program indicators
+
+Program indicators are expressions based on data elements and attributes
+of tracked entities which can be used to calculate values based on a
+formula. Program indicators consist of an aggregation type, an analytics
+type, an expression and a filter.
+
+Program indicators are evaluated based on the assigned aggregation type,
+expression and filter. The order of evaluation is:
+
+1.  The *filter* will filter the events which become part of the
+    evaluation/aggregation routine.
+
+2.  The *expression* will be evaluated per event.
+
+3.  All evaluated expression values will be *aggregated* according to
+    the aggregation type of the program indicator.
+
+<table>
+<caption>Program indicator components</caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Program rule component</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Aggregation type</p></td>
+<td><p>The aggregation type determines how the program indicator will be aggregated. The following aggregation types are available:</p>
+<ul>
+<li><p>Average</p></li>
+<li><p>Average (number)</p></li>
+<li><p>Average (number, disaggregation)</p></li>
+<li><p>Average (sum in organisation unit hierarchy)</p></li>
+<li><p>Average (sum of numbers)</p></li>
+<li><p>Average (sum of numbers, disaggregation)</p></li>
+<li><p>Average (Yes/No)</p></li>
+<li><p>Count</p></li>
+<li><p>Custom</p>
+<p>The &quot;custom&quot; aggregation type allows you to specify the aggregation type in-line in the expression. All other aggregation types are applied to the entire expression.</p>
+<p>Using the &quot;custom&quot; aggregation type might lead to an exception of the order of evaluation described above where individual parts of the expression can be evaluated and aggregated, as opposed to the entire expression being evaluated prior to aggregation.</p></li>
+<li><p>Default</p></li>
+<li><p>Max</p></li>
+<li><p>Min</p></li>
+<li><p>None</p></li>
+<li><p>Standard deviation</p></li>
+<li><p>Sum</p></li>
+<li><p>Variance</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>Analytics type</p></td>
+<td><p>The available analytics types are <em>event</em> and <em>enrollment</em>.</p>
+<p>The analytics type defines whether the program indicator is calculated based on events or program enrollments. This has an impact on what type of calculations can be made.</p>
+<ul>
+<li><p>Events implies a data source where each event exists as an independent row. This is suitable for performing aggregations such as counts and sums.</p></li>
+<li><p>Enrollments implies a data source where all events for a single enrollment is combined on the same row. This allows for calculations which can compare event data from various program stages within a program enrollment.</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Analytics period boundaries</p></td>
+<td><p>Defines the boundaries for the program indicator calculation. The boundaries determine which events or enrollments gets included in aggregations, always relative to the aggregate reporting period start and end. When creating the program indicator, the default boundaries will get preselected based on analytics type.</p>
+<ul>
+<li><p>For analytics type <em>event</em>, the default boundaries will be configured to encapsulate any events with an event date after the reporting period starts and before the reporting period ends.</p></li>
+<li><p>For analytics type <em>enrollment</em>, the default boundaries will encapsulate all enrollments with an enrollment date after the reporting date starts and before the reporting period ends. In addition, the default enrollment program indicator evaluates the newest event for all program stages regardless of date.</p></li>
+</ul>
+<p>It is possible to change the upper and lower boundaries to include a longer or shorter period relative to the reporting period, or delete one of the boundaries - in effect returing all data before or after a certiain period. It is also possible to add more constraints, for example to make an enrollment program indicator only include event data up to a given point in time.</p>
+<ul>
+<li>date&lt;/emphasis&gt;,
+event date
+,
+enrollment date
+or
+custom
+. Designates what is being constrained by the boundary.</li>
+</ul>
+<p><em>custom</em> is used make boundary that target either a date data element, tracked entity attribute or the presence of an event in a program stage. This is done with a custom expression on the form:</p>
+<ul>
+<li><p>Data element of type date: #{programStageUid.dataElementUid}.</p>
+<pre><code>#{A03MvHHogjR.a3kGcGDCuk6}</code></pre></li>
+<li><p>Tracked entity attribute of type date: #{attributeUid}.</p>
+<pre><code>A{GPkGfbmArby}</code></pre></li>
+<li><p>Presence of one event in a specific program stage: PS_EVENTDATE:programStageUid.</p>
+<pre><code>PS_EVENTDATE:A03MvHHogjR</code></pre>
+<blockquote>
+<p><strong>Note</strong></p>
+This boundary target is only applicable to
+Analytics type Enrollment
+</blockquote></li>
+</ul>
+&lt;/listitem&gt; Analytics period boundary type: Defines wether the boundary is a end boundary - starting with &quot;before...&quot;, or a start boundary - &quot;after...&quot;. Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period. Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort porgram indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with &quot;-1&quot; and &quot;Years&quot; Period type: See above. Can be any period, e.g. <em>Weekly</em> or <em>Quarterly</em>. &lt;/itemizedlist&gt; &lt;/para&gt;</td>
+</tr>
+<tr class="even">
+<td><p>Expression</p></td>
+<td><p>The expression defines how the indicator is being calculated. The expression can contain references to various entities which will be substituted with a related values when the indicator is calculated:</p>
+<ul>
+<li><p>Data elements: Will be substituted with the value of the data element for the time period and organisation unit for which the calculation is done. Refers to both program stage and data element.</p></li>
+<li><p>Attributes: Will be substituted with the value of the attribute for the person / tracked entity for which the calculation is done.</p></li>
+<li><p>Variables: Will be substituted with special values linked to the program, including incident date and date of enrollment for the person, current date and count of values in the expression for the time period and organisation unit for which the calculation is done.</p></li>
+<li><p>Constants: Will be substituted with the value of the constant.</p></li>
+</ul>
+<p>The expression is a mathematical expression and can also contain operators.</p>
+<p>For single event programs and tracker programs with analytics type <em>event</em>, the expression will be evaluated <em>per event</em>, then aggregated according to its aggregation type.</p>
+<p>For tracker programs with analytics type <em>enrollment</em>, the expression will be evaluated <em>per enrollment</em>, then aggregated according to its aggregation type.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Filter</p></td>
+<td><p>The filter is applied to events and filters the data source used for the calculation of the indicator. I.e. the filter is applied to the set of events before the indicator expression is being evaluated. The filter must evaluate to either true or false. It filter is applied to each individual event. If the filter evaluates to true then the event is included later in the expression evaluation, if not it is ignored. The filter can, in a similar way as expressions, contain references to data elements, attributes and constants.</p>
+<p>The program indicator filter can in addition use logical operators. These operators can be used to form logical expressions which ultimately evaluate to either true or false. For example you can assert that multiple data elements must be a specific value, or that specific attributes must have numerical values less or greater than a constant.</p></td>
+</tr>
+</tbody>
+</table>
+
+In the **Maintenance** app, you manage the following program indicator
+objects:
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Object type</p></th>
+<th><p>Available functions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Program indicator</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
+</tr>
+<tr class="even">
+<td><p>Program indicator group</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
+</tr>
+</tbody>
+</table>
+
+### Create or edit a program indicator
+
+> **Note**
+> 
+> A program indicator belongs to exactly one program.
+
+1.  Open the **Maintenance** app and click **Indicator** \> **Program
+    indicator**.
+
+2.  Click the add button.
+
+3.  Select a **Program** and enter:
+    
+      - **Name**
+    
+      - **Short name**
+    
+      - **Code**
+    
+      - **Description**
+
+4.  Select number of **Decimals in data output**.
+
+5.  Select an **Aggregation type**.
+
+6.  Select a if you want to **Display in form**.
+
+7.  Assign one or multiple **Legend**s.
+
+8.  (Optional) Enter a **Category option combination for aggregate data
+    export**.
+
+9.  (Optional) Enter an **Attribute option combination for aggregate
+    data export**.
+
+10. Create the expression.
+    
+    1.  Click **Edit expression**.
+    
+    2.  Create the expression based on mathematical operators and the
+        attributes, variables and constants listed to the right.
+
+11. Create the filter.
+    
+    1.  Click **Edit filter**.
+    
+    2.  Create the expression based on mathematical operators and the
+        attributes, variables and constants listed to the right.
+
+12. Click **Save**.
+
+### Create or edit a program indicator group
+
+1.  Open the **Maintenance** app and click **Indicator** \> **Program
+    indicator group**.
+
+2.  Click the add button.
+
+3.  Enter **Name** and **Code**.
+
+4.  In the list of available program indicators, double-click the
+    program indicators you want to assign to your group.
+
+5.  Click **Save**.
+
+### Reference information: Expression and filter examples per value type
+
+The table below shows examples of how to write expressions and filters
+for different data element and attribute value types:
+
+<table>
+<caption>Expression and filter examples per value type</caption>
+<thead>
+<tr class="header">
+<th>Value types</th>
+<th>Example syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Integer</p>
+<p>Negative integer</p>
+<p>Positive or zero integer</p>
+<p>Positive integer</p>
+<p>Number</p>
+<p>Percentage</p></td>
+<td><p>Numeric fields, can be used for aggregation as an expression, or in filters:</p>
+<pre><code>#{mCXR7u4kNBW.K0A4BauXJDl} &gt;= 3</code></pre></td>
+</tr>
+<tr class="even">
+<td><p>Yes/No</p>
+<p>Yes only</p></td>
+<td><p>Boolean fields. Yes is translated to numeric 1, No to numeric 0. Can be used for aggregation as an expression, or in filters:</p>
+<pre><code>#{mCXR7u4kNBW.Popa3BauXJss} == 1</code></pre></td>
+</tr>
+<tr class="odd">
+<td><p>Text</p>
+<p>Long text</p>
+<p>Phone number</p>
+<p>Email</p></td>
+<td><p>Text fields. Can be checked for equality in filters:</p>
+<pre><code>#{mCXR7u4kNBW.L8K4BauIKsl} == &#39;LiteralValue&#39;</code></pre></td>
+</tr>
+<tr class="even">
+<td><p>Date</p>
+<p>Age</p></td>
+<td><p>Date fields. Most useful when combined with a d2:daysBetween function, which produces a number that can be aggregated as an expression or used in filters:</p>
+<pre><code>d2:daysBetween(#{mCXR7u4kNBW.JKJKBausssl},V{enrollment_date}) &gt; 100</code></pre>
+<p>Can also directly be checked for equality in filters:</p>
+<pre><code>#{mCXR7u4kNBW.JKJKBausssl} == &#39;2011-10-28&#39;</code></pre></td>
+</tr>
+<tr class="odd">
+<td><p>Date</p>
+<p>Age</p></td>
+<td><p>Date fields. Most useful when combined with a d2:daysBetween function, which produces a number that can be aggregated as an expression or used in filters:</p>
+<pre><code>d2:daysBetween(#{mCXR7u4kNBW.JKJKBausssl},V{enrollment_date}) &gt; 100</code></pre>
+<p>Can also directly be checked for equality in filters:</p>
+<pre><code>#{mCXR7u4kNBW.JKJKBausssl} == &#39;2011-10-28&#39;</code></pre></td>
+</tr>
+</tbody>
+</table>
+
+### Reference information: Functions, variables and operators to use in program indicator expressions and filters
+
+An expression that includes both attributes, data elements and constants
+looks like this:
+
+    (A{GPkGfbmArby} + #{mCXR7u4kNBW.NFkjsNiQ9PH}) * C{bCqvfPR02Im}
+
+An expression which uses the custom aggregation type and hence can use
+inline aggregation types looks like
+    this:
+
+    (sum(#{mCXR7u4kNBW.K0A4BauXJDl} * #{mCXR7u4kNBW.NFkjsNiQ9PH}) / sum(#{mCXR7u4kNBW.NFkjsNiQ9PH})) * 100
+
+Note how the "sum" aggregation operator is used inside the expression
+itself.
+
+#### Functions to use in a program indicator expression or filter
+
+The program indicator expression and filter support a range of
+functions. The functions can be applied to data elements and attributes:
+
+<table>
+<caption>Functions to use in a program indicator expression or filter</caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Function</p></th>
+<th><p>Arguments</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>d2:hasValue</p></td>
+<td><p>(object)</p></td>
+<td><p>Returns true if the data element/attribute has a value. Can be used in filters to distinguish between the number 0 and no value, and to distinguish between exlicit &quot;No&quot; and no selection for a Yes/No field.</p></td>
+</tr>
+<tr class="even">
+<td><p>d2:minutesBetween</p></td>
+<td><p>(datetime, datetime)</p></td>
+<td><p>Produces the number of minutes between two data elements/attributes of type &quot;date and time&quot;. The static datetime format is 'yyyy-MM-dd hh:mm'.</p></td>
+</tr>
+<tr class="odd">
+<td><p>d2:daysBetween</p></td>
+<td><p>(date, date)</p></td>
+<td><p>Produces the number of days between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'.</p></td>
+</tr>
+<tr class="even">
+<td><p>d2:weeksBetween</p></td>
+<td><p>(date, date)</p></td>
+<td><p>Produces the number of full weeks between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'.</p></td>
+</tr>
+<tr class="odd">
+<td><p>d2:monthsBetween</p></td>
+<td><p>(date, date)</p></td>
+<td><p>Produces the number of full months between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'.</p></td>
+</tr>
+<tr class="even">
+<td><p>d2:yearsBetween</p></td>
+<td><p>(date, date)</p></td>
+<td><p>Produces the number of full years between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'.</p></td>
+</tr>
+<tr class="odd">
+<td><p>d2:condition</p></td>
+<td><p>(boolean-expr, true-val, false-val)</p></td>
+<td><p>Evaluates the conditional expression and if true returns the true value, if false returns the false value. The conditional expression must be quoted.</p></td>
+</tr>
+<tr class="even">
+<td><p>d2:zing</p></td>
+<td><p>(number)</p></td>
+<td><p>Evaluates the data element/attribute of type number to zero if the value is negative, otherwise to the value itself.</p></td>
+</tr>
+<tr class="odd">
+<td><p>d2:oizp</p></td>
+<td><p>(number)</p></td>
+<td><p>Evaluates the data element/attribute of type number to one if the value is zero or positive, otherwise to zero.</p></td>
+</tr>
+<tr class="even">
+<td><p>d2:zpvc</p></td>
+<td><p>(object, [,object, object,...])</p></td>
+<td><p>Returns the number of numeric zero and positive values among the given object arguments. Can be provided any number of arguments.</p></td>
+</tr>
+</tbody>
+</table>
+
+A filter that uses the "hasValue" function looks like this: this:
+
+    d2:hasValue(#{mCXR7u4kNBW.NFkjsNiQ9PH})
+
+An expression that uses the "zing" and "oizp" functions looks like this:
+
+    d2:zing(A{GPkGfbmArby}) + d2:oizp(#{mCXR7u4kNBW.NFkjsNiQ9PH}))
+
+An expression that uses the "daysBetween" function looks like this:
+
+    d2:daysBetween(#{mCXR7u4kNBW.k8ja2Aif1Ae},'2015-06-01')
+
+An expression that uses the "condition" function looks like this:
+
+    d2:condition('#{mCXR7u4kNBW.NFkjsNiQ9PH} > 100',150,50)
+
+An expression that uses the "zpvc" function looks like this:
+
+    d2:zpvc(A{GPkGfbmArby}),#{mCXR7u4kNBW.NFkjsNiQ9PH}),4,-1)
+
+#### Variables to use in a program indicator expression or filter
+
+The program indicator expression and filter support a range of
+variables:
+
+<table>
+<caption>Variables to use in a program indicator expression or filter</caption>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Variable</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>event_date</p></td>
+<td><p>The date of when the event took place.</p></td>
+</tr>
+<tr class="even">
+<td><p>due_date</p></td>
+<td><p>The date of when an event is due.</p></td>
+</tr>
+<tr class="odd">
+<td><p>incident_date</p></td>
+<td><p>The date of the incidence of the event.</p></td>
+</tr>
+<tr class="even">
+<td><p>enrollment_date</p></td>
+<td><p>The date of when the tracked entity instance was enrolled in the program.</p></td>
+</tr>
+<tr class="odd">
+<td><p>enrollment_status</p></td>
+<td><p>Can be used to include or exclude enrollments in certain statuses.</p>
+<p>When calculating the hemoglobin improvement/deterioration throughout a pregnancy, it might make sense to only consider completed enrollments. If non-completed enrollments is not filtered out, these will represent half-finished ANC followups, where the final improvement/deterioration is not yet established.</p></td>
+</tr>
+<tr class="even">
+<td><p>current_date</p></td>
+<td><p>The current date.</p></td>
+</tr>
+<tr class="odd">
+<td><p>value_count</p></td>
+<td><p>The number of non-null values in the expression part of the event.</p></td>
+</tr>
+<tr class="even">
+<td><p>zero_pos_value_count</p></td>
+<td><p>The number of numeric positive values in the expression part of the event.</p></td>
+</tr>
+<tr class="odd">
+<td><p>event_count</p></td>
+<td><p>The count of events (useful in combination with filters).</p></td>
+</tr>
+<tr class="even">
+<td><p>enrollment_count</p></td>
+<td><p>The count of enrollments (useful in combination with filters).</p></td>
+</tr>
+<tr class="odd">
+<td><p>tei_count</p></td>
+<td><p>The count of tracked entity instances (useful in combination with filters).</p></td>
+</tr>
+<tr class="even">
+<td><p>program_stage_name</p></td>
+<td><p>Can be used in filters for including only certain program stages in a filter for tracker programs. Uses the name of the program stage:</p>
+<pre><code>V{program_stage_name} == &#39;ANC first visit&#39;</code></pre></td>
+</tr>
+<tr class="odd">
+<td><p>program_stage_id</p></td>
+<td><p>Can be used in filters for including only certain program stages in a filter for tracker programs. Uses the unique identifier of the program stage:</p>
+<pre><code>V{program_stage_id} == &#39;YPSSfbmAtt1&#39;</code></pre></td>
+</tr>
+<tr class="even">
+<td><p>reporting_period_start</p></td>
+<td><p>Can be used in filters or expressions for comparing any date to the first date in each reporting period.</p>
+<pre><code>d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{reporting_period_start})</code></pre></td>
+</tr>
+<tr class="odd">
+<td><p>reporting_period_end</p></td>
+<td><p>Can be used in filters or expressions for comparing any date to the last inclusive date in each reporting period.</p></td>
+</tr>
+</tbody>
+</table>
+
+A filter that uses the "Reporting period end" variable to only include
+women who has an LMP that would be in the first
+    trimester:
+
+    d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{reporting_period_end}) <= 84
+
+An expression that uses the "value count" variable looks like
+    this:
+
+    (#{A03MvHHogjR.a3kGcGDCuk6} + #{A03MvHHogjR.wQLfBvPrXqq}) / V{value_count}
+
+An expression that uses the "event\_date" and "incident\_date" variables
+looks like this:
+
+    d2:daysBetween(V{incident_date},V{event_date})
+
+#### Operators to use in a program indicator filter
+
+<table>
+<caption>Operators to use in a program indicator filter</caption>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Operator</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>and</p></td>
+<td><p>Logical AND</p></td>
+</tr>
+<tr class="even">
+<td><p>or</p></td>
+<td><p>Logical OR</p></td>
+</tr>
+<tr class="odd">
+<td><p>==</p></td>
+<td><p>Equal to</p></td>
+</tr>
+<tr class="even">
+<td><p>!=</p></td>
+<td><p>Not equal to</p></td>
+</tr>
+<tr class="odd">
+<td><p>&lt;</p></td>
+<td><p>Less than</p></td>
+</tr>
+<tr class="even">
+<td><p>&lt;=</p></td>
+<td><p>Less than or equal to</p></td>
+</tr>
+<tr class="odd">
+<td><p>&gt;</p></td>
+<td><p>Greater than</p></td>
+</tr>
+<tr class="even">
+<td><p>&gt;=</p></td>
+<td><p>Greater than or equal to</p></td>
+</tr>
+</tbody>
+</table>
+
+These operators can be used to form logical expressions which ultimately
+evaluate to either true or false. For example you can assert that
+multiple data elements must be a specific value, or that specific
+attributes must have numerical values less or greater than a constant.
+
+A filter that uses both attributes and data elements looks like this:
+
+    A{cejWyOfXge6} == 'Female' and #{A03MvHHogjR.a3kGcGDCuk6} <= 2
+
+> **Tip**
+> 
+> DHIS2 is using the JEXL library for evaluating expressions which
+> supports additional syntax beyond what is covered in this
+> documentation. See the reference at the [project home
+> page](http://commons.apache.org/proper/commons-jexl/reference/syntax.html)
+> to learn how you can create more sophisticated expressions
+
+## Configure program rules
+
+### About program rules
+
+Program rules allows you to create and control dynamic behavior of the
+user interface in the **Tracker Capture** and **Event Capture** apps.
+During data entry, the program rules expressions are evaluated each time
+the user interface is displayed, and each time a data element is
+changed. Most types of actions will take effect immediately when the
+user enters values in the **Tracker Capture** and **Event Capture**
+apps.
+
+<table>
+<caption>Program rule components</caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Program rule component</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Program rule action</p></td>
+<td><p>Each program rule contains one or multiple actions. These are the behaviors that are triggered in the user interface when the expression is true. Actions will be applied at once if the expression is true, and will be reverted if the expression is no longer true. There are several types of actions and you can have several actions in one program rule.</p></td>
+</tr>
+<tr class="even">
+<td><p>Program rule expression</p></td>
+<td><p>Each program rule has a single expression that determines whether the program rule actions should be triggered, if the expression evaluates to true. If the expression is true the program rule is in effect and the actions will be executed. If the expression is false, the program rule is no longer in effect and the actions will no longer be applied.</p>
+<p>You create the expression with standard mathematical operators, custom functions, user-defined static values and program rule variables. The program rule variables represent attribute and data element values which will be evaluated as part of the expression.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Program rule variable</p></td>
+<td><p>Program rule variables lets you include data values and attribute values in program rule expressions. Typically, you'll have to create one or several program rule variables before creating a program rule. This is because program rules expressions usually contain at least one data element or attribute value to be meaningful.</p>
+<p>The program rule variables are shared between all rules in your program. When you create multiple program rules for the same program, these rules will share the same library of program rule variables.</p></td>
+</tr>
+</tbody>
+</table>
+
+In the **Maintenance** app, you manage the following program rule
+objects:
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Object type</p></th>
+<th><p>Available functions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Program rule</p></td>
+<td><p>Create, edit, clone, delete, show details and translate</p></td>
+</tr>
+<tr class="even">
+<td><p>Program rule variable</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
+</tr>
+</tbody>
+</table>
+
+### Workflow
+
+1.  In the **Maintenance** app, create program rule variable(s) if
+    needed.
+
+2.  In the **Maintenance** app, create the program rule:
+    
+    1.  Enter the program rule details.
+    
+    2.  Createthe program rule expression.
+    
+    3.  Define the program rule actions.
+
+3.  In the **Tracker Capture** or **Event Capture** apps, verify that
+    the program rule behaves as expected.
+
+### Create or edit a program rule variable
+
+1.  Open the **Maintenance** app and click **Program** \> **Program rule
+    variable**.
+
+2.  Click the add button.
+
+3.  Select a **Program** and enter a **Name**.
+
+4.  Select if you want to **Use code for option set**.
+    
+    This option is only effective when the data element or tracked
+    entity attribute is connected to an option set. If you don't select
+    this option, the program rule variable will be populated with the
+    option set's name. If you select the option, the program rule
+    variable will be populated with the option set's code instead.
+
+### Create or edit a program rule
+
+> **Note**
+> 
+> A program rule belongs to exactly one program.
+
+1.  Open the **Maintenance** app and click **Program** \> **Program
+    rule**.
+
+2.  Click the add button.
+
+3.  Enter the program rule details. These fields are not shown to the
+    end user, they are only meant for the program administrator.
+    
+      - **Program**
+    
+      - **Name**
+    
+      - **Description**
+    
+      - **Priority**
+        
+        Let's say you have 16 program rules in your program. You
+        configure the program rules with the following priority
+        settings:
+        
+          - Priority 1 for program rule A
+        
+          - Priority 2 for program rules B - K
+        
+          - No priority for program rules L - P
+        
+        Result: the system runs the program rules in the following
+        order:
+        
+        1.  Program rule A
+        
+        2.  Program rules B - K (you can't find out or configure in
+            which order the system runs these program rules)
+        
+        3.  Program rules L - P.
+
+4.  Click **Enter program rule expression** and createthe program rule
+    expression with the help of variables, functions and operators.
+
+5.  Click **Define program rule actions** and create the actions
+    executed when the expression is true.
+    
+    1.  Click the add button, select an **Action** and enter the
+        required information.
+        
+        Depending on the action type, you'll have to perform different
+        types of settings. For some action types, you must also enter
+        free text or create expressions.
+        
+        <table>
+        <colgroup>
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+        </colgroup>
+        <thead>
+        <tr class="header">
+        <th><p>Action type</p></th>
+        <th><p>Required settings</p></th>
+        <th><p>Description</p></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="odd">
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr class="even">
+        <td><p><strong>Assign value</strong></p></td>
+        <td><p><strong>Data element to assign value to</strong></p>
+        <p><strong>Program rule variable to assign value to</strong></p>
+        <p><strong>Expression to evaluate and assign</strong></p></td>
+        <td><p>Used to help the user calculate and fill out fields in the data entry form. The idea is that the user shouldn’t have to fill in values that the system can calculate, for example BMI.</p>
+        <p>When a field is assigned a value, the user sees the value but the user can't edit it.</p>
+        <p>Example from Immunization stock card i Zambia: The data element for vaccine stock outgoing balance is calculated based on the data element for incoming stock balance minus the data elements for consumption and wastage.</p>
+        <p>Advanced use: configure an 'assign value' to do a part of a calculation and then assign the result of the calculation to a program rule variable. This is the purpose with the &quot;Calculated value&quot; program rule variable.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p><strong>Display text</strong></p></td>
+        <td><p><strong>Display widget</strong></p>
+        <p><strong>Static text</strong></p>
+        <p><strong>Expression to evaluate and display after static text</strong></p></td>
+        <td><p>Used to display information that is not an error or a warning, for example feedback to the user. You can also use this action to display important information, for example the patient's allergies, to the user.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p><strong>Display key/value pair</strong></p></td>
+        <td><p><strong>Display widget</strong></p>
+        <p><strong>Key label</strong></p>
+        <p><strong>Expression to evaluate and display as value</strong></p></td>
+        <td><p>Used to display information that is not an error or a warning.</p>
+        <p>Example: calculate number of weeks and days in a pregnancy and display it in the format the clinician is used to see it in. The calculation is based on previous recorded data.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p><strong>Error on complete</strong></p></td>
+        <td><p><strong>Data element to display error next to</strong></p>
+        <p><strong>Tracked entity attribute to display error next to</strong></p>
+        <p><strong>Static text</strong></p>
+        <p><strong>Expression to evaluate and display after static text</strong></p></td>
+        <td><p>Used whenever you've cross-consistencies in the form that must be strictly adhered to. This action prevents the user from continuing until the error is resolved.</p>
+        <p>This action differs from the regular <strong>Show error</strong> since the error is not shown until the user tries to actually complete the form.</p>
+        <p>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p><strong>Hide field</strong></p></td>
+        <td><p><strong>Data element to hide</strong></p>
+        <p><strong>Tracked entity attribute to hide</strong></p>
+        <p><strong>Custom message for blanked field</strong></p></td>
+        <td><p>Used when you want to hide a field from the user.</p>
+        <p><strong>Custom message for blanked field</strong> allows you to define a custom message displayed to the user in case the program rule hides and blanks out the field after the user typed in or selected a value.</p>
+        <p>If a hide field action hides a field that contains a value, the field will always removed.If no message is defined, a standard message will be displayed to alert the user.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p><strong>Hide section</strong></p></td>
+        <td><p><strong>Program stage section to hide</strong></p></td>
+        <td><p>TBA</p></td>
+        </tr>
+        <tr class="even">
+        <td><p><strong>Hide program stage</strong></p></td>
+        <td><p><strong>Program stage to hide</strong></p></td>
+        <td><p>Used when you want to hide a program stage section from the user.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p><strong>Make field mandatory</strong></p></td>
+        <td><p><strong>Data element to make mandatory</strong></p>
+        <p><strong>Tracked entity attribute to make mandatory</strong></p></td>
+        <td><p>TBA</p></td>
+        </tr>
+        <tr class="even">
+        <td><p><strong>Show error</strong></p></td>
+        <td><p><strong>Data element to display error next to</strong></p>
+        <p><strong>Tracked entity attribute to display error next to</strong></p>
+        <p><strong>Static text</strong></p>
+        <p><strong>Expression to evaluate and display after static text</strong></p></td>
+        <td><p>Used whenever there are rules which must strictly be adhered to. The show error action prevents the user from continuing until the error is resolved.</p>
+        <p>Such a strict validation should only be used when it's certain that the evaluated expression is never true unless the user has made a mistake in data entry.</p>
+        <p>It's mandatory to define a message that is shown to the user when the expression is true and the action is triggered.</p>
+        <p>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.</p>
+        <p>In case several data elements or attributes are involved, select the one that is most likely that the user would need to change.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p><strong>Show warning</strong></p></td>
+        <td><p><strong>Data element to display warning next to</strong></p>
+        <p><strong>Tracked entity attribute to display warning next to</strong></p>
+        <p><strong>Static text</strong></p>
+        <p><strong>Expression to evaluate and display after static text</strong></p></td>
+        <td><p>Used to give the user a warning about the entered data, but at the same time to allow the user to save and continue.</p>
+        <p>You can use warnings to help the user avoid errors in the entered data, while at the same time allow the user to consciously disregard the warnings and save a value that is outside preset expectations.</p>
+        <p><strong>Static text</strong> defines the message shown to the user when the expression is true and the action is triggered.</p>
+        <p>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.</p>
+        <p>In case several data elements or attributes are involved, select the one that is most likely that the user would need to change.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p><strong>Warning on complete</strong></p></td>
+        <td><p><strong>Data element to display warning next to</strong></p>
+        <p><strong>Tracked entity attribute to display warning next to</strong></p>
+        <p><strong>Static text</strong></p>
+        <p><strong>Expression to evaluate and display after static text</strong></p></td>
+        <td><p>Used to give the user a warning if he/she tries to complete inconsistent data, but at the same time to allow the user to continue. The warning is shown in a dialog when the user completes the form.</p>
+        <p><strong>Static text</strong> defines the message shown to the user when the expression is true and the action is triggered. This field is mandatory.</p>
+        <p>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.</p>
+        <p>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p><strong>Send Message</strong></p></td>
+        <td><p><strong>Message template to send</strong></p></td>
+        <td><p>Send Message triggers a notification based on provided message template. This action will be taken when ever there is a change in <strong>data value</strong>. However this behaviour can be controled by providing event/enrollment status in program rule expression for example.</p>
+        <pre><code>V{event_status} == &#39;COMPLETED&#39;</code></pre>
+        <p>Message template will be parsed and variables will be substituted with actual values.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p><strong>Schedule Message</strong></p></td>
+        <td><p><strong>Message template to send</strong></p>
+        <p><strong>Data field which contains expression to evaluate the date which notification should be sent at.</strong></p></td>
+        <td><p>Schedule Message will schedule notification at date provided by Expression in the data field. Sample expression is given below</p>
+        <pre><code>d2:addDays( &#39;2018-04-20&#39;, &#39;2&#39; )</code></pre>
+        <p>Message template will be parsed and variables will be substituted with actual values.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p><strong>Hide option</strong></p></td>
+        <td><p><strong>Data element to hide option for</strong></p>
+        <p><strong>Tracked entity attribute to hide option for</strong></p>
+        <p><strong>Option that should be hidden</strong></p></td>
+        <td><p>Used to selectively hide a single option for an option set in a given data element/tracked entity attribute.</p>
+        <p>When combined with <strong>show option group</strong> the <strong>hide option</strong> takes presedence.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p><strong>Hide option group</strong></p></td>
+        <td><p><strong>Data element to hide option group for</strong></p>
+        <p><strong>Tracked entity attribute to hide option group for</strong></p>
+        <p><strong>Option group that should be hidden</strong></p></td>
+        <td><p>Used to hide all options in a given option group and data element/tracked entity attribute.</p>
+        <p>When combined with <strong>show option group</strong> the <strong>hide option group</strong> takes presedence.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p><strong>Show option group</strong></p></td>
+        <td><p><strong>Data element to show option group for</strong></p>
+        <p><strong>Tracked entity attribute to show option group for</strong></p>
+        <p><strong>Option group that should be shown</strong></p></td>
+        <td><p>Used to show only options from a given option group in a given data element/tracked entity attribute. To show an option group implicitly hides all options that is not part of the group(s) that is shown.</p></td>
+        </tr>
+        </tbody>
+        </table>
+    
+    2.  Click **Save**.
+    
+    3.  (Optional) Repeat above steps to add more actions.
+
+6.  Click **Save**.
+
+### Example: Program rules
+
+> **Note**
+> 
+> You can view all examples on the demo server:
+> <https://play.dhis2.org/dev/dhis-web-maintenance/#/list/programSection/programRule>
+
+This example shows how to configure a program rule which calculate
+number of weeks and days in a pregnancy and display the result in the
+format the clinician is used to see it in. The calculation is based on
+previous recorded
+    data.
+
+1.  ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_details.png)
+
+2.  ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_expression.png)
+
+3.  ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_action.png)
+    
+    The full expression in the **Data** field:
+    
+        d2:concatenate(d2:weeksBetween(#{lmp}, V{current_date}), '+', 
+        d2:modulus(d2:daysBetween(#{lmp}, V{current_date}), 7))
+
+![](resources/images/maintainence/pg_rule_ex/keyvaluepair_result.png)
+
+This exampleshows how to configure a program rule to display text in the
+Feedback widget in the **Tracker Capture**
+    app.
+
+1.  ![](resources/images/maintainence/pg_rule_ex/displaytext_pgrule_variable.png)
+
+2.  ![](resources/images/maintainence/pg_rule_ex/displaytext_details.png)
+
+3.  ![](resources/images/maintainence/pg_rule_ex/displaytext_expression.png)
+
+4.  ![](resources/images/maintainence/pg_rule_ex/displaytext_action.png)
+
+![](resources/images/maintainence/pg_rule_ex/displaytext_result.png)
+
+This example shows how to configure a program rule to always display
+certain data in the Feedback widget in the **Tracker Capture** app. This
+is useful when you want to make sure that vital data, for example
+medicine allergies, is always
+    visible.
+
+1.  ![](resources/images/maintainence/pg_rule_ex/displaytext2_pgrule_variable.png)
+
+2.  ![](resources/images/maintainence/pg_rule_ex/displaytext2_details.png)
+
+3.  ![](resources/images/maintainence/pg_rule_ex/displaytext2_expression.png)
+
+4.  ![](resources/images/maintainence/pg_rule_ex/displaytext2_action.png)
+
+![](resources/images/maintainence/pg_rule_ex/displaytext2_first_pgstage.png)
+
+![](resources/images/maintainence/pg_rule_ex/displaytext2_result.png)
+
+By using a program rule of type "Assign value" you can calculate the
+"Gestational age at visit" value and fill it in the data entry form. You
+configure the program rule to calculate "Gestational age at visit" based
+on either "LMP date" or "Ultrasound estimated due
+date".
+
+1.  ![](resources/images/maintainence/pg_rule_ex/assign_details.png)
+
+2.  ![](resources/images/maintainence/pg_rule_ex/assign_expression.png)
+
+3.  ![](resources/images/maintainence/pg_rule_ex/assign_action.png)
+
+![](resources/images/maintainence/pg_rule_ex/assign_result.png)
+
+### Reference information: Operators and functions to use in program rule expression
+
+> **Tip**
+> 
+> You can nest functions within each other and with subexpressions to
+> form more complex conditions. An example that produces the gestational
+> age in weeks, based on last menstrual date:
+> 
+>     d2:floor( d2:daysBetween(#{lastMenstrualDate},V{event_date}) / 7 )
+
+> **Tip**
+> 
+> The source type will determine how the d2: function calls will
+> evaluate a (sourcefield) parameter.
+> 
+> Example: where \#{hemoglobinCurrent} is set to source type **Data
+> element in current event**. The following function call with evaluate
+> whether hemoglobin is entered in the current event.
+> 
+>     d2:hasValue( 'hemoglobinCurrent' )
+> 
+> Example: where \#{hemoglobin} is set to source type **Data element
+> from the newest event in the current program**. The following function
+> call with evaluate whether there exists a value for the hemoglobin in
+> any event in the enrollment.
+> 
+>     d2:hasValue( 'hemoglobin' )
+> 
+> Example: where \#{hemoglobinPrevious} is set to source type **Data
+> element from previous event** . The following function call with
+> evaluate whether there exists a value for the hemoglobin among the
+> events preceding the current event.
+> 
+>     d2:hasValue( 'hemoglobinPrevious' )
+
+<table>
+<caption>Possible operatorsto use in a program rule expression</caption>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>+</p></td>
+<td><p>Add numbers together</p></td>
+</tr>
+<tr class="even">
+<td><p>-</p></td>
+<td><p>Subtract numbers from each other</p></td>
+</tr>
+<tr class="odd">
+<td><p>*</p></td>
+<td><p>Multiply two numbers</p></td>
+</tr>
+<tr class="even">
+<td><p>/</p></td>
+<td><p>Divide two numbers</p></td>
+</tr>
+<tr class="odd">
+<td><p>%</p></td>
+<td><p>The modulus of two numbers</p></td>
+</tr>
+<tr class="even">
+<td><p>&amp;&amp;</p></td>
+<td><p>Logical AND. True only when the expression on the left and right side is true. The left and right side can be yes/no, yes only or a subexpression in parenthesis.</p></td>
+</tr>
+<tr class="odd">
+<td><p>||</p></td>
+<td><p>Logical OR. True when either the expression on the left or the expression on the right side is true. The left and right side can be yes/no, yes only or a subexpression in parenthesis.</p></td>
+</tr>
+<tr class="even">
+<td><p>&gt;</p></td>
+<td><p>Left number greater than right number</p></td>
+</tr>
+<tr class="odd">
+<td><p>&gt;=</p></td>
+<td><p>Left number greater than or equal to right number</p></td>
+</tr>
+<tr class="even">
+<td><p>&lt;</p></td>
+<td><p>Left number less than right number</p></td>
+</tr>
+<tr class="odd">
+<td><p>&lt;=</p></td>
+<td><p>Left number less than or equal to right number.</p></td>
+</tr>
+<tr class="even">
+<td><p>==</p></td>
+<td><p>Left side equal to right side. Supports numbers, text, yes/no and yes only.</p></td>
+</tr>
+<tr class="odd">
+<td><p>!=</p></td>
+<td><p>Left side not equal to right side. Supports numbers, text, yes/no and yes only.</p></td>
+</tr>
+<tr class="even">
+<td><p>!</p></td>
+<td><p>Negates the following value. Can be used for yes/no, yes only or a sub-expression in parenthesis.</p></td>
+</tr>
+<tr class="odd">
+<td><p>()</p></td>
+<td><p>Parenthesis is used to group sub-expressions.</p></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption>Custom functions to use in a program rule expression</caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>d2:ceil</td>
+<td>(number)</td>
+</tr>
+<tr class="even">
+<td>d2:floor</td>
+<td>(number)</td>
+</tr>
+<tr class="odd">
+<td>d2:round</td>
+<td>(number)</td>
+<td>Rounds the input argument to the nearest whole number.</td>
+</tr>
+<tr class="even">
+<td>d2:modulus</td>
+<td>(number,number)</td>
+<td>Produces the modulus when dividing the first with the second argument.
+<p>An example producing the number of days the woman is into her current pregnancy week:</p>
+<pre><code>d2:modulus(#{gestationalAgeDays},7)</code></pre></td>
+</tr>
+<tr class="odd">
+<td>d2:zing</td>
+<td>(number)</td>
+<td>Evaluates the argument of type number to zero if the value is negative, otherwise to the value itself.</td>
+</tr>
+<tr class="even">
+<td>d2:oizp</td>
+<td>(number)</td>
+<td>Evaluates the argument of type number to one if the value is zero or positive, otherwise to zero.</td>
+</tr>
+<tr class="odd">
+<td>d2:concatenate</td>
+<td>(object, [,object, object,...])</td>
+<td>Produces a string concatenated string from the input parameters. Supports any number of parameters. Will mainly be in use in future action types, for example to display gestational age with d2:concatenate('weeks','+','gestationalageDays').</td>
+</tr>
+<tr class="even">
+<td>d2:daysBetween</td>
+<td>(date, date)</td>
+<td>Produces the number of days between the first and second argument. If the second argument date is before the first argument the return value will be the negative number of days between the two dates. The static date format is 'yyyy-MM-dd'.
+<p>Example, calculating the gestational age(in days) of a woman, based on the last menstrual period and the current event date:</p>
+<pre><code>d2:daysBetween(#{lastMenstrualDate},V{event_date})</code></pre></td>
+</tr>
+<tr class="odd">
+<td>d2:weeksBetween</td>
+<td>(date, date)</td>
+<td>Produces the number of full weeks between the first and second argument. If the second argument date is before the first argument the return value will be the negative number of weeks between the two dates. The static date format is 'yyyy-MM-dd'.</td>
+</tr>
+<tr class="even">
+<td>d2:monthsBetween</td>
+<td>(date, date)</td>
+<td>Produces the number of full months between the first and second argument. If the second argument date is before the first argument the return value will be the negative number of months between the two dates. The static date format is 'yyyy-MM-dd'.</td>
+</tr>
+<tr class="odd">
+<td>d2:yearsBetween</td>
+<td>(date, date)</td>
+<td>Produces the number of years between the first and second argument. If the second argument date is before the first argument the return value will be the negative number of years between the two dates. The static date format is 'yyyy-MM-dd'.</td>
+</tr>
+<tr class="even">
+<td>d2:addDays</td>
+<td>(date, number)</td>
+<td>Produces a date based on the first argument date, adding the second argument number of days.
+<p>An example calculating the pregnancy due date based on the last menstrual period:</p>
+<pre><code>d2:addDays(#{lastMenstrualDate},283)</code></pre></td>
+</tr>
+<tr class="odd">
+<td>d2:count</td>
+<td>(sourcefield)</td>
+<td>Counts the number of values that is entered for the source field in the argument. The source field parameter is the name of one of the defined source fields in the program - see example
+<p>Example usage where #{previousPregnancyOutcome} is one of the source fields in a repeatable program stage &quot;previous pregnancy&quot;:</p>
+<pre><code>d2:count(&#39;previousPregnancyOutcome&#39;)</code></pre></td>
+</tr>
+<tr class="even">
+<td>d2:countIfValue</td>
+<td>(sourcefield,text)</td>
+<td>Counts the number of matching values that is entered for the source field in the first argument. Only occurrences that matches the second argument is counted. The source field parameter is the name of one of the defined source fields in the program - see example.
+<p>Example usage where #{previousPregnancyOutcome} is one of the source fields in a repeatable program stage &quot;previous pregnancy&quot;. The following function will produce the number of previous pregnancies that ended with abortion:</p>
+<pre><code>d2:countIfValue(&#39;previousPregnancyOutcome&#39;,&#39;Abortion&#39;)
+                                    </code></pre></td>
+</tr>
+<tr class="odd">
+<td>d2:countIfZeroPos</td>
+<td>(sourcefield)</td>
+<td>Counts the number of values that is zero or positive entered for the source field in the argument. The source field parameter is the name of one of the defined source fields in the program - see example.
+<p>Example usage where #{fundalHeightDiscrepancy} is one of the source fields in program, and it can be either positive or negative. The following function will produce the number of positive occurrences:</p>
+<pre><code>d2:countIfZeroPos(&#39;fundalHeightDiscrepancy&#39;)
+                                    </code></pre></td>
+</tr>
+<tr class="even">
+<td>d2:hasValue</td>
+<td>(sourcefield)</td>
+<td>Evaluates to true of the argument source field contains a value, false if no value is entered.
+<p>Example usage, to find if the source field #{currentPregnancyOutcome} is yet filled in:</p>
+<pre><code>d2:hasValue(&#39;currentPregnancyOutcome&#39;)
+                                    </code></pre></td>
+</tr>
+<tr class="odd">
+<td>d2:zpvc</td>
+<td>(object, [,object, object,...])</td>
+<td>Returns the number of numeric zero and positive values among the given object arguments. Can be provided with any number of arguments.</td>
+</tr>
+<tr class="even">
+<td>d2:validatePattern</td>
+<td>(text, regex-pattern)</td>
+<td>Evaluates to true if the input text is an exact match with the supplied regular expression pattern. The regular expression needs to be escaped.
+<p>Example expression, triggering actions if a number is not on the pattern 9999/99/9:</p>
+<pre><code>!d2:validatePattern(A{nrc},&#39;\\d{6}\/\\d{2}\/\\d&#39;)</code></pre>
+<p>Example expression, triggering actions that if the address is not consisting of letters or white spaces, then a white space, then a number:</p>
+<pre><code>!d2:validatePattern(A{registrationAddress},&#39;[\\w ]+ \\d+&#39;)</code></pre>
+<p>Example, triggering actions if a name contains any numbers:</p>
+<pre><code>!d2:validatePattern(A{name},&#39;[^\\d]*&#39;)</code></pre>
+<p>Example expression, triggering actions if a mobile number contains the illegal number sequence 555:</p>
+<pre><code>d2:validatePattern(A{mobile} ,&#39;.*555.*&#39;)</code></pre></td>
+</tr>
+<tr class="odd">
+<td>d2:left</td>
+<td>(text, num-chars)</td>
+<td>Evaluates to the left part of a text, num-chars from the first character.
+<p>The text can be quoted or evaluated from a variable:</p>
+<pre><code>d2:left(#{variableWithText}, 3)</code></pre></td>
+</tr>
+<tr class="even">
+<td>d2:right</td>
+<td>(text, num-chars)</td>
+<td>Evaluates to the right part of a text, num-chars from the last character.
+<p>The text can be quoted or evaluated from a variable:</p>
+<pre><code>d2:right(#{variableWithText}, 2)</code></pre></td>
+</tr>
+<tr class="odd">
+<td>d2:substring</td>
+<td>(text, start-char-num, end-char-num)</td>
+<td>Evaluates to the part of a string specified by the start and end character number.
+<p>Example expression:</p>
+<pre><code>d2:substring(#{variableWithText}, 1, 3)</code></pre>
+If the #{variableWithText} in the above example was 'ABCD', then the result of the evaluation would be 'BC'</td>
+</tr>
+<tr class="even">
+<td>d2:split</td>
+<td>(text, delimiter, element-num)</td>
+<td>Split the text by delimiter, and keep the nth element(0 is the first).
+<p>The text can be quoted or evaluated from a variable, the delimiter must be quoted:</p>
+<pre><code>d2:split(#{variableWithText}, &#39;-&#39;, 1)</code></pre>
+<p>Note: comma delimiter(,) is not supported.</p></td>
+</tr>
+<tr class="odd">
+<td>d2:length</td>
+<td>(text)</td>
+<td>Find the length of a string.
+<p>Example:</p>
+<pre><code>d2:length(#{variableWithText})</code></pre></td>
+</tr>
+<tr class="even">
+<td>d2:inOrgUnitGroup</td>
+<td>(text)</td>
+<td>Evaluates wether the current organisation unit is in the argument group. The argument can be defined with either ID or organisation unit group code. The current organisation unit will be the event organisation unit when the rules is triggered in the context of an event, and the enrolling organisation unit when the rules is triggered in the event of a tei registration form.
+<p>Example expression:</p>
+<pre><code>d2:inOrgUnitGroup(&#39;HIGH_RISK_FACILITY&#39;)</code></pre></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption>Standard variables to use in program rule expressions</caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>V{current_date}</td>
+<td>(date)</td>
+<td>Contains the current date whenever the rule is executed.
+<p>Example expression:</p>
+<pre><code>d2:daysBetween(#{symptomDate},V{current_date}) &lt; 0 </code></pre></td>
+</tr>
+<tr class="even">
+<td>V{event_date}</td>
+<td>(date)</td>
+<td>Contains the event date of the current event execution. Will not have a value at the moment the rule is executed as part of the registration form.</td>
+</tr>
+<tr class="odd">
+<td>V{event_status}</td>
+<td>(string)</td>
+<td>Contains status of the current event or enrollment.
+<p>Example expression to check status is:</p>
+<pre><code>V{event_status) == &#39;COMPLETED&#39;</code></pre></td>
+</tr>
+<tr class="even">
+<td>V{due_date}</td>
+<td>(date)</td>
+<td>This variable will contain the current date when the rule is executed. Note: This means that the rule might produce different results at different times, even if nothing else has changed.</td>
+</tr>
+<tr class="odd">
+<td>V{event_count}</td>
+<td>(number)</td>
+<td>Contains the total number of events in the enrollment.</td>
+</tr>
+<tr class="even">
+<td>V{enrollment_date}</td>
+<td>(date)</td>
+<td>Contains the enrollment date of the current enrollment. Will not have a value for single event programs.</td>
+</tr>
+<tr class="odd">
+<td>V{incident_date}</td>
+<td>(date)</td>
+<td>Contains the incident date of the current enrollment. Will not have a value for single event programs.</td>
+</tr>
+<tr class="even">
+<td>V{enrollment_id}</td>
+<td>(string)</td>
+<td>Universial identifier string(UID) of the current enrollment. Will not have a value for single event programs.</td>
+</tr>
+<tr class="odd">
+<td>V{event_id}</td>
+<td>(string)</td>
+<td>Universial identifier string(UID) of the current event context. Will not have a value at the moment the rule is executed as part of the registration form.</td>
+</tr>
+<tr class="even">
+<td>V{orgunit_code}</td>
+<td>(string)</td>
+<td>Contains the code of the orgunit that is linked to the current enrollment. For single event programs the code from the current event orgunit will be used instead.
+<p>Example expression to check wether orgunit code starts with WB_:</p>
+<pre><code>d2:left(V{orgunit_code},3) == &#39;WB_&#39;</code></pre></td>
+</tr>
+<tr class="odd">
+<td>V{environment}</td>
+<td>(string)</td>
+<td>Contains a code representing the current runtime environment for the rules. The possible values is &quot;WebClient&quot;, &quot;AndroidClient&quot; and &quot;Server&quot;. Can be used when a program rule is only supposed to run in one or more of the client types.</td>
+</tr>
+<tr class="even">
+<td>V{program_stage_id}</td>
+<td>(string)</td>
+<td>Contains the ID of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty.</td>
+</tr>
+<tr class="odd">
+<td>V{program_stage_name}</td>
+<td>(string)</td>
+<td>Contains the name of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty.</td>
+</tr>
+</tbody>
+</table>
+
+## Configure relationship types
+
+### About relationship types
+
+A relationship type defines the relationship between tracked entity A
+and tracked entity B, for example mother and child.
+
+### Create or edit a relationship type
+
+1.  Open the **Maintenance** app and click **Program** \> **Relationship
+    type**.
+
+2.  Click the add button.
+
+3.  Type a **Name** of the relationship type.
+
+4.  (Optional) Assign a **Code**.
+
+5.  In the **A is to B** field, enter a description of which
+    relationship tracked entity A has to tracked entity B, for example
+    mother.
+
+6.  In the **B is to A** field, enter a description of which
+    relationship tracked entity B has to tracked entity A, for example
+    child.
+
+7.  Click **Save**.
+
+## Configure tracked entities
+
+### About tracked entities
+
+A tracked entity is a types of entities which can be tracked through the
+system. It can be anything from persons to commodities, for example a
+medicine or a person.
+
+A program must have one tracked entity. To enrol a tracked entity
+instance into a program, the tracked entity of an entity and tracked
+entity of a program must be the same.
+
+Tracked entity attributes are used to register extra information for a
+tracked entity. Tracked entity attributes can be shared between
+programs.
+
+### Create or edit a tracked entity attribute
+
+1.  Open the **Maintenance** app and click **Program** \> **Tracked
+    entity attribute**.
+
+2.  Click the add button.
+
+3.  In the **Name** field, type the tracked entity attribute name.
+
+4.  (Optional) Type a **Short name**.
+
+5.  (Optional) In the **Code** field, assign a code.
+
+6.  (Optional) Type a **Description**.
+
+7.  Select an **Option set**.
+
+8.  In the **Value type** field, select the type of data that the
+    tracked entity attribute will record.
+    
+    <table>
+    <caption>Value types</caption>
+    <colgroup>
+    <col style="width: 53%" />
+    <col style="width: 46%" />
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th><p>Value type</p></th>
+    <th><p>Description</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p>Age</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Coordinate</p></td>
+    <td><p>A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format &quot;-19.23 , 56.42&quot; with a comma separating the longitude and latitude.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Date</p></td>
+    <td><p>Dates render as calendar widget in data entry.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Date &amp; time</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>E-mail</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>File</p></td>
+    <td><p>A file resource where you can store external files, for example documents and photos.</p></td>
+    </tr>
+    <tr class="odd">
+    <td>Image</td>
+    <td>Similar to File, but restricted to images.</td>
+    </tr>
+    <tr class="even">
+    <td><p>Integer</p></td>
+    <td><p>Any whole number (positive and negative), including zero.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Letter</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Long text</p></td>
+    <td><p>Textual value. Renders as text area in forms.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Negative integer</p></td>
+    <td><p>Any whole number less than (but not including) zero.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Number</p></td>
+    <td><p>Any real numeric value with a single decimal point. Thousands separators and scientific notation is not supported.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Percentage</p></td>
+    <td><p>Whole numbers inclusive between 0 and 100.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Phone number</p></td>
+    <td></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Positive integer</p></td>
+    <td><p>Any whole number greater than (but not including) zero.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Positive of zero integer</p></td>
+    <td><p>Any positive whole number, including zero.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Organisation unit</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Unit interval</p></td>
+    <td><p>Any real number greater than or equal to 0 and less than or equal to 1.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Text</p></td>
+    <td><p>Textual value. The maximum number of allowed characters per value is 50,000.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Time</p></td>
+    <td><p>Time is stored in HH:mm format.</p>
+    <p>HH is a number between 0 and 23</p>
+    <p>mm is a number between 00 and 59</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Tracker associate</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Username</p></td>
+    <td><p>This will be populated with theusername of the user which performs data entry automatically during the data entry process.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Yes/No</p></td>
+    <td><p>Boolean values, renders as drop-down lists in data entry.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Yes only</p></td>
+    <td><p>True values, renders as check-boxes in data entry.</p></td>
+    </tr>
+    </tbody>
+    </table>
+
+9.  Select an **Aggregation type**.
+    
+    <table>
+    <caption>Aggregation operators</caption>
+    <colgroup>
+    <col style="width: 50%" />
+    <col style="width: 50%" />
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th><p>Aggregation operator</p></th>
+    <th><p>Description</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p>Average</p></td>
+    <td><p>Average the values in both the period as and the organisation unit dimensions.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Average (sum in organisation unit hierarchy)</p></td>
+    <td><p>Average of data values in the period dimension, sum in the organisation unit dimensions.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Count</p></td>
+    <td><p>Count of data values.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Min</p></td>
+    <td><p>Minimum of data values.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Max</p></td>
+    <td><p>Maximum of data values.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>None</p></td>
+    <td><p>No aggregation is performed in any dimension.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Sum</p></td>
+    <td><p>Sum of data values in the period and organisation unit dimension.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Standard deviation</p></td>
+    <td><p>Standard deviation (population-based) of data values.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Variance</p></td>
+    <td><p>Variance (population-based) of data values.</p></td>
+    </tr>
+    </tbody>
+    </table>
+
+10. Select **Unique** to specify that the values of the tracked entity
+    attribute is unique.
+    
+    There are two options for the unique setting:
+    
+      - **Entire system**: The values of the tracked entity attribute
+        can duplicate with values which belong to other tracked entity
+        attributes. But the values in this tracked entity attribute must
+        not duplicate.
+        
+        Select **Automatically generated** to allow automatic generation
+        of the tracked entity attribute value. When the generate setting
+        is selected on, an optional field for specifying pattern also
+        displays. This field should contain a pattern based on the
+        TextPattern syntax. When the value is automatically generated,
+        it will be unique for this attribute for the entire system. See
+        the TextPattern section for more information on how it works.
+    
+      - **Organisation unit**: The values of the tracked entity
+        attribute must not duplicate in the same organisation unit.
+
+11. Select **Inherit** to registry a new entity for relationship with an
+    available entity, all inherit entity attribute values of the entity
+    will be pre-filled in the registration form.
+
+12. (Optional) Select**Confidential**.
+    
+    This option is only available if you have configured encryption for
+    the system.
+
+13. (Optional) Select**Display in list without program**.
+
+14. (Optional) Assign one or multiple **Legends**.
+
+15. Click **Save**.
+
+### Create or edit a tracked entity type
+
+1.  Open the **Maintenance** app and click **Program** \> **Tracked
+    entity type**.
+
+2.  Click the add button or an already exsisting **tracked entity
+    type**.
+
+3.  Type a **Name** of the tracked entity.
+
+4.  (Optional) select a **Color** and an **Icon** that will be used by
+    the data capture apps to identify this tracked entity type.
+
+5.  (Optional) Enter a **Description** of the tracked entity.
+
+6.  (Optional) Enter a **Minimum number of attributes required to
+    search**. This specifies the amount of attributes that need to be
+    filled out in order to be able to search for this **tracked entity
+    type** in a *global search*. See [Configure
+    Search](../search/search.xml#configure_search) for more information.
+
+7.  (Optional) Enter a **Maximum number of tracked entity instances to
+    return in search**. This specifies the amount of tracked entity
+    instances that will be returned in a *global search*. See [Configure
+    Search](../search/search.xml#configure_search) for more information.
+
+8.  (Optional) Add **Tracked entity type attributes**. This is used to
+    configure search, see [Configure
+    Search](../search/search.xml#configure_search) for more information.
+
+9.  (Optional) Enter an **Alternative name** of the tracked entity.
+
+10. Click **Save**.
+
+## Configure search
+
+Users can be given search organisation units, which makes it possible to
+search for tracked entity instances outside their data capture
+organisation units.
+
+Searching can be done either in the context of a program, or in the
+context of a tracked entity type. To be give users the option of
+searching in the context of a program, it is necessary to configure
+which of the programs tracked entity attributes is searchable. To give
+users the option of searching in the context of a tracked entity type,
+you will have to configure which of the tracked entity type attributes
+is searchable.
+
+### Configure search for tracker program
+
+To be able to search with a program, you will have to make some of the
+program attributes searchable. Unique program attributes will always be
+searchable.
+
+1.  Open **Program app**
+
+2.  Open or create a tracker program
+
+3.  Go to **Attributes**
+
+4.  If you have no attributes, add one
+
+5.  Set the attribute searchable
+
+Searchable program attributes will assigned to a search group.
+
+  - Unique group. One group per unique program attribute. Unique
+    attributes cannot be combined with other program attributes in a
+    search. The result from the search can only be 0 or 1 tracked entity
+    instance.
+
+  - Non-unique group. This group contains all non-unique program
+    attributes and makes it possible to combine multiple attributes in a
+    search.
+
+There are two limits that can be set for a program search, as part of
+the **Program** configuration.
+
+  - Minimum number of attributes required to search: This property
+    defines how many of the non-unique attributes that must be entered
+    before a search can be performed.
+
+<!-- end list -->
+
+  - Maximum number of tracked entity instances to return: This property
+    defines the maximum number of results a user will get in her search.
+    If a too large number of tracked entity instances is found, the user
+    must provide a more specific search.
+
+### Configure search for tracked entity type
+
+> **Note**
+> 
+> TET = Tracked entity type
+
+To be able to search without a program, you will have to make some of
+the TET attributes searchable. Unique TET attributes will always be
+searchable.
+
+1.  Open **Tracked entity type app**
+
+2.  Open a Tracked entity type
+
+3.  If the TET has no attributes, add one
+
+4.  Set the attribute searchable
+
+Searchable TET attributes will assigned to a search group.
+
+  - Unique group. One group per unique TET attribute. Unique attributes
+    cannot be combined with other TET attributes in a search. The result
+    from the search can only be 0 or 1 tracked entity instance.
+
+  - Non-unique group. This group contains all non-unique TET attributes
+    and makes it possible to combine multiple attributes in a search.
+
+There are two limits that can be set for a TET search
+
+  - Minimum number of attributes required to search: This property
+    defines how many of the non-unique attributes that must be entered
+    before a search can be performed.
+
+<!-- end list -->
+
+  - Maximum number of tracked entity instances to return: This property
+    defines the maximum number of results a user will get in her search.
+    If a too large number of tracked entity instances is found, the user
+    must provide a more specific search.
+
+### Configure search organisation units for a user
+
+To be able to search in other organisation units than the users data
+capture organisation units, the user must be assigned with search
+organisation units. Giving a user a search organisation unit will also
+give it access to search in all children of that organisation unit.
+
+1.  Open **Users app**
+
+2.  Click on a user
+
+3.  Open **Assign search organisation units**
+
+4.  Select organisation units
+
+5.  Click **Save**
+
+## Clone metadata objects
+
+Cloning a data element or other objects can save time when you create
+many similar objects.
+
+1.  Open the **Maintenance** app and find the type of metadata object
+    you want to clone.
+
+2.  In the object list, click the options menu and select **Clone**.
+
+3.  Modify the options you want.
+
+4.  Click **Save**.
+
+## Delete metadata objects
+
+> **Note**
+> 
+> You can only delete a data element and other data element objects if
+> no data is associatedto the data element itself.
+
+> **Warning**
+> 
+> Any data set that you delete from the system is irrevocably lost. All
+> data entry forms, and section forms which may have been developed will
+> also be removed. Make sure that you have made a backup of your
+> database before deleting any data set in case you need to restore it
+> at some point in time.
+
+1.  Open the **Maintenance** app and find the type of metadata object
+    you want to delete.
+
+2.  In the object list, click the options menu and select **Delete**.
+
+3.  Click **Confirm**.
+
+## Change sharing settings for metadata objects
+
+You can assign different sharing settings to metadata objects, for
+example organisation units and tracked entity attributes. These sharing
+settings control which users and users groups that can view or edit a
+metadata object.
+
+Some metadata objects also allows you to change the sharing setting of
+data entry for the object. These additional settings control who can
+view or enter data in form fields using the metadata.
+
+> **Note**
+> 
+> The default setting is that everyone (**Public access**) can find,
+> view and edit metadata objects.
+
+1.  Open the **Maintenance** app and find the type of metadata object
+    you want to modify.
+
+2.  In the object list, click the context menu and select **Sharing
+    settings**.
+
+3.  (Optional) Add users or user groups: search for a user or a user
+    group and select it. The user or user group is added to the list.
+
+4.  Change sharing settings for the access groups you want to modify.
+    
+      - **Can edit and view**: The access group can view and edit the
+        object.
+    
+      - **Can view only**: The access group can view the object.
+    
+      - **No access** (only applicable to **Public access**): The public
+        won't have access to the object.
+
+5.  Change data sharing settings for the access groups you want to
+    modify.
+    
+      - **Can capture data**: The access group can view and capture data
+        for the object.
+    
+      - **Can view data**: The access group can view data for the
+        object.
+    
+      - **No access**: The access group won't have access to data for
+        the object.
+
+6.  Click **Close**.
+
+## Display details of metadata objects
+
+1.  Open the **Maintenance** app and find the type of metadata object
+    you want to view.
+
+2.  In the object list, click the options menu and select **Show
+    details**.
+
+## Translate metadata objects
+
+DHIS2 provides functionality for translations of database content, for
+example data elements, data element groups, indicators, indicator groups
+or organisation units. You can translate these elements to any number of
+locales. A locale represents a specific geographical, political, or
+cultural region.
+
+> **Tip**
+> 
+> To activate a translation, open the **System Settings** app, click \>
+> **Appearance** and select a language.
+
+1.  Open the **Maintenance** app and find the type of metadata object
+    you want to translate.
+
+2.  In the object list, click the options menu and select **Translate**.
+    
+    > **Tip**
+    > 
+    > If you want to translate an organisation unit level, click
+    > directly on the **Translate** icon next to each list item.
+
+3.  Select a locale.
+
+4.  Type a **Name**, **Short name** and **Description**.
+
+5.  Click **Save**.
+

@@ -1,0 +1,211 @@
+body {
+  color: #333;
+  counter-reset: chapter;
+  font-family: roboto, sans-serif;
+  line-height: 140%;
+  margin: auto;
+  max-width: 64em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+pre {
+  background-color: #f7f7f7;
+  color: #1a6094;
+  font-size: 90%;
+  line-height: 1.6em;
+  margin: 3.5ex 0;
+  padding: 2ex;
+}
+
+p code {
+  font-family: monospace;
+  font-weight: bold;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+q:before,
+blockquote:after,
+q:after {
+  content: none;
+}
+
+blockquote {
+  background-color: #fff8dc;
+  border-left: 3px solid #ffeb8e;
+  margin-bottom: 10px;
+  padding: 5px 5px 10px;
+}
+
+blockquote :last-child {
+  margin-bottom: 0;
+}
+
+li blockquote {
+  margin: 0.5em 0 1em;
+}
+
+blockquote p {
+  margin: 5px;
+}
+
+caption {
+  font-style: italic;
+  font-weight: bold;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  text-align: left;
+}
+
+a {
+  color: #07c;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+nav a {
+  color: #07c;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  color: #000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #000;
+  font-family: roboto;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 130%;
+}
+
+h2 {
+  font-size: 110%;
+}
+
+h3 {
+  font-size: 95%;
+}
+
+h1.title {
+  border: none;
+  font-size: 200%;
+  font-weight: bold;
+  padding-bottom: 0.2em;
+  padding-top: 0.2em;
+}
+
+dt code {
+  font-weight: bold;
+}
+
+dd p {
+  margin-top: 0;
+}
+
+table {
+  border-bottom: 1px solid #ddd;
+  border-collapse: collapse;
+  border-right: 1px solid #ddd;
+  border-spacing: 0;
+  margin-bottom: 2em;
+}
+
+table th {
+  background-color: #eee;
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  padding: 0.2em 1em;
+}
+
+table td {
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  padding: 0.2em 1em;
+  vertical-align: top;
+}
+
+.banner {
+  background-color: #00518b;
+  height: 150px;
+  width: 100%;
+}
+
+.banner img {
+  display: block;
+  margin: auto;
+  padding: 30px;
+  width: 300px;
+}
+
+.license {
+  bottom: 0;
+}
+
+#footer {
+  color: gray;
+  font-size: 70%;
+  padding-top: 1em;
+  text-align: center;
+}
+
+#pagebreak {
+  page-break-before: always;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+@page {
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  font-family: roboto, sans-serif;
+  font-size: 85%;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+@page :first {
+  border-bottom: 0 solid #000;
+  border-top: 0 solid #000;
+  margin: 500px -20px -20px;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+@page :right {
+  font-family: roboto, sans-serif;
+  font-size: 85%;
+}
+
+h4,
+h5 {
+  font-size: 90%;
+  font-style: italic;
+}
+
+@page frontmatter,@page frontmatter :left {
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+}
