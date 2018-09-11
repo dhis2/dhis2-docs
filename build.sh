@@ -22,15 +22,17 @@ assemble_resources() {
 make_html() {
     name=$1
     title=$2
+    echo "compiling $name.cm ($title) to html"
     chapters="bookinfo.yaml ${name}.cm"
-    pandoc $chapters -c dhis2.css --template="dhis2_template.html" --toc -N -s --section-divs -V "title":"$title" -o ${name}.html
+    pandoc $chapters -c dhis2.css --template="dhis2_template.html" --toc -N -s -V "title":"$title" -o ${name}.html
 }
 
 make_pdf() {
     name=$1
     title=$2
+    echo "compiling $name.cm ($title) to pdf"
     chapters="bookinfo.yaml ${name}.cm"
-    pandoc $chapters -c dhis2_pdf.css --template="dhis2_template.html" --toc -N -s --section-divs --pdf-engine=weasyprint -V "title":"$title" -o ${name}.pdf
+    pandoc $chapters -c dhis2_pdf.css --template="dhis2_template.html" --toc -N --section-divs --pdf-engine=weasyprint -V "title":"$title" -o ${name}.pdf
 }
 
 cd $src
@@ -48,6 +50,7 @@ done
 
 cp $src/*.css $target/
 cp $src/*.html $target/
+cp $src/*.png $target/
 cp $src/content/common/*.yaml $target/
 
 cd $target 

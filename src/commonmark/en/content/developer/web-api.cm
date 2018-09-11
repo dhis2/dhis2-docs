@@ -797,25 +797,25 @@ associated objects or collection of objects, are supported as well.
 <td>Case sensitive string, not match anywhere</td>
 </tr>
 <tr class="even">
-<td>$like</td>
+<td>\$like</td>
 <td>string</td>
 <td>true</td>
 <td>Case sensitive string, match start</td>
 </tr>
 <tr class="odd">
-<td>!$like</td>
+<td>!\$like</td>
 <td>string</td>
 <td>true</td>
 <td>Case sensitive string, not match start</td>
 </tr>
 <tr class="even">
-<td>like$</td>
+<td>like\$</td>
 <td>string</td>
 <td>true</td>
 <td>Case sensitive string, match end</td>
 </tr>
 <tr class="odd">
-<td>!like$</td>
+<td>!like\$</td>
 <td>string</td>
 <td>true</td>
 <td>Case sensitive string, not match end</td>
@@ -833,25 +833,25 @@ associated objects or collection of objects, are supported as well.
 <td>Case insensitive string, not match anywhere</td>
 </tr>
 <tr class="even">
-<td>$ilike</td>
+<td>\$ilike</td>
 <td>string</td>
 <td>true</td>
 <td>Case insensitive string, match start</td>
 </tr>
 <tr class="odd">
-<td>!$ilike</td>
+<td>!\$ilike</td>
 <td>string</td>
 <td>true</td>
 <td>Case insensitive string, not match start</td>
 </tr>
 <tr class="even">
-<td>ilike$</td>
+<td>ilike\$</td>
 <td>string</td>
 <td>true</td>
 <td>Case insensitive string, match end</td>
 </tr>
 <tr class="odd">
-<td>!ilike$</td>
+<td>!ilike\$</td>
 <td>string</td>
 <td>true</td>
 <td>Case insensitive string, not match end</td>
