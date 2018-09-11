@@ -1,0 +1,70 @@
+Metadata-Version: 2.0
+Name: WeasyPrint
+Version: 0.42.3
+Summary: WeasyPrint converts web documents to PDF.
+Home-page: http://weasyprint.org/
+Author: Simon Sapin
+Author-email: simon.sapin@kozea.fr
+License: BSD
+Description-Content-Type: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Classifier: Topic :: Printing
+Requires-Dist: html5lib (>=0.999999999)
+Requires-Dist: tinycss2 (>=0.5)
+Requires-Dist: cssselect2 (>=0.1)
+Requires-Dist: cffi (>=0.6)
+Requires-Dist: cairocffi (>=0.5)
+Requires-Dist: Pyphen (>=0.8)
+Requires-Dist: pdfrw (>=0.4)
+Requires-Dist: CairoSVG (<2.0.0,>=1.0.20); python_version < "3.0"
+Requires-Dist: CairoSVG (>=1.0.20); python_version >= "3.0"
+Provides-Extra: test
+Requires-Dist: pytest-runner; extra == 'test'
+Requires-Dist: pytest-cov; extra == 'test'
+Requires-Dist: pytest-flake8; extra == 'test'
+Requires-Dist: pytest-isort; extra == 'test'
+
+WeasyPrint
+##########
+
+.. image:: https://img.shields.io/pypi/l/WeasyPrint.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/WeasyPrint/
+    :alt: License
+
+.. image:: http://img.shields.io/pypi/v/WeasyPrint.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/WeasyPrint/
+    :alt: Latest Version
+
+.. image:: http://img.shields.io/travis/Kozea/WeasyPrint.svg?style=flat-square
+    :target: http://travis-ci.org/Kozea/WeasyPrint
+    :alt: Build status
+
+|
+
+WeasyPrint is a visual rendering engine for HTML and CSS that can export
+to PDF. It aims to support web standards for printing.
+WeasyPrint is free software made available under a BSD license.
+
+It is based on various libraries but *not* on a full rendering engine like
+WebKit or Gecko. The CSS layout engine is written in Python, designed for
+pagination, and meant to be easy to hack on.
+
+* Free software: BSD licensed
+* Python 2.7 or 3.4+
+* Website: http://weasyprint.org/
+* Latest documentation: http://weasyprint.org/docs/
+* Source code and issue tracker: https://github.com/Kozea/WeasyPrint
+
+

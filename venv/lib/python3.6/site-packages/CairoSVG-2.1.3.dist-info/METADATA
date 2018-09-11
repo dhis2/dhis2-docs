@@ -1,0 +1,46 @@
+Metadata-Version: 2.0
+Name: CairoSVG
+Version: 2.1.3
+Summary: A Simple SVG Converter based on Cairo
+Home-page: http://www.cairosvg.org/
+Author: Kozea
+Author-email: guillaume.ayoub@kozea.fr
+License: GNU LGPL v3+
+Description-Content-Type: UNKNOWN
+Keywords: svg,convert,cairo,pdf,png,postscript
+Platform: Any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Multimedia :: Graphics :: Graphics Conversion
+Provides: cairosvg
+Requires-Python: >=3.4
+Requires-Dist: cairocffi
+Requires-Dist: cssselect2
+Requires-Dist: defusedxml
+Requires-Dist: pillow
+Requires-Dist: tinycss2
+Provides-Extra: test
+Requires-Dist: pytest-runner; extra == 'test'
+Requires-Dist: pytest-cov; extra == 'test'
+Requires-Dist: pytest-flake8; extra == 'test'
+Requires-Dist: pytest-isort; extra == 'test'
+
+
+CairoSVG - A Simple SVG Converter Based on Cairo
+================================================
+
+CairoSVG is a SVG converter based on Cairo. It can convert SVG files to PDF,
+PostScript and PNG files.
+
+For further information, please visit the `CairoSVG Website
+<http://cairosvg.org/>`_.
+
+
+
