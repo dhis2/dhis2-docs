@@ -1,7 +1,7 @@
 !#/bin/bash
 
-src="$PWD/src/en"
-target="$PWD/target/en"
+src="$PWD/src/commonmark/en"
+target="$PWD/target/commonmark/en"
 
 mkdir -p $target
 

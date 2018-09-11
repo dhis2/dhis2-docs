@@ -1,0 +1,3 @@
+[console_scripts]
+markdown-pp = MarkdownPP.main:main
+
