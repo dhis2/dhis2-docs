@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 src="$PWD/src/commonmark/en"
 target="$PWD/target/commonmark/en"
@@ -13,7 +13,7 @@ assemble_content() {
 }
 
 assemble_resources() {
-    new=`echo $1 | sed 's/\.\(.*\)\/resources\/images\(.*\)/\/resources\/images\1\2/'`
+    new=`echo $1 | sed 's/\.\(.*\)\/resources\/images\(.*\)/resources\/images\1\2/'`
     newfull=$target/$new
     mkdir -p `dirname $newfull`
     cp $1 $newfull
@@ -24,7 +24,7 @@ make_html() {
     title=$2
     echo "compiling $name.cm ($title) to html"
     chapters="bookinfo.yaml ${name}.cm"
-    pandoc $chapters -c dhis2.css --template="dhis2_template.html" --toc -N -s -V "title":"$title" -o ${name}.html
+    pandoc $chapters -c dhis2.css --template="dhis2_template.html" --toc -N -s -V "title":"$title" -V "pagetitle":"$title" -o ${name}.html
 }
 
 make_pdf() {
@@ -32,18 +32,16 @@ make_pdf() {
     title=$2
     echo "compiling $name.cm ($title) to pdf"
     chapters="bookinfo.yaml ${name}.cm"
-    pandoc $chapters -c dhis2_pdf.css --template="dhis2_template.html" --toc -N --section-divs --pdf-engine=weasyprint -V "title":"$title" -o ${name}.pdf
+    pandoc $chapters -c dhis2_pdf.css --template="dhis2_template.html" --toc -N --section-divs --pdf-engine=weasyprint -V "title":"$title" -V "pagetitle":"$title"  -o ${name}.pdf
 }
 
 cd $src
-for f in *.index
-do
+for f in *.index; do
     #echo "file: $f"
     assemble_content $f
 done
 
-for r in `find . -type f | grep "resources/images"`
-do
+for r in `find . -type f | grep "resources/images"`; do
     #echo "resource: $r"
     assemble_resources $r
 done
@@ -53,8 +51,7 @@ cp $src/*.html $target/
 cp $src/*.png $target/
 cp $src/content/common/*.yaml $target/
 
-cd $target 
-
+cd $target
 
 # comment as you wish
 make_html "dhis2_android_user_man" "DHIS2 Android guide"

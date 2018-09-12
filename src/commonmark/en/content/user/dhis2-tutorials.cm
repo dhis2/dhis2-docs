@@ -242,7 +242,7 @@ used and example notations using them.
 </tr>
 <tr class="even">
 <td>Text format</td>
-<td>The text format allows for some basic text manipulation. Leaving the format empty will return the value unmodified, but using &quot;^&quot;, &quot;.&quot; and &quot;\$&quot;, you can modify the value before it is returned. Each &quot;.&quot; represents a character, while &quot;^&quot; represents the start of the text nd &quot;$&quot; represents the end. When using formats, the input value must be at least the same length as the format.</td>
+<td>The text format allows for some basic text manipulation. Leaving the format empty will return the value unmodified, but using &quot;^&quot;, &quot;.&quot; and &quot;\$&quot;, you can modify the value before it is returned. Each &quot;.&quot; represents a character, while &quot;^&quot; represents the start of the text nd &quot;\$&quot; represents the end. When using formats, the input value must be at least the same length as the format.</td>
 <td>ORG_UNIT_CODE(….) → OSLO
 <p>ORG_UNIT_CODE(..) → OS</p>
 <p>ORG_UNIT_CODE(..$) → LO</p>
