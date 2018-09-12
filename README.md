@@ -14,7 +14,7 @@ See the following regarding updating and building, but bear in mind the followin
 - "Asides" (NOTE, TIP, WARNING, etc.) currently all look the same (blockquote format), but we may be able to modify them in the pre-processing step to accommodate individual styling
 - It is not clear if we can continue the Bibliography support that Docbook provided (or if we need to)
 
-### Known Issues - to be fixed shortly
+### Known Issues - to be fixed
 
 - [ ] Intra- (and inter-) document links need updating to generate properly
 - [ ] Section regarding documentation and Docbook needs rewrite (obviously)
