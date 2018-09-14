@@ -7,7 +7,7 @@ This is a provisional repository for testing the migration of DHIS2 documentatio
 
 ## Shortcomings
 
-See the following regarding updating and building, but bear in mind the following issues and shortcomings!
+See below regarding updating and building; but bear in mind the following issues and shortcomings!
 
 
 - The document generation pipeline below **does not** support chunked HTML - **ONLY FULL HTML** (this could be fixed by generating the docs _via_ Docbook!)
@@ -89,7 +89,7 @@ e.g. dhis2_android_user_man.index:
 The `!INCLUDE` directives point to the "chapters" that are used to make up the manual. 
 
 > NOTE:
-> the `!INCLUDE` directives are not part of pure commonmark format, but are used in post-processing to build the master documents. The particular format here is the one supported by markdown-pp out of the box, but we could change it to another "include" format if desired.
+> the `!INCLUDE` directives are not part of pure commonmark format, but are used in pre-processing to build the master documents. The particular format here is the one supported by markdown-pp out of the box, but we could change it to another "include" format if desired.
 
 It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but currently the documents are split up at chapter level only.
 

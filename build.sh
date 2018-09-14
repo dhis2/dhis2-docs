@@ -3,6 +3,7 @@
 src="$PWD/src/commonmark/en"
 target="$PWD/target/commonmark/en"
 
+rm -rf $target
 mkdir -p $target
 
 
@@ -24,7 +25,7 @@ make_html() {
     title=$2
     echo "compiling $name.cm ($title) to html"
     chapters="bookinfo.yaml ${name}.cm"
-    pandoc $chapters -c dhis2.css --template="dhis2_template.html" --toc -N -s -V "title":"$title" -V "pagetitle":"$title" -o ${name}.html
+    pandoc $chapters -c dhis2.css --template="dhis2_template.html" --toc -N --section-divs -t html5 -V "title":"$title" -V "pagetitle":"$title" -o ${name}.html
 }
 
 make_pdf() {
@@ -52,6 +53,9 @@ cp $src/*.png $target/
 cp $src/content/common/*.yaml $target/
 
 cd $target
+
+mkdir html
+cp * 
 
 # comment as you wish
 make_html "dhis2_android_user_man" "DHIS2 Android guide"
