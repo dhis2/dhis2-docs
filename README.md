@@ -9,13 +9,12 @@ This is a provisional repository for testing the migration of DHIS2 documentatio
 
 See below regarding updating and building; but bear in mind the following issues and shortcomings!
 
-
-- The document generation pipeline below **does not** support chunked HTML - **ONLY FULL HTML** (this could be fixed by generating the docs _via_ Docbook!)
 - "Asides" (NOTE, TIP, WARNING, etc.) currently all look the same (blockquote format), but we may be able to modify them in the pre-processing step to accommodate individual styling
 - It is not clear if we can continue the Bibliography support that Docbook provided (or if we need to)
 
 ### Known Issues - to be fixed
 
+- [ ] Chunked HTML output currently does not use the same identifiers as the docbook output
 - [ ] Intra- (and inter-) document links need updating to generate properly
 - [ ] Section regarding documentation and Docbook needs rewrite (obviously)
 - [ ] build environment needs improvement to allow easy generation on various platforms (but most developers will not need to build as they can see the expected output in a good markdown editor)
@@ -45,10 +44,12 @@ The documents are structured as follows:
 	        ├── dhis2_implementation_guide.index
 	        ├── dhis2_user_manual_en.index
 	        ├── user_stories_book.index
-	        ├── dhis2.css
-	        ├── dhis2_pdf.css
-	        ├── dhis2_template.html
-	        ├── dhis2-logo-rgb-negative.png
+                ├── resources
+                │   ├── css
+                │   │   ├── dhis2.css
+                │   │   └── dhis2_pdf.css
+                │   └── images
+                │       └── dhis2-logo-rgb-negative.png
 	        └── content
 	            ├── android
 	            │   └── resources
