@@ -1,4 +1,4 @@
-#!/home/philld/reps/dhis2-markdown-docs/venv/bin/python
+#!$PWD/venv/bin/python
 
 # -*- coding: utf-8 -*-
 import re
