@@ -152,6 +152,16 @@ table td {
   vertical-align: top;
 }
 
+.navheader table, .navheader th, .navheader td,
+.navfooter table, .navfooter th, .navfooter td {
+  background-color: #fff;
+  border:0px;
+}
+
+.navheader a, .navfooter a {
+  text-decoration: none;
+}
+
 .banner {
   width: 100%;
   height: 150px;
