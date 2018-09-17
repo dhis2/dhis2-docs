@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -d "venv" ]; then
+    source venv_setup
+fi
+
 source ./venv/bin/activate
 src="$PWD/src/commonmark/en"
 tmp="$PWD/tmp"

@@ -12,7 +12,7 @@ if path.isfile('README.md'):
 setup(
     name='MarkdownPP',
     description='Markdown preprocessor',
-    version='1.4',
+    version='1.4.1',
     author='John Reese',
     author_email='john@noswap.com',
     url='https://github.com/jreese/markdown-pp',
@@ -33,8 +33,9 @@ setup(
     packages=['MarkdownPP', 'MarkdownPP/Modules'],
     entry_points={
         'console_scripts': [
-            'markdown-pp = MarkdownPP.main:main'
-        ],
+            'markdown-pp = MarkdownPP.main:main',
+            'chunker = MarkdownPP.chunker:main'
+        ]
     },
     install_requires=[
         'Watchdog >= 0.8.3',

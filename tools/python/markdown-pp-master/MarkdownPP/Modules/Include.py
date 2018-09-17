@@ -24,7 +24,7 @@ class Include(Module):
                            "\s*(?:,\s*(\d+))?\s*$")
     
     # check for any images that need to have their path shifted
-    imagepath = re.compile(r"] *\((\(resources/images/.*)[ )]")
+    imagepath = re.compile(r"].*\((resources/images/.*)[ )]")
 
     # matches title lines in Markdown files
     titlere = re.compile(r"^(:?#+.*|={3,}|-{3,})$")
@@ -76,6 +76,7 @@ class Include(Module):
                     data[linenum:linenum+1] = self.include(match, dirname)
 
                 image = self.imagepath.search(line)
+                
                 if image:
                     data[linenum] = line.replace("resources/images","resources/images/"+dirname)
 
