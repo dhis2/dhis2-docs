@@ -60,7 +60,7 @@ make_pdf() {
     mkdir -p ${target}/${subdir}
     echo "compiling $name.cm ($title) to pdf"
     chapters="bookinfo.yaml ${name}.cm"
-    pandoc $chapters -c dhis2_pdf.css --template="dhis2_template.html" --toc -N --section-divs --pdf-engine=weasyprint -V "title":"$title" -V "pagetitle":"$title"  -o ${target}/${subdir}/${name}.pdf
+    pandoc $chapters -c ./resources/css/dhis2_pdf.css --template="dhis2_template.html" --toc -N --section-divs --pdf-engine=weasyprint -V "title":"$title" -V "pagetitle":"$title"  -o ${target}/${subdir}/${name}.pdf
 }
 
 # copy resources and assembled marddown files to temp directory
