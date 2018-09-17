@@ -8,5 +8,6 @@ cd tools/python/markdown-pp-master
 python3 setup.py develop
 pip install MarkdownPP
 cd -
+cp ./tools/pandoc* ./venv/bin/
 deactivate
 
