@@ -14,7 +14,7 @@ See below regarding updating and building; but bear in mind the following issues
 
 ### Known Issues - to be fixed
 
-- [ ] Chunked HTML output currently does not use the same identifiers as the docbook output
+- [X] Chunked HTML output should use the same identifiers as the docbook output
 - [ ] Intra- (and inter-) document links need updating to generate properly
 - [ ] Section regarding documentation and Docbook needs rewrite (obviously)
 - [ ] build environment needs improvement to allow easy generation on various platforms (but most developers will not need to build as they can see the expected output in a good markdown editor)
