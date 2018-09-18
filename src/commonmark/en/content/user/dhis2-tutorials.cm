@@ -1,6 +1,10 @@
 # DHIS2 Tutorials
 
+<!--DHIS2-SECTION-ID:dhis2_tutorials-->
+
 ## Create Scorecards using the Pivot Table app
+
+<!--DHIS2-SECTION-ID:create-scorecards-pivot-table-->
 
 ***Scorecards definition:** In public health settings such as Ministries
 of Health, scorecards offer a useful and standardized method for
@@ -145,6 +149,8 @@ The Scorecard is ready\!
 
 ## Working with TextPattern
 
+<!--DHIS2-SECTION-ID:working-with-textpattern-->
+
 TextPattern was introduced in DHIS2 version 2.29, as a way of defining a
 pattern that includes variables, generated values and raw text, which
 then could be generated into a text value. The current use-case for
@@ -165,10 +171,10 @@ parameter *format*, which allows for further manipulation of the value.
 <table>
 <caption>TextPattern segments</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 36%" />
-<col style="width: 12%" />
-<col style="width: 30%" />
+<col width="20%" />
+<col width="36%" />
+<col width="12%" />
+<col width="30%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -222,9 +228,9 @@ used and example notations using them.
 <table>
 <caption>Parameter formats</caption>
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 52%" />
-<col style="width: 34%" />
+<col width="13%" />
+<col width="52%" />
+<col width="34%" />
 </colgroup>
 <thead>
 <tr class="header">

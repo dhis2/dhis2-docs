@@ -1,6 +1,10 @@
 # Configure the GIS app
 
+<!--DHIS2-SECTION-ID:gis_creating-->
+
 ## Context
+
+<!--DHIS2-SECTION-ID:gis_creating_context-->
 
 Setting up the GIS simply means storing coordinates for the organisation
 units you want to show on the map in the database. Coordinates are often
@@ -43,6 +47,8 @@ the preferred way of using it.
 > into DHIS2.
 
 ## Importing coordinates
+
+<!--DHIS2-SECTION-ID:gis_creating_setup-->
 
 Step 1 - Simplify/generalize your geographical data
 

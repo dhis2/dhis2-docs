@@ -1,6 +1,10 @@
 # Configure report functionality
 
+<!--DHIS2-SECTION-ID:setting_up_reporting-->
+
 ## Data sources for reporting
+
+<!--DHIS2-SECTION-ID:reporting_data_sources-->
 
 ### Types of data and aggregation
 
@@ -247,6 +251,8 @@ tables or other OLAP tools to aggregate data up the hierarchy.
 
 ### Report tables
 
+<!--DHIS2-SECTION-ID:reportTable-->
+
 Report tables are defined, cross-tabulated reports which can be used as
 the basis of further reports, such as Excel Pivot Tables or simply
 downloaded as an Excel sheet. Report tables are intended to provide a
@@ -257,6 +263,8 @@ course be retrieved from the main datamart, but report tables generally
 perform faster and present well defined views of data to users.
 
 ## How to create report tables
+
+<!--DHIS2-SECTION-ID:reporting_creating_tables-->
 
 To create a new report table, go to the Report tables section of the
 Reports module (Reports -\> Report Table). Above the list of standard
@@ -275,6 +283,8 @@ units and time periods to use in the report table. Each of these steps
 are described in detail below.
 
 ### General options
+
+<!--DHIS2-SECTION-ID:reporting_general_options-->
 
 
 ![](resources/images/dhis2_creating_reporting/general_options.jpg)
@@ -321,6 +331,8 @@ in the report design, e.g. in line charts.
 
 ### Selecting data
 
+<!--DHIS2-SECTION-ID:reporting_selecting_data-->
+
 
 ![](resources/images/dhis2_creating_reporting/select_data.jpg)
 
@@ -340,6 +352,8 @@ given set, not data on its data elements. Double click on the items you
 want to include, or use the buttons.
 
 ### Selecting report parameters
+
+<!--DHIS2-SECTION-ID:selecting_reporting_params-->
 
 
 ![](resources/images/dhis2_creating_reporting/relative_options.jpg)
@@ -485,6 +499,8 @@ previous example, for "District X", "District Y" and "Region R".
 
 ### Data element dimension tables
 
+<!--DHIS2-SECTION-ID:reporting_de_dimension_tables-->
+
 These tables enable the use of data element categories in report tables.
 There are two differences from regular report tables. The first is that
 it is not possible to select crosstab dimensions, as the columns will
@@ -508,6 +524,8 @@ elements using this category combination will be listed. Double click to
 add to the report, or use the buttons.
 
 ### Report table - best practices
+
+<!--DHIS2-SECTION-ID:reporting_best_practices-->
 
 To make the report tables reusable over time and across orgunits they
 can have parameters. Four types of parameters are allowed; orgunit,
@@ -595,6 +613,8 @@ reports.
 
 ## Report table outcome
 
+<!--DHIS2-SECTION-ID:reporting_table_outcomes-->
+
 When the report table is run, the system will calculate values for
 specified indicators/data elements/data sets, orgunits and periods. The
 data will be presented in DHIS2 in a table layout. The column headers
@@ -650,6 +670,8 @@ presented below the screenshot:
     design standard reports, this is the starting point.
 
 ## Standard reports
+
+<!--DHIS2-SECTION-ID:reporting_standard_reports-->
 
 ### What is a standard report?
 

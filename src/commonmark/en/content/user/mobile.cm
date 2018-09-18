@@ -5,6 +5,8 @@ Service and SMS Command.
 
 ## DHIS2 Mobile Introduction
 
+<!--DHIS2-SECTION-ID:mobile_intro-->
+
 DHIS2 provides a range of options to allow data entry from mobile
 devices, including a dedicated GPRS/3G J2ME client and two versions of
 DHIS2 which have been optimized specifically for mobile browsers. Each
@@ -34,7 +36,7 @@ discussed in separate sections in detail:
     an active GPRS/3G connection is required. It does not require a new
     application installation on the phone to support new features, but
     does require a stable data connection for use. This solution is
-    described in [Mobile browser based data entry](#mobile_web_based)
+    described in [section\_title](#mobile_web_based)
 
   - DHIS2 Smartphone client: A mobile browser optimized data entry
     module for Smartphone devices
@@ -67,6 +69,8 @@ discussed in separate sections in detail:
     
 
 ## Mobile browser based data entry
+
+<!--DHIS2-SECTION-ID:mobile_web_based-->
 
 ### Getting started with mobile browser data entry
 
@@ -504,6 +508,8 @@ The list above will be explained in details:
 
 ## J2ME GPRS/3G Client
 
+<!--DHIS2-SECTION-ID:mobile_j2me_gprs_3g-->
+
 The DHIS2 GPRS/3G mobile module provides a mechanism for remote clients
 using mobile phones to enter data directly into the DHIS2 system. There
 are two functions of the client, namely:
@@ -537,6 +543,8 @@ data locally, so it can work fine with only temporary access to a data
 connection on a regular basis.
 
 ### J2ME GPRS 3G facility reporting client
+
+<!--DHIS2-SECTION-ID:mobile_j2me_gprs_3g_facility_reporting-->
 
 The server side component of the web based solution is included in the
 general build of DHIS2.
@@ -899,6 +907,8 @@ of available time periods is automatically generated.
 
 ## SMS Command
 
+<!--DHIS2-SECTION-ID:mobile_sms_command-->
+
 SMS command feature helps DHIS2 system receiving SMS from users,
 patients, or even anonymous. A SMS command is an object containing the
 configurations for each SMS form: reporting data from phones or j2me
@@ -943,9 +953,9 @@ be used. Here is the list of those parameters
 <table>
 <caption>Common Parameters</caption>
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
+<col width="13%" />
+<col width="13%" />
+<col width="73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1118,6 +1128,8 @@ DHIS2.
 
 ## SMS Service
 
+<!--DHIS2-SECTION-ID:mobile_sms_service-->
+
 SMS Service is a generic service used for sending/receiving SMS. Any
 other DHIS2 module can include this service and utilize it to send and
 receive SMS from users or workers in the field.
@@ -1163,16 +1175,18 @@ different url formats.
 
 ### Gateway Configurations
 
+<!--DHIS2-SECTION-ID:gateway.configuration-->
+
 Below table shows the parameters required for configuring gateway.
 
 <table>
 <caption>Gateway Configuration Parameters</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
 </colgroup>
 <thead>
 <tr class="header">

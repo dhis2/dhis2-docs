@@ -1,6 +1,10 @@
 # Manage users, user roles and user groups
 
+<!--DHIS2-SECTION-ID:manage_user_role_group-->
+
 ## About user management
+
+<!--DHIS2-SECTION-ID:about_user_userrole-->
 
 Multiple users can access DHIS2 simultaneously and each user can have
 different authorities. You can fine-tune these authorities so that
@@ -24,9 +28,9 @@ reports.
 <table>
 <caption>User management terms and definitions</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 40%" />
-<col style="width: 40%" />
+<col width="20%" />
+<col width="40%" />
+<col width="40%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -72,8 +76,8 @@ You manager users, user roles and user groups in the **Users** app.
 <table>
 <caption>Objects in the Users app</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col width="20%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -191,6 +195,8 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
 ## Workflow
 
+<!--DHIS2-SECTION-ID:user_mgt_workflow-->
+
 1.  Define the positions you need for your project and identify which
     tasks the different positions will perform.
 
@@ -214,7 +220,11 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
 ## Manage users
 
+<!--DHIS2-SECTION-ID:mgt_user-->
+
 ### Create a user
+
+<!--DHIS2-SECTION-ID:create_user-->
 
 
 ![](resources/images/dhis2UserManual/select_user_menu.png)
@@ -339,6 +349,8 @@ visible to the user. Click **Save**. \</orderedlist\>
 
 ### Disable users
 
+<!--DHIS2-SECTION-ID:disable_user-->
+
 You can disable a user. This means that the user's account is not
 deleted, but the user can't log in or use DHIS2.
 
@@ -374,6 +386,8 @@ assigned to the selected organisation units.
 
 ### Clone users
 
+<!--DHIS2-SECTION-ID:clone_user-->
+
 1.  Open the **Users** app and click **User**.
 
 2.  In the object list, click the menu icon of the relevant user and
@@ -391,6 +405,8 @@ assigned to the selected organisation units.
 7.  Click **Save**.
 
 ### Change user password
+
+<!--DHIS2-SECTION-ID:user_manage_password-->
 
 The following rules apply when you create a new password:
 
@@ -475,7 +491,11 @@ just a password.
 
 ## Manage user roles
 
+<!--DHIS2-SECTION-ID:mgt_userrole-->
+
 ### Create a user role
+
+<!--DHIS2-SECTION-ID:create_userrole-->
 
 
 ![](resources/images/dhis2UserManual/role_maintenance_page.png)
@@ -550,7 +570,11 @@ just a password.
 
 ## Manage user groups
 
+<!--DHIS2-SECTION-ID:mgt_usergroup-->
+
 ### Create a user group
+
+<!--DHIS2-SECTION-ID:create_usergroup-->
 
 1.  Open the **Users** app and click **User group**.
 
@@ -568,12 +592,16 @@ just a password.
 
 ### Join user groups
 
+<!--DHIS2-SECTION-ID:join_usergroup-->
+
 1.  Open the **Users** app and click **User group**.
 
 2.  In the list, click the relevant user group and select **Join
     group**.
 
 ### Leave user groups
+
+<!--DHIS2-SECTION-ID:leave_usergroup-->
 
 1.  Open the **Users** app and click **User group**.
 
@@ -636,6 +664,8 @@ just a password.
 
 ## Enable support for OpenID
 
+<!--DHIS2-SECTION-ID:open_id-->
+
 DHIS2 supports the OpenID standard, which allows third party login using
 a OpenID provider, for more information see <http://openid.net>. To
 create a custom OpenID URL for a user name you can visit this URL and
@@ -693,6 +723,8 @@ group.
 
 ## Example: user managementin a health system
 
+<!--DHIS2-SECTION-ID:user_mgt_example-->
+
 In a health system, users are logically grouped with respect to the task
 they perform and the position they occupy.
 
@@ -706,10 +738,10 @@ Examples of common positions are:
 
 <table>
 <colgroup>
-<col style="width: 27%" />
-<col style="width: 21%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col width="27%" />
+<col width="21%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">

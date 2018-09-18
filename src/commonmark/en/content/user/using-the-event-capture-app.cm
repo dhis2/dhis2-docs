@@ -1,6 +1,10 @@
 # Using the Event Capture app
 
+<!--DHIS2-SECTION-ID:event_capture_app-->
+
 ## About the Event Captureapp
+
+<!--DHIS2-SECTION-ID:about_event_capture_app-->
 
 ![](resources/images/event_capture/event_list.png)
 
@@ -52,6 +56,8 @@ system then sends the data to the server where the data is stored.
 
 ## Registeran event
 
+<!--DHIS2-SECTION-ID:event_capture_register_event-->
+
 1.  Open the **Event Capture** app.
 
 2.  Select an organisation unit.
@@ -79,6 +85,8 @@ system then sends the data to the server where the data is stored.
 
 ## Edit an event
 
+<!--DHIS2-SECTION-ID:event_capture_edit_event-->
+
 1.  Open the **Event Capture** app.
 
 2.  Select an organisation unit.
@@ -92,6 +100,8 @@ system then sends the data to the server where the data is stored.
 5.  Modify the event details and click **Update**.
 
 ## Edit events in grid
+
+<!--DHIS2-SECTION-ID:event_capture_edit_event_grid-->
 
 The **Edit in grid** function allows you to edit a selected event within
 the table but only those columns (data elements) visible in the grid. If
@@ -114,6 +124,8 @@ columns should be displayed in the list.
 
 ## Share events in edit mode
 
+<!--DHIS2-SECTION-ID:event_capture_share_event_edit_mode-->
+
 You can share an event in edit mode via its web address.
 
 1.  Open the **Event Capture** app.
@@ -133,6 +145,8 @@ You can share an event in edit mode via its web address.
 
 ## View an event audithistory
 
+<!--DHIS2-SECTION-ID:event_capture_view_event_audit_history-->
+
 1.  Open the **Event Capture** app.
 
 2.  Select an organisation unit.
@@ -144,6 +158,8 @@ You can share an event in edit mode via its web address.
 4.  Click an event and select**Audit history**.
 
 ## Delete an event
+
+<!--DHIS2-SECTION-ID:event_capture_delete_event-->
 
 1.  Open the **Event Capture** app.
 
@@ -158,6 +174,8 @@ You can share an event in edit mode via its web address.
 5.  Click **Remove** to cocnfirm the deletion.
 
 ## Modify an event list's layout
+
+<!--DHIS2-SECTION-ID:event_capture_modify_event_list_layout-->
 
 You can select which columns to show or hide in an event list. This can
 be useful for example when you have a long list of data elements
@@ -179,6 +197,8 @@ programs.
 
 ## Print an eventlist
 
+<!--DHIS2-SECTION-ID:event_capture_print_event_list-->
+
 1.  Open the **Event Capture** app.
 
 2.  Select an organisation unit.
@@ -190,6 +210,8 @@ programs.
 4.  Click **Print list**.
 
 ## Download an event list
+
+<!--DHIS2-SECTION-ID:event_capture_download_event_list-->
 
 1.  Open the **Event Capture** app.
 

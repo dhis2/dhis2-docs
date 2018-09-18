@@ -1,5 +1,7 @@
 # DHIS2 Glossary
 
+<!--DHIS2-SECTION-ID:dhis2_glossary-->
+
   - Aggregation  
     In the context of DHIS2, aggregation refers to how data elements are
     combined within a particular hierarchical relationship. As an
@@ -216,78 +218,90 @@
 
 # 
 
-Said Salah EldinAl Said The health information system in Sudan The
-University of Oslo 2010 <http://urn.nb.no/URN:NBN:no-27062>
+<!--DHIS2-SECTION-ID:AlSaid2010--> Said Salah EldinAl Said The health
+information system in Sudan The University of Oslo 2010
+<http://urn.nb.no/URN:NBN:no-27062>
 
-Eivind AndersBerg The challenges of implementing a health information
-system in Vietnam The University of Oslo 2007
-<http://urn.nb.no/URN:NBN:no-15021>
+<!--DHIS2-SECTION-ID:Berg2007--> Eivind AndersBerg The challenges of
+implementing a health information system in Vietnam The University of
+Oslo 2007 <http://urn.nb.no/URN:NBN:no-15021>
 
-JørnBraa CalleHedberg The Struggle for District-Based Health Information
-Systems in South Africa Information Society 18 113-127 2002
+<!--DHIS2-SECTION-ID:BraaHedeberg2002--> JørnBraa CalleHedberg The Struggle
+for District-Based Health Information Systems in South Africa
+Information Society 18 113-127 2002
 <http://search.ebscohost.com/login.aspx?direct=true&db=aph&AN=6705438&site=ehost-live>
 
-Eric;Braa Jørn; Monteiro SundeepSahay Networks of Action: Sustainable
-Health Information Systems Across Developing Countries MIS Quarterly 28
-3 2004 <http://aisel.aisnet.org/misq/vol28/iss3/3/>
+<!--DHIS2-SECTION-ID:BraaNetworksAction2004--> Eric;Braa Jørn; Monteiro
+SundeepSahay Networks of Action: Sustainable Health Information Systems
+Across Developing Countries MIS Quarterly 28 3 2004
+<http://aisel.aisnet.org/misq/vol28/iss3/3/>
 
-Øyvind FBrucker Internationalization and localization - A case study
-from HISP The University of Oslo 2007
+<!--DHIS2-SECTION-ID:Brucker2007--> Øyvind FBrucker Internationalization and
+localization - A case study from HISP The University of Oslo 2007
 <http://urn.nb.no/URN:NBN:no-15774>
 
-Hirut GebrekidanDamitew Netsanet HaileGebreyesus Sustainability and
-optimal use of Health Information Systems The University of Oslo 2005
-<http://urn.nb.no/URN:NBN:no-11506>
+<!--DHIS2-SECTION-ID:Damitew2005--> Hirut GebrekidanDamitew Netsanet
+HaileGebreyesus Sustainability and optimal use of Health Information
+Systems The University of Oslo 2005 <http://urn.nb.no/URN:NBN:no-11506>
 
-Ved AnfinsenEdoardo Jacucci Cover Inger S EXPLORING TENSIONS IN
-INFORMATION SYSTEMS STANDARDIZATION Two Case Studies from Healthcare in
-Norway and South Africa 2006
-<http://folk.uio.no/edoardo/MatNatAvh_Jacucci_rettet.pdf>
+<!--DHIS2-SECTION-ID:Jacucci06exploringtensions--> Ved AnfinsenEdoardo
+Jacucci Cover Inger S EXPLORING TENSIONS IN INFORMATION SYSTEMS
+STANDARDIZATION Two Case Studies from Healthcare in Norway and South
+Africa 2006 <http://folk.uio.no/edoardo/MatNatAvh_Jacucci_rettet.pdf>
 
-AndersGjendem Recruitment, training, communication and Open Source The
-University of Oslo 2008 <http://urn.nb.no/URN:NBN:no-19821>
+<!--DHIS2-SECTION-ID:Gjendem2008--> AndersGjendem Recruitment, training,
+communication and Open Source The University of Oslo 2008
+<http://urn.nb.no/URN:NBN:no-19821>
 
-Nils FredrikGjerull Open Source Software Development in Developing
-Countries The University of Oslo 2006
+<!--DHIS2-SECTION-ID:Gjerull2006--> Nils FredrikGjerull Open Source Software
+Development in Developing Countries The University of Oslo 2006
 <http://urn.nb.no/URN:NBN:no-13117>
 
-Thor HelgeHeldre Study of a Health Information System pilot project in
-Tanzania The University of Oslo 2006 <http://urn.nb.no/URN:NBN:no-12362>
+<!--DHIS2-SECTION-ID:Heldre2006--> Thor HelgeHeldre Study of a Health
+Information System pilot project in Tanzania The University of Oslo 2006
+<http://urn.nb.no/URN:NBN:no-12362>
 
-PetterJacobsen Design and development of a global reporting solution for
-DHIS The University of Oslo 2006 <http://urn.nb.no/URN:NBN:no-12659>
+<!--DHIS2-SECTION-ID:Jacobsen2006--> PetterJacobsen Design and development
+of a global reporting solution for DHIS The University of Oslo 2006
+<http://urn.nb.no/URN:NBN:no-12659>
 
-Arthur Heywood Woishet Mohammed Vincent ShawJørn Braa Ole Hanseth
-DEVELOPING HEALTH INFORMATION SYSTEMS IN DEVELOPING COUNTRIES: THE
-FLEXIBLE STANDARDS STRATEGY MIS Q 31 1 2007
+<!--DHIS2-SECTION-ID:BraaStandards2007--> Arthur Heywood Woishet Mohammed
+Vincent ShawJørn Braa Ole Hanseth DEVELOPING HEALTH INFORMATION SYSTEMS
+IN DEVELOPING COUNTRIES: THE FLEXIBLE STANDARDS STRATEGY MIS Q 31 1 2007
 <http://heim.ifi.uio.no/~vshaw/Files/Published%20Papers%20included%20in%20Kappa/4_Braa_Flexible%20standards.pdf>
 
-Sundeep SahayJørn Braa Integrated Health Information Architecture -
-Power to the Users Matrix Publishers 384 2012
+<!--DHIS2-SECTION-ID:BraaSahayPowerToUsers--> Sundeep SahayJørn Braa
+Integrated Health Information Architecture - Power to the Users Matrix
+Publishers 384 2012
 
-JohnLewis Design and development of spatial GIS application for primary
-healthcare sector The University of Oslo 2005
-<http://urn.nb.no/URN:NBN:no-11504>
+<!--DHIS2-SECTION-ID:Lewis2005--> JohnLewis Design and development of
+spatial GIS application for primary healthcare sector The University of
+Oslo 2005 <http://urn.nb.no/URN:NBN:no-11504>
 
-LarsMangset DHIS-2 - A Globally Distributed Development Process The
-University of Oslo 2005 <http://urn.nb.no/URN:NBN:no-10640>
+<!--DHIS2-SECTION-ID:Mangset2005--> LarsMangset DHIS-2 - A Globally
+Distributed Development Process The University of Oslo 2005
+<http://urn.nb.no/URN:NBN:no-10640>
 
-CarolineNgoma Cultivation Strategies in the Implementation of Health
-Management Information System in Zanzibar The University of Oslo 2007
-<http://urn.nb.no/URN:NBN:no-16911>
+<!--DHIS2-SECTION-ID:Ngoma2007--> CarolineNgoma Cultivation Strategies in
+the Implementation of Health Management Information System in Zanzibar
+The University of Oslo 2007 <http://urn.nb.no/URN:NBN:no-16911>
 
-Thanh NgocNguyen OSS For Health Care in Developing Countries The
-University of Oslo 2007 <http://urn.nb.no/URN:NBN:no-17859>
+<!--DHIS2-SECTION-ID:Nguyen2007--> Thanh NgocNguyen OSS For Health Care in
+Developing Countries The University of Oslo 2007
+<http://urn.nb.no/URN:NBN:no-17859>
 
-E.K. Golly-Kobrissa R.T. Titlestad O. Braa J.Saeb J. Kossi Integrating
-health information systems in Sierra Leone 379 - 391 2009
+<!--DHIS2-SECTION-ID:Saeb2009--> E.K. Golly-Kobrissa R.T. Titlestad O. Braa
+J.Saeb J. Kossi Integrating health information systems in Sierra Leone
+379 - 391 2009
 
-VincentShaw A complexity inspired approach to co-evolutionary hospital
-management information systems development 2009
+<!--DHIS2-SECTION-ID:ShawComplexityInspried2009--> VincentShaw A complexity
+inspired approach to co-evolutionary hospital management information
+systems development 2009
 <http://folk.uio.no/vshaw/Files/VShaw%20Kappa%20Final%20Version/2_V_Shaw%20Intro%20Chapter_no%20annex.pdf>
 
-KnutStaring O HTitlestad Development as a Free Software: Extending
-Commons Based Peer Production to the South ICIS 2008 Proceedings 50 2008
+<!--DHIS2-SECTION-ID:Staring_Titlestad_2008--> KnutStaring O HTitlestad
+Development as a Free Software: Extending Commons Based Peer Production
+to the South ICIS 2008 Proceedings 50 2008
 <http://aisel.aisnet.org/icis2008/50>
 
 > This paper examines the concept of commons-based peer production
@@ -300,24 +314,27 @@ Commons Based Peer Production to the South ICIS 2008 Proceedings 50 2008
 > health sector in the South, and propose the concept of a snowflake
 > topology.
 
-Explore the challenges of providing documentation in open source
-projects The University of Oslo 2007 <http://urn.nb.no/URN:NBN:no-15782>
+<!--DHIS2-SECTION-ID:Store2007--> Explore the challenges of providing
+documentation in open source projects The University of Oslo 2007
+<http://urn.nb.no/URN:NBN:no-15782>
 
-Leif ArneStorset Integration of Health Management Information Systems
-The University of Oslo 2010 <http://urn.nb.no/URN:NBN:no-25666>
+<!--DHIS2-SECTION-ID:Storset2010--> Leif ArneStorset Integration of Health
+Management Information Systems The University of Oslo 2010
+<http://urn.nb.no/URN:NBN:no-25666>
 
-Jorn BraaVincent Shaw Shegaw Anagaw Mengiste Scaling of Health
-Information Systems in Nigeria and Ethiopia- Considering the Options
-2007
+<!--DHIS2-SECTION-ID:ShawScaling2007--> Jorn BraaVincent Shaw Shegaw Anagaw
+Mengiste Scaling of Health Information Systems in Nigeria and Ethiopia-
+Considering the Options 2007
 <http://heim.ifi.uio.no/~vshaw/Files/Published%20Papers%20included%20in%20Kappa/6_Shaw_IFP9.4%20Scaling%20of%20HIS_Considering%20the%20Options.pdf>
 
-Kim Anh ThiVo Challenges of Health Information Systems Programs in
-Developing Countries: SUCCESS and FAILURE The University of Oslo 2009
-<http://urn.nb.no/URN:NBN:no-23652>
+<!--DHIS2-SECTION-ID:Vo2009--> Kim Anh ThiVo Challenges of Health
+Information Systems Programs in Developing Countries: SUCCESS and
+FAILURE The University of Oslo 2009 <http://urn.nb.no/URN:NBN:no-23652>
 
-Jan HenrikØverland An Open Source Approach to Improving GIS
-Implementations in Developing Countries The University of Oslo 2010
-<http://urn.nb.no/URN:NBN:no-24751>
+<!--DHIS2-SECTION-ID:Overland2010--> Jan HenrikØverland An Open Source
+Approach to Improving GIS Implementations in Developing Countries The
+University of Oslo 2010 <http://urn.nb.no/URN:NBN:no-24751>
 
-Lars HelgeØverland Global Software Development and Local Capacity
-Building University of Oslo 2006 <http://urn.nb.no/URN:NBN:no-13609>
+<!--DHIS2-SECTION-ID:Overland2006--> Lars HelgeØverland Global Software
+Development and Local Capacity Building University of Oslo 2006
+<http://urn.nb.no/URN:NBN:no-13609>

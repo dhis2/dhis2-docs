@@ -1,5 +1,7 @@
 # DHIS2 in the Autonomous Region of Kurdistan, Iraq
 
+<!--DHIS2-SECTION-ID:user_story_kurdistan-->
+
 *For the citizens of war-torn Iraq, as well as for the hundreds of
 thousands of refugees stranded in camps and sheltered by the Autonomous
 Region of Kurdistan, getting access to regular health care is not a
@@ -184,8 +186,8 @@ please reach out to us as follows:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">

@@ -1,6 +1,10 @@
 # Using reporting functionality
 
+<!--DHIS2-SECTION-ID:using_reporting-->
+
 ## Reporting functionality in DHIS2
+
+<!--DHIS2-SECTION-ID:using_reporting_intro-->
 
 The reporting module in DHIS2 provides a range of reporting
 alternatives, and this section will explain how to use them to view and
@@ -61,6 +65,8 @@ organisation units and the maps will be available.
 
 ## Using standard reports
 
+<!--DHIS2-SECTION-ID:using_reporting_standard_reports-->
+
 You access the available reports by navigating to Apps-\>Reports. In the
 report menu in the left bar, click Standard Report. A list of all
 pre-defined reports will appear in the main window.
@@ -79,6 +85,8 @@ depending on your browser settings for handling PDF files. You can save
 the file and keep it locally on your computer for later use.
 
 ## Using dataset reports
+
+<!--DHIS2-SECTION-ID:using_reporting_dataset_reports-->
 
 Dataset reports are printer friendly views of the data entry screen
 filled with either raw or aggregated data. These are only available for
@@ -120,6 +128,8 @@ PDF formats.
 
 ## Using resources
 
+<!--DHIS2-SECTION-ID:using_reporting_resources-->
+
 The resource tool allows you to upload both files from your local
 computer to the DHIS server and to add links to other resources on the
 Internet through URLs. If cloud storage is configured for your system,
@@ -138,6 +148,8 @@ To create a new resource:
 5.  Click **Save**.
 
 ## Using reporting rate summary
+
+<!--DHIS2-SECTION-ID:using_reporting_reporting_rate_summary-->
 
 Access the reporting rate summary from the Apps-\>Reports menu.
 Reporting rate summaries will show how many datasets (forms) that have
@@ -202,6 +214,8 @@ To run the report you can follow these steps:
 
 ## Using organisation unit distribution reports
 
+<!--DHIS2-SECTION-ID:using_reporting_orgunit_distribution_reports-->
+
 You can access the Orgunit Distribution reports from the left side menu
 in the Apps-\>Reports.
 
@@ -226,6 +240,8 @@ CSV.
 ![](resources/images/dhis2UserManual/orgunit_report.png)
 
 ## Generate analytics tables
+
+<!--DHIS2-SECTION-ID:generate_analytics_tables-->
 
 DHIS2 generates database tables which the system then uses as basis for
 various analytics functions. These tables are also valuable if you write

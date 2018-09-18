@@ -1,5 +1,7 @@
 # Configure programs in the Programs/Attributes app (legacy app)
 
+<!--DHIS2-SECTION-ID:configure_programs_in_legacy_app-->
+
 > **Note**
 > 
 >   - You create program indicators and program rules in the
@@ -12,6 +14,8 @@
 >     also available in the legacy **Program / Attributes** app.
 
 ## About programs
+
+<!--DHIS2-SECTION-ID:about_program_legacy_app-->
 
 There are three type of programs:
 
@@ -42,9 +46,9 @@ A program needs several types of metadata that you create in the
 <table>
 <caption>Program metadata objects in the Program / Attributesapp</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -101,9 +105,9 @@ A program needs several types of metadata that you create in the
 <table>
 <caption>Program metadata objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -153,6 +157,8 @@ To learn how you create program metadata in the Maintenance app, see
 app](https://docs.dhis2.org/master/en/user/html/configure_programs_in_Maintenance_app.html)
 
 ## Manage programs
+
+<!--DHIS2-SECTION-ID:manage_program-->
 
 ### Create a program
 
@@ -364,6 +370,8 @@ To set the authority for sharing a program:
 
 ## Manage program stages
 
+<!--DHIS2-SECTION-ID:manage_program_stage-->
+
 ### About program stages
 
 A program consist of program stages. A program stage defines which
@@ -413,8 +421,8 @@ actions should be taken at each stage.
     
     <table>
     <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
+    <col width="50%" />
+    <col width="50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -486,8 +494,8 @@ actions should be taken at each stage.
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -620,6 +628,8 @@ actions should be taken at each stage.
 
 ## Manageprogramnotifications
 
+<!--DHIS2-SECTION-ID:manage_program_notification-->
+
 ### About program notifications
 
 You can create program notifications for programs with registration and
@@ -636,9 +646,9 @@ entity attributes and the following program parameters:
 
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -750,9 +760,9 @@ entity attributes and the following program parameters:
     
     <table>
     <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
+    <col width="33%" />
+    <col width="33%" />
+    <col width="33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -795,9 +805,9 @@ entity attributes and the following program parameters:
     
     <table>
     <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
+    <col width="33%" />
+    <col width="33%" />
+    <col width="33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -900,9 +910,9 @@ entity attributes and the following program parameters:
     
     <table>
     <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
+    <col width="33%" />
+    <col width="33%" />
+    <col width="33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -935,9 +945,9 @@ entity attributes and the following program parameters:
     
     <table>
     <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
+    <col width="33%" />
+    <col width="33%" />
+    <col width="33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -1017,6 +1027,8 @@ entity attributes and the following program parameters:
 >     notifications to be send at a specific time.
 
 ## Manage custom registration forms
+
+<!--DHIS2-SECTION-ID:manage_custom_registration_forms-->
 
 ### About program custom registration forms
 

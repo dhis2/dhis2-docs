@@ -1,5 +1,7 @@
 # About data dimensions
 
+<!--DHIS2-SECTION-ID:data_dimensions-->
+
 ## Data dimensions: Core building blocks in DHIS2
 
 A data value in DHIS2 is described by at least three dimensions: 1) data
@@ -362,6 +364,8 @@ any organisation unit group set member, or which is present in multiple
 groups.
 
 ## Period: the *when* dimension
+
+<!--DHIS2-SECTION-ID:period_types-->
 
 The period dimension becomes an important factor when analysing data
 over time e.g. when looking at cumulative data, when creating quarterly

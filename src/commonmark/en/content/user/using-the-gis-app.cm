@@ -1,6 +1,10 @@
 # Using the GIS app
 
+<!--DHIS2-SECTION-ID:using_gis-->
+
 ## About the GIS app
+
+<!--DHIS2-SECTION-ID:about_gis-->
 
 With the GIS app you can overlay multiple layers and choose among
 different base maps. You can create thematic maps of areas and points,
@@ -45,6 +49,8 @@ on the fly. Maps can be saved as favorites and shared with other people.
 
 ## Create a new thematic map
 
+<!--DHIS2-SECTION-ID:using_gis_create_map-->
+
 You use four vector layers to create a thematic map. The workflow for
 creating a new thematic map is:
 
@@ -68,6 +74,8 @@ creating a new thematic map is:
 
 ## Manage event layers
 
+<!--DHIS2-SECTION-ID:using_gis_event_layer-->
+
 The event layer displays the geographical location of events registered
 in the DHIS2 tracker. Provided that events have associated GPS
 coordinates, you can use this layer to drill down from the aggregated
@@ -83,6 +91,8 @@ Unit under which the events are recorded.
 ![](resources/images/gis/gis_event_layer.png)
 
 ### Create or modify event layer
+
+<!--DHIS2-SECTION-ID:gis_create_event_layer-->
 
 1.  In the top menu, click the event layer icon.
 
@@ -207,6 +217,8 @@ To clear all data in a map:
 
 ## Manage facility layers
 
+<!--DHIS2-SECTION-ID:using_gis_facility_layer-->
+
 The facility layer displays icons that represent types of facilities.
 Polygons do not show up on the map, so make sure that you select an
 organisation unit level that has facilities.
@@ -289,8 +301,8 @@ follows:
 <table>
 <caption>View organisation unit information</caption>
 <colgroup>
-<col style="width: 40%" />
-<col style="width: 59%" />
+<col width="40%" />
+<col width="59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -301,13 +313,13 @@ follows:
 <tbody>
 <tr class="odd">
 <td><p>View information for the current period</p></td>
-<td><ol type="1">
+<td><ol style="list-style-type: decimal">
 <li><p>Click a facility.</p></li>
 </ol></td>
 </tr>
 <tr class="even">
 <td><p>View information for a selected period</p></td>
-<td><ol type="1">
+<td><ol style="list-style-type: decimal">
 <li><p>Right-click a facility and click <strong>Show information</strong>.</p></li>
 <li><p>In the <strong>Infrastructural data</strong> section, select a period.</p></li>
 </ol>
@@ -320,6 +332,8 @@ follows:
 </table>
 
 ## Manage thematic layers 1- 4
+
+<!--DHIS2-SECTION-ID:using_gis_thematic_layer-->
 
 There are four thematic layers in the GIS app. With these layers panels
 you can use your data for thematic mapping. Select your desired
@@ -499,6 +513,8 @@ To clear data in a boundary layer:
 
 ## Manage Earth Engine layer
 
+<!--DHIS2-SECTION-ID:using_gis_gee-->
+
 
 ![](resources/images/gis/gis_earth_eng_layer.png)
 
@@ -536,6 +552,8 @@ view more information, for example temperature and elevation.
 
 ## Add external map layers
 
+<!--DHIS2-SECTION-ID:using_gis_external_map_layers-->
+
 1.  In the top menu, click the **External layer** icon.
 
 2.  Click **Edit** to add a new layer.
@@ -569,6 +587,8 @@ Here are some examples of external layers:
 > documentation](https://dhis2.github.io/dhis2-docs/master/en/user/html/manage_ext_maplayer.html).
 
 ## Manage map favorites
+
+<!--DHIS2-SECTION-ID:using_gis_favorites-->
 
 
 ![](resources/images/gis/gis_favorites.png)
@@ -645,6 +665,8 @@ To save the current map to an existing favorite (overwrite):
 
 ### Share a map interpretation
 
+<!--DHIS2-SECTION-ID:gisInterpretation-->
+
 For certainanalysis-related resources in DHIS2, you can share a data
 interpretation. An interpretation is a link to the relevant resource
 together with a text expressing some insight about the data.
@@ -716,11 +738,15 @@ settings:
 
 ## Save a map as an image
 
+<!--DHIS2-SECTION-ID:using_gis_image_export-->
+
 1.  Take a screenshot of the map with the tool of your choice.
 
 2.  Save the screenshot in desired format.
 
 ## Embed a map in an external web page
+
+<!--DHIS2-SECTION-ID:using_gis_embed-->
 
 Certain analysis-related resources in DHIS2, like pivot tables, charts
 and maps, can be embedded in any web page by using a plug-in. You will
@@ -737,6 +763,8 @@ external web page:
 2.  Click **Select** to highlight the HTML fragment.
 
 ## Search for a location
+
+<!--DHIS2-SECTION-ID:using_gis_search-->
 
 The place search function allows you to search for almost any location
 or address. The place search is powered by the Mapzen mapping platform.
@@ -757,6 +785,8 @@ facilities, villages or towns on the map.
 
 ## Measure distances and areas in a map
 
+<!--DHIS2-SECTION-ID:using_gis_measure_distance-->
+
 1.  In the upper left part of the map, put the cursor on the **Measure
     distances and areas** icon and click **Create new measurement**.
 
@@ -766,6 +796,8 @@ facilities, villages or towns on the map.
 
 ## Get the latitude and longitude at any location
 
+<!--DHIS2-SECTION-ID:using_gis_latitude_longitude-->
+
 Right-click a map and select **Show longitude/latitude**. The values
 display in a pop-up window.
 
@@ -773,6 +805,8 @@ display in a pop-up window.
 ![](resources/images/gis/gis-latitude-longitude.png)
 
 ## View a map as a pivot table or chart
+
+<!--DHIS2-SECTION-ID:using_gis_integration-->
 
 When you have made a map you can switch between pivot table, chart and
 map visualization of your data. The function is inactive if the data the

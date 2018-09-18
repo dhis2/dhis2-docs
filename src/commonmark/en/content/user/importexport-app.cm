@@ -1,5 +1,7 @@
 # Import/Export App
 
+<!--DHIS2-SECTION-ID:import_export-->
+
 In a primary health system, the HMIS typically involves a distributed
 application, where the same application is running in different
 geographical locations (PHCs,CHCs, hospitals, districts, and state).
@@ -102,6 +104,8 @@ for all kinds of meta-data, allowing for easy import from other systems.
 
 ## Data Import
 
+<!--DHIS2-SECTION-ID:import-->
+
 Data Import can be accessed from the left sidebar by clicking on Data
 Import.
 
@@ -126,6 +130,8 @@ Import.
 
 ### PDF data
 
+<!--DHIS2-SECTION-ID:importPDFdata-->
+
 DHIS2 supports import of data in the PDF format. This can be used to
 import data produced by off-line PDF data entry forms. Please refer to
 the section **Data set management** for details on how to produce a PDF
@@ -135,6 +141,8 @@ To import a PDF data file, navigate to the *PDF Data Import* item in the
 left-side menu. Upload the completed PDF file and click *Import*.
 
 ## GML Import
+
+<!--DHIS2-SECTION-ID:gml_import-->
 
 GML Import can be accessed from the left sidebar by clicking on GML
 Import.
@@ -150,6 +158,8 @@ Import.
     the page to show the progress.
 
 ## Event Import
+
+<!--DHIS2-SECTION-ID:event_import-->
 
 Event can be access from the left sidebar by by clicking on Event
 import.
@@ -169,6 +179,8 @@ import.
     the page to show the progress.
 
 ## Metadata export
+
+<!--DHIS2-SECTION-ID:metadata_export-->
 
 Metadata export can be accessed from the left sidebar by clicking on
 Metadata export.
@@ -191,6 +203,8 @@ Metadata export.
 
 ## Metadata export with dependencies
 
+<!--DHIS2-SECTION-ID:metadata_export_dependencies-->
+
 Metadata export with dependencies lets you create canned exports for
 metadata objects. This type of export will include the metadata objects
 and the metadata object's related objects, that is the metadata which
@@ -199,8 +213,8 @@ belong together with the main object.
 <table>
 <caption>Object types and their dependencies</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -210,7 +224,8 @@ belong together with the main object.
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><strong>Data sets</strong></p></td>
+<td><p><strong>Data sets</strong></p>
+DHIS2_SECTION_ID:docs-internal-guid-4a3662ce-63b9-1efd-e640-8ba874d1bcde:</td>
 <td><p>Data elements</p>
 <p>Sections</p>
 <p>Indicators</p>

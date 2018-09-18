@@ -1,6 +1,10 @@
 # Analyze data in pivot tables
 
+<!--DHIS2-SECTION-ID:pivot-->
+
 ## About the Pivot Table app
+
+<!--DHIS2-SECTION-ID:pivot_about-->
 
 With the **Pivot Table** app, you can create pivot tables based on all
 available data dimensions in DHIS2. A pivot table is a dynamic tool for
@@ -57,6 +61,8 @@ data based on the selected filter items.
 
 ## Create a pivot table
 
+<!--DHIS2-SECTION-ID:pivot_create-->
+
 1.  Open the **Pivot Table** app.
 
 2.  In the menu to the left, select the dimension items you want to
@@ -91,9 +97,9 @@ table. The available types are described in this table:
 <table>
 <caption>Data dimension types</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -220,6 +226,8 @@ table like this:
 
 ## Change the display of your pivot table
 
+<!--DHIS2-SECTION-ID:pivot_change_display-->
+
 1.  Open the **Pivot Table** app.
 
 2.  Create a new pivot table or open a favorite.
@@ -231,9 +239,9 @@ table like this:
     <table>
     <caption>Pivot table options</caption>
     <colgroup>
-    <col style="width: 21%" />
-    <col style="width: 35%" />
-    <col style="width: 42%" />
+    <col width="21%" />
+    <col width="35%" />
+    <col width="42%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -498,6 +506,8 @@ To view interpretations for relative periods, such as a year ago:
 
 ## Download data from a pivot table
 
+<!--DHIS2-SECTION-ID:pivot_download_data-->
+
 ### Download table layout data format
 
 To download the data in the current pivot table:
@@ -543,9 +553,9 @@ To download plain data source formats:
     <table>
     <caption>Available formats</caption>
     <colgroup>
-    <col style="width: 18%" />
-    <col style="width: 33%" />
-    <col style="width: 47%" />
+    <col width="18%" />
+    <col width="33%" />
+    <col width="47%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -618,6 +628,8 @@ browser:
 
 ## Embed a pivot table in an external web page
 
+<!--DHIS2-SECTION-ID:pivot_embed-->
+
 Certain analysis-related resources in DHIS2, like pivot tables, charts
 and maps, can be embedded in any web page by using a plug-in. You will
 find more information about the plug-ins in the Web API chapter in the
@@ -631,6 +643,8 @@ in an external web page:
 2.  Click **Select** to highlight the HTML fragment.
 
 ## Visualize pivot table data as a chart or a map
+
+<!--DHIS2-SECTION-ID:pivot_integration-->
 
 When you have made a pivot table you can switch between pivot table,
 chart and map visualization of your data.

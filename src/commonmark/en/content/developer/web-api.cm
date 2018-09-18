@@ -1,5 +1,7 @@
 # Web API
 
+<!--DHIS2-SECTION-ID:webapi-->
+
 The Web API is a component which makes it possible for external systems
 to access and manipulate data stored in an instance of DHIS2. More
 precisely, it provides a programmatic interface to a wide range of
@@ -7,6 +9,8 @@ exposed data and service methods for applications such as third-party
 software clients, web portals and internal DHIS2 modules.
 
 ## Introduction
+
+<!--DHIS2-SECTION-ID:webapi_introduction-->
 
 The Web API adheres to many of the principles behind the REST
 architectural style. To mention some few and important ones:
@@ -54,6 +58,8 @@ minute.
 
 ## Authentication
 
+<!--DHIS2-SECTION-ID:webapi_authentication-->
+
 The DHIS2 Web API supports two protocols for authentication, Basic
 Authentication and OAuth 2. You can verify and get information about the
 currently authenticated user by making a GET request to the following
@@ -68,6 +74,8 @@ authority) by using the endpoints:
     /api/26/me/authorities/ALL
 
 ### Basic Authentication
+
+<!--DHIS2-SECTION-ID:webapi_basic_authentication-->
 
 The DHIS2 Web API supports *Basic authentication*. Basic authentication
 is a technique for clients to send login credentials over HTTP to a web
@@ -86,6 +94,8 @@ requirement to provide secure interactions with the Web API.
 
 ### Two factor authentication
 
+<!--DHIS2-SECTION-ID:webapi_2fa-->
+
 As of 2.30 DHIS2 supports two factor authentication. This means that you
 can enable 2FA in your user settings which means that you will be
 prompted for a 2FA code at login. You can read more about 2FA here:
@@ -93,6 +103,8 @@ prompted for a 2FA code at login. You can read more about 2FA here:
     https://www.google.com/landing/2step/
 
 ### OAuth2
+
+<!--DHIS2-SECTION-ID:webapi_oauth2-->
 
 DHIS2 supports the OAuth2 authentication protocol. OAuth2 is an open
 standard for authorization which it allows third-party clients to
@@ -133,6 +145,8 @@ We will use this client as the basis for our next grant type examples.
 
 #### Grant type password
 
+<!--DHIS2-SECTION-ID:webapi_oauth2_password-->
+
 The simplest of all grant types is the **password** grant type. This
 grant type is similar to basic authenticaion in the sense that it
 requires the client to collect the users username and password. As an
@@ -163,6 +177,8 @@ all data elements using our token:
 
 #### Grant type refresh\_token
 
+<!--DHIS2-SECTION-ID:webapi_refresh_token-->
+
 In general the access tokens have limited validity. You can have a look
 at the **expires\_in** property of the response in the previous example
 to understand when a token expires. To get a fresh **access\_token** you
@@ -181,6 +197,8 @@ The response will be exactly the same as when you get an token to start
 with.
 
 #### Grant type authorization\_code
+
+<!--DHIS2-SECTION-ID:webapi_authorization_code-->
 
 Authorized code grant type is the recommended approach if you don't want
 to store the user credentials externally. It allows DHIS2 to collect the
@@ -213,6 +231,8 @@ using the given code, we will now ask for a access token:
 
 ## Error and info messages
 
+<!--DHIS2-SECTION-ID:webapi_error_info_messages-->
+
 The Web API uses a consistent format for all error/warning and
 informational messages:
 
@@ -230,8 +250,8 @@ http status message **forbidden** and a descriptive message.
 <table>
 <caption>WebMessage properties</caption>
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 86%" />
+<col width="13%" />
+<col width="86%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -269,6 +289,8 @@ http status message **forbidden** and a descriptive message.
 
 ## Date and period format
 
+<!--DHIS2-SECTION-ID:webapi_date_perid_format-->
+
 Throughout the Web API we refer to dates and periods. The date format
 is:
 
@@ -283,10 +305,10 @@ API endpoint */api/periodTypes*)
 <table style="width:100%;">
 <caption>Period format</caption>
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 21%" />
-<col style="width: 18%" />
-<col style="width: 35%" />
+<col width="24%" />
+<col width="21%" />
+<col width="18%" />
+<col width="35%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -410,6 +432,8 @@ for creating dynamic reports. The available relative period values are:
 
 ## Identifier schemes
 
+<!--DHIS2-SECTION-ID:webapi_identifier_schemes-->
+
 This section provides an explanation of the identifier scheme concept.
 Identifier schemes are used to map metadata objects to other metadata
 during import, and to render metadata as part of exports. Please note
@@ -446,8 +470,8 @@ table below.
 <table>
 <caption>Scheme Values</caption>
 <colgroup>
-<col style="width: 14%" />
-<col style="width: 85%" />
+<col width="14%" />
+<col width="85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -493,6 +517,8 @@ scheme for all other objects you can use these parameters:
 
 ## Browsing the Web API
 
+<!--DHIS2-SECTION-ID:webapi_browsing_the_web_api-->
+
 The entry point for browsing the Web API is */api/*. This resource
 provide links to all available resources. Four resource representation
 formats are consistently available for all resources: HTML, XML, JSON
@@ -506,10 +532,10 @@ the response:
 <table style="width:100%;">
 <caption>Query parameters</caption>
 <colgroup>
-<col style="width: 11%" />
-<col style="width: 20%" />
-<col style="width: 12%" />
-<col style="width: 54%" />
+<col width="11%" />
+<col width="20%" />
+<col width="12%" />
+<col width="54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -577,6 +603,8 @@ the *identifiableObjects* resource:
 
 ### Translation
 
+<!--DHIS2-SECTION-ID:webapi_translation-->
+
 DHIS2 supports translations of database content, such as data elements,
 indicators and programs. All metadata objects in the Web API have
 properties meant to be used for display / UI purposes, which includes
@@ -585,9 +613,9 @@ properties meant to be used for display / UI purposes, which includes
 <table>
 <caption>Translate options</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 16%" />
-<col style="width: 62%" />
+<col width="20%" />
+<col width="16%" />
+<col width="62%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -611,6 +639,8 @@ properties meant to be used for display / UI purposes, which includes
 </table>
 
 ### Translation API
+
+<!--DHIS2-SECTION-ID:webapi_translation_api-->
 
 The translations for an object is rendered as part of the object itself
 in the *translations* array. Note that the *translations* array in the
@@ -721,6 +751,8 @@ locales).
 
 ### Web API versions
 
+<!--DHIS2-SECTION-ID:webapi_api_versions-->
+
 The Web API is versioned starting from DHIS 2.25. The API versioning
 follows the DHIS 2 major version numbering. As an example, the API
 version for DHIS 2.25 is *25*.
@@ -744,6 +776,8 @@ experience changes e.g. in associations between objects. These changes
 will be documented in the DHIS2 major version release notes.
 
 ## Metadata object filter
+
+<!--DHIS2-SECTION-ID:webapi_metadata_object_filter-->
 
 To filter the metadata there are several filter operations that can be
 applied to the returned list of metadata. The format of the filter
@@ -957,6 +991,8 @@ operator.
 
 ### Logical operators
 
+<!--DHIS2-SECTION-ID:webapi_metadata_logical_operator-->
+
 As mentioned in the section before, the default logical operator applied
 to the filters are **AND** which means that all object filters must be
 matched. There are however cases where you want to match on one of
@@ -1005,6 +1041,8 @@ filter and expect the *rootJunction* to be
 
 ## Metadata field filter
 
+<!--DHIS2-SECTION-ID:webapi_metadata_field_filter-->
+
 In certain situations the default views of the metadata can be too
 verbose. A client might only need a few fields from each object and want
 to remove unnecessary fields from the response. To discover which fields
@@ -1040,8 +1078,8 @@ using the ':' operator.
 <table>
 <caption>Property operators</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 74%" />
+<col width="25%" />
+<col width="74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1076,8 +1114,8 @@ using the ':' operator.
 <table>
 <caption>Field presets</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 74%" />
+<col width="25%" />
+<col width="74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1129,6 +1167,8 @@ units from a data set, but exclude the id from organisation
 
 ### Field transformers
 
+<!--DHIS2-SECTION-ID:webapi_field_transformers-->
+
 In DHIS2.17 we introduced field transformers, the idea is to allow
 further customization of the properties on the server side.
 
@@ -1144,9 +1184,9 @@ Multipe transformers can be used by repeating the transformer
 <table>
 <caption>Available Transformers</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 21%" />
-<col style="width: 44%" />
+<col width="33%" />
+<col width="21%" />
+<col width="44%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1186,6 +1226,8 @@ Multipe transformers can be used by repeating the transformer
 
 #### Examples
 
+<!--DHIS2-SECTION-ID:webapi_field_transformers_examples-->
+
 Examples of transformer
     usage.
 
@@ -1201,6 +1243,8 @@ Examples of transformer
 
 ## Metadata create, read, update, delete, validate
 
+<!--DHIS2-SECTION-ID:webapi_metadata_crud-->
+
 While some of the web-api endpoints already contains support for CRUD
 (create, read, update, delete), from version 2.15 this is now supported
 on all endpoints. It should work as you expect, and the subsections will
@@ -1208,6 +1252,8 @@ give more detailed information about create, update, and delete (read is
 already covered elsewhere, and have been supported for a long time).
 
 ### Create / update parameters
+
+<!--DHIS2-SECTION-ID:webapi_metadata_create_update-->
 
 The following query parameters are available for customizing your
 request.
@@ -1249,6 +1295,8 @@ request.
 </table>
 
 ### Creating and updating objects
+
+<!--DHIS2-SECTION-ID:webapi_creating_updating_objects-->
 
 For creating new objects you will need to know the endpoint, the type
 format, and make sure that you have the required authorities. As an
@@ -1307,6 +1355,8 @@ curl -X PUT -d @pi.json -H "Content-Type: application/json"
 
 ### Deleting objects
 
+<!--DHIS2-SECTION-ID:webapi_deleting_objects-->
+
 Deleting objects are very straight forward, you will need to know the
 *ID* and the endpoint of the type you want delete, let's continue our
 example from the last section and use a *constant*. Let's assume that
@@ -1320,9 +1370,14 @@ A successful delete should return HTTP status 204 (no content).
 
 ### Adding and removing objects in collections
 
-The collections resource lets you modify collections of objects.
+<!--DHIS2-SECTION-ID:webapi_adding_removing_objects_collections-->
+
+The collections resource lets you modify collections of
+objects.
 
 #### Adding or removing single objects
+
+<!--DHIS2-SECTION-ID:webapi_collections_adding_removing_single_objects-->
 
 In order to add or remove objects to or from a collection of objects you
 can use the following
@@ -1355,11 +1410,14 @@ request:
     DELETE /api/26/dataElementGroups/IDA/dataElements/IDB
 
 To add a category option with identifier IDB to a category with
-identifier IDA you can do a POST request:
+identifier IDA you can do a POST
+request:
 
     POST /api/26/categories/IDA/categoryOptions/IDB
 
 #### Adding or removing multiple objects
+
+<!--DHIS2-SECTION-ID:webapi_collections_adding_removing_multiple_objects-->
 
 You can add or remove multiple objects from a collection in one request
 with a payload like this:
@@ -1382,11 +1440,14 @@ Using this payload you can add, replace or delete items:
 
     PUT /api/26/categories/IDA/categoryOptions
 
-*Delete Items:*
+*Delete
+Items:*
 
     DELETE /api/26/categories/IDA/categoryOptions
 
 #### Adding and removing objects in a single request
+
+<!--DHIS2-SECTION-ID:webapi_collections_adding_removing_objects_single_request-->
 
 You can both add and remove objects from a collection in a single POST
 request with the following type of payload:
@@ -1407,6 +1468,8 @@ request with the following type of payload:
     }
 
 ### Validating payloads
+
+<!--DHIS2-SECTION-ID:webapi_validating_payloads-->
 
 System wide validation of metadata payloads are enabled from 2.19
 release, this means that create/update operations on the web-api
@@ -1452,6 +1515,8 @@ Which would yield the result:
 
 ### Partial updates
 
+<!--DHIS2-SECTION-ID:webapi_partial_updates-->
+
 For cases where you don't want or need to update all properties on a
 object (which means downloading a potentially huge payload, change one
 property, then upload again) we now support partial update, for one or
@@ -1471,6 +1536,8 @@ properties you want to update, i.e.:
 
 ## Metadata export
 
+<!--DHIS2-SECTION-ID:webapi_metadata_export-->
+
 This section explains the metatada API which is available at
 */api/23/metadata* and */api/26/metadata*endpoints. XML and JSON
 resource representations are supported.
@@ -1483,9 +1550,9 @@ enable/disable export of certain types by setting *type=true/false*.
 <table>
 <caption>Export Parameter</caption>
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 21%" />
-<col style="width: 61%" />
+<col width="17%" />
+<col width="21%" />
+<col width="61%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1535,6 +1602,8 @@ enable/disable export of certain types by setting *type=true/false*.
 
 ### Metadata export examples
 
+<!--DHIS2-SECTION-ID:webapi_metadata_export_examples-->
+
 Export all metadata:
 
     curl -u user:pass http://server/api/26/metadata
@@ -1556,6 +1625,8 @@ Export data elements and indicators where name starts with
 
 ### Metadata export with dependencies
 
+<!--DHIS2-SECTION-ID:webapi_dataset_program_export_dependencies-->
+
 When you want to move a whole set of data set, program or category combo
 metadata from one server to another (possibly empty) server, we have
 three special endpoints for just that purpose:
@@ -1570,6 +1641,8 @@ These exports can then be imported using */api/26/metadata*.
 
 ## Metadata import
 
+<!--DHIS2-SECTION-ID:webapi_metadata_import-->
+
 This section explains the metatada API which is available at
 */api/23/metadata* and */api/26/metadata*endpoints. XML and JSON
 resource representations are supported.
@@ -1580,9 +1653,9 @@ exporter. The various parameters are listed below.
 <table>
 <caption>Import Parameter</caption>
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 21%" />
-<col style="width: 61%" />
+<col width="17%" />
+<col width="21%" />
+<col width="61%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1667,6 +1740,8 @@ exporter. The various parameters are listed below.
 
 ## Metadata audit
 
+<!--DHIS2-SECTION-ID:webapi_metadata_audit-->
+
 If you need information about who created, edited, or deleted DHIS2
 metadata objects you can enable metadata audit. There are two
 configuration options (dhis.conf) you can enable to support this:
@@ -1691,6 +1766,8 @@ audit might not be that useful.
 
 ### Metadata audit query
 
+<!--DHIS2-SECTION-ID:webapi_metadata_audit_query-->
+
 If you have enabled persisted metadata audits on your DHIS2 instance,
 you can access metadata audits at the following endpoint:
 
@@ -1701,9 +1778,9 @@ The endpoints supports the following query parameters:
 <table>
 <caption>Metadata audit API query parameters</caption>
 <colgroup>
-<col style="width: 22%" />
-<col style="width: 27%" />
-<col style="width: 51%" />
+<col width="22%" />
+<col width="27%" />
+<col width="51%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1748,6 +1825,8 @@ The endpoints supports the following query parameters:
 
 ## Render type (Experimental)
 
+<!--DHIS2-SECTION-ID:webapi_render_type-->
+
 Some metadata types have a property named *renderType*. The render type
 property is a map between a *device* and a *renderingType*. Applications
 can use this information as a hint on how the object should be rendered
@@ -1773,8 +1852,8 @@ configuration, which will be shown in a second table.
 <table>
 <caption>Metadata and RenderingType overview</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1824,9 +1903,9 @@ Program Stage Section are LISTING as default.
 <table>
 <caption>RenderingTypes allowed based on value types</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1893,9 +1972,9 @@ set, which is usually needed when rendering some of the specific types:
 <table>
 <caption>renderType object properties</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1961,6 +2040,8 @@ this:
 
 ## Object Style (Experimental)
 
+<!--DHIS2-SECTION-ID:webapi_object_style-->
+
 Most metadata have a property names "style". This property can be used
 by clients to represent the object in a certain way. The properties
 currently supported by style is as follows:
@@ -1968,9 +2049,9 @@ currently supported by style is as follows:
 <table>
 <caption>Style properties</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2037,6 +2118,8 @@ following payload to change the style:
 
 ## AMQP/RabbitMQ integration
 
+<!--DHIS2-SECTION-ID:webapi_amqp_rabbitmq_integration-->
+
 If you have an external system that needs to know about updates inside
 of DHIS2 (update data element, create org unit, etc) you can set up a
 rabbitmq message broker, and have it receive messages from DHIS2, then
@@ -2070,6 +2153,8 @@ type being handled. The event also contains a payload, for *CREATE* and
 its a patch containing the updates that are happening on that object.
 
 ## Kafka integration
+
+<!--DHIS2-SECTION-ID:webapi_kafka_integration-->
 
 Kafka integration was added in 2.30 and is currently supported for doing
 bulk imports of tracker data (tracked entities, enrollments, events), to
@@ -2109,6 +2194,8 @@ replication factor, and 1 partition only).
 
 ## CSV metadata import
 
+<!--DHIS2-SECTION-ID:webapi_csv_metadata_import-->
+
 DHIS2 supports import of metadata in the CSV format. Columns which are
 not required can be omitted in the CSV file, but the order will be
 affected. If you would like to specify columns which appear late in the
@@ -2139,13 +2226,15 @@ listed in the following sections.
 
 ### Data elements
 
+<!--DHIS2-SECTION-ID:webapi_csv_data_elements-->
+
 <table>
 <caption>Data Element CSV Format</caption>
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 7%" />
-<col style="width: 27%" />
-<col style="width: 50%" />
+<col width="13%" />
+<col width="7%" />
+<col width="27%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2254,13 +2343,15 @@ you do not use which appear to the right of the ones
 
 ### Organisation units
 
+<!--DHIS2-SECTION-ID:webapi_csv_org_units-->
+
 <table>
 <caption>Organisation Unit CSV Format</caption>
 <colgroup>
-<col style="width: 14%" />
-<col style="width: 10%" />
-<col style="width: 21%" />
-<col style="width: 53%" />
+<col width="14%" />
+<col width="10%" />
+<col width="21%" />
+<col width="53%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2379,13 +2470,15 @@ looks like this:
 
 ### Validation rules
 
+<!--DHIS2-SECTION-ID:webapi_csv_validation_rules-->
+
 <table>
 <caption>Validation Rule CSV Format</caption>
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 7%" />
-<col style="width: 28%" />
-<col style="width: 46%" />
+<col width="17%" />
+<col width="7%" />
+<col width="28%" />
+<col width="46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2491,13 +2584,15 @@ looks like this:
 
 ### Option sets
 
+<!--DHIS2-SECTION-ID:webapi_csv_option_sets-->
+
 <table style="width:100%;">
 <caption>Option Set CSV Format</caption>
 <colgroup>
-<col style="width: 14%" />
-<col style="width: 11%" />
-<col style="width: 15%" />
-<col style="width: 59%" />
+<col width="14%" />
+<col width="11%" />
+<col width="15%" />
+<col width="59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2583,10 +2678,10 @@ The CSV format for these imports are the same
 <table>
 <caption>Collection membership CSV Format</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2614,13 +2709,15 @@ The CSV format for these imports are the same
 
 ### Other objects
 
+<!--DHIS2-SECTION-ID:webapi_csv_other_objects-->
+
 <table>
 <caption>Data Element Group, Category Option, Category Option Group, Organisation Unit Group CSV Format</caption>
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 12%" />
-<col style="width: 14%" />
-<col style="width: 55%" />
+<col width="17%" />
+<col width="12%" />
+<col width="14%" />
+<col width="55%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2666,6 +2763,8 @@ An example for category options looks like this:
 
 ## Deleted objects
 
+<!--DHIS2-SECTION-ID:webapi_deleted_objects-->
+
 The deleted objects resource provides a log of metadata objects being
 deleted.
 
@@ -2687,6 +2786,8 @@ forward:
 
 ## Favorites
 
+<!--DHIS2-SECTION-ID:webapi_favorites-->
+
 Certain types of metadata objects can be marked as favorites for the
 currently logged in user. This applies currently for dashboards.
 
@@ -2704,6 +2805,8 @@ The favorite status will appear as a boolean *favorite* field on the
 object (e.g. the dashboard) in the metadata response.
 
 ## Subscriptions
+
+<!--DHIS2-SECTION-ID:webapi_subscription-->
 
 A logged user can subscribe to certain types of objects. Currently
 subscribable objects are those of type Chart, EventChart, EventReport,
@@ -2733,6 +2836,8 @@ request (no content type required):
     /api/30/<object-type>/<object-id>/subscriber
 
 ## File resources
+
+<!--DHIS2-SECTION-ID:webapi_file_resources-->
 
 *File resources* are objects used to represent and store binary content.
 The *FileResource* object itself contains the file meta-data (name,
@@ -2795,9 +2900,9 @@ likely being uploaded to a cloud-based store somewhere) as seen by the
 
 Even though the content has not been fully stored yet the file resource
 can now be used, for example as referenced content in a data value (see
-[Working with file data values](#datavalue_file)). If we need to check
-the updated *storageStatus* or otherwise retrieve the meta-data of the
-file, the *fileResources* endpoint can be
+[section\_title](#datavalue_file)). If we need to check the updated
+*storageStatus* or otherwise retrieve the meta-data of the file, the
+*fileResources* endpoint can be
     queried.
 
     curl -v https://server/api/26/fileResources/xm4JwRwke0i -H "Accept: application/json"
@@ -2806,6 +2911,8 @@ This request will return the *FileResource* object as seen in the
 response of the above example.
 
 ### File resource constraints
+
+<!--DHIS2-SECTION-ID:webapi_file_resources_constraints-->
 
   - File resources **must** be referenced (assigned) from another object
     in order to be persisted in the long term. A file resource which is
@@ -2826,6 +2933,8 @@ response of the above example.
 
 ## Metadata versioning
 
+<!--DHIS2-SECTION-ID:webapi_metadata_versioning-->
+
 This section explains the Metadata Versioning APIs available starting
 2.24
 
@@ -2835,9 +2944,9 @@ This section explains the Metadata Versioning APIs available starting
 <table>
 <caption>Query Parameters</caption>
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 23%" />
-<col style="width: 57%" />
+<col width="19%" />
+<col width="23%" />
+<col width="57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2856,6 +2965,8 @@ This section explains the Metadata Versioning APIs available starting
 </table>
 
 ### Get metadata version examples
+
+<!--DHIS2-SECTION-ID:webapi_metadata_versioning_examples-->
 
 **Example: Get the current metadata version of this system**
 
@@ -2903,9 +3014,9 @@ This section explains the Metadata Versioning APIs available starting
 <table>
 <caption>Query Parameters</caption>
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 23%" />
-<col style="width: 57%" />
+<col width="19%" />
+<col width="23%" />
+<col width="57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2924,6 +3035,8 @@ This section explains the Metadata Versioning APIs available starting
 </table>
 
 ### Get list of all metadata versions
+
+<!--DHIS2-SECTION-ID:webapi_get_list_of_metadata_versions-->
 
 **Example: Get the list of all versions in this system**
 
@@ -2988,9 +3101,9 @@ This section explains the Metadata Versioning APIs available starting
 <table>
 <caption>Query Parameters</caption>
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 23%" />
-<col style="width: 57%" />
+<col width="19%" />
+<col width="23%" />
+<col width="57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3034,6 +3147,8 @@ two types of metadata.
 
 ### Create metadata version
 
+<!--DHIS2-SECTION-ID:webapi_create_metadata_version-->
+
 **Example: To create metadata version of type BEST\_EFFORT**
 
 **Sample
@@ -3074,9 +3189,9 @@ two types of metadata.
 <table>
 <caption>Path parameters</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3095,6 +3210,8 @@ two types of metadata.
 </table>
 
 ### Download version metadata
+
+<!--DHIS2-SECTION-ID:webapi_download_version_metadata-->
 
 **Example: Get the actual metadata for "Version\_5"**
 
@@ -3131,6 +3248,8 @@ two types of metadata.
 
 ## Metadata Synchronization
 
+<!--DHIS2-SECTION-ID:webapi_metadata_synchronization-->
+
 This section explains the Metadata Synchronization API available
 starting 2.24
 
@@ -3142,9 +3261,9 @@ starting 2.24
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3185,6 +3304,8 @@ starting 2.24
 
 ### Sync metadata version
 
+<!--DHIS2-SECTION-ID:webapi_metadata_synchronization_version-->
+
 **Example: Sync Version\_6 from central system to this system**
 
 **Sample
@@ -3194,11 +3315,15 @@ starting 2.24
 
 ## Data values
 
+<!--DHIS2-SECTION-ID:webapi_data_values-->
+
 This section is about sending and reading data values.
 
     /api/26/dataValueSets
 
 ### Sending data values
+
+<!--DHIS2-SECTION-ID:webapi_sending_data_values-->
 
 A common use-case for system integration is the need to send a set of
 data values from a third-party system into DHIS. In this example we will
@@ -3342,6 +3467,8 @@ returned together with a descriptive message.
 
 ### Sending bulks of data values
 
+<!--DHIS2-SECTION-ID:webapi_sending_bulks_data_values-->
+
 The previous example showed us how to send a set of related data values
 sharing the same period and organisation unit. This example will show us
 how to send large bulks of data values which don't necessarily are
@@ -3414,6 +3541,8 @@ value set was completed, or false if no data element attribute was
 supplied.
 
 ### Import parameters
+
+<!--DHIS2-SECTION-ID:webapi_data_values_import_parameters-->
 
 The import process can be customized using a set of import parameters:
 
@@ -3498,10 +3627,12 @@ magnitude faster.
 
 #### Data value requirements
 
+<!--DHIS2-SECTION-ID:webapi_data_values_import_requirement-->
+
 Data value import supports a set of value types. For each value type
 there is a special requirement. The following table lists the edge cases
-for value types. For information about all other cases, see [Data
-elements](#webapi_csv_data_elements).
+for value types. For information about all other cases, see
+[section\_title](#webapi_csv_data_elements).
 
 <table>
 <caption>Value type requirements</caption>
@@ -3522,6 +3653,8 @@ elements](#webapi_csv_data_elements).
 </table>
 
 #### Identifier schemes
+
+<!--DHIS2-SECTION-ID:webapi_data_values_identifier_schemes-->
 
 Regarding the id schemes, by default the identifiers used in the XML
 messages uses the DHIS2 stable object identifiers referred to as *uid*.
@@ -3569,6 +3702,8 @@ be immediately followed by the uid of the attribute, e.g.
 
 #### Async data value import
 
+<!--DHIS2-SECTION-ID:webapi_data_values_async_import-->
+
 Data values can be sent and imported in an asynchronous fashion by
 suppling an *async* query parameter set to *true*:
 
@@ -3596,6 +3731,8 @@ Please read the section on *asynchronous task status* for more
 information.
 
 ### CSV data value format
+
+<!--DHIS2-SECTION-ID:webapi_data_values_csv-->
 
 The following section describes the CSV format used in DHIS2. The first
 row is assumed to be a header row and will be ignored during import.
@@ -3671,6 +3808,8 @@ An example of a CSV file which can be imported into DHIS2 is seen
 
 ### Generating data value set template
 
+<!--DHIS2-SECTION-ID:webapi_data_values_template-->
+
 To generate a data value set template for a certain data set you can use
 the */api/dataSets/\<id\>/dataValueSet* resource. XML and JSON response
 formats are supported. Example:
@@ -3683,9 +3822,9 @@ below:
 <table style="width:100%;">
 <caption>Data values query parameters</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 19%" />
-<col style="width: 64%" />
+<col width="15%" />
+<col width="19%" />
+<col width="64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3725,6 +3864,8 @@ below:
 
 ### Reading data values
 
+<!--DHIS2-SECTION-ID:webapi_reading_data_values-->
+
 This section explains how to retrieve data values from the Web API by
 interacting with the *dataValueSets* resource. Data values can be
 retrieved in *XML*, *JSON* and *CSV* format. Since we want to read data
@@ -3736,8 +3877,8 @@ required:
 <table>
 <caption>Data value set query parameters</caption>
 <colgroup>
-<col style="width: 27%" />
-<col style="width: 72%" />
+<col width="27%" />
+<col width="72%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3929,6 +4070,8 @@ The following constraints apply to the data value sets resource:
 
 ### Sending, reading and deleting individual data values
 
+<!--DHIS2-SECTION-ID:webapi_sending_individual_data_values-->
+
 This example will show how to send individual data values to be saved in
 a request. This can be achieved by sending a *POST* request to the
 *dataValues* resource:
@@ -3940,9 +4083,9 @@ The following query parameters are supported for this resource:
 <table style="width:100%;">
 <caption>Data values query parameters</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 19%" />
-<col style="width: 64%" />
+<col width="15%" />
+<col width="19%" />
+<col width="64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4037,6 +4180,8 @@ You can delete a data value with a request using the *DELETE* method.
 
 #### Working with file data values
 
+<!--DHIS2-SECTION-ID:datavalue_file-->
+
 When dealing with data values which have a data element of type *file*
 there is some deviation from the method described above. These data
 values are special in that the contents of the value is a UID reference
@@ -4078,6 +4223,8 @@ configuration). Retrieving the file resource meta-data from the
 of the content before attempting to download it.
 
 ## ADX data format
+
+<!--DHIS2-SECTION-ID:webapi_adx_data_format-->
 
 From version 2.20 we have included support for an international standard
 for aggregate data exchange called ADX. ADX is developed and maintained
@@ -4169,10 +4316,10 @@ with examples.
 <table>
 <caption>ADX Periods</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4330,11 +4477,15 @@ assumed to be codes rather than uids.
 
 ## Program rules
 
+<!--DHIS2-SECTION-ID:webapi_program_rules-->
+
 This section is about sending and reading program rules, and explains
 the program rules data model. The program rules gives functionality to
 configure dynamic behavior in the programs in DHIS.
 
 ### Program rule model
+
+<!--DHIS2-SECTION-ID:webapi_program_rule_model-->
 
 The program rules data model consists of programRuleVariables,
 programRules and programRuleActions. The programRule contains an
@@ -4356,9 +4507,9 @@ model.
 <table style="width:100%;">
 <caption>programRule</caption>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 66%" />
-<col style="width: 16%" />
+<col width="16%" />
+<col width="66%" />
+<col width="16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4410,9 +4561,9 @@ model.
 <table style="width:100%;">
 <caption>programRuleAction</caption>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 66%" />
-<col style="width: 16%" />
+<col width="16%" />
+<col width="66%" />
+<col width="16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4558,9 +4709,9 @@ programRuleVariable model.
 <table style="width:100%;">
 <caption>programRuleVariable</caption>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 66%" />
-<col style="width: 16%" />
+<col width="16%" />
+<col width="66%" />
+<col width="16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4614,9 +4765,13 @@ programRuleVariable model.
 
 ### Creating program rules
 
+<!--DHIS2-SECTION-ID:webapi_creating_program_rules-->
+
 \-coming-
 
 ## Forms
+
+<!--DHIS2-SECTION-ID:webapi_forms-->
 
 To retrieve information about a form (which corresponds to a data set
 and its sections) you can interact with the *form* resource. The form
@@ -4629,9 +4784,9 @@ data values.
 <table>
 <caption>Form query parameters</caption>
 <colgroup>
-<col style="width: 12%" />
-<col style="width: 12%" />
-<col style="width: 74%" />
+<col width="12%" />
+<col width="12%" />
+<col width="74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4687,13 +4842,15 @@ custom form markup such as:
 
 ## Documents
 
+<!--DHIS2-SECTION-ID:webapi_documents-->
+
 References to files can be stored with the document resource.
 
 <table>
 <caption>Document fields</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4712,7 +4869,7 @@ References to files can be stored with the document resource.
 </tr>
 <tr class="odd">
 <td>url</td>
-<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">File resources</a>)</td>
+<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">section_title</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -4744,6 +4901,8 @@ of the document:
     /api/29/documents/<documentId>/data
 
 ## Validation
+
+<!--DHIS2-SECTION-ID:webapi_validation-->
 
 To generate a data validation summary you can interact with the
 validation resource. The dataSet resource is optimized for data entry
@@ -4784,8 +4943,8 @@ values are found in the table below.
 <table>
 <caption>Operators</caption>
 <colgroup>
-<col style="width: 28%" />
-<col style="width: 71%" />
+<col width="28%" />
+<col width="71%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4845,8 +5004,8 @@ the table below.
 <table>
 <caption>Missing value strategies</caption>
 <colgroup>
-<col style="width: 28%" />
-<col style="width: 71%" />
+<col width="28%" />
+<col width="71%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4871,6 +5030,8 @@ the table below.
 </table>
 
 ## Validation Results
+
+<!--DHIS2-SECTION-ID:webapi_validation_results-->
 
 Validation results are persisted results of violations found during a
 validation analysis. If you choose "persist results" when starting or
@@ -4912,7 +5073,148 @@ api endpoint:
 
 Only unsendt results are sendt using this endpoint.
 
+## Data analysis
+
+<!--DHIS2-SECTION-ID:webapi_data_analysis-->
+
+Several resources for performing data analysis and finding data quality
+and validation issues are provided.
+
+### Validation rule analysis
+
+<!--DHIS2-SECTION-ID:webapi_data_analysis_validation_rules-->
+
+To run validation rules and retieve violations:
+
+    /api/dataAnalysis/validationRules
+
+The following query parameters are supported:
+
+<table>
+<caption>Validation rule analysis query parameters</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Query parameter</th>
+<th>Description</th>
+<th>Option</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>vrg</td>
+<td>Validation rule group</td>
+<td>ID</td>
+</tr>
+<tr class="even">
+<td>ou</td>
+<td>Organisation unit</td>
+<td>ID</td>
+</tr>
+<tr class="odd">
+<td>startDate</td>
+<td>Start date for the timespan</td>
+<td>Date</td>
+</tr>
+<tr class="even">
+<td>endDate</td>
+<td>End date for the timespan</td>
+<td>Date</td>
+</tr>
+<tr class="odd">
+<td>persist</td>
+<td>Whether to persist violations in the system</td>
+<td>false | true</td>
+</tr>
+<tr class="even">
+<td>notification</td>
+<td>Whether to send notifications about violations</td>
+<td>false | true</td>
+</tr>
+</tbody>
+</table>
+
+### Standard deviation based outlier analysis
+
+<!--DHIS2-SECTION-ID:webapi_data_analysis_std_dev_outlier-->
+
+To identify data outliers based on standard deviations of the average
+value:
+
+    /api/dataAnalysis/stdDevOutlier
+
+The following query parameters are supported:
+
+<table>
+<caption>Standard deviation outlier analysis query parameters</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Query parameter</th>
+<th>Description</th>
+<th>Option</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ou</td>
+<td>Organisation unit</td>
+<td>ID</td>
+</tr>
+<tr class="even">
+<td>startDate</td>
+<td>Start date for the timespan</td>
+<td>Date</td>
+</tr>
+<tr class="odd">
+<td>endDate</td>
+<td>End date for the timespan</td>
+<td>Date</td>
+</tr>
+<tr class="even">
+<td>ds</td>
+<td>Data sets, parameter can be repeated</td>
+<td>ID</td>
+</tr>
+<tr class="odd">
+<td>standardDeviation</td>
+<td>Number of standard deviations from the average</td>
+<td>Numeric value</td>
+</tr>
+</tbody>
+</table>
+
+### Min/max value based outlier analysis
+
+<!--DHIS2-SECTION-ID:webapi_data_analysis_min_max_outlier-->
+
+To identify data outliers based on min/max values:
+
+    /api/dataAnalysis/minMaxOutlier
+
+The supported query parameters are equal to the *std dev based outlier
+analysis* resource described above.
+
+### Follow-up data analysis
+
+To identify data marked for follow-up:
+
+    /api/dataAnalysis/followup
+
+The supported query parameters are equal to the *std dev based outlier
+analysis* resource described above.
+
 ## Data integrity
+
+<!--DHIS2-SECTION-ID:webapi_data_integrity-->
 
 The data integrity capabilities of the data administration module are
 available through the web API. This section describes how to run the
@@ -4920,6 +5222,8 @@ data integrity process as well as retrieving the result. The details of
 the analysis performed are described in the user manual.
 
 ### Running data integrity
+
+<!--DHIS2-SECTION-ID:webapi_data_integrity_run-->
 
 The operation of measuring data integrity is a fairly resource (and
 time) demanding task. It is therefore run as an asynchronous process and
@@ -4939,6 +5243,8 @@ can hence be used to wait for the task to finish.
 
 ### Fetching the result
 
+<!--DHIS2-SECTION-ID:webapi_data_integrity_fetch_results-->
+
 Once data integrity is finished running the result can be fetched from
 the *system/taskSummaries* resource like
     so:
@@ -4953,9 +5259,13 @@ Administration.
 
 ## Indicators
 
+<!--DHIS2-SECTION-ID:webapi_indicators-->
+
 This section describes indicators and indicator expressions.
 
 ### Aggregate indicators
+
+<!--DHIS2-SECTION-ID:webapi_aggregate_indicators-->
 
 To retrieve indicators you can make a GET request to the indicators
 resource like this:
@@ -4973,9 +5283,9 @@ expressions are described in the following table.
 <table>
 <caption>Indicator variables</caption>
 <colgroup>
-<col style="width: 39%" />
-<col style="width: 22%" />
-<col style="width: 37%" />
+<col width="39%" />
+<col width="22%" />
+<col width="37%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5073,6 +5383,8 @@ example:
 
 ### Program indicators
 
+<!--DHIS2-SECTION-ID:webapi_program_indicators-->
+
 To retrieve program indicators you can make a GET request to the program
 indicators resource like this:
 
@@ -5086,8 +5398,8 @@ are allowed in expressions are described in the following table.
 <table>
 <caption>Program indicator variables</caption>
 <colgroup>
-<col style="width: 31%" />
-<col style="width: 68%" />
+<col width="31%" />
+<col width="68%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5127,6 +5439,8 @@ A corresponding example looks like
 
 ### Expressions
 
+<!--DHIS2-SECTION-ID:webapi_expressions-->
+
 Expressions are mathematical formulas which can contain references to
 data elements, constants and organisation unit groups. To validate and
 get the textual description of an expression you can make a GET request
@@ -5151,10 +5465,14 @@ description of the expression.
 
 ## Complete data set registrations
 
+<!--DHIS2-SECTION-ID:webapi_complete_data_set_registrations-->
+
 This section is about complete data set registrations for data sets. A
 registration marks as a data set as completely captured.
 
 ### Completing data sets
+
+<!--DHIS2-SECTION-ID:webapi_completing_data_sets-->
 
 This section explains how to register data sets as complete. This is
 achieved by interacting with the *completeDataSetRegistrations*
@@ -5188,9 +5506,9 @@ The import process supports the following query parameters:
 <table>
 <caption>Complete data set registrations query parameters</caption>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 18%" />
-<col style="width: 64%" />
+<col width="16%" />
+<col width="18%" />
+<col width="64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5250,6 +5568,8 @@ The import process supports the following query parameters:
 
 ### Reading complete data set registrations
 
+<!--DHIS2-SECTION-ID:webapi_reading_complete_data_sets-->
+
 This section explains how to retrieve data set completeness
 registrations. We will be using the *completeDataSetRegistrations*
 resource. The query parameters to use are these:
@@ -5257,8 +5577,8 @@ resource. The query parameters to use are these:
 <table>
 <caption>Data value set query parameters</caption>
 <colgroup>
-<col style="width: 18%" />
-<col style="width: 81%" />
+<col width="18%" />
+<col width="81%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5348,6 +5668,8 @@ use *application/json*.
 
 ### Un-completing data sets
 
+<!--DHIS2-SECTION-ID:webapi_uncompleting_data_sets-->
+
 This section explains how you can un-register the completeness of a data
 set. To un-complete a data set you will interact with the
 completeDataSetRegistrations resource:
@@ -5360,9 +5682,9 @@ parameters are supported:
 <table>
 <caption>Complete data set registrations query parameters</caption>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 18%" />
-<col style="width: 64%" />
+<col width="16%" />
+<col width="18%" />
+<col width="64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5407,6 +5729,8 @@ parameters are supported:
 
 ## Data approval
 
+<!--DHIS2-SECTION-ID:webapi_data_approval-->
+
 This section explains how to approve, unapprove and check approval
 status using the *dataApprovals* resource. Approval is done per data
 approval workflow, period, organisation unit and attribute option combo.
@@ -5414,6 +5738,8 @@ approval workflow, period, organisation unit and attribute option combo.
     /api/26/dataApprovals
 
 ### Get approval status
+
+<!--DHIS2-SECTION-ID:webapi_data_approval_get_status-->
 
 To get approval information for a data set you can issue a GET request
 similar to
@@ -5424,9 +5750,9 @@ similar to
 <table style="width:100%;">
 <caption>Data approval query parameters</caption>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 18%" />
-<col style="width: 64%" />
+<col width="16%" />
+<col width="18%" />
+<col width="64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5479,8 +5805,8 @@ The returned parameters are:
 <table>
 <caption>Data approval query parameters</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
+<col width="25%" />
+<col width="75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5515,8 +5841,8 @@ The returned parameters are:
 <table>
 <caption>Data approval states</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 66%" />
+<col width="33%" />
+<col width="66%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5594,6 +5920,8 @@ from the following
 
 ### Approve data
 
+<!--DHIS2-SECTION-ID:webapi_data_approval_approve_data-->
+
 To approve data you can issue a *POST* request to the *dataApprovals*
 resource. To un-approve data you can issue a *DELETE* request to the
 dataApprovals resource.
@@ -5611,9 +5939,9 @@ These requests contain the following parameters:
 <table style="width:100%;">
 <caption>Data approval action parameters</caption>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 18%" />
-<col style="width: 64%" />
+<col width="16%" />
+<col width="18%" />
+<col width="64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5658,6 +5986,8 @@ approved. In particular, both of the following must be true:
 
 ### Bulk approve data
 
+<!--DHIS2-SECTION-ID:webapi_data_approval_bulk_approve_data-->
+
 You can approve a bulk of data records by posting to
 the*api/dataApprovals/approvals* resource.
 
@@ -5698,12 +6028,16 @@ The approval payload is supported as JSON and looks like this:
 
 ## Auditing
 
+<!--DHIS2-SECTION-ID:webapi_auditing-->
+
 DHIS2 does automatic auditing on all update and deletions of aggregate
 data values, tracked entity data values, tracked entity attribute
 values, and data approvals. This section explains how to fetch this
 data.
 
 ### Aggregate data value audits
+
+<!--DHIS2-SECTION-ID:webapi_auditing_aggregate_audits-->
 
 The endpoint for aggregate data value audits is located at
 */api/audits/dataValue*, and the available parameters are displayed in
@@ -5712,9 +6046,9 @@ the table below.
 <table>
 <caption>Aggregate data value query parameters</caption>
 <colgroup>
-<col style="width: 12%" />
-<col style="width: 14%" />
-<col style="width: 72%" />
+<col width="12%" />
+<col width="14%" />
+<col width="72%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5768,6 +6102,8 @@ Get all audits for data set with ID "lyLU2wR22tC":
 
 ### Tracked entity data value audits
 
+<!--DHIS2-SECTION-ID:webapi_tracked_entity_data_value_audits-->
+
 The endpoint for tracked entity data value audits is located at
 */api/audits/trackedEntityDataValue*, and the available parameters are
 displayed in the table below.
@@ -5775,9 +6111,9 @@ displayed in the table below.
 <table>
 <caption>Tracked entity data value query parameters</caption>
 <colgroup>
-<col style="width: 12%" />
-<col style="width: 16%" />
-<col style="width: 71%" />
+<col width="12%" />
+<col width="16%" />
+<col width="71%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5821,6 +6157,8 @@ Get all audits which have data element ID eMyVanycQSC or qrur9Dvnyt5:
 
 ### Tracked entity attribute value audits
 
+<!--DHIS2-SECTION-ID:webapi_tracked_entity_attribute_value_audits-->
+
 The endpoint for tracked entity attribute value audits is located at
 */api/audits/trackedEntityAttributeValue*, and the available parameters
 are displayed in the table below.
@@ -5828,9 +6166,9 @@ are displayed in the table below.
 <table>
 <caption>Tracked entity attribute value query parameters</caption>
 <colgroup>
-<col style="width: 12%" />
-<col style="width: 16%" />
-<col style="width: 70%" />
+<col width="12%" />
+<col width="16%" />
+<col width="70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5874,6 +6212,8 @@ Get all audits which have attribute with ID VqEFza8wbwA:
 
 ### Tracked entity instance audits
 
+<!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_audits-->
+
 Once auditing is enabled for tracked entity instances (by setting
 allowAuditLog of tracked entity types to true), all read and search
 operations are logged. The endpoint for accessing audit logs is
@@ -5883,9 +6223,9 @@ interact with this endpoint.
 <table>
 <caption>Tracked entity instance audit query parameters</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5946,6 +6286,8 @@ startDate=2018-03-01 and endDate=2018-04-24 in a page size of
 
 ### Enrollment audits
 
+<!--DHIS2-SECTION-ID:webapi_enrollment_audits-->
+
 Once auditing is enabled for enrollments (**by setting allowAuditLog of
 tracker programs to true**), all read operations are logged. The
 endpoint for accessing audit logs is api/audits/enrollment. Below are
@@ -5954,9 +6296,9 @@ available parameters to interact with this endpoint.
 <table>
 <caption>Enrollment audit query parameters</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6023,9 +6365,9 @@ the table below.
 <table>
 <caption><strong>Data approval query parameters</strong></caption>
 <colgroup>
-<col style="width: 12%" />
-<col style="width: 16%" />
-<col style="width: 70%" />
+<col width="12%" />
+<col width="16%" />
+<col width="70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6084,6 +6426,8 @@ Get all audits for data approval workflow RwNpkAM7Hw7:
 
 ## Message conversations
 
+<!--DHIS2-SECTION-ID:webapi_message_conversations-->
+
 DHIS2 features a mechanism for sending messages for purposes such as
 user feedback, notifications and general information to users. Messages
 are grouped into conversations. To interact with message conversations
@@ -6101,6 +6445,8 @@ user and read our new message. Following this we will manage the admin
 user inbox by marking and removing messages.
 
 ### Writing and reading messages
+
+<!--DHIS2-SECTION-ID:webapi_writing_messages-->
 
 The resource we need to interact with when sending and reading messages
 is the *messageConversations* resource. We start by visiting the Web API
@@ -6251,6 +6597,8 @@ due to better text search, but you can supply your own operator.
 
 ### Managing messages
 
+<!--DHIS2-SECTION-ID:webapi_managing_messages-->
+
 *Note: the Web-API calls discussed in this section were introduced in
 DHIS 2.17*
 
@@ -6368,6 +6716,8 @@ organisation units. The request should look like this:
 
 ### Message Attachments
 
+<!--DHIS2-SECTION-ID:webapi_message_attachments-->
+
 Creating messages with attachments is done in two steps: uploading the
 file to the *attachments* resource, and then including one or several of
 the attachment IDs when creating a new message.
@@ -6455,6 +6805,8 @@ ID of the specific *messageAttachment*.
 
 ### Tickets and Validation Result Notifications
 
+<!--DHIS2-SECTION-ID:webapi_messaging_tickets-->
+
 You can use the "write feedback" tool to create tickets and messages.
 The only difference between a ticket and a message is that you can give
 a status and a priority to a ticket. To do this, use these
@@ -6477,8 +6829,8 @@ group.
 <table>
 <caption>A list of valid status and priority values</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6516,6 +6868,8 @@ reply, include the "internal" parameter, and set it to
 
 ## Interpretations
 
+<!--DHIS2-SECTION-ID:webapi_interpretations-->
+
 For resources related to data analysis in DHIS 2, such as pivot tables,
 charts, maps, event reports and event charts, you can write and share
 data interpretations. An interpretation can be a comment, question,
@@ -6524,6 +6878,8 @@ observation or interpretation about a data report or visualization.
     /api/30/interpretations
 
 ### Reading interpretations
+
+<!--DHIS2-SECTION-ID:webapi_reading_interpretations-->
 
 To read interpretations we will interact with the
 */api/30/interpretations* resource. A typical GET request using field
@@ -6567,18 +6923,18 @@ fields omitted for brevity):
             ],
             "comments": [{
                 "id": "iB4Etq8yTE6",
-                "text": "This report indicates a surge",
+                "text": "This report indicates a surge.",
                 "user": {
                     "id": "B4XIfwOcGyI"
                 }, {
                 "id": "iB4Etq8yTE6",
-                "text": "Likely caused by heavy rainfall",
+                "text": "Likely caused by heavy rainfall.",
                 "user": {
                     "id": "B4XIfwOcGyI"
                 },
                 {
                 "id": "SIjkdENan8p",
-                "text": "have a look at this @boateng",
+                "text": "Have a look at this @boateng.",
                 "user": {
                   "id": "xE7jOejl9FI"
                 },
@@ -6595,8 +6951,8 @@ fields omitted for brevity):
 <table>
 <caption>Interpretation fields</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
+<col width="25%" />
+<col width="75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6685,6 +7041,8 @@ in the interpretation or in any comment (OR
 
 ### Writing interpretations
 
+<!--DHIS2-SECTION-ID:webapi_writing_interpretations-->
+
 When writing interpretations you will supply the interpretation text as
 the request body using a POST request with content type "text/plain".
 The URL pattern looks like the below, where {object-type} refers to the
@@ -6722,6 +7080,8 @@ interpretation.
 
 ### Updating and removing interpretations
 
+<!--DHIS2-SECTION-ID:webapi_updating_removing_interpretations-->
+
 To update an existing interpretation you can use a PUT request where the
 interpretation text is the request body using the following URL pattern,
 where {id} refers to the interpretation identifier:
@@ -6738,6 +7098,8 @@ You can use the same URL pattern as above using a DELETE request to
 remove the interpretation.
 
 ### Creating interpretation comments
+
+<!--DHIS2-SECTION-ID:webapi_creating_interpretation_comments-->
 
 When writing comments to interpretations you will supply the comment
 text as the request body using a POST request with content type
@@ -6761,6 +7123,8 @@ resource like this:
 
 ### Updating and removing interpretation comments
 
+<!--DHIS2-SECTION-ID:webapi_updating_removing_interpretation_comments-->
+
 To updating an interpretation comment you can use a PUT request where
 the comment text is the request body using the following URL pattern:
 
@@ -6776,6 +7140,8 @@ You can use the same URL pattern as above using a DELETE request to the
 remove the interpretation comment.
 
 ### Liking interpretations
+
+<!--DHIS2-SECTION-ID:webapi_liking_interpretations-->
 
 To like an interpretation you can use an empty POST request to the
 *like* resource:
@@ -6811,6 +7177,8 @@ have liked the interpretation.
 
 ## Viewing analytical resource representations
 
+<!--DHIS2-SECTION-ID:webapi_viewing_analytical_resource_representations-->
+
 DHIS2 has several resources for data analysis. These resources include
 *charts*, *maps*, *reportTables*, *reports* and *documents*. By visiting
 these resources you will retrieve information about the resource. For
@@ -6824,10 +7192,10 @@ system will return a PNG image of the chart.
 <table>
 <caption>Analytical resources</caption>
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 32%" />
-<col style="width: 32%" />
+<col width="17%" />
+<col width="17%" />
+<col width="32%" />
+<col width="32%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6884,9 +7252,9 @@ resource is set up for relative periods for the period dimension.
 <table>
 <caption>Data query parameters</caption>
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 28%" />
-<col style="width: 50%" />
+<col width="21%" />
+<col width="28%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6907,8 +7275,8 @@ resource is set up for relative periods for the period dimension.
 <table>
 <caption>Query parameters for png / image types (charts, maps)</caption>
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 78%" />
+<col width="21%" />
+<col width="78%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6947,6 +7315,8 @@ representations are listed below.
 
 ## Plugins
 
+<!--DHIS2-SECTION-ID:webapi_plugins-->
+
 DHIS2 comes with plugins which enable you to embed live data directly in
 your web portal or web site. Currently, plugins exist for charts, maps
 and pivot tables.
@@ -6969,6 +7339,8 @@ proxy](https://docs.dhis2.org/master/en/implementer/html/install_reverse_proxy_c
 configuration.
 
 ### Embedding pivot tables with the Pivot Table plug-in
+
+<!--DHIS2-SECTION-ID:webapi_pivot_table_plugin-->
 
 In this example we will see how we can embed good-looking, light-weight
 html pivot tables with data served from a DHIS2 back-end into a Web
@@ -7239,7 +7611,7 @@ following *columns* config:
 <td>aggregationType</td>
 <td>string</td>
 <td>No</td>
-<td>&quot;DEFAULT&quot; | &quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
+<td>&quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
 <td>Override the data element's default aggregation type</td>
 </tr>
 <tr class="odd">
@@ -7288,6 +7660,8 @@ following *columns* config:
 </table>
 
 ### Embedding charts with the Visualizer chart plug-in
+
+<!--DHIS2-SECTION-ID:webapi_chart_plugin-->
 
 In this example we will see how we can embed good-looking Highcharts
 charts (<http://www.highcharts.com>) with data served from a DHIS2
@@ -7601,7 +7975,7 @@ following *columns* config:
 <td>aggregationType</td>
 <td>string</td>
 <td>No</td>
-<td>&quot;DEFAULT&quot; | &quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
+<td>&quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
 <td>Override the data element's default aggregation type</td>
 </tr>
 <tr class="odd">
@@ -7636,6 +8010,8 @@ following *columns* config:
 </table>
 
 ### Embedding maps with the GIS map plug-in
+
+<!--DHIS2-SECTION-ID:webapi_map_plugin-->
 
 In this example we will see how we can embed maps with data served from
 a DHIS2 back-end into a Web page. To accomplish this we will use the GIS
@@ -7972,6 +8348,8 @@ To see a complete working example please visit
 
 ### Creating a chart carousel with the carousel plug-in
 
+<!--DHIS2-SECTION-ID:webapi_carousel_plugin-->
+
 The chart plug-in also makes it possible to create a chart carousel
 which for instance can be used to create an attractive front page on a
 Web portal. To use the carousel we need to import a few files in the
@@ -8034,6 +8412,8 @@ To see a complete working example please visit
 
 ## SQL views
 
+<!--DHIS2-SECTION-ID:webapi_sql_views-->
+
 The SQL views resource allows you to create and retrieve the result set
 of SQL views. The SQL views can be executed directly against the
 database and render the result set through the Web API resource.
@@ -8092,6 +8472,8 @@ There are three types of SQL views:
 
 ### Criteria
 
+<!--DHIS2-SECTION-ID:webapi_sql_view_criteria-->
+
 You can do simple filtering on the columns in the result set by
 appending *criteria* query parameters to the URL, using the column names
 and filter values separated by columns as parameter values, on the
@@ -8106,6 +8488,8 @@ organisation units at level 4 you can use the following
     https://play.dhis2.org/demo/api/26/sqlViews/dI68mLkP1wN/data.csv?criteria=level:4
 
 ### Variables
+
+<!--DHIS2-SECTION-ID:webapi_sql_view_variables-->
 
 SQL views support variable subsitution. Variable subsitition is only
 available for SQL view of type *query*, meaning SQL views which are not
@@ -8140,6 +8524,8 @@ characters only.
 
 ### Filtering
 
+<!--DHIS2-SECTION-ID:webapi_sql_view_filtering-->
+
 The SQL view api supports data filtering, equal to the [metadata object
 filter](#webapi_metadata_object_filter). For a complete list of filter
 operators you can look at the documentation for [metadata object
@@ -8166,6 +8552,8 @@ And last, an example to return all org units that does not start with
 
 ## Dashboard
 
+<!--DHIS2-SECTION-ID:webapi_dashboard-->
+
 The dashboard is designed to give you an overview of multiple analytical
 items like maps, charts, pivot tables and reports which together can
 provide a comprehensive overview of your data. Dashboards are available
@@ -8181,6 +8569,8 @@ links.
     /api/26/dashboards
 
 ### Browsing dashboards
+
+<!--DHIS2-SECTION-ID:webapi_browsing_dashboards-->
 
 To get a list of your dashboards with basic information including
 identifier, name and link in JSON format you can make a *GET* request to
@@ -8246,6 +8636,8 @@ detailed information about each object on a users dashboard.
 
 ### Searching dashboards
 
+<!--DHIS2-SECTION-ID:webapi_searching_dasboards-->
+
 When setting a dashboard it is convenient from a consumer point of view
 to be able to search for various analytical resources using the
 */dashboards/q* resource. This resource lets you search for matches on
@@ -8302,6 +8694,8 @@ similar to this:
 
 ### Creating, updating and removing dashboards
 
+<!--DHIS2-SECTION-ID:webapi_creating_updating_removing_dashboards-->
+
 Creating, updating and deleting dashboards follow standard REST
 semantics. In order to create a new dashboard you can make a *POST*
 request to the */api/dashboards* resource. From a consumer perspective
@@ -8324,6 +8718,8 @@ dashboard resource similar to this:
 
 ### Adding, moving and removing dashboard items and content
 
+<!--DHIS2-SECTION-ID:webapi_adding_moving_removing_dashboard_items-->
+
 In order to add dashboard items a consumer can use the
 */api/dashboards/\<dashboard-id\>/items/content* resource, where
 \<dashboard-id\> should be replaced by the relevant dashboard
@@ -8333,9 +8729,9 @@ parameters are described in detail in the following table.
 <table>
 <caption>Items content parameters</caption>
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 44%" />
-<col style="width: 35%" />
+<col width="19%" />
+<col width="44%" />
+<col width="35%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -8405,6 +8801,8 @@ dashboard item
 
 ## Analytics
 
+<!--DHIS2-SECTION-ID:webapi_analytics-->
+
 To access analytical, aggregated data in DHIS2 you can work with the
 *analytics* resource. The analytics resource is powerful as it lets you
 query and retrieve data aggregated along all available data dimensions.
@@ -8418,15 +8816,17 @@ organisation unit group sets.
 
 ### Request query parameters
 
+<!--DHIS2-SECTION-ID:webapi_analytics_query_parameters-->
+
 The analytics resource lets you specify a range of query parameters:
 
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 10%" />
-<col style="width: 45%" />
-<col style="width: 27%" />
+<col width="17%" />
+<col width="10%" />
+<col width="45%" />
+<col width="27%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -8680,6 +9080,8 @@ order
 
 ### Dimensions and items
 
+<!--DHIS2-SECTION-ID:webapi_analytics_dimensions_and_items-->
+
 DHIS2 features a multi-dimensional data model with several fixed and
 dynamic data dimensions. The fixed dimensions are the data element,
 period (time) and organisation unit dimension. You can dynamically add
@@ -8691,9 +9093,9 @@ identifier*, and each dimension can have a set of *dimension items*:
 <table>
 <caption>Dimensions and dimension items</caption>
 <colgroup>
-<col style="width: 38%" />
-<col style="width: 12%" />
-<col style="width: 49%" />
+<col width="38%" />
+<col width="12%" />
+<col width="49%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -8908,16 +9310,18 @@ below.
 
 ### The dx dimension
 
+<!--DHIS2-SECTION-ID:webapi_analytics_dx_dimension-->
+
 The *dx* dimension is a special dimension which can contain all of the
 following data types.
 
 <table>
 <caption>Data dx dimension types</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 23%" />
-<col style="width: 27%" />
-<col style="width: 23%" />
+<col width="25%" />
+<col width="23%" />
+<col width="27%" />
+<col width="23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9016,6 +9420,8 @@ combination values:
 > your Web browser.
 
 ### Response formats
+
+<!--DHIS2-SECTION-ID:webapi_analytics_response_formats-->
 
 The analytics response containing aggregate data can be returned in
 various representation formats. As usual, you can indicate interest in a
@@ -9150,6 +9556,8 @@ identifiers and the third contains aggregeted data values.
 
 ### Constraints
 
+<!--DHIS2-SECTION-ID:webapi_analytics_constraints-->
+
 There are several constraints on the input you can provide to the
 analytics resource.
 
@@ -9184,6 +9592,8 @@ return a response with status code 409 and content-type "text/plain"
 together with a textual description of the problem.
 
 ### Data value set format
+
+<!--DHIS2-SECTION-ID:webapi_analytics_data_value_set_format-->
 
 The analytics *dataValueSet* resource allows for returning aggregated
 data in the data value set format. This format represents raw data
@@ -9249,6 +9659,8 @@ duplicates:
 
 ### Raw data format
 
+<!--DHIS2-SECTION-ID:webapi_analytics_raw_data-->
+
 The analytics *rawData* resource allows for returning the data stored in
 the analytics data tables without any aggregation being performed. This
 is useful for clients which would like to perform aggregation and
@@ -9271,8 +9683,8 @@ parameters are listed in the table below.
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9384,6 +9796,8 @@ third-party systems.
 
 ### Debugging
 
+<!--DHIS2-SECTION-ID:webapi_analytics_debugging-->
+
 When debugging analytics requests it can be useful to examine the data
 value source of the aggregated analytics response. The
 *analytics/debug/sql* resource will provide an SQL statement that
@@ -9397,6 +9811,8 @@ regular analytics queries:
 
 ## Event analytics
 
+<!--DHIS2-SECTION-ID:webapi_event_analytics-->
+
 The event analytics API lets you access aggregated event data and query
 *events* captured in DHIS2. This resource lets you retrieve events based
 on a program and optionally a program stage, and lets you retrieve and
@@ -9405,6 +9821,8 @@ filter events on any event dimensions.
     /api/26/analytics/events
 
 ### Dimensions and items
+
+<!--DHIS2-SECTION-ID:webapi_event_analytics_dimensions_items-->
 
 Event dimensions include data elements, attributes, organisation units
 and periods. The aggregated event analytics resource will return
@@ -9418,9 +9836,9 @@ dimensions are listed in the table below.
 <table>
 <caption>Event dimensions</caption>
 <colgroup>
-<col style="width: 27%" />
-<col style="width: 11%" />
-<col style="width: 60%" />
+<col width="27%" />
+<col width="11%" />
+<col width="60%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9465,15 +9883,17 @@ dimensions are listed in the table below.
 
 ### Request query parameters
 
+<!--DHIS2-SECTION-ID:webapi_event_analytics_request_query_parameters-->
+
 The analytics event API let you specify a range of query parameters.
 
 <table>
 <caption>Query parameters for both event query and aggregate analytics</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 11%" />
-<col style="width: 48%" />
-<col style="width: 19%" />
+<col width="20%" />
+<col width="11%" />
+<col width="48%" />
+<col width="19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9562,10 +9982,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for event query analytics only</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 11%" />
-<col style="width: 48%" />
-<col style="width: 19%" />
+<col width="20%" />
+<col width="11%" />
+<col width="48%" />
+<col width="19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9624,10 +10044,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for aggregate event analytics only</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 11%" />
-<col style="width: 48%" />
-<col style="width: 19%" />
+<col width="20%" />
+<col width="11%" />
+<col width="48%" />
+<col width="19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9648,7 +10068,7 @@ The analytics event API let you specify a range of query parameters.
 <td>aggregationType</td>
 <td>No</td>
 <td>Aggregation type for the value dimension. Default is AVERAGE.</td>
-<td>|SUM|AVERAGE | AVERAGE_SUM_ORG_UNIT | COUNT | STDDEV | VARIANCE | MIN | MAX</td>
+<td>SUM | AVERAGE | AVERAGE_SUM_ORG_UNIT | LAST | LAST_AVERAGE_ORG_UNIT | COUNT | STDDEV | VARIANCE | MIN | MAX</td>
 </tr>
 <tr class="odd">
 <td>showHierarchy</td>
@@ -9721,10 +10141,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for cluster event analytics only</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 11%" />
-<col style="width: 49%" />
-<col style="width: 19%" />
+<col width="20%" />
+<col width="11%" />
+<col width="49%" />
+<col width="19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9763,6 +10183,8 @@ The analytics event API let you specify a range of query parameters.
 </table>
 
 ### Event query analytics
+
+<!--DHIS2-SECTION-ID:webapi_event_query_analytics-->
 
 The *analytics/events/query* resource lets you query for captured
 events. This resource does not perform any aggregation, rather it lets
@@ -9843,8 +10265,8 @@ The available operators are listed below.
 <table>
 <caption>Filter operators</caption>
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 80%" />
+<col width="19%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10040,6 +10462,8 @@ query (not a filter). Such a request can look like
 
 ### Event aggregate analytics
 
+<!--DHIS2-SECTION-ID:webapi_event_aggregate_analytics-->
+
 The *analytics/events/aggregate* resource lets you retrieve *aggregated
 numbers* of events captured in DHIS2. This resource lets you retrieve
 aggregate data based on a program and optionally a program stage, and
@@ -10221,6 +10645,8 @@ status code will be returned.
 
 ### Event clustering analytics
 
+<!--DHIS2-SECTION-ID:webapi_event_clustering_analytics-->
+
 The *analytics/events/cluster* resource provides clustered geospatial
 event data. A request looks like
     this:
@@ -10267,6 +10693,8 @@ of the underlying events is included. A sample response looks like this:
 
 ### Event count and extent analytics
 
+<!--DHIS2-SECTION-ID:webapi_event_count_extent_analytics-->
+
 The *analytics/events/count* resource is suitable for geometry-related
 requests for retrieving the count and extent (bounding box) of events
 for a specific query. The query syntax is equal to the *events/query*
@@ -10284,6 +10712,8 @@ The response will provide the count and extent in JSON format:
 
 ## Data set report
 
+<!--DHIS2-SECTION-ID:webapi_data_set_report-->
+
 Data set reports can be generated trough the web api using the
 */dataSetReport* resource. This resource generates reports on data set
 and returns the result in the form of a HTML table.
@@ -10295,10 +10725,10 @@ The request supports the following parameters:
 <table>
 <caption>Accepted parameters of /dataSetReport resource</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 50%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
+<col width="15%" />
+<col width="50%" />
+<col width="17%" />
+<col width="17%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10351,6 +10781,8 @@ like
 
 ## Push Analysis
 
+<!--DHIS2-SECTION-ID:webapi_push_analysis-->
+
 The push analysis api includes endpoints for previewing a push analysis
 report for the logged in user and manualy triggering the system to
 generate and send push analysis reports, in addition to the normal CRUD
@@ -10376,10 +10808,10 @@ required to automaticly run push analysis jobs:
 <table>
 <caption>Push analysis properties</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10431,6 +10863,8 @@ required to automaticly run push analysis jobs:
 
 ## Data usage analytics
 
+<!--DHIS2-SECTION-ID:webapi_usage_analytics-->
+
 The usage analytics API lets you access information about how people are
 using DHIS2 based on data analysis. When users access favorites, an
 event is recorded. The event consists of the user name, the UID of the
@@ -10448,6 +10882,8 @@ aggregated at request.
 
 ### Request query parameters
 
+<!--DHIS2-SECTION-ID:webapi_usage_analytics_request_query_parameters-->
+
 The usage analytics (data statistics) API supports two operations:
 
   - POST: creates a view event
@@ -10455,6 +10891,8 @@ The usage analytics (data statistics) API supports two operations:
   - GET: retrieves aggregated statistics
 
 ### Create view events (POST)
+
+<!--DHIS2-SECTION-ID:webapi_usage_analytics_create_view_events-->
 
 The usage analytics API lets you create event views. The
 dataStatisticsEventType parameter describes what type of item was
@@ -10472,8 +10910,8 @@ below shows the supported types of events.
 <table>
 <caption>Supported event types</caption>
 <colgroup>
-<col style="width: 38%" />
-<col style="width: 61%" />
+<col width="38%" />
+<col width="61%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10515,16 +10953,18 @@ below shows the supported types of events.
 
 ### Retrieve aggregated usage analytics report (GET)
 
+<!--DHIS2-SECTION-ID:webapi_aggregated_usage_analytics-->
+
 The usage analytics (data statistics) API lets you specify certain query
 parameters when asking for an aggregated report.
 
 <table>
 <caption>Query parameters for aggregated usage analytics (data statistics)</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10569,16 +11009,18 @@ API query that creates a query for a yearly
 
 ### Retrieve top favorites
 
+<!--DHIS2-SECTION-ID:webapi_usage_analytics_top_favorites-->
+
 The usage analytics API lets you retrieve the top favorites used in
 DHIS2, and by user.
 
 <table>
 <caption>Query parameters for top favorites</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10626,6 +11068,8 @@ only contain the top favorites of that
     /api/24/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC&username=admin
 
 ### Response format
+
+<!--DHIS2-SECTION-ID:webapi_usage_analytics_response_format-->
 
 You can return the aggregated data in a usage analytics response in
 several representation formats. The default format is JSON. The
@@ -10715,6 +11159,8 @@ The JSON response looks like this:
 
 ### Retrieve statistics for a favorite
 
+<!--DHIS2-SECTION-ID:webapi_usage_analytics_retrieve_favorite_statistics-->
+
 You can retrieve the number of view for a specific favorite by using the
 *favorites* resource, where *{favorite-id}* should be substituted with
 the identifier of the favorite of interest:
@@ -10729,6 +11175,8 @@ look like this:
     }
 
 ## Geospatial features
+
+<!--DHIS2-SECTION-ID:webapi_geospatial_features-->
 
 The *geoFeatures* resource lets you retrieve geospatial information from
 DHIS2. Geospatial features are stored together with organisation units.
@@ -10755,8 +11203,8 @@ table.
 <table>
 <caption>Geo features response</caption>
 <colgroup>
-<col style="width: 14%" />
-<col style="width: 85%" />
+<col width="14%" />
+<col width="85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10828,6 +11276,8 @@ Get all features at level 3 with a boundary organisation unit:
 
 ## Generating resource and analytics tables
 
+<!--DHIS2-SECTION-ID:webapi_generating_resource_analytics_tables-->
+
 DHIS2 features a set of generated database tables which are used as
 basis for various system functionality. These tables can be executed
 immediately or scheduled to be executed at regular intervals through the
@@ -10851,9 +11301,9 @@ be generated with a POST or PUT request to:
 <table>
 <caption>Analytics tables optional query parameters</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 14%" />
-<col style="width: 52%" />
+<col width="33%" />
+<col width="14%" />
+<col width="52%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10903,6 +11353,8 @@ These requests will return immediately and initiate a server-side
 process.
 
 ## Maintenance
+
+<!--DHIS2-SECTION-ID:webapi_maintenance-->
 
 To perform maintenance you can interact with the *maintenance* resource.
 You should use *POST* or *PUT* as method for requests. The following
@@ -10978,10 +11430,14 @@ supplied as query
 
 ## System resource
 
+<!--DHIS2-SECTION-ID:webapi_system_resource-->
+
 The system resource provides you with convenient information and
 functions. The system resource can be found at */api/system*.
 
 ### Generate identifiers
+
+<!--DHIS2-SECTION-ID:webapi_system_resource_generate_identifiers-->
 
 To generate valid, random DHIS2 identifiers you can do a GET request to
 this resource:
@@ -11011,6 +11467,8 @@ The DHIS2 UID format has these requirements:
   - Start with an alphabetic character (A-Za-z).
 
 ### View system information
+
+<!--DHIS2-SECTION-ID:webapi_system_resource_view_system_information-->
 
 To get information about the current system you can do a GET request to
 this URL:
@@ -11057,6 +11515,8 @@ JSONP response formats are supported:
 
 ### Check if username and password combination is correct
 
+<!--DHIS2-SECTION-ID:webapi_system_resource_check_username_password-->
+
 To check if some user credentials (a username and password combination)
 is correct you can make a *GET* request to the following resource using
 *basic authentication*:
@@ -11071,9 +11531,9 @@ general.
 <table>
 <caption>HTTP Status codes</caption>
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 12%" />
-<col style="width: 74%" />
+<col width="13%" />
+<col width="12%" />
+<col width="74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11103,6 +11563,8 @@ general.
 
 ### View asynchronous task status
 
+<!--DHIS2-SECTION-ID:webapi_system_resource_view_async_task_status-->
+
 Tasks which often take a long time to complete can be performed
 asynchronously. After initiating an async task you can poll the status
 through the *system/tasks* resource by suppling the task category and
@@ -11115,8 +11577,8 @@ supported:
 <table>
 <caption>Task categories</caption>
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 78%" />
+<col width="21%" />
+<col width="78%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11301,11 +11763,14 @@ The response will look similar to this:
     }
 
 You might also retrieve import summaries for multiple tasks of a
-specific category with a request like this:
+specific category with a request like
+this:
 
     /api/29/system/taskSummaries/{task-category-id}
 
 ### Get appearance information
+
+<!--DHIS2-SECTION-ID:webapi_system_resource_get_appearance_information-->
 
 You can retrieve the available flag icons in JSON format with a GET
 request:
@@ -11318,6 +11783,8 @@ request:
     /api/26/system/styles
 
 ## Locales
+
+<!--DHIS2-SECTION-ID:webapi_locales-->
 
 DHIS2 supports translations both for the user interface and for database
 content.
@@ -11339,6 +11806,8 @@ representations are supported.
     /api/26/locales/db
 
 ## Translations
+
+<!--DHIS2-SECTION-ID:webapi_translations-->
 
 DHIS2 allows for translations of database content. You can work with
 translations through the Web API using the *translations* resource.
@@ -11364,8 +11833,8 @@ The properties which support translations are listed in the table below.
 <table>
 <caption>Property names</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11394,8 +11863,8 @@ The classes which support translations are listed in the table below.
 <table>
 <caption>Class names</caption>
 <colgroup>
-<col style="width: 34%" />
-<col style="width: 65%" />
+<col width="34%" />
+<col width="65%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11523,6 +11992,8 @@ To get translations for a specific object for all
 
 ## Short Message Service (SMS)
 
+<!--DHIS2-SECTION-ID:webapi_sms-->
+
 This section covers the SMS Web API for sending and receiving short text
 messages.
 
@@ -11560,9 +12031,9 @@ Gateway may response with following response codes.
 <table>
 <caption>Gateway response codes</caption>
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
+<col width="13%" />
+<col width="13%" />
+<col width="73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11711,9 +12182,9 @@ The Web API also supports a query parameter-based
 <table>
 <caption>User query parameters</caption>
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
+<col width="13%" />
+<col width="13%" />
+<col width="73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11831,9 +12302,9 @@ endpoints listed below.
 <table>
 <caption>Gateway api end points</caption>
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
+<col width="13%" />
+<col width="13%" />
+<col width="73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11862,6 +12333,8 @@ endpoints listed below.
 </table>
 
 ## SMS Commands
+
+<!--DHIS2-SECTION-ID:webapi_sms_commands-->
 
 SMSCommands are being used to collect data through SMS. These commands
 belong to specific Parser Type. Each parser has different functionality.
@@ -11905,6 +12378,8 @@ One particular command can be deleted using DELETE.
   - EVENT\_REGISTRATION\_PARSER
 
 ## Program Messages
+
+<!--DHIS2-SECTION-ID:webapi_program_messages-->
 
 Program message lets you send messages to tracked entity instances,
 contact addresses assiociated with organisation units, phone numbers and
@@ -11979,10 +12454,10 @@ The fields are explained in the following table.
 <table>
 <caption>Program message payload</caption>
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 21%" />
-<col style="width: 31%" />
-<col style="width: 26%" />
+<col width="21%" />
+<col width="21%" />
+<col width="31%" />
+<col width="26%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12085,8 +12560,8 @@ retreiving information.
 <table>
 <caption>Query program messages API</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
+<col width="25%" />
+<col width="75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12120,11 +12595,15 @@ retreiving information.
 
 ## Users
 
+<!--DHIS2-SECTION-ID:webapi_users-->
+
 This section covers the user resource methods.
 
     /api/26/users
 
 ### User query
+
+<!--DHIS2-SECTION-ID:webapi_users_query-->
 
 The *users* resource offers additional query parameters beyond the
 standard parameters (e.g. paging). To query for users at the users
@@ -12133,9 +12612,9 @@ resource you can use the following parameters.
 <table>
 <caption>User query parameters</caption>
 <colgroup>
-<col style="width: 18%" />
-<col style="width: 17%" />
-<col style="width: 63%" />
+<col width="18%" />
+<col width="17%" />
+<col width="63%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12226,6 +12705,8 @@ user:
 
 ### User credentials query
 
+<!--DHIS2-SECTION-ID:webapi_users_credentials_query-->
+
 An alternative to the previous user query, is to directly query the user
 credentials (the part where username, etc resides) using
 */api/userCredentials* endpoint, it supports all regular field and
@@ -12242,6 +12723,8 @@ with
     /api/26/userCredentials?fields=username,code&filter=username:^like:adm
 
 ### User account create and update
+
+<!--DHIS2-SECTION-ID:webapi_users_create_update-->
 
 Both creating and updating a user is supported through the web-api. The
 payload itself is similar to other payloads in the web-api, so they
@@ -12293,6 +12776,8 @@ For more info about the full payload available, please see
 */api/schemas/user*
 
 ### User account invitations
+
+<!--DHIS2-SECTION-ID:webapi_user_invitations-->
 
 The Web API supports inviting people to create user accounts through the
 *invite* resource. To create an invitation you should POST a user in XML
@@ -12399,6 +12884,8 @@ The critical authorities which cannot be granted with invites include:
 
 ### User replication
 
+<!--DHIS2-SECTION-ID:webapi_user_replication-->
+
 To replicate a user you can use the *replica* resource. Replicating a
 user can be useful when debugging or reproducing issues reported by a
 particular user. You need to provide a new username and password for the
@@ -12422,6 +12909,8 @@ An example of replicating a user using curl looks like this:
       -H "Content-Type:application/json" -u admin:district -v
 
 ## Current user information and associations
+
+<!--DHIS2-SECTION-ID:webapi_current_user_information-->
 
 In order to get information about the currently authenticated user and
 its associations to other resources you can work with the *me* resource
@@ -12497,6 +12986,8 @@ Gives the data approval levels which are relenvant to the current user:
 
 ## System settings
 
+<!--DHIS2-SECTION-ID:webapi_system_settings-->
+
 You can manipulate system settings by interacting with the
 *systemSettings* resource. A system setting is a simple key-value pair,
 where both the key and the value are plain text strings. To save or
@@ -12554,8 +13045,8 @@ The available system settings are listed below.
 <table>
 <caption>System settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12857,6 +13348,8 @@ The available system settings are listed below.
 
 ## User settings
 
+<!--DHIS2-SECTION-ID:webapi_user_settings-->
+
 You can manipulate user settings by interacting with the *userSettings*
 resource. A user setting is a simple key-value pair, where both the key
 and the value are plain text strings. The user setting will be linked to
@@ -12909,9 +13402,9 @@ The available system settings are listed below.
 <table style="width:100%;">
 <caption>User settings</caption>
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 28%" />
-<col style="width: 49%" />
+<col width="21%" />
+<col width="28%" />
+<col width="49%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12981,11 +13474,15 @@ The available system settings are listed below.
 
 ## Organisation units
 
+<!--DHIS2-SECTION-ID:webapi_organisation_units-->
+
 The *organisationUnits* resource follows the standard conventions as
 other metadata resources in DHIS2. This resource supports some
 additional query parameters.
 
 ### Get list of organisation units
+
+<!--DHIS2-SECTION-ID:webapi_list_of_organisation_units-->
 
 To get a list of organisation units you can use the following resource.
 
@@ -12994,9 +13491,9 @@ To get a list of organisation units you can use the following resource.
 <table>
 <caption>Organisation units query parameters</caption>
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 65%" />
+<col width="17%" />
+<col width="17%" />
+<col width="65%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13051,6 +13548,8 @@ To get a list of organisation units you can use the following resource.
 
 ### Get organisation unit with relations
 
+<!--DHIS2-SECTION-ID:webapi_organisation_units_with_relations-->
+
 To get an organisation unit with related organisation units you can use
 the following resource.
 
@@ -13059,9 +13558,9 @@ the following resource.
 <table>
 <caption>Organisation unit parameters</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 58%" />
+<col width="20%" />
+<col width="20%" />
+<col width="58%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13096,6 +13595,8 @@ the following resource.
 
 ## Data sets
 
+<!--DHIS2-SECTION-ID:webapi_data_sets-->
+
 The *dataSets* resource follows the standard conventions as other
 metadata resources in DHIS2. This resource supports some additional
 query parameters.
@@ -13112,6 +13613,8 @@ request:
     POST /api/26/dataSets/<uid>/version
 
 ### DataSet Notification Template
+
+<!--DHIS2-SECTION-ID:webapi_dataset_notifications-->
 
 The *dataset notification templates* resource follows the standard
 conventions as other metadata resources in DHIS2.
@@ -13151,6 +13654,8 @@ JSON payload sample is given below
 
 ## Filled organisation unit levels
 
+<!--DHIS2-SECTION-ID:webapi_filled_organisation_unit_levels-->
+
 The *filledOrganisationUnitLevels* resource provides an ordered list of
 organisation unit levels, where generated levels are injected into the
 list to fill positions for which it does not exist a persisted level.
@@ -13185,6 +13690,8 @@ To do functional testing with curl you can issue the following
 
 ## Static content
 
+<!--DHIS2-SECTION-ID:webapi_static_content-->
+
 The *staticContent* resource allowes you to upload and retrieve custom
 logos used in DHIS2. The resource lets the user upload a file with an
 associated key, which can later be retrieved using the key. Only PNG
@@ -13196,8 +13703,8 @@ files are supported and can only be uploaded to the "logo\_banner" and
 <table>
 <caption>Static content keys</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13246,6 +13753,8 @@ the default logo will be served.
 
 ## Configuration
 
+<!--DHIS2-SECTION-ID:webapi_configuration-->
+
 To access configuration you can interact with the *configuration*
 resource. You can get XML and JSON responses through the *Accept* header
 or by using the .json or .xml extensions. You can *GET* all properties
@@ -13287,8 +13796,8 @@ values for each property.
 <table>
 <caption>Configuration values</caption>
 <colgroup>
-<col style="width: 30%" />
-<col style="width: 69%" />
+<col width="30%" />
+<col width="69%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13357,6 +13866,8 @@ the following curl
 
 ## Read-Only configuration service
 
+<!--DHIS2-SECTION-ID:webapi_readonly_configuration_interface-->
+
 To access configuration you can now use read-only service. This service
 will provide read-only access to *UserSettings, SystemSettings and DHIS
 server configurations* You can get XML and JSON responses through the
@@ -13378,8 +13889,8 @@ More than one type can be
 <table>
 <caption>SettingType values</caption>
 <colgroup>
-<col style="width: 30%" />
-<col style="width: 69%" />
+<col width="30%" />
+<col width="69%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13407,6 +13918,8 @@ More than one type can be
 with no values.
 
 ## Internationalization
+
+<!--DHIS2-SECTION-ID:webapi_i18n-->
 
 In order to retrieve key-value pairs for translated strings you can use
 the *i18n* resource.
@@ -13437,6 +13950,8 @@ The result will look like this:
 
 ## SVG conversion
 
+<!--DHIS2-SECTION-ID:webapi_svg_conversion-->
+
 The Web API provides a resource which can be used to convert SVG content
 into more widely used formats such as PNG and PDF. Ideally this
 conversion should happen on the client side, but not all client side
@@ -13459,9 +13974,9 @@ Content-type *application/x-www-form-urlencoded*.
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 11%" />
-<col style="width: 67%" />
+<col width="21%" />
+<col width="11%" />
+<col width="67%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13486,6 +14001,8 @@ Content-type *application/x-www-form-urlencoded*.
 
 ## Tracker Web API
 
+<!--DHIS2-SECTION-ID:webapi_tracker_api-->
+
 Tracker Web API consists of 3 endpoints that have full CRUD (create,
 read, update, delete) support. The 3 endpoints are
 */api/29/trackedEntityInstances* */api/29/enrollments* and
@@ -13494,6 +14011,8 @@ Enrollment and Event items.
 
 ### Tracked entity instance management
 
+<!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_management-->
+
 Tracked entity instances have full CRUD support in the Web-API. Together
 with the API for enrollment most operations needed for working with
 tracked entity instances and programs are supported.
@@ -13501,6 +14020,8 @@ tracked entity instances and programs are supported.
     /api/29/trackedEntityInstances
 
 #### Creating a new tracked entity instance
+
+<!--DHIS2-SECTION-ID:webapi_creating_tei-->
 
 For creating a new person in the system, you will be working with the
 *trackedEntityInstances* resource. A template payload can be seen below:
@@ -13594,6 +14115,8 @@ the system. That means that UIDs cannot be reused.
 
 #### Updating a tracked entity instance
 
+<!--DHIS2-SECTION-ID:webapi_updating_tei-->
+
 For updating a tracked entity instance, the payload is the equal to the
 previous section. The difference is that you must use the HTTP **PUT**
 method for the request when sending the payload. You will also need to
@@ -13613,11 +14136,15 @@ an update request. The same rules apply to enrollments and events.
 
 #### Deleting a tracked entity instance
 
+<!--DHIS2-SECTION-ID:webapi_deleting_tei-->
+
 In order to delete a tracked entity instance, make a request to the URL
 identifiying the tracked entity instance with the HTTP **DELETE**
 method. The URL is equal to the one above used for update.
 
 #### Create and enroll tracked entity instances
+
+<!--DHIS2-SECTION-ID:webapi_create_enroll_tei-->
 
 It is also possible to both create (and update) a tracked entity
 instance and at the same time enroll into a program.
@@ -13649,6 +14176,8 @@ updating a new tracked entity instance.
       -u user:pass http://server/api/29/trackedEntityInstances
 
 #### Complete example of payload including: tracked entity instance, enrollment and event
+
+<!--DHIS2-SECTION-ID:webapi_create_enroll_tei_create_event-->
 
 It is also possible to create (and update) a tracked entity instance, at
 the same time enroll into a program and create an event.
@@ -13737,6 +14266,8 @@ updating a new tracked entity instance.
 
 #### Generated tracked entity instance attributes
 
+<!--DHIS2-SECTION-ID:webapi_generate_tei_attributes-->
+
 Tracked entity instance attributes that is using automatic generation of
 unique values has three endpoints that is used by apps. The endpoints
 are all used for generating and reserving values.
@@ -13779,6 +14310,8 @@ variables should only be supplied if you know what you are doing.
 
 ##### Generate value endpoint
 
+<!--DHIS2-SECTION-ID:webapi_generate_values-->
+
 Online web apps and other clients that wants to generate a value that
 will be used right away can use the simple generate endpoint. This
 endpoint will generate a value that is guaranteed to be unique at the
@@ -13804,6 +14337,8 @@ adding the ?expiration=\<number-of-days\> to the
     }
 
 ##### Generate and reserve value endpoint
+
+<!--DHIS2-SECTION-ID:webapi_generate_reserve_values-->
 
 The generate and reserve endpoint is used by offline clients that needs
 to be able to register tracked entities with unique ids. They will
@@ -13861,8 +14396,8 @@ following table explains the properties of the reserved value object:
 <table style="width:100%;">
 <caption>Reserved values</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
+<col width="15%" />
+<col width="84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13918,6 +14453,8 @@ parameters can be used to specify the dimensions of the
 
 #### Tracked entity instance query
 
+<!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_query-->
+
 To query for tracked entity instances you can interact with the
 */api/trackedEntityInstances* resource.
 
@@ -13925,11 +14462,13 @@ To query for tracked entity instances you can interact with the
 
 ##### Request syntax
 
+<!--DHIS2-SECTION-ID:webapi_tei_query_request_syntax-->
+
 <table style="width:100%;">
 <caption>Tracked entity instances query parameters</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
+<col width="15%" />
+<col width="84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14007,8 +14546,8 @@ following table.
 <table>
 <caption>Organisation unit selection modes</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 79%" />
+<col width="20%" />
+<col width="79%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14123,8 +14662,8 @@ You can use a range of operators for the filtering:
 <table>
 <caption>Filter operators</caption>
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 80%" />
+<col width="19%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14169,6 +14708,8 @@ You can use a range of operators for the filtering:
 </table>
 
 ##### Response format
+
+<!--DHIS2-SECTION-ID:webapi_tei_query_response_format-->
 
 This resource supports JSON, JSONP, XLS and CSV resource
 representations.
@@ -14332,6 +14873,8 @@ a full view, you might want to add fields=\*):
 
 #### Tracked entity instance grid query
 
+<!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_grid_query-->
+
 To query for tracked entity instances you can interact with the
 */api/trackedEntityInstances/grid* resource. There are two types of
 queries: One where a *query* query parameter and optionally *attribute*
@@ -14343,11 +14886,13 @@ and is an alternative to the query in the previous section.
 
 ##### Request syntax
 
+<!--DHIS2-SECTION-ID:webapi_tei_grid_query_request_syntax-->
+
 <table style="width:100%;">
 <caption>Tracked entity instances query parameters</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
+<col width="15%" />
+<col width="84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14441,8 +14986,8 @@ following table.
 <table>
 <caption>Organisation unit selection modes</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 79%" />
+<col width="20%" />
+<col width="79%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14607,8 +15152,8 @@ You can use a range of operators for the filtering:
 <table>
 <caption>Filter operators</caption>
 <colgroup>
-<col style="width: 19%" />
-<col style="width: 80%" />
+<col width="19%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14653,6 +15198,8 @@ You can use a range of operators for the filtering:
 </table>
 
 ##### Response format
+
+<!--DHIS2-SECTION-ID:webapi_tei_grid_query_response_format-->
 
 This resource supports JSON, JSONP, XLS and CSV resource
 representations.
@@ -14724,6 +15271,8 @@ instance.
 
 #### Tracked entity instance filters
 
+<!--DHIS2-SECTION-ID:webapi_tei_filters-->
+
 To create, read, update and delete tracked entity instance filters you
 can interact with the */api/trackedEntityInstanceFilters* resource.
 
@@ -14740,9 +15289,9 @@ the tracker user interface.
 <table>
 <caption>Payload</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14803,9 +15352,9 @@ the tracker user interface.
 <table>
 <caption>Event filters definition</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -14829,9 +15378,9 @@ the tracker user interface.
 <table>
 <caption>Period definition</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -14855,8 +15404,8 @@ interact with the */api/trackedEntityInstanceFilters* resource.
 <table>
 <caption>Tracked entity instance filters query paramateres</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14874,6 +15423,8 @@ interact with the */api/trackedEntityInstanceFilters* resource.
 
 ### Enrollment management
 
+<!--DHIS2-SECTION-ID:webapi_enrollment_management-->
+
 Enrollments have full CRUD support in the Web-API. Together with the API
 for tracked entity instances most operations needed for working with
 tracked entity instances and programs are supported.
@@ -14881,6 +15432,8 @@ tracked entity instances and programs are supported.
     /api/29/enrollments
 
 #### Enrolling a tracked entity instance into a program
+
+<!--DHIS2-SECTION-ID:webapi_enrolling_tei-->
 
 For enrolling persons into a program, you will need to first get the
 identifier of the person from the *trackedEntityInstances* resource.
@@ -14919,6 +15472,8 @@ following URL:
 
 #### Enrollment instance query
 
+<!--DHIS2-SECTION-ID:webapi_enrollment_instance_query-->
+
 To query for enrollments you can interact with the */api/enrollments*
 resource.
 
@@ -14926,11 +15481,13 @@ resource.
 
 ##### Request syntax
 
+<!--DHIS2-SECTION-ID:webapi_enrollment_query_request_syntax-->
+
 <table style="width:100%;">
 <caption>Enrollment query parameters</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
+<col width="15%" />
+<col width="84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15004,8 +15561,8 @@ following table.
 <table>
 <caption>Organisation unit selection modes</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 79%" />
+<col width="20%" />
+<col width="79%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15092,6 +15649,8 @@ this you can use the page and pageSize query
 
 ##### Response format
 
+<!--DHIS2-SECTION-ID:webapi_enrollment_query_response_format-->
+
 This resource supports JSON, JSONP, XLS and CSV resource
 representations.
 
@@ -15125,11 +15684,15 @@ a full view, you might want to add fields=\*):
 
 ### Events
 
+<!--DHIS2-SECTION-ID:webapi_events-->
+
 This section is about sending and reading events.
 
     /api/29/events
 
 #### Sending events
+
+<!--DHIS2-SECTION-ID:webapi_sending_events-->
 
 DHIS2 supports three kinds of events: single events with no registration
 (also referred to as anonymous events), single event with registration
@@ -15289,11 +15852,11 @@ describes the meaning of each element.
 <table>
 <caption>Events resource format</caption>
 <colgroup>
-<col style="width: 13%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 30%" />
-<col style="width: 38%" />
+<col width="13%" />
+<col width="8%" />
+<col width="8%" />
+<col width="30%" />
+<col width="38%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15379,6 +15942,8 @@ matches on a *unique* metadata attribute value.
 
 #### Updating events
 
+<!--DHIS2-SECTION-ID:webapi_updating_events-->
+
 To update an existing event, the format of the payload is the same, but
 the URL you are posting to must add the identifier to the end of the URL
 string and the request must be PUT.
@@ -15398,12 +15963,16 @@ to tracked entity instance and enrollment.)
 
 #### Deleting events
 
+<!--DHIS2-SECTION-ID:webapi_deleting_events-->
+
 To delete an existing event, all you need is to send a DELETE request
 with a identifier reference to the server you are using.
 
     curl -X DELETE "localhost/api/29/events/ID" -u admin:district
 
 #### Getting events
+
+<!--DHIS2-SECTION-ID:webapi_getting_events-->
 
 To get an existing event you can issue a GET request including the
 identifier like
@@ -15412,6 +15981,8 @@ identifier like
     curl "localhost/api/29/events/ID" -H "Content-Type: application/xml" -u admin:district
 
 #### Querying and reading events
+
+<!--DHIS2-SECTION-ID:webapi_querying_reading_events-->
 
 This section explains how to read out the events that have been stored
 in the DHIS2 instance. For more advanced uses of the event data, please
@@ -15715,6 +16286,8 @@ based on data element
 
 ### Update strategies
 
+<!--DHIS2-SECTION-ID:webapi_tei_update_strategies-->
+
 Two update strategies for all 3 tracker endpoints are supported:
 enrollment and event creation. This is useful when you have generated an
 identifier on the client side and are not sure if it was created or not
@@ -15723,8 +16296,8 @@ on the server.
 <table>
 <caption>Available tracker strategies</caption>
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 75%" />
+<col width="24%" />
+<col width="75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15749,6 +16322,8 @@ To change the parameter, please use the strategy parameter:
     POST /api/29/trackedEntityInstances?strategy=CREATE_AND_UPDATE
 
 ### Tracker bulk deletion
+
+<!--DHIS2-SECTION-ID:webapi_tracker_bulk_deletion-->
 
 Bulk deletion of tracker objects work in a similar fashion to adding and
 updating tracker objects, the only difference is that the
@@ -15795,6 +16370,8 @@ updating tracker objects, the only difference is that the
 
 ### Identifier reuse and item deletion via POST and PUT methods
 
+<!--DHIS2-SECTION-ID:webapi_updating_and_deleting_items-->
+
 Tracker endpoints */trackedEntityInstances*, */enrollments*, */events*
 support CRUD operations. The system keeps track of used identifiers.
 Therefore, an item which has been created and then deleted (e.g. events,
@@ -15808,6 +16385,8 @@ both *PUT* and *POST* methods, and in *POST* method it is by default set
 to *false*.
 
 ### Import parameters
+
+<!--DHIS2-SECTION-ID:webapi_import_parameters-->
 
 The import process can be customized using a set of import parameters:
 
@@ -15865,6 +16444,8 @@ The import process can be customized using a set of import parameters:
 </table>
 
 #### CSV Import / Export
+
+<!--DHIS2-SECTION-ID:webapi_events_csv_import_export-->
 
 In addition to XML and JSON for event import/export, in DHIS2.17 we
 introduced support for the CSV format. Support for this format builds on
@@ -15986,12 +16567,16 @@ is as follows:
 
 #### Import strategy: SYNC
 
+<!--DHIS2-SECTION-ID:webapi_sync_import_strategy-->
+
 The import strategy SYNC should be used only by internal synchronization
 task and not for regular import. The SYNC stategy allows all 3
 operations: CREATE, UPDATE, DELETE to be present in the payload at the
 same time.
 
 ### Tracker Ownership Management
+
+<!--DHIS2-SECTION-ID:webapi_tracker_ownership_management-->
 
 A new concept called Tracker Ownership is introduced from 2.30. There
 will now be one owner organisation unit for a tracked entity instance in
@@ -16002,6 +16587,8 @@ tracked entity-program combination will be able to access the data
 related to that program for that tracked entity.
 
 #### Tracker Ownership Override : Break the Glass
+
+<!--DHIS2-SECTION-ID:webapi_tracker_ownership_override_api-->
 
 It is possible to temporarily override this ownership privilege for a
 program that is configured with an access level of *PROTECTED*. Any user
@@ -16019,6 +16606,8 @@ shown:
 
 #### Tracker Ownership Transfer
 
+<!--DHIS2-SECTION-ID:webapi_tracker_ownership_transfer_api-->
+
 It is possible to transfer the ownership of a tracked entity-program
 from one org unit to another. This will be useful in case of patient
 referrals or migrations. Only an owner (or users who have broken the
@@ -16031,12 +16620,16 @@ as
 
 ## Anonymous Events API
 
+<!--DHIS2-SECTION-ID:webapi_anonymous_events_api-->
+
 Anonymous events API has only 1 enpoint and it is the same endpoint as
 is used in Tracker API for CRUD operations over Events: */api/29/events*
 
-For detailed documentation, see [Events](#webapi_events)
+For detailed documentation, see [section\_title](#webapi_events)
 
 ## Email
+
+<!--DHIS2-SECTION-ID:webapi_email-->
 
 The Web API features a resource for sending emails. For emails to be
 sent it is required that the SMTP configuration has been properly set up
@@ -16048,6 +16641,8 @@ in DHIS 2.
     /api/26/email
 
 ### System notification
+
+<!--DHIS2-SECTION-ID:webapi_email_system_notification-->
 
 The *notification* resource lets you send system email notifications
 with a given subject and text in JSON or XML. The email will be sent to
@@ -16078,6 +16673,8 @@ api.
 
 ### Test message
 
+<!--DHIS2-SECTION-ID:webapi_email_test_message-->
+
 To test whether the SMTP setup is correct by sending a test email to
 yourself you can interact with the *test* resource. To send test emails
 it is required that your DHIS2 user account has a valid email address
@@ -16088,6 +16685,8 @@ associated with it. You can send a test email like
 
 ## Sharing
 
+<!--DHIS2-SECTION-ID:webapi_sharing-->
+
 The sharing solution allows you to share most objects in the system with
 specific user groups and to define whether objects should be publicly
 accessible or private. To get and set sharing status for objects you can
@@ -16096,6 +16695,8 @@ interact with the *sharing* resource.
     /api/26/sharing
 
 ### Get sharing status
+
+<!--DHIS2-SECTION-ID:webapi_get_sharing_status-->
 
 To request the sharing status for an object use a GET request to:
 
@@ -16129,6 +16730,8 @@ The response looks like the below.
 
 ### Set sharing status
 
+<!--DHIS2-SECTION-ID:webapi_set_sharing_status-->
+
 You can define the sharing status for an object using the same URL with
 a POST request, where the payload in JSON format looks like this:
 
@@ -16160,6 +16763,8 @@ submit this to the sharing resource using
       -H "Content-Type:application/json" -u admin:district -v
 
 ## Scheduling (Experimental)
+
+<!--DHIS2-SECTION-ID:webapi_scheduling-->
 
 In 2.29 we introduced a new way of scheduling jobs on the server. Each
 type of job has different properties for configuration, giving you more
@@ -16415,6 +17020,8 @@ synchronization, which requires remote server configuration.
 
 ## Schema
 
+<!--DHIS2-SECTION-ID:webapi_schema-->
+
 A resource which can be used to introspect all available DXF 2 objects
 can be found on */api/schemas*. For specific resources you can have a
 look at */api/schemas/TYPE*.
@@ -16433,6 +17040,8 @@ To get JSON schema for a specific class:
 
 ## UI customization
 
+<!--DHIS2-SECTION-ID:webapi_ui_customization-->
+
 To customize the UI of the DHIS2 application you can insert custom
 Javascript and CSS styles through the *files* resource. The Javascript
 and CSS content inserted through this resource will be loaded by the
@@ -16450,6 +17059,8 @@ situations:
 
 ### Javascript
 
+<!--DHIS2-SECTION-ID:webapi_customization_javascript-->
+
 To insert Javascript from a file called *script.js* you can interact
 with the *files/script* resource with a POST-request:
 
@@ -16465,6 +17076,8 @@ To remove the Javascript content you can use a DELETE-request.
 
 ### CSS
 
+<!--DHIS2-SECTION-ID:webapi_customization_css-->
+
 To insert CSS from a file called *style.css* you can interact with the
 *files/style* resource with a POST-request:
 
@@ -16479,9 +17092,13 @@ To remove the Javascript content you can use a DELETE-e "request.
 
 ## Synchronization
 
+<!--DHIS2-SECTION-ID:webapi_synchronization-->
+
 This section covers pull and push of data and metadata.
 
 ### Data push
+
+<!--DHIS2-SECTION-ID:webapi_sync_data_push-->
 
 To initiate a data push to a remote server one must first configure the
 URL and credentials for the relevant server from System settings \>
@@ -16491,6 +17108,8 @@ Synchronization, then make a POST request to the following resource:
 
 ### Metadata pull
 
+<!--DHIS2-SECTION-ID:webapi_sync_metadata_pull-->
+
 To initiate a metadata pull from a remote JSON document you can make a
 POST request with a *url* as request payload to the following resource:
 
@@ -16498,12 +17117,16 @@ POST request with a *url* as request payload to the following resource:
 
 ### Availability check
 
+<!--DHIS2-SECTION-ID:webapi_sync_availability_check-->
+
 To check the availability of the remote data server and verify user
 credentials you can make a GET request to the following resource:
 
     /api/26/synchronization/availability
 
 ## Apps
+
+<!--DHIS2-SECTION-ID:webapi_apps-->
 
 The */api/apps* endpoint can be used for installing, deleting and
 listing apps. The app key is based on the app name, but with all
@@ -16519,6 +17142,8 @@ non-alphanumerical characters removed, and spaces replaced with a dash.
     /api/26/apps
 
 ### Get apps
+
+<!--DHIS2-SECTION-ID:webapi_get_apps-->
 
 > **Note**
 > 
@@ -16548,6 +17173,8 @@ supports *eq* only.
 
 ### Install an app
 
+<!--DHIS2-SECTION-ID:webapi_install_app-->
+
 To install an app, the following command can be
     issued:
 
@@ -16555,11 +17182,15 @@ To install an app, the following command can be
 
 ### Delete an app
 
+<!--DHIS2-SECTION-ID:webapi_delete_app-->
+
 To delete an app, you can issue the following command:
 
     curl -X DELETE -u user:pass http://server.com/api/26/apps/<app-key>
 
 ### Reload apps
+
+<!--DHIS2-SECTION-ID:webapi_reload_apps-->
 
 To force a reload of currently installed apps, you can issue the
 following command. This is useful if you added a file manually directly
@@ -16569,6 +17200,8 @@ interface.
     curl -X PUT -u user:pass http://server.com/api/26/apps
 
 ### Share apps between instances
+
+<!--DHIS2-SECTION-ID:webapi_share_apps_between_instances-->
 
 > **Note**
 > 
@@ -16588,12 +17221,16 @@ installing the same apps on each individual instance.
 
 ## App store
 
+<!--DHIS2-SECTION-ID:webapi_app_store-->
+
 The Web API exposes the content of the DHIS2 App Store as a JSON
 representation which can found at the *api/appStore* resource.
 
     /api/26/appStore
 
 ### Get apps
+
+<!--DHIS2-SECTION-ID:webapi_get_app_store_apps-->
 
 You can retrieve apps with a GET request:
 
@@ -16641,6 +17278,8 @@ A sample JSON response is described below.
 
 ### Install apps
 
+<!--DHIS2-SECTION-ID:webapi_install_app_store_apps-->
+
 You can install apps on your instance of DHIS2 assuming you have the
 appropriate permissions. An app is referred to using the *id* property
 of the relevant *version* of the *app*. An app is installed with a POST
@@ -16649,6 +17288,8 @@ request with the version id to the following resource:
     POST /api/26/appStore/{app-version-id}
 
 ## Data store
+
+<!--DHIS2-SECTION-ID:webapi_data_store-->
 
 Using the *dataStore* resource, developers can store arbitrary data for
 their apps. Access to a datastore's namespace is limited to the user's
@@ -16661,15 +17302,17 @@ is not reserved, no specific access is required to use it.
 
 ### Data store structure
 
+<!--DHIS2-SECTION-ID:webapi_data_store_structure-->
+
 Data store entries consist of a namespace, key and value. The
 combination of namespace and key is unique. The value data type is JSON.
 
 <table>
 <caption>Data store structure</caption>
 <colgroup>
-<col style="width: 22%" />
-<col style="width: 40%" />
-<col style="width: 36%" />
+<col width="22%" />
+<col width="40%" />
+<col width="36%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -16703,6 +17346,8 @@ combination of namespace and key is unique. The value data type is JSON.
 </table>
 
 ### Get keys and namespaces
+
+<!--DHIS2-SECTION-ID:webapi_data_store_get_keys_and_namespaces-->
 
 For a list of all existing namespaces:
 
@@ -16771,6 +17416,8 @@ Example response:
 
 ### Create values
 
+<!--DHIS2-SECTION-ID:webapi_data_store_create_values-->
+
 To create a new key and value for a namespace:
 
     POST /api/26/dataStore/<namespace>/<key>
@@ -16797,6 +17444,8 @@ credentials or similar) you can append a query to the url like this:
 
 ### Update values
 
+<!--DHIS2-SECTION-ID:webapi_data_store_update_values-->
+
 To update a key that exists in a namespace:
 
     PUT /api/26/dataStore/<namespace>/<key>
@@ -16817,6 +17466,8 @@ Example response:
     }
 
 ### Delete keys
+
+<!--DHIS2-SECTION-ID:webapi_data_store_delete_keys-->
 
 To delete an existing key from a namespace:
 
@@ -16856,6 +17507,8 @@ Example response:
 
 ## User data store
 
+<!--DHIS2-SECTION-ID:webapi_user_data_store-->
+
 In addition to the *dataStore* which is shared between all users of the
 system, a user-based data store is also available. Data stored to the
 *userDataStore* is associated with individual users, so that each user
@@ -16868,15 +17521,17 @@ associated with the currently logged in user.
 
 ### User data store structure
 
+<!--DHIS2-SECTION-ID:webapi_user_data_store_structure-->
+
 *userDataStore* consists of a user, a namespace, keys and associated
 values. The combination of user, namespace and key is unique.
 
 <table>
 <caption>User data store structure</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -16916,6 +17571,8 @@ values. The combination of user, namespace and key is unique.
 
 ### Get namespaces
 
+<!--DHIS2-SECTION-ID:webapi_user_data_store_get_namespaces-->
+
 Returns an array of all existing namespaces
 
     GET /api/26/userDataStore
@@ -16931,6 +17588,8 @@ Example
     ]
 
 ### Get keys
+
+<!--DHIS2-SECTION-ID:webapi_user_data_store_get_keys-->
 
 Returns an array of all existing keys in a given namespace
 
@@ -16948,6 +17607,8 @@ Example
 
 ### Get values
 
+<!--DHIS2-SECTION-ID:webapi_user_data_store_get_values-->
+
 Returns the value for a given namespace and key
 
     GET /api/26/userDataStore/<namespace>/<key>
@@ -16962,6 +17623,8 @@ Example
     }
 
 ### Create value
+
+<!--DHIS2-SECTION-ID:webapi_user_data_store_create_values-->
 
 Adds a new value to a given key in a given namespace.
 
@@ -16987,6 +17650,8 @@ and such) you can append a query to the url like this:
 
 ### Update values
 
+<!--DHIS2-SECTION-ID:webapi_user_data_store_update_values-->
+
 Updates an existing value
 
     PUT /api/26/userDataStore/<namespace>/<key>
@@ -17006,6 +17671,8 @@ Example
 
 ### Delete key
 
+<!--DHIS2-SECTION-ID:webapi_user_data_store_delete_key-->
+
 Delete a key
 
     DELETE /api/26/userDataStore/<namespace>/<key>
@@ -17023,6 +17690,8 @@ Example
     }
 
 ### Delete namespace
+
+<!--DHIS2-SECTION-ID:webapi_user_data_store_delete_namespace-->
 
 Delete all keys in the given namespace
 
@@ -17042,6 +17711,8 @@ Example
 
 ## Predictors
 
+<!--DHIS2-SECTION-ID:webapi_predictors-->
+
 A predictor allows you to generate data values based on an expression.
 This can be used to generate targets, thresholds and estimated values.
 You can interact with predictors through the */api/26/predictors*
@@ -17050,6 +17721,8 @@ resource.
     /api/26/predictors
 
 ### Creating a predictor
+
+<!--DHIS2-SECTION-ID:webapi_create_predictor-->
 
 You can create a predictor with a POST request to the predictors
 resource:
@@ -17086,6 +17759,8 @@ expression to use when calculating the predicted values.
 
 ### Generating predicted values
 
+<!--DHIS2-SECTION-ID:webapi_generating_predicted_values-->
+
 To run all predictors (generating predicted values) you can make a POST
 request to the run resource:
 
@@ -17098,6 +17773,8 @@ resource for a predictor:
 
 ## Min-max data elements
 
+<!--DHIS2-SECTION-ID:webapi_min_max_data_elements-->
+
 The min-max data elements resource allows you to set minimum and maximum
 value ranges for data elements. It is unique by the combination of
 organisation unit, data element and category option combo.
@@ -17107,9 +17784,9 @@ organisation unit, data element and category option combo.
 <table>
 <caption>Min-max data element data structure</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17173,6 +17850,8 @@ eq and in.
 
 ### Add/Update min-max data element
 
+<!--DHIS2-SECTION-ID:webapi_add_update_min_max_data_element-->
+
 To add a new min-max data element, use POST request with JSON content
 with below format:
 
@@ -17198,6 +17877,8 @@ option combo exists, the min-max value will be updated.
 
 ### Delete min-max data element
 
+<!--DHIS2-SECTION-ID:webapi_delete_min_max_data_element-->
+
 To delete a min-max data element, send a request with DELETE method and
 JSON content with same format as above:
 
@@ -17220,6 +17901,8 @@ JSON content with same format as above:
 
 ## Lock exceptions
 
+<!--DHIS2-SECTION-ID:webapi_lock_exceptions-->
+
 The lock exceptions resource allows you to open otherwise locked data
 sets for data entry for a specific data set, period and organisation
 unit. You can read lock exceptions from the following resource:
@@ -17238,9 +17921,13 @@ DELETE request:
 
 ## Tokens
 
+<!--DHIS2-SECTION-ID:webapi_tokens-->
+
 The *tokens* resource provides access tokens to various services.
 
 ### Google Service Account
+
+<!--DHIS2-SECTION-ID:webapi_tokens_google_service_account-->
 
 You can retrieve a Google service account OAuth 2.0 access token with a
 GET request to the following resource.
@@ -17255,8 +17942,8 @@ response will contain the following properties in JSON format.
 <table>
 <caption>Token response</caption>
 <colgroup>
-<col style="width: 40%" />
-<col style="width: 59%" />
+<col width="40%" />
+<col width="59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17286,6 +17973,8 @@ info.
 
 ## Analytics table hooks
 
+<!--DHIS2-SECTION-ID:webapi_analytics_table_hooks-->
+
 Analytics table hooks provides a mechanism for invoking SQL scripts
 during different phases of the analytics table generation process. This
 is useful for customizing data in resource and analytics tables, e.g. in
@@ -17300,14 +17989,16 @@ for creating (POST), updating (PUT), retrieveing (GET) and deleting
 
 ### Hook fields
 
+<!--DHIS2-SECTION-ID:webapi_analytics_table_hook_fields-->
+
 Analytics table hooks have the following fields:
 
 <table style="width:100%;">
 <caption>Analytics table hook fields</caption>
 <colgroup>
-<col style="width: 22%" />
-<col style="width: 30%" />
-<col style="width: 46%" />
+<col width="22%" />
+<col width="30%" />
+<col width="46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17372,9 +18063,9 @@ and temporary tables.
 <table>
 <caption>Phases, table types and temporary tables</caption>
 <colgroup>
-<col style="width: 27%" />
-<col style="width: 39%" />
-<col style="width: 33%" />
+<col width="27%" />
+<col width="39%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17465,6 +18156,8 @@ and temporary tables.
 
 ### Creating hooks
 
+<!--DHIS2-SECTION-ID:webapi_create_analytics_table_hook-->
+
 To create a hook which should run after the resource tables have been
 populated you can do a *POST* request like this using *JSON*
     format:
@@ -17490,6 +18183,8 @@ format:
     }
 
 ## Metadata repository
+
+<!--DHIS2-SECTION-ID:webapi_metadata_repository-->
 
 DHIS2 provides a metadata repository containing metadata packages with
 various content. A metadata package is a DHIS2-compliant JSON document
@@ -17534,6 +18229,8 @@ An example curl command looks like this:
       -H "Content-Type:text/plain" -u admin:district -v
 
 ## Icons
+
+<!--DHIS2-SECTION-ID:webapi_icons-->
 
 DHIS2 includes a collection of icons that can be used to give visual
 context to metadata. These icons can be accessed through the icons

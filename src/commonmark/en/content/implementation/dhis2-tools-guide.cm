@@ -49,7 +49,7 @@ where it could and should (and hopefully will) be improved. For example,
 The figure below shows the main components involved in a DHIS2 system.
 
 ![Single machine all-in-one
-installation](resources/images/dhis2tools/architecture.svg)
+installation](resources/images/dhis2tools/architecture.svg "fig:")
 
 The dhis2-tools are primarily concerned with the creation and managing
 of the tomcat instances which deliver the web application. As you can
@@ -457,8 +457,8 @@ remedies:
 <table>
 <caption>Troubleshooting guide</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">

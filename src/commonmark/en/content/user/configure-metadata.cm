@@ -1,6 +1,10 @@
 # Configure metadata
 
+<!--DHIS2-SECTION-ID:maintenance_app-->
+
 ## About the Maintenance app
+
+<!--DHIS2-SECTION-ID:about_maintenance_app-->
 
 In the **Maintenance** app you configure all the metadata objects you
 need to collect and analyze data:
@@ -41,7 +45,11 @@ need to collect and analyze data:
 
 ## Manage categories
 
+<!--DHIS2-SECTION-ID:manage_category-->
+
 ### About categories
+
+<!--DHIS2-SECTION-ID:about_category-->
 
 Categories are typically a concept, for example "Gender", "Age" or
 "Disease Status". Data elements such as "Number of cases of confirmed
@@ -72,8 +80,8 @@ objects:
 <table>
 <caption>Category objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -111,6 +119,8 @@ objects:
 
 ### Workflow
 
+<!--DHIS2-SECTION-ID:workflow_category-->
+
 1.  Create all category options.
 
 2.  Create categories composed by the multiple category options you've
@@ -122,6 +132,8 @@ objects:
 4.  Create data elements and assign them to a category combination.
 
 ### Create or edit a category option
+
+<!--DHIS2-SECTION-ID:create_category_option-->
 
 When possible, recycle category options. For instance, there might be
 two categories which might share a particular category option (for
@@ -159,6 +171,8 @@ option could be reused. This is important if particular category options
 
 ### Create or edit a category
 
+<!--DHIS2-SECTION-ID:create_category-->
+
 When you have created all category options for a particular category,
 you can create that category.
 
@@ -191,6 +205,8 @@ you can create that category.
 5.  Click **Save**.
 
 ### Create or edit a category combination
+
+<!--DHIS2-SECTION-ID:create_category_combination-->
 
 Category combinations lets you combine multiple categories into a
 related set.
@@ -233,6 +249,8 @@ number of data elements.
 
 ### Create or edit a category option group
 
+<!--DHIS2-SECTION-ID:create_category_option_group-->
+
 You can group and classify category options by using category option
 groups. The main purpose of the category option group set is to add more
 dimensionalityto your captured data for analysis in for example the
@@ -270,6 +288,8 @@ To create a category option group:
 
 ### Create or edit a category option group set
 
+<!--DHIS2-SECTION-ID:create_category_option_group_set-->
+
 You can group category option groups in category option group sets. The
 main purpose of the category option group set is to add more
 dimensionalityto your captured data for analysis in for example the
@@ -295,6 +315,8 @@ dimensionalityto your captured data for analysis in for example the
 5.  Click **Save**.
 
 ### Use category combinations for data sets
+
+<!--DHIS2-SECTION-ID:use_category_combo_for_data_set-->
 
 When categories and category combinations have the data dimension type
 "Attribute", they can apply a common set of attributes to a related set
@@ -331,6 +353,8 @@ period and organisation unit.
 
 ### Assign a code to a category option combination
 
+<!--DHIS2-SECTION-ID:assign_code_category_option_combo-->
+
 You can assign a code to category option combinations. This makes data
 exchange between DHIS2 and external systems easier. The system creates
 the category option combinations automatically.
@@ -347,6 +371,8 @@ the category option combinations automatically.
 5.  Click **Save**.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -470,7 +496,11 @@ cultural region.
 
 ## Manage data elements
 
+<!--DHIS2-SECTION-ID:manage_data_element-->
+
 ### About data elements
+
+<!--DHIS2-SECTION-ID:about_data_element-->
 
 Data elements are the base of DHIS2. Data elements define what is
 actually recorded in the system, for example number of immunisations or
@@ -486,8 +516,8 @@ objects:
 <table>
 <caption>Data element objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -513,6 +543,8 @@ objects:
 
 ### Workflow
 
+<!--DHIS2-SECTION-ID:workflow_data_element-->
+
 1.  Create all category options.
 
 2.  Create categories composed by the multiple category options you've
@@ -524,6 +556,8 @@ objects:
 4.  Create data elements and assign them to a category combination.
 
 ### Create or edit a dataelement
+
+<!--DHIS2-SECTION-ID:create_data_element-->
 
 ![](resources/images/maintainence/create_data_element.png)
 
@@ -570,8 +604,8 @@ objects:
     <table>
     <caption>Value types</caption>
     <colgroup>
-    <col style="width: 53%" />
-    <col style="width: 46%" />
+    <col width="53%" />
+    <col width="46%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -695,8 +729,8 @@ objects:
     <table>
     <caption>Aggregation operators</caption>
     <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
+    <col width="50%" />
+    <col width="50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -818,6 +852,8 @@ objects:
 
 ### Create or edit a data element group
 
+<!--DHIS2-SECTION-ID:create_data_element_group-->
+
 Data element groups lets you classify related data elements into a
 common theme. For example, two data elements "Measles immunisation" and
 "BCG Immunisation" might be grouped together into a data element group
@@ -843,6 +879,8 @@ To create a data element group:
 5.  Click **Save**.
 
 ### Create or edit a data element group set
+
+<!--DHIS2-SECTION-ID:create_data_element_group_set-->
 
 Data element group sets allows you to categorise multiple data element
 groups into a set. The system uses data element group sets during
@@ -876,6 +914,8 @@ group sets.
 5.  Click **Save**.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -999,7 +1039,11 @@ cultural region.
 
 ## Managedata sets and data entry forms
 
+<!--DHIS2-SECTION-ID:manage_data_set-->
+
 ### About data sets and data entry forms
+
+<!--DHIS2-SECTION-ID:about_dataset_dataform-->
 
 All data entry in DHIS2 is organised in data sets. A data set is a
 collection of data elements grouped together for data entry and data
@@ -1048,8 +1092,8 @@ entry forms:
 <table>
 <caption>Data entry form types</caption>
 <colgroup>
-<col style="width: 37%" />
-<col style="width: 62%" />
+<col width="37%" />
+<col width="62%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1104,8 +1148,8 @@ In the **Maintenance** app, you manage the following data set objects:
 <table>
 <caption>Data set objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1137,6 +1181,8 @@ In the **Maintenance** app, you manage the following data set objects:
 
 ### Workflow
 
+<!--DHIS2-SECTION-ID:workflow_data_set-->
+
 You need to have data elements and categories to create data sets and
 data entry forms.
 
@@ -1151,6 +1197,8 @@ data entry forms.
     Now you can register data in the **Data entry** app.
 
 ### Create or edit a data set
+
+<!--DHIS2-SECTION-ID:create_data_set-->
 
 ![](resources/images/datasets/data_set_create.png)
 
@@ -1312,6 +1360,8 @@ to the selected frequency (period type).
 
 ### Create or edit Data set Notification
 
+<!--DHIS2-SECTION-ID:create_data_set_notification-->
+
 1.  Open the **Maintenance** app and click **Data set** \> **Data set
     notification**.
 
@@ -1402,6 +1452,8 @@ to the selected frequency (period type).
 
 ### Override data elements' categorycombinations in a data set
 
+<!--DHIS2-SECTION-ID:override_dataelement_catcombo_in_dataset-->
+
 You can override which category combination to use for a data element
 within the context of a data set. This means that a data element can use
 different category combinations within different data sets. This is
@@ -1427,6 +1479,8 @@ appropriate category combinations.
 
 ### Edit compulsory data elements in a data set
 
+<!--DHIS2-SECTION-ID:edit_compulsory_dataelement_in_dataset-->
+
 You can add or remove data elements which will be marked as compulsory
 during data entry.
 
@@ -1442,6 +1496,8 @@ during data entry.
 
 ### Download default data formsin PDF format
 
+<!--DHIS2-SECTION-ID:download_defaultform_pdf-->
+
 You can download a default data from in PDF format for offline data
 entry.
 
@@ -1452,6 +1508,8 @@ entry.
 3.  Click the options menu and select **Get PDF for data entry**.
 
 ### Manage section forms
+
+<!--DHIS2-SECTION-ID:manage_section_form-->
 
 #### Create a section form
 
@@ -1489,8 +1547,8 @@ section.
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -1627,6 +1685,8 @@ You can control in which order sections are displayed in a section form.
 6.  Click **Close**.
 
 ### Manage custom forms
+
+<!--DHIS2-SECTION-ID:manage_customform-->
 
 #### Create a custom form
 
@@ -1864,7 +1924,11 @@ cultural region.
 
 ## Manage indicators
 
+<!--DHIS2-SECTION-ID:manage_indicator-->
+
 ### About indicators
+
+<!--DHIS2-SECTION-ID:about_indicator-->
 
 An indicator is a formula that can consist of multiple data elements,
 constants, organisation unit group counts and mathematical operators.
@@ -1883,9 +1947,9 @@ plus and minus, and of the following elements:
 <table>
 <caption>Indicatorformula</caption>
 <colgroup>
-<col style="width: 36%" />
-<col style="width: 30%" />
-<col style="width: 33%" />
+<col width="36%" />
+<col width="30%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1938,8 +2002,8 @@ In the **Maintenance** app, you manage the following indicator objects:
 <table>
 <caption>Indicator objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1969,6 +2033,8 @@ In the **Maintenance** app, you manage the following indicator objects:
 
 ### Workflow
 
+<!--DHIS2-SECTION-ID:workflow_indicator-->
+
 1.  Create indicator types.
 
 2.  Create indicators.
@@ -1978,6 +2044,8 @@ In the **Maintenance** app, you manage the following indicator objects:
 4.  Create indicator group sets.
 
 ### Create or edit an indicator type
+
+<!--DHIS2-SECTION-ID:create_indicator_type-->
 
 ![](resources/images/maintainence/indicator_type_create.png)
 
@@ -2013,6 +2081,8 @@ case of percents) for the values to appear correctly formatted.
 5.  Click **Save**.
 
 ### Create or edit an indicator
+
+<!--DHIS2-SECTION-ID:create_indicator-->
 
 ![](resources/images/maintainence/indicator_create.png)
 
@@ -2079,6 +2149,8 @@ case of percents) for the values to appear correctly formatted.
 
 ### Create or edit an indicator group
 
+<!--DHIS2-SECTION-ID:create_indicator_group-->
+
 ![](resources/images/maintainence/indicator_group_create.png)
 
 1.  Open the **Maintenance** app and click **Indicator** \> **Indicator
@@ -2093,6 +2165,8 @@ case of percents) for the values to appear correctly formatted.
 5.  Click **Save**.
 
 ### Create or edit an indicator group set
+
+<!--DHIS2-SECTION-ID:create_indicator_group_set-->
 
 ![](resources/images/maintainence/indicator_group_set_create.png)
 
@@ -2124,6 +2198,8 @@ analysis of data to combine similar themes of indicators.
 5.  Click **Save**.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -2247,6 +2323,8 @@ cultural region.
 
 ## Manageorganisation units
 
+<!--DHIS2-SECTION-ID:manage_organisation_unit-->
+
 In this section you will learn how to:
 
   - Create a new organisation unit and build up the organisation unit
@@ -2258,6 +2336,8 @@ In this section you will learn how to:
   - Modifythe organisation unit hierarchy
 
 ### About organisation units
+
+<!--DHIS2-SECTION-ID:about_organisation_unit-->
 
 The organisation unit hierarchy defines the organisation structure of
 DHIS2, for example how health facilities, administrative areas and other
@@ -2322,8 +2402,8 @@ objects:
 <table>
 <caption>Organisation unit objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2357,6 +2437,8 @@ objects:
 
 ### Workflow
 
+<!--DHIS2-SECTION-ID:workflow_organisation_unit-->
+
 The recommended workflow is:
 
 1.  Create organisation units.
@@ -2366,6 +2448,8 @@ The recommended workflow is:
 3.  Create organisation unit group sets.
 
 ### Create or edit an organisation unit
+
+<!--DHIS2-SECTION-ID:create_organisation_unit-->
 
 ![](resources/images/orgunits/create_new_orgunit.png)
 
@@ -2478,6 +2562,8 @@ root unit.
 
 ### Create or edit an organisation unit group
 
+<!--DHIS2-SECTION-ID:create_organisation_unit_group-->
+
 Organisation unit groups allow you to classify related organisation
 units into a common theme. You can for example group all organisation
 units that are hospitals in an **Hospital** group.
@@ -2515,6 +2601,8 @@ units that are hospitals in an **Hospital** group.
 5.  Click **Save**.
 
 ### Create or edit an organisation unit group set
+
+<!--DHIS2-SECTION-ID:create_organisation_unit_group_set-->
 
 Organisation unit group sets allows you to create additional
 classifications of organisation units. The group sets create new
@@ -2642,6 +2730,8 @@ Dynamic additional classification
 
 ### Assignnames to organisation unit levels
 
+<!--DHIS2-SECTION-ID:name_organisation_unit_level-->
+
 When you add children to an organisation unit, DHIS2 automatically
 creates a new organisation unit level if necessary. The system also
 assigns a generic name to this level, for example "Level 5". You can
@@ -2670,6 +2760,8 @@ names anywhere levels are referred to, for example in the **GIS** app.
 
 ### Move organisation units within a hierarchy
 
+<!--DHIS2-SECTION-ID:move_organisation_unit-->
+
 You can move organisation units within in the hierarchy by changing the
 parent of a selected organisationunit.
 
@@ -2695,6 +2787,8 @@ parent of a selected organisationunit.
 
 ### Close an organisation unit
 
+<!--DHIS2-SECTION-ID:close_organisation_unit-->
+
 When you close an organisation unit, you can't register or edit events
 tothis organisation unit in the **Event Capture** and **Tracker
 Capture** apps.
@@ -2709,6 +2803,8 @@ Capture** apps.
 4.  Click **Save**.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -2832,7 +2928,11 @@ cultural region.
 
 ## \[Work in progress\] Manage validation rules
 
+<!--DHIS2-SECTION-ID:manage_validation_rule-->
+
 ### About validation rules
+
+<!--DHIS2-SECTION-ID:about_validation_rule-->
 
 A validation rule is based on an expression. The expression defines a
 relationship between data element values. The expression forms a
@@ -2854,8 +2954,8 @@ objects:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2881,6 +2981,8 @@ objects:
 
 #### About sliding windows
 
+<!--DHIS2-SECTION-ID:sliding_windows-->
+
 You can use sliding windows to group data *across multiple periods* as
 opposed to selecting data for *a single period*. Sliding windows have a
 size, that is to say, the number of days to cover, a starting point and
@@ -2902,8 +3004,8 @@ an end point. The example below shows disease surveillance data:.
 <table>
 <caption>Different behavior of validation rules</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2941,6 +3043,8 @@ just the validation rules in one group.
 
 #### About validation notifications
 
+<!--DHIS2-SECTION-ID:validation_notifications-->
+
 You can configure a validation rule analysis to automatically send
 notifications about validation errors to selected user groups. These
 messages are called *validation notifications*. They are sent via the
@@ -2952,6 +3056,8 @@ individual messages for high-priority disease outbreaks, and summaries
 for low-priority routine data validation errors.
 
 ### Create or edit a validation rule
+
+<!--DHIS2-SECTION-ID:create_validation_rule-->
 
 1.  Open the **Maintenance** app and click **Validation** \>
     **Validation rule**.
@@ -2999,8 +3105,8 @@ for low-priority routine data validation errors.
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -3045,8 +3151,8 @@ for low-priority routine data validation errors.
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -3097,6 +3203,8 @@ for low-priority routine data validation errors.
 
 ### Create or edit a validation rule group
 
+<!--DHIS2-SECTION-ID:create_validation_rule_group-->
+
 1.  Open the **Maintenance** app and click **Validation** \>
     **Validation rule group**.
 
@@ -3114,6 +3222,8 @@ for low-priority routine data validation errors.
 7.  Click **Save**.
 
 ### Create or edit a validation notification
+
+<!--DHIS2-SECTION-ID:create_validation_notification-->
 
 1.  Open the **Maintenance** app and click **Validation** \>
     **Validation notification**.
@@ -3154,6 +3264,8 @@ for low-priority routine data validation errors.
 9.  Click **Save**.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3277,7 +3389,11 @@ cultural region.
 
 ## Manage attributes
 
+<!--DHIS2-SECTION-ID:manage_attribute-->
+
 ### About attributes
+
+<!--DHIS2-SECTION-ID:about_attribute-->
 
 You can use metadata attributes to add additional information to
 metadata objects. In addition to the standard attributes for each of
@@ -3292,8 +3408,8 @@ In the **Maintenance** app, you manage the following attribute objects:
 <table>
 <caption>Attribute objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3342,6 +3458,8 @@ In the **Maintenance** app, you manage the following attribute objects:
     it to.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3416,7 +3534,11 @@ cultural region.
 
 ## Manage constants
 
+<!--DHIS2-SECTION-ID:manage_constant-->
+
 ### About constants
+
+<!--DHIS2-SECTION-ID:about_constant-->
 
 Constants are static values which can be made available to users for use
 in data elements and indicators. Some indicators, such as "Couple year
@@ -3431,8 +3553,8 @@ In the **Maintenance** app, you manage the following constant objects:
 <table>
 <caption>Constant objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3449,6 +3571,8 @@ In the **Maintenance** app, you manage the following constant objects:
 </table>
 
 ### Create or edit a constant
+
+<!--DHIS2-SECTION-ID:create_constant-->
 
 1.  Open the **Maintenance** app and click **Other** \> **Constant**.
 
@@ -3471,6 +3595,8 @@ In the **Maintenance** app, you manage the following constant objects:
     The constant is now available for use.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3594,7 +3720,11 @@ cultural region.
 
 ## Manage option sets
 
+<!--DHIS2-SECTION-ID:manage_option_set-->
+
 ### About option sets
+
+<!--DHIS2-SECTION-ID:about_option_set-->
 
 Option sets provide a pre-defined drop-down (enumerated) list for use in
 DHIS2. You can define any kind of options.
@@ -3608,8 +3738,8 @@ An option set called "Delivery type" would have the options: "Normal",
 <table>
 <caption>Option set objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3626,6 +3756,8 @@ An option set called "Delivery type" would have the options: "Normal",
 </table>
 
 ### Create or edit an option set
+
+<!--DHIS2-SECTION-ID:create_option_set-->
 
 > **Important**
 > 
@@ -3662,6 +3794,8 @@ An option set called "Delivery type" would have the options: "Normal",
     5.  Click **Save**.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3785,7 +3919,11 @@ cultural region.
 
 ## Manage legends
 
+<!--DHIS2-SECTION-ID:manage_legend-->
+
 ### About legends
+
+<!--DHIS2-SECTION-ID:about_legend-->
 
 You can create, edit, clone, delete, show details and translate legends
 to make the maps you're setting up for your users meaningful. You create
@@ -3798,6 +3936,8 @@ maps in the **GIS** app.
 > items like this: 0-50 and 51-80. This will create gaps in your legend.
 
 ### Create or edit a legend
+
+<!--DHIS2-SECTION-ID:create_legend-->
 
 > **Note**
 > 
@@ -3852,6 +3992,8 @@ maps in the **GIS** app.
 </table>
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3982,10 +4124,14 @@ system automatically selects the assigned legend.
 
 ### See also
 
+<!--DHIS2-SECTION-ID:see_also_legend-->
+
   - [Using the GIS
     app](https://docs.dhis2.org/master/en/user/html/using_gis.html)
 
 ## Manage predictors
+
+<!--DHIS2-SECTION-ID:manage_predictor-->
 
 ### About predictors
 
@@ -4023,8 +4169,8 @@ In the **Maintenance** app, you manage the following predictor objects:
 <table>
 <caption>Predictor objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4051,6 +4197,8 @@ to sample from:
 
 #### Sequential sample count
 
+<!--DHIS2-SECTION-ID:sequential_sample_count-->
+
 A predictor's *Sequential sample count* gives the number of immediate
 prior periods to sample. For example, if a predictor's period type is
 *Weekly* and the *Sequential sample count* is 4, this means to sample
@@ -4076,6 +4224,8 @@ to 24:
 
 #### Sequential skip count
 
+<!--DHIS2-SECTION-ID:sequential_skip_count-->
+
 A predictor's *Sequential skip count* tells how many periods should be
 skipped immediately prior to the predicted value period, within the
 *Sequential sample count*. This could be used, for instance, in outbreak
@@ -4093,6 +4243,8 @@ sampled:
 
 #### Annual sample count
 
+<!--DHIS2-SECTION-ID:annual_sample_count-->
+
 A predictor's *Annual sample count* gives the number of prior years for
 which samples should be collected at the same time of year. This could
 be used, for instance, for disease surveillance in cases where the
@@ -4106,6 +4258,8 @@ preceding two years, at the same time of year.
 ![](resources/images/maintainence/predictor_annual.png)
 
 #### Sequential and annual sample counts together
+
+<!--DHIS2-SECTION-ID:sequential_annual_sample_count-->
 
 You can use the sequential and annual sample counts together to collect
 samples from a number of sequential periods over a number of past years.
@@ -4124,6 +4278,8 @@ well as 4 periods on either side:
 ![](resources/images/maintainence/predictor_sequential_annual.png)
 
 #### Sequential, annual, and skip sample counts together
+
+<!--DHIS2-SECTION-ID:sequential_annual_skip_sample_count-->
 
 You can use the *Sequential skip count* together with the sequential and
 annual sample counts. When you do this, the *Sequential skip count*
@@ -4144,6 +4300,8 @@ will be sampled:
 ![](resources/images/maintainence/predictor_skip_current_year.png)
 
 #### Sample skip test
+
+<!--DHIS2-SECTION-ID:sample_skip_test-->
 
 You can use the *Sample skip test* to skip samples from certain periods
 that would otherwise be included, based on the results of testing an
@@ -4167,6 +4325,8 @@ sampled. For example:
 ![](resources/images/maintainence/predictor_sample_skip_test.png)
 
 ### Create or edit a predictor
+
+<!--DHIS2-SECTION-ID:create_predictor-->
 
 1.  Open the **Maintenance** app and click **Other** \> **Predictor**.
 
@@ -4212,8 +4372,8 @@ sampled. For example:
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -4271,8 +4431,8 @@ sampled. For example:
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -4304,8 +4464,8 @@ sampled. For example:
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -4361,8 +4521,8 @@ sampled. For example:
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -4405,6 +4565,8 @@ sampled. For example:
 
 ### Create or edit a predictor group
 
+<!--DHIS2-SECTION-ID:create_predictor_group-->
+
 1.  Open the **Maintenance** app and click **Other** \> **Predictor
     group**.
 
@@ -4422,6 +4584,8 @@ sampled. For example:
 7.  Click **Save**.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4496,7 +4660,11 @@ cultural region.
 
 ## Manage push reports
 
+<!--DHIS2-SECTION-ID:manage_push_report-->
+
 ### About push reports
+
+<!--DHIS2-SECTION-ID:about_push_report-->
 
 Push reports allows you to increase awareness and usage of data analysis
 by sending reports with charts, tables and maps directly to users e-mail
@@ -4548,8 +4716,8 @@ objects:
 <table>
 <caption>Push reports objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4566,6 +4734,8 @@ objects:
 </table>
 
 ### Create or edit a push report
+
+<!--DHIS2-SECTION-ID:create_push_report-->
 
 1.  Open the **Maintenance** app and click **Other** \> **Push
     analysis**.
@@ -4607,6 +4777,8 @@ objects:
 
 ### Preview push reports
 
+<!--DHIS2-SECTION-ID:preview_push_report-->
+
 1.  Open the **Maintenance** app and click **Other** \> **Push
     analysis**.
 
@@ -4618,6 +4790,8 @@ objects:
 
 ### Run push report jobs
 
+<!--DHIS2-SECTION-ID:run_push_report-->
+
 1.  Open the **Maintenance** app and click **Other** \> **Push
     analysis**.
 
@@ -4628,6 +4802,8 @@ objects:
     The push report job runs immediately.
 
 ### Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4702,7 +4878,11 @@ cultural region.
 
 ## Manage external map layers
 
+<!--DHIS2-SECTION-ID:manage_external_maplayer-->
+
 ### About external map layers
+
+<!--DHIS2-SECTION-ID:about_gis_map_layers-->
 
 You can customize GIS by including map layers from various sources and
 combine them with your own data in DHIS2. DHIS2 supports common map
@@ -4710,6 +4890,8 @@ service formats such as Web Map Service (WMS), Tile Map Service (TMS)
 and XYZ tiles.
 
 ### Create or edit an external map layer
+
+<!--DHIS2-SECTION-ID:create_external_map_layer-->
 
 > **Note**
 > 
@@ -4720,8 +4902,8 @@ and XYZ tiles.
 <table>
 <caption>External map layer objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4817,6 +4999,8 @@ and XYZ tiles.
 
 ### Clone metadata objects
 
+<!--DHIS2-SECTION-ID:clone_metadata-->
+
 Cloning a data element or other objects can save time when you create
 many similar objects.
 
@@ -4890,6 +5074,8 @@ cultural region.
 
 ## Manage SQL Views
 
+<!--DHIS2-SECTION-ID:maintenance_sql_view-->
+
 The SQL View functionality of DHIS2 will store the SQL view definition
 internally, and then materialize the view when requested.
 
@@ -4945,6 +5131,8 @@ View".
 
 ## Manage Locales
 
+<!--DHIS2-SECTION-ID:maintenance_locale_management-->
+
 It is possible to create custom locales in DHIS2. In addition to the
 locales available through the system, you might want to add a custom
 locale such as "English" and "Zambia" to the system. This would allow
@@ -4961,6 +5149,8 @@ as one of the translation locales in the system.
 
 ## Edit multiple object groups atonce
 
+<!--DHIS2-SECTION-ID:edit_multiple_object_groups-->
+
 The **Metadata group editor** in the **Maintenance** app allows you to
 edit multiple object groups at the same time. You can edit the following
 objects types:
@@ -4968,8 +5158,8 @@ objects types:
 <table>
 <caption>Object types in the Metadata group editor</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">

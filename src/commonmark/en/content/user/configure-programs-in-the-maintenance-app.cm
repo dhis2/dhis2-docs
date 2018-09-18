@@ -1,6 +1,10 @@
 # Configure programs in the Maintenance app
 
+<!--DHIS2-SECTION-ID:configure_programs_in_maintenance_app-->
+
 ## About programs
+
+<!--DHIS2-SECTION-ID:about_program_maintenance_app-->
 
 Traditionally, public health information systems have been reporting
 aggregated data of service provision across its health programs. This
@@ -13,9 +17,9 @@ insurances. You can create two types of programs:
 <table>
 <caption>Program types</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -58,9 +62,9 @@ the **Program / Attributes** (legacy) app.
 <table>
 <caption>Program metadata objects in the Maintenance app</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -117,9 +121,9 @@ the **Program / Attributes** (legacy) app.
 <table>
 <caption>Program metadata objects in the Program / Attributesapp</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -175,7 +179,11 @@ the **Program / Attributes** (legacy) app.
 
 ## Configure event programs in the Maintenance app
 
+<!--DHIS2-SECTION-ID:configure_event_program_in_maintenance_app-->
+
 ### About event programs
+
+<!--DHIS2-SECTION-ID:about_event_program-->
 
 Single event *without* registration programs are called event programs.
 You configure them in the **Maintenance** app. Event programs can have
@@ -184,8 +192,8 @@ three types of data entry forms:
 <table>
 <caption>Types of data entry forms for event programs</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -231,6 +239,8 @@ attributes and program parameters.
 
 ### Workflow: Create an event program
 
+<!--DHIS2-SECTION-ID:workflow_event_program-->
+
 1.  Enter the event program details.
 
 2.  Assign data elements.
@@ -243,6 +253,8 @@ attributes and program parameters.
 
 ### Create or edit an event program
 
+<!--DHIS2-SECTION-ID:create_event_program-->
+
 #### Enter event program details
 
 1.  Open the **Maintenance** app and click **Program** \> **Program**.
@@ -253,8 +265,8 @@ attributes and program parameters.
     
     <table>
     <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
+    <col width="50%" />
+    <col width="50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -344,8 +356,8 @@ attributes and program parameters.
     
     <table>
     <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
+    <col width="50%" />
+    <col width="50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -493,8 +505,8 @@ Change roles and access:
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -523,8 +535,8 @@ Change roles and access:
         
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col width="50%" />
+        <col width="50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -573,16 +585,19 @@ Change roles and access:
 >   - Click **Run now** to send the program notifications immediately.
 > 
 >   - Select a time and click **Start** to schedule the program
->     notifications to be send at a specific time.
+>     notifications to be send at a specific
+time.
 
 ### Reference information: Program notification parameters
+
+<!--DHIS2-SECTION-ID:reference_information_event_program_notification_parameters-->
 
 <table>
 <caption>Program notification parameters to use in program notifications</caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -662,6 +677,8 @@ Change roles and access:
 
 ## Configure tracker programs in the Maintenanceapp
 
+<!--DHIS2-SECTION-ID:configure_tracker_program_in_Maintenance_app-->
+
 > **Note**
 > 
 > From release 2.27, you create event programs (programs without
@@ -671,7 +688,11 @@ Change roles and access:
 
 ## Configure program indicators
 
+<!--DHIS2-SECTION-ID:configure_program_indicator-->
+
 ### About program indicators
+
+<!--DHIS2-SECTION-ID:about_program_indicators-->
 
 Program indicators are expressions based on data elements and attributes
 of tracked entities which can be used to calculate values based on a
@@ -692,8 +713,8 @@ expression and filter. The order of evaluation is:
 <table>
 <caption>Program indicator components</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -794,8 +815,8 @@ objects:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -816,6 +837,8 @@ objects:
 </table>
 
 ### Create or edit a program indicator
+
+<!--DHIS2-SECTION-ID:create_program_indicator-->
 
 > **Note**
 > 
@@ -868,6 +891,8 @@ objects:
 
 ### Create or edit a program indicator group
 
+<!--DHIS2-SECTION-ID:create_program_indicator_group-->
+
 1.  Open the **Maintenance** app and click **Indicator** \> **Program
     indicator group**.
 
@@ -881,6 +906,8 @@ objects:
 5.  Click **Save**.
 
 ### Reference information: Expression and filter examples per value type
+
+<!--DHIS2-SECTION-ID:reference_information_program_indicator-->
 
 The table below shows examples of how to write expressions and filters
 for different data element and attribute value types:
@@ -939,6 +966,8 @@ for different data element and attribute value types:
 
 ### Reference information: Functions, variables and operators to use in program indicator expressions and filters
 
+<!--DHIS2-SECTION-ID:program_indicator_functions_variables_operators-->
+
 An expression that includes both attributes, data elements and constants
 looks like this:
 
@@ -961,9 +990,9 @@ functions. The functions can be applied to data elements and attributes:
 <table>
 <caption>Functions to use in a program indicator expression or filter</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 54%" />
+<col width="15%" />
+<col width="30%" />
+<col width="54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1054,8 +1083,8 @@ variables:
 <table>
 <caption>Variables to use in a program indicator expression or filter</caption>
 <colgroup>
-<col style="width: 21%" />
-<col style="width: 78%" />
+<col width="21%" />
+<col width="78%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1152,8 +1181,8 @@ looks like this:
 <table>
 <caption>Operators to use in a program indicator filter</caption>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 83%" />
+<col width="16%" />
+<col width="83%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1216,7 +1245,11 @@ A filter that uses both attributes and data elements looks like this:
 
 ## Configure program rules
 
+<!--DHIS2-SECTION-ID:configure_program_rule-->
+
 ### About program rules
+
+<!--DHIS2-SECTION-ID:about_program_rules-->
 
 Program rules allows you to create and control dynamic behavior of the
 user interface in the **Tracker Capture** and **Event Capture** apps.
@@ -1229,8 +1262,8 @@ apps.
 <table>
 <caption>Program rule components</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1261,8 +1294,8 @@ objects:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1284,6 +1317,8 @@ objects:
 
 ### Workflow
 
+<!--DHIS2-SECTION-ID:workflow_program_rule-->
+
 1.  In the **Maintenance** app, create program rule variable(s) if
     needed.
 
@@ -1299,6 +1334,8 @@ objects:
     the program rule behaves as expected.
 
 ### Create or edit a program rule variable
+
+<!--DHIS2-SECTION-ID:create_program_rule_variable-->
 
 1.  Open the **Maintenance** app and click **Program** \> **Program rule
     variable**.
@@ -1316,6 +1353,8 @@ objects:
     variable will be populated with the option set's code instead.
 
 ### Create or edit a program rule
+
+<!--DHIS2-SECTION-ID:create_program_rule-->
 
 > **Note**
 > 
@@ -1372,9 +1411,9 @@ objects:
         
         <table>
         <colgroup>
-        <col style="width: 33%" />
-        <col style="width: 33%" />
-        <col style="width: 33%" />
+        <col width="33%" />
+        <col width="33%" />
+        <col width="33%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -1533,6 +1572,8 @@ objects:
 
 ### Example: Program rules
 
+<!--DHIS2-SECTION-ID:program_rule_examples-->
+
 > **Note**
 > 
 > You can view all examples on the demo server:
@@ -1605,6 +1646,8 @@ date".
 
 ### Reference information: Operators and functions to use in program rule expression
 
+<!--DHIS2-SECTION-ID:program_rules_operators_functions-->
+
 > **Tip**
 > 
 > You can nest functions within each other and with subexpressions to
@@ -1641,8 +1684,8 @@ date".
 <table>
 <caption>Possible operatorsto use in a program rule expression</caption>
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 83%" />
+<col width="16%" />
+<col width="83%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1717,9 +1760,9 @@ date".
 <table>
 <caption>Custom functions to use in a program rule expression</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 54%" />
+<col width="15%" />
+<col width="30%" />
+<col width="54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1892,9 +1935,9 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <table>
 <caption>Standard variables to use in program rule expressions</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 54%" />
+<col width="15%" />
+<col width="30%" />
+<col width="54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1980,12 +2023,18 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 
 ## Configure relationship types
 
+<!--DHIS2-SECTION-ID:configure_relationship_type-->
+
 ### About relationship types
+
+<!--DHIS2-SECTION-ID:about_relationship_types-->
 
 A relationship type defines the relationship between tracked entity A
 and tracked entity B, for example mother and child.
 
 ### Create or edit a relationship type
+
+<!--DHIS2-SECTION-ID:create_relationship_type-->
 
 1.  Open the **Maintenance** app and click **Program** \> **Relationship
     type**.
@@ -2008,7 +2057,11 @@ and tracked entity B, for example mother and child.
 
 ## Configure tracked entities
 
+<!--DHIS2-SECTION-ID:configure_tracked_entity-->
+
 ### About tracked entities
+
+<!--DHIS2-SECTION-ID:about_tracked_entity-->
 
 A tracked entity is a types of entities which can be tracked through the
 system. It can be anything from persons to commodities, for example a
@@ -2023,6 +2076,8 @@ tracked entity. Tracked entity attributes can be shared between
 programs.
 
 ### Create or edit a tracked entity attribute
+
+<!--DHIS2-SECTION-ID:create_tracked_entity_attribute-->
 
 1.  Open the **Maintenance** app and click **Program** \> **Tracked
     entity attribute**.
@@ -2045,8 +2100,8 @@ programs.
     <table>
     <caption>Value types</caption>
     <colgroup>
-    <col style="width: 53%" />
-    <col style="width: 46%" />
+    <col width="53%" />
+    <col width="46%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -2161,8 +2216,8 @@ programs.
     <table>
     <caption>Aggregation operators</caption>
     <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
+    <col width="50%" />
+    <col width="50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -2248,6 +2303,8 @@ programs.
 
 ### Create or edit a tracked entity type
 
+<!--DHIS2-SECTION-ID:create_tracked_entity-->
+
 1.  Open the **Maintenance** app and click **Program** \> **Tracked
     entity type**.
 
@@ -2281,6 +2338,8 @@ programs.
 10. Click **Save**.
 
 ## Configure search
+
+<!--DHIS2-SECTION-ID:configure_search-->
 
 Users can be given search organisation units, which makes it possible to
 search for tracked entity instances outside their data capture
@@ -2393,6 +2452,8 @@ give it access to search in all children of that organisation unit.
 5.  Click **Save**
 
 ## Clone metadata objects
+
+<!--DHIS2-SECTION-ID:clone_metadata-->
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
