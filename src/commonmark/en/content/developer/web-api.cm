@@ -2900,7 +2900,7 @@ likely being uploaded to a cloud-based store somewhere) as seen by the
 
 Even though the content has not been fully stored yet the file resource
 can now be used, for example as referenced content in a data value (see
-[section\_title](#datavalue_file)). If we need to check the updated
+[Working with file data values](#datavalue_file)). If we need to check the updated
 *storageStatus* or otherwise retrieve the meta-data of the file, the
 *fileResources* endpoint can be
     queried.
@@ -3632,7 +3632,7 @@ magnitude faster.
 Data value import supports a set of value types. For each value type
 there is a special requirement. The following table lists the edge cases
 for value types. For information about all other cases, see
-[section\_title](#webapi_csv_data_elements).
+[Data elements](#webapi_csv_data_elements).
 
 <table>
 <caption>Value type requirements</caption>
@@ -4869,7 +4869,7 @@ References to files can be stored with the document resource.
 </tr>
 <tr class="odd">
 <td>url</td>
-<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">section_title</a>)</td>
+<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">File resources</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -16625,7 +16625,7 @@ as
 Anonymous events API has only 1 enpoint and it is the same endpoint as
 is used in Tracker API for CRUD operations over Events: */api/29/events*
 
-For detailed documentation, see [section\_title](#webapi_events)
+For detailed documentation, see [Events](#webapi_events)
 
 ## Email
 
@@ -16634,7 +16634,7 @@ For detailed documentation, see [section\_title](#webapi_events)
 The Web API features a resource for sending emails. For emails to be
 sent it is required that the SMTP configuration has been properly set up
 and that a system notification email address for the DHIS2 instance has
-been defined. You can set SMTP settings from the email settings screen
+been defined. You can set SMTP settings from the email settings screenF
 and system notification email address from the general settings screen
 in DHIS 2.
 

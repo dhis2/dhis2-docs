@@ -36,7 +36,7 @@ discussed in separate sections in detail:
     an active GPRS/3G connection is required. It does not require a new
     application installation on the phone to support new features, but
     does require a stable data connection for use. This solution is
-    described in [section\_title](#mobile_web_based)
+    described in [Mobile browser based data entry](#mobile_web_based)
 
   - DHIS2 Smartphone client: A mobile browser optimized data entry
     module for Smartphone devices
