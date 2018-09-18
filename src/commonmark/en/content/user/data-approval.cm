@@ -33,7 +33,7 @@ that period and workflow.
 
 
 ![Approving at organisation
-units](resources/images/data_approval/approval_hierarchy.png "fig:")
+units](resources/images/data_approval/approval_hierarchy.png)
 
 ## Approving and accepting
 
@@ -45,8 +45,7 @@ process where data is first approved and then accepted at each level.
 This is illustrated in the following diagram:
 
 ![Approving and
-accepting](resources/images/data_approval/approval_level_steps.png
-"fig:")
+accepting](resources/images/data_approval/approval_level_steps.png)
 
 In the one-step process, data is approved at one level, and then
 approved at the next higher level. Until it is approved at the next
@@ -178,7 +177,7 @@ implies that she can see all data entered at or below her organisation
 unit level.
 
 ![Hiding of unapproved
-data](resources/images/data_approval/approval_data_hiding.png "fig:")
+data](resources/images/data_approval/approval_data_hiding.png)
 
 Using this example, lets consider some scenarios:
 
@@ -296,8 +295,7 @@ facilities. So for example, data can be entered and/or aggregated at the
 following levels for each partner, independently of each other:
 
 ![Example category option
-groups](resources/images/data_approval/approval_partner_example.png
-"fig:")
+groups](resources/images/data_approval/approval_partner_example.png)
 
 > **Tip**
 > 

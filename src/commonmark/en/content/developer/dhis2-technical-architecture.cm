@@ -95,8 +95,7 @@ dimension, i.e. an organisational unit in a hierarchy).
 
 
 ![Data
-values](resources/images/dhis2_technical_architecture/data_value_diagram.jpg
-"fig:")
+values](resources/images/dhis2_technical_architecture/data_value_diagram.jpg)
 
 A central concept for data capture is the DataSet. The DataSet is a
 collection of DataElements for which there is entered data presented as
@@ -118,8 +117,7 @@ selection of the most important objects can be view in the diagram
 below.
 
 ![Core
-Diagram](resources/images/dhis2_technical_architecture/core_diagram.jpg
-"fig:")
+Diagram](resources/images/dhis2_technical_architecture/core_diagram.jpg)
 
 ## The Persistence Layer
 
