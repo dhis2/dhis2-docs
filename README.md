@@ -44,12 +44,12 @@ The documents are structured as follows:
 	        ├── dhis2_implementation_guide.index
 	        ├── dhis2_user_manual_en.index
 	        ├── user_stories_book.index
-                ├── resources
-                │   ├── css
-                │   │   ├── dhis2.css
-                │   │   └── dhis2_pdf.css
-                │   └── images
-                │       └── dhis2-logo-rgb-negative.png
+                ├── resources
+                │   ├── css
+                │   │   ├── dhis2.css
+                │   │   └── dhis2_pdf.css
+                │   └── images
+                │       └── dhis2-logo-rgb-negative.png
 	        └── content
 	            ├── android
 	            │   └── resources
@@ -94,11 +94,35 @@ The `!INCLUDE` directives point to the "chapters" that are used to make up the m
 
 It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but currently the documents are split up at chapter level only.
 
-### Adding Images
+### Adding images
 
 Image resources should be included inside a folder structure beginning with `resources/images/` relative to the document. e.g. for the chapter `content/android/android-event-capture-app.cm`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._  
 
 
+### Section references
+
+In order to provide fixed references within the document, we can set a fixed text string to be applied to any section. For our markdown docs this is done by adding a comment after the section heading in the form:
+```
+<!-- DHIS2-SECTION-ID:name_of_section -->
+```
+
+where ```name_of_section``` is replace with the id you wish to use. 
+
+For example:
+```
+
+## Validation
+
+<!--DHIS2-SECTION-ID:webapi_validation-->
+
+To generate a data validation summary you can interact ...
+```
+
+Will set the section id of the level 2 heading **Validation** to "webapi_validation", which may then be referenced as "#webapi_validation" within the html file.
+
+After the full html file is generated, it is post-processed and the first ```DHIS2-SECTION-ID``` after the start of the section is used as the section id.
+
+Please follow the convention of lowercase letters and underscores, in order to create id's that are also valid as filenames when the html files are split.
 
 ## Building documents
 
@@ -133,26 +157,26 @@ The generated files are placed in a `target` directory:
 │           .
 │           .
 ├── target
-│   └── commonmark
-│       └── en
-│           ├── android
-│           │   ├── dhis2_android_user_man.pdf
-│           │   └── html
-│           ├── developer
-│           │   ├── dhis2_developer_manual.pdf
-│           │   └── html
-│           ├── end-user
-│           │   ├── dhis2_end_user_manual.pdf
-│           │   └── html
-│           ├── implementer
-│           │   ├── dhis2_implementation_guide.pdf
-│           │   └── html
-│           ├── user
-│           │   ├── dhis2_user_manual_en.pdf
-│           │   └── html
-│           └── user-stories
-│               ├── html
-│               └── user_stories_book.pdf
+│   └── commonmark
+│       └── en
+│           ├── android
+│           │   ├── dhis2_android_user_man.pdf
+│           │   └── html
+│           ├── developer
+│           │   ├── dhis2_developer_manual.pdf
+│           │   └── html
+│           ├── end-user
+│           │   ├── dhis2_end_user_manual.pdf
+│           │   └── html
+│           ├── implementer
+│           │   ├── dhis2_implementation_guide.pdf
+│           │   └── html
+│           ├── user
+│           │   ├── dhis2_user_manual_en.pdf
+│           │   └── html
+│           └── user-stories
+│               ├── html
+│               └── user_stories_book.pdf
 └── tools
     ├── pandoc
     ├── pandoc-citeproc
