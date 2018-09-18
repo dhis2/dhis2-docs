@@ -122,11 +122,11 @@ displayed, but take up the defined space.
 
 ![](resources/images/dashboard/dashboard-spacer-edit-mode.png)
 
-**Spaceer in view mode:**
+**Spacer in view mode:**
 
 ![](resources/images/dashboard/dashboard-spacer-view-mode.png)
 
-\</section\>
+
 
 ## Removing items
 
@@ -143,7 +143,7 @@ the page. If you don't want to save your changes, click the **EXIT
 WITHOUT SAVING** button to the upper right. You will then be returned to
 view mode with the dashboard you were previously viewing.
 
-\</section\>
+
 
 ## Editing an existing dashboard
 
@@ -180,7 +180,6 @@ If you have access to delete the dashboard, then there will be a
 confirmation dialog will first be displayed to confirm that you want to
 delete the dashboard.
 
-\</section\>
 
 ## Viewing a dashboard
 
@@ -296,5 +295,4 @@ is:
 
 https://play.dhis2.org/demo/dhis-web-dashboard/\#/nghVC4wtyzi
 
-\</section\>
 

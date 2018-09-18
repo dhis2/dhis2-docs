@@ -71,7 +71,7 @@ track of which lower-level data has already been reviewed.
 Two-step process can be activated by checking **Acceptance required
 before approval** in SystemSettings app under General section.
 
-\</section\>
+
 
 ## Authorities for approving data
 
@@ -191,7 +191,7 @@ Using this example, lets consider some scenarios:
     to User A, as data is now approved at the level immediately below
     herself.
 
-\</section\>
+
 
 ## Approving data
 
@@ -339,7 +339,7 @@ or all of the following approval levels:
 </tbody>
 </table>
 
-\</section\>
+
 
 ## Approving by multiple category option group sets
 
@@ -443,5 +443,5 @@ or *Move down*. If you have an approval level with no category option
 groups set, it must be the highest approval level for that organisation
 unit level.
 
-\</section\>
+
 

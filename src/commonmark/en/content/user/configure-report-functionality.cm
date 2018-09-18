@@ -1419,7 +1419,7 @@ The report is now available as a "Standard Report" in DHIS2:
     launchpad, see
     http://bazaar.launchpad.net/~DHIS2-devs-core/DHIS2/trunk/files/head:/resources/
 
-\</section\>
+
 
 ## Designing SQL based standard reports
 
@@ -1581,5 +1581,5 @@ You can use the full capability of the Web API from JavaScript in your
 report - it may be useful to read through the Web API chapter to get an
 overview of all available resources.
 
-\</section\>
+
 
