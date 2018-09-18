@@ -2,6 +2,8 @@
 
 ## 
 
+<!--DHIS2-SECTION-ID:localization-intro-->
+
 Localization involves the adaptation of an application to a specific
 location. When implementing DHIS2 in a given country, adequate resources
 should be allocated to translate the application when required.
@@ -93,6 +95,8 @@ which will be discussed below.
 
 ## DHIS2 i18n tool
 
+<!--DHIS2-SECTION-ID:dhis2-i18n-translations-tool-->
+
 The i18n resource editor is Java desktop application which can be
 downloaded from http://www.dhis2.org/downloads . It requires that you
 have checked out the DHIS2 source code from Github (check out
@@ -138,6 +142,8 @@ navigate inside the extracted directory and invoke the following:
 
 ## Using the DHIS2 translation server
 
+<!--DHIS2-SECTION-ID:translation-server-->
+
 A web-based portal solution has been setup in order to facilitate the
 translation of DHIS 2 into multiple languages. Simply direct your
 browser to <https://translate.dhis2.net/> and register for an account by
@@ -170,6 +176,8 @@ will be incorporated into the source code on a regular basis by the
 development team.
 
 ## Database translation app
+
+<!--DHIS2-SECTION-ID:translations-app-->
 
 In addition to translation of the user interface, DHIS2 also supports
 the localization of the metadata content in the database. It is possible

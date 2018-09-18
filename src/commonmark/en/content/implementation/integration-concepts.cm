@@ -1,5 +1,7 @@
 # Integration concepts
 
+<!--DHIS2-SECTION-ID:integration-->
+
 DHIS2 is an open platform and its implementers are active contributors
 to interoperability initiatives, such as openHIE. The DHIS2 application
 database is designed with flexibility in mind. Data structures such as
@@ -13,6 +15,8 @@ domains such as [logistics, laboratory management and
 finance](#Integration_and_interoperability).
 
 ## Integration and interoperability
+
+<!--DHIS2-SECTION-ID:Integration_and_interoperability-->
 
 Based on its platform approach, DHIS2 is able to receive and host data
 from different data sources and share it to other systems and reporting
@@ -60,6 +64,8 @@ fragmentation and enhance data analysis through an integrated data
 repository.
 
 ## Objectives of integration
+
+<!--DHIS2-SECTION-ID:Objectives_of_integration-->
 
 In most countries we find many different, **isolated** health
 information systems, causing many information management challenges.
@@ -162,6 +168,8 @@ guideline*](https://www.dhis2.org/downloads).
 
 ## Health information exchange
 
+<!--DHIS2-SECTION-ID:Health_information-->
+
 The **[openhealth information exchange (openHIE)](https://ohie.org/)**
 is an interoperable interpretation of this architecture, with an HMIS or
 DHIS2 often assuming a significant role in it.The openHIE framework has
@@ -190,6 +198,8 @@ on a 1:1 connection versus approaches based on an n:n connection
 
 ### *1:1* integration
 
+<!--DHIS2-SECTION-ID:integrationSection-->
+
 In many countries a national HMIS is often the first system to be rolled
 out to a large number of facilities and to manage a large number of data
 on a monthly or quarterly basis. When countries start to develop their
@@ -209,6 +219,8 @@ task. These two scripts would then run independently from another,
 resulting in two separate 1:1 connections.
 
 ### *n:n* integration
+
+<!--DHIS2-SECTION-ID:nn-->
 
 A different approach is based on placing a purpose-built software to
 serve as an **interoperability layer** or BUS approach, managing the
@@ -386,9 +398,9 @@ are broadening with almost each release.
 
 <table>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 40%" />
-<col style="width: 40%" />
+<col width="20%" />
+<col width="40%" />
+<col width="40%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -816,6 +828,8 @@ and owning every step of this process.
 
 ### Step 6: Ongoing Support
 
+<!--DHIS2-SECTION-ID:title_nxr_lxp_41b-->
+
 While during the implementation phase a temporary support structure
 should be available, afterwards a permanent support structure needs to
 be set-up. The main challenge is to have clear responsibilities. In an
@@ -871,6 +885,8 @@ seems useful. In the following sections, special systems will be
 described.
 
 ### Logistics Management
+
+<!--DHIS2-SECTION-ID:lm-->
 
 **a) Introduction**
 

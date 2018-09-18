@@ -1,6 +1,10 @@
 # Using the Maps app
 
+<!--DHIS2-SECTION-ID:using_maps-->
+
 ## About the Maps app
+
+<!--DHIS2-SECTION-ID:about_maps-->
 
 The Maps App is introduced in release 2.29 and serves as a replacement
 of the GIS App offering a more intuitive and user-friendly interface.
@@ -135,6 +139,8 @@ Along the bottom of the basemap card is:
 
 ## Create a new map
 
+<!--DHIS2-SECTION-ID:using_maps_create_map-->
+
 1.  In the **Apps** menu, click **Maps**. The **DHIS2 Maps** window
     opens.
 
@@ -176,6 +182,8 @@ Along the bottom of the basemap card is:
 
 ## Manage event layers
 
+<!--DHIS2-SECTION-ID:using_maps_event_layer-->
+
 The event layer displays the geographical location of events registered
 in the DHIS2 tracker. Provided that events have associated GPS
 coordinates, you can use this layer to drill down from the aggregated
@@ -215,6 +223,8 @@ Along the bottom of the event card from left to right are:
     thematic map.
 
 ### Create an event layer
+
+<!--DHIS2-SECTION-ID:maps_create_event_layer-->
 
 To create an event layer, choose **Events** on the **Add
 layer**selection. This opens the Events layer configuration dialog.
@@ -348,6 +358,8 @@ To clear all event layer data in a map:
 
 ## Manage tracked entity layers
 
+<!--DHIS2-SECTION-ID:using_maps_tracked_entity_layer-->
+
 The tracked entity layer displays the geographical location of tracked
 entities registered in the DHIS2. Provided that tracked entities have
 associated point or polygon coordinates, you can explore these on a map.
@@ -380,6 +392,8 @@ Along the bottom of the tracked entity card from left to right are:
   - A delete (trash can) icon to remove the layer from the current map.
 
 ### Create a tracked entity layer
+
+<!--DHIS2-SECTION-ID:maps_create_tracked_enity_layer-->
 
 To create an tracked entity layer, choose **Tracked entities** on the
 **Add layer** selection. This opens the Tracked entity layer
@@ -462,6 +476,8 @@ To clear a tracked entity layer from a map:
     The layer is removed from the current map.
 
 ## Manage facility layers
+
+<!--DHIS2-SECTION-ID:using_maps_facility_layer-->
 
 The facility layer displays icons that represent types of facilities.
 Polygons do not show up on the map, so make sure that you select an
@@ -629,8 +645,8 @@ follows:
 <table>
 <caption>View organisation unit information</caption>
 <colgroup>
-<col style="width: 40%" />
-<col style="width: 59%" />
+<col width="40%" />
+<col width="59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -641,13 +657,13 @@ follows:
 <tbody>
 <tr class="odd">
 <td><p>View information for the current period</p></td>
-<td><ol type="1">
+<td><ol style="list-style-type: decimal">
 <li><p>Click a facility.</p></li>
 </ol></td>
 </tr>
 <tr class="even">
 <td><p>View information for a selected period</p></td>
-<td><ol type="1">
+<td><ol style="list-style-type: decimal">
 <li><p>Right-click a facility and click <strong>Show information</strong>.</p></li>
 <li><p>In the <strong>Infrastructural data</strong> section, select a period.</p></li>
 </ol>
@@ -660,6 +676,8 @@ follows:
 </table>
 
 ## Manage thematic layers
+
+<!--DHIS2-SECTION-ID:using_maps_thematic_layer-->
 
 *Thematic maps* represent spatial variation of geographic distributions.
 Select your desired combination of indicator/data element, period and
@@ -1015,6 +1033,8 @@ To clear all data in a boundary layer:
 
 ## Manage Earth Engine layer
 
+<!--DHIS2-SECTION-ID:using_maps_gee-->
+
 
 ![](resources/images/maps/maps_earth_eng_layer.png)
 
@@ -1058,6 +1078,8 @@ layer**selection. This opens the layer configuration dialog.
 2.  Click **ADD LAYER**.
 
 ## Add external map layers
+
+<!--DHIS2-SECTION-ID:using_maps_external_map_layers-->
 
 External map layers are represented as either:
 
@@ -1104,6 +1126,8 @@ Here are some examples of external layers:
 > [???](#manage_external_maplayer).
 
 ## File menu
+
+<!--DHIS2-SECTION-ID:using_maps_file_menu-->
 
 Use the **File menu** to manage your maps. Several menu items will be
 disabled until you open or save a map.
@@ -1246,6 +1270,8 @@ You can also delete maps without opening them:
 
 ## Map interpretations
 
+<!--DHIS2-SECTION-ID:mapsInterpretation-->
+
 An interpretation is a description of a map at a given period. This
 information is visible in the **Dashboard app**. Click
 **Interpretations** in the top right of the workspace to open the
@@ -1315,11 +1341,15 @@ write is visible to those people.
 
 ## Save a map as an image
 
+<!--DHIS2-SECTION-ID:using_maps_image_export-->
+
 1.  Take a screenshot of the map with the tool of your choice.
 
 2.  Save the screenshot in desired format.
 
 ## Search for a location
+
+<!--DHIS2-SECTION-ID:using_maps_search-->
 
 The place search function allows you to search for almost any location
 or address. This function is useful in order to locate for example
@@ -1339,6 +1369,8 @@ sites, facilities, villages or towns on the map.
 
 ## Measure distances and areas in a map
 
+<!--DHIS2-SECTION-ID:using_maps_measure_distance-->
+
 1.  In the upper left part of the map, put the cursor on the **Measure
     distances and areas** (ruler) icon and click **Create new
     measurement**.
@@ -1351,6 +1383,8 @@ sites, facilities, villages or towns on the map.
 ![](resources/images/maps/maps_measure_distance.png)
 
 ## Get the latitude and longitude at any location
+
+<!--DHIS2-SECTION-ID:using_maps_latitude_longitude-->
 
 Right-click a point on the map and select **Show longitude/latitude**.
 The values display in a pop-up window.

@@ -2,6 +2,8 @@
 
 ## About user management
 
+<!--DHIS2-SECTION-ID:about_user_userrole-->
+
 Multiple users can access DHIS2 simultaneously and each user can have
 different authorities. You can fine-tune these authorities so that
 certain users can only enter data, while others can only generate
@@ -24,9 +26,9 @@ reports.
 <table>
 <caption>User management terms and definitions</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 40%" />
-<col style="width: 40%" />
+<col width="20%" />
+<col width="40%" />
+<col width="40%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -72,8 +74,8 @@ You manager users, user roles and user groups in the **Users** app.
 <table>
 <caption>Objects in the Users app</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col width="20%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -191,6 +193,8 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
 ## Workflow
 
+<!--DHIS2-SECTION-ID:user_mgt_workflow-->
+
 1.  Define the positions you need for your project and identify which
     tasks the different positions will perform.
 
@@ -214,6 +218,8 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
 ## Example: user managementin a health system
 
+<!--DHIS2-SECTION-ID:user_mgt_example-->
+
 In a health system, users are logically grouped with respect to the task
 they perform and the position they occupy.
 
@@ -227,10 +233,10 @@ Examples of common positions are:
 
 <table>
 <colgroup>
-<col style="width: 27%" />
-<col style="width: 21%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col width="27%" />
+<col width="21%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">

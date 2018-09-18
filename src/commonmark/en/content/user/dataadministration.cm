@@ -1,5 +1,7 @@
 # DataAdministration
 
+<!--DHIS2-SECTION-ID:data_admin-->
+
 The data administration module provides a range of functions to ensure
 that the data stored in the DHIS2 database is integral and that the
 database performance is optimised. These functions should be executed on
@@ -7,6 +9,8 @@ a regular basis by a data administrator to ensure that the quality of
 the data stored is optimal.
 
 ## Data integrity
+
+<!--DHIS2-SECTION-ID:dataAdmin_dataIntegrity-->
 
 DHIS2 can perform a wide range of data integrity checks on the data
 contained in the database. Identifying and correcting data integrity
@@ -195,11 +199,13 @@ offending rule. Click **Right side** and make the required corrections.
 
 ## Maintenance
 
+<!--DHIS2-SECTION-ID:data_admin_maintenance-->
+
 <table>
 <caption>Data maintenance functions in the Data Administration app</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -261,6 +267,8 @@ offending rule. Click **Right side** and make the required corrections.
 </table>
 
 ## Resource tables
+
+<!--DHIS2-SECTION-ID:dataAdmin_resourceTables-->
 
 Resource tables are supporting tables that are used during analysis of
 data. One would typically join the contents of these tables with the
@@ -338,6 +346,8 @@ system.
 
 ## Duplicate data elimination
 
+<!--DHIS2-SECTION-ID:dataAdmin_duplicateDataElimination-->
+
 This function is useful when data has been entered mistakenly for two
 data elements which represents the same phenomena.
 
@@ -355,6 +365,8 @@ registered.
 
 ## Data statistics
 
+<!--DHIS2-SECTION-ID:dataAdmin_dataStatistics-->
+
 The data statistics module provides an overview of the number of objects
 stored in the DHIS2 database.
 
@@ -365,6 +377,8 @@ The total number of each type of object is presented in a series of
 tables with summary statistics of each object.
 
 ## Lock exceptions
+
+<!--DHIS2-SECTION-ID:dataAdmin_lockException-->
 
 Lock exceptions provide fine-grained control over exemption from a
 locked data set. After the expiry of the data set, data entry will be
@@ -383,6 +397,8 @@ and Support" dataset for "February 2012".
 
 ## Min-Max Value Generation
 
+<!--DHIS2-SECTION-ID:dataAdmin_minMaxValueGeneration-->
+
 This administrative function can be used to generate min-max values,
 which are used as part of the data quality and validation process for
 specific organization units and data sets. Simply select the dataset
@@ -396,6 +412,8 @@ values which are currently stored in the database.
 
 ## Cache Statistics
 
+<!--DHIS2-SECTION-ID:dataAdmin_cacheStatistics-->
+
 This option is for system administrators only to use. The cache
 statistics shows the status of the application level cache. The
 application level cache refers to the objects and query results that the
@@ -404,6 +422,8 @@ has been modified directly the application cache needs to be cleared for
 it to take effect.
 
 ## Scheduling
+
+<!--DHIS2-SECTION-ID:dataAdmin_scheduling-->
 
 The Scheduler is an application for managing background jobs in DHIS2.
 Background jobs can do a number of tasks, such as running analytics,
@@ -424,6 +444,8 @@ selected preferences. To run a job on demand, press the green triangle
 labeled "Run now". This action is only available for enabled jobs.
 
 ### Creating a job
+
+<!--DHIS2-SECTION-ID:dataAdmin_scheduling_config-->
 
 1.  Open the **Scheduler** app and click the add button in the bottom
     right corner.
@@ -463,6 +485,8 @@ Jobs are enabled by default.
 
 ### Configuring a job
 
+<!--DHIS2-SECTION-ID:dataAdmin_scheduler_config-->
+
 With the proper permissions, you can modify the details of user-created
 jobs. Note that for system jobs, only the schedule (cron expression) can
 be changed.
@@ -484,6 +508,8 @@ Further configuring a job:
 
 ### Deleting a job
 
+<!--DHIS2-SECTION-ID:dataAdmin_scheduler_delete-->
+
 1.  Select the job you want to delete.
 
 2.  Press the **Delete** button in the bottom right corner.
@@ -493,6 +519,8 @@ Further configuring a job:
 ![](resources/images/scheduler/delete_job.png)
 
 ## Data synchronization
+
+<!--DHIS2-SECTION-ID:dataAdmin_dataSync-->
 
 DHIS2 provides synchronisation of data between remotely distributed
 instances and a central instance of DHIS2. This can be useful e.g. when
@@ -582,6 +610,8 @@ Some aspects of the data synchronization feature to be aware of:
     that will be used for synchronization job.
 
 ## Metadata Synchronization Scheduling
+
+<!--DHIS2-SECTION-ID:dataAdmin_metaDataSync-->
 
 DHIS2 provides a feature for synchronizing meta data from a remote
 instance to a local instance of DHIS2. This can be useful when you have

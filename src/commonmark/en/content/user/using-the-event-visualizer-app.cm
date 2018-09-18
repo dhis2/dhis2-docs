@@ -1,5 +1,7 @@
 # Using the Event Visualizer app
 
+<!--DHIS2-SECTION-ID:event_visualizer_app-->
+
 ## About the Event Visualizer app
 
 
@@ -30,8 +32,8 @@ different characteristics. To select a chart type:
     <table>
     <caption>Chart types</caption>
     <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 66%" />
+    <col width="33%" />
+    <col width="66%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -83,6 +85,8 @@ different characteristics. To select a chart type:
 2.  Click **Update**.
 
 ## Select dimension items
+
+<!--DHIS2-SECTION-ID:event_visualizer_select_dimensions-->
 
 An event chart is always based on a program and you can do analysis
 based on a range of dimensions. For programs with category combinations,
@@ -157,8 +161,8 @@ menu.
         <table>
         <caption>Selection modes</caption>
         <colgroup>
-        <col style="width: 38%" />
-        <col style="width: 61%" />
+        <col width="38%" />
+        <col width="61%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -213,6 +217,8 @@ only have one dimension at the time.
 
 ## Change the display of your chart
 
+<!--DHIS2-SECTION-ID:event_visualizer_change_display-->
+
 You can customize the display of an event report.
 
 1.  Click **Options**.
@@ -222,9 +228,9 @@ You can customize the display of an event report.
     <table>
     <caption>Chart options</caption>
     <colgroup>
-    <col style="width: 28%" />
-    <col style="width: 28%" />
-    <col style="width: 42%" />
+    <col width="28%" />
+    <col width="28%" />
+    <col width="42%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -391,8 +397,8 @@ To download plain data source formats:
     <table>
     <caption>Available formats</caption>
     <colgroup>
-    <col style="width: 27%" />
-    <col style="width: 72%" />
+    <col width="27%" />
+    <col width="72%" />
     </colgroup>
     <thead>
     <tr class="header">

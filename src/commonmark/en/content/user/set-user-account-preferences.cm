@@ -1,5 +1,7 @@
 # Set user account preferences
 
+<!--DHIS2-SECTION-ID:user_account_preferences-->
+
 In **User settings**, you can change the display language of DHIS2 and
 the language of the database. The database language is the translated
 content of the metadata, such as data elements and indicators. You can

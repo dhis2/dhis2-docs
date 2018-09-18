@@ -1,3 +1,5 @@
+<!--DHIS2-SECTION-ID:index-->
+
 !INCLUDE "content/common/about-this-guide.cm"
 !INCLUDE "content/user/about-demo-server-live-package-and-database-design.cm"
 !INCLUDE "content/user/using-the-data-entry-app.cm"

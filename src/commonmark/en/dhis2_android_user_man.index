@@ -1,3 +1,5 @@
+<!--DHIS2-SECTION-ID:index-->
+
 !INCLUDE "content/common/about-this-guide.cm"
 !INCLUDE "content/android/configure-dhis2-programs-to-work-on-android-apps.cm"
 !INCLUDE "content/android/android-event-capture-app.cm"

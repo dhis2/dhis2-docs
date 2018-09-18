@@ -1,12 +1,16 @@
 # System settings
 
+<!--DHIS2-SECTION-ID:settings-->
+
 ## General settings
+
+<!--DHIS2-SECTION-ID:system_general_settings-->
 
 <table>
 <caption>General settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -81,11 +85,13 @@
 
 ## Analytics settings
 
+<!--DHIS2-SECTION-ID:system_analytics_settings-->
+
 <table>
 <caption>Analytics settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -140,11 +146,13 @@
 
 ## Server settings
 
+<!--DHIS2-SECTION-ID:system_server_settings-->
+
 <table>
 <caption>Server settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -183,11 +191,13 @@
 
 ## Appearancesettings
 
+<!--DHIS2-SECTION-ID:system_appearance_settings-->
+
 <table>
 <caption>Appearance settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -212,11 +222,13 @@
 
 ## Email settings
 
+<!--DHIS2-SECTION-ID:system_email_settings-->
+
 <table>
 <caption>Email settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -260,10 +272,12 @@
 
 ## Messaging settings
 
+<!--DHIS2-SECTION-ID:system_messaging_settings-->
+
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -285,11 +299,13 @@
 
 ## Access settings
 
+<!--DHIS2-SECTION-ID:system_access_settings-->
+
 <table>
 <caption>Access settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -378,11 +394,13 @@ You can allow users to assign an organisation unit to data sets and organisation
 
 ## Calendar settings
 
+<!--DHIS2-SECTION-ID:system_calendar_settings-->
+
 <table>
 <caption>Calendar settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -409,6 +427,8 @@ You can allow users to assign an organisation unit to data sets and organisation
 
 ## Data import settings
 
+<!--DHIS2-SECTION-ID:system_data_import_settings-->
+
 The data import settings apply to extra controls which can be enabled to
 validate aggregate data which is imported through the web API. They
 provide optional constraints on what should be considered a conflict
@@ -418,8 +438,8 @@ in the import.
 <table>
 <caption>Data import settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -471,8 +491,8 @@ synchronization.
 <table>
 <caption>Synchronization settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -507,6 +527,8 @@ synchronization.
 
 ## OAuth2 clients
 
+<!--DHIS2-SECTION-ID:system_oauth2_settings-->
+
 You create, edit and delete OAuth2 clients in the **System Settings**
 app.
 
@@ -520,8 +542,8 @@ app.
     
     <table>
     <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
+    <col width="50%" />
+    <col width="50%" />
     </colgroup>
     <thead>
     <tr class="header">

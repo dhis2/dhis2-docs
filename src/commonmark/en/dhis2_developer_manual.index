@@ -1,3 +1,5 @@
+<!--DHIS2-SECTION-ID:index-->
+
 !INCLUDE "content/developer/web-api.cm"
 !INCLUDE "content/developer/apps.cm"
 !INCLUDE "content/developer/development-infrastructure.cm"

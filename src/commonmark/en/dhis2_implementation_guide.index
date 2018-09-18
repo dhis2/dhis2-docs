@@ -1,3 +1,5 @@
+<!--DHIS2-SECTION-ID:index_implementation-->
+
 !INCLUDE "content/common/about-this-guide.cm"
 !INCLUDE "content/implementation/a-quick-guide-to-dhis2-implementation.cm"
 !INCLUDE "content/implementation/conceptual-design-principles.cm"

@@ -1,6 +1,10 @@
 # DHIS2 Technical Architecture
 
+<!--DHIS2-SECTION-ID:technical_architecture-->
+
 ## Overview
+
+<!--DHIS2-SECTION-ID:techarch_overview-->
 
 This document outlines the technical architecture for the District
 Health Information Software 2 (DHIS2). The DHIS2 is a routine data based
@@ -17,6 +21,8 @@ well as stand-alone.
 Fig. Overall architecture
 
 ## Technical Requirements
+
+<!--DHIS2-SECTION-ID:techarch_requirements-->
 
 The DHIS2 is intended to be installed and run on a variety of platforms.
 Hence the system is designed for industry standards regarding database
@@ -39,6 +45,8 @@ technical requirements are:
 
 ## Project Structure
 
+<!--DHIS2-SECTION-ID:techarch_structure-->
+
 DHIS2 is made up of 42 Maven projects, out of which 18 are web modules.
 The root POM is located in `/dhis-2` and contains project aggregation
 for all projects excluding the `/dhis-2/dhis-web` folder. The
@@ -52,6 +60,8 @@ modules are described later on.
 Fig. Project structure
 
 ## Project Dependencies
+
+<!--DHIS2-SECTION-ID:techarch_dependencies-->
 
 Dependencies between the projects are structured in five layers. The
 support modules provide support functionality for the core and service
@@ -74,6 +84,8 @@ layers.
 
 ## The Data Model
 
+<!--DHIS2-SECTION-ID:techarch_data_model-->
+
 The data model is flexible in all dimensions in order to allow for
 capture of any item of data. The model is based on the notion of a
 DataValue. A DataValue can be captured for any DataElement (which
@@ -83,7 +95,8 @@ dimension, i.e. an organisational unit in a hierarchy).
 
 
 ![Data
-values](resources/images/dhis2_technical_architecture/data_value_diagram.jpg)
+values](resources/images/dhis2_technical_architecture/data_value_diagram.jpg
+"fig:")
 
 A central concept for data capture is the DataSet. The DataSet is a
 collection of DataElements for which there is entered data presented as
@@ -105,9 +118,12 @@ selection of the most important objects can be view in the diagram
 below.
 
 ![Core
-Diagram](resources/images/dhis2_technical_architecture/core_diagram.jpg)
+Diagram](resources/images/dhis2_technical_architecture/core_diagram.jpg
+"fig:")
 
 ## The Persistence Layer
+
+<!--DHIS2-SECTION-ID:techarch_persistence_layer-->
 
 The persistence layer is based on Hibernate in order to achieve the
 ability to run on any major DBMS. Hibernate abstracts the underlying
@@ -134,6 +150,8 @@ Fig. Persistence layer
 
 ## The Business Layer
 
+<!--DHIS2-SECTION-ID:techarch_business_layer-->
+
 All major classes, like those responsible for persistence, business
 logic, and presentation, are mapped as Spring managed beans. “Bean” is
 Spring terminology and simply refers to a class that is instantiated,
@@ -150,6 +168,8 @@ dhis-service-jdbc, and dhis-service-reporting projects are more complex
 and will be elaborated in the following sections.
 
 ### The JDBC Service Project
+
+<!--DHIS2-SECTION-ID:techarch_jdbc_service_project-->
 
 The JDBC service project contains a set of components dealing with JDBC
 connections and SQL
@@ -196,6 +216,8 @@ in the persistence layer for classes working directly with JDBC, like
 the DataMartStore.
 
 ### The Reporting Project
+
+<!--DHIS2-SECTION-ID:techarch_reporting_project-->
 
 The reporting project contains components related to reporting, which
 will be described in the following sections.
@@ -361,6 +383,8 @@ and populating PivotTable objects.
 
 ### The External Project
 
+<!--DHIS2-SECTION-ID:techarch_external_project-->
+
 The *ConfigurationManager* is a component which facilitates the use of
 configuration files for different purposes in DHIS2. It provides methods
 for writing and reading configuration objects to and from XML. The
@@ -368,6 +392,8 @@ XStream library is used to implement this functionality. This component
 is typically used in conjunction with the *LocationManager*.
 
 ### The System Support Project
+
+<!--DHIS2-SECTION-ID:techarch_support_project-->
 
 The system support project contains supportive classes that are general
 and can be reused througout the system.
@@ -411,6 +437,8 @@ DeletionHandlers get a chance to clean up associations to the object
 being deleted. Finally the object itself is deleted.
 
 ## The Presentation Layer
+
+<!--DHIS2-SECTION-ID:techarch_presentation_layer-->
 
 The presentation layer of DHIS2 is based on web modules which are
 assembled into a portal. This implies a modularized design where each
@@ -503,6 +531,8 @@ These values are finally used in the back-bone Velocity template to
 produce the menu mark-up.
 
 ## Definitions
+
+<!--DHIS2-SECTION-ID:techarch_definitions-->
 
 \[1\] “Classpath” refers to the root of a JAR file, /WEB-INF/lib or
 /WEB-INF/classes in a WAR-file and /src/main/resources in the source

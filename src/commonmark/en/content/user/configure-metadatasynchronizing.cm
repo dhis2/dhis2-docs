@@ -1,5 +1,7 @@
 # Configure metadatasynchronizing
 
+<!--DHIS2-SECTION-ID:metadata_sync-->
+
 ## About data and metadata synchronization
 
 You can synchronize data and metadata between different DHIS2 instances.
@@ -221,8 +223,8 @@ versioning table:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -258,8 +260,8 @@ table:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -323,8 +325,8 @@ following parameters defined in `dhis.conf` file:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <thead>
 <tr class="header">

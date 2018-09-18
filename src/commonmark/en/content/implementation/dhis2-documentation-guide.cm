@@ -1,6 +1,10 @@
 # DHIS2 Documentation Guide
 
+<!--DHIS2-SECTION-ID:doc_guide_chapter-->
+
 ## DHIS2 Documentation System Overview
+
+<!--DHIS2-SECTION-ID:docs_1-->
 
 DHIS2 is a web-based information management system under very active
 development with typically four releases per year. Each release
@@ -16,6 +20,8 @@ chapter, we will describe the documentation system of DHIS2 and how you
 can contribute.
 
 ## Introduction
+
+<!--DHIS2-SECTION-ID:docs_2-->
 
 One of the main advantages of [DocBook](http://docbook.org/whatis) is
 that there is complete separation between the content and presentation.
@@ -66,6 +72,8 @@ Currently, the DHIS2 documentation is using version 5.0 of DocBook.
 
 ## Getting started with GitHub
 
+<!--DHIS2-SECTION-ID:docs_3-->
+
 The DHIS2 documentation system is managed at
 [GitHub](https://github.com/dhis2/dhis2-docbook-docs) in its own source
 code repository. GitHub is a collaborative platform that enables
@@ -97,6 +105,8 @@ the source of the documenation with a pull request
 [here](https://github.com/dhis2/dhis2-docs/pulls).
 
 ## Getting the document source
+
+<!--DHIS2-SECTION-ID:docs_4-->
 
 In order to edit the documentation, you will need to download the source
 of the documentation to your computer. GitHub uses a version control
@@ -137,6 +147,8 @@ the document source. Just follow this procedure:
 
 ## Editing the documentation
 
+<!--DHIS2-SECTION-ID:docs_5-->
+
 Once you have downloaded the source, you should have a series of folders
 inside of the repository directory.
 
@@ -153,10 +165,10 @@ inside of the repository directory.
 <table>
 <caption>File naming conventions for modularization</caption>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -225,6 +237,8 @@ in the documentation after you commit your changes.
 
 ## Using images
 
+<!--DHIS2-SECTION-ID:docs_6-->
+
 Screen shots are very useful for providing information to users on how
 particular actions should be performed. DocBook has no intrinsic
 mechanisms to know exactly how an image should be rendered in the final
@@ -258,6 +272,8 @@ seeing the image in your editor, be sure you create a symlink to this
 folder in the corresponding documents `content` folder.
 
 ## Linking documents together
+
+<!--DHIS2-SECTION-ID:docs_7-->
 
 DocBook provides a modular framework where many separate documents can
 be linked together into a master document. Fragments from different
@@ -306,6 +322,8 @@ section, and then reference that section through an xpointer.
 
 ## Handling multilingual documentation
 
+<!--DHIS2-SECTION-ID:docs_8-->
+
 The DHIS2 docuemtnation has been translated into a number of different
 languages including French, Spanish and Portuguese. If you would like to
 create a translation of the documentation or contribute to one of the
@@ -313,6 +331,8 @@ exisiting translations, please contact the DHIS2 documentation team at
 the email provided at the end of this chapter.
 
 ## Building the documentation
+
+<!--DHIS2-SECTION-ID:docs_9-->
 
 One of the key advantages of the DocBook format is that the source
 documentation can be transformed into a wide variety of formats,
@@ -351,6 +371,8 @@ use Apache Maven for some reason, you can install `xmlto` through your
 package manager. Once you have installed `xmlto` you can just execute
 
 ## Committing your changes back to GitHub
+
+<!--DHIS2-SECTION-ID:docs_10-->
 
 Once you have finished editing your document, you will need to commit
 your changes back to GitHub. Open up a command prompt on Windows or a

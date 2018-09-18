@@ -1,5 +1,9 @@
 # Messaging
 
+<!--DHIS2-SECTION-ID:messages-->
+
+<!--DHIS2-SECTION-ID:dashboard_messages-->
+
 ## About messages and feedback messages
 
 ![](resources/images/messaging/view_inbox.png)
@@ -112,8 +116,8 @@ file.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -135,8 +139,8 @@ messages options:
 <table style="width:100%;">
 <caption>Feedback handling tools</caption>
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 76%" />
+<col width="23%" />
+<col width="76%" />
 </colgroup>
 <thead>
 <tr class="header">
