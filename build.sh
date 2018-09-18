@@ -49,8 +49,10 @@ make_html() {
 
     cd ${target}/${subdir}/html/
     # fix the section mappings in the full html file
+    echo "remapping the section identifiers"
     id_mapper ${name}_full.html 
     # split the full html file into chunks
+    echo "splitting the html file into chunks"
     chunker ${name}_full.html $src/dhis2_chunked_template.html
     cd $tmp 
 

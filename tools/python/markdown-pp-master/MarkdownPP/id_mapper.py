@@ -8,6 +8,7 @@ Created on Thu Sep 13 15:56:39 2018
 import argparse
 from bs4 import BeautifulSoup, NavigableString, Comment
 
+link_remap = {}
 
 def map_ids(soup):
     '''
@@ -23,10 +24,15 @@ def map_ids(soup):
         for c in s.find_all(text=lambda text:isinstance(text, Comment)):
             c_parts = c.split(':')
             if c_parts[0] == "DHIS2-SECTION-ID":
-                s['id'] = c_parts[1]
-                # remove the comment so it isn't used by the parent
-                c.extract()
-                break
+                if c_parts[1] != s['id']:
+                    # keep track of the changes in order to update the links
+                    print('#'+s['id']," ==> ",'#'+c_parts[1])
+                    link_remap['#'+s['id']] = '#'+c_parts[1]
+                    s['id'] = c_parts[1]
+                    # remove the comment so it isn't used by the parent
+                    c.extract()
+                    break
+
 
 def main():
     # setup command line arguments
@@ -46,6 +52,12 @@ def main():
 
     # perform the id mapping
     map_ids(soup)
+
+    # update any modified links 
+    for original in link_remap.keys():
+        for l in soup.find_all('a',href=original):
+            print("found:" ,original,link_remap[original])
+            l['href']= link_remap[original]
 
     # overwrite the original file
     chw = open(html_doc,'w')
