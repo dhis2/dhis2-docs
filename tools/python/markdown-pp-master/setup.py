@@ -34,7 +34,8 @@ setup(
     entry_points={
         'console_scripts': [
             'markdown-pp = MarkdownPP.main:main',
-            'chunker = MarkdownPP.chunker:main'
+            'chunker = MarkdownPP.chunker:main',
+            'id_mapper = MarkdownPP.id_mapper:main'
         ]
     },
     install_requires=[

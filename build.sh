@@ -48,6 +48,9 @@ make_html() {
     pandoc $chapters -c ./resources/css/dhis2.css --template="dhis2_template.html" --toc -N --section-divs -t html5 -V "title":"$title" -V "pagetitle":"$title" -o ${target}/${subdir}/html/${name}_full.html
 
     cd ${target}/${subdir}/html/
+    # fix the section mappings in the full html file
+    id_mapper ${name}_full.html 
+    # split the full html file into chunks
     chunker ${name}_full.html $src/dhis2_chunked_template.html
     cd $tmp 
 
