@@ -37,10 +37,13 @@ q:after {
 }
 
 blockquote {
-  background-color: #fff8dc;
-  border-left: 3px solid #ffeb8e;
+  background-color: #fcfcfc;
+  border: 1px solid #dddddd;
+  border-left: 3px solid #aab8c6;
   margin-bottom: 10px;
-  padding: 5px 5px 10px;
+  padding: 5px 5px 10px 40px;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
 }
 
 blockquote :last-child {
@@ -54,6 +57,28 @@ li blockquote {
 blockquote p {
   margin: 5px;
 }
+
+.Note{
+  background-image: url(../images/admon/note.png);
+}
+
+.Tip{
+  background-image: url(../images/admon/tip.png);
+}
+
+.Important{
+  background-image: url(../images/admon/important.png);
+}
+
+.Caution{
+  background-image: url(../images/admon/caution.png);
+}
+
+
+.Warning{
+  background-image: url(../images/admon/warning.png);
+}
+
 
 caption {
   font-style: italic;
