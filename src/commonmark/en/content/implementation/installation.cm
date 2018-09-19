@@ -241,6 +241,8 @@ PostgreSQL delegates the second layer to the operating system disk cache
 and the size of available memory can be given with the
 effective\_cache\_size setting.
 
+    checkpoint_completion_target = 0.8
+
 Sets the memory used for buffering during the WAL write process.
 Increasing this value might improve throughput in write-heavy systems.
 

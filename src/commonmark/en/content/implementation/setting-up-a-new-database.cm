@@ -190,6 +190,25 @@ to data entry and correct the values.
 
 ### Indicators
 
+Indicators represent perhaps the most powerful data analysis feature of
+the DHIS2. While data elements represent the raw data (counts) being
+collected the indicators represent formulas providing coverage rates,
+incidence rates, ratios and other formula-based units of analysis. An
+indicator is made up of a factor (e.g. 1, 100, 100, 100 000), a
+numerator and a denominator, the two latter are both expressions based
+on one or more data elements. E.g. the indicator "BCG coverage \<1 year"
+is defined a formula with a factor 100, a numerator ("BCG doses given to
+children under 1 year") and a denominator ("Target population under 1
+year"). The indicator "DPT1 to DPT3 drop out rate" is a formula of 100 %
+x ("DPT1 doses given"- "DPT3 doses given") / ("DPT1 doses given").
+
+Most report modules in DHIS2 support both data elements and indicators
+and you can also combine these in custom reports, but the important
+difference and strength of indicators versus raw data (data element's
+data values) is the ability to compare data across different
+geographical areas (e.g. highly populated vs rural areas) as the target
+population can be used in the denominator.
+
 Indicators can be added, modified and deleted at any point in time
 without interfering with the data values in the database.
 

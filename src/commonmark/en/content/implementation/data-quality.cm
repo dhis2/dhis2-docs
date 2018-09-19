@@ -47,6 +47,21 @@ quality improvement measures are:
 
 ## Using DHIS2 to improve data quality
 
+DHIS2 has several features that can help the work of improving data
+quality; validation during data entry to make sure data is captured in
+the right format and within a reasonable range, user-defined validation
+rules based on mathematical relationships between the data being
+captured (e.g. subtotals vs totals), outlier analysis functions, as well
+as reports on data coverage and completeness. More indirectly, several
+of the DHIS2 design principles contribute to improving data quality,
+such as the idea of harmonising data into one integrated data warehouse,
+supporting local level access to data and analysis tools, and by
+offering a wide range of tools for data analysis and dissemination. With
+more structured and harmonised data collection processes and with
+strengthened information use at all levels, the quality of data will
+improve. Here is an overview of the functionality more directly
+targeting data quality:
+
 ### Data input validation
 
 The most basic type of data quality check in DHIS2 is to make sure that

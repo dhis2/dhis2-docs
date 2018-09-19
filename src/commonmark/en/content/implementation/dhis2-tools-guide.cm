@@ -155,7 +155,9 @@ will show you all the dhis2 related man pages.
 
 `
 /usr/bin/dhis2-instance-create
+
 [OPTIONS]
+
 name
 `
 
@@ -214,6 +216,7 @@ dhis2-shutdown (1), dhis2-deploy-war (1) and dhis2-log (1).
 
 `
 /usr/bin/dhis2-startup
+instance name
 `
 
 Start a dhis2 instance
@@ -229,6 +232,7 @@ dhis2-shutdown (1), dhis2-deploy-war (1) and dhis2-instance-create (1).
 
 `
 /usr/bin/dhis2-shutdown
+instance name
 `
 
 Stop a dhis2 instance
@@ -244,6 +248,8 @@ dhis2-startup (1)
 
 `
 /usr/bin/dhis2-clone
+master
+copy
 `
 
 This command creates a copy of the database and war file of one instance
@@ -274,7 +280,9 @@ hmis.
 
 `
 /usr/bin/dhis2-deploy-war
+
 [OPTIONS]
+
 instance name
 `
 
@@ -312,6 +320,7 @@ war file from a user provided url into myInstance.
 
 `
 /usr/bin/dhis2-logview
+instance name
 `
 
 Use this tool to view log of dhis2 instance using less. Type ":q" to
@@ -330,6 +339,7 @@ exit.
 
 `
 /usr/bin/dhis2-logtail
+instance name
 `
 
 Use this tool to show the log of dhis2 instance in real time.
@@ -345,6 +355,7 @@ dhis2-logview (1).
 
 `
 /usr/bin/dhis2-create-admin
+username
 `
 
 Creates a new dhis2 admin user. If the specified user does not exist,
@@ -361,7 +372,9 @@ Create it like this
 
 `
 /usr/bin/dhis2-nginx
+
 [FILENAME]
+
 `
 
 Use this tool to configure nginx. If no file is specified, a sample file
@@ -380,7 +393,9 @@ Configures nginx to use the sample configuration.
 
 `
 /usr/bin/dhis2-integrity
+
 [instance name]
+
 `
 
 Use this tool to check the integrity of a dhis2 database. The tool runs
@@ -397,8 +412,12 @@ Runs various integrity tests on the database named dhis
 
 `
 /usr/bin/dhis2-restoredb
+
 [instance name]
+
+
 [db dumps]
+
 `
 
 Use this tool to restore a database.
@@ -434,7 +453,9 @@ Creates a backup in the ~/backup folder
 
 `
 /usr/bin/dhis2-delete-instance
+
 [OPTIONS]
+
 name
 `
 

@@ -47,7 +47,22 @@ aspects:
 
 <!-- end list -->
 
-  - In addition, a central part in most of the analysis tools in DHIS2
+  - *Limit the number of organisation unit hierarchy levels:* To cater
+    for analysis requirements coming from various organisational bodies
+    such as local government and the treasury, it is tempting to include
+    all of these areas as organisation units in the DHIS2 database.
+    However, due to performance considerations one should try to limit
+    the organisation unit hierarchy levels to the smallest possible
+    number. The hierarchy is used as the basis for aggregation of data
+    to be presented in any of the reporting tools, so when producing
+    aggregate data for the higher levels, the DHIS2 application must
+    search for and add together data registered for all organisation
+    units located further down the hierarchy. Increasing the number of
+    organisation units will hence negatively impact the performance of
+    the application and an excessively large number might become a
+    significant problem in that regard.
+    
+    In addition, a central part in most of the analysis tools in DHIS2
     is based around dynamically selecting the “parent” organisation unit
     of those which are intended to be included. For instance, one would
     want to select a province and have the districts belonging to that
@@ -60,7 +75,19 @@ aspects:
     are rarely or never used as this will have an impact on both the
     performance and usability of the application.
 
-  - Skipping geographical levels when mapping the reality to the DHIS2
+  - *Avoid one-to-one relationships:* Another guiding principle for
+    designing the hierarchy is to avoid connecting levels that have near
+    one-to-one parent-child ratios, meaning that for instance a district
+    (parent) should have on average more than one local council (child)
+    at the level below before it make sense to add a local council level
+    to the hierarchy. Parent-child ratios from 1:4 or more are much more
+    useful for data analysis purposes as one can start to look at e.g.
+    how a district’s data is distributed in the different sub-areas and
+    how these vary. Such drill-down exercises are not very useful when
+    the level below has the same target population and the same serving
+    health facilities as the parent.
+    
+    Skipping geographical levels when mapping the reality to the DHIS2
     organisation unit hierarchy can be difficult and can easily lead to
     resistance among certain stakeholders, but one should have in mind
     that there are actually ways of producing reports based on

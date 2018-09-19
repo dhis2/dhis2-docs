@@ -188,6 +188,23 @@ higher levels, e.g. national or provincial hospitals, so skewed
 organisational trees are supported (e.g. a leaf node can be positioned
 at level 2 while most other leaf nodes are at level 5).
 
+Typically there is a geographical hierarchy defined by the health
+system. e.g. where the administrative offices are located (e.g. MoH,
+province, district), but often there are other administrative boundaries
+in the country that might or might not be added, depending on how its
+boundaries will improve data analysis. When designing the hierarchy the
+number of children for any organisational unit may indicate the
+usefulness of the structure, e.g. having one or more 1-1 relationships
+between two levels is not very useful as the values will be the same for
+the child and the parent level. On the other extreme a very high number
+of children in the middle of the hierarchy (e.g. 50 districts in a
+province) might call for an extra level to be added in between to
+increase the usefulness of data analysis. The lowest level, the health
+facilities will often have a large number of children (10-60), but for
+other levels higher up in the hierarchy approx. 5-20 children is
+recommended. Too few or too many children might indicate that a level
+should be removed or added.
+
 Note that it is quite easy to make changes to the upper levels of the
 hierarchy at a later stage, the only problem is changing organisational
 units that collect data (the leaf nodes), e.g. splitting or merging
@@ -277,6 +294,12 @@ or yearly. Both which data elements to include in the dataset and the
 period type is defined by the user, together with a name, short name,
 and code.
 
+In order to use a dataset to collect data for a specific orgunit you
+must assign the orgunit to the dataset, and this mechanism controls
+which orgunits that can use which datasets, and at the same time defines
+the target values for data completeness (e.g. how many health facilities
+in a district expected to submit RCH data every month).
+
 A data element can belong to multiple datasets, but this requires
 careful thinking as it may lead to overlapping and inconstant data being
 collected if e.g. the datasets are given different frequencies and are
@@ -352,6 +375,25 @@ the expression where the violation occurred to make it easy to go back
 to data entry and correct the values.
 
 ### Indicators
+
+Indicators represent perhaps the most powerful data analysis feature of
+the DHIS2. While data elements represent the raw data (counts) being
+collected the indicators represent formulas providing coverage rates,
+incidence rates, ratios and other formula-based units of analysis. An
+indicator is made up of a factor (e.g. 1, 100, 100, 100 000), a
+numerator and a denominator, the two latter are both expressions based
+on one or more data elements. E.g. the indicator "BCG coverage \<1 year"
+is defined a formula with a factor 100, a numerator ("BCG doses given to
+children under 1 year") and a denominator ("Target population under 1
+year"). The indicator "DPT1 to DPT3 drop out rate" is a formula of 100 %
+x ("DPT1 doses given"- "DPT3 doses given") / ("DPT1 doses given").
+
+Most report modules in DHIS2 support both data elements and indicators
+and you can also combine these in custom reports, but the important
+difference and strength of indicators versus raw data (data element's
+data values) is the ability to compare data across different
+geographical areas (e.g. highly populated vs rural areas) as the target
+population can be used in the denominator.
 
 Indicators can be added, modified and deleted at any point in time
 without interfering with the data values in the database.

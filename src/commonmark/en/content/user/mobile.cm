@@ -21,6 +21,12 @@ Using a simple Java client installed on a mobile phone or a web browser
 which works on the mobile phone, field workers can report directly to
 the DHIS2 database through their mobile device.
 
+While mobile phone solutions have a great potential, there are
+complexities with such deployments. Phones lack processing power and
+have a small display, they need to be charged, and often such
+deployments make the most sense in areas with poor or intermittent
+network coverage.
+
 Each of the mobile solutions are introduced briefly below, and the
 discussed in separate sections in detail:
 
@@ -671,6 +677,15 @@ Download the jar packages from the DHIS2 homepage:
 [www.dhis2.org/downloads](www.dhis2.org/downloads)
 
 ##### Initialization
+
+Initialization should be performed before the phones are delivered
+end-users. Given the large variation in possible phone configurations,
+it is impossible to describe the exact steps which are required in order
+to enable the client on the phone. However, for most phones, simply
+copying the DHIS2 Web Mobile client "JAR" file to the phone with a USB
+cable or via Bluetooth is sufficient. Of course, GPRS/3G connectivity
+must be enabled. Contact your mobile service provider for exact details
+on the configuration of the phones and networks.
 
 ![](resources/images/dhis_mobile/mobile_login_screen.png)
 

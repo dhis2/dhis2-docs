@@ -175,6 +175,21 @@ separate or group data elements along a programme dimension (known as a
 data element group set in DHIS2) where "Immunisation" (or EPI) and
 "Nutrition" would be the two groups.
 
+Expanding the report to include data from other programs or larger
+themes of health data would mean more groups to such a group set
+dimension, like "Malaria", "Reproductive Health", "Stocks". For this
+example, you would create a data element group set called "Programme"
+(or whatever name you find appropriate), and to represent the different
+programmes in this dimension you would define data elements groups
+called "EPI", "Nutrition", "Malaria", "Reproductive health" and so on,
+and add all these groups to the "Programme" group set. To link or tag
+the data element "Measles doses given" to such a dimension you must (in
+our example) add it to the "EPI" group. Which groups you add "Measles
+doses given" to does not affect how health facilities collect the data,
+but adds more possibilities to your data analysis. So for the group set
+dimensions there are three levels; the group set (e.g. "Programme"), the
+group (e.g. "EPI"), and the data element (e.g. "Measles doses given").
+
 Indicators can be grouped into indicator groups and further into
 indicator group sets (dimensions) in exactly the same way as data
 elements.
@@ -569,6 +584,17 @@ without altering the data (as long as the data elements stay the same).
 This loose coupling between forms and data makes DHIS2 flexible when it
 comes to designing and changing new forms and in providing exactly the
 form the users want.
+
+Another benefit of only linking data to data elements and not to forms,
+is the flexibility of creating indicators and validation rules based on
+data elements, and also in providing any kind of output report (in pivot
+tables, charts, maps etc) that can combine data individually or across
+forms, e.g. to correlate data from different health programs. Due to
+this flexibility of enabling integration of data from various programs
+(forms) and sources (routine and semi permanent (population, staff,
+equipment)) a DHIS2 database is used as an integrated data repository
+for many or all parts of the aggregated data in a larger HIS. The figure
+below illustrates this flexibility.
 
 ![](resources/images/data_dimensions/dhis_input_output.jpg)
 

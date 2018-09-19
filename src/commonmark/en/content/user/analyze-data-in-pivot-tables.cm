@@ -335,7 +335,7 @@ table like this:
     <tr class="odd">
     <td></td>
     <td><p><strong>Font size</strong></p></td>
-    <td><strong>Small</strong>.&lt;/para&gt;</td>
+    <td><p>Controls the size of the table text font. You can set it to <strong>Large</strong>, <strong>Normal</strong> or <strong>Small</strong>.</p></td>
     </tr>
     <tr class="even">
     <td></td>

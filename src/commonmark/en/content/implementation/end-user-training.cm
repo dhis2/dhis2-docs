@@ -10,6 +10,14 @@ The following topics will be covered in this chapter:
 
 ## What training is needed
 
+In a large system like a country health information system, there will
+be different roles for different people. The different tasks usually
+depends on two factors; what the person will be doing, i.e. mainly
+collect data, or analyse it, or maintain the database, and where the
+person is located, like a facility, a district office, or at national
+level. A first task will then be to define the different users. The most
+common tasks will be:
+
   - Data entry
 
   - Data analysis processing, preparing reports and other information
@@ -75,12 +83,35 @@ decision-support.
 
 ### Continuation of training
 
+Training is not a one off thing. A multi-level training strategy would
+aim at providing regular training as the skills of the staff increase.
+For example, a workshop on data entry and validation should be followed
+by another workshop on report generation and data analysis some time
+later. Regular training should also be offered to new staff, and when
+large changes are made to the system, such as redesign of all data
+collection forms.
+
 ## Material and courses
 
 There is comprehensive material available for training and courses. The
 main source will be the three manuals available from the DHIS2
 documentation repository, to be found
 [here](http://dhis2.org/documentation).
+
+The user documentation covers the background and purpose of DHIS2
+together with instructions and explanations of how to perform data
+entry, system maintenance, meta-data set-up, import and export of data,
+aggregation, reporting and other topics related to the usage of the
+software. The developer documentation covers the technical architecture,
+the design of each module and use of the development frameworks behind
+DHIS2. The implementation guide is targeted at implementers and
+super-users and addresses subjects such as system design, database
+development, data harmonization, analysis, deployment, human resources
+needed and integration with other systems. The end user manual is a
+light-weight version of the user documentation meant for end users such
+as district records officers and data entry clerks. All can be
+opened/downloaded as both PDF and HTML, and are updated daily with the
+latest input from DHIS2 users worldwide.
 
 The development of these guides depend on input from all users. For
 information how to to add content to them, please see the appendix on

@@ -85,7 +85,7 @@ is to make use of the MyDatamart tool, which creates and updates a local
 data mart file (database) that Excel can connect to. The MyDatamart tool
 will be described in detail further down.
 
-## 
+## Dealing with large amounts of data
 
 The amount of data in a DHIS2 database can easily go beyond the
 capabilities of Excel. A table with around 1 million values (rows of

@@ -282,7 +282,7 @@ You can customize the display of an event report.
     </tr>
     <tr class="even">
     <td></td>
-    <td></td>
+    <td><p><strong>Target line value/title</strong></p></td>
     <td><p>Displays a horizontal line and title (optional) at the given domain value. Useful for example when you want to compare your performance to the current target.</p></td>
     </tr>
     <tr class="odd">
