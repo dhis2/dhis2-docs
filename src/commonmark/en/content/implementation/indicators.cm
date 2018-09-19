@@ -23,6 +23,17 @@ elements do not have denominators. Coverage indicators (ratios,
 percentages, etc) are composed of two formulas of data elements, one
 representing the numerator and another representing the denominator.
 
+Indicators are thus made up of formulas of data elements and other
+components and are always multiplied by a factor (e.g. 1, 100, 100, 100
+000). The factor is essentially a number which is multiplied by the
+result of the numerator divided by denominator. As a concrete example,
+the indicator "BCG coverage \<1 year" is defined by a formula with a
+factor 100 (in order to obtain a percentage), a numerator ("BCG doses
+given to children under 1 year") and a denominator ("Target population
+under 1 year"). The indicator "DPT1 to DPT3 drop out rate" is a formula
+of 100 % x ("DPT1 doses given"- "DPT3 doses given") / ("DPT1 doses
+given").
+
 <table>
 <caption>Indicator examples</caption>
 <thead>

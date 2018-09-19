@@ -369,7 +369,7 @@ category and filter.
     </tr>
     <tr class="even">
     <td></td>
-    <td></td>
+    <td><p><strong>Target line value/title</strong></p></td>
     <td><p>Displays a horizontal line at the given domain value. Useful for example when you want to compare your performance to the current target.</p></td>
     </tr>
     <tr class="odd">

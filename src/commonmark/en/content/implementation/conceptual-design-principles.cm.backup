@@ -115,67 +115,15 @@ GIS module.
 
 ## Indicator-driven data analysis and reporting
 
-What is referred to as a Data Element above, the key dimension that
-describes what is being collected, is sometimes referred to as an
-indicator in other settings. In DHIS2 we distinguish between Data
-Elements which describe the raw data, e.g. the counts being collected,
-and Indicators, which are formula-based and describe calculated values,
-e.g. coverage or incidence rates that are used for data analysis.
-Indicator values are not collected like the data (element) values, but
-instead calculated by the application based on formulas defined by the
-users. These formulas are made up of a factor (e.g. 1, 100, 100, 100
-000), a numerator and a denominator, the two latter are both expressions
-based on one or more data elements. E.g. the indicator "Measles coverage
-\<1 year" is defined a formula with a factor 100, a numerator ("Measles
-doses given to children under 1 year") and a denominator ("Target
-population under 1 year"). The indicator "DPT1 to DPT3 drop out rate" is
-a formula of 100 % x ("DPT1 doses given"- "DPT3doses given") / ("DPT1
-doses given"). These formulas can be added and edited through the user
-interface by a user with limited training, as they are quite easy to set
-up and do not interfere with the data values stored in the database (so
-adding or modifying an indicator is not a critical operation).
+What is referred to as a Data Element above, the key dimension that describes what is being collected, is sometimes referred to as an indicator in other settings. In DHIS2 we distinguish between Data Elements which describe the raw data, e.g. the counts being collected, and Indicators, which are formula-based and describe calculated values, e.g. coverage or incidence rates that are used for data analysis. Indicator values are not collected like the data (element) values, but instead calculated by the application based on formulas defined by the users. These formulas are made up of a factor (e.g. 1, 100, 100, 100 000), a numerator and a denominator, the two latter are both expressions based on one or more data elements. E.g. the indicator "Measles coverage <1 year" is defined a formula with a factor 100, a numerator ("Measles doses given to children under 1 year") and a denominator ("Target population under 1 year"). The indicator "DPT1 to DPT3 drop out rate" is a formula of 100 % x ("DPT1 doses given"- "DPT3doses given") / ("DPT1 doses given"). These formulas can be added and edited through the user interface by a user with limited training, as they are quite easy to set up and do not interfere with the data values stored in the database (so adding or modifying an indicator is not a critical operation).
 
-Indicators represent perhaps the most powerful data analysis feature of
-the DHIS2, and all reporting tools support the use of indicators, e.g.
-as displayed in the custom report in the figure above. Being able to use
-population data in the denominator enables comparisons of health
-performance across geographical areas with different target populations,
-which is more useful than only looking at the raw numbers. The table
-below uses both the raw data values (Doses) and indicator values (Cov)
-for the different vaccines. Comparing e.g. the two first orgunits in the
-list, Taita Taveta County and Kilifi County, on DPT-1 immunisation, we
-can see that while the raw numbers (659 vs 2088) indicate many more
-doses are given in Kilifi, the coverage rates (92.2 % vs 47.5 %) show
-that Taita Taveta are doing a better job immunising their target
-population under 1 year. Looking at the final column (Immuniz. Compl. %)
-which indicates the completeness of reporting of the immunisation form
-for the same period, we can see that the numbers are more or less the
-same in the two counties we compared, which tells us that the coverage
-rates can be reasonably compared across the two counties.
+Indicators represent perhaps the most powerful data analysis feature of the DHIS2, and all reporting tools support the use of indicators, e.g. as displayed in the custom report in the figure above. Being able to use population data in the denominator enables comparisons of health performance across geographical areas with different target populations, which is more useful than only looking at the raw numbers. The table below uses both the raw data values (Doses) and indicator values (Cov) for the different vaccines. Comparing e.g. the two first orgunits in the list, Taita Taveta County and Kilifi County, on DPT-1 immunisation, we can see that while the raw numbers (659 vs 2088) indicate many more doses are given in Kilifi, the coverage rates (92.2 % vs 47.5 %) show that Taita Taveta are doing a better job immunising their target population under 1 year. Looking at the final column (Immuniz. Compl. %) which indicates the completeness of reporting of the immunisation form for the same period, we can see that the numbers are more or less the same in the two counties we compared, which tells us that the coverage rates can be reasonably compared across the two counties.
 
 ![](resources/images/implementation_guide/indicator_report.png)
 
 ## Maintain disaggregated facility-data in the database
 
-When data is collected and stored in DHIS2 it will remain disaggregated
-in the database with the same level of detail as it was collected. This
-is a major advantage of having a database system for HIS as supposed to
-a paper-based or even spreadsheet based system. The system is designed
-to store large amounts of data and always allow drill-downs to the
-finest level of detail possible, which is only limited by how the data
-was collected or imported into the DHIS2 database. In a perspective of a
-national HIS it is desired to keep the data disaggregated by health
-facility level, which is often the lowest level in the orgunit
-hierarchy. This can be done even without computerising this level,
-through a hybrid system of paper and computer. The data can be submitted
-from health facilities to e.g. district offices by paper (e.g. on
-monthly summary forms for one specific facility), and then at the
-district office they enter all the facility data into the DHIS2 through
-the electronic data collection forms, one facility at a time. This will
-enable the districts health management teams to perform facility-wise
-data analysis and to e.g. provide print-outs of feedback reports
-generated by the DHIS2, incl. facility comparisons, to the facility
-in-charges in their district.
+When data is collected and stored in DHIS2 it will remain disaggregated in the database with the same level of detail as it was collected. This is a major advantage of having a database system for HIS as supposed to a paper-based or even spreadsheet based system. The system is designed to store large amounts of data and always allow drill-downs to the finest level of detail possible, which is only limited by how the data was collected or imported into the DHIS2 database. In a perspective of a national HIS it is desired to keep the data disaggregated by health facility level, which is often the lowest level in the orgunit hierarchy. This can be done even without computerising this level, through a hybrid system of paper and computer. The data can be submitted from health facilities to e.g. district offices by paper (e.g. on monthly summary forms for one specific facility), and then at the district office they enter all the facility data into the DHIS2 through the electronic data collection forms, one facility at a time. This will enable the districts health management teams to perform facility-wise data analysis and to e.g. provide print-outs of feedback reports generated by the DHIS2, incl. facility comparisons, to the facility in-charges in their district.
 
 ## Support data analysis at any level in the health system
 

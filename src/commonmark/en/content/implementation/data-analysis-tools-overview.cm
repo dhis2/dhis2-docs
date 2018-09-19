@@ -108,6 +108,12 @@ PDF, Excel workbook, CSV file and Jasper report.
 
 ### Charts
 
+The chart component offers a wide variety of charts including the
+standard bar, line and pie charts. The charts can contain indicators,
+data elements, periods and organisation units on both the x and y axis
+as well as a fixed horizontal target line. Charts can be view directly
+or as part of the dashboard as will be explained later.
+
 ### Web Pivot tables
 
 The web pivot table offers quick access to statistical data in a tabular

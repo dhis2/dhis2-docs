@@ -232,6 +232,15 @@ responsibilities. Furthermore, the documents help to improve, monitor
 and assess the implementation of CLTS programs at the different roll out
 stages.
 
+#### Stakeholder Role Rubric
+
+This document can enable a Community Health Worker to understand the
+full scope of his or her role. For example, they would know that they
+would be in charge of decision making in areas covering disease
+diagnosis, treatment administration, patient referrals, and commodity
+resupply checks. They would also know about the reporting requirements
+to follow such as the frequency and method to use.
+
 #### CLTS Surveillance Protocol
 
 The Surveillance Protocol is a document that is used to assign
@@ -253,6 +262,25 @@ Promoting a sense of data ownership amongst participants has a great
 influence in helping to build up sustainable programs. It is therefore
 important to develop standard operating roles, by outlining the tasks
 and duties of every person interacting with the system.
+
+Thus by making participants feel responsible for the data they’re in
+charge of and by promoting how their role is connected to the successful
+outcome of a CLTS project, this helps to maintain the flow of
+communication between all of the levels involved, whether it be at
+village, ward, constituency, district, province, national or
+organizational level.
+
+### Lessons learned
+
+#### Backwards compatibility
+
+Everything has to be backwards compatible to make upgrades into a
+smoother process. For example, in 2013, DHIS2 version 2.1.4 was unable
+to handle the growing volume of users as more and more districts started
+to use WASH. The system had to be upgraded, due to the number of legacy
+issues and bugs that were encountered. However, this was not a
+straightforward task and meant re-installing applications on all
+devices.
 
 #### Using clones of tried and tested WASH programs
 

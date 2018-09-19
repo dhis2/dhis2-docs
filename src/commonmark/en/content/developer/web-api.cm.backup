@@ -270,7 +270,7 @@ http status message **forbidden** and a descriptive message.
 </tr>
 <tr class="odd">
 <td>status</td>
-<td>DHIS2 status, possible values are <em>OK</em> | <em>WARNING</em> | <em>ERROR</em>, where <strong>OK</strong> is means everything was successful, <strong>ERROR</strong> means that operation did not complete and <strong>WARNING</strong> means operation was partially successful, if there message contains a <strong>response</strong> property, please look there for more information.</td>
+<td>DHIS2 status, possible values are <em>OK</em> | <em>WARNING</em> | <em>ERROR</em>, where <strong>OK</strong> is means everything was successful, <strong>ERROR</strong> means that operation did not complete and <strong>WARNING</strong> means operation was partially successful, if there message contains a <strong>response</strong> property, please look there for more information.</td>
 </tr>
 <tr class="even">
 <td>message</td>
@@ -802,19 +802,19 @@ associated objects or collection of objects, are supported as well.
 <tbody>
 <tr class="odd">
 <td>eq</td>
-<td>string | boolean | integer | float | enum | collection (checks for size) | date</td>
+<td>string | boolean | integer | float | enum | collection (checks for size) | date</td>
 <td>true</td>
 <td>Equality</td>
 </tr>
 <tr class="even">
 <td>!eq</td>
-<td>string | boolean | integer | float | enum | collection (checks for size) | date</td>
+<td>string | boolean | integer | float | enum | collection (checks for size) | date</td>
 <td>true</td>
 <td>Inequality</td>
 </tr>
 <tr class="odd">
 <td>ne</td>
-<td>string | boolean | integer | float | enum | collection (checks for size) | date</td>
+<td>string | boolean | integer | float | enum | collection (checks for size) | date</td>
 <td>true</td>
 <td>Inequality</td>
 </tr>
@@ -2175,7 +2175,7 @@ data (the only currently supported topics).
 
 ### Kafka tracker integration
 
-For doing bulk imports of tracker data, 3 new endpoints has been
+For doing bulk imports of tracker data, 3 new endpoints have been
 created:
 
     /api/trackedEntityInstances/queue (topic: bulk-tracked-entities)
@@ -2188,7 +2188,7 @@ will need to get the import summaries using normal task summary
 approach. Internally there is a scheduled system job called "Kafka Job"
 which runs every second to check for new objects waiting in Kafka.
 
-The topics will be created by DHIS2 if they don't exist, but be aware
+- The topics will be created by DHIS2 if they don't exist, but  be aware 
 that they will then have their basic default settings applied (1
 replication factor, and 1 partition only).
 
@@ -2900,7 +2900,7 @@ likely being uploaded to a cloud-based store somewhere) as seen by the
 
 Even though the content has not been fully stored yet the file resource
 can now be used, for example as referenced content in a data value (see
-[section\_title](#datavalue_file)). If we need to check the updated
+[Working with file data values](#datavalue_file)). If we need to check the updated
 *storageStatus* or otherwise retrieve the meta-data of the file, the
 *fileResources* endpoint can be
     queried.
@@ -3204,7 +3204,7 @@ two types of metadata.
 <tr class="odd">
 <td><p>versionName</p></td>
 <td><p>true</p></td>
-<td><p>Path parameter of the form &quot;Version_&lt;id&gt;&quot; so that the api  downloads the specific version</p></td>
+<td><p>Path parameter of the form &quot;Version_&lt;id&gt;&quot; so that the api downloads the specific version</p></td>
 </tr>
 </tbody>
 </table>
@@ -3558,7 +3558,7 @@ The import process can be customized using a set of import parameters:
 <tbody>
 <tr class="odd">
 <td>dataElementIdScheme</td>
-<td>id | name | code | attribute:ID</td>
+<td>id | name | code | attribute:ID</td>
 <td>Property of the data element object to use to map the data values.</td>
 </tr>
 <tr class="even">
@@ -3568,12 +3568,12 @@ The import process can be customized using a set of import parameters:
 </tr>
 <tr class="odd">
 <td>categoryOptionComboIdScheme</td>
-<td>id | name | code | attribute:ID</td>
+<td>id | name | code | attribute:ID</td>
 <td>Property of the category option combo and attribute option combo objects to use to map the data values.</td>
 </tr>
 <tr class="even">
 <td>idScheme</td>
-<td>id | name | code| attribute:ID</td>
+<td>id | name | code| attribute:ID</td>
 <td>Property of all objects including data elements, org units and category option combos, to use to map the data values.</td>
 </tr>
 <tr class="odd">
@@ -3588,7 +3588,7 @@ The import process can be customized using a set of import parameters:
 </tr>
 <tr class="odd">
 <td>importStrategy</td>
-<td>CREATE | UPDATE | CREATE_AND_UPDATE | DELETE</td>
+<td>CREATE | UPDATE | CREATE_AND_UPDATE | DELETE</td>
 <td>Save objects of all, new or update import status on the server.</td>
 </tr>
 <tr class="even">
@@ -3632,7 +3632,7 @@ magnitude faster.
 Data value import supports a set of value types. For each value type
 there is a special requirement. The following table lists the edge cases
 for value types. For information about all other cases, see
-[section\_title](#webapi_csv_data_elements).
+[Data elements](#webapi_csv_data_elements).
 
 <table>
 <caption>Value type requirements</caption>
@@ -4869,7 +4869,7 @@ References to files can be stored with the document resource.
 </tr>
 <tr class="odd">
 <td>url</td>
-<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">section_title</a>)</td>
+<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">File resources</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -5520,22 +5520,22 @@ The import process supports the following query parameters:
 <tbody>
 <tr class="odd">
 <td>dataSetIdScheme</td>
-<td>id | name | code | attribute:ID</td>
+<td>id | name | code | attribute:ID</td>
 <td>Property of the data set to use to map the complete registrations.</td>
 </tr>
 <tr class="even">
 <td>orgUnitIdScheme</td>
-<td>id | name | code | attribute:ID</td>
+<td>id | name | code | attribute:ID</td>
 <td>Property of the organisation unit to use to map the complete registrations.</td>
 </tr>
 <tr class="odd">
 <td>attributeOptionComboIdScheme</td>
-<td>id | name | code | attribute:ID</td>
+<td>id | name | code | attribute:ID</td>
 <td>Property of the attribute option combos to use to map the complete registrations.</td>
 </tr>
 <tr class="even">
 <td>idScheme</td>
-<td>id | name | code | attribute:ID</td>
+<td>id | name | code | attribute:ID</td>
 <td>Property of all objects including data sets, org units and attribute option combos, to use to map the complete registrations.</td>
 </tr>
 <tr class="odd">
@@ -5545,7 +5545,7 @@ The import process supports the following query parameters:
 </tr>
 <tr class="even">
 <td>dryRun</td>
-<td>false | true</td>
+<td>false | true</td>
 <td>Whether registration applies to sub units</td>
 </tr>
 <tr class="odd">
@@ -5555,12 +5555,12 @@ The import process supports the following query parameters:
 </tr>
 <tr class="even">
 <td>skipExistingCheck</td>
-<td>false | true</td>
+<td>false | true</td>
 <td>Skip checks for existing complete registrations. Improves performance. Only use for empty databases or when the registrations to import do not exist already.</td>
 </tr>
 <tr class="odd">
 <td>async</td>
-<td>false | true</td>
+<td>false | true</td>
 <td>Indicates whether the import should be done asynchronous or synchronous. The former is suitable for very large imports as it ensures that the request does not time out, although it has a significant performance overhead. The latter is faster but requires the connection to persist until the process is finished.</td>
 </tr>
 </tbody>
@@ -7906,18 +7906,14 @@ following *columns* config:
 <td>Show trend lines</td>
 </tr>
 <tr class="even">
-<td>targetLineValue</td>
 <td>number</td>
 <td>No</td>
 <td></td>
-<td>Display a target line with this value</td>
 </tr>
 <tr class="odd">
-<td>targetLineTitle</td>
 <td>string</td>
 <td>No</td>
 <td></td>
-<td>Display a title on the target line (does not apply without a target line value)</td>
 </tr>
 <tr class="even">
 <td>baseLineValue</td>
@@ -10095,7 +10091,6 @@ The analytics event API let you specify a range of query parameters.
 <tr class="even">
 <td>limit</td>
 <td>No</td>
-<td>The maximum number of records to return. Cannot be larger than 10 000.</td>
 <td>Numeric positive value</td>
 </tr>
 <tr class="odd">
@@ -10413,8 +10408,8 @@ The default response JSON format will look similar to this:
             "names": {
                 "qrur9Dvnyt5": "Age",
                 "eBAyeGv0exc": "Inpatient morbidity and mortality",
-                "ImspTQPwCqd": "Sierra Leone",
-                "O6uvpzGd5pu": "Bo",
+                "ImspTQPwCqd": "Sierra Leone",
+                "O6uvpzGd5pu": "Bo",
                 "YuQRtpLP10I": "Badjia",
                 "oZg33kd9taw": "Gender"
             },
@@ -12007,7 +12002,8 @@ messages.
 The Web API supports sending outgoing SMS using the POST method. SMS can
 be sent to a single or multiple destinations. One or more gateways need
 to be configured before using the service. An SMS will not be sent if
-there is no gateway configured.  It needs a set of recipients and
+there is no gateway configured.
+ It needs a set of recipients and
 message text in JSON format as shown below.
 
 NOTE: Recipients list will be partitioned if its size exceed
@@ -12015,12 +12011,15 @@ MAX\_ALLOWED\_RECIPIENTS limit which is 200.
 
     /api/26/sms/outbound
 
-    { 
-      "message":"Sms Text",  
+    {
+
+      "message":"Sms Text",
+ 
       "recipients": [
         "47XXXXXX1",
         "47XXXXXX2"
-      ] 
+      ]
+
     }
 
 The Web API also supports a query parameter version, but the
@@ -14952,7 +14951,7 @@ and is an alternative to the query in the previous section.
 </tr>
 <tr class="even">
 <td>eventStatus</td>
-<td>Status of any event associated with the given program and the tracked entity instance. Can be ACTIVE | COMPLETED | VISITED | SCHEDULED | OVERDUE | SKIPPED.</td>
+<td>Status of any event associated with the given program and the tracked entity instance. Can be ACTIVE | COMPLETED | VISITED | SCHEDULED | OVERDUE | SKIPPED.</td>
 </tr>
 <tr class="odd">
 <td>eventStartDate</td>
@@ -15905,7 +15904,7 @@ describes the meaning of each element.
 <td>status</td>
 <td>enum</td>
 <td>false</td>
-<td>ACTIVE | COMPLETED | VISITED | SCHEDULE | OVERDUE | SKIPPED</td>
+<td>ACTIVE | COMPLETED | VISITED | SCHEDULE | OVERDUE | SKIPPED</td>
 <td>Whether the event is complete or not</td>
 </tr>
 <tr class="even">
@@ -16407,7 +16406,7 @@ The import process can be customized using a set of import parameters:
 <tbody>
 <tr class="odd">
 <td>dataElementIdScheme</td>
-<td>id | name | code | attribute:ID</td>
+<td>id | name | code | attribute:ID</td>
 <td>Property of the data element object to use to map the data values.</td>
 </tr>
 <tr class="even">
@@ -16417,7 +16416,7 @@ The import process can be customized using a set of import parameters:
 </tr>
 <tr class="odd">
 <td>idScheme</td>
-<td>id | name | code| attribute:ID</td>
+<td>id | name | code| attribute:ID</td>
 <td>Property of all objects including data elements, org units and category option combos, to use to map the data values.</td>
 </tr>
 <tr class="even">
@@ -16427,7 +16426,7 @@ The import process can be customized using a set of import parameters:
 </tr>
 <tr class="odd">
 <td>strategy</td>
-<td>CREATE | UPDATE | CREATE_AND_UPDATE | DELETE</td>
+<td>CREATE | UPDATE | CREATE_AND_UPDATE | DELETE</td>
 <td>Save objects of all, new or update import status on the server.</td>
 </tr>
 <tr class="even">
@@ -16485,7 +16484,7 @@ is as follows:
 <td>2</td>
 <td>status</td>
 <td>enum</td>
-<td>Status of event, can be ACTIVE | COMPLETED | VISITED | SCHEDULED | OVERDUE | SKIPPED</td>
+<td>Status of event, can be ACTIVE | COMPLETED | VISITED | SCHEDULED | OVERDUE | SKIPPED</td>
 </tr>
 <tr class="odd">
 <td>3</td>
@@ -16630,7 +16629,7 @@ as
 Anonymous events API has only 1 enpoint and it is the same endpoint as
 is used in Tracker API for CRUD operations over Events: */api/29/events*
 
-For detailed documentation, see [section\_title](#webapi_events)
+For detailed documentation, see [Events](#webapi_events)
 
 ## Email
 
@@ -16639,7 +16638,7 @@ For detailed documentation, see [section\_title](#webapi_events)
 The Web API features a resource for sending emails. For emails to be
 sent it is required that the SMTP configuration has been properly set up
 and that a system notification email address for the DHIS2 instance has
-been defined. You can set SMTP settings from the email settings screen
+been defined. You can set SMTP settings from the email settings screenF
 and system notification email address from the general settings screen
 in DHIS 2.
 
@@ -18140,11 +18139,9 @@ and temporary tables.
 </tr>
 <tr class="odd">
 <td>COMPLETENESS_TARGET</td>
-<td>analytics_completenesstarget_temp</td>
 </tr>
 <tr class="even">
 <td>ORG_UNIT_TARGET</td>
-<td>analytics_orgunittarget_temp</td>
 </tr>
 <tr class="odd">
 <td>EVENT</td>

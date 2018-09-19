@@ -63,6 +63,25 @@ connect to the DHIS2 Web API.
 
 ## Web portals
 
+First, Web portals may be built on top of the Web API. A Web portal in
+this regard is a web site which functions as a point of access to
+information from a potential large number of data sources which
+typically share a common theme. The role of the Web portal is to make
+such data sources easily accessible in a structured fashion under a
+common look-and-feel and provide a comprehensive data view for end
+users.
+
+Aggregate data repository: A Web portal targeted at the health domain
+may use the DHIS2 as the main source for aggregate data. The portal can
+connect to the Web API and communicate with relevant resources such as
+maps, charts, reports, tables and static documents. These data views can
+dynamically visualize aggregate data based on queries on the
+organisation unit, indicator or period dimension. The portal can add
+value to the information accessibility in several ways. It can be
+structured in a user-friendly way and make data accessible to
+inexperienced users. It can provide various approaches to the data,
+including:
+
   - Thematic - grouping indicators by topic. Examples of such topics are
     immunization, mother care, notifiable diseases and environmental
     health.
@@ -116,5 +135,29 @@ archive.
 
 ## Apps
 
+Second, third-party software clients running on devices such as mobile
+phones, smart phones and tablets may connect to the DHIS2 Web API and
+read and write to relevant resources. For instance, third-party
+developers may create a client running on the Android operating system
+on mobile devices targeted at community health workers who needs to keep
+track of the people to visit, register vital data for each encounter and
+receive reminders of due dates for patient care while travelling freely
+in the community. Such a client application might interact with the
+patient and activity plan resources exposed by the DHIS2 Web API. The
+developer will not be dependent on deep insight into the DHIS2 internal
+implementation, rather just basic skills within HTTP/Web programming and
+a bit of knowledge of the DHIS2 data model. Understanding the DHIS2 data
+model is made easier by the navigable nature of the Web API.
+
 ## Information Systems
+
+Third, information system developers aiming at creating new ways of
+visualizing and presenting aggregate data can utilize the DHIS2 Web API
+as the service layer of their system. The effort needed for developing
+new information systems and maintaining them over time is often largely
+under-estimated. Instead of starting from scratch, a new application can
+be built on top of the Web API. Developer attention can be directed
+towards making new, innovative and creative data representations and
+visualizations, in the form of e.g. dashboards, GIS and charting
+components.
 

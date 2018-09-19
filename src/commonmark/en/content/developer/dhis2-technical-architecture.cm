@@ -180,6 +180,19 @@ statements.
 
 Fig. JDBC BatchHandler diagram
 
+The *BatchHandler* interface provides methods for inserting, updating
+and verifying the existence of objects. The purpose is to provide
+high-performance operations and is relevant for large amounts of data.
+The BatchHandler object inserts objects using the *multiple insert SQL*
+syntax behind the scenes and can insert thousands of objects on each
+database commit. A typical use-case is an import process where a class
+using the BatchHandler interface will call the *addObject( Object, bool
+)*method for every import object. The BatchHandler will after an
+appropriate number of added objects commit to the database
+transparently. A BatchHandler can be obtained from the
+*BatchHandlerFactor*y component. BatchHandler implementations exist for
+most objects in the API.
+
 The *JdbcConfiguration* interface holds information about the current
 DBMS JDBC configuration, more specifically dialect, driver class,
 connection URL, username and password. A JdbcConfiguration object is
@@ -384,6 +397,16 @@ and populating PivotTable objects.
 ### The External Project
 
 <!--DHIS2-SECTION-ID:techarch_external_project-->
+
+The *LocationManager* component is responsible for the communication
+between DHIS2 and the file system of the operating system. It contains
+methods which provide read access to files through File and InputStream
+instances, and write access to the file system through File and
+OutputStream instances. The target location is relative to a system
+property “dhis2.home” and an environment variable “DHIS2\_HOME” in that
+order. This component is used e.g. by the HibernateConfigurationProvider
+to read in the Hibernate configuration file, and should be re-used by
+all new development efforts.
 
 The *ConfigurationManager* is a component which facilitates the use of
 configuration files for different purposes in DHIS2. It provides methods

@@ -765,14 +765,7 @@ expression and filter. The order of evaluation is:
 </ul>
 <p>It is possible to change the upper and lower boundaries to include a longer or shorter period relative to the reporting period, or delete one of the boundaries - in effect returing all data before or after a certiain period. It is also possible to add more constraints, for example to make an enrollment program indicator only include event data up to a given point in time.</p>
 <ul>
-<li>date&lt;/emphasis&gt;,
-event date
-,
-enrollment date
-or
-custom
-. Designates what is being constrained by the boundary.</li>
-</ul>
+<li><p>Boundary target: Can be <em>incident date</em>, <em>event date</em>, <em>enrollment date</em> or <em>custom</em>. Designates what is being constrained by the boundary.</p>
 <p><em>custom</em> is used make boundary that target either a date data element, tracked entity attribute or the presence of an event in a program stage. This is done with a custom expression on the form:</p>
 <ul>
 <li><p>Data element of type date: #{programStageUid.dataElementUid}.</p>
@@ -786,8 +779,11 @@ custom
 This boundary target is only applicable to
 Analytics type Enrollment
 </blockquote></li>
-</ul>
-&lt;/listitem&gt; Analytics period boundary type: Defines wether the boundary is a end boundary - starting with &quot;before...&quot;, or a start boundary - &quot;after...&quot;. Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period. Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort porgram indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with &quot;-1&quot; and &quot;Years&quot; Period type: See above. Can be any period, e.g. <em>Weekly</em> or <em>Quarterly</em>. &lt;/itemizedlist&gt; &lt;/para&gt;</td>
+</ul></li>
+<li><p>Analytics period boundary type: Defines wether the boundary is a end boundary - starting with &quot;before...&quot;, or a start boundary - &quot;after...&quot;. Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period.</p></li>
+<li><p>Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort porgram indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with &quot;-1&quot; and &quot;Years&quot;</p></li>
+<li><p>Period type: See above. Can be any period, e.g. <em>Weekly</em> or <em>Quarterly</em>.</p></li>
+</ul></td>
 </tr>
 <tr class="even">
 <td><p>Expression</p></td>
@@ -1775,10 +1771,16 @@ date".
 <tr class="odd">
 <td>d2:ceil</td>
 <td>(number)</td>
+<td>Rounds the input argument <strong>up</strong> to the nearest whole number.
+<p>Example:</p>
+<pre><code>d2:ceil(#{hemoglobinValue})</code></pre></td>
 </tr>
 <tr class="even">
 <td>d2:floor</td>
 <td>(number)</td>
+<td>Rounds the input argument <strong>down</strong> to the nearest whole number.
+<p>An example producing the number of weeks the woman is pregnant. Notice that the subexpression #{gestationalAgeDays}/7 is evaluated before the floor function is executed:</p>
+<pre><code>d2:floor(#{gestationalAgeDays}/7)</code></pre></td>
 </tr>
 <tr class="odd">
 <td>d2:round</td>

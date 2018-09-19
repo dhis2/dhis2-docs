@@ -170,6 +170,19 @@ guideline*](https://www.dhis2.org/downloads).
 
 <!--DHIS2-SECTION-ID:Health_information-->
 
+Since there are different use-cases for health information, there are
+different types of software applications functioning within the health
+sector. We use the term architecture for health information to describe
+a plan or overview of the various software applications, their specific
+uses and data connections. The architecture functions as a plan to
+coordinate the development and interoperability of various subsystems
+within the larger health information system. It is advisable to develop
+a plan that covers all components, including the areas that are
+currently not running any software, to be able to adequately see the
+requirements in terms of data sharing. These requirements should then be
+part of specifications for the software once it is developed or
+procured.
+
 The **[openhealth information exchange (openHIE)](https://ohie.org/)**
 is an interoperable interpretation of this architecture, with an HMIS or
 DHIS2 often assuming a significant role in it.The openHIE framework has
@@ -534,6 +547,24 @@ that:
     applications and programming languages and gives third-party
     developers a wide range of implementation options.
 
+This Web API can be accessed by different external information system.
+The effort needed for developing new information systems and maintaining
+them over time is often largely underestimated. Instead of starting from
+scratch, a new application can be built on top of the Web API.
+
+Extenal systems can offer different options for visualizing and
+presenting DHIS2 data, e.g. in the form of dashboards, GIS and charting
+components. Web portals targeted at the health domain can use DHIS2 as
+the main source for aggregate data. The portal can connect to the Web
+API and communicate with relevant resources such as maps, charts,
+reports, tables and static documents. These data views can dynamically
+visualize aggregate data based on queries on the organisation unit,
+indicator or period dimension. The portal can add value to the
+information accessibility in several ways. It can be structured in a
+user-friendly way and make data accessible to inexperienced users. An
+example for this is the [Tanzania HMIS Web
+Portal](https://appstore.hisptanzania.org/).
+
 ## DHIS2 maturity model
 
 Taking into account all the above elements on system architecture and
@@ -839,6 +870,23 @@ already their own clearly defined support structure.
 However in reality some recurring challenges may have to be dealt with:
 Many Public Health System are undergoing dynamic developments, leading
 to changes in data collection needs or calculation of indicators.
+
+Interoperability tends to be a tedious technical and organisational
+charge. All of the three described initiatives have consumed a
+considerable effort of qualified **resources** to activate APIs. In
+addition, with each new release of any involved system, data flows
+require re-testing and if necessary adaptations. To be successful these
+implementation projects typically have to go through a series of complex
+steps, such as the agreement on an interoperability approach embedded in
+the national eHealth strategy, the definition of data standards and
+sustainable maintenance structure, and attaining a stakeholder consensus
+on data ownership and sharing policies. There can be some long term
+consequences when data and systems are knitted together - it creates
+**new roles, tasks and categories of labour** which need to be planned
+for (metadata governance, complex system administration, boundary
+negotiators, etc.). A solution could be to discuss the new
+responsibilities beforehand, assigning them to job descriptions, teams
+and specific positions.
 
 #### Metadata responsibility
 

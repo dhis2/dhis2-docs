@@ -26,6 +26,13 @@ not only in the reports), then indicators can be assigned to the data
 set as well, but these can only be used in custom forms (see further
 down).
 
+In order to use a data set to collect data for a specific organisation
+unit the user must assign the organisation unit to the data set. This
+mechanism controls which organisation units can use which data sets, and
+at the same time defines the target values for data completeness (e.g.
+how many health facilities in a district are expected to submit the RCH
+data set every month).
+
 A data element can belong to multiple data sets, but this requires
 careful thinking as it may lead to overlapping and inconstant data being
 collected if e.g. the data sets are given different frequencies and are

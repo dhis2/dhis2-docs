@@ -359,7 +359,11 @@ program. You can get a copy
 through your package manager if you are using Linux. Just execute the
 command `mvn clean package` on Windows or on Linux from the
 `/dhis2-docbook-docs `directory. Maven will start to download the
-necessary components to transform the
+necessary components to transform the documents into HMTL,PDF and RTF.
+Once the process has completed (be patient the first time, as there are
+a number of components that must be downloaded), all of the target
+document types will be generated in the /`dhis2docs/target/docbkx`
+directory in respective sub-directories.
 
 ### Building with xmlto
 
@@ -369,6 +373,12 @@ information on the package can be found
 [here](http://cyberelk.net/tim/software/xmlto/). If you do not want to
 use Apache Maven for some reason, you can install `xmlto` through your
 package manager. Once you have installed `xmlto` you can just execute
+
+`xmltohtmlfile_to_transform`
+
+where the file\_to\_transform parameter is the name of the file you wish
+to transform. There are many other formats available, such as PDF, PS,
+JavaHelp and others.
 
 ## Committing your changes back to GitHub
 
@@ -385,6 +395,8 @@ Be sure to include a descriptive comment with your commit.
 
 `
 git commit 
+-m
+"Improved documentation on organisation unit imports with CSV."
 `
 
 Finally, you should push the changes back to the repository with `git
