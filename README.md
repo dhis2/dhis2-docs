@@ -9,13 +9,13 @@ This is a provisional repository for testing the migration of DHIS2 documentatio
 
 See below regarding updating and building; but bear in mind the following issues and shortcomings!
 
-- "Asides" (NOTE, TIP, WARNING, etc.) currently all look the same (blockquote format), but we may be able to modify them in the pre-processing step to accommodate individual styling
 - It is not clear if we can continue the Bibliography support that Docbook provided (or if we need to)
 
 ### Known Issues - to be fixed
 
 - [X] Chunked HTML output should use the same identifiers as the docbook output
-- [ ] Intra- (and inter-) document links need updating to generate properly
+- [X] Intra- (and inter-) document links need updating to generate properly
+- [ ] "Asides" (NOTE, TIP, WARNING, etc.) have classes applied in a post-processing step which doesn't apply to PDF output. (could be done as a pandoc filter instead).
 - [ ] Section regarding documentation and Docbook needs rewrite (obviously)
 - [ ] build environment needs improvement to allow easy generation on various platforms (but most developers will not need to build as they can see the expected output in a good markdown editor)
 - [ ] in conjunction with previous point, the build script could be changed to a more robust build tool
@@ -96,7 +96,7 @@ It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but
 
 ### Adding images
 
-Image resources should be included inside a folder structure beginning with `resources/images/` relative to the document. e.g. for the chapter `content/android/android-event-capture-app.cm`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._  
+Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.cm`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._  
 
 
 ### Section references
@@ -126,7 +126,7 @@ Please follow the convention of lowercase letters and underscores, in order to c
 
 ## Building documents
 
-The documents are build in stages:
+The documents are built in stages:
 
 1. The documents are pre-processed with [markdown-pp](https://github.com/jreese/markdown-pp). This assembles all the included (eventually nested) files into a single master document in a temporary directory. This includes copying and adjusting the links to included images.
 2. The final documentation (HTML and PDF formats) are generated with [pandoc](https://pandoc.org/); using [weasyprint](https://weasyprint.readthedocs.io/en/stable/#) as the PDF generation engine.
