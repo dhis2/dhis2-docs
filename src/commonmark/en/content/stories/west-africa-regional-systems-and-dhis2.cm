@@ -6,7 +6,7 @@
 warehouse powered by DHIS2 to consolidate aggregate health data from the
 15 ECOWAS (Economic Community of West African States) member states.**
 
-## 
+## <!-- {-} -->
 
 **UiO and WAHO: An ongoing HIS-strengthening collaboration since 2011**
 UiO has assisted WAHO in building HIS capacity within the organization
@@ -16,7 +16,7 @@ set up using DHIS2.
 At WAHO, the focus is on aligning data, disease and epidemiological
 surveillance technology, quality control and improved data standards.
 
-## 
+## <!-- {-} -->
 
 **Tackling how to better align our data.**The disparity in the size of
 our member countries is a challenge. Take Nigeria and Gambia as examples
@@ -25,7 +25,7 @@ challenge WAHO teams face when setting up a system to map data levels
 correctly between such hugely different structures, and consequently in
 the number and the size of the administrative levels.
 
-## 
+## <!-- {-} -->
 
 **Flexible Integrated Architecture.**To address this situation, WAHO has
 developed a system called “Flexible Integrated Architecture” which
@@ -36,7 +36,7 @@ of these levels in the regional data warehouse. This approach allows for
 comparison of data between countries of different size and with
 different organizational structures.
 
-## 
+## <!-- {-} -->
 
 **“What is WAHO looking to do with the data?”**This is a question we’re
 often asked. For a start, we’re collecting data to provide countries
@@ -51,7 +51,7 @@ several countries.
 
 ![](resources/images/use_cases/WAHO_Map.png)
 
-## 
+## <!-- {-} -->
 
 **Quality missions to get reliable data.**WAHO is actively working with
 countries to find the right indicators for their specific context. There

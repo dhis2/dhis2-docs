@@ -1,3 +1,4 @@
 target/
 tmp/
 **/__pycache__/**
+**/*.backup

@@ -95,6 +95,9 @@ class Include(Module):
                         for l in to_del:
                             del data[l]
 
+                titlematch = self.titlere.search(line)
+                if titlematch:
+                    data[linenum] = re.sub(r'<!-- *{-} *-->', '{-}', data[linenum])
 
                 linenum += 1
 

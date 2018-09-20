@@ -9,7 +9,7 @@ module is currently being rolled out in three of the 10 regions in the
 West Bank. The remaining regions will be covered over the upcoming
 months.**
 
-## 
+## <!-- {-} -->
 
 **How did the Tracker come about?** Primary health care is at a
 particularly low level for expectant women due to the volatile context
@@ -22,7 +22,7 @@ project is being led by the Norwegian Institute of Public Health, with
 the involvement of the Palestinian National Institute of Public Health
 and the Ministry of Health in Palestine.
 
-## 
+## <!-- {-} -->
 
 **What was *not* in place before that is available now with Tracker?**
 Tracker has provided national guidelines and support for clinicians when
@@ -33,7 +33,7 @@ anemia and will be prompted to take action accordingly. This information
 is powered by a powerful rule engine, and is based on WHO guidance about
 what actions to take in certain health situations.
 
-## 
+## <!-- {-} -->
 
 **What exactly is the DHIS2 Tracker e-Registry?** The Tracker user
 interface is a checklist, which also provides decision support tools.
@@ -46,7 +46,7 @@ level.
 
 ![](resources/images/use_cases/palestine_eRegistry_Tracker_management.png)
 
-## 
+## <!-- {-} -->
 
 **How successful has the program been?** We’ve a few hundred cases
 registered so far with Tracker in the West Bank roll out, so it’s still
@@ -54,7 +54,7 @@ in its early stages. However, we’ve identified a series of
 recommendations that may be useful for future DHIS2 Tracker
 implementations.
 
-## 
+## <!-- {-} -->
 
 **What is the general feedback and what are the highlights of this
 program?** It’s been positive on the whole so far. Using a rule-based

@@ -9,6 +9,7 @@ import argparse
 from bs4 import BeautifulSoup, NavigableString, Comment
 
 link_remap = {}
+link_list = []
 
 def map_ids(soup):
     '''
@@ -22,12 +23,14 @@ def map_ids(soup):
         map_ids(s)
 
         for c in s.find_all(text=lambda text:isinstance(text, Comment)):
-            c_parts = c.split(':')
+            c_parts = c.strip().split(':')
             if c_parts[0] == "DHIS2-SECTION-ID":
-                if c_parts[1] != s['id']:
+                myId = c_parts[1]
+                if myId != s['id']:
                     # keep track of the changes in order to update the links
-                    link_remap['#'+s['id']] = '#'+c_parts[1]
-                    s['id'] = c_parts[1]
+                    link_remap['#'+s['id']] = '#'+myId
+                    link_list.append('#'+s['id'])
+                    s['id'] = myId
                     # remove the comment so it isn't used by the parent
                     c.extract()
                     break
@@ -53,9 +56,9 @@ def main():
     map_ids(soup)
 
     # update any modified links 
-    for original in link_remap.keys():
-        for l in soup.find_all('a',href=original):
-            l['href']= link_remap[original]
+    for l in soup.find_all(href=link_list):
+        original = l['href']
+        l['href']= link_remap[original]
 
     # add class to the blockquotes/asides
     for b in soup.find_all('blockquote'):
