@@ -83,7 +83,7 @@ this organisation unit in the **Data Entry** app.
       - If you have defined a minimum maximum value range for the field
         and you enter a value that is outside this range, you'll get a
         pop-up message that says the value is out of range. The value
-        remains unsaveduntil you've changed the value or updated the
+        remains unsaved until you've changed the value or updated the
         value range and then re-entered the value.
 
 6.  When you've filled in the form, click **Run validation** in the top
@@ -270,7 +270,7 @@ case, you can enable multi-organisation unit data entry.
 
 > **Note**
 > 
-> Multi-organisation unit data entry only works for sectionforms.
+> Multi-organisation unit data entry only works for section forms.
 
 1.  Open the **System Settings** app.
 

@@ -1,4 +1,4 @@
-# Configure metadatasynchronizing
+# Configure metadata synchronizing
 
 <!--DHIS2-SECTION-ID:metadata_sync-->
 
@@ -202,7 +202,7 @@ system.
 
 4.  Click **Start**.
 
-## Create a new metadataversion manually on central or local instance
+## Create a new metadata version manually on central or local instance
 
 1.  Open the **System Settings** app and click **Synchronization**.
 
@@ -235,7 +235,7 @@ versioning table:
 <tbody>
 <tr class="odd">
 <td><p>Master version</p></td>
-<td><p>The latest versionin the system.</p></td>
+<td><p>The latest version in the system.</p></td>
 </tr>
 <tr class="even">
 <td><p>Version</p></td>
@@ -348,7 +348,7 @@ following parameters defined in `dhis.conf` file:
 
 Each retry will be made after the time (in millisecond) as specified. If
 the steps still fail even after all the retries, then the scheduler
-stops its execution and then a mail will be sent to the configureduser
+stops its execution and then a mail will be sent to the configured user
 (if any). If no values are specified then the default values will be
 used.
 

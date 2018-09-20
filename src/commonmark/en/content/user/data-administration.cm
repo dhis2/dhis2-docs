@@ -1,4 +1,4 @@
-# DataAdministration
+# Data Administration
 
 <!--DHIS2-SECTION-ID:data_admin-->
 
@@ -185,13 +185,13 @@ All validation rules must be assigned to a group. Go to **Maintenance**
 app \> **Validation rule group** and assign the offending validation
 rule to a group.
 
-### Invalid validation rule leftside expressions
+### Invalid validation rule left side expressions
 
 An error exists in the left-side validation rule definition. Go to
 **Maintenance** app \> **Validation rule** and click **Edit** on the
 offending rule. Click **Left side** and make the required corrections.
 
-### Invalid validation rule rightside expressions
+### Invalid validation rule right side expressions
 
 An error exists in the right-side validation rule definition. Go to
 **Maintenance** app \> **Validation rule** and click **Edit** on the

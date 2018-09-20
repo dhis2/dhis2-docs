@@ -44,7 +44,7 @@ A program needs several types of metadata that you create in the
 **Program / Attributes** and **Maintenance** apps.
 
 <table>
-<caption>Program metadata objects in the Program / Attributesapp</caption>
+<caption>Program metadata objects in the Program / Attributes app</caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -196,7 +196,7 @@ app](https://docs.dhis2.org/master/en/user/html/configure_programs_in_Maintenanc
         locked ten days after the completion date. After this date you
         can no longer edit the event.
     
-    11. Select an **Expiry period type** and enter numberof **Expiry
+    11. Select an **Expiry period type** and enter number of **Expiry
         days**.
         
         The expiry days defines for how many days after the end of the
@@ -330,7 +330,7 @@ To set the authority for sharing a program:
 4.  (Optional) If you want to allow external access, select **External
     access (without login)**.
 
-5.  Change the settings for the user groupsyou want to modify.
+5.  Change the settings for the user groups you want to modify.
     
       - **None**: The program is private. Only the user who created it
         can see and use it.
@@ -442,7 +442,7 @@ actions should be taken at each stage.
     <tr class="odd">
     <td><p><strong>Report date to use</strong></p></td>
     <td>If you have selected the <strong>Open data entry form after enrollment</strong> check box, also select a <strong>Report date to use</strong>: <strong>Date of incident</strong> or <strong>Date of enrollment</strong>.
-    <p>Thisis the date used as report date for an event that has been opened automatically.</p>
+    <p>This is the date used as report date for an event that has been opened automatically.</p>
     <p>If the <strong>Report date to use</strong> is selected as one of those two ('incident date'/'enrollment date'), in Dashboard, the 'Report date' of the event will be set as one of those two.</p></td>
     </tr>
     <tr class="even">
@@ -514,7 +514,7 @@ actions should be taken at each stage.
         </tr>
         <tr class="odd">
         <td><p><strong>Display in reports</strong></p></td>
-        <td><p>Display the value of this data element into the single event without registrationdata entry function.</p></td>
+        <td><p>Display the value of this data element into the single event without registration data entry function.</p></td>
         </tr>
         <tr class="even">
         <td><p><strong>Date in future</strong></p></td>
@@ -626,7 +626,7 @@ actions should be taken at each stage.
 
 6.  Click **Save**.
 
-## Manageprogramnotifications
+## Manage program notifications
 
 <!--DHIS2-SECTION-ID:manage_program_notification-->
 
@@ -1039,7 +1039,7 @@ into a certain program after that.
 
 > **Note**
 > 
-> Checkon*Auto save registration form* check box in *Design tracked
+> Check on*Auto save registration form* check box in *Design tracked
 > entity form*to save the custom registration form to being designed
 > automatically.
 

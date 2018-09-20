@@ -1,4 +1,4 @@
-# Using the TrackerCaptureapp
+# Using the Tracker Capture app
 
 <!--DHIS2-SECTION-ID:tracker_capture_app-->
 
@@ -33,7 +33,7 @@ Capture** app.
     during registration.
 
   - When you close an organisation unit, you can't register or edit
-    events tothis organisation unit in the **Tracker Capture** app. You
+    events to this organisation unit in the **Tracker Capture** app. You
     can still search for TEIs and filter the search results. You can
     also view the dashboard of a particular TEI.
 
@@ -55,7 +55,7 @@ You manage a TEI from the TEI's dashboard in the **Tracker Capture**app.
     right widget column. Then all the widgets you've placed in the right
     column remain visible while you scroll in the data entry part.
 
-  - Any indicatordefined for the program you've selected will have its
+  - Any indicator defined for the program you've selected will have its
     value calculated and displayed in the **Indicators** widget.
 
   - Navigation:
@@ -136,7 +136,7 @@ add new**
 
 (img integrated search)
 
-## Open an existingTEI dashboard
+## Open an existing TEI dashboard
 
 <!--DHIS2-SECTION-ID:open_existing_tracked_entity_instance_dashboard-->
 
@@ -319,7 +319,7 @@ or **Tabular data entry** widgets.
 <p>Also included in the Timeline Data entry is the option to compare your data entry to previous entries. This can be enabled by clicking the &quot;Switch to compare form&quot; button (Two sheets of paper) in the top right corner of the Timeline Data entry widget.</p></td>
 </tr>
 <tr class="even">
-<td><p><strong>Tabular dataentry</strong></p></td>
+<td><p><strong>Tabular data entry</strong></p></td>
 <td><p>For tabular-style data entry.</p>
 <p>The widget displays the list of program stages as left-hand side labels. Events will be listed in table for repeatable program stage, and allows for in-line edits of event data values.</p></td>
 </tr>
@@ -397,7 +397,7 @@ entering data for a new event. This can be achived by:
 
 <!--DHIS2-SECTION-ID:manage_tracked_entity_instance_enrollment-->
 
-### Deactivatea TEI's enrollment
+### Deactivate a TEI's enrollment
 
 <!--DHIS2-SECTION-ID:deactivate_tracked_entity_instance_enrollment-->
 
@@ -425,7 +425,7 @@ can't enter data, enroll the TEI or edit the TEI's profile.
 4.  Click **Yes** to
 confirm.
 
-### Mark TEI's enrollmentas complete
+### Mark TEI's enrollment as complete
 
 <!--DHIS2-SECTION-ID:mark_tracked_entity_instance_enrollment_complete-->
 
@@ -451,7 +451,7 @@ confirm.
 4.  Click **Yes** to
 confirm.
 
-### Display TEI's enrollmenthistory
+### Display TEI's enrollment history
 
 <!--DHIS2-SECTION-ID:display_tracked_entity_instance_enrollment_history-->
 
@@ -523,7 +523,7 @@ widget.
 
 4.  Modify the profile and click **Save**.
 
-## Add a relationshipto a TEI
+## Add a relationship to a TEI
 
 <!--DHIS2-SECTION-ID:add_relationship_to_tracked_entity_instance-->
 
@@ -557,7 +557,7 @@ automatically generated value.
 
 <!--DHIS2-SECTION-ID:share_tracked_entity_instance_dashboard-->
 
-You can share a TEIdashboard via its web address.
+You can share a TEI dashboard via its web address.
 
 1.  Open the **Tracker Capture** app.
 
@@ -611,7 +611,7 @@ with the TEI is not deleted.
 
 > **Warning**
 > 
-> When you delete a TEI, you delete all dataassociated with the TEI.
+> When you delete a TEI, you delete all data associated with the TEI.
 
 1.  Open the **Tracker Capture** app.
 
@@ -724,11 +724,11 @@ easy way. To start using the top bar:
     </tr>
     <tr class="odd">
     <td><p>Upcoming events</p></td>
-    <td><p>A tabular report showing tracked entity instances and their upcoming events for a selected program and time. You can sort the columns and search the values. Show/hide operations arepossible on the columns. You can also export the table to Microsoft Excel.</p></td>
+    <td><p>A tabular report showing tracked entity instances and their upcoming events for a selected program and time. You can sort the columns and search the values. Show/hide operations are possible on the columns. You can also export the table to Microsoft Excel.</p></td>
     </tr>
     <tr class="even">
     <td><p>Overdue events</p></td>
-    <td><p>A list of eventsfor a selected program. The report displays a list of TEIs and their events that are not completed on time. You can sort the columns and search the values You can also export the table to Microsoft Excel.</p></td>
+    <td><p>A list of events for a selected program. The report displays a list of TEIs and their events that are not completed on time. You can sort the columns and search the values You can also export the table to Microsoft Excel.</p></td>
     </tr>
     </tbody>
     </table>

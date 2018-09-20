@@ -111,14 +111,14 @@
 </tr>
 <tr class="odd">
 <td><p><strong>Cacheability</strong></p></td>
-<td><p>Sets whether analytics data responses should be servedwith public or private visibility.</p>
+<td><p>Sets whether analytics data responses should be served with public or private visibility.</p>
 <p><strong>Private</strong>: Any node or server between the DHIS2 server and the end user which has the ability to cache can NOT cache the web page. This is useful if the page served can or do contain sensitive information. This means that each time you want a web page, either you get a new page from the DHIS2 server, or the DHIS2 server caches the page. No other server than the DHIS2 server are allowed to cache the page.</p>
 <p><strong>Public</strong>: Any node or server between the DHIS2 server and the end user which has the ability to cache can cache the web page. This relives the traffic to the DHIS2 server and potentially speeds up the subsequent page loading speed.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Cache strategy</strong></p></td>
 <td><p>Decides for how long reports analytics responses should be cached.</p>
-<p>If you use the scheduled, nightly analytics update, select <strong>Cache until 6 AM tomorrow</strong>. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tablesare updated.</p>
+<p>If you use the scheduled, nightly analytics update, select <strong>Cache until 6 AM tomorrow</strong>. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tables are updated.</p>
 <p>If you are loading data continuously into the analytics tables, select <strong>No cache</strong>.</p></td>
 </tr>
 <tr class="odd">
@@ -139,7 +139,8 @@
 </tr>
 <tr class="even">
 <td><p><strong>Put analytics in maintenance mode</strong></p></td>
-<td>Places the analytics and web API of DHIS2 in maintenance mode. This means that &quot;503 Service Unavailable&quot; will be returned for all requests.This is useful when you need to perform maintenance on the server, for example rebuilding indexes while the server is running in production, in order to reduce load and more efficiently carry out the maintenance.</td>
+<td>Places the analytics and web API of DHIS2 in maintenance mode. This means that &quot;503 Service Unavailable&quot; will be returned for all requests.
+<p>This is useful when you need to perform maintenance on the server, for example rebuilding indexes while the server is running in production, in order to reduce load and more efficiently carry out the maintenance.</p></td>
 </tr>
 </tbody>
 </table>
@@ -169,7 +170,7 @@
 <tr class="even">
 <td><p><strong>System notifications email address</strong></p></td>
 <td><p>Defines the email address which will receive system notifications.</p>
-<p>Notifications about failures in processes such as analytics tablegeneration will be sent here. This is useful for application monitoring.</p></td>
+<p>Notifications about failures in processes such as analytics table generation will be sent here. This is useful for application monitoring.</p></td>
 </tr>
 <tr class="odd">
 <td><p><strong>Server base URL</strong></p></td>
@@ -183,13 +184,13 @@
 </tr>
 <tr class="even">
 <td><p><strong>Google Analytics (Universal Analytics) key</strong></p></td>
-<td><p>Sets the Google UA key to provide usage analyticsfor your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.</p>
+<td><p>Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.</p>
 <p>You can read more about Google Analytics at <a href="http://google.com/analytics" class="uri">http://google.com/analytics</a>.</p></td>
 </tr>
 </tbody>
 </table>
 
-## Appearancesettings
+## Appearance settings
 
 <!--DHIS2-SECTION-ID:system_appearance_settings-->
 
@@ -216,6 +217,79 @@
 <li><p><strong>Application left-side footer</strong></p></li>
 <li><p><strong>Application right-side footer</strong></p></li>
 </ul></td>
+</tr>
+<tr class="even">
+<td><p><strong>Application title</strong></p></td>
+<td><p>Sets the application title on the top menu.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Application introduction</strong></p></td>
+<td><p>Sets an introduction of the system which will be visible on the top-left part of the login page.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Application notification</strong></p></td>
+<td><p>Sets a notification which will be visible on the front page under the login area.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Application left-side footer</strong></p></td>
+<td><p>Sets a text in the left-side footer area of the login page.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Application right-side footer</strong></p></td>
+<td><p>Sets a text in the right-side footer area of the login page.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Style</strong></p></td>
+<td><p>Sets the style (look-and-feel) of the system.</p>
+<p>The user can override this setting in the <strong>Settings</strong> app: <strong>User settings</strong> &gt; <strong>Style</strong>.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Due to technical reasons, it's not possible to change the color of the newest version of the header bar. The apps with the newest header bar will retain the blue header bar.</p>
+</blockquote></td>
+</tr>
+<tr class="even">
+<td><p><strong>Start page</strong></p></td>
+<td><p>Sets the page or app which the user will be redirected to after log in.</p>
+<p>Recommended setting: the <strong>Dashboard</strong> app.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Help page link</strong></p></td>
+<td><p>Defines the URL which users will see when they click <strong>Profile</strong> &gt;<strong>Help</strong>.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Flag</strong></p></td>
+<td><p>Sets the flag which is displayed in the left menu of the <strong>Dashboard</strong> app.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Interface language</strong></p></td>
+<td><p>Sets the language used in the user interface.</p>
+<p>The user can override this setting in the <strong>Settings</strong> app: <strong>User settings</strong> &gt; <strong>Interface language</strong>.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Database language</strong></p></td>
+<td><p>Sets the language used in the database.</p>
+<p>The user can override this setting in the <strong>Settings</strong> app: <strong>User settings</strong> &gt; <strong>Database language</strong>.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Property to display in analysis modules</strong></p></td>
+<td><p>Sets whether you want to display the metadata objects' names or short names in the analytics apps: <strong>Data Visualizer</strong>, <strong>Event Reports</strong>, <strong>Event Visualizer</strong>, <strong>GIS</strong> and <strong>Pivot Table</strong> apps.</p>
+<p>The user can override this setting in the <strong>Settings</strong> app: <strong>User settings</strong> &gt; <strong>Property to display in analysis modules</strong>.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Default digit group separator to display in analysis modules</strong></p></td>
+<td><p>Sets the default digit group separator in the analytics apps: <strong>Data Visualizer</strong>, <strong>Event Reports</strong>, <strong>Event Visualizer</strong>, <strong>GIS</strong> and <strong>Pivot Table</strong> apps.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Require authority to add to view object lists</strong></p></td>
+<td><p>If you select this option, you'll hide menu and index page items and links to lists of objects if the current user doesn't have the authority to create the type of objects (privately or publicly).</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Custom login page logo</strong></p></td>
+<td><p>Select this option and upload an image to add your logo to the login page.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Custom top menu logo</strong></p></td>
+<td><p>Select this option and upload an image to add your logo to the left in the top menu.</p></td>
 </tr>
 </tbody>
 </table>
@@ -357,7 +431,7 @@
 <tr class="odd">
 <td><p><strong>Allow assigning object to related objects during add or update</strong></p></td>
 <td><p>Defines whether users should be allowed to assign an object to a related object when they create or edit metadata objects.</p>
-You can allow users to assign an organisation unit to data sets and organisation unit group sets when creating or editing the organisation unit.</td>
+<p>You can allow users to assign an organisation unit to data sets and organisation unit group sets when creating or editing the organisation unit.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Require user account password change</strong></p></td>
@@ -450,7 +524,7 @@ in the import.
 <tbody>
 <tr class="odd">
 <td><p><strong>Require periods to match period type of data set</strong></p></td>
-<td><p>Require period of data value to be of the same period type as the data sets for which the data element of data valueis assigned to.</p></td>
+<td><p>Require period of data value to be of the same period type as the data sets for which the data element of data value is assigned to.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Require category option combos to match category combo of data element</strong></p></td>
@@ -458,7 +532,7 @@ in the import.
 </tr>
 <tr class="odd">
 <td><p><strong>Require organisation units to match assignment of data set</strong></p></td>
-<td><p>Require organisation unit of data value to be assigned to one or more of the data sets which the data element of data valueis assigned to.</p></td>
+<td><p>Require organisation unit of data value to be assigned to one or more of the data sets which the data element of data value is assigned to.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Require attribute option combos to match category combo of data set</strong></p></td>
@@ -521,6 +595,28 @@ synchronization.
 </blockquote></td>
 </tr>
 <tr class="odd">
+<td><p><strong>Remote server password</strong></p></td>
+<td><p>The password of the DHIS2 user account on the remote server. The password will be stored encrypted.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Enable versioning for metadata sync</strong></p></td>
+<td><p>Defines whether to create versions of metadata when you synchronize metadata between central and local instances.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Don't sync metadata if DHIS versions differ</strong></p></td>
+<td><p>The metadata schema changes between versions of DHIS2 which could make different metadata versions incompatible.</p>
+<p>When enabled, this option will not allow metadata synchronization to occur if the central and local instance(s) have different DHIS2 versions. This apply to metadata synchronization done both via the user interface and the API.</p>
+<p>The only time it might be valuable to disable this option is when synchronizing basic entities, for example data elements, that have not changed across DHIS2 versions.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Best effort</strong></p></td>
+<td><p>A type of metadata version which decides how the importer on local instance(s) will handle the metadata version.</p>
+<p><em>Best effort</em> means that if the metadata import encounters missing references (for example missing data elements on a data element group import) it ignores the errors and continues the import.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Atomic</strong></p></td>
+<td><p>A type of metadata version which decides how the importer on local instance(s) will handle the metadata version.</p>
+<p><em>Atomic</em> means all or nothing - the metadata import will fail if any of the references do not exist.</p></td>
 </tr>
 </tbody>
 </table>

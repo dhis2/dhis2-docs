@@ -111,7 +111,7 @@ uses this information to contact users directly, for example sending
 emails to notify users about important events. You can also use the
 contact information to share for example dashboards and pivot tables.
 
-A user in DHIS2 is associatedwith an organisation unit. You should
+A user in DHIS2 is associated with an organisation unit. You should
 assign the organisation unit where the user works.
 
 When you create a user account for a district record officer, you should
@@ -136,7 +136,7 @@ The assigned organisation unit affects how the user can use DHIS2:
 An important part of user management is to control which users are
 allowed to create new users with which authorities. In DHIS2, you can
 control which users are allowed to perform this task. The key principle
-is that a user can only grant authoritiesand access to data sets that
+is that a user can only grant authorities and access to data sets that
 the user itself has access to. The number of users at national, province
 and district level are often relatively few and can be created and
 managed by the system administrators. If a large proportion of the
@@ -158,7 +158,7 @@ be the sum of all authorities and data sets in the user roles. This
 means that you can mix and match user roles for special purposes instead
 of only creating new ones.
 
-A user role is associatedwith a collection of data sets. This affects
+A user role is associated with a collection of data sets. This affects
 the **Data Entry** app: a user can only enter data for the data sets
 registered for his/her user role. This can be useful when, for example,
 you want to allow officers from health programs to enter data only for
@@ -213,10 +213,10 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
 > **Tip**
 > 
-> For users to be able to enter data, you must addthem to an
-> organisational unit leveland share a dataset with them.
+> For users to be able to enter data, you must add them to an
+> organisational unit level and share a dataset with them.
 
-## Example: user managementin a health system
+## Example: user management in a health system
 
 <!--DHIS2-SECTION-ID:user_mgt_example-->
 
@@ -259,7 +259,7 @@ Examples of common positions are:
 <td><p>National health managers</p>
 <p>Province health managers</p></td>
 <td><p>Monitor and analyse data</p></td>
-<td><p>Access to the reportsmodule, the <strong>GIS</strong>, <strong>Data Quality</strong> apps and the dashboard.</p></td>
+<td><p>Access to the reports module, the <strong>GIS</strong>, <strong>Data Quality</strong> apps and the dashboard.</p></td>
 <td><p>Don't need access to enter data, modify data elements or data sets.</p></td>
 </tr>
 <tr class="odd">
@@ -269,7 +269,7 @@ Examples of common positions are:
 <td><p>Enter data that comes from facilities which are not able to do so directly</p>
 <p>Monitor, evaluate and analyse data</p></td>
 <td><p>Access to all the analysis and validation apps</p>
-<p>Access to the<strong>Data Entry</strong> app.</p></td>
+<p>Access to the <strong>Data Entry</strong> app.</p></td>
 <td><p>-</p></td>
 </tr>
 <tr class="even">
