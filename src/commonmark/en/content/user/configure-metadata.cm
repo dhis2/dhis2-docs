@@ -253,7 +253,7 @@ number of data elements.
 
 You can group and classify category options by using category option
 groups. The main purpose of the category option group set is to add more
-dimensionalityto your captured data for analysis in for example the
+dimensionality to your captured data for analysis in for example the
 **Pivot table** or **Data Visualizer** apps.
 
 In a system, data is collected by "projects", where projects is modeled
@@ -292,7 +292,7 @@ To create a category option group:
 
 You can group category option groups in category option group sets. The
 main purpose of the category option group set is to add more
-dimensionalityto your captured data for analysis in for example the
+dimensionality to your captured data for analysis in for example the
 **Pivot table** or **Data Visualizer** apps.
 
 1.  Open the **Maintenance** app and click **Category** \> **Category
@@ -324,7 +324,7 @@ of data values contained in a data set. When category combinations are
 used as a attribute, they serve as another dimension (similar to
 "Period" and "Organisation unit") which you can use in your analysis.
 
-Supposethat a NGO is providing ART services in a given facility. They
+Suppose that a NGO is providing ART services in a given facility. They
 would need to report each month on the "ART monthly summary", which
 would contain a number of data elements. The NGO and project could
 potentially change over time. In order to attribute data to a given NGO
@@ -440,7 +440,7 @@ view or enter data in form fields using the metadata.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -555,7 +555,7 @@ objects:
 
 4.  Create data elements and assign them to a category combination.
 
-### Create or edit a dataelement
+### Create or edit a data element
 
 <!--DHIS2-SECTION-ID:create_data_element-->
 
@@ -591,12 +591,12 @@ objects:
     element. Be as precise as possible and include complete information
     about how the data element is measured and what its purpose is.
 
-9.  In the **Form name**field, type an alternative name of the data
+9.  In the **Form name** field, type an alternative name of the data
     element. This name can be used in either section or automatic data
     entry forms. The form name is applied automatically.
 
 10. In the **Domain type** field, select whether the data element is an
-    aggregate or tracker typeof data element.
+    aggregate or tracker type of data element.
 
 11. In the **Value type** field, select the type of data that the data
     element will record.
@@ -782,7 +782,7 @@ objects:
     zero data values**. By default, DHIS2 does not store zeros entered
     in the data entry module.
 
-14. In the **URL** field, enter a linkto an in-depth description of the
+14. In the **URL** field, enter a link to an in-depth description of the
     data element.
     
     For example a link to a metadata repository or registry that
@@ -793,10 +793,10 @@ objects:
     combination the data element should have. This is also known as the
     "disaggregation".
 
-16. Select an **Optionset**.
+16. Select an **Option set**.
     
-    Option sets are predefined lists of options which can be usedin data
-    entry.
+    Option sets are predefined lists of options which can be used in
+    data entry.
 
 17. Select an **Option set for comments**.
     
@@ -806,10 +806,10 @@ objects:
 
 18. Assign one or multiple **Legends**.
     
-    Legends are used in for example the **GIS** appto display certain
+    Legends are used in for example the **GIS** app to display certain
     data elements with certain icons.
 
-19. Set the **Aggregationlevels** to allow the data element to be
+19. Set the **Aggregation levels** to allow the data element to be
     aggregated at one or more levels:
     
     1.  In the left pane, select the levels you want to assign to the
@@ -983,7 +983,7 @@ view or enter data in form fields using the metadata.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -1037,7 +1037,7 @@ cultural region.
 
 5.  Click **Save**.
 
-## Managedata sets and data entry forms
+## Manage data sets and data entry forms
 
 <!--DHIS2-SECTION-ID:manage_data_set-->
 
@@ -1097,7 +1097,7 @@ entry forms:
 </colgroup>
 <thead>
 <tr class="header">
-<th>Dataentry form type</th>
+<th>Data entry form type</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -1105,11 +1105,11 @@ entry forms:
 <tr class="odd">
 <td><p>Default form</p></td>
 <td><p>Once you have assigned a data set to an organisation unit, a default form is created automatically. The default form is then available in the <strong>Data entry</strong> app for the organisation units you have assigned it to.</p>
-<p>A default form consist of a list of the data elements belonging to the data set together with a column for inputting the values.If your data set contains data elements with a non-default category combination, for example age groups or gender, additional columns are automatically created in the default form based on the different categories.</p>
+<p>A default form consist of a list of the data elements belonging to the data set together with a column for inputting the values. If your data set contains data elements with a non-default category combination, for example age groups or gender, additional columns are automatically created in the default form based on the different categories.</p>
 <p>If you use more than one category combination you get multiple columns in the default form with different column headings for the options.</p></td>
 </tr>
 <tr class="even">
-<td><p>Sectionform</p></td>
+<td><p>Section form</p></td>
 <td><p>If the default form doesn't meet your needs, you can modify it to create a section form. Section forms give you more flexibility when it comes to using tabular forms.</p>
 <p>In a section form you can, for example, create multiple tables with subheadings and disable (grey out) cells in a table.</p>
 <p>When you have added a section form to a data set, the section form is available in the <strong>Data entry</strong> app.</p></td>
@@ -1206,7 +1206,7 @@ data entry forms.
 
 2.  Click the add button.
 
-3.  In the **Name** field, type the precise nameof the data set.
+3.  In the **Name** field, type the precise name of the data set.
 
 4.  In the **Short name** field, define a short name for the data set.
     
@@ -1342,11 +1342,11 @@ data entry forms.
 25. Select indicators and assign them.
 
 26. In the organisation unit tree, select the organisation units you
-    want to assignthe data set to.
+    want to assign the data set to.
     
     > **Tip**
     > 
-    >   - Click**Organisation unit level** to select all organisation
+    >   - Click **Organisation unit level** to select all organisation
     >     units that belong to a certain organisation level.
     > 
     >   - Click **Organisation unit group** to select all organisation
@@ -1371,7 +1371,7 @@ to the selected frequency (period type).
 
 ![](resources/images/datasets/dataset_notification_create.png)
 
-1.  In the **Name** field, type the precise nameof the data set
+1.  In the **Name** field, type the precise name of the data set
     notification.
 
 2.  (Optional) In the **Code** field, assign a code.
@@ -1450,7 +1450,7 @@ to the selected frequency (period type).
     > number and email address exist for that user and SMS/EMAIL
     > notifications are enabled in SystemSettings
 
-### Override data elements' categorycombinations in a data set
+### Override data elements' category combinations in a data set
 
 <!--DHIS2-SECTION-ID:override_dataelement_catcombo_in_dataset-->
 
@@ -1494,7 +1494,7 @@ during data entry.
 
 5.  Click **Save**.
 
-### Download default data formsin PDF format
+### Download default data forms in PDF format
 
 <!--DHIS2-SECTION-ID:download_defaultform_pdf-->
 
@@ -1503,7 +1503,7 @@ entry.
 
 1.  Open the **Maintenance** app and click **Data set** \> **Data set**.
 
-2.  In the list, find the objectyou want to download.
+2.  In the list, find the object you want to download.
 
 3.  Click the options menu and select **Get PDF for data entry**.
 
@@ -1539,7 +1539,7 @@ section.
 
 9.  Assign data elements to the section:
     
-    1.  (Optional) Select a **Category combinationfilter**.
+    1.  (Optional) Select a **Category combination filter**.
         
         > **Note**
         > 
@@ -1575,7 +1575,7 @@ section.
 
 11. Click **Save**.
 
-12. Repeat addsection steps for each section you want to have in your
+12. Repeat add section steps for each section you want to have in your
     section form.
     
     In the **Data Entry** app you can now use the section form. The
@@ -1607,9 +1607,9 @@ data entry forms for data sets.
 
 6.  Edit the section and click **Save**.
 
-7.  Repeat editsection steps for each section you want to edit.
+7.  Repeat edit section steps for each section you want to edit.
 
-#### Managegrey fields in a section form
+#### Manage grey fields in a section form
 
 You can disable data elements and category options for data entry. That
 means it won’t be possible to enter data into these fields during data
@@ -1720,7 +1720,7 @@ To create a custom form:
 
 #### Scripting in custom forms
 
-In custom data entry form you can use JavaScriptto create dynamic
+In custom data entry form you can use JavaScript to create dynamic
 behavior and customizations. As an example, you can hide form sections
 based on specific user input for data elements, or show specific
 information when a form loads.
@@ -1736,7 +1736,64 @@ and when they are triggered.
 
 <table>
 <caption>Data entry events</caption>
+<colgroup>
+<col width="32%" />
+<col width="39%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Description</th>
+<th>Arguments</th>
+</tr>
+</thead>
 <tbody>
+<tr class="odd">
+<td><p>dhis2.de.event.formLoaded</p></td>
+<td><p>Triggered after the data entry form is rendered, but before data values are set in entry fields.</p></td>
+<td><p>Event | Data set ID</p></td>
+</tr>
+<tr class="even">
+<td><p>dhis2.de.event.dataValuesLoaded</p></td>
+<td><p>Triggered after data values are set in entry fields.</p></td>
+<td><p>Event | Data set ID</p></td>
+</tr>
+<tr class="odd">
+<td><p>dhis2.de.event.formReady</p></td>
+<td><p>Triggered when the data entry form is completely rendered and loaded with all elements.</p></td>
+<td><p>Event | Data set ID</p></td>
+</tr>
+<tr class="even">
+<td><p>dhis2.de.event.dataValueSaved</p></td>
+<td><p>Triggered when a data value is saved successfully.</p></td>
+<td><p>Event | Data set ID | Data value object</p></td>
+</tr>
+<tr class="odd">
+<td><p>dhis2.de.event.completed</p></td>
+<td><p>Triggered when a data set is successfully marked as complete.</p></td>
+<td><p>Event | Data set ID | Complete registration object</p></td>
+</tr>
+<tr class="even">
+<td><p>dhis2.de.event.uncompleted</p></td>
+<td><p>Triggered when a data set is successfully marked as incomplete.</p></td>
+<td><p>Event | Data set ID</p></td>
+</tr>
+<tr class="odd">
+<td><p>dhis2.de.event.validationSuccess</p></td>
+<td><p>Triggered when validation is done and there were no violations.</p></td>
+<td><p>Event | Data set ID</p></td>
+</tr>
+<tr class="even">
+<td><p>dhis2.de.event.validationError</p></td>
+<td><p>Triggered when validation is done and there were one or more violations.</p></td>
+<td><p>Event | Data set ID</p></td>
+</tr>
+<tr class="odd">
+<td><p>dhis2.ou.event.orgUnitSelected</p></td>
+<td><p>Triggered when one or more organisation units are selected in the org unit web tree.</p></td>
+<td><p>Event | Org unit IDs | Org unit names | Sub org unit IDs</p></td>
+</tr>
 </tbody>
 </table>
 
@@ -1868,7 +1925,7 @@ view or enter data in form fields using the metadata.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -1945,7 +2002,7 @@ An indicator formula can consist of mathematical operators, for example
 plus and minus, and of the following elements:
 
 <table>
-<caption>Indicatorformula</caption>
+<caption>Indicator formula</caption>
 <colgroup>
 <col width="36%" />
 <col width="30%" />
@@ -1974,7 +2031,7 @@ plus and minus, and of the following elements:
 <td><p>Days</p></td>
 <td><p>Operator</p></td>
 <td><p>&quot;Days&quot; is special operator that always provides the number of days for a given indicator calculation.</p>
-<p>For example: if you want to calculate the &quot;Percentage of time vaccine refrigerator was non-functional&quot;, you could define the numeratoras:</p>
+<p>For example: if you want to calculate the &quot;Percentage of time vaccine refrigerator was non-functional&quot;, you could define the numerator as:</p>
 <p>(&quot;Days-&quot;Number of days vaccine refrigerator was available&quot;&quot;)/&quot;Days&quot;</p>
 <p>If the fridge was available 25 days in June, the indicator would be calculated as:</p>
 <p>(30-25/25)*100 = 17 %</p>
@@ -2070,7 +2127,7 @@ case of percents) for the values to appear correctly formatted.
 
 2.  Click the add button.
 
-3.  In the **Name**field, type the name of the indicator type, for
+3.  In the **Name** field, type the name of the indicator type, for
     example "Per cent", "Per thousand", "Per ten thousand".
 
 4.  Type a **Factor**.
@@ -2091,7 +2148,7 @@ case of percents) for the values to appear correctly formatted.
 
 2.  Click the add button.
 
-3.  In the **Name**field, type the full name of the indicator, for
+3.  In the **Name** field, type the full name of the indicator, for
     example "Incidence of confirmed malaria cases per 1000 population".
 
 4.  In the **Short name** field, type an abbreviated name of the
@@ -2146,6 +2203,55 @@ case of percents) for the values to appear correctly formatted.
     another server. Typically you do this type of data exchange mapping
     when you want to create anonymous aggregated data from patient data
     recorded in programs (event data).
+
+14. If applicable, enter custom attributes values, for example
+    **Classification** or **Collection method**.
+    
+    > **Note**
+    > 
+    > You create custom attributes in the **Maintenance** app: **Other**
+    > \> **Attributes**.
+
+15. Click **Edit numerator**.
+    
+    1.  Type a clear description of the numerator.
+    
+    2.  Define the numerator by double-clicking components in the
+        right-hand field. The components then appears as part of the
+        formula in the left-hand field. Add mathematical operators by
+        double-clicking the icons below the left-hand field.
+        
+        You formula must be mathematically valid. This includes correct
+        use of parentheses when necessary.
+    
+    3.  Click **Done** to save all changes to the numerator.
+
+16. Click **Edit denominator**.
+    
+    1.  Type a clear description of the denominator.
+    
+    2.  Define the denominator by double-clicking components in the
+        right-hand field. The components then appears as part of the
+        formula in the left-hand field. Add mathematical operators by
+        double-clicking the icons below the left-hand field.
+        
+        You formula must be mathematically valid. This includes correct
+        use of parentheses when necessary.
+    
+    3.  Click **Done** to save all changes to the denominator.
+
+17. If applicable, select compulsory indicator group sets, for example
+    **Human resources**.
+    
+    > **Note**
+    > 
+    > You'll only see indicator group sets in this form if you've
+    > created them and set them to **Compulsory**.
+    > 
+    > You create indicator group sets in the **Maintenance** app:
+    > **Indicator** \> **Indicator group set**.
+
+18. Click **Save**.
 
 ### Create or edit an indicator group
 
@@ -2267,7 +2373,7 @@ view or enter data in form fields using the metadata.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -2321,7 +2427,7 @@ cultural region.
 
 5.  Click **Save**.
 
-## Manageorganisation units
+## Manage organisation units
 
 <!--DHIS2-SECTION-ID:manage_organisation_unit-->
 
@@ -2333,7 +2439,7 @@ In this section you will learn how to:
   - Create organisation unit groups, group sets, and assign organisation
     units to them
 
-  - Modifythe organisation unit hierarchy
+  - Modify the organisation unit hierarchy
 
 ### About organisation units
 
@@ -2346,12 +2452,12 @@ geographical areas are arranged with respect to each other. It is the
 dimension.
 
 The organisation unit hierarchy is built up by parent-child relations.
-In DHIS2, each of these nodes is an organisation unit.A country might
+In DHIS2, each of these nodes is an organisation unit. A country might
 for example have eight provinces, and each province might have a number
 of districts as children. Normally, the lowest levels consist of
 facilities where data is collected. Data collecting facilities can also
 be located at higher levels, for example national or provincial
-hospitals. Therefore, you can create skewed organisation treesin DHIS2.
+hospitals. Therefore, you can create skewed organisation trees in DHIS2.
 
   - You can only have one organisation hierarchy at the same time.
 
@@ -2379,7 +2485,7 @@ hospitals. Therefore, you can create skewed organisation treesin DHIS2.
     aggregation on the geographical dimension.
 
   - When you close an organisation unit, you can't register or edit
-    events tothis organisation unit in the **Event Capture** and
+    events to this organisation unit in the **Event Capture** and
     **Tracker Capture** apps.
 
 > **Important**
@@ -2454,8 +2560,8 @@ The recommended workflow is:
 ![](resources/images/orgunits/create_new_orgunit.png)
 
 You add organisation units to the hierarchy one by one, either as a root
-unitor as a child of a selected organisation unit. You can only have one
-root unit.
+unit or as a child of a selected organisation unit. You can only have
+one root unit.
 
 1.  Open the **Maintenance** app and click **Organisation unit** \>
     **Organisation unit**.
@@ -2728,14 +2834,14 @@ Dynamic inclusion of hierarchy
 
 Dynamic additional classification
 
-### Assignnames to organisation unit levels
+### Assign names to organisation unit levels
 
 <!--DHIS2-SECTION-ID:name_organisation_unit_level-->
 
 When you add children to an organisation unit, DHIS2 automatically
 creates a new organisation unit level if necessary. The system also
 assigns a generic name to this level, for example "Level 5". You can
-replace the generic name with a contextualname, for example "Country",
+replace the generic name with a contextual name, for example "Country",
 "Province", "District" or "Health Facility". DHIS2 uses the contextual
 names anywhere levels are referred to, for example in the **GIS** app.
 
@@ -2763,7 +2869,7 @@ names anywhere levels are referred to, for example in the **GIS** app.
 <!--DHIS2-SECTION-ID:move_organisation_unit-->
 
 You can move organisation units within in the hierarchy by changing the
-parent of a selected organisationunit.
+parent of a selected organisation unit.
 
 1.  Open the **Maintenance** app and click **Organisation unit** \>
     **Hierarchy operations**.
@@ -2790,7 +2896,7 @@ parent of a selected organisationunit.
 <!--DHIS2-SECTION-ID:close_organisation_unit-->
 
 When you close an organisation unit, you can't register or edit events
-tothis organisation unit in the **Event Capture** and **Tracker
+to this organisation unit in the **Event Capture** and **Tracker
 Capture** apps.
 
 1.  Open the **Maintenance** app and click **Organisation unit** \>
@@ -2872,7 +2978,7 @@ view or enter data in form fields using the metadata.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -3074,7 +3180,7 @@ for low-priority routine data validation errors.
 
 6.  Select an **Importance**: **High**, **Medium** or **Low**.
 
-7.  Select a **Periodtype**.
+7.  Select a **Period type**.
 
 8.  Select an **Operator**: **Compulsory pair**, **Equal to**,
     **Exclusive pair**, **Greater than**, **Greater than or equal to**
@@ -3122,7 +3228,7 @@ for low-priority routine data validation errors.
         </tr>
         <tr class="even">
         <td><p>Skip if all values are missing</p></td>
-        <td><p>The validation rule will be skipped only if all of the operandswhich compose it are missing.</p></td>
+        <td><p>The validation rule will be skipped only if all of the operands which compose it are missing.</p></td>
         </tr>
         <tr class="odd">
         <td><p>Never skip</p></td>
@@ -3168,7 +3274,7 @@ for low-priority routine data validation errors.
         </tr>
         <tr class="even">
         <td><p>Skip if all values are missing</p></td>
-        <td><p>The validation rule will be skipped only if all of the operandswhich compose it are missing.</p></td>
+        <td><p>The validation rule will be skipped only if all of the operands which compose it are missing.</p></td>
         </tr>
         <tr class="odd">
         <td><p>Never skip</p></td>
@@ -3234,7 +3340,7 @@ for low-priority routine data validation errors.
 
 4.  (Optional) In the **Code** field, assign a code.
 
-5.  Select **Validationrules**.
+5.  Select **Validation rules**.
 
 6.  Select **Recipient user groups**.
 
@@ -3333,7 +3439,7 @@ view or enter data in form fields using the metadata.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -3442,9 +3548,9 @@ In the **Maintenance** app, you manage the following attribute objects:
     If the value supplied for the attribute does not match the value
     type you will get a warning.
 
-6.  Selectan**Option set**.
+6.  Select an **Option set**.
 
-7.  Select the optionsyou want, for example:
+7.  Select the options you want, for example:
     
       - Select **Mandatory** if you want an object to always have the
         dynamic attribute.
@@ -3478,7 +3584,7 @@ many similar objects.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -3578,7 +3684,7 @@ In the **Maintenance** app, you manage the following constant objects:
 
 2.  Click the add button.
 
-3.  In the **Name**field, type the name of the constant.
+3.  In the **Name** field, type the name of the constant.
 
 4.  (Optional) In the **Short name** field, type an abbreviated name of
     the constant.
@@ -3664,7 +3770,7 @@ view or enter data in form fields using the metadata.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -3771,7 +3877,7 @@ An option set called "Delivery type" would have the options: "Normal",
 
 3.  In the **Primary details** tab, define the option set:
     
-    1.  In the **Name**field, type the name of the constant.
+    1.  In the **Name** field, type the name of the constant.
     
     2.  In the **Code** field, assign a code.
     
@@ -3789,7 +3895,7 @@ An option set called "Delivery type" would have the options: "Normal",
         **Color** and an **Icon** which will be used for this option in
         the data capture apps.
     
-    4.  Sortthe options by name, code/value or manually.
+    4.  Sort the options by name, code/value or manually.
     
     5.  Click **Save**.
 
@@ -3863,7 +3969,7 @@ view or enter data in form fields using the metadata.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -3987,7 +4093,39 @@ maps in the **GIS** app.
 8.  Click **Save**.
 
 <table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Legend item</th>
+<th>Start value</th>
+<th>End value</th>
+</tr>
+</thead>
 <tbody>
+<tr class="odd">
+<td>Low bad</td>
+<td>0</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td>50</td>
+<td>80</td>
+</tr>
+<tr class="odd">
+<td>High good</td>
+<td>80</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Too high</td>
+<td>100</td>
+<td>1000</td>
+</tr>
 </tbody>
 </table>
 
@@ -4061,7 +4199,7 @@ view or enter data in form fields using the metadata.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -4604,7 +4742,7 @@ many similar objects.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -4755,7 +4893,7 @@ objects:
 
 6.  (Optional) Add a **Message**.
     
-    This message is includedin the report e-mail.
+    This message is included in the report e-mail.
 
 7.  Select a **Dashboard** to base the report on.
 
@@ -4822,7 +4960,7 @@ many similar objects.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -5018,7 +5156,7 @@ many similar objects.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 
@@ -5147,7 +5285,7 @@ The locale is composed of a language along with a country. Select the
 desired values and press "Add". This custom locale will now be available
 as one of the translation locales in the system.
 
-## Edit multiple object groups atonce
+## Edit multiple object groups at once
 
 <!--DHIS2-SECTION-ID:edit_multiple_object_groups-->
 
@@ -5229,5 +5367,5 @@ objects types:
     the object to and click the right arrow.
 
 6.  In the right-hand list, select the object group(s) you want to
-    remove the object fromand click the left arrow,
+    remove the object from and click the left arrow,
 

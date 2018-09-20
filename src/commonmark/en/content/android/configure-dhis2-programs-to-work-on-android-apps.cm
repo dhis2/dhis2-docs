@@ -4,19 +4,27 @@
 
 To use event programs and tracker programs on the Android **Event
 Capture** and **Tracker Capture** apps, you must configure both the
-programs and the users' profiles on your DHIS2web instance. You do this
-in the **Users** and **Program** web apps.To work on an Android device
-you must assign the same **Data capture and maintenance organisation
-units** as the organisation units you've assigned the program to. In the
-Android apps you want to save as much data as possible. Therefore, the
-user can only download and capture data against the **Data capture and
-maintenance organisation units**. You configure these organisation units
-in the **Users** app. If you select the top organisation unit as the
-**Data capture and maintenance organisation units**, the user can only
-download and capture data on the top organisation unit. To give the user
-access to download and capture data on all organisation units, you must
-assign all organisation units as **Data capture and maintenance
-organisation units**.
+programs and the users' profiles on your DHIS2 web instance. You do this
+in the **Users** and **Program** web apps.
+
+> **Note**
+> 
+>   - To work on an Android device you must assign the same **Data
+>     capture and maintenance organisation units** as the organisation
+>     units you've assigned the program to.
+> 
+>   - In the Android apps you want to save as much data as possible.
+>     Therefore, the user can only download and capture data against the
+>     **Data capture and maintenance organisation units**. You configure
+>     these organisation units in the **Users** app.
+> 
+>   - If you select the top organisation unit as the **Data capture and
+>     maintenance organisation units**, the user can only download and
+>     capture data on the top organisation unit.
+> 
+>   - To give the user access to download and capture data on all
+>     organisation units, you must assign all organisation units as
+>     **Data capture and maintenance organisation units**.
 
 1.  In the **Users** app, create a new or update an existing user with
     the following settings:

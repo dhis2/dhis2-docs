@@ -232,9 +232,9 @@ data.
 
 2.  Select **From date** and **To date**.
 
-3.  Selectdata set(s).
+3.  Select data set(s).
 
-4.  Select **Parentorganisationunit**.
+4.  Select **Parent organisation unit**.
     
     All children of the organisation unit will be included. The analysis
     is made on raw data "under" the parent organisation unit, not on
@@ -278,7 +278,7 @@ You can modify an outlier value directly in the analysis result list:
     any case. The field will have a red background color if the value is
     outside the range, and a green if inside.
 
-## Minimum maximumoutlieranalysis
+## Minimum maximum outlier analysis
 
 <!--DHIS2-SECTION-ID:min_max_analysis-->
 
@@ -291,9 +291,9 @@ ranges manually or generate them automatically.
 The auto-generated minimum maximum value range is suitable only for
 normally distributed data. DHIS2 will determine the arithmetic mean and
 standard deviation of all values for a given data element, category
-option, organisation unit and attribute combination.Then the system will
-calculate the minimum maximum value range based on the **Data analysis
-std dev factor**specified in the **System Settings** app.
+option, organisation unit and attribute combination. Then the system
+will calculate the minimum maximum value range based on the **Data
+analysis std dev factor** specified in the **System Settings** app.
 
 For data which is highly-skewed or zero inflated (as is often the case
 with aggregate data), the values which DHIS2 auto-generates may not
@@ -411,7 +411,7 @@ data sets and organisation units in the **Data Administration** app.
 2.  Open the **Data Quality** app and click **Min-max outlier
     analysis**.
 
-3.  Select **From date** and **Todate**.
+3.  Select **From date** and **To date**.
 
 4.  Select which data set(s) you want to include in the analysis.
 
@@ -448,7 +448,7 @@ follow-up. You can mark a data value for follow-up in the **Data Entry**
 app and in the result list you get from a standard deviation outlier or
 minimum maximum outlier analysis.
 
-### Createlist of data values marked for follow-up
+### Create list of data values marked for follow-up
 
 1.  Open the **Data Quality** app and click **Follow-up analysis**.
 

@@ -2,7 +2,7 @@
 
 <!--DHIS2-SECTION-ID:event_capture_app-->
 
-## About the Event Captureapp
+## About the Event Capture app
 
 <!--DHIS2-SECTION-ID:about_event_capture_app-->
 
@@ -10,9 +10,9 @@
 
 In the **Event Capture** app you register events that occurred at a
 particular time and place. An event can happen at any given point in
-time. This stands in contrast to routinedata, which can be captured for
+time. This stands in contrast to routine data, which can be captured for
 predefined, regular intervals. Events are sometimes called cases or
-records. In DHIS2, eventsare linked to a program. The **Event Capture**
+records. In DHIS2, events are linked to a program. The **Event Capture**
 app lets you select the organisation unit and program and specify a date
 when a event happened, before entering information for the event.
 
@@ -37,7 +37,7 @@ system then sends the data to the server where the data is stored.
     during registration.
 
   - When you close an organisation unit, you can't register or edit
-    events tothis organisation unit in the **Event Capture** app. You
+    events to this organisation unit in the **Event Capture** app. You
     can still view and filter the event list and view the details of an
     event.
 
@@ -54,7 +54,15 @@ system then sends the data to the server where the data is stored.
     page displayed. Currently, it is not possible to do sorting from
     serverside.
 
-## Registeran event
+  - **Filtering:** this is done by clicking the small search icon shown
+    to the right of each column header. Clicking them provides an input
+    field to type a filtering criteria. The system starts applying the
+    filter the moment a user starts to type. During filtering it is
+    possible to define start and end dates for date type data elements
+    and lower and upper limits for number types. Server side filtering
+    is not-support at the moment.
+
+## Register an event
 
 <!--DHIS2-SECTION-ID:event_capture_register_event-->
 
@@ -93,9 +101,9 @@ system then sends the data to the server where the data is stored.
 
 3.  Select a program.
     
-    All events registered to the selected program showup in a list.
+    All events registered to the selected program show up in a list.
 
-4.  Click the event you want to modifyand select **Edit**.
+4.  Click the event you want to modify and select **Edit**.
 
 5.  Modify the event details and click **Update**.
 
@@ -114,9 +122,9 @@ columns should be displayed in the list.
 
 3.  Select a program.
     
-    All events registered to the selected program showup in a list.
+    All events registered to the selected program show up in a list.
 
-4.  Click the event you want to modifyand select **Edit in grid**.
+4.  Click the event you want to modify and select **Edit in grid**.
 
 5.  Modify the event details.
 
@@ -134,7 +142,7 @@ You can share an event in edit mode via its web address.
 
 3.  Copy the URL.
     
-    Make sure that the URL contains "event" and "ou" (organisationunit)
+    Make sure that the URL contains "event" and "ou" (organisation unit)
     parameters.
 
 4.  Paste the URL in the sharing method of your choice, for example an
@@ -143,7 +151,7 @@ You can share an event in edit mode via its web address.
     If you're not logged in to DHIS2 when you click the link, you'll be
     asked to do so and then taken to the dashboard.
 
-## View an event audithistory
+## View an event audit history
 
 <!--DHIS2-SECTION-ID:event_capture_view_event_audit_history-->
 
@@ -153,9 +161,9 @@ You can share an event in edit mode via its web address.
 
 3.  Select a program.
     
-    All events registered to the selected program showup in a list.
+    All events registered to the selected program show up in a list.
 
-4.  Click an event and select**Audit history**.
+4.  Click an event and select **Audit history**.
 
 ## Delete an event
 
@@ -167,7 +175,7 @@ You can share an event in edit mode via its web address.
 
 3.  Select a program.
     
-    All events registered to the selected program showup in a list.
+    All events registered to the selected program show up in a list.
 
 4.  Click an event and select **Remove**.
 
@@ -189,13 +197,13 @@ programs.
 
 3.  Select a program.
     
-    All events registered to the selected program showup in a list.
+    All events registered to the selected program show up in a list.
 
 4.  Click the **Show/hide columns** icon.
 
-5.  Select the columns you want to display and click**Close**.
+5.  Select the columns you want to display and click **Close**.
 
-## Print an eventlist
+## Print an event list
 
 <!--DHIS2-SECTION-ID:event_capture_print_event_list-->
 
@@ -205,7 +213,7 @@ programs.
 
 3.  Select a program.
     
-    All events registered to the selected program showup in a list.
+    All events registered to the selected program show up in a list.
 
 4.  Click **Print list**.
 
@@ -219,7 +227,7 @@ programs.
 
 3.  Select a program.
     
-    All events registered to the selected program showup in a list.
+    All events registered to the selected program show up in a list.
 
 4.  Click the **Downlad** icon and select a format.
     

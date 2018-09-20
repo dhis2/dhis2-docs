@@ -6640,9 +6640,11 @@ entry). This is due to the endpoint also supporting batch removals. The
 request is made to the same *messageConversations* resource but follows
 slightly different semantics. For batch operations the conversation ids
 are given as query string parameters. The following example removes two
-separate message conversations for the current user:curl
-"https://play.dhis2.org/demo/api/26/messageConversations?mc=WzMRrCosqc0\&mc=lxCjiigqrJm"
--X DELETE -u admin:district
+separate message conversations for the current
+    user:
+
+    curl "https://play.dhis2.org/demo/api/26/messageConversations?mc=WzMRrCosqc0&mc=lxCjiigqrJm" 
+      -X DELETE -u admin:district
 
 If you have sufficient permissions, conversations can be removed on
 behalf of another user by giving an optional user id
@@ -11094,7 +11096,7 @@ API query that requests an usage analytics response in XML
 You must retrieve the aggregated usage analytics response with the HTTP
 GET method. This allows you to link directly from Web pages and other
 HTTP-enabled clients to usage analytics responses. To do functional
-testing use the cURLlibrary.
+testing use the cURL library.
 
 Execute this command against the demo database to get an usage analytics
 response in JSON

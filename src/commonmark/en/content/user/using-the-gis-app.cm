@@ -370,7 +370,7 @@ for these organisation units, they will appear on the map.
         low color and high color you select. Method alludes to the size
         of the legend classes.
         
-        Set to Equal intervals theywill be “highest map value – lowest
+        Set to Equal intervals they will be “highest map value – lowest
         map value / number of classes”.
         
         Set to Equal counts the legend creator will try to distribute
@@ -519,14 +519,21 @@ To clear data in a boundary layer:
 ![](resources/images/gis/gis_earth_eng_layer.png)
 
 The Google Earth Engine layer lets you display satellite imagery and
-geospatial datasets from Google's vast catalog. This layeris useful in
+geospatial datasets from Google's vast catalog. This layer is useful in
 combination with thematic and event layers to enhance analysis. The
-following layers are supported:Elevation: Metres above sea level
-Nighttime lights: Lights from cities, towns, and other sites with
-persistent lighting, including gas flares (from 2013) Population
-density: Population in 100 x 100 m grid cells (from 2010) Temperature,
-population and land cover at any location. Right-click on the layers to
-view more information, for example temperature and elevation.
+following layers are supported:
+
+  - Elevation: Metres above sea level
+
+  - Nighttime lights: Lights from cities, towns, and other sites with
+    persistent lighting, including gas flares (from 2013)
+
+  - Population density: Population in 100 x 100 m grid cells (from 2010)
+
+  - Temperature, population and land cover at any location.
+    
+    Right-click on the layers to view more information, for example
+    temperature and elevation.
 
 \</listitem\> \</itemizedlist\>
 
@@ -646,7 +653,7 @@ When you have created a map it is convenient to save it as a favorite:
 
 4.  Type the new name and click **Update**.
 
-### Overwritea favorite
+### Overwrite a favorite
 
 To save the current map to an existing favorite (overwrite):
 
@@ -667,7 +674,7 @@ To save the current map to an existing favorite (overwrite):
 
 <!--DHIS2-SECTION-ID:gisInterpretation-->
 
-For certainanalysis-related resources in DHIS2, you can share a data
+For certain analysis-related resources in DHIS2, you can share a data
 interpretation. An interpretation is a link to the relevant resource
 together with a text expressing some insight about the data.
 
@@ -687,7 +694,7 @@ system:
     The dialog box closes automatically. You can see the interpretation
     on the **Dashboard**.
 
-### Modify sharing settingsfor a favorite
+### Modify sharing settings for a favorite
 
 After you have created a map and saved it as a favorite, you can share
 the favorite with everyone or a user group. To modify the sharing

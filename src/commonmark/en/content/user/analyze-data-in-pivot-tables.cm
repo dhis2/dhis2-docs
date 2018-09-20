@@ -16,8 +16,8 @@ dimensions. Examples of data dimensions in DHIS2 are:
 
   - periods (representing the time period for the data)
 
-  - organisationhierarchy (representing the geographical location of the
-    data)
+  - organisation hierarchy (representing the geographical location of
+    the data)
 
 From these dimensions you can freely select *dimension items* to include
 in the pivot table. You can create additional dimensions in DHIS2 with
@@ -71,7 +71,7 @@ data based on the selected filter items.
 3.  Click **Layout** and arrange the data dimensions as columns, rows
     and filters.
     
-    You can keep the default selectionif you want.
+    You can keep the default selection if you want.
 
 4.  Click **Update**.
 
@@ -348,7 +348,7 @@ table like this:
     <td><p>Type a title here to display it above the table.</p></td>
     </tr>
     <tr class="even">
-    <td><p><strong>Parameters(for standard reports only)</strong></p></td>
+    <td><p><strong>Parameters (for standard reports only)</strong></p></td>
     <td><blockquote>
     <p><strong>Note</strong></p>
     <p>You create standard reports in the <strong>Reports</strong> app.</p>
@@ -530,7 +530,7 @@ To download the data in the current pivot table:
 
 > **Tip**
 > 
-> You can createa pivot table in MicrosoftExcel from the downloaded
+> You can create a pivot table in Microsoft Excel from the downloaded
 > Excel file.
 
 ### Download plain data source format

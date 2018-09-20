@@ -32,7 +32,7 @@ and groups.
     
       - The **basemap** is always shown in the panel. The default
         basemap is OSM Light and is selected by default. OpenStreetMap
-        Detailed, Google Streets and Google Hybridare also available.
+        Detailed, Google Streets and Google Hybrid are also available.
         You can use these maps as background maps and layers. Switch
         between them by selecting the desired image.
     
@@ -630,7 +630,7 @@ layers.
     
     The new coordinate is stored permanently. This cannot be undone.
 
-#### 
+#### Swap longitude and latitude of a facility
 
 1.  Right-click a facility and click **Swap longitude/latitude**.
     

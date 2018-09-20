@@ -34,8 +34,8 @@ insurances. You can create two types of programs:
 <td><p>Single event <em>without</em> registration program (anonymous program or SEWoR)</p>
 <p>Anonymous, individual events are tracked through the health system. No person or entity is attached to these individual transactions.</p>
 <p>Has only one program stage.</p></td>
-<td><p>To record health cases without registering any informationinto the system.</p>
-To record survey data or surveillance line-listing.</td>
+<td><p>To record health cases without registering any information into the system.</p>
+<p>To record survey data or surveillance line-listing.</p></td>
 </tr>
 <tr class="even">
 <td><p>Tracker program</p></td>
@@ -90,7 +90,7 @@ the **Program / Attributes** (legacy) app.
 <td><p>Create, edit, delete, show details and translate</p></td>
 </tr>
 <tr class="even">
-<td><p>Program rulevariable</p></td>
+<td><p>Program rule variable</p></td>
 <td><p>Variables you use to create program rule expressions.</p></td>
 <td><p>Create, edit, delete, show details and translate</p></td>
 </tr>
@@ -119,7 +119,7 @@ the **Program / Attributes** (legacy) app.
 </table>
 
 <table>
-<caption>Program metadata objects in the Program / Attributesapp</caption>
+<caption>Program metadata objects in the Program / Attributes app</caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -305,7 +305,7 @@ attributes and program parameters.
     </tr>
     <tr class="even">
     <td><p><strong>Data approval workflow</strong></p></td>
-    <td><p>The data approval workflow you want to use. The default setting is <strong>Novalue</strong>.</p></td>
+    <td><p>The data approval workflow you want to use. The default setting is <strong>No value</strong>.</p></td>
     </tr>
     <tr class="odd">
     <td><p><strong>Completed events expiry date</strong></p></td>
@@ -420,7 +420,7 @@ the user in the **Event Capture** app.
     
     4.  Repeat above steps until you've all the sections you need.
     
-    5.  Change the section order: click the optionsmenu, then drag the
+    5.  Change the section order: click the options menu, then drag the
         section to the place you want.
 
 5.  To create a **Custom** data entry from: Use the WYSIWYG editor to
@@ -675,7 +675,7 @@ time.
 </tbody>
 </table>
 
-## Configure tracker programs in the Maintenanceapp
+## Configure tracker programs in the Maintenance app
 
 <!--DHIS2-SECTION-ID:configure_tracker_program_in_Maintenance_app-->
 
@@ -1322,7 +1322,7 @@ objects:
     
     1.  Enter the program rule details.
     
-    2.  Createthe program rule expression.
+    2.  Create the program rule expression.
     
     3.  Define the program rule actions.
 
@@ -1347,6 +1347,70 @@ objects:
     this option, the program rule variable will be populated with the
     option set's name. If you select the option, the program rule
     variable will be populated with the option set's code instead.
+
+5.  Select a **Source type** and enter the required information.
+    
+    Depending on the source type, you'll have to select, for example, a
+    **Program stage,** **Data element** or **Tracked entity attribute**.
+    
+    The source types determine how the program rule variable is
+    populated with a value.
+    
+    <table>
+    <colgroup>
+    <col width="50%" />
+    <col width="50%" />
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th><p>Source type</p></th>
+    <th><p>Description</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p><strong>Data element from the newest event for a program stage</strong></p></td>
+    <td><p>This source type works the same way as <strong>Data element from the newest event in the current program</strong>, except that it only evaluates values from one program stage.</p>
+    <p>This source type can be useful in program rules where the same data element is used in several program stages, and a rule needs to evaluate the newest data value from within one specific stage.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Data element from the newest event in the current program</strong></p></td>
+    <td><p>This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open.</p>
+    <p>This source type is populated slightly differently in <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps:</p>
+    <p><strong>Tracker Capture</strong>: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment.</p>
+    <p><strong>Event Capture</strong>: the program rule variable will be populated with the newest data value found within the 10 newest events in the same organisation unit.</p>
+    <p>The newest data value is determined with event date.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p><strong>Data element in current event</strong></p></td>
+    <td><p>Program rule variables with this source type will contain the data value from the same event that the user currently has open.</p>
+    <p>This is the most commonly used source type, especially for skip logic (hide actions) and warning/error rules.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Data element from previous event</strong></p></td>
+    <td><p>Program rule variables with this source type will contain the value from a specified data element from a previous event. Only older events is evaluated, not including the event that the user currently has open.</p>
+    <p>This source type is commonly used when a data element only should be collected once during an enrollment, and should be hidden in subsequent events.</p>
+    <p>Another use case is making rules for validating input where there is an expected progression from one event to the next - a rule can evaluate whether the previous value is higher/lower and give a warning if an unexpected value is entered.</p>
+    <p>This source type is populated slightly differently in <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps:</p>
+    <p><strong>Tracker Capture</strong>: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment - but only evaluating the events that comes before the current event date.</p>
+    <p><strong>Event Capture</strong>: the program rule variable will be populated with the newest data value collected within the 10 events preceding the current event date - not including the current event.</p>
+    <p>The newest data value is determined with event date.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p><strong>Calculated value</strong></p></td>
+    <td><p>TBA</p></td>
+    </tr>
+    <tr class="even">
+    <td><p><strong>Tracked entity attribute</strong></p></td>
+    <td><p>Populates the program rule variable with a specified tracked entity attribute for the current enrollment.</p>
+    <p>Use this is the source type to create program rules that evaluate data values entered during registration.</p>
+    <p>This source type is also useful when you create program rules that compare data in events to data entered during registration.</p>
+    <p>This source type is only used for tracker programs (programs with registration).</p></td>
+    </tr>
+    </tbody>
+    </table>
+
+6.  Click **Save**.
 
 ### Create or edit a program rule
 
@@ -1392,7 +1456,7 @@ objects:
         
         3.  Program rules L - P.
 
-4.  Click **Enter program rule expression** and createthe program rule
+4.  Click **Enter program rule expression** and create the program rule
     expression with the help of variables, functions and operators.
 
 5.  Click **Define program rule actions** and create the actions
@@ -1466,7 +1530,7 @@ objects:
         <p><strong>Custom message for blanked field</strong></p></td>
         <td><p>Used when you want to hide a field from the user.</p>
         <p><strong>Custom message for blanked field</strong> allows you to define a custom message displayed to the user in case the program rule hides and blanks out the field after the user typed in or selected a value.</p>
-        <p>If a hide field action hides a field that contains a value, the field will always removed.If no message is defined, a standard message will be displayed to alert the user.</p></td>
+        <p>If a hide field action hides a field that contains a value, the field will always removed. If no message is defined, a standard message will be displayed to alert the user.</p></td>
         </tr>
         <tr class="odd">
         <td><p><strong>Hide section</strong></p></td>
@@ -1594,8 +1658,8 @@ previous recorded
 
 ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_result.png)
 
-This exampleshows how to configure a program rule to display text in the
-Feedback widget in the **Tracker Capture**
+This example shows how to configure a program rule to display text in
+the Feedback widget in the **Tracker Capture**
     app.
 
 1.  ![](resources/images/maintainence/pg_rule_ex/displaytext_pgrule_variable.png)
@@ -1678,7 +1742,7 @@ date".
 >     d2:hasValue( 'hemoglobinPrevious' )
 
 <table>
-<caption>Possible operatorsto use in a program rule expression</caption>
+<caption>Possible operators to use in a program rule expression</caption>
 <colgroup>
 <col width="16%" />
 <col width="83%" />
@@ -2200,7 +2264,7 @@ programs.
     </tr>
     <tr class="even">
     <td><p>Username</p></td>
-    <td><p>This will be populated with theusername of the user which performs data entry automatically during the data entry process.</p></td>
+    <td><p>This will be populated with the username of the user which performs data entry automatically during the data entry process.</p></td>
     </tr>
     <tr class="odd">
     <td><p>Yes/No</p></td>
@@ -2292,12 +2356,12 @@ programs.
     available entity, all inherit entity attribute values of the entity
     will be pre-filled in the registration form.
 
-12. (Optional) Select**Confidential**.
+12. (Optional) Select **Confidential**.
     
     This option is only available if you have configured encryption for
     the system.
 
-13. (Optional) Select**Display in list without program**.
+13. (Optional) Select **Display in list without program**.
 
 14. (Optional) Assign one or multiple **Legends**.
 
@@ -2474,7 +2538,7 @@ many similar objects.
 > **Note**
 > 
 > You can only delete a data element and other data element objects if
-> no data is associatedto the data element itself.
+> no data is associated to the data element itself.
 
 > **Warning**
 > 

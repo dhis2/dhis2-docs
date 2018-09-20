@@ -260,7 +260,7 @@ re-process.
 
 2.  Select the parts of the analytics process you want to skip:
     
-      - **Skip generation of resourcetables**
+      - **Skip generation of resource tables**
     
       - **Skip generation of aggregate data and completeness data**
     

@@ -8,7 +8,7 @@
 
 ![](resources/images/visualizer/column_chart.png)
 
-With the **DataVisualizer** app, you can select content, for example
+With the **Data Visualizer** app, you can select content, for example
 indicators, data elements, periods and organisation units, for an
 analysis. The app works well over poor Internet connections and
 generates charts in the web browser.
@@ -155,7 +155,7 @@ flexible in terms of appearing as series, categories and filter.
 ### Select indicators
 
 The Data Visualizer app can display any number of indicators and data
-elements ina chart. You can select both indicators and data elements to
+elements in a chart. You can select both indicators and data elements to
 appear together in the same chart, with their order of appearance the
 same as the order in which they are selected.
 
@@ -173,7 +173,7 @@ same as the order in which they are selected.
 ### Select data elements
 
 The Data Visualizer app can display any number of indicators and data
-elements ina chart. You can select both indicators and data elements to
+elements in a chart. You can select both indicators and data elements to
 appear together in the same chart, with their order of appearance the
 same as the order in which they are selected.
 
@@ -224,7 +224,7 @@ are defined by data sets.
         month is March and you select **Last month**, the month of
         February is included in the chart.
 
-### Select organisationunits
+### Select organisation units
 
 1.  Click **Organisation units**.
 
