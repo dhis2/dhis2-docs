@@ -22,7 +22,7 @@ shared_resources() {
 
 assemble_content() {
     echo "assembling $1"
-    cm=`basename $1 | sed 's:\.index:\.cm:'`
+    cm=`basename $1 | sed 's:\.index:\.md:'`
     markdown-pp $1 -o $tmp/$cm
 }
 
@@ -39,12 +39,12 @@ make_html() {
     subdir=$3
     mkdir -p ${target}/${subdir}/html
     shared_resources ${target}/${subdir}/html
-    for res in `grep "resources/images" ${name}.cm | sed 's/.*resources\/images\/\([^)]*\)).*/resources\/images\/\1/'`; do
+    for res in `grep "resources/images" ${name}.md | sed 's/.*resources\/images\/\([^)]*\)).*/resources\/images\/\1/'`; do
         mkdir -p ${target}/${subdir}/html/`dirname $res`
         cp $res ${target}/${subdir}/html/$res
     done
-    echo "compiling $name.cm ($title) to html"
-    chapters="bookinfo.yaml ${name}.cm"
+    echo "compiling $name.md ($title) to html"
+    chapters="bookinfo.yaml ${name}.md"
     pandoc $chapters -c ./resources/css/dhis2.css --template="dhis2_template.html" --toc -N --section-divs -t html5 -V "title":"$title" -V "pagetitle":"$title" -o ${target}/${subdir}/html/${name}_full.html
 
     cd ${target}/${subdir}/html/
@@ -63,8 +63,8 @@ make_pdf() {
     title=$2
     subdir=$3
     mkdir -p ${target}/${subdir}
-    echo "compiling $name.cm ($title) to pdf"
-    chapters="bookinfo.yaml ${name}.cm"
+    echo "compiling $name.md ($title) to pdf"
+    chapters="bookinfo.yaml ${name}.md"
     pandoc $chapters -c ./resources/css/dhis2_pdf.css --template="dhis2_template.html" --toc -N --section-divs --pdf-engine=weasyprint -V "title":"$title" -V "pagetitle":"$title"  -o ${target}/${subdir}/${name}.pdf
 }
 
