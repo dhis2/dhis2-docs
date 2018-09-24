@@ -7,7 +7,7 @@ This chapter discusses the sharing of entities feature in DHIS2.
 ## Sharing of objects
 
 Many objects in DHIS2, like reports, charts, maps and indicators, can be
-shared. DHIS supports sharing of metadata or sharing of data. Sharing of
+shared. DHIS2 supports sharing of metadata or sharing of data. Sharing of
 metadata means making an object, like a report, available for reading or
 modification to a group of users or to everyone. Sharing of data means
 making the actual data captured available to others, and controlling who
@@ -164,9 +164,9 @@ individually to be able to see the data within the program. To capture
 data the user needs the "DATA:Can capture data" sharing level.
 
 > **Note**
-> 
+>
 > To see and capture data for a program, a data capture user also needs
-> to report for an organisaction unit to where the program has been
+> to report for an organisation unit to where the program has been
 > assigned.
 
 <table>
@@ -287,9 +287,9 @@ entry field in Data Set users need:
     "Data: Can capture data"
 
 > **Note**
-> 
+>
 > To see and capture data for a data set, a data capture user also needs
-> to report for an organisaction unit to where the data set has been
+> to report for an organisation unit to where the data set has been
 > assigned.
 
 <table>
@@ -328,8 +328,7 @@ entry field in Data Set users need:
 <td><ul>
 <li><p>Can save data value for input fields in Data Entry app which belongs to shared Category Options.</p></li>
 </ul></td>
-<td>For CategoryOptionCombo and AttributeOptionCombo to be writable, all belongs CategoryOptions must be shared with &quot;Can capture data&quot;.</td>
+<td>For CategoryOptionCombo and AttributeOptionCombo to be writeable, all belongs CategoryOptions must be shared with &quot;Can capture data&quot;.</td>
 </tr>
 </tbody>
 </table>
-

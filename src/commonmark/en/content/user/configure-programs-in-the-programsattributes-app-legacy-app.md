@@ -3,12 +3,12 @@
 <!--DHIS2-SECTION-ID:configure_programs_in_legacy_app-->
 
 > **Note**
-> 
+>
 >   - You create program indicators and program rules in the
 >     **Maintenance** app. It's no longer possible to create program
 >     indicators and program rules in the legacy **Program /
 >     Attributes** app.
-> 
+>
 >   - You can create event programs (programs without registration) in
 >     the **Maintenance** app. The old version of this functionality is
 >     also available in the legacy **Program / Attributes** app.
@@ -20,19 +20,19 @@
 There are three type of programs:
 
   - Multi events with registration program (MEWR):
-    
+
     Used for programs with many stages, for example Mother Health
     Program with stages such as ANC Visit (2-4+), Delivery, PNC Visit.
 
   - Single event with registration program (SEWR):
-    
+
     Used for birth certificate and death certificate. This type of
     programs have only one stage. An TEI just can enroll into the
     program one time.
 
   - Single event without registration program (anonymous program or
     SEWoR):
-    
+
     Used for saving health cases without registering any information
     into the system. This type of programs have only one stage.
 
@@ -129,7 +129,7 @@ A program needs several types of metadata that you create in the
 </tr>
 <tr class="odd">
 <td><p>Program rule</p></td>
-<td><p>Allows you to create and control dynamic behavior of the user interface in the <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps.</p></td>
+<td><p>Allows you to create and control dynamic behaviour of the user interface in the <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps.</p></td>
 <td><p>Create, edit, delete, show details and translate</p></td>
 </tr>
 <tr class="even">
@@ -167,124 +167,124 @@ app](https://docs.dhis2.org/master/en/user/html/configure_programs_in_Maintenanc
 2.  Click **Add new**.
 
 3.  Enter program details:
-    
+
     1.  Enter a program **Name**.
-    
+
     2.  Enter a **Short name**.
-    
+
     3.  Enter a **Description** of the program.
-    
+
     4.  Select a **Type**.
-    
+
     5.  Select a **Tracked entity**.
-    
+
     6.  Select a **Combination of categories**.
-    
+
     7.  Select a **Data approval workflow**.
-    
+
     8.  Select if you want to **Display front page list**.
-    
+
     9.  Select if **First stage appears on registration page**.
-    
+
     10. Enter number of **Completed events expiry days**.
-        
+
         Defines the number of days for which you can edit a completed
         event. This means that when an event is completed and the
         specified number of expiry days has passed, the event is locked.
-        
+
         If you set "Completed events expiry days" to 10", an event is
         locked ten days after the completion date. After this date you
         can no longer edit the event.
-    
+
     11. Select an **Expiry period type** and enter number of **Expiry
         days**.
-        
+
         The expiry days defines for how many days after the end of the
         previous period, an event can be edited. The period type is
         defined by the expiry period type. This means that when the
         specified number of expiry days has passed since the end date of
         the previous period, the events from that period are locked.
-        
+
         If you set the expiry type to "Monthly" and the expiry days to
         "10" and the month is October, then you can't add or edit an
         event to October after the 10th of November.
 
 4.  Enter enrollment details:
-    
+
     1.  Select if you want to **Allow future enrollment dates**.
-    
+
     2.  Select if you want to **Allow future incident dates**.
-    
+
     3.  If you want a tracked entity to be able to enroll only once in a
         program, select **Only enroll once (per tracked entity instance
         lifetime)**
-        
+
         This setting is useful for example in child vaccination or
         post-mortem examination programs where it wouldn't make sense to
         enroll a tracked entity more than once.
-    
+
     4.  Select if you want to **Show incident date**.
-        
+
         This setting allows you to show or hide the incident date field
         when a tracked entity enroll in the program.
-    
+
     5.  Enter a **Description of incident date**.
-        
+
           - In an immunization program for child under 1 year old, the
             incident date is the child's birthday,
-        
+
           - In a maternal program, the incident date is the date of last
             menstrual period.
-    
+
     6.  Enter a **Description of enrollment date**.
-        
+
         The date when a tracked entity is registered to the system.
-    
+
     7.  Select if you want to **Capture coordinates**.
 
 5.  Enter relationship shortcut details:
-    
+
     1.  Select a **Relationship** type.
-        
+
         When a baby is born, you can register the baby and enroll
         him/her into the Child program from the "Delivery" event of the
         mother. After that, create a relationship as Mother/Child for
         this mother and the baby.
-    
+
     2.  Enter a **Shortcut link label**.
-        
+
         The shortcut link label is displayed in Relation tab in the
         tracked entity instance (TEI) dashboard.
-    
+
     3.  Select **Who is the new relative to the existing entity?**.
-    
+
     4.  Select the **Program for new relative to be enrolled in**.
-        
+
         Specify a program that new relatives of the tracked entity will
         be enrolled in
 
 6.  Select if you want to **Skip generation of events that are overdue
     (before enrollment date)**.
-    
+
     When a tracked entity enrolls into the program, the events
     corresponding to the program stages are created. If you select this
     field, the system will not generate overdue events.
 
 7.  Assign tracked entity attributes.
-    
+
     1.  In the list of **Available attributes**, double-click the
         attributes you want to assign to the program.
-    
+
     2.  For each assigned attribute, review the settings. You can
         select:
-        
+
           - Display in list
-            
+
             This is the required field. Verify that at least one
             attribute has this property.
-        
+
           - Mandatory
-        
+
           - Date in future
 
 8.  Click **Add**.
@@ -320,23 +320,23 @@ To set the authority for sharing a program:
     settings**.
 
 3.  (Optional) Add a user group:
-    
+
     1.  Search for a user group and select it.
-    
+
     2.  Click the plus icon.
-        
+
         The user group is added to the list.
 
 4.  (Optional) If you want to allow external access, select **External
     access (without login)**.
 
 5.  Change the settings for the user groups you want to modify.
-    
+
       - **None**: The program is private. Only the user who created it
         can see and use it.
-    
+
       - **Can view**: Everyone in the user group can view the program.
-    
+
       - **Can edit and view**: Everyone in the user group can view and
         edit the program.
 
@@ -383,34 +383,34 @@ actions should be taken at each stage.
 
 2.  Click the program you want to add a program stage to and select
     **View program stages**.
-    
+
     A list of existing stages for the selected program opens. If the
     program doesn't have any program stages, the list is empty.
 
 3.  Click **Add new**.
 
 4.  Enter program stage details:
-    
+
     1.  Enter a **Name**.
-    
+
     2.  (Optional) select a **Color** and an **Icon** that will be used
         by the data capture apps to identify this program stage.
-    
+
     3.  Enter a **Description**.
-    
+
     4.  In the **Scheduled days from start** field, enter the minimum
         number of days to wait for starting the program stage.
 
 5.  Enter repeatable program stage details.
-    
+
     1.  Specify if the program stage is **Repeatable** or not.
-    
+
     2.  Select a **Period type**.
-    
+
     3.  Enter **Standard interval days**.
-        
+
         The number of days to repeat the repeatable program stage.
-    
+
     4.  Clear **Display generate event box after completed** if you
         don't want to display *Create new event box* to create new event
         for a repeatable stage after you click *Complete* for an event
@@ -418,7 +418,7 @@ actions should be taken at each stage.
         default.
 
 6.  Enter form details.
-    
+
     <table>
     <colgroup>
     <col width="50%" />
@@ -485,13 +485,13 @@ actions should be taken at each stage.
     </table>
 
 7.  Assign data elements:
-    
+
     1.  In the list of **Available data elements**, double-click the
         data elements you want to assign to the program stage.
-    
+
     2.  For each assigned data element, review the properties. You can
         select:
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -531,7 +531,7 @@ actions should be taken at each stage.
 
 2.  Click the program you want to add a program stage section to and
     select **View program stages**.
-    
+
     A list of existing stages for the selected program opens. If the
     program doesn't have any program stages, the list is empty.
 
@@ -554,7 +554,7 @@ actions should be taken at each stage.
 1.  Open the **Program / Attributes** app and click **Program**.
 
 2.  Click the relevant program and select **View program stages**.
-    
+
     A list of existing stages for the selected program opens. If the
     program doesn't have any program stages, the list is empty.
 
@@ -569,7 +569,7 @@ actions should be taken at each stage.
 1.  Open the **Program / Attributes** app and click **Program**.
 
 2.  Click the relevant program and select **View program stages**.
-    
+
     A list of existing stages for the selected program opens. If the
     program doesn't have any program stages, the list is empty.
 
@@ -587,7 +587,7 @@ actions should be taken at each stage.
 1.  Open the **Program / Attributes** app and click **Program**.
 
 2.  Click the relevant program and select **View program stages**.
-    
+
     A list of existing stages for the selected program opens. If the
     program doesn't have any program stages, the list is empty.
 
@@ -602,7 +602,7 @@ actions should be taken at each stage.
 1.  Open the **Program / Attributes** app and click **Program**.
 
 2.  Click the relevant program and select **View program stages**.
-    
+
     A list of existing stages for the selected program opens. If the
     program doesn't have any program stages, the list is empty.
 
@@ -614,7 +614,7 @@ actions should be taken at each stage.
 1.  Open the **Program / Attributes** app and click **Program**.
 
 2.  Click the relevant program and select **View program stages**.
-    
+
     A list of existing stages for the selected program opens. If the
     program doesn't have any program stages, the list is empty.
 
@@ -746,7 +746,7 @@ entity attributes and the following program parameters:
 
 1.  Open the **Maintenance** app and click **Program and then
     notifications**.
-    
+
     A list of existing program notifications for the selected program
     opens. If the program doesn't have any program notifications, the
     list is empty.
@@ -757,7 +757,7 @@ entity attributes and the following program parameters:
 
 4.  In the **When-to-send it** field, select what should trigger the
     notification.
-    
+
     <table>
     <colgroup>
     <col width="33%" />
@@ -802,7 +802,7 @@ entity attributes and the following program parameters:
 
 5.  In the **Who-to-send-it** field, select who should receive the
     program notification.
-    
+
     <table>
     <colgroup>
     <col width="33%" />
@@ -856,31 +856,31 @@ entity attributes and the following program parameters:
     </table>
 
 6.  Create the **Subject template**.
-    
+
     Double-click the parameters in the **Parameters** field to add them
     to your subject.
-    
+
     > **Note**
-    > 
+    >
     > The subject is not included in text messages.
 
 7.  Create the **Message template**.
-    
+
     Double-click the parameter names in the **Parameters** field to add
     them to your message.
-    
+
     Dear A{w75KJ2mc4zz}, You're now enrolled in V{program\_name}.
 
 8.  Click **Save**.
 
 > **Note**
-> 
+>
 > You configure when the program notifications are sent in the **Data
 > Administration** app \> **Scheduling** \> **Program notifications
 > scheduler**.
-> 
+>
 >   - Click **Run now** to send the program notifications immediately.
-> 
+>
 >   - Select a time and click **Start** to schedule the program
 >     notifications to be send at a specific time.
 
@@ -894,7 +894,7 @@ entity attributes and the following program parameters:
 
 1.  Open the **Maintenance** app and click **Program and then
     notifications**.
-    
+
     A list of existing program stage notifications for the selected
     program stage opens. If the program stage doesn't have any program
     stage notifications, the list is empty.
@@ -907,7 +907,7 @@ entity attributes and the following program parameters:
 
 5.  In the **When-to-send-it** field, select what should trigger the
     notification.
-    
+
     <table>
     <colgroup>
     <col width="33%" />
@@ -934,7 +934,7 @@ entity attributes and the following program parameters:
     </tr>
     <tr class="odd">
     <td><p>Program Rule</p></td>
-    <td><p>Notification will be triggered as a result of program rule exeuction.</p></td>
+    <td><p>Notification will be triggered as a result of program rule execution.</p></td>
     <td><p>Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful.</p></td>
     </tr>
     </tbody>
@@ -942,7 +942,7 @@ entity attributes and the following program parameters:
 
 6.  In the **Recipients** field, select who should receive the program
     stage notification. You can select:
-    
+
     <table>
     <colgroup>
     <col width="33%" />
@@ -997,32 +997,32 @@ entity attributes and the following program parameters:
     </table>
 
 7.  Create the **Subject template**.
-    
+
     Double-click the parameter names in the **Parameters** field to add
     them to your subject.
-    
+
     > **Note**
-    > 
+    >
     > The subject is not included in text messages.
 
 8.  Create the **Message template**.
-    
+
     Double-click the parameter names in the **Parameters** field to add
     them to your message.
-    
+
     Dear A{w75KJ2mc4zz}, please come to your appointment the
     V{due\_date}.
 
 9.  Click **Save**.
 
 > **Note**
-> 
+>
 > You configure when the program stage notifications are sent in the
 > **Data Administration** app \> **Scheduling** \> **Program
 > notifications scheduler**.
-> 
+>
 >   - Click **Run now** to send the program notifications immediately.
-> 
+>
 >   - Select a time and click **Start** to schedule the program
 >     notifications to be send at a specific time.
 
@@ -1038,7 +1038,7 @@ entity without having program information and this entity can enroll
 into a certain program after that.
 
 > **Note**
-> 
+>
 > Check on*Auto save registration form* check box in *Design tracked
 > entity form*to save the custom registration form to being designed
 > automatically.
@@ -1082,7 +1082,7 @@ A program stage has three types of data entry forms:
 
 2.  Click the program you want to add a program stage data entry form to
     and select **View program stages**.
-    
+
     A list of existing stages for the selected program opens. If the
     program doesn't have any program stages, the list is empty.
 
@@ -1096,4 +1096,3 @@ A program stage has three types of data entry forms:
     You can also insert images.
 
 6.  Click **Save**.
-

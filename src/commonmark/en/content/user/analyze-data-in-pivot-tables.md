@@ -35,14 +35,14 @@ be included in the pivot table, but will aggregate and filter the table
 data based on the selected filter items.
 
 > **Tip**
-> 
+>
 >   - You must select at least one dimension on columns or rows.
-> 
+>
 >   - You must include at least one period.
-> 
+>
 >   - Data element group sets and reporting rates can't appear in the
 >     same pivot table.
-> 
+>
 >   - A pivot table can't contain more than the maximum number of
 >     analytic records which have been specified in the system settings.
 >     The maximum number of records could also be constrained by the
@@ -52,7 +52,7 @@ data based on the selected filter items.
 >     request or continue building the table. Consider making smaller
 >     tables instead of one table which displays all of your data
 >     elements and indicators together.
-> 
+>
 >   - The **Pivot Table** app supports drill-down and up for periods and
 >     organisation unit. This means that you can for example drill down
 >     from yearly periods to quarters, months and weeks inside a pivot
@@ -70,7 +70,7 @@ data based on the selected filter items.
 
 3.  Click **Layout** and arrange the data dimensions as columns, rows
     and filters.
-    
+
     You can keep the default selection if you want.
 
 4.  Click **Update**.
@@ -187,7 +187,7 @@ aggregate data by Type of organisation unit or Implementing partner.
 Dynamic dimensions work the same as fixed dimensions.
 
 > **Tip**
-> 
+>
 > Some dynamic dimensions may contain many items. This can cause issues
 > with certain browsers due to the length of the URL when many dimension
 > members are selected. A special "All" check box is available for
@@ -235,7 +235,7 @@ table like this:
 3.  Click **Options**.
 
 4.  Set the options as required.
-    
+
     <table>
     <caption>Pivot table options</caption>
     <colgroup>
@@ -451,11 +451,11 @@ write is visible to those people.
     then click the **+** icon.
 
 4.  Change sharing settings for the user groups you want to modify.
-    
+
       - **Can edit and view**: Everyone can view and edit the object.
-    
+
       - **Can view only**: Everyone can view the object.
-    
+
       - **None**: The public won't have access to the object. This
         setting is only applicable to **Public access**.
 
@@ -478,10 +478,10 @@ creates/update an interpretation comment of this favorite.
 1.  Click **Favorites** \> **Get link**.
 
 2.  Select one of the following:
-    
+
       - **Open in this app**: You get a URL for the favorite which you
         can share with other users by email or chat.
-    
+
       - **Open in web api**: You get a URL of the API resource. By
         default this is an HTML resource, but you can change the file
         extension to ".json" or ".csv".
@@ -516,12 +516,12 @@ To download the data in the current pivot table:
 
 2.  Under **Table layout**, click the format you want to download:
     Microsoft Excel, CSV or HTML.
-    
+
     The data table will have one column per dimension and contain names
     of the dimension items.
-    
+
     > **Tip**
-    > 
+    >
     > When you download a pivot table with organisation units as rows
     > and you've selected **Show hierarchy** in **Table options**, each
     > organisation unit level is rendered as a separate column. This is
@@ -529,7 +529,7 @@ To download the data in the current pivot table:
     > computer.
 
 > **Tip**
-> 
+>
 > You can create a pivot table in Microsoft Excel from the downloaded
 > Excel file.
 
@@ -549,7 +549,7 @@ To download plain data source formats:
 1.  Click **Download**.
 
 2.  Under **Plain data source**, click the format you want to download.
-    
+
     <table>
     <caption>Available formats</caption>
     <colgroup>
@@ -614,15 +614,15 @@ To download data in CSV format without first rendering data in the web
 browser:
 
 1.  Click the arrow beside **Update**.
-    
+
     ![](resources/images/pivot_table/data_dump.png)
 
 2.  Click **CSV** to download the format based on ID property.
-    
+
     The file downloads to your computer.
-    
+
     > **Tip**
-    > 
+    >
     > You can also download CSV format based on **Code** or **Name**
     > property.
 
@@ -652,7 +652,7 @@ chart and map visualization of your data.
 ### Open a pivot table as a chart
 
 1.  Click **Chart** \> **Open this table as chart**.
-    
+
     Your current pivot table opens as a chart.
 
 
@@ -665,8 +665,8 @@ can click directly on a value in the table instead opening the whole
 table.
 
 1.  In the pivot table, click a value.
-    
-    
+
+
     ![](resources/images/pivot_table/pivot_integration_table.png)
 
 2.  To verify the selection, hold the cursor over **Open selection as
@@ -678,16 +678,15 @@ table.
 ### Open a pivot table as a map
 
 1.  Click **Chart** \> **Open this table as map**
-    
+
     Your current pivot table opens as a map.
 
 ### Open a pivot table selection as a map
 
 1.  In the pivot table, click a value.
-    
+
     A menu displays.
 
 2.  Click **Open selection as map**.
-    
-    Your selection opens as a map.
 
+    Your selection opens as a map.

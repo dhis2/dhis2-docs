@@ -38,7 +38,7 @@ automatic GML import comes into play and the following section explains
 the preferred way of using it.
 
 > **Important**
-> 
+>
 > The only co-ordinate reference system supported by DHIS2 is EPSG:4326,
 > also known as geographic longitude/latitude. Coordinates must be
 > stored with the longitude (east/west position) proceeding the latitude
@@ -81,7 +81,7 @@ removing some of the line points. Make a backup of your shapefiles
 before you start. One possible method is the use of
 [MapShaper](http://www.mapshaper.org/) which is an online tool which can
 be used to generalize geographical data. To use MapShaper, simply upload
-your shapefile to the site. Then, at the center bottom you see a slider
+your shapefile to the site. Then, at the centre bottom you see a slider
 that starts at 0%. It is usually acceptable to drag it up to about 80%.
 In the left menu you can check "show original lines" to compare the
 result and you may want to give a different simplification method a try.
@@ -116,7 +116,7 @@ Assuming that the projection is reported to be EPSG:27700 by `ogrinfo`,
 we can transform it to EPSG:4326 by executing the following
     command.
 
-    ogr2ogr -s_srs EPSG:27700 -t_srs EPSG:4326 -f GML filename.gml filename.shp 
+    ogr2ogr -s_srs EPSG:27700 -t_srs EPSG:4326 -f GML filename.gml filename.shp
 
 If the geographic data is already in EPSG:4326, you can simply transform
 the shapefile to GML by executing the following command.
@@ -192,11 +192,11 @@ member might be necessary. In any of the cases it is important to
 realize that the identifier used must **uniquely** identify an
 organisation unit (e.g. if there are two organisation units in the
 database of the same name or code, these cannot be matched properly on
-either). As *uid* is the only guaranteed-to-be-unque identifier it is
+either). As *uid* is the only guaranteed-to-be-unique identifier it is
 the most robust choice. However, as matching on name is usually easier
 (given that the name is already part of your data), a viable approach to
 solving uniqueness conflicts can be to match any non-uniquely named
-organisation units on a different identifier (uid, preferrably) and the
+organisation units on a different identifier (uid, preferably) and the
 rest on their names.
 
 As can be seen in the above table there is a matching priority, meaning
@@ -248,4 +248,3 @@ has a too small varchar definition. Increase it to 100.
 appropriate XML equivalents or escape sequences.
 
 \- Wrongly formatted input GML, non-matching tags
-

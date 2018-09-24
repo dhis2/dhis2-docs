@@ -39,7 +39,7 @@ need to collect and analyze data:
   - External map layers
 
 > **Note**
-> 
+>
 > The functions you have access to depend on your user role's access
 > permissions.
 
@@ -147,23 +147,23 @@ option could be reused. This is important if particular category options
 2.  Click the add button.
 
 3.  Fill in the form:
-    
+
     1.  **Name**
-    
+
     2.  **Short name**
-    
+
     3.  **Start date**
-    
+
     4.  **End date**
 
 4.  Select organisation units and assign them.
-    
+
     > **Tip**
-    > 
+    >
     > You can automatically select all organisation units that belong to
     > an organisation unit level or organisation unit group, for example
     > "Chiefdom" or "Urban. To do this:
-    > 
+    >
     > Select an **Organisation unit level** or **Organisation unit
     > group** and click **Select**.
 
@@ -181,21 +181,21 @@ you can create that category.
 2.  Click the add button.
 
 3.  Fill in the form:
-    
+
     1.  **Name**
-    
+
     2.  **Code**
-    
+
     3.  **Data dimension type**
-        
+
         A category either be of type "Disaggregation" or "Attribute".
         For disaggregation of data elements, you select
         **Disaggregation**. The data dimension type "Attribute" allows
         the category to be used to assign a combination of categories to
         data recorded through a data set.
-    
+
     4.  **Data dimension**
-        
+
         If you select **Data dimension**, the category will be available
         to the analytics as another dimension, in addition to the
         standard dimensions of "Period" and "Organisation unit".
@@ -234,13 +234,13 @@ number of data elements.
 2.  Click the add button.
 
 3.  Fill in the form:
-    
+
     1.  **Name**
-    
+
     2.  **Code**
-    
+
     3.  **Data dimension type**
-    
+
     4.  **Skip category total in reports**
 
 4.  Select categories and assign them.
@@ -256,9 +256,9 @@ groups. The main purpose of the category option group set is to add more
 dimensionality to your captured data for analysis in for example the
 **Pivot table** or **Data Visualizer** apps.
 
-In a system, data is collected by "projects", where projects is modeled
+Consider a system where data is collected by "projects", and projects are modelled
 as category options. The system must be able to analyse data based on
-which donor that supports the project. In this case, create a category
+which donor supports the project. In this case, create a category
 option group set called "Donor". Each donor can be created as a category
 option group, where each category option / project is put in the
 appropriate group. In the data analysis applications, the "Donor" group
@@ -273,13 +273,13 @@ To create a category option group:
 2.  Click the add button.
 
 3.  Fill in the form:
-    
+
     1.  **Name**
-    
+
     2.  **Short name**: Define a short name for the data element.
-    
+
     3.  **Code**
-    
+
     4.  **Data dimension type**
 
 4.  Select **Category options** and assign them.
@@ -301,13 +301,13 @@ dimensionality to your captured data for analysis in for example the
 2.  Click the add button.
 
 3.  Fill in the form:
-    
+
     1.  **Name**
-    
+
     2.  **Description**
-    
+
     3.  **Data dimension**
-    
+
     4.  **Data dimension type**
 
 4.  Select **Category option groups** and assign them.
@@ -398,7 +398,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -412,24 +412,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -438,12 +438,12 @@ view or enter data in form fields using the metadata.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -474,7 +474,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -482,9 +482,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -567,18 +567,18 @@ objects:
 2.  Click the add button.
 
 3.  In the **Name** field, define the precise name of the data element.
-    
+
     Each data element must have a unique name.
 
 4.  In the **Short name** field, define a short name for the data
     element.
-    
+
     Typically, the short name is an abbreviation of the full data
     element name. This attribute is often used in reports to display the
     name of the data element, where space is limited.
 
 5.  (Optional) In the **Code** field, assign a code.
-    
+
     In many countries data elements are assigned a code.
 
 6.  (Optional) In the **Color** field, assign a color which will be used
@@ -600,7 +600,7 @@ objects:
 
 11. In the **Value type** field, select the type of data that the data
     element will record.
-    
+
     <table>
     <caption>Value types</caption>
     <colgroup>
@@ -704,7 +704,7 @@ objects:
     </tr>
     <tr class="even">
     <td><p>Username</p></td>
-    <td><p>DHIS 2 user. Rendered as a dialog with a list of users and a search field.</p></td>
+    <td><p>DHIS2 user. Rendered as a dialog with a list of users and a search field.</p></td>
     </tr>
     <tr class="odd">
     <td><p>Yes/No</p></td>
@@ -719,13 +719,13 @@ objects:
 
 12. In the **Aggregation type** field, select the default aggregation
     operation that will be used on the data element.
-    
+
     Most data elements should have the **Sum** operator. This includes
     all data elements which should be added together. Other data
     elements, such as staffing levels, should be set to use the
     **Average** operator, when values along the time dimension should
     not be added together, but rather averaged.
-    
+
     <table>
     <caption>Aggregation operators</caption>
     <colgroup>
@@ -784,7 +784,7 @@ objects:
 
 14. In the **URL** field, enter a link to an in-depth description of the
     data element.
-    
+
     For example a link to a metadata repository or registry that
     contains detailed technical information about the definition and
     measurement of the data element.
@@ -794,29 +794,29 @@ objects:
     "disaggregation".
 
 16. Select an **Option set**.
-    
+
     Option sets are predefined lists of options which can be used in
     data entry.
 
 17. Select an **Option set for comments**.
-    
+
     Option sets for comments are predefined lists of options which can
     be used to specify standardized comments for data values in data
     entry.
 
 18. Assign one or multiple **Legends**.
-    
+
     Legends are used in for example the **GIS** app to display certain
     data elements with certain icons.
 
 19. Set the **Aggregation levels** to allow the data element to be
     aggregated at one or more levels:
-    
+
     1.  In the left pane, select the levels you want to assign to the
         data element.
-    
+
     2.  Click the right arrow to assign the aggregation levels.
-    
+
     By default, the aggregation will start at the lowest assigned
     organisation unit. If you for example select "Chiefdom", it means
     that "Chiefdom", "District", and "National" aggregates use
@@ -824,27 +824,27 @@ objects:
     source, and PHU data will not be included. PHU data will still be
     available for the PHU level, but not included in aggregations to the
     levels above.
-    
+
     If you select both "District" and "Chiefdom", it means that the
     "District" and "National" level aggregates use District data as
     their source, "Chiefdom" will use Chiefdom, and "PHU" will use PHU.
 
 20. If applicable, enter custom attributes values, for example
     **Classification** or **Collection method**.
-    
+
     > **Note**
-    > 
+    >
     > You create custom attributes in the **Maintenance** app: **Other**
     > \> **Attributes**.
 
 21. If applicable, select compulsory data element group sets, for
     example **Main data element group** or **Tracker-based data**.
-    
+
     > **Note**
-    > 
+    >
     > You'll only see data element group sets in this form if you've
     > created them and set them to **Compulsory**.
-    > 
+    >
     > You create data element group sets in the **Maintenance** app:
     > **Data element** \> **Date element group set**.
 
@@ -867,11 +867,11 @@ To create a data element group:
 2.  Click the add button.
 
 3.  Fill in the form:
-    
+
     1.  **Name**
-    
+
     2.  **Short name**
-    
+
     3.  **Code**
 
 4.  Select data elements and assign them.
@@ -894,19 +894,19 @@ group sets.
 2.  Click the add button.
 
 3.  Fill in the form:
-    
+
     1.  **Name**
-    
+
     2.  **Code**
-    
+
     3.  **Description**
-    
+
     4.  **Compulsory**
-    
+
     5.  **Data dimension**
 
 4.  Select data element groups and assign them.
-    
+
     Available data element groups are displayed in the left panel. Data
     element groups that are currently members of the data element group
     set are displayed in the right hand panel.
@@ -941,7 +941,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -955,24 +955,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -981,12 +981,12 @@ view or enter data in form fields using the metadata.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -1017,7 +1017,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -1025,9 +1025,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -1075,7 +1075,7 @@ In that case:
 
 2.  Assign the category combination to the data set (form) for which you
     need to capture this information.
-    
+
     When opening this data set in data entry module, the partner
     organisation and project categories will automatically be rendered
     as drop-down boxes, allowing you to select a specific implementing
@@ -1124,23 +1124,23 @@ entry forms:
 </table>
 
 > **Note**
-> 
+>
 > If a data set has both a section form and a custom form, the system
 > displays the custom form during data entry. Users who enter data can't
 > select which form they want to use. In web-based data entry the order
 > of display preference is:
-> 
+>
 > 1.  Custom form (if it exists)
-> 
+>
 > 2.  Section form (if it exists)
-> 
+>
 > 3.  Default form
-> 
+>
 > Mobile devices do not support custom forms. In mobile-based data entry
 > the order of display preference is:
-> 
+>
 > 1.  Section form (if it exists)
-> 
+>
 > 2.  Default form
 
 In the **Maintenance** app, you manage the following data set objects:
@@ -1189,11 +1189,11 @@ data entry forms.
 1.  Create a data set.
 
 2.  Assign the data set to organisation units.
-    
+
     A default form is created automatically.
 
 3.  Create a section form or a custom form.
-    
+
     Now you can register data in the **Data entry** app.
 
 ### Create or edit a data set
@@ -1209,7 +1209,7 @@ data entry forms.
 3.  In the **Name** field, type the precise name of the data set.
 
 4.  In the **Short name** field, define a short name for the data set.
-    
+
     Typically, the short name is an abbreviation of the full data set
     name. This attribute is often used to display the name of the data
     set where space is limited.
@@ -1219,29 +1219,29 @@ data entry forms.
 6.  In the **Description** field, type a description of the data set.
 
 7.  Enter the number of **Expiry days**.
-    
+
     The number of expiry days controls for how long it should be
     possible to enter data in the **Data entry** app for this data set.
     Expiry days refer to the number of days after the end date of the
     selected data entry period where the data entry form should be open
     for entry. After the number of days has expired, the data set will
     be locked for further entry.
-    
+
     You can set manual exceptions to this using the lock exception
     functionality in the **Data Administration** app.
-    
+
     > **Note**
-    > 
+    >
     > To allow data entry into all possible historical time periods, set
     > the number of expiry days to zero.
 
 8.  If you want it to be possible to enter data for future periods, type
     the number of periods in the **Open future periods for data entry**
     field.
-    
+
     The value is the number of future periods which are available for
     data entry.
-    
+
     For a monthly data set a value of 2 allows you to enter data for 2
     months in advance. This is useful for, by example, population,
     target and planning data.
@@ -1249,20 +1249,20 @@ data entry forms.
 9.  In the **Days after period to qualify for timely submission** field,
     type the number of days in which data can be entered to be
     considered reported on time.
-    
+
     To verify the number of timely reports submitted, go to **Reports**
     \> **Reporting rate summary**.
 
 10. Select a **Period type**.
-    
+
     The period type defines the frequency of reporting for the
     particular data set. The frequency can for example be daily,
     quarterly or yearly.
 
 11. Select a **Category combination** to assign it to the data set.
-    
+
     > **Tip**
-    > 
+    >
     > Click **Add new** to create category combinations that you're
     > missing. In the form that opens, create the category combinations
     > you need. When you're done, click **Refresh values**.
@@ -1270,24 +1270,24 @@ data entry forms.
 12. In the **Complete notification recipients** list, select a user
     group that should receive a message when the data set is marked as
     complete in the **Data Entry** app.
-    
+
     The message is delivered through the DHIS2 messaging system.
 
 13. If you want the user who entered the data to receive a message when
     the data set is marked as complete in the **Data entry** app, select
     **Send notification to completing user**.
-    
+
     The message is delivered through the DHIS2 messaging system.
 
 14. If applicable, select, a **Data approval workflow**.
 
 15. If you want it to be possible to use the data set within the Java
-    mobile DHIS 2 application, select **Enable for Java mobile client**.
+    mobile DHIS2 application, select **Enable for Java mobile client**.
 
 16. If you want it to be mandatory to fill all values for a data element
     in data entry if one or more values have been filled, select **All
     fields for data elements required**.
-    
+
     This means that if you enter one data value for a data element in an
     entry field (that is for a category option combination), then you
     must enter data for all fields belonging to that data element (that
@@ -1296,7 +1296,7 @@ data entry forms.
 17. If you want it to be possible to mark a data entry form as complete
     only if the validation of that form is successful, select **Complete
     allowed only if validation passes**.
-    
+
     If you select this option, you can't mark the form as complete if
     validation fails.
 
@@ -1307,7 +1307,7 @@ data entry forms.
 19. (Optional) Assign one or multiple **Legends**.
 
 20. If applicable, select **Skip offline**.
-    
+
     This option controls whether this data entry form should be
     downloaded and saved in the user's web browser. Normally you
     shouldn't select **Skip offline**. This is the default setting. If
@@ -1315,24 +1315,24 @@ data entry forms.
     this option to speed up initial loading in the data entry module.
 
 21. If applicable, select **Data element decoration**
-    
+
     If you select this option, descriptions of data elements render in
     call-outs in downloaded data sets in offline mode in the **Data
     entry** app.
 
 22. If applicable, select **Render sections as tabs**.
-    
+
     This option is only applicable for section forms. The option allows
     you to render each section as a tab horizontally above the data set.
     This is useful for long data sets as it allows appropriate sections
     to be selected quickly without going through the entire form.
 
 23. If applicable, select **Render vertically**.
-    
+
     This option is only applicable for section forms.
 
 24. Select data elements and assign them.
-    
+
     You can override the category combination for each selected data set
     by clicking on the gear icon above the list of selected data
     elements. This allows you to utilize a specific category combination
@@ -1343,12 +1343,12 @@ data entry forms.
 
 26. In the organisation unit tree, select the organisation units you
     want to assign the data set to.
-    
+
     > **Tip**
-    > 
+    >
     >   - Click **Organisation unit level** to select all organisation
     >     units that belong to a certain organisation level.
-    > 
+    >
     >   - Click **Organisation unit group** to select all organisation
     >     units that belong to a certain organisation unit group.
 
@@ -1377,28 +1377,28 @@ to the selected frequency (period type).
 2.  (Optional) In the **Code** field, assign a code.
 
 3.  Enter **Data sets**.
-    
-    These data sets will be associated to this notification. Incase any
+
+    These data sets will be associated to this notification. In case any
     of them is completed for a certain period and organisation unit,
     notification will be generated by the system.
-    
+
     > **Note**
-    > 
+    >
     > Nothing will happen if no data set is selected
 
 4.  In **Message template** section there are two parameters.
-    
+
       - **Subject template** subject of the notification sent in
         notification. It can have values from the list of variables
-        avaiable on the right side.
-    
+        available on the right side.
+
       - **Message template** actual message sent in notification. It can
-        have values from the list of variables avaiable on the right
+        have values from the list of variables available on the right
         side.
-    
+
     > **Note**
-    > 
-    > Subject is only relevant in case of Email and internal DHIS-2
+    >
+    > Subject is only relevant in case of Email and internal DHIS2
     > messages. It is ignored in case of SMS.
 
 #### When to send?
@@ -1407,24 +1407,24 @@ to the selected frequency (period type).
 
 1.  **Data set notification trigger** field determine when to send
     notification.
-    
+
       - **Data Set Completion** will trigger notification as soon as
         data set is completed.
-    
-      - **Schedule Days** will schedule notificaton based on number days
+
+      - **Schedule Days** will schedule notification based on number days
         relative to scheduled date. Schedule date will be decided by
         Period associated with Data set.
-        
+
           - **Send notification as** provides two different types of
             notifications
-            
+
               - **Collective summary** send notification in summary mood
-            
-              - **Single notification** sends notification in sinlge
+
+              - **Single notification** sends notification in single
                 mood
-    
+
     > **Note**
-    > 
+    >
     > **Send notification as** option is only available in case of
     > scheduled notification. This option is set to default which is
     > **Single notification** in case of completion notification
@@ -1435,17 +1435,17 @@ to the selected frequency (period type).
 
 1.  **Notification recipient** field determine recipients of the
     notification.
-    
+
       - **Organisation Unit contact** will send notification to contact
         assigned to organisation unit which the data has been collected
         from.
-    
+
       - **UserGroup** will send notification to all the member of the
         selected UserGroup.
-    
+
     > **Note**
-    > 
-    > An internal DHIS-2 message will be sent in case if recipient is
+    >
+    > An internal DHIS2 message will be sent in case if recipient is
     > UserGroup. Moreover user will also receive SMS/EMAIL if phone
     > number and email address exist for that user and SMS/EMAIL
     > notifications are enabled in SystemSettings
@@ -1538,13 +1538,13 @@ section.
     data entry, select **Show column totals**.
 
 9.  Assign data elements to the section:
-    
+
     1.  (Optional) Select a **Category combination filter**.
-        
+
         > **Note**
-        > 
+        >
         > You can only use one category combination per section.
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -1567,7 +1567,7 @@ section.
         </tr>
         </tbody>
         </table>
-    
+
     2.  Select data elements and assign them.
 
 10. (Optional) Sort the data elements within the section by using the up
@@ -1577,7 +1577,7 @@ section.
 
 12. Repeat add section steps for each section you want to have in your
     section form.
-    
+
     In the **Data Entry** app you can now use the section form. The
     section form appears automatically when sections are available for
     the selected data set. Data sets which have section forms will
@@ -1629,9 +1629,9 @@ entry.
 5.  Click the options menu and select **Manage grey fields**.
 
 6.  Select which fields you want to disable.
-    
+
     > **Note**
-    > 
+    >
     > If you've sections that contain data elements assigned to multiple
     > category combinations, switch between the category combinations to
     > view all fields.
@@ -1652,7 +1652,7 @@ You can control in which order sections are displayed in a section form.
 4.  In the list, find the section you want to move.
 
 5.  Click the options menu and select **Move up** or **Move down**.
-    
+
     If the section you want to move is the first or last section in the
     list, you'll only see one of the move options.
 
@@ -1707,10 +1707,10 @@ To create a custom form:
 3.  Click the options menu and select **Design data entry form**.
 
 4.  In the editing area, create the custom form.
-    
-      - Double-clik on a object in the left-hand list to insert it in
+
+      - Double-click on a object in the left-hand list to insert it in
         the form.
-    
+
       - If you already have the HTML code for your form, click
         **Source** and paste the code.
 
@@ -1721,7 +1721,7 @@ To create a custom form:
 #### Scripting in custom forms
 
 In custom data entry form you can use JavaScript to create dynamic
-behavior and customizations. As an example, you can hide form sections
+behaviour and customizations. As an example, you can hide form sections
 based on specific user input for data elements, or show specific
 information when a form loads.
 
@@ -1800,26 +1800,26 @@ and when they are triggered.
 To register for an event:
 
     <script type="text/javascript">
-    
+
     dhis2.util.on( 'dhis2.de.event.formReady', function( event, ds ) {
       console.log( 'The form with id: ' + ds + ' is loaded!' );
     } );
-    
+
     dhis2.util.on( 'dhis2.de.event.dataValueSaved', function( event, ds, dv ) {
       console.log( 'Data value: ' + dv.value + ' was saved with data element: ' + dv.de );
     } );
-    
+
     dhis2.util.on( 'dhis2.de.event.completed', function( event, ds, cr ) {
       console.log( 'Form was completed for org unit: ' + cr.ou );
     } );
-    
+
     </script>
 
 > **Note**
-> 
+>
 > Be careful to only use "namespaced" events like the ones in the
 > example above and not general ones like "click" as the dhis2.util.on
-> method will unregister the event first.
+> method will deregister the event first.
 
 If your function only applies to certain data sets you can use the
 supplied data set identifier and shortcut your function for unwanted
@@ -1883,7 +1883,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -1897,24 +1897,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -1923,12 +1923,12 @@ view or enter data in form fields using the metadata.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -1959,7 +1959,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -1967,9 +1967,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -1995,7 +1995,7 @@ are a result of data element values that have been entered into the
 system. Calculated totals do not have a denominator.
 
 > **Note**
-> 
+>
 > You never enter indicators directly in DHIS2, you calculate them.
 
 An indicator formula can consist of mathematical operators, for example
@@ -2110,10 +2110,10 @@ Indicator types define a factor that is applied during aggregation.
 Indicator values that are calculated during a data mart export or report
 table generation process will appear properly formatted, and will
 therefore not require an additional multiplier (for example 100 in the
-case of percents) for the values to appear correctly formatted.
+case of percent) for the values to appear correctly formatted.
 
 > **Note**
-> 
+>
 > As of version 2.4 of DHIS2, the "Calculated data element" object has
 > been deprecated. Instead, you can create a calculated data element by
 > creating an indicator type with a factor of "1" and by setting the
@@ -2131,7 +2131,7 @@ case of percents) for the values to appear correctly formatted.
     example "Per cent", "Per thousand", "Per ten thousand".
 
 4.  Type a **Factor**.
-    
+
     The factor is the numeric factor that will be multiplied by the
     indicator formula during the calculation of the indicator.
 
@@ -2153,12 +2153,12 @@ case of percents) for the values to appear correctly formatted.
 
 4.  In the **Short name** field, type an abbreviated name of the
     indicator, for example "Inc conf. malaria per 1000 pop".
-    
+
     The short name must be less than or equal to 25 characters,
     including spaces.
 
 5.  (Optional) In the **Code** field, assign a code.
-    
+
     In many countries indicators are assigned a code.
 
 6.  In the **Description** field, type a brief, informative description
@@ -2166,7 +2166,7 @@ case of percents) for the values to appear correctly formatted.
 
 7.  If you want to apply an annualization factor during the calculation
     of the indicator, select **Annualized**.
-    
+
     Typically, an annualized indicator's numerator is multiplied by a
     factor of 12, and the denominator is for instance a yearly
     population figure. This allows for monthly coverage values to be
@@ -2175,7 +2175,7 @@ case of percents) for the values to appear correctly formatted.
 8.  Select the number of **Decimals in data output**.
 
 9.  Select an **Indicator type**.
-    
+
     This field determines a factor that will automatically be applied
     during the calculation of the indicator. Possible choices are
     determined by the indicator types. For example, a "Percent"
@@ -2190,7 +2190,7 @@ case of percents) for the values to appear correctly formatted.
 
 12. (Optional) Enter a **Category option combination for aggregate data
     export.**.
-    
+
     You use this setting to map aggregated data exported as raw data to
     another server. Typically you do this type of data exchange mapping
     when you want to create anonymous aggregated data from patient data
@@ -2198,7 +2198,7 @@ case of percents) for the values to appear correctly formatted.
 
 13. (Optional) Enter an **Attribute option combination for aggregate
     data export.**.
-    
+
     You use this setting to map aggregated data exported as raw data to
     another server. Typically you do this type of data exchange mapping
     when you want to create anonymous aggregated data from patient data
@@ -2206,48 +2206,48 @@ case of percents) for the values to appear correctly formatted.
 
 14. If applicable, enter custom attributes values, for example
     **Classification** or **Collection method**.
-    
+
     > **Note**
-    > 
+    >
     > You create custom attributes in the **Maintenance** app: **Other**
     > \> **Attributes**.
 
 15. Click **Edit numerator**.
-    
+
     1.  Type a clear description of the numerator.
-    
+
     2.  Define the numerator by double-clicking components in the
         right-hand field. The components then appears as part of the
         formula in the left-hand field. Add mathematical operators by
         double-clicking the icons below the left-hand field.
-        
+
         You formula must be mathematically valid. This includes correct
         use of parentheses when necessary.
-    
+
     3.  Click **Done** to save all changes to the numerator.
 
 16. Click **Edit denominator**.
-    
+
     1.  Type a clear description of the denominator.
-    
+
     2.  Define the denominator by double-clicking components in the
         right-hand field. The components then appears as part of the
         formula in the left-hand field. Add mathematical operators by
         double-clicking the icons below the left-hand field.
-        
+
         You formula must be mathematically valid. This includes correct
         use of parentheses when necessary.
-    
+
     3.  Click **Done** to save all changes to the denominator.
 
 17. If applicable, select compulsory indicator group sets, for example
     **Human resources**.
-    
+
     > **Note**
-    > 
+    >
     > You'll only see indicator group sets in this form if you've
     > created them and set them to **Compulsory**.
-    > 
+    >
     > You create indicator group sets in the **Maintenance** app:
     > **Indicator** \> **Indicator group set**.
 
@@ -2288,15 +2288,15 @@ analysis of data to combine similar themes of indicators.
 2.  Click the add button.
 
 3.  Fill in the form:
-    
+
     1.  **Name**
-    
+
     2.  **Description**
-    
+
     3.  **Compulsory**
 
 4.  Select indicator groups and assign them.
-    
+
     Available indicator groups are displayed in the left panel.
     Indicator groups that are currently members of the indicator group
     set are displayed in the right hand panel.
@@ -2331,7 +2331,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -2345,24 +2345,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -2371,12 +2371,12 @@ view or enter data in form fields using the metadata.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -2407,7 +2407,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -2415,9 +2415,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -2462,13 +2462,13 @@ hospitals. Therefore, you can create skewed organisation trees in DHIS2.
   - You can only have one organisation hierarchy at the same time.
 
   - You can have any number of levels in a hierarchy.
-    
+
     Typically national organisation hierarchies in public health have
     four to six levels.
 
   - You can create additional classifications by using organisation
     groups and organisation group sets.
-    
+
     For example to create parallel administrative boundaries to the
     health care sector.
 
@@ -2489,13 +2489,13 @@ hospitals. Therefore, you can create skewed organisation trees in DHIS2.
     **Tracker Capture** apps.
 
 > **Important**
-> 
+>
 > You can change the organisation unit hierarchy after you've created
 > it, even organisation units that collect data. However, DHIS2 always
 > uses the latest hierarchy for data aggregation. So if you change the
 > hierarchy, you loose the temporal representation of the hierarchy
 > across time.
-> 
+>
 > District A is sub-divided into District B and District C. Facilities
 > which belonged to District A are reassigned to District B and C. Any
 > historical data, which you entered before the split occurred, is still
@@ -2570,36 +2570,36 @@ one root unit.
 
 3.  Select which organisation unit your new organisation unit will
     belong to:
-    
+
     1.  Click **Parent organisation unit**.
-    
+
     2.  In the organisation unit tree, locate the parent organisation
         unit and select it. Your selection is marked in yellow.
-        
+
         > **Tip**
-        > 
+        >
         > Click the arrows to expand the organisation unit tree.
-    
+
     3.  Click **Select**.
 
 4.  Enter a **Name** of the organisation unit.
-    
+
     Each organisation unit must have an unique name.
 
 5.  Enter a **Short name** for the organisation unit.
-    
+
     Typically, the short name is an abbreviation of the full
     organisation unit name. This attribute is often used in reports to
     display the name of the organisation unit, where space is limited.
 
 6.  (Optional) Assign a **Code**.
-    
+
     In many countries organisation units are assigned a code.
 
 7.  (Optional) Type a **Description** of the organisation unit.
 
 8.  Select an **Opening date**.
-    
+
     The opening dates control which organisation units that existed at a
     point in time, for example when analysing historical data.
 
@@ -2612,56 +2612,56 @@ one root unit.
     site that has additional information about the organisation unit.
 
 12. Enter contact information:
-    
+
       - Contact person
-    
+
       - Address
-    
+
       - E-mail
-    
+
       - Phone number
 
 13. (Optional) Enter **Latitude** and **Longitude**.
-    
+
     You must have latitude and longitude values to create maps in the
     **GIS** app. Then your organisation units can be represented as
     points on a map, for example a health facility. Without this
     information, the **GIS** app will not work.
-    
+
     It might be more efficient to import coordinates later as a batch
     job for all organisation units using the **Import-Export** app. You
     also use the **Import-Export** app to create polygons. A polygon is
     an organisation unit that represent an administrative boundary.
 
 14. If applicable, select **Data sets** and assign them.
-    
+
     > **Note**
-    > 
+    >
     > You control whether a user should be able to assign data sets to
     > an organisation unit in the **System Settings** app:
-    > 
+    >
     > Open the **System Settings** app, click **Access** and select
     > **Allow assigning object to related objects during add or
     > update**.
 
 15. If applicable, select **Programs** and assign them.
-    
+
     > **Note**
-    > 
+    >
     > You control whether a user should be able to assign programs to an
     > organisation unit in the **System Settings** app:
-    > 
+    >
     > Open the **System Settings** app, click **Access** and select
     > **Allow assigning object to related objects during add or
     > update**.
 
 16. If applicable, enter custom attributes values, for example **HR
     identifier**.
-    
+
     > **Note**
-    > 
+    >
     > You configure the custom attributes in the **Maintenance** app:
-    > 
+    >
     > Open the **Maintenance** app and click **Other** \> **Attribute**.
 
 17. Click **Save**.
@@ -2680,28 +2680,28 @@ units that are hospitals in an **Hospital** group.
 2.  Click the add button.
 
 3.  Fill in the form:
-    
+
     1.  **Name**: Provide a precise, unique and descriptive name for the
         organisation unit group.
-    
+
     2.  **Short name**: The short name should be less than 25
         characters. Typically, the short name is an abbreviation of the
         full organisation unit name. This attribute is used in certain
         places in DHIS2 where space is limited.
-    
+
     3.  **Code**
-    
+
     4.  **Symbol**: Select a symbol which will be used to display the
         organisation unit (points only) when the layer is displayed in
         the **GIS** app.
 
 4.  In the organisation tree, click the organisation units you want to
     add to the organisation unit group.
-    
+
     You can locate an organisation unit in the tree by expanding the
     branches (click on the arrow symbol), or by searching for it by
     name.
-    
+
     The selected organisation units display in orange.
 
 5.  Click **Save**.
@@ -2732,7 +2732,7 @@ easily filter, organise or aggregate data by groups within a group set.
     group set.
 
 > **Note**
-> 
+>
 > In the **Data integrity** part of the **Data administration** app you
 > can verify if you've accidentally assigned the same organisation unit
 > to multiple groups within the same group set. In this app you also
@@ -2745,12 +2745,12 @@ easily filter, organise or aggregate data by groups within a group set.
 2.  Click the add button.
 
 3.  Fill in:
-    
+
     1.  **Name**: Provide a precise name for the organisation unit group
         set.
-    
+
     2.  **Code**
-    
+
     3.  **Description**: Describe what the organisation unit group set
         measures or captures.
 
@@ -2760,35 +2760,35 @@ easily filter, organise or aggregate data by groups within a group set.
 5.  (Optional) Select **Data dimension**.
 
 6.  (Optional) Select **Include subhierarchy in analytics**.
-    
+
     If you select this, a sub-organisation unit will inherit the
     organisation unit group property from its closest "parent"
     organisation unit. Any property on the sub-organisation unit will
     override the inherit value.
-    
+
     If an organisation unit have no associated organisation unit group,
     the organisation unit can inherit its closest parent's organisation
     unit group. If none of the parent organisation unit groups have an
     organisation unit group for a given org unit group set, the result
     will still be "blank", but if at least one parent has an
     organisation unit group, sub-organisation unit will inherit it.
-    
+
     include subhierarchy in analytics" is enabled, which means the org
     units inherit their closest parents org unit group IF the org unit
     is white (no org unit group associated with it).
 
 7.  Select organisation unit groups and assign them.
-    
+
     In the left-hand list, you find the available organisation unit
     groups. Use the arrows to move selected groups between the two
     lists.
-    
+
     If there are no organisation unit groups in the left-hand list,
     click **Add new**. In the form that opens, create the organisation
     units group you need. When you're done, click **Refresh values**.
-    
+
     > **Note**
-    > 
+    >
     > An organisation unit can only be a member of a single organisation
     > unit group within an organisation unit group set.
 
@@ -2847,18 +2847,18 @@ names anywhere levels are referred to, for example in the **GIS** app.
 
 1.  Open the **Maintenance** app and click **Organisation unit** \>
     **Organisation unit level**.
-    
+
     The loading time of the list depends on the depth of the
     organisation unit hierarchy tree.
 
 2.  For the organisation unit levels you want to modify, type a name.
 
 3.  Select the number of offline levels.
-    
+
     > **Note**
-    > 
+    >
     > You configure the default value in the **System Settings** app:
-    > 
+    >
     > Open the **System Settings** app, click **General** and select a
     > level in the **Max offline organisation unit levels** list.
 
@@ -2876,9 +2876,9 @@ parent of a selected organisation unit.
 
 2.  In the left-hand hierarchy tree, select the organisation unit(s) you
     want to move.
-    
+
     > **Note**
-    > 
+    >
     > If the selected organisation unit is has sub-organisation units,
     > all of them move to the new parent organisation unit.
 
@@ -2887,7 +2887,7 @@ parent of a selected organisation unit.
 
 4.  Click **Move x organisation units**, where x stands for the number
     of organisation units you have selected.
-    
+
     Your changes are immediately reflected in the left-hand side
     hierarchy tree.
 
@@ -2936,7 +2936,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -2950,24 +2950,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -2976,12 +2976,12 @@ view or enter data in form fields using the metadata.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -3012,7 +3012,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -3020,9 +3020,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -3108,7 +3108,7 @@ an end point. The example below shows disease surveillance data:.
 ![](resources/images/maintainence/validation_rules_sliding_window.gif)
 
 <table>
-<caption>Different behavior of validation rules</caption>
+<caption>Different behaviour of validation rules</caption>
 <colgroup>
 <col width="50%" />
 <col width="50%" />
@@ -3171,7 +3171,7 @@ for low-priority routine data validation errors.
 2.  Click the add button.
 
 3.  Type a **Name**.
-    
+
     The name must be unique among the validation rules.
 
 4.  (Optional) In the **Code** field, assign a code.
@@ -3185,13 +3185,13 @@ for low-priority routine data validation errors.
 8.  Select an **Operator**: **Compulsory pair**, **Equal to**,
     **Exclusive pair**, **Greater than**, **Greater than or equal to**
     or **Not equal to**.
-    
+
     The **Compulsory pair** operator allows to require that data values
     must be entered for a form for both left and right sides of the
     expression, or for neither side. This means that you can require
     that if one field in a form is filled, then one or more other fields
     must also be filled.
-    
+
     The **Exclusive pair** allows to assert that if any value exist on
     the left side then there should be no values on the right side (or
     vice versa). This means that data elements which compose the rule on
@@ -3199,16 +3199,16 @@ for low-priority routine data validation errors.
     given time period / organisation unit /attribute option combo.
 
 9.  Create the left side of the expression:
-    
+
     1.  Click **Left side**.
-    
+
     2.  Select **Sliding window** if you want to view data relative to
         the period you are comparing. See also [About validation
         rules](https://docs.dhis2.org/master/en/user/html/manage_validation_rule.html#about_validation_rule).
-    
+
     3.  Select a **Missing value strategy**. This selection sets how the
         system evaluates a validation rule if data is missing.
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -3236,25 +3236,25 @@ for low-priority routine data validation errors.
         </tr>
         </tbody>
         </table>
-    
+
     4.  Type a **Description**.
-    
+
     5.  Build an expression based on the available data elements,
         program objects, organisation units, counts and constants.
-        
+
         In the right pane, double-click the data objects you want to
         include in the expression. Combine with the mathematical
         operators located below the left pane.
-    
+
     6.  Click **Save**.
 
 10. Create the right side of the expression:
-    
+
     1.  Click **Right side**.
-    
+
     2.  Select a **Missing value strategy**. This selection sets how the
         system evaluates a validation rule if data is missing.
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -3282,20 +3282,20 @@ for low-priority routine data validation errors.
         </tr>
         </tbody>
         </table>
-    
+
     3.  Select **Sliding window** if you want to view data relative to
         the period you are comparing. See also [About validation
         rules](https://docs.dhis2.org/master/en/user/html/manage_validation_rule.html#about_validation_rule).
-    
+
     4.  Type a **Description**.
-    
+
     5.  Build an expression based on the available data elements,
         program objects, organisation units, counts and constants.
-        
+
         In the right pane, double-click the data objects you want to
         include in the expression. Combine with the mathematical
         operators located below the left pane.
-    
+
     6.  Click **Save**.
 
 11. (Optional) Choose which **Organisation unit levels** this rule
@@ -3345,7 +3345,7 @@ for low-priority routine data validation errors.
 6.  Select **Recipient user groups**.
 
 7.  (Optional) Select **Notify users in hierarchy only**.
-    
+
     If you select this option, the system will filter the recipient
     users. (The system derives the recipient users from the recipient
     user groups.) The filter is based on which organisation unit the
@@ -3356,14 +3356,14 @@ for low-priority routine data validation errors.
     notifications.
 
 8.  Create the message template:
-    
+
     1.  Create the **Subject template**.
-        
+
         Double-click the parameters in the **Template variables** field
         to add them to your subject.
-    
+
     2.  Create the **Message template**.
-        
+
         Double-click the parameter names in the **Template variables**
         field to add them to your message.
 
@@ -3397,7 +3397,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -3411,24 +3411,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -3437,12 +3437,12 @@ view or enter data in form fields using the metadata.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -3473,7 +3473,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -3481,9 +3481,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -3538,28 +3538,28 @@ In the **Maintenance** app, you manage the following attribute objects:
 2.  Click the add button.
 
 3.  In the **Name** field, type the name of the attribute.
-    
+
     Each attribute must have a unique name
 
 4.  (Optional) In the **Code** field, assign a code.
 
 5.  Select a **Value type**.
-    
+
     If the value supplied for the attribute does not match the value
     type you will get a warning.
 
 6.  Select an **Option set**.
 
 7.  Select the options you want, for example:
-    
+
       - Select **Mandatory** if you want an object to always have the
         dynamic attribute.
-    
+
       - Select **Unique** if you want the system to enforce that values
         are unique for a specific object type.
 
 8.  Click **Save**.
-    
+
     The dynamic attribute is now available for the objects you assigned
     it to.
 
@@ -3582,12 +3582,12 @@ many similar objects.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -3618,7 +3618,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -3626,9 +3626,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -3697,7 +3697,7 @@ In the **Maintenance** app, you manage the following constant objects:
 7.  In the **Value** field, define the constant's value.
 
 8.  Click **Save**.
-    
+
     The constant is now available for use.
 
 ### Clone metadata objects
@@ -3728,7 +3728,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -3742,24 +3742,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -3768,12 +3768,12 @@ view or enter data in form fields using the metadata.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -3804,7 +3804,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -3812,9 +3812,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -3866,7 +3866,7 @@ An option set called "Delivery type" would have the options: "Normal",
 <!--DHIS2-SECTION-ID:create_option_set-->
 
 > **Important**
-> 
+>
 > Option sets must have a code as well as a name. You can change the
 > names but you can't change the codes. Both names and codes of all
 > options must be unique, even across different option sets.
@@ -3876,27 +3876,27 @@ An option set called "Delivery type" would have the options: "Normal",
 2.  Click the add button.
 
 3.  In the **Primary details** tab, define the option set:
-    
+
     1.  In the **Name** field, type the name of the constant.
-    
+
     2.  In the **Code** field, assign a code.
-    
+
     3.  Select a **Value type**.
-    
+
     4.  Click **Save**.
 
 4.  For each option you need, perform the following tasks:
-    
+
     1.  Click the **Options** tab.
-    
+
     2.  Click the add button.
-    
+
     3.  Type a **Name** and a **Code**. Optionally also select a
         **Color** and an **Icon** which will be used for this option in
         the data capture apps.
-    
+
     4.  Sort the options by name, code/value or manually.
-    
+
     5.  Click **Save**.
 
 ### Clone metadata objects
@@ -3927,7 +3927,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -3941,24 +3941,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -3967,12 +3967,12 @@ view or enter data in form fields using the metadata.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -4003,7 +4003,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -4011,9 +4011,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -4036,7 +4036,7 @@ to make the maps you're setting up for your users meaningful. You create
 maps in the **GIS** app.
 
 > **Note**
-> 
+>
 > Continuous legends must consist of legend items that end and start
 > with the same value, for example: 0-50 and 50-80. Do not set legend
 > items like this: 0-50 and 51-80. This will create gaps in your legend.
@@ -4046,9 +4046,9 @@ maps in the **GIS** app.
 <!--DHIS2-SECTION-ID:create_legend-->
 
 > **Note**
-> 
+>
 > It is not allowed to have gaps in a legend.
-> 
+>
 > It is not allowed to have overlapping legend items.
 
 1.  Open the **Maintenance** app and click **Other** \> **Legend**.
@@ -4060,34 +4060,34 @@ maps in the **GIS** app.
 4.  (Optional) In the **Code** field, assign a code.
 
 5.  Create the legend items you want to have in your legend:
-    
+
     1.  Select **Start value** and **End value**.
-    
+
     2.  Select **Number of legend items**.
-    
+
     3.  Select a color scheme.
-    
+
     4.  Click **Create legend items**.
-    
+
     > **Tip**
-    > 
+    >
     > Click the options menu to edit or delete a legend item.
 
 6.  (Optional) Add more legend items:
-    
+
     1.  Click the add button.
-    
+
     2.  Enter a name and select a start value, an end value and a color.
-    
+
     3.  Click **OK**.
 
 7.  (Optional) Change the color scales.
-    
+
     1.  Click the colour scale to view a list of color scale options,
         and select a color scale.
-    
+
     2.  To customize a color scale, click the add button. In the **Edit
-        legend item** dialog, click the color scale button and handpick
+        legend item** dialog, click the color scale button and hand-pick
         colors, or enter your color values.
 
 8.  Click **Save**.
@@ -4157,7 +4157,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -4171,24 +4171,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -4197,12 +4197,12 @@ view or enter data in form fields using the metadata.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -4233,7 +4233,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -4241,9 +4241,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -4367,7 +4367,7 @@ to 24:
 A predictor's *Sequential skip count* tells how many periods should be
 skipped immediately prior to the predicted value period, within the
 *Sequential sample count*. This could be used, for instance, in outbreak
-detection to skip one or more immediately prededing samples that might
+detection to skip one or more immediately preceding samples that might
 in fact contain values from the beginning of an outbreak that you are
 trying to detect.
 
@@ -4423,7 +4423,7 @@ You can use the *Sequential skip count* together with the sequential and
 annual sample counts. When you do this, the *Sequential skip count*
 tells how many periods to skip in the same year as the predicted value
 period. For example, if the *Sequential sample count* is 4 and the
-*Sequential skip count* is 2, then the two preiods immediatly preceding
+*Sequential skip count* is 2, then the two periods immediately preceding
 the predicted value period period will be skipped, but the two periods
 before that will be sampled:
 
@@ -4450,7 +4450,7 @@ of a non-outbreak baseline expected value.
 
 The *Sample skip test* is an expression that should return a value of
 true or false, to indicate whether or not the period should be skipped.
-It can be an expression that tests any values in the preiovus period.
+It can be an expression that tests any values in the previous period.
 For example, it could test for a data value that was explicitly entered
 to indicate that a previous period should be skipped. Or it could
 compare a previously predicted value for a period with the actual value
@@ -4479,7 +4479,7 @@ sampled. For example:
 6.  Select an **Output data element**. Values generated by this
     predictor are stored as aggregate data associated with this data
     element and the predicted period.
-    
+
     The value is rounded according to the value type of the data
     element: If the value type is an integer type, the predicted value
     is rounded to the nearest integer. For all other value types, the
@@ -4489,25 +4489,25 @@ sampled. For example:
 
 7.  Select a **Period type**.
 
-8.  Assign one or more organisation unit levels. The ouput value will be
+8.  Assign one or more organisation unit levels. The output value will be
     assigned to an organisation unit at this level (or these levels).
-    The input values will come from the organisaiton unit to which the
+    The input values will come from the organisation unit to which the
     output is assigned, or from any level lower under the output
     organisation unit.
 
 9.  Create a **Generator**. The generator is the expression that is used
     to calculate the predicted value.
-    
+
     1.  Type a **Description** of the generator expression.
-    
+
     2.  Enter the generator expression. You can build the expression by
         selecting data elements for aggregate data, or program data
         elements, attributes or indicators. Organisation unit counts are
         not yet supported.
-        
+
         To use sampled, past period data, you should enclose any items
         you select in one of the following aggregate functions:
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -4550,23 +4550,23 @@ sampled. For example:
         </tr>
         </tbody>
         </table>
-        
+
         Any items inside an aggregate function will be evaluated for all
         sampled past periods, and then combined according to the formula
         inside the aggregate function. Any items outside an aggregate
         function will be evaluated for the period in which the
         prediction is being made.
-        
+
         You can build more complex expressions by clicking on (or
         typing) any of the elements below the expression field: ( ) \* /
         + - Days. Constant numbers may be added by typing them. The Days
         option inserts \[days\] into the expression which resolves to
         the number of days in the period from which the data came.
-        
+
         You can also use the following functions in your expression,
         either inside or containing aggregate functions, or independent
         of them:
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -4589,7 +4589,7 @@ sampled. For example:
         </tr>
         </tbody>
         </table>
-        
+
         **Boolean expression notes:** A boolean expression must evaluate
         to **true** or **false**. The following operators may be used to
         compare two values resulting in a boolean expression: \<, \>,
@@ -4597,9 +4597,9 @@ sampled. For example:
         combine two boolean expressions: && (logical and), and ||
         (logical or). The unary operator \! may be used to negate a
         boolean expression.
-        
+
         Generator expression examples:
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -4641,9 +4641,9 @@ sampled. For example:
 
 10. (Optional) Create a **Sample skip test**. The sample skip test tells
     which previous periods if any to exclude from the sample.
-    
+
     1.  Type a **Description** of the skip test.
-    
+
     2.  Enter the sample skip test expression. You can build the
         expression by selecting data elements for aggregate data, or
         program data elements, attributes or indicators. Organisation
@@ -4651,12 +4651,12 @@ sampled. For example:
         function, you may click on (or type) any of the elements below
         the expression field: ( ) \* / + - Days. The functions IF() and
         ISNULL() as described above may also be used.
-        
+
         The expression must evaluate to a boolean value of **true** or
         **false**. See **Boolean expression notes** above.
-        
+
         Skip test expression examples:
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -4685,17 +4685,17 @@ sampled. For example:
         </table>
 
 11. Enter a **Sequential sample count** value.
-    
+
     This is for how many sequential periods the calculation should go
     back in time to sample data for the calculations.
 
 12. Enter an **Annual sample count** value.
-    
+
     This is for how many years the calculation should go back in time to
     sample data for the calculations.
 
 13. (Optional) Enter a **Sequential skip count** value.
-    
+
     This is how many sequential periods, immediately preceding the
     predicted value period, should be skipped before sampling the data.
 
@@ -4740,12 +4740,12 @@ many similar objects.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -4776,7 +4776,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -4784,9 +4784,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -4841,7 +4841,7 @@ addresses.
     problem is logged on the server.
 
 > **Note**
-> 
+>
 > The data generated in the push reports is public so verify that you
 > don't include any sensitive data.
 
@@ -4881,18 +4881,18 @@ objects:
 2.  Click the add button.
 
 3.  In the **Name** field, type the name of the scheduled report.
-    
+
     This name is not included in the report e-mail. Instead, the name is
     used to identify the push analysis object in the system.
 
 4.  (Optional) In the **Code** field, assign a code.
 
 5.  Add a report **Title**.
-    
+
     This title is included in the report e-mail.
 
 6.  (Optional) Add a **Message**.
-    
+
     This message is included in the report e-mail.
 
 7.  Select a **Dashboard** to base the report on.
@@ -4901,14 +4901,14 @@ objects:
 
 9.  Select a **Scheduling frequency**: **Daily**, **Weekly** or
     **Monthly**.
-    
+
     > **Note**
-    > 
+    >
     > If you schedule a push report to "Monthly" and "31", the scheduled
     > report job will not run if the month has less than 31 days.
 
 10. (Optional) Select **Enable** to activate the push report job.
-    
+
     The job won't run until you activate it.
 
 11. Click **Save**.
@@ -4923,7 +4923,7 @@ objects:
 2.  In the push report list, locate the push report you want to preview.
 
 3.  Click the options menu and select **Preview**.
-    
+
     A preview of the push report opens in a new window.
 
 ### Run push report jobs
@@ -4936,7 +4936,7 @@ objects:
 2.  In the push report list, locate the push report you want to run.
 
 3.  Click the options menu and select **Run now**.
-    
+
     The push report job runs immediately.
 
 ### Clone metadata objects
@@ -4958,12 +4958,12 @@ many similar objects.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -4994,7 +4994,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -5002,9 +5002,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -5032,8 +5032,8 @@ and XYZ tiles.
 <!--DHIS2-SECTION-ID:create_external_map_layer-->
 
 > **Note**
-> 
-> DHIS 2 only supports the Web Mercator projection
+>
+> DHIS2 only supports the Web Mercator projection
 > ([EPSG:3857](https://epsg.io/3857)) so make sure that the external
 > service supports this projection.
 
@@ -5064,50 +5064,50 @@ and XYZ tiles.
 
 3.  In the **Name** field, type a name that describes the content of the
     external map layer.
-    
+
     This is the name you'll see in the **GIS** app.
 
 4.  (Optional) In the **Code** field, assign a code.
 
 5.  Select a **Map service** format.
-    
+
     DHIS2 supports three common map service formats:
-    
+
       - Web Map Service (WMS)
-        
+
         **Image format**: PNG format allows layers to be transparent,
         JPG format offers better compression and is often faster to
         load.
-        
+
         **Layers**: A WMS can contain several individual layers, and you
         can specify which you want to include (comma separated). Refer
         to the WMS GetCapabilities document to see the available layers.
-    
+
       - Tile Map Service (TMS)
-    
+
       - XYZ tiles (can also be used for WMTS)
 
 6.  Enter the **URL** to the map service.
-    
+
     > **Note**
-    > 
+    >
     > XYZ and TMS URLs must contain placeholders {}, for example:
     > http://{s}.tile.osm.org/{z}/{x}/{y}.png.
 
 7.  (Optional) Enter **Source** of the map layers. The field can contain
     HTML tags if you want to link to the source.
-    
+
     When you use an external map service it is important to highlight
     where the data comes from.
 
 8.  Select a **Placement**:
-    
+
       - **Bottom - basemap**: For the GIS app, this places the external
         map layer above other DHIS2 base maps but below the thematic map
         layers. For the Maps app, this makes the external map layer
         selectable as the base map (i.e. as an alternative to the DHIS2
         base maps).
-    
+
       - **Top - overlay**: For the GIS app, this places the external map
         layer above the thematic map layers but below facility and event
         data layers. For the Maps app, this allows the external map to
@@ -5115,21 +5115,21 @@ and XYZ tiles.
         the base map.
 
 9.  (Optional) Add a legend.
-    
+
     You can add a legend in two ways:
-    
+
       - Select a predefined **Legend** to describe the colors of the map
         layer.
-        
+
         > **Tip**
-        > 
+        >
         > Click **Add new** to create legends that you're missing. In
         > the form that opens, create the legends you need. When you're
         > done, click **Refresh values**.
-    
+
       - Enter a link to an external image legend in **Legend image
         URL**.
-        
+
         These are often provided for WMS. See under LegendURL in the WMS
         GetCapabilites document.
 
@@ -5154,12 +5154,12 @@ many similar objects.
 ### Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -5190,7 +5190,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -5198,9 +5198,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -5218,7 +5218,7 @@ The SQL View functionality of DHIS2 will store the SQL view definition
 internally, and then materialize the view when requested.
 
 Database administrators must be careful about creating database views
-directly in the DHIS 2 database. For instance, when the resource tables
+directly in the DHIS2 database. For instance, when the resource tables
 are generated, all of them will first be dropped and then re-created. If
 any SQL views depend on these tables, an integrity violation exception
 will be thrown and the process will be aborted.
@@ -5257,7 +5257,7 @@ you can view it by clicking the view again, and selecting "Show SQL
 View".
 
 > **Tip**
-> 
+>
 > If you have a view which depends on another view, you should be
 > careful about how the views are named. When analytics is run on the
 > DHIS2 server, all views must be dropped, and are recreated. When
@@ -5368,4 +5368,3 @@ objects types:
 
 6.  In the right-hand list, select the object group(s) you want to
     remove the object from and click the left arrow.
-

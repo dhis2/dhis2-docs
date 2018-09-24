@@ -86,7 +86,7 @@ the **Program / Attributes** (legacy) app.
 </tr>
 <tr class="odd">
 <td><p>Program rule</p></td>
-<td><p>Allows you to create and control dynamic behavior of the user interface in the <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps.</p></td>
+<td><p>Allows you to create and control dynamic behaviour of the user interface in the <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps.</p></td>
 <td><p>Create, edit, delete, show details and translate</p></td>
 </tr>
 <tr class="even">
@@ -218,13 +218,13 @@ three types of data entry forms:
 </table>
 
 > **Note**
-> 
+>
 >   - Custom forms takes precedence over section forms if both are
 >     present.
-> 
+>
 >   - If no custom or section form are defined, the basic form will be
 >     used.
-> 
+>
 >   - The Android apps only supports section forms.
 
 You can create *program notifications* for event programs. The
@@ -262,7 +262,7 @@ attributes and program parameters.
 2.  Click the add button.
 
 3.  Enter program details, then click next.
-    
+
     <table>
     <colgroup>
     <col width="50%" />
@@ -353,7 +353,7 @@ attributes and program parameters.
     want to assign to the event program.
 
 3.  (Optional) For each data element, add additional settings:
-    
+
     <table>
     <colgroup>
     <col width="50%" />
@@ -368,7 +368,7 @@ attributes and program parameters.
     <tbody>
     <tr class="odd">
     <td><p><strong>Compulsory</strong></p></td>
-    <td><p>The value of this data element must be filled into data entry form before you can comple the event.</p></td>
+    <td><p>The value of this data element must be filled into data entry form before you can complete the event.</p></td>
     </tr>
     <tr class="even">
     <td><p><strong>Allow provided elsewhere</strong></p></td>
@@ -409,17 +409,17 @@ the user in the **Event Capture** app.
     elements in the order you want.
 
 4.  To create a **Section** data entry form:
-    
+
     1.  Click the add button and enter a section's name, description and
         render type for desktop and mobile.
-    
+
     2.  Click the section so it's highlighted by a black line.
-    
+
     3.  Add data elements by clicking the plus sign next to the data
         elements' names.
-    
+
     4.  Repeat above steps until you've all the sections you need.
-    
+
     5.  Change the section order: click the options menu, then drag the
         section to the place you want.
 
@@ -442,7 +442,7 @@ Assign organization units:
 
 1.  In the organisation tree, double-click the organisation units you
     want to add to the program to.
-    
+
     You can locate an organisation unit in the tree by expanding the
     branches (click on the arrow symbol), or by searching for it by
     name. The selected organisation units display in orange.
@@ -450,7 +450,7 @@ Assign organization units:
 Change roles and access:
 
 1.  Scroll down to the **Roles and access** section.
-    
+
     The first row shows the main program's access options, and each
     subsequent row shows the options of one program stage. Program
     stages with a warning icon (exclamation mark) contain access options
@@ -466,43 +466,43 @@ Change roles and access:
 
 5.  Repeat the process for each program/program stage. You can also copy
     all access options from the main program to your child programs:
-    
+
     1.  Select the program stages you want to have similar access
         options as the main program by toggling the checkboxes on the
-        righthand side of the program stages. You can also choose to
+        right hand side of the program stages. You can also choose to
         **Select all** program stages, **Deselect all** program stages
         or **Select similar** stages, in terms of access options, to
         that of the main program. Similar stages are toggled by default.
-    
+
     2.  Click **Apply to selected stages**
 
 #### Create program notifications
 
 1.  Create the message you want to send:
-    
+
     1.  Click **What to send?**.
-    
+
     2.  Enter a **Name**.
-    
+
     3.  Create the **Subject template**: Double-click the parameters in
         the **Template variables** field to add them to your subject.
-        
+
         > **Note**
-        > 
+        >
         > The subject is not included in text messages.
-    
+
     4.  Create the **Message template**: Double-click the parameter
         names in the **Template variables** list to add them to your
         message.
-        
+
         Dear A{w75KJ2mc4zz}, You're now enrolled in V{program\_name}.
 
 2.  Define *when* you want to send the message:
-    
+
     1.  Click **When to send it?**.
-    
+
     2.  Select a **Notification trigger**.
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -528,11 +528,11 @@ Change roles and access:
         </table>
 
 3.  Define *who* you want to send the message to:
-    
+
     1.  Click **Who to send it to?**.
-    
+
     2.  Select a **Notification recipient**.
-        
+
         <table>
         <colgroup>
         <col width="50%" />
@@ -569,7 +569,7 @@ Change roles and access:
         </tr>
         </tbody>
         </table>
-    
+
     3.  Click **Save**.
 
 4.  Repeat above steps to create all the program notifications you need.
@@ -577,13 +577,13 @@ Change roles and access:
 5.  Click **Save**.
 
 > **Note**
-> 
+>
 > You configure when the program notifications are sent in the **Data
 > Administration** app \> **Scheduling** \> **Program notifications
 > scheduler**.
-> 
+>
 >   - Click **Run now** to send the program notifications immediately.
-> 
+>
 >   - Select a time and click **Start** to schedule the program
 >     notifications to be send at a specific
 time.
@@ -680,7 +680,7 @@ time.
 <!--DHIS2-SECTION-ID:configure_tracker_program_in_Maintenance_app-->
 
 > **Note**
-> 
+>
 > From release 2.27, you create event programs (programs without
 > registration) in the **Maintenance** app. You still create tracker
 > programs (programs with registration) in the **Program / Attributes**
@@ -763,7 +763,7 @@ expression and filter. The order of evaluation is:
 <li><p>For analytics type <em>event</em>, the default boundaries will be configured to encapsulate any events with an event date after the reporting period starts and before the reporting period ends.</p></li>
 <li><p>For analytics type <em>enrollment</em>, the default boundaries will encapsulate all enrollments with an enrollment date after the reporting date starts and before the reporting period ends. In addition, the default enrollment program indicator evaluates the newest event for all program stages regardless of date.</p></li>
 </ul>
-<p>It is possible to change the upper and lower boundaries to include a longer or shorter period relative to the reporting period, or delete one of the boundaries - in effect returing all data before or after a certiain period. It is also possible to add more constraints, for example to make an enrollment program indicator only include event data up to a given point in time.</p>
+<p>It is possible to change the upper and lower boundaries to include a longer or shorter period relative to the reporting period, or delete one of the boundaries - in effect returning all data before or after a certain period. It is also possible to add more constraints, for example to make an enrollment program indicator only include event data up to a given point in time.</p>
 <ul>
 <li><p>Boundary target: Can be <em>incident date</em>, <em>event date</em>, <em>enrollment date</em> or <em>custom</em>. Designates what is being constrained by the boundary.</p>
 <p><em>custom</em> is used make boundary that target either a date data element, tracked entity attribute or the presence of an event in a program stage. This is done with a custom expression on the form:</p>
@@ -780,8 +780,8 @@ This boundary target is only applicable to
 Analytics type Enrollment
 </blockquote></li>
 </ul></li>
-<li><p>Analytics period boundary type: Defines wether the boundary is a end boundary - starting with &quot;before...&quot;, or a start boundary - &quot;after...&quot;. Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period.</p></li>
-<li><p>Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort porgram indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with &quot;-1&quot; and &quot;Years&quot;</p></li>
+<li><p>Analytics period boundary type: Defines whether the boundary is an end boundary - starting with &quot;before...&quot;, or a start boundary - &quot;after...&quot;. Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period.</p></li>
+<li><p>Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort program indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with &quot;-1&quot; and &quot;Years&quot;</p></li>
 <li><p>Period type: See above. Can be any period, e.g. <em>Weekly</em> or <em>Quarterly</em>.</p></li>
 </ul></td>
 </tr>
@@ -837,7 +837,7 @@ objects:
 <!--DHIS2-SECTION-ID:create_program_indicator-->
 
 > **Note**
-> 
+>
 > A program indicator belongs to exactly one program.
 
 1.  Open the **Maintenance** app and click **Indicator** \> **Program
@@ -846,13 +846,13 @@ objects:
 2.  Click the add button.
 
 3.  Select a **Program** and enter:
-    
+
       - **Name**
-    
+
       - **Short name**
-    
+
       - **Code**
-    
+
       - **Description**
 
 4.  Select number of **Decimals in data output**.
@@ -870,16 +870,16 @@ objects:
     data export**.
 
 10. Create the expression.
-    
+
     1.  Click **Edit expression**.
-    
+
     2.  Create the expression based on mathematical operators and the
         attributes, variables and constants listed to the right.
 
 11. Create the filter.
-    
+
     1.  Click **Edit filter**.
-    
+
     2.  Create the expression based on mathematical operators and the
         attributes, variables and constants listed to the right.
 
@@ -1001,7 +1001,7 @@ functions. The functions can be applied to data elements and attributes:
 <tr class="odd">
 <td><p>d2:hasValue</p></td>
 <td><p>(object)</p></td>
-<td><p>Returns true if the data element/attribute has a value. Can be used in filters to distinguish between the number 0 and no value, and to distinguish between exlicit &quot;No&quot; and no selection for a Yes/No field.</p></td>
+<td><p>Returns true if the data element/attribute has a value. Can be used in filters to distinguish between the number 0 and no value, and to distinguish between explicit &quot;No&quot; and no selection for a Yes/No field.</p></td>
 </tr>
 <tr class="even">
 <td><p>d2:minutesBetween</p></td>
@@ -1108,7 +1108,7 @@ variables:
 <tr class="odd">
 <td><p>enrollment_status</p></td>
 <td><p>Can be used to include or exclude enrollments in certain statuses.</p>
-<p>When calculating the hemoglobin improvement/deterioration throughout a pregnancy, it might make sense to only consider completed enrollments. If non-completed enrollments is not filtered out, these will represent half-finished ANC followups, where the final improvement/deterioration is not yet established.</p></td>
+<p>When calculating the haemoglobin improvement/deterioration throughout a pregnancy, it might make sense to only consider completed enrollments. If non-completed enrollments is not filtered out, these will represent half-finished ANC followups, where the final improvement/deterioration is not yet established.</p></td>
 </tr>
 <tr class="even">
 <td><p>current_date</p></td>
@@ -1232,7 +1232,7 @@ A filter that uses both attributes and data elements looks like this:
     A{cejWyOfXge6} == 'Female' and #{A03MvHHogjR.a3kGcGDCuk6} <= 2
 
 > **Tip**
-> 
+>
 > DHIS2 is using the JEXL library for evaluating expressions which
 > supports additional syntax beyond what is covered in this
 > documentation. See the reference at the [project home
@@ -1247,7 +1247,7 @@ A filter that uses both attributes and data elements looks like this:
 
 <!--DHIS2-SECTION-ID:about_program_rules-->
 
-Program rules allows you to create and control dynamic behavior of the
+Program rules allows you to create and control dynamic behaviour of the
 user interface in the **Tracker Capture** and **Event Capture** apps.
 During data entry, the program rules expressions are evaluated each time
 the user interface is displayed, and each time a data element is
@@ -1270,7 +1270,7 @@ apps.
 <tbody>
 <tr class="odd">
 <td><p>Program rule action</p></td>
-<td><p>Each program rule contains one or multiple actions. These are the behaviors that are triggered in the user interface when the expression is true. Actions will be applied at once if the expression is true, and will be reverted if the expression is no longer true. There are several types of actions and you can have several actions in one program rule.</p></td>
+<td><p>Each program rule contains one or multiple actions. These are the behaviours that are triggered in the user interface when the expression is true. Actions will be applied at once if the expression is true, and will be reverted if the expression is no longer true. There are several types of actions and you can have several actions in one program rule.</p></td>
 </tr>
 <tr class="even">
 <td><p>Program rule expression</p></td>
@@ -1319,11 +1319,11 @@ objects:
     needed.
 
 2.  In the **Maintenance** app, create the program rule:
-    
+
     1.  Enter the program rule details.
-    
+
     2.  Create the program rule expression.
-    
+
     3.  Define the program rule actions.
 
 3.  In the **Tracker Capture** or **Event Capture** apps, verify that
@@ -1341,7 +1341,7 @@ objects:
 3.  Select a **Program** and enter a **Name**.
 
 4.  Select if you want to **Use code for option set**.
-    
+
     This option is only effective when the data element or tracked
     entity attribute is connected to an option set. If you don't select
     this option, the program rule variable will be populated with the
@@ -1349,13 +1349,13 @@ objects:
     variable will be populated with the option set's code instead.
 
 5.  Select a **Source type** and enter the required information.
-    
+
     Depending on the source type, you'll have to select, for example, a
     **Program stage,** **Data element** or **Tracked entity attribute**.
-    
+
     The source types determine how the program rule variable is
     populated with a value.
-    
+
     <table>
     <colgroup>
     <col width="50%" />
@@ -1417,7 +1417,7 @@ objects:
 <!--DHIS2-SECTION-ID:create_program_rule-->
 
 > **Note**
-> 
+>
 > A program rule belongs to exactly one program.
 
 1.  Open the **Maintenance** app and click **Program** \> **Program
@@ -1427,33 +1427,33 @@ objects:
 
 3.  Enter the program rule details. These fields are not shown to the
     end user, they are only meant for the program administrator.
-    
+
       - **Program**
-    
+
       - **Name**
-    
+
       - **Description**
-    
+
       - **Priority**
-        
+
         Let's say you have 16 program rules in your program. You
         configure the program rules with the following priority
         settings:
-        
+
           - Priority 1 for program rule A
-        
+
           - Priority 2 for program rules B - K
-        
+
           - No priority for program rules L - P
-        
+
         Result: the system runs the program rules in the following
         order:
-        
+
         1.  Program rule A
-        
+
         2.  Program rules B - K (you can't find out or configure in
             which order the system runs these program rules)
-        
+
         3.  Program rules L - P.
 
 4.  Click **Enter program rule expression** and create the program rule
@@ -1461,14 +1461,14 @@ objects:
 
 5.  Click **Define program rule actions** and create the actions
     executed when the expression is true.
-    
+
     1.  Click the add button, select an **Action** and enter the
         required information.
-        
+
         Depending on the action type, you'll have to perform different
         types of settings. For some action types, you must also enter
         free text or create expressions.
-        
+
         <table>
         <colgroup>
         <col width="33%" />
@@ -1586,7 +1586,7 @@ objects:
         <tr class="odd">
         <td><p><strong>Send Message</strong></p></td>
         <td><p><strong>Message template to send</strong></p></td>
-        <td><p>Send Message triggers a notification based on provided message template. This action will be taken when ever there is a change in <strong>data value</strong>. However this behaviour can be controled by providing event/enrollment status in program rule expression for example.</p>
+        <td><p>Send Message triggers a notification based on provided message template. This action will be taken when ever there is a change in <strong>data value</strong>. However this behaviour can be controlled by providing event/enrollment status in program rule expression for example.</p>
         <pre><code>V{event_status} == &#39;COMPLETED&#39;</code></pre>
         <p>Message template will be parsed and variables will be substituted with actual values.</p></td>
         </tr>
@@ -1612,7 +1612,7 @@ objects:
         <p><strong>Tracked entity attribute to hide option group for</strong></p>
         <p><strong>Option group that should be hidden</strong></p></td>
         <td><p>Used to hide all options in a given option group and data element/tracked entity attribute.</p>
-        <p>When combined with <strong>show option group</strong> the <strong>hide option group</strong> takes presedence.</p></td>
+        <p>When combined with <strong>show option group</strong> the <strong>hide option group</strong> takes precedence.</p></td>
         </tr>
         <tr class="odd">
         <td><p><strong>Show option group</strong></p></td>
@@ -1623,9 +1623,9 @@ objects:
         </tr>
         </tbody>
         </table>
-    
+
     2.  Click **Save**.
-    
+
     3.  (Optional) Repeat above steps to add more actions.
 
 6.  Click **Save**.
@@ -1635,7 +1635,7 @@ objects:
 <!--DHIS2-SECTION-ID:program_rule_examples-->
 
 > **Note**
-> 
+>
 > You can view all examples on the demo server:
 > <https://play.dhis2.org/dev/dhis-web-maintenance/#/list/programSection/programRule>
 
@@ -1650,10 +1650,10 @@ previous recorded
 2.  ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_expression.png)
 
 3.  ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_action.png)
-    
+
     The full expression in the **Data** field:
-    
-        d2:concatenate(d2:weeksBetween(#{lmp}, V{current_date}), '+', 
+
+        d2:concatenate(d2:weeksBetween(#{lmp}, V{current_date}), '+',
         d2:modulus(d2:daysBetween(#{lmp}, V{current_date}), 7))
 
 ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_result.png)
@@ -1709,36 +1709,36 @@ date".
 <!--DHIS2-SECTION-ID:program_rules_operators_functions-->
 
 > **Tip**
-> 
-> You can nest functions within each other and with subexpressions to
+>
+> You can nest functions within each other and with sub-expressions to
 > form more complex conditions. An example that produces the gestational
 > age in weeks, based on last menstrual date:
-> 
+>
 >     d2:floor( d2:daysBetween(#{lastMenstrualDate},V{event_date}) / 7 )
 
 > **Tip**
-> 
+>
 > The source type will determine how the d2: function calls will
 > evaluate a (sourcefield) parameter.
-> 
+>
 > Example: where \#{hemoglobinCurrent} is set to source type **Data
 > element in current event**. The following function call with evaluate
-> whether hemoglobin is entered in the current event.
-> 
+> whether haemoglobin is entered in the current event.
+>
 >     d2:hasValue( 'hemoglobinCurrent' )
-> 
+>
 > Example: where \#{hemoglobin} is set to source type **Data element
 > from the newest event in the current program**. The following function
-> call with evaluate whether there exists a value for the hemoglobin in
+> call with evaluate whether there exists a value for the haemoglobin in
 > any event in the enrollment.
-> 
+>
 >     d2:hasValue( 'hemoglobin' )
-> 
+>
 > Example: where \#{hemoglobinPrevious} is set to source type **Data
 > element from previous event** . The following function call with
-> evaluate whether there exists a value for the hemoglobin among the
+> evaluate whether there exists a value for the haemoglobin among the
 > events preceding the current event.
-> 
+>
 >     d2:hasValue( 'hemoglobinPrevious' )
 
 <table>
@@ -1776,11 +1776,11 @@ date".
 </tr>
 <tr class="even">
 <td><p>&amp;&amp;</p></td>
-<td><p>Logical AND. True only when the expression on the left and right side is true. The left and right side can be yes/no, yes only or a subexpression in parenthesis.</p></td>
+<td><p>Logical AND. True only when the expression on the left and right side is true. The left and right side can be yes/no, yes only or a sub-expression in parenthesis.</p></td>
 </tr>
 <tr class="odd">
 <td><p>||</p></td>
-<td><p>Logical OR. True when either the expression on the left or the expression on the right side is true. The left and right side can be yes/no, yes only or a subexpression in parenthesis.</p></td>
+<td><p>Logical OR. True when either the expression on the left or the expression on the right side is true. The left and right side can be yes/no, yes only or a sub-expression in parenthesis.</p></td>
 </tr>
 <tr class="even">
 <td><p>&gt;</p></td>
@@ -1843,7 +1843,7 @@ date".
 <td>d2:floor</td>
 <td>(number)</td>
 <td>Rounds the input argument <strong>down</strong> to the nearest whole number.
-<p>An example producing the number of weeks the woman is pregnant. Notice that the subexpression #{gestationalAgeDays}/7 is evaluated before the floor function is executed:</p>
+<p>An example producing the number of weeks the woman is pregnant. Notice that the sub-expression #{gestationalAgeDays}/7 is evaluated before the floor function is executed:</p>
 <pre><code>d2:floor(#{gestationalAgeDays}/7)</code></pre></td>
 </tr>
 <tr class="odd">
@@ -1991,7 +1991,7 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <tr class="even">
 <td>d2:inOrgUnitGroup</td>
 <td>(text)</td>
-<td>Evaluates wether the current organisation unit is in the argument group. The argument can be defined with either ID or organisation unit group code. The current organisation unit will be the event organisation unit when the rules is triggered in the context of an event, and the enrolling organisation unit when the rules is triggered in the event of a tei registration form.
+<td>Evaluates whether the current organisation unit is in the argument group. The argument can be defined with either ID or organisation unit group code. The current organisation unit will be the event organisation unit when the rules is triggered in the context of an event, and the enrolling organisation unit when the rules is triggered in the event of a TEI registration form.
 <p>Example expression:</p>
 <pre><code>d2:inOrgUnitGroup(&#39;HIGH_RISK_FACILITY&#39;)</code></pre></td>
 </tr>
@@ -2066,7 +2066,7 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <td>V{orgunit_code}</td>
 <td>(string)</td>
 <td>Contains the code of the orgunit that is linked to the current enrollment. For single event programs the code from the current event orgunit will be used instead.
-<p>Example expression to check wether orgunit code starts with WB_:</p>
+<p>Example expression to check whether orgunit code starts with WB_:</p>
 <pre><code>d2:left(V{orgunit_code},3) == &#39;WB_&#39;</code></pre></td>
 </tr>
 <tr class="odd">
@@ -2162,7 +2162,7 @@ programs.
 
 8.  In the **Value type** field, select the type of data that the
     tracked entity attribute will record.
-    
+
     <table>
     <caption>Value types</caption>
     <colgroup>
@@ -2278,7 +2278,7 @@ programs.
     </table>
 
 9.  Select an **Aggregation type**.
-    
+
     <table>
     <caption>Aggregation operators</caption>
     <colgroup>
@@ -2333,14 +2333,14 @@ programs.
 
 10. Select **Unique** to specify that the values of the tracked entity
     attribute is unique.
-    
+
     There are two options for the unique setting:
-    
+
       - **Entire system**: The values of the tracked entity attribute
         can duplicate with values which belong to other tracked entity
         attributes. But the values in this tracked entity attribute must
         not duplicate.
-        
+
         Select **Automatically generated** to allow automatic generation
         of the tracked entity attribute value. When the generate setting
         is selected on, an optional field for specifying pattern also
@@ -2348,7 +2348,7 @@ programs.
         TextPattern syntax. When the value is automatically generated,
         it will be unique for this attribute for the entire system. See
         the TextPattern section for more information on how it works.
-    
+
       - **Organisation unit**: The values of the tracked entity
         attribute must not duplicate in the same organisation unit.
 
@@ -2357,7 +2357,7 @@ programs.
     will be pre-filled in the registration form.
 
 12. (Optional) Select **Confidential**.
-    
+
     This option is only available if you have configured encryption for
     the system.
 
@@ -2374,7 +2374,7 @@ programs.
 1.  Open the **Maintenance** app and click **Program** \> **Tracked
     entity type**.
 
-2.  Click the add button or an already exsisting **tracked entity
+2.  Click the add button or an already existing **tracked entity
     type**.
 
 3.  Type a **Name** of the tracked entity.
@@ -2463,7 +2463,7 @@ the **Program** configuration.
 ### Configure search for tracked entity type
 
 > **Note**
-> 
+>
 > TET = Tracked entity type
 
 To be able to search without a program, you will have to make some of
@@ -2536,12 +2536,12 @@ many similar objects.
 ## Delete metadata objects
 
 > **Note**
-> 
+>
 > You can only delete a data element and other data element objects if
 > no data is associated to the data element itself.
 
 > **Warning**
-> 
+>
 > Any data set that you delete from the system is irrevocably lost. All
 > data entry forms, and section forms which may have been developed will
 > also be removed. Make sure that you have made a backup of your
@@ -2567,7 +2567,7 @@ data entry for the object. These additional settings control who can
 view or enter data in form fields using the metadata.
 
 > **Note**
-> 
+>
 > The default setting is that everyone (**Public access**) can find,
 > view and edit metadata objects.
 
@@ -2581,24 +2581,24 @@ view or enter data in form fields using the metadata.
     group and select it. The user or user group is added to the list.
 
 4.  Change sharing settings for the access groups you want to modify.
-    
+
       - **Can edit and view**: The access group can view and edit the
         object.
-    
+
       - **Can view only**: The access group can view the object.
-    
+
       - **No access** (only applicable to **Public access**): The public
         won't have access to the object.
 
 5.  Change data sharing settings for the access groups you want to
     modify.
-    
+
       - **Can capture data**: The access group can view and capture data
         for the object.
-    
+
       - **Can view data**: The access group can view data for the
         object.
-    
+
       - **No access**: The access group won't have access to data for
         the object.
 
@@ -2621,7 +2621,7 @@ locales. A locale represents a specific geographical, political, or
 cultural region.
 
 > **Tip**
-> 
+>
 > To activate a translation, open the **System Settings** app, click \>
 > **Appearance** and select a language.
 
@@ -2629,9 +2629,9 @@ cultural region.
     you want to translate.
 
 2.  In the object list, click the options menu and select **Translate**.
-    
+
     > **Tip**
-    > 
+    >
     > If you want to translate an organisation unit level, click
     > directly on the **Translate** icon next to each list item.
 
@@ -2640,4 +2640,3 @@ cultural region.
 4.  Type a **Name**, **Short name** and **Description**.
 
 5.  Click **Save**.
-
