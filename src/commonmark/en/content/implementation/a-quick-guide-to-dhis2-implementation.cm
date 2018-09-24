@@ -4,7 +4,7 @@ Any implementation of District Health Information Software (DHIS2)
 should aim at establishing sustainable systems that are flexible to
 changing needs in the health sector. It is important to acknowledge that
 this will take many years, with continuous structures for capacity
-building, best practise sharing, and innovation. This quick guide will
+building, best practice sharing, and innovation. This quick guide will
 provide a very crude overview of the different facets of DHIS2
 implementation.
 
@@ -15,7 +15,7 @@ implementation.
   - A DHIS core team (DCT) of 4-5 people will be needed to administer a
     national HMIS. Their responsibilities and required skills should be
     clearly defined. The DCT will participate in DHIS2 Academies,
-    organize training and enduser support for various user groups in the
+    organize training and end-user support for various user groups in the
     country.
 
   - A Technical Steering Committee, or equivalent, will be needed to
@@ -55,7 +55,7 @@ implementation.
     responsibilities for the roll-out covering: user support, user
     training, liaison with health programs, etc.
 
-  - Borader support structures need to be established to provide
+  - Broader support structures need to be established to provide
     support, supervision, and communication with global/regional network
     of expert users and developers.
 
@@ -94,7 +94,7 @@ implementation.
   - If there are needs that are not currently supported by DHIS2, an
     assessment of additional software development is necessary. These
     can be addressed locally by developing a custom web app or feed into
-    the overall core platform development roadmap process organised by
+    the overall core platform development roadmap process organized by
     UiO.
 
 ### Setting up DHIS2
@@ -120,13 +120,13 @@ implementation.
 
 ### Hosting
 
-  - There are many different options for hosting an online system, bith
+  - There are many different options for hosting an online system, both
     in terms of where to put the server (e.g. in-house vs. cloud) and
     who to manage the server (e.g. in-house vs. outsourced). Server and
     hosting alternatives needs to be critically examined with regards to
     capacity, infrastructural constraints, legal framework, security and
-    confidentiality issues. These desicions may need to be revisited at
-    least annualy as server complexity, data types (e.g. aggegate vs.
+    confidentiality issues. These decisions may need to be revisited at
+    least annually as server complexity, data types (e.g. aggregate vs.
     patient) and local capacity may change over time.
 
 ## Capacity building
@@ -137,7 +137,7 @@ implementation.
     system. This includes technical skills (DHIS2 adaptation, server
     maintenance), system knowledge (architectures and design
     principles), organizational (integration strategies), and project
-    management (organising structured support and training).
+    management (organizing structured support and training).
 
   - DCT members should attend the regional/global DHIS2 Academy
     frequently (e.g. twice a year) to ensure high quality training,
@@ -161,6 +161,6 @@ implementation.
 
   - As user experience is growing, more advanced training should be
     offered. Information use training for district medical officers and
-    health programme managers is crucial early on to enrol stakeholders
+    health program managers is crucial early on to enroll stakeholders
     to use the information in decision making.
 
