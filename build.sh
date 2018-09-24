@@ -22,7 +22,7 @@ shared_resources() {
 
 assemble_content() {
     echo "assembling $1"
-    cm=`basename $1 | sed 's:\.index:\.md:'`
+    cm=`basename $1 | sed 's:_INDEX\.:\.:'`
     markdown-pp $1 -o $tmp/$cm
 }
 
@@ -73,7 +73,7 @@ shared_resources $tmp
 cp $src/*.html $tmp/
 cp $src/content/common/*.yaml $tmp/
 cd $src
-for f in *.index; do
+for f in *_INDEX.md; do
     #echo "file: $f"
     assemble_content $f
 done

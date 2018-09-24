@@ -27,12 +27,12 @@ The documents are structured as follows:
 └── src
     └── commonmark
         └── en
-	        ├── dhis2_android_user_man.index
-	        ├── dhis2_developer_manual.index
-	        ├── dhis2_end_user_manual.index
-	        ├── dhis2_implementation_guide.index
-	        ├── dhis2_user_manual_en.index
-	        ├── user_stories_book.index
+	        ├── dhis2_android_user_man_INDEX.md
+	        ├── dhis2_developer_manual_INDEX.md
+	        ├── dhis2_end_user_manual_INDEX.md
+	        ├── dhis2_implementation_guide_INDEX.md
+	        ├── dhis2_user_manual_en_INDEX.md
+	        ├── user_stories_book_INDEX.md
 			├── resources
 			│   ├── css
 			│   │   ├── dhis2.css
@@ -65,9 +65,9 @@ The documents are structured as follows:
 
 ### Index files and INCLUDES
 
-The `.index` files are the starting points for the master documents. They contain only `!INCLUDE` directives.
+The `*_INDEX.md` files are the starting points for the master documents. They contain only `!INCLUDE` directives.
 
-e.g. dhis2_android_user_man.index:
+e.g. dhis2_android_user_man_INDEX.md:
 ```
 !INCLUDE "content/common/about-this-guide.md"
 !INCLUDE "content/android/configure-dhis2-programs-to-work-on-android-apps.md"
