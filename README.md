@@ -5,28 +5,17 @@ All of your favourite documents - in markdown format!
 
 This is a provisional repository for testing the migration of DHIS2 documentation to commonmark format.
 
-## Shortcomings
-
-See below regarding updating and building; but bear in mind the following issues and shortcomings!
-
-- It is not clear if we can continue the Bibliography support that Docbook provided (or if we need to)
-
-### Known Issues - to be fixed
-
-- [X] Chunked HTML output should use the same identifiers as the docbook output
-- [X] Intra- (and inter-) document links need updating to generate properly
-- [ ] "Asides" (NOTE, TIP, WARNING, etc.) have classes applied in a post-processing step which doesn't apply to PDF output. (could be done as a pandoc filter instead).
-- [ ] Section regarding documentation and Docbook needs rewrite (obviously)
-- [ ] build environment needs improvement to allow easy generation on various platforms (but most developers will not need to build as they can see the expected output in a good markdown editor)
-- [ ] in conjunction with previous point, the build script could be changed to a more robust build tool
-
 ## Updating the documents
 This is the easy bit, and is all that most people have to do.
 
 ### Format and editing
-The documents are maintained in "Commonmark" markdown format.
+The documents are maintained in "Commonmark" markdown format, with an `.md` extension.
 
 Editing documents is as simple as editing a text file. Many IDEs have markdown support, including live previews. For Linux and Windows, [ghostwriter](https://wereturtle.github.io/ghostwriter/) is a nice option; it is free and supports side-by-side preview and custom stylesheets.
+
+> **TIP**
+>
+> If you have the option to apply custom stylesheets to your editor, set it to `./src/commonmark/en/resources/css/dhis2.css` to reflect the html output style for DHIS2!
 
 
 ### Structure
@@ -44,12 +33,12 @@ The documents are structured as follows:
 	        ├── dhis2_implementation_guide.index
 	        ├── dhis2_user_manual_en.index
 	        ├── user_stories_book.index
-                ├── resources
-                │   ├── css
-                │   │   ├── dhis2.css
-                │   │   └── dhis2_pdf.css
-                │   └── images
-                │       └── dhis2-logo-rgb-negative.png
+			├── resources
+			│   ├── css
+			│   │   ├── dhis2.css
+			│   │   └── dhis2_pdf.css
+			│   └── images
+			│       └── dhis2-logo-rgb-negative.png
 	        └── content
 	            ├── android
 	            │   └── resources
@@ -80,23 +69,24 @@ The `.index` files are the starting points for the master documents. They contai
 
 e.g. dhis2_android_user_man.index:
 ```
-!INCLUDE "content/common/about-this-guide.cm"mouse
-!INCLUDE "content/android/configure-dhis2-programs-to-work-on-android-apps.cm"
-!INCLUDE "content/android/android-event-capture-app.cm"
-!INCLUDE "content/android/android-aggregate-data-capture-app.cm"
-!INCLUDE "content/android/android-tracker-capture-app.cm"
+!INCLUDE "content/common/about-this-guide.md"
+!INCLUDE "content/android/configure-dhis2-programs-to-work-on-android-apps.md"
+!INCLUDE "content/android/android-event-capture-app.md"
+!INCLUDE "content/android/android-aggregate-data-capture-app.md"
+!INCLUDE "content/android/android-tracker-capture-app.md"
 ```
 
 The `!INCLUDE` directives point to the "chapters" that are used to make up the manual. 
 
-> NOTE:
+> **NOTE**
+>
 > the `!INCLUDE` directives are not part of pure commonmark format, but are used in pre-processing to build the master documents. The particular format here is the one supported by markdown-pp out of the box, but we could change it to another "include" format if desired.
 
 It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but currently the documents are split up at chapter level only.
 
 ### Adding images
 
-Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.cm`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._  
+Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._  
 
 
 ### Section references
@@ -194,4 +184,19 @@ The generated files are placed in a `target` directory:
 
 
 ```
+
+## Shortcomings
+
+As we transition to markdown, please bear in mind the following issues and shortcomings!
+
+- It is not clear if we can continue the Bibliography support that Docbook provided (or if we need to)
+
+### Known Issues - to be fixed
+
+- [X] Chunked HTML output should use the same identifiers as the docbook output
+- [X] Intra- (and inter-) document links need updating to generate properly
+- [ ] "Asides" (NOTE, TIP, WARNING, etc.) have classes applied in a post-processing step which doesn't apply to PDF output. (could be done as a pandoc filter instead).
+- [ ] Section regarding documentation and Docbook needs rewrite (obviously)
+- [ ] build environment needs improvement to allow easy generation on various platforms (but most developers will not need to build as they can see the expected output in a good markdown editor)
+- [ ] in conjunction with previous point, the build script could be changed to a more robust build tool
 
