@@ -24,38 +24,38 @@ The documents are structured as follows:
 └── src
     └── commonmark
         └── en
-	        ├── dhis2_android_user_man_INDEX.md
-	        ├── dhis2_developer_manual_INDEX.md
-	        ├── dhis2_end_user_manual_INDEX.md
-	        ├── dhis2_implementation_guide_INDEX.md
-	        ├── dhis2_user_manual_en_INDEX.md
-	        ├── user_stories_book_INDEX.md
-		├── resources
-		│   ├── css
-		│   │   ├── dhis2.css
-		│   │   └── dhis2_pdf.css
-		│   └── images
-		│       └── dhis2-logo-rgb-negative.png
-	        └── content
-	            ├── android
-	            │   └── resources
-	            │       └── images
-	            ├── common
-	            │   └── bookinfo.yaml
-	            ├── developer
-	            │   ├── resources
-	            │   │   └── images
-	            ├── implementation
-	            │   ├── resources
-	            │   │   └── images
-	            │   ├── `resources
-	            │   │   └── images
-	            ├── stories
-	            │   ├── resources
-	            │   │   └── images
-	            └── user
-	                └── resources
-	                    └── images
+            ├── dhis2_android_user_man_INDEX.md
+            ├── dhis2_developer_manual_INDEX.md
+            ├── dhis2_end_user_manual_INDEX.md
+            ├── dhis2_implementation_guide_INDEX.md
+            ├── dhis2_user_manual_en_INDEX.md
+            ├── user_stories_book_INDEX.md
+            ├── resources
+            │   ├── css
+            │   │   ├── dhis2.css
+            │   │   └── dhis2_pdf.css
+            │   └── images
+            │       └── dhis2-logo-rgb-negative.png
+            └── content
+                ├── android
+                │   └── resources
+                │       └── images
+                ├── common
+                │   └── bookinfo.yaml
+                ├── developer
+                │   ├── resources
+                │   │   └── images
+                ├── implementation
+                │   ├── resources
+                │   │   └── images
+                │   ├── `resources
+                │   │   └── images
+                ├── stories
+                │   ├── resources
+                │   │   └── images
+                └── user
+                    └── resources
+                        └── images
 
 
 ```
@@ -73,7 +73,7 @@ e.g. dhis2_android_user_man_INDEX.md:
 !INCLUDE "content/android/android-tracker-capture-app.md"
 ```
 
-The `!INCLUDE` directives point to the "chapters" that are used to make up the manual. 
+The `!INCLUDE` directives point to the "chapters" that are used to make up the manual.
 
 > **NOTE**
 >
@@ -83,7 +83,7 @@ It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but
 
 ### Adding images
 
-Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._  
+Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._
 
 
 ### Section references
@@ -93,7 +93,7 @@ In order to provide fixed references within the document, we can set a fixed tex
 <!-- DHIS2-SECTION-ID:name_of_section -->
 ```
 
-where ```name_of_section``` is replace with the id you wish to use. 
+where ```name_of_section``` is replace with the id you wish to use.
 
 For example:
 ```
@@ -197,4 +197,3 @@ As we transition to markdown, please bear in mind the following issues and short
 - [ ] Section regarding documentation and Docbook needs rewrite (obviously)
 - [ ] build environment needs improvement to allow easy generation on various platforms (but most developers will not need to build as they can see the expected output in a good markdown editor)
 - [ ] in conjunction with previous point, the build script could be changed to a more robust build tool
-
