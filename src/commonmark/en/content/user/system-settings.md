@@ -135,7 +135,7 @@
 </tr>
 <tr class="odd">
 <td><p><strong>Respect category option start and end date in analytics table export</strong></p></td>
-<td><p>This setting constrols whether analytics should filter data which is assocciated with a category option with a start and end date, but which is not associated with a period within the category options interval of validity.</p></td>
+<td><p>This setting controls whether analytics should filter data which is associated with a category option with a start and end date, but which is not associated with a period within the category options interval of validity.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Put analytics in maintenance mode</strong></p></td>
@@ -362,11 +362,11 @@
 <tbody>
 <tr class="odd">
 <td><p><strong>Enable message email notifications</strong></p></td>
-<td><p>Defines whether DHIS 2 user messages should be delivered to the email address associated with the user by default. This setting can be overridden by user settings.</p></td>
+<td><p>Defines whether DHIS2 user messages should be delivered to the email address associated with the user by default. This setting can be overridden by user settings.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Enable message SMS notifications</strong></p></td>
-<td><p>Defines whether DHIS 2 user messages should be delivered as SMS to the mobile phone number associated with the user by default. This setting can be overridden by user settings.</p></td>
+<td><p>Defines whether DHIS2 user messages should be delivered as SMS to the mobile phone number associated with the user by default. This setting can be overridden by user settings.</p></td>
 </tr>
 </tbody>
 </table>
@@ -457,11 +457,11 @@
 </tr>
 <tr class="odd">
 <td><p><strong>CORS whitelist</strong></p></td>
-<td><p>Whitelists a set of URLs which can access the DHIS 2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served.</p></td>
+<td><p>Whitelists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Google Maps API key</strong></p></td>
-<td><p>Defines the API key for the Google Maps API. This is used to display maps within DHIS 2.</p></td>
+<td><p>Defines the API key for the Google Maps API. This is used to display maps within DHIS2.</p></td>
 </tr>
 </tbody>
 </table>
@@ -557,7 +557,7 @@ The following settings are used for both data and metadata
 synchronization.
 
 > **Note**
-> 
+>
 > For more information about how you configure metadata synchronization,
 > refer to [Configure metadata
 > synchronizing](https://docs.dhis2.org/master/en/user/html/metadata_sync.html)
@@ -635,7 +635,7 @@ app.
 3.  Enter **Name**, **Client ID** and **Client secret**.
 
 4.  Select **Grant types**.
-    
+
     <table>
     <colgroup>
     <col width="50%" />
@@ -665,4 +665,3 @@ app.
 
 5.  Enter **Redirect URIs**. If you've multiple URIs, separate them with
     a line.
-

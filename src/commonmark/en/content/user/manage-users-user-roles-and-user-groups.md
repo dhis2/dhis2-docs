@@ -214,7 +214,7 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
     Data set management section of the Maintenance app
 
 > **Tip**
-> 
+>
 > For users to be able to enter data, you must add them to an
 > organisational unit level and share a dataset with them.
 
@@ -234,7 +234,7 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 2.  Select whether you want to fill in all the personal user
     information, or invite the user by email to complete the rest of the
     user information:
-    
+
       - **Create account with user details**
 
 ![](resources/images/dhis2UserManual/user_management_details.png)
@@ -317,7 +317,7 @@ attempt to use the data view organisation units linked to the current
 user. If not found, it will use the data capture and maintenance
 organisation units. If the user has been assigned to multiple
 organisation units, the use of "user organisation unit" may result in
-unpredictable behavior. Click **Show more options** and an additional
+unpredictable behaviour. Click **Show more options** and an additional
 three fields will show. (Optional) In the **Search organisation units**
 select the organisation units you want the user to be able to search in.
 (Optional) In the **Available user groups** section, double-click the
@@ -378,7 +378,7 @@ organisation unit.
 2.  Above the user list, click on the **Organisation Unit** filter
     input.
 
-3.  A popup will appear in which you can select the organisation units
+3.  A pop-up will appear in which you can select the organisation units
     you would like to filter by.
 
 The list of users will be filtered to only include users which have been
@@ -424,14 +424,14 @@ The following rules apply when you create a new password:
 
   - Password can not be one of the previous 24 passwords the user has
     used.
-    
+
     This doesn't apply in case a super user resets the password for
     another user.
 
   - Password must contain more than minimum number of characters.
-    
+
     > **Note**
-    > 
+    >
     > You can configure the minimum number of characters: Open the
     > **System Settings** app and click **Access** \> **Minimum
     > characters in password**.
@@ -471,7 +471,7 @@ To change a user's password:
 
 If a user has enabled Two Factor Authentication and then loses access to
 his/her authentication device (e.g. smartphone gets lost or broken),
-this user will not be able to log into the system anymore. To solve this
+this user will not be able to log into the system any more. To solve this
 issue, a user manager can disable Two Factor Authentication for the
 affected user, so that the user is able to access the system again using
 just a password.
@@ -484,7 +484,7 @@ just a password.
 3.  Click **OK** to confirm
 
 > **Note**
-> 
+>
 > The option to disable Two Factor Authentication will only be available
 > for users that have set up Two Factor Authentication via the
 > user-profile-app.
@@ -558,11 +558,11 @@ just a password.
 4.  (Optional) Select **External access (without login)**.
 
 5.  Change the settings for the user groups you want to modify.
-    
+
       - **None**
-    
+
       - **Can view**: Everyone in the user group can view the object
-    
+
       - **Can edit and view**: Everyone in the user group can view and
         edit the object
 
@@ -652,11 +652,11 @@ just a password.
 4.  (Optional) Select **External access (without login)**.
 
 5.  Change the settings for the user groups you want to modify.
-    
+
       - **None**
-    
+
       - **Can view**: Everyone in the user group can view the object
-    
+
       - **Can edit and view**: Everyone in the user group can view and
         edit the object
 
@@ -785,4 +785,3 @@ Examples of common positions are:
 </tr>
 </tbody>
 </table>
-

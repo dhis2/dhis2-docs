@@ -280,7 +280,7 @@ generated automatically, every time the analytics process is run by the
 system.
 
   - Organisation unit structure (\_orgunitstructure)
-    
+
     This table should be regenerated any time there have been any
     changes made to the organisational unit hierarchy. This table
     provides information about the organisation unit hierarchy. It has
@@ -289,14 +289,14 @@ system.
     the lineage as values.
 
   - Data element group set structure (\_dataelementgroupsetstructure)
-    
+
     This table provides information about which data elements are
     members of which data element group sets. The table has one row for
     each data element, one column for each data element group set and
     the names of the data element group as values.
 
   - Indicator group set structure (\_indicatorgroupsetstructure)
-    
+
     This table provides information about which indicators are members
     of which indicator group sets. The table has one row for each
     indicator, one column for each indicator group set and the names of
@@ -304,35 +304,35 @@ system.
 
   - Organisation unit group set structure
     (\_organisationunitgroupsetstructure)
-    
+
     This table provides information about which organisation units are
     members of which organisation unit group sets. The table has one row
     for each organisation unit, one column for each organisation unit
     group set and the names of the organisation unit groups as values.
 
   - Category structure (\_categorystructure)
-    
+
     This table provides information about which data elements are
     members of which categories. The table has one row for each data
     element, one column for each category and the names of the category
     options as values.
 
   - Data element category option combo name (\_categoryoptioncomboname)
-    
+
     This table should be regenerated any time there have been changes
     made to the category combination names. It contains readable names
     for the various combinations of categories.
 
   - Data element structure (\_dataelementstructure)
-    
+
     This table provides information about all data elements and which
     period type (frequency) they capture data at. The period type is
     determined through the data set membership and hence relies on data
     elements to be member of data sets with similar period types to have
-    a defined behavior.
+    a defined behaviour.
 
   - Period structure (\_dataperiodstructure)
-    
+
     This table provides information about all periods and which period
     type they are associated with. For each period type with lower
     frequency than itself, it contains information about which period it
@@ -340,7 +340,7 @@ system.
 
   - Data element category option combinations
     (\_dataelementcategoryoptioncombo)
-    
+
     This table provides a mapping between data elements and all possible
     category option combinations.
 
@@ -441,7 +441,7 @@ By default, pre-defined system jobs are hidden. To view these, toggle
 
 When you create or modify a job, it will be rescheduled according to
 selected preferences. To run a job on demand, press the green triangle
-labeled "Run now". This action is only available for enabled jobs.
+labelled "Run now". This action is only available for enabled jobs.
 
 ### Creating a job
 
@@ -454,22 +454,22 @@ labeled "Run now". This action is only available for enabled jobs.
 
 3.  Select a running frequency for the job, i.e. when and how often the
     job should run.
-    
+
     1.  You can either select a pre-defined frequency from the
-        dropdown-menu, or ...
-    
+        drop-down menu, or ...
+
     2.  You can give the job a custom **Cron expression** if you want a
         specific schedule, using the [Spring
         scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
         syntax.
-    
+
     3.  Enabling the **Continuous execution** option will make the job
         run constantly. In other words, as soon as the job finishes, it
         will be scheduled to run again right away. Selecting this option
         will disable the other fields.
 
 4.  Select the **Job type** you want to schedule using the
-    dropdown-menu.
+    drop-down menu.
 
 5.  If the job type is customizable, a **Parameters** section will
     appear below. These additional options specify the details of the
@@ -514,7 +514,7 @@ Further configuring a job:
 
 2.  Press the **Delete** button in the bottom right corner.
 
-3.  Confirm by pressing **Delete** again in the popup window.
+3.  Confirm by pressing **Delete** again in the pop-up window.
 
 ![](resources/images/scheduler/delete_job.png)
 
@@ -545,7 +545,7 @@ Some aspects of the data synchronization feature to be aware of:
   - The local DHIS2 instance will store the password of the user account
     on the remote instance encrypted in the local database. The remote
     account is used for authentication when transferring data. For
-    security purposes make sure you set the "enryption.password"
+    security purposes make sure you set the "encryption.password"
     configuration parameter in hibernate.properties to a strong
     password.
 
@@ -561,7 +561,7 @@ Some aspects of the data synchronization feature to be aware of:
 
   - The first time DHIS2 runs the synchronization job, it will include
     any data available. The subsequent synchronization jobs will only
-    include data added and changed since the last successfull job. A
+    include data added and changed since the last successful job. A
     synchronization job is considered successful only if all the data
     was saved successfully on the remote server (Any data successfully
     synced will remain on the receiving instance, regardless if the job
@@ -573,7 +573,7 @@ Some aspects of the data synchronization feature to be aware of:
     data is being synchronized. It could be a good idea to configure the
     job to run when there are few online users, then later change this
     to your own preference.
-    
+
     When DHIS2 synchronises tracker data, it determines the set of data
     to synchronise based on the last time it was synchronised. Each of
     the tracked entity instances and events have their own records of
@@ -604,7 +604,7 @@ Some aspects of the data synchronization feature to be aware of:
     Such a setting will lead to validation failure on the central server
     as the given attribute / data element will not be present in the
     payload.
-    
+
     The validation won't fail for the user with this authority. The
     authority should be assigned to the user, on the central server,
     that will be used for synchronization job.
@@ -671,4 +671,3 @@ Some aspects of the meta data synchronization feature to be aware of:
 
   - You can see the time of last successful synchronization with remote
     server in the scheduling screen next to the "Last success" label.
-

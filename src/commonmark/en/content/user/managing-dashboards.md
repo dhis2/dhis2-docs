@@ -94,9 +94,9 @@ upper right part of the dashboard area. Available items include:
 
   - Spacer
 
-The list of items in the dropdown initially displays the first 5
+The list of items in the drop-down initially displays the first 5
 available from each category, based on the search text you enter. Email,
-text boxes and spacer items are also found in the dropdown. To view more
+text boxes and spacer items are also found in the drop-down. To view more
 items, click on **SEE MORE**, and the list for that type will be
 extended to 15 items. If you still do not find the item you want, try
 typing a more specific search text.
@@ -260,7 +260,7 @@ dashboard sharing settings
 All dashboards have two sharing groups set by default.
 
   - External access (without login)
-    
+
     This option, when selected, provides access to the dashboard as an
     external resource. This is useful for when you are creating an
     external web portal but would like to call information from a
@@ -268,7 +268,7 @@ All dashboards have two sharing groups set by default.
     option is not selected.
 
   - Public access (with login)
-    
+
     This option allows the selected dashboard to be pushed to all users
     within your DHIS2 instance. This can also be hidden from public view
     by selecting the "None" option, which is the default option for new
@@ -278,11 +278,11 @@ User groups that have been added manually can be assigned two types of
 permissions within the dashboard
 
   - Can view
-    
+
     Provides the user group with view only rights to the dashboard.
 
   - Can edit and view
-    
+
     Allows the user groups to edit the dashboard in addition to viewing
     it. Editing allows for altering the layout, resizing and removing
     items, renaming/deleting the dashboard etc.
@@ -294,5 +294,3 @@ example, the url to the Antenatal Care dashboard in play.dhis2.org/demo
 is:
 
 https://play.dhis2.org/demo/dhis-web-dashboard/\#/nghVC4wtyzi
-
-
