@@ -7,12 +7,12 @@
 <!--DHIS2-SECTION-ID:android_tracker_capture_overview-->
 
 The Tracker Capture Android app allows you capture, modify and list
-tracked entity instances with its enrollments and events. The Tracker
+tracked entity instances with its enrolments and events. The Tracker
 Capture app works with multiple event-based programs in DHIS2, which
 handles events linked to registered entities. These programs are
 suitable for handling disease programmes where multiple visits is
 required. The Tracker Capture app can be used for disease programmes
-such as tubercolosis and malaria. However the app is not tied to any
+such as tuberculosis and malaria. However the app is not tied to any
 specific domain and can potentially be utilized for any scenario of
 multiple event-based information.
 
@@ -150,7 +150,7 @@ event by simply clicking on it in the enrollment list. This will open an
 overview screen of the enrolled tracked entity instance with information
 that has been captured so far. To change the tracked entity instance
 attribute values that has been captured, simply press the profile box
-and a new screen will apppear. By default the data entry rows will be
+and a new screen will appear. By default the data entry rows will be
 disabled. To enable the data entry rows press the edit button in the
 top-right corner. This form will save whenever you do any changes. To
 change enrollment details, press the Enrollment box from the overview
@@ -189,7 +189,7 @@ will save what you have entered for the event so far. Data is also saved
 when you switch between sections.
 
 The *Complete* button on the second bar will mark the event as complete.
-The Validate button will trigger a check for validness of the
+The Validate button will trigger a check for validity of the
 information you have entered based on the validation rules which have
 been set up for the program.
 
@@ -222,7 +222,7 @@ breeding sites. To add a new relationship, first press the 'new' button
 on the relationship box. Now a dialog is presented where you can choose
 which relationship you want to create from the 'Select relationship
 type' input field. Below there is a list of tracked entity instances
-that is already enrolled in the same programme and thus can be choosed.
+that are already enrolled in the same programme and thus can be chosen.
 After choosing a tracked entity instance and confirming the relationship
 then it will show up in the Overview screen.
 
@@ -241,10 +241,10 @@ log out.
 
 The *frequency of automatic synchronization attemps* can be set form the
 drop-down, where options range from one minute to one day. This affects
-the battery usage and bandwith consumption. The default of one hour is a
+the battery usage and bandwidth consumption. The default of one hour is a
 sensible choice.
 
 The *log out* button will log you out of the app, and request you to
 enter the login information again. You are not intended to log out of
 the application between each session. This is mostly useful when you
-want to log into another DHIS 2 online instance.
+want to log into another DHIS2 online instance.

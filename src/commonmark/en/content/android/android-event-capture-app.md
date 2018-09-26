@@ -94,7 +94,7 @@ will save what you have entered for the event so far. Data is also saved
 when you switch between sections.
 
 The *Complete* button on the second bar will mark the event as complete.
-The Validate button will trigger a check for validness of the
+The Validate button will trigger a check for validity of the
 information you have entered based on the validation rules which have
 been set up for the program.
 
@@ -139,11 +139,10 @@ log out.
 
 The *frequency of automatic synchronization attemps* can be set form the
 drop-down, where options range from one minute to one day. This affects
-the battery usage and bandwith consumption. The default of one hour is a
+the battery usage and bandwidth consumption. The default of one hour is a
 sensible choice.
 
 The *log out* button will log you out of the app, and request you to
 enter the login information again. You are not intended to log out of
 the application between each session. This is mostly useful when you
-want to log into another DHIS 2 online instance.
-
+want to log into another DHIS2 online instance.
