@@ -2,9 +2,8 @@
 All of your favourite documents - in markdown format!
 
 
-
 # Updating the documents
-This is the easy bit, and is all that most people have to do.
+This is the easy bit, and is all that most people have to do. The following sections describe the format, structure and a few considerations necessary for correctly generating the desired output.
 
 ## Format and editing
 The documents are maintained in **commonmark** markdown format, with an `.md` extension.
@@ -31,12 +30,12 @@ The documents are structured as follows:
 	        ├── dhis2_implementation_guide_INDEX.md
 	        ├── dhis2_user_manual_en_INDEX.md
 	        ├── user_stories_book_INDEX.md
-			├── resources
-			│   ├── css
-			│   │   ├── dhis2.css
-			│   │   └── dhis2_pdf.css
-			│   └── images
-			│       └── dhis2-logo-rgb-negative.png
+		├── resources
+		│   ├── css
+		│   │   ├── dhis2.css
+		│   │   └── dhis2_pdf.css
+		│   └── images
+		│       └── dhis2-logo-rgb-negative.png
 	        └── content
 	            ├── android
 	            │   └── resources
