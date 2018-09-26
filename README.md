@@ -1,24 +1,22 @@
 # dhis2-markdown-docs
 All of your favourite documents - in markdown format!
 
-## Introduction
 
-This is a provisional repository for testing the migration of DHIS2 documentation to commonmark format.
 
-## Updating the documents
+# Updating the documents
 This is the easy bit, and is all that most people have to do.
 
-### Format and editing
-The documents are maintained in "Commonmark" markdown format, with an `.md` extension.
+## Format and editing
+The documents are maintained in **commonmark** markdown format, with an `.md` extension.
 
 Editing documents is as simple as editing a text file. Many IDEs have markdown support, including live previews. For Linux and Windows, [ghostwriter](https://wereturtle.github.io/ghostwriter/) is a nice option; it is free and supports side-by-side preview and custom stylesheets.
 
 > **TIP**
 >
-> If you have the option to apply custom stylesheets to your editor, set it to `./src/commonmark/en/resources/css/dhis2.css` to reflect the html output style for DHIS2!
+> If you have the option to apply custom css to your markdown editor, set it to `./src/commonmark/en/resources/css/dhis2.css` to reflect the html output style for DHIS2!
 
 
-### Structure
+## Structure
 
 The documents are structured as follows:
 
@@ -114,7 +112,7 @@ After the full html file is generated, it is post-processed and the first ```DHI
 
 Please follow the convention of lowercase letters and underscores, in order to create id's that are also valid as filenames when the html files are split.
 
-## Building documents
+# Building documents
 
 The documents are built in stages:
 
@@ -129,8 +127,9 @@ In order to build:
 ./build.sh
 ```
 
-> NOTE:
-> The first time it is run, the build script will create a python virtual env and install the dependencies from the requirements.txt file. It will copy pandoc (v2.2.1), and install a "modified" version of markdown-pp; these are provided in the tools directory. This should work on Linux. The venv will then be activated to perform the rest of the build.
+> **NOTE**
+>
+> The first time it is run, the build script will create a python virtual env and install the dependencies from the requirements.txt file. It will copy pandoc (v2.2.1), and install a "modified" version of markdown-pp; these are provided in the tools directory. The venv will then be activated to perform the rest of the build. **This should work on Linux, but hasn't been tested on other platforms!**
 
 The generated files are placed in a `target` directory:
 
@@ -185,13 +184,13 @@ The generated files are placed in a `target` directory:
 
 ```
 
-## Shortcomings
+# Shortcomings
 
 As we transition to markdown, please bear in mind the following issues and shortcomings!
 
 - It is not clear if we can continue the Bibliography support that Docbook provided (or if we need to)
 
-### Known Issues - to be fixed
+## Known Issues - to be fixed
 
 - [X] Chunked HTML output should use the same identifiers as the docbook output
 - [X] Intra- (and inter-) document links need updating to generate properly
