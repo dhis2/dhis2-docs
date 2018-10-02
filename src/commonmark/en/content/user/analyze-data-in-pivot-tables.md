@@ -97,9 +97,9 @@ table. The available types are described in this table:
 <table>
 <caption>Data dimension types</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -239,9 +239,9 @@ table like this:
     <table>
     <caption>Pivot table options</caption>
     <colgroup>
-    <col width="21%" />
-    <col width="35%" />
-    <col width="42%" />
+    <col style="width: 21%" />
+    <col style="width: 35%" />
+    <col style="width: 42%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -553,9 +553,9 @@ To download plain data source formats:
     <table>
     <caption>Available formats</caption>
     <colgroup>
-    <col width="18%" />
-    <col width="33%" />
-    <col width="47%" />
+    <col style="width: 18%" />
+    <col style="width: 33%" />
+    <col style="width: 47%" />
     </colgroup>
     <thead>
     <tr class="header">

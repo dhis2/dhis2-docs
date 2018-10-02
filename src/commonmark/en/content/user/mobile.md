@@ -968,9 +968,9 @@ be used. Here is the list of those parameters
 <table>
 <caption>Common Parameters</caption>
 <colgroup>
-<col width="13%" />
-<col width="13%" />
-<col width="73%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1197,11 +1197,11 @@ Below table shows the parameters required for configuring gateway.
 <table>
 <caption>Gateway Configuration Parameters</caption>
 <colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
 </colgroup>
 <thead>
 <tr class="header">

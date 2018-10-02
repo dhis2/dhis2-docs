@@ -116,8 +116,8 @@ file.
 
 <table>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -139,8 +139,8 @@ messages options:
 <table style="width:100%;">
 <caption>Feedback handling tools</caption>
 <colgroup>
-<col width="23%" />
-<col width="76%" />
+<col style="width: 23%" />
+<col style="width: 76%" />
 </colgroup>
 <thead>
 <tr class="header">

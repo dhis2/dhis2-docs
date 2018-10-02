@@ -204,8 +204,8 @@ offending rule. Click **Right side** and make the required corrections.
 <table>
 <caption>Data maintenance functions in the Data Administration app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">

@@ -122,8 +122,8 @@ explained in the following table.
 <table>
 <caption>App types</caption>
 <colgroup>
-<col width="27%" />
-<col width="72%" />
+<col style="width: 27%" />
+<col style="width: 72%" />
 </colgroup>
 <thead>
 <tr class="header">

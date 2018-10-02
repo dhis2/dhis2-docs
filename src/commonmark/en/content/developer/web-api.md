@@ -138,7 +138,7 @@ send a payload like this:
     }
 
     SERVER="https://play.dhis2.org/dev"
-    curl -X POST -H "Content-Type: application/json" -d @client.json 
+    curl -X POST -H "Content-Type: application/json" -d @client.json
       -u admin:district $SERVER/api/oAuth2Clients
 
 We will use this client as the basis for our next grant type examples.
@@ -154,7 +154,7 @@ example we can use our demo server:
 
     SERVER="https://play.dhis2.org/dev"
     SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
-    
+
     curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/token
     -d grant_type=password -d username=admin -d password=district
 
@@ -189,7 +189,7 @@ user credentials one more time.
     SERVER="https://play.dhis2.org/dev"
     SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
     REFRESH_TOKEN="a4e4de45-4743-481d-9345-2cfe34732fcc"
-    
+
     curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/token
     -d grant_type=refresh_token -d refresh_token=$REFRESH_TOKEN
 
@@ -212,7 +212,7 @@ redirect URIs, you might want to add
 \&redirect\_uri=http://www.example.org) :
 
     SERVER="https://play.dhis2.org/dev"
-    
+
     $SERVER/uaa/oauth/authorize?client_id=demo&response_type=code
 
 Step 2: After the user have successfully logged in and accepted your
@@ -225,7 +225,7 @@ using the given code, we will now ask for a access token:
 
     SERVER="https://play.dhis2.org/dev"
     SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
-    
+
     curl -X POST -u demo:$SECRET -H "Accept: application/json" $SERVER/uaa/oauth/token
       -d grant_type=authorization_code -d code=XYZ
 
@@ -250,8 +250,8 @@ http status message **forbidden** and a descriptive message.
 <table>
 <caption>WebMessage properties</caption>
 <colgroup>
-<col width="13%" />
-<col width="86%" />
+<col style="width: 13%" />
+<col style="width: 86%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -305,10 +305,10 @@ API endpoint */api/periodTypes*)
 <table style="width:100%;">
 <caption>Period format</caption>
 <colgroup>
-<col width="24%" />
-<col width="21%" />
-<col width="18%" />
-<col width="35%" />
+<col style="width: 24%" />
+<col style="width: 21%" />
+<col style="width: 18%" />
+<col style="width: 35%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -470,8 +470,8 @@ table below.
 <table>
 <caption>Scheme Values</caption>
 <colgroup>
-<col width="14%" />
-<col width="85%" />
+<col style="width: 14%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -532,10 +532,10 @@ the response:
 <table style="width:100%;">
 <caption>Query parameters</caption>
 <colgroup>
-<col width="11%" />
-<col width="20%" />
-<col width="12%" />
-<col width="54%" />
+<col style="width: 11%" />
+<col style="width: 20%" />
+<col style="width: 12%" />
+<col style="width: 54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -613,9 +613,9 @@ properties meant to be used for display / UI purposes, which includes
 <table>
 <caption>Translate options</caption>
 <colgroup>
-<col width="20%" />
-<col width="16%" />
-<col width="62%" />
+<col style="width: 20%" />
+<col style="width: 16%" />
+<col style="width: 62%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1078,8 +1078,8 @@ using the ':' operator.
 <table>
 <caption>Property operators</caption>
 <colgroup>
-<col width="25%" />
-<col width="74%" />
+<col style="width: 25%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1114,8 +1114,8 @@ using the ':' operator.
 <table>
 <caption>Field presets</caption>
 <colgroup>
-<col width="25%" />
-<col width="74%" />
+<col style="width: 25%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1184,9 +1184,9 @@ Multipe transformers can be used by repeating the transformer
 <table>
 <caption>Available Transformers</caption>
 <colgroup>
-<col width="33%" />
-<col width="21%" />
-<col width="44%" />
+<col style="width: 33%" />
+<col style="width: 21%" />
+<col style="width: 44%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1325,13 +1325,13 @@ The same content as an XML payload:
 We are now ready create the new *constant* by sending a POST request to
 the *constants*endpoint with the JSON payload using curl:
 
-    curl -d @constant.json "http://server/api/26/constants" -X POST 
+    curl -d @constant.json "http://server/api/26/constants" -X POST
     -H "Content-Type: application/json" -u user:password
 
 A specific example of posting the constant to the demo
     server:
 
-    curl -d @constant.json "https://play.dhis2.org/api/26/constants" -X POST 
+    curl -d @constant.json "https://play.dhis2.org/api/26/constants" -X POST
     -H "Content-Type: application/json" -u admin:district
 
 If everything went well, you should see an output similar to:
@@ -1349,7 +1349,7 @@ to the JSON/XML payload, find out the *ID* of the constant, and then
 send a PUT request to the endpoint including ID:
 
 ``` bash
-curl -X PUT -d @pi.json -H "Content-Type: application/json" 
+curl -X PUT -d @pi.json -H "Content-Type: application/json"
 -u user:password http://server/api/26/constants/ID
 ```
 
@@ -1489,7 +1489,7 @@ section before, you would send it like this:
 A simple (non-validating) example would
     be:
 
-    curl -X POST -d "{\"name\": \"some name\"}" -H "Content-Type: application/json" 
+    curl -X POST -d "{\"name\": \"some name\"}" -H "Content-Type: application/json"
     -u admin:district https://play.dhis2.org/dev/api/schemas/dataElement
 
 Which would yield the result:
@@ -1531,7 +1531,7 @@ properties you want to update, i.e.:
       "zeroIsSignificant": true
     }
 
-    curl -X PATCH -d @file.json -H "Content-Type: application/json" 
+    curl -X PATCH -d @file.json -H "Content-Type: application/json"
     -u admin:district https://play.dhis2.org/dev/api/26/dataElements/fbfJHSPpUQD
 
 ## Metadata export
@@ -1550,9 +1550,9 @@ enable/disable export of certain types by setting *type=true/false*.
 <table>
 <caption>Export Parameter</caption>
 <colgroup>
-<col width="17%" />
-<col width="21%" />
-<col width="61%" />
+<col style="width: 17%" />
+<col style="width: 21%" />
+<col style="width: 61%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1653,9 +1653,9 @@ exporter. The various parameters are listed below.
 <table>
 <caption>Import Parameter</caption>
 <colgroup>
-<col width="17%" />
-<col width="21%" />
-<col width="61%" />
+<col style="width: 17%" />
+<col style="width: 21%" />
+<col style="width: 61%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1778,9 +1778,9 @@ The endpoints supports the following query parameters:
 <table>
 <caption>Metadata audit API query parameters</caption>
 <colgroup>
-<col width="22%" />
-<col width="27%" />
-<col width="51%" />
+<col style="width: 22%" />
+<col style="width: 27%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1852,8 +1852,8 @@ configuration, which will be shown in a second table.
 <table>
 <caption>Metadata and RenderingType overview</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1903,9 +1903,9 @@ Program Stage Section are LISTING as default.
 <table>
 <caption>RenderingTypes allowed based on value types</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1972,9 +1972,9 @@ set, which is usually needed when rendering some of the specific types:
 <table>
 <caption>renderType object properties</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2024,7 +2024,7 @@ this:
       }
       ...
     }
-    
+
     Value type (Data Element, Tracked Entity Attribute)
     {
       ...
@@ -2049,9 +2049,9 @@ currently supported by style is as follows:
 <table>
 <caption>Style properties</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2129,7 +2129,7 @@ keys are available (defaults values are shown):
 
     rabbitmq.host =
     rabbitmq.port = 5672
-    rabbitmq.addresses = 
+    rabbitmq.addresses =
     rabbitmq.virtual-host = /
     rabbitmq.exchange = dhis2
     rabbitmq.username = guest
@@ -2231,10 +2231,10 @@ listed in the following sections.
 <table>
 <caption>Data Element CSV Format</caption>
 <colgroup>
-<col width="13%" />
-<col width="7%" />
-<col width="27%" />
-<col width="50%" />
+<col style="width: 13%" />
+<col style="width: 7%" />
+<col style="width: 27%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2348,10 +2348,10 @@ you do not use which appear to the right of the ones
 <table>
 <caption>Organisation Unit CSV Format</caption>
 <colgroup>
-<col width="14%" />
-<col width="10%" />
-<col width="21%" />
-<col width="53%" />
+<col style="width: 14%" />
+<col style="width: 10%" />
+<col style="width: 21%" />
+<col style="width: 53%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2475,10 +2475,10 @@ looks like this:
 <table>
 <caption>Validation Rule CSV Format</caption>
 <colgroup>
-<col width="17%" />
-<col width="7%" />
-<col width="28%" />
-<col width="46%" />
+<col style="width: 17%" />
+<col style="width: 7%" />
+<col style="width: 28%" />
+<col style="width: 46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2589,10 +2589,10 @@ looks like this:
 <table style="width:100%;">
 <caption>Option Set CSV Format</caption>
 <colgroup>
-<col width="14%" />
-<col width="11%" />
-<col width="15%" />
-<col width="59%" />
+<col style="width: 14%" />
+<col style="width: 11%" />
+<col style="width: 15%" />
+<col style="width: 59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2678,10 +2678,10 @@ The CSV format for these imports are the same
 <table>
 <caption>Collection membership CSV Format</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2714,10 +2714,10 @@ The CSV format for these imports are the same
 <table>
 <caption>Data Element Group, Category Option, Category Option Group, Organisation Unit Group CSV Format</caption>
 <colgroup>
-<col width="17%" />
-<col width="12%" />
-<col width="14%" />
-<col width="55%" />
+<col style="width: 17%" />
+<col style="width: 12%" />
+<col style="width: 14%" />
+<col style="width: 55%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2900,9 +2900,9 @@ likely being uploaded to a cloud-based store somewhere) as seen by the
 
 Even though the content has not been fully stored yet the file resource
 can now be used, for example as referenced content in a data value (see
-[Working with file data values](#datavalue_file)). If we need to check the updated
-*storageStatus* or otherwise retrieve the meta-data of the file, the
-*fileResources* endpoint can be
+[Working with file data values](#datavalue_file)). If we need to check
+the updated *storageStatus* or otherwise retrieve the meta-data of the
+file, the *fileResources* endpoint can be
     queried.
 
     curl -v https://server/api/26/fileResources/xm4JwRwke0i -H "Accept: application/json"
@@ -2944,9 +2944,9 @@ This section explains the Metadata Versioning APIs available starting
 <table>
 <caption>Query Parameters</caption>
 <colgroup>
-<col width="19%" />
-<col width="23%" />
-<col width="57%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+<col style="width: 57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3014,9 +3014,9 @@ This section explains the Metadata Versioning APIs available starting
 <table>
 <caption>Query Parameters</caption>
 <colgroup>
-<col width="19%" />
-<col width="23%" />
-<col width="57%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+<col style="width: 57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3101,9 +3101,9 @@ This section explains the Metadata Versioning APIs available starting
 <table>
 <caption>Query Parameters</caption>
 <colgroup>
-<col width="19%" />
-<col width="23%" />
-<col width="57%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+<col style="width: 57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3139,7 +3139,7 @@ two types of metadata.
     exist.
 
 > **Note**
-> 
+>
 > It's recommended to have ATOMIC type of versions to ensure that all
 > systems (central and local) have the same metadata. Any missing
 > reference is caught in the validation phase itself. Please see the
@@ -3189,9 +3189,9 @@ two types of metadata.
 <table>
 <caption>Path parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3222,7 +3222,7 @@ two types of metadata.
 
 **Sample response:**
 
-``` 
+```
 {
     "date": "2016-06-30T06:10:23.120+0000",
     "dataElements": [{
@@ -3243,7 +3243,7 @@ two types of metadata.
             "id": "xE7jOejl9FI"
         }
     }]
-}            
+}
 ```
 
 ## Metadata Synchronization
@@ -3261,9 +3261,9 @@ starting 2.24
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3441,13 +3441,13 @@ directory where this file resides we invoke the following from the
 command
     line:
 
-    curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/26/dataValueSets" 
+    curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/26/dataValueSets"
       -H "Content-Type:application/xml" -u admin:district -v
 
 For sending JSON content you must set the content-type header
 accordingly:
 
-    curl -d @datavalueset.json "https://play.dhis2.org/demo/api/26/dataValueSets" 
+    curl -d @datavalueset.json "https://play.dhis2.org/demo/api/26/dataValueSets"
       -H "Content-Type:application/json" -u admin:district -v
 
 The command will dispatch a request to the demo Web API, set
@@ -3510,14 +3510,14 @@ In CSV
 We test by using cURL to send the data values in XML
     format:
 
-    curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/26/dataValueSets" 
+    curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/26/dataValueSets"
       -H "Content-Type:application/xml" -u admin:district -v
 
 Note that when using CSV format you must use the binary data option to
 preserve the line-breaks in the CSV
     file:
 
-    curl --data-binary @datavalueset.csv "https://play.dhis2.org/demo/24/api/dataValueSets" 
+    curl --data-binary @datavalueset.csv "https://play.dhis2.org/demo/24/api/dataValueSets"
       -H "Content-Type:application/csv" -u admin:district -v
 
 The data value set resource provides an XML response which is useful
@@ -3667,7 +3667,7 @@ objects. Identifier schemes can be specified in the XML message as well
 as in the request as query parameters. To specify it in the XML payload
 you can do this:
 
-    <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0" 
+    <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0"
       dataElementIdScheme="CODE" orgUnitIdScheme="UID" idScheme="CODE">
       ..
     </dataValueSet>
@@ -3822,9 +3822,9 @@ below:
 <table style="width:100%;">
 <caption>Data values query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="19%" />
-<col width="64%" />
+<col style="width: 15%" />
+<col style="width: 19%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3877,8 +3877,8 @@ required:
 <table>
 <caption>Data value set query parameters</caption>
 <colgroup>
-<col width="27%" />
-<col width="72%" />
+<col style="width: 27%" />
+<col style="width: 72%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3988,7 +3988,7 @@ presedence over the start and end date parameters. An exampe looks like
 this:
 
     curl "https://play.dhis2.org/demo/api/26/dataValueSets?dataSet=pBOMPrpg1QX&dataSet=BfMAe6Itzgt
-      &startDate=2013-01-01&endDate=2013-01-31&orgUnit=YuQRtpLP10I&orgUnit=vWbkYPRmKyS&children=true" 
+      &startDate=2013-01-01&endDate=2013-01-31&orgUnit=YuQRtpLP10I&orgUnit=vWbkYPRmKyS&children=true"
       -H "Accept:application/xml" -u admin:district -v
 
 To retrieve data values which have been created or updated within the
@@ -4083,9 +4083,9 @@ The following query parameters are supported for this resource:
 <table style="width:100%;">
 <caption>Data values query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="19%" />
-<col width="64%" />
+<col style="width: 15%" />
+<col style="width: 19%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4246,33 +4246,33 @@ reference to a small
 
     <adx xmlns="urn:ihe:qrph:adx:2015" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="urn:ihe:qrph:adx:2015 ../schema/adx_loose.xsd" exported="2015-02-08T19:30:00Z">
-    
+
       <group orgUnit="OU_559" period="2015-06-01/P1M" completeDate="2015-07-01" dataSet="(TB/HIV)VCCT">
-    
+
         <dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="32"/>
         <dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="20"/>
         <dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
         <dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
         <dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
-    
+
         <dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE0-14" value="32"/>
         <dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE0-14" value="20"/>
         <dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
         <dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
         <dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
-    
+
         <dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="32"/>
         <dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="20"/>
         <dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
         <dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
         <dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
-    
+
         <dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE15-24" value="32"/>
         <dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE15-24" value="20"/>
         <dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
         <dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
         <dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
-    
+
       </group>
     </adx>
 
@@ -4316,10 +4316,10 @@ with examples.
 <table>
 <caption>ADX Periods</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4507,9 +4507,9 @@ model.
 <table style="width:100%;">
 <caption>programRule</caption>
 <colgroup>
-<col width="16%" />
-<col width="66%" />
-<col width="16%" />
+<col style="width: 16%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4561,9 +4561,9 @@ model.
 <table style="width:100%;">
 <caption>programRuleAction</caption>
 <colgroup>
-<col width="16%" />
-<col width="66%" />
-<col width="16%" />
+<col style="width: 16%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4709,9 +4709,9 @@ programRuleVariable model.
 <table style="width:100%;">
 <caption>programRuleVariable</caption>
 <colgroup>
-<col width="16%" />
-<col width="66%" />
-<col width="16%" />
+<col style="width: 16%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4784,9 +4784,9 @@ data values.
 <table>
 <caption>Form query parameters</caption>
 <colgroup>
-<col width="12%" />
-<col width="12%" />
-<col width="74%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4837,7 +4837,7 @@ creating such forms directly for a data set. This can be done through a
 POST or PUT request with content type text/html where the payload is the
 custom form markup such as:
 
-    curl -d @form.html "localhost/api/26/dataSets/BfMAe6Itzgt/form" 
+    curl -d @form.html "localhost/api/26/dataSets/BfMAe6Itzgt/form"
       -H "Content-Type:text/html" -u admin:district -X PUT -v
 
 ## Documents
@@ -4849,8 +4849,8 @@ References to files can be stored with the document resource.
 <table>
 <caption>Document fields</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4943,8 +4943,8 @@ values are found in the table below.
 <table>
 <caption>Operators</caption>
 <colgroup>
-<col width="28%" />
-<col width="71%" />
+<col style="width: 28%" />
+<col style="width: 71%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5004,8 +5004,8 @@ the table below.
 <table>
 <caption>Missing value strategies</caption>
 <colgroup>
-<col width="28%" />
-<col width="71%" />
+<col style="width: 28%" />
+<col style="width: 71%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5093,9 +5093,9 @@ The following query parameters are supported:
 <table>
 <caption>Validation rule analysis query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5152,9 +5152,9 @@ The following query parameters are supported:
 <table>
 <caption>Standard deviation outlier analysis query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5283,9 +5283,9 @@ expressions are described in the following table.
 <table>
 <caption>Indicator variables</caption>
 <colgroup>
-<col width="39%" />
-<col width="22%" />
-<col width="37%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+<col style="width: 37%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5398,8 +5398,8 @@ are allowed in expressions are described in the following table.
 <table>
 <caption>Program indicator variables</caption>
 <colgroup>
-<col width="31%" />
-<col width="68%" />
+<col style="width: 31%" />
+<col style="width: 68%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5490,9 +5490,9 @@ basic format of this payload, given as *XML* in this example, is like
 so:
 
     <completeDataSetRegistrations xmlns="http://dhis2.org/schema/dxf/2.0">
-      <completeDataSetRegistration period="200810" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp" 
+      <completeDataSetRegistration period="200810" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
         attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
-      <completeDataSetRegistration period="200811" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp" 
+      <completeDataSetRegistration period="200811" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
         attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
     </completeDataSetRegistrations>
 
@@ -5506,9 +5506,9 @@ The import process supports the following query parameters:
 <table>
 <caption>Complete data set registrations query parameters</caption>
 <colgroup>
-<col width="16%" />
-<col width="18%" />
-<col width="64%" />
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5577,8 +5577,8 @@ resource. The query parameters to use are these:
 <table>
 <caption>Data value set query parameters</caption>
 <colgroup>
-<col width="18%" />
-<col width="81%" />
+<col style="width: 18%" />
+<col style="width: 81%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5682,9 +5682,9 @@ parameters are supported:
 <table>
 <caption>Complete data set registrations query parameters</caption>
 <colgroup>
-<col width="16%" />
-<col width="18%" />
-<col width="64%" />
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5750,9 +5750,9 @@ similar to
 <table style="width:100%;">
 <caption>Data approval query parameters</caption>
 <colgroup>
-<col width="16%" />
-<col width="18%" />
-<col width="64%" />
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5805,8 +5805,8 @@ The returned parameters are:
 <table>
 <caption>Data approval query parameters</caption>
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5841,8 +5841,8 @@ The returned parameters are:
 <table>
 <caption>Data approval states</caption>
 <colgroup>
-<col width="33%" />
-<col width="66%" />
+<col style="width: 33%" />
+<col style="width: 66%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5939,9 +5939,9 @@ These requests contain the following parameters:
 <table style="width:100%;">
 <caption>Data approval action parameters</caption>
 <colgroup>
-<col width="16%" />
-<col width="18%" />
-<col width="64%" />
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6046,9 +6046,9 @@ the table below.
 <table>
 <caption>Aggregate data value query parameters</caption>
 <colgroup>
-<col width="12%" />
-<col width="14%" />
-<col width="72%" />
+<col style="width: 12%" />
+<col style="width: 14%" />
+<col style="width: 72%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6111,9 +6111,9 @@ displayed in the table below.
 <table>
 <caption>Tracked entity data value query parameters</caption>
 <colgroup>
-<col width="12%" />
-<col width="16%" />
-<col width="71%" />
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 71%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6166,9 +6166,9 @@ are displayed in the table below.
 <table>
 <caption>Tracked entity attribute value query parameters</caption>
 <colgroup>
-<col width="12%" />
-<col width="16%" />
-<col width="70%" />
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6223,9 +6223,9 @@ interact with this endpoint.
 <table>
 <caption>Tracked entity instance audit query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6296,9 +6296,9 @@ available parameters to interact with this endpoint.
 <table>
 <caption>Enrollment audit query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6365,9 +6365,9 @@ the table below.
 <table>
 <caption><strong>Data approval query parameters</strong></caption>
 <colgroup>
-<col width="12%" />
-<col width="16%" />
-<col width="70%" />
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6515,12 +6515,12 @@ We use cURL to dispatch the message the the DHIS2 demo instance where we
 indicate that the content-type is XML and authenticate as the *admin*
 user:
 
-    curl -d @message.xml "https://play.dhis2.org/demo/api/26/messageConversations" 
+    curl -d @message.xml "https://play.dhis2.org/demo/api/26/messageConversations"
       -H "Content-Type:application/xml" -u admin:district -X POST -v
 
 A corresponding payload in JSON and POST command look like this:
 
-``` 
+```
 {
   "subject": "Hey",
   "text": "How are you?",
@@ -6542,7 +6542,7 @@ A corresponding payload in JSON and POST command look like this:
       "id": "DiszpKrYNg8"
     }
   ]
-}      
+}
 ```
 
     curl -d @message.json "https://play.dhis2.org/demo/api/26/messageConversations"
@@ -6559,7 +6559,7 @@ resource. We supply an *Accept* header with *application/xml* as the
 value to indicate that we are interested in the XML resource
 representation and we authenticate as the *mobile* user:
 
-    curl "https://play.dhis2.org/demo/api/26/messageConversations" 
+    curl "https://play.dhis2.org/demo/api/26/messageConversations"
       -H "Accept:application/xml" -u mobile:district -X GET -v
 
 In response we get the following XML:
@@ -6581,8 +6581,8 @@ we can reply directly to an existing message conversation once we know
 the URL by including the message text as the request payload (body). We
 are now able to construct a URL for sending our reply:
 
-    curl -d "Yes the Mortality data set has been reported" 
-      "https://play.dhis2.org/demo/api/26/messageConversations/ZjHHSjyyeJ2" 
+    curl -d "Yes the Mortality data set has been reported"
+      "https://play.dhis2.org/demo/api/26/messageConversations/ZjHHSjyyeJ2"
       -H "Content-Type:text/plain" -u mobile:district -X POST -v
 
 If all went according to plan you will receive a *200 OK* status code.
@@ -6643,14 +6643,14 @@ are given as query string parameters. The following example removes two
 separate message conversations for the current
     user:
 
-    curl "https://play.dhis2.org/demo/api/26/messageConversations?mc=WzMRrCosqc0&mc=lxCjiigqrJm" 
+    curl "https://play.dhis2.org/demo/api/26/messageConversations?mc=WzMRrCosqc0&mc=lxCjiigqrJm"
       -X DELETE -u admin:district
 
 If you have sufficient permissions, conversations can be removed on
 behalf of another user by giving an optional user id
     parameter.
 
-    curl "https://play.dhis2.org/demo/api/26/messageConversations?mc=WzMRrCosqc0&mc=lxCjiigqrJm&user=PhzytPW3g2J" 
+    curl "https://play.dhis2.org/demo/api/26/messageConversations?mc=WzMRrCosqc0&mc=lxCjiigqrJm&user=PhzytPW3g2J"
       -X DELETE -u admin:district
 
 As indicated, batch removals will return the same message format as for
@@ -6675,8 +6675,8 @@ optional *user* request parameter can be given.
 
 Let's mark a couple of messages as read by the current user:
 
-    curl "https://play.dhis2.org/dev/api/messageConversations/read" 
-    -d '["ZrKML5WiyFm","Gc03smoTm6q"]'  -X POST 
+    curl "https://play.dhis2.org/dev/api/messageConversations/read"
+    -d '["ZrKML5WiyFm","Gc03smoTm6q"]'  -X POST
     -H "Content-Type: application/json" -u admin:district -v
 
 The response is a *200 OK* with the following JSON body:
@@ -6692,7 +6692,7 @@ message conversation. The resource is located
 The options for this resource is a list of users, user groups and
 organisation units. The request should look like this:
 
-``` 
+```
 {
     "users": [
         {
@@ -6713,7 +6713,7 @@ organisation units. The request should look like this:
         }
     ]
 }
-      
+
 ```
 
 ### Message Attachments
@@ -6733,12 +6733,12 @@ The request returns an object that represents the attachment. The id of
 this object must be used when creating a message in order to link the
 attachment with the message.
 
-    {  
+    {
        "created":"2018-07-20T16:54:18.210",
        "lastUpdated":"2018-07-20T16:54:18.212",
        "externalAccess":false,
        "publicAccess":"--------",
-       "user":{  
+       "user":{
           "name":"John Traore",
           "created":"2013-04-18T17:15:08.407",
           "lastUpdated":"2018-03-09T23:06:54.512",
@@ -6747,7 +6747,7 @@ attachment with the message.
           "favorite":false,
           "id":"xE7jOejl9FI"
        },
-       "lastUpdatedBy":{  
+       "lastUpdatedBy":{
           "id":"xE7jOejl9FI",
           "name":"John Traore"
        },
@@ -6758,7 +6758,7 @@ attachment with the message.
 When creating a new message, the ids can be passed in the request body
 to link the uploaded files to the message being created.
 
-``` 
+```
 {
   "subject": "Hey",
   "text": "How are you?",
@@ -6785,14 +6785,14 @@ to link the uploaded files to the message being created.
       "fTpI4GOmujz",
       "h2ZsOxMFMfq"
   ]
-}  
+}
 ```
 
 When replying to a message, the ids can be passed as a request
 parameter.
 
-    curl -d "Yes the Mortality data set has been reported" 
-      "https://play.dhis2.org/demo/api/26/messageConversations/ZjHHSjyyeJ2?attachments=fTpI4GOmujz,h2ZsOxMFMfq" 
+    curl -d "Yes the Mortality data set has been reported"
+      "https://play.dhis2.org/demo/api/26/messageConversations/ZjHHSjyyeJ2?attachments=fTpI4GOmujz,h2ZsOxMFMfq"
       -H "Content-Type:text/plain" -u mobile:district -X POST -v
 
 Once a message with an attachment has been created, the attached file
@@ -6831,8 +6831,8 @@ group.
 <table>
 <caption>A list of valid status and priority values</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6865,7 +6865,7 @@ by users who have "Manage tickets" permissions. To create an internal
 reply, include the "internal" parameter, and set it to
 
     curl -d "This is an internal message"
-      "https://play.dhis2.org/demo/api/26/messageConversations/ZjHHSjyyeJ2?internal=true" 
+      "https://play.dhis2.org/demo/api/26/messageConversations/ZjHHSjyyeJ2?internal=true"
       -H "Content-Type:text/plain" -u admin:district -X POST -v
 
 ## Interpretations
@@ -6953,8 +6953,8 @@ fields omitted for brevity):
 <table>
 <caption>Interpretation fields</caption>
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -7194,10 +7194,10 @@ system will return a PNG image of the chart.
 <table>
 <caption>Analytical resources</caption>
 <colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="32%" />
-<col width="32%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 32%" />
+<col style="width: 32%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -7254,9 +7254,9 @@ resource is set up for relative periods for the period dimension.
 <table>
 <caption>Data query parameters</caption>
 <colgroup>
-<col width="21%" />
-<col width="28%" />
-<col width="50%" />
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -7277,8 +7277,8 @@ resource is set up for relative periods for the period dimension.
 <table>
 <caption>Query parameters for png / image types (charts, maps)</caption>
 <colgroup>
-<col width="21%" />
-<col width="78%" />
+<col style="width: 21%" />
+<col style="width: 78%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -7303,15 +7303,15 @@ representations are listed below.
 
     /api/26/charts/R0DVGvXDUNP/data
     /api/26/charts/R0DVGvXDUNP/data?date=2013-06-01
-    
+
     /api/26/reportTables/jIISuEWxmoI/data.html
     /api/26/reportTables/jIISuEWxmoI/data.html?date=2013-01-01
     /api/26/reportTables/FPmvWs7bn2P/data.xls
     /api/26/reportTables/FPmvWs7bn2P/data.pdf
-    
+
     /api/26/maps/DHE98Gsynpr/data
     /api/26/maps/DHE98Gsynpr/data?date=2013-07-01
-    
+
     /api/26/reports/OeJsA6K1Otx/data.pdf
     /api/26/reports/OeJsA6K1Otx/data.pdf?date=2014-01-01
 
@@ -7361,19 +7361,19 @@ referring to an existing table. The second is configured inline.
     <head>
       <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
       <script src="https://dhis2-cdn.org/v227/plugin/reporttable.js"></script>
-    
+
       <script>
         reportTablePlugin.url = "https://play.dhis2.org/demo";
         reportTablePlugin.username = "admin";
         reportTablePlugin.password = "district";
         reportTablePlugin.loadingIndicator = true;
-    
+
         // Referring to an existing table through the id parameter, render to "report1" div
-        
+
         var r1 = { el: "report1", id: "R0DVGvXDUNP" };
-    
+
         // Table configuration, render to "report2" div
-        
+
         var r2 = {
           el: "report2",
           columns: [
@@ -7385,7 +7385,7 @@ referring to an existing table. The second is configured inline.
           filters: [
             {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
           ],
-    
+
           // All following properties are optional
           title: "My custom title",
           showColTotals: false,
@@ -7403,11 +7403,11 @@ referring to an existing table. The second is configured inline.
           digitGroupSeparator: "COMMA",
           legendSet: {id: "fqs276KXCXi"}
         };
-    
+
         reportTablePlugin.load([r1, r2]);
       </script>
     </head>
-    
+
     <body>
       <div id="report1"></div>
       <div id="report2"></div>
@@ -7682,19 +7682,19 @@ referring to an existing chart. The second is configured inline.
     <head>
       <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
       <script src="https://dhis2-cdn.org/v227/plugin/chart.js"></script>
-    
+
       <script>
         chartPlugin.url = "https://play.dhis2.org/demo";
         chartPlugin.username = "admin";
         chartPlugin.password = "district";
         chartPlugin.loadingIndicator = true;
-        
+
         // Referring to an existing chart through the id parameter, render to "report1" div
-        
+
         var r1 = { el: "report1", id: "R0DVGvXDUNP" };
-    
+
         // Chart configuration, render to "report2" div
-        
+
         var r2 = {
           el: "report2",
           columns: [
@@ -7706,7 +7706,7 @@ referring to an existing chart. The second is configured inline.
           filters: [
             {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
           ],
-    
+
           // All following properties are optional
           title: "Custom title",
           type: "line",
@@ -7727,13 +7727,13 @@ referring to an existing chart. The second is configured inline.
           domainAxisTitle: "My domain axis title",
           hideLegend: true
         };
-    
+
         // Render the charts
-    
+
         chartPlugin.load(r1, r2);
       </script>
     </head>
-    
+
     <body>
       <div id="report1"></div>
       <div id="report2"></div>
@@ -8038,12 +8038,12 @@ referring to an existing map. The second is configured inline.
       <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
       <script src="http://dhis2-cdn.org/v215/openlayers/OpenLayers.js"></script>
       <script src="http://dhis2-cdn.org/v215/plugin/map.js"></script>
-    
+
       <script>
         var base = "https://play.dhis2.org/demo";
-    
+
         // Login - if OK, call the setLinks function
-    
+
         Ext.onReady( function() {
           Ext.Ajax.request({
             url: base + "dhis-web-commons-security/login.action",
@@ -8052,10 +8052,10 @@ referring to an existing map. The second is configured inline.
             success: setLinks
           });
         });
-    
+
         function setLinks() {
           DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
-    
+
           DHIS.getMap({
             url: base,
             el: "map2",
@@ -8074,7 +8074,7 @@ referring to an existing map. The second is configured inline.
         }
       </script>
     </head>
-    
+
     <body>
       <div id="map1"></div>
       <div id="map2"></div>
@@ -8319,7 +8319,7 @@ the Web API here: <http://play.dhis2.org/demo/api/24/maps>.
 
     function setLinks() {
       DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
-    
+
       DHIS.getMap({
      url: base,
      el: "map2",
@@ -8390,7 +8390,7 @@ which refers to those div elements like this:
     DHIS.getChart({ uid: 'X0CPnV6uLjR', el: 'chartA2', url: base });
     DHIS.getChart({ uid: 'j1gNXBgwKVm', el: 'chartA3', url: base });
     DHIS.getChart({ uid: 'X7PqaXfevnL', el: 'chartA4', url: base });
-    
+
     new Ext.ux.carousel.Carousel( 'chartCarousel', {
       autoPlay: true,
       itemSelector: 'div.chart',
@@ -8407,7 +8407,7 @@ to render a button for the user to start and stop the carousel. Finally
 we need to insert the div elements in the body of the HTML document:
 
     <div id="chartCarousel">
-    
+
     <div id="chartA1"></div>
     <div id="chartA2"></div>
     <div id="chartA3"></div>
@@ -8735,9 +8735,9 @@ parameters are described in detail in the following table.
 <table>
 <caption>Items content parameters</caption>
 <colgroup>
-<col width="19%" />
-<col width="44%" />
-<col width="35%" />
+<col style="width: 19%" />
+<col style="width: 44%" />
+<col style="width: 35%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -8829,10 +8829,10 @@ The analytics resource lets you specify a range of query parameters:
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col width="17%" />
-<col width="10%" />
-<col width="45%" />
-<col width="27%" />
+<col style="width: 17%" />
+<col style="width: 10%" />
+<col style="width: 45%" />
+<col style="width: 27%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9099,9 +9099,9 @@ identifier*, and each dimension can have a set of *dimension items*:
 <table>
 <caption>Dimensions and dimension items</caption>
 <colgroup>
-<col width="38%" />
-<col width="12%" />
-<col width="49%" />
+<col style="width: 38%" />
+<col style="width: 12%" />
+<col style="width: 49%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9324,10 +9324,10 @@ following data types.
 <table>
 <caption>Data dx dimension types</caption>
 <colgroup>
-<col width="25%" />
-<col width="23%" />
-<col width="27%" />
-<col width="23%" />
+<col style="width: 25%" />
+<col style="width: 23%" />
+<col style="width: 27%" />
+<col style="width: 23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9418,7 +9418,7 @@ combination values:
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
 > **Tip**
-> 
+>
 > A great way to learn how to use the analytics API is to use the DHIS2
 > *pivot table* app. You can play around with pivot tables using the
 > various dimensions and items and click Download \> Plain data source
@@ -9689,8 +9689,8 @@ parameters are listed in the table below.
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9842,9 +9842,9 @@ dimensions are listed in the table below.
 <table>
 <caption>Event dimensions</caption>
 <colgroup>
-<col width="27%" />
-<col width="11%" />
-<col width="60%" />
+<col style="width: 27%" />
+<col style="width: 11%" />
+<col style="width: 60%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9896,10 +9896,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for both event query and aggregate analytics</caption>
 <colgroup>
-<col width="20%" />
-<col width="11%" />
-<col width="48%" />
-<col width="19%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 48%" />
+<col style="width: 19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9988,10 +9988,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for event query analytics only</caption>
 <colgroup>
-<col width="20%" />
-<col width="11%" />
-<col width="48%" />
-<col width="19%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 48%" />
+<col style="width: 19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10050,10 +10050,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for aggregate event analytics only</caption>
 <colgroup>
-<col width="20%" />
-<col width="11%" />
-<col width="48%" />
-<col width="19%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 48%" />
+<col style="width: 19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10148,10 +10148,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for cluster event analytics only</caption>
 <colgroup>
-<col width="20%" />
-<col width="11%" />
-<col width="49%" />
-<col width="19%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 49%" />
+<col style="width: 19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10272,8 +10272,8 @@ The available operators are listed below.
 <table>
 <caption>Filter operators</caption>
 <colgroup>
-<col width="19%" />
-<col width="80%" />
+<col style="width: 19%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10732,10 +10732,10 @@ The request supports the following parameters:
 <table>
 <caption>Accepted parameters of /dataSetReport resource</caption>
 <colgroup>
-<col width="15%" />
-<col width="50%" />
-<col width="17%" />
-<col width="17%" />
+<col style="width: 15%" />
+<col style="width: 50%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10815,10 +10815,10 @@ required to automaticly run push analysis jobs:
 <table>
 <caption>Push analysis properties</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10917,8 +10917,8 @@ below shows the supported types of events.
 <table>
 <caption>Supported event types</caption>
 <colgroup>
-<col width="38%" />
-<col width="61%" />
+<col style="width: 38%" />
+<col style="width: 61%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10968,10 +10968,10 @@ parameters when asking for an aggregated report.
 <table>
 <caption>Query parameters for aggregated usage analytics (data statistics)</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11024,10 +11024,10 @@ DHIS2, and by user.
 <table>
 <caption>Query parameters for top favorites</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11210,8 +11210,8 @@ table.
 <table>
 <caption>Geo features response</caption>
 <colgroup>
-<col width="14%" />
-<col width="85%" />
+<col style="width: 14%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11308,9 +11308,9 @@ be generated with a POST or PUT request to:
 <table>
 <caption>Analytics tables optional query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="14%" />
-<col width="52%" />
+<col style="width: 33%" />
+<col style="width: 14%" />
+<col style="width: 52%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11538,9 +11538,9 @@ general.
 <table>
 <caption>HTTP Status codes</caption>
 <colgroup>
-<col width="13%" />
-<col width="12%" />
-<col width="74%" />
+<col style="width: 13%" />
+<col style="width: 12%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11584,8 +11584,8 @@ supported:
 <table>
 <caption>Task categories</caption>
 <colgroup>
-<col width="21%" />
-<col width="78%" />
+<col style="width: 21%" />
+<col style="width: 78%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11840,8 +11840,8 @@ The properties which support translations are listed in the table below.
 <table>
 <caption>Property names</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11870,8 +11870,8 @@ The classes which support translations are listed in the table below.
 <table>
 <caption>Class names</caption>
 <colgroup>
-<col width="34%" />
-<col width="65%" />
+<col style="width: 34%" />
+<col style="width: 65%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12018,7 +12018,7 @@ MAX\_ALLOWED\_RECIPIENTS limit which is 200.
     /api/26/sms/outbound
 
     { 
-      "message":"Sms Text",  
+      "message":"Sms Text", 
       "recipients": [
         "47XXXXXX1",
         "47XXXXXX2"
@@ -12038,9 +12038,9 @@ Gateway may response with following response codes.
 <table>
 <caption>Gateway response codes</caption>
 <colgroup>
-<col width="13%" />
-<col width="13%" />
-<col width="73%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12178,7 +12178,7 @@ parameters.
       "receiveddate": "2016-05-01",
       "sentdate":"2016-05-01",
       "smsencoding": "1",
-      "smsstatus":"1"          
+      "smsstatus":"1"
     }
 
 The Web API also supports a query parameter-based
@@ -12189,9 +12189,9 @@ The Web API also supports a query parameter-based
 <table>
 <caption>User query parameters</caption>
 <colgroup>
-<col width="13%" />
-<col width="13%" />
-<col width="73%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12271,7 +12271,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
 
 *Bulksms*
 
-    { 
+    {
       "name": "bulkSMS",
       "username": "bulkuser",
       "password": "abc123",
@@ -12309,9 +12309,9 @@ endpoints listed below.
 <table>
 <caption>Gateway api end points</caption>
 <colgroup>
-<col width="13%" />
-<col width="13%" />
-<col width="73%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12461,10 +12461,10 @@ The fields are explained in the following table.
 <table>
 <caption>Program message payload</caption>
 <colgroup>
-<col width="21%" />
-<col width="21%" />
-<col width="31%" />
-<col width="26%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 31%" />
+<col style="width: 26%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12523,7 +12523,7 @@ The fields are explained in the following table.
 A minimalistic example for sending a message over SMS to a tracked
 entity instance looks like this:
 
-    curl -d @message.json "https://play.dhis2.org/demo/api/26/messages" 
+    curl -d @message.json "https://play.dhis2.org/demo/api/26/messages"
       -H "Content-Type:application/json" -u admin:district -v
 
     {
@@ -12567,8 +12567,8 @@ retreiving information.
 <table>
 <caption>Query program messages API</caption>
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12619,9 +12619,9 @@ resource you can use the following parameters.
 <table>
 <caption>User query parameters</caption>
 <colgroup>
-<col width="18%" />
-<col width="17%" />
-<col width="63%" />
+<col style="width: 18%" />
+<col style="width: 17%" />
+<col style="width: 63%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12751,6 +12751,13 @@ use this on a SSL enabled server) and will be encrypted on the backend:
         },
         "username": "johndoe123",
         "password": "Your-password-123",
+        "skype": "john.doe",
+        "telegram": "joh.doe",
+        "whatsApp": "+1-541-754-3010",
+        "facebookMessenger": "john.doe",
+        "avatar": {
+          "id": "<fileResource id>"
+        },
         "userRoles": [
           {
             "id": "Ufph3mGRmMo"
@@ -12781,6 +12788,9 @@ to then use **PUT** instead of **POST** and the endpoint is now
 
 For more info about the full payload available, please see
 */api/schemas/user*
+
+For more info about uploading and retrieving user avatars, please see
+*/fileResources* endpoint.
 
 ### User account invitations
 
@@ -12912,7 +12922,7 @@ the identifier of the user to replicate in the URL:
 
 An example of replicating a user using curl looks like this:
 
-    curl -d @replica.json "localhost/api/26/users/N3PZBUlN8vq/replica" 
+    curl -d @replica.json "localhost/api/26/users/N3PZBUlN8vq/replica"
       -H "Content-Type:application/json" -u admin:district -v
 
 ## Current user information and associations
@@ -13008,19 +13018,19 @@ where content type is set to "text/plain". As an example, you can use
 curl like
     this:
 
-    curl "play.dhis2.org/demo/api/26/systemSettings/my-key" -d "My long value" 
+    curl "play.dhis2.org/demo/api/26/systemSettings/my-key" -d "My long value"
       -H "Content-Type: text/plain" -u admin:district -v
 
 To set system settings in bulk you can send a JSON object with a
 property and value for each system setting key-value pair using a POST
 request:
 
-``` 
+```
 {
   "keyApplicationNotification": "Welcome",
   "keyApplicationIntro": "DHIS2",
   "keyApplicationFooter": "Read more at dhis2.org"
-}  
+}
 ```
 
 You should replace my-key with your real key and my-val with your real
@@ -13037,7 +13047,7 @@ You can retrieve specific system settings as JSON by repeating the key
 query
     parameter:
 
-    curl "play.dhis2.org/demo/api/26/systemSettings?key=keyApplicationNotification&key=keyApplicationIntro" 
+    curl "play.dhis2.org/demo/api/26/systemSettings?key=keyApplicationNotification&key=keyApplicationIntro"
       -H "Content-Type: application/json" -u admin:district -v
 
 You can retrieve all system settings with a GET request:
@@ -13052,8 +13062,8 @@ The available system settings are listed below.
 <table>
 <caption>System settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13386,7 +13396,7 @@ where content type is set to "text/plain". As an example, you can use
 curl like
     this:
 
-    curl "https://play.dhis2.org/demo/api/26/userSettings/my-key" -d "My long value" 
+    curl "https://play.dhis2.org/demo/api/26/userSettings/my-key" -d "My long value"
       -H "Content-Type: text/plain" -u admin:district -v
 
 As an example, to set the UI locale of the current user to French you
@@ -13409,9 +13419,9 @@ The available system settings are listed below.
 <table style="width:100%;">
 <caption>User settings</caption>
 <colgroup>
-<col width="21%" />
-<col width="28%" />
-<col width="49%" />
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 49%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13498,9 +13508,9 @@ To get a list of organisation units you can use the following resource.
 <table>
 <caption>Organisation units query parameters</caption>
 <colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="65%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 65%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13560,14 +13570,14 @@ To get a list of organisation units you can use the following resource.
 To get an organisation unit with related organisation units you can use
 the following resource.
 
-    /api/24/organisationUnits/{id} 
+    /api/24/organisationUnits/{id}
 
 <table>
 <caption>Organisation unit parameters</caption>
 <colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="58%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 58%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13642,7 +13652,7 @@ To delete data set notification template you can issue a DELETE request:
 
 JSON payload sample is given below
 
-``` 
+```
 {
     "name": "dataSetNotificationTemplate1",
     "notificationTrigger": "COMPLETION",
@@ -13656,7 +13666,7 @@ JSON payload sample is given below
     "messageTemplate": "V{data_name}V{complete_registration_period}",
     "sendStrategy": "SINGLE_NOTIFICATION"
 }
-      
+
 ```
 
 ## Filled organisation unit levels
@@ -13710,8 +13720,8 @@ files are supported and can only be uploaded to the "logo\_banner" and
 <table>
 <caption>Static content keys</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13803,8 +13813,8 @@ values for each property.
 <table>
 <caption>Configuration values</caption>
 <colgroup>
-<col width="30%" />
-<col width="69%" />
+<col style="width: 30%" />
+<col style="width: 69%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13868,7 +13878,7 @@ As an example, to set the feedback recipients user group you can invoke
 the following curl
     command:
 
-    curl "localhost/api/26/configuration/feedbackRecipients" -d "wl5cDMuUhmF" 
+    curl "localhost/api/26/configuration/feedbackRecipients" -d "wl5cDMuUhmF"
       -H "Content-Type:text/plain"-u admin:district -v
 
 ## Read-Only configuration service
@@ -13896,8 +13906,8 @@ More than one type can be
 <table>
 <caption>SettingType values</caption>
 <colgroup>
-<col width="30%" />
-<col width="69%" />
+<col style="width: 30%" />
+<col style="width: 69%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13945,7 +13955,7 @@ The request must be of type *POST* and use *application/json* as
 content-type. An example using curl, assuming the request data is saved
 as a file keys.json:
 
-    curl -d @keys.json "play.dhis2.org/demo/api/26/i18n" -X POST 
+    curl -d @keys.json "play.dhis2.org/demo/api/26/i18n" -X POST
       -H "Content-Type: application/json" -u admin:district -v
 
 The result will look like this:
@@ -13981,9 +13991,9 @@ Content-type *application/x-www-form-urlencoded*.
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col width="21%" />
-<col width="11%" />
-<col width="67%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+<col style="width: 67%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14036,17 +14046,21 @@ For creating a new person in the system, you will be working with the
     {
         "trackedEntity": "tracked-entity-id",
         "orgUnit": "org-unit-id",
-        "coordinates": "[1, 1]",
+        "geometry": <GeoJson>,
         "attributes": [ {
             "attribute": "attribute-id",
             "value": "attribute-value"
         } ]
     }
 
-> **Note**
-> 
-> The "coordinates" field was introduced in 2.29, and accepts a
-> coordinate or polygon as a value.
+The field "geometry" accepts a GeoJson object, where the type of the
+GeoJson have to match the featureType of the TrackedEntityType
+definition. An example GeoJson object looks like this:
+
+    {
+      "type": "Point",
+      "coordinates": [1, 1]
+    }
 
 For getting the IDs for *relationship*, *attributes* you can have a look
 at the respective resources *relationshipTypes*,
@@ -14077,11 +14091,11 @@ specify its first name and last name attributes:
 To push this to the server you can use the cURL command like
     this:
 
-    curl -d @tei.json "https://play.dhis2.org/demo/api/trackedEntityInstances" -X POST 
+    curl -d @tei.json "https://play.dhis2.org/demo/api/trackedEntityInstances" -X POST
     -H "Content-Type: application/json" -u admin:district -v
 
 To create multiple instances in one request you can wrap the payload in
-an outer array like this and POST to the same resource as above:
+an outer array like this and POST to the same resource as above:[]()
 
     {
       "trackedEntityInstances": [
@@ -14133,9 +14147,16 @@ be replaced by the identifier of the tracked entity instance:
 
     /api/trackedEntityInstances/<tracked-entity-instance-id>
 
-The payload has to contain all, even non-modified, attributes.
-Attributes that were present before and are not present in the current
-payload anymore will be removed by the system.
+The payload has to contain all, even non-modified, attributes and
+relationships. Attributes or relationships that were present before and
+are not present in the current payload anymore will be removed from the
+system. This means that if attributes/relationships are empty in the
+current payload, all existing attributes/relationships will be deleted
+from the system. From 2.31, it is possible to ignore empty
+attributes/relationships in the current payload. A request parameter of
+*ignoreEmptyCollection* set to **true** can be used in case you do not
+wish to send in any attributes/relationships and also do not want them
+to be deleted from the system.
 
 It is not allowed to update an already deleted tracked entity instance.
 Also, it is not allowed to mark a tracked entity instance as deleted via
@@ -14284,7 +14305,7 @@ patterns. All existing patterns will be converted to a valid TextPattern
 when upgrading to 2.29.
 
 > **Note**
-> 
+>
 > As of 2.29, all these endpoint will require you to include any
 > variables reported by the *requiredValues* endpoint listed as
 > required. Existing patterns, consisting of only “\#”, will be upgraded
@@ -14398,13 +14419,13 @@ Reserved values is currently not accessible trough the api, however they
 are returned by the *generate* and *generateAndReserve*endpoints. The
 following table explains the properties of the reserved value object:
 
-##### 
+#####
 
 <table style="width:100%;">
 <caption>Reserved values</caption>
 <colgroup>
-<col width="15%" />
-<col width="84%" />
+<col style="width: 15%" />
+<col style="width: 84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14474,8 +14495,8 @@ To query for tracked entity instances you can interact with the
 <table style="width:100%;">
 <caption>Tracked entity instances query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="84%" />
+<col style="width: 15%" />
+<col style="width: 84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14553,8 +14574,8 @@ following table.
 <table>
 <caption>Organisation unit selection modes</caption>
 <colgroup>
-<col width="20%" />
-<col width="79%" />
+<col style="width: 20%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14669,8 +14690,8 @@ You can use a range of operators for the filtering:
 <table>
 <caption>Filter operators</caption>
 <colgroup>
-<col width="19%" />
-<col width="80%" />
+<col style="width: 19%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14898,8 +14919,8 @@ and is an alternative to the query in the previous section.
 <table style="width:100%;">
 <caption>Tracked entity instances query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="84%" />
+<col style="width: 15%" />
+<col style="width: 84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14993,8 +15014,8 @@ following table.
 <table>
 <caption>Organisation unit selection modes</caption>
 <colgroup>
-<col width="20%" />
-<col width="79%" />
+<col style="width: 20%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15159,8 +15180,8 @@ You can use a range of operators for the filtering:
 <table>
 <caption>Filter operators</caption>
 <colgroup>
-<col width="19%" />
-<col width="80%" />
+<col style="width: 19%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15296,9 +15317,9 @@ the tracker user interface.
 <table>
 <caption>Payload</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15359,9 +15380,9 @@ the tracker user interface.
 <table>
 <caption>Event filters definition</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -15385,9 +15406,9 @@ the tracker user interface.
 <table>
 <caption>Period definition</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -15411,8 +15432,8 @@ interact with the */api/trackedEntityInstanceFilters* resource.
 <table>
 <caption>Tracked entity instance filters query paramateres</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15493,8 +15514,8 @@ resource.
 <table style="width:100%;">
 <caption>Enrollment query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="84%" />
+<col style="width: 15%" />
+<col style="width: 84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15568,8 +15589,8 @@ following table.
 <table>
 <caption>Organisation unit selection modes</caption>
 <colgroup>
-<col width="20%" />
-<col width="79%" />
+<col style="width: 20%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15726,7 +15747,7 @@ program for the "Ngelehun CHC" facility in the demo database can be seen
 below:
 
     <?xml version="1.0" encoding="utf-8"?>
-    <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8" 
+    <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
       eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
       <coordinate latitude="59.8" longitude="10.9" />
       <dataValues>
@@ -15740,7 +15761,7 @@ To perform some testing we can save the XML payload as a file
 called*event.xml* and send it as a POST request to the events resource
 in the API using curl with the following command:
 
-    curl -d @event.xml "https://play.dhis2.org/demo/api/29/events" 
+    curl -d @event.xml "https://play.dhis2.org/demo/api/29/events"
       -H "Content-Type:application/xml" -u admin:district -v
 
 The same payload in JSON format looks like this:
@@ -15774,7 +15795,7 @@ XML format might look like this:
 
     <?xml version="1.0" encoding="utf-8"?>
     <events>
-        <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8" 
+        <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
           eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
           <coordinate latitude="59.8" longitude="10.9" />
           <dataValues>
@@ -15782,7 +15803,7 @@ XML format might look like this:
             <dataValue dataElement="oZg33kd9taw" value="Male" />
           </dataValues>
         </event>
-        <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8" 
+        <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
           eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
           <coordinate latitude="59.8" longitude="10.9" />
           <dataValues>
@@ -15859,11 +15880,11 @@ describes the meaning of each element.
 <table>
 <caption>Events resource format</caption>
 <colgroup>
-<col width="13%" />
-<col width="8%" />
-<col width="8%" />
-<col width="30%" />
-<col width="38%" />
+<col style="width: 13%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 30%" />
+<col style="width: 38%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15962,10 +15983,10 @@ payload anymore will be removed by the system.
 It is not allowed to update an already deleted event. (The same applies
 to tracked entity instance and enrollment.)
 
-    curl -X PUT -d @updated_event.xml "localhost/api/29/events/ID" 
+    curl -X PUT -d @updated_event.xml "localhost/api/29/events/ID"
       -H "Content-Type: application/xml" -u admin:district
 
-    curl -X PUT -d @updated_event.json "localhost/api/29/events/ID" 
+    curl -X PUT -d @updated_event.json "localhost/api/29/events/ID"
       -H "Content-Type: application/json" -u admin:district
 
 #### Deleting events
@@ -16303,8 +16324,8 @@ on the server.
 <table>
 <caption>Available tracker strategies</caption>
 <colgroup>
-<col width="24%" />
-<col width="75%" />
+<col style="width: 24%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -16505,7 +16526,7 @@ is as follows:
 <td>5</td>
 <td>enrollment</td>
 <td>identifier</td>
-<td>Identifier of enrollment (program stage instance)</td>
+<td>Identifier of enrollment (program instance)</td>
 </tr>
 <tr class="even">
 <td>6</td>
@@ -16766,7 +16787,7 @@ one user group and read-only access to another user group. You can
 submit this to the sharing resource using
     curl:
 
-    curl -d @sharing.json "localhost/api/26/sharing?type=dataElement&id=fbfJHSPpUQD" 
+    curl -d @sharing.json "localhost/api/26/sharing?type=dataElement&id=fbfJHSPpUQD"
       -H "Content-Type:application/json" -u admin:district -v
 
 ## Scheduling (Experimental)
@@ -16921,18 +16942,18 @@ To configure jobs you can do a POST request to the following resource:
 
 Adding job without parameters in JSON format:
 
-``` 
+```
         {
           "name": "",
           "jobType": "JOBTYPE",
           "cronExpression": "0 * * ? * *",
         }
-      
+
 ```
 
 Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
 
-``` 
+```
         {
           "name": "Analytics last two years",
           "jobType": "ANALYTICS_TABLE",
@@ -16944,7 +16965,7 @@ Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
               "skipResourceTables": false
           }
         }
-      
+
 ```
 
 List all jobConfigurations:
@@ -16955,7 +16976,7 @@ Retrieve a job: (ANALYTICS\_TABLE example):
 
     GET /api/jobConfigurations/KBcP6Qw37gT
 
-``` 
+```
         {
           "lastUpdated": "2018-02-22T15:15:34.067",
           "id": "KBcP6Qw37gT",
@@ -16994,14 +17015,14 @@ Retrieve a job: (ANALYTICS\_TABLE example):
           "attributeValues": [],
           "userAccesses": []
         }
-      
+
 ```
 
 Updating job with parameters in JSON format (ANALYTICS\_TABLE example):
 
     PUT /api/jobConfiguration/KBcP6Qw37gT
 
-``` 
+```
         {
           "name": "analytics last two years",
           "enabled": true,
@@ -17014,7 +17035,7 @@ Updating job with parameters in JSON format (ANALYTICS\_TABLE example):
             "skipResourceTables": false
           }
         }
-      
+
 ```
 
 Deleting a job:
@@ -17071,7 +17092,7 @@ situations:
 To insert Javascript from a file called *script.js* you can interact
 with the *files/script* resource with a POST-request:
 
-    curl --data-binary @script.js "localhost/api/26/files/script" 
+    curl --data-binary @script.js "localhost/api/26/files/script"
       -H "Content-Type:application/javascript" -u admin:district -v
 
 Note that we use the --data-binary option to preserve formatting of the
@@ -17088,7 +17109,7 @@ To remove the Javascript content you can use a DELETE-request.
 To insert CSS from a file called *style.css* you can interact with the
 *files/style* resource with a POST-request:
 
-    curl --data-binary @style.css "localhost/api/26/files/style" 
+    curl --data-binary @style.css "localhost/api/26/files/style"
       -H "Content-Type:text/css" -u admin:district -v
 
 You can fetch the CSS content with a GET-request:
@@ -17141,7 +17162,7 @@ non-alphanumerical characters removed, and spaces replaced with a dash.
 *My app\!* will return the key *My-app*.
 
 > **Note**
-> 
+>
 > Previous to 2.28, the app key was derived from the name of the ZIP
 > archive, excluding the file extension. URLs using the old format
 > should still return the correct app in the api.
@@ -17153,7 +17174,7 @@ non-alphanumerical characters removed, and spaces replaced with a dash.
 <!--DHIS2-SECTION-ID:webapi_get_apps-->
 
 > **Note**
-> 
+>
 > Previous to 2.28 the app property folderName referred to the actual
 > path of the installed app. With the ability to store apps on cloud
 > services, folderName's purpose changed, and will now refer to the app
@@ -17211,7 +17232,7 @@ interface.
 <!--DHIS2-SECTION-ID:webapi_share_apps_between_instances-->
 
 > **Note**
-> 
+>
 > Previous to 2.28, installed apps would only be stored on the instace's
 > local filesystem.
 
@@ -17221,7 +17242,7 @@ multiple instances share the same versions on installed apps, instead of
 installing the same apps on each individual instance.
 
 > **Note**
-> 
+>
 > Apps installed previously to 2.28 will still be available on the
 > instance it was installed, but it will not be shared with other
 > instances, as it's still located on the instances local filesystem.
@@ -17317,9 +17338,9 @@ combination of namespace and key is unique. The value data type is JSON.
 <table>
 <caption>Data store structure</caption>
 <colgroup>
-<col width="22%" />
-<col width="40%" />
-<col width="36%" />
+<col style="width: 22%" />
+<col style="width: 40%" />
+<col style="width: 36%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17432,7 +17453,7 @@ To create a new key and value for a namespace:
 Example curl request for create, assuming a valid json
     payload:
 
-    curl "https://play.dhis2.org/demo/api/26/dataStore/foo/key_1" -X POST 
+    curl "https://play.dhis2.org/demo/api/26/dataStore/foo/key_1" -X POST
       -H "Content-Type: application/json" -d "{\"foo\":\"bar\"}" -u admin:district -v
 
 Example response:
@@ -17460,7 +17481,7 @@ To update a key that exists in a namespace:
 Example curl request for update, assuming valid JSON
     payload:
 
-    curl "https://play.dhis2.org/demo/api/26/dataStore/foo/key_1" -X PUT -d "[1, 2, 3]" 
+    curl "https://play.dhis2.org/demo/api/26/dataStore/foo/key_1" -X PUT -d "[1, 2, 3]"
       -H "Content-Type: application/json" -u admin:district -v
 
 Example response:
@@ -17536,9 +17557,9 @@ values. The combination of user, namespace and key is unique.
 <table>
 <caption>User data store structure</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17791,9 +17812,9 @@ organisation unit, data element and category option combo.
 <table>
 <caption>Min-max data element data structure</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17868,14 +17889,14 @@ with below format:
       "min": 1,
       "generated": false,
       "max": 100,
-      "dataElement": { 
-        "id": "UOlfIjgN8X6" 
+      "dataElement": {
+        "id": "UOlfIjgN8X6"
        },
-      "source": { 
-        "id": "DiszpKrYNg8" 
+      "source": {
+        "id": "DiszpKrYNg8"
       },
       "optionCombo": {
-        "id": "psbwp3CQEhs" 
+        "id": "psbwp3CQEhs"
       }
     }
 
@@ -17895,14 +17916,14 @@ JSON content with same format as above:
       "min": 1,
       "generated": false,
       "max": 100,
-      "dataElement": { 
-        "id": "UOlfIjgN8X6" 
+      "dataElement": {
+        "id": "UOlfIjgN8X6"
        },
-      "source": { 
-        "id": "DiszpKrYNg8" 
+      "source": {
+        "id": "DiszpKrYNg8"
       },
       "optionCombo": {
-        "id": "psbwp3CQEhs" 
+        "id": "psbwp3CQEhs"
       }
     }
 
@@ -17949,8 +17970,8 @@ response will contain the following properties in JSON format.
 <table>
 <caption>Token response</caption>
 <colgroup>
-<col width="40%" />
-<col width="59%" />
+<col style="width: 40%" />
+<col style="width: 59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -18003,9 +18024,9 @@ Analytics table hooks have the following fields:
 <table style="width:100%;">
 <caption>Analytics table hook fields</caption>
 <colgroup>
-<col width="22%" />
-<col width="30%" />
-<col width="46%" />
+<col style="width: 22%" />
+<col style="width: 30%" />
+<col style="width: 46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -18070,9 +18091,9 @@ and temporary tables.
 <table>
 <caption>Phases, table types and temporary tables</caption>
 <colgroup>
-<col width="27%" />
-<col width="39%" />
-<col width="33%" />
+<col style="width: 27%" />
+<col style="width: 39%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -18271,4 +18292,3 @@ keywords:
 A list of all unique keywords can be found at the keywords resource:
 
     GET /api/icons/keywords
-

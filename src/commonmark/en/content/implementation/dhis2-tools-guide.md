@@ -478,8 +478,8 @@ remedies:
 <table>
 <caption>Troubleshooting guide</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">

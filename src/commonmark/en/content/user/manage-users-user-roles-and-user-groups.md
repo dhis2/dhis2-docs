@@ -28,9 +28,9 @@ reports.
 <table>
 <caption>User management terms and definitions</caption>
 <colgroup>
-<col width="20%" />
-<col width="40%" />
-<col width="40%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
+<col style="width: 40%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -76,8 +76,8 @@ You manager users, user roles and user groups in the **Users** app.
 <table>
 <caption>Objects in the Users app</caption>
 <colgroup>
-<col width="20%" />
-<col width="80%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -266,14 +266,11 @@ you leave the user name empty, then the user may choose their own user
 name when they respond to the invitation (as long as it is not taken
 already for another user.)
 
-After you've created the user, the system sends two emails to the
-address you provided. One contains a unique web link by which the user
-can return to the system and activate their account by entering the rest
-of their user information. The other email contains a unique code that
-they must enter into the system in order to complete the registration,
-after following the link in the first email. The user must finish
-setting up the account within three months, after that the invitation
-becomes invalid.
+After you've created the user, the system sends an email to the address
+you provided. It contains a unique web link by which the user can return
+to the system and activate their account by entering the rest of their
+user information. The user must finish setting up the account within 4
+days, after that the invitation becomes invalid.
 
 \</listitem\> \</itemizedlist\> \</listitem\> Select an **Interface
 language**. You can select a language into which fixed elements of the
@@ -738,10 +735,10 @@ Examples of common positions are:
 
 <table>
 <colgroup>
-<col width="27%" />
-<col width="21%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 27%" />
+<col style="width: 21%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">

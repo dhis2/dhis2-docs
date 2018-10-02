@@ -9,8 +9,8 @@
 <table>
 <caption>General settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -90,8 +90,8 @@
 <table>
 <caption>Analytics settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -152,8 +152,8 @@
 <table>
 <caption>Server settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -197,8 +197,8 @@
 <table>
 <caption>Appearance settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -301,8 +301,8 @@
 <table>
 <caption>Email settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -350,8 +350,8 @@
 
 <table>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -378,8 +378,8 @@
 <table>
 <caption>Access settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -473,8 +473,8 @@
 <table>
 <caption>Calendar settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -512,8 +512,8 @@ in the import.
 <table>
 <caption>Data import settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -565,8 +565,8 @@ synchronization.
 <table>
 <caption>Synchronization settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -638,8 +638,8 @@ app.
     
     <table>
     <colgroup>
-    <col width="50%" />
-    <col width="50%" />
+    <col style="width: 50%" />
+    <col style="width: 50%" />
     </colgroup>
     <thead>
     <tr class="header">

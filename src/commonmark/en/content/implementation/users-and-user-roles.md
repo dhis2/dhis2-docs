@@ -26,9 +26,9 @@ reports.
 <table>
 <caption>User management terms and definitions</caption>
 <colgroup>
-<col width="20%" />
-<col width="40%" />
-<col width="40%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
+<col style="width: 40%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -74,8 +74,8 @@ You manager users, user roles and user groups in the **Users** app.
 <table>
 <caption>Objects in the Users app</caption>
 <colgroup>
-<col width="20%" />
-<col width="80%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -233,10 +233,10 @@ Examples of common positions are:
 
 <table>
 <colgroup>
-<col width="27%" />
-<col width="21%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 27%" />
+<col style="width: 21%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">

@@ -172,10 +172,10 @@ data the user needs the "DATA:Can capture data" sharing level.
 <table>
 <caption>Data sharing for tracker programs</caption>
 <colgroup>
-<col width="15%" />
-<col width="30%" />
-<col width="30%" />
-<col width="23%" />
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -240,10 +240,10 @@ data the user needs the "DATA:Can capture data" sharing level.
 <table>
 <caption>Data sharing for single event programs</caption>
 <colgroup>
-<col width="15%" />
-<col width="30%" />
-<col width="30%" />
-<col width="23%" />
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -295,10 +295,10 @@ entry field in Data Set users need:
 <table>
 <caption>Data sharing for data sets</caption>
 <colgroup>
-<col width="15%" />
-<col width="30%" />
-<col width="30%" />
-<col width="23%" />
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
 </colgroup>
 <thead>
 <tr class="header">

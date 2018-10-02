@@ -17,9 +17,9 @@ insurances. You can create two types of programs:
 <table>
 <caption>Program types</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -62,9 +62,9 @@ the **Program / Attributes** (legacy) app.
 <table>
 <caption>Program metadata objects in the Maintenance app</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -121,9 +121,9 @@ the **Program / Attributes** (legacy) app.
 <table>
 <caption>Program metadata objects in the Program / Attributes app</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -192,8 +192,8 @@ three types of data entry forms:
 <table>
 <caption>Types of data entry forms for event programs</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -265,8 +265,8 @@ attributes and program parameters.
     
     <table>
     <colgroup>
-    <col width="50%" />
-    <col width="50%" />
+    <col style="width: 50%" />
+    <col style="width: 50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -356,8 +356,8 @@ attributes and program parameters.
     
     <table>
     <colgroup>
-    <col width="50%" />
-    <col width="50%" />
+    <col style="width: 50%" />
+    <col style="width: 50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -505,8 +505,8 @@ Change roles and access:
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -535,8 +535,8 @@ Change roles and access:
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -595,9 +595,9 @@ time.
 <table>
 <caption>Program notification parameters to use in program notifications</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -713,8 +713,8 @@ expression and filter. The order of evaluation is:
 <table>
 <caption>Program indicator components</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -811,8 +811,8 @@ objects:
 
 <table>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -986,9 +986,9 @@ functions. The functions can be applied to data elements and attributes:
 <table>
 <caption>Functions to use in a program indicator expression or filter</caption>
 <colgroup>
-<col width="15%" />
-<col width="30%" />
-<col width="54%" />
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1079,8 +1079,8 @@ variables:
 <table>
 <caption>Variables to use in a program indicator expression or filter</caption>
 <colgroup>
-<col width="21%" />
-<col width="78%" />
+<col style="width: 21%" />
+<col style="width: 78%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1177,8 +1177,8 @@ looks like this:
 <table>
 <caption>Operators to use in a program indicator filter</caption>
 <colgroup>
-<col width="16%" />
-<col width="83%" />
+<col style="width: 16%" />
+<col style="width: 83%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1258,8 +1258,8 @@ apps.
 <table>
 <caption>Program rule components</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1290,8 +1290,8 @@ objects:
 
 <table>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1358,8 +1358,8 @@ objects:
     
     <table>
     <colgroup>
-    <col width="50%" />
-    <col width="50%" />
+    <col style="width: 50%" />
+    <col style="width: 50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -1471,9 +1471,9 @@ objects:
         
         <table>
         <colgroup>
-        <col width="33%" />
-        <col width="33%" />
-        <col width="33%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -1744,8 +1744,8 @@ date".
 <table>
 <caption>Possible operators to use in a program rule expression</caption>
 <colgroup>
-<col width="16%" />
-<col width="83%" />
+<col style="width: 16%" />
+<col style="width: 83%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1820,9 +1820,9 @@ date".
 <table>
 <caption>Custom functions to use in a program rule expression</caption>
 <colgroup>
-<col width="15%" />
-<col width="30%" />
-<col width="54%" />
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2001,9 +2001,9 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <table>
 <caption>Standard variables to use in program rule expressions</caption>
 <colgroup>
-<col width="15%" />
-<col width="30%" />
-<col width="54%" />
+<col style="width: 15%" />
+<col style="width: 30%" />
+<col style="width: 54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2166,8 +2166,8 @@ programs.
     <table>
     <caption>Value types</caption>
     <colgroup>
-    <col width="53%" />
-    <col width="46%" />
+    <col style="width: 53%" />
+    <col style="width: 46%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -2282,8 +2282,8 @@ programs.
     <table>
     <caption>Aggregation operators</caption>
     <colgroup>
-    <col width="50%" />
-    <col width="50%" />
+    <col style="width: 50%" />
+    <col style="width: 50%" />
     </colgroup>
     <thead>
     <tr class="header">
