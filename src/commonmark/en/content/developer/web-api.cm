@@ -250,8 +250,8 @@ http status message **forbidden** and a descriptive message.
 <table>
 <caption>WebMessage properties</caption>
 <colgroup>
-<col width="13%" />
-<col width="86%" />
+<col style="width: 13%" />
+<col style="width: 86%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -305,10 +305,10 @@ API endpoint */api/periodTypes*)
 <table style="width:100%;">
 <caption>Period format</caption>
 <colgroup>
-<col width="24%" />
-<col width="21%" />
-<col width="18%" />
-<col width="35%" />
+<col style="width: 24%" />
+<col style="width: 21%" />
+<col style="width: 18%" />
+<col style="width: 35%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -470,8 +470,8 @@ table below.
 <table>
 <caption>Scheme Values</caption>
 <colgroup>
-<col width="14%" />
-<col width="85%" />
+<col style="width: 14%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -532,10 +532,10 @@ the response:
 <table style="width:100%;">
 <caption>Query parameters</caption>
 <colgroup>
-<col width="11%" />
-<col width="20%" />
-<col width="12%" />
-<col width="54%" />
+<col style="width: 11%" />
+<col style="width: 20%" />
+<col style="width: 12%" />
+<col style="width: 54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -613,9 +613,9 @@ properties meant to be used for display / UI purposes, which includes
 <table>
 <caption>Translate options</caption>
 <colgroup>
-<col width="20%" />
-<col width="16%" />
-<col width="62%" />
+<col style="width: 20%" />
+<col style="width: 16%" />
+<col style="width: 62%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1078,8 +1078,8 @@ using the ':' operator.
 <table>
 <caption>Property operators</caption>
 <colgroup>
-<col width="25%" />
-<col width="74%" />
+<col style="width: 25%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1114,8 +1114,8 @@ using the ':' operator.
 <table>
 <caption>Field presets</caption>
 <colgroup>
-<col width="25%" />
-<col width="74%" />
+<col style="width: 25%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1184,9 +1184,9 @@ Multipe transformers can be used by repeating the transformer
 <table>
 <caption>Available Transformers</caption>
 <colgroup>
-<col width="33%" />
-<col width="21%" />
-<col width="44%" />
+<col style="width: 33%" />
+<col style="width: 21%" />
+<col style="width: 44%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1550,9 +1550,9 @@ enable/disable export of certain types by setting *type=true/false*.
 <table>
 <caption>Export Parameter</caption>
 <colgroup>
-<col width="17%" />
-<col width="21%" />
-<col width="61%" />
+<col style="width: 17%" />
+<col style="width: 21%" />
+<col style="width: 61%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1653,9 +1653,9 @@ exporter. The various parameters are listed below.
 <table>
 <caption>Import Parameter</caption>
 <colgroup>
-<col width="17%" />
-<col width="21%" />
-<col width="61%" />
+<col style="width: 17%" />
+<col style="width: 21%" />
+<col style="width: 61%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1778,9 +1778,9 @@ The endpoints supports the following query parameters:
 <table>
 <caption>Metadata audit API query parameters</caption>
 <colgroup>
-<col width="22%" />
-<col width="27%" />
-<col width="51%" />
+<col style="width: 22%" />
+<col style="width: 27%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1852,8 +1852,8 @@ configuration, which will be shown in a second table.
 <table>
 <caption>Metadata and RenderingType overview</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1903,9 +1903,9 @@ Program Stage Section are LISTING as default.
 <table>
 <caption>RenderingTypes allowed based on value types</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1972,9 +1972,9 @@ set, which is usually needed when rendering some of the specific types:
 <table>
 <caption>renderType object properties</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2049,9 +2049,9 @@ currently supported by style is as follows:
 <table>
 <caption>Style properties</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2231,10 +2231,10 @@ listed in the following sections.
 <table>
 <caption>Data Element CSV Format</caption>
 <colgroup>
-<col width="13%" />
-<col width="7%" />
-<col width="27%" />
-<col width="50%" />
+<col style="width: 13%" />
+<col style="width: 7%" />
+<col style="width: 27%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2348,10 +2348,10 @@ you do not use which appear to the right of the ones
 <table>
 <caption>Organisation Unit CSV Format</caption>
 <colgroup>
-<col width="14%" />
-<col width="10%" />
-<col width="21%" />
-<col width="53%" />
+<col style="width: 14%" />
+<col style="width: 10%" />
+<col style="width: 21%" />
+<col style="width: 53%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2475,10 +2475,10 @@ looks like this:
 <table>
 <caption>Validation Rule CSV Format</caption>
 <colgroup>
-<col width="17%" />
-<col width="7%" />
-<col width="28%" />
-<col width="46%" />
+<col style="width: 17%" />
+<col style="width: 7%" />
+<col style="width: 28%" />
+<col style="width: 46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2589,10 +2589,10 @@ looks like this:
 <table style="width:100%;">
 <caption>Option Set CSV Format</caption>
 <colgroup>
-<col width="14%" />
-<col width="11%" />
-<col width="15%" />
-<col width="59%" />
+<col style="width: 14%" />
+<col style="width: 11%" />
+<col style="width: 15%" />
+<col style="width: 59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2678,10 +2678,10 @@ The CSV format for these imports are the same
 <table>
 <caption>Collection membership CSV Format</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2714,10 +2714,10 @@ The CSV format for these imports are the same
 <table>
 <caption>Data Element Group, Category Option, Category Option Group, Organisation Unit Group CSV Format</caption>
 <colgroup>
-<col width="17%" />
-<col width="12%" />
-<col width="14%" />
-<col width="55%" />
+<col style="width: 17%" />
+<col style="width: 12%" />
+<col style="width: 14%" />
+<col style="width: 55%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2900,9 +2900,9 @@ likely being uploaded to a cloud-based store somewhere) as seen by the
 
 Even though the content has not been fully stored yet the file resource
 can now be used, for example as referenced content in a data value (see
-[section\_title](#datavalue_file)). If we need to check the updated
-*storageStatus* or otherwise retrieve the meta-data of the file, the
-*fileResources* endpoint can be
+[Working with file data values](#datavalue_file)). If we need to check
+the updated *storageStatus* or otherwise retrieve the meta-data of the
+file, the *fileResources* endpoint can be
     queried.
 
     curl -v https://server/api/26/fileResources/xm4JwRwke0i -H "Accept: application/json"
@@ -2944,9 +2944,9 @@ This section explains the Metadata Versioning APIs available starting
 <table>
 <caption>Query Parameters</caption>
 <colgroup>
-<col width="19%" />
-<col width="23%" />
-<col width="57%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+<col style="width: 57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3014,9 +3014,9 @@ This section explains the Metadata Versioning APIs available starting
 <table>
 <caption>Query Parameters</caption>
 <colgroup>
-<col width="19%" />
-<col width="23%" />
-<col width="57%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+<col style="width: 57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3101,9 +3101,9 @@ This section explains the Metadata Versioning APIs available starting
 <table>
 <caption>Query Parameters</caption>
 <colgroup>
-<col width="19%" />
-<col width="23%" />
-<col width="57%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+<col style="width: 57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3189,9 +3189,9 @@ two types of metadata.
 <table>
 <caption>Path parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3261,9 +3261,9 @@ starting 2.24
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3631,8 +3631,8 @@ magnitude faster.
 
 Data value import supports a set of value types. For each value type
 there is a special requirement. The following table lists the edge cases
-for value types. For information about all other cases, see
-[section\_title](#webapi_csv_data_elements).
+for value types. For information about all other cases, see [Data
+elements](#webapi_csv_data_elements).
 
 <table>
 <caption>Value type requirements</caption>
@@ -3822,9 +3822,9 @@ below:
 <table style="width:100%;">
 <caption>Data values query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="19%" />
-<col width="64%" />
+<col style="width: 15%" />
+<col style="width: 19%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3877,8 +3877,8 @@ required:
 <table>
 <caption>Data value set query parameters</caption>
 <colgroup>
-<col width="27%" />
-<col width="72%" />
+<col style="width: 27%" />
+<col style="width: 72%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4083,9 +4083,9 @@ The following query parameters are supported for this resource:
 <table style="width:100%;">
 <caption>Data values query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="19%" />
-<col width="64%" />
+<col style="width: 15%" />
+<col style="width: 19%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4316,10 +4316,10 @@ with examples.
 <table>
 <caption>ADX Periods</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4507,9 +4507,9 @@ model.
 <table style="width:100%;">
 <caption>programRule</caption>
 <colgroup>
-<col width="16%" />
-<col width="66%" />
-<col width="16%" />
+<col style="width: 16%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4561,9 +4561,9 @@ model.
 <table style="width:100%;">
 <caption>programRuleAction</caption>
 <colgroup>
-<col width="16%" />
-<col width="66%" />
-<col width="16%" />
+<col style="width: 16%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4709,9 +4709,9 @@ programRuleVariable model.
 <table style="width:100%;">
 <caption>programRuleVariable</caption>
 <colgroup>
-<col width="16%" />
-<col width="66%" />
-<col width="16%" />
+<col style="width: 16%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4784,9 +4784,9 @@ data values.
 <table>
 <caption>Form query parameters</caption>
 <colgroup>
-<col width="12%" />
-<col width="12%" />
-<col width="74%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4849,8 +4849,8 @@ References to files can be stored with the document resource.
 <table>
 <caption>Document fields</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4869,7 +4869,7 @@ References to files can be stored with the document resource.
 </tr>
 <tr class="odd">
 <td>url</td>
-<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">section_title</a>)</td>
+<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">File resources</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -4943,8 +4943,8 @@ values are found in the table below.
 <table>
 <caption>Operators</caption>
 <colgroup>
-<col width="28%" />
-<col width="71%" />
+<col style="width: 28%" />
+<col style="width: 71%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5004,8 +5004,8 @@ the table below.
 <table>
 <caption>Missing value strategies</caption>
 <colgroup>
-<col width="28%" />
-<col width="71%" />
+<col style="width: 28%" />
+<col style="width: 71%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5093,9 +5093,9 @@ The following query parameters are supported:
 <table>
 <caption>Validation rule analysis query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5152,9 +5152,9 @@ The following query parameters are supported:
 <table>
 <caption>Standard deviation outlier analysis query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5283,9 +5283,9 @@ expressions are described in the following table.
 <table>
 <caption>Indicator variables</caption>
 <colgroup>
-<col width="39%" />
-<col width="22%" />
-<col width="37%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+<col style="width: 37%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5398,8 +5398,8 @@ are allowed in expressions are described in the following table.
 <table>
 <caption>Program indicator variables</caption>
 <colgroup>
-<col width="31%" />
-<col width="68%" />
+<col style="width: 31%" />
+<col style="width: 68%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5506,9 +5506,9 @@ The import process supports the following query parameters:
 <table>
 <caption>Complete data set registrations query parameters</caption>
 <colgroup>
-<col width="16%" />
-<col width="18%" />
-<col width="64%" />
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5577,8 +5577,8 @@ resource. The query parameters to use are these:
 <table>
 <caption>Data value set query parameters</caption>
 <colgroup>
-<col width="18%" />
-<col width="81%" />
+<col style="width: 18%" />
+<col style="width: 81%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5682,9 +5682,9 @@ parameters are supported:
 <table>
 <caption>Complete data set registrations query parameters</caption>
 <colgroup>
-<col width="16%" />
-<col width="18%" />
-<col width="64%" />
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5750,9 +5750,9 @@ similar to
 <table style="width:100%;">
 <caption>Data approval query parameters</caption>
 <colgroup>
-<col width="16%" />
-<col width="18%" />
-<col width="64%" />
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5805,8 +5805,8 @@ The returned parameters are:
 <table>
 <caption>Data approval query parameters</caption>
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5841,8 +5841,8 @@ The returned parameters are:
 <table>
 <caption>Data approval states</caption>
 <colgroup>
-<col width="33%" />
-<col width="66%" />
+<col style="width: 33%" />
+<col style="width: 66%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5939,9 +5939,9 @@ These requests contain the following parameters:
 <table style="width:100%;">
 <caption>Data approval action parameters</caption>
 <colgroup>
-<col width="16%" />
-<col width="18%" />
-<col width="64%" />
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6046,9 +6046,9 @@ the table below.
 <table>
 <caption>Aggregate data value query parameters</caption>
 <colgroup>
-<col width="12%" />
-<col width="14%" />
-<col width="72%" />
+<col style="width: 12%" />
+<col style="width: 14%" />
+<col style="width: 72%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6111,9 +6111,9 @@ displayed in the table below.
 <table>
 <caption>Tracked entity data value query parameters</caption>
 <colgroup>
-<col width="12%" />
-<col width="16%" />
-<col width="71%" />
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 71%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6166,9 +6166,9 @@ are displayed in the table below.
 <table>
 <caption>Tracked entity attribute value query parameters</caption>
 <colgroup>
-<col width="12%" />
-<col width="16%" />
-<col width="70%" />
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6223,9 +6223,9 @@ interact with this endpoint.
 <table>
 <caption>Tracked entity instance audit query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6296,9 +6296,9 @@ available parameters to interact with this endpoint.
 <table>
 <caption>Enrollment audit query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6365,9 +6365,9 @@ the table below.
 <table>
 <caption><strong>Data approval query parameters</strong></caption>
 <colgroup>
-<col width="12%" />
-<col width="16%" />
-<col width="70%" />
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6831,8 +6831,8 @@ group.
 <table>
 <caption>A list of valid status and priority values</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -6953,8 +6953,8 @@ fields omitted for brevity):
 <table>
 <caption>Interpretation fields</caption>
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -7194,10 +7194,10 @@ system will return a PNG image of the chart.
 <table>
 <caption>Analytical resources</caption>
 <colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="32%" />
-<col width="32%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 32%" />
+<col style="width: 32%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -7254,9 +7254,9 @@ resource is set up for relative periods for the period dimension.
 <table>
 <caption>Data query parameters</caption>
 <colgroup>
-<col width="21%" />
-<col width="28%" />
-<col width="50%" />
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -7277,8 +7277,8 @@ resource is set up for relative periods for the period dimension.
 <table>
 <caption>Query parameters for png / image types (charts, maps)</caption>
 <colgroup>
-<col width="21%" />
-<col width="78%" />
+<col style="width: 21%" />
+<col style="width: 78%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -8735,9 +8735,9 @@ parameters are described in detail in the following table.
 <table>
 <caption>Items content parameters</caption>
 <colgroup>
-<col width="19%" />
-<col width="44%" />
-<col width="35%" />
+<col style="width: 19%" />
+<col style="width: 44%" />
+<col style="width: 35%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -8829,10 +8829,10 @@ The analytics resource lets you specify a range of query parameters:
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col width="17%" />
-<col width="10%" />
-<col width="45%" />
-<col width="27%" />
+<col style="width: 17%" />
+<col style="width: 10%" />
+<col style="width: 45%" />
+<col style="width: 27%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9099,9 +9099,9 @@ identifier*, and each dimension can have a set of *dimension items*:
 <table>
 <caption>Dimensions and dimension items</caption>
 <colgroup>
-<col width="38%" />
-<col width="12%" />
-<col width="49%" />
+<col style="width: 38%" />
+<col style="width: 12%" />
+<col style="width: 49%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9324,10 +9324,10 @@ following data types.
 <table>
 <caption>Data dx dimension types</caption>
 <colgroup>
-<col width="25%" />
-<col width="23%" />
-<col width="27%" />
-<col width="23%" />
+<col style="width: 25%" />
+<col style="width: 23%" />
+<col style="width: 27%" />
+<col style="width: 23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9689,8 +9689,8 @@ parameters are listed in the table below.
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9842,9 +9842,9 @@ dimensions are listed in the table below.
 <table>
 <caption>Event dimensions</caption>
 <colgroup>
-<col width="27%" />
-<col width="11%" />
-<col width="60%" />
+<col style="width: 27%" />
+<col style="width: 11%" />
+<col style="width: 60%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9896,10 +9896,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for both event query and aggregate analytics</caption>
 <colgroup>
-<col width="20%" />
-<col width="11%" />
-<col width="48%" />
-<col width="19%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 48%" />
+<col style="width: 19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9988,10 +9988,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for event query analytics only</caption>
 <colgroup>
-<col width="20%" />
-<col width="11%" />
-<col width="48%" />
-<col width="19%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 48%" />
+<col style="width: 19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10050,10 +10050,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for aggregate event analytics only</caption>
 <colgroup>
-<col width="20%" />
-<col width="11%" />
-<col width="48%" />
-<col width="19%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 48%" />
+<col style="width: 19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10148,10 +10148,10 @@ The analytics event API let you specify a range of query parameters.
 <table>
 <caption>Query parameters for cluster event analytics only</caption>
 <colgroup>
-<col width="20%" />
-<col width="11%" />
-<col width="49%" />
-<col width="19%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 49%" />
+<col style="width: 19%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10272,8 +10272,8 @@ The available operators are listed below.
 <table>
 <caption>Filter operators</caption>
 <colgroup>
-<col width="19%" />
-<col width="80%" />
+<col style="width: 19%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10732,10 +10732,10 @@ The request supports the following parameters:
 <table>
 <caption>Accepted parameters of /dataSetReport resource</caption>
 <colgroup>
-<col width="15%" />
-<col width="50%" />
-<col width="17%" />
-<col width="17%" />
+<col style="width: 15%" />
+<col style="width: 50%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10815,10 +10815,10 @@ required to automaticly run push analysis jobs:
 <table>
 <caption>Push analysis properties</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10917,8 +10917,8 @@ below shows the supported types of events.
 <table>
 <caption>Supported event types</caption>
 <colgroup>
-<col width="38%" />
-<col width="61%" />
+<col style="width: 38%" />
+<col style="width: 61%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -10968,10 +10968,10 @@ parameters when asking for an aggregated report.
 <table>
 <caption>Query parameters for aggregated usage analytics (data statistics)</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11024,10 +11024,10 @@ DHIS2, and by user.
 <table>
 <caption>Query parameters for top favorites</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11210,8 +11210,8 @@ table.
 <table>
 <caption>Geo features response</caption>
 <colgroup>
-<col width="14%" />
-<col width="85%" />
+<col style="width: 14%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11308,9 +11308,9 @@ be generated with a POST or PUT request to:
 <table>
 <caption>Analytics tables optional query parameters</caption>
 <colgroup>
-<col width="33%" />
-<col width="14%" />
-<col width="52%" />
+<col style="width: 33%" />
+<col style="width: 14%" />
+<col style="width: 52%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11538,9 +11538,9 @@ general.
 <table>
 <caption>HTTP Status codes</caption>
 <colgroup>
-<col width="13%" />
-<col width="12%" />
-<col width="74%" />
+<col style="width: 13%" />
+<col style="width: 12%" />
+<col style="width: 74%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11584,8 +11584,8 @@ supported:
 <table>
 <caption>Task categories</caption>
 <colgroup>
-<col width="21%" />
-<col width="78%" />
+<col style="width: 21%" />
+<col style="width: 78%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11840,8 +11840,8 @@ The properties which support translations are listed in the table below.
 <table>
 <caption>Property names</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -11870,8 +11870,8 @@ The classes which support translations are listed in the table below.
 <table>
 <caption>Class names</caption>
 <colgroup>
-<col width="34%" />
-<col width="65%" />
+<col style="width: 34%" />
+<col style="width: 65%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12038,9 +12038,9 @@ Gateway may response with following response codes.
 <table>
 <caption>Gateway response codes</caption>
 <colgroup>
-<col width="13%" />
-<col width="13%" />
-<col width="73%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12189,9 +12189,9 @@ The Web API also supports a query parameter-based
 <table>
 <caption>User query parameters</caption>
 <colgroup>
-<col width="13%" />
-<col width="13%" />
-<col width="73%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12309,9 +12309,9 @@ endpoints listed below.
 <table>
 <caption>Gateway api end points</caption>
 <colgroup>
-<col width="13%" />
-<col width="13%" />
-<col width="73%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12461,10 +12461,10 @@ The fields are explained in the following table.
 <table>
 <caption>Program message payload</caption>
 <colgroup>
-<col width="21%" />
-<col width="21%" />
-<col width="31%" />
-<col width="26%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 31%" />
+<col style="width: 26%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12567,8 +12567,8 @@ retreiving information.
 <table>
 <caption>Query program messages API</caption>
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12619,9 +12619,9 @@ resource you can use the following parameters.
 <table>
 <caption>User query parameters</caption>
 <colgroup>
-<col width="18%" />
-<col width="17%" />
-<col width="63%" />
+<col style="width: 18%" />
+<col style="width: 17%" />
+<col style="width: 63%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -12751,6 +12751,13 @@ use this on a SSL enabled server) and will be encrypted on the backend:
         },
         "username": "johndoe123",
         "password": "Your-password-123",
+        "skype": "john.doe",
+        "telegram": "joh.doe",
+        "whatsApp": "+1-541-754-3010",
+        "facebookMessenger": "john.doe",
+        "avatar": {
+          "id": "<fileResource id>"
+        },
         "userRoles": [
           {
             "id": "Ufph3mGRmMo"
@@ -12781,6 +12788,9 @@ to then use **PUT** instead of **POST** and the endpoint is now
 
 For more info about the full payload available, please see
 */api/schemas/user*
+
+For more info about uploading and retrieving user avatars, please see
+*/fileResources* endpoint.
 
 ### User account invitations
 
@@ -13052,8 +13062,8 @@ The available system settings are listed below.
 <table>
 <caption>System settings</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13409,9 +13419,9 @@ The available system settings are listed below.
 <table style="width:100%;">
 <caption>User settings</caption>
 <colgroup>
-<col width="21%" />
-<col width="28%" />
-<col width="49%" />
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 49%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13498,9 +13508,9 @@ To get a list of organisation units you can use the following resource.
 <table>
 <caption>Organisation units query parameters</caption>
 <colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="65%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 65%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13565,9 +13575,9 @@ the following resource.
 <table>
 <caption>Organisation unit parameters</caption>
 <colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="58%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 58%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13710,8 +13720,8 @@ files are supported and can only be uploaded to the "logo\_banner" and
 <table>
 <caption>Static content keys</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13803,8 +13813,8 @@ values for each property.
 <table>
 <caption>Configuration values</caption>
 <colgroup>
-<col width="30%" />
-<col width="69%" />
+<col style="width: 30%" />
+<col style="width: 69%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13896,8 +13906,8 @@ More than one type can be
 <table>
 <caption>SettingType values</caption>
 <colgroup>
-<col width="30%" />
-<col width="69%" />
+<col style="width: 30%" />
+<col style="width: 69%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -13981,9 +13991,9 @@ Content-type *application/x-www-form-urlencoded*.
 <table>
 <caption>Query parameters</caption>
 <colgroup>
-<col width="21%" />
-<col width="11%" />
-<col width="67%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+<col style="width: 67%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14036,17 +14046,21 @@ For creating a new person in the system, you will be working with the
     {
         "trackedEntity": "tracked-entity-id",
         "orgUnit": "org-unit-id",
-        "coordinates": "[1, 1]",
+        "geometry": <GeoJson>,
         "attributes": [ {
             "attribute": "attribute-id",
             "value": "attribute-value"
         } ]
     }
 
-> **Note**
-> 
-> The "coordinates" field was introduced in 2.29, and accepts a
-> coordinate or polygon as a value.
+The field "geometry" accepts a GeoJson object, where the type of the
+GeoJson have to match the featureType of the TrackedEntityType
+definition. An example GeoJson object looks like this:
+
+    {
+      "type": "Point",
+      "coordinates": [1, 1]
+    }
 
 For getting the IDs for *relationship*, *attributes* you can have a look
 at the respective resources *relationshipTypes*,
@@ -14081,7 +14095,7 @@ To push this to the server you can use the cURL command like
     -H "Content-Type: application/json" -u admin:district -v
 
 To create multiple instances in one request you can wrap the payload in
-an outer array like this and POST to the same resource as above:
+an outer array like this and POST to the same resource as above:[]()
 
     {
       "trackedEntityInstances": [
@@ -14133,9 +14147,16 @@ be replaced by the identifier of the tracked entity instance:
 
     /api/trackedEntityInstances/<tracked-entity-instance-id>
 
-The payload has to contain all, even non-modified, attributes.
-Attributes that were present before and are not present in the current
-payload anymore will be removed by the system.
+The payload has to contain all, even non-modified, attributes and
+relationships. Attributes or relationships that were present before and
+are not present in the current payload anymore will be removed from the
+system. This means that if attributes/relationships are empty in the
+current payload, all existing attributes/relationships will be deleted
+from the system. From 2.31, it is possible to ignore empty
+attributes/relationships in the current payload. A request parameter of
+*ignoreEmptyCollection* set to **true** can be used in case you do not
+wish to send in any attributes/relationships and also do not want them
+to be deleted from the system.
 
 It is not allowed to update an already deleted tracked entity instance.
 Also, it is not allowed to mark a tracked entity instance as deleted via
@@ -14403,8 +14424,8 @@ following table explains the properties of the reserved value object:
 <table style="width:100%;">
 <caption>Reserved values</caption>
 <colgroup>
-<col width="15%" />
-<col width="84%" />
+<col style="width: 15%" />
+<col style="width: 84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14474,8 +14495,8 @@ To query for tracked entity instances you can interact with the
 <table style="width:100%;">
 <caption>Tracked entity instances query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="84%" />
+<col style="width: 15%" />
+<col style="width: 84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14553,8 +14574,8 @@ following table.
 <table>
 <caption>Organisation unit selection modes</caption>
 <colgroup>
-<col width="20%" />
-<col width="79%" />
+<col style="width: 20%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14669,8 +14690,8 @@ You can use a range of operators for the filtering:
 <table>
 <caption>Filter operators</caption>
 <colgroup>
-<col width="19%" />
-<col width="80%" />
+<col style="width: 19%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14898,8 +14919,8 @@ and is an alternative to the query in the previous section.
 <table style="width:100%;">
 <caption>Tracked entity instances query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="84%" />
+<col style="width: 15%" />
+<col style="width: 84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -14993,8 +15014,8 @@ following table.
 <table>
 <caption>Organisation unit selection modes</caption>
 <colgroup>
-<col width="20%" />
-<col width="79%" />
+<col style="width: 20%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15159,8 +15180,8 @@ You can use a range of operators for the filtering:
 <table>
 <caption>Filter operators</caption>
 <colgroup>
-<col width="19%" />
-<col width="80%" />
+<col style="width: 19%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15296,9 +15317,9 @@ the tracker user interface.
 <table>
 <caption>Payload</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15359,9 +15380,9 @@ the tracker user interface.
 <table>
 <caption>Event filters definition</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -15385,9 +15406,9 @@ the tracker user interface.
 <table>
 <caption>Period definition</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -15411,8 +15432,8 @@ interact with the */api/trackedEntityInstanceFilters* resource.
 <table>
 <caption>Tracked entity instance filters query paramateres</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15493,8 +15514,8 @@ resource.
 <table style="width:100%;">
 <caption>Enrollment query parameters</caption>
 <colgroup>
-<col width="15%" />
-<col width="84%" />
+<col style="width: 15%" />
+<col style="width: 84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15568,8 +15589,8 @@ following table.
 <table>
 <caption>Organisation unit selection modes</caption>
 <colgroup>
-<col width="20%" />
-<col width="79%" />
+<col style="width: 20%" />
+<col style="width: 79%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -15859,11 +15880,11 @@ describes the meaning of each element.
 <table>
 <caption>Events resource format</caption>
 <colgroup>
-<col width="13%" />
-<col width="8%" />
-<col width="8%" />
-<col width="30%" />
-<col width="38%" />
+<col style="width: 13%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 30%" />
+<col style="width: 38%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -16303,8 +16324,8 @@ on the server.
 <table>
 <caption>Available tracker strategies</caption>
 <colgroup>
-<col width="24%" />
-<col width="75%" />
+<col style="width: 24%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -16505,7 +16526,7 @@ is as follows:
 <td>5</td>
 <td>enrollment</td>
 <td>identifier</td>
-<td>Identifier of enrollment (program stage instance)</td>
+<td>Identifier of enrollment (program instance)</td>
 </tr>
 <tr class="even">
 <td>6</td>
@@ -16632,7 +16653,7 @@ as
 Anonymous events API has only 1 enpoint and it is the same endpoint as
 is used in Tracker API for CRUD operations over Events: */api/29/events*
 
-For detailed documentation, see [section\_title](#webapi_events)
+For detailed documentation, see [Events](#webapi_events)
 
 ## Email
 
@@ -17317,9 +17338,9 @@ combination of namespace and key is unique. The value data type is JSON.
 <table>
 <caption>Data store structure</caption>
 <colgroup>
-<col width="22%" />
-<col width="40%" />
-<col width="36%" />
+<col style="width: 22%" />
+<col style="width: 40%" />
+<col style="width: 36%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17536,9 +17557,9 @@ values. The combination of user, namespace and key is unique.
 <table>
 <caption>User data store structure</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17791,9 +17812,9 @@ organisation unit, data element and category option combo.
 <table>
 <caption>Min-max data element data structure</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -17949,8 +17970,8 @@ response will contain the following properties in JSON format.
 <table>
 <caption>Token response</caption>
 <colgroup>
-<col width="40%" />
-<col width="59%" />
+<col style="width: 40%" />
+<col style="width: 59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -18003,9 +18024,9 @@ Analytics table hooks have the following fields:
 <table style="width:100%;">
 <caption>Analytics table hook fields</caption>
 <colgroup>
-<col width="22%" />
-<col width="30%" />
-<col width="46%" />
+<col style="width: 22%" />
+<col style="width: 30%" />
+<col style="width: 46%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -18070,9 +18091,9 @@ and temporary tables.
 <table>
 <caption>Phases, table types and temporary tables</caption>
 <colgroup>
-<col width="27%" />
-<col width="39%" />
-<col width="33%" />
+<col style="width: 27%" />
+<col style="width: 39%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">

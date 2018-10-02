@@ -1472,6 +1472,9 @@ viable starting point for your own configuration
     # Session timeout in seconds, default is 3600
     # system.session.timeout = 3600
     
+    # SQL view protected tables, can be 'on', 'off'
+    # system.sql_view_table_protection = on
+    
     # ----------------------------------------------------------------------
     # Encryption
     # ----------------------------------------------------------------------
@@ -1516,19 +1519,6 @@ viable starting point for your own configuration
     
     # LDAP entry distinguished name filter
     # ldap.search.filter = (cn={0})
-    
-    # ----------------------------------------------------------------------
-    # Application caching
-    # ----------------------------------------------------------------------
-    
-    # Cache provider, can be 'ehcache', 'memcached', default is 'ehcache'
-    # cache.provider = memcached
-    
-    # Cache servers, default is 'localhost:11211', applies to memcached
-    # cache.servers = localhost:11211
-    
-    # Cache time in seconds, default is 600, applies to memcached
-    # cache.time = 600
     
     # ----------------------------------------------------------------------
     # Node

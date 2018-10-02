@@ -61,8 +61,8 @@ different characteristics. To select a chart type:
     <table>
     <caption>Chart types</caption>
     <colgroup>
-    <col width="33%" />
-    <col width="66%" />
+    <col style="width: 33%" />
+    <col style="width: 66%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -237,8 +237,8 @@ are defined by data sets.
     <table>
     <caption>Selection modes</caption>
     <colgroup>
-    <col width="38%" />
-    <col width="61%" />
+    <col style="width: 38%" />
+    <col style="width: 61%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -325,9 +325,9 @@ category and filter.
     <table style="width:100%;">
     <caption>Chart options</caption>
     <colgroup>
-    <col width="23%" />
-    <col width="33%" />
-    <col width="42%" />
+    <col style="width: 23%" />
+    <col style="width: 33%" />
+    <col style="width: 42%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -598,9 +598,9 @@ To download plain data source formats:
     <table>
     <caption>Available formats</caption>
     <colgroup>
-    <col width="18%" />
-    <col width="33%" />
-    <col width="47%" />
+    <col style="width: 18%" />
+    <col style="width: 33%" />
+    <col style="width: 47%" />
     </colgroup>
     <thead>
     <tr class="header">

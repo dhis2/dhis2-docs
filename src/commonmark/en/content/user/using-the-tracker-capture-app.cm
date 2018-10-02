@@ -301,8 +301,8 @@ or **Tabular data entry** widgets.
 <table>
 <caption>Data entry widgets in the Tracker Capture app</caption>
 <colgroup>
-<col width="31%" />
-<col width="68%" />
+<col style="width: 31%" />
+<col style="width: 68%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -704,8 +704,8 @@ easy way. To start using the top bar:
     <table>
     <caption>Report types in the Tracker Capture app</caption>
     <colgroup>
-    <col width="50%" />
-    <col width="50%" />
+    <col style="width: 50%" />
+    <col style="width: 50%" />
     </colgroup>
     <thead>
     <tr class="header">

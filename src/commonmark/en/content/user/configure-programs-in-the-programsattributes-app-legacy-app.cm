@@ -46,9 +46,9 @@ A program needs several types of metadata that you create in the
 <table>
 <caption>Program metadata objects in the Program / Attributes app</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -105,9 +105,9 @@ A program needs several types of metadata that you create in the
 <table>
 <caption>Program metadata objects in the Maintenance app</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -421,8 +421,8 @@ actions should be taken at each stage.
     
     <table>
     <colgroup>
-    <col width="50%" />
-    <col width="50%" />
+    <col style="width: 50%" />
+    <col style="width: 50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -494,8 +494,8 @@ actions should be taken at each stage.
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -646,9 +646,9 @@ entity attributes and the following program parameters:
 
 <table>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -760,9 +760,9 @@ entity attributes and the following program parameters:
     
     <table>
     <colgroup>
-    <col width="33%" />
-    <col width="33%" />
-    <col width="33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -805,9 +805,9 @@ entity attributes and the following program parameters:
     
     <table>
     <colgroup>
-    <col width="33%" />
-    <col width="33%" />
-    <col width="33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -910,9 +910,9 @@ entity attributes and the following program parameters:
     
     <table>
     <colgroup>
-    <col width="33%" />
-    <col width="33%" />
-    <col width="33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -945,9 +945,9 @@ entity attributes and the following program parameters:
     
     <table>
     <colgroup>
-    <col width="33%" />
-    <col width="33%" />
-    <col width="33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
     </colgroup>
     <thead>
     <tr class="header">

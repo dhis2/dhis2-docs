@@ -129,8 +129,8 @@ corresponding filter.
         <table>
         <caption>Selection modes</caption>
         <colgroup>
-        <col width="38%" />
-        <col width="61%" />
+        <col style="width: 38%" />
+        <col style="width: 61%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -197,10 +197,10 @@ You can customize the display of an event report.
     <table style="width:100%;">
     <caption>Event reports options</caption>
     <colgroup>
-    <col width="22%" />
-    <col width="22%" />
-    <col width="33%" />
-    <col width="22%" />
+    <col style="width: 22%" />
+    <col style="width: 22%" />
+    <col style="width: 33%" />
+    <col style="width: 22%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -330,8 +330,8 @@ XML, Microsoft Excel or CSV formats.
     <table>
     <caption>Available formats</caption>
     <colgroup>
-    <col width="27%" />
-    <col width="72%" />
+    <col style="width: 27%" />
+    <col style="width: 72%" />
     </colgroup>
     <thead>
     <tr class="header">

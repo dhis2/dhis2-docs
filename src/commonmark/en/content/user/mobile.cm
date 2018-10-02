@@ -42,7 +42,7 @@ discussed in separate sections in detail:
     an active GPRS/3G connection is required. It does not require a new
     application installation on the phone to support new features, but
     does require a stable data connection for use. This solution is
-    described in [section\_title](#mobile_web_based)
+    described in [Mobile browser based data entry](#mobile_web_based)
 
   - DHIS2 Smartphone client: A mobile browser optimized data entry
     module for Smartphone devices
@@ -968,9 +968,9 @@ be used. Here is the list of those parameters
 <table>
 <caption>Common Parameters</caption>
 <colgroup>
-<col width="13%" />
-<col width="13%" />
-<col width="73%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1197,11 +1197,11 @@ Below table shows the parameters required for configuring gateway.
 <table>
 <caption>Gateway Configuration Parameters</caption>
 <colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
 </colgroup>
 <thead>
 <tr class="header">

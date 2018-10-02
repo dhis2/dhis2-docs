@@ -80,8 +80,8 @@ objects:
 <table>
 <caption>Category objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -516,8 +516,8 @@ objects:
 <table>
 <caption>Data element objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -604,8 +604,8 @@ objects:
     <table>
     <caption>Value types</caption>
     <colgroup>
-    <col width="53%" />
-    <col width="46%" />
+    <col style="width: 53%" />
+    <col style="width: 46%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -729,8 +729,8 @@ objects:
     <table>
     <caption>Aggregation operators</caption>
     <colgroup>
-    <col width="50%" />
-    <col width="50%" />
+    <col style="width: 50%" />
+    <col style="width: 50%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -1092,8 +1092,8 @@ entry forms:
 <table>
 <caption>Data entry form types</caption>
 <colgroup>
-<col width="37%" />
-<col width="62%" />
+<col style="width: 37%" />
+<col style="width: 62%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1148,8 +1148,8 @@ In the **Maintenance** app, you manage the following data set objects:
 <table>
 <caption>Data set objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1547,8 +1547,8 @@ section.
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -1737,9 +1737,9 @@ and when they are triggered.
 <table>
 <caption>Data entry events</caption>
 <colgroup>
-<col width="32%" />
-<col width="39%" />
-<col width="27%" />
+<col style="width: 32%" />
+<col style="width: 39%" />
+<col style="width: 27%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2004,9 +2004,9 @@ plus and minus, and of the following elements:
 <table>
 <caption>Indicator formula</caption>
 <colgroup>
-<col width="36%" />
-<col width="30%" />
-<col width="33%" />
+<col style="width: 36%" />
+<col style="width: 30%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2059,8 +2059,8 @@ In the **Maintenance** app, you manage the following indicator objects:
 <table>
 <caption>Indicator objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2508,8 +2508,8 @@ objects:
 <table>
 <caption>Organisation unit objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3060,8 +3060,8 @@ objects:
 
 <table>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3110,8 +3110,8 @@ an end point. The example below shows disease surveillance data:.
 <table>
 <caption>Different behavior of validation rules</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3211,8 +3211,8 @@ for low-priority routine data validation errors.
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -3257,8 +3257,8 @@ for low-priority routine data validation errors.
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -3514,8 +3514,8 @@ In the **Maintenance** app, you manage the following attribute objects:
 <table>
 <caption>Attribute objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3659,8 +3659,8 @@ In the **Maintenance** app, you manage the following constant objects:
 <table>
 <caption>Constant objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3844,8 +3844,8 @@ An option set called "Delivery type" would have the options: "Normal",
 <table>
 <caption>Option set objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4094,9 +4094,9 @@ maps in the **GIS** app.
 
 <table>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4307,8 +4307,8 @@ In the **Maintenance** app, you manage the following predictor objects:
 <table>
 <caption>Predictor objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4510,8 +4510,8 @@ sampled. For example:
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -4569,8 +4569,8 @@ sampled. For example:
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -4602,8 +4602,8 @@ sampled. For example:
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -4659,8 +4659,8 @@ sampled. For example:
         
         <table>
         <colgroup>
-        <col width="50%" />
-        <col width="50%" />
+        <col style="width: 50%" />
+        <col style="width: 50%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -4854,8 +4854,8 @@ objects:
 <table>
 <caption>Push reports objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5040,8 +5040,8 @@ and XYZ tiles.
 <table>
 <caption>External map layer objects in the Maintenance app</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5296,8 +5296,8 @@ objects types:
 <table>
 <caption>Object types in the Metadata group editor</caption>
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">

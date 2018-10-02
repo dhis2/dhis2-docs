@@ -32,8 +32,8 @@ different characteristics. To select a chart type:
     <table>
     <caption>Chart types</caption>
     <colgroup>
-    <col width="33%" />
-    <col width="66%" />
+    <col style="width: 33%" />
+    <col style="width: 66%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -161,8 +161,8 @@ menu.
         <table>
         <caption>Selection modes</caption>
         <colgroup>
-        <col width="38%" />
-        <col width="61%" />
+        <col style="width: 38%" />
+        <col style="width: 61%" />
         </colgroup>
         <thead>
         <tr class="header">
@@ -228,9 +228,9 @@ You can customize the display of an event report.
     <table>
     <caption>Chart options</caption>
     <colgroup>
-    <col width="28%" />
-    <col width="28%" />
-    <col width="42%" />
+    <col style="width: 28%" />
+    <col style="width: 28%" />
+    <col style="width: 42%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -397,8 +397,8 @@ To download plain data source formats:
     <table>
     <caption>Available formats</caption>
     <colgroup>
-    <col width="27%" />
-    <col width="72%" />
+    <col style="width: 27%" />
+    <col style="width: 72%" />
     </colgroup>
     <thead>
     <tr class="header">
