@@ -47,4 +47,3 @@ organisation unit and period dimensions.
 
 For the process of creating an attribute category as well as options and
 combinations, see the section of this manual named Manage categories.
-

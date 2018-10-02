@@ -211,7 +211,7 @@ software is built and deployed on the web server, not dynamically during
 run-time.
 
 In order to overcome these limitations and achieve a looser coupling
-between the DHIS2 service layer and additional software artifacts, a
+between the DHIS2 service layer and additional software artefacts, a
 REST-based API has been developed as part of DHIS2. This Web API
 complies with the rules of the REST architectural style. This implies
 that:
@@ -314,7 +314,7 @@ are described in the following section.
     training and a high level of competence on their side as upgrading
     software applications might a technically challenging task. Relying
     on a national super-user team to maintain the software implies a lot
-    of traveling.
+    of travelling.
 
   - **Database maintenance:**A prerequisite for an efficient system is
     that all users enter data with a standardized meta-data set (data
@@ -408,7 +408,7 @@ where this is not the case.
 
 Defining decent Internet connectivity precisely is hard but as a rule of
 thumb the download speed should be minimum 10 Kbyte/second for the
-client and at least 1 MBit/sec (dedicated) bandwidth for the server.
+client and at least 1 Mbit/sec (dedicated) bandwidth for the server.
 
 In this regard mobile Internet modems which can be connected to a
 computer or laptop and access the mobile network is an extremely capable
@@ -417,7 +417,7 @@ all over the world, often provide excellent connectivity at low prices
 and is a great alternative to local networks and poorly maintained fixed
 Internet lines. Getting in contact with national mobile network
 companies regarding post-paid subscriptions and potential large-order
-benefits can be a wort-while effort. The network coverage for each
+benefits can be a worthwhile effort. The network coverage for each
 network operator in the relevant country should be investigated when
 deciding which deployment approach to opt for as it might differ and
 cover different parts of the country.
@@ -618,4 +618,3 @@ benefits, including:
   - FOSS applications like DHIS2 typically are supported by a global
     network of developers, and thus have access to cutting edge research
     and development knowledge.
-

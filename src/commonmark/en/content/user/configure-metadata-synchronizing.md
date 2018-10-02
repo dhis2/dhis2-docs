@@ -34,20 +34,20 @@ versions. It is recommended to keep the metadata versions' sizes small
 and logical.
 
 > **Warning**
-> 
+>
 > Each instance of DHIS2, whether central or local, can create metadata
 > versions. The local instance is meant to synchronize metadata from a
 > central system and not create metadata on its own.
-> 
+>
 > If a new metadata version is created on the local instance, this
 > instance can't receive new metadata versions from the central
 > instance, since the content of the metadata versions will be out of
 > synchronization.
-> 
+>
 > If you've created metadata versions on a local instance, you must
 > manually deleted these versions from the database before you can
 > synchronize with the central instance.
-> 
+>
 > Assume the central and local DHIS2 instances have identical metadata
 > snapshots until version 10. Then the local instance creates a new
 > snapshot called version 11. After that, the central instance creates a
@@ -57,7 +57,7 @@ and logical.
 > content of version 11 on the central instance.
 
 > **Note**
-> 
+>
 > You can also use the **Import-Export** app to synchronize metadata
 > manually.
 
@@ -73,12 +73,12 @@ and logical.
 ## Configure metadata versioning on central instance
 
 > **Note**
-> 
+>
 > To synchronize metadata, the user account of the central system must
 > have the following authority:
-> 
+>
 > **F\_METADATA\_MANAGE**
-> 
+>
 > Only users with this authority will then be able to create and
 > download metadata. This is to ensure security of the central system
 > where the metadata is created. Instead of giving the credentials of
@@ -91,23 +91,23 @@ and logical.
 2.  Go to the **Metadata versioning** section and select **Enable
     versioning for metadata
     sync**.
-    
+
     ![](resources/images/metadata_synchronization/metadata_versioning.png)
 
-3.  (Optional) Select **Don't sync metadata if DHIS versions differ**.
+3.  (Optional) Select **Don't sync metadata if DHIS2 versions differ**.
 
 4.  Select a type of metadata version: **Best effort** or **Atomic**.
-    
+
       - *Best effort* means that if the metadata import encounters
         missing references (for example missing data elements on a data
         element group import) it ignores the errors and continues the
         import.
-    
+
       - *Atomic* means all or nothing - the metadata import will fail if
         any of the references do not exist.
-        
+
         > **Note**
-        > 
+        >
         > Each metadata entity is associated with a "User" object. If
         > this "User" reference is missing while importing metadata
         > version of type ATOMIC, the import will fail at the validation
@@ -127,46 +127,46 @@ between the local instance and the central instance.
     **Synchronization**.
 
 2.  Add the central DHIS2 instance's details to the local instance:
-    
+
       - **Remote server URL**
-    
+
       - **Remote server user name**
-    
+
       - **Remote server password**
 
 3.  Go to the **Metadata versioning** section and select **Enable
     versioning for metadata sync**.
 
-4.  (Optional) Select **Don't sync metadata if DHIS versions differ**.
-    
+4.  (Optional) Select **Don't sync metadata if DHIS2 versions differ**.
+
     The metadata schema changes between versions of DHIS2 which could
     make different metadata versions incompatible.
-    
+
     When enabled, this option will not allow metadata synchronization to
     occur if the central and local instance(s) have different DHIS2
     versions. This apply to metadata synchronization done both via the
     user interface and the API.
-    
+
     The only time it might be valuable to disable this option is when
     synchronizing basic entities, for example data elements, that have
     not changed across DHIS2 versions.
 
 5.  (Optional) Configure email notifications to notify users about
     successful or unsuccessful metadata synchronization:
-    
+
     1.  Open the **System Settings** app and click **Email**.
-    
+
     2.  Enter **Host name**, **Port**, **User name**, **Password** and
         **Email sender**.
-    
+
     3.  Click **Server** and enter a **System notifications email
         address**.
-        
+
         This email address will receive notifications about the metadata
         synchronization status.
-    
+
     > **Tip**
-    > 
+    >
     > When you receive email notification about a metadata
     > synchronization failure, check which metadata version that causes
     > the error and resolve it. Then you avoid future errors when the
@@ -185,7 +185,7 @@ local instance will have the metadata exactly as created on the central
 system.
 
 > **Note**
-> 
+>
 > Passwords of users are not synchronized. They are nullified for
 > security reasons. After metadata synchronization, the Admin user must
 > reset these passwords.
@@ -197,7 +197,7 @@ system.
 
 3.  Select a time period: **Daily**, **Weekly**, **Monthly** or
     **Yearly**.
-    
+
     ![](resources/images/metadata_synchronization/metadata_sync.png)
 
 4.  Click **Start**.
@@ -209,7 +209,7 @@ system.
 2.  Go to the **Metadata versioning** section and select **Enable
     versioning for metadata sync**.
 
-3.  (Optional) Select **Don't sync metadata if DHIS versions differ**.
+3.  (Optional) Select **Don't sync metadata if DHIS2 versions differ**.
 
 4.  Select **Best effort** or **Atomic**.
 
@@ -355,4 +355,3 @@ used.
 `metadata.sync.retry` = 5
 
 `metadata.sync.retry.time.frequency.millisec` = 10000
-

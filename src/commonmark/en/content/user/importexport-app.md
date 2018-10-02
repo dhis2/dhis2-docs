@@ -5,19 +5,19 @@
 In a primary health system, the HMIS typically involves a distributed
 application, where the same application is running in different
 geographical locations (PHCs,CHCs, hospitals, districts, and state).
-Most of these physical locations do not have Internet connectivity, and
+Many of these physical locations do not have Internet connectivity, and
 hence they work off-line. At some point (normally at the district
 level), the data needs to be synchronised in order to have a
 consolidated database for the a particular geographical region. For
 this, it is important to be able to export data from one location (which
-is working offline, say at the health facility level) to another one say
-at the district level where the data would need to be imported. This
-feature of exporting and importing is thus a crucial function of a HMIS.
-This feature also helps us overcome the dependency on Internet to some
+is working offline, say at the health facility level) and import into 
+another one (say at the district level).
+This feature of exporting and importing is thus a crucial function of a HMIS.
+This feature also helps us overcome the dependency on the Internet to some
 degree, as data updates can be transferred via USB key where there is no
 connectivity, or through email where there is limited Internet
 connectivity. DHIS2 provides robust export-import functionality to
-fulfill these needs.
+fulfil these needs.
 
 To access the Import/Export app, search in the top header bar for
 Import/Export. Import/Export app offers a number of services details for
@@ -27,7 +27,7 @@ which can be found below.
 
 ## Metadata Import
 
-Metadata Import can be accessed from the left sidebar by clicking on
+Metadata Import can be accessed from the sidebar by clicking on
 Metadata Import.
 
 
@@ -48,45 +48,19 @@ Metadata Import.
 6.  Click **Import** which will bring up the **Logger** at the bottom of
     the page to show the progress.
 
-> **Note**
+> **Tip**
 > 
-> **It is highly recommend always using the Dry run option** when
-> importing data to make sure you keep control over any changes to your
-> Metadata and database being out of sync on data elements or
+> **It is highly recommend to use the Dry run option** to test before
+> importing data; to make sure you keep control over any changes to your
+> Metadata, and to check for problems with out-of-sync data elements or
 > organisation unit names
 
-Clicking **Import** will bring up **Logger** at the bottom of the
-screen. As import process happens it's log would show up here.
 
 > **Note**
 > 
-> Note
-> 
-> If an organisation unit e.g.
-> 
-> Nduvuibu MCHP
-> 
-> had a unknown reference to an object with ID
-> 
-> aaaU6Kr7Gtpidn
-> 
-> . It means that the object with ID
-> 
-> aaaU6Kr7Gtpidn
-> 
-> was not present in your imported file, and it was not found in the
-> existing database. You can control this using
-> 
-> Reference Mode
-> 
-> option available under
-> 
-> MORE OPTIONS
-> 
-> . If you want to allow objects with such references to be imported or
-> not. If you choose to import invalid references you will have to fix
-> this manually in DHIS2 later, if the reference should have pointed to
-> something else.
+> If an organisation unit e.g. `Nduvuibu MCHP` had a unknown reference to an object with ID `aaaU6Kr7Gtpidn`, it means that the object with ID `aaaU6Kr7Gtpidn` was not present in your imported file, and it was not found in the existing database. 
+>
+> You can control this using **Reference Mode** option available under **MORE OPTIONS**, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
 
 ### Matching identifiers in DXF2
 
@@ -97,8 +71,8 @@ for references (like the one above), it will first go to the UID field,
 and then to the code field. This allows you to import from legacy
 systems without having a UID for every meta-data object. I.e. if you are
 importing facility data from a legacy system, you can leave out the ID
-field completely (DHIS2 will fill this in for you) and the put the
-legacy systems own identifiers in the code field, this identifier is
+field completely (DHIS2 will fill this in for you) and put the
+legacy system's own identifiers in the code field, this identifier is
 required to be unique. This not only works for organisation units, but
 for all kinds of meta-data, allowing for easy import from other systems.
 
@@ -106,7 +80,7 @@ for all kinds of meta-data, allowing for easy import from other systems.
 
 <!--DHIS2-SECTION-ID:import-->
 
-Data Import can be accessed from the left sidebar by clicking on Data
+Data Import can be accessed from the sidebar by clicking on Data
 Import.
 
 ![](resources/images/import_export/data_import.png)
@@ -138,13 +112,13 @@ the section **Data set management** for details on how to produce a PDF
 form which can be used for off-line data entry.
 
 To import a PDF data file, navigate to the *PDF Data Import* item in the
-left-side menu. Upload the completed PDF file and click *Import*.
+side menu. Upload the completed PDF file and click *Import*.
 
 ## GML Import
 
 <!--DHIS2-SECTION-ID:gml_import-->
 
-GML Import can be accessed from the left sidebar by clicking on GML
+GML Import can be accessed from the sidebar by clicking on GML
 Import.
 
 ![](resources/images/import_export/gml_import.png)
@@ -161,7 +135,7 @@ Import.
 
 <!--DHIS2-SECTION-ID:event_import-->
 
-Event can be access from the left sidebar by by clicking on Event
+Event can be access from the sidebar by by clicking on Event
 import.
 
 ![](resources/images/import_export/event_import.png)
@@ -182,7 +156,7 @@ import.
 
 <!--DHIS2-SECTION-ID:metadata_export-->
 
-Metadata export can be accessed from the left sidebar by clicking on
+Metadata export can be accessed from the sidebar by clicking on
 Metadata export.
 
 
@@ -207,7 +181,7 @@ Metadata export.
 
 Metadata export with dependencies lets you create canned exports for
 metadata objects. This type of export will include the metadata objects
-and the metadata object's related objects, that is the metadata which
+and the metadata object's related objects; that is, the metadata which
 belong together with the main object.
 
 <table>
@@ -225,7 +199,7 @@ belong together with the main object.
 <tbody>
 <tr class="odd">
 <td><p><strong>Data sets</strong></p>
-DHIS2_SECTION_ID:docs-internal-guid-4a3662ce-63b9-1efd-e640-8ba874d1bcde:</td>
+<!--DHIS2_SECTION_ID:docs-internal-guid-4a3662ce-63b9-1efd-e640-8ba874d1bcde--></td>
 <td><p>Data elements</p>
 <p>Sections</p>
 <p>Indicators</p>
@@ -311,7 +285,7 @@ DHIS2_SECTION_ID:docs-internal-guid-4a3662ce-63b9-1efd-e640-8ba874d1bcde:</td>
 
 ## Data export
 
-Data export can be accessed from the left sidebar by clicking on Data
+Data export can be accessed from the sidebar by clicking on Data
 export.
 
 
@@ -337,7 +311,7 @@ export.
 
 ## Event export
 
-Event export can be accessed from the left sidebar by clicking on Event
+Event export can be accessed from the sidebar by clicking on Event
 export.
 
 

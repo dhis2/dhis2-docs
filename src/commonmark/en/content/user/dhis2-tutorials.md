@@ -35,19 +35,19 @@ understand.
     and select Maintenance from the list of apps. You can also type the
     first letters of the word maintenance in the search field to find
     the app.
-    
+
     ![](resources/images/tutorials/scorecards_maintenance_app.png)
 
 2.  In the Maintenance app, scroll to the bottom of the page right down
     to the **Other** section.
 
 3.  Go to **Legend** and click the **+**.
-    
+
     ![](resources/images/tutorials/scorecards_maintenance_legend.png)
 
 4.  In the **Legend Management** page, scroll to the bottom of the page
     and create a new legend by clicking the blue + button.
-    
+
     ![](resources/images/tutorials/scorecards_maintenance_addbtn.png)
 
 5.  Enter a name for the legend such as “Traffic light”, a start value
@@ -58,7 +58,7 @@ understand.
     the scorecard. To change the legend item colors, click the blue +
     button and then edit the
     colors.
-    
+
     ![](resources/images/tutorials/scorecards_maintenance_legend_color.png)
 
 ### Create a scorecard in the Pivot Table app
@@ -74,7 +74,7 @@ understand.
 
 4.  Using the arrows, select the type of indicators you want to see in
     your scorecard.
-    
+
     ![](resources/images/tutorials/scorecards_pivot_indicators.png)
 
 5.  Click **Update**. This button is in the menu at the top of the
@@ -84,19 +84,19 @@ understand.
     data. In this “traffic light” example, we’ll use the relative period
     section. In **Quarters**, select **This quarter**and **Last
     quarter**. Clear any other checkboxes and click **Update**.
-    
+
     ![](resources/images/tutorials/scorecards_pivot_period.png)
 
 7.  Go to **Organisation Units** in the same left side pane, and click
     the arrow next to the gear button.
 
 8.  Select **Select levels**.
-    
+
     ![](resources/images/tutorials/scorecards_pivot_orgunit_level.png)
 
 9.  Select **District** from the list (next to the gear button). Click
     **Update**.
-    
+
     ![](resources/images/tutorials/scorecards_pivot_orgunit_level2.png)
 
 As you can see, the scorecard is starting to take shape in the
@@ -105,7 +105,7 @@ workspace. Now it’s time to fine-tune the look and feel.
 ### Organise the layout and display of your scorecard
 
 1.  In the workspace, click **Layout**.
-    
+
     ![](resources/images/tutorials/scorecards_pivot_layout.png)
 
 2.  In **Table layout**, drag **Organisation units** down to the **Row
@@ -117,7 +117,7 @@ workspace. Now it’s time to fine-tune the look and feel.
     and click **Update**.
 
 5.  In the workspace, click **Options**.
-    
+
     ![](resources/images/tutorials/scorecards_pivot_options.png)
 
 6.  Go to **Data** and clear all the checkboxes.
@@ -230,7 +230,7 @@ parameter *format*, which allows for further manipulation of the value.
 </tbody>
 </table>
 
-Most segments has a paramter *format*, except for the plain text
+Most segments has a parameter *format*, except for the plain text
 segment. The following table lists the available formats, how they are
 used and example notations using them.
 
@@ -257,7 +257,7 @@ used and example notations using them.
 </tr>
 <tr class="even">
 <td>Text format</td>
-<td>The text format allows for some basic text manipulation. Leaving the format empty will return the value unmodified, but using &quot;^&quot;, &quot;.&quot; and &quot;\$&quot;, you can modify the value before it is returned. Each &quot;.&quot; represents a character, while &quot;^&quot; represents the start of the text nd &quot;\$&quot; represents the end. When using formats, the input value must be at least the same length as the format.</td>
+<td>The text format allows for some basic text manipulation. Leaving the format empty will return the value unmodified, but using &quot;^&quot;, &quot;.&quot; and &quot;\$&quot;, you can modify the value before it is returned. Each &quot;.&quot; represents a character, while &quot;^&quot; represents the start of the text and &quot;\$&quot; represents the end. When using formats, the input value must be at least the same length as the format.</td>
 <td>ORG_UNIT_CODE(….) → OSLO
 <p>ORG_UNIT_CODE(..) → OS</p>
 <p>ORG_UNIT_CODE(..$) → LO</p>
@@ -279,7 +279,7 @@ A few important things to note regarding the formats:
 
   - Date format is very versatile, but be aware of which date or time
     components you are using. Using components smaller than a day (For
-    example hours or seconds) is not reccomended, even though available.
+    example hours or seconds) is not recommended, even though available.
 
   - Text format allows for marking both the start and end of the input
     value, but "^..." and "…" will in reality give exactly the same
@@ -289,7 +289,7 @@ A few important things to note regarding the formats:
     PARIS will be rejected, since it has 5 characters.
 
   - When text format is used for unique values, like organisation unit
-    code, make sure that the format doesnt break the uniqueness.
+    code, make sure that the format does not break the uniqueness.
     (Example: ORG\_UNIT\_CODE(..) for "PARIS" and "PANAMA CITY" would
     both return PA, which means these two organisation units would in
     reality share generated values)
@@ -323,7 +323,7 @@ the tutorial.
 ### Designing TextPattern for generating ids
 
 One use-case for TextPattern is to generate unique ids. In this section
-we will present guidelines and common issues related to desining
+we will present guidelines and common issues related to designing
 TextPatterns used for ids.
 
 An id should never contain sensitive information, or information that in
@@ -410,7 +410,7 @@ on the presence of ORG\_UNIT\_CODE or CURRENT\_DATE.
 Let's start with SEQUENTIAL segments. Each "\#" in the format represents
 a number between 0 and 9. To calculate the total capacity, you multiply
 the number of possible values for each "\#". Since it's always 10 (0-9)
-the math is quite straight forward:
+the maths is quite straight forward:
 
     SEQUENTIAL(#) = 10 = 10
     SEQUENTIAL(###) = 10 * 10 * 10 = 1000
@@ -432,13 +432,13 @@ them all together like we did for SEQUENTIAL:
     RANDOM(#) = 10 = 10
     RANDOM(X) = 26 = 26
     RANDOM(*) = 62 = 62
-    
+
     RANDOM(X##) = 26 * 10 * 10 = 2600
     RANDOM(XXxx) = 26 * 26 * 26 * 26 = 456976
-    
+
     RANDOM(***) = 62 * 62 * 62 = 238328
 
-As you can see, the math gets a bit more complicated when, but by
+As you can see, the maths gets a bit more complicated when, but by
 following this recipe you can see the number of potential values.
 
 ### Random segments and why you should avoid it
@@ -519,4 +519,3 @@ the value themselves and as long as the value supplied is valid for the
 TextPattern, they can put anything they want. The caveat of doing it
 this way, is that you might use values that was reserved by someone else
 and if you have a SEQUENTIAL segment, the counter will not be updated.
-

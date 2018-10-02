@@ -13,7 +13,7 @@ core building blocks of the data model.
 As an example, if you want to know how many children that were immunised
 for measles in Gerehun CHC in December 2014, the three dimensions which
 describe that value are the data element "Measles doses given", the
-organisation unit "Gerehun CHC", and the period "Dececmber 2014". All
+organisation unit "Gerehun CHC", and the period "December 2014". All
 data values have at least these three dimensions describing *what*,
 *where*, and *when*.
 
@@ -167,7 +167,7 @@ While the data element categories and their options described above
 provide the level of detail (disaggregation) at the point of data
 collection and how data values get stored in the database, the data
 element group sets and groups can be used to add more information to
-data elements after data collection. As an example, if you are analyzing
+data elements after data collection. As an example, if you are analysing
 many data elements at the same time in a report, you would want to group
 these based on some criteria. Instead of looking at all the data
 captured in a form for immunisation and nutrition, you might want to
@@ -263,7 +263,7 @@ has four organisation unit levels; National, District, Chiefdom, and
 PHU, and all orgunits are linked to one of these levels. An orgunit
 hierarchy in DHIS2 can have any number of levels. Normally data is
 collected at the lowest level, at the health facility, but can be
-collected at any level within the hiearchy, such as both the districts
+collected at any level within the hierarchy, such as both the districts
 as well as the facility level.
 
 When designing reports at higher levels with data aggregated at the
@@ -513,7 +513,7 @@ the lowest level of period detail possible in a report.
 #### Sum and average aggregation along the period dimension
 
 When aggregating data on the period dimension there are two options for
-how the calculation is done, namely sum or averge. This otion is
+how the calculation is done, namely sum or average. This option is
 specified on a per data element in DHIS2 through the use of the
 'aggregation operator' attribute in the Add/Edit Data Elements dialog.
 
@@ -563,7 +563,7 @@ therefore be used to mimic the use of monthly population estimates.
 
 Datasets determine what raw data that is available in the system, as
 they describe how data is collected in terms of periodicity as well as
-spaital exten. Data sets define the building blocks of the data to be
+spatial extent. Data sets define the building blocks of the data to be
 captured and stored in DHIS2. For each data dimension we decide what
 level of detail the data should be collected at namely 1) the data
 element (e.g. diagnosis, vaccine, or any event taking place) and its
@@ -588,7 +588,7 @@ form the users want.
 Another benefit of only linking data to data elements and not to forms,
 is the flexibility of creating indicators and validation rules based on
 data elements, and also in providing any kind of output report (in pivot
-tables, charts, maps etc) that can combine data individually or across
+tables, charts, maps etc.) that can combine data individually or across
 forms, e.g. to correlate data from different health programs. Due to
 this flexibility of enabling integration of data from various programs
 (forms) and sources (routine and semi permanent (population, staff,
@@ -606,7 +606,7 @@ children" by month at the facility level. By annualizing the population,
 we can generate an approximation of the effective monthly population,
 and combining this with the aggregate total of the number of fully
 immunized children by month, it would be possible to generate an
-inidicator "Fully immunized coverage", consisting of the aggregated
+indicator "Fully immunized coverage", consisting of the aggregated
 total of children who are fully immunized, divided by the effective
 monthly population.
 
@@ -679,7 +679,7 @@ screenshot due to image size), albeit in a different way.
   - The "dataelement" field, used in the bottom figure, displays each
     diagnosis as three elements; one follow-up, one new, and one
     referrals. This is the way the data elements have been defined in
-    DHIS, as this makes sense for aggregation. You would not like to
+    DHIS2, as this makes sense for aggregation. You would not like to
     aggregate follow-ups and new, thus these have not been made as
     categories, the whole point of is to ease aggregation and
     disaggregation.
@@ -707,7 +707,7 @@ fake data values).
 This small detail of the pivot table show how the actual data elements
 link to the group sets:
 
-  - The four data elements, as defined in DHIS, are Measles death,
+  - The four data elements, as defined in DHIS2, are Measles death,
     Measles follow-up, Measles new, and Measles referrals
 
   - They all belong to the group set "diagnosis", where they have been
@@ -724,7 +724,7 @@ link to the group sets:
 
   - All the intersections where the data element does not link with the
     groups in morbiditymortality are left blank. Thus in this case we
-    would get a nice table if we excluded the dataelement from the
+    would get a nice table if we excluded the data element from the
     table, and just had diagnosis and the group set morbiditymortality,
     as in the figure shown earlier
 
@@ -743,7 +743,7 @@ area and we get the following view:
 ![](resources/images/data_dimensions/pivot_morb_age.jpg)
 
 The following table illustrates the benefits of reusing data element
-categories across datasets and categorycombinations. The VCCT, ART and
+categories across datasets and category combinations. The VCCT, ART and
 PMTCT data are collected in three different datasets, the first two with
 both gender and age breakdown, and the PMTCT only age (gender is given).
 All three share the same age groups and therefore it is possible to view
@@ -766,7 +766,7 @@ gender.
 
 Typically the design of a DHIS2 dataset is based on some requirements
 from a paper form that is already in use. The logic of paper forms are
-not the same as the data element and data set model of DHIS, e.g. often
+not the same as the data element and data set model of DHIS2, e.g. often
 a field in a tabular paper form is described both by column headings and
 text on each row, and sometimes also with some introductory table
 heading that provides more context. In the database this is captured in
@@ -791,7 +791,7 @@ likely cause inconsistency) to register manually calculated values such
 as the ones mentioned above. You only want to capture the raw data in
 your datasets/forms and leave the calculations to the computer, and
 presentation of such values to the reporting tools in
-DHIS.
+DHIS2.
 
 ### From tables to category combinations - designing multi-dimensional data sets
 
@@ -824,7 +824,7 @@ combinations:
     also exist on the form. It would seem reasonable then to create
     three age groups : Under 1, Under 5 and Over 5, to describe the
     disaggregation. However, the Under 1 is actually a subset of the
-    Under 5 group, and when totaled, would result in duplication. Thus,
+    Under 5 group, and when totalled, would result in duplication. Thus,
     categories should be generally be composed of mutually exclusive
     category options, such that the sum of individual category options
     results in a coherent total.
@@ -855,8 +855,8 @@ element category combination (from now on referred to as a catcombo). As
 such there is no restriction on a dataset to only have one set of
 dimensions or catcombo, it can have many and as we see above this is
 necessary as the dimensions are very different from table to table. In
-the following paragraphs, we will analyze how to break down this form
-into its compoenent pieces and suggest an implementation pathway in
+the following paragraphs, we will analyse how to break down this form
+into its component pieces and suggest an implementation pathway in
 DHIS2.
 
 **ANC table**. This table in the top left corner is one the simpler ones
@@ -889,7 +889,7 @@ only for four data elements in a table of eleven data elements.
 
 **DELIVERY table.** This table is more tricky as it has a lot of
 information and you can see that not all the rows have the same columns
-(some columns are merged and a one field is grayed out/disabled.). If we
+(some columns are merged and a one field is greyed out/disabled.). If we
 start by looking at the first column "Deliveries assisted by" that seems
 to be one dimension, but only down to the "Untrained TBA" row, as the
 remaining three rows are not related to who assisted the delivery at
@@ -1034,4 +1034,3 @@ or how many new clients there are.
 
 8.  8\. Your dataset will then consist of a set of data elements that
     are linked to one or more category combinations.
-

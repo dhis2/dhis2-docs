@@ -7,7 +7,7 @@ entered not show up immediately in my graphs in DHIS2?
 **A:** Data which is entered into DHIS2 must first be processed with the
 "analytics". This means that data is not immediately available in the
 analytics resources (such as reports, pivot tables, data visualizer,
-GIS, etc) after it has been entered. If scheduling is active, the
+GIS, etc.) after it has been entered. If scheduling is active, the
 analytics process will run automatically at midnight each day. After
 that, new data which was entered since the last time the analytics
 process ran, will become visible.
@@ -32,10 +32,9 @@ Other factors which can affect the visibility of data are:
     still not seeing any (updated) data, be sure that your data is not
     being cached by the server.
 
-**Q:** I have downloaded DHIS 2 from <https://www.dhis2.org/downloads>
+**Q:** I have downloaded DHIS2 from <https://www.dhis2.org/downloads>
 but when i try to enter the system it needs a username and password.
 Which should I use?
 
 **A:** By default, the username will be "admin" and the password
 "district". Usernames and passwords are case sensitive.
-

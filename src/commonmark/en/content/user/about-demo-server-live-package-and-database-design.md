@@ -10,7 +10,7 @@ DHIS2. Simply open the link in your web browser and login with username
 = admin and password = district.
 
 > **Note**
-> 
+>
 > All changes on this server are deleted each night, so do not save any
 > important work on this server. It is strictly for demonstration
 > purposes on only\!
@@ -326,7 +326,7 @@ form will need multiple tables with subheadings, and sometimes you need
 to disable (grey out) a few fields in the table (e.g. some categories do
 not apply to all data elements), both of these functions are supported
 in section forms. After defining a dataset you can define it's sections
-with subsets of dataelements, a heading and possible grey fields i the
+with subsets of data elements, a heading and possible grey fields i the
 section's table. The order of sections in a dataset can also be defined.
 In Data Entry you can now start using the Section form (should appear
 automatically when sections are available for the selected dataset). You
@@ -429,4 +429,3 @@ and periods of your choice. These charts can easily be added to one of
 the four chart sections on your dashboard and there be made easily
 available right after log in. Make sure to set the dashboard module as
 the start module in user settings.
-

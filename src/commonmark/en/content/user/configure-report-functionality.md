@@ -109,7 +109,7 @@ in a hierarchy, which typically corresponds to the hierarchical nature
 of the organisation or country. Organisational unit levels correspond to
 the distinct levels within the hierarchy. For instance, a country may be
 organized into provinces, then districts, then facilities, and then
-sub-centers. This organisational hierarchy would have five levels.
+sub-centres. This organisational hierarchy would have five levels.
 Within each level, a number of organisational units would exist. During
 the aggregation process, data is aggregated from the lower
 organisational unit levels to higher levels. Depending on the
@@ -399,25 +399,25 @@ reporting month is either selected by the users, otherwise the current
 month is used. Here is a description of the possible relative periods:
 
   - *Reporting month:*
-    
+
     Use this for monthly reports. The month selected in the reporting
     month parameter will be used in the report.
 
   - *Months/Quarters this year*:
-    
+
     This will provide one value per month or quarter in the year. This
     is well suited for standard monthly or quarterly reports where all
     month/quarters need to be listed. Periods that still have no data
     will be empty, but will always keep the same column name.
 
   - *This year:*
-    
+
     This is the cumulative so far in the year, aggregating the periods
     from the beginning of the year up to and including the selected
     reporting month.
 
   - *Months/Quarters last year*:
-    
+
     This will provide one value per month or quarter last year, relative
     to the reporting month. This is well suited for standard monthly or
     quarterly reports where all month/quarters need to be listed.
@@ -425,7 +425,7 @@ month is used. Here is a description of the possible relative periods:
     the same column name.
 
   - *Last year:*
-    
+
     This is the cumulative last year, relative to the reporting month,
     aggregating all the periods from last year.
 
@@ -454,27 +454,27 @@ are four possible report parameters, and you can select none, all, or
 any combination.
 
   - *Reporting month:*
-    
+
     This decides which month will be used when the system is choosing
     the relative periods. If the box it not checked, the user will not
     be asked for the reporting month when the report is generated - the
     current month will then be used.
 
   - *Grand parent organisation unit:*
-    
+
     Select the grand parent of all the orgunit children and grand
     children you want listed in the report. E.g. a selected region will
     trigger the use of the region itself, all its district, and all
     their sub-districts.
 
   - *Parent organisation unit:*
-    
+
     Select the parent of all the orgunit children you want listed in the
     report. E.g. a selected district will trigger the use of the
     district itself and all its children/sub-districts.
 
   - *Organisation unit:*
-    
+
     This triggers the use of this orgunit in the report. No children are
     listed.
 
@@ -636,11 +636,11 @@ presented below the screenshot:
 **The five download buttons**
 
   - *Download as Excel:*
-    
+
     Downloads a generated Excel file you can open in Excel.
 
   - *Download as CSV:*
-    
+
     Downloads a generated .csv file. CSV stands for **C**omma
     **S**eparated **V**alues. It's a text file with the file ending
     .csv. Each line in the file corresponds to a row in the table, while
@@ -649,13 +649,13 @@ presented below the screenshot:
     as Excel).
 
   - *Download as PDF:*
-    
+
     Downloads a generated PDF file. The data will be presented in a
     similar layout as the generated table you are already viewing in
     DHIS2.
 
   - *Download as Report:*
-    
+
     Downloads a "styled" PDF file. In addition to present the data in a
     table layout, this file also presents a chart, showing the
     aggregated data from all the chosen periods and the parent
@@ -663,7 +663,7 @@ presented below the screenshot:
     generated using the Jasper report engine.
 
   - *Download as JRXML:*
-    
+
     Downloads the design file for the generated Report described in the
     previous bullet. The design file (with the file ending .jrxml) can
     be opened in the Jasper iReport Designer software. If you plan to
@@ -775,7 +775,7 @@ field called "dataelementname" is placed in the Detail 1 band, all data
 elements in the report table will be listed here. We'll come back to
 data fields management just a little below.
 
-The unused bands in the report are shrinked to add more space for your
+The unused bands in the report are contracted to add more space for your
 report data. You can however increase/decrease the band height as you
 like. There are two ways to do that. The first way is simply to drag the
 blue band-line as shown below.
@@ -1566,10 +1566,10 @@ HTML element like this:
         $.get( "../api/analytics?dimension=dx:FnYCr2EAzWS;eTDtyyaSA7f&dimension=pe:THIS_YEAR&filter=ou:ImspTQPwCqd", function( json ) {
             $( "#bcg" ).html( json.rows[0][2] );
             $( "#fic" ).html( json.rows[1][2] );
-        } );    
+        } );
     } );
     </script>
-    
+
     <div>BGG coverage: <span id="bcg"></span></div>
     <div>FIC coverage: <span id="fic"></span></div>
 
@@ -1580,6 +1580,3 @@ your report you can use the charts and maps resources in the Web API.
 You can use the full capability of the Web API from JavaScript in your
 report - it may be useful to read through the Web API chapter to get an
 overview of all available resources.
-
-
-

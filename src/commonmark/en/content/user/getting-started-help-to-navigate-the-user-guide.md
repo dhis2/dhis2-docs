@@ -36,9 +36,9 @@
 <td><p><strong>Tracker Capture</strong></p></td>
 </tr>
 <tr class="even">
-<td><p>Analyze and visualize data</p></td>
+<td><p>Analyse and visualize data</p></td>
 <td><p>Analyze data in a table</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/pivot.html">Analyze data in pivot tables</a></p></td>
+<td><p><a href="https://docs.dhis2.org/master/en/user/html/pivot.html">Analyse data in pivot tables</a></p></td>
 <td><p><strong>Pivot Table</strong></p></td>
 </tr>
 <tr class="odd">
@@ -61,7 +61,7 @@
 </tr>
 <tr class="even">
 <td></td>
-<td><p>Analyze data in two types of reports.</p></td>
+<td><p>Analyse data in two types of reports.</p></td>
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/event_reports_app.html">Using the Event Reports app</a></p></td>
 <td><p><strong>Event Report</strong></p></td>
 </tr>
@@ -216,4 +216,3 @@
 </tr>
 </tbody>
 </table>
-

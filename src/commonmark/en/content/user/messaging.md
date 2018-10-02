@@ -11,9 +11,9 @@
 Within DHIS2 you can send messages and feedback messages to users, user
 groups and organisation units. When you send a feedback message, it is
 routed to a particular user group called the feedback recipient group.
-If you're a member of this user group, you've access to feedback
-handling tools. You can for example set the status of an incoming
-feedback to "Pending" while you're waiting for information.
+If you are a member of this user group, you have access to feedback
+handling tools. You can, for example, set the status of an incoming
+feedback to "Pending" while you are waiting for information.
 
 In addition to the user-to-user and feedback messages, depending on your
 configuration the system will also send you system-generated messages.
@@ -26,34 +26,36 @@ To visit the app click **message icon in header bar** or find the
 **Messaging** app in the app search box.
 
 > **Note**
-> 
+>
 > Messages and feedback messages are not sent to users' e-mail
 > addresses, the messages only appear within DHIS2.
-> 
+>
 > With 2.30 we introduced a new messaging app which offers a richer
 > messaging experience. Specifically:
-> 
+>
 >   - Switch between list view and compact view by clicking the icon in
->     the top right corner. This enables the user to view messages in
->     two different views. The list view is simplistic and gives a good
+>     the top right corner.
+>     - The list view is simplistic and gives a good
 >     overview of all messages and is especially suited for feedback and
->     validation messages. The compact view is a modern way of view
+>     validation messages.
+>     - The compact view is a modern way of view
 >     messages where the user has more information in one view, hence
->     viewing and replying several messages is easier. The first
->     screenshot in this section displays list view, while the
+>     viewing and replying several messages is easier.
+>
+>     The first screenshot in this section displays list view, while the
 >     screenshot in section **Read a message** displays the compact
 >     view.
-> 
+>
 >   - A new search field is added which enables the user to search for
 >     messages. The search filters messages on different message
 >     attributes; subject, text and senders. This implies that you are
 >     able to narrow down the message conversation list by entering a
 >     search.
-> 
+>
 >   - A auto refresh feature is added so that the app fetches new
 >     messages at a set interval, every 5 minutes. This feature is
 >     disabled by default.
-> 
+>
 >   - For every message conversation you are able to add participants to
 >     the conversation. This is very useful if you want input on that
 >     particular conversation or if someone should also see the
@@ -68,7 +70,7 @@ To visit the app click **message icon in header bar** or find the
 
 2.  Define who you want to receive the message. You can send a message
     to organisation units, users and user groups.
-    
+
       - In the **To** field you can search for organisation units, users
         and user groups and select the wished recipients.
 
@@ -83,8 +85,8 @@ To visit the app click **message icon in header bar** or find the
 1.  Select the appropriate message type to the left.
 
 2.  Click a message.
-    
-    If the message is part of a conversation, you'll see all messages in
+
+    If the message is part of a conversation, you will see all messages in
     this conversation.
 
 ## Create a feedback message
@@ -105,42 +107,31 @@ file.
 ## Manage validation and feedback messages
 
 > **Note**
-> 
-> You'll only see feedback messages and have access to the extended
+>
+> You will only see feedback messages and have access to the extended
 > handling tools if you are a member of the user group that is set up to
 > handle feedback messages.
-> 
+>
 > With the new app you manage extended tools for tickets and validation
 > messages through the icon menu which appears when viewing a message or
 > checking of messages in the conversation list.
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>All messages selected</td>
-<td>All messages selected and extended choice picker selected</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+### All messages selected
+![All Messages Selected](resources/images/messaging/view_validation_select_all.png)
+### All messages selected and extended choice picker selected
+![All messages selected and extended choice picker selected](resources/images/messaging/view_validation_select_all_icon_menu.png)
 
-You'll receive feedback messages to your **Ticket** folder and
+
+You will receive feedback messages to your **Ticket** folder and
 validation messages to your **Validation** folder. For feedback and
-validation messages you've the following options in addition to the
+validation messages you have the following options in addition to the
 messages options:
 
 <table style="width:100%;">
 <caption>Feedback handling tools</caption>
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 76%" />
+<col width="23%" />
+<col width="76%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -158,7 +149,7 @@ messages options:
 <td><p><strong>Status</strong></p></td>
 <td><p>All feedback/validation messages get the status <strong>Open</strong> when created.</p>
 <p>To keep track of existing feedback messages, you can change the status to <strong>Pending</strong>, <strong>Invalid</strong> or <strong>Solved</strong>.</p>
-<p>You can filter feedback/validation messages based on their status with the two drop down menues in the internal header bar.</p></td>
+<p>You can filter feedback/validation messages based on their status with the two drop down menus in the internal header bar.</p></td>
 </tr>
 <tr class="odd">
 <td><p><strong>Assigned to</strong></p></td>
@@ -184,4 +175,3 @@ To configure the feedback message function, you must:
 2.  Open the **System Settings** app and click **General** \> **Feedback
     recipients** and select the user group you created in the previous
     step.
-

@@ -17,11 +17,24 @@
 </tr>
 </thead>
 <tbody>
+
+<tr class="odd">
+<td><a href="https://www.dhis2.org/download/releases/2.30/dhis.war">2.30</a></td>
+<td>2018-07-10</td>
+<td><a href="https://docs.google.com/document/d/e/2PACX-1vTPr1F9b6Yf-TJJxulpg3p7-0pMow5mfW-u0uNnk2LUBTLsaVB0cPaE-jmtTcCJhON4xA9mlm7ws7h-/pub"><img src="resources/images/icons/info.png" width="24" /></a></td>
+<td><a href="https://github.com/dhis2/dhis2-releases/blob/master/releases/2.30/README.md"><img src="resources/images/icons/upgrade.png" width="24" /></a></td>
+</tr>
+<tr class="even">
+<td><a href="https://www.dhis2.org/download/releases/2.29/dhis.war">2.29</a></td>
+<td>2018-03-07</td>
+<td><a href="https://docs.google.com/document/d/e/2PACX-1vTtvGRDt2QJ-2XslelRwhpnDvP9XK2ymLtvVSC3mf8uRIyQ3cerQxM3Kiu3QWDIo2jvbjK3oghcd_k0/pub"><img src="resources/images/icons/info.png" width="24" /></a></td>
+<td><a href="https://github.com/dhis2/dhis2-releases/blob/master/releases/2.29/README.md"><img src="resources/images/icons/upgrade.png" width="24" /></a></td>
+</tr>
 <tr class="odd">
 <td><a href="https://www.dhis2.org/download/releases/2.28/dhis.war">2.28</a></td>
 <td>2017-10-11</td>
-<td><a href="https://docs.google.com/document/d/126Grj2kAWDbkuNJDVm34x72vQXT_O5UkJDYWDqhsdhI/pub"><img src="resources/images/icons/info.png" width="24" /></a></td>
-<td><a href="https://www.dhis2.org/228-upgrade"><img src="resources/images/icons/upgrade.png" width="24" /></a></td>
+<td><a href="https://docs.google.com/document/d/e/2PACX-1vRXQmjZnDmePhbHvdYbQNncCUwWQVo0I3q6_TUXO3qn710ovvRtAmVDxmmO2H98dg-dO_mUmHMW2YOI/pub"><img src="resources/images/icons/info.png" width="24" /></a></td>
+<td><a href="https://github.com/dhis2/dhis2-releases/blob/master/releases/2.28/README.md"><img src="resources/images/icons/upgrade.png" width="24" /></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://www.dhis2.org/download/releases/2.27/dhis.war">2.27</a></td>
