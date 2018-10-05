@@ -257,12 +257,13 @@ used and example notations using them.
 </tr>
 <tr class="even">
 <td>Text format</td>
-<td>The text format allows for some basic text manipulation. Leaving the format empty will return the value unmodified, but using &quot;^&quot;, &quot;.&quot; and &quot;\$&quot;, you can modify the value before it is returned. Each &quot;.&quot; represents a character, while &quot;^&quot; represents the start of the text and &quot;\$&quot; represents the end. When using formats, the input value must be at least the same length as the format.</td>
-<td>ORG_UNIT_CODE(….) → OSLO
+<td>The text format allows for some basic text manipulation. Leaving the format empty will return the value unmodified, but using "^", "." and "&#36;", you can modify the value before it is returned. Each "." represents a character, while "^" represents the start of the text and "&#36;" represents the end. When using formats, the input value must be at least the same length as the format.</td>
+<td>
+<p>ORG_UNIT_CODE(....) → OSLO</p>
 <p>ORG_UNIT_CODE(..) → OS</p>
-<p>ORG_UNIT_CODE(..$) → LO</p>
-<p>ORG_UNIT_CODE(^...$) → OSLO</p>
-<p>^.…$ will require the input value to be exactly 4 characters.</p></td>
+<p>ORG_UNIT_CODE(..&#36;) → LO</p>
+<p>ORG_UNIT_CODE(^...&#36;) → OSLO</p>
+<p>^....&#36; will require the input value to be exactly 4 characters.</p></td>
 </tr>
 <tr class="odd">
 <td>Generation format</td>

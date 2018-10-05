@@ -65,7 +65,11 @@ is added to the data registered for a PHC at level 4.
 It is up to the user/system administrator/designer to make sure that no
 duplication of data entry is taking place and that e.g. data entered at
 level 4 are not about the same services/visits that are reported by
-orgunit children at level 5. NOTE that in some cases you want to have
+orgunit children at level 5. 
+
+> **NOTE**
+>
+> In some cases you want to have
 duplication of data in the system, but in a controlled manner. E.g. when
 you have two different sources of data for population estimates, both
 level 5 catchment population data and another population data source for
@@ -81,7 +85,7 @@ data and does not include level 5 data.
 How data is aggregated depends on the dimension of aggregation (see
 further down).
 
-Along the orgunit level dimension data is always summed up, simply added
+Along the orgunit level dimension data is always summed up; i.e. simply added
 together. Note that raw data is never percentages, and therefore can be
 summed together. Indicator values that can be percentages are treated
 differently (re-calculated at each level, never summed up).
@@ -719,8 +723,10 @@ charts you can make.
 
 #### Download and open the design file
 
-*Note: If you have not created a report table yet, you have to do so.
-See section "How to create report tables" to do so.*
+> **NOTE**
+>
+> If you have not created a report table yet, you have to do so.
+> See section "How to create report tables" to do so.*
 
 Locate your desired report table and run it by clicking the green circle
 with a white arrow inside. When the report is shown, click the "Download
@@ -743,8 +749,10 @@ document.
 
 ![](resources/images/dhis2_creating_reporting/ireport/iReport-window.png)
 
-*Note: If you cannot see the Palette or Properties sidebar, you can
-enable them from the menu item called "Window" on the menu bar.*
+> **NOTE**
+>
+> If you cannot see the Palette or Properties sidebar, you can
+> enable them from the menu item called "Window" on the menu bar.
 
 The iReport document is divided into seven main bands, divided by layout
 separators (the blue lines). These lines are used to decide how big each
@@ -804,10 +812,12 @@ above the document.
 
 ![](resources/images/dhis2_creating_reporting/ireport/21_title_edit.jpg)
 
-**********NOTE: Fields starting with "$F" present values that are
-retrieved from the database every time the report is run. The values
-here will vary, so do not change these fields unless you want a static
-value here\!**********
+> **NOTE**
+>
+> Fields starting with "$F" present values that are
+> retrieved from the database every time the report is run. The values
+> here will vary, so do not change these fields unless you want a static
+> value here!
 
 #### Text
 
@@ -920,7 +930,9 @@ organisation unit, double click on organisation\_unit\_is\_parent in the
 list to copy it to the expression area, then add `.equals("No")` at the
 end so that the code is:
 
-`$F{organisation_unit_is_parent}.equals("No")`
+```
+$F{organisation_unit_is_parent}.equals("No")
+```
 
 This tells the report engine to only print table rows where the
 organisation unit is not the parent organisation
@@ -954,7 +966,9 @@ whether or not the row should be hidden.
 
 Example - removing rows with organisation units starting with \[
 
-`($F{organisationunitname}.charAt( 0 ) != '[')`
+```
+($F{organisationunitname}.charAt( 0 ) != '[')
+```
 
 This makes the report skip any rows where the first character of the
 organisation unit name is \[.
@@ -965,8 +979,9 @@ between. For example, to make a table that leaves both organisation
 units whose name starts with \[ and the parent organisation unit, we can
 use the following expression:
 
-`($F{organisationunitname}.charAt( 0 ) !=
-'[')&&$F{organisation_unit_is_parent}.equals("No")`
+```
+($F{organisationunitname}.charAt( 0 ) != '[')&&$F{organisation_unit_is_parent}.equals("No")
+```
 
 
 ![](resources/images/dhis2_creating_reporting/ireportadv/irep_screen_29.jpg)
@@ -1026,27 +1041,19 @@ editor.
 Next, we have to insert some Java code. In the following example, we
 will be replacing the shortname of three indicators with their proper
 names. The code searches for the shortname, and then replaces it with a
-proper
-name.
+proper name.
 
 ![](resources/images/dhis2_creating_reporting/ireportadv/irep_screen_34.jpg)
 
-`($F{indicatorname}.equals("Bed Util All")) ? "Bed Utilisation -
-All Wards"`
-
-`:`
-
-`($F{indicatorname}.equals("Bed Util Mat")) ? "Bed Utilisation -
-Maternity"`
-
-`:`
-
-`($F{indicatorname}.equals("Bed Util Ped")) ? "Bed Utilisation -
-Paediatric"`
-
-`:`
-
-`$F{indicatorname}`
+```
+($F{indicatorname}.equals("Bed Util All")) ? "Bed Utilisation - All Wards"
+:
+($F{indicatorname}.equals("Bed Util Mat")) ? "Bed Utilisation - Maternity"
+:
+($F{indicatorname}.equals("Bed Util Ped")) ? "Bed Utilisation - Paediatric"
+:
+$F{indicatorname}
+```
 
 From this, we can see a pattern that is reusable for more general cases.
 
@@ -1087,9 +1094,10 @@ the columns. In this case we have three value expressions we want to sum
 up: "September", "October 2010", "November 2010". The name of these
 fields will vary depending on the crosstab dimension you have chosen in
 the report table. In our case, the expression we make is
-"$f{September}+$f{October 2010}+$f{November 2010}":
-
-Each row of the table have a totals column to the right.
+```
+$f{September}+$f{October 2010}+$f{November 2010}
+``` 
+Each row of the table will have a totals column to the right.
 
 ### Groups of tables
 
@@ -1459,14 +1467,13 @@ report. The parameters are:
     in the \_orgunitstructure resource table
 
 These parameters can be included in SQL statements using the
-$P\!{periods} syntax, where "periods" represents the parameter.
+`$P\!{periods}` syntax, where "periods" represents the parameter.
 
 \- To create a SQL query in iReport, click on the "report query" button.
 Write or paste your query into the textarea. An example SQL query using
 parameters which will create a report displaying raw data values at the
-fourth level in the org unit hierarchy
-    is:
-
+fourth level in the org unit hierarchy is:
+```
     select district.name as district, chiefdom.name as chiefdom, ou.name as facility,
     bcg.value as bcg, yellowfever.value as yellowfever, measles.value as  measles
     from organisationunit ou
@@ -1491,7 +1498,7 @@ fourth level in the org unit hierarchy
     where ous.level=4
     and ous.$P!{organisationunit_level_column}=$P!{organisationunits}
     order by district.name, chiefdom.name, ou.name;
-
+```
 Notice how all parameters are used in the query, along with SQL joins of
 resource tables in the DHIS2 database.
 
@@ -1539,8 +1546,7 @@ and CSS in the report. JavaScript and CSS can easily be included using
 standard script and style tags.
 
 If you selected relative periods when creating the standard report you
-can access these in JavaScript like
-    this:
+can access these in JavaScript like this:
 
     var periods = dhis2.report.periods; // An array with period identifiers
     var period = periods[0];
