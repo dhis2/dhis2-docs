@@ -39,7 +39,7 @@ make_html() {
     subdir=$3
     mkdir -p ${target}/${subdir}/html
     shared_resources ${target}/${subdir}/html
-    for res in `grep "resources/images" ${name}.md | sed 's/.*resources\/images\/\([^)]*\)).*/resources\/images\/\1/'`; do
+    for res in `grep '(resources/images' ${name}.md | sed 's/.*resources\/images\/\([^)]*\)).*/resources\/images\/\1/'`; do
         mkdir -p ${target}/${subdir}/html/`dirname $res`
         cp $res ${target}/${subdir}/html/$res
     done
@@ -50,11 +50,11 @@ make_html() {
     cd ${target}/${subdir}/html/
     # fix the section mappings in the full html file
     echo "remapping the section identifiers"
-    id_mapper ${name}_full.html 
+    id_mapper ${name}_full.html
     # split the full html file into chunks
     echo "splitting the html file into chunks"
     chunker ${name}_full.html $src/dhis2_chunked_template.html
-    cd $tmp 
+    cd $tmp
 
 }
 
