@@ -22,7 +22,7 @@ class Include(Module):
     # matches !INCLUDE directives in .mdpp files
     includere = re.compile(r"^!INCLUDE\s+(?:\"([^\"]+)\"|'([^']+)')"
                            "\s*(?:,\s*(\d+))?\s*$")
-    
+
     # check for any images that need to have their path shifted
     imagepath = re.compile(r"].*\((resources/images/.*)[ )]")
 
@@ -76,7 +76,7 @@ class Include(Module):
                     data[linenum:linenum+1] = self.include(match, dirname)
 
                 image = self.imagepath.search(line)
-                
+
                 if image:
                     data[linenum] = line.replace("resources/images","resources/images/"+dirname)
 
@@ -101,6 +101,8 @@ class Include(Module):
 
                 linenum += 1
 
+            # add a blank line to ensure new headings are correctly separated from previous text
+            data.append('\n')
             return data
 
         except (IOError, OSError) as exc:
