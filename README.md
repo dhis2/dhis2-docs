@@ -6,7 +6,7 @@ All of your favourite documents - in markdown format!
 This is the easy bit, and is all that most people have to do. The following sections describe the format, structure and a few considerations necessary for correctly generating the desired output.
 
 ## Format and editing
-The documents are maintained in **commonmark** markdown format, with an `.md` extension.
+The documents are maintained in [commonmark](https://commonmark.org/help/) markdown format, with an `.md` extension.
 
 Editing documents is as simple as editing a text file. Many IDEs have markdown support, including live previews. For Linux and Windows, [ghostwriter](https://wereturtle.github.io/ghostwriter/) is a nice option; it is free and supports side-by-side preview and custom stylesheets.
 
