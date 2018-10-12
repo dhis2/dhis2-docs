@@ -43,9 +43,11 @@ need to collect and analyze data:
 > The functions you have access to depend on your user role's access
 > permissions.
 
-<!--DHIS2-SECTION-ID:nagivating_metadata-->
+
 
 ### Navigating metadata objects
+
+<!--DHIS2-SECTION-ID:navigating_metadata-->
 Metadata object are presented in a list with predefined columns that are relevant for each object.
 You may customize which columns are shown in the list for the current object. These customizations are per user, and therefore won't affect other users. Note that these changes do not edit any metadata, just how the list is presented.
 
