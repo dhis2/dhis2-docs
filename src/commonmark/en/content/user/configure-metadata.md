@@ -43,6 +43,24 @@ need to collect and analyze data:
 > The functions you have access to depend on your user role's access
 > permissions.
 
+<!--DHIS2-SECTION-ID:nagivating_metadata-->
+
+### Navigating metadata objects
+Metadata object are presented in a list with predefined columns that are relevant for each object.
+You may customize which columns are shown in the list for the current object. These customizations are per user, and therefore won't affect other users. Note that these changes do not edit any metadata, just how the list is presented.
+
+#### Managing visible columns
+
+![](resources/images/maintainence/configurable_columns_dialog.png)
+
+1. Click the ![](resources/images/maintainence/icon_settings.png) icon to the top right of the list of objects you want to configure.
+2. A dialog will appear, with the default columns selected.
+3. Click any value in the list of **Available columns** to add them to the list of selected values.
+4. You may reorder the selected columns by drag-and-dropping the ![alt text](resources/images/maintainence/icon_reorder.png) -icon.
+5. You may also remove any column from the view by clicking the X-icon next to the name.
+6. Click **Save** once you are satisified with your changes.
+
+You may easily reset to the default values by clicking the **Reset to default** button.
 ## Manage categories
 
 <!--DHIS2-SECTION-ID:manage_category-->
