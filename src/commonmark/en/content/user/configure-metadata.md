@@ -3880,6 +3880,14 @@ An option set called "Delivery type" would have the options: "Normal",
 <td><p>Option set</p></td>
 <td><p>Create, edit, clone, share, delete, show details and translate</p></td>
 </tr>
+<tr class="odd">
+<td><p>Option group</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
+</tr>
+<tr class="odd">
+<td><p>Option group set</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
+</tr>
 </tbody>
 </table>
 
@@ -3920,6 +3928,59 @@ An option set called "Delivery type" would have the options: "Normal",
     4.  Sort the options by name, code/value or manually.
 
     5.  Click **Save**.
+
+
+
+### Create or edit an option group
+
+<!--DHIS2-SECTION-ID:create_option_group-->
+
+You can group and classify **options** within an **option set** by using **option groups**.
+This way you can create a subset of options in an option set. The main purpose of this is to be able to filter huge option sets into smaller, related parts.
+
+> **Note**
+>
+> You cannot change the **Option set** selected in an **Option group** once it has been created.
+
+1. Open the **Maintenance** app and click **Other** \> **Option group**.
+
+2. Click the add button.
+
+3. In the **Name** field, type the name of the option group.
+
+4. In the **Option set** field, selected the option set that contains options you want to group.
+
+5. Once an **Option set** is selected, you can select the **Options** you want to group.
+
+6. Click **save**.
+
+### Create or edit an option group set
+
+<!--DHIS2-SECTION-ID:create_option_group_set-->
+
+**Option group sets** allows you to categorise multiple **option groups** into a set.
+> **Note**
+>
+> You cannot change the **Option set** selected in an **Option group set** once it has been created.
+
+1. Open the **Maintenance** app and click **Other** \> **Option group set**.
+
+2. Click the add button.
+
+3. Fill in the form:
+    1. **Name**
+    2. **Code**
+    3. **Description**
+    4. **Option set**
+    5. **Data dimension**
+
+        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of “Period” and “Organisation unit”.
+
+4. Select option groups and assign them.
+
+    Available option groups are displayed in the left panel. Option groups that are currently members of the option group set are displayed in the right hand panel.
+
+5. Click **save**.
 
 ### Clone metadata objects
 
