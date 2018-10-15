@@ -3604,7 +3604,7 @@ The import process can be customized using a set of import parameters:
 <tr class="even">
 <td>force</td>
 <td>false | true</td>
-<td>Indicates whether the import should be forced. Data import could be rejected for various reasons of data set locking for example due to approval, data input period, expiry days and etc. In order to override such locks and force data input one can use data import with force=true. However, one needs to be a **superuser** for this parameter to work.</td>
+<td>Indicates whether the import should be forced. Data import could be rejected for various reasons of data set locking for example due to approval, data input period, expiry days, etc. In order to override such locks and force data input one can use data import with force=true. However, one needs to be a **superuser** for this parameter to work.</td>
 </tr>
 </tbody>
 </table>
