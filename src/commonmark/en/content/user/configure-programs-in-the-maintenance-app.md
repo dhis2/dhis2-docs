@@ -1430,6 +1430,11 @@ objects:
 
       - **Program**
 
+      - **Trigger rule only for program stage**
+
+        If a program stage is selected, the program rule will only run for the selected program stage,
+        as opposed to being run for every program stage in the program.
+
       - **Name**
 
       - **Description**
