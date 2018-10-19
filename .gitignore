@@ -1,5 +1,6 @@
 target/
 tmp/
 venv/
+site/
 **/__pycache__/**
 **/*.backup
