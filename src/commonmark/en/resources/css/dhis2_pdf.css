@@ -22,7 +22,7 @@ pre {
 
 p code {
   font-family: monospace;
-  font-weight: bold;
+  white-space: normal;
 }
 
 
@@ -133,12 +133,10 @@ h3 {
 
 h4 {
   font-size: 90%;
-  font-style: italic;
 }
 
 h5 {
   font-size: 90%;
-  font-style: italic;
 }
 
 h1.title {
