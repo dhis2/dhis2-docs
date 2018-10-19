@@ -4,7 +4,7 @@ body {
   padding-left: 1em;
   max-width: 64em;
   color: black;
-  font-family: roboto, sans-serif;
+  font-family: Arial, 'Open Sans', sans-serif;
   line-height: 140%;
   color: #333;
   counter-reset: chapter;
@@ -21,7 +21,7 @@ pre {
 
 p code {
   font-family: monospace;
-  font-weight: bold;
+  white-space: normal;
 }
 
 blockquote,
@@ -113,31 +113,12 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: roboto;
+  font-family: Arial, 'Open Sans';
   font-weight: bold;
   color: #000;
 }
 h1 {
-  font-size: 130%;
   break-before: always;
-}
-
-h2 {
-  font-size: 110%;
-}
-
-h3 {
-  font-size: 95%;
-}
-
-h4 {
-  font-size: 90%;
-  font-style: italic;
-}
-
-h5 {
-  font-size: 90%;
-  font-style: italic;
 }
 
 h1.title {
@@ -234,7 +215,7 @@ img {
 
 @page {
   size: A4;
-  font-family: roboto, sans-serif;
+  font-family: Arial, 'Open Sans', sans-serif;
   font-size: 85%;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
@@ -260,7 +241,7 @@ img {
   }
   @bottom-right {
     content: counter(page, lower-roman);
-    font-family: roboto, sans-serif;
+    font-family: Arial, 'Open Sans', sans-serif;
     font-size: 85%;
   }
   @bottom-left {
@@ -279,7 +260,7 @@ img {
   }
   @bottom-left {
     content: counter(page, lower-roman);
-    font-family: roboto, sans-serif;
+    font-family: Arial, 'Open Sans', sans-serif;
     font-size: 85%;
   }
   @bottom-right {
@@ -311,7 +292,7 @@ img {
 @page :right {
   @bottom-right {
     content: counter(page);
-    font-family: roboto, sans-serif;
+    font-family: Arial, 'Open Sans', sans-serif;
     font-size: 85%;
   }
 }

@@ -4,7 +4,7 @@ body {
   padding-left: 1em;
   max-width: 64em;
   color: black;
-  font-family: roboto, sans-serif;
+  font-family: Arial, 'Open Sans', sans-serif;
   font-size: 85%;
   line-height: 140%;
   color: #333;
@@ -114,7 +114,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: roboto;
+  font-family: Arial, 'Open Sans';
   font-weight: bold;
   color: #000;
 }
@@ -225,7 +225,7 @@ img {
 
 @page {
   size: A4;
-  font-family: roboto, sans-serif;
+  font-family: Arial, 'Open Sans', sans-serif;
   font-size: 85%;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
@@ -251,7 +251,7 @@ img {
   }
   @bottom-right {
     content: counter(page, lower-roman);
-    font-family: roboto, sans-serif;
+    font-family: Arial, 'Open Sans', sans-serif;
     font-size: 85%;
   }
   @bottom-left {
@@ -270,7 +270,7 @@ img {
   }
   @bottom-left {
     content: counter(page, lower-roman);
-    font-family: roboto, sans-serif;
+    font-family: Arial, 'Open Sans', sans-serif;
     font-size: 85%;
   }
   @bottom-right {
@@ -302,7 +302,7 @@ img {
 @page :right {
   @bottom-right {
     content: counter(page);
-    font-family: roboto, sans-serif;
+    font-family: Arial, 'Open Sans', sans-serif;
     font-size: 85%;
   }
 }
