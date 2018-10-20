@@ -234,103 +234,100 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 2.  Select whether you want to fill in all the personal user
     information, or invite the user by email to complete the rest of the
     user information:
-
-      - **Create account with user details**
-
+ - **Create account with user details**
 ![](resources/images/dhis2UserManual/user_management_details.png)
-
 Choose this option if you would like to enter all the login details of
-the new user such as username, password, etc.
-
-Under these conditions, the fields username, password, surname, first
-name, and roles are mandatory.
-
+the new user such as username, password, etc. Under these conditions, the fields username, password, surname, first
+name, and roles are mandatory.<br/><br/>
 After you've created the user, the account is ready for the user to use
-with the user name and password that you provide.
-
-\</listitem\> **Email invitation to create account**
-
+with the user name and password that you provide.<br/><br/>
+ - **Email invitation to create account**
 ![](resources/images/dhis2UserManual/user_management_invite.png)
-
 Choose this option if you want to send an invitation by email to the
 user. Then she/he must return to DHIS2 and finish setting up their user
 account. The account that the user finishes setting up will be limited
-according to how you configure the account.
-
+according to how you configure the account.<br/><br/>
 In order to use this feature "Enable email message notifications" in
-SystemSettings -\> Messaging should be checked.
-
+SystemSettings -\> Messaging should be checked.<br/><br/>
 Enter the email address to which the invitation should be sent. If you
 want to, you may also enter the user name that the account will have. If
 you leave the user name empty, then the user may choose their own user
 name when they respond to the invitation (as long as it is not taken
-already for another user.)
-
+already for another user.)<br/><br/>
 After you've created the user, the system sends an email to the address
 you provided. It contains a unique web link by which the user can return
 to the system and activate their account by entering the rest of their
 user information. The user must finish setting up the account within 4
 days, after that the invitation becomes invalid.
 
-\</listitem\> \</itemizedlist\> \</listitem\> Select an **Interface
-language**. You can select a language into which fixed elements of the
-DHIS2 user interface have been translated. Select a **Database
-language**. You can select a language into which implementation-supplied
+3. (Optional) Provide values for the fields **OpenID, LDAP identifier, Mobile phone number, WhatsApp, Facebook messenger, Skype, Telegram and Twitter**.
+
+4. Select an **Interface language**.<br/> 
+You can select a language into which fixed elements of the DHIS2 user interface have been translated. 
+
+5. Select a **Database language**. <br/>
+You can select a language into which implementation-supplied
 items have been translated in the database, for example data element
-names or organisation unit level names. In the **Available roles**
-section, double-click the user roles you want to assign to the user.
-Select **Data capture and maintenance organisation units**.
+names or organisation unit level names.
 
-![](resources/images/dhis2UserManual/user_management_fewer_options.png)
+6. In the **Available roles** section, double-click the user roles you want to assign to the user.
 
-The data capture and maintenance organisation units control for which
-organisation units the user can do data entry. You must assign at least
-one data capture and maintenance organisation unit to each user.
-
+7. Select **Data capture and maintenance organisation units**.<br/>
+ ![](resources/images/dhis2UserManual/user_management_fewer_options.png)<br/>
+The data capture and maintenance organisation units control for which organisation units the user can do data entry. You must assign at least one data capture and maintenance organisation unit to each user.<br/><br/>
 Users will have access to all sub-organisation units of the assigned
 organisation units. For example, if you've assigned a user to a district
 which has several facilities contained in the district, the user would
 have access to the district's data, as well as all of the facilities
 contained within the district.
 
-\</listitem\> (Optional) Select **Data output and analysis organisation
-units**. The data output and analysis organisation units controls for
-which organisation units the user can view aggregated data in the
-analytics apps, for example the **Pivot Table** and **GIS** apps. You
-can assign any number of data output and analysis organisation units to
-a user. Users will have access to all sub-organisation units of the
+8. (Optional) Select **Data output and analysis organisation units**.<br/><br/>
+The data output and analysis organisation units controls for 
+which organisation units the user can view aggregated data in the 
+analytics apps, for example the **Pivot Table** and **GIS** apps. You 
+can assign any number of data output and analysis organisation units to 
+a user.<br/><br/>
+Users will have access to all sub-organisation units of the
 assigned organisation units. You shouldn't select the descendants of an
 organisation unit which you have already selected. For example, if
 you've assigned the user to a district, you shouldn't select the
-facilities within that district. Assigning data output and analysis
-organisation units organisation units is optional. If you don't specify
-any organisation unit, the user will have access to the full
-organisation unit hierarchy for viewing aggregated data. As with the
-data capture organisation units, *you should not select descendant
-organisation units of a unit which you have already selected*. In
-several places in the analytics apps, you can select "user organisation
-unit" for the organisation unit dimension. This mechanism will first
-attempt to use the data view organisation units linked to the current
-user. If not found, it will use the data capture and maintenance
-organisation units. If the user has been assigned to multiple
-organisation units, the use of "user organisation unit" may result in
-unpredictable behaviour. Click **Show more options** and an additional
-three fields will show. (Optional) In the **Search organisation units**
-select the organisation units you want the user to be able to search in.
-(Optional) In the **Available user groups** section, double-click the
-user groups you want to assign to the user. (Optional) In the
-**Available dimension restrictions for data analytics** section,
-double-click the dimensions you want to assign to the user. You can
-restrict the values the user sees in data analytics apps by selecting
-dimensions that will restrict the user's view. Let's say you have
-defined *Implementing Partner* as a category option group set, and you
-have shared with this user only one or more specific implementing
-partners (category option groups). If you want to make sure that the
-user does not see totals in analytics that include values from other
-groups, assign *Implementing Partner* to the user. This insures that any
-data visible to the user through the analytics apps will be filtered to
-select only the Implementing Partner category option group(s) which are
-visible to the user. Click **Save**. \</orderedlist\>
+facilities within that district.<br/><br/>
+
+> **Note**
+> 
+>Assigning data output and analysis organisation units organisation units is optional. If you don't specify
+>any organisation unit, the user will have access to the full
+>organisation unit hierarchy for viewing aggregated data. As with the
+>data capture organisation units, *you should not select descendant
+>organisation units of a unit which you have already selected*.<br/><br/>
+>In several places in the analytics apps, you can select "user organisation
+>unit" for the organisation unit dimension. This mechanism will first
+>attempt to use the data view organisation units linked to the current
+>user. If not found, it will use the data capture and maintenance
+>organisation units. If the user has been assigned to multiple
+>organisation units, the use of "user organisation unit" may result in
+>unpredictable behaviour.<br/><br/>
+
+9. Click **Show more options** and an additional
+three fields will show. (Optional) <br/><br/>
+
+10. In the **Search organisation units** 
+select the organisation units you want the user to be able to search in.<br/><br/>
+
+11. (Optional) In the **Available user groups** section, double-click the
+user groups you want to assign to the user.<br/><br/>
+
+12. (Optional) In the **Available dimension restrictions for data analytics** section,
+double-click the dimensions you want to assign to the user. <br/><br/>
+You can restrict the values the user sees in data analytics apps by selecting
+dimensions that will restrict the user's view.
+
+> **Example**
+>
+> Let's say you have defined *Implementing Partner* as a category option group set, and you have shared with this user only one or more specific implementing partners (category option groups). If you want to make sure that the user does not see totals in analytics that include values from other groups, assign *Implementing Partner* to the user.<br/><br/>
+This insures that any data visible to the user through the analytics apps will be filtered to select only the Implementing Partner category option group(s) which are visible to the user.<br/><br/>
+
+13. Click **Save**. 
 
 ### Edit user objects
 
@@ -555,13 +552,9 @@ just a password.
 4.  (Optional) Select **External access (without login)**.
 
 5.  Change the settings for the user groups you want to modify.
-
-      - **None**
-
-      - **Can view**: Everyone in the user group can view the object
-
-      - **Can edit and view**: Everyone in the user group can view and
-        edit the object
+ - **None**
+ - **Can view**: Everyone in the user group can view the object
+ - **Can edit and view**: Everyone in the user group can view and edit the object
 
 6.  Click **Save**.
 
@@ -649,13 +642,9 @@ just a password.
 4.  (Optional) Select **External access (without login)**.
 
 5.  Change the settings for the user groups you want to modify.
-
-      - **None**
-
-      - **Can view**: Everyone in the user group can view the object
-
-      - **Can edit and view**: Everyone in the user group can view and
-        edit the object
+ - **None**
+ - **Can view**: Everyone in the user group can view the object
+ - **Can edit and view**: Everyone in the user group can view and edit the object
 
 6.  Click **Save**.
 
