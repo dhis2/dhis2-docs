@@ -17333,9 +17333,7 @@ request with the version id to the following resource:
 <!--DHIS2-SECTION-ID:webapi_data_store-->
 
 Using the *dataStore* resource, developers can store arbitrary data for
-their apps. Access to a datastore's namespace is limited to the user's
-access to the corresponding app, if the app has reserved the namespace.
-For example a user with access to the "sampleApp" application will also
+their apps. Access to a datastore's key is based on its sharing settings. By default all keys created are publicly accessible (read and write). Additionally,  access to a datastore's namespace is limited to the user's access to the corresponding app, if the app has reserved the namespace. For example a user with access to the "sampleApp" application will also
 be able to use the sampleApp namespace in the datastore. If a namespace
 is not reserved, no specific access is required to use it.
 
@@ -17545,6 +17543,43 @@ Example response:
         "status": "OK",
         "message": "Namespace 'foo' deleted."
     }
+
+### Sharing datastore keys
+
+<!--DHIS2-SECTION-ID:webapi_data_store_sharing-->
+
+Sharing of datastore keys follows the same principle as for other metadata sharing (see
+[Sharing](#webapi_sharing)).
+
+To get sharing settings for a specific datastore key:
+
+    GET /api/31/sharing?type=dataStore&id=<uid>
+
+To modify sharing settings for a specific datastore key:
+
+    POST /api/31/sharing?type=dataStore&id=<uid> 
+
+with the following request:
+
+    {
+    "object": {
+        "publicAccess": "rw------",
+        "externalAccess": false,
+        "user": {},
+        "userAccesses": [],
+        "userGroupAccesses": [
+            {
+                "id": "hj0nnsVsPLU",
+                "access": "rw------"
+            },
+            {
+                "id": "qMjBflJMOfB",
+                "access": "r-------"
+            }
+        ]
+    }
+    }
+
 
 ## User data store
 
