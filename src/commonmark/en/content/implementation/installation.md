@@ -262,6 +262,10 @@ Specifies the delay between WAL write operations. Setting this to a high
 value will improve performance on write-heavy systems since potentially
 many write operations can be executed within a single flush to disk.
 
+	random_page_cost = 1.1
+
+*SSD only.* Sets the query planner's estimate of the cost of a non-sequentially-fetched disk page. A low value will cause the system to prefer index scans over sequential scans. A low value makes sense for databases running on SSDs or being heavily cached in memory. The default value is 4.0 which is reasonable for traditional disks.
+
 Restart PostgreSQL by invoking `sudo /etc/init.d/postgresql restart`
 
 ### Database configuration
