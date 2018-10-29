@@ -199,6 +199,7 @@ table td {
 h1 {
   string-set: chapter content();
 }
+
 h2,
 h3 {
   string-set: section content();
@@ -211,6 +212,13 @@ nav ul {
 img {
   max-width: 100%;
   max-height: 800px;
+}
+
+hr {
+  border: 0;
+  color: #ccc;
+  background-color: #ccc;
+  height: 1px;
 }
 
 @page {
