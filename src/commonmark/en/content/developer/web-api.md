@@ -9249,10 +9249,9 @@ entire level optionally constrained by any number of boundary
 organisation units with the LEVEL-\<level\> syntax. Boundary refers to a
 top node in a sub-hierarchy, meaning that all organisation units at the
 given level below the given boundary organisation unit in the hierarchy
-will be included in the response, and is provided as regular
-organisation unit dimension items. A simple query for all org units at
-level
-    three:
+will be included in the response, and is provided as regular organisation unit 
+dimension items. The level value can either be a numerical level or refer to the identifier
+of the organisation unit level entity. A simple query for all org units at level three:
 
     /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016&dimension=ou:LEVEL-3
 
@@ -12023,8 +12022,9 @@ MAX\_ALLOWED\_RECIPIENTS limit which is 200.
 
     /api/26/sms/outbound
 
-    { 
-      "message":"Sms Text", 
+    {
+      "message":"Sms Text",
+
       "recipients": [
         "47XXXXXX1",
         "47XXXXXX2"
