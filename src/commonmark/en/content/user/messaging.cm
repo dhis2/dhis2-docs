@@ -6,14 +6,14 @@
 
 ## About messages and feedback messages
 
-![](resources/images/messaging/view_inbox.png)
+![](resources/images/dashboard/dashboard_messages_queue.png)
 
 Within DHIS2 you can send messages and feedback messages to users, user
 groups and organisation units. When you send a feedback message, it is
-routed to a particular user group called the feedback recipient group.
-If you're a member of this user group, you've access to feedback
-handling tools. You can for example set the status of an incoming
-feedback to "Pending" while you're waiting for information.
+routed to a particular user group. If you're a member of this user
+group, you've access to feedback handling tools. You can for example set
+the status of an incoming feedback to "Pending" while you're waiting for
+information.
 
 In addition to the user-to-user and feedback messages, depending on your
 configuration the system will also send you system-generated messages.
@@ -22,65 +22,35 @@ or background job failures and validation analysis results. Feedback
 handling tools are also available for validation results and the
 priority will be set to the importance of the validation rule violated.
 
-To visit the app click **message icon in header bar** or find the
-**Messaging** app in the app search box.
-
 > **Note**
 > 
 > Messages and feedback messages are not sent to users' e-mail
 > addresses, the messages only appear within DHIS2.
-> 
-> With 2.30 we introduced a new messaging app which offers a richer
-> messaging experience. Specifically:
-> 
->   - Switch between list view and compact view by clicking the icon in
->     the top right corner. This enables the user to view messages in
->     two different views. The list view is simplistic and gives a good
->     overview of all messages and is especially suited for feedback and
->     validation messages. The compact view is a modern way of view
->     messages where the user has more information in one view, hence
->     viewing and replying several messages is easier. The first
->     screenshot in this section displays list view, while the
->     screenshot in section **Read a message** displays the compact
->     view.
-> 
->   - A new search field is added which enables the user to search for
->     messages. The search filters messages on different message
->     attributes; subject, text and senders. This implies that you are
->     able to narrow down the message conversation list by entering a
->     search.
-> 
->   - A auto refresh feature is added so that the app fetches new
->     messages at a set interval, every 5 minutes. This feature is
->     disabled by default.
-> 
->   - For every message conversation you are able to add participants to
->     the conversation. This is very useful if you want input on that
->     particular conversation or if someone should also see the
->     information. It is not possible to delete participants from a
->     conversation.
 
 ## Create a message
 
-![](resources/images/messaging/create_private_message.png)
+![](resources/images/dashboard/dashboard_message.png)
 
-1.  Click **Compose**.
+1.  From the **Dashboard**, click **Messages**.
 
-2.  Define who you want to receive the message. You can send a message
+2.  Click **Write message**.
+
+3.  Define who you want to receive the message. You can send a message
     to organisation units, users and user groups.
     
-      - In the **To** field you can search for organisation units, users
-        and user groups and select the wished recipients.
+      - In the **To org unit** field, select the organisation units or
+        group of organisation units you want to send the message to.
+    
+      - In the **To user** field, select the users or user groups you
+        want to send the message to.
 
-3.  Type a subject and a message.
+4.  Type a subject and a message.
 
-4.  Click **Send**.
+5.  Click **Send**.
 
 ## Read a message
 
-![](resources/images/messaging/read_message.png)
-
-1.  Select the appropriate message type to the left.
+1.  From the **Dashboard**, click **Messages**.
 
 2.  Click a message.
     
@@ -89,58 +59,34 @@ To visit the app click **message icon in header bar** or find the
 
 ## Create a feedback message
 
-1.  Follow the steps as for creating a message, only selecting
-    **Feedback message** instead of entering recipients.
+1.  From the **Dashboard**, click **Write feedback**.
 
-2.  The message will be created as a feedback message and will appear in
-    all of the specified users' **Ticket** folder.
+2.  Type a subject and a feedback message.
 
-## Attachments
+3.  Click **Send**.
+    
+    The feedback message will appear in all of the specified users'
+    inboxes.
 
-With 2.31 we introduced attachments to messages. When creating or
-replying to a message conversation you have the possibility to add
-attachments. Currently there are no limitations to type or size of the
-file.
-
-## Manage validation and feedback messages
+## Manage feedback messages
 
 > **Note**
 > 
-> You'll only see feedback messages and have access to the extended
+> You'll only see feedback messages and have access to the feedback
 > handling tools if you are a member of the user group that is set up to
 > handle feedback messages.
-> 
-> With the new app you manage extended tools for tickets and validation
-> messages through the icon menu which appears when viewing a message or
-> checking of messages in the conversation list.
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>All messages selected</td>
-<td>All messages selected and extended choice picker selected</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+![](resources/images/dashboard/dashboard_messages_manage.png)
 
-You'll receive feedback messages to your **Ticket** folder and
-validation messages to your **Validation** folder. For feedback and
-validation messages you've the following options in addition to the
+You'll receive feedback messages to your **Messages** inbox. For
+feedback messages you've the following options in addition to the
 messages options:
 
-<table style="width:100%;">
+<table>
 <caption>Feedback handling tools</caption>
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 76%" />
+<col width="69%" />
+<col width="30%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -151,25 +97,24 @@ messages options:
 <tbody>
 <tr class="odd">
 <td><p><strong>Priority</strong></p></td>
-<td><p>You can mark a feedback/validation message with different priorities: <strong>None</strong>, <strong>Low</strong>, <strong>Medium</strong> or <strong>High</strong>.</p>
+<td><p>You can mark a feedback message with different priorities: <strong>None</strong>, <strong>Low</strong>, <strong>Medium</strong> or <strong>High</strong>.</p>
 <p>Setting the priority makes it easier to keep track of which feedback message you need resolved first, and which feedback messages that can wait.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Status</strong></p></td>
-<td><p>All feedback/validation messages get the status <strong>Open</strong> when created.</p>
+<td><p>All feedback messages get the status <strong>Open</strong> when created.</p>
 <p>To keep track of existing feedback messages, you can change the status to <strong>Pending</strong>, <strong>Invalid</strong> or <strong>Solved</strong>.</p>
-<p>You can filter feedback/validation messages based on their status with the two drop down menues in the internal header bar.</p></td>
+<p>You can filter feedback messages in your inbox based on their status. This makes it easier to switch between feedback messages and normal messages.</p></td>
 </tr>
 <tr class="odd">
 <td><p><strong>Assigned to</strong></p></td>
 <td><p>You can assign a feedback message to any member of the user group that is set up to handle feedback messages.</p>
-<p>You can assign a validation message to any user in the system.</p>
-<p><strong>-</strong> means that you haven't assigned a user to the feedback message.</p></td>
+<p><strong>None</strong> means that you haven't assigned a user to the feedback message.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Internal reply</strong></p></td>
 <td><p>When you work in a feedback handling team you might want to discuss the feedback before sending an answer to the sender. You can keep this discussion in the same message conversation as the feedback itself.</p>
-<p>To send a reply that within the feedback handling user group, click <strong>INTERNAL REPLY</strong>.</p></td>
+<p>To send a reply that within the feedback handling user group, click <strong>Internal reply</strong>.</p></td>
 </tr>
 </tbody>
 </table>

@@ -231,9 +231,9 @@ report, and event chart items. Click on the interpretations button
 ![](resources/images/dashboard/dashboard-interpretations-button.png),
 and the item will be expanded vertically underneath to show the
 interpretations and replies. You can like an interpretation, reply to an
-interpretation, and add your own interpretation. You can edit or delete
-your own interpretations and replies, and if you have moderator access,
-you can delete others’ interpretations.
+interpretation, and add your own interpretation. You can delete your own
+interpretations and replies, and if you have moderator access, you can
+delete others’ interpretations.
 
 
 ![](resources/images/dashboard/dashboard-interpretations.png)
@@ -280,14 +280,6 @@ permissions within the dashboard
     Allows the user groups to edit the dashboard in addition to viewing
     it. Editing allows for altering the layout, resizing and removing
     items, renaming/deleting the dashboard etc.
-
-You can provide users with the url of the dashboard, allowing them to
-navigate directly to the dashboard. To get the dashboard url, just
-access the dashboard in view mode, and copy the browser url. For
-example, the url to the Antenatal Care dashboard in play.dhis2.org/demo
-is:
-
-https://play.dhis2.org/demo/dhis-web-dashboard/\#/nghVC4wtyzi
 
 \</section\>
 

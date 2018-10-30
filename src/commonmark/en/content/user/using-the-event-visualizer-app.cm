@@ -476,11 +476,7 @@ write is visible to those people.
 1.  Click **Favorites** \> **Write interpretation**.
 
 2.  In the text field, type a comment, question or interpretation. You
-    can also mention other users with '@username'. Start by typing '@'
-    plus the first letters of the username or real name and a mentioning
-    bar will display the available users. Mentioned users will receive
-    an internal DHIS2 message with the interpretation or comment. You
-    can see the interpretation in the **Dashboard** app.
+    can see this information in the **Dashboard** app.
 
 3.  Search for a user group that you want to share your favorite with,
     then click the **+** icon.
@@ -495,18 +491,6 @@ write is visible to those people.
         setting is only applicable to **Public access**.
 
 5.  Click **Share**.
-
-### Subscribe to a favorite
-
-When you are subscribed to a favorite, you receive internal messages
-whenever another user likes/creates/updates an interpretation or
-creates/update an interpretation comment of this favorite.
-
-1.  Open a favorite.
-
-2.  Click **\>\>\>** in the top right of the workspace.
-
-3.  Click on the upper-right bell icon to subscribe to this favorite.
 
 ### Create a link to a favorite
 

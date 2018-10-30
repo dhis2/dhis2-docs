@@ -1136,18 +1136,6 @@
 <td>View User Within Managed Group</td>
 <td>F_USER_VIEW_WITHIN_MANAGED_GROUP</td>
 </tr>
-<tr class="even">
-<td>Delete tracked entity instance and associated enrollments and events</td>
-<td>F_TEI_CASCADE_DELETE</td>
-</tr>
-<tr class="odd">
-<td>Delete enrollment and associated events</td>
-<td>F_ENROLLMENT_CASCADE_DELETE</td>
-</tr>
-<tr class="even">
-<td>Edit expired data</td>
-<td>F_EDIT_EXPIRED</td>
-</tr>
 </tbody>
 </table>
 

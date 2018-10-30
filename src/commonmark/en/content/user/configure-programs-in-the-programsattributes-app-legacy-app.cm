@@ -393,12 +393,9 @@ actions should be taken at each stage.
     
     1.  Enter a **Name**.
     
-    2.  (Optional) select a **Color** and an **Icon** that will be used
-        by the data capture apps to identify this program stage.
+    2.  Enter a **Description**.
     
-    3.  Enter a **Description**.
-    
-    4.  In the **Scheduled days from start** field, enter the minimum
+    3.  In the **Scheduled days from start** field, enter the minimum
         number of days to wait for starting the program stage.
 
 5.  Enter repeatable program stage details.
@@ -689,80 +686,68 @@ entity attributes and the following program parameters:
 <td><pre><code>V{program_name}</code></pre></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td><p>Tracked Entity Attributes</p></td>
-<td><pre><code>A{pWEEfUJUjej}</code></pre></td>
-</tr>
-<tr class="even">
 <td><p>Program stage</p></td>
 <td><p>Current date</p></td>
 <td><pre><code>V{current_date}</code></pre></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td></td>
 <td><p>Days since due date</p></td>
 <td><pre><code>V{days_since_due_date}</code></pre></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td></td>
 <td><p>Days until due date</p></td>
 <td><pre><code>V{days_until_due_date}</code></pre></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td></td>
 <td><p>Due date</p></td>
 <td><pre><code>V{due_date}</code></pre></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td></td>
 <td><p>Organisation unit name</p></td>
 <td><pre><code>V{org_unit_name}</code></pre></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td></td>
 <td><p>Program name</p></td>
 <td><pre><code>V{program_name}</code></pre></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td></td>
 <td><p>Program stage name</p></td>
 <td><pre><code>V{program_stage_name}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Data Element</p></td>
-<td><pre><code>#{X8zyunlgUfM}</code></pre></td>
 </tr>
 </tbody>
 </table>
 
 ### Create a program notification
 
-![](resources/images/program/what_to_send.png)
+![](resources/images/program/program_notification_ui.png)
 
-![](resources/images/program/where_to_send.png)
+1.  Open the **Program / Attributes** app and click **Program**.
 
-![](resources/images/program/who_to_send.png)
-
-1.  Open the **Maintenance** app and click **Program and then
+2.  Click the relevant program and select **View program
     notifications**.
     
     A list of existing program notifications for the selected program
     opens. If the program doesn't have any program notifications, the
     list is empty.
 
-2.  Click on add button and select**Program notification**.
+3.  Click **Add new**.
 
-3.  Enter a **Name**.
+4.  Enter a **Name**.
 
-4.  In the **When-to-send it** field, select what should trigger the
+5.  In the **Trigger by** field, select what should trigger the
     notification.
     
     <table>
     <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
+    <col width="33%" />
+    <col width="33%" />
+    <col width="33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -792,22 +777,17 @@ entity attributes and the following program parameters:
     <td><p>The program notification is sent XX number of days before or after the enrollment date</p></td>
     <td><p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
     </tr>
-    <tr class="odd">
-    <td><p>Program Rule</p></td>
-    <td><p>Notification will be triggered as a result of program rule exeuction.</p></td>
-    <td><p>Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful.</p></td>
-    </tr>
     </tbody>
     </table>
 
-5.  In the **Who-to-send-it** field, select who should receive the
-    program notification.
+6.  In the **Recipients** field, select who should receive the program
+    notification.
     
     <table>
     <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
+    <col width="33%" />
+    <col width="33%" />
+    <col width="33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -837,25 +817,10 @@ entity attributes and the following program parameters:
     <td><p>All members of the selected user group receive the program notifications via the internal DHIS2 messaging system</p></td>
     <td><p>-</p></td>
     </tr>
-    <tr class="odd">
-    <td><p>Limit To Hierarchy</p></td>
-    <td><p>Send notification only to those users who belong to any of the organisation unit in the hierarchy.</p></td>
-    <td><p>This option is only available when User Group is selected as recipient.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Parent OrgUnit Only</p></td>
-    <td><p>Send notification only to those users who belong to parent organisation unit.</p></td>
-    <td><p>This option is only available when User Group is selected as recipient.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Program Attribute</p></td>
-    <td><p>TrackedEntityAttribute can also be selected as recipient.</p></td>
-    <td><p>This parameter will only be effective if TrackedEntityAttribute value type is PHONE_NUMBER/EMAIL.</p></td>
-    </tr>
     </tbody>
     </table>
 
-6.  Create the **Subject template**.
+7.  Create the **Subject template**.
     
     Double-click the parameters in the **Parameters** field to add them
     to your subject.
@@ -864,14 +829,14 @@ entity attributes and the following program parameters:
     > 
     > The subject is not included in text messages.
 
-7.  Create the **Message template**.
+8.  Create the **Message template**.
     
     Double-click the parameter names in the **Parameters** field to add
     them to your message.
     
     Dear A{w75KJ2mc4zz}, You're now enrolled in V{program\_name}.
 
-8.  Click **Save**.
+9.  Click **Save**.
 
 > **Note**
 > 
@@ -886,33 +851,29 @@ entity attributes and the following program parameters:
 
 ### Create a program stage notification
 
-![](resources/images/program/what_to_send-psnt.png)
+1.  Open the **Program / Attributes** app and click **Program**.
 
-![](resources/images/program/what_to_send-psnt.png)
+2.  Click the relevant program and select **View program stages**.
 
-![](resources/images/program/what_to_send-psnt.png)
-
-1.  Open the **Maintenance** app and click **Program and then
+3.  Click the relevant program stage and select **View program stage
     notifications**.
     
     A list of existing program stage notifications for the selected
     program stage opens. If the program stage doesn't have any program
     stage notifications, the list is empty.
 
-2.  Click on add button and select**Program stage notification**.
+4.  Click **Add new**.
 
-3.  Click **Add new**.
+5.  Enter a **Name**.
 
-4.  Enter a **Name**.
-
-5.  In the **When-to-send-it** field, select what should trigger the
+6.  In the **Trigger by** field, select what should trigger the
     notification.
     
     <table>
     <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
+    <col width="33%" />
+    <col width="33%" />
+    <col width="33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -932,22 +893,17 @@ entity attributes and the following program parameters:
     <td><p>The program stage notification is sent XX number of days before or after the due date</p></td>
     <td><p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
     </tr>
-    <tr class="odd">
-    <td><p>Program Rule</p></td>
-    <td><p>Notification will be triggered as a result of program rule exeuction.</p></td>
-    <td><p>Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful.</p></td>
-    </tr>
     </tbody>
     </table>
 
-6.  In the **Recipients** field, select who should receive the program
+7.  In the **Recipients** field, select who should receive the program
     stage notification. You can select:
     
     <table>
     <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
+    <col width="33%" />
+    <col width="33%" />
+    <col width="33%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -978,25 +934,10 @@ entity attributes and the following program parameters:
     <td><p>All members of the selected user group receive the program notifications via the internal DHIS2 messaging system</p></td>
     <td><p>-</p></td>
     </tr>
-    <tr class="odd">
-    <td><p>Limit To Hierarchy</p></td>
-    <td><p>Send notification only to those users who belong to any of the organisation unit in the hierarchy.</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Parent OrgUnit Only</p></td>
-    <td><p>Send notification only to those users who belong to parent organisation unit.</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Data Element</p></td>
-    <td><p>Data Element associated with ProgramStage can be selected as recipient.</p></td>
-    <td><p>Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL.</p></td>
-    </tr>
     </tbody>
     </table>
 
-7.  Create the **Subject template**.
+8.  Create the **Subject template**.
     
     Double-click the parameter names in the **Parameters** field to add
     them to your subject.
@@ -1005,7 +946,7 @@ entity attributes and the following program parameters:
     > 
     > The subject is not included in text messages.
 
-8.  Create the **Message template**.
+9.  Create the **Message template**.
     
     Double-click the parameter names in the **Parameters** field to add
     them to your message.
@@ -1013,7 +954,7 @@ entity attributes and the following program parameters:
     Dear A{w75KJ2mc4zz}, please come to your appointment the
     V{due\_date}.
 
-9.  Click **Save**.
+10. Click **Save**.
 
 > **Note**
 > 

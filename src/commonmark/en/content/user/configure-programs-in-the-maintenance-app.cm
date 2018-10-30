@@ -280,14 +280,6 @@ attributes and program parameters.
     <td><p>The name of the program.</p></td>
     </tr>
     <tr class="even">
-    <td><p><strong>Color</strong></p></td>
-    <td><p>Color used for this program in the data capture apps.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Icon</strong></p></td>
-    <td><p>Icon used for this program in the data capture apps.</p></td>
-    </tr>
-    <tr class="even">
     <td><p><strong>Short name</strong></p></td>
     <td><p>A short name of the program. The short name is used as the default chart or table title in the analytics apps.</p></td>
     </tr>
@@ -317,28 +309,6 @@ attributes and program parameters.
     <p><strong>Expiry days</strong></p></td>
     <td><p>The expiry days defines for how many days after the end of the previous period, an event can be edited. The period type is defined by the expiry period type. This means that when the specified number of expiry days has passed since the end date of the previous period, the events from that period are locked.</p>
     <p>If you set the expiry type to &quot;Monthly&quot; and the expiry days to &quot;10&quot; and the month is October, then you can't add or edit an event to October after the 10th of November.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><strong>Block entry form after completed</strong></td>
-    <td><p>Select checkbox to block the entry form after completion of the event of this program.</p>
-    <p>This means that the data in the entry form can't be changed until you reset the status to incomplete.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Select checkbox to capture an event's coordinates.</p>
-    <p>Many types of events may be recorded at a facility or be owned-by a health worker at a facility, but actually take place somewhere in the community.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><strong>Complete allowed only if validation passes</strong></td>
-    <td>Select checkbox to enforce that an event created by this program is only completed when all validation rules have passed.</td>
-    </tr>
-    <tr class="even">
-    <td><strong>Pre-generate event UID</strong></td>
-    <td>Select checkbox to pre-generate unique event id numbers.</td>
-    </tr>
-    <tr class="odd">
-    <td><strong>Description of report date</strong></td>
-    <td><p>Type a description of the report date.</p>
-    <p>This description is displayed in the case entry form.</p></td>
     </tr>
     </tbody>
     </table>
@@ -383,13 +353,8 @@ attributes and program parameters.
     <td><p>Will allow user to select a date in future for date data elements.</p></td>
     </tr>
     <tr class="odd">
-    <td><p><strong>Mobile render type</strong></p></td>
-    <td><p>Can be used to select different render types for mobile devices. Available options vary depending on the data element's value type. For example, for a numerical value you may select &quot;Default&quot;, &quot;Value&quot;, &quot;Slider&quot;, &quot;Linear scale&quot;, and &quot;Spinner&quot;.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Desktop render type</strong></p></td>
-    <td><p>WARNING: NOT IMPLEMENTED YET.</p>
-    <p>Can be used to select different render types for desktop (i.e. the web interface). Available options vary depending on the data element's value type. For example, for a numerical value you may select &quot;Default&quot;, &quot;Value&quot;, &quot;Slider&quot;, &quot;Linear scale&quot;, and &quot;Spinner&quot;.</p></td>
+    <td><p><strong>Render option as radio</strong></p></td>
+    <td><p>Displays a radio button in the data entry form. It's only possible to use for option sets.</p></td>
     </tr>
     </tbody>
     </table>
@@ -410,8 +375,7 @@ the user in the **Event Capture** app.
 
 4.  To create a **Section** data entry form:
     
-    1.  Click the add button and enter a section's name, description and
-        render type for desktop and mobile.
+    1.  Click the add button and enter a section name.
     
     2.  Click the section so it's highlighted by a black line.
     
@@ -732,21 +696,7 @@ expression and filter. The order of evaluation is:
 </ul>
 <p>It is possible to change the upper and lower boundaries to include a longer or shorter period relative to the reporting period, or delete one of the boundaries - in effect returing all data before or after a certiain period. It is also possible to add more constraints, for example to make an enrollment program indicator only include event data up to a given point in time.</p>
 <ul>
-<li><p>Boundary target: Can be <em>incident date</em>, <em>event date</em>, <em>enrollment date</em> or <em>custom</em>. Designates what is being constrained by the boundary.</p>
-<p><em>custom</em> is used make boundary that target either a date data element, tracked entity attribute or the presence of an event in a program stage. This is done with a custom expression on the form:</p>
-<ul>
-<li><p>Data element of type date: #{programStageUid.dataElementUid}.</p>
-<pre><code>#{A03MvHHogjR.a3kGcGDCuk6}</code></pre></li>
-<li><p>Tracked entity attribute of type date: #{attributeUid}.</p>
-<pre><code>A{GPkGfbmArby}</code></pre></li>
-<li><p>Presence of one event in a specific program stage: PS_EVENTDATE:programStageUid.</p>
-<pre><code>PS_EVENTDATE:A03MvHHogjR</code></pre>
-<blockquote>
-<p><strong>Note</strong></p>
-This boundary target is only applicable to
-Analytics type Enrollment
-</blockquote></li>
-</ul></li>
+<li><p>Boundary target: Can be <em>incident date</em>, <em>event date</em> or <em>enrollment date</em>. Designates what is being constrained by the boundary.</p></li>
 <li><p>Analytics period boundary type: Defines wether the boundary is a end boundary - starting with &quot;before...&quot;, or a start boundary - &quot;after...&quot;. Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period.</p></li>
 <li><p>Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort porgram indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with &quot;-1&quot; and &quot;Years&quot;</p></li>
 <li><p>Period type: See above. Can be any period, e.g. <em>Weekly</em> or <em>Quarterly</em>.</p></li>
@@ -1111,23 +1061,8 @@ variables:
 <td><p>Can be used in filters for including only certain program stages in a filter for tracker programs. Uses the unique identifier of the program stage:</p>
 <pre><code>V{program_stage_id} == &#39;YPSSfbmAtt1&#39;</code></pre></td>
 </tr>
-<tr class="even">
-<td><p>reporting_period_start</p></td>
-<td><p>Can be used in filters or expressions for comparing any date to the first date in each reporting period.</p>
-<pre><code>d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{reporting_period_start})</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>reporting_period_end</p></td>
-<td><p>Can be used in filters or expressions for comparing any date to the last inclusive date in each reporting period.</p></td>
-</tr>
 </tbody>
 </table>
-
-A filter that uses the "Reporting period end" variable to only include
-women who has an LMP that would be in the first
-    trimester:
-
-    d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{reporting_period_end}) <= 84
 
 An expression that uses the "value count" variable looks like
     this:
@@ -1553,40 +1488,8 @@ objects:
         <tr class="odd">
         <td><p><strong>Send Message</strong></p></td>
         <td><p><strong>Message template to send</strong></p></td>
-        <td><p>Send Message triggers a notification based on provided message template. This action will be taken when ever there is a change in <strong>data value</strong>. However this behaviour can be controled by providing event/enrollment status in program rule expression for example.</p>
-        <pre><code>V{event_status} == &#39;COMPLETED&#39;</code></pre>
+        <td><p>Send Message triggers a notification based on provided message template. This action will be taken at event/enrollment <strong>completion.</strong></p>
         <p>Message template will be parsed and variables will be substituted with actual values.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Schedule Message</strong></p></td>
-        <td><p><strong>Message template to send</strong></p>
-        <p><strong>Data field which contains expression to evaluate the date which notification should be sent at.</strong></p></td>
-        <td><p>Schedule Message will schedule notification at date provided by Expression in the data field. Sample expression is given below</p>
-        <pre><code>d2:addDays( &#39;2018-04-20&#39;, &#39;2&#39; )</code></pre>
-        <p>Message template will be parsed and variables will be substituted with actual values.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Hide option</strong></p></td>
-        <td><p><strong>Data element to hide option for</strong></p>
-        <p><strong>Tracked entity attribute to hide option for</strong></p>
-        <p><strong>Option that should be hidden</strong></p></td>
-        <td><p>Used to selectively hide a single option for an option set in a given data element/tracked entity attribute.</p>
-        <p>When combined with <strong>show option group</strong> the <strong>hide option</strong> takes presedence.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Hide option group</strong></p></td>
-        <td><p><strong>Data element to hide option group for</strong></p>
-        <p><strong>Tracked entity attribute to hide option group for</strong></p>
-        <p><strong>Option group that should be hidden</strong></p></td>
-        <td><p>Used to hide all options in a given option group and data element/tracked entity attribute.</p>
-        <p>When combined with <strong>show option group</strong> the <strong>hide option group</strong> takes presedence.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Show option group</strong></p></td>
-        <td><p><strong>Data element to show option group for</strong></p>
-        <p><strong>Tracked entity attribute to show option group for</strong></p>
-        <p><strong>Option group that should be shown</strong></p></td>
-        <td><p>Used to show only options from a given option group in a given data element/tracked entity attribute. To show an option group implicitly hides all options that is not part of the group(s) that is shown.</p></td>
         </tr>
         </tbody>
         </table>
@@ -1955,22 +1858,15 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <p>Example:</p>
 <pre><code>d2:length(#{variableWithText})</code></pre></td>
 </tr>
-<tr class="even">
-<td>d2:inOrgUnitGroup</td>
-<td>(text)</td>
-<td>Evaluates wether the current organisation unit is in the argument group. The argument can be defined with either ID or organisation unit group code. The current organisation unit will be the event organisation unit when the rules is triggered in the context of an event, and the enrolling organisation unit when the rules is triggered in the event of a tei registration form.
-<p>Example expression:</p>
-<pre><code>d2:inOrgUnitGroup(&#39;HIGH_RISK_FACILITY&#39;)</code></pre></td>
-</tr>
 </tbody>
 </table>
 
 <table>
 <caption>Standard variables to use in program rule expressions</caption>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 54%" />
+<col width="15%" />
+<col width="30%" />
+<col width="54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1993,63 +1889,41 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <td>Contains the event date of the current event execution. Will not have a value at the moment the rule is executed as part of the registration form.</td>
 </tr>
 <tr class="odd">
-<td>V{event_status}</td>
-<td>(string)</td>
-<td>Contains status of the current event or enrollment.
-<p>Example expression to check status is:</p>
-<pre><code>V{event_status) == &#39;COMPLETED&#39;</code></pre></td>
-</tr>
-<tr class="even">
 <td>V{due_date}</td>
 <td>(date)</td>
 <td>This variable will contain the current date when the rule is executed. Note: This means that the rule might produce different results at different times, even if nothing else has changed.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>V{event_count}</td>
 <td>(number)</td>
 <td>Contains the total number of events in the enrollment.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>V{enrollment_date}</td>
 <td>(date)</td>
 <td>Contains the enrollment date of the current enrollment. Will not have a value for single event programs.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>V{incident_date}</td>
 <td>(date)</td>
 <td>Contains the incident date of the current enrollment. Will not have a value for single event programs.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>V{enrollment_id}</td>
 <td>(string)</td>
 <td>Universial identifier string(UID) of the current enrollment. Will not have a value for single event programs.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>V{event_id}</td>
 <td>(string)</td>
 <td>Universial identifier string(UID) of the current event context. Will not have a value at the moment the rule is executed as part of the registration form.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>V{orgunit_code}</td>
 <td>(string)</td>
 <td>Contains the code of the orgunit that is linked to the current enrollment. For single event programs the code from the current event orgunit will be used instead.
 <p>Example expression to check wether orgunit code starts with WB_:</p>
 <pre><code>d2:left(V{orgunit_code},3) == &#39;WB_&#39;</code></pre></td>
-</tr>
-<tr class="odd">
-<td>V{environment}</td>
-<td>(string)</td>
-<td>Contains a code representing the current runtime environment for the rules. The possible values is &quot;WebClient&quot;, &quot;AndroidClient&quot; and &quot;Server&quot;. Can be used when a program rule is only supposed to run in one or more of the client types.</td>
-</tr>
-<tr class="even">
-<td>V{program_stage_id}</td>
-<td>(string)</td>
-<td>Contains the ID of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty.</td>
-</tr>
-<tr class="odd">
-<td>V{program_stage_name}</td>
-<td>(string)</td>
-<td>Contains the name of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty.</td>
 </tr>
 </tbody>
 </table>
@@ -2346,29 +2220,26 @@ programs.
 
 3.  Type a **Name** of the tracked entity.
 
-4.  (Optional) select a **Color** and an **Icon** that will be used by
-    the data capture apps to identify this tracked entity type.
+4.  (Optional) Enter a **Description** of the tracked entity.
 
-5.  (Optional) Enter a **Description** of the tracked entity.
-
-6.  (Optional) Enter a **Minimum number of attributes required to
+5.  (Optional) Enter a **Minimum number of attributes required to
     search**. This specifies the amount of attributes that need to be
     filled out in order to be able to search for this **tracked entity
     type** in a *global search*. See [Configure
     Search](../search/search.xml#configure_search) for more information.
 
-7.  (Optional) Enter a **Maximum number of tracked entity instances to
+6.  (Optional) Enter a **Maximum number of tracked entity instances to
     return in search**. This specifies the amount of tracked entity
     instances that will be returned in a *global search*. See [Configure
     Search](../search/search.xml#configure_search) for more information.
 
-8.  (Optional) Add **Tracked entity type attributes**. This is used to
+7.  (Optional) Add **Tracked entity type attributes**. This is used to
     configure search, see [Configure
     Search](../search/search.xml#configure_search) for more information.
 
-9.  (Optional) Enter an **Alternative name** of the tracked entity.
+8.  (Optional) Enter an **Alternative name** of the tracked entity.
 
-10. Click **Save**.
+9.  Click **Save**.
 
 ## Configure search
 
