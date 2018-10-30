@@ -102,7 +102,7 @@ class Include(Module):
                 linenum += 1
 
             # add a blank line to ensure new headings are correctly separated from previous text
-            data.append('\n')
+            data.append("\n\n")
             return data
 
         except (IOError, OSError) as exc:
