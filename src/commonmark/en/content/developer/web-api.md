@@ -1014,7 +1014,7 @@ and now only one of the filters must match to have a result
 ### Identifiable token filter
 
 In addition to the specific property based filtering mentioned above,
-we also have **token** based **OR** filtering across a set of
+we also have **token** based **AND** filtering across a set of
 properties: id, code and name (also shortName if available). These
 properties are commonly referred as **identifiable**. The idea is to
 filter metadata whose id, name, code or short name containing something.
@@ -1024,20 +1024,17 @@ following: id,name,code, shortName
 
     api/dataElements.json?filter=identifiable:token:2nd
 
-It is also possible to specifiy multiple filtering values.
+It is also possible to specify multiple filtering values.
 
-Example: Get all data elements where *fbfJHSPpUQD* or *2nd* or *3rd* is
-found in any of the **identifiable** properties.
+Example: Get all data elements where *ANC visit* is found in any of the **identifiable** properties. The system returns all data elements where both tokens (ANC and visit) are found anywhere in identifiable properties.
 
-    api/dataElements.json?filter=identifiable:token:fbfJHSPpUQD 2nd 3rd
+    api/dataElements.json?filter=identifiable:token:ANC visit
 
-It is also possible to combine identifiable filter with property based
-filter and expect the *rootJunction* to be
-    applied.
+It is also possible to combine identifiable filter with property based filter and expect the *rootJunction* to be applied.
 
-    api/dataElements.json?filter=identifiable:token:fbfJHSPpUQD 2nd 3rd&filter=displayName:ilike:tt1
+    api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
 
-    api/dataElements.json?filter=identifiable:token:fbfJHSPpUQD 2nd 3rd&filter=displayName:ilike:tt1&rootJunction=OR
+    api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1&rootJunction=OR
 
 ## Metadata field filter
 
