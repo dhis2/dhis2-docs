@@ -3938,6 +3938,8 @@ An option set called "Delivery type" would have the options: "Normal",
 You can group and classify **options** within an **option set** by using **option groups**.
 This way you can create a subset of options in an option set. The main purpose of this is to be able to filter huge option sets into smaller, related parts.
 
+Options that are grouped can be hidden or shown together in tracker and event capture through program rules.
+
 > **Note**
 >
 > You cannot change the **Option set** selected in an **Option group** once it has been created.
@@ -3946,19 +3948,22 @@ This way you can create a subset of options in an option set. The main purpose o
 
 2. Click the add button.
 
-3. In the **Name** field, type the name of the option group.
+3. Fill in the form:
+    1. **Name**
+    2. **Short name**
+    2. **Code**
+    4. **Option set**
 
-4. In the **Option set** field, selected the option set that contains options you want to group.
+4. Once an **Option set** is selected, you can assign the **Options** you want to group.
 
-5. Once an **Option set** is selected, you can select the **Options** you want to group.
-
-6. Click **save**.
+6. Click **Save**.
 
 ### Create or edit an option group set
 
 <!--DHIS2-SECTION-ID:create_option_group_set-->
 
 **Option group sets** allows you to categorise multiple **option groups** into a set.
+The main purpose of the option group set is to add more dimensionality to your captured data for analysis.
 > **Note**
 >
 > You cannot change the **Option set** selected in an **Option group set** once it has been created.
@@ -3980,7 +3985,7 @@ This way you can create a subset of options in an option set. The main purpose o
 
     Available option groups are displayed in the left panel. Option groups that are currently members of the option group set are displayed in the right hand panel.
 
-5. Click **save**.
+5. Click **Save**.
 
 ### Clone metadata objects
 
