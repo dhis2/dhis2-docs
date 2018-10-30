@@ -460,6 +460,10 @@
 <td><p>Whitelists a set of URLs which can access the DHIS 2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served.</p></td>
 </tr>
 <tr class="even">
+<td><p><strong>Mapzen search API key</strong></p></td>
+<td><p>Defines the API key for the Mapzen API. This API is used to search addresses globally within DHIS 2.</p></td>
+</tr>
+<tr class="odd">
 <td><p><strong>Google Maps API key</strong></p></td>
 <td><p>Defines the API key for the Google Maps API. This is used to display maps within DHIS 2.</p></td>
 </tr>

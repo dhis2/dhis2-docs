@@ -916,6 +916,47 @@ Note that several instructions have been omitted for brevity in the
 above example. Consult the reverse proxy section for a detailed
 configuration guide.
 
+## Application cache providers
+
+<!--DHIS2-SECTION-ID:install_application_cache_providers-->
+
+DHIS 2 user *Ehcache* as application cache provider by default. DHIS 2
+can be configured to use other cache providers as well, such as
+*memcached*.
+
+### Memcached
+
+<!--DHIS2-SECTION-ID:install_application_cache_memcached-->
+
+Memcached is a high-performance, distributed memory object caching
+system. A memcached server needs to be made available to DHIS 2, as it
+runs as a separate service outside DHIS 2.
+
+To use memcached as DHIS 2 application provider you can set the
+following properties in the *dhis.conf* configuration file:
+
+    # Cache provider, can be 'ehcache', 'memcached'
+    cache.provider = memcached
+    
+    # Cache servers, default is 'localhost:11211'
+    cache.servers = localhost:11211
+    
+    # Cache time in seconds, default is 600
+    cache.time = 600
+
+Only the *cache.provider* setting is mandatory. You need to restart DHIS
+2 for the change to take effect.
+
+You can install memcached on Ubuntu using the following command:
+
+    sudo apt-get install memcached
+
+Memcached will start by default after being installed and is available
+on localhost port *11211*. You can start, stop and view the status of
+the memcached service using the following command:
+
+    sudo service memcached start | stop | status
+
 ## Starting Tomcat at boot time
 
 <!--DHIS2-SECTION-ID:install_starting_tomcat_boot_time-->
@@ -1472,9 +1513,6 @@ viable starting point for your own configuration
     # Session timeout in seconds, default is 3600
     # system.session.timeout = 3600
     
-    # SQL view protected tables, can be 'on', 'off'
-    # system.sql_view_table_protection = on
-    
     # ----------------------------------------------------------------------
     # Encryption
     # ----------------------------------------------------------------------
@@ -1519,6 +1557,19 @@ viable starting point for your own configuration
     
     # LDAP entry distinguished name filter
     # ldap.search.filter = (cn={0})
+    
+    # ----------------------------------------------------------------------
+    # Application caching
+    # ----------------------------------------------------------------------
+    
+    # Cache provider, can be 'ehcache', 'memcached', default is 'ehcache'
+    # cache.provider = memcached
+    
+    # Cache servers, default is 'localhost:11211', applies to memcached
+    # cache.servers = localhost:11211
+    
+    # Cache time in seconds, default is 600, applies to memcached
+    # cache.time = 600
     
     # ----------------------------------------------------------------------
     # Node

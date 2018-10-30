@@ -313,13 +313,13 @@ follows:
 <tbody>
 <tr class="odd">
 <td><p>View information for the current period</p></td>
-<td><ol type="1">
+<td><ol style="list-style-type: decimal">
 <li><p>Click a facility.</p></li>
 </ol></td>
 </tr>
 <tr class="even">
 <td><p>View information for a selected period</p></td>
-<td><ol type="1">
+<td><ol style="list-style-type: decimal">
 <li><p>Right-click a facility and click <strong>Show information</strong>.</p></li>
 <li><p>In the <strong>Infrastructural data</strong> section, select a period.</p></li>
 </ol>

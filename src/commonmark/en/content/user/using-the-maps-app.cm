@@ -27,8 +27,8 @@ and groups.
   - The **layer panel** on the left side of the workspace shows an
     overview of the layers for the current map:
     
-      - As layers are added, using the **(+) Add layer** button, they
-        are arranged and managed in this panel.
+      - As layers are added, using the (+) Add layer button, they are
+        arranged and managed in this panel.
     
       - The **basemap** is always shown in the panel. The default
         basemap is OSM Light and is selected by default. OpenStreetMap
@@ -41,52 +41,30 @@ and groups.
 
 <!-- end list -->
 
-  - The **File** button near the top left allows you to open and save
-    maps:
+  - The **Favorites** button near the top left allows you to save and
+    open maps:
     
       - New  
-        will clear any existing map layers to create a new map.
+        will clear any existing map layers to create a new thematic map.
     
       - Open  
-        will display a dialog box with a list of existing maps where
-        they be opened, renamed, shared and deleted. *The title of the
-        current map is displayed in the header bar above the File
-        button.*
+        will display a **Favorites** dialog to select an existing
+        thematic map. Favorites can also be renamed, shared and deleted
+        through the Favorites dialog. *The title of the current favorite
+        is displayed in the header bar above the Favorites button.*
     
       - Save  
-        will save any changes to the current map.
+        will save any changes to the current favorite.
     
       - Save as  
-        will save the current map with a new name.
+        will save the current thematic map as a new favorite.
     
-      - Rename  
-        allows you to change the name and/or description of the current
-        map.
-    
-      - Translate  
-        allows you to translate the name and/or description of the
-        current map.
-    
-      - Share  
-        will open a dialog where the current map can be shared with
-        everyone or a group of users.
+      - Write interpretation  
+        will open a dialog where an interpretation for the current
+        favorite can be written.
     
       - Get link  
-        will provide a direct link to the current map.
-    
-      - Delete  
-        deletes the current map.
-
-<!-- end list -->
-
-  - The **Interpretations** button at top right opens an interpretations
-    panel on the right side of the workspace. The button is only
-    clickable if the map is saved.
-    
-      - **Details** shows information about the current map.
-    
-      - **Interpretations** allows you to view, add, edit and share
-        interpretations about the current map.
+        will provide a direct link and API link to the current favorite.
 
 <!-- end list -->
 
@@ -152,8 +130,6 @@ Along the bottom of the basemap card is:
 3.  Select a layer to add to the current map. Possible options are:
     
       - [Events](#using_maps_event_layer)
-    
-      - [Tracked entities](#using_maps_tracked_entity_layer)
     
       - [Facilities](#using_maps_facility_layer)
     
@@ -299,17 +275,13 @@ layer**selection. This opens the Events layer configuration dialog.
     
     ![](resources/images/maps/maps_event_layer_dialog_STYLE.png)
     
-      - Select **Group events** to group nearby events (cluster), or
-        **View all events** to display events individually.
+      - Select **Group events** to group nearby events, or **View all
+        events** to display events individually.
     
-      - Select a **color** for the event or cluster points.
+      - Select a color for the event or cluster points.
     
-      - Select the **radius** (between 1 and 20) for the events.
-    
-      - Select **Show buffer** to display visual buffer around each
-        event. The radius of the buffer can be modified here. This
-        option is only available if you select **View all events**
-        above.
+      - Select the radius (between 1 and 20) for grouped events; also
+        known as **clusters**.
 
 6.  Click **ADD LAYER**.
 
@@ -353,125 +325,6 @@ To clear all event layer data in a map:
 
 1.  In the layer panel, click the delete (trash can) icon on the event
     layer card.
-    
-    The layer is removed from the current map.
-
-## Manage tracked entity layers
-
-<!--DHIS2-SECTION-ID:using_maps_tracked_entity_layer-->
-
-The tracked entity layer displays the geographical location of tracked
-entities registered in the DHIS2. Provided that tracked entities have
-associated point or polygon coordinates, you can explore these on a map.
-
-![](resources/images/maps/maps_tracked_entity_layer.png)
-
-Tracked entity layers are represented by layer cards in the layer panel
-such as:
-
-Along the top of the tracked entity card from left to right are:
-
-  - A grab field to allow dragging and re-ordering layers with the
-    mouse.
-
-  - The title and period associated with the layer.
-
-  - An eye symbol for toggling the visibility of the layer.
-
-  - An arrow symbol to collapse and expand the tracked entity card.
-
-In the middle of the tracked entity card is a legend indicating the
-styling of the layer.
-
-Along the bottom of the tracked entity card from left to right are:
-
-  - An edit (pencil) button to open the layer configuration dialog.
-
-  - A slider for modifying the layer transparency.
-
-  - A delete (trash can) icon to remove the layer from the current map.
-
-### Create a tracked entity layer
-
-<!--DHIS2-SECTION-ID:maps_create_tracked_enity_layer-->
-
-To create an tracked entity layer, choose **Tracked entities** on the
-**Add layer** selection. This opens the Tracked entity layer
-configuration dialog.
-
-1.  In the **DATA** tab:
-    
-    ![](resources/images/maps/maps_tracked_entity_layer_dialog_DATA.png)
-    
-      - Select the **Tracked Entity Type** you want to show on the map.
-    
-      - Select a **Program** where the tracked entities belong.
-    
-      - Set the **Program status** to be **Active** or **Completed**.
-    
-      - Set the **Follow up** status of the tracked entity for the given
-        program.
-
-2.  In the **PERIOD**
-    tab
-    
-    ![](resources/images/maps/maps_tracked_entity_layer_dialog_PERIOD.png)
-    
-      - If no program is selected, you can set start and end dates when
-        the tracked entities were last updated.
-    
-      - If a program is selected, you can set start and end dates for
-        the program period.
-
-3.  In the **ORG UNITS**
-    tab:
-    
-    ![](resources/images/maps/maps_tracked_entity_layer_dialog_ORG_UNITS.png)
-    
-      - Select the organisation units you want to include in the layer.
-        You have 3 selection modes:
-        
-          - **Selected only**: Include tracked entities belonging to
-            selected org units only.
-        
-          - **Selected and below**: Included tracked entities in and
-            right below selected org units.
-        
-          - **Selected and all below**: Included tracked entities in and
-            all below selected org units.
-
-4.  In the **STYLE**
-    tab:
-    
-    ![](resources/images/maps/maps_tracked_entity_layer_dialog_STYLE.png)
-    
-      - Select a **color** for the tracked entities points and polygons.
-    
-      - Select the **point size** (radius between 1 and 20) for the
-        points.
-    
-      - Select **Show buffer** to display visual buffer around each
-        tracked entity. The buffer distance in meters can be modified
-        here.
-
-5.  Click **ADD/UPDATE LAYER**.
-
-### Modify a tracked entity layer
-
-1.  In the layer panel, click the edit (pencil) icon on the tracked
-    entity layer card.
-
-2.  Modify the setting on the DATA, PERIOD, ORG UNIT and STYLE tabs as
-    desired.
-
-3.  Click **UPDATE LAYER**.
-
-### Clear a tracked entity layer
-
-To clear a tracked entity layer from a map:
-
-1.  In the layer panel, click the delete (trash can) icon on the tracked
-    entity layer card.
     
     The layer is removed from the current map.
 
@@ -645,8 +498,8 @@ follows:
 <table>
 <caption>View organisation unit information</caption>
 <colgroup>
-<col style="width: 40%" />
-<col style="width: 59%" />
+<col width="40%" />
+<col width="59%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -657,13 +510,13 @@ follows:
 <tbody>
 <tr class="odd">
 <td><p>View information for the current period</p></td>
-<td><ol type="1">
+<td><ol style="list-style-type: decimal">
 <li><p>Click a facility.</p></li>
 </ol></td>
 </tr>
 <tr class="even">
 <td><p>View information for a selected period</p></td>
-<td><ol type="1">
+<td><ol style="list-style-type: decimal">
 <li><p>Right-click a facility and click <strong>Show information</strong>.</p></li>
 <li><p>In the <strong>Infrastructural data</strong> section, select a period.</p></li>
 </ol>
@@ -1125,103 +978,115 @@ Here are some examples of external layers:
 > To define external map layers, see the
 > [???](#manage_external_maplayer).
 
-## File menu
+## Manage map favorites
 
-<!--DHIS2-SECTION-ID:using_maps_file_menu-->
+<!--DHIS2-SECTION-ID:using_maps_favorites-->
 
-Use the **File menu** to manage your maps. Several menu items will be
-disabled until you open or save a map.
+Saving your maps as favorites makes it easy to restore them later. It
+also gives you the opportunity to share them with other users as an
+interpretation or put it on the dashboard. You can save all types of
+layer configurations as a favorite.
 
-Saving your maps makes it easy to restore them later. It also gives you
-the opportunity to share them with other users as an interpretation or
-put it on the dashboard. You can save all types of layer configurations
-as a favorite.
+### Open a favorite
 
-### Create a new map
+1.  Select **Open** from the **Favorites** menu.
+    
+    The **Favorites** dialog box opens.
 
-Click **File** \> **New**.
+2.  Find the favorite you want to open. You can either use **\<** and
+    **\>** or the search field to find a saved favorite. The list is
+    filtered on every character that you enter.
 
-NB\! This will clear the current map layers you have without saving.
+3.  Click the name to open that favorite.
 
-### Open a new map
+### Save a map as a new favorite
 
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
+When you have created a map it is convenient to save it as a favorite:
 
-2.  Find the favorite you want to open. You can either use \< and \> or
-    the search field to find a saved map. The list is filtered on every
-    character that you enter. You can filter the list by selecting
-    **Show all**, **Created by me** or **Created by others**.
+1.  Select **Save as** from the **Favorites** menu.
+    
+    The **Save as new favorite** dialog box opens.
 
-3.  Click the name of the map you want to open.
-
-### Save a map
-
-When you have created a map it is convenient to save it for later use:
-
-1.  Click **File** \> **Save**.
-
-2.  Enter a **Name** (required) and a **Description** (optional) the
-    first time you save a map.
+2.  In the text field, type the name you want to give your map favorite.
 
 3.  Click **SAVE**.
+    
+    Your favorite is added to the list.
 
-### Save a copy of a map
+### Overwrite the current favorite
 
-1.  Click **File** \> **Save as...**
+Select **Save** from the **Favorites** menu.
 
-2.  Enter a **Name** (required) and a **Description** (optional) for the
-    map.
+### Rename a favorite
 
-3.  Click **SAVE**.
+1.  Select **Open** from the **Favorites** menu.
+    
+    The **Favorites** dialog box opens.
 
-### Rename a map
+2.  Find the favorite you want to rename.
+    
+    You can either use **\<** and **\>** or the search field to find a
+    saved favorite.
 
-1.  Click **File** \> **Rename**.
+3.  Click the more options icon (three dots) at the right of the
+    favorite row, and select **Rename**.
+    
+    The **Rename favorite** dialog box opens.
 
-2.  Enter a new **Name** and/or **Description** for your map.
+4.  Edit the name and/or description.
 
-3.  Click **RENAME**. The map is updated.
+5.  Click **SAVE**.
+    
+    The favorite is updated.
 
-You can also rename maps without opening them:
+### Delete a favorite
 
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
+1.  Select **Open** from the **Favorites** menu.
+    
+    The **Favorites** dialog box opens.
 
-2.  Find the map you want to rename. You can either use \< and \> or the
-    search field.
+2.  Find the favorite you want to delete.
+    
+    You can either use **\<** and **\>** or the search field to find a
+    saved favorite.
 
-3.  Click the more options icon (three dots) at the right of the map
-    row, and select **Rename**.
+3.  Click the more options icon (three dots) at the right of the
+    favorite row, and select **Delete**.
+    
+    A confirmation dialog is displayed.
 
-4.  Follow the steps above.
+4.  Click **DELETE** to confirm that you want to delete the favorite.
 
-### Translate a map
+### Modify sharing settings for a favorite
 
-1.  Click **File** \> **Translate**.
+After you have created a map and saved it as a favorite, you can share
+the favorite with everyone or a user group. To modify the sharing
+settings:
 
-2.  Select the **Locale** (language) your translation.
+1.  Select **Open** from the **Favorites** menu.
+    
+    The **Favorites** dialog box opens.
 
-3.  Enter a translated **Name** and **Description**. The original text
-    will show below the field.
+2.  Find the favorite you want to share.
+    
+    You can either use **\<** and **\>** or the search field to find a
+    saved favorite.
 
-4.  Click **SAVE**.
+3.  Click the more options icon (three dots) at the right of the
+    favorite row, and select **Share**.
+    
+    The **Sharing settings** dialog box opens.
 
-### Modify sharing settings for a map
-
-After you have created a map and saved it, you can share the map with
-everyone or a user group. To modify the sharing settings:
-
-1.  Click **File** \> **Share**. The sharing settings dialog opens.
-
-2.  In the text box, search for the name of the user or group you want
+4.  In the text box, search for the name of the user or group you want
     to share your favorite with and select it.
     
     The chosen user or group is added to the list of recipients.
     
     Repeat the step to add more user groups.
 
-3.  If you want to allow external access, select the corresponding box.
+5.  If you want to allow external access, select the corresponding box.
 
-4.  For each user group, choose an access setting. The options are:
+6.  For each user group, choose an access setting. The options are:
     
       - None (for default groups only, as they cannot be removed)
     
@@ -1229,115 +1094,29 @@ everyone or a user group. To modify the sharing settings:
     
       - Can edit and view
 
-5.  Click **CLOSE** to close the dialog.
+7.  Click **CLOSE** to close the dialog.
 
-You can also rename maps without opening them:
-
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
-
-2.  Find the map you want to share. You can either use \< and \> or the
-    search field.
-
-3.  Click the more options icon (three dots) at the right of the map
-    row, and select **Share**.
-
-4.  Follow the steps above.
-
-### Get the link to a map
-
-1.  Click **File** \> **Get link**. A link dialog opens.
-
-2.  Copy the link.
-
-### Delete a map
-
-1.  Click **File** \> **Delete**. A confirmation dialog is displayed.
-
-2.  Click **DELETE** to confirm that you want to delete the favorite.
-    Your map is deleted and the layers are cleared from the view.
-
-You can also delete maps without opening them:
-
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
-
-2.  Find the map you want to delete. You can either use \< and \> or the
-    search field.
-
-3.  Click the more options icon (three dots) at the right of the map
-    row, and select **Delete**.
-
-4.  Follow step 2 above.
-
-## Map interpretations
+### Share a map interpretation
 
 <!--DHIS2-SECTION-ID:mapsInterpretation-->
 
-An interpretation is a description of a map at a given period. This
-information is visible in the **Dashboard app**. Click
-**Interpretations** in the top right of the workspace to open the
-interpretations panel. The button is only clickable if the map is saved.
+For certain analysis-related resources in DHIS2, you can share a data
+interpretation. An interpretation is a link to the relevant resource
+together with a text expressing some insight about the data.
 
-![](resources/images/maps/maps_interpretations_panel.png)
+To create an interpretation of a map and share it with all users of the
+system:
 
-### View interpretations based on relative periods
-
-To view interpretations for relative periods, such as a year ago:
-
-1.  Open a favorite with interpretations.
-
-2.  Click **Interpretations** in the top right of the workspace to open
-    the interpretations panel.
-
-3.  Click an interpretation. Your map displays the data and the date
-    based on when the interpretation was created. To view other
-    interpretations, click them.
-
-### Write interpretation for a map
-
-To create an interpretation, you first need to create a map and save it.
-If you've shared your map with other people, the interpretation you
-write is visible to those people.
-
-1.  Open a favorite with interpretations.
-
-2.  Click **Interpretations** in the top right of the workspace to open
-    the interpretations panel.
-
-3.  Click + to write a new interpretations.
-
-4.  In the text field, type a comment, question or interpretation. You
-    can also mention other users with '@username'. Start by typing '@'
-    plus the first letters of the username or real name and a mentioning
-    bar will display the available users. Mentioned users will receive
-    an internal DHIS2 message with the interpretation or comment. You
-    can see the interpretation in the **Dashboard app**.
-
-5.  Click **SAVE** if you want your interpretation to have the same
-    sharing settings as the map.
+1.  Select **Write interpretation** from the **Favorites** menu.
     
-    Click **SAVE & SHARE** if you want to change the sharing settings
-    (see below) for your interpretation.
+    The **Write interpretation** dialog box opens.
 
-### Change sharing settings for an interpretation
+2.  In the text field, type a comment, question or interpretation.
 
-1.  Click an interpretation (see how to view an interpretation above).
-
-2.  Click **Share** below the interpretation. The sharing settings
-    dialog opens.
-
-3.  Search for and add a users and user groups that you want to share
-    your map with.
-
-4.  Change sharing settings for the users you want to modify:
+3.  Click **SAVE**.
     
-      - **Can edit and view**: Everyone can view and edit the object.
-    
-      - **Can view only**: Everyone can view the object.
-    
-      - **No access**: The public won't have access to the object. This
-        setting is only applicable to Public access.
-
-5.  Click **CLOSE** when sharing settings are updated.
+    The dialog box closes automatically. You can see the interpretation
+    on the **Dashboard**.
 
 ## Save a map as an image
 

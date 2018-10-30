@@ -187,18 +187,9 @@ parameter *format*, which allows for further manipulation of the value.
 <tbody>
 <tr class="odd">
 <td>&quot;Plain text&quot;</td>
-<td>The plain text segment will remain unchanged in all generated values. This special segment is defined by wrapping text between two double quotes. If your pattern should include separation symbols like a dash, you should use this &quot;-&quot;.
-<p>The plain text segment also allows for placeholder text. That means you can specify that parts of the plain text segment should be any of a set of characters. Currently there are 4 supported special characters you can use:</p>
-<ul>
-<li><p>\d (0-9)</p></li>
-<li><p>\x (a-z)</p></li>
-<li><p>\X (A-Z)</p></li>
-<li><p>\w (a-zA-Z0-9)</p></li>
-</ul></td>
+<td>The plain text segment will remain unchanged in all generated values. This special segment is defined by wrapping text between two double quotes. If your pattern should include separation symbols like a dash, you should use this &quot;-&quot;.</td>
 <td>None</td>
-<td>&quot;Hello world&quot; → None → Hello world
-<p>&quot;Hello \x\x\x&quot; → &quot;Hello you&quot; → Hello you</p>
-<p>&quot;\d\d\d&quot; → &quot;123&quot; → 123</p></td>
+<td>&quot;Hello world&quot; → None → Hello world</td>
 </tr>
 <tr class="even">
 <td>CURRENT_DATE(format)</td>
