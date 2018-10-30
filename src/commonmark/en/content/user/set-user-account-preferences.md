@@ -18,3 +18,10 @@ messaging services, which will be used by the system.
 In **Account settings**, you can reset your password and setup 2-Factor
 authentication. Setting up 2-Factor authentication will require you to
 download the Google Authenticator app on you mobile device.
+
+In the **View full profile** section, you find a summary of your profile details.
+This section includes a few fields that you cannot edit yourself,
+such as user roles and user organisation units.
+
+
+In the **About DHIS2** section, you find a list of details about the DHIS2 instance.
