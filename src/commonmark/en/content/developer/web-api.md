@@ -11401,6 +11401,10 @@ category option combos for all category combinations:
 
     /api/26/maintenance/categoryOptionComboUpdate
 
+It is also possible to update category option combos for a single category combo using the following endpoint:
+
+    /api/maintenance/categoryOptionComboUpdate/categoryCombo/<category-combo-uid>
+
 Cache clearing will clear the application Hibernate cache and the
 analytics partition caches:
 
