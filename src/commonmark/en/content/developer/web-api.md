@@ -1011,31 +1011,6 @@ and now only one of the filters must match to have a result
 
     /api/dataElements.json?filter=id:in:[id1,id2]&filter=code:eq:code1&rootJunction=OR
 
-### Identifiable token filter
-
-In addition to the specific property based filtering mentioned above,
-we also have **token** based **AND** filtering across a set of
-properties: id, code and name (also shortName if available). These
-properties are commonly referred as **identifiable**. The idea is to
-filter metadata whose id, name, code or short name containing something.
-
-Example: Filter all data elements containing *2nd* in any of the
-following: id,name,code, shortName
-
-    api/dataElements.json?filter=identifiable:token:2nd
-
-It is also possible to specify multiple filtering values.
-
-Example: Get all data elements where *ANC visit* is found in any of the **identifiable** properties. The system returns all data elements where both tokens (ANC and visit) are found anywhere in identifiable properties.
-
-    api/dataElements.json?filter=identifiable:token:ANC visit
-
-It is also possible to combine identifiable filter with property based filter and expect the *rootJunction* to be applied.
-
-    api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
-
-    api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1&rootJunction=OR
-
 ## Metadata field filter
 
 <!--DHIS2-SECTION-ID:webapi_metadata_field_filter-->
@@ -3702,36 +3677,6 @@ have been marked as "unique". When using this option, "attribute" must
 be immediately followed by the uid of the attribute, e.g.
 "attributeDnrLSdo4hMl".
 
-#### Async data value import
-
-<!--DHIS2-SECTION-ID:webapi_data_values_async_import-->
-
-Data values can be sent and imported in an asynchronous fashion by
-supplying an *async* query parameter set to *true*:
-
-    /api/26/dataValueSets?async=true
-
-This will initiate an asynchronous import job for which you can monitor
-the status at the task summaries API. The API response indicates the
-unique identifier of the job, type of job and the URL you can use to
-monitor the import job status. The response will look similar to this:
-
-    {
-      "httpStatus": "OK",
-      "httpStatusCode": 200,
-      "status": "OK",
-      "message": "Initiated dataValueImport",
-      "response": {
-        "name": "dataValueImport",
-        "id": "YR1UxOUXmzT",
-        "created": "2018-08-20T14:17:28.429",
-        "jobType": "DATAVALUE_IMPORT",
-        "relativeNotifierEndpoint": "/api/system/tasks/DATAVALUE_IMPORT/YR1UxOUXmzT"
-      }
-
-Please read the section on *asynchronous task status* for more
-information.
-
 ### CSV data value format
 
 <!--DHIS2-SECTION-ID:webapi_data_values_csv-->
@@ -5074,145 +5019,6 @@ api endpoint:
     /api/26/validation/sendNotifications
 
 Only unsent results are sent using this endpoint.
-
-## Data analysis
-
-<!--DHIS2-SECTION-ID:webapi_data_analysis-->
-
-Several resources for performing data analysis and finding data quality
-and validation issues are provided.
-
-### Validation rule analysis
-
-<!--DHIS2-SECTION-ID:webapi_data_analysis_validation_rules-->
-
-To run validation rules and retrieve violations:
-
-    /api/dataAnalysis/validationRules
-
-The following query parameters are supported:
-
-<table>
-<caption>Validation rule analysis query parameters</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-<th>Option</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>vrg</td>
-<td>Validation rule group</td>
-<td>ID</td>
-</tr>
-<tr class="even">
-<td>ou</td>
-<td>Organisation unit</td>
-<td>ID</td>
-</tr>
-<tr class="odd">
-<td>startDate</td>
-<td>Start date for the timespan</td>
-<td>Date</td>
-</tr>
-<tr class="even">
-<td>endDate</td>
-<td>End date for the timespan</td>
-<td>Date</td>
-</tr>
-<tr class="odd">
-<td>persist</td>
-<td>Whether to persist violations in the system</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>notification</td>
-<td>Whether to send notifications about violations</td>
-<td>false | true</td>
-</tr>
-</tbody>
-</table>
-
-### Standard deviation based outlier analysis
-
-<!--DHIS2-SECTION-ID:webapi_data_analysis_std_dev_outlier-->
-
-To identify data outliers based on standard deviations of the average
-value:
-
-    /api/dataAnalysis/stdDevOutlier
-
-The following query parameters are supported:
-
-<table>
-<caption>Standard deviation outlier analysis query parameters</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-<th>Option</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ou</td>
-<td>Organisation unit</td>
-<td>ID</td>
-</tr>
-<tr class="even">
-<td>startDate</td>
-<td>Start date for the timespan</td>
-<td>Date</td>
-</tr>
-<tr class="odd">
-<td>endDate</td>
-<td>End date for the timespan</td>
-<td>Date</td>
-</tr>
-<tr class="even">
-<td>ds</td>
-<td>Data sets, parameter can be repeated</td>
-<td>ID</td>
-</tr>
-<tr class="odd">
-<td>standardDeviation</td>
-<td>Number of standard deviations from the average</td>
-<td>Numeric value</td>
-</tr>
-</tbody>
-</table>
-
-### Min/max value based outlier analysis
-
-<!--DHIS2-SECTION-ID:webapi_data_analysis_min_max_outlier-->
-
-To identify data outliers based on min/max values:
-
-    /api/dataAnalysis/minMaxOutlier
-
-The supported query parameters are equal to the *std dev based outlier
-analysis* resource described above.
-
-### Follow-up data analysis
-
-To identify data marked for follow-up:
-
-    /api/dataAnalysis/followup
-
-The supported query parameters are equal to the *std dev based outlier
-analysis* resource described above.
 
 ## Data integrity
 
@@ -6718,95 +6524,6 @@ organisation units. The request should look like this:
 
 ```
 
-### Message Attachments
-
-<!--DHIS2-SECTION-ID:webapi_message_attachments-->
-
-Creating messages with attachments is done in two steps: uploading the
-file to the *attachments* resource, and then including one or several of
-the attachment IDs when creating a new message.
-
-A POST request to the *attachments* resource will upload the file to the
-server.
-
-    curl -F file=@attachment.png -u admin:district https://play.dhis2.org/demo/api/messageConversations/attachments
-
-The request returns an object that represents the attachment. The id of
-this object must be used when creating a message in order to link the
-attachment with the message.
-
-    {
-       "created":"2018-07-20T16:54:18.210",
-       "lastUpdated":"2018-07-20T16:54:18.212",
-       "externalAccess":false,
-       "publicAccess":"--------",
-       "user":{
-          "name":"John Traore",
-          "created":"2013-04-18T17:15:08.407",
-          "lastUpdated":"2018-03-09T23:06:54.512",
-          "externalAccess":false,
-          "displayName":"John Traore",
-          "favorite":false,
-          "id":"xE7jOejl9FI"
-       },
-       "lastUpdatedBy":{
-          "id":"xE7jOejl9FI",
-          "name":"John Traore"
-       },
-       "favorite":false,
-       "id":"fTpI4GOmujz"
-    }
-
-When creating a new message, the ids can be passed in the request body
-to link the uploaded files to the message being created.
-
-```
-{
-  "subject": "Hey",
-  "text": "How are you?",
-  "users": [
-    {
-      "id": "OYLGMiazHtW"
-    },
-    {
-      "id": "N3PZBUlN8vq"
-    }
-  ],
-  "userGroups": [
-    {
-      "id": "ZoHNWQajIoe"
-    }
-  ],
-  "organisationUnits": [
-    {
-      "id": "DiszpKrYNg8"
-    }
-  ],
-  "attachments": [
-    {
-      "fTpI4GOmujz",
-      "h2ZsOxMFMfq"
-  ]
-}
-```
-
-When replying to a message, the ids can be passed as a request
-parameter.
-
-    curl -d "Yes the Mortality data set has been reported"
-      "https://play.dhis2.org/demo/api/26/messageConversations/ZjHHSjyyeJ2?attachments=fTpI4GOmujz,h2ZsOxMFMfq"
-      -H "Content-Type:text/plain" -u mobile:district -X POST -v
-
-Once a message with an attachment has been created, the attached file
-can be accessed with a GET request to the following
-    URL.
-
-    https://play.dhis2.org/demo/api/26/messageConversations/<mcId>/<msgId>/attachments/<attachmentId>
-
-Where \<mcId\> is the *messageConversation* ID, \<msgId\> is the ID of
-the *message* that contains the attachment, and \<attachmentId\> is the
-ID of the specific *messageAttachment*.
-
 ### Tickets and Validation Result Notifications
 
 <!--DHIS2-SECTION-ID:webapi_messaging_tickets-->
@@ -7615,7 +7332,7 @@ following *columns* config:
 <td>aggregationType</td>
 <td>string</td>
 <td>No</td>
-<td>&quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
+<td>&quot;DEFAULT&quot; | &quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
 <td>Override the data element's default aggregation type</td>
 </tr>
 <tr class="odd">
@@ -7983,7 +7700,7 @@ following *columns* config:
 <td>aggregationType</td>
 <td>string</td>
 <td>No</td>
-<td>&quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
+<td>&quot;DEFAULT&quot; | &quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
 <td>Override the data element's default aggregation type</td>
 </tr>
 <tr class="odd">
@@ -8999,7 +8716,7 @@ The analytics resource lets you specify a range of query parameters:
 <td>timeField</td>
 <td>No</td>
 <td>The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element having a time-based value type.</td>
-<td>EVENT_DATE | ENROLLMENT_DATE | INCIDENT_DATE | DUE_DATE | COMPLETED_DATE | CREATED | LAST_UPDATED | &lt;Attribute ID&gt; | &lt;Data element ID&gt;</td>
+<td>EVENT_DATE | ENROLLMENT_DATE | INCIDENT_DATE | DUE_DATE | COMPLETED_DATE | &lt;Attribute ID&gt; | &lt;Data element ID&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -9246,7 +8963,7 @@ entire level optionally constrained by any number of boundary
 organisation units with the LEVEL-\<level\> syntax. Boundary refers to a
 top node in a sub-hierarchy, meaning that all organisation units at the
 given level below the given boundary organisation unit in the hierarchy
-will be included in the response, and is provided as regular organisation unit 
+will be included in the response, and is provided as regular organisation unit
 dimension items. The level value can either be a numerical level or refer to the identifier
 of the organisation unit level entity. A simple query for all org units at level three:
 
@@ -10028,18 +9745,12 @@ The analytics event API let you specify a range of query parameters.
 <td>false | true</td>
 </tr>
 <tr class="odd">
-<td>dataIdScheme</td>
-<td>No</td>
-<td>Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response.</td>
-<td>NAME | CODE | UID</td>
-</tr>
-<tr class="even">
 <td>page</td>
 <td>No</td>
 <td>The page number. Default page is 1.</td>
 <td>Numeric positive value</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>pageSize</td>
 <td>No</td>
 <td>The page size. Default size is 50 items per page.</td>
@@ -10075,7 +9786,7 @@ The analytics event API let you specify a range of query parameters.
 <td>aggregationType</td>
 <td>No</td>
 <td>Aggregation type for the value dimension. Default is AVERAGE.</td>
-<td>SUM | AVERAGE | AVERAGE_SUM_ORG_UNIT | LAST | LAST_AVERAGE_ORG_UNIT | COUNT | STDDEV | VARIANCE | MIN | MAX</td>
+<td>|SUM|AVERAGE | AVERAGE_SUM_ORG_UNIT | COUNT | STDDEV | VARIANCE | MIN | MAX</td>
 </tr>
 <tr class="odd">
 <td>showHierarchy</td>
@@ -12270,8 +11981,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
       "name" : "clickatell",
       "username": "clickatelluser",
       "password": "abc123",
-      "authtoken": "XXXXXXXXXXXXXXXXXXXX",
-      "urlTemplate": "https://platform.clickatell.com/messages",
+      "Auth-token": "XXXXXXXXXXXXXXXXXXXX",
     }
 
 *Bulksms*
@@ -12756,13 +12466,6 @@ use this on a SSL enabled server) and will be encrypted on the backend:
         },
         "username": "johndoe123",
         "password": "Your-password-123",
-        "skype": "john.doe",
-        "telegram": "joh.doe",
-        "whatsApp": "+1-541-754-3010",
-        "facebookMessenger": "john.doe",
-        "avatar": {
-          "id": "<fileResource id>"
-        },
         "userRoles": [
           {
             "id": "Ufph3mGRmMo"
@@ -12793,9 +12496,6 @@ to then use **PUT** instead of **POST** and the endpoint is now
 
 For more info about the full payload available, please see
 */api/schemas/user*
-
-For more info about uploading and retrieving user avatars, please see
-*/fileResources* endpoint.
 
 ### User account invitations
 
@@ -13298,70 +12998,66 @@ The available system settings are listed below.
 <td>Require periods to match period type of data set. Default: &quot;false&quot;</td>
 </tr>
 <tr class="even">
-<td>keyDataImportStrictDataElements</td>
-<td>Require data elements to be part of data set. Default: &quot;false&quot;</td>
-</tr>
-<tr class="odd">
 <td>keyDataImportStrictCategoryOptionCombos</td>
 <td>Require category option combos to match category combo of data element. Default: &quot;false&quot;</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>keyDataImportStrictOrganisationUnits</td>
 <td>Require organisation units to match assignment of data set. Default: &quot;false&quot;</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keyDataImportStrictAttributeOptionsCombos</td>
 <td>Require attribute option combis to match category combo of data set. Default: &quot;false&quot;</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>keyDataImportRequireCategoryOptionCombo</td>
 <td>Require category option combo to be specified. Default: &quot;false&quot;</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keyDataImportRequireAttributeOptionCombo</td>
 <td>Require attribute option combo to be specified. Default: &quot;false&quot;</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>keyCustomJs</td>
 <td>Custom JavaScript to be used on the website</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keyCustomCss</td>
 <td>Custom CSS to be used on the website</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>keyCalendar</td>
 <td>The calendar type. Default: &quot;iso8601&quot;.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keyDateFormat</td>
 <td>The format in which dates should be displayed. Default: &quot;yyyy-MM-dd&quot;.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>appStoreUrl</td>
 <td>The url used to point to the app store. Default: &quot;https://www.dhis2.org/appstore&quot;</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keyStyle</td>
 <td>The style used on the DHIS2 webpages. Default: &quot;light_blue/light_blue.css&quot;.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>keyRemoteInstanceUrl</td>
 <td>Url used to connect to remote instance</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keyRemoteInstanceUsername</td>
 <td>Username used to connect to remote DHIS2 instance</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>keyRemoteInstancePassword</td>
 <td>Password used to connect to remote DHIS2 instance</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keyMapzenSearchApiKey</td>
 <td>Key for the Mapzen geo search API</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>keyFileResourceRetentionStrategy</td>
 <td>Determines how long file resources associated with deleted or updated values are kept. NONE, THREE_MONTHS, ONE_YEAR, or FOREVER.</td>
 </tr>
@@ -14051,21 +13747,17 @@ For creating a new person in the system, you will be working with the
     {
         "trackedEntity": "tracked-entity-id",
         "orgUnit": "org-unit-id",
-        "geometry": <GeoJson>,
+        "coordinates": "[1, 1]",
         "attributes": [ {
             "attribute": "attribute-id",
             "value": "attribute-value"
         } ]
     }
 
-The field "geometry" accepts a GeoJson object, where the type of the
-GeoJson have to match the featureType of the TrackedEntityType
-definition. An example GeoJson object looks like this:
-
-    {
-      "type": "Point",
-      "coordinates": [1, 1]
-    }
+> **Note**
+>
+> The "coordinates" field was introduced in 2.29, and accepts a
+> coordinate or polygon as a value.
 
 > **Note**
 >
@@ -14105,7 +13797,7 @@ To push this to the server you can use the cURL command like
     -H "Content-Type: application/json" -u admin:district -v
 
 To create multiple instances in one request you can wrap the payload in
-an outer array like this and POST to the same resource as above:[]()
+an outer array like this and POST to the same resource as above:
 
     {
       "trackedEntityInstances": [
@@ -14157,16 +13849,9 @@ be replaced by the identifier of the tracked entity instance:
 
     /api/trackedEntityInstances/<tracked-entity-instance-id>
 
-The payload has to contain all, even non-modified, attributes and
-relationships. Attributes or relationships that were present before and
-are not present in the current payload any more will be removed from the
-system. This means that if attributes/relationships are empty in the
-current payload, all existing attributes/relationships will be deleted
-from the system. From 2.31, it is possible to ignore empty
-attributes/relationships in the current payload. A request parameter of
-*ignoreEmptyCollection* set to **true** can be used in case you do not
-wish to send in any attributes/relationships and also do not want them
-to be deleted from the system.
+The payload has to contain all, even non-modified, attributes.
+Attributes that were present before and are not present in the current
+payload anymore will be removed by the system.
 
 It is not allowed to update an already deleted tracked entity instance.
 Also, it is not allowed to mark a tracked entity instance as deleted via
@@ -16210,12 +15895,6 @@ i.e. *?fields=program,status*.
 <td>Attribute category option identifiers, separated with ; (must be combined with <em>attributeCc</em>)</td>
 </tr>
 <tr class="even">
-<td>async</td>
-<td>false | true</td>
-<td>false</td>
-<td>Indicates whether the import should be done asynchronous or synchronous.</td>
-</tr>
-<tr class="odd">
 <td>includeDeleted</td>
 <td>boolean</td>
 <td>false</td>
@@ -16406,21 +16085,22 @@ updating tracker objects, the only difference is that the
     curl -X POST -d @data.json -H "Content-Type: application/json"
       "http://server/api/29/events?strategy=DELETE"
 
-### Identifier reuse and item deletion via POST and PUT methods
+### UIDs Reuse and Items Deletion via POST and PUT methods
 
 <!--DHIS2-SECTION-ID:webapi_updating_and_deleting_items-->
 
-Tracker endpoints */trackedEntityInstances*, */enrollments*, */events*
-support CRUD operations. The system keeps track of used identifiers.
-Therefore, an item which has been created and then deleted (e.g. events,
-enrollments) cannot be created or updated again. If attempting to delete
-an already deleted item, the system returns a success response as
-deletion of an already deleted item implies no change.
+As it was already stated above, tracker endpoints
+*/trackedEntityInstances*, */enrollments*, */events* fully support CRUD.
+What is important to mention is that the system keeps track of used
+UIDs. Therefore, a once created and then deleted item (event,
+enrollment, …) cannot be created and/or updated again. If you try to
+delete an already deleted item, system is transparent and does return a
+success as deletion of an already deleted item means no change.
 
-The system does not allow to delete an item via an update (*PUT*) or
-create (*POST*) method. Therefore, an attribute *deleted* is ignored in
-both *PUT* and *POST* methods, and in *POST* method it is by default set
-to *false*.
+The second thing to mention is that it is not allowed to delete an item
+via an update (*PUT*) or create (*POST*) method. Therefore, an attribute
+*deleted* is completely ignored in both *PUT* and *POST* methods, and in
+*POST* method it is by default set to *false*.
 
 ### Import parameters
 
@@ -17554,7 +17234,7 @@ To get sharing settings for a specific datastore key:
 
 To modify sharing settings for a specific datastore key:
 
-    POST /api/31/sharing?type=dataStore&id=<uid> 
+    POST /api/31/sharing?type=dataStore&id=<uid>
 
 with the following request:
 

@@ -234,13 +234,6 @@ interpretation, and add your own interpretation. You can edit or delete
 your own interpretations and replies, and if you have moderator access,
 you can delete others’ interpretations.
 
-It is possible to format the text with **bold**, *italic* by using the
-Markdown style markers \* and \_ for **bold** and *italic* respectively.
-Keyboard shortcuts are also available: Ctrl/Cmd + B and Ctrl/Cmd + I. A
-limited set of smilies is supported and can be used by typing one of the
-following character combination: :) :-) :( :-( :+1 :-1. URLs are
-automatically detected and converted into a clickable link.
-
 
 ![](resources/images/dashboard/dashboard-interpretations.png)
 

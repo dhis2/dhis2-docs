@@ -597,18 +597,6 @@ Some aspects of the data synchronization feature to be aware of:
     synchronized. This feature allows you to decide to not synchronize
     some sensitive or not relevant data and to keep them only locally.
 
-  - The newly introduced authority
-    F\_IGNORE\_TRACKER\_REQUIRED\_VALUE\_VALIDATION should be used when
-    there is a requirement that some mandatory attribute / data element
-    has at the same time a "Skip synchronization" property turned on.
-    Such a setting will lead to validation failure on the central server
-    as the given attribute / data element will not be present in the
-    payload.
-
-    The validation won't fail for the user with this authority. The
-    authority should be assigned to the user, on the central server,
-    that will be used for synchronization job.
-
 ## Metadata Synchronization Scheduling
 
 <!--DHIS2-SECTION-ID:dataAdmin_metaDataSync-->

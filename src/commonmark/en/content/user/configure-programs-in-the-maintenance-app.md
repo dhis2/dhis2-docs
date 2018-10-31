@@ -430,51 +430,18 @@ the user in the **Event Capture** app.
 
 6.  Click next.
 
-#### Access
+#### Assign organisation units
 
-Access options decide who can capture data for the program or view/edit
-the program's metadata. A program can be shared to organisation units,
-and in addition, the main program and any program stages' access options
-can be configured through the **Sharing dialog**. Access options are
-available in the **Access** tab.
+1.  Click **Assign organisation units**.
 
-Assign organization units:
-
-1.  In the organisation tree, double-click the organisation units you
+2.  In the organisation tree, double-click the organisation units you
     want to add to the program to.
 
     You can locate an organisation unit in the tree by expanding the
     branches (click on the arrow symbol), or by searching for it by
     name. The selected organisation units display in orange.
 
-Change roles and access:
-
-1.  Scroll down to the **Roles and access** section.
-
-    The first row shows the main program's access options, and each
-    subsequent row shows the options of one program stage. Program
-    stages with a warning icon (exclamation mark) contain access options
-    that deviate from the main program, meaning they are accessed by a
-    different combination of users.
-
-2.  Click on either of the rows and the **Sharing dialog** will show.
-
-3.  Modify the access options accordingly. See documentation on the
-    sharing dialog for details.
-
-4.  Click the **Apply** button.
-
-5.  Repeat the process for each program/program stage. You can also copy
-    all access options from the main program to your child programs:
-
-    1.  Select the program stages you want to have similar access
-        options as the main program by toggling the checkboxes on the
-        right hand side of the program stages. You can also choose to
-        **Select all** program stages, **Deselect all** program stages
-        or **Select similar** stages, in terms of access options, to
-        that of the main program. Similar stages are toggled by default.
-
-    2.  Click **Apply to selected stages**
+3.  Click next.
 
 #### Create program notifications
 
