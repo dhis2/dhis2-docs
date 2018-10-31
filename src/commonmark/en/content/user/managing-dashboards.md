@@ -94,9 +94,9 @@ upper right part of the dashboard area. Available items include:
 
   - Spacer
 
-The list of items in the drop-down initially displays the first 5
+The list of items in the dropdown initially displays the first 5
 available from each category, based on the search text you enter. Email,
-text boxes and spacer items are also found in the drop-down. To view more
+text boxes and spacer items are also found in the dropdown. To view more
 items, click on **SEE MORE**, and the list for that type will be
 extended to 15 items. If you still do not find the item you want, try
 typing a more specific search text.
@@ -122,11 +122,11 @@ displayed, but take up the defined space.
 
 ![](resources/images/dashboard/dashboard-spacer-edit-mode.png)
 
-**Spacer in view mode:**
+**Spaceer in view mode:**
 
 ![](resources/images/dashboard/dashboard-spacer-view-mode.png)
 
-
+\</section\>
 
 ## Removing items
 
@@ -143,7 +143,7 @@ the page. If you don't want to save your changes, click the **EXIT
 WITHOUT SAVING** button to the upper right. You will then be returned to
 view mode with the dashboard you were previously viewing.
 
-
+\</section\>
 
 ## Editing an existing dashboard
 
@@ -180,6 +180,7 @@ If you have access to delete the dashboard, then there will be a
 confirmation dialog will first be displayed to confirm that you want to
 delete the dashboard.
 
+\</section\>
 
 ## Viewing a dashboard
 
@@ -230,9 +231,9 @@ report, and event chart items. Click on the interpretations button
 ![](resources/images/dashboard/dashboard-interpretations-button.png),
 and the item will be expanded vertically underneath to show the
 interpretations and replies. You can like an interpretation, reply to an
-interpretation, and add your own interpretation. You can edit or delete
-your own interpretations and replies, and if you have moderator access,
-you can delete others’ interpretations.
+interpretation, and add your own interpretation. You can delete your own
+interpretations and replies, and if you have moderator access, you can
+delete others’ interpretations.
 
 
 ![](resources/images/dashboard/dashboard-interpretations.png)
@@ -253,7 +254,7 @@ dashboard sharing settings
 All dashboards have two sharing groups set by default.
 
   - External access (without login)
-
+    
     This option, when selected, provides access to the dashboard as an
     external resource. This is useful for when you are creating an
     external web portal but would like to call information from a
@@ -261,7 +262,7 @@ All dashboards have two sharing groups set by default.
     option is not selected.
 
   - Public access (with login)
-
+    
     This option allows the selected dashboard to be pushed to all users
     within your DHIS2 instance. This can also be hidden from public view
     by selecting the "None" option, which is the default option for new
@@ -271,19 +272,14 @@ User groups that have been added manually can be assigned two types of
 permissions within the dashboard
 
   - Can view
-
+    
     Provides the user group with view only rights to the dashboard.
 
   - Can edit and view
-
+    
     Allows the user groups to edit the dashboard in addition to viewing
     it. Editing allows for altering the layout, resizing and removing
     items, renaming/deleting the dashboard etc.
 
-You can provide users with the url of the dashboard, allowing them to
-navigate directly to the dashboard. To get the dashboard url, just
-access the dashboard in view mode, and copy the browser url. For
-example, the url to the Antenatal Care dashboard in play.dhis2.org/demo
-is:
+\</section\>
 
-https://play.dhis2.org/demo/dhis-web-dashboard/\#/nghVC4wtyzi

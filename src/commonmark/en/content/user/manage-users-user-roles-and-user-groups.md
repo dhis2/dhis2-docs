@@ -14,8 +14,7 @@ reports.
   - You can create as many users, user roles and user groups as you
     need.
 
-  - You can assign specific authorities to user groups or individual
-    users via user roles.
+  - You can assign specific authorities to each user.
 
   - You can create multiple user roles each with their own authorities.
 
@@ -76,8 +75,8 @@ You manager users, user roles and user groups in the **Users** app.
 <table>
 <caption>Objects in the Users app</caption>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col width="20%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -88,7 +87,7 @@ You manager users, user roles and user groups in the **Users** app.
 <tbody>
 <tr class="odd">
 <td><p>User</p></td>
-<td><p>Create, edit, invite, clone, disable, display by organisation unit, delete and show details</p></td>
+<td><p>Create, edit, clone, disable, assign search organisation units, display by organisation unit, delete and show details</p></td>
 </tr>
 <tr class="even">
 <td><p>User role</p></td>
@@ -208,15 +207,14 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
 5.  Assign the users to organisation units.
 
-6.  (Optional) Group users in user groups.
+6.  Assign data sets to the user role.
 
-7.  Share datasets with users or user-groups via the Sharing Dialog in
-    Data set management section of the Maintenance app
+7.  (Optional) Group users in user groups.
 
 > **Tip**
->
-> For users to be able to enter data, you must add them to an
-> organisational unit level and share a dataset with them.
+> 
+> For users to be able to enter data, you must add them to both a data
+> set and an organisational unit level.
 
 ## Manage users
 
@@ -229,26 +227,47 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
 ![](resources/images/dhis2UserManual/select_user_menu.png)
 
-1.  Open the **Users** app and click on the **+** in the **Users** card.
+1.  Open the **Users** app and click **User**.
 
-2.  Select whether you want to fill in all the personal user
+2.  Click **Add new**.
+
+3.  Select whether you want to fill in all the personal user
     information, or invite the user by email to complete the rest of the
     user information:
- - **Create account with user details**
+    
+      - **Create account with user details**
+
 ![](resources/images/dhis2UserManual/user_management_details.png)
-Choose this option if you would like to enter all the login details of
-the new user such as username, password, etc. Under these conditions, the fields username, password, surname, first
-name, and roles are mandatory.<br/><br/>
+
+Choose this option if you would like to enter all the details of the new
+user such as name, password, etc.
+
+Enter the following information: user name, password, surname, first
+name, email, OpenID account (if any) and mobile phone number (if any).
+
 After you've created the user, the account is ready for the user to use
-with the user name and password that you provide.<br/><br/>
- - **Email invitation to create account**
+with the user name and password that you provide.
+
+\</listitem\> **Email invitation to create account**
+
 ![](resources/images/dhis2UserManual/user_management_invite.png)
+
 Choose this option if you want to send an invitation by email to the
 user. Then she/he must return to DHIS2 and finish setting up their user
 account. The account that the user finishes setting up will be limited
-according to how you configure the account.<br/><br/>
+according to how you configure the account.
+
+> **Note**
+> 
+> You may not select this option to create an account with "critical"
+> system authorities such as All, Scheduling Administration, Perform
+> maintenance tasks, Merge organisation units, Eliminate duplicate data
+> elements, SQL View Management, Change system settings, and List, Add
+> or Delete user roles.
+
 In order to use this feature "Enable email message notifications" in
-SystemSettings -\> Messaging should be checked.<br/><br/>
+SystemSettings -\> Messaging should be checked.
+
 Enter the email address to which the invitation should be sent. If you
 want to, you may also enter the user name that the account will have. If
 you leave the user name empty, then the user may choose their own user
@@ -264,82 +283,73 @@ after following the link in the first email. The user must finish
 setting up the account within three months, after that the invitation
 becomes invalid.
 
-3. (Optional) Provide values for the fields **OpenID, LDAP identifier, Mobile phone number, WhatsApp, Facebook messenger, Skype, Telegram and Twitter**.
-
-4. Select an **Interface language**.<br/>
-You can select a language into which fixed elements of the DHIS2 user interface have been translated.
-
-5. Select a **Database language**. <br/>
-You can select a language into which implementation-supplied
+\</listitem\> \</itemizedlist\> \</listitem\> Select an **Interface
+language**. You can select a language into which fixed elements of the
+DHIS2 user interface have been translated. Select a **Database
+language**. You can select a language into which implementation-supplied
 items have been translated in the database, for example data element
-names or organisation unit level names.
+names or organisation unit level names. In the **Available roles**
+section, double-click the user roles you want to assign to the user.
+Select **Data capture and maintenance organisation units**.
 
-6. In the **Available roles** section, double-click the user roles you want to assign to the user.
+![](resources/images/dhis2UserManual/user_management_fewer_options.png)
 
-7. Select **Data capture and maintenance organisation units**.<br/>
- ![](resources/images/dhis2UserManual/user_management_fewer_options.png)<br/>
-The data capture and maintenance organisation units control for which organisation units the user can do data entry. You must assign at least one data capture and maintenance organisation unit to each user.<br/><br/>
+The data capture and maintenance organisation units control for which
+organisation units the user can do data entry. You must assign at least
+one data capture and maintenance organisation unit to each user.
+
 Users will have access to all sub-organisation units of the assigned
 organisation units. For example, if you've assigned a user to a district
 which has several facilities contained in the district, the user would
 have access to the district's data, as well as all of the facilities
 contained within the district.
 
-8. (Optional) Select **Data output and analysis organisation units**.<br/><br/>
-The data output and analysis organisation units controls for
+\</listitem\> (Optional) Select **Data output and analysis organisation
+units**. The data output and analysis organisation units controls for
 which organisation units the user can view aggregated data in the
 analytics apps, for example the **Pivot Table** and **GIS** apps. You
 can assign any number of data output and analysis organisation units to
-a user.<br/><br/>
-Users will have access to all sub-organisation units of the
+a user. Users will have access to all sub-organisation units of the
 assigned organisation units. You shouldn't select the descendants of an
 organisation unit which you have already selected. For example, if
 you've assigned the user to a district, you shouldn't select the
-facilities within that district.<br/><br/>
+facilities within that district. Assigning data output and analysis
+organisation units organisation units is optional. If you don't specify
+any organisation unit, the user will have access to the full
+organisation unit hierarchy for viewing aggregated data. As with the
+data capture organisation units, *you should not select descendant
+organisation units of a unit which you have already selected*. In
+several places in the analytics apps, you can select "user organisation
+unit" for the organisation unit dimension. This mechanism will first
+attempt to use the data view organisation units linked to the current
+user. If not found, it will use the data capture and maintenance
+organisation units. If the user has been assigned to multiple
+organisation units, the use of "user organisation unit" may result in
+unpredictable behavior. Click **Show more options**.
 
-> **Note**
->
->Assigning data output and analysis organisation units organisation units is optional. If you don't specify
->any organisation unit, the user will have access to the full
->organisation unit hierarchy for viewing aggregated data. As with the
->data capture organisation units, *you should not select descendant
->organisation units of a unit which you have already selected*.<br/><br/>
->In several places in the analytics apps, you can select "user organisation
->unit" for the organisation unit dimension. This mechanism will first
->attempt to use the data view organisation units linked to the current
->user. If not found, it will use the data capture and maintenance
->organisation units. If the user has been assigned to multiple
->organisation units, the use of "user organisation unit" may result in
->unpredictable behaviour.<br/><br/>
+![](resources/images/dhis2UserManual/user_management_more_options.png)
 
-9. Click **Show more options** and an additional
-three fields will show. (Optional) <br/><br/>
-
-10. In the **Search organisation units**
-select the organisation units you want the user to be able to search in.<br/><br/>
-
-11. (Optional) In the **Available user groups** section, double-click the
-user groups you want to assign to the user.<br/><br/>
-
-12. (Optional) In the **Available dimension restrictions for data analytics** section,
-double-click the dimensions you want to assign to the user. <br/><br/>
-You can restrict the values the user sees in data analytics apps by selecting
-dimensions that will restrict the user's view.
-
-> **Example**
->
-> Let's say you have defined *Implementing Partner* as a category option group set, and you have shared with this user only one or more specific implementing partners (category option groups). If you want to make sure that the user does not see totals in analytics that include values from other groups, assign *Implementing Partner* to the user.<br/><br/>
-This insures that any data visible to the user through the analytics apps will be filtered to select only the Implementing Partner category option group(s) which are visible to the user.<br/><br/>
-
-13. Click **Save**.
+\</listitem\> (Optional) In the **Available user groups** section,
+double-click the user groups you want to assign to the user. (Optional)
+In the **Available dimension restrictions for data analytics** section,
+double-click the dimensions you want to assign to the user. You can
+restrict the values the user sees in data analytics apps by selecting
+dimensions that will restrict the user's view. Let's say you have
+defined *Implementing Partner* as a category option group set, and you
+have shared with this user only one or more specific implementing
+partners (category option groups). If you want to make sure that the
+user does not see totals in analytics that include values from other
+groups, assign *Implementing Partner* to the user. This insures that any
+data visible to the user through the analytics apps will be filtered to
+select only the Implementing Partner category option group(s) which are
+visible to the user. Click **Add**. \</orderedlist\>
 
 ### Edit user objects
 
 1.  Open the **Users** app and find the type of user object you want to
     edit.
 
-2.  In the object list, directly click the relevant object, or click the
-    menu icon and select **Edit**.
+2.  In the object list, click the relevant object and select **Edit**.
 
 3.  Modify the options you want.
 
@@ -354,8 +364,7 @@ deleted, but the user can't log in or use DHIS2.
 
 1.  Open the **Users** app and click **User**.
 
-2.  In the list, click the menu icon of relevant user record and select
-    **Disable**.
+2.  In the list, click the relevant user and select **Disable**.
 
 3.  Click **OK** to confirm.
 
@@ -363,24 +372,39 @@ deleted, but the user can't log in or use DHIS2.
 
 1.  Open the **Users** app and click **User**.
 
-2.  In the list, click the menu icon of the relevant user and select
-    **Profile**.
+2.  In the list, click the relevant user and select **Profile**.
 
-### Filter users by organisation unit
+### View users by organisation unit
 
 You can view all users that have been assigned to a particular
 organisation unit.
 
-1.  Open the **Users** app and click **Users**.
+1.  Open the **Users** app and click **User by organisation unit**.
 
-2.  Above the user list, click on the **Organisation Unit** filter
-    input.
+2.  In the left-hand organisation unit tree, click an organisation unit.
+    
+    A list of users which have been assigned to this organisation unit
+    is displayed.
 
-3.  A pop-up will appear in which you can select the organisation units
-    you would like to filter by.
+### Assign search organisation units to users
 
-The list of users will be filtered to only include users which have been
-assigned to the selected organisation units.
+1.  Open the **Users** app and click **User**.
+
+2.  In the object list, click the relevant user and select **Assign
+    search org units**.
+
+3.  Click the organisation units you want the user to be able to search
+    in.
+
+4.  Click **Save**.
+
+### Delete current user
+
+You can delete the user that is currently logged into the system.
+
+1.  Open the **Users** app and click **Delete current user**.
+
+2.  Enter your password and click **Delete**.
 
 ### Clone users
 
@@ -388,8 +412,8 @@ assigned to the selected organisation units.
 
 1.  Open the **Users** app and click **User**.
 
-2.  In the object list, click the menu icon of the relevant user and
-    select **Replicate**.
+2.  In the object list, click the relevant user and select
+    **Replicate**.
 
 3.  Enter a new user name and password for the cloned user account.
 
@@ -422,14 +446,14 @@ The following rules apply when you create a new password:
 
   - Password can not be one of the previous 24 passwords the user has
     used.
-
+    
     This doesn't apply in case a super user resets the password for
     another user.
 
   - Password must contain more than minimum number of characters.
-
+    
     > **Note**
-    >
+    > 
     > You can configure the minimum number of characters: Open the
     > **System Settings** app and click **Access** \> **Minimum
     > characters in password**.
@@ -440,8 +464,7 @@ To change a user's password:
 
 1.  Open the **Users** app and click **User**.
 
-2.  In the object list, click the menu icon of the relevant user and
-    select **Edit**.
+2.  In the object list, click the relevant user and select **Edit**.
 
 3.  Enter a new password and retype it.
 
@@ -452,8 +475,7 @@ To change a user's password:
 1.  Open the **Users** app and find the type of user object you want to
     delete.
 
-2.  In the object list, click the menu icon of the relevant object and
-    select **Remove**.
+2.  In the object list, click the relevant object and select **Remove**.
 
 3.  Click **OK** to confirm.
 
@@ -462,30 +484,8 @@ To change a user's password:
 1.  Open the **Users** app and find the type of user object you want to
     view.
 
-2.  In the object list, click the menu icon of the relevant object and
-    select **Show details**.
-
-### Disable a user's Two Factor Authentication
-
-If a user has enabled Two Factor Authentication and then loses access to
-his/her authentication device (e.g. smartphone gets lost or broken),
-this user will not be able to log into the system any more. To solve this
-issue, a user manager can disable Two Factor Authentication for the
-affected user, so that the user is able to access the system again using
-just a password.
-
-1.  Open the **Users** app and click **Users**.
-
-2.  In the object list, click the menu icon of the relevant user and
-    select **Disable Two Factor Authentication**.
-
-3.  Click **OK** to confirm
-
-> **Note**
->
-> The option to disable Two Factor Authentication will only be available
-> for users that have set up Two Factor Authentication via the
-> user-profile-app.
+2.  In the object list, click the relevant object and select **Show
+    details**.
 
 ## Manage user roles
 
@@ -506,19 +506,33 @@ just a password.
 
 4.  Enter a **Description**.
 
-5.  In the **Authorities** section, select the authorities you want to
-    give to the user role. You can also use the filter inputs above the
-    authority section to search for a specific authority.
+5.  In the **Data sets** section, double-click the data sets you want
+    the user role to have access to.
 
-6.  Click **Add**.
+6.  In the **Programs** section, double-click the programs you want the
+    user role to have access to.
+
+7.  **Authorities** section, double-click the authorities you want to
+    give to the user role.
+
+8.  Click **Add**.
+
+> **Tip**
+> 
+> You can select multiple data sets, programs or authorities:
+> 
+>   - One by one: press the Ctrl key and click the items one by one,
+>     then click the right arrow.
+> 
+>   - In a series: press the Shift key and select the first and last
+>     item in the series, then click the right arrow.
 
 ### Edit user objects
 
 1.  Open the **Users** app and find the type of user object you want to
     edit.
 
-2.  In the object list, directly click the relevant object, or click the
-    menu icon and select **Edit**.
+2.  In the object list, click the relevant object and select **Edit**.
 
 3.  Modify the options you want.
 
@@ -529,8 +543,7 @@ just a password.
 1.  Open the **Users** app and find the type of user object you want to
     delete.
 
-2.  In the object list, click the menu icon of the relevant object and
-    select **Remove**.
+2.  In the object list, click the relevant object and select **Remove**.
 
 3.  Click **OK** to confirm.
 
@@ -539,8 +552,8 @@ just a password.
 1.  Open the **Users** app and find the type of user object you want to
     view.
 
-2.  In the object list, click the menu icon of the relevant object and
-    select **Show details**.
+2.  In the object list, click the relevant object and select **Show
+    details**.
 
 ### Change sharing settings for user objects
 
@@ -556,9 +569,13 @@ just a password.
 4.  (Optional) Select **External access (without login)**.
 
 5.  Change the settings for the user groups you want to modify.
- - **None**
- - **Can view**: Everyone in the user group can view the object
- - **Can edit and view**: Everyone in the user group can view and edit the object
+    
+      - **None**
+    
+      - **Can view**: Everyone in the user group can view the object
+    
+      - **Can edit and view**: Everyone in the user group can view and
+        edit the object
 
 6.  Click **Save**.
 
@@ -607,8 +624,7 @@ just a password.
 1.  Open the **Users** app and find the type of user object you want to
     edit.
 
-2.  In the object list, directly click the relevant object, or click the
-    menu icon and select **Edit**.
+2.  In the object list, click the relevant object and select **Edit**.
 
 3.  Modify the options you want.
 
@@ -619,8 +635,7 @@ just a password.
 1.  Open the **Users** app and find the type of user object you want to
     delete.
 
-2.  In the object list, click the menu icon of the relevant object and
-    select **Remove**.
+2.  In the object list, click the relevant object and select **Remove**.
 
 3.  Click **OK** to confirm.
 
@@ -629,8 +644,8 @@ just a password.
 1.  Open the **Users** app and find the type of user object you want to
     view.
 
-2.  In the object list, click the menu icon of the relevant object and
-    select **Show details**.
+2.  In the object list, click the relevant object and select **Show
+    details**.
 
 ### Change sharing settings for user objects
 
@@ -646,9 +661,13 @@ just a password.
 4.  (Optional) Select **External access (without login)**.
 
 5.  Change the settings for the user groups you want to modify.
- - **None**
- - **Can view**: Everyone in the user group can view the object
- - **Can edit and view**: Everyone in the user group can view and edit the object
+    
+      - **None**
+    
+      - **Can view**: Everyone in the user group can view the object
+    
+      - **Can edit and view**: Everyone in the user group can view and
+        edit the object
 
 6.  Click **Save**.
 
@@ -775,3 +794,4 @@ Examples of common positions are:
 </tr>
 </tbody>
 </table>
+

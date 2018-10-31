@@ -280,7 +280,7 @@ generated automatically, every time the analytics process is run by the
 system.
 
   - Organisation unit structure (\_orgunitstructure)
-
+    
     This table should be regenerated any time there have been any
     changes made to the organisational unit hierarchy. This table
     provides information about the organisation unit hierarchy. It has
@@ -289,14 +289,14 @@ system.
     the lineage as values.
 
   - Data element group set structure (\_dataelementgroupsetstructure)
-
+    
     This table provides information about which data elements are
     members of which data element group sets. The table has one row for
     each data element, one column for each data element group set and
     the names of the data element group as values.
 
   - Indicator group set structure (\_indicatorgroupsetstructure)
-
+    
     This table provides information about which indicators are members
     of which indicator group sets. The table has one row for each
     indicator, one column for each indicator group set and the names of
@@ -304,35 +304,35 @@ system.
 
   - Organisation unit group set structure
     (\_organisationunitgroupsetstructure)
-
+    
     This table provides information about which organisation units are
     members of which organisation unit group sets. The table has one row
     for each organisation unit, one column for each organisation unit
     group set and the names of the organisation unit groups as values.
 
   - Category structure (\_categorystructure)
-
+    
     This table provides information about which data elements are
     members of which categories. The table has one row for each data
     element, one column for each category and the names of the category
     options as values.
 
   - Data element category option combo name (\_categoryoptioncomboname)
-
+    
     This table should be regenerated any time there have been changes
     made to the category combination names. It contains readable names
     for the various combinations of categories.
 
   - Data element structure (\_dataelementstructure)
-
+    
     This table provides information about all data elements and which
     period type (frequency) they capture data at. The period type is
     determined through the data set membership and hence relies on data
     elements to be member of data sets with similar period types to have
-    a defined behaviour.
+    a defined behavior.
 
   - Period structure (\_dataperiodstructure)
-
+    
     This table provides information about all periods and which period
     type they are associated with. For each period type with lower
     frequency than itself, it contains information about which period it
@@ -340,9 +340,84 @@ system.
 
   - Data element category option combinations
     (\_dataelementcategoryoptioncombo)
-
+    
     This table provides a mapping between data elements and all possible
     category option combinations.
+
+## Locale Management
+
+<!--DHIS2-SECTION-ID:dataAdmin_local_management-->
+
+It is possible to create custom locales in DHIS2. In addition to the
+locales available through the system, you might want to add a custom
+locale such as "English" and "Zambia" to the system. This would allow
+you to translate metadata objects to local languages, or to account for
+slight variants between countries which use a common metadata
+definition.
+
+
+![](resources/images/maintainence/locale_management.png)
+
+The locale is composed of a language along with a country. Select the
+desired values and press "Add". This custom locale will now be available
+as one of the translation locales in the system.
+
+## SQL View
+
+<!--DHIS2-SECTION-ID:dataAdmin_sqlView-->
+
+The SQL View functionality of DHIS2 will store the SQL view definition
+internally, and then materialize the view when requested.
+
+Database administrators must be careful about creating database views
+directly in the DHIS 2 database. For instance, when the resource tables
+are generated, all of them will first be dropped and then re-created. If
+any SQL views depend on these tables, an integrity violation exception
+will be thrown and the process will be aborted.
+
+The SQL views are dropped in reverse alphabetical order based on their
+names in DHIS2, and created in regular alphabetical order. This allows
+you to have dependencies between SQL views, given that views only depend
+on other views which come earlier in the alphabetical order. For
+instance, "ViewB" can safely depend on "ViewA". Otherwise, having views
+depending on other view result in an integrity violation error.
+
+### Creating a new SQL view
+
+To create a new SQL view, click **Apps** \> **Data administration**
+\>**SQL view** and click **Add new**.
+
+
+![](resources/images/maintainence/create_sql_view.PNG)
+
+The "Name" attribute of the SQL view will be used to determine the name
+of the table that DHIS2 will create when the view is materialized by the
+user. The "Description" attribute allows one to provide some descriptive
+text about what the SQL view actually does. Finally, the "SQL statement"
+should contain the SQL view definition. Only SQL "SELECT" statements are
+allowed and certain sensitive tables (i.e. user information) are not
+accessible Press "Save" to store the SQL view definition.
+
+### SQL View management
+
+In order to utilize the SQL views, simply click the view and from the
+context menu, choose "Execute query". Once the process is completed, you
+will be informed that a table has been created. The name of the table
+will be provided, and is composed from the "Description" attribute
+provided in the SQL view definition. Once the view has been generated,
+you can view it by clicking the view again, and selecting "Show SQL
+View".
+
+> **Tip**
+> 
+> If you have a view which depends on another view, you should be
+> careful about how the views are named. When analytics is run on the
+> DHIS2 server, all views must be dropped, and are recreated. When
+> analytics starts, the views are dropped in alphabetical order, and
+> then recreated in reverse alphabetical order. Thus, if view A depends
+> on view B, it must appear before view B in alphabetical order. If it
+> appears after view B in alphabetical order, analytics may fail, as the
+> view with dependencies will not be dropped in the correct order.
 
 ## Duplicate data elimination
 
@@ -441,7 +516,7 @@ By default, pre-defined system jobs are hidden. To view these, toggle
 
 When you create or modify a job, it will be rescheduled according to
 selected preferences. To run a job on demand, press the green triangle
-labelled "Run now". This action is only available for enabled jobs.
+labeled "Run now". This action is only available for enabled jobs.
 
 ### Creating a job
 
@@ -454,22 +529,20 @@ labelled "Run now". This action is only available for enabled jobs.
 
 3.  Select a running frequency for the job, i.e. when and how often the
     job should run.
-
+    
     1.  You can either select a pre-defined frequency from the
-        drop-down menu, or ...
-
-    2.  You can give the job a custom **Cron expression** if you want a
-        specific schedule, using the [Spring
-        scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
-        syntax.
-
+        dropdown-menu, or ...
+    
+    2.  You can give the job a custom **Cron expresssion** if you want a
+        specific schedule.
+    
     3.  Enabling the **Continuous execution** option will make the job
         run constantly. In other words, as soon as the job finishes, it
         will be scheduled to run again right away. Selecting this option
         will disable the other fields.
 
 4.  Select the **Job type** you want to schedule using the
-    drop-down menu.
+    dropdown-menu.
 
 5.  If the job type is customizable, a **Parameters** section will
     appear below. These additional options specify the details of the
@@ -514,7 +587,7 @@ Further configuring a job:
 
 2.  Press the **Delete** button in the bottom right corner.
 
-3.  Confirm by pressing **Delete** again in the pop-up window.
+3.  Confirm by pressing **Delete** again in the popup window.
 
 ![](resources/images/scheduler/delete_job.png)
 
@@ -522,30 +595,28 @@ Further configuring a job:
 
 <!--DHIS2-SECTION-ID:dataAdmin_dataSync-->
 
-DHIS2 provides synchronisation of data between remotely distributed
-instances and a central instance of DHIS2. This can be useful e.g. when
-you have deployed multiple stand-alone instances of DHIS2 which are
-required to submit data values to a central DHIS2 instance. Both tracker
-data and aggregate data synchronisation is supported..
+DHIS2 provides a feature for synchronizing data being captured on the
+local instance with a another, remote instance of DHIS2. This can be
+useful e.g. when you have deployed multiple stand-alone instances of
+DHIS2 which are required to submit data values to a central DHIS2
+instance. Till now only aggregate data was being synced. Starting from
+2.24 even non anonymous events data (line list) will also be synced.
 
 These are the steps to enable data synchronization:
 
-  - Go to Synchronization Settings, enter the remote server URL,
-    username and password. Press the TAB button to automatically save
-    the new password. Refresh the page and check that the filled values
-    are still present. Note that the password field will be empty after
-    the refresh, since this value is encrypted, so you can consider it
-    saved.
+  - Go to Settings \> Synchronization, enter the remote server URL,
+    username and password and click Save. You can test your settings by
+    clicking on the "Test settings" link.
 
-  - Using the Scheduler app, create a new job using the "Program Data
-    Synchronization". Make sure it is enabled when you finish.
+  - Go to Data administration \> Scheduling. Under Data synchronization
+    set strategy to Enabled, and click Start.
 
 Some aspects of the data synchronization feature to be aware of:
 
   - The local DHIS2 instance will store the password of the user account
     on the remote instance encrypted in the local database. The remote
     account is used for authentication when transferring data. For
-    security purposes make sure you set the "encryption.password"
+    security purposes make sure you set the "enryption.password"
     configuration parameter in hibernate.properties to a strong
     password.
 
@@ -559,43 +630,21 @@ Some aspects of the data synchronization feature to be aware of:
     meta-data objects being harmonized on the local and remote instance
     in order to work appropriately.
 
-  - The first time DHIS2 runs the synchronization job, it will include
-    any data available. The subsequent synchronization jobs will only
-    include data added and changed since the last successful job. A
-    synchronization job is considered successful only if all the data
-    was saved successfully on the remote server (Any data successfully
-    synced will remain on the receiving instance, regardless if the job
-    eventually fails). Whether the job was successful or not can be
-    decided from the import summary returned from the central server.
+  - The very first time DHIS2 attempts to synchronize data the system
+    will include data entered during the last three days. For the
+    subsequent attempts the system will store the time of the last
+    successful data synchronization and only include data saved or
+    edited since that time. A synchronization job is considered
+    successful only if data was submitted, authenticated and saved
+    successfully on the remote server,.
 
-  - The initial synchronization job may take a significant amount of
-    time, possibly slowing down your instance, depending on how much
-    data is being synchronized. It could be a good idea to configure the
-    job to run when there are few online users, then later change this
-    to your own preference.
+  - The system will attempt a synchronization every minute. If the local
+    server does not have a working Internet connection at the time, the
+    synchronization will be silenly aborted and re-attempted after a
+    minute.
 
-    When DHIS2 synchronises tracker data, it determines the set of data
-    to synchronise based on the last time it was synchronised. Each of
-    the tracked entity instances and events have their own records of
-    when they where last successfully synchronised.
-
-  - The system will start a synchronization job based on the rules set
-    in the configuration of the job. If the synchronization job starts
-    while there is no connection to the remote server, it will retry up
-    to three times before it aborts. The job will run again at a
-    scheduled time.
-
-  - The server handles each set of programs separately, which means one
-    set of programs can be synchronized successfully, while the other
-    fails. The failure or success of one doesn't influence the other, as
-    the last successful synchronization time is tracked individually for
-    each item as previously mentioned.
-
-  - The attributes of TrackedEntityInstances (TrackedEntityAttribute)
-    and the data elements of ProgramStages (ProgramStageDataElement)
-    which have an option "Skip synchronization" turned on will not be
-    synchronized. This feature allows you to decide to not synchronize
-    some sensitive or not relevant data and to keep them only locally.
+  - You can see the time of last successful synchronization with remote
+    server in the scheduling screen next to the "Last success" label.
 
 ## Metadata Synchronization Scheduling
 
@@ -659,3 +708,4 @@ Some aspects of the meta data synchronization feature to be aware of:
 
   - You can see the time of last successful synchronization with remote
     server in the scheduling screen next to the "Last success" label.
+

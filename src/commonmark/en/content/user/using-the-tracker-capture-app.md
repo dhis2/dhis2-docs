@@ -259,19 +259,8 @@ For non-unique attributes search:
     refine your search criteria
 
 When choosing to open the registration form, the search values will
-automatically be filled into the registration form.
-
-### Breaking the glass
-
-<!--DHIS2-SECTION-ID:break_glass-->
-
-If the program is configured with access level **protected**, and the
-user searches and finds tracked entity instances that is owned by
-organisation unit that the user does not have data capture authority
-for, the user is presented with the option of breaking the glass. The
-user will gove a reason for breaking the glass, then gain temporary
-ownership of the tracked entity
-instance.
+automatically be filled into the registration
+form.
 
 ## Enroll an existing TEI in a program
 

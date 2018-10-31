@@ -12,8 +12,7 @@ reports.
   - You can create as many users, user roles and user groups as you
     need.
 
-  - You can assign specific authorities to user groups or individual
-    users via user roles.
+  - You can assign specific authorities to each user.
 
   - You can create multiple user roles each with their own authorities.
 
@@ -86,7 +85,7 @@ You manager users, user roles and user groups in the **Users** app.
 <tbody>
 <tr class="odd">
 <td><p>User</p></td>
-<td><p>Create, edit, invite, clone, disable, display by organisation unit, delete and show details</p></td>
+<td><p>Create, edit, clone, disable, assign search organisation units, display by organisation unit, delete and show details</p></td>
 </tr>
 <tr class="even">
 <td><p>User role</p></td>
@@ -206,15 +205,14 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
 5.  Assign the users to organisation units.
 
-6.  (Optional) Group users in user groups.
+6.  Assign data sets to the user role.
 
-7.  Share datasets with users or user-groups via the Sharing Dialog in
-    Data set management section of the Maintenance app
+7.  (Optional) Group users in user groups.
 
 > **Tip**
 > 
-> For users to be able to enter data, you must add them to an
-> organisational unit level and share a dataset with them.
+> For users to be able to enter data, you must add them to both a data
+> set and an organisational unit level.
 
 ## Example: user management in a health system
 

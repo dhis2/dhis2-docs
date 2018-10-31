@@ -13,10 +13,10 @@ Live.
 
 DHIS2 runs on all platforms for which there exists a Java Runtime
 Environment version 8 or higher, which includes most popular operating
-systems such as Windows, Linux and Mac. DHIS2 runs on the PostgreSQL
-database system. DHIS2 is packaged as a standard Java Web Archive
-(WAR-file) and thus runs on any Servlet containers such as Tomcat and
-Jetty.
+systems such as Windows, Linux and Mac. DHIS2 also runs on many
+relational database systems such as PostgreSQL, MySQL, H2 and Derby.
+DHIS2 is packaged as a standard Java Web Archive (WAR-file) and thus
+runs on any Servlet containers such as Tomcat and Jetty.
 
 The DHIS2 team recommends Ubuntu 16.04 LTS operating system, PostgreSQL
 database system and Tomcat Servlet container as the preferred
@@ -58,23 +58,6 @@ perform.
     data value tables. Analytics tables require a significant amount of
     disk space. Plan ahead and ensure that your server can be upgraded
     with more disk space as it becomes needed.
-
-## Software requirements
-
-<!--DHIS2-SECTION-ID:install_software_requirements-->
-
-Later DHIS2 versions require the following software versions to operate.
-
-  - Java JRE version 8 or later.
-
-  - Any operating system for which a Java JRE version 8 exists.
-
-  - PostgreSQL database version 9.4 or later.
-
-  - PostGIS database extension version 2.2 or later.
-
-  - Tomcat servlet container version 8 or later, or other Servlet API
-    3.1 compliant servlet containers like Jetty 9.
 
 ## Server setup
 
@@ -725,13 +708,6 @@ read replicas. The ordering of replicas has no significance.
 
 <!--DHIS2-SECTION-ID:install_web_server_cluster_configuration-->
 
-This section describes how to set up the DHIS 2 application to run in a
-cluster.
-
-### Clustering overview
-
-<!--DHIS2-SECTION-ID:install_cluster_configuration_introduction-->
-
 Clustering is a common technique for improving system scalability and
 availability. Clustering refers to setting up multiple web servers such
 as Tomcat instances and have them serve a single application. Clustering
@@ -741,22 +717,12 @@ availability* as the system can tolerate instances going down without
 making the system inaccessible to users.
 
 When setting up multiple Tomcat instances there is a need for making the
-instances aware of each other. This awareness will enable DHIS 2 to keep
-the local data (Hibernate) caches in sync and in a consistent state.
-When an update is done on one instance, the caches on the other
-instances must be notified so that they can be invalidated and avoid
-becoming stale.
+instances aware of each other. Each DHIS 2 instance will keep a local
+data cache. When an update is done on one instance, the caches on the
+other instances must be notified so that they can be invalidated and
+avoid becoming stale.
 
-There are two aspects to configure in *dhis.conf* in order to run DHIS 2
-in a cluster.
-
-  - Each instance must specify the other DHIS 2 application members of
-    the cluster.
-
-  - An instance of the Redis data store must be installed and connection
-    information must be configured for each DHIS 2 application instance.
-
-### Cluster instance configuration
+### Cluster configuration
 
 <!--DHIS2-SECTION-ID:install_cluster_configuration-->
 
@@ -817,61 +783,6 @@ be specified in *dhis.conf* (notice how port configuration is omitted):
 You must restart each Tomcat instance to make the changes take effect.
 The two instances have now been made aware of each other and DHIS 2 will
 ensure that their caches are kept in sync.
-
-### Cluster shared data store configuration
-
-<!--DHIS2-SECTION-ID:install_cluster_configuration_redis-->
-
-In a cluster setup, a *Redis* instance is required and will handle
-shared user sessions, application cache and cluster node leadership.
-
-DHIS2 will connect to Redis if the *redis.enabled* configuration
-property in *dhis.conf* is set to *true* along with the following four
-properties:
-
-1.  *redis.host*: Specifies where the redis server is running. Defaults
-    to *localhost*.
-
-2.  *redis.port*: Specifies the port in which the redis server is
-    listening. Defaults to *6379*.
-
-3.  *redis.password*: Specifies the authentication password.
-
-4.  *redis.use.ssl*: Specifies whether the Redis server has SSL enabled.
-    Defaults to *false*.
-
-Whenever Redis is enabled, DHIS2 will automatically assign one of the
-running instances as the leader of the cluster. The leader instance will
-be used to execute jobs or scheduled tasks that should be run
-exclusively by one instance. Optionally, you can configure the
-*leader.time.to.live.minutes* property in *dhis.conf* to set up how
-frequently the leader election needs to occur. It also gives an
-indication of how long it would take for another instance to take over
-as the leader after the previous leader has shutdown/crashed. The
-default value is 2 minutes. Note that assigning a leader in the cluster
-is only done if Redis is enabled. An example snippet of the *dhis.conf*
-configuration file with Redis enabled and leader election time
-configured is shown below.
-
-``` 
-# Redis Configuration
-
-# Mandatory if redis has to be enabled.
-redis.enabled = true
-
-redis.host = 193.158.100.111
-
-redis.port = 6379
-
-redis.password = yourpassword
-
-# Optional, defaults to false.
-redis.use.ssl = false
-
-# Optional, defaults to 2 minutes.
-leader.time.to.live.minutes=4
- 
-```
 
 ### Load balancing
 

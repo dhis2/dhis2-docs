@@ -7,7 +7,7 @@ This chapter discusses the sharing of entities feature in DHIS2.
 ## Sharing of objects
 
 Many objects in DHIS2, like reports, charts, maps and indicators, can be
-shared. DHIS2 supports sharing of metadata or sharing of data. Sharing of
+shared. DHIS supports sharing of metadata or sharing of data. Sharing of
 metadata means making an object, like a report, available for reading or
 modification to a group of users or to everyone. Sharing of data means
 making the actual data captured available to others, and controlling who
@@ -166,7 +166,7 @@ data the user needs the "DATA:Can capture data" sharing level.
 > **Note**
 >
 > To see and capture data for a program, a data capture user also needs
-> to report for an organisation unit to where the program has been
+> to report for an organisaction unit to where the program has been
 > assigned.
 
 <table>
@@ -272,24 +272,14 @@ data the user needs the "DATA:Can capture data" sharing level.
 
 ### Data sharing for data sets
 
-Applies to the object types of data set and category option . When
-working in Data Entry app, the user will need to have "DATA:Can capture
-data" to both see and capture data in the data set. To save data for an
-entry field in Data Set users need:
-
-1.  Authority: F\_DATAVALUE\_ADD ( Can add data value )
-
-2.  Data Set is shared with "Data: Can capture data"
-
-3.  Data Element is shared with "Metadata: Can View"
-
-4.  All Category Options used by selected Data Set are shared with
-    "Data: Can capture data"
+Applies to the object types of data set. When working with data sets,
+the user will need to have "DATA:Can capture data" to both see and
+capture data in the data set.
 
 > **Note**
 >
 > To see and capture data for a data set, a data capture user also needs
-> to report for an organisation unit to where the data set has been
+> to report for an organisaction unit to where the data set has been
 > assigned.
 
 <table>
@@ -312,23 +302,12 @@ entry field in Data Set users need:
 <tr class="odd">
 <td><p><strong>Data set</strong></p></td>
 <td><ul>
-<li><p>View Data Set's data in Analytics</p></li>
+<li><p>See data for the data set.</p></li>
 </ul></td>
 <td><ul>
-<li><p>Can see DataSet in Data Entry app</p></li>
-<li><p>Can save data for Data Set using API</p></li>
+<li><p>Add/edit data sets.</p></li>
 </ul></td>
-<td><p>For saving data value in Data Entry app, users also need &quot;Can capture data&quot; for Category Options within selected Data Set.</p></td>
-</tr>
-<tr class="even">
-<td><strong>CategoryOption</strong></td>
-<td><ul>
-<li><p>Can view data values belong to shared Category Option in analytics</p></li>
-</ul></td>
-<td><ul>
-<li><p>Can save data value for input fields in Data Entry app which belongs to shared Category Options.</p></li>
-</ul></td>
-<td>For CategoryOptionCombo and AttributeOptionCombo to be writeable, all belongs CategoryOptions must be shared with &quot;Can capture data&quot;.</td>
+<td></td>
 </tr>
 </tbody>
 </table>

@@ -42,7 +42,7 @@ discussed in separate sections in detail:
     an active GPRS/3G connection is required. It does not require a new
     application installation on the phone to support new features, but
     does require a stable data connection for use. This solution is
-    described in [Mobile browser based data entry](#mobile_web_based)
+    described in [section\_title](#mobile_web_based)
 
   - DHIS2 Smartphone client: A mobile browser optimized data entry
     module for Smartphone devices
@@ -946,10 +946,8 @@ command:
 ![](resources/images/dhis2_mobile_sms/mobile-sms-conf-sms-command-types.png)
 
 With KEY\_VALUE\_PARSER and J2ME\_PARSER, the SMS command will have
-dataset because those are used for reporting data. If data is reported
-for a Period which is already approved then SMS response will be sent
-back containing information about approval status of the
-period.
+dataset because those are used for reporting
+data
 
 ![](resources/images/dhis2_mobile_sms/mobile-sms-conf-sms-command-dataset.png)
 
