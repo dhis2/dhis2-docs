@@ -3964,6 +3964,7 @@ Options that are grouped can be hidden or shown together in tracker and event ca
 
 **Option group sets** allows you to categorise multiple **option groups** into a set.
 The main purpose of the option group set is to add more dimensionality to your captured data for analysis.
+
 > **Note**
 >
 > You cannot change the **Option set** selected in an **Option group set** once it has been created.
