@@ -1048,6 +1048,11 @@ functions. The functions can be applied to data elements and attributes:
 <td><p>(object, [,object, object,...])</p></td>
 <td><p>Returns the number of numeric zero and positive values among the given object arguments. Can be provided any number of arguments.</p></td>
 </tr>
+<tr class="odd">
+<td><p>d2:relationshipCount</p></td>
+<td><p>(relationship)</p></td>
+<td><p>Produces the number of relationships of the given type that is connected to the enrollment or event.</p></td>
+</tr>
 </tbody>
 </table>
 
