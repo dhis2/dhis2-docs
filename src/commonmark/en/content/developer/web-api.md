@@ -8878,6 +8878,18 @@ The analytics resource lets you specify a range of query parameters:
 <td>Filters for the data/measure, applied before aggregation is performed.</td>
 <td>EQ | GT | GE | LT | LE</td>
 </tr>
+<tr>
+<td>startDate</td>
+<td>No</td>
+<td>Start date for date range. Will be applied as a filter. Can not be used together with a period dimension or filter.</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>No</td>
+<td>End date for date range. Will be applied as a filter. Can not be used together with a period dimension or filter.</td>
+<td>Date</td>
+</tr>
 <tr class="even">
 <td>skipMeta</td>
 <td>No</td>
@@ -9024,8 +9036,7 @@ collapsed on the filter dimensions. In other words, the data in the
 response will be aggregated on the filter dimensions, but the filters
 will not be included as dimensions in the actual response. As an
 example, to query for certain data elements filtered by the periods and
-organisation units you can use the following
-    URL:
+organisation units you can use the following URL:
 
     /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&filter=pe:2014Q1;2014Q2&filter=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
@@ -9037,8 +9048,7 @@ element groups, the aggregation operator of the first data element in
 the first group will be used. The order of groups and data elements is
 undefined. This query parameter allows you to override the default and
 specify a specific aggregation operator. As an example you can set the
-aggregation operator to "count" with the following
-    URL:
+aggregation operator to "count" with the following URL:
 
     /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2014Q1&dimension=ou:O6uvpzGd5pu&aggregationType=COUNT
 
@@ -9052,8 +9062,7 @@ number of criteria on the following format, where *critieria* and
     /api/26/analytics?measureCriteria=criteria:value;criteria:value
 
 As an example, the following query will return only records where the
-data value is greater or equal to 6500 and less than
-    33000:
+data value is greater or equal to 6500 and less than 33000:
 
     /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
       &dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw&measureCriteria=GE:6500;LT:33000
@@ -9061,11 +9070,18 @@ data value is greater or equal to 6500 and less than
 Similar to *measureCriteria*, the *preAggregationMeasureCriteria* query
 parameter lets you filter out data, only before aggregation is
 performed. For example, the following query only aggregates data where
-the original value is within the criteria
-    defined:
+the original value is within the criteria defined:
 
     /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
       &dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw&preAggregationMeasureCriteria=GE:10;LT:100
+
+The *startDate* and *endDate* parameters can be used to specify a custom 
+date range to aggregate over. When specifying a date range you can not
+specify relative nor fixed periods as dimension or filter. The date range
+will filter the analytics response. You can use it like this:
+
+    /api/29/analytics.json?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+      &dimension=ou:ImspTQPwCqd&startDate=2018-01-01&endDate=2018-06-01
 
 In order to have the analytics resource generate the data in the shape
 of a ready-made table, you can provide the *tableLayout* parameter with
@@ -9075,8 +9091,7 @@ can use the *columns* and *rows* parameters with dimension identifiers
 separated by semi-colons as values to indicate which ones to use as
 table columns and rows. The column and rows dimensions must be present
 as a data dimension in the query (not a filter). Such a request can look
-like
-    this:
+like this:
 
     /api/26/analytics.html?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014Q1;2014Q2
       &dimension=ou:O6uvpzGd5pu&tableLayout=true&columns=dx;ou&rows=pe
@@ -9084,8 +9099,7 @@ like
 The *order* parameter can be used for analytics resource to generate
 ordered data. The data will be ordered in ascending(or descending) order
 of values. An example request for ordering the values in descending
-order
-    is:
+order is:
 
     /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:LAST_12_MONTHS&dimension=ou:O6uvpzGd5pu&order=DESC
 
@@ -12024,12 +12038,10 @@ MAX\_ALLOWED\_RECIPIENTS limit which is 200.
 
     {
       "message":"Sms Text",
-
       "recipients": [
         "47XXXXXX1",
         "47XXXXXX2"
       ]
-
     }
 
 The Web API also supports a query parameter version, but the
