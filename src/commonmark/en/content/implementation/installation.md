@@ -69,7 +69,7 @@ Later DHIS2 versions require the following software versions to operate.
 
   - Any operating system for which a Java JRE version 8 exists.
 
-  - PostgreSQL database version 9.4 or later.
+  - PostgreSQL database version 9.6 or later.
 
   - PostGIS database extension version 2.2 or later.
 
@@ -162,11 +162,7 @@ Norwegian):
 Install PostgreSQL by
     invoking:
 
-    sudo apt-get install postgresql-9.5 postgresql-contrib-9.5 postgresql-9.5-postgis-2.2
-
-*Note:* Alternatively you can consult the PostgreSQL documentation to
-install the latest version from the PostgreSQL APT repository:
-[http://www.postgresql.org/download/linux/ubuntu/](#).
+    sudo apt-get install postgresql-10 postgresql-contrib-10 postgresql-10-postgis-2.4
 
 Create a non-privileged user called *dhis* by invoking:
 
