@@ -2000,6 +2000,13 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <p>Example expression:</p>
 <pre><code>d2:inOrgUnitGroup(&#39;HIGH_RISK_FACILITY&#39;)</code></pre></td>
 </tr>
+<tr class="odd">
+<td>d2:hasUserRole</td>
+<td>(user role)</td>
+<td>Returns true if current user has this role otherwise false
+<p>Example expression:</p>
+<pre><code>d2:hasUserRole(&#39;UYXOT4A3ASA&#39;)</code></pre></td>
+</tr>
 </tbody>
 </table>
 
