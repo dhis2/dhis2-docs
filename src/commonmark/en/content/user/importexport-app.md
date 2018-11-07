@@ -293,21 +293,23 @@ export.
 
 1.  Select the *Organisation Units* .
 
-2.  Set the *Start* and *End Date* .
+2.  Select under Children if you want export to include descendants of organisation units selected in Step 1 or only the manually selected organisation units.
 
-3.  Choose the *Data Sets*
+3.  Set the *Start* and *End Date* .
 
-4.  Select a format: **XML** or **JSON** .
+4.  Choose the *Data Sets*
 
-5.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
+5.  Select a format: **XML** or **JSON** .
 
-6.  Click *MORE OPTIONS* If you want to adjust Data Element ID Scheme,
+6.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
+
+7.  Click *MORE OPTIONS* If you want to adjust Data Element ID Scheme,
     Org. Unit ID Scheme or Category ID Scheme before export.
 
-7.  Click **Export** which will bring up the **Logger** at the bottom of
+8.  Click **Export** which will bring up the **Logger** at the bottom of
     the page to show the progress.
 
-8.  The exported file is downloaded to your local computer.
+9.  The exported file is downloaded to your local computer.
 
 ## Event export
 
