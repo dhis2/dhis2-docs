@@ -1050,15 +1050,20 @@ functions. The functions can be applied to data elements and attributes:
 </tr>
 <tr class="odd">
 <td><p>d2:relationshipCount</p></td>
-<td><p>(relationship)</p></td>
-<td><p>Produces the number of relationships of the given type that is connected to the enrollment or event.</p></td>
+<td><p>([relationshipTypeUid])</p></td>
+<td><p>Produces the number of relationships of the given type that is connected to the enrollment or event. When no type is given, all types are counted.</p></td>
 </tr>
 </tbody>
 </table>
 
-A filter that uses the "hasValue" function looks like this: this:
+A filter that uses the "hasValue" function looks like this:
 
     d2:hasValue(#{mCXR7u4kNBW.NFkjsNiQ9PH})
+
+A filter that uses the "relationshipCount(relationshipTypeUid)" function looks like this:
+
+    d2:relationshipCount('KLkjshoQ90U')
+
 
 An expression that uses the "zing" and "oizp" functions looks like this:
 
