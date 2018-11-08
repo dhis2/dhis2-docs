@@ -375,24 +375,6 @@ Sometimes it might be nessascary to refer a patient to a different
     single event or **Move permanently** which will move TEI and all its
     future events permantly to the selected **Organisation Unit**.
 
-### Compare events
-
-Sometimes it can be helpful to see data from previous events when
-entering data for a new event. This can be achived by:
-
-1.  Open the **Tracker Capture** app.
-
-2.  Open an existing TEI dashboard.
-
-3.  In the **Timeline Data entry** widget, click the **two pages** icon
-    (as seen in the image below).
-
-> **Note**
-> 
-> *Note that this will only work for events that are repeatable.*
-
-![](resources/images/tracker_capture/compareForm.png)
-
 ## Manage a TEI's enrollments
 
 <!--DHIS2-SECTION-ID:manage_tracked_entity_instance_enrollment-->
@@ -690,6 +672,25 @@ easy way. To start using the top bar:
     display in the top bar.
 
 ![](resources/images/tracker_capture/top_bar.png)
+
+### Chage table display mode for **Timeline Data Entry** widget
+
+The **Timeline Data Entry** widget has 5 diffrent table display modes that can be selected. The different options are:
+- **Default form** - Shows all data elements verticaly.
+- **Compare form previous** - Shows the prevoius (repeatable) program stage next to the current selected program stage.
+- **Compare form all** - Shows all prevoius (repeatable) program stages next to the current selected program stage.
+- **Grid form** - Shows the data elements horizontaly.
+- **POP-over form** - The same as **Grid form**, but when clicked the data elements are displayed in a pop-up.
+
+To change the current display mode, click the second icon in the widgets top bar (see image below):
+
+![](resources/images/tracker_capture/compareForm.png)
+
+Once an option is selected the selection is stored for that spesific program stage. This mean that you can have different table modes for the different program stages in a program.  
+
+> **Notes**
+> 1.  *Note that the **Compare form** options will only work with repeatable events of the same program stage.*
+> 2.  *The **Grid form** and **POP-over form** options are not selectable if the program stage has more than 10 data elements.*
 
 ## Create reports
 
