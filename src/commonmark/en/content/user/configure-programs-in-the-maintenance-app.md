@@ -1048,12 +1048,22 @@ functions. The functions can be applied to data elements and attributes:
 <td><p>(object, [,object, object,...])</p></td>
 <td><p>Returns the number of numeric zero and positive values among the given object arguments. Can be provided any number of arguments.</p></td>
 </tr>
+<tr class="odd">
+<td><p>d2:relationshipCount</p></td>
+<td><p>([relationshipTypeUid])</p></td>
+<td><p>Produces the number of relationships of the given type that is connected to the enrollment or event. When no type is given, all types are counted.</p></td>
+</tr>
 </tbody>
 </table>
 
-A filter that uses the "hasValue" function looks like this: this:
+A filter that uses the "hasValue" function looks like this:
 
     d2:hasValue(#{mCXR7u4kNBW.NFkjsNiQ9PH})
+
+A filter that uses the "relationshipCount(relationshipTypeUid)" function looks like this:
+
+    d2:relationshipCount('KLkjshoQ90U')
+
 
 An expression that uses the "zing" and "oizp" functions looks like this:
 
