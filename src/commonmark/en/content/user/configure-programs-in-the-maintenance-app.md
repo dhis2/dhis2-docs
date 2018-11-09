@@ -1006,27 +1006,27 @@ functions. The functions can be applied to data elements and attributes:
 <tr class="even">
 <td><p>d2:minutesBetween</p></td>
 <td><p>(datetime, datetime)</p></td>
-<td><p>Produces the number of minutes between two data elements/attributes of type &quot;date and time&quot;. The static datetime format is 'yyyy-MM-dd hh:mm'.</p></td>
+<td><p>Produces the number of minutes between two data elements/attributes of type &quot;date and time&quot;. The static datetime format is 'yyyy-MM-dd hh:mm'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="odd">
 <td><p>d2:daysBetween</p></td>
 <td><p>(date, date)</p></td>
-<td><p>Produces the number of days between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'.</p></td>
+<td><p>Produces the number of days between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="even">
 <td><p>d2:weeksBetween</p></td>
 <td><p>(date, date)</p></td>
-<td><p>Produces the number of full weeks between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'.</p></td>
+<td><p>Produces the number of full weeks between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="odd">
 <td><p>d2:monthsBetween</p></td>
 <td><p>(date, date)</p></td>
-<td><p>Produces the number of full months between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'.</p></td>
+<td><p>Produces the number of full months between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="even">
 <td><p>d2:yearsBetween</p></td>
 <td><p>(date, date)</p></td>
-<td><p>Produces the number of full years between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'.</p></td>
+<td><p>Produces the number of full years between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="odd">
 <td><p>d2:condition</p></td>
@@ -1053,6 +1053,21 @@ functions. The functions can be applied to data elements and attributes:
 <td><p>([relationshipTypeUid])</p></td>
 <td><p>Produces the number of relationships of the given type that is connected to the enrollment or event. When no type is given, all types are counted.</p></td>
 </tr>
+<tr class="even">
+<td><p>d2:count</p></td>
+<td><p>(dataElement)</p></td>
+<td><p>Useful only for enrollment program indicators. Counts the number of data values that has been collected for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax.</p></td>
+</tr>
+<tr class="odd">
+<td><p>d2:countIfValue</p></td>
+<td><p>(dataElement, value)</p></td>
+<td><p>Useful only for enrollment program indicators. Counts the number of data values that matches the given literal value for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The value can be a hard coded text or number, for example 'No_anemia' if only the values containing this text should be counted.</p></td>
+</tr>
+<tr class="even">
+<td><p>d2:countIfCondition</p></td>
+<td><p>(dataElement, condition)</p></td>
+<td><p>Useful only for enrollment program indicators. Counts the number of data values that matches the given condition criteria for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The condition is supplied as a expression in single quotes, for example '&lt;10' if only the values less than 10 should be counted.</p></td>
+</tr>
 </tbody>
 </table>
 
@@ -1064,7 +1079,6 @@ A filter that uses the "relationshipCount(relationshipTypeUid)" function looks l
 
     d2:relationshipCount('KLkjshoQ90U')
 
-
 An expression that uses the "zing" and "oizp" functions looks like this:
 
     d2:zing(A{GPkGfbmArby}) + d2:oizp(#{mCXR7u4kNBW.NFkjsNiQ9PH}))
@@ -1073,9 +1087,17 @@ An expression that uses the "daysBetween" function looks like this:
 
     d2:daysBetween(#{mCXR7u4kNBW.k8ja2Aif1Ae},'2015-06-01')
 
+An expression that uses the "yearBetween" function to compare the latest event of the program stage 'mCXR7u4kNBW' to the enrollment date looks like this:
+
+    d2:daysBetween(V{enrollment_date},PS_EVENTDATE:mCXR7u4kNBW)
+
 An expression that uses the "condition" function looks like this:
 
     d2:condition('#{mCXR7u4kNBW.NFkjsNiQ9PH} > 100',150,50)
+
+An expression that uses the "countIfValue" function to only count the number of times the value 10 has been collected looks like this:
+
+    d2:countIfValue(#{mCXR7u4kNBW.NFkjsNiQ9PH}),10)
 
 An expression that uses the "zpvc" function looks like this:
 
