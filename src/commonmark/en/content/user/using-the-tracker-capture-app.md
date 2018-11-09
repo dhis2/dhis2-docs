@@ -677,9 +677,13 @@ easy way. To start using the top bar:
 
 The **Timeline Data Entry** widget has 5 diffrent table display modes that can be selected. The different options are:
 - **Default form** - Shows all data elements verticaly.
+
 - **Compare form previous** - Shows the prevoius (repeatable) program stage next to the current selected program stage.
+
 - **Compare form all** - Shows all prevoius (repeatable) program stages next to the current selected program stage.
+
 - **Grid form** - Shows the data elements horizontaly.
+
 - **POP-over form** - The same as **Grid form**, but when clicked the data elements are displayed in a pop-up.
 
 To change the current display mode, click the second icon in the widgets top bar (see image below):
@@ -688,9 +692,10 @@ To change the current display mode, click the second icon in the widgets top bar
 
 Once an option is selected the selection is stored for that spesific program stage. This mean that you can have different table modes for the different program stages in a program.  
 
-> **Notes**
-> 1.  *Note that the **Compare form** options will only work with repeatable events of the same program stage.*
+> **Notes:**
+> 1.  *The **Compare form** options will function best if you have multipe repeatable events (of the same program stage) present.*
 > 2.  *The **Grid form** and **POP-over form** options are not selectable if the program stage has more than 10 data elements.*
+> 3.  *The icon in the widgets bar will change depending on the option you have selected.*
 
 ## Create reports
 
