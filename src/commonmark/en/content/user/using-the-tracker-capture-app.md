@@ -112,6 +112,10 @@ You can create a TEI and enroll that TEI to a program in one operation:
 
 5.  Fill in the required information.
 
+    Both tracked entity type and program can be configured to use a feature type.
+    This makes it possible to capture geometry for either the TEI or the enrollment.
+    Supported feature type is Point and Polygon. Please see **How to use geometry**.
+
 6.  If searching for program is configured, a background search will be
     performed on searchable fields to help you prevent registering
     duplicates. If there is any matching TEIs, a blue box will be
@@ -339,6 +343,10 @@ You can create an event for a TEI by:
 
 4.  Select a **Programstage** and set a **Report date**.
 
+    Program stages can be configured to use a feature type.
+    This makes it possible to capture geometry for an event.
+    Supported feature type is Point and Polygon. Please see **How to use geometry**.
+
 5.  Click **Save**.
 
 ### Schedule an event
@@ -374,6 +382,38 @@ Sometimes it might be nessascary to refer a patient to a different
 5.  Click either **One-time referral** which will only refer TEI for one
     single event or **Move permanently** which will move TEI and all its
     future events permantly to the selected **Organisation Unit**.
+
+## How to use geometry
+
+Tracked entity type, program and program stage can be configured to
+use a feature type. This makes it possible to capture geometry for a
+TEI, program or event. Supported feature types are Point and Polygon.
+
+### Capture coordinate
+**Option 1:** Fill in the latitude and longitude into the field.
+
+**Option 2:**
+1.  Click on the **map icon**
+2.  Find the location you want by either searching or locating it on
+    the map
+3.  Left click on the location you want, and choose **Set coordinate**
+4.  Click **Capture** at the bottom
+
+### Capture Polygon
+1.  Click on the **map icon**
+2.  Find the location you want by either searching or locating it on
+    the map
+3.  At the top left of the map, click the **polygon icon**
+4.  Draw a polygon on the map. To finish, connect the last point with
+    the first point
+5.  Click **Capture** at the bottom
+
+![](resources/images/tracker_capture/capture_geometry.png)
+
+Polygons can also be deleted
+1.  Click the **map icon**
+2.  Click the **trash can icon** at the left side of the map, and select
+    **Clear all**
 
 ## Manage a TEI's enrollments
 
