@@ -18165,7 +18165,7 @@ and temporary tables.
 </thead>
 <tbody>
 <tr class="odd">
-<td>RESOURCE_TABLE_POPULATED</td>
+<td rowspan="12">RESOURCE_TABLE_POPULATED</td>
 <td>ORG_UNIT_STRUCTURE</td>
 <td>_orgunitstructure_temp</td>
 </tr>
@@ -18214,8 +18214,8 @@ and temporary tables.
 <td>_dataapprovalminlevel_temp</td>
 </tr>
 <tr class="odd">
-<td>ANALYTICS_TABLE_POPULATED</td>
-<td>DATA_VALUE, COMPLETENESS</td>
+<td rowspan="7">ANALYTICS_TABLE_POPULATED</td>
+<td>DATA_VALUE</td>
 <td>analytics_temp</td>
 </tr>
 <tr class="even">
