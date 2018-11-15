@@ -10175,6 +10175,12 @@ The analytics event API let you specify a range of query parameters.
 <td>The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element having a time-based value type.</td>
 <td>EVENT_DATE | ENROLLMENT_DATE | INCIDENT_DATE | DUE_DATE | COMPLETED_DATE | &lt;Attribute ID&gt; | &lt;Data element ID&gt;</td>
 </tr>
+<tr>
+<td>orgUnitField</td>
+<td>No</td>
+<td>The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter.
+<td>&lt;Attribute ID&gt; | &lt;Data element ID&gt;</td>
+</tr>
 </tbody>
 </table>
 
