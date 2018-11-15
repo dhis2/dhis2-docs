@@ -83,8 +83,8 @@ blockquote p {
 caption {
   font-style: italic;
   font-weight: bold;
-  padding-bottom: 0.5em;
-  padding-top: 0.5em;
+  padding-bottom: 1em;
+  padding-top: 1em;
   text-align: left;
 }
 
@@ -148,13 +148,13 @@ table th {
   background-color: #eee;
   border-left: 1px solid #ddd;
   border-top: 1px solid #ddd;
-  padding: 0.2em 1em;
+  padding: 0.4em 1em;
 }
 
 table td {
   border-left: 1px solid #ddd;
   border-top: 1px solid #ddd;
-  padding: 0.2em 1em;
+  padding: 0.4em 1em;
   vertical-align: top;
 }
 
