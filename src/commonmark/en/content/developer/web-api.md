@@ -9086,18 +9086,6 @@ will filter the analytics response. You can use it like this:
     /api/29/analytics.json?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=ou:ImspTQPwCqd&startDate=2018-01-01&endDate=2018-06-01
 
-To base event analytics aggregation on a specific data element or attribute
-of value type date or date time you can use the *timeField* parameter:
-
-    /api/29/analytics/events/aggregate/IpHINAT79UW.json?dimension=ou:ImspTQPwCqd
-    &dimension=pe:LAST_12_MONTHS&dimension=cejWyOfXge6&stage=A03MvHHogjR&timeField=ENROLLMENT_DATE
-
-To base event analytics aggregation on a specific data element or attribute
-of value type organisation unit you can use the *orgUnitField* parameter:
-
-    /api/29/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
-    &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk&orgUnitField=S33cRBsnXPo
-
 In order to have the analytics resource generate the data in the shape
 of a ready-made table, you can provide the *tableLayout* parameter with
 true as value. Instead of generating a plain, normalized data source,
@@ -10575,6 +10563,18 @@ events.
 
     /api/26/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk&dimension=ou:ImspTQPwCqd
       &dimension=pe:LAST_12_MONTHS&dimension=fWIAEtYVEGk&value=qrur9Dvnyt5&aggregationType=AVERAGE
+
+To base event analytics aggregation on a specific data element or attribute
+of value type date or date time you can use the *timeField* parameter:
+
+    /api/29/analytics/events/aggregate/IpHINAT79UW.json?dimension=ou:ImspTQPwCqd
+    &dimension=pe:LAST_12_MONTHS&dimension=cejWyOfXge6&stage=A03MvHHogjR&timeField=ENROLLMENT_DATE
+
+To base event analytics aggregation on a specific data element or attribute
+of value type organisation unit you can use the *orgUnitField* parameter:
+
+    /api/29/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
+    &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk&orgUnitField=S33cRBsnXPo
 
 #### Ranges / legend sets
 
