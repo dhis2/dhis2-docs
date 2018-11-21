@@ -149,14 +149,14 @@ Along the bottom of the basemap card is:
     ![](resources/images/maps/maps_layer_selection.png)
 
 3.  Select a layer to add to the current map. Possible options are:
-    
+
+      - [Thematic](#using_maps_thematic_layer)
+
       - [Events](#using_maps_event_layer)
     
       - [Tracked entities](#using_maps_tracked_entity_layer)
     
       - [Facilities](#using_maps_facility_layer)
-    
-      - [Thematic](#using_maps_thematic_layer)
     
       - [Boundaries](#using_maps_thematic_layer)
     
