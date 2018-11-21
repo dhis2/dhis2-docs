@@ -79,7 +79,7 @@ and groups.
 
 <!-- end list -->
 
-  - The **Download** button next to the File button allows you to download the current map as a PNG
+  - The **Download** button next to the File button allows you to download the current map as a PNG image.
 
 <!-- end list -->
 
