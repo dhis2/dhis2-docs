@@ -15,7 +15,7 @@ view facilities based on classifications, and visualize catchment areas
 for each facility. You can add labels to areas and points, and search
 and filter using various criteria. You can move points and set locations
 on the fly. Maps can be saved as favorites and shared with other users
-and groups.
+and groups, or downloaded as an image.
 
 > **Note**
 > 
@@ -113,11 +113,6 @@ and groups.
   - Right-click on the map to display the longitude and latitude of that
     location.
 
-  - The home icon on the top right of the workspace will take you back
-    to the DHIS2 dashboard.
-
-  - The About button will display system version information.
-
 **Basemaps**
 
 Basemap layers are represented by layer *cards* in the layer panel such
@@ -130,14 +125,14 @@ Along the top of the basemap card from left to right are:
 
   - The title of the selected basemap
 
-  - An eye symbol for toggling the visibility of the layer
-
   - An arrow symbol to collapse and expand the basemap card
 
 In the middle of the basemap card is the list of available basemaps. The
 current basemap is highlighted.
 
 Along the bottom of the basemap card is:
+
+  - An eye symbol for toggling the visibility of the layer
 
   - A slider for modifying the layer transparency
 
