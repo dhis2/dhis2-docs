@@ -79,6 +79,10 @@ and groups.
 
 <!-- end list -->
 
+  - The **Download** button next to the File button allows you to download the current map as a PNG
+
+<!-- end list -->
+
   - The **Interpretations** button at top right opens an interpretations
     panel on the right side of the workspace. The button is only
     clickable if the map is saved.
