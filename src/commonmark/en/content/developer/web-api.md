@@ -16696,15 +16696,6 @@ as
 
     /api/30/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
 
-## Anonymous Events API
-
-<!--DHIS2-SECTION-ID:webapi_anonymous_events_api-->
-
-Anonymous events API has only 1 enpoint and it is the same endpoint as
-is used in Tracker API for CRUD operations over Events: */api/29/events*
-
-For detailed documentation, see [Events](#webapi_events)
-
 ## Email
 
 <!--DHIS2-SECTION-ID:webapi_email-->
