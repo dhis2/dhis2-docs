@@ -622,8 +622,6 @@ Along the top of the tracked entity card from left to right are:
 
   - The title and period associated with the layer.
 
-  - An eye symbol for toggling the visibility of the layer.
-
   - An arrow symbol to collapse and expand the tracked entity card.
 
 In the middle of the tracked entity card is a legend indicating the
@@ -722,8 +720,8 @@ configuration dialog.
 
 To clear a tracked entity layer from a map:
 
-1.  In the layer panel, click the delete (trash can) icon on the tracked
-    entity layer card.
+1.  In the layer card to the left, click the *more actions* (three dots) icon
+    and then on **Remove layer**.
     
     The layer is removed from the current map.
 
@@ -872,8 +870,8 @@ searching for individual facilities.
 
 To clear all data in a facility layer:
 
-1.  In the layer panel, click the delete (trash can) icon on the
-    facility layer card.
+1.  In the layer card to the left, click the *more actions* (three dots) icon
+    and then on **Remove layer**.
     
     The layer is removed from the current map.
 
@@ -1084,8 +1082,8 @@ using the level/parent user interface.
 
 To clear all data in a boundary layer:
 
-1.  In the layer panel, click the delete (trash can) icon on the
-    boundary layer card.
+1.  In the layer card to the left, click the *more actions* (three dots) icon
+    and then on **Remove layer**.
     
     The layer is removed from the current map.
 
