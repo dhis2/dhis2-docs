@@ -1360,9 +1360,16 @@ You can download your map as an image by clicking on the Download button in the 
 
 ![](resources/images/maps/maps_download.png)
 
-1.  Take a screenshot of the map with the tool of your choice.
+Map download is not supported in Internet Explorer or Safari, we recommend to 
+use Google Chrome og Firefox. 
 
-2.  Save the screenshot in desired format.
+1.  Select if you want to include the map name or not. This option is only
+    available if the map is saved.
+
+2.  Select if you want to inclide the map legend. You can position the legend
+    in one of the 4 corners of your map.
+
+3.  Click **Download** to download your map.  
 
 ## Search for a location
 
