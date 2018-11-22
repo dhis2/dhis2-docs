@@ -136,6 +136,10 @@ Along the bottom of the basemap card is:
 
   - A slider for modifying the layer transparency
 
+  - A more actions (three dots) button with additional options:
+    
+    - **Remove layer** will remove this layer from the current map.
+
 ## Create a new map
 
 <!--DHIS2-SECTION-ID:using_maps_create_map-->
@@ -759,8 +763,6 @@ Along the bottom of the facilities card from left to right are:
 
   - An edit (pencil) button to open the layer configuration dialog
 
-  - An eye symbol for toggling the visibility of the layer
-
   - A slider for modifying the layer transparency
 
   - A more actions (three dots) button with additional options:
@@ -952,8 +954,6 @@ Along the top of the boundary card from left to right are:
   - A grab field to allow dragging and re-ordering layers with the mouse
 
   - The **Boundaries** title
-
-  - An eye symbol for toggling the visibility of the layer
 
   - An arrow symbol to collapse and expand the boundary card
 
@@ -1156,8 +1156,6 @@ Along the top of the overlay card from left to right are:
 
   - The title of the external map layer
 
-  - An eye symbol for toggling the visibility of the layer
-
   - An arrow symbol to collapse and expand the overlay card
 
 Along the bottom of the overlay card from left to right are:
@@ -1175,11 +1173,6 @@ Here are some examples of external layers:
 ![](resources/images/maps/maps_terrain_imagery.png)
 
 ![](resources/images/maps/maps_aerial_imagery.png)
-
-> **Note**
-> 
-> To define external map layers, see the
-> [???](#manage_external_maplayer).
 
 ## File menu
 
@@ -1238,18 +1231,6 @@ When you have created a map it is convenient to save it for later use:
 
 3.  Click **RENAME**. The map is updated.
 
-You can also rename maps without opening them:
-
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
-
-2.  Find the map you want to rename. You can either use \< and \> or the
-    search field.
-
-3.  Click the more options icon (three dots) at the right of the map
-    row, and select **Rename**.
-
-4.  Follow the steps above.
-
 ### Translate a map
 
 1.  Click **File** \> **Translate**.
@@ -1287,18 +1268,6 @@ everyone or a user group. To modify the sharing settings:
 
 5.  Click **CLOSE** to close the dialog.
 
-You can also rename maps without opening them:
-
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
-
-2.  Find the map you want to share. You can either use \< and \> or the
-    search field.
-
-3.  Click the more options icon (three dots) at the right of the map
-    row, and select **Share**.
-
-4.  Follow the steps above.
-
 ### Get the link to a map
 
 1.  Click **File** \> **Get link**. A link dialog opens.
@@ -1311,18 +1280,6 @@ You can also rename maps without opening them:
 
 2.  Click **DELETE** to confirm that you want to delete the favorite.
     Your map is deleted and the layers are cleared from the view.
-
-You can also delete maps without opening them:
-
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
-
-2.  Find the map you want to delete. You can either use \< and \> or the
-    search field.
-
-3.  Click the more options icon (three dots) at the right of the map
-    row, and select **Delete**.
-
-4.  Follow step 2 above.
 
 ## Map interpretations
 
@@ -1398,6 +1355,10 @@ write is visible to those people.
 ## Save a map as an image
 
 <!--DHIS2-SECTION-ID:using_maps_image_export-->
+
+You can download your map as an image by clicking on the Download button in the top menu
+
+![](resources/images/maps/maps_download.png)
 
 1.  Take a screenshot of the map with the tool of your choice.
 
