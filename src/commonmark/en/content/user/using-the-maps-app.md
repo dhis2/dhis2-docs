@@ -176,15 +176,14 @@ Along the bottom of the basemap card is:
       - Nighttime lights
     
     *Labels overlay* is an [external
-    layer](#using_maps_external_map_layers) defined in the database used
-    for the above example
+    layer](#using_maps_external_map_layers) defined in the Maintenance app.
 
 ## Manage event layers
 
 <!--DHIS2-SECTION-ID:using_maps_event_layer-->
 
 The event layer displays the geographical location of events registered
-in the DHIS2 tracker. Provided that events have associated GPS
+in the DHIS2 tracker. Provided that events have associated
 coordinates, you can use this layer to drill down from the aggregated
 data displayed in the thematic layers to the underlying individual
 events or cases.
@@ -205,8 +204,6 @@ Along the top of the event card from left to right are:
 
   - The title and period associated with the layer
 
-  - An eye symbol for toggling the visibility of the layer
-
   - An arrow symbol to collapse and expand the event card
 
 In the middle of the event card is a legend indicating the styling of
@@ -216,10 +213,17 @@ Along the bottom of the event card from left to right are:
 
   - An edit (pencil) button to open the layer configuration dialog
 
+  - An eye symbol for toggling the visibility of the layer
+
   - A slider for modifying the layer transparency
 
-  - A delete (trash can) icon to remove the layer from the current
-    thematic map.
+  - A more actions (three dots) button with additional options:
+
+      - **Download data** allows you to download the data for this layer in GeoJSON format for use in other mapping software
+    
+      - **Edit layer** is the same as edit button above
+
+      - **Remove layer** will remove this layer from the current map.
 
 ### Create an event layer
 
