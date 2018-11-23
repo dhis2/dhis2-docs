@@ -245,10 +245,10 @@ CSV.
 
 DHIS2 generates database tables which the system then uses as basis for
 various analytics functions. These tables are also valuable if you write
-advanced SQL reports. In the **Reports** app, you can execute the tables
-immediately or schedule them to be executed at regular intervals. This
-means that you can refresh recent analytics on demand and see updated
-pivot tables without waiting for all of the past years data to
+advanced SQL reports. In the **Data Administration** app, you can execute the tables 
+generation immediately. If you want to schedule them to be executed at regular intervals, 
+this can be done in the **Scheduler** app. This means that you can refresh recent analytics on 
+demand and see updated pivot tables without waiting for all of the past years data to
 re-process.
 
 > **Note**
@@ -256,7 +256,7 @@ re-process.
 > You can also generate the tables through the web API. This task is
 > typically performed by a system administrator.
 
-1.  Open the **Reports** app and click **Analytics**.
+1.  Open the **Data Administration** app and click **Analytics Tables**.
 
 2.  Select the parts of the analytics process you want to skip:
     
