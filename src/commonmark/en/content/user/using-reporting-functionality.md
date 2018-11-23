@@ -247,7 +247,7 @@ DHIS2 generates database tables which the system then uses as basis for
 various analytics functions. These tables are also valuable if you write
 advanced SQL reports. In the **Data Administration** app, you can execute the tables 
 generation immediately. If you want to schedule them to be executed at regular intervals, 
-this can be done in Scheduler app. This means that you can refresh recent analytics on 
+this can be done in the **Scheduler** app. This means that you can refresh recent analytics on 
 demand and see updated pivot tables without waiting for all of the past years data to
 re-process.
 
