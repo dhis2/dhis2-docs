@@ -1430,7 +1430,10 @@ objects:
     </tr>
     <tr class="odd">
     <td><p><strong>Calculated value</strong></p></td>
-    <td><p>TBA</p></td>
+    <td><p>Program rule variable will be populated as a result of some other program rule <strong>ASSIGN</strong> action.</p>
+    <p>This variable will be used while configuring <strong>ASSIGN</strong> program rule action and the value can vary from simple string to complex expression evaluated value.</p>
+    <p>Important thing to remember is, these variables will not be persisted and will stay in memory.</p>
+    </td>
     </tr>
     <tr class="even">
     <td><p><strong>Tracked entity attribute</strong></p></td>
