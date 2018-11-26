@@ -44,29 +44,30 @@ Once you have done this, invoke the following commands
 At this point, you should have a functional R installation on your
 machine.
 
-Next, lets see if everything is working by simpling invoking `R` from
+Next, lets see if everything is working by simply invoking `R` from
 the command line.
 
-    foo@bar:~$ R
-    
-    R version 2.14.1 (2011-12-22)
-    Copyright (C) 2011 The R Foundation for Statistical Computing
-    ISBN 3-900051-07-0
-    Platform: i686-pc-linux-gnu (32-bit)
-    
-    R is free software and comes with ABSOLUTELY NO WARRANTY.
-    You are welcome to redistribute it under certain conditions.
-    Type 'license()' or 'licence()' for distribution details.
-    
-    R is a collaborative project with many contributors.
-    Type 'contributors()' for more information and
-    'citation()' on how to cite R or R packages in publications.
-    
-    Type 'demo()' for some demos, 'help()' for on-line help, or
-    'help.start()' for an HTML browser interface to help.
-    Type 'q()' to quit R.
-    
-    >
+```
+R version 3.4.4 (2018-03-15) -- "Someone to Lean On"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+>
+```
 
 ## Using ODBC to retrieve data from DHIS2 into R
 
@@ -231,105 +232,6 @@ using DHIS2 and R together, will be the retrieval of data from the DHIS2
 database with an SQL query into an R data frame, followed by whatever
 routines (statistical analysis, plotting, etc) which may be required.
 
-## Using R with MyDatamart
-
-<!--DHIS2-SECTION-ID:rsetup_mydatamart-->
-
-MyDatamart provides useful interface to the DHIS2 database by making a
-local copy of the database available on a users desktop. This means that
-the user does not need direct access to the database and the data can be
-worked with offline on the users local machine. In this example, we will
-have used the [demo database](http://apps.dhis2.org/demo). Data was
-downloaded at the district level for Jan 2011-Dec 201l. Consult the
-MyDatamart section in this manual for more detailed information.
-
-First, lets load some required R packages. If you do not have these
-packages already installed in your version of R, you will need to do so
-before proceeding with the example.
-
-    library("DBI")
-    library("RSQLite")
-    library("lattice")
-    library("latticeExtra")
-
-Next, we are going to connect to the local copy of the MyDatamart
-database. In this case, it was located at C:\\dhis2\\sl.dmart.
-
-    dbPath<-"C:\\dhis2\\sl.dmart"
-    drv<-dbDriver("SQLite")
-    db<-dbConnect(drv,dbPath)
-
-Let suppose we have been asked to compare ANC 1, 2, 3 coverage rates for
-each district for 2011. We can define an SQL query to retrieve data from
-the MyDatamart database into an R data frame as follows.
-
-    #An SQL query which will retreive all indicators 
-    #at OU2 le
-    sql<-"SELECT * FROM pivotsource_indicator_ou2_m 
-    WHERE year = '2011'"
-    #Execute the query into a new result set
-    rs<-dbSendQuery(db,sql)
-    #Put the entire result set into a new data frame
-    Inds<-fetch(rs,n=-1)
-    #Clean up a bit
-    dbClearResult(rs)
-    dbDisconnect(db)
-
-We used one of the pre-existing Pivot Source queries in the database to
-get all of the indicator values. Of course, we could have retrieved only
-the ANC indicators, but we did not exactly know how the data was
-structured, or how the columns were named, so lets take a closer look.
-
-    #Get the name of the columns
-    colnames(Inds)
-    #output not shown for brevity
-    levels(as.factor(Inds$indshort)) 
-
-We see from the `colnames` command that there is an column called
-"indshort" which looks like it contains some indicator names. We can see
-the names using the second command. After we have determined which ones
-we need (ANC 1, 2, and 3), lets further subset the data so that we only
-have these.
-
-    #Subset the data for ANC
-    ANC<-Inds[grep("ANC (1|2|3) Coverage",as.factor(Inds$indshort)),]
-
-We just used R's grep function to retrieve all the rows and columns of
-the Inds data frame which matched the regular expression "ANC (1|2|3)
-Coverage" and put this into a new data frame called "ANC".
-
-By looking at the data with the `str(ANC)` command, we will notice that
-the time periods are not ordered correctly, so lets fix this before we
-try and create a plot of the data.
-
-    #Lets reorder the months
-    MonthOrder<-c('Jan','Feb','Mar','Apr',
-    'May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
-    ANC$month<-factor(ANC$month,levels=MonthOrder)
-
-Next, we need to actually calculate the indicator value from the
-numerator, factor and denominator.
-
-    #Calculate the indicator value
-    ANC$value<-ANC$numxfactor/ANC$denominatorvalue
-
-Finally, lets create a simple trellis plot which compares ANC 1, 2, 3
-for each district by month and save it to our local working directory in
-a file called "District\_ANC.png".
-
-    png(filename="District_ANC.png",width=1024,height=768)
-    plot.new()
-     xyplot(value ~ month | ou2, data=ANC, type="a", main="District ANC Comparison Sierra Leone 2011",
-     groups=indshort,xlab="Month",ylab="ANC Coverage",
-     scales = list(x = list(rot=90)),
-     key = simpleKey(levels(factor(ANC$indshort)),
-     points=FALSE,lines=TRUE,corner=c(1,1)))
-     mtext(date(), side=1, line=3, outer=F, adj=0, cex=0.7)
-    dev.off()
-
-The results of which are displayed below.
-
-![](resources/images/r/District_ANC.png)
 
 ## Mapping with R and PostgreSQL
 
@@ -631,23 +533,20 @@ the Web API section of this document). Using two R packages "RCurl" and
 "XML", we will be able to work with the output of the API in R. In the
 first example, we will get some metadata from the database.
 
-    #We are going to need these two libraries
-    require(RCurl)
-    require(XML)
-    #This is a URL endpoint for a report table which we can 
-    #get from the WebAPI. 
-    
-    url<-"https://apps.dhis2.org/dev/api/reportTables/KJFbpIymTAo/data.csv"
-    #Lets get the response and we do not need the headers
-    #This site has some issues with its SSL certificate
-    #so lets not verify it.
-    response<-getURL(url,userpwd="admin:district"
-    ,httpauth = 1L, header=FALSE,ssl.verifypeer = FALSE)
-    #Unquote the data
-    data<-noquote(response)
-    #here is the data.
-    mydata<-read.table(textConnection(data),sep=",",header=T)
-    head(mydata)
+```
+We are going to need these two libraries
+require(httr)
+require(magrittr)
+base.url<-"https://play.dhis2.org/dev/"
+url<-paste0(base.url,"api/me")
+username<-"admin"
+password<-"district"
+login<-GET(url,)
+
+url<-paste0(base.url,"api/reportTables/KJFbpIymTAo/data.csv",authenticate(username,password))
+mydata<-GET(url) %>% content(.,"text/csv")
+head(mydata)
+```
 
 Here, we have shown how to get some aggregate data from the DHIS2 demo
 database using the DHIS2's Web API.
@@ -655,29 +554,42 @@ database using the DHIS2's Web API.
 In the next code example, we will retrieve some metadata, namely a list
 of data elements and their unique identifiers.
 
-    #Get the list of data elements. Turn off paging and links
-    #This site has some issues with its SSL certificate
-    #so lets not verify it.
-    url<-"https://apps.dhis2.org/dev/api/dataElements.xml?
-    paging=false&links=false"
-    response<-getURL(url,userpwd="admin:district",
-    httpauth = 1L, header=FALSE,ssl.verifypeer = FALSE)
-    #We ned to parse the result
-    bri<-xmlParse(response)
-    #And get the root
-    r<-xmlRoot(bri)
-    #Parse out what we need explicitly, in this case from the first node
-    #Just get the names and ids as separate arrays
-    de_names<-xmlSApply(r[['dataElements']],xmlGetAttr,"name")
-    de_id<-xmlSApply(r[['dataElements']],xmlGetAttr,"id")
-    #Lets bind them together
-    #but we need to be careful for missing attribute values
-    foo<-cbind(de_names,de_id)
-    #Recast this as a data frame
-    data_elements<-as.data.frame(foo,
-    stringsAsFactors=FALSE,row.names=1:nrow(foo))
-    head(data_elements)
+```
 
-Note that the values which we are interested in are stored as XML
-attributes and were parsed into two separate matrices and then combined
-together into a single data frame.
+#Get the list of data elements. Turn off paging and only get a few attributes.
+require(httr)
+
+
+username<-"admin"
+password<-"district"
+base.url<-"https://play.dhis2.org/dev/"
+
+login<-function(username,password,base.url) {
+url<-paste0(base.url,"api/me")
+r<-GET(url,authenticate(username,password))
+if(r$status == 200L) { print("Logged in successfully!")} else {print("Could not login")}
+}
+
+getDataElements<-function(base.url) {
+
+url<-paste0(base.url,"api/dataElements?fields=id,name,shortName")
+r<-content(GET(url,authenticate(username,password)),as="parsed")
+do.call(rbind.data.frame,r$dataElements)
+}
+
+login(username,password,base.url)
+data_elements<-getDataElements(base.url)
+head(data_elements)
+```
+
+The object `data_elements` should now contain a data frame of all data elements in the system. 
+
+```
+                                         name          id
+2   Accute Flaccid Paralysis (Deaths < 5 yrs) FTRrcoaog83
+210   Acute Flaccid Paralysis (AFP) follow-up P3jJH5Tu5VC
+3           Acute Flaccid Paralysis (AFP) new FQ2o8UBlcrS
+4     Acute Flaccid Paralysis (AFP) referrals M62VHgYT2n0
+5        Additional notes related to facility uF1DLnZNlWe
+6                              Admission Date eMyVanycQSC
+```
