@@ -1431,8 +1431,8 @@ objects:
     <tr class="odd">
     <td><p><strong>Calculated value</strong></p></td>
     <td><p>Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules <strong>ASSIGN</strong> action.</p>
-    <p>This variable will be used while configuring <strong>ASSIGN</strong> program rule action and the value can vary from simple string to complex expression evaluated value.</p>
-    <p>Important thing to remember is, these variables will not be persisted and will stay in memory.</p>
+    <p>This variable will be used for making preliminary calculations, having a <strong>ASSIGN</strong> program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintanable.</p>
+    <p>These variables will not be persisted and will stay in memory only during the exectution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a <strong>priority</strong> assigned - to make sure that the preliminary caculation is done before the rule that consumes the calculated value.</p>
     </td>
     </tr>
     <tr class="even">
