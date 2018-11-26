@@ -396,7 +396,7 @@ TEI, program or event. Supported feature types are Point and Polygon.
 1.  Click on the **map icon**
 2.  Find the location you want by either searching or locating it on
     the map
-3.  Left click on the location you want, and choose **Set coordinate**
+3.  Right-click on the location you want, and choose **Set coordinate**
 4.  Click **Capture** at the bottom
 
 ### Capture Polygon
