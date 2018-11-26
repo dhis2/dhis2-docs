@@ -15,7 +15,7 @@ view facilities based on classifications, and visualize catchment areas
 for each facility. You can add labels to areas and points, and search
 and filter using various criteria. You can move points and set locations
 on the fly. Maps can be saved as favorites and shared with other users
-and groups.
+and groups, or downloaded as an image.
 
 > **Note**
 > 
@@ -79,6 +79,10 @@ and groups.
 
 <!-- end list -->
 
+  - The **Download** button next to the File button allows you to download the current map as a PNG image.
+
+<!-- end list -->
+
   - The **Interpretations** button at top right opens an interpretations
     panel on the right side of the workspace. The button is only
     clickable if the map is saved.
@@ -109,11 +113,6 @@ and groups.
   - Right-click on the map to display the longitude and latitude of that
     location.
 
-  - The home icon on the top right of the workspace will take you back
-    to the DHIS2 dashboard.
-
-  - The About button will display system version information.
-
 **Basemaps**
 
 Basemap layers are represented by layer *cards* in the layer panel such
@@ -126,8 +125,6 @@ Along the top of the basemap card from left to right are:
 
   - The title of the selected basemap
 
-  - An eye symbol for toggling the visibility of the layer
-
   - An arrow symbol to collapse and expand the basemap card
 
 In the middle of the basemap card is the list of available basemaps. The
@@ -135,7 +132,13 @@ current basemap is highlighted.
 
 Along the bottom of the basemap card is:
 
+  - An eye symbol for toggling the visibility of the layer
+
   - A slider for modifying the layer transparency
+
+  - A more actions (three dots) button with additional options:
+    
+    - **Remove layer** will remove this layer from the current map.
 
 ## Create a new map
 
@@ -150,16 +153,16 @@ Along the bottom of the basemap card is:
     ![](resources/images/maps/maps_layer_selection.png)
 
 3.  Select a layer to add to the current map. Possible options are:
-    
+
+      - [Thematic](#using_maps_thematic_layer)
+
       - [Events](#using_maps_event_layer)
     
       - [Tracked entities](#using_maps_tracked_entity_layer)
     
       - [Facilities](#using_maps_facility_layer)
     
-      - [Thematic](#using_maps_thematic_layer)
-    
-      - [Boundaries](#using_maps_thematic_layer)
+      - [Boundaries](#using_maps_boundary_layer)
     
     In addition, there are several layers provided by Google Earth
     Engine and other services:
@@ -177,15 +180,236 @@ Along the bottom of the basemap card is:
       - Nighttime lights
     
     *Labels overlay* is an [external
-    layer](#using_maps_external_map_layers) defined in the database used
-    for the above example
+    layer](#using_maps_external_map_layers) defined in the Maintenance app.
+
+
+## Manage thematic layers
+
+<!--DHIS2-SECTION-ID:using_maps_thematic_layer-->
+
+*Thematic maps* represent spatial variation of geographic distributions.
+Select your desired combination of indicator/data element, period and
+organisation unit level. If your database has coordinates and aggregated
+data values for these organisation units, they will appear on the map.
+
+> **Note**
+> 
+> You must generate the DHIS2 analytics tables to have aggregated data
+> values available.
+
+
+![](resources/images/maps/maps_thematic_mapping.png)
+
+Thematic layers are represented by layer *cards* in the layer panel such
+as:
+
+Along the top of the thematic card from left to right are:
+
+  - A grab field to allow dragging and re-ordering layers with the mouse
+
+  - The title and period associated with the layer
+
+  - An arrow symbol to collapse and expand the thematic card
+
+In the middle of the thematic card is a legend indicating the value
+ranges displayed on the layer.
+
+Along the bottom of the thematic card from left to right are:
+
+  - An edit (pencil) button to open the layer configuration dialog
+
+  - An eye symbol for toggling the visibility of the layer
+
+  - A slider for modifying the layer transparency
+
+  - A more actions (three dots) button with additional options:
+
+      - A **data table** toggle button to show or hide the data table
+        associated with the layer
+
+      - **Download data** allows you to download the data for this layer in GeoJSON format for use in other mapping software
+    
+      - **Edit layer** is the same as edit button above
+
+      - **Remove layer** will remove this layer from the current map.
+
+
+### Create a thematic layer
+
+To create an event layer, choose **Thematic** on the **Add
+layer**selection. This opens the Events layer configuration dialog.
+
+1.  In the **DATA** tab:
+    
+    ![](resources/images/maps/maps_thematic_layer_dialog_DATA.png)
+
+      - Select a data type and then select respectively the group and
+        the target element. The available fields depend on the type of
+        item selected.
+    
+      - Select a value from the **Aggregation type** field for the data
+        values to be shown on the map. By default, "By data element" is
+        selected. Alternative values are: Count; Average; Sum; Standard
+        deviation; Variance; Min; Max. See also [Aggregation
+        operators](https://dhis2.github.io/dhis2-docs/master/en/user/html/ch10s05.html#d0e8082).
+
+2.  In the **PERIOD** tab
+    
+    ![](resources/images/maps/maps_thematic_layer_dialog_PERIOD.png)
+    
+      - select the time span over which the thematic data is aggregated.
+        You can select either a fixed period or a relative period.
+        
+          - Fixed period  
+            In the **Period type** field select period length, then
+            select the target in the **Period** field.
+        
+          - Relative period  
+            In the **Period type** field select **Relative**, then
+            select one of the relative periods, for example **This
+            month** or **Last year**, in the **Period** field.
+
+          - Start/end dates  
+            In the **Period type** field select **Start/end dates** 
+            and fill in a start date and an end date.       
+
+3.  In the **ORG UNITS** tab:
+    
+    ![](resources/images/maps/maps_thematic_layer_dialog_ORG_UNITS.png)
+    
+      - Select the organisation units you want to include in the layer.
+        It is possible to select either
+        
+          - One or more specific organisation units, organisation unit levels in 
+            the hierarchy, organisation unit groups, or
+        
+          - A relative level in the organisation unit hierarchy, with
+            respect to the user. By selecting a **User organisation
+            unit** the map data will appear differently for users at
+            different levels in the organisation unit hierarchy.
+
+<!--DHIS2-SECTION-ID:using_maps_thematic_layer_style-->
+
+4.  In the **STYLE** tab:
+    
+    ![](resources/images/maps/maps_thematic_layer_dialog_STYLE.png)
+    
+      - Select either **Automatic** or **Predefined** legend.
+        
+          - Automatic legend types means that the application will
+            create a legend set for you based on your what method,
+            number of classes, low color and high color you select.
+            Method alludes to the size of the legend classes. Set to
+            
+              - Equal intervals  
+                the range of each interval will be:
+                highest data value - lowest data value / number of classes
+            
+              - Equal counts  
+                the legend creator will try to distribute the
+                organisation units evenly.
+        
+          - If you have facilities in your thematic layer, you can set
+            the radius for minimum and maximum values by changing the
+            values in the **Low size** and **High size** boxes
+            respectively.
+
+5.  Click **ADD LAYER**.
+
+### Modify a thematic layer
+
+1.  In the layer panel, click the edit (pencil) icon on the thematic
+    layer card.
+
+2.  Modify the setting on the DATA, PERIOD, ORG UNITS and STYLE tabs as
+    desired.
+
+3.  Click **UPDATE LAYER**.
+
+### Filter values in a thematic layer
+
+Thematic layers have a **data table** option that can be toggled on or
+off from the thematic layer card.
+
+![](resources/images/maps/maps_thematic_layer_data_table.png)
+
+The data table displays the data forming the thematic layer.
+
+  - clicking on a title will sort the table based on that column;
+    toggling between ascending and descending.
+
+  - entering text or expressions into the filter fields below the titles
+    will apply those filters to the data, and the display will adjust
+    according to the filter. The filters are applied as follows:
+    
+      - NAME  
+        filter by name containing the given text
+    
+      - VALUE  
+        filter values by given numbers and/or ranges, for example:
+        2,\>3&\<8
+    
+      - LEGEND  
+        filter by legend containing the given text
+    
+      - RANGE  
+        filter by ranges containing the given text
+    
+      - LEVEL  
+        filter level by numbers and/or ranges, for example: 2,\>3&\<8
+    
+      - PARENT  
+        filter by parent names containing the given text
+    
+      - ID  
+        filter by IDs containing the given text
+    
+      - TYPE  
+        filter by GIS display types containing the given text
+    
+      - COLOR  
+        filter by color names containing the given text
+
+> **Note**
+> 
+> Data table filters are temporary and are not saved with the map layers
+> as part of the favourite.
+
+### Search for an organisation unit
+
+The NAME filter field in the data table provides an effective way of
+searching for individual organisation units.
+
+### Navigate between organisation hierarchies
+
+When there are visible organisation units on the map, you can easily
+navigate up and down in the hierarchy without using the level/parent
+user interface.
+
+1.  Right-click one of the organisation units.
+
+2.  Select **Drill up one level** or **Drill down one level**.
+    
+    The drill down option is disabled if you are on the lowest level or
+    if there are no coordinates available on the level below. Likewise
+    the drill up option is disabled from the highest level.
+
+### Remove thematic layer
+
+To clear all data in a thematic layer:
+
+1.  In the layer card to the left, click the *more actions* (three dots) icon
+    and then on **Remove layer**.
+    
+    The layer is removed from the current map.
+
 
 ## Manage event layers
 
 <!--DHIS2-SECTION-ID:using_maps_event_layer-->
 
 The event layer displays the geographical location of events registered
-in the DHIS2 tracker. Provided that events have associated GPS
+in the DHIS2 tracker. Provided that events have associated
 coordinates, you can use this layer to drill down from the aggregated
 data displayed in the thematic layers to the underlying individual
 events or cases.
@@ -206,8 +430,6 @@ Along the top of the event card from left to right are:
 
   - The title and period associated with the layer
 
-  - An eye symbol for toggling the visibility of the layer
-
   - An arrow symbol to collapse and expand the event card
 
 In the middle of the event card is a legend indicating the styling of
@@ -217,17 +439,24 @@ Along the bottom of the event card from left to right are:
 
   - An edit (pencil) button to open the layer configuration dialog
 
+  - An eye symbol for toggling the visibility of the layer
+
   - A slider for modifying the layer transparency
 
-  - A delete (trash can) icon to remove the layer from the current
-    thematic map.
+  - A more actions (three dots) button with additional options:
+
+      - **Download data** allows you to download the data for this layer in GeoJSON format for use in other mapping software
+    
+      - **Edit layer** is the same as edit button above
+
+      - **Remove layer** will remove this layer from the current map.
 
 ### Create an event layer
 
 <!--DHIS2-SECTION-ID:maps_create_event_layer-->
 
 To create an event layer, choose **Events** on the **Add
-layer**selection. This opens the Events layer configuration dialog.
+layer** selection. This opens the Events layer configuration dialog.
 
 1.  In the **DATA** tab:
     
@@ -266,19 +495,25 @@ layer**selection. This opens the Events layer configuration dialog.
     
       - Click ADD FILTER and select an available data item to add a new
         filter to the data set.
-        
+
+          - For data item of type *option set*, you can select any of
+            the options from the drop down box by using the down-wards
+            arrow or by start typing directly in the box to filter for
+            options.
+
+          - For data item of type *number*, you can select operators like
+            equal, not equal, greater than or less than.
+
+          - For data item og type *boolean* (yes/no), you can check the box
+            if the condition should be valid or true. 
+
           - For data item of type *text* you will get two choices:
             **Contains** implies that the query will match all values
             which contains your search value, and **Is exact** implies
             that only values which is completely identical to your
             search query will be returned.
         
-          - For data item of type *option set*, you can select any of
-            the options from the drop down box by using the down-wards
-            arrow or by start typing directly in the box to filter for
-            options.
-        
-        Multiple filters may be added. Click the X on the far right of
+        Multiple filters may be added. Click the trash button on the right of
         the filter to remove it.
 
 4.  In the **ORG UNITS** tab:
@@ -310,6 +545,21 @@ layer**selection. This opens the Events layer configuration dialog.
         event. The radius of the buffer can be modified here. This
         option is only available if you select **View all events**
         above.
+
+      - Select a **Style by data element** to colorise the events
+        according to a data value. The options varies for different
+        data types:
+
+          - **Option sets**: Select a color for each option in an option 
+            set. You can set default colors for an option in the 
+            Maintenance app.
+
+          - **Numbers**: You can style a numeric data element in [the same
+            way as thematic layers](#using_maps_thematic_layer_style) using
+            automatic or predefined legends.  
+
+          - **Booleans**: Select a color for true/yes and another for 
+            false/no.        
 
 6.  Click **ADD LAYER**.
 
@@ -351,8 +601,8 @@ the event pop-up window.
 
 To clear all event layer data in a map:
 
-1.  In the layer panel, click the delete (trash can) icon on the event
-    layer card.
+1.  In the layer card to the left, click the *more actions* (three dots) icon
+    and then on **Remove layer**.
     
     The layer is removed from the current map.
 
@@ -376,8 +626,6 @@ Along the top of the tracked entity card from left to right are:
 
   - The title and period associated with the layer.
 
-  - An eye symbol for toggling the visibility of the layer.
-
   - An arrow symbol to collapse and expand the tracked entity card.
 
 In the middle of the tracked entity card is a legend indicating the
@@ -385,11 +633,17 @@ styling of the layer.
 
 Along the bottom of the tracked entity card from left to right are:
 
-  - An edit (pencil) button to open the layer configuration dialog.
+  - An edit (pencil) button to open the layer configuration dialog
 
-  - A slider for modifying the layer transparency.
+  - An eye symbol for toggling the visibility of the layer
 
-  - A delete (trash can) icon to remove the layer from the current map.
+  - A slider for modifying the layer transparency
+
+  - A more actions (three dots) button with additional options:
+    
+      - **Edit layer** is the same as edit button above
+
+      - **Remove layer** will remove this layer from the current map.
 
 ### Create a tracked entity layer
 
@@ -470,8 +724,8 @@ configuration dialog.
 
 To clear a tracked entity layer from a map:
 
-1.  In the layer panel, click the delete (trash can) icon on the tracked
-    entity layer card.
+1.  In the layer card to the left, click the *more actions* (three dots) icon
+    and then on **Remove layer**.
     
     The layer is removed from the current map.
 
@@ -509,13 +763,19 @@ Along the bottom of the facilities card from left to right are:
 
   - An edit (pencil) button to open the layer configuration dialog
 
-  - A **data table** toggle button to show or hide the data table
-    associated with the layer
-
   - A slider for modifying the layer transparency
 
-  - A delete (trash can) icon to remove the layer from the current
-    thematic map.
+  - A more actions (three dots) button with additional options:
+
+      - A **data table** toggle button to show or hide the data table
+        associated with the layer
+
+      - **Download data** allows you to download the data for this layer in GeoJSON format for use in other mapping software
+    
+      - **Edit layer** is the same as edit button above
+
+      - **Remove layer** will remove this layer from the current map. 
+
 
 ### Create a facility layer
 
@@ -612,8 +872,8 @@ searching for individual facilities.
 
 To clear all data in a facility layer:
 
-1.  In the layer panel, click the delete (trash can) icon on the
-    facility layer card.
+1.  In the layer card to the left, click the *more actions* (three dots) icon
+    and then on **Remove layer**.
     
     The layer is removed from the current map.
 
@@ -675,218 +935,9 @@ follows:
 </tbody>
 </table>
 
-## Manage thematic layers
-
-<!--DHIS2-SECTION-ID:using_maps_thematic_layer-->
-
-*Thematic maps* represent spatial variation of geographic distributions.
-Select your desired combination of indicator/data element, period and
-organisation unit level. If your database has coordinates and aggregated
-data values for these organisation units, they will appear on the map.
-
-> **Note**
-> 
-> You must refresh the DHIS2 analytics tables to have aggregated data
-> values available.
-
-
-![](resources/images/maps/maps_thematic_mapping.png)
-
-Thematic layers are represented by layer *cards* in the layer panel such
-as:
-
-Along the top of the thematic card from left to right are:
-
-  - A grab field to allow dragging and re-ordering layers with the mouse
-
-  - The title and period associated with the layer
-
-  - An eye symbol for toggling the visibility of the layer
-
-  - An arrow symbol to collapse and expand the thematic card
-
-In the middle of the thematic card is a legend indicating the value
-ranges displayed on the layer.
-
-Along the bottom of the thematic card from left to right are:
-
-  - An edit (pencil) button to open the layer configuration dialog
-
-  - A **data table** toggle button to show or hide the data table
-    associated with the layer
-
-  - A slider for modifying the layer transparency
-
-  - A delete (trash can) icon to remove the layer from the current
-    thematic map.
-
-### Create a thematic layer
-
-To create an event layer, choose **Thematic** on the **Add
-layer**selection. This opens the Events layer configuration dialog.
-
-1.  In the **DATA** tab:
-    
-    ![](resources/images/maps/maps_thematic_layer_dialog_DATA.png)
-    
-      - Select a data type and then select respectively the group and
-        the target element. The available fields depend on the type of
-        item selected.
-    
-      - Select a value from the **Aggregation type** field for the data
-        values to be shown on the map. By default, "By data element" is
-        selected. Alternative values are: Count; Average; Sum; Standard
-        deviation; Variance; Min; Max. See also [Aggregation
-        operators](https://dhis2.github.io/dhis2-docs/master/en/user/html/ch10s05.html#d0e8082).
-
-2.  In the **PERIOD** tab
-    
-    ![](resources/images/maps/maps_thematic_layer_dialog_PERIOD.png)
-    
-      - select the time span over which the thematic data is aggregated.
-        You can select either a fixed period or a relative period.
-        
-          - Fixed period  
-            In the **Period type** field select period length, then
-            select the target in the **Period** field.
-        
-          - Relative period  
-            In the **Period type** field select **Relative**, then
-            select one of the relative periods, for example **This
-            month** or **Last year**, in the **Period** field.
-
-3.  In the **ORG UNITS** tab:
-    
-    ![](resources/images/maps/maps_thematic_layer_dialog_ORG_UNITS.png)
-    
-      - Select the organisation units you want to include in the layer.
-        It is possible to select either
-        
-          - One or more specific organisation units, or
-        
-          - A relative level in the organisation unit hierarchy, with
-            respect to the user. By selecting a **User organisation
-            unit** the map data will appear differently for users at
-            different levels in the organisation unit hierarchy.
-
-4.  In the **STYLE** tab:
-    
-    ![](resources/images/maps/maps_thematic_layer_dialog_STYLE.png)
-    
-      - Select either **Automatic** or **Predefined** legend.
-        
-          - Automatic legend types means that the application will
-            create a legend set for you based on your what method,
-            number of classes, low color and high color you select.
-            Method alludes to the size of the legend classes. Set to
-            
-              - Equal intervals  
-                the range of each interval will be **highest data value
-                - lowest data value / number of classes**
-            
-            <!-- end list -->
-            
-              - Equal counts  
-                the legend creator will try to distribute the
-                organisation units evenly.
-        
-          - If you have facilities in your thematic layer, you can set
-            the radius for minimum and maximum values by changing the
-            values in the **Low size** and **High size** boxes
-            respectively.
-
-5.  Click **ADD LAYER**.
-
-### Modify a thematic layer
-
-1.  In the layer panel, click the edit (pencil) icon on the thematic
-    layer card.
-
-2.  Modify the setting on the DATA, PERIOD, ORG UNITS and STYLE tabs as
-    desired.
-
-3.  Click **UPDATE LAYER**.
-
-### Filter values in a thematic layer
-
-Thematic layers have a **data table** option that can be toggled on or
-off from the thematic layer card.
-
-![](resources/images/maps/maps_thematic_layer_data_table0.png)
-
-The data table displays the data forming the thematic layer.
-
-  - clicking on a title will sort the table based on that column;
-    toggling between ascending and descending.
-
-  - entering text or expressions into the filter fields below the titles
-    will apply those filters to the data, and the display will adjust
-    according to the filter. The filters are applied as follows:
-    
-      - NAME  
-        filter by name containing the given text
-    
-      - VALUE  
-        filter values by given numbers and/or ranges, for example:
-        2,\>3&\<8
-    
-      - LEGEND  
-        filter by legend containing the given text
-    
-      - RANGE  
-        filter by ranges containing the given text
-    
-      - LEVEL  
-        filter level by numbers and/or ranges, for example: 2,\>3&\<8
-    
-      - PARENT  
-        filter by parent names containing the given text
-    
-      - ID  
-        filter by IDs containing the given text
-    
-      - TYPE  
-        filter by GIS display types containing the given text
-    
-      - COLOR  
-        filter by color names containing the given text
-
-![](resources/images/maps/maps_thematic_layer_data_table1.png)
-
-> **Note**
-> 
-> Data table filters are temporary and are not saved with the map layers
-> as part of the favourite.
-
-### Search for an organisation unit
-
-The NAME filter field in the data table provides an effective way of
-searching for individual organisation units.
-
-### Navigate between organisation hierarchies
-
-When there are visible organisation units on the map, you can easily
-navigate up and down in the hierarchy without using the level/parent
-user interface.
-
-1.  Right-click one of the organisation units.
-
-2.  Select **Drill up one level** or **Drill down one level**.
-    
-    The drill down option is disabled if you are on the lowest level or
-    if there are no coordinates available on the level below. Likewise
-    the drill up option is disabled from the highest level.
-
-### Remove thematic layer
-
-To clear all data in a thematic layer:
-
-1.  In the layer panel, click the delete (trash can) icon on the
-    thematic layer card.
-    
-    The layer is removed from the current map.
-
 ## Manage boundary layers
+
+<!--DHIS2-SECTION-ID:using_maps_boundary_layer-->
 
 The boundary layer displays the borders and locations of your
 organisation units. This layer is particularly useful if you are offline
@@ -904,21 +955,26 @@ Along the top of the boundary card from left to right are:
 
   - The **Boundaries** title
 
-  - An eye symbol for toggling the visibility of the layer
-
   - An arrow symbol to collapse and expand the boundary card
 
 Along the bottom of the boundary card from left to right are:
 
   - An edit (pencil) button to open the layer configuration dialog
 
-  - A **data table** toggle button to show or hide the data table
-    associated with the layer
+  - An eye symbol for toggling the visibility of the layer
 
   - A slider for modifying the layer transparency
 
-  - A delete (trash can) icon to remove the layer from the current
-    thematic map.
+  - A more actions (three dots) button with additional options:
+
+      - A **data table** toggle button to show or hide the data table
+        associated with the layer
+
+      - **Download data** allows you to download the data for this layer in GeoJSON format for use in other mapping software
+    
+      - **Edit layer** is the same as edit button above
+
+      - **Remove layer** will remove this layer from the current map.     
 
 ### Create a boundary layer
 
@@ -1026,8 +1082,8 @@ using the level/parent user interface.
 
 To clear all data in a boundary layer:
 
-1.  In the layer panel, click the delete (trash can) icon on the
-    boundary layer card.
+1.  In the layer card to the left, click the *more actions* (three dots) icon
+    and then on **Remove layer**.
     
     The layer is removed from the current map.
 
@@ -1100,8 +1156,6 @@ Along the top of the overlay card from left to right are:
 
   - The title of the external map layer
 
-  - An eye symbol for toggling the visibility of the layer
-
   - An arrow symbol to collapse and expand the overlay card
 
 Along the bottom of the overlay card from left to right are:
@@ -1119,11 +1173,6 @@ Here are some examples of external layers:
 ![](resources/images/maps/maps_terrain_imagery.png)
 
 ![](resources/images/maps/maps_aerial_imagery.png)
-
-> **Note**
-> 
-> To define external map layers, see the
-> [???](#manage_external_maplayer).
 
 ## File menu
 
@@ -1182,18 +1231,6 @@ When you have created a map it is convenient to save it for later use:
 
 3.  Click **RENAME**. The map is updated.
 
-You can also rename maps without opening them:
-
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
-
-2.  Find the map you want to rename. You can either use \< and \> or the
-    search field.
-
-3.  Click the more options icon (three dots) at the right of the map
-    row, and select **Rename**.
-
-4.  Follow the steps above.
-
 ### Translate a map
 
 1.  Click **File** \> **Translate**.
@@ -1231,18 +1268,6 @@ everyone or a user group. To modify the sharing settings:
 
 5.  Click **CLOSE** to close the dialog.
 
-You can also rename maps without opening them:
-
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
-
-2.  Find the map you want to share. You can either use \< and \> or the
-    search field.
-
-3.  Click the more options icon (three dots) at the right of the map
-    row, and select **Share**.
-
-4.  Follow the steps above.
-
 ### Get the link to a map
 
 1.  Click **File** \> **Get link**. A link dialog opens.
@@ -1255,18 +1280,6 @@ You can also rename maps without opening them:
 
 2.  Click **DELETE** to confirm that you want to delete the favorite.
     Your map is deleted and the layers are cleared from the view.
-
-You can also delete maps without opening them:
-
-1.  Click **File** \> **Open**. A dialog box opens with a list of maps.
-
-2.  Find the map you want to delete. You can either use \< and \> or the
-    search field.
-
-3.  Click the more options icon (three dots) at the right of the map
-    row, and select **Delete**.
-
-4.  Follow step 2 above.
 
 ## Map interpretations
 
@@ -1343,9 +1356,20 @@ write is visible to those people.
 
 <!--DHIS2-SECTION-ID:using_maps_image_export-->
 
-1.  Take a screenshot of the map with the tool of your choice.
+You can download your map as an image by clicking on the Download button in the top menu
 
-2.  Save the screenshot in desired format.
+![](resources/images/maps/maps_download.png)
+
+Map download is not supported in Internet Explorer or Safari, we recommend to 
+use Google Chrome og Firefox. 
+
+1.  Select if you want to include the map name or not. This option is only
+    available if the map is saved.
+
+2.  Select if you want to inclide the map legend. You can position the legend
+    in one of the 4 corners of your map.
+
+3.  Click **Download** to download your map.  
 
 ## Search for a location
 
