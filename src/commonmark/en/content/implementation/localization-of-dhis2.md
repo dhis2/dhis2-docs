@@ -93,13 +93,13 @@ which will be discussed below.
 
 <!--DHIS2-SECTION-ID:dhis2-i18n-translations-tool-->
 
-The i18n resource editor is Java desktop application which can beYour translations
-downloaded from http://www.dhis2.org/downloads . It requires thatwill be incorporated into the source code on a regular basis by the
-have checked out the DHIS 2 source code from GitHub (check out
-http://www.dhis2.org/development if necessary) and have a Java Rudevelopment team.e
+The i18n resource editor is Java desktop application which can be
+downloaded from http://www.dhis2.org/downloads . It requires that you
+have checked out the DHIS2 source code from Github (check out
+http://www.dhis2.org/development if necessary) and have a Java Runtime
 Environment installed on your computer. On Windows, simply unpack the ZIP
 archive and click the executable file. On Linux, extract the archive,
-navigate inside the extracted directory and invoke the following:
+navigate inside the extracted directory and invoke the following command:
 
     java -jar dhis-i18n-resourceeditor.jar
 
@@ -109,24 +109,18 @@ navigate inside the extracted directory and invoke the following:
     
     
     ![](resources/images/i18n/i18n_tool_startup.png)
-Your translations
-will be incorporated into the source code on a regular basis by the
-development team.
-Your translations
-will be incorporated into the source code on a regular basis by the
-development team.
-Your translations
-will be incorporated into the source code on a regular basis by the
-development team.
-Your translations
-will be incorporated into the source code on a regular basis by the
-development team.
+
+
+2.  Next, select the destination locale which you will translate strings
+    into. Remember that if you want to create or add to a general
+    language translation, select e.g. "Portuguese - \[pt\]. If you want
     to create a country-specific translation, select e.g. "Portuguese -
     Brazil \[pt\_BR\]. Locales which already have keys translated will
     show the text "Resources for this locale exist".
     
     
     ![](resources/images/i18n/i18n_tool_select_locale.png)
+
 
 3.  Select one of the web modules from the left hand side to translate,
     e.g. dhis-web-maintenance-dataset.
@@ -187,7 +181,7 @@ on <https://jira.dhis2.org>. Your translations will be incorporated on a
 regular basis into the main source code of DHIS 2. 
 
 
-## Database translation app
+## DHIS 2  translation app
 
 <!--DHIS2-SECTION-ID:translations-app-->
 
@@ -205,11 +199,10 @@ menu.
 
 ![](resources/images/i18n/translations_app.png)
 
-1.  From the top of the app, choose the locale you wish to translate
-    into.
+1.  To get started, choose the type of object you wish to translate from the
+    drop-down menu, such as "Data elements".
 
-2.  Next, choose the type of object you wish to translate from the
-    drop-down menu.
+2.  Next, be sure you have set the "Target locale" to the correct language.
 
 3.  Choose the specific object you wish to translate, and translate each
     of the properties (Name, Short name, Description, etc). These
