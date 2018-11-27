@@ -534,7 +534,7 @@ the Web API section of this document). Using two R packages "RCurl" and
 first example, we will get some metadata from the database.
 
 ```
-We are going to need these two libraries
+#We are going to need these two libraries
 require(httr)
 require(magrittr)
 base.url<-"https://play.dhis2.org/dev/"
