@@ -2,6 +2,10 @@
 
 <!--DHIS2-SECTION-ID:data_vis-->
 
+This chapter refers to the legacy version of the data visualizer. For
+the current version, please refer to the [new data visualizer](./data_vis_new.html)
+chapter.
+
 ## About the Data Visualizer app
 
 <!--DHIS2-SECTION-ID:data_vis_intro-->
@@ -14,11 +18,11 @@ analysis. The app works well over poor Internet connections and
 generates charts in the web browser.
 
 > **Tip**
-> 
+>
 >   - Hide and show individual data series in the chart by clicking
 >     directly on the series label in the chart. They appear either at
 >     the top or to the right of the chart.
-> 
+>
 >   - Click the triple left-arrow button on the top centre menu. This
 >     collapses the left side menu and gives more space for the chart.
 >     You can get the menu back by clicking on the same button again.
@@ -33,18 +37,18 @@ generates charts in the web browser.
     You must select one or more elements from all of the three
     dimensions - data (indicators, data elements, reporting rates),
     periods (relative, fixed) and organisation units (units or groups).
-    
+
     > **Note**
-    > 
+    >
     > If you've access to the system settings, you can change the
     > default period type under **General settings \> Default relative
     > period for analysis.**
-    
+
     **Last 12 Months** from the period dimension and the root
     organisation unit are selected by default.
 
 3.  Click **Layout** and arrange the dimensions.
-    
+
     You can keep the default selection if you want.
 
 4.  Click **Update**.
@@ -57,7 +61,7 @@ The **Data Visualizer** app has nine different chart types, each with
 different characteristics. To select a chart type:
 
 1.  In **Chart type**, click the chart type you need.
-    
+
     <table>
     <caption>Chart types</caption>
     <colgroup>
@@ -139,16 +143,16 @@ The Data Visualizer app lets you use these dimensions completely
 flexible in terms of appearing as series, categories and filter.
 
 > **Note**
-> 
+>
 > You can select dimension items in different ways:
-> 
+>
 >   - Double-click a dimension item name.
-> 
+>
 >   - Highlight one or several dimension items and click the
 >     single-arrow.
-> 
+>
 >   - To select all dimension items in a list, click the double-arrow.
-> 
+>
 >   - To clear dimension items, use the arrows or double-click the names
 >     in the **Selected** list.
 
@@ -162,12 +166,12 @@ same as the order in which they are selected.
 1.  Click **Data** and select **Indicators**.
 
 2.  Select an indicator group.
-    
+
     The indicators in the selected group appear in the **Available**
     list.
 
 3.  Select one or several indicators by double-clicking the name.
-    
+
     The indicator moves to the **Selected** list.
 
 ### Select data elements
@@ -180,12 +184,12 @@ same as the order in which they are selected.
 1.  Click **Data** and select **Data elements**.
 
 2.  Select a data element group.
-    
+
     The data elements in the selected group appear in the **Available**
     list.
 
 3.  Select one or several data elements by double-clicking the name.
-    
+
     The data element moves to the **Selected** list.
 
 ### Select reporting rates
@@ -195,11 +199,11 @@ itself or together with indicators and data elements. Reporting rates
 are defined by data sets.
 
 1.  Click **Data** and select **Reporting rates**.
-    
+
     The reporting rates appear in the **Available** list.
 
 2.  Select one or several reporting rates by double-clicking the name.
-    
+
     The reporting rate moves to the **Selected** list.
 
 ### Select fixed and relative periods
@@ -207,17 +211,17 @@ are defined by data sets.
 1.  Click **Periods**.
 
 2.  Select one or several periods.
-    
+
     You can combine fixed periods and relative periods in the same
     chart. Overlapping periods are filtered so that they only appear
     once.
-    
+
       - Fixed periods: In the **Select period type** box, select a
         period type. You can select any number of fixed periods from any
         period type.
-    
+
     <!-- end list -->
-    
+
       - Relative periods: In the lower part of the **Periods** section,
         select as many relative periods as you like. The names are
         relative to the current date. This means that if the current
@@ -231,9 +235,9 @@ are defined by data sets.
 2.  Click the gearbox icon.
 
 3.  Select a **Selection mode** and an organisation unit.
-    
+
     There are three different selection modes:
-    
+
     <table>
     <caption>Selection modes</caption>
     <colgroup>
@@ -321,7 +325,7 @@ category and filter.
 1.  Click **Options**.
 
 2.  Set the options as required.
-    
+
     <table style="width:100%;">
     <caption>Chart options</caption>
     <colgroup>
@@ -508,11 +512,11 @@ write is visible to those people.
     then click the **+** icon.
 
 4.  Change sharing settings for the user groups you want to modify.
-    
+
       - **Can edit and view**: Everyone can view and edit the object.
-    
+
       - **Can view only**: Everyone can view the object.
-    
+
       - **None**: The public won't have access to the object. This
         setting is only applicable to **Public access**.
 
@@ -535,10 +539,10 @@ creates/update an interpretation comment of this favorite.
 1.  Click **Favorites** \> **Get link**.
 
 2.  Select one of the following:
-    
+
       - **Open in this app**: You get a URL for the favorite which you
         can share with other users by email or chat.
-    
+
       - **Open in web api**: You get a URL of the API resource. By
         default this is an HTML resource, but you can change the file
         extension to ".json" or ".csv".
@@ -571,7 +575,7 @@ computer as an image or PDF file.
 1.  Click **Download**.
 
 2.  Under **Graphics**, click **Image (.png)** or **PDF (.pdf)**.
-    
+
     The file is automatically downloaded to your computer. Now you can
     for example embed the image file into a text document as part of a
     report.
@@ -594,7 +598,7 @@ To download plain data source formats:
 1.  Click **Download**.
 
 2.  Under **Plain data source**, click the format you want to download.
-    
+
     <table>
     <caption>Available formats</caption>
     <colgroup>
@@ -660,7 +664,7 @@ To generate a HTML fragment that you can use to display the chart in an
 external web page:
 
 1.  Click **Share** \> **Embed in web page**.
-    
+
     The **Embed in web page** window opens.
 
 2.  Click **Select** to highlight the HTML fragment.
@@ -668,4 +672,3 @@ external web page:
 ## Open a chart as a pivot table or as a map
 
   - Open a **Chart** and click **Chart** or click **Map**.
-

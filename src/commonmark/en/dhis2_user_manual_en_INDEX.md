@@ -10,6 +10,7 @@
 !INCLUDE "content/user/using-the-tracker-capture-app.md"
 !INCLUDE "content/user/using-the-capture-app.md"
 !INCLUDE "content/user/analyze-data-in-pivot-tables.md"
+!INCLUDE "content/user/data-visualizer.md"
 !INCLUDE "content/user/using-the-data-visualizer-app.md"
 !INCLUDE "content/user/using-the-gis-app.md"
 !INCLUDE "content/user/using-the-maps-app.md"
