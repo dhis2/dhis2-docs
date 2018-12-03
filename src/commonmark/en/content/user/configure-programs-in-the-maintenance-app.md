@@ -324,8 +324,15 @@ attributes and program parameters.
     <p>This means that the data in the entry form can't be changed until you reset the status to incomplete.</p></td>
     </tr>
     <tr class="even">
-    <td><p>Select checkbox to capture an event's coordinates.</p>
-    <p>Many types of events may be recorded at a facility or be owned-by a health worker at a facility, but actually take place somewhere in the community.</p></td>
+    <td><strong>Feature type</strong></td>
+    <td><p>Sets wether the program is going to capture a geographical feature type or not.
+- **None**
+  Nothing is captured.
+- **Polygon**
+  An area is captured. For single event programs the area will be the area representing the event being captured. For tracker programs, the area will represent the area of the enrollment.
+- **Point**
+  A point/coordinate is captured. For single event programs the point will be representing the event being captured. For tracker programs, the point will represent the enrollment.
+    </p></td>
     </tr>
     <tr class="odd">
     <td><strong>Validation strategy</strong></td>
