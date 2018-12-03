@@ -324,12 +324,26 @@ attributes and program parameters.
     <p>This means that the data in the entry form can't be changed until you reset the status to incomplete.</p></td>
     </tr>
     <tr class="even">
-    <td><p>Select checkbox to capture an event's coordinates.</p>
-    <p>Many types of events may be recorded at a facility or be owned-by a health worker at a facility, but actually take place somewhere in the community.</p></td>
+    <td><strong>Feature type</strong></td>
+    <td><p>Sets wether the program is going to capture a geographical feature type or not.
+- **None**
+  Nothing is captured.
+- **Polygon**
+  An area is captured. For single event programs the area will be the area representing the event being captured. For tracker programs, the area will represent the area of the enrollment.
+- **Point**
+  A point/coordinate is captured. For single event programs the point will be representing the event being captured. For tracker programs, the point will represent the enrollment.
+    </p></td>
     </tr>
     <tr class="odd">
-    <td><strong>Complete allowed only if validation passes</strong></td>
-    <td>Select checkbox to enforce that an event created by this program is only completed when all validation rules have passed.</td>
+    <td><strong>Validation strategy</strong></td>
+    <td>Sets the server and client side validation requirement.
+> Data type validations is always performed regardless of the validation strategy. An integer field is never stored containing text, for example.
+- **On complete**
+  This option will enforce required field and error messages to be fixed when completing the event, but the event can be saved to the server without passing these validation requirements.
+  > For legacy reasons, this is always the validation strategy for tracker programs, where each data value in the event is stored to the server while entrering data.
+- **On update and insert**
+  This option will enforce required field validation when saving the event to the server regardless of the completion status. When using this option no events can be stored without passing validations.
+    </td>
     </tr>
     <tr class="even">
     <td><strong>Pre-generate event UID</strong></td>
@@ -343,7 +357,7 @@ attributes and program parameters.
     </tbody>
     </table>
 
-4.  Click next.
+1.  Click next.
 
 #### Assign data elements
 
