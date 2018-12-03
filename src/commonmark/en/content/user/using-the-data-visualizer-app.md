@@ -3,7 +3,7 @@
 <!--DHIS2-SECTION-ID:data_vis-->
 
 This chapter refers to the legacy version of the data visualizer. For
-the current version, please refer to the [new data visualizer](./data_vis_new.html)
+the current version, please refer to the [new data visualizer](./data_visualizer.html)
 chapter.
 
 ## About the Data Visualizer app
