@@ -1,6 +1,6 @@
 # Data Visualizer
 
-<!--DHIS2-SECTION-ID:data_vis_new-->
+<!--DHIS2-SECTION-ID:data_visualizer-->
 
 ## Creating and editing charts
 
