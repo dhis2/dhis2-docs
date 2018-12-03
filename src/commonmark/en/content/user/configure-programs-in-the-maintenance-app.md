@@ -328,8 +328,15 @@ attributes and program parameters.
     <p>Many types of events may be recorded at a facility or be owned-by a health worker at a facility, but actually take place somewhere in the community.</p></td>
     </tr>
     <tr class="odd">
-    <td><strong>Complete allowed only if validation passes</strong></td>
-    <td>Select checkbox to enforce that an event created by this program is only completed when all validation rules have passed.</td>
+    <td><strong>Validation strategy</strong></td>
+    <td>Sets the server and client side validation requirement.
+> Data type validations is always performed regardless of the validation strategy. An integer field is never stored containing text, for example.
+- **On complete**
+  This option will enforce required field and error messages to be fixed when completing the event, but the event can be saved to the server without passing these validation requirements.
+  > For legacy reasons, this is always the validation strategy for tracker programs, where each data value in the event is stored to the server while entrering data.
+- **On update and insert**
+  This option will enforce required field validation when saving the event to the server regardless of the completion status. When using this option no events can be stored without passing validations.
+    </td>
     </tr>
     <tr class="even">
     <td><strong>Pre-generate event UID</strong></td>
@@ -343,7 +350,7 @@ attributes and program parameters.
     </tbody>
     </table>
 
-4.  Click next.
+1.  Click next.
 
 #### Assign data elements
 
