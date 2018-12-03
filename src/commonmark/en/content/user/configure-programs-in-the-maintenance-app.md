@@ -340,7 +340,7 @@ attributes and program parameters.
 > Data type validations is always performed regardless of the validation strategy. An integer field is never stored containing text, for example.
 - **On complete**
   This option will enforce required field and error messages to be fixed when completing the event, but the event can be saved to the server without passing these validation requirements.
-  > For legacy reasons, this is always the validation strategy for tracker programs, where each data value in the event is stored to the server while entrering data.
+  - For legacy reasons, this is always the validation strategy for tracker programs, where each data value in the event is stored to the server while entrering data.
 - **On update and insert**
   This option will enforce required field validation when saving the event to the server regardless of the completion status. When using this option no events can be stored without passing validations.
     </td>
