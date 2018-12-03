@@ -1,5 +1,7 @@
 # Data Visualizer
 
+<!--DHIS2-SECTION-ID:data_vis_new-->
+
 ## Creating and editing charts
 
 When you open the data-visualizer app from the dhis2 menu, you are presented with a blank slate and you can start creating your chart right away.
@@ -35,4 +37,3 @@ relevant date, which is indicated next to the chart title.
 
 Clicking on the back arrow inside the interpretations panel will clear the
 interpretation and regenerate the chart with the current date.
-
