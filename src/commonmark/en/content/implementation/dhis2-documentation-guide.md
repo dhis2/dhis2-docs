@@ -176,11 +176,11 @@ The `*_INDEX.md` files are the starting points for the master documents. They co
 
 e.g. dhis2_android_user_man_INDEX.md:
 ```
-!INCLUDE "content/common/about-this-guide.md"
-!INCLUDE "content/android/configure-dhis2-programs-to-work-on-android-apps.md"
-!INCLUDE "content/android/android-event-capture-app.md"
-!INCLUDE "content/android/android-aggregate-data-capture-app.md"
-!INCLUDE "content/android/android-tracker-capture-app.md"
+ !INCLUDE "content/common/about-this-guide.md"
+ !INCLUDE "content/android/configure-dhis2-programs-to-work-on-android-apps.md"
+ !INCLUDE "content/android/android-event-capture-app.md"
+ !INCLUDE "content/android/android-aggregate-data-capture-app.md"
+ !INCLUDE "content/android/android-tracker-capture-app.md"
 ```
 
 
