@@ -92,6 +92,7 @@ make_html "dhis2_user_manual_en" "DHIS2 User guide" "user"
 make_html "dhis2_end_user_manual" "DHIS2 End User guide" "end-user"
 make_html "dhis2_implementation_guide" "DHIS2 Implementer guide" "implementer"
 make_html "user_stories_book" "DHIS2 User Stories" "user-stories"
+make_html "dhis2_draft_chapters" "DHIS2 draft chapters" "draft"
 
 make_pdf "dhis2_android_user_man" "DHIS2 Android guide" "android"
 make_pdf "dhis2_developer_manual" "DHIS2 Developer guide" "developer"
@@ -99,5 +100,6 @@ make_pdf "dhis2_user_manual_en" "DHIS2 User guide" "user"
 make_pdf "dhis2_end_user_manual" "DHIS2 End User guide" "end-user"
 make_pdf "dhis2_implementation_guide" "DHIS2 Implementer guide" "implementer"
 make_pdf "user_stories_book" "DHIS2 User Stories" "user-stories"
+make_pdf "dhis2_draft_chapters" "DHIS2 draft chapters" "draft"
 
 rm -rf $tmp
