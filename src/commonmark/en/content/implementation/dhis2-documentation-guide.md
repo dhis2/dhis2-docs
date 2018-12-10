@@ -20,7 +20,7 @@ can contribute.
 
 <!--DHIS2-SECTION-ID:docs_2-->
 
-The DHIS 2 documentation is written in [Commonmark](https://commonmark.org) markdown format. 
+The DHIS 2 documentation is written in [Commonmark](https://commonmark.org) markdown format.
 One of the main advantages of markdown is
 that there is complete separation between the content and presentation.
 Commonmark is a strongly defined, highly compatible specification of
@@ -30,8 +30,8 @@ PDF, etc) and is a text-based format, it serves as an ideal format for
 documentation of the system.
 
 There exist a wide range of text editors which can be used for the
-creation of markdown files. For Linux and Windows, 
-[ghostwriter](https://wereturtle.github.io/ghostwriter/) is a nice option; 
+creation of markdown files. For Linux and Windows,
+[ghostwriter](https://wereturtle.github.io/ghostwriter/) is a nice option;
 it is free and supports side-by-side preview and custom style sheets.
 One of the key concepts to keep in mind when authoring documentation in
 markdown, or other presentation neutral formats, is that the **content**
@@ -176,11 +176,11 @@ The `*_INDEX.md` files are the starting points for the master documents. They co
 
 e.g. dhis2_android_user_man_INDEX.md:
 ```
-!INCLUDE "content/common/about-this-guide.md"
-!INCLUDE "content/android/configure-dhis2-programs-to-work-on-android-apps.md"
-!INCLUDE "content/android/android-event-capture-app.md"
-!INCLUDE "content/android/android-aggregate-data-capture-app.md"
-!INCLUDE "content/android/android-tracker-capture-app.md"
+ !INCLUDE "content/common/about-this-guide.md"
+ !INCLUDE "content/android/configure-dhis2-programs-to-work-on-android-apps.md"
+ !INCLUDE "content/android/android-event-capture-app.md"
+ !INCLUDE "content/android/android-aggregate-data-capture-app.md"
+ !INCLUDE "content/android/android-tracker-capture-app.md"
 ```
 
 
@@ -194,16 +194,16 @@ It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but
 
 
   - For the sake of convention, place all chapters in a folder in the following format:
-  
+
     `./src/commonmark/en/content/XXXX/<chapter>.md`
-    
+
     where `XXXX` represents one of the thematic folders which are used to organize the documentation, and
     `<chapter>` is the filename referenced from the `*_INDEX.md` file.
 
 
 ### Using images
 
-Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. 
+Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`.
 
 This is important because the `resources/images` string is used to identify images in the files. Images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation. *The paths are partially reversed to ensure they remain unique when collecting images from multiple thematic folders.*
 
@@ -264,7 +264,7 @@ add
 Be sure to include a descriptive comment with your commit.
 
 `
-git commit 
+git commit
 -m
 "Improved documentation on organisation unit imports with CSV."
 `
@@ -284,4 +284,3 @@ main repo, and submit a pull request for your changes to be merged.
 
 If you have any questions, or cannot find that you can get started, just
 raise a question on our [development community of practice](https://community.dhis2.org/c/development).
-
