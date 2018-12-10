@@ -825,6 +825,11 @@ ensure that their caches are kept in sync.
 In a cluster setup, a *Redis* instance is required and will handle
 shared user sessions, application cache and cluster node leadership.
 
+For optimum performance, *Redis Keyspace events* for Generic commands and Expired events needs to be enabled in your Redis Server. If you are using any cloud platform managed Redis server (like AWS ElastiCache for Redis or Azure Cache for Redis),  you will have to enable keyspace event notifications using the respective cloud interfaces. If you are setting up a standalone Redis server, enabling  keyspace event notifications can be done in the *redis.conf* file by adding/uncommenting the following line
+```
+notify-keyspace-events Egx
+```
+
 DHIS2 will connect to Redis if the *redis.enabled* configuration
 property in *dhis.conf* is set to *true* along with the following four
 properties:
