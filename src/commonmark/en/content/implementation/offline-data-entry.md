@@ -237,7 +237,7 @@ In this case there are three options:
     regular meeting at the upper level to capture data with the web data
     entry module. In this case depending on the internet connectivity
     the user can either work online or use the offline capability
-    described in section [2.1](#offline_data_entry_cases_small). 
+    described in the section [above](#offline_data_entry_cases_small). 
   - Ask the upper level where internet is available to do data entry
     regardless of the size of the form. Although this data entry happens
     at upper level, data can still be entered for every health facility.
