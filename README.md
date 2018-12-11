@@ -1,6 +1,6 @@
-# dhis2-markdown-docs
-All of your favourite documents - in markdown format!
+# DHIS 2 Documentation
 
+All of your favourite documentation - in markdown format!
 
 # Updating the documents
 This is the easy bit, and is all that most people have to do. The following sections describe the format, structure and a few considerations necessary for correctly generating the desired output.
