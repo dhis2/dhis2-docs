@@ -85,9 +85,9 @@ connectivity issues in some places in the country.
 
 We identify three (3) main scenarios:
 
-  - Limited internet availability and data entry forms are small
-  - Limited internet availability and data entry forms are huge
-  - Internet is not at all available 
+  1. Limited internet availability and data entry forms are small
+  1. Limited internet availability and data entry forms are huge
+  1. Internet is not at all available 
 
 We recognize that these scenarios are very simplistic because in
 practice a health facility can have for instance one  small weekly form
@@ -116,7 +116,7 @@ By limited internet availability, we mean case where:
 
 And by data entry form not huge we mean data entry form having one to
 about one hundred<!-- If I had guessed what «Small» meant, I would say
-10-20 --> fields.
+10-20 --> fields.<!-- PALD: You could also phrase it as "having less than X fields", where X is 50 or 100 or whatever -->
 
 So if  internet connectivity is limited and data entry forms are small,
 there are two possibilities to address the connectivity problem: Android
@@ -137,7 +137,7 @@ To do this, the users will  be request to go to the Google Play from
 their Android device and type DHIS 2 data capture and get the following
 screen. 
 
-Then install the app called Data Capture for DHIS 2.
+Then install the app called **Data Capture for DHIS 2**.
 
 ![](resources/images/offline_data_entry/image5.png)
 
@@ -145,7 +145,16 @@ Once the app is installed and launched, the user will be requested to
 provide the url of their national DHIS 2, the username and password and
 tap LOG IN.
 
+<table style="border:1px;">
+<tr>
+<td style="width:40%;padding: 5 20 5 20;border:1px;">
+
 ![](resources/images/offline_data_entry/image4.jpg)
+</td>
+<td style="width:40%;padding: 5 20 5 20;border:0px;">
+</td>
+</tr>
+</table>
 
 After a successful log in, the app will download automatically the
 forms and organization units the user is assigned to and store them
@@ -155,9 +164,18 @@ are already stored locally. Internet connection will be needed only to
 sync data with the server. This can be done when internet is available
 locally.
 
+<table style="border:0px;">
+<tr>
+<td style="width:40%;padding: 5 20 5 20 ;border:0px;">
+
 ![](resources/images/offline_data_entry/image9.jpg)
+</td>
+<td style="width:40%;padding: 5 20 5 20 ;border:0px;">
 
 ![](resources/images/offline_data_entry/image7.jpg)
+</td>
+</tr>
+</table>
 
 On the system administration side, organizing the data entry form into
 sections in DHIS 2 will make data entry experience more fluid and
