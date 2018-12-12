@@ -62,7 +62,7 @@ Metadata Import.
 >
 > You can control this using **Reference Mode** option available under **MORE OPTIONS**, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
 
-### Matching identifiers in DXF2
+### Matching Identifiers in DXF2
 
 The DXF2 format currently support matching for two identifiers, the
 internal DHIS2 identifier (known as a UID), and also using an external
@@ -102,7 +102,7 @@ Import.
 6.  Click *Import* which will bring up the *Logger* at the bottom of the
     page to show the progress.
 
-### PDF data
+### PDF Data
 
 <!--DHIS2-SECTION-ID:importPDFdata-->
 
@@ -152,7 +152,15 @@ import.
 5.  Click **Import** which will bring up the **Logger** at the bottom of
     the page to show the progress.
 
-## Metadata export
+## Metadata Import Summaries
+
+<!--DHIS2-SECTION-ID:metadata_import_summaries-->
+
+On import request completion, we show import summaries above the import form. Any conflicts or errors are shown in a paginated table under totals.
+
+![](resources/images/import_export/import_summary.png)
+
+## Metadata Export
 
 <!--DHIS2-SECTION-ID:metadata_export-->
 
@@ -175,7 +183,7 @@ Metadata export.
 
 6.  The exported file is downloaded to your local computer.
 
-## Metadata export with dependencies
+## Metadata Export with Dependencies
 
 <!--DHIS2-SECTION-ID:metadata_export_dependencies-->
 
