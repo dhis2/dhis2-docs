@@ -138,7 +138,12 @@ add new**
     same page. Use this option when you want to register and enroll one
     TEI after another without enter data.
 
-(img integrated search)
+> Note: All mandatory attributes have to be filled in to be able to save. 
+> Mandatory attributes are marked with a red star next to the attribute lable.
+> If the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture"__
+> you will not be required to fill in the mandatory attributes and will 
+> not see the red star next to the attribute lable. Note that super user 
+> that have the __"ALL"__ authority automatically have this authority.
 
 ## Open an existing TEI dashboard
 
@@ -382,6 +387,14 @@ Sometimes it might be nessascary to refer a patient to a different
 5.  Click either **One-time referral** which will only refer TEI for one
     single event or **Move permanently** which will move TEI and all its
     future events permantly to the selected **Organisation Unit**.
+
+### Mandatory data elements in events
+Some data elements in an event might be mandatory (marked with a red star next to the data element lable).
+What this means is that all mandatory data elements must be filled in before the user is allowed to complete the event.
+The exception to this is if the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture".__
+If the user has this authority, the mandatory data elements will not be required to be filled in before saving and
+the red star will not be displayed next to the data element lable. Note that super user that have the __"ALL"__ authority automatically
+have this authority.
 
 ## How to use geometry
 
