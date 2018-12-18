@@ -597,8 +597,8 @@ Some aspects of the data synchronization feature to be aware of:
     synchronized. This feature allows you to decide to not synchronize
     some sensitive or not relevant data and to keep them only locally.
 
-  - The newly introduced authority
-    F\_IGNORE\_TRACKER\_REQUIRED\_VALUE\_VALIDATION should be used when
+  - The newly introduced authority __"Ignore validation of required fields in Tracker and Event Capture"__
+    (F\_IGNORE\_TRACKER\_REQUIRED\_VALUE\_VALIDATION) should be used when
     there is a requirement that some mandatory attribute / data element
     has at the same time a "Skip synchronization" property turned on.
     Such a setting will lead to validation failure on the central server
