@@ -136,10 +136,6 @@ Along the bottom of the basemap card is:
 
   - A slider for modifying the layer transparency
 
-  - A more actions (three dots) button with additional options:
-    
-    - **Remove layer** will remove this layer from the current map.
-
 ## Create a new map
 
 <!--DHIS2-SECTION-ID:using_maps_create_map-->
@@ -596,6 +592,28 @@ the event pop-up window.
     select corresponding **Display in reports**.
 
 7.  Click **Update**.
+
+### Download raw event layer data
+
+The raw data for event layers can be downloaded in GeoJSON format for more advanced geo-analytics and processing in desktop GIS software such as [QGIS](https://www.qgis.org/).  The downloaded data includes all individual events as GeoJSON features, including attributes for each data element selected for **Display in reports**.
+
+![](resources/images/maps/maps_data_download_dialog.png)
+
+- In the layer card to the left, click the *more actions* (three dots) icon and then on **Download data**
+
+- Select the **ID format** to use as the key for Data Element values in the downloaded GeoJSON file.  There are three options available:
+
+  - **ID** - Use the unique ID of the data element
+  - **Name** - Use the human-friendly name of the data element (translated)
+  - **Code** - Use the code of the data element
+
+- Select whether or not to **Use human-readable keys** for other Event attributes, such as Program Stage, Latitude, Longitude, Event Data, and Organization Unit ID, Name, and Code.  When this option is **not** selected these values will be the computer-friendly ID instead of the human-readable (and translated) name.
+
+- Click the **DOWNLOAD** button to generate and download a GeoJSON file.  The data will be requested from the DHIS2 server and processed by the maps application.  This operation may take several minutes to complete.
+
+- Once the GeoJSON file has been downloaded it can be imported into most standard GIS software applications.
+
+> Note that the downloaded data does not include style information as it is not natively supported by the GeoJSON format.  Styles can optionally be recreated in external GIS applications using the attributes of each feature.
 
 ### Clear event layer
 
