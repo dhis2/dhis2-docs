@@ -12353,6 +12353,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
       ]
     }
 
+In generic http gateway any number of parameters can be added. Header can be set to true if any of them is required to be sent in http header.
 HTTP.OK will be returned if configurations are saved successfully otherwise *Error*
 
 ## SMS Commands
