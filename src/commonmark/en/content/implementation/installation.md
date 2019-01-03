@@ -821,13 +821,12 @@ ensure that their caches are kept in sync.
 In a cluster setup, a *Redis* instance is required and will handle
 shared user sessions, application cache and cluster node leadership.
 
-For optimum performance you should enable *Redis Keyspace events* for generic commands and expired events. If you are using a cloud platform managed Redis server, like AWS ElastiCache for Redis or Azure Cache for Redis, you will have to enable keyspace event notifications using the respective cloud interface. If you are setting up a standalone Redis server, enabling keyspace event notifications can be done in the *redis.conf* file by adding/uncommenting the following line:
-
+For optimum performance, *Redis Keyspace events* for Generic commands and Expired events needs to be enabled in your Redis Server. If you are using any cloud platform managed Redis server (like AWS ElastiCache for Redis or Azure Cache for Redis),  you will have to enable keyspace event notifications using the respective cloud interfaces. If you are setting up a standalone Redis server, enabling  keyspace event notifications can be done in the *redis.conf* file by adding/uncommenting the following line
 ```
 notify-keyspace-events Egx
 ```
 
-DHIS 2 will connect to Redis if the *redis.enabled* configuration
+DHIS2 will connect to Redis if the *redis.enabled* configuration
 property in *dhis.conf* is set to *true* along with the following four
 properties:
 
@@ -842,16 +841,23 @@ properties:
 4.  *redis.use.ssl*: Specifies whether the Redis server has SSL enabled.
     Defaults to *false*.
 
-Whenever Redis is enabled, DHIS2 will automatically assign one of the running instances as the leader of the cluster. The leader instance will be used to execute jobs or scheduled tasks that should be run exclusively by one instance. Optionally, you can configure the *leader.time.to.live.minutes* property in *dhis.conf* to define how frequently the leader election needs to occur. It also gives an indication of how long it would take for another instance to take over as leader after the previous leader was lost. The default value is 2 minutes. Note that assigning a leader in the cluster is only done if Redis is enabled.
-
-An example snippet of the *dhis.conf*
+Whenever Redis is enabled, DHIS2 will automatically assign one of the
+running instances as the leader of the cluster. The leader instance will
+be used to execute jobs or scheduled tasks that should be run
+exclusively by one instance. Optionally, you can configure the
+*leader.time.to.live.minutes* property in *dhis.conf* to set up how
+frequently the leader election needs to occur. It also gives an
+indication of how long it would take for another instance to take over
+as the leader after the previous leader has shutdown/crashed. The
+default value is 2 minutes. Note that assigning a leader in the cluster
+is only done if Redis is enabled. An example snippet of the *dhis.conf*
 configuration file with Redis enabled and leader election time
 configured is shown below.
 
 ``` 
 # Redis Configuration
 
-# Mandatory for enabling Redis
+# Mandatory if redis has to be enabled.
 redis.enabled = true
 
 redis.host = 193.158.100.111
@@ -860,11 +866,12 @@ redis.port = 6379
 
 redis.password = yourpassword
 
-# Optional, defaults to false
+# Optional, defaults to false.
 redis.use.ssl = false
 
-# Optional, defaults to 2 minutes
-leader.time.to.live.minutes = 4
+# Optional, defaults to 2 minutes.
+leader.time.to.live.minutes=4
+ 
 ```
 
 ### Load balancing
@@ -884,9 +891,10 @@ element in the *proxy* location block.
 ``` 
 http {
 
-  # Upstream element
+  # Upstream element with sticky sessions
 
   upstream dhis_cluster {
+    ip_hash;
     server 193.157.199.131:8080;
     server 193.157.199.132:8080;
   }
@@ -902,6 +910,12 @@ http {
   }
 }  
 ```
+
+DHIS 2 keeps server-side state for user sessions to a limited degree.
+Using "sticky sessions" is a simple approach to avoid replicating the
+server session state by routing requests from the same client to the
+same server. The *ip\_hash* directive in the upstream element ensures
+this.
 
 Note that several instructions have been omitted for brevity in the
 above example. Consult the reverse proxy section for a detailed
@@ -1535,41 +1549,40 @@ viable starting point for your own configuration
 
 <!--DHIS2-SECTION-ID:install_application_logging-->
 
-The DHIS2 application log output is directed to multiple files and
-locations. First, log output is sent to standard output. The Tomcat
-servlet container usually outputs standard output to a file under
-"logs":
+This section covers application logging in DHIS 2.
+
+### Log files
+
+The DHIS2 application log output is directed to multiple files and locations. First, log output is sent to standard output. The Tomcat servlet container usually outputs standard output to a file under "logs":
 
     <tomcat-dir>/logs/catalina.out
 
-Second, log output is written to a "logs" directory under the DHIS2 home
-directory as defined by the the DHIS2\_HOME environment variables. There
-is a main log file for all output, and separate log files for various
-background processes. The main file includes the background process logs
-as well. The log files are capped at 50 Mb and log content is
-continuously appended.
+Second, log output is written to a "logs" directory under the DHIS2 home directory as defined by the the DHIS2\_HOME environment variables. There is a main log file for all output, and separate log files for various
+background processes. The main file includes the background process logs as well. The log files are capped at 50 Mb and log content is continuously appended.
 
-    <DHIS2_HOME>/logs/dhis.log
-    
+    <DHIS2_HOME>/logs/dhis.log    
     <DHIS2_HOME>/logs/dhis-analytics-table.log
-    
     <DHIS2_HOME>/logs/dhis-data-exchange.log
-    
     <DHIS2_HOME>/logs/dhis-data-sync.log
 
-In order to override the default logging you can specify a Java system
-property with the name *log4j.configuration* and a value pointing to the
-Log4j configuration file on the classpath. If you want to point to a
-file on the file system (i.e. outside Tomcat) you can use the *file*
-prefix e.g. like this:
+### Log configuration
+
+In order to override the default log configuration you can specify a Java system property with the name *log4j.configuration* and a value pointing to the Log4j configuration file on the classpath. If you want to point to a
+file on the file system (i.e. outside Tomcat) you can use the *file* prefix e.g. like this:
 
     -Dlog4j.configuration=file:/home/dhis/config/log4j.properties
 
-Java system properties can be set e.g. through the *JAVA\_OPTS*
-environment variable.
+Java system properties can be set e.g. through the *JAVA\_OPTS* environment variable or in the tomcat startup script.
 
-DHIS2 will eventually phase out logging to standard out / catalina.out
-and as a result it is recommended to rely on the logs under DHIS2\_HOME.
+A second approach to overriding the log configuration is to specify logging properties in the *dhis.conf* configuration file. The supported properties are:
+
+	# Max size for log files, default is '100MB'
+	logging.file.max_size = 250MB
+	
+	# Max number of rolling log archive files, default is 0
+	logging.file.max_archives = 2
+
+DHIS2 will eventually phase out logging to standard out / catalina.out and as a result it is recommended to rely on the logs under DHIS2\_HOME.
 
 ## Working with the PostgreSQL database
 
