@@ -1549,41 +1549,40 @@ viable starting point for your own configuration
 
 <!--DHIS2-SECTION-ID:install_application_logging-->
 
-The DHIS2 application log output is directed to multiple files and
-locations. First, log output is sent to standard output. The Tomcat
-servlet container usually outputs standard output to a file under
-"logs":
+This section covers application logging in DHIS 2.
+
+### Log files
+
+The DHIS2 application log output is directed to multiple files and locations. First, log output is sent to standard output. The Tomcat servlet container usually outputs standard output to a file under "logs":
 
     <tomcat-dir>/logs/catalina.out
 
-Second, log output is written to a "logs" directory under the DHIS2 home
-directory as defined by the the DHIS2\_HOME environment variables. There
-is a main log file for all output, and separate log files for various
-background processes. The main file includes the background process logs
-as well. The log files are capped at 50 Mb and log content is
-continuously appended.
+Second, log output is written to a "logs" directory under the DHIS2 home directory as defined by the the DHIS2\_HOME environment variables. There is a main log file for all output, and separate log files for various
+background processes. The main file includes the background process logs as well. The log files are capped at 50 Mb and log content is continuously appended.
 
-    <DHIS2_HOME>/logs/dhis.log
-    
+    <DHIS2_HOME>/logs/dhis.log    
     <DHIS2_HOME>/logs/dhis-analytics-table.log
-    
     <DHIS2_HOME>/logs/dhis-data-exchange.log
-    
     <DHIS2_HOME>/logs/dhis-data-sync.log
 
-In order to override the default logging you can specify a Java system
-property with the name *log4j.configuration* and a value pointing to the
-Log4j configuration file on the classpath. If you want to point to a
-file on the file system (i.e. outside Tomcat) you can use the *file*
-prefix e.g. like this:
+### Log configuration
+
+In order to override the default log configuration you can specify a Java system property with the name *log4j.configuration* and a value pointing to the Log4j configuration file on the classpath. If you want to point to a
+file on the file system (i.e. outside Tomcat) you can use the *file* prefix e.g. like this:
 
     -Dlog4j.configuration=file:/home/dhis/config/log4j.properties
 
-Java system properties can be set e.g. through the *JAVA\_OPTS*
-environment variable.
+Java system properties can be set e.g. through the *JAVA\_OPTS* environment variable or in the tomcat startup script.
 
-DHIS2 will eventually phase out logging to standard out / catalina.out
-and as a result it is recommended to rely on the logs under DHIS2\_HOME.
+A second approach to overriding the log configuration is to specify logging properties in the *dhis.conf* configuration file. The supported properties are:
+
+	# Max size for log files, default is '100MB'
+	logging.file.max_size = 250MB
+	
+	# Max number of rolling log archive files, default is 0
+	logging.file.max_archives = 2
+
+DHIS2 will eventually phase out logging to standard out / catalina.out and as a result it is recommended to rely on the logs under DHIS2\_HOME.
 
 ## Working with the PostgreSQL database
 
