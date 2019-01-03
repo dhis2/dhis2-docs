@@ -24,7 +24,6 @@
 !INCLUDE "content/user/visualize-usage-statistics.md"
 !INCLUDE "content/user/configure-metadata.md"
 !INCLUDE "content/user/configure-programs-in-the-maintenance-app.md"
-!INCLUDE "content/user/configure-programs-in-the-programsattributes-app-legacy-app.md"
 !INCLUDE "content/user/about-sharing-of-objects.md"
 !INCLUDE "content/user/data-administration.md"
 !INCLUDE "content/user/datastore-manager.md"
