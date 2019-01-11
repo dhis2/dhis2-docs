@@ -111,6 +111,12 @@ After the full html file is generated, it is post-processed and the first ```DHI
 
 Please follow the convention of lowercase letters and underscores, in order to create id's that are also valid as filenames when the html files are split.
 
+
+### "DHIS2" or "DHIS 2", that is the question
+
+In short, the correct form is "DHIS 2" when referring to the software system in normal written text. For convenience, some variables, paths, etc. use the compact form, and they should, of course, be respected in the documentation. 
+
+
 # Building documents
 
 The documents are built in stages:
@@ -201,6 +207,6 @@ As we transition to markdown, please bear in mind the following issues and short
 - [X] Chunked HTML output should use the same identifiers as the docbook output
 - [X] Intra- (and inter-) document links need updating to generate properly
 - [ ] "Asides" (NOTE, TIP, WARNING, etc.) have classes applied in a post-processing step which doesn't apply to PDF output. (could be done as a pandoc filter instead).
-- [ ] Section regarding documentation and Docbook needs rewrite (obviously)
+- [X] Section regarding documentation and Docbook needs rewrite (obviously)
 - [ ] build environment needs improvement to allow easy generation on various platforms (but most developers will not need to build as they can see the expected output in a good markdown editor)
 - [ ] in conjunction with previous point, the build script could be changed to a more robust build tool
