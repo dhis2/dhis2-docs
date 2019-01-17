@@ -821,7 +821,7 @@ ensure that their caches are kept in sync.
 In a cluster setup, a *Redis* instance is required and will handle
 shared user sessions, application cache and cluster node leadership.
 
-For optimum performance, *Redis Keyspace events* for Generic commands and Expired events needs to be enabled in your Redis Server. If you are using any cloud platform managed Redis server (like AWS ElastiCache for Redis or Azure Cache for Redis),  you will have to enable keyspace event notifications using the respective cloud interfaces. If you are setting up a standalone Redis server, enabling  keyspace event notifications can be done in the *redis.conf* file by adding/uncommenting the following line
+For optimum performance, *Redis Keyspace events* for _generic commands_ and _expired events_ need to be enabled in the Redis Server. If you are using a cloud platform-managed Redis server (like AWS ElastiCache for Redis or Azure Cache for Redis) you will have to enable keyspace event notifications using the respective cloud interfaces. If you are setting up a standalone Redis server, enabling keyspace event notifications can be done in the *redis.conf* file by adding or uncommenting the following line:
 ```
 notify-keyspace-events Egx
 ```
@@ -831,20 +831,20 @@ property in *dhis.conf* is set to *true* along with the following four
 properties:
 
 1.  *redis.host*: Specifies where the redis server is running. Defaults
-    to *localhost*.
+    to *localhost*. Mandatory.
 
 2.  *redis.port*: Specifies the port in which the redis server is
-    listening. Defaults to *6379*.
+    listening. Defaults to *6379*. Optional.
 
-3.  *redis.password*: Specifies the authentication password.
+3.  *redis.password*: Specifies the authentication password. If a password is not required it can be left blank.
 
-4.  *redis.use.ssl*: Specifies whether the Redis server has SSL enabled.
+4.  *redis.use.ssl*: Specifies whether the Redis server has SSL enabled. Defaults to false. Optional.
     Defaults to *false*.
 
-Whenever Redis is enabled, DHIS2 will automatically assign one of the
+When Redis is enabled, DHIS2 will automatically assign one of the
 running instances as the leader of the cluster. The leader instance will
 be used to execute jobs or scheduled tasks that should be run
-exclusively by one instance. Optionally, you can configure the
+exclusively by one instance. Optionally you can configure the
 *leader.time.to.live.minutes* property in *dhis.conf* to set up how
 frequently the leader election needs to occur. It also gives an
 indication of how long it would take for another instance to take over
@@ -857,19 +857,17 @@ configured is shown below.
 ``` 
 # Redis Configuration
 
-# Mandatory if redis has to be enabled.
 redis.enabled = true
 
 redis.host = 193.158.100.111
 
 redis.port = 6379
 
-redis.password = yourpassword
+redis.password = <your password>
 
-# Optional, defaults to false.
 redis.use.ssl = false
 
-# Optional, defaults to 2 minutes.
+# Optional, defaults to 2 minutes
 leader.time.to.live.minutes=4
  
 ```
