@@ -12283,12 +12283,20 @@ GET method.
 
     GET /api/26/gateways/{uid}
 
+New gateway configuraitons can be added using POST. POST api requires type request parameter and currently its value can have either one *http,bulksms,clickatell*. First added gateway will be set to default. Only one gateway is allowed to be default at one time. Default gateway can only be changed through its api. If default gateway is removed then the next one the list will automatically becomes default.
+
+	POST /api/26/gateways?type=http
+	
+Configuration can be updated with by providing uid and gateway configurations as mentioned below
+	
+	PUT /api/26gateways/{uids}
+
 Configurations can be removed for specific gateway type using DELETE
 method.
 
     DELETE /api/26/gateways/{uid}
 
-Default gateway can be retrieved with the GET method.
+Default gateway can be retrieved and updated.
 
     GET /api/26/gateways/default
 
@@ -12311,7 +12319,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
       "username": "clickatelluser",
       "password": "abc123",
       "authtoken": "XXXXXXXXXXXXXXXXXXXX",
-      "urlTemplate": "https://platform.clickatell.com/messages",
+      "urlTemplate": "https://platform.clickatell.com/messages"
     }
 
 *Bulksms*
@@ -12319,7 +12327,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
     {
       "name": "bulkSMS",
       "username": "bulkuser",
-      "password": "abc123",
+      "password": "abc123"
     }
 
 *GenericHttp*
@@ -12340,49 +12348,13 @@ case of GenericHttpGateway to send one or more parameter as http header.
           "key": "password",
           "value": "XXX",
           "classified": "true",
-                "header": "false"
+        		"header": "false"
         }
       ]
     }
 
-HTTP.OK will be returned if configurations are saved successfully. In
-all other cases HTTP.ERROR will be returned.
-
-The various gateway configurations can be instantiated using the
-endpoints listed below.
-
-<table>
-<caption>Gateway api end points</caption>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Gatway Type</th>
-<th>Method</th>
-<th>API End Points</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Clickatell</td>
-<td>POST/PUT</td>
-<td>/api/26/gateways/clickatell</td>
-</tr>
-<tr class="even">
-<td>Bulksms</td>
-<td>POST/PUT</td>
-<td>/api/26/gateways/bulksms</td>
-</tr>
-<tr class="odd">
-<td>Generichttp</td>
-<td>POST/PUT</td>
-<td>/api/26/gateways/generichttp</td>
-</tr>
-</tbody>
-</table>
+In generic http gateway any number of parameters can be added. Header can be set to true if any of them is required to be sent in http header.
+HTTP.OK will be returned if configurations are saved successfully otherwise *Error*
 
 ## SMS Commands
 
