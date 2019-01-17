@@ -5321,8 +5321,8 @@ depending on other view result in an integrity violation error.
 
 ### Creating a new SQL view
 
-To create a new SQL view, click **Apps** \> **Data administration**
-\>**SQL view** and click **Add new**.
+To create a new SQL view, click **Apps** \> **Maintenance**
+\> **Other** \> **SQL View** and click the Add **+** button.
 
 
 ![](resources/images/maintainence/create_sql_view.PNG)
@@ -5330,7 +5330,7 @@ To create a new SQL view, click **Apps** \> **Data administration**
 The "Name" attribute of the SQL view will be used to determine the name
 of the table that DHIS2 will create when the view is materialized by the
 user. The "Description" attribute allows one to provide some descriptive
-text about what the SQL view actually does. Finally, the "SQL statement"
+text about what the SQL view actually does. Finally, the "SQL query"
 should contain the SQL view definition. Only SQL "SELECT" statements are
 allowed and certain sensitive tables (i.e. user information) are not
 accessible Press "Save" to store the SQL view definition.
