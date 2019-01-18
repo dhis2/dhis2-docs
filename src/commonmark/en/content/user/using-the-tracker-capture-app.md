@@ -43,7 +43,7 @@ Capture** app.
 
 ![](resources/images/tracker_capture/tei_dashboard.png)
 
-You manage a TEI from the TEI's dashboard in the **Tracker Capture**app.
+You manage a TEI from the TEI's dashboard in the **Tracker Capture** app.
 
   - The dashboard consist of widgets. Drag and drop the widgets to place
     them in the order and in the position you want.
@@ -94,6 +94,47 @@ program
     All services are recorded.
 
 5.  Use information about the individual cases to create reports.
+
+## Linking to the Tracker Capture App
+
+<!--DHIS2-SECTION-ID:linking_to_the_tracker_capture_app-->
+
+### Link to a specific program on the "home screen"
+You can share a program selection on the "home screen.
+
+1. Open the **Tracker Capture** app.
+
+2. Selecte the program you want to link to.
+
+3. Copy the URL.
+    
+    * Make sure that the URL contains the "program" parameter.
+
+4. Paste the URL in the sharing method of your choice, for example an
+  e-mail or a message within DHIS2.
+
+  > Note: If the program does not exist in the selected organisation unit (that is stored in the local cache) the system will instead
+  > select the first available program for that organisation unit. If the local cache is empty/clean and the root organisation unit
+  > of the current user does not have the specified program, the system will also here select the first available program for the root
+  > organisation unit.
+
+### Linking to TEI dashboard
+You can share a TEI dashboard via its web address.
+
+1.  Open the **Tracker Capture** app.
+
+2.  Open the dashboard you want to share.
+
+3.  Copy the URL.
+    
+    Make sure that the URL contains "tei", "program" and "ou"
+    (organisation unit) parameters.
+
+4.  Paste the URL in the sharing method of your choice, for example an
+    e-mail or a message within DHIS2.
+    
+    If you're not logged in to DHIS2 when you click the link, you'll be
+    asked to do so and then taken to the dashboard.
 
 ## Create a TEI and enroll it in a program
 
