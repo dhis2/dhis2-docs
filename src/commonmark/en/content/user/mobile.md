@@ -1269,5 +1269,12 @@ Below table shows the parameters required for configuring gateway.
 <td>Optional</td>
 <td>Header option can be checked to send selected parameter as http header. For example username/password/token can be sent in http header.</td>
 </tr>
+<tr class="odd">
+<td>useGet</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Optional</td>
+<td>HTTP POST method is used by default for posting data toward gateway. But in certain cases if HTTP GET method is required for doing so then useGet parameter can be set to true. Default value for useGet is false.</td>
+</tr>
 </tbody>
 </table>
