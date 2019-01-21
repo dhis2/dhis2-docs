@@ -13569,6 +13569,16 @@ To get a list of organisation units you can use the following resource.
 <td>Organisation units at the given max level or levels higher up in the hierarchy.</td>
 </tr>
 <tr class="odd">
+<td>withinUserHierarchy</td>
+<td>false | true</td>
+<td>Limits search and retrieval to organisation units that are within the users data capture scope.</td>
+</tr>
+<tr class="even">
+<td>withinUserSearchHierarchy</td>
+<td>false | true</td>
+<td>Limits search and retrieval to organisation units that are within the current users search scope. Note: "withinUserHierarchy", if true, takes higher precedence.</td>
+</tr>
+<tr class="odd">
 <td>memberCollection</td>
 <td>string</td>
 <td>For displaying count of members within a collection, refers to the name of the collection associated with organisation units.</td>
