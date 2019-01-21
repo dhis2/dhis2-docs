@@ -919,6 +919,37 @@ Note that several instructions have been omitted for brevity in the
 above example. Consult the reverse proxy section for a detailed
 configuration guide.
 
+### Rate limiting
+
+Certain web API calls in DHIS 2, like the `analytics` APIs, are compute intensive. As a result it is favorable to rate limit these APIs in order to allow all users of the system to utilize a fair share of the server resources. Rate limiting can be achieved with `nginx`. There are numerous approaches to achieving rate limiting and this is intended to document the nginx-based approach.
+
+The below nginx configuration will rate limit the `analytics` web API, and has the following elements at the *http* and *location* block level (the configuration is shortened for brevity):
+
+- *limit_req_zone $binary_remote_addr*: Rate limiting is done per request IP.
+- *zone=dhis_limit:20m*: A rate limit zone for DHIS 2 which can hold up to 10 MB of request IPs.
+- *rate=20r/s*: Each IP is granted 20 requests per second.
+- *location ~ ^/api/(\d+/)?analytics(.\*)$*: Requests for the analytics API endpoint are rate limited.
+- *burst=20*: Bursts of up to 20 requests will be queued and serviced at a later point.
+
+````
+http {
+  ..
+  limit_req_zone $binary_remote_addr zone=dhis_limit:20m rate=20r/s;
+
+  server {
+    ..
+        
+    location ~ ^/api/(\d+/)?analytics(.*)$ {
+      limit_req    zone=dhis_limit burst=20;
+      proxy_pass   http://localhost:8083/dhis/api/$1analytics$2$is_args$args;
+      ..
+    }
+  }
+}
+````
+
+For a full explanation please consult the [nginx documentation](https://www.nginx.com/blog/rate-limiting-nginx/).
+
 ## Starting Tomcat at boot time
 
 <!--DHIS2-SECTION-ID:install_starting_tomcat_boot_time-->
