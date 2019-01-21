@@ -12289,7 +12289,7 @@ New gateway configuraitons can be added using POST. POST api requires type reque
 	
 Configuration can be updated with by providing uid and gateway configurations as mentioned below
 	
-	PUT /api/26gateways/{uids}
+	PUT /api/26/gateways/{uids}
 
 Configurations can be removed for specific gateway type using DELETE
 method.
@@ -12337,6 +12337,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
       "messageParameter": "message",
       "recipientParameter": "msisdn",
       "urlTemplate": "http://localhost:template",
+      "useGet":"true",
       "parameters": [
         {
           "key": "username",
