@@ -874,6 +874,8 @@ leader.time.to.live.minutes=4
 
 ### Load balancing
 
+<!--DHIS2-SECTION-ID:install_load_balancing-->
+
 With a cluster of Tomcat instances set up, a common approach for routing
 incoming web requests to the backend instances participating in the
 cluster is using a *load balancer*. A load balancer will make sure that
@@ -920,6 +922,8 @@ above example. Consult the reverse proxy section for a detailed
 configuration guide.
 
 ### Rate limiting
+
+<!--DHIS2-SECTION-ID:install_rate_limiting-->
 
 Certain web API calls in DHIS 2, like the `analytics` APIs, are compute intensive. As a result it is favorable to rate limit these APIs in order to allow all users of the system to utilize a fair share of the server resources. Rate limiting can be achieved with `nginx`. There are numerous approaches to achieving rate limiting and this is intended to document the nginx-based approach.
 
