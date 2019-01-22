@@ -1064,7 +1064,7 @@ for HTTP 1.1 like this:
 
     <Connector address="localhost" protocol="HTTP/1.1" ... >
 
-### Enabling SSL on nginx
+### Enabling SSL with nginx
 
 <!--DHIS2-SECTION-ID:install_enabling_ssl_on_nginx-->
 
@@ -1166,7 +1166,7 @@ add two other parameters to the Connector in tomcat's server.xml file:
 
     <Connector scheme="https" proxyPort="443" ... >
 
-### Enabling caching and SSL on nginx
+### Enabling caching and SSL with nginx
 
 <!--DHIS2-SECTION-ID:install_enabling_caching_ssl_nginx-->
 
@@ -1248,7 +1248,7 @@ will create this directory automatically.
 > Hence, if you capture sensitive information, setting up a server side
 > cache is not recommended.
 
-### Rate limiting
+### Rate limiting with nginx
 
 <!--DHIS2-SECTION-ID:install_rate_limiting-->
 
@@ -1259,7 +1259,7 @@ The below nginx configuration will rate limit the `analytics` web API, and has t
 ````
 http {
   ..
-  limit_req_zone $binary_remote_addr zone=limit_analytics:20m rate=5r/s;
+  limit_req_zone $binary_remote_addr zone=limit_analytics:10m rate=5r/s;
 
   server {
     ..
@@ -1276,7 +1276,7 @@ http {
 The various elements of the configuration can be described as:
 
 - *limit_req_zone $binary_remote_addr*: Rate limiting is done per request IP.
-- *zone=dhis_limit:20m*: A rate limit zone for DHIS 2 which can hold up to 20 MB of request IPs.
+- *zone=limit_analytics:20m*: A rate limit zone for the analytics API which can hold up to 10 MB of request IP addresses.
 - *rate=20r/s*: Each IP is granted 5 requests per second.
 - *location ~ ^/api/(\d+/)?analytics(.\*)$*: Requests for the analytics API endpoint are rate limited.
 - *burst=20*: Bursts of up to 20 requests will be queued and serviced at a later point.
