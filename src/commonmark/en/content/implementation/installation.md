@@ -1256,12 +1256,6 @@ Certain web API calls in DHIS 2, like the `analytics` APIs, are compute intensiv
 
 The below nginx configuration will rate limit the `analytics` web API, and has the following elements at the *http* and *location* block level (the configuration is shortened for brevity):
 
-- *limit_req_zone $binary_remote_addr*: Rate limiting is done per request IP.
-- *zone=dhis_limit:20m*: A rate limit zone for DHIS 2 which can hold up to 20 MB of request IPs.
-- *rate=20r/s*: Each IP is granted 5 requests per second.
-- *location ~ ^/api/(\d+/)?analytics(.\*)$*: Requests for the analytics API endpoint are rate limited.
-- *burst=20*: Bursts of up to 20 requests will be queued and serviced at a later point.
-
 ````
 http {
   ..
@@ -1278,6 +1272,14 @@ http {
   }
 }
 ````
+
+The various elements of the configuration can be described as:
+
+- *limit_req_zone $binary_remote_addr*: Rate limiting is done per request IP.
+- *zone=dhis_limit:20m*: A rate limit zone for DHIS 2 which can hold up to 20 MB of request IPs.
+- *rate=20r/s*: Each IP is granted 5 requests per second.
+- *location ~ ^/api/(\d+/)?analytics(.\*)$*: Requests for the analytics API endpoint are rate limited.
+- *burst=20*: Bursts of up to 20 requests will be queued and serviced at a later point.
 
 For a full explanation please consult the [nginx documentation](https://www.nginx.com/blog/rate-limiting-nginx/).
 
