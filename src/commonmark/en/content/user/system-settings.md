@@ -55,6 +55,22 @@
 <td><p>Setting this value will determine which relative period is selected as the default in the analytics apps.</p></td>
 </tr>
 <tr class="odd">
+    <td><p><strong>Hide daily periods</strong></p></td>
+    <td><p>Hide daily periods in the analysis tools</p></td>
+</tr>
+<tr class="even">
+    <td><p><strong>Hide weekly periods</strong></p></td>
+    <td><p>Hide weekly periods in the analysis tools</p></td>
+</tr>
+<tr class="odd">
+    <td><p><strong>Hide monthly periods</strong></p></td>
+    <td><p>Hide monthly periods in the analysis tools</p></td>
+</tr>
+<tr class="even">
+    <td><p><strong>Hide bimonthly periods</strong></p></td>
+    <td><p>Hide bimonthly periods in the analysis tools</p></td>
+</tr>
+<tr class="odd">
 <td><p><strong>Feedback recipients</strong></p></td>
 <td><p>Defines a user group where the members will receive all messages sent via the feedback function in the <strong>Dashboard</strong> app.</p>
 <p>This will typically be members of the super user team who are able to support and answer questions coming from end-users.</p></td>
