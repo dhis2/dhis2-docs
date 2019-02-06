@@ -1,3 +1,6 @@
+---
+title: 'DHIS 2 End User guide'
+---
 <!--DHIS2-SECTION-ID:index-->
 
 !INCLUDE "content/common/about-this-guide.md"
