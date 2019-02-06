@@ -1,3 +1,6 @@
+---
+title: 'DHIS 2 Implementer guide'
+---
 <!--DHIS2-SECTION-ID:index_implementation-->
 
 !INCLUDE "content/common/about-this-guide.md"
