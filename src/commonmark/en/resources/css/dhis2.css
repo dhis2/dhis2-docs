@@ -62,7 +62,7 @@ blockquote p {
   background-image: url(../images/admon/note.png);
 }
 
-.Tip{
+.Tip, .Truc {
   background-image: url(../images/admon/tip.png);
 }
 
@@ -70,12 +70,11 @@ blockquote p {
   background-image: url(../images/admon/important.png);
 }
 
-.Caution{
+.Caution, .Prudence{
   background-image: url(../images/admon/caution.png);
 }
 
-
-.Warning{
+.Warning, .Attention{
   background-image: url(../images/admon/warning.png);
 }
 

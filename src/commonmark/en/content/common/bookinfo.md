@@ -1,8 +1,10 @@
 ---
-author: 'DHIS2 Documentation team'
-date: 2018
+author: 'DHIS 2 Documentation team'
+date: <git-year>
 keywords: [DHIS2, HISP]
-version: 2.31
+version: <git-branch>
+commit: <git-hash>
+commit-date: <git-date>
 warranty: >
     **Warranty:**
 
@@ -25,5 +27,5 @@ license: >
     any later version published by the Free Software Foundation; with no
     Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A
     copy of the license is included in the source of this documentation, and
-    is available here online:http://www.gnu.org/licenses/fdl.html
+    is available here online: <http://www.gnu.org/licenses/fdl.html>
 ---
