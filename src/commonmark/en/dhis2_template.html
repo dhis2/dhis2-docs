@@ -55,10 +55,12 @@ $endif$
 
 <div id="pagebreak"/>
 
-<p class="subtitle">&copy; DHIS2 Documentation Team</p>
-$for(author)$
-<p class="author">$author$</p>
+<p class="subtitle">Copyright &copy; 2006-$date$ $author$</p>
+<!--
+ $for(author)$
+<p class="author">Copyright &copy; $author$</p>
 $endfor$
+-->
 $if(date)$
 <p class="date">$date$</p>
 $endif$
