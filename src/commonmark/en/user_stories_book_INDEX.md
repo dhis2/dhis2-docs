@@ -1,3 +1,7 @@
+---
+title: 'DHIS 2 User Stories'
+---
+
 !INCLUDE "content/stories/dhis2-tracker-improving-surveillance-of-visceral-leishmaniasis-vl-in-somalia-draft.md"
 !INCLUDE "content/stories/dhis2-in-the-autonomous-region-of-kurdistan-iraq.md"
 !INCLUDE "content/stories/west-africa-regional-systems-and-dhis2.md"

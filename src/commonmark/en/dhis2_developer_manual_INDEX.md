@@ -1,3 +1,6 @@
+---
+title: 'DHIS 2 Developer guide'
+---
 <!--DHIS2-SECTION-ID:index-->
 
 !INCLUDE "content/developer/web-api.md"
