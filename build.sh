@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#
+# Requirements:
+#
+# ensure language packs are installed:
+#> sudo apt-get install language-pack-fr
+
+
 if [ ! -d "venv" ]; then
     source venv_setup
 fi
@@ -9,6 +16,7 @@ src="$PWD/src/commonmark/en"
 tmp="$PWD/tmp/en"
 target="$PWD/target/commonmark/en"
 localisation_root="$PWD/target/commonmark"
+locale="en_UK"
 
 rm -rf $tmp
 mkdir -p $tmp
@@ -45,7 +53,9 @@ make_html() {
     done
     echo "compiling $name.md to html"
     chapters="bookinfo.md ${name}.md"
-    pandoc $chapters -c ./resources/css/dhis2.css --template="dhis2_template.html" --toc -N --section-divs -t html5 -o ${target}/${subdir}/html/${name}_full.html
+    css="./resources/css/dhis2.css"
+    template="./resources/templates/dhis2_template.html"
+    pandoc ${chapters} -c ${css} --template="${template}" --toc -N --section-divs -t html5 -o ${target}/${subdir}/html/${name}_full.html
 
     cd ${target}/${subdir}/html/
     # fix the section mappings in the full html file
@@ -53,7 +63,8 @@ make_html() {
     id_mapper ${name}_full.html
     # split the full html file into chunks
     echo "splitting the html file into chunks"
-    chunker ${name}_full.html $tmp/dhis2_chunked_template.html
+    chunked_template="$tmp/resources/templates/dhis2_template.html"
+    chunker ${name}_full.html ${chunked_template}
     cd $tmp
 
 }
@@ -64,7 +75,9 @@ make_pdf() {
     mkdir -p ${target}/${subdir}
     echo "compiling $name.md to pdf"
     chapters="bookinfo.md ${name}.md"
-    pandoc $chapters -c ./resources/css/dhis2_pdf.css --template="dhis2_template.html" --toc -N --section-divs --pdf-engine=weasyprint -o ${target}/${subdir}/${name}.pdf
+    css="./resources/css/dhis2_pdf.css"
+    template="./resources/templates/dhis2_template.html"
+    pandoc $chapters -c ${css} --template="${template}" --toc -N --section-divs --pdf-engine=weasyprint -o ${target}/${subdir}/${name}.pdf
 }
 
 generate(){
@@ -82,9 +95,7 @@ generate(){
 
     # copy resources and assembled markdown files to temp directory
     shared_resources $tmp
-    #cp $src/${name}*.md $tmp/
-    cp $src/*template.html $tmp/
-    cp $src/content/common/* $tmp/
+    cp $src/content/common/bookinfo.md $tmp/
     cd $src
 
     # copy resources and assembled markdown files to temp directory
@@ -106,11 +117,13 @@ generate(){
     gitbranch=`git rev-parse --abbrev-ref HEAD`
     githash=`git rev-parse --short HEAD`
     gitdate=`git show -s --format=%ci $githash`
-    gityear=`date -d "${gitdate}" +%Y`
+    gityear=`date -d "${gitdate}" '+%Y'`
+    gitmonth=`LC_TIME=${locale}.utf8 date -d "${gitdate}" '+%B'`
     sed -i "s/<git-branch>/$gitbranch/" bookinfo*.md
     sed -i "s/<git-hash>/$githash/" bookinfo*.md
     sed -i "s/<git-date>/$gitdate/" bookinfo*.md
     sed -i "s/<git-year>/$gityear/" bookinfo*.md
+    sed -i "s/<git-month>/$gitmonth/" bookinfo*.md
 
     if [ $selection == "html" ]
     then
@@ -134,11 +147,11 @@ generate(){
 # comment as you wish
 # format:
 # $> generate <doc name> <chapters subfolder> ["html","pdf","both"]
-generate "dhis2_android_user_man" "android"
-generate "dhis2_developer_manual" "developer"
-generate "dhis2_user_manual_en" "user"
+# generate "dhis2_android_user_man" "android"
+# generate "dhis2_developer_manual" "developer"
+# generate "dhis2_user_manual_en" "user"
 generate "dhis2_end_user_manual" "end-user"
 generate "dhis2_implementation_guide" "implementer"
-generate "user_stories_book" "user-stories"
+# generate "user_stories_book" "user-stories"
 
-rm -rf $tmp
+#rm -rf $tmp

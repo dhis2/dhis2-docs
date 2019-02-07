@@ -1,6 +1,7 @@
 ---
 author: 'DHIS 2 Documentation team'
-date: <git-year>
+year: <git-year>
+month: <git-month>
 keywords: [DHIS2, HISP]
 version: <git-branch>
 commit: <git-hash>

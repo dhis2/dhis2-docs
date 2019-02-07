@@ -123,11 +123,21 @@ h1 {
 h1.title {
   font-size: 200%;
   font-weight: bold;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+  padding-top: 1.2em;
   border: none;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
 }
 
+h2.subtitle {
+  font-size: 180%;
+  font-weight: normal;
+  padding-bottom: 1.2em;
+  padding-left:0px;
+  margin-left:0px;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+}
 dt code {
   font-weight: bold;
 }
@@ -167,17 +177,35 @@ table td {
   text-decoration: none;
 }
 
-.banner {
-  width: 100%;
-  height: 150px;
-  background-color: #00518b;
+.headerDiv {
+  left:0;
+  top:0;
+  width:100%;
+  margin-left:-1em;
+  text-align: center;
 }
 
-.banner img {
-  width: 300px;
+.banner {
+  margin-top:70px;
+  width: 100%;
+  height: 8px;
+  background-color: #43CBCB;
+}
+
+.coverlogo {
+  height: 60px;
+  position:absolute;
+  top: 5px;
+}
+
+.coverlogo img {
+  width: 180px;
   display: block;
-  margin: auto;
-  padding: 30px;
+  padding: 0px;
+}
+
+.productionDiv {
+  display:none;
 }
 
 .license {
