@@ -63,7 +63,7 @@ make_html() {
     id_mapper ${name}_full.html
     # split the full html file into chunks
     echo "splitting the html file into chunks"
-    chunked_template="$tmp/resources/templates/dhis2_template.html"
+    chunked_template="$tmp/resources/templates/dhis2_chunked_template.html"
     chunker ${name}_full.html ${chunked_template}
     cd $tmp
 
