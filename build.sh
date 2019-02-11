@@ -133,7 +133,7 @@ update_localizations(){
        mkdir -p .tx
        cp en/resources/i18n/transifex-config .tx/config
        # <tx-project>.<resource-name>
-       txproject=`git rev-parse --abbrev-ref HEAD`
+       txproject=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3`
        sed -i "s/<tx-project>/${txproject//.}/" .tx/config
        sed -i "s/<name>/${name}/" .tx/config
        sed -i "s/<resource-name>/${name//_/-}/" .tx/config
@@ -169,7 +169,7 @@ build_docs(){
     target="$localisation_root/$lang"
     mkdir -p $target
 
-    gitbranch=`git rev-parse --abbrev-ref HEAD`
+    gitbranch=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3`
     githash=`git rev-parse --short HEAD`
     gitdate=`git show -s --format=%ci $githash`
     gityear=`date -d "${gitdate}" '+%Y'`
