@@ -201,7 +201,7 @@ parameter *format*, which allows for further manipulation of the value.
 <td>ORG_UNIT_CODE(format)</td>
 <td>This segment represents the organisation unit code associated with the generation.</td>
 <td>Text format</td>
-<td>ORG_UNIT_CODE(…) → OSLO → OSL</td>
+<td>ORG_UNIT_CODE(...) → OSLO → OSL</td>
 </tr>
 <tr class="even">
 <td>RANDOM(format)</td>
@@ -274,7 +274,7 @@ A few important things to note regarding the formats:
     example hours or seconds) is not recommended, even though available.
 
   - Text format allows for marking both the start and end of the input
-    value, but "^..." and "…" will in reality give exactly the same
+    value, but "^..." and "..." will in reality give exactly the same
     results. The only time you would want to use "^" is when you want to
     enforce the length of the input value. For example, "^....$" will
     accept OSLO, since its 4 characters between the start and end, but
@@ -294,7 +294,7 @@ To finish off the syntax section of the tutorial, here is a couple of
 example
     TextPattern:
 
-    ORG_UNIT_CODE(…) + "-" + CURRENT_DATE(yyyyww) + "-" + SEQUENTIAL(#####)
+    ORG_UNIT_CODE(...) + "-" + CURRENT_DATE(yyyyww) + "-" + SEQUENTIAL(#####)
 
 This pattern will have 99999 possible values (based on SEQUENTIAL. 00000
 is never used since we start at 1). In addition, the remaining pattern
