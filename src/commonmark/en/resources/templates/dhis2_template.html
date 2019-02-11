@@ -52,7 +52,7 @@ $if(title)$
 <header style="text-align:left;padding-left:0px;width:100%;">
 <h1 class="title">$title$</h1>
 $if(version)$
-<h2 class="subtitle">Applicable to $version$ version</h2>
+<h2 class="subtitle">$applicable_txt$</h2>
 $endif$
 </div>
 
@@ -68,7 +68,7 @@ $endif$
 
 <div id="pagebreak"/>
 
-<p class="subtitle">Copyright &copy; 2006-$year$ $author$</p>
+<p class="subtitle">$copyright_txt$ &copy; 2006-$year$ $author$</p>
 <!--
  $for(author)$
 <p class="author">Copyright &copy; $author$</p>
@@ -77,6 +77,13 @@ $endfor$
 $if(month)$
 <p class="date">$month$ $year$</p>
 $endif$
+
+<div class="revhistory">
+<table style="width:100%;" summary="Revision History">
+<tr><th align="left" valign="top" colspan="2"><b>$revhistory_txt$</b></th></tr>
+<tr><td align="left">$version$@$commit$</td><td align="left">$date$</td></tr>
+</table>
+</div>
 
 $if(warranty)$
 <p class="warranty">$warranty$</p>

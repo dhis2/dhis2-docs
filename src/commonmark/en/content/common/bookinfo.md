@@ -6,6 +6,9 @@ month: <git-month>
 keywords: [DHIS2, HISP]
 version: <git-branch>
 commit: <git-hash>
+applicable_txt: 'Applicable to <git-branch> version'
+copyright_txt: 'Copyright'
+revhistory_txt: 'Revision History'
 warranty: >
     **Warranty:**
 

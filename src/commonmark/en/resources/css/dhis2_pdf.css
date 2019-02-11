@@ -74,6 +74,15 @@ blockquote p {
   background-image: url(../images/admon/warning.png);
 }
 
+.thanks{
+  border:1px solid #ddd;
+  padding:0 1em 0;
+  font-family: 'Rubik';
+  position: absolute;
+  bottom:10px;
+  left:0;
+}
+
 caption {
   font-style: italic;
   font-weight: bold;
@@ -89,6 +98,10 @@ a {
 
 nav a {
   color: #07c;
+  text-decoration: none;
+}
+
+.thanks a {
   text-decoration: none;
 }
 
@@ -144,6 +157,7 @@ h1.title {
   padding-bottom: 0.2em;
   padding-left:0em;
   font-family: 'Rubik', sans-serif;
+  line-height: 150%;
 }
 
 h2.subtitle {
@@ -154,6 +168,7 @@ h2.subtitle {
   padding-left:0px;
   margin-left:0px;
   font-family: 'Rubik', sans-serif;
+  line-height: 150%;
 }
 
 .productionDiv {
