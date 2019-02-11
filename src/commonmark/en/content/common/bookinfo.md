@@ -1,10 +1,14 @@
 ---
 author: 'DHIS 2 Documentation team'
-date: <git-year>
+date: <git-date>
+year: <git-year>
+month: <git-month>
 keywords: [DHIS2, HISP]
 version: <git-branch>
 commit: <git-hash>
-commit-date: <git-date>
+applicable_txt: 'Applicable to <git-branch> version'
+copyright_txt: 'Copyright'
+revhistory_txt: 'Revision History'
 warranty: >
     **Warranty:**
 
