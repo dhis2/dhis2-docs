@@ -139,7 +139,7 @@ update_localizations(){
        sed -i "s/<resource-name>/${name//_/-}/" .tx/config
        # Use "prettier" to ensure each markdown text block is on a single line
        # This is necessary to ensure that blocks are correctly parsed by transifex.
-       prettier --prose-wrap never --write en/dhis2_end_user_manual.md
+       prettier --prose-wrap never --write en/${name}.md
 
        # Push source updates to transifex
        tx push -s
