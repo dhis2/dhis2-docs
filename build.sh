@@ -129,7 +129,7 @@ update_localizations(){
 
 
     # check for the transifex environment
-    if [ ${LOCALISE} ]; then
+    if [ ${LOCALISE} -eq 1 ]; then
        mkdir -p .tx
        cp en/resources/i18n/transifex-config .tx/config
        # <tx-project>.<resource-name>
@@ -213,7 +213,7 @@ generate(){
     build_docs $name $subdir $selection en en_UK
 
     # build localised versions
-    if [ ${LOCALISE} ]; then
+    if [ ${LOCALISE} -eq 1  ]; then
         build_docs $name $subdir $selection fr fr_FR
     fi
 
