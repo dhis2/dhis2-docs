@@ -15,6 +15,7 @@ $if(keywords)$
 $endif$
   <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -44,24 +45,45 @@ $endfor$
 </head>
 <body>
 $if(title)$
-<header style="text-align:center;">
+
+<div class="banner"></div>
+
+<div class="headerDiv">
+<header style="text-align:left;padding-left:0px;width:100%;">
 <h1 class="title">$title$</h1>
-<div class="banner"><img src="./resources/images/dhis2-logo-rgb-negative.png"/></div>
 $if(version)$
-<p class="subtitle">$version$</p>
+<h2 class="subtitle">$applicable_txt$</h2>
 $endif$
+</div>
+
+<div class="productionDiv">
+  <p class="productionInfo">$author$</p>
+  <p class="productionInfo">$month$ $year$</p>
+</div>
+
+<div class="coverlogo"><img src="./resources/images/dhis2-logo-rgb-positive.png"/></div>
+
 </header>
 $endif$
 
 <div id="pagebreak"/>
 
-<p class="subtitle">&copy; DHIS2 Documentation Team</p>
-$for(author)$
-<p class="author">$author$</p>
+<p class="subtitle">$copyright_txt$ &copy; 2006-$year$ $author$</p>
+<!--
+ $for(author)$
+<p class="author">Copyright &copy; $author$</p>
 $endfor$
-$if(date)$
-<p class="date">$date$</p>
+-->
+$if(month)$
+<p class="date">$month$ $year$</p>
 $endif$
+
+<div class="revhistory">
+<table style="width:100%;" summary="Revision History">
+<tr><th align="left" valign="top" colspan="2"><b>$revhistory_txt$</b></th></tr>
+<tr><td align="left">$version$@$commit$</td><td align="left">$date$</td></tr>
+</table>
+</div>
 
 $if(warranty)$
 <p class="warranty">$warranty$</p>
