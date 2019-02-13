@@ -9,6 +9,7 @@ commit: <git-hash>
 applicable_txt: 'Applicable to <git-branch> version'
 copyright_txt: 'Copyright'
 revhistory_txt: 'Revision History'
+toc_txt: 'Table of Contents'
 warranty: >
     **Warranty:**
 
