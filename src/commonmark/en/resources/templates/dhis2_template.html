@@ -51,7 +51,7 @@ $if(title)$
 <div class="headerDiv">
 <header style="text-align:left;padding-left:0px;width:100%;">
 <h1 class="title">$title$</h1>
-$if(version)$
+$if(applicable_txt)$
 <h2 class="subtitle">$applicable_txt$</h2>
 $endif$
 </div>
@@ -99,6 +99,7 @@ $endfor$
 
 $if(toc)$
 
+<h1>$toc_txt$</h1>
 <nav id="$idprefix$TOC">
 $table-of-contents$
 </nav>
