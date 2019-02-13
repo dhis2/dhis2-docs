@@ -111,6 +111,22 @@
 <p>Recommended setting: the most commonly used relative period among your users.</p></td>
 </tr>
 <tr class="even">
+    <td><p><strong>Hide daily periods</strong></p></td>
+    <td><p>Hide daily periods in the analysis tools</p></td>
+</tr>
+<tr class="odd">
+    <td><p><strong>Hide weekly periods</strong></p></td>
+    <td><p>Hide weekly periods in the analysis tools</p></td>
+</tr>
+<tr class="even">
+    <td><p><strong>Hide monthly periods</strong></p></td>
+    <td><p>Hide monthly periods in the analysis tools</p></td>
+</tr>
+<tr class="odd">
+    <td><p><strong>Hide bimonthly periods</strong></p></td>
+    <td><p>Hide bimonthly periods in the analysis tools</p></td>
+</tr>
+<tr class="even">
 <td><strong>Financial year relative start month</strong></td>
 <td>Defines which month (April, July or October) the the relative financial year in the analytics apps should begin on.</td>
 </tr>
