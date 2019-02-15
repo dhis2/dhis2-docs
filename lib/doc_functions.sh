@@ -127,7 +127,6 @@ pull_translations(){
        cp en/resources/i18n/transifex-config .tx/config
        # <tx-project>.<resource-name>
        txproject=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3`
-       txproject="master"
        sed -i "s/<tx-project>/${txproject//.}/" .tx/config
        sed -i "s/<name>/${name}/" .tx/config
        sed -i "s/<resource-name>/${name//_/-}/" .tx/config
@@ -162,7 +161,6 @@ build_docs(){
     mkdir -p $target
 
     gitbranch=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3`
-    gitbranch="master"
     githash=`git rev-parse --short HEAD`
     gitdate=`git show -s --format=%ci $githash`
     gityear=`date -d "${gitdate}" '+%Y'`

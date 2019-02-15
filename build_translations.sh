@@ -18,7 +18,7 @@ fi
 
 # pushing docs to localisation platform (transifex) is only done on Jenkins
 LOCALISE=0
-if [[ `id -un` == "philld" ]]; then
+if [[ `id -un` == "jenkins" ]]; then
   # and only where configured
   if [ -f ~/.transifexrc ]; then LOCALISE=1; fi
 fi
