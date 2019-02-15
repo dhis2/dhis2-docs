@@ -116,7 +116,13 @@ You can create a TEI and enroll that TEI to a program in one operation:
     This makes it possible to capture geometry for either the TEI or the enrollment.
     Supported feature type is Point and Polygon. Please see **How to use geometry**.
 
-6.  If searching for program is configured, a background search will be
+6. If the selected program is configured to display first stage during registation, 
+   all mandatory fields in the stage will have to be filled in. At the end of the stage
+   you will also be asked if you want to complete the stage that you have entered data for.
+   If you select **Yes**, the stage will have the status completed once saved. If you select **No**, 
+   the stage will have the staus active.
+
+7.  If searching for program is configured, a background search will be
     performed on searchable fields to help you prevent registering
     duplicates. If there is any matching TEIs, a blue box will be
     displayed on the right side of the form with the possibility to view
