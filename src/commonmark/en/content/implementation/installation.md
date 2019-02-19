@@ -1279,7 +1279,7 @@ The various elements of the configuration can be described as:
 - *zone=limit_analytics:20m*: A rate limit zone for the analytics API which can hold up to 10 MB of request IP addresses.
 - *rate=20r/s*: Each IP is granted 5 requests per second.
 - *location ~ ^/api/(\d+/)?analytics(.\*)$*: Requests for the analytics API endpoint are rate limited.
-- *burst=20*: Bursts of up to 20 requests will be queued and serviced at a later point; additional requests will lead to a `503 (Service Temporarily Unavailable)` response.
+- *burst=20*: Bursts of up to 20 requests will be queued and serviced at a later point; additional requests will lead to a `503`.
 
 For a full explanation please consult the [nginx documentation](https://www.nginx.com/blog/rate-limiting-nginx/).
 
