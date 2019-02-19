@@ -42,7 +42,16 @@
     click the finish button or if your form contains data click the arrow
     next to **Save and add another** and select **Save and exit**.
 
-> Note: The data entry form can also be diaplayed in **row view**. In this mode the data elements are arranged horizontally. This can be achived by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
+> Note 1: Some data elements in an event might be mandatory (marked with a red star next to the data element lable).
+> What this means is that all mandatory data elements must be filled in before the user is allowed to complete the event.
+> The exception to this is if the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture".__
+> If the user has this authority, the mandatory data elements will not be required to be filled in before saving and
+> the red star will not be displayed next to the data element lable. Note that super user that have the __"ALL"__ authority automatically
+> have this authority.
+
+> Note 2: The data entry form can also be diaplayed in **row view**. In this mode the data elements are arranged horizontally. This can be
+> achived by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
+> can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
 
 ## Edit an event
 
