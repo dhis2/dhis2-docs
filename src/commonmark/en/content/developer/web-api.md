@@ -13301,6 +13301,10 @@ The available system settings are listed below.
 <td>keyRespectMetaDataStartEndDatesInAnalyticsTableExport</td>
 <td>When &quot;true&quot;, analytics will skip data not within category option's start and end dates. Default: &quot;false&quot;</td>
 </tr>
+<tr class="even">
+<td>keySkipZeroValuesInAnalyticsTableExport</td>
+<td>When &quot;true&quot;, analytics will skip zero data values for sum aggregation type data elements, ignoring the "zeroIsSignificant" setting for data elements. Default: &quot;false&quot;</td>
+</tr>
 <tr class="odd">
 <td>keyCacheAnalyticsDataYearThreshold</td>
 <td>Analytics data older than this value (in years) will always be cached. &quot;0&quot; disabled this setting. Default: 0</td>
