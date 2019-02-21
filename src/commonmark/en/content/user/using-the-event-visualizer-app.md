@@ -486,7 +486,7 @@ write is visible to those people.
     Markdown style markers \* and \_ for **bold** and *italic* respectively.
     Keyboard shortcuts are also available: Ctrl/Cmd + B and Ctrl/Cmd + I. A
     limited set of smilies is supported and can be used by typing one of the
-    following character combination: :) :-) :( :-( :+1 :-1. URLs are
+    following character combinations: :) :-) :( :-( :+1 :-1. URLs are
     automatically detected and converted into a clickable link.
 
 3.  Search for a user group that you want to share your favorite with,
