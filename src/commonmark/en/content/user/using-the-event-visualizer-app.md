@@ -453,7 +453,7 @@ Reports** apps. Use the **Favorites** menu to manage your favorites.
 
 1.  Click **Favorites** \> **Save as**.
 
-2.  Enter a **Name** and a **Description** for your favorite.
+2.  Enter a **Name** and a **Description** for your favorite. The description field supports a rich text format, see the interpretations section for more details.
 
 3.  Click **Save**.
 
@@ -481,6 +481,13 @@ write is visible to those people.
     bar will display the available users. Mentioned users will receive
     an internal DHIS2 message with the interpretation or comment. You
     can see the interpretation in the **Dashboard** app.
+
+    It is possible to format the text with **bold**, *italic* by using the
+    Markdown style markers \* and \_ for **bold** and *italic* respectively.
+    Keyboard shortcuts are also available: Ctrl/Cmd + B and Ctrl/Cmd + I. A
+    limited set of smilies is supported and can be used by typing one of the
+    following character combinations: :) :-) :( :-( :+1 :-1. URLs are
+    automatically detected and converted into a clickable link.
 
 3.  Search for a user group that you want to share your favorite with,
     then click the **+** icon.
