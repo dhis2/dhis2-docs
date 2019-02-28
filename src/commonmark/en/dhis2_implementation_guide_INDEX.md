@@ -11,6 +11,7 @@ title: 'DHIS 2 Implementer guide'
 !INCLUDE "content/implementation/dhis2-as-data-warehouse.md"
 !INCLUDE "content/implementation/end-user-training.md"
 !INCLUDE "content/implementation/integration-concepts.md"
+!INCLUDE "content/implementation/offline-data-entry.md"
 !INCLUDE "content/implementation/installation.md"
 !INCLUDE "content/implementation/support.md"
 !INCLUDE "content/implementation/organisation-units.md"
