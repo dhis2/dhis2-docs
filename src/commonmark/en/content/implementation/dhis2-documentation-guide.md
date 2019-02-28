@@ -232,6 +232,27 @@ After the full html file is generated, it is post-processed and the first ```DHI
 
 Please follow the convention of lowercase letters and underscores, in order to create id's that are also valid as filenames when the html files are split.
 
+### Tables
+
+As an extension to pure commonmark, we also support *GFM tables* (defined with pipes `|`), such as:
+
+```
+| Table Type | Description |
+|:--|:----|
+|Commonmark (HTML)| Tables described in pure HTML |
+|Github Flavour Markdown (GFM)| Tables described with pipes: easier to read/edit, but limited in complexity|
+```
+
+which produces output like:
+
+| Table Type | Description |
+|:--|:----|
+|Commonmark (HTML)| Tables described in pure HTML |
+|Github Flavour Markdown (GFM)| Tables described with pipes: easier to read/edit, but limited in complexity|
+
+For simple tables these are much more convenient for working with.
+They are limited to single lines of text (i.e. each row must be on a single line), but you can, for example use `<br>` tags to create line breaks and effectively split up paragraphs within cells, if necessary.
+You can also continue to use HTML tables when you really need more complexity (but you can also consider whether there is a better way of presenting the data).
 
 ## DHIS 2 Bibliography
 
