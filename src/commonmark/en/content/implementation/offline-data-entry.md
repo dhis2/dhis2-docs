@@ -71,7 +71,7 @@ alternatives ways to interact with the system need to be found.
 This guideline aims at providing advice on how mitigate the effect of
 lack reliable internet in challenging settings.
 
-#  Cases and corresponding solutions
+##  Cases and corresponding solutions
 <!--DHIS2-SECTION-ID:offline_data_entry_cases-->
 
 In this section, we will examine possible challenging cases and describe
@@ -102,7 +102,7 @@ is done at this level) will have the same configuration regarding
 internet availability and only the the remain 5 to 20% will need
 alternative ways to get their data in DHIS 2.
 
-## Limited internet availability (instability of signal or limited mobile data) and data entry forms are small 
+### 1. Limited internet availability (instability of signal or limited mobile data) and data entry forms are small 
 <!--DHIS2-SECTION-ID:offline_data_entry_cases_small-->
 
 By limited internet availability, we mean case where:
@@ -114,15 +114,15 @@ By limited internet availability, we mean case where:
   - network signal is weak but improves from time to time to allow
     connection to DHIS 2
 
-And by data entry form not huge we mean data entry form having one to
-about one hundred<!-- If I had guessed what «Small» meant, I would say
-10-20 --> fields.<!-- PALD: You could also phrase it as "having less than X fields", where X is 50 or 100 or whatever -->
+And by data entry form small we mean data entry form having less than
+one hundred<!-- If I had guessed what «Small» meant, I would say
+10-20 --> fields.
 
 So if  internet connectivity is limited and data entry forms are small,
 there are two possibilities to address the connectivity problem: Android
 data capture app and web data entry offline capability.
 
-### Use of Android data capture app:
+#### Use of Android data capture app:
 <!-- Need to make sure this is updated with release of new
 apps -->
 
@@ -186,7 +186,7 @@ when needed, the user take the mobile device to the district – during
 the district meeting – or to the nearest area where internet is
 available.
 
-### Use of the offline capability of DHIS 2 web data entry module
+#### Use of the offline capability of DHIS 2 web data entry module
 
 The web data entry module is the module inside DHIS 2 allowing for data
 entry using the we browser. The is in DHIS 2 the regular way of data
@@ -221,7 +221,7 @@ When internet is back and the user log in DHIS 2
 ![](resources/images/offline_data_entry/image6.png)
 
 
-## Limited internet availability and data entry forms are huge
+### 2. Limited internet availability and data entry forms are huge
 <!--DHIS2-SECTION-ID:offline_data_entry_cases_huge-->
 
 <!-- Does the PDF data entry option still exist? Where you could generate PDF-based data entry forms that could be managed offline and then be uploaded?-->
@@ -242,7 +242,7 @@ internet is available when the user cannot afford to wait the next time
 internet will be available in his area.
 
 
-## Internet is not at all available
+### 3. Internet is not at all available
 <!--DHIS2-SECTION-ID:offline_data_entry_cases_no_available-->
 
 In this case there are three options:
