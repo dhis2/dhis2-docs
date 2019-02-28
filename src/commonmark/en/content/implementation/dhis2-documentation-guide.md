@@ -33,6 +33,11 @@ There exist a wide range of text editors which can be used for the
 creation of markdown files. For Linux and Windows,
 [ghostwriter](https://wereturtle.github.io/ghostwriter/) is a nice option;
 it is free and supports side-by-side preview and custom style sheets.
+
+> **TIP**
+>
+> If you have the option to apply custom css to your markdown editor, set it to `./src/commonmark/en/resources/css/dhis2.css` to reflect the html output style for DHIS2!
+
 One of the key concepts to keep in mind when authoring documentation in
 markdown, or other presentation neutral formats, is that the **content**
 of the document should be considered first. The **presentation** of the
@@ -54,7 +59,7 @@ the sections for you when the document is produced.
 <!--DHIS2-SECTION-ID:docs_3-->
 
 The DHIS 2 documentation system is managed at
-[GitHub](https://github.com/dhis2/dhis2-markdown-docs) in its own source
+[GitHub](https://github.com/dhis2/dhis2-docs) in its own source
 code repository. GitHub is a collaborative platform that enables
 multiple people to work on software projects collaboratively. In order
 for this to be possible, a version control system is necessary in order
@@ -64,24 +69,24 @@ document to describe the functionality of *git*, users who wish to
 create documentation will need to gain at least a basic understanding of
 how the system works. A basic guide is provided in the next section. The
 reader is referred to the [git manual](https://git-scm.com/book/en/v2)
-for futher more detailed information.
+for further information.
 
 In order to start adding or editing the documentation, you should first
 perform a checkout of the source code. If you do not already have a
 GitHub account, you will need to get one. This can be done
 [here](https://github.com/). Once you register with GitHub, you will
-need to request access to the*dhis2-documenters* group if you wish to
+need to request access to the *dhis2-documenters* group if you wish to
 modify the source code of the documentation directly.
 
 Login to GitHub, and then file an issue
-[here](https://github.com/dhis2/dhis2-markdown-docs/issues/new). Your request will
+[here](https://github.com/dhis2/dhis2-docs/issues/new). Your request will
 need to be approved by the group administrators. Once you have been
 granted access to the group, you can commit changes to the documentation
 branch and send and receive notifications if you wish. Alternatively,
 you can clone the documentation into your own repository, commit your
 changes to your own fork, and request that your changes be merged with
-the source of the documenation with a pull request
-[here](https://github.com/dhis2/dhis2-markdown-docs/pulls).
+the source of the documentation with a pull request
+[here](https://github.com/dhis2/dhis2-docs/pulls).
 
 ## Getting the document source
 
@@ -106,20 +111,14 @@ the document source. Just follow this procedure:
 
 1.  Make sure you have git installed.
 
-2.  On Windows systems, visit <https://github.com/dhis2/dhis2-markdown-docs> and
+2.  On Windows systems, visit <https://github.com/dhis2/dhis2-docs> and
     press "Clone in Desktop". If you are using the command line, just
-    type `git clone git@github.com:dhis2/dhis2docs.git`
+    type `git clone git@github.com:dhis2/dhis2-docs.git`
 
 3.  The download process should start and all the documentation source
     files will be downloaded to the folder that you specified.
 
-4.  The DHIS 2 documents depend on other branches for their
-    documentation. Be sure to keep these these up to date as well. When
-    you build the documentation, the necessary sub-modules will be
-    downloaded automatically as part of the build process ,if you have
-    not already done so.
-
-5.  Once you have the source, be sure to create your own branch for
+4.  Once you have the source, be sure to create your own branch for
     editing. Simply execute` git checkout -b mybranch` where *mybranch*
     is the name of the branch you wish to create.
 
