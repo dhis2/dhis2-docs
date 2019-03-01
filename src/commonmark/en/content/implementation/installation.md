@@ -195,7 +195,7 @@ is optional in terms of getting DHIS2 to run. PostgreSQL is configured
 and tuned through the *postgresql.conf* file which can be edited like
 this:
 
-    sudo nano /etc/postgresql/9.5/main/postgresql.conf
+    sudo nano /etc/postgresql/10/main/postgresql.conf
 
 and set the following properties:
 
