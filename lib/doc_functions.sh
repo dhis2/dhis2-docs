@@ -100,6 +100,9 @@ update_localizations(){
        cp en/resources/i18n/transifex-config .tx/config
        # <tx-project>.<resource-name>
        txproject=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3`
+       if [ ${txproject} == "" ], then
+           txproject="master"
+       fi
        sed -i "s/<tx-project>/${txproject//.}/" .tx/config
        sed -i "s/<name>/${name}/" .tx/config
        sed -i "s/<resource-name>/${name//_/-}/" .tx/config
@@ -127,6 +130,9 @@ pull_translations(){
        cp en/resources/i18n/transifex-config .tx/config
        # <tx-project>.<resource-name>
        txproject=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3`
+       if [ ${txproject} == "" ], then
+           txproject="master"
+       fi
        sed -i "s/<tx-project>/${txproject//.}/" .tx/config
        sed -i "s/<name>/${name}/" .tx/config
        sed -i "s/<resource-name>/${name//_/-}/" .tx/config
