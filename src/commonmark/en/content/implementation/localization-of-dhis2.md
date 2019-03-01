@@ -15,11 +15,11 @@ contained in the database must also be considered to be translated.
 DHIS 2 supports internationalization (i18n) of the user interface through
 the use of Java property strings and PO files. Java property files are used
 when messages originate from the back-end Java server, while PO files
-are used for front-end apps written in JavaScript. 
-The DHIS 2 Android apps use a specific XML format. 
-Regardless of the specific format, each element in the user interface has 
-been assigned a specific key which is linked to a value. 
-As an example,consider the following key/value pairs from a Java property file. 
+are used for front-end apps written in JavaScript.
+The DHIS 2 Android apps use a specific XML format.
+Regardless of the specific format, each element in the user interface has
+been assigned a specific key which is linked to a value.
+As an example,consider the following key/value pairs from a Java property file.
 
     org_unit_tree=Organisation Unit Tree
     error_occurred=An error has occurred.
@@ -38,52 +38,52 @@ interface language, all of the strings would then appear in French
 instead of the default language (English). Any strings which have not
 been translated, would appear in English.
 
-There should always be an English string for all messages in DHIS 2. 
-When the user selects a given language, and a translation is present in that 
-language, then the translation will be shown. However, if the string in the 
-desired language is missing then fallback rules will be applied.  In cases when 
-two given translations, such as Portuguese and Brazilian Portuguese share 
-common messages, it is not required to perform a full translation in the 
+There should always be an English string for all messages in DHIS 2.
+When the user selects a given language, and a translation is present in that
+language, then the translation will be shown. However, if the string in the
+desired language is missing then fallback rules will be applied.  In cases when
+two given translations, such as Portuguese and Brazilian Portuguese share
+common messages, it is not required to perform a full translation in the
 variant language. Only messages which are different should be translated.  
-Fallback rules are then applied in the following manner (assuming the user has 
-chooses Brazilian Portuguese as their language: 
+Fallback rules are then applied in the following manner (assuming the user has
+chooses Brazilian Portuguese as their language:
 
-1.  Display the message in Brazilian Portuguese if it exists. 
+1.  Display the message in Brazilian Portuguese if it exists.
 
-2.  If it does not exist in the variant language, then use the Portuguese 
+2.  If it does not exist in the variant language, then use the Portuguese
     message, if it exists.
 
 3.  If there is no message in either the base language or the variant language,
-    choose the ultimate fallback language, English. 
+    choose the ultimate fallback language, English.
 
 > **Important**
-> 
+>
 >   - There are a number of key/value pairs such as
 >     "format.FinancialApril.startDate=dd MMM yyyy 'to '" which are used
 >     for date/time formatting in various parts of DHIS 2. Part of the value
->     should not be translated because it is actually a special formatting 
->     field used by either Java or JavaScript to interpolate or format a string. 
->     In this example the special string which should be be translated is 
->     "dd MMM yyyy".  The part of the value which can be translated would be 
->     "to", for instance to "a" in Spanish. If these data format template 
+>     should not be translated because it is actually a special formatting
+>     field used by either Java or JavaScript to interpolate or format a string.
+>     In this example the special string which should be be translated is
+>     "dd MMM yyyy".  The part of the value which can be translated would be
+>     "to", for instance to "a" in Spanish. If these data format template
 >     strings are translated, it may result in errors in the application.
-> 
+>
 >   - It is not necessary to translate a string from the original
 >     language (English) if the translated string is the same. You can
 >     simply leave it blank. By default, DHIS 2 will use English values
 >     for all strings which have not been translated.
-> 
+>
 >   - All translated strings must be stored in escaped UTF-8 format. If
->     you are using the DHIS 2 translation portal (discussed below), be sure 
+>     you are using the DHIS 2 translation portal (discussed below), be sure
 >     your browser settings are set to UTF-8 when translating. If you are using
 >     a text editor or other tool such as an IDE, you may need to convert
 >     the UTF-8 characters to escaped syntax, using the Java
 >     `native2ascii` utility.
-> 
+>
 >   - Some special variables (e.g. {0} ) use curly brackets. This
 >     denotes a variable which will be replaced by a number or other
 >     value by the application. You must place this variable notation in
->     the correct position and be sure not to modify it. 
+>     the correct position and be sure not to modify it.
 
 There are a number of tools which can be used to support the
 localization of the user interface as well as the database content,
@@ -106,8 +106,8 @@ navigate inside the extracted directory and invoke the following command:
 1.  Press "Browse" when the application starts and select the path to
     the "dhis-2" directory inside your local copy (checkout) of the
     DHIS 2 source code repository, followed by OK.
-    
-    
+
+
     ![](resources/images/i18n/i18n_tool_startup.png)
 
 
@@ -117,17 +117,17 @@ navigate inside the extracted directory and invoke the following command:
     to create a country-specific translation, select e.g. "Portuguese -
     Brazil \[pt\_BR\]. Locales which already have keys translated will
     show the text "Resources for this locale exist".
-    
-    
+
+
     ![](resources/images/i18n/i18n_tool_select_locale.png)
 
 
 3.  Select one of the web modules from the left hand side to translate,
     e.g. dhis-web-maintenance-dataset.
-    
-    
+
+
     ![](resources/images/i18n/i18n_tool_main_window.png)
-    
+
     Once you have selected a module, click on a particular key from the
     left-hand side. A reference value for the key will be displayed in
     the lower right-hand pane, and the translation value will be
@@ -138,10 +138,10 @@ navigate inside the extracted directory and invoke the following command:
 4.  Once you have finished translating, make sure to press the "Save"
     button.
 
-5.  Once you have finished all of the translations, please submit a pull 
+5.  Once you have finished all of the translations, please submit a pull
     request on the appropriate GitHub repository. A member of the development
-    team will review the translations for eventual incorporation into the 
-    main source code. 
+    team will review the translations for eventual incorporation into the
+    main source code.
 
 ## Using the DHIS 2 translation portal
 
@@ -174,11 +174,11 @@ You will be directed to the string which requires translation.
 
 ![](resources/images/i18n/i18n_web_portal_translate.png)
 
-Simply translate the term, and then press "Submit". 
+Simply translate the term, and then press "Submit".
 
 Once you have finished translating a module/app, please submit a new issue
-on <https://jira.dhis2.org>. Your translations will be incorporated on a 
-regular basis into the main source code of DHIS 2. 
+on <https://jira.dhis2.org>. Your translations will be incorporated on a
+regular basis into the main source code of DHIS 2.
 
 
 ## DHIS 2  translation app
@@ -212,5 +212,5 @@ menu.
     save your changes.
 
 
-Note that you can search for a specific term using the search feature in the 
-upper right hand corner of the app. 
+Note that you can search for a specific term using the search feature in the
+upper right hand corner of the app.
