@@ -75,7 +75,7 @@ blockquote p {
   background-image: url(../images/admon/caution.png);
 }
 
-.Warning, .Attention{
+.Warning, .Attention, .Danger{
   background-image: url(../images/admon/warning.png);
 }
 
