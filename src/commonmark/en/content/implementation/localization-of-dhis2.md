@@ -21,13 +21,17 @@ Regardless of the specific format, each element in the user interface has
 been assigned a specific key which is linked to a value.
 As an example,consider the following key/value pairs from a Java property file.
 
+```
     org_unit_tree=Organisation Unit Tree
     error_occurred=An error has occurred.
+```
 
 In French the same key/value pairs would appear as follows
 
+```
     org_unit_tree=Arborescence des unités d'organisation
     error_occurred=Une erreur s'est produite
+```
 
 Note that the keys (text before the = symbol) are the same in both
 examples, but the values (after the = ) symbol are in each of the
