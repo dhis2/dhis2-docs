@@ -3593,6 +3593,11 @@ The import process can be customized using a set of import parameters:
 <td>false | true</td>
 <td>Skip checks for existing data values. Improves performance. Only use for empty databases or when the data values to import do not exist already.</td>
 </tr>
+<tr class="even">
+<td>skipAudit</td>
+<td>false | true</td>
+<td>Skip audit, meaning audit values will not be generated. Improves performance at the cost of ability to audit changes. Requires authority "F_SKIP_DATA_IMPORT_AUDIT".</td>
+</tr>
 <tr class="odd">
 <td>async</td>
 <td>false | true</td>
