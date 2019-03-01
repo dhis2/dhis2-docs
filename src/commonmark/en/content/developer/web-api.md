@@ -3593,6 +3593,11 @@ The import process can be customized using a set of import parameters:
 <td>false | true</td>
 <td>Skip checks for existing data values. Improves performance. Only use for empty databases or when the data values to import do not exist already.</td>
 </tr>
+<tr class="even">
+<td>skipAudit</td>
+<td>false | true</td>
+<td>Skip audit, meaning audit values will not be generated. Improves performance at the cost of ability to audit changes. Requires authority "F_SKIP_DATA_IMPORT_AUDIT".</td>
+</tr>
 <tr class="odd">
 <td>async</td>
 <td>false | true</td>
@@ -13300,6 +13305,10 @@ The available system settings are listed below.
 <tr class="even">
 <td>keyRespectMetaDataStartEndDatesInAnalyticsTableExport</td>
 <td>When &quot;true&quot;, analytics will skip data not within category option's start and end dates. Default: &quot;false&quot;</td>
+</tr>
+<tr class="even">
+<td>keySkipZeroValuesInAnalyticsTableExport</td>
+<td>When &quot;true&quot;, analytics will skip zero data values for sum aggregation type data elements, ignoring the "zeroIsSignificant" setting for data elements. Default: &quot;false&quot;</td>
 </tr>
 <tr class="odd">
 <td>keyCacheAnalyticsDataYearThreshold</td>
