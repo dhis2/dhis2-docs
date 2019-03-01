@@ -348,14 +348,14 @@ by installing this package:
 To install the Tomcat servlet container we will utilize the Tomcat user
 package by invoking:
 
-    sudo apt-get install tomcat7-user
+    sudo apt-get install tomcat8-user
 
 This package lets us easily create a new Tomcat instance. The instance
 will be created in the current directory. An appropriate location is the
 home directory of the dhis user:
 
     cd /home/dhis/
-    sudo tomcat7-instance-create tomcat-dhis
+    sudo tomcat8-instance-create tomcat-dhis
     sudo chown -R test:test test-dhis/
 
 This will create an instance in a directory called *tomcat-dhis*. Note
@@ -368,7 +368,7 @@ the second will dedicate memory to Tomcat and the third will set the
 location for where DHIS2 will search for the *dhis.conf* configuration
 file. Please check that the path the Java binaries are correct as they
 might vary from system to system, e.g. on AMD systems you might see
-*/java-7-openjdk-amd64* Note that you should adjust this to your
+*/java-8-openjdk-amd64* Note that you should adjust this to your
 environment:
 
     export JAVA_HOME='/usr/lib/jvm/java-8-oracle/'
@@ -392,7 +392,7 @@ webapps directory of Tomcat. You can download the DHIS2 version 2.23 WAR
 release like this (replace 2.23 with your preferred version if
 necessary):
 
-    wget https://www.dhis2.org/download/releases/2.26/dhis.war
+    wget https://www.dhis2.org/download/releases/2.23/dhis.war
 
 Move the WAR file into the Tomcat webapps directory. We want to call the
 WAR file ROOT.war in order to make it available at localhost directly
