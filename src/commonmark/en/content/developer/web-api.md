@@ -1594,6 +1594,11 @@ enable/disable export of certain types by setting *type=true/false*.
 <td>false/true</td>
 <td>Enabling this will strip the sharing properties from the exported objects. This includes <em>user</em>, <em>publicAccess</em>, <em>userGroupAccesses</em>, <em>userAccesses</em>, and <em>externalAccess</em>.</td>
 </tr>
+<tr class="odd">
+<td>download</td>
+<td>false/true</td>
+<td>Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download.</td>
+</tr>
 </tbody>
 </table>
 
