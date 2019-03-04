@@ -10823,12 +10823,14 @@ Data set reports can be generated trough the web api using the
 */dataSetReport* resource. This resource generates reports on data set
 and returns the result in the form of a HTML table.
 
-    /api/26/dataSetReport
+    /api/31/dataSetReport
+
+### Request query parameters
 
 The request supports the following parameters:
 
 <table>
-<caption>Accepted parameters of /dataSetReport resource</caption>
+<caption>Data set report query parameters</caption>
 <colgroup>
 <col style="width: 15%" />
 <col style="width: 50%" />
@@ -10846,43 +10848,56 @@ The request supports the following parameters:
 <tbody>
 <tr class="odd">
 <td>ds</td>
-<td>Data set to create the report from</td>
+<td>Data set to create the report from.</td>
 <td>Data set UID</td>
 <td>Yes</td>
 </tr>
 <tr class="even">
 <td>pe</td>
-<td>Period to create the report from</td>
+<td>Period to create the report from.</td>
 <td>ISO String</td>
 <td>Yes</td>
 </tr>
 <tr class="odd">
 <td>ou</td>
-<td>Organisation unit to create the report from</td>
+<td>Organisation unit to create the report from.</td>
 <td>Organisation unit UID</td>
 <td>Yes</td>
 </tr>
 <tr class="even">
-<td>dimension</td>
-<td>Dimensions to be used as filters for the report</td>
+<td>filter</td>
+<td>Filters to be used as filters for the report. Can be repeated any number of times. Follows the analytics API syntax.</td>
 <td>One or more UIDs</td>
 <td>No</td>
 </tr>
 <tr class="odd">
 <td>selectedUnitOnly</td>
-<td>Whether to use captured or aggregated data</td>
+<td>Whether to use captured data only or aggregated data.</td>
 <td>Boolean</td>
 <td>No</td>
 </tr>
 </tbody>
 </table>
 
-The data set report resource accepts GET requests only. An example
-request to retrieve a report for a data set and orgunit for 2015 looks
-like
-    this:
+The data set report resource accepts `GET` requests only. The response content type is `application/json` and returns data in a grid. This endpoint works for all types of data sets, including default, section and custom forms.
 
-    GET /api/dataSetReport?ds=BfMAe6Itzgt&pe=201610&ou=ImspTQPwCqd&selectedUnitOnly=false
+An example request to retrieve a report for a data set and org unit for 2018 looks like this:
+
+    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
+
+To get a data set report with a filter you can use the `filter` parameter. In this case the filter is based on an org unit group set and two org unit groups:
+
+    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&filter=J5jldMd8OHv:RXL3lPSK8oG;tDZVQ1WtwpA
+
+### Custom forms
+
+A dedicated endpoint is available for data sets with custom HTML forms. This endpoint returns the HTML form content with content type `text/html` with data inserted into it. Note that you can use the general data set report endpoint also for data sets with custom forms; however that will return the report in JSON format as a grid. This endpoint only works for data sets with custom HTML forms.
+
+    GET /api/31/dataSetReport/custom
+
+The syntax for this endpoint is otherwise equal to the general data set report endpoint. To retrieve a custom HTML data set report you can issue a request like this:
+
+    GET /api/31/dataSetReport/custom?ds=lyLU2wR22tC&pe=201810&ou=ImspTQPwCqd
 
 
 ## Push Analysis
