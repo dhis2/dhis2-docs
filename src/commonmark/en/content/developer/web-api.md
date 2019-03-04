@@ -10889,6 +10889,14 @@ To get a data set report with a filter you can use the `filter` parameter. In th
 
     GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&filter=J5jldMd8OHv:RXL3lPSK8oG;tDZVQ1WtwpA
 
+### Response formats
+
+The data set report endpoint supports output in the following formats. You can retrieve a specific endpoint using the file extension or `Accept` HTTP header.
+
+- json (application/json)
+- pdf (application/pdf)
+- xls (application/vnd.ms-excel)
+
 ### Custom forms
 
 A dedicated endpoint is available for data sets with custom HTML forms. This endpoint returns the HTML form content with content type `text/html` with data inserted into it. Note that you can use the general data set report endpoint also for data sets with custom forms; however that will return the report in JSON format as a grid. This endpoint only works for data sets with custom HTML forms.
