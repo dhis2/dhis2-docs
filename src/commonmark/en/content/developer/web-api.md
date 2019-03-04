@@ -10761,6 +10761,56 @@ The response will provide the count and extent in JSON format:
         count: 59
     }
 
+## Org unit analytics
+
+<!--DHIS2-SECTION-ID:webapi_org_unit_analytics-->
+
+The org unit analytics API provides statistics on org units classified by org unit group sets, i.e. counts of org units per org unit group within org unit group sets.
+
+	GET /api/orgUnitAnalytics?ou=<org-unit-id>&ougs=<org-unit-group-set-id>
+
+The API requires at least one organisation unit and at least one organisation unit group set. Multiple org units and group sets can be provided separated by semicolon.
+
+<table>
+<caption>Org unit analytics properties</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 60%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ou</td>
+<td>Org unit identifiers, potentially separated by semicolon.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>ougs</td>
+<td>Org unit group set identifiers, potentially separated by semicolon.</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+The response will contain a column for the parent org unit, columns for each org unit group set part of the request and a column for the count. The statistics include the count of org units which are part of the sub-hierarchy of the org units specified in the request. The response contains a metadata section which specifies the name of each org unit and org unit group part of the response referenced by their identifiers.
+
+### Examples
+
+To fetch org unit analytics for an org unit and org unit group set:
+
+	GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw&ougs=J5jldMd8OHv
+
+To fetch org unit analytics data for two org units and two org unit group sets:
+
+	GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv;Bpx0589u8y0
+
 ## Data set report
 
 <!--DHIS2-SECTION-ID:webapi_data_set_report-->
@@ -10829,56 +10879,6 @@ like
     this:
 
     GET /api/dataSetReport?ds=BfMAe6Itzgt&pe=201610&ou=ImspTQPwCqd&selectedUnitOnly=false
-
-## Org unit distribution
-
-<!--DHIS2-SECTION-ID:webapi_org_unit_distribution-->
-
-The org unit distribution API provides statistics on org units classified by org unit group sets, i.e. counts of org units per org unit group within org unit group sets.
-
-	GET /api/orgUnitDistribution?ou=<org-unit-id>&ougs=<org-unit-group-set-id>
-
-The API requires at least one organisation unit and at least one organisation unit group set. Multiple org units and group sets can be provided separated by semicolon.
-
-<table>
-<caption>Org unit distribution properties</caption>
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 50%" />
-<col style="width: 20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ou</td>
-<td>Org unit identifiers, potentially separated by semicolon.</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>ougs</td>
-<td>Org unit group set identifiers, potentially separated by semicolon.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-
-The response will contain a column for the parent org unit, columns for each org unit group set part of the request and a column for the count. The statistics include the count of org units which are part of the sub-hierarchy of the org units specified in the request. The response contains a metadata section which specifies the name of each org unit and org unit group part of the response referenced by their identifiers.
-
-### Examples
-
-To fetch org unit distribution data for an org unit and org unit group set:
-
-	GET /api/orgUnitDistribution?ou=lc3eMKXaEfw&ougs=J5jldMd8OHv
-
-To fetch org unit distribution data for two org units and two org unit group sets:
-
-	GET /api/orgUnitDistribution?ou=lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv;Bpx0589u8y0
 
 
 ## Push Analysis
