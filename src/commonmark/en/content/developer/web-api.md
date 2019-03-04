@@ -16214,7 +16214,7 @@ i.e. *?fields=program,status*.
 <tr class="odd">
 <td>pageSize</td>
 <td>integer</td>
-<td>falase</td>
+<td>false</td>
 <td>Number of items in each page</td>
 </tr>
 <tr class="even">
