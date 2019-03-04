@@ -10771,8 +10771,12 @@ The org unit analytics API provides statistics on org units classified by org un
 
 The API requires at least one organisation unit and at least one organisation unit group set. Multiple org units and group sets can be provided separated by semicolon.
 
+### Request query parameters
+
+The org unit analytics resource lets you specify a range of query parameters:
+
 <table>
-<caption>Org unit analytics properties</caption>
+<caption>Org unit analytics query parameters</caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 60%" />
