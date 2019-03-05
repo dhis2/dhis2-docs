@@ -1371,7 +1371,7 @@ write is visible to those people.
 2.  Click **Interpretations** in the top right of the workspace to open
     the interpretations panel.
 
-3.  A textfield will appear with a placeholder "Write an interpretation" for users
+3.  A text field will appear with a placeholder "Write an interpretation" for users
     that have read access to the favorite.
 
 4.  In the text field, type a comment, question or interpretation. You
