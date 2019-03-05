@@ -9472,7 +9472,7 @@ listed below.
 
   - html (text/html)
 
-  - html+css
+  - html+css (text/html)
 
   - xls (application/vnd.ms-excel)
 
@@ -10804,6 +10804,15 @@ The org unit analytics resource lets you specify a range of query parameters:
 </table>
 
 The response will contain a column for the parent org unit, columns for each org unit group set part of the request and a column for the count. The statistics include the count of org units which are part of the sub-hierarchy of the org units specified in the request. The response contains a metadata section which specifies the name of each org unit and org unit group part of the response referenced by their identifiers.
+
+### Response formats
+
+The org unit analytics endpoint support the following representation formats:
+
+- json (application/json)
+- csv (application/csv)
+- xls (application/vnd.ms-excel)
+- pdf (application/pdf)
 
 ### Examples
 
