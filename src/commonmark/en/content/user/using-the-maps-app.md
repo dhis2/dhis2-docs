@@ -96,7 +96,7 @@ and groups, or downloaded as an image.
     panel on the right side of the workspace. The button is only
     clickable if the map is saved.
 
-      - **Details** shows information about the current map.
+      - **Map details** shows information about the current map.
 
       - **Interpretations** allows you to view, add, edit and share
         interpretations about the current map.
@@ -1371,7 +1371,8 @@ write is visible to those people.
 2.  Click **Interpretations** in the top right of the workspace to open
     the interpretations panel.
 
-3.  Click + to write a new interpretations.
+3.  A textfield will appear with a placeholder "Write an interpretation" for users
+    that have read access to the favorite.
 
 4.  In the text field, type a comment, question or interpretation. You
     can also mention other users with '@username'. Start by typing '@'
