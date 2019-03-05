@@ -11131,7 +11131,7 @@ as shown above. If no snapshots are saved in the specified period, an
 empty list is sent back. The parameter called interval specifies what
 type of aggregation will be done.
 
-API query that creates a query for a yearly
+API query that creates a query for a monthly
     aggregation:
 
     GET /api/24/dataStatistics?startDate=2014-01-02&endDate=2016-01-01&interval=MONTH
