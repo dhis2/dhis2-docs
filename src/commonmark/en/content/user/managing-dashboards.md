@@ -242,7 +242,8 @@ limited set of smilies is supported and can be used by typing one of the
 following character combinations: :) :-) :( :-( :+1 :-1. URLs are
 automatically detected and converted into a clickable link.
 
-Interpretations and replies sorted by date ascending, with the oldest shown on top.
+Interpretations are sorted by date descending, with the most recent shown on top.
+Interpretation replies are sorted by date ascending, with the oldest shown on top.
 
 ![](resources/images/dashboard/dashboard-interpretations.png)
 
