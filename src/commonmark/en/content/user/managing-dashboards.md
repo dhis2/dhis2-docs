@@ -237,7 +237,7 @@ you can delete others’ interpretations.
 It is possible to format the description field, and interpretations 
 with **bold**, *italic* by using the Markdown style markers \* and \_ 
 for **bold** and *italic* respectively. The text field for writing new
-interpretations have a toolbar for adding rich text. Keyboard shortcuts
+interpretations has a toolbar for adding rich text. Keyboard shortcuts
 are also available: Ctrl/Cmd + B and Ctrl/Cmd + I. A limited set of
 smilies is supported and can be used by typing one of the following
 character combinations: :) :-) :( :-( :+1 :-1. URLs are automatically
