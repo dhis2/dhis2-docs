@@ -27,13 +27,13 @@ chips in the layout area.
 
 When viewing a chart, you can expand the interpretations on the right
 side by clicking on the Interpretations button in the upper right corner.
-The chart description will also be shown.
+The chart description will also be shown. The description suppots rich text format.
 
 To view the chart according to the date of a particular interpretation,
-click on the interpretation. This will regenerate the chart with the
+click on the interpretation or its "View" button. This will regenerate the chart with the
 relevant date, which is indicated next to the chart title.
 
 ![](resources/images/data-visualizer/data-visualizer-view-interpretation.png)
 
-Clicking on the back arrow inside the interpretations panel will clear the
+Clicking on "Back to all interpretations" or the "Exit View" button inside the interpretations panel will clear the
 interpretation and regenerate the chart with the current date.

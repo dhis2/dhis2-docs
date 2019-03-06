@@ -230,19 +230,19 @@ report, and event chart items. Click on the interpretations button
 ![](resources/images/dashboard/dashboard-interpretations-button.png),
 and the item will be expanded vertically underneath to show the
 interpretations and replies. You can like an interpretation, reply to an
-interpretation, and add your own interpretation. You can edit or delete
+interpretation, and add your own interpretation. You can edit, share or delete
 your own interpretations and replies, and if you have moderator access,
 you can delete others’ interpretations.
 
 It is possible to format the text with **bold**, *italic* by using the
 Markdown style markers \* and \_ for **bold** and *italic* respectively.
+New interpretations have a toolbar in its text field for adding rich text.
 Keyboard shortcuts are also available: Ctrl/Cmd + B and Ctrl/Cmd + I. A
 limited set of smilies is supported and can be used by typing one of the
 following character combinations: :) :-) :( :-( :+1 :-1. URLs are
 automatically detected and converted into a clickable link.
 
-Interpretations are sorted by date descending, with the most recent shown on top.
-Interpretation replies are sorted by date ascending, with the oldest shown on top.
+Interpretations and replies sorted by date ascending, with the oldest shown on top.
 
 ![](resources/images/dashboard/dashboard-interpretations.png)
 

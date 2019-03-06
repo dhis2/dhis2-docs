@@ -1594,6 +1594,11 @@ enable/disable export of certain types by setting *type=true/false*.
 <td>false/true</td>
 <td>Enabling this will strip the sharing properties from the exported objects. This includes <em>user</em>, <em>publicAccess</em>, <em>userGroupAccesses</em>, <em>userAccesses</em>, and <em>externalAccess</em>.</td>
 </tr>
+<tr class="odd">
+<td>download</td>
+<td>false/true</td>
+<td>Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download.</td>
+</tr>
 </tbody>
 </table>
 
@@ -9472,7 +9477,7 @@ listed below.
 
   - html (text/html)
 
-  - html+css
+  - html+css (text/html)
 
   - xls (application/vnd.ms-excel)
 
@@ -10761,90 +10766,25 @@ The response will provide the count and extent in JSON format:
         count: 59
     }
 
-## Data set report
+## Org unit analytics
 
-<!--DHIS2-SECTION-ID:webapi_data_set_report-->
+<!--DHIS2-SECTION-ID:webapi_org_unit_analytics-->
 
-Data set reports can be generated trough the web api using the
-*/dataSetReport* resource. This resource generates reports on data set
-and returns the result in the form of a HTML table.
+The org unit analytics API provides statistics on org units classified by org unit group sets, i.e. counts of org units per org unit group within org unit group sets.
 
-    /api/26/dataSetReport
-
-The request supports the following parameters:
-
-<table>
-<caption>Accepted parameters of /dataSetReport resource</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 50%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Description</th>
-<th>Type</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ds</td>
-<td>Data set to create the report from</td>
-<td>Data set UID</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>pe</td>
-<td>Period to create the report from</td>
-<td>ISO String</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>ou</td>
-<td>Organisation unit to create the report from</td>
-<td>Organisation unit UID</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>dimension</td>
-<td>Dimensions to be used as filters for the report</td>
-<td>One or more UIDs</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>selectedUnitOnly</td>
-<td>Whether to use captured or aggregated data</td>
-<td>Boolean</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-
-The data set report resource accepts GET requests only. An example
-request to retrieve a report for a data set and orgunit for 2015 looks
-like
-    this:
-
-    GET /api/dataSetReport?ds=BfMAe6Itzgt&pe=201610&ou=ImspTQPwCqd&selectedUnitOnly=false
-
-## Org unit distribution
-
-<!--DHIS2-SECTION-ID:webapi_org_unit_distribution-->
-
-The org unit distribution API provides statistics on org units classified by org unit group sets, i.e. counts of org units per org unit group within org unit group sets.
-
-	GET /api/orgUnitDistribution?ou=<org-unit-id>&ougs=<org-unit-group-set-id>
+	GET /api/orgUnitAnalytics?ou=<org-unit-id>&ougs=<org-unit-group-set-id>
 
 The API requires at least one organisation unit and at least one organisation unit group set. Multiple org units and group sets can be provided separated by semicolon.
 
+### Request query parameters
+
+The org unit analytics resource lets you specify a range of query parameters:
+
 <table>
-<caption>Org unit distribution properties</caption>
+<caption>Org unit analytics query parameters</caption>
 <colgroup>
-<col style="width: 30%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 60%" />
 <col style="width: 20%" />
 </colgroup>
 <thead>
@@ -10870,15 +10810,116 @@ The API requires at least one organisation unit and at least one organisation un
 
 The response will contain a column for the parent org unit, columns for each org unit group set part of the request and a column for the count. The statistics include the count of org units which are part of the sub-hierarchy of the org units specified in the request. The response contains a metadata section which specifies the name of each org unit and org unit group part of the response referenced by their identifiers.
 
+### Response formats
+
+The org unit analytics endpoint support the following representation formats:
+
+- json (application/json)
+- csv (application/csv)
+- xls (application/vnd.ms-excel)
+- pdf (application/pdf)
+
 ### Examples
 
-To fetch org unit distribution data for an org unit and org unit group set:
+To fetch org unit analytics for an org unit and org unit group set:
 
-	GET /api/orgUnitDistribution?ou=lc3eMKXaEfw&ougs=J5jldMd8OHv
+	GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw&ougs=J5jldMd8OHv
 
-To fetch org unit distribution data for two org units and two org unit group sets:
+To fetch org unit analytics data for two org units and two org unit group sets:
 
-	GET /api/orgUnitDistribution?ou=lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv;Bpx0589u8y0
+	GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv;Bpx0589u8y0
+
+## Data set report
+
+<!--DHIS2-SECTION-ID:webapi_data_set_report-->
+
+Data set reports can be generated trough the web api using the
+*/dataSetReport* resource. This resource generates reports on data set
+and returns the result in the form of a HTML table.
+
+    /api/31/dataSetReport
+
+### Request query parameters
+
+The request supports the following parameters:
+
+<table>
+<caption>Data set report query parameters</caption>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 50%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ds</td>
+<td>Data set to create the report from.</td>
+<td>Data set UID</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>pe</td>
+<td>Period to create the report from.</td>
+<td>ISO String</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>ou</td>
+<td>Organisation unit to create the report from.</td>
+<td>Organisation unit UID</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>filter</td>
+<td>Filters to be used as filters for the report. Can be repeated any number of times. Follows the analytics API syntax.</td>
+<td>One or more UIDs</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>selectedUnitOnly</td>
+<td>Whether to use captured data only or aggregated data.</td>
+<td>Boolean</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+
+The data set report resource accepts `GET` requests only. The response content type is `application/json` and returns data in a grid. This endpoint works for all types of data sets, including default, section and custom forms.
+
+An example request to retrieve a report for a data set and org unit for 2018 looks like this:
+
+    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
+
+To get a data set report with a filter you can use the `filter` parameter. In this case the filter is based on an org unit group set and two org unit groups:
+
+    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&filter=J5jldMd8OHv:RXL3lPSK8oG;tDZVQ1WtwpA
+
+### Response formats
+
+The data set report endpoint supports output in the following formats. You can retrieve a specific endpoint using the file extension or `Accept` HTTP header.
+
+- json (application/json)
+- pdf (application/pdf)
+- xls (application/vnd.ms-excel)
+
+### Custom forms
+
+A dedicated endpoint is available for data sets with custom HTML forms. This endpoint returns the HTML form content with content type `text/html` with data inserted into it. Note that you can use the general data set report endpoint also for data sets with custom forms; however that will return the report in JSON format as a grid. This endpoint only works for data sets with custom HTML forms.
+
+    GET /api/31/dataSetReport/custom
+
+The syntax for this endpoint is otherwise equal to the general data set report endpoint. To retrieve a custom HTML data set report you can issue a request like this:
+
+    GET /api/31/dataSetReport/custom?ds=lyLU2wR22tC&pe=201810&ou=ImspTQPwCqd
 
 
 ## Push Analysis
@@ -11104,7 +11145,7 @@ as shown above. If no snapshots are saved in the specified period, an
 empty list is sent back. The parameter called interval specifies what
 type of aggregation will be done.
 
-API query that creates a query for a yearly
+API query that creates a query for a monthly
     aggregation:
 
     GET /api/24/dataStatistics?startDate=2014-01-02&endDate=2016-01-01&interval=MONTH
