@@ -393,7 +393,7 @@ release like this (replace 2.30 with your preferred version if
 necessary):
 
 ```
-    wget https://www.dhis2.org/download/releases/2.30/dhis.war
+    wget https://s3-eu-west-1.amazonaws.com/releases.dhis2.org/2.30/dhis.war
 ```
 
 > **Note**
