@@ -393,7 +393,7 @@ release like this (replace 2.30 with your preferred version if
 necessary):
 
 ```
-    wget https://s3-eu-west-1.amazonaws.com/releases.dhis2.org/2.30/dhis.war
+    wget https://releases.dhis2.org/2.30/dhis.war
 ```
 
 > **Note**
@@ -404,7 +404,7 @@ necessary):
 >preferred version, and 2.31.1 with you preferred patch, if necessary):
 >
 >```
->    wget https://s3-eu-west-1.amazonaws.com/releases.dhis2.org/2.31/2.31.1/dhis.war
+>    wget https://releases.dhis2.org/2.31/2.31.1/dhis.war
 >```
 
 Move the WAR file into the Tomcat webapps directory. We want to call the
