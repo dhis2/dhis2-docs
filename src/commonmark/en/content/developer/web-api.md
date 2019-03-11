@@ -16593,9 +16593,9 @@ The import process can be customized using a set of import parameters:
 <td>Indicates whether to send notifications for completed events.</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
+<td>skipFirst</td>
+<td>true | false</td>
+<td>Relevant for CSV import only. Indicates whether CSV file contains a header row which should be skipped.</td>
 </tr>
 <tr class="even">
 <td>importReportMode</td>
