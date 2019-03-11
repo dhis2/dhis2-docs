@@ -264,7 +264,7 @@ many write operations can be executed within a single flush to disk.
 
     max_locks_per_transaction = 96
 
-Specifies the average number of object locks allocated for each transaction. This is set mainly to allow upgrade routines which touches a large number of tables to complete.
+Specifies the average number of object locks allocated for each transaction. This is set mainly to allow upgrade routines which touch a large number of tables to complete.
 
 
 Restart PostgreSQL by invoking `sudo /etc/init.d/postgresql restart`
