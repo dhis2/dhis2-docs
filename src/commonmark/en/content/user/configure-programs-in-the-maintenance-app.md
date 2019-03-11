@@ -1122,7 +1122,7 @@ variables:
 <tbody>
 <tr>
 <td><p>event_date</p></td>
-<td><p>The date of when the event or enrollment took place.</p></td>
+<td><p>The date of when the event or the last event in the enrollment took place.</p></td>
 </tr>
 <tr>
 <td><p>creation_date</p></td>
