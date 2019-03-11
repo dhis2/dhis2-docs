@@ -16595,7 +16595,7 @@ The import process can be customized using a set of import parameters:
 <tr class="odd">
 <td>skipFirst</td>
 <td>true | false</td>
-<td>Used only in csv import. Indicates whether csv body contains header. </td>
+<td>Relevant for CSV import only. Indicates whether CSV file contains a header row which should be skipped.</td>
 </tr>
 <tr class="even">
 <td>importReportMode</td>
