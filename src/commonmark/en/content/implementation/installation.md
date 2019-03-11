@@ -262,6 +262,11 @@ many write operations can be executed within a single flush to disk.
 
 *SSD only.* Sets the query planner's estimate of the cost of a non-sequentially-fetched disk page. A low value will cause the system to prefer index scans over sequential scans. A low value makes sense for databases running on SSDs or being heavily cached in memory. The default value is 4.0 which is reasonable for traditional disks.
 
+    max_locks_per_transaction = 96
+
+Specifies the average number of object locks allocated for each transaction. This is set mainly to allow upgrade routines which touch a large number of tables to complete.
+
+
 Restart PostgreSQL by invoking `sudo /etc/init.d/postgresql restart`
 
 ### Database configuration
