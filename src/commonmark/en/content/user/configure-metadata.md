@@ -71,7 +71,7 @@ You may easily reset to the default values by clicking the **Reset to default** 
 You can download the metadata for the object you are currently viewing. The metadata download will respect any filters you have active for the list.
 
 1. Click the ![settings-icon](resources/images/maintainence/icon_settings.png) -icon to the top right of the list of objects you want to configure.
-2. A dropdown-menu will appear, select **Download metadata**.
+2. A dropdown-menu will appear, select **Download**.
 3. A dialog will appear, where you can select the desired format and compression.
 4. **With sharing** can be selected to include sharing-data for the metadata.
 
