@@ -17,7 +17,8 @@ local instances.
 If metadata creation and update take place at the central system and if
 the metadata synchronisation task is enabled, the metadata gets
 synchronized down to all the local instances which are bound to the
-central instance. These local instances will in turn push data values to
+central instance. These local instances will in turn push data values, 
+Event and Tracker program data to
 the central instance. Enabling or disabling versioning of metadata
 synchronization at local instance, will not hinder the metadata
 synchronization process. This is because the metadata synchronization
