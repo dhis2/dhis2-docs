@@ -619,10 +619,10 @@ Some aspects of the data synchronization feature to be aware of:
   
     The *syncSkipSyncForDataChangedBefore* SettingKey can be used to skip 
     the synchronisation of all the data (data values, Event and Tracker 
-    program data, complete data set registrations) that were *last 
-    changed before the specified date*. The SettingKey is used in the 
-    synchronisation job all the time. Therefore, if you need to synchronise 
-    the old data, you should change the SettingKey.
+    program data) that were *last changed before the specified date*. 
+    The SettingKey is used in the synchronisation job all the time. 
+    Therefore, if you need to synchronise the old data, you should change 
+    the SettingKey.
 
 ## Metadata Synchronization Scheduling
 
