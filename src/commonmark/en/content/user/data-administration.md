@@ -572,7 +572,9 @@ Some aspects of the data synchronization feature to be aware of:
     time, possibly slowing down your instance, depending on how much
     data is being synchronized. It could be a good idea to configure the
     job to run when there are few online users, then later change this
-    to your own preference.
+    to your own preference. If you do not want or need to synchronise all 
+    the data, there is a possibility to <a href="#skip_changed_before">skip 
+    some of the data being synchronised</a>. 
 
     When DHIS2 synchronises tracker data, it determines the set of data
     to synchronise based on the last time it was synchronised. Each of
@@ -597,7 +599,7 @@ Some aspects of the data synchronization feature to be aware of:
     synchronized. This feature allows you to decide to not synchronize
     some sensitive or not relevant data and to keep them only locally.
 
-  - The newly introduced authority __"Ignore validation of required fields in Tracker and Event Capture"__
+  - The authority __"Ignore validation of required fields in Tracker and Event Capture"__
     (F\_IGNORE\_TRACKER\_REQUIRED\_VALUE\_VALIDATION) should be used when
     there is a requirement that some mandatory attribute / data element
     has at the same time a "Skip synchronization" property turned on.
@@ -608,6 +610,20 @@ Some aspects of the data synchronization feature to be aware of:
     The validation won't fail for the user with this authority. The
     authority should be assigned to the user, on the central server,
     that will be used for synchronization job.
+    
+  - <div id="skip_changed_before"></div>In specific cases, **the initial 
+    synchronisation of all the data can be undesirable**; for example, 
+    when a database on the local instance is a fresh copy of the database 
+    present on the central instance, or when it is preferred to not 
+    synchronise old data in favor of initial synchronisation taking less 
+    time. 
+    
+    The *syncSkipSyncForDataChangedBefore* SettingKey can be used to skip 
+    the synchronisation of all the data (data values, Event and Tracker 
+    program data, complete data set registrations) that were *last 
+    changed before the specified date*. The SettingKey is used in the 
+    synchronisation job all the time. Therefore, if you need to synchronise 
+    the old data, you should change the SettingKey.
 
 ## Metadata Synchronization Scheduling
 
