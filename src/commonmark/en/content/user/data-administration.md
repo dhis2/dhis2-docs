@@ -612,11 +612,11 @@ Some aspects of the data synchronization feature to be aware of:
     that will be used for synchronization job.
     
   - <div id="skip_changed_before"></div>In specific cases, **the initial 
-    synchronisation of all the data can be undesirable**; for example  
-    when a database on the local instance is a fresh 
-    copy of the database present on the central instance, or when it is 
-    preferred to not synchronise old data in favor of initial 
-    synchronisation taking less time. 
+    synchronisation of all the data can be undesirable**; for example, 
+    when a database on the local instance is a fresh copy of the database 
+    present on the central instance, or when it is preferred to not 
+    synchronise old data in favor of initial synchronisation taking less 
+    time. 
   
     The *syncSkipSyncForDataChangedBefore* SettingKey can be used to skip 
     the synchronisation of all the data (data values, Event and Tracker 
