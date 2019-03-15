@@ -612,19 +612,18 @@ Some aspects of the data synchronization feature to be aware of:
     that will be used for synchronization job.
     
   - <div id="skip_changed_before"></div>In specific cases, **the initial 
-    synchronisation of all the data can be redundant.** Such situation can 
-    appear when, for example, a database on the local instance is a fresh 
+    synchronisation of all the data can be undesirable**; for example  
+    when a database on the local instance is a fresh 
     copy of the database present on the central instance, or when it is 
     preferred to not synchronise old data in favor of initial 
     synchronisation taking less time. 
   
     The *syncSkipSyncForDataChangedBefore* SettingKey can be used to skip 
     the synchronisation of all the data (data values, Event and Tracker 
-    program data, complete data set registrations) that were *last time 
+    program data, complete data set registrations) that were *last 
     changed before the specified date*. The SettingKey is used in the 
-    synchronisation job all the time. Therefore, if it is decided that the 
-    older data need to be synchronised, the value of the SettingKey 
-    needs to be changed.
+    synchronisation job all the time. Therefore, if you need to synchronise 
+    the old data, you should change the SettingKey.
 
 ## Metadata Synchronization Scheduling
 
