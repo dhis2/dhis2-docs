@@ -1536,8 +1536,9 @@ properties you want to update, i.e.:
 <!--DHIS2-SECTION-ID:webapi_metadata_export-->
 
 This section explains the metatada API which is available at
-*/api/23/metadata* and */api/26/metadata*endpoints. XML and JSON
-resource representations are supported.
+*/api/metadata* and */api/<version>/metadata*endpoints. XML, JSON and CSV
+resource representations are supported. These three formats can be
+compressed optionally with gzip (`.gz` extension) and ZIP (`.zip` extension).
 
 The most common parameters are described below in the "Export Parameter"
 table. You can also apply this to all available types by using
@@ -1609,6 +1610,14 @@ enable/disable export of certain types by setting *type=true/false*.
 Export all metadata:
 
     curl -u user:pass http://server/api/26/metadata
+    
+Export all metadata as CSV with gzip compression:
+
+    curl -u user:pass http://server/api/30/metadata.csv.gz
+    
+Export all metadata as JSON with ZIP compression:
+
+    curl -u user:pass http://server/api/30/metadata.json.zip    
 
 Export all metadata ordered by lastUpdated
     descending:
