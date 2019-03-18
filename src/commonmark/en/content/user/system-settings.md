@@ -163,6 +163,10 @@
 <td>Places the analytics and web API of DHIS2 in maintenance mode. This means that &quot;503 Service Unavailable&quot; will be returned for all requests.
 <p>This is useful when you need to perform maintenance on the server, for example rebuilding indexes while the server is running in production, in order to reduce load and more efficiently carry out the maintenance.</p></td>
 </tr>
+<tr class="odd">
+<td><p><strong>Skip zero data values in analytics tables</strong></p></td>
+<td><p>Skip zero data values in analytics tables</p></td>
+</tr>
 </tbody>
 </table>
 
