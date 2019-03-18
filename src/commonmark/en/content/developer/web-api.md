@@ -1536,9 +1536,8 @@ properties you want to update, i.e.:
 <!--DHIS2-SECTION-ID:webapi_metadata_export-->
 
 This section explains the metatada API which is available at
-*/api/metadata* and */api/<version>/metadata*endpoints. XML, JSON and CSV
-resource representations are supported. These three formats can be
-compressed optionally with gzip (`.gz` extension) and ZIP (`.zip` extension).
+*/api/23/metadata* and */api/26/metadata*endpoints. XML and JSON
+resource representations are supported.
 
 The most common parameters are described below in the "Export Parameter"
 table. You can also apply this to all available types by using
@@ -1610,14 +1609,6 @@ enable/disable export of certain types by setting *type=true/false*.
 Export all metadata:
 
     curl -u user:pass http://server/api/26/metadata
-    
-Export all metadata as CSV with gzip compression:
-
-    curl -u user:pass http://server/api/30/metadata.csv.gz
-    
-Export all metadata as JSON with ZIP compression:
-
-    curl -u user:pass http://server/api/30/metadata.json.zip    
 
 Export all metadata ordered by lastUpdated
     descending:
@@ -10814,10 +10805,17 @@ The org unit analytics resource lets you specify a range of query parameters:
 <td>Org unit group set identifiers, potentially separated by semicolon.</td>
 <td>Yes</td>
 </tr>
+<tr>
+<td>columns</td>
+<td>Org unit group set identifiers, potentially separated by semicolon. Defines which group sets are rendered as columns in table layout.</td>
+<td>No</td>
+</tr>
 </tbody>
 </table>
 
 The response will contain a column for the parent org unit, columns for each org unit group set part of the request and a column for the count. The statistics include the count of org units which are part of the sub-hierarchy of the org units specified in the request. The response contains a metadata section which specifies the name of each org unit and org unit group part of the response referenced by their identifiers.
+
+The default response is normalized with a single `count` column. The response can be rendered in table layout by specifying at least one org unit group set using the `columns` query parameter.
 
 ### Response formats
 
@@ -10837,6 +10835,10 @@ To fetch org unit analytics for an org unit and org unit group set:
 To fetch org unit analytics data for two org units and two org unit group sets:
 
 	GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv;Bpx0589u8y0
+
+To fetch org unit analytics data in table mode with one group set rendered as columns:
+
+	GET /api/orgUnitAnalytics?ou=fdc6uOvgoji;jUb8gELQApl;lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv&columns=J5jldMd8OHv
 
 ## Data set report
 
