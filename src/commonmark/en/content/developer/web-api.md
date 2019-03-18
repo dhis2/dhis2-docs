@@ -11499,79 +11499,90 @@ process.
 
 <!--DHIS2-SECTION-ID:webapi_maintenance-->
 
-To perform maintenance you can interact with the *maintenance* resource.
-You should use *POST* or *PUT* as method for requests. The following
-requests are available.
+To perform maintenance you can interact with the *maintenance* resource. You should use *POST* or *PUT* as method for requests. The following methods are available.
 
-Analytics tables clear will drop all analytics tables:
+Analytics tables clear will drop all analytics tables.
 
-    /api/26/maintenance/analyticsTablesClear
+    POST PUT /api/26/maintenance/analyticsTablesClear
+
+Analytics table analyze will collects statistics about the contents of analytics tables in the database.
+
+	POST PUT /api/26/maintenance/analyticsTablesAnalyze
 
 Expired invitations clear will remove all user account invitations which
-have expired:
+have expired.
 
-    /api/26/maintenance/expiredInvitationsClear
+    POST PUT /api/26/maintenance/expiredInvitationsClear
 
 Period pruning will remove periods which are not linked to any data
-values:
+values.
 
-    /api/26/maintenance/periodPruning
+    POST PUT /api/26/maintenance/periodPruning
 
 Zero data value removal will delete zero data values linked to data
 elements where zero data is defined as not significant:
 
-    /api/26/maintenance/zeroDataValueRemoval
+    POST PUT /api/26/maintenance/zeroDataValueRemoval
 
-Drop SQL views will drop all SQL views in the database. Note that it
-will not delete the DHIS2 SQL views.
+Soft deleted data value removal will permanently delete soft deleted data values.
 
-    /api/26/maintenance/sqlViewsDrop
+	POST PUT /api/26/maintenance/softDeletedDataValueRemoval
+
+Soft deleted program stage instance removal will permanently delete soft deleted events.
+
+	POST PUT /api/26/maintenance/softDeletedProgramStageInstanceRemoval
+
+Soft deleted program instance removal will permanently delete soft deleted enrollments.
+
+	POST PUT /api/26/maintenance/softDeletedProgramInstanceRemoval
+
+Soft deleted tracked entity instance removal will permanently delete soft deleted tracked entity instances.
+
+	POST PUT /api/26/maintenance/softDeletedTrackedEntityInstanceRemoval
+
+Drop SQL views will drop all SQL views in the database. Note that it will not delete the DHIS 2 SQL view entities.
+
+    POST PUT /api/26/maintenance/sqlViewsDrop
 
 Create SQL views will recreate all SQL views in the database.
 
-    /api/26/maintenance/sqlViewsCreate
+    POST PUT /api/26/maintenance/sqlViewsCreate
 
-Category option combo update will remove obsolete and generate missing
-category option combos for all category combinations:
+Category option combo update will remove obsolete and generate missing category option combos for all category combinations.
 
-    /api/26/maintenance/categoryOptionComboUpdate
+    POST PUT /api/26/maintenance/categoryOptionComboUpdate
 
-It is also possible to update category option combos for a single category combo using the following endpoint:
+It is also possible to update category option combos for a single category combo using the following endpoint.
 
-    /api/maintenance/categoryOptionComboUpdate/categoryCombo/<category-combo-uid>
+    POST PUT /api/maintenance/categoryOptionComboUpdate/categoryCombo/<category-combo-uid>
 
-Cache clearing will clear the application Hibernate cache and the
-analytics partition caches:
+Cache clearing will clear the application Hibernate cache and the analytics partition caches.
 
-    /api/26/maintenance/cacheClear
+    POST PUT /api/26/maintenance/cacheClear
 
-Re-generate organisation unit path property (can be useful if you
-imported org units with SQL):
+Org unit paths update will re-generate the organisation unit path property. This can be useful e.g. if you imported org units with SQL.
 
-    /api/26/maintenance/ouPathsUpdate
+    POST PUT /api/26/maintenance/ouPathsUpdate
 
-Data pruning will remove complete data set registrations, data
-approvals, data value audits and data values, in this case for an
-organisation unit.
+Data pruning will remove complete data set registrations, data approvals, data value audits and data values, in this case for an organisation unit.
 
-    /api/26/maintenance/dataPruning/organisationUnits/<org-unit-id>
+    POST PUT /api/26/maintenance/dataPruning/organisationUnits/<org-unit-id>
 
-Data pruning for data elements, which will remove data value audits and
-data values.
+Data pruning for data elements, which will remove data value audits and data values.
 
-    /api/26/maintenance/dataPruning/dataElement/<data-element-uid>
+    POST PUT /api/26/maintenance/dataPruning/dataElement/<data-element-uid>
 
-Metadata validation will apply all metadata validation rules and return
-the result of the operation:
+Metadata validation will apply all metadata validation rules and return the result of the operation.
 
-    /api/26/metadataValidation
+    POST PUT /api/26/metadataValidation
 
-Maintenance operations are supported in a batch style with a POST
-request to the api/maintenance resource where the operations are
-supplied as query
-    parameters:
+App reload will refresh the DHIS 2 managed cache of installed apps by reading from the file system.
 
-    /api/26/maintenance?analyticsTablesClear=true&expiredInvitationsClear=true&periodPruning=true
+	POST PUT /api/26/appReload
+
+Maintenance operations are supported in a batch style with a POST request to the api/maintenance resource where the operations are supplied as query parameters:
+
+    POST PUT /api/26/maintenance?analyticsTablesClear=true&expiredInvitationsClear=true&periodPruning=true
       &zeroDataValueRemoval=true&sqlViewsDrop=true&sqlViewsCreate=true&categoryOptionComboUpdate=true
       &cacheClear=true&ouPathsUpdate=true
 
