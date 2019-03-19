@@ -16535,7 +16535,7 @@ the tracker user interface.
 <td>eventQueryCriteria</td>
 <td>Object containing parameters for querying, sorting and filtering events.</td>
 <td>  
-  ```"eventQueryCriteria": {
+  `"eventQueryCriteria": {
     "eventStatus": "COMPLETED",
     "createdDate": {
       "from": "2014-05-01",
@@ -16550,7 +16550,7 @@ the tracker user interface.
     "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],
     "fields": "eventDate,dueDate",
     "order": "dueDate:asc,createdDate:desc"
-  }```
+  }`
 </td>
 </tr>
 </tbody>
