@@ -15893,7 +15893,7 @@ identifiers which can be looked up using the *dataElements* resource.
 For events with registration, a *tracked entity instance* identifier is
 required, read about how to get this in the section about the
 *trackedEntityInstances* resource. For sending events to programs with
-multiple stages, you will need to also include the *programStage*
+multiple stages, you will need to also include the *programStage*s
 identifier, the identifiers for programStages can be found in the
 *programStages* resource.
 
@@ -16467,6 +16467,217 @@ based on data element
     value
 
     /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk&filter=qrur9Dvnyt5:GT:20:LT:50&order=qrur9Dvnyt5:desc
+
+#### Event filters
+
+<!--DHIS2-SECTION-ID:webapi_event_filters-->
+
+To create, read, update and delete event filters you
+can interact with the */api/eventFilters* resource.
+
+    /api/32/eventFilters
+
+##### Create and update an event filter definiton
+
+For creating and updating an event filter in the
+system, you will be working with the *eventFilters*
+resource. *POST* is used to create and *PUT* method is used to update. The event filter definitions are used in the
+Tracker Capture app to display relevant predefined "Working lists" in
+the tracker user interface.
+
+<table>
+<caption>Request Payload</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Request Property</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>name</td>
+<td>Name of the filter.</td>
+<td>"name":"My working list"</td>
+</tr>
+<tr class="even">
+<td>description</td>
+<td>A description of the filter.</td>
+<td>"description":"for listing all events assigned to me".</td>
+</tr>
+<tr class="odd">
+<td>program</td>
+<td>Object containing the id of the program.</td>
+<td>"program" : {
+"id":"a3kGcGDCuk6"
+}</td>
+</tr>
+<tr class="even">
+<td>programStage</td>
+<td>Object containing the id of the program stage.</td>
+<td>"programStage" : {
+"id":"a3kGcGDCuk6"
+}</td>
+</tr>
+<tr class="odd">
+<td>organisationUnit</td>
+<td>Object containing the id of the organisation unit.</td>
+<td>"organisationUnit" : {
+"id":"a3kGcGDCuk6"
+}</td>
+</tr>
+<tr class="even">
+<td>eventQueryCriteria</td>
+<td>Object containing parameters for querying, sorting and filtering events.</td>
+<td>  "eventQueryCriteria": {
+    "eventStatus": "COMPLETED",
+    "createdDate": {
+      "from": "2014-05-01",
+      "to": "2019-03-20"
+    },
+    "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],
+    "filters": ["a3kGcGDCuk6:EQ:1"],
+    "programStatus": "ACTIVE",
+    "orgUnitSelectionMode": "SELECTED",
+    "followUp": "false",
+    "trackedEntityInstance": "a3kGcGDCuk6",
+    "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],
+    "fields": "eventDate,dueDate",
+    "order": "dueDate:asc,createdDate:desc"
+  }</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption>Event Query Criteria definition</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>followUp</td>
+<td>Used to filter events based on enrollment followUp flag. Possible values are true|false.</td>
+<td>"followUp": true</td>
+</tr>
+<tr class="even">
+<td>orgUnitSelectionMode</td>
+<td>To specify the OU selection mode. Possible values are SELECTED| CHILDREN|DESCENDANTS|ACCESSIBLE|CAPTURE|ALL</td>
+<td>"orgUnitSelectionMode": "SELECTED"</td>
+</tr>
+<tr class="odd">
+<td>trackedEntityInstance</td>
+<td>To specify a tracked entity instance that has to be used when filtering events</td>
+<td>"trackedEntityInstance": "A03MvHHogjR"</td>
+</tr>
+<tr class="even">
+<td>order</td>
+<td>To specify ordering/sorting of fields and its directions</td>
+<td>"order"="a3kGcGDCuk6:desc,eventDate:asc"</td>
+</tr>
+<tr class="odd">
+<td>filters</td>
+<td>To specify filters to be applied when listing events</td>
+<td>"filters"=["a3kGcGDCuk6:LT:4"]</td>
+</tr>
+<tr class="even">
+<td>fields</td>
+<td>To specify fields that has to be part of the event listing response.</td>
+<td>"fields"="a3kGcGDCuk6,eventDate,dueDate"</td>
+</tr>
+<tr class="odd">
+<td>dataElements</td>
+<td>To specify dataElements that has to be part of the event grid query response.</td>
+<td>"dataElements"=["a3kGcGDCuk6"]</td>
+</tr>
+<tr class="even">
+<td>eventStatus</td>
+<td> Any valid EventStatus</td>
+<td>  "eventStatus": "COMPLETED"</td>
+</tr>
+<tr class="odd">
+<td>createdDate</td>
+<td>DatePeriod object containing a from and to date for filtering based on created date.</td>
+<td>{ &quot;from&quot;:&quot;2018-01-01&quot; , &quot;to&quot;: &quot;2019-01-01&quot;}</td>
+</tr>
+<tr class="odd">
+<td>dueDate</td>
+<td>DatePeriod object containing a from and to date for filtering based on due date.</td>
+<td>{ &quot;from&quot;:&quot;2018-01-01&quot; , &quot;to&quot;: &quot;2019-01-01&quot;}</td>
+</tr>
+<tr class="odd">
+<td>lastUpdatedDate</td>
+<td>DatePeriod object containing a from and to date for filtering based on last updated date.</td>
+<td>{ &quot;from&quot;:&quot;2018-01-01&quot; , &quot;to&quot;: &quot;2019-01-01&quot;}</td>
+</tr>
+</tbody>
+</table>
+
+
+A sample payload that can be used to create/update an eventFilter is shown below.
+
+````
+{
+  "name": "Complete Filter",
+  "description": "Sample Filter to show all possible parameters",
+  "program": {
+    "id": "IpHINAT79UW"
+  },
+  "programStage": {
+    "id": "A03MvHHogjR"
+  },
+  "organisationUnit": {
+    "id": "x8SUTSsJoeO"
+  },
+  "eventQueryCriteria": {
+    "eventStatus": "COMPLETED",
+    "createdDate": {
+      "from": "2014-05-01",
+      "to": "2019-03-20"
+    },
+    "dueDate": {
+      "from": "2014-05-01",
+      "to": "2019-03-20"
+    },
+    "lastUpdatedDate": {
+      "from": "2014-05-01",
+      "to": "2019-03-20"
+    },
+    "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],
+    "filters": ["a3kGcGDCuk6:EQ:1"],
+    "programStatus": "ACTIVE",
+    "orgUnitSelectionMode": "SELECTED",
+    "followUp": "false",
+    "trackedEntityInstance": "a3kGcGDCuk6",
+    "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],
+    "fields": "eventDate,dueDate",
+    "order": "dueDate:asc,createdDate:desc"
+  }
+}
+````
+
+
+##### Retrieving and deleting event filters
+
+A specific event filter can be retrieved by using the following api
+
+    [GET]  /api/32/eventFilters/{uid}
+    
+All event filters can be retrieved by using the following api
+
+    [GET]  /api/32/eventFilters
+
+An event filter can be deleted by using the following api
+
+    [DELETE]  /api/32/eventFilters/{uid}
+
 
 ### Update strategies
 
