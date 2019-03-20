@@ -3,3 +3,4 @@ tmp/
 venv/
 **/__pycache__/**
 **/*.backup
+.idea/
