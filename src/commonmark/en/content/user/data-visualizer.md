@@ -39,5 +39,7 @@ Clicking on "Back to all interpretations" or the "Exit View" button inside the i
 interpretation and regenerate the chart with the current date.
 
 ## See chart as map
+
 Sometimes it can be useful to see how visualization would look like on map. To achieve this you can select "Open as: Map" chart type after you build your chart.
+
 ![](resources/images/data-visualizer/data-visualizer-open-as-map.png)
