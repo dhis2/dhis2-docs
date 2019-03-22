@@ -13145,22 +13145,19 @@ Gives the data approval levels which are relevant to the current user:
 You can manipulate system settings by interacting with the
 *systemSettings* resource. A system setting is a simple key-value pair,
 where both the key and the value are plain text strings. To save or
-update a system setting you can make a *POST* request to the following
-URL:
+update a system setting you can make a *POST* request to the following URL:
 
     /api/26/systemSettings/my-key?value=my-val
 
 Alternatively, you can submit the setting value as the request body,
 where content type is set to "text/plain". As an example, you can use
-curl like
-    this:
+curl like this:
 
     curl "play.dhis2.org/demo/api/26/systemSettings/my-key" -d "My long value"
       -H "Content-Type: text/plain" -u admin:district -v
 
 To set system settings in bulk you can send a JSON object with a
-property and value for each system setting key-value pair using a POST
-request:
+property and value for each system setting key-value pair using a POST request:
 
 ```
 {
@@ -13181,11 +13178,10 @@ Alternatively, you can specify the key as a query parameter:
     /api/26/systemSettings?key=my-key
 
 You can retrieve specific system settings as JSON by repeating the key
-query
-    parameter:
+query parameter:
 
     curl "play.dhis2.org/demo/api/26/systemSettings?key=keyApplicationNotification&key=keyApplicationIntro"
-      -H "Content-Type: application/json" -u admin:district -v
+      -u admin:district -v
 
 You can retrieve all system settings with a GET request:
 
