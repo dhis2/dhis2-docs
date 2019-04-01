@@ -16367,7 +16367,7 @@ i.e. *?fields=program,status*.
 <td>assignedUserMode</td>
 <td>enum</td>
 <td>false</td>
-<td>Assigned user selection mode, can be CURRENT | PROVIDED | NONE.</td>
+<td>Assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
 </tr>
 <tr class="odd">
 <td>assignedUser</td>
