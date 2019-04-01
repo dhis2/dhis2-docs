@@ -16580,9 +16580,19 @@ the tracker user interface.
 <td>"followUp": true</td>
 </tr>
 <tr class="even">
-<td>orgUnitSelectionMode</td>
+<td>ouMode</td>
 <td>To specify the OU selection mode. Possible values are SELECTED| CHILDREN|DESCENDANTS|ACCESSIBLE|CAPTURE|ALL</td>
-<td>"orgUnitSelectionMode": "SELECTED"</td>
+<td>"ouMode": "SELECTED"</td>
+</tr>
+<tr class="odd">
+<td>assignedUserMode</td>
+<td>To specify the assigned user selection mode. Possible values are CURRENT| PROVIDED | NONE | ANY </td>
+<td>"assignedUserMode": "NONE"</td>
+</tr>
+<tr class="even">
+<td>assignedUsers</td>
+<td>To specify a list of assigned users for events.</td>
+<td>"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]</td>
 </tr>
 <tr class="odd">
 <td>trackedEntityInstance</td>
@@ -16610,7 +16620,7 @@ the tracker user interface.
 <td>"dataElements"=["a3kGcGDCuk6"]</td>
 </tr>
 <tr class="even">
-<td>eventStatus</td>
+<td>status</td>
 <td> Any valid EventStatus</td>
 <td>  "eventStatus": "COMPLETED"</td>
 </tr>
@@ -16619,7 +16629,7 @@ the tracker user interface.
 <td>DatePeriod object containing a from and to date for filtering based on created date.</td>
 <td>{ &quot;from&quot;:&quot;2018-01-01&quot; , &quot;to&quot;: &quot;2019-01-01&quot;}</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>dueDate</td>
 <td>DatePeriod object containing a from and to date for filtering based on due date.</td>
 <td>{ &quot;from&quot;:&quot;2018-01-01&quot; , &quot;to&quot;: &quot;2019-01-01&quot;}</td>
@@ -16628,6 +16638,11 @@ the tracker user interface.
 <td>lastUpdatedDate</td>
 <td>DatePeriod object containing a from and to date for filtering based on last updated date.</td>
 <td>{ &quot;from&quot;:&quot;2018-01-01&quot; , &quot;to&quot;: &quot;2019-01-01&quot;}</td>
+</tr>
+<tr class="even">
+<td>events</td>
+<td>To specify list of events</td>
+<td>"events"=["a3kGcGDCuk6"]</td>
 </tr>
 </tbody>
 </table>
