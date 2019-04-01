@@ -15889,7 +15889,7 @@ identifiers which can be looked up using the *dataElements* resource.
 For events with registration, a *tracked entity instance* identifier is
 required, read about how to get this in the section about the
 *trackedEntityInstances* resource. For sending events to programs with
-multiple stages, you will need to also include the *programStage*s
+multiple stages, you will need to also include the *programStage*
 identifier, the identifiers for programStages can be found in the
 *programStages* resource.
 
@@ -16363,6 +16363,18 @@ i.e. *?fields=program,status*.
 <td>false</td>
 <td>When true, soft deleted events will be included in your query result.</td>
 </tr>
+<tr class="even">
+<td>assignedUserMode</td>
+<td>enum</td>
+<td>false</td>
+<td>Assigned user selection mode, can be CURRENT | PROVIDED | NONE.</td>
+</tr>
+<tr class="odd">
+<td>assignedUser</td>
+<td>comma delimited strings</td>
+<td>false</td>
+<td>Filter the result down to a limited set of events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.</td>
+</tr>
 </tbody>
 </table>
 
@@ -16532,7 +16544,7 @@ the tracker user interface.
 <td>Object containing parameters for querying, sorting and filtering events.</td>
 <td>  
   "eventQueryCriteria": {
-    "eventStatus": "COMPLETED",
+    "status": "COMPLETED",
     "createdDate": {
       "from": "2014-05-01",
       "to": "2019-03-20"
@@ -16540,7 +16552,9 @@ the tracker user interface.
     "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],
     "filters": ["a3kGcGDCuk6:EQ:1"],
     "programStatus": "ACTIVE",
-    "orgUnitSelectionMode": "SELECTED",
+    "ouMode": "SELECTED",
+    "assignedUserMode": "PROVIDED",
+    "assignedUsers" : ["a3kGcGDCuk7", "a3kGcGDCuk8"],
     "followUp": "false",
     "trackedEntityInstance": "a3kGcGDCuk6",
     "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],
