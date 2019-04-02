@@ -59,6 +59,12 @@ blockquote p {
   margin: 5px;
 }
 
+.center{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 .Note{
   background-image: url(../images/admon/note.png);
 }
