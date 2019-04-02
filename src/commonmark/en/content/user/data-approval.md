@@ -33,7 +33,7 @@ that period and workflow.
 
 
 ![Approving at organisation
-units](resources/images/data_approval/approval_hierarchy.png)
+units](resources/images/data_approval/approval_hierarchy.png){ width=50% }
 
 ## Approving and accepting
 
@@ -45,7 +45,7 @@ process where data is first approved and then accepted at each level.
 This is illustrated in the following diagram:
 
 ![Approving and
-accepting](resources/images/data_approval/approval_level_steps.png)
+accepting](resources/images/data_approval/approval_level_steps.png){ width=69% }
 
 In the one-step process, data is approved at one level, and then
 approved at the next higher level. Until it is approved at the next
