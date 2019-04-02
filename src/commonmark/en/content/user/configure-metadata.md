@@ -4549,7 +4549,7 @@ of a non-outbreak baseline expected value.
 
 The *Sample skip test* is an expression that should return a value of
 true or false, to indicate whether or not the period should be skipped.
-It can be an expression that tests any values in the previous period.
+It can be an expression that tests any data values in the previous period.
 For example, it could test for a data value that was explicitly entered
 to indicate that a previous period should be skipped. Or it could
 compare a previously predicted value for a period with the actual value
