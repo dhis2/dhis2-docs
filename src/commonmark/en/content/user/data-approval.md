@@ -266,7 +266,7 @@ attributed to a category option in Partner 1's category option group.
 Whereas data entered by partner 2 is attributed to a category option in
 Partner 2's category option group:
 
-<table center>
+<table align="center">
 <caption>Example Category Option Groups</caption>
 <thead>
 <tr class="header">
@@ -295,7 +295,7 @@ facilities. So for example, data can be entered and/or aggregated at the
 following levels for each partner, independently of each other:
 
 ![Example category option
-groups](resources/images/data_approval/approval_partner_example.png)
+groups](resources/images/data_approval/approval_partner_example.png){.center}
 
 > **Tip**
 > 
@@ -311,7 +311,7 @@ You can optionally define approval levels for partner data within any or
 all of these organisation unit levels. For example, you could define any
 or all of the following approval levels:
 
-<table>
+<table align="center">
 <caption>Example Category Option Group Set approval levels</caption>
 <thead>
 <tr class="header">
@@ -351,7 +351,7 @@ could set up category option groups for Agency A, and Agency B, and make
 them both part of a category option group set called Agency. So you
 would have:
 
-<table>
+<table align="center">
 <caption>Example Multiple Category Option Group Sets</caption>
 <thead>
 <tr class="header">
@@ -391,7 +391,7 @@ that agency. Finally, you want to approve data at the country level
 across all agencies. You could do this by defining the following
 approval levels:
 
-<table>
+<table align="center">
 <caption>Example Multiple Category Option Group Set approval levels</caption>
 <thead>
 <tr class="header">
