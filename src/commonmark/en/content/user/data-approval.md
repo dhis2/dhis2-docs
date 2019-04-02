@@ -33,7 +33,7 @@ that period and workflow.
 
 
 ![Approving at organisation
-units](resources/images/data_approval/approval_hierarchy.png){ width=50% }
+units](resources/images/data_approval/approval_hierarchy.png){.center width=50% }
 
 ## Approving and accepting
 
@@ -45,7 +45,7 @@ process where data is first approved and then accepted at each level.
 This is illustrated in the following diagram:
 
 ![Approving and
-accepting](resources/images/data_approval/approval_level_steps.png){ width=69% }
+accepting](resources/images/data_approval/approval_level_steps.png){.center width=69% }
 
 In the one-step process, data is approved at one level, and then
 approved at the next higher level. Until it is approved at the next
@@ -177,7 +177,7 @@ implies that she can see all data entered at or below her organisation
 unit level.
 
 ![Hiding of unapproved
-data](resources/images/data_approval/approval_data_hiding.png)
+data](resources/images/data_approval/approval_data_hiding.png){.center}
 
 Using this example, lets consider some scenarios:
 
@@ -266,7 +266,7 @@ attributed to a category option in Partner 1's category option group.
 Whereas data entered by partner 2 is attributed to a category option in
 Partner 2's category option group:
 
-<table>
+<table center>
 <caption>Example Category Option Groups</caption>
 <thead>
 <tr class="header">

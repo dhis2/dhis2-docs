@@ -4443,21 +4443,21 @@ four prior weeks immediately preceding the predicted value week. So the
 predicted value for week 9 would use samples from weeks 5, 6, 7, and 8:
 
 
-![](resources/images/maintainence/predictor_sequential.png){ width=50% }
+![](resources/images/maintainence/predictor_sequential.png){.center width=50% }
 
 If a predictor's period type is *Monthly* and the *Sequential sample
 count* is 4, this means to sample four prior months immediately
 preceding the predicted value month. So the predicted value for May
 would use samples from weeks January, February, March, and April:
 
-![](resources/images/maintainence/predictor_sequential_month.png){ width=51% }
+![](resources/images/maintainence/predictor_sequential_month.png){.center width=51% }
 
 The *Sequential sample count* can be greater than the number of periods
 in a year. For example, if you want to sample the 24 months immediately
 preceding the predicted value month, set the *Sequential sample count*
 to 24:
 
-![](resources/images/maintainence/predictor_24_months.png){ width=57% }
+![](resources/images/maintainence/predictor_24_months.png){.center width=57% }
 
 #### Sequential skip count
 
@@ -4476,7 +4476,7 @@ predicted period will be skipped, resulting in only two periods being
 sampled:
 
 
-![](resources/images/maintainence/predictor_skip.png){ width=50% }
+![](resources/images/maintainence/predictor_skip.png){.center width=50% }
 
 #### Annual sample count
 
@@ -4492,7 +4492,7 @@ zero), then samples would be collected from periods in the immediately
 preceding two years, at the same time of year.
 
 
-![](resources/images/maintainence/predictor_annual.png){ width=53% }
+![](resources/images/maintainence/predictor_annual.png){.center width=53% }
 
 #### Sequential and annual sample counts together
 
@@ -4512,7 +4512,7 @@ will be collected in the prior 2 years for the corresponding period, as
 well as 4 periods on either side:
 
 
-![](resources/images/maintainence/predictor_sequential_annual.png){ width=66% }
+![](resources/images/maintainence/predictor_sequential_annual.png){.center width=66% }
 
 #### Sequential, annual, and skip sample counts together
 
@@ -4527,14 +4527,14 @@ the predicted value period period will be skipped, but the two periods
 before that will be sampled:
 
 
-![](resources/images/maintainence/predictor_skip_2_weeks.png){ width=66% }
+![](resources/images/maintainence/predictor_skip_2_weeks.png){.center width=66% }
 
 If the *Sequential skip count* is equal to or greater than the
 *Sequential sample count*, then no samples will be collected for the
 year containing the predicted value period; only periods from past years
 will be sampled:
 
-![](resources/images/maintainence/predictor_skip_current_year.png){ width=66% }
+![](resources/images/maintainence/predictor_skip_current_year.png){.center width=66% }
 
 #### Sample skip test
 
@@ -4559,7 +4559,7 @@ Any periods for which the *Sample skip test* is *true* will not be
 sampled. For example:
 
 
-![](resources/images/maintainence/predictor_sample_skip_test.png){ width=66% }
+![](resources/images/maintainence/predictor_sample_skip_test.png){.center width=66% }
 
 ### Create or edit a predictor
 
