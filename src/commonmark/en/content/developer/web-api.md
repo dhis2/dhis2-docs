@@ -16555,7 +16555,7 @@ the tracker user interface.
     "ouMode": "SELECTED",
     "assignedUserMode": "PROVIDED",
     "assignedUsers" : ["a3kGcGDCuk7", "a3kGcGDCuk8"],
-    "followUp": "false",
+    "followUp": false,
     "trackedEntityInstance": "a3kGcGDCuk6",
     "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],
     "fields": "eventDate,dueDate",
