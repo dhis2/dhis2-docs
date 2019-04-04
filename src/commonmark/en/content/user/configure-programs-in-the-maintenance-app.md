@@ -1135,67 +1135,71 @@ variables:
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>event_date</p></td>
 <td><p>The date of when the event took place.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>due_date</p></td>
 <td><p>The date of when an event is due.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>incident_date</p></td>
 <td><p>The date of the incidence of the event.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>enrollment_date</p></td>
 <td><p>The date of when the tracked entity instance was enrolled in the program.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>enrollment_status</p></td>
 <td><p>Can be used to include or exclude enrollments in certain statuses.</p>
 <p>When calculating the haemoglobin improvement/deterioration throughout a pregnancy, it might make sense to only consider completed enrollments. If non-completed enrollments is not filtered out, these will represent half-finished ANC followups, where the final improvement/deterioration is not yet established.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>current_date</p></td>
 <td><p>The current date.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>value_count</p></td>
 <td><p>The number of non-null values in the expression part of the event.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>zero_pos_value_count</p></td>
 <td><p>The number of numeric positive values in the expression part of the event.</p></td>
 </tr>
-<tr class="odd">
+<tr >
 <td><p>event_count</p></td>
 <td><p>The count of events (useful in combination with filters).</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>enrollment_count</p></td>
-<td><p>The count of enrollments (useful in combination with filters).</p></td>
+<td><p>The count of enrollments (useful in combination with filters). Aggregation type for the program indicator must be COUNT. </p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>tei_count</p></td>
-<td><p>The count of tracked entity instances (useful in combination with filters).</p></td>
+<td><p>The count of tracked entity instances (useful in combination with filters). Aggregation type for the program indicator must be COUNT.</p></td>
 </tr>
-<tr class="even">
+<tr>
+<td><p>org_unit_count</p></td>
+<td><p>The count of organisation units (useful in combination with filters). Aggregation type for the program indicator must be COUNT.</p></td>
+</tr>
+<tr>
 <td><p>program_stage_name</p></td>
 <td><p>Can be used in filters for including only certain program stages in a filter for tracker programs. Uses the name of the program stage:</p>
 <pre><code>V{program_stage_name} == &#39;ANC first visit&#39;</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>program_stage_id</p></td>
 <td><p>Can be used in filters for including only certain program stages in a filter for tracker programs. Uses the unique identifier of the program stage:</p>
 <pre><code>V{program_stage_id} == &#39;YPSSfbmAtt1&#39;</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>reporting_period_start</p></td>
 <td><p>Can be used in filters or expressions for comparing any date to the first date in each reporting period.</p>
 <pre><code>d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{reporting_period_start})</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>reporting_period_end</p></td>
 <td><p>Can be used in filters or expressions for comparing any date to the last inclusive date in each reporting period.</p></td>
 </tr>
