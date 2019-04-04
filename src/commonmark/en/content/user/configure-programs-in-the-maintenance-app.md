@@ -56,8 +56,7 @@ insurances. You can create two types of programs:
 </table>
 
 To create a program, you must first configure several types of metadata
-objects. You create these metadata objects in the **Maintenance** app or
-the **Program / Attributes** (legacy) app.
+objects. You create these metadata objects in the **Maintenance** app.
 
 <table>
 <caption>Program metadata objects in the Maintenance app</caption>
@@ -79,6 +78,11 @@ the **Program / Attributes** (legacy) app.
 <td><p>A program to record single event without registration</p></td>
 <td><p>Create, edit, share, delete, show details and translate</p></td>
 </tr>
+ <tr class="even">
++<td><p>Tracker program</p></td>
++<td><p>A program to record single event without registration</p></td>
++<td><p>Create, edit, share, delete, show details and translate</p></td>
++</tr>
 <tr class="even">
 <td><p>Program indicator</p></td>
 <td><p>An expression based on data elements and attributes of tracked entities which you use to calculate values based on a formula.</p></td>
@@ -100,7 +104,7 @@ the **Program / Attributes** (legacy) app.
 <td><p>Create, edit, clone, delete, show details and translate</p></td>
 </tr>
 <tr class="even">
-<td><p>Tracked entity</p></td>
+<td><p>Tracked entity type</p></td>
 <td><p>Types of entities which can be tracked through the system. Can be anything from persons to commodities, for example a medicine or a person.</p>
 <p>A program must have one tracked entity. To enrol a tracked entity instance into a program, the tracked entity of an entity and tracked entity of a program must be the same.</p>
 <blockquote>
@@ -115,24 +119,6 @@ the **Program / Attributes** (legacy) app.
 <p>Can be shared between programs.</p></td>
 <td><p>Create, edit, clone, share, delete, show details and translate</p></td>
 </tr>
-</tbody>
-</table>
-
-<table>
-<caption>Program metadata objects in the Program / Attributes app</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th>Description</th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
 <tr class="odd">
 <td><p>Program</p></td>
 <td><p>A program consist of program stages.</p></td>
@@ -141,11 +127,6 @@ the **Program / Attributes** (legacy) app.
 <tr class="even">
 <td><p>Program stage</p></td>
 <td><p>A program stage defines which actions should be taken at each stage.</p></td>
-<td><p>Create, edit, change sort order, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Program stage section</p></td>
-<td><p>N/A</p></td>
 <td><p>Create, edit, change sort order, delete, show details and translate</p></td>
 </tr>
 <tr class="even">
@@ -166,13 +147,9 @@ the **Program / Attributes** (legacy) app.
 </tr>
 <tr class="odd">
 <td><p>Program stage notification</p></td>
-<td><p>-</p></td>
+<td><p>Automated message reminder</p>
+<p>Set reminders to be automatically sent whenever a program stage is completed, or before or after the due date.</p></td>
 <td><p>Create, edit and delete</p></td>
-</tr>
-<tr class="even">
-<td><p>Design custom registration form</p></td>
-<td><p>-</p></td>
-<td><p>-</p></td>
 </tr>
 </tbody>
 </table>
@@ -259,7 +236,7 @@ attributes and program parameters.
 
 1.  Open the **Maintenance** app and click **Program** \> **Program**.
 
-2.  Click the add button.
+2.  Click the add button and select **Event Program** in the popup menu.
 
 3.  Enter program details, then click next.
 
@@ -361,6 +338,8 @@ attributes and program parameters.
 
 #### Assign data elements
 
+<!--DHIS2-SECTION-ID:assign_data_elements-->
+
 1.  Click **Assign data elements**.
 
 2.  In the list of available items, double-click the data elements you
@@ -412,6 +391,8 @@ attributes and program parameters.
 
 #### Create data entry forms
 
+<!--DHIS2-SECTION-ID:create_data_entry_forms-->
+
 The data entry forms decide how the data elements will be displayed to
 the user in the **Event Capture** app.
 
@@ -445,6 +426,8 @@ the user in the **Event Capture** app.
 6.  Click next.
 
 #### Access
+
+<!--DHIS2-SECTION-ID:access-->
 
 Access options decide who can capture data for the program or view/edit
 the program's metadata. A program can be shared to organisation units,
@@ -491,6 +474,8 @@ Change roles and access:
     2.  Click **Apply to selected stages**
 
 #### Create program notifications
+
+<!--DHIS2-SECTION-ID:create_program_notifications-->
 
 1.  Create the message you want to send:
 
@@ -1137,11 +1122,19 @@ variables:
 <tbody>
 <tr>
 <td><p>event_date</p></td>
-<td><p>The date of when the event took place.</p></td>
+<td><p>The date of when the event or the last event in the enrollment took place.</p></td>
+</tr>
+<tr>
+<td><p>creation_date</p></td>
+<td><p>The date of when an event or enrollment was created in the system.</p></td>
 </tr>
 <tr>
 <td><p>due_date</p></td>
 <td><p>The date of when an event is due.</p></td>
+</tr>
+<tr>
+<td><p>sync_date</p></td>
+<td><p>The date of when the event or enrollment was last syncronized with the Android app.</p></td>
 </tr>
 <tr>
 <td><p>incident_date</p></td>
@@ -1168,7 +1161,7 @@ variables:
 <td><p>zero_pos_value_count</p></td>
 <td><p>The number of numeric positive values in the expression part of the event.</p></td>
 </tr>
-<tr >
+<tr>
 <td><p>event_count</p></td>
 <td><p>The count of events (useful in combination with filters).</p></td>
 </tr>
@@ -2186,11 +2179,11 @@ and tracked entity B, for example mother and child.
 
 7.  Click **Save**.
 
-## Configure tracked entities
+## Configure tracked entity types
 
 <!--DHIS2-SECTION-ID:configure_tracked_entity-->
 
-### About tracked entities
+### About tracked entity types
 
 <!--DHIS2-SECTION-ID:about_tracked_entity-->
 
@@ -2198,9 +2191,9 @@ A tracked entity is a types of entities which can be tracked through the
 system. It can be anything from persons to commodities, for example a
 medicine or a person.
 
-A program must have one tracked entity. To enrol a tracked entity
-instance into a program, the tracked entity of an entity and tracked
-entity of a program must be the same.
+A program must have one tracked entity. To enroll a tracked entity
+instance into a program, the tracked entity type and tracked
+entity type of a program must be the same.
 
 Tracked entity attributes are used to register extra information for a
 tracked entity. Tracked entity attributes can be shared between
@@ -2218,6 +2211,8 @@ programs.
 3.  In the **Name** field, type the tracked entity attribute name.
 
 4.  (Optional) Type a **Short name**.
+
+4.  (Optional) Type a **Form name**.
 
 5.  (Optional) In the **Code** field, assign a code.
 

@@ -33,7 +33,7 @@ that period and workflow.
 
 
 ![Approving at organisation
-units](resources/images/data_approval/approval_hierarchy.png)
+units](resources/images/data_approval/approval_hierarchy.png){.center width=50% }
 
 ## Approving and accepting
 
@@ -45,7 +45,7 @@ process where data is first approved and then accepted at each level.
 This is illustrated in the following diagram:
 
 ![Approving and
-accepting](resources/images/data_approval/approval_level_steps.png)
+accepting](resources/images/data_approval/approval_level_steps.png){.center width=69% }
 
 In the one-step process, data is approved at one level, and then
 approved at the next higher level. Until it is approved at the next
@@ -177,7 +177,7 @@ implies that she can see all data entered at or below her organisation
 unit level.
 
 ![Hiding of unapproved
-data](resources/images/data_approval/approval_data_hiding.png)
+data](resources/images/data_approval/approval_data_hiding.png){.center}
 
 Using this example, lets consider some scenarios:
 
@@ -266,7 +266,7 @@ attributed to a category option in Partner 1's category option group.
 Whereas data entered by partner 2 is attributed to a category option in
 Partner 2's category option group:
 
-<table>
+<table align="center">
 <caption>Example Category Option Groups</caption>
 <thead>
 <tr class="header">
@@ -295,7 +295,7 @@ facilities. So for example, data can be entered and/or aggregated at the
 following levels for each partner, independently of each other:
 
 ![Example category option
-groups](resources/images/data_approval/approval_partner_example.png)
+groups](resources/images/data_approval/approval_partner_example.png){.center}
 
 > **Tip**
 > 
@@ -311,7 +311,7 @@ You can optionally define approval levels for partner data within any or
 all of these organisation unit levels. For example, you could define any
 or all of the following approval levels:
 
-<table>
+<table align="center">
 <caption>Example Category Option Group Set approval levels</caption>
 <thead>
 <tr class="header">
@@ -351,7 +351,7 @@ could set up category option groups for Agency A, and Agency B, and make
 them both part of a category option group set called Agency. So you
 would have:
 
-<table>
+<table align="center">
 <caption>Example Multiple Category Option Group Sets</caption>
 <thead>
 <tr class="header">
@@ -391,7 +391,7 @@ that agency. Finally, you want to approve data at the country level
 across all agencies. You could do this by defining the following
 approval levels:
 
-<table>
+<table align="center">
 <caption>Example Multiple Category Option Group Set approval levels</caption>
 <thead>
 <tr class="header">

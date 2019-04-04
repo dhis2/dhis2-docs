@@ -43,7 +43,7 @@ Capture** app.
 
 ![](resources/images/tracker_capture/tei_dashboard.png)
 
-You manage a TEI from the TEI's dashboard in the **Tracker Capture**app.
+You manage a TEI from the TEI's dashboard in the **Tracker Capture** app.
 
   - The dashboard consist of widgets. Drag and drop the widgets to place
     them in the order and in the position you want.
@@ -95,6 +95,47 @@ program
 
 5.  Use information about the individual cases to create reports.
 
+## Linking to the Tracker Capture App
+
+<!--DHIS2-SECTION-ID:linking_to_the_tracker_capture_app-->
+
+### Link to a specific program on the "home screen"
+You can share a program selection on the "home screen.
+
+1. Open the **Tracker Capture** app.
+
+2. Selecte the program you want to link to.
+
+3. Copy the URL.
+    
+    * Make sure that the URL contains the "program" parameter.
+
+4. Paste the URL in the sharing method of your choice, for example an
+  e-mail or a message within DHIS2.
+
+  > Note: If the program does not exist in the selected organisation unit (that is stored in the local cache) the system will instead
+  > select the first available program for that organisation unit. If the local cache is empty/clean and the root organisation unit
+  > of the current user does not have the specified program, the system will also here select the first available program for the root
+  > organisation unit.
+
+### Linking to TEI dashboard
+You can share a TEI dashboard via its web address.
+
+1.  Open the **Tracker Capture** app.
+
+2.  Open the dashboard you want to share.
+
+3.  Copy the URL.
+    
+    Make sure that the URL contains "tei", "program" and "ou"
+    (organisation unit) parameters.
+
+4.  Paste the URL in the sharing method of your choice, for example an
+    e-mail or a message within DHIS2.
+    
+    If you're not logged in to DHIS2 when you click the link, you'll be
+    asked to do so and then taken to the dashboard.
+
 ## Create a TEI and enroll it in a program
 
 <!--DHIS2-SECTION-ID:create_and_enroll_tracked_entity_instance-->
@@ -116,7 +157,13 @@ You can create a TEI and enroll that TEI to a program in one operation:
     This makes it possible to capture geometry for either the TEI or the enrollment.
     Supported feature type is Point and Polygon. Please see **How to use geometry**.
 
-6.  If searching for program is configured, a background search will be
+6. If the selected program is configured to display first stage during registation, 
+   all mandatory fields in the stage will have to be filled in. At the end of the stage
+   you will also be asked if you want to complete the stage that you have entered data for.
+   If you select **Yes**, the stage will have the status completed once saved. If you select **No**, 
+   the stage will have the staus active.
+
+7.  If searching for program is configured, a background search will be
     performed on searchable fields to help you prevent registering
     duplicates. If there is any matching TEIs, a blue box will be
     displayed on the right side of the form with the possibility to view
@@ -138,7 +185,12 @@ add new**
     same page. Use this option when you want to register and enroll one
     TEI after another without enter data.
 
-(img integrated search)
+> Note: All mandatory attributes have to be filled in to be able to save. 
+> Mandatory attributes are marked with a red star next to the attribute lable.
+> If the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture"__
+> you will not be required to fill in the mandatory attributes and will 
+> not see the red star next to the attribute lable. Note that super user 
+> that have the __"ALL"__ authority automatically have this authority.
 
 ## Open an existing TEI dashboard
 
@@ -382,6 +434,14 @@ Sometimes it might be nessascary to refer a patient to a different
 5.  Click either **One-time referral** which will only refer TEI for one
     single event or **Move permanently** which will move TEI and all its
     future events permantly to the selected **Organisation Unit**.
+
+### Mandatory data elements in events
+Some data elements in an event might be mandatory (marked with a red star next to the data element lable).
+What this means is that all mandatory data elements must be filled in before the user is allowed to complete the event.
+The exception to this is if the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture".__
+If the user has this authority, the mandatory data elements will not be required to be filled in before saving and
+the red star will not be displayed next to the data element lable. Note that super user that have the __"ALL"__ authority automatically
+have this authority.
 
 ## How to use geometry
 

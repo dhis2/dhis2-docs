@@ -1,3 +1,6 @@
+---
+title: 'DHIS 2 Implementer guide'
+---
 <!--DHIS2-SECTION-ID:index_implementation-->
 
 !INCLUDE "content/common/about-this-guide.md"
@@ -6,8 +9,8 @@
 !INCLUDE "content/implementation/setting-up-a-new-database.md"
 !INCLUDE "content/implementation/deployment-strategies.md"
 !INCLUDE "content/implementation/dhis2-as-data-warehouse.md"
-!INCLUDE "content/implementation/end-user-training.md"
 !INCLUDE "content/implementation/integration-concepts.md"
+!INCLUDE "content/implementation/offline-data-entry.md"
 !INCLUDE "content/implementation/installation.md"
 !INCLUDE "content/implementation/support.md"
 !INCLUDE "content/implementation/organisation-units.md"

@@ -29,54 +29,59 @@
 </blockquote></td>
 </tr>
 <tr class="even">
+<td><p><strong>Maximum number of SQL view records</strong></p></td>
+<td><p>Set the maximum number of records in a SQL view.</p>
+<p>The default value is Unlimited.</p>
+</tr>
+<tr class="odd">
 <td><p><strong>Infrastructural indicators</strong></p></td>
 <td><p>Defines an indicator group where the member indicators should describe data about the organisation units' infrastructure.</p>
 <p>You can view the infrastructural data in the <strong>GIS</strong> app: right-click a facility and click <strong>Show information</strong>.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Infrastructural data elements</strong></p></td>
 <td><p>Defines a data element group where the member data elements should describe data about the organisation units' infrastructure.</p>
 <p>Infrastructural data elements can be population, doctors, beds, Internet connectivity and climate.</p>
 <p>You can view the infrastructural data in the <strong>GIS</strong> app: right-click a facility and click <strong>Show information</strong>.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Infrastructural period type</strong></p></td>
 <td><p>Sets the frequency for which the data elements in the infrastructural data elements group are captured.</p>
 <p>This will typically be yearly. When viewing the infrastructural data you will be able to select the time period of the data source.</p>
 <p>You can view the infrastructural data in the <strong>GIS</strong> app: right-click a facility and click <strong>Show information</strong>.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Default relative period for analysis</strong></p></td>
 <td><p>Setting this value will determine which relative period is selected as the default in the analytics apps.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Feedback recipients</strong></p></td>
 <td><p>Defines a user group where the members will receive all messages sent via the feedback function in the <strong>Dashboard</strong> app.</p>
 <p>This will typically be members of the super user team who are able to support and answer questions coming from end-users.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Max offline organisation unit levels</strong></p></td>
 <td><p>Defines how many levels in the organisation unit hierarchy will be available offline in the organisation unit tree widget.</p>
 <p>Under normal circumstances you can leave this on the lowest level, which is default is the default setting.</p>
 <p>It can be useful to set it to a higher level to reduce initial load time in cases where you have a large number of organisation units, typically more than 30 000.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Data analysis std dev factor</strong></p></td>
 <td><p>Sets the number of standard deviations used in the outlier analysis performed on the captured data in the <strong>Data Entry</strong> app.</p>
 <p>The default value is 2. A high value will catch less outlier values than a low value.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Phone number area code</strong></p></td>
 <td><p>The area code for the area in which your deployment is located.</p>
 <p>Used for sending and receiving SMS. Typically, this is a country code.</p>
 <p><em>+260</em> (country code for Zambia)</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Enable multi-organisation unit forms</strong></p></td>
 <td><p>Enables support to enter data forms for multiple organisation units at the same time in the <strong>Data Entry</strong> app.</p>
 <p>If you've enabled this setting, you can in the <strong>Data Entry</strong> app, click on the parent organisation unit for the children that you want to enter data for, and the data set list will include data sets that are assigned to the children of that parent.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Acceptance required before approval</strong></td>
 <td>When this setting is selected, acceptance of data will be required first before submission to the next approval level is possible.</td>
 </tr>
@@ -104,6 +109,22 @@
 <td><p><strong>Default relative period for analysis</strong></p></td>
 <td><p>Defines the relative period to use by default in analytics app: <strong>Data Visualizer</strong>, <strong>Event Reports</strong>, <strong>Event Visualizer</strong>, <strong>GIS</strong> and <strong>Pivot Table</strong> apps. The relative period will be automatically selected when you open these apps.</p>
 <p>Recommended setting: the most commonly used relative period among your users.</p></td>
+</tr>
+<tr class="even">
+    <td><p><strong>Hide daily periods</strong></p></td>
+    <td><p>Hide daily periods in the analysis tools</p></td>
+</tr>
+<tr class="odd">
+    <td><p><strong>Hide weekly periods</strong></p></td>
+    <td><p>Hide weekly periods in the analysis tools</p></td>
+</tr>
+<tr class="even">
+    <td><p><strong>Hide monthly periods</strong></p></td>
+    <td><p>Hide monthly periods in the analysis tools</p></td>
+</tr>
+<tr class="odd">
+    <td><p><strong>Hide bimonthly periods</strong></p></td>
+    <td><p>Hide bimonthly periods in the analysis tools</p></td>
 </tr>
 <tr class="even">
 <td><strong>Financial year relative start month</strong></td>
@@ -141,6 +162,10 @@
 <td><p><strong>Put analytics in maintenance mode</strong></p></td>
 <td>Places the analytics and web API of DHIS2 in maintenance mode. This means that &quot;503 Service Unavailable&quot; will be returned for all requests.
 <p>This is useful when you need to perform maintenance on the server, for example rebuilding indexes while the server is running in production, in order to reduce load and more efficiently carry out the maintenance.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Skip zero data values in analytics tables</strong></p></td>
+<td><p>Skip zero data values in analytics tables</p></td>
 </tr>
 </tbody>
 </table>

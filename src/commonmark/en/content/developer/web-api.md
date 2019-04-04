@@ -1594,6 +1594,11 @@ enable/disable export of certain types by setting *type=true/false*.
 <td>false/true</td>
 <td>Enabling this will strip the sharing properties from the exported objects. This includes <em>user</em>, <em>publicAccess</em>, <em>userGroupAccesses</em>, <em>userAccesses</em>, and <em>externalAccess</em>.</td>
 </tr>
+<tr class="odd">
+<td>download</td>
+<td>false/true</td>
+<td>Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download.</td>
+</tr>
 </tbody>
 </table>
 
@@ -3592,6 +3597,11 @@ The import process can be customized using a set of import parameters:
 <td>skipExistingCheck</td>
 <td>false | true</td>
 <td>Skip checks for existing data values. Improves performance. Only use for empty databases or when the data values to import do not exist already.</td>
+</tr>
+<tr class="even">
+<td>skipAudit</td>
+<td>false | true</td>
+<td>Skip audit, meaning audit values will not be generated. Improves performance at the cost of ability to audit changes. Requires authority "F_SKIP_DATA_IMPORT_AUDIT".</td>
 </tr>
 <tr class="odd">
 <td>async</td>
@@ -9467,7 +9477,7 @@ listed below.
 
   - html (text/html)
 
-  - html+css
+  - html+css (text/html)
 
   - xls (application/vnd.ms-excel)
 
@@ -10756,6 +10766,80 @@ The response will provide the count and extent in JSON format:
         count: 59
     }
 
+## Org unit analytics
+
+<!--DHIS2-SECTION-ID:webapi_org_unit_analytics-->
+
+The org unit analytics API provides statistics on org units classified by org unit group sets, i.e. counts of org units per org unit group within org unit group sets.
+
+	GET /api/orgUnitAnalytics?ou=<org-unit-id>&ougs=<org-unit-group-set-id>
+
+The API requires at least one organisation unit and at least one organisation unit group set. Multiple org units and group sets can be provided separated by semicolon.
+
+### Request query parameters
+
+The org unit analytics resource lets you specify a range of query parameters:
+
+<table>
+<caption>Org unit analytics query parameters</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 60%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ou</td>
+<td>Org unit identifiers, potentially separated by semicolon.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>ougs</td>
+<td>Org unit group set identifiers, potentially separated by semicolon.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>columns</td>
+<td>Org unit group set identifiers, potentially separated by semicolon. Defines which group sets are rendered as columns in table layout.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+
+The response will contain a column for the parent org unit, columns for each org unit group set part of the request and a column for the count. The statistics include the count of org units which are part of the sub-hierarchy of the org units specified in the request. The response contains a metadata section which specifies the name of each org unit and org unit group part of the response referenced by their identifiers.
+
+The default response is normalized with a single `count` column. The response can be rendered in table layout by specifying at least one org unit group set using the `columns` query parameter.
+
+### Response formats
+
+The org unit analytics endpoint support the following representation formats:
+
+- json (application/json)
+- csv (application/csv)
+- xls (application/vnd.ms-excel)
+- pdf (application/pdf)
+
+### Examples
+
+To fetch org unit analytics for an org unit and org unit group set:
+
+	GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw&ougs=J5jldMd8OHv
+
+To fetch org unit analytics data for two org units and two org unit group sets:
+
+	GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv;Bpx0589u8y0
+
+To fetch org unit analytics data in table mode with one group set rendered as columns:
+
+	GET /api/orgUnitAnalytics?ou=fdc6uOvgoji;jUb8gELQApl;lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv&columns=J5jldMd8OHv
+
 ## Data set report
 
 <!--DHIS2-SECTION-ID:webapi_data_set_report-->
@@ -10764,12 +10848,14 @@ Data set reports can be generated trough the web api using the
 */dataSetReport* resource. This resource generates reports on data set
 and returns the result in the form of a HTML table.
 
-    /api/26/dataSetReport
+    /api/31/dataSetReport
+
+### Request query parameters
 
 The request supports the following parameters:
 
 <table>
-<caption>Accepted parameters of /dataSetReport resource</caption>
+<caption>Data set report query parameters</caption>
 <colgroup>
 <col style="width: 15%" />
 <col style="width: 50%" />
@@ -10787,49 +10873,71 @@ The request supports the following parameters:
 <tbody>
 <tr class="odd">
 <td>ds</td>
-<td>Data set to create the report from</td>
+<td>Data set to create the report from.</td>
 <td>Data set UID</td>
 <td>Yes</td>
 </tr>
 <tr class="even">
 <td>pe</td>
-<td>Period to create the report from</td>
+<td>Period to create the report from.</td>
 <td>ISO String</td>
 <td>Yes</td>
 </tr>
 <tr class="odd">
 <td>ou</td>
-<td>Organisation unit to create the report from</td>
+<td>Organisation unit to create the report from.</td>
 <td>Organisation unit UID</td>
 <td>Yes</td>
 </tr>
 <tr class="even">
-<td>dimension</td>
-<td>Dimensions to be used as filters for the report</td>
+<td>filter</td>
+<td>Filters to be used as filters for the report. Can be repeated any number of times. Follows the analytics API syntax.</td>
 <td>One or more UIDs</td>
 <td>No</td>
 </tr>
 <tr class="odd">
 <td>selectedUnitOnly</td>
-<td>Whether to use captured or aggregated data</td>
+<td>Whether to use captured data only or aggregated data.</td>
 <td>Boolean</td>
 <td>No</td>
 </tr>
 </tbody>
 </table>
 
-The data set report resource accepts GET requests only. An example
-request to retrieve a report for a data set and orgunit for 2015 looks
-like
-    this:
+The data set report resource accepts `GET` requests only. The response content type is `application/json` and returns data in a grid. This endpoint works for all types of data sets, including default, section and custom forms.
 
-    GET /api/dataSetReport?ds=BfMAe6Itzgt&pe=201610&ou=ImspTQPwCqd&selectedUnitOnly=false
+An example request to retrieve a report for a data set and org unit for 2018 looks like this:
+
+    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
+
+To get a data set report with a filter you can use the `filter` parameter. In this case the filter is based on an org unit group set and two org unit groups:
+
+    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&filter=J5jldMd8OHv:RXL3lPSK8oG;tDZVQ1WtwpA
+
+### Response formats
+
+The data set report endpoint supports output in the following formats. You can retrieve a specific endpoint using the file extension or `Accept` HTTP header.
+
+- json (application/json)
+- pdf (application/pdf)
+- xls (application/vnd.ms-excel)
+
+### Custom forms
+
+A dedicated endpoint is available for data sets with custom HTML forms. This endpoint returns the HTML form content with content type `text/html` with data inserted into it. Note that you can use the general data set report endpoint also for data sets with custom forms; however that will return the report in JSON format as a grid. This endpoint only works for data sets with custom HTML forms.
+
+    GET /api/31/dataSetReport/custom
+
+The syntax for this endpoint is otherwise equal to the general data set report endpoint. To retrieve a custom HTML data set report you can issue a request like this:
+
+    GET /api/31/dataSetReport/custom?ds=lyLU2wR22tC&pe=201810&ou=ImspTQPwCqd
+
 
 ## Push Analysis
 
 <!--DHIS2-SECTION-ID:webapi_push_analysis-->
 
-The push analysis api includes endpoints for previewing a push analysis
+The push analysis API includes endpoints for previewing a push analysis
 report for the logged in user and manually triggering the system to
 generate and send push analysis reports, in addition to the normal CRUD
 operations. When using the create and update endpoints for push
@@ -11048,7 +11156,7 @@ as shown above. If no snapshots are saved in the specified period, an
 empty list is sent back. The parameter called interval specifies what
 type of aggregation will be done.
 
-API query that creates a query for a yearly
+API query that creates a query for a monthly
     aggregation:
 
     GET /api/24/dataStatistics?startDate=2014-01-02&endDate=2016-01-01&interval=MONTH
@@ -11402,79 +11510,90 @@ process.
 
 <!--DHIS2-SECTION-ID:webapi_maintenance-->
 
-To perform maintenance you can interact with the *maintenance* resource.
-You should use *POST* or *PUT* as method for requests. The following
-requests are available.
+To perform maintenance you can interact with the *maintenance* resource. You should use *POST* or *PUT* as method for requests. The following methods are available.
 
-Analytics tables clear will drop all analytics tables:
+Analytics tables clear will drop all analytics tables.
 
-    /api/26/maintenance/analyticsTablesClear
+    POST PUT /api/26/maintenance/analyticsTablesClear
+
+Analytics table analyze will collects statistics about the contents of analytics tables in the database.
+
+	POST PUT /api/26/maintenance/analyticsTablesAnalyze
 
 Expired invitations clear will remove all user account invitations which
-have expired:
+have expired.
 
-    /api/26/maintenance/expiredInvitationsClear
+    POST PUT /api/26/maintenance/expiredInvitationsClear
 
 Period pruning will remove periods which are not linked to any data
-values:
+values.
 
-    /api/26/maintenance/periodPruning
+    POST PUT /api/26/maintenance/periodPruning
 
 Zero data value removal will delete zero data values linked to data
 elements where zero data is defined as not significant:
 
-    /api/26/maintenance/zeroDataValueRemoval
+    POST PUT /api/26/maintenance/zeroDataValueRemoval
 
-Drop SQL views will drop all SQL views in the database. Note that it
-will not delete the DHIS2 SQL views.
+Soft deleted data value removal will permanently delete soft deleted data values.
 
-    /api/26/maintenance/sqlViewsDrop
+	POST PUT /api/26/maintenance/softDeletedDataValueRemoval
+
+Soft deleted program stage instance removal will permanently delete soft deleted events.
+
+	POST PUT /api/26/maintenance/softDeletedProgramStageInstanceRemoval
+
+Soft deleted program instance removal will permanently delete soft deleted enrollments.
+
+	POST PUT /api/26/maintenance/softDeletedProgramInstanceRemoval
+
+Soft deleted tracked entity instance removal will permanently delete soft deleted tracked entity instances.
+
+	POST PUT /api/26/maintenance/softDeletedTrackedEntityInstanceRemoval
+
+Drop SQL views will drop all SQL views in the database. Note that it will not delete the DHIS 2 SQL view entities.
+
+    POST PUT /api/26/maintenance/sqlViewsDrop
 
 Create SQL views will recreate all SQL views in the database.
 
-    /api/26/maintenance/sqlViewsCreate
+    POST PUT /api/26/maintenance/sqlViewsCreate
 
-Category option combo update will remove obsolete and generate missing
-category option combos for all category combinations:
+Category option combo update will remove obsolete and generate missing category option combos for all category combinations.
 
-    /api/26/maintenance/categoryOptionComboUpdate
+    POST PUT /api/26/maintenance/categoryOptionComboUpdate
 
-It is also possible to update category option combos for a single category combo using the following endpoint:
+It is also possible to update category option combos for a single category combo using the following endpoint.
 
-    /api/maintenance/categoryOptionComboUpdate/categoryCombo/<category-combo-uid>
+    POST PUT /api/maintenance/categoryOptionComboUpdate/categoryCombo/<category-combo-uid>
 
-Cache clearing will clear the application Hibernate cache and the
-analytics partition caches:
+Cache clearing will clear the application Hibernate cache and the analytics partition caches.
 
-    /api/26/maintenance/cacheClear
+    POST PUT /api/26/maintenance/cacheClear
 
-Re-generate organisation unit path property (can be useful if you
-imported org units with SQL):
+Org unit paths update will re-generate the organisation unit path property. This can be useful e.g. if you imported org units with SQL.
 
-    /api/26/maintenance/ouPathsUpdate
+    POST PUT /api/26/maintenance/ouPathsUpdate
 
-Data pruning will remove complete data set registrations, data
-approvals, data value audits and data values, in this case for an
-organisation unit.
+Data pruning will remove complete data set registrations, data approvals, data value audits and data values, in this case for an organisation unit.
 
-    /api/26/maintenance/dataPruning/organisationUnits/<org-unit-id>
+    POST PUT /api/26/maintenance/dataPruning/organisationUnits/<org-unit-id>
 
-Data pruning for data elements, which will remove data value audits and
-data values.
+Data pruning for data elements, which will remove data value audits and data values.
 
-    /api/26/maintenance/dataPruning/dataElement/<data-element-uid>
+    POST PUT /api/26/maintenance/dataPruning/dataElement/<data-element-uid>
 
-Metadata validation will apply all metadata validation rules and return
-the result of the operation:
+Metadata validation will apply all metadata validation rules and return the result of the operation.
 
-    /api/26/metadataValidation
+    POST PUT /api/26/metadataValidation
 
-Maintenance operations are supported in a batch style with a POST
-request to the api/maintenance resource where the operations are
-supplied as query
-    parameters:
+App reload will refresh the DHIS 2 managed cache of installed apps by reading from the file system.
 
-    /api/26/maintenance?analyticsTablesClear=true&expiredInvitationsClear=true&periodPruning=true
+	POST PUT /api/26/appReload
+
+Maintenance operations are supported in a batch style with a POST request to the api/maintenance resource where the operations are supplied as query parameters:
+
+    POST PUT /api/26/maintenance?analyticsTablesClear=true&expiredInvitationsClear=true&periodPruning=true
       &zeroDataValueRemoval=true&sqlViewsDrop=true&sqlViewsCreate=true&categoryOptionComboUpdate=true
       &cacheClear=true&ouPathsUpdate=true
 
@@ -12283,12 +12402,20 @@ GET method.
 
     GET /api/26/gateways/{uid}
 
+New gateway configuraitons can be added using POST. POST api requires type request parameter and currently its value can have either one *http,bulksms,clickatell*. First added gateway will be set to default. Only one gateway is allowed to be default at one time. Default gateway can only be changed through its api. If default gateway is removed then the next one the list will automatically becomes default.
+
+	POST /api/26/gateways?type=http
+	
+Configuration can be updated with by providing uid and gateway configurations as mentioned below
+	
+	PUT /api/26/gateways/{uids}
+
 Configurations can be removed for specific gateway type using DELETE
 method.
 
     DELETE /api/26/gateways/{uid}
 
-Default gateway can be retrieved with the GET method.
+Default gateway can be retrieved and updated.
 
     GET /api/26/gateways/default
 
@@ -12311,7 +12438,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
       "username": "clickatelluser",
       "password": "abc123",
       "authtoken": "XXXXXXXXXXXXXXXXXXXX",
-      "urlTemplate": "https://platform.clickatell.com/messages",
+      "urlTemplate": "https://platform.clickatell.com/messages"
     }
 
 *Bulksms*
@@ -12319,7 +12446,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
     {
       "name": "bulkSMS",
       "username": "bulkuser",
-      "password": "abc123",
+      "password": "abc123"
     }
 
 *GenericHttp*
@@ -12329,6 +12456,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
       "messageParameter": "message",
       "recipientParameter": "msisdn",
       "urlTemplate": "http://localhost:template",
+      "useGet":"true",
       "parameters": [
         {
           "key": "username",
@@ -12340,49 +12468,13 @@ case of GenericHttpGateway to send one or more parameter as http header.
           "key": "password",
           "value": "XXX",
           "classified": "true",
-                "header": "false"
+        		"header": "false"
         }
       ]
     }
 
-HTTP.OK will be returned if configurations are saved successfully. In
-all other cases HTTP.ERROR will be returned.
-
-The various gateway configurations can be instantiated using the
-endpoints listed below.
-
-<table>
-<caption>Gateway api end points</caption>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Gatway Type</th>
-<th>Method</th>
-<th>API End Points</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Clickatell</td>
-<td>POST/PUT</td>
-<td>/api/26/gateways/clickatell</td>
-</tr>
-<tr class="even">
-<td>Bulksms</td>
-<td>POST/PUT</td>
-<td>/api/26/gateways/bulksms</td>
-</tr>
-<tr class="odd">
-<td>Generichttp</td>
-<td>POST/PUT</td>
-<td>/api/26/gateways/generichttp</td>
-</tr>
-</tbody>
-</table>
+In generic http gateway any number of parameters can be added. Header can be set to true if any of them is required to be sent in http header.
+HTTP.OK will be returned if configurations are saved successfully otherwise *Error*
 
 ## SMS Commands
 
@@ -13053,22 +13145,19 @@ Gives the data approval levels which are relevant to the current user:
 You can manipulate system settings by interacting with the
 *systemSettings* resource. A system setting is a simple key-value pair,
 where both the key and the value are plain text strings. To save or
-update a system setting you can make a *POST* request to the following
-URL:
+update a system setting you can make a *POST* request to the following URL:
 
     /api/26/systemSettings/my-key?value=my-val
 
 Alternatively, you can submit the setting value as the request body,
 where content type is set to "text/plain". As an example, you can use
-curl like
-    this:
+curl like this:
 
     curl "play.dhis2.org/demo/api/26/systemSettings/my-key" -d "My long value"
       -H "Content-Type: text/plain" -u admin:district -v
 
 To set system settings in bulk you can send a JSON object with a
-property and value for each system setting key-value pair using a POST
-request:
+property and value for each system setting key-value pair using a POST request:
 
 ```
 {
@@ -13089,11 +13178,10 @@ Alternatively, you can specify the key as a query parameter:
     /api/26/systemSettings?key=my-key
 
 You can retrieve specific system settings as JSON by repeating the key
-query
-    parameter:
+query parameter:
 
     curl "play.dhis2.org/demo/api/26/systemSettings?key=keyApplicationNotification&key=keyApplicationIntro"
-      -H "Content-Type: application/json" -u admin:district -v
+      -u admin:district -v
 
 You can retrieve all system settings with a GET request:
 
@@ -13276,6 +13364,10 @@ The available system settings are listed below.
 <tr class="even">
 <td>keyRespectMetaDataStartEndDatesInAnalyticsTableExport</td>
 <td>When &quot;true&quot;, analytics will skip data not within category option's start and end dates. Default: &quot;false&quot;</td>
+</tr>
+<tr class="even">
+<td>keySkipZeroValuesInAnalyticsTableExport</td>
+<td>When &quot;true&quot;, analytics will skip zero data values for sum aggregation type data elements, ignoring the "zeroIsSignificant" setting for data elements. Default: &quot;false&quot;</td>
 </tr>
 <tr class="odd">
 <td>keyCacheAnalyticsDataYearThreshold</td>
@@ -13594,6 +13686,16 @@ To get a list of organisation units you can use the following resource.
 <td>maxLevel</td>
 <td>integer</td>
 <td>Organisation units at the given max level or levels higher up in the hierarchy.</td>
+</tr>
+<tr class="odd">
+<td>withinUserHierarchy</td>
+<td>false | true</td>
+<td>Limits search and retrieval to organisation units that are within the users data capture scope.</td>
+</tr>
+<tr class="even">
+<td>withinUserSearchHierarchy</td>
+<td>false | true</td>
+<td>Limits search and retrieval to organisation units that are within the current users search scope. Note: "withinUserHierarchy", if true, takes higher precedence.</td>
 </tr>
 <tr class="odd">
 <td>memberCollection</td>
@@ -16171,7 +16273,7 @@ i.e. *?fields=program,status*.
 <tr class="odd">
 <td>pageSize</td>
 <td>integer</td>
-<td>falase</td>
+<td>false</td>
 <td>Number of items in each page</td>
 </tr>
 <tr class="even">
@@ -16509,9 +16611,9 @@ The import process can be customized using a set of import parameters:
 <td>Indicates whether to send notifications for completed events.</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
+<td>skipFirst</td>
+<td>true | false</td>
+<td>Relevant for CSV import only. Indicates whether CSV file contains a header row which should be skipped.</td>
 </tr>
 <tr class="even">
 <td>importReportMode</td>

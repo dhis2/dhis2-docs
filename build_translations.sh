@@ -44,8 +44,8 @@ mkdir -p $localisation_root
 # include helper functions
 . "$SCRIPT_DIR/lib/doc_functions.sh"
 
-# generate function called for each document
-generate(){
+# translate function called for each document
+translate(){
     name=$1
     subdir=$2
     selection=$3
@@ -58,24 +58,26 @@ generate(){
     echo "| Processing: $name"
     echo "+--------------------------------------------------------"
 
+    # we need to assemble the source documents to consolidate the resources
     assemble $name
-    update_localizations $name
 
-    # go to the temp directory and build the documents - put output in target directory
-    build_docs $name $subdir $selection en en_UK
-
+    pull_translations $name
+    # build localised versions
+    if [ ${LOCALISE} -eq 1  ]; then
+        build_docs $name $subdir $selection fr fr_FR
+    fi
 }
 
 
 # comment as you wish
 # format:
-#$> generate <doc name> <chapters subfolder> ["html","pdf","both"]
-generate "dhis2_android_user_man" "android"
-generate "dhis2_developer_manual" "developer"
-generate "dhis2_user_manual_en" "user"
-generate "dhis2_end_user_manual" "end-user"
-generate "dhis2_implementation_guide" "implementer"
-generate "user_stories_book" "user-stories"
-generate "dhis2_draft_chapters" "draft"
+#$> translate <doc name> <chapters subfolder> ["html","pdf","both"]
+translate "dhis2_android_user_man" "android"
+translate "dhis2_developer_manual" "developer"
+translate "dhis2_user_manual_en" "user"
+translate "dhis2_end_user_manual" "end-user"
+translate "dhis2_implementation_guide" "implementer"
+translate "user_stories_book" "user-stories"
+translate "dhis2_draft_chapters" "draft"
 
 rm -rf $tmp

@@ -57,13 +57,23 @@ You may customize which columns are shown in the list for the current object. Th
 ![](resources/images/maintainence/configurable_columns_dialog.png)
 
 1. Click the ![settings-icon](resources/images/maintainence/icon_settings.png) -icon to the top right of the list of objects you want to configure.
-2. A dialog will appear, with the default columns selected.
+2. A dropdown-menu will appear, select **Manage columns**.
+3. A dialog will appear, with the default columns selected.
 3. Click any column-name in the list of **Available columns** to add them to the list of selected columns.
 4. You may reorder the selected columns by drag-and-dropping the ![reorder-icon](resources/images/maintainence/icon_reorder.png) -icon.
 5. You may also remove any column from the view by clicking the X-icon next to the name.
 6. Click **Save** once you are satisified with your changes.
 
 You may easily reset to the default values by clicking the **Reset to default** button.
+
+##### Download metadata
+
+You can download the metadata for the object you are currently viewing. The metadata download will respect any filters you have active for the list.
+
+1. Click the ![settings-icon](resources/images/maintainence/icon_settings.png) -icon to the top right of the list of objects you want to configure.
+2. A dropdown-menu will appear, select **Download**.
+3. A dialog will appear, where you can select the desired format and compression.
+4. **With sharing** can be selected to include sharing-data for the metadata.
 
 ## Manage categories
 
@@ -4433,21 +4443,21 @@ four prior weeks immediately preceding the predicted value week. So the
 predicted value for week 9 would use samples from weeks 5, 6, 7, and 8:
 
 
-![](resources/images/maintainence/predictor_sequential.png)
+![](resources/images/maintainence/predictor_sequential.png){.center width=50% }
 
 If a predictor's period type is *Monthly* and the *Sequential sample
 count* is 4, this means to sample four prior months immediately
 preceding the predicted value month. So the predicted value for May
 would use samples from weeks January, February, March, and April:
 
-![](resources/images/maintainence/predictor_sequential_month.png)
+![](resources/images/maintainence/predictor_sequential_month.png){.center width=51% }
 
 The *Sequential sample count* can be greater than the number of periods
 in a year. For example, if you want to sample the 24 months immediately
 preceding the predicted value month, set the *Sequential sample count*
 to 24:
 
-![](resources/images/maintainence/predictor_24_months.png)
+![](resources/images/maintainence/predictor_24_months.png){.center width=57% }
 
 #### Sequential skip count
 
@@ -4466,7 +4476,7 @@ predicted period will be skipped, resulting in only two periods being
 sampled:
 
 
-![](resources/images/maintainence/predictor_skip.png)
+![](resources/images/maintainence/predictor_skip.png){.center width=50% }
 
 #### Annual sample count
 
@@ -4482,7 +4492,7 @@ zero), then samples would be collected from periods in the immediately
 preceding two years, at the same time of year.
 
 
-![](resources/images/maintainence/predictor_annual.png)
+![](resources/images/maintainence/predictor_annual.png){.center width=53% }
 
 #### Sequential and annual sample counts together
 
@@ -4502,7 +4512,7 @@ will be collected in the prior 2 years for the corresponding period, as
 well as 4 periods on either side:
 
 
-![](resources/images/maintainence/predictor_sequential_annual.png)
+![](resources/images/maintainence/predictor_sequential_annual.png){.center width=66% }
 
 #### Sequential, annual, and skip sample counts together
 
@@ -4517,14 +4527,14 @@ the predicted value period period will be skipped, but the two periods
 before that will be sampled:
 
 
-![](resources/images/maintainence/predictor_skip_2_weeks.png)
+![](resources/images/maintainence/predictor_skip_2_weeks.png){.center width=66% }
 
 If the *Sequential skip count* is equal to or greater than the
 *Sequential sample count*, then no samples will be collected for the
 year containing the predicted value period; only periods from past years
 will be sampled:
 
-![](resources/images/maintainence/predictor_skip_current_year.png)
+![](resources/images/maintainence/predictor_skip_current_year.png){.center width=66% }
 
 #### Sample skip test
 
@@ -4539,7 +4549,7 @@ of a non-outbreak baseline expected value.
 
 The *Sample skip test* is an expression that should return a value of
 true or false, to indicate whether or not the period should be skipped.
-It can be an expression that tests any values in the previous period.
+It can be an expression that tests any data values in the previous period.
 For example, it could test for a data value that was explicitly entered
 to indicate that a previous period should be skipped. Or it could
 compare a previously predicted value for a period with the actual value
@@ -4549,7 +4559,7 @@ Any periods for which the *Sample skip test* is *true* will not be
 sampled. For example:
 
 
-![](resources/images/maintainence/predictor_sample_skip_test.png)
+![](resources/images/maintainence/predictor_sample_skip_test.png){.center width=66% }
 
 ### Create or edit a predictor
 
@@ -5321,8 +5331,8 @@ depending on other view result in an integrity violation error.
 
 ### Creating a new SQL view
 
-To create a new SQL view, click **Apps** \> **Data administration**
-\>**SQL view** and click **Add new**.
+To create a new SQL view, click **Apps** \> **Maintenance**
+\> **Other** \> **SQL View** and click the Add **+** button.
 
 
 ![](resources/images/maintainence/create_sql_view.PNG)
@@ -5330,7 +5340,7 @@ To create a new SQL view, click **Apps** \> **Data administration**
 The "Name" attribute of the SQL view will be used to determine the name
 of the table that DHIS2 will create when the view is materialized by the
 user. The "Description" attribute allows one to provide some descriptive
-text about what the SQL view actually does. Finally, the "SQL statement"
+text about what the SQL view actually does. Finally, the "SQL query"
 should contain the SQL view definition. Only SQL "SELECT" statements are
 allowed and certain sensitive tables (i.e. user information) are not
 accessible Press "Save" to store the SQL view definition.

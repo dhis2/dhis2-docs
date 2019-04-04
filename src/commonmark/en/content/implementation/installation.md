@@ -195,7 +195,7 @@ is optional in terms of getting DHIS2 to run. PostgreSQL is configured
 and tuned through the *postgresql.conf* file which can be edited like
 this:
 
-    sudo nano /etc/postgresql/9.5/main/postgresql.conf
+    sudo nano /etc/postgresql/10/main/postgresql.conf
 
 and set the following properties:
 
@@ -261,6 +261,11 @@ many write operations can be executed within a single flush to disk.
 	random_page_cost = 1.1
 
 *SSD only.* Sets the query planner's estimate of the cost of a non-sequentially-fetched disk page. A low value will cause the system to prefer index scans over sequential scans. A low value makes sense for databases running on SSDs or being heavily cached in memory. The default value is 4.0 which is reasonable for traditional disks.
+
+    max_locks_per_transaction = 96
+
+Specifies the average number of object locks allocated for each transaction. This is set mainly to allow upgrade routines which touch a large number of tables to complete.
+
 
 Restart PostgreSQL by invoking `sudo /etc/init.d/postgresql restart`
 
@@ -348,14 +353,14 @@ by installing this package:
 To install the Tomcat servlet container we will utilize the Tomcat user
 package by invoking:
 
-    sudo apt-get install tomcat7-user
+    sudo apt-get install tomcat8-user
 
 This package lets us easily create a new Tomcat instance. The instance
 will be created in the current directory. An appropriate location is the
 home directory of the dhis user:
 
     cd /home/dhis/
-    sudo tomcat7-instance-create tomcat-dhis
+    sudo tomcat8-instance-create tomcat-dhis
     sudo chown -R test:test test-dhis/
 
 This will create an instance in a directory called *tomcat-dhis*. Note
@@ -368,7 +373,7 @@ the second will dedicate memory to Tomcat and the third will set the
 location for where DHIS2 will search for the *dhis.conf* configuration
 file. Please check that the path the Java binaries are correct as they
 might vary from system to system, e.g. on AMD systems you might see
-*/java-7-openjdk-amd64* Note that you should adjust this to your
+*/java-8-openjdk-amd64* Note that you should adjust this to your
 environment:
 
     export JAVA_HOME='/usr/lib/jvm/java-8-oracle/'
@@ -388,11 +393,24 @@ UTF-8 encoding of request data is needed, make sure that the
       URIEncoding="UTF-8" />
 
 The next step is to download the DHIS2 WAR file and place it into the
-webapps directory of Tomcat. You can download the DHIS2 version 2.23 WAR
-release like this (replace 2.23 with your preferred version if
+webapps directory of Tomcat. You can download the DHIS2 version 2.30 WAR
+release like this (replace 2.30 with your preferred version if
 necessary):
 
-    wget https://www.dhis2.org/download/releases/2.26/dhis.war
+```
+    wget https://releases.dhis2.org/2.30/dhis.war
+```
+
+> **Note**
+>
+>Alternatively, for patch releases, the folder structure is based on the patch
+>release ID in a subfolder under the main release. For example, you can download
+>the DHIS2 version 2.31.1 WAR release like this (replace 2.31 with your
+>preferred version, and 2.31.1 with you preferred patch, if necessary):
+>
+>```
+>    wget https://releases.dhis2.org/2.31/2.31.1/dhis.war
+>```
 
 Move the WAR file into the Tomcat webapps directory. We want to call the
 WAR file ROOT.war in order to make it available at localhost directly
@@ -821,53 +839,60 @@ ensure that their caches are kept in sync.
 In a cluster setup, a *Redis* instance is required and will handle
 shared user sessions, application cache and cluster node leadership.
 
-For optimum performance you should enable *Redis Keyspace events* for generic commands and expired events. If you are using a cloud platform managed Redis server, like AWS ElastiCache for Redis or Azure Cache for Redis, you will have to enable keyspace event notifications using the respective cloud interface. If you are setting up a standalone Redis server, enabling keyspace event notifications can be done in the *redis.conf* file by adding/uncommenting the following line:
-
+For optimum performance, *Redis Keyspace events* for _generic commands_ and _expired events_ need to be enabled in the Redis Server. If you are using a cloud platform-managed Redis server (like AWS ElastiCache for Redis or Azure Cache for Redis) you will have to enable keyspace event notifications using the respective cloud interfaces. If you are setting up a standalone Redis server, enabling keyspace event notifications can be done in the *redis.conf* file by adding or uncommenting the following line:
 ```
 notify-keyspace-events Egx
 ```
 
-DHIS 2 will connect to Redis if the *redis.enabled* configuration
+DHIS2 will connect to Redis if the *redis.enabled* configuration
 property in *dhis.conf* is set to *true* along with the following four
 properties:
 
 1.  *redis.host*: Specifies where the redis server is running. Defaults
-    to *localhost*.
+    to *localhost*. Mandatory.
 
 2.  *redis.port*: Specifies the port in which the redis server is
-    listening. Defaults to *6379*.
+    listening. Defaults to *6379*. Optional.
 
-3.  *redis.password*: Specifies the authentication password.
+3.  *redis.password*: Specifies the authentication password. If a password is not required it can be left blank.
 
-4.  *redis.use.ssl*: Specifies whether the Redis server has SSL enabled.
+4.  *redis.use.ssl*: Specifies whether the Redis server has SSL enabled. Defaults to false. Optional.
     Defaults to *false*.
 
-Whenever Redis is enabled, DHIS2 will automatically assign one of the running instances as the leader of the cluster. The leader instance will be used to execute jobs or scheduled tasks that should be run exclusively by one instance. Optionally, you can configure the *leader.time.to.live.minutes* property in *dhis.conf* to define how frequently the leader election needs to occur. It also gives an indication of how long it would take for another instance to take over as leader after the previous leader was lost. The default value is 2 minutes. Note that assigning a leader in the cluster is only done if Redis is enabled.
-
-An example snippet of the *dhis.conf*
+When Redis is enabled, DHIS2 will automatically assign one of the
+running instances as the leader of the cluster. The leader instance will
+be used to execute jobs or scheduled tasks that should be run
+exclusively by one instance. Optionally you can configure the
+*leader.time.to.live.minutes* property in *dhis.conf* to set up how
+frequently the leader election needs to occur. It also gives an
+indication of how long it would take for another instance to take over
+as the leader after the previous leader has shutdown/crashed. The
+default value is 2 minutes. Note that assigning a leader in the cluster
+is only done if Redis is enabled. An example snippet of the *dhis.conf*
 configuration file with Redis enabled and leader election time
 configured is shown below.
 
 ``` 
 # Redis Configuration
 
-# Mandatory for enabling Redis
 redis.enabled = true
 
 redis.host = 193.158.100.111
 
 redis.port = 6379
 
-redis.password = yourpassword
+redis.password = <your password>
 
-# Optional, defaults to false
 redis.use.ssl = false
 
 # Optional, defaults to 2 minutes
-leader.time.to.live.minutes = 4
+leader.time.to.live.minutes=4
+ 
 ```
 
 ### Load balancing
+
+<!--DHIS2-SECTION-ID:install_load_balancing-->
 
 With a cluster of Tomcat instances set up, a common approach for routing
 incoming web requests to the backend instances participating in the
@@ -884,9 +909,10 @@ element in the *proxy* location block.
 ``` 
 http {
 
-  # Upstream element
+  # Upstream element with sticky sessions
 
   upstream dhis_cluster {
+    ip_hash;
     server 193.157.199.131:8080;
     server 193.157.199.132:8080;
   }
@@ -902,6 +928,12 @@ http {
   }
 }  
 ```
+
+DHIS 2 keeps server-side state for user sessions to a limited degree.
+Using "sticky sessions" is a simple approach to avoid replicating the
+server session state by routing requests from the same client to the
+same server. The *ip\_hash* directive in the upstream element ensures
+this.
 
 Note that several instructions have been omitted for brevity in the
 above example. Consult the reverse proxy section for a detailed
@@ -1050,7 +1082,7 @@ for HTTP 1.1 like this:
 
     <Connector address="localhost" protocol="HTTP/1.1" ... >
 
-### Enabling SSL on nginx
+### Enabling SSL with nginx
 
 <!--DHIS2-SECTION-ID:install_enabling_ssl_on_nginx-->
 
@@ -1152,7 +1184,7 @@ add two other parameters to the Connector in tomcat's server.xml file:
 
     <Connector scheme="https" proxyPort="443" ... >
 
-### Enabling caching and SSL on nginx
+### Enabling caching and SSL with nginx
 
 <!--DHIS2-SECTION-ID:install_enabling_caching_ssl_nginx-->
 
@@ -1233,6 +1265,41 @@ will create this directory automatically.
 > guessed and reports retrieved from the cache by unauthorized users.
 > Hence, if you capture sensitive information, setting up a server side
 > cache is not recommended.
+
+### Rate limiting with nginx
+
+<!--DHIS2-SECTION-ID:install_rate_limiting-->
+
+Certain web API calls in DHIS 2, like the `analytics` APIs, are compute intensive. As a result it is favorable to rate limit these APIs in order to allow all users of the system to utilize a fair share of the server resources. Rate limiting can be achieved with `nginx`. There are numerous approaches to achieving rate limiting and this is intended to document the nginx-based approach.
+
+The below nginx configuration will rate limit the `analytics` web API, and has the following elements at the *http* and *location* block level (the configuration is shortened for brevity):
+
+````
+http {
+  ..
+  limit_req_zone $binary_remote_addr zone=limit_analytics:10m rate=5r/s;
+
+  server {
+    ..
+        
+    location ~ ^/api/(\d+/)?analytics(.*)$ {
+      limit_req    zone=limit_analytics burst=20;
+      proxy_pass   http://localhost:8080/api/$1analytics$2$is_args$args;
+      ..
+    }
+  }
+}
+````
+
+The various elements of the configuration can be described as:
+
+- *limit_req_zone $binary_remote_addr*: Rate limiting is done per request IP.
+- *zone=limit_analytics:20m*: A rate limit zone for the analytics API which can hold up to 10 MB of request IP addresses.
+- *rate=20r/s*: Each IP is granted 5 requests per second.
+- *location ~ ^/api/(\d+/)?analytics(.\*)$*: Requests for the analytics API endpoint are rate limited.
+- *burst=20*: Bursts of up to 20 requests will be queued and serviced at a later point; additional requests will lead to a `503`.
+
+For a full explanation please consult the [nginx documentation](https://www.nginx.com/blog/rate-limiting-nginx/).
 
 ### Additional resources on SSL
 
@@ -1535,41 +1602,40 @@ viable starting point for your own configuration
 
 <!--DHIS2-SECTION-ID:install_application_logging-->
 
-The DHIS2 application log output is directed to multiple files and
-locations. First, log output is sent to standard output. The Tomcat
-servlet container usually outputs standard output to a file under
-"logs":
+This section covers application logging in DHIS 2.
+
+### Log files
+
+The DHIS2 application log output is directed to multiple files and locations. First, log output is sent to standard output. The Tomcat servlet container usually outputs standard output to a file under "logs":
 
     <tomcat-dir>/logs/catalina.out
 
-Second, log output is written to a "logs" directory under the DHIS2 home
-directory as defined by the the DHIS2\_HOME environment variables. There
-is a main log file for all output, and separate log files for various
-background processes. The main file includes the background process logs
-as well. The log files are capped at 50 Mb and log content is
-continuously appended.
+Second, log output is written to a "logs" directory under the DHIS2 home directory as defined by the the DHIS2\_HOME environment variables. There is a main log file for all output, and separate log files for various
+background processes. The main file includes the background process logs as well. The log files are capped at 50 Mb and log content is continuously appended.
 
-    <DHIS2_HOME>/logs/dhis.log
-    
+    <DHIS2_HOME>/logs/dhis.log    
     <DHIS2_HOME>/logs/dhis-analytics-table.log
-    
     <DHIS2_HOME>/logs/dhis-data-exchange.log
-    
     <DHIS2_HOME>/logs/dhis-data-sync.log
 
-In order to override the default logging you can specify a Java system
-property with the name *log4j.configuration* and a value pointing to the
-Log4j configuration file on the classpath. If you want to point to a
-file on the file system (i.e. outside Tomcat) you can use the *file*
-prefix e.g. like this:
+### Log configuration
+
+In order to override the default log configuration you can specify a Java system property with the name *log4j.configuration* and a value pointing to the Log4j configuration file on the classpath. If you want to point to a
+file on the file system (i.e. outside Tomcat) you can use the *file* prefix e.g. like this:
 
     -Dlog4j.configuration=file:/home/dhis/config/log4j.properties
 
-Java system properties can be set e.g. through the *JAVA\_OPTS*
-environment variable.
+Java system properties can be set e.g. through the *JAVA\_OPTS* environment variable or in the tomcat startup script.
 
-DHIS2 will eventually phase out logging to standard out / catalina.out
-and as a result it is recommended to rely on the logs under DHIS2\_HOME.
+A second approach to overriding the log configuration is to specify logging properties in the *dhis.conf* configuration file. The supported properties are:
+
+	# Max size for log files, default is '100MB'
+	logging.file.max_size = 250MB
+	
+	# Max number of rolling log archive files, default is 0
+	logging.file.max_archives = 2
+
+DHIS2 will eventually phase out logging to standard out / catalina.out and as a result it is recommended to rely on the logs under DHIS2\_HOME.
 
 ## Working with the PostgreSQL database
 

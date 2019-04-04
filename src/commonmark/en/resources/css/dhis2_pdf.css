@@ -25,12 +25,6 @@ p code {
   white-space: normal;
 }
 
-
-blockquote,
-q {
-  quotes: none;
-}
-
 blockquote:before,
 q:before,
 blockquote:after,
@@ -60,11 +54,17 @@ blockquote p {
   margin: 5px;
 }
 
+.center{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 .Note{
   background-image: url(../images/admon/note.png);
 }
 
-.Tip{
+.Tip, .Truc {
   background-image: url(../images/admon/tip.png);
 }
 
@@ -72,13 +72,21 @@ blockquote p {
   background-image: url(../images/admon/important.png);
 }
 
-.Caution{
+.Caution, .Prudence{
   background-image: url(../images/admon/caution.png);
 }
 
-
-.Warning{
+.Warning, .Attention, .Danger{
   background-image: url(../images/admon/warning.png);
+}
+
+.thanks{
+  border:1px solid #ddd;
+  padding:0 1em 0;
+  font-family: 'Rubik';
+  position: absolute;
+  bottom:10px;
+  left:0;
 }
 
 caption {
@@ -91,13 +99,15 @@ caption {
 
 a {
   color: #07c;
-  cursor: pointer;
   text-decoration: underline;
 }
 
 nav a {
   color: #07c;
-  cursor: pointer;
+  text-decoration: none;
+}
+
+.thanks a {
   text-decoration: none;
 }
 
@@ -139,13 +149,50 @@ h5 {
   font-size: 90%;
 }
 
+.headerDiv {
+  left:0;
+  top:0;
+  width:100%;
+  margin-left:-1em;
+}
+
 h1.title {
-  font-size: 200%;
+  font-size: 300%;
   font-weight: bold;
-  padding-top: 0.2em;
+  padding-top: 1.0em;
   padding-bottom: 0.2em;
+  padding-left:0em;
+  font-family: 'Rubik', sans-serif;
+  line-height: 150%;
+}
+
+h2.subtitle {
+  font-size: 250%;
+  font-weight: normal;
+  padding-top: 1.0em;
+  padding-bottom: 0.2em;
+  padding-left:0px;
+  margin-left:0px;
+  font-family: 'Rubik', sans-serif;
+  line-height: 150%;
+}
+
+.productionDiv {
+  position: absolute;
+  bottom:100px;
+  left: 0px;
+  height:100px;
+  width:100%;
+}
+
+p.productionInfo {
+  font-size: 28px;
+  font-weight: normal;
+  font-family: 'Rubik', sans-serif;
+  color: #393D4D;
   border: none;
 }
+
 
 dt code {
   font-weight: bold;
@@ -177,16 +224,21 @@ table td {
 }
 
 .banner {
-  width: 100%;
-  height: 150px;
-  background-color: #00518b;
+  display:none;
 }
 
-.banner img {
-  width: 300px;
+.coverlogo {
+  width: 84%;
+  height: 60px;
+  position:absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.coverlogo img {
+  width: 180px;
   display: block;
-  margin: auto;
-  padding: 30px;
+  padding: 0px;
 }
 
 .license {
@@ -277,11 +329,11 @@ img {
 }
 
 @page :first {
-  border-top: 0px solid black;
+  border-top: 8px solid #43CBCB;
   border-bottom: 0px solid black;
-  margin: -20px;
-  margin-top: 500px;
-  text-align: center;
+  margin: 60px;
+  margin-top: 120px;
+  padding-left: 0px;
 
   @top-right {
     content: "";
@@ -296,6 +348,7 @@ img {
     content: "";
   }
 }
+
 
 @page :right {
   @bottom-right {

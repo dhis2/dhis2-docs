@@ -63,7 +63,9 @@ def main():
         soup = BeautifulSoup(fp,"html5lib")
 
     root_title = soup.title.string
-    first = chunk(root,root_title,root,root_title,soup)
+    #for ban in soup.body.find_all("div", {'class':'banner'}):
+    #    ban.decompose()
+    first = chunk(root,root_title,root,root_title,soup.body)
     chunks.append(first)
 
     chapter = root_title
@@ -72,7 +74,7 @@ def main():
     for u in soup.find_all('section','level1'):
         # start of a new chapter
         i = u.extract()
-        
+
         second = []
         second.append(i)
         for j in i.find_all('section','level2')[1:]:
@@ -80,7 +82,7 @@ def main():
 
         for s in second:
             # Start of a new section
-            thislevel = s['class'][0] 
+            thislevel = s['class'][0]
             if thislevel == 'level1':
                 chapter = s.h1.get_text()
                 chapter_id = s['id']
@@ -113,7 +115,7 @@ def main():
 
 
             for c in s.find_all('section'):
-                thislevel = c['class'][0] 
+                thislevel = c['class'][0]
                 if thislevel == 'level2':
                     #print("  ",c.h2.get_text(),s['id'],"#",c['id'])
                     toc_entry = toc(2,c.h2.get_text(),s['id'],c['id'])
@@ -192,7 +194,7 @@ def main():
             chunky_soup.select(".chapter")[0].append(chu.content)
 
         chw = open(chu.id,'w')
-        chw.write(chunky_soup.prettify())
+        chw.write(str(chunky_soup))
         chw.close()
 
 
