@@ -12448,6 +12448,21 @@ case of GenericHttpGateway to send one or more parameter as http header.
       "username": "bulkuser",
       "password": "abc123"
     }
+    
+*SMPP Gateway*
+
+    {
+		"name": "smpp gateway2",
+		"systemId": "smppclient1",
+		"host": "localhost",
+		"systemType": "cp",
+		"numberPlanIndicator": "UNKNOWN",
+		"typeOfNumber": "UNKNOWN",
+		"bindType": "BIND_TX",
+		"port": 2775,
+		"password":"password",
+		"compressed": false
+	}
 
 *GenericHttp*
 
