@@ -1209,12 +1209,14 @@ Below table shows the parameters required for configuring gateway.
 <th>BulkSMS Gateway</th>
 <th>Clickatell Gateway</th>
 <th>Generic HTTP Gateway</th>
+<th>SMPP Gateway</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Gateway Name</td>
+<td>Optional</td>
 <td>Optional</td>
 <td>Optional</td>
 <td>Optional</td>
@@ -1225,12 +1227,14 @@ Below table shows the parameters required for configuring gateway.
 <td>Required</td>
 <td>Optional (if token is used)</td>
 <td>Required</td>
+<td>Required</td>
 <td>Used for API authentication</td>
 </tr>
 <tr class="odd">
 <td>Password</td>
 <td>Required</td>
 <td>Optional (if token is used)</td>
+<td>Required</td>
 <td>Required</td>
 <td>Used for API authentication</td>
 </tr>
@@ -1239,6 +1243,7 @@ Below table shows the parameters required for configuring gateway.
 <td>N/A</td>
 <td>Optional (if password is used)</td>
 <td>N/A</td>
+<td>N/A</td>
 <td>Used for API authentication</td>
 </tr>
 <tr class="odd">
@@ -1246,6 +1251,7 @@ Below table shows the parameters required for configuring gateway.
 <td>N/A</td>
 <td>N/A</td>
 <td>Required</td>
+<td>N/A</td>
 <td>Message query parameter. For example http://gateway.com?<em>message</em>=Hi</td>
 </tr>
 <tr class="even">
@@ -1253,12 +1259,14 @@ Below table shows the parameters required for configuring gateway.
 <td>N/A</td>
 <td>N/A</td>
 <td>Required</td>
+<td>N/A</td>
 <td>Recipient query parameter. For example http://gateway.com?<em>phoneNumber</em>=47XXXXX</td>
 </tr>
 <tr class="odd">
 <td>URL Template</td>
 <td>N/A</td>
 <td>N/A</td>
+<td>Required</td>
 <td>Required</td>
 <td>Url Tempalte is only required in case of GenericHttpGateway . For example &quot;http://smsgatewa1.com&quot;</td>
 </tr>
@@ -1267,6 +1275,7 @@ Below table shows the parameters required for configuring gateway.
 <td>N/A</td>
 <td>N/A</td>
 <td>Optional</td>
+<td>N/A</td>
 <td>Header option can be checked to send selected parameter as http header. For example username/password/token can be sent in http header.</td>
 </tr>
 <tr class="odd">
@@ -1274,7 +1283,48 @@ Below table shows the parameters required for configuring gateway.
 <td>N/A</td>
 <td>N/A</td>
 <td>Optional</td>
+<td>N/A</td>
 <td>HTTP POST method is used by default for posting data toward gateway. But in certain cases if HTTP GET method is required for doing so then useGet parameter can be set to true. Default value for useGet is false.</td>
+</tr>
+<tr class="odd">
+<td>systemType</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Required</td>
+<td>SystemType parameter is required for SMPP gateway. Default value is 'cp'</td>
+</tr>
+<tr class="odd">
+<td>typeOfNumber</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Required</td>
+<td>NumberType parameter is required for SMPP gateway. Default value is 'UNKNOWN'. Other possible values are UNKNOWN, INTERNATIONAL, NATIONAL, NETWORK_SPECIFIC, SUBSCRIBER_NUMBER, ALPHANUMERIC and ABBREVIATED</td>
+</tr>
+<tr class="odd">
+<td>numberPlanIndicator</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Required</td>
+<td>NumberPlanIndicator parameter is required for SMPP gateway. Default value is UNKNOWN. Other possible values are UNKNOWN, ISDN, DATA, TELEX, LAND_MOBILE, NATIONAL, PRIVATE, ERMES, INTERNET and WAP</td>
+</tr>
+<tr class="odd">
+<td>bindType</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Required</td>
+<td>BindType parameter is required for SMPP gateway. Default value is TX. Other possible values are BIND_TX, BIND_RX and BIND_TRX</td>
+</tr>
+<tr class="odd">
+<td>compressed</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Optional</td>
+<td>Compressed parameter is optional for SMPP gateway. Default value is false</td>
 </tr>
 </tbody>
 </table>
