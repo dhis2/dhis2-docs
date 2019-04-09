@@ -1167,11 +1167,15 @@ variables:
 </tr>
 <tr>
 <td><p>enrollment_count</p></td>
-<td><p>The count of enrollments (useful in combination with filters).</p></td>
+<td><p>The count of enrollments (useful in combination with filters). Aggregation type for the program indicator must be COUNT. </p></td>
 </tr>
 <tr>
 <td><p>tei_count</p></td>
-<td><p>The count of tracked entity instances (useful in combination with filters).</p></td>
+<td><p>The count of tracked entity instances (useful in combination with filters). Aggregation type for the program indicator must be COUNT.</p></td>
+</tr>
+<tr>
+<td><p>org_unit_count</p></td>
+<td><p>The count of organisation units (useful in combination with filters). Aggregation type for the program indicator must be COUNT.</p></td>
 </tr>
 <tr>
 <td><p>program_stage_name</p></td>

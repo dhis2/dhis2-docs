@@ -194,7 +194,7 @@ def main():
             chunky_soup.select(".chapter")[0].append(chu.content)
 
         chw = open(chu.id,'w')
-        chw.write(chunky_soup.prettify())
+        chw.write(str(chunky_soup))
         chw.close()
 
 
