@@ -10772,6 +10772,508 @@ The response will provide the count and extent in JSON format:
         count: 59
     }
 
+## Enrollment analytics
+
+<!--DHIS2-SECTION-ID:webapi_enrollment_analytics-->
+
+The enrollment analytics API lets you access aggregated event data and query *enrollments with their event data* captured in DHIS2. This resource lets you retrieve data for a program based on program stages and data elements - in addition to tracked entity attributes. When querying event data for a specific programstages within each enrollment, the data element values for each program stage will be returned as one row in the response from the api. If querying a data element in a program stage that is repeatable, the newest data element value will be used for that data element in the api reponse.
+
+### Dimensions and items
+
+<!--DHIS2-SECTION-ID:webapi_enrollment_analytics_dimensions-->
+
+Enrollment dimensions include data elements, attributes, organisation units and periods. The query analytics resource will simply return enrollments matching a set of criteria and does not perform any aggregation.
+
+<table>
+<caption>Enrollment dimensions</caption>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 11%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>Dimension id</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data elements in program stages</td>
+<td>&lt;program stage id&gt;.&lt;data element id&gt;</td>
+<td>Data element identifiers must include the program stage when querying data for enrollments.
+
+    dimension=edqlbukwRfQ.vANAXwtLwcT
+    
+</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>&lt;id&gt;</td>
+<td>Attribute identifiers</td>
+</tr>
+<tr>
+<td>Periods</td>
+<td>pe</td>
+<td>ISO periods and relative periods, see &quot;date and period format&quot;</td>
+</tr>
+<tr>
+<td>Organisation units</td>
+<td>ou</td>
+<td>Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-&lt;level&gt; and OU_GROUP-&lt;group-id&gt;</td>
+</tr>
+</tbody>
+</table>
+
+### Enrollment query analytics
+
+<!--DHIS2-SECTION-ID:webapi_enrollment_query_analytics-->
+
+The *analytics/enrollments/query* resource lets you query for captured enrollments. This resource does not perform any aggregation, rather it lets you query and filter for information about enrollments.
+
+    /api/32/analytics/enrollments/query
+
+You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of data elements in program stages, tracked entity attributes, fixed and relative periods and organisation units. Dimensions can optionally have a query operator and a filter. Enrollment queries should be on the format described below.
+
+    /api/32/analytics/enrollments/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
+      &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
+
+For example, to retrieve enrollments in the from the "Antenatal care" program from January 2019, where the "First name" is picked up from attributes, "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the follou program stage - and only women that has "Cronic conditions" would be icluded, you can use the following query:
+
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd&dimension=w75KJ2mc4zz
+        &dimension=WZbXY0S00lP.de0FEHSIoxh:eq:1&dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD
+        &dimension=edqlbukwRfQ.vANAXwtLwcT&startDate=2019-01-01&endDate=2019-01-31
+
+To retrieve enrollments in the from the "Antenatal care" program from last month(relative to the point in time the query is executed), where the "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the folloup program stage - only including smoking women with hemoglobin less than 20:
+
+    api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+        &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD:eq:1
+        &dimension=edqlbukwRfQ.vANAXwtLwcT:lt:20&dimension=pe:LAST_MONTH
+
+Sorting can be applied to the query for the enrollment and incident dates of the enrollment:
+
+        /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
+        &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
+        &pageSize=10page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+
+Paging can be applied to the query by specifying the page number and the page size parameters. If page number is specified but page size is not, a page size of 50 will be used. If page size is specified but page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
+
+    api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+        &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=pe:LAST_MONTH
+        &dimension=WZbXY0S00lP.sWoqcoByYmD&pageSize=10&page=2
+
+#### Filtering
+
+Filters can be applied to data elements, person attributes and person identifiers. The filtering is done through the query parameter value on the following format:
+
+    &dimension=<item-id>:<operator>:<filter-value>
+
+As an example, you can filter the "Weight" data element for values greater than 2000 and lower than 4000 like this:
+
+    &dimension=WZbXY0S00lP.UXz7xuGCEhU:GT:2000&dimension=WZbXY0S00lP.UXz7xuGCEhU:LT:4000
+
+You can filter the "Age" attribute for multiple, specific ages using the IN operator like this:
+
+    &dimension=qrur9Dvnyt5:IN:18;19;20
+
+You can specify multiple filters for a given item by repeating the operator and filter components, all separated with semi-colons:
+
+    &dimension=qrur9Dvnyt5:GT:5:LT:15
+
+The available operators are listed below.
+
+<table>
+<caption>Filter operators</caption>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EQ</td>
+<td>Equal to</td>
+</tr>
+<tr>
+<td>GT</td>
+<td>Greater than</td>
+</tr>
+<tr>
+<td>GE</td>
+<td>Greater than or equal to</td>
+</tr>
+<tr>
+<td>LT</td>
+<td>Less than</td>
+</tr>
+<tr>
+<td>LE</td>
+<td>Less than or equal to</td>
+</tr>
+<tr>
+<td>NE</td>
+<td>Not equal to</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td>Like (free text match)</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>Equal to one of multiple values separated by &quot;;&quot;</td>
+</tr>
+</tbody>
+</table>
+
+### Request query parameters
+
+<!--DHIS2-SECTION-ID:webapi_enrollment_analytics_query_parameters-->
+
+The analytics enrollment query API let you specify a range of query parameters.
+
+<table>
+<caption>Query parameters for enrollment query enpoint</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 48%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Query parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Options (default first)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>program</td>
+<td>Yes</td>
+<td>Program identifier.</td>
+<td>Any program identifier</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>No</td>
+<td>Start date for enrollments.</td>
+<td>Date in yyyy-MM-dd format</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>No</td>
+<td>End date for enrollments.</td>
+<td>Date in yyyy-MM-dd format</td>
+</tr>
+<tr>
+<td>dimension</td>
+<td>Yes</td>
+<td>Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format &lt;item-id&gt;:&lt;operator&gt;:&lt;filter&gt;. Filter values are case-insensitive.</td>
+<td>Operators can be EQ | GT | GE | LT | LE | NE | LIKE | IN</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>No</td>
+<td>Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format &lt;item-id&gt;:&lt;operator&gt;:&lt;filter&gt;. Filter values are case-insensitive.</td>
+<td></td>
+</tr>
+<tr>
+<td>programStatus</td>
+<td>No</td>
+<td>Specify enrollment status of enrollments to include.</td>
+<td>ACTIVE | COMPLETED | CANCELLED</td>
+</tr>
+<tr>
+<td>relativePeriodDate</td>
+<td>string</td>
+<td>No</td>
+<td>Date identifier e.g: &quot;2016-01-01&quot;. Overrides the start date of the relative period</td>
+</tr>
+<tr>
+<td>ouMode</td>
+<td>No</td>
+<td>The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only.</td>
+<td>DESCENDANTS, CHILDREN, SELECTED</td>
+</tr>
+<tr>
+<td>asc</td>
+<td>No</td>
+<td>Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code.</td>
+<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
+</tr>
+<tr>
+<td>desc</td>
+<td>No</td>
+<td>Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code.</td>
+<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
+</tr>
+<td>hierarchyMeta</td>
+<td>No</td>
+<td>Include names of organisation unit ancestors and hierarchy paths of organisation units in the metadata.</td>
+<td>false | true</td>
+</tr>
+<tr>
+<td>coordinatesOnly</td>
+<td>No</td>
+<td>Whether to only return enrollments which have coordinates.</td>
+<td>false | true</td>
+</tr>
+<tr>
+<td>page</td>
+<td>No</td>
+<td>The page number. Default page is 1.</td>
+<td>Numeric positive value</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>No</td>
+<td>The page size. Default size is 50 items per page.</td>
+<td>Numeric zero or positive value</td>
+</tr>
+</tbody>
+</table>
+
+#### Response formats
+
+The default response representation format is JSON. The requests must be using the HTTP *GET* method. The following response formats are supported.
+
+  - json (application/json)
+  - xml (application/xml)
+  - xls (application/vnd.ms-excel)
+  - csv  (application/csv)
+  - html (text/html)
+  - html+css (text/html)
+
+As an example, to get a response in Excel format you can use a file extension in the request URL like this:
+
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd&dimension=WZbXY0S00lP.de0FEHSIoxh
+        &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
+        &pageSize=10page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+
+The default response JSON format will look similar to this:
+
+    {
+        "headers": [
+            {
+                "name": "pi",
+                "column": "Enrollment",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "tei",
+                "column": "Tracked entity instance",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "enrollmentdate",
+                "column": "Enrollment date",
+                "valueType": "DATE",
+                "type": "java.util.Date",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "incidentdate",
+                "column": "Incident date",
+                "valueType": "DATE",
+                "type": "java.util.Date",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "geometry",
+                "column": "Geometry",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "longitude",
+                "column": "Longitude",
+                "valueType": "NUMBER",
+                "type": "java.lang.Double",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "latitude",
+                "column": "Latitude",
+                "valueType": "NUMBER",
+                "type": "java.lang.Double",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "ouname",
+                "column": "Organisation unit name",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "oucode",
+                "column": "Organisation unit code",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "ou",
+                "column": "Organisation unit",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "de0FEHSIoxh",
+                "column": "WHOMCH Chronic conditions",
+                "valueType": "BOOLEAN",
+                "type": "java.lang.Boolean",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "sWoqcoByYmD",
+                "column": "WHOMCH Smoking",
+                "valueType": "BOOLEAN",
+                "type": "java.lang.Boolean",
+                "hidden": false,
+                "meta": true
+            }
+        ],
+        "metaData": {
+            "pager": {
+                "page": 2,
+                "total": 163,
+                "pageSize": 4,
+                "pageCount": 41
+            },
+            "items": {
+                "ImspTQPwCqd": {
+                    "name": "Sierra Leone"
+                },
+                "PFDfvmGpsR3": {
+                    "name": "Care at birth"
+                },
+                "bbKtnxRZKEP": {
+                    "name": "Postpartum care visit"
+                },
+                "ou": {
+                    "name": "Organisation unit"
+                },
+                "PUZaKR0Jh2k": {
+                    "name": "Previous deliveries"
+                },
+                "edqlbukwRfQ": {
+                    "name": "Antenatal care visit"
+                },
+                "WZbXY0S00lP": {
+                    "name": "First antenatal care visit"
+                },
+                "sWoqcoByYmD": {
+                    "name": "WHOMCH Smoking"
+                },
+                "WSGAb5XwJ3Y": {
+                    "name": "WHO RMNCH Tracker"
+                },
+                "de0FEHSIoxh": {
+                    "name": "WHOMCH Chronic conditions"
+                }
+            },
+            "dimensions": {
+                "pe": [],
+                "ou": [
+                    "ImspTQPwCqd"
+                ],
+                "sWoqcoByYmD": [],
+                "de0FEHSIoxh": []
+            }
+        },
+        "width": 12,
+        "rows": [
+            [
+                "A0cP533hIQv",
+                "to8G9jAprnx",
+                "2019-02-02 12:05:00.0",
+                "2019-02-02 12:05:00.0",
+                "",
+                "0.0",
+                "0.0",
+                "Tonkomba MCHP",
+                "OU_193264",
+                "xIMxph4NMP1",
+                "0",
+                "1"
+            ],
+            [
+                "ZqiUn2uXmBi",
+                "SJtv0WzoYki",
+                "2019-02-02 12:05:00.0",
+                "2019-02-02 12:05:00.0",
+                "",
+                "0.0",
+                "0.0",
+                "Mawoma MCHP",
+                "OU_254973",
+                "Srnpwq8jKbp",
+                "0",
+                "0"
+            ],
+            [
+                "lE747mUAtbz",
+                "PGzTv2A1xzn",
+                "2019-02-02 12:05:00.0",
+                "2019-02-02 12:05:00.0",
+                "",
+                "0.0",
+                "0.0",
+                "Kunsho CHP",
+                "OU_193254",
+                "tdhB1JXYBx2",
+                "",
+                "0"
+            ],
+            [
+                "nmcqu9QF8ow",
+                "pav3tGLjYuq",
+                "2019-02-03 12:05:00.0",
+                "2019-02-03 12:05:00.0",
+                "",
+                "0.0",
+                "0.0",
+                "Korbu MCHP",
+                "OU_678893",
+                "m73lWmo5BDG",
+                "",
+                "1"
+            ]
+        ],
+        "height": 4
+    }
+
+The *headers* section of the response describes the content of the query result. The enrollment unique identifier, the tracked entity instance identifier, the enrollment date, the incident date, geometry, latitude, logitude, the organisation unit name and the organisation unit code appear as the first dimensions in the response and will always be present. Next comes the data elements,and tracked entity attributes which were specified as dimensions in the request, in this case the "WHOMCH Chronic conditions" and "WHOMCH smoking" data element dimensions. The header section contains the identifier of the dimension item in the "name" property and a readable dimension description in the "column" property.
+
+The *metaData* section, *ou* object contains the identifiers of all organisation units present in the response mapped to a string representing the hierarchy. This hierarchy string lists the identifiers of the ancestors (parents) of the organisation unit starting from the root. The *names* object contains the identifiers of all items in the response mapped to their names.
+
+The *rows* section contains the enrollments produced by the query. Each row represents exactly one enrollment.
+
 ## Org unit analytics
 
 <!--DHIS2-SECTION-ID:webapi_org_unit_analytics-->
