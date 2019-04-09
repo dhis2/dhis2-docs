@@ -418,6 +418,12 @@ API endpoint */api/periodTypes*)
 </tbody>
 </table>
 
+
+### Relative Periods
+
+<!--DHIS2-SECTION-ID:webapi_date_relative_period_values-->
+
+
 In some parts of the API, like for the analytics resource, you can
 utilize relative periods in addition to fixed periods (defined above).
 The relative periods are relative to the current date, and allows e.g.
@@ -14716,7 +14722,14 @@ To query for tracked entity instances you can interact with the
 <tr class="odd">
 <td>lastUpdatedEndDate</td>
 <td>Filter for events which were updated up until this date.</td>
+</tr
+<tr class="even">
+<td>assignedUserMode</td>
+<td>Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
 </tr>
+<tr class="odd">
+<td>assignedUser</td>
+<td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.</td>
 </tbody>
 </table>
 
@@ -15551,6 +15564,16 @@ the tracker user interface.
 <td>eventCreatedPeriod</td>
 <td>Period object containing a period in which the event must be created. See <em>Period</em> definition below.</td>
 <td>{ &quot;periodFrom&quot;: -15, &quot;periodTo&quot;: 15}</td>
+</tr>
+<tr class="even">
+<td>assignedUserMode</td>
+<td>To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)| PROVIDED (events assigned to users provided in "assignedUsers" list) | NONE (events assigned to noone) | ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.</td>
+<td>"assignedUserMode": "PROVIDED"</td>
+</tr>
+<tr class="odd">
+<td>assignedUsers</td>
+<td>To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.</td>
+<td>"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]</td>
 </tr>
 </tbody>
 </table>
@@ -16520,30 +16543,20 @@ the tracker user interface.
 </tr>
 <tr class="odd">
 <td>program</td>
-<td>Object containing the id of the program.</td>
-<td>"program" : {
-"id":"a3kGcGDCuk6"
-}</td>
+<td>The uid of the program.</td>
+<td>"program" : "a3kGcGDCuk6"</td>
 </tr>
 <tr class="even">
 <td>programStage</td>
-<td>Object containing the id of the program stage.</td>
-<td>"programStage" : {
-"id":"a3kGcGDCuk6"
-}</td>
-</tr>
-<tr class="odd">
-<td>organisationUnit</td>
-<td>Object containing the id of the organisation unit.</td>
-<td>"organisationUnit" : {
-"id":"a3kGcGDCuk6"
-}</td>
+<td>The uid of the program stage.</td>
+<td>"programStage" : "a3kGcGDCuk6"</td>
 </tr>
 <tr class="even">
 <td>eventQueryCriteria</td>
 <td>Object containing parameters for querying, sorting and filtering events.</td>
 <td>  
   "eventQueryCriteria": {
+    "organisationUnit":"a3kGcGDCuk6",
     "status": "COMPLETED",
     "createdDate": {
       "from": "2014-05-01",
@@ -16580,112 +16593,243 @@ the tracker user interface.
 <td>"followUp": true</td>
 </tr>
 <tr class="even">
+<td>organisationUnit</td>
+<td>To specify the uid of the organisation unit</td>
+<td>"organisationUnit": "a3kGcGDCuk7"</td>
+</tr>
+<tr class="odd">
 <td>ouMode</td>
 <td>To specify the OU selection mode. Possible values are SELECTED| CHILDREN|DESCENDANTS|ACCESSIBLE|CAPTURE|ALL</td>
 <td>"ouMode": "SELECTED"</td>
 </tr>
-<tr class="odd">
-<td>assignedUserMode</td>
-<td>To specify the assigned user selection mode. Possible values are CURRENT| PROVIDED | NONE | ANY </td>
-<td>"assignedUserMode": "NONE"</td>
-</tr>
 <tr class="even">
+<td>assignedUserMode</td>
+<td>To specify the assigned user selection mode for events. Possible values are CURRENT| PROVIDED| NONE | ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.</td>
+<td>"assignedUserMode": "PROVIDED"</td>
+</tr>
+<tr class="odd">
 <td>assignedUsers</td>
-<td>To specify a list of assigned users for events.</td>
+<td>To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.</td>
 <td>"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]</td>
 </tr>
-<tr class="odd">
-<td>trackedEntityInstance</td>
-<td>To specify a tracked entity instance that has to be used when filtering events</td>
-<td>"trackedEntityInstance": "A03MvHHogjR"</td>
-</tr>
 <tr class="even">
+<td>displayOrderColumns</td>
+<td>To specify the output ordering of columns</td>
+<td>"displayOrderColumns": ["eventDate", "dueDate", "program"]</td>
+</tr>
+<tr class="odd">
 <td>order</td>
-<td>To specify ordering/sorting of fields and its directions</td>
+<td>To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "dataItem:direction".</td>
 <td>"order"="a3kGcGDCuk6:desc,eventDate:asc"</td>
 </tr>
-<tr class="odd">
-<td>filters</td>
+<tr class="even">
+<td>dataFilters</td>
 <td>To specify filters to be applied when listing events</td>
-<td>"filters"=["a3kGcGDCuk6:LT:4"]</td>
-</tr>
-<tr class="even">
-<td>fields</td>
-<td>To specify fields that has to be part of the event listing response.</td>
-<td>"fields"="a3kGcGDCuk6,eventDate,dueDate"</td>
+<td>"dataFilters"=[{
+      "dataItem": "abcDataElementUid",
+      "le": "20",
+      "ge": "10",
+      "lt": "20",
+      "gt": "10",
+      "in": ["India", "Norway"],
+      "like": "abc",
+      "dateFilter": {
+        "startDate": "2014-05-01",
+        "endDate": "2019-03-20",
+        "startBuffer": -5,
+        "endBuffer": 5,
+        "period": "LAST_WEEK",
+        "type": "RELATIVE"
+      }
+    }]</td>
 </tr>
 <tr class="odd">
-<td>dataElements</td>
-<td>To specify dataElements that has to be part of the event grid query response.</td>
-<td>"dataElements"=["a3kGcGDCuk6"]</td>
-</tr>
-<tr class="even">
 <td>status</td>
 <td> Any valid EventStatus</td>
 <td>  "eventStatus": "COMPLETED"</td>
-</tr>
-<tr class="odd">
-<td>createdDate</td>
-<td>DatePeriod object containing a from and to date for filtering based on created date.</td>
-<td>{ &quot;from&quot;:&quot;2018-01-01&quot; , &quot;to&quot;: &quot;2019-01-01&quot;}</td>
-</tr>
-<tr class="even">
-<td>dueDate</td>
-<td>DatePeriod object containing a from and to date for filtering based on due date.</td>
-<td>{ &quot;from&quot;:&quot;2018-01-01&quot; , &quot;to&quot;: &quot;2019-01-01&quot;}</td>
-</tr>
-<tr class="odd">
-<td>lastUpdatedDate</td>
-<td>DatePeriod object containing a from and to date for filtering based on last updated date.</td>
-<td>{ &quot;from&quot;:&quot;2018-01-01&quot; , &quot;to&quot;: &quot;2019-01-01&quot;}</td>
 </tr>
 <tr class="even">
 <td>events</td>
 <td>To specify list of events</td>
 <td>"events"=["a3kGcGDCuk6"]</td>
 </tr>
+<tr class="odd">
+<td>completedDate</td>
+<td>DateFilterPeriod object date filtering based on completed date.</td>
+<td>
+  "completedDate":{
+        "startDate": "2014-05-01",
+        "endDate": "2019-03-20",
+        "startBuffer": -5,
+        "endBuffer": 5,
+        "period": "LAST_WEEK",
+        "type": "RELATIVE"
+      }
+</td>
+</tr>
+<tr class="even">
+<td>eventDate</td>
+<td>DateFilterPeriod object date filtering based on event date.</td>
+<td>
+  "eventDate":{
+        "startBuffer": -5,
+        "endBuffer": 5,
+        "type": "RELATIVE"
+      }
+</td>
+</tr>
+<tr class="odd">
+<td>dueDate</td>
+<td>DateFilterPeriod object date filtering based on due date.</td>
+<td>
+ "dueDate": {
+        "period": "LAST_WEEK",
+        "type": "RELATIVE"
+      }
+</td>
+</tr>
+<tr class="even">
+<td>lastUpdatedDate</td>
+<td>DateFilterPeriod object date filtering based on last updated date.</td>
+<td>
+  "lastUpdatedDate":{
+        "startDate": "2014-05-01",
+        "endDate": "2019-03-20",
+        "type": "ABSOLUTE"
+      }
+</td>
+</tr>
+
 </tbody>
 </table>
 
+<table>
+<caption>DateFilterPeriod object definition</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>type</td>
+<td>Specify whether the date period type is ABSOLUTE | RELATIVE</td>
+<td>"type" : "RELATIVE"</td>
+</tr>
+<tr class="even">
+<td>period</td>
+<td>Specify if a relative system defined period is to be used. Applicable only when "type" is RELATIVE. (see <a href="#webapi_date_relative_period_values">Relative Periods</a> for supported relative periods)</td>
+<td>"period" : "THIS_WEEK"</td>
+</tr>
+<tr class="odd">
+<td>startDate</td>
+<td>Absolute start date. Applicable only when "type" is ABSOLUTE</td>
+<td>"startDate":"2014-05-01"</td>
+</tr>
+<tr class="even">
+<td>endDate</td>
+<td>Absolute end date. Applicable only when "type" is ABSOLUTE</td>
+<td>"startDate":"2014-05-01"</td>
+</tr>
+<tr class="odd">
+<td>startBuffer</td>
+<td>Relative custom start date. Applicable only when "type" is RELATIVE</td>
+<td>"startBuffer":-10</td>
+</tr>
+<tr class="even">
+<td>endBuffer</td>
+<td>Relative custom end date. Applicable only when "type" is RELATIVE</td>
+<td>"startDate":+10</td>
+</tr>
+</tbody>
+</table>
+
+The available assigned user selection modes are explained in the
+following table.
+
+<table>
+<caption>Assigned user selection modes (event assignment)</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CURRENT</td>
+<td>Assigned to the current logged in user</td>
+</tr>
+<tr class="even">
+<td>PROVIDED</td>
+<td>Assigned to the users provided in the "assignedUser" parameter</td>
+</tr>
+<tr class="odd">
+<td>NONE</td>
+<td>Assigned to no users.</td>
+</tr>
+<tr class="even">
+<td>ANY</td>
+<td>Assigned to any users.</td>
+</tr>
+</tbody>
+</table>
 
 A sample payload that can be used to create/update an eventFilter is shown below.
 
 ````
 {
-  "name": "Complete Filter",
-  "description": "Sample Filter to show all possible parameters",
-  "program": {
-    "id": "IpHINAT79UW"
-  },
-  "programStage": {
-    "id": "A03MvHHogjR"
-  },
-  "organisationUnit": {
-    "id": "x8SUTSsJoeO"
-  },
+  "program": "ur1Edk5Oe2n",
+  "description": "Simple Filter for TB events",
+  "name": "TB events",
   "eventQueryCriteria": {
+    "organisationUnit":"DiszpKrYNg8",
     "eventStatus": "COMPLETED",
-    "createdDate": {
-      "from": "2014-05-01",
-      "to": "2019-03-20"
+    "eventDate": {
+      "startDate": "2014-05-01",
+      "endDate": "2019-03-20",
+      "startBuffer": -5,
+      "endBuffer": 5,
+      "period": "LAST_WEEK",
+      "type": "RELATIVE"
     },
-    "dueDate": {
-      "from": "2014-05-01",
-      "to": "2019-03-20"
+    "dataFilters": [{
+      "dataItem": "abcDataElementUid",
+      "le": "20",
+      "ge": "10",
+      "lt": "20",
+      "gt": "10",
+      "in": ["India", "Norway"],
+      "like": "abc"
     },
-    "lastUpdatedDate": {
-      "from": "2014-05-01",
-      "to": "2019-03-20"
+    {
+      "dataItem": "dateDataElementUid",
+      "dateFilter": {
+        "startDate": "2014-05-01",
+        "endDate": "2019-03-20",
+        "type": "ABSOLUTE"
+      }
     },
-    "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],
-    "filters": ["a3kGcGDCuk6:EQ:1"],
-    "programStatus": "ACTIVE",
-    "orgUnitSelectionMode": "SELECTED",
-    "followUp": "false",
-    "trackedEntityInstance": "a3kGcGDCuk6",
-    "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],
-    "fields": "eventDate,dueDate",
-    "order": "dueDate:asc,createdDate:desc"
+    {
+      "dataItem": "anotherDateDataElementUid",
+      "dateFilter": {
+        "startBuffer": -5,
+        "endBuffer": 5,
+        "type": "RELATIVE"
+      }
+    },
+    {
+      "dataItem": "yetAnotherDateDataElementUid",
+      "dateFilter": {
+        "period": "LAST_WEEK",
+        "type": "RELATIVE"
+      }
+    }],
+    "programStatus": "ACTIVE"
   }
 }
 ````
@@ -16700,6 +16844,10 @@ A specific event filter can be retrieved by using the following api
 All event filters can be retrieved by using the following api
 
     [GET]  /api/32/eventFilters
+
+All event filters for a specific program can be retrieved by using the following api
+
+    [GET]  /api/32/eventFilters?program={programUid}
 
 An event filter can be deleted by using the following api
 
