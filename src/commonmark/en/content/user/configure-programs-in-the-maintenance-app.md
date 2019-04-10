@@ -2052,7 +2052,7 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <tr class="even">
 <td>d2:zScoreWFA</td>
 <td>Z-Score weight for age indicator</td>
-<td>Function calculates z-score based on data provided by WHO weight-for-age indicator.
+<td>Function calculates z-score based on data provided by WHO weight-for-age indicator. Its value varies between -3.5 to 3.5 depending upon the value of weight.
 <p>Example expression:</p>
 <pre><code>d2:zScoreWFA( ageInMonth, weight, gender )</code></pre></td>
 </tr>
