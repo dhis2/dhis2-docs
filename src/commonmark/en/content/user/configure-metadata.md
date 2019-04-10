@@ -4657,8 +4657,9 @@ sampled. For example:
         prediction is being made.
 
         You can build more complex expressions by clicking on (or
-        typing) any of the elements below the expression field: ( ) \* /
-        + - Days. Constant numbers may be added by typing them. The Days
+        typing) any of the elements below the expression field:
+        ( ) \* / + - Days.
+        Constant numbers may be added by typing them. The Days
         option inserts \[days\] into the expression which resolves to
         the number of days in the period from which the data came.
 
