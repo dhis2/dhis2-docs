@@ -25,7 +25,7 @@ chips in the layout area.
 
 ## Adding more axes
 
-When combining data with different measurement scales you will get a more meaningful visualization by having more than axis. You can do so by clicking "Manage axes" in the series dimensions' context menu.
+When combining data with different measurement scales you will get a more meaningful visualization by having more than axis. You can do so by clicking "Manage axes" in the series dimension's context menu.
 
 ![](resources/images/data-visualizer/data-visualizer-axis-management-menu-option.png)
 
