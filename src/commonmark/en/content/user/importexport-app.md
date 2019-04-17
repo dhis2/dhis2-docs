@@ -271,14 +271,20 @@ belong together with the main object.
 <p>Legend sets</p>
 <p>Legends</p></td>
 </tr>
+<tr class="even">
+<td><p>OptionSets</p></td>
+<td><p>Option</p></td>
+</tr>
 </tbody>
 </table>
 
 
 ![](resources/images/import_export/metadata_dependency_export.png)
 
+![](resources/images/import_export/metadata_dependency_export_object_types.png)
+
 1.  Select an **Object type** : **Data sets** , **Programs** ,
-    **Category combination** , **Dashboard** or **Data element group**.
+    **Category combination** , **Dashboard** , **Data element groups** or **OptionSets**.
 
 2.  Select an **Object**.
 
