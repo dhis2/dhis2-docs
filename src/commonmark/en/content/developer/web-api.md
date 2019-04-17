@@ -17626,6 +17626,18 @@ is as follows:
 <td>boolean</td>
 <td>Was this value collected somewhere else</td>
 </tr>
+<tr class="odd">
+<td>14</td>
+<td>completedDate</td>
+<td>date</td>
+<td>Completed date of event</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>completedBy</td>
+<td>string</td>
+<td>Username of user who completed event</td>
+</tr>
 </tbody>
 </table>
 
