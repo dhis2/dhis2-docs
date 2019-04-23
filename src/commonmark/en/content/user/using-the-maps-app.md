@@ -444,7 +444,7 @@ To clear all data in a thematic layer:
 <!--DHIS2-SECTION-ID:using_maps_event_layer-->
 
 The event layer displays the geographical location of events registered
-in the DHIS2 tracker. Provided that events have associated
+in the DHIS2 tracker. Provided that events have associated point or polygon 
 coordinates, you can use this layer to drill down from the aggregated
 data displayed in the thematic layers to the underlying individual
 events or cases.
