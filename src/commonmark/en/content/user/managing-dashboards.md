@@ -217,7 +217,7 @@ dimension, a dialog opens where the filter selection can be made.
 Click on **Confirm** in the dialog to apply the filter to the 
 current dashboard.
 
-![](resources/images/dashboard/dashboard-period-filter-dialog.png)
+![](resources/images/dashboard/dashboard-orgunit-filter-dialog.png)
 
 Filters are not stored, when switching to a different dashboard they
 are lost.
