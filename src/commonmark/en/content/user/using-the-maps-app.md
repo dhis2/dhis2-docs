@@ -281,7 +281,25 @@ layer**selection. This opens the Events layer configuration dialog.
             In the **Period type** field select **Start/end dates**
             and fill in a start date and an end date.       
 
-3.  In the **ORG UNITS** tab:
+3.  In the **FILTER** tab:
+
+    ![](resources/images/maps/maps_thematic_layer_dialog_FILTER.png)
+
+      - Click ADD FILTER and select an available data item to add a new
+        filter to the data set.
+
+          - Select a data dimension from the drop down box. You can 
+            reduce the number of dimensions shown by using the search field.
+            Click on the name to select a dimension. 
+
+          - When a dimension is selected you get a second drop down with
+            dimension items. Check the items you want to include in the
+            filter. 
+
+        Multiple filters may be added. Click the trash button on the right of
+        the filter to remove it.
+
+4.  In the **ORG UNITS** tab:
 
     ![](resources/images/maps/maps_thematic_layer_dialog_ORG_UNITS.png)
 
@@ -298,7 +316,7 @@ layer**selection. This opens the Events layer configuration dialog.
 
 <!--DHIS2-SECTION-ID:using_maps_thematic_layer_style-->
 
-4.  In the **STYLE** tab:
+5.  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_thematic_layer_dialog_STYLE.png)
 
@@ -322,7 +340,7 @@ layer**selection. This opens the Events layer configuration dialog.
             values in the **Low size** and **High size** boxes
             respectively.
 
-5.  Click **ADD LAYER**.
+6.  Click **ADD LAYER**.
 
 ### Modify a thematic layer
 
