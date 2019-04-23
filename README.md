@@ -85,6 +85,23 @@ It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but
 
 Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._
 
+#### Styling images
+
+If you want to control the alignment and size of images, you can take advantage of an extension of the pandoc processing tool that we use. It allows you to set attributes such as width, height and class in curly brackets at the end of the image definition. For example:
+```
+![](resources/images/maintainence/predictor_sequential.png){ width=50% }
+```
+will make your image 50% of the page width (it is best to use percentages to support a variety of output forms), while
+```
+![](resources/images/maintainence/predictor_sequential.png){ .center width=50% }
+```
+will also centre the image on the page (due to the definition of the `.center` class in css).
+
+When images are written like
+```
+![Approving and accepting](resources/images/data_approval/approval_level_steps.png)
+```
+i.e. with caption text in the square brackets, they are rendered as figures with captions. These are centred by default, with a centred, italicised caption.
 
 ### Section references
 
