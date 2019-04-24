@@ -346,6 +346,14 @@ by installing this package:
 
     sudo apt-get install oracle-java8-set-default
 
+### System Settings
+
+<!--DHIS2-SECTION-ID:Provide global system settings-->
+
+Following system settings will be provided in dhis.conf. Previously these were configured in Settings app.
+
+    # server.base.url = https://play.dhis2.org/dev 
+
 ### Tomcat and DHIS2 installation
 
 <!--DHIS2-SECTION-ID:install_tomcat_dhis2_installation-->
@@ -1533,6 +1541,8 @@ viable starting point for your own configuration
     # SQL view protected tables, can be 'on', 'off'
     # system.sql_view_table_protection = on
     
+    # server.base.url = https://play.dhis2.org/dev 
+
     # ----------------------------------------------------------------------
     # Encryption
     # ----------------------------------------------------------------------
