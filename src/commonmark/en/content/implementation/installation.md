@@ -352,7 +352,7 @@ by installing this package:
 
 Following system settings will be provided in dhis.conf. Previously these were configured in Settings app.
 
-    # server.base.url=http://localhost:8080
+    # server.base.url = https://play.dhis2.org/dev 
 
 ### Tomcat and DHIS2 installation
 
@@ -1541,7 +1541,7 @@ viable starting point for your own configuration
     # SQL view protected tables, can be 'on', 'off'
     # system.sql_view_table_protection = on
     
-    # server.base.url=http://localhost:8080
+    # server.base.url = https://play.dhis2.org/dev 
 
     # ----------------------------------------------------------------------
     # Encryption
