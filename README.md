@@ -103,6 +103,14 @@ When images are written like
 ```
 i.e. with caption text in the square brackets, they are rendered as figures with captions. These are centred by default, with a centred, italicised caption.
 
+#### Taking screenshots
+
+For screenshots of the DHIS 2 web interface, we recommend using Chrome browser, with the following two extensions:
+1. [Window Resizer](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en). Us this to set the resolution to **1440x900**
+2. [Fireshot](https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg?hl=en). Use this to quickly create a snapshot of the **visible part**
+
+> *Fireshot can even capture the full page, i.e. scrolled, if desired. It can also capture just a selected area (but the maximum width should always be 1440px)*
+
 ### Section references
 
 In order to provide fixed references within the document, we can set a fixed text string to be applied to any section. For our markdown docs this is done by adding a comment after the section heading in the form:
