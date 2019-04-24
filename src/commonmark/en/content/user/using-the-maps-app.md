@@ -281,7 +281,22 @@ layer**selection. This opens the Events layer configuration dialog.
             In the **Period type** field select **Start/end dates**
             and fill in a start date and an end date.       
 
-3.  In the **FILTER** tab:
+3.  In the **ORG UNITS** tab:
+
+    ![](resources/images/maps/maps_thematic_layer_dialog_ORG_UNITS.png)
+
+      - Select the organisation units you want to include in the layer.
+        It is possible to select either
+
+          - One or more specific organisation units, organisation unit levels in
+            the hierarchy, organisation unit groups, or
+
+          - A relative level in the organisation unit hierarchy, with
+            respect to the user. By selecting a **User organisation
+            unit** the map data will appear differently for users at
+            different levels in the organisation unit hierarchy.
+
+4.  In the **FILTER** tab:
 
     ![](resources/images/maps/maps_thematic_layer_dialog_FILTER.png)
 
@@ -298,21 +313,6 @@ layer**selection. This opens the Events layer configuration dialog.
 
         Multiple filters may be added. Click the trash button on the right of
         the filter to remove it.
-
-4.  In the **ORG UNITS** tab:
-
-    ![](resources/images/maps/maps_thematic_layer_dialog_ORG_UNITS.png)
-
-      - Select the organisation units you want to include in the layer.
-        It is possible to select either
-
-          - One or more specific organisation units, organisation unit levels in
-            the hierarchy, organisation unit groups, or
-
-          - A relative level in the organisation unit hierarchy, with
-            respect to the user. By selecting a **User organisation
-            unit** the map data will appear differently for users at
-            different levels in the organisation unit hierarchy.
 
 <!--DHIS2-SECTION-ID:using_maps_thematic_layer_style-->
 
@@ -526,7 +526,21 @@ layer** selection. This opens the Events layer configuration dialog.
             In the **Period** field, select one of the relative periods,
             for example **This month** or **Last year**.
 
-3.  In the **FILTER** tab:
+3.  In the **ORG UNITS** tab:
+
+    ![](resources/images/maps/maps_event_layer_dialog_ORG_UNITS.png)
+
+      - Select the organisation units you want to include in the layer.
+        It is possible to select either
+
+          - One or more specific organisation units, or
+
+          - A relative level in the organisation unit hierarchy, with
+            respect to the user. By selecting a **User organisation
+            unit** the map data will appear differently for users at
+            different levels in the organisation unit hierarchy.
+
+4.  In the **FILTER** tab:
 
     ![](resources/images/maps/maps_event_layer_dialog_FILTER.png)
 
@@ -552,20 +566,6 @@ layer** selection. This opens the Events layer configuration dialog.
 
         Multiple filters may be added. Click the trash button on the right of
         the filter to remove it.
-
-4.  In the **ORG UNITS** tab:
-
-    ![](resources/images/maps/maps_event_layer_dialog_ORG_UNITS.png)
-
-      - Select the organisation units you want to include in the layer.
-        It is possible to select either
-
-          - One or more specific organisation units, or
-
-          - A relative level in the organisation unit hierarchy, with
-            respect to the user. By selecting a **User organisation
-            unit** the map data will appear differently for users at
-            different levels in the organisation unit hierarchy.
 
 5.  In the **STYLE** tab:
 
