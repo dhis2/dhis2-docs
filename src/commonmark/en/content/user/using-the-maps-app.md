@@ -242,7 +242,7 @@ Along the bottom of the thematic card from left to right are:
 ### Create a thematic layer
 
 To create an event layer, choose **Thematic** on the **Add
-layer**selection. This opens the Events layer configuration dialog.
+layer** selection. This opens the Events layer configuration dialog.
 
 1.  In the **DATA** tab:
 
