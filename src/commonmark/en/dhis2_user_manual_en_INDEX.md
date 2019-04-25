@@ -39,6 +39,7 @@ title: 'DHIS 2 User guide'
 !INCLUDE "content/user/about-demo-server-live-package-and-database-design.md"
 !INCLUDE "content/user/about-data-dimensions.md"
 !INCLUDE "content/user/additional-data-dimensions.md"
+!INCLUDE "content/user/relationship-model.md"
 !INCLUDE "content/user/dhis2-frequently-asked-questions.md"
 !INCLUDE "content/user/release-and-upgrade-notes.md"
 !INCLUDE "content/user/user-authorities.md"
