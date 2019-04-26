@@ -16675,6 +16675,17 @@ with a identifier reference to the server you are using.
 
     curl -X DELETE "localhost/api/29/events/ID" -u admin:district
 
+#### Assigning user to events
+
+<!--DHIS2-SECTION-ID:webapi_user_assign_event-->
+
+A user can be assigned to an event. This can be done by including the appropriate property in the payload when updating or creating the event. 
+
+      "assignedUser": "<id>"
+
+The id refers to the if of the user. Only one user can be assigned to an event at a time.
+
+
 #### Getting events
 
 <!--DHIS2-SECTION-ID:webapi_getting_events-->
