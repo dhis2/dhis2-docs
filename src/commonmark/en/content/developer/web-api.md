@@ -17343,13 +17343,13 @@ A specific event filter can be retrieved by using the following api
 
     [GET]  /api/32/eventFilters/{uid}
     
-All event filters can be retrieved by using the following api
+All event filters can be retrieved by using the following api.
 
-    [GET]  /api/32/eventFilters
+    [GET]  /api/32/eventFilters?fields=*
 
 All event filters for a specific program can be retrieved by using the following api
 
-    [GET]  /api/32/eventFilters?program={programUid}
+    [GET]  /api/32/eventFilters?filter=program:eq:IpHINAT79UW
 
 An event filter can be deleted by using the following api
 
