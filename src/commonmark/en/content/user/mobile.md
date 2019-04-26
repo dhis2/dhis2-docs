@@ -1300,7 +1300,7 @@ Below table shows the parameters required for configuring gateway.
 <td>N/A</td>
 <td>N/A</td>
 <td>Required</td>
-<td>NumberType parameter is required for SMPP gateway. Default value is 'UNKNOWN'. Other possible values are UNKNOWN, INTERNATIONAL, NATIONAL, NETWORK_SPECIFIC, SUBSCRIBER_NUMBER, ALPHANUMERIC and ABBREVIATED</td>
+<td>TypeOfNumber parameter is required for SMPP gateway. Default value is 'UNKNOWN'. Other possible values are UNKNOWN, INTERNATIONAL, NATIONAL, NETWORK_SPECIFIC, SUBSCRIBER_NUMBER, ALPHANUMERIC and ABBREVIATED</td>
 </tr>
 <tr class="odd">
 <td>numberPlanIndicator</td>
