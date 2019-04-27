@@ -347,8 +347,7 @@ layer** selection. This opens the Events layer configuration dialog.
 1.  In the layer panel, click the edit (pencil) icon on the thematic
     layer card.
 
-2.  Modify the setting on the DATA, PERIOD, ORG UNITS and STYLE tabs as
-    desired.
+2.  Modify the setting on any of the tabs as desired.
 
 3.  Click **UPDATE LAYER**.
 
