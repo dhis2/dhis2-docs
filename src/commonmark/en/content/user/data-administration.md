@@ -220,8 +220,7 @@ Report will highlight all the **Program rule variables** not configured with **T
 
 ### ProgramRuleActions with no data Objects.
 
-Report will highlight all the **Program rule actions** not configured with any Data object. Data object can be either **DataElement** of **TrackedEntityAttribute**. There are certain ProgramRuleActions which are responsible for assinging values to either dataelement or
-trackedentityattribute.
+Report will highlight all the **Program rule actions** not configured with any Data object. Data object can be either **DataElement** of **TrackedEntityAttribute**. There are certain ProgramRuleActions which are responsible for assinging values to either dataelement or trackedentityattribute.
 
 ### ProgramRuleActions with no notification
 
