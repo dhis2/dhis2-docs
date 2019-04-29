@@ -35,7 +35,10 @@
 
 7. If desired you can add a comment by clicking the **Write comment** button at he bottom of the form.
 
-8. Click **Save and exit** or click the arrow next to the button to select **Save and add another**.
+8. If desired you can add a relationship by clicking the **Add relationship** button at he bottom of the form.
+   For more inforamtion about adding realtionships, see section about adding relationships.
+
+9. Click **Save and exit** or click the arrow next to the button to select **Save and add another**.
     - **Save and add another** will save the current event and clear the form.
     All the events that you have captured will be diplayed in a list at the bottom of the page.
     When you want to finish capturing events you can, if the form is blank,
@@ -53,6 +56,60 @@
 > achived by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
 > can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
 
+## Adding a relationship
+
+<!--DHIS2-SECTION-ID:capture_add_relationship-->
+
+Relationships can be added either during registration, editing or viewing of an event.
+Currently the **Capture App** only supports *Event to Tracked Entity Instance* relationships. 
+
+1. While in an event, click **Add relationship**.
+
+2. Select the relationship type you want to create.
+
+- You now have to options: **Link to an existing Tracked Entity Instance** or **Create new Tracked Entity Instance**.
+
+### Link to an existing Tracked Entity Instance
+
+3. Click **Link to an existing Tracked Entity Instance**.
+
+- You should now be presented with some options for searching for a **Tracked Entity Instance**.
+  You have the option to select a **program**. If a **program** is selected the attributes are derived from the selected **program**.
+  If no **program** is selected, only the attributes that belong to the **Tracked Entity Instance** will be visible.
+
+    - If the **Tracked Entity Instance** or **program** is configured with a unique attribute, this attribure can be
+      used for finding a spesific **Tracked Entity Instance** or **program**. This attribute should be presented alone.
+      When the unique attribute field has been filled out, click the **Search** button located right below
+      the unique attribute field.
+
+    - If the **Tracked Entity Instance** or **program** has attibutes these can be used for searching by expanding the **Search by attributes** box.
+      When all desired attribute fields have been filled out, click the **Search by attributes** button located at the bottom. You can also limit the search by setting the **Organisation unit scope**. If set to *All accessible* you will search for the **Tracked Entity Instance** in all organisation units you have access to. If you select *Selected*, you will be asked to select which organisation units to search within.
+
+4. After a successful search you will be presented with a list of **Tracked Entity Instances** matching the search criteria.
+   To create a relationship click the **Link** button on the **Tracked Entity Instance** you would like to create a relationship to.
+   
+- If you did not find the **Tracked Entity Instance** you were looking for, you can either click the **New search** or **Edit search** buttons.
+  **New search** will take you to new blank search while **Edit search** will take you back to the search you just did keeping the search criterias.
+
+### Create new Tracked Entity Instance
+
+3. Click **Create new Tracked Entity Instance**.
+
+- You shoulkd now be presented with a form for register a new **Tracked Entity Instance**. You can choose to either register with or without a program.
+  If a program is selected, the new **Tracked Entity Instance** will be enrolled in said program. You can also change the **Organisation unit** by removing the one that is automatically set and selecting a new one.
+
+4. Fill in the desired (and possibly manditory attributes and enrollment details).
+
+5. Click **Create Tracked Entity Instance and Link**.
+
+> Note: When filling in data you might face a warning telling you that a possible duplicate has been found. You can click the warning to see these 
+> duplicates and if the duplicate is a match you can choose to link that **Tracked Entity Instance** by clicking the **Link** button.
+> If the warning is still present when you are done filling in data, you will not see the **Create Tracked Entity Instance and Link** button.
+> Instead you will be pressented with a button called **Review duplicates**. When you click this button a list of possible duplicates will be displayed.
+> If any of these duplicates matches the **Tracked Entity Instance** you are trying to create you can click the **Link** button, if not you can click
+> the **Save as new person** button to register a new **Tracked Entity Instance**.
+
+
 ## Edit an event
 
 <!--DHIS2-SECTION-ID:capture_edit_event-->
@@ -67,7 +124,9 @@
 
 4. Click the event you want to modify.
 
-5. Modify the event details and click **Save**.
+5. Click the **Edit event** button.
+
+6. Modify the event details and click **Save**.
 
 ## Delete an event
 
