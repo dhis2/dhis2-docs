@@ -57,7 +57,9 @@ In addition to the constrains a Relationship Type can have, each relationship
 can be set to bidirectional, true or false. If the property is set to false, the
 relationships are treated as unidirectional. As previously mentioned, the only
 functional difference between these relationships are how strict the access is
-when creating or updating them - bidirectional being the strictest.
+when creating or updating them - bidirectional being the strictest. Relationships 
+are also presented differently in the UI based on whether or not the relationship 
+is bidirectional or unidirectional.
 
 One important thing to note about bidirectional relationships, are that the
 "from" and "to" sides are still significant in the database, meaning each entity
