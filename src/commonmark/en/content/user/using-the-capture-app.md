@@ -36,7 +36,7 @@
 7. If desired you can add a comment by clicking the **Write comment** button at he bottom of the form.
 
 8. If desired you can add a relationship by clicking the **Add relationship** button at he bottom of the form.
-   For more inforamtion about adding realtionships, see section about adding relationships.
+   See the section about **Adding a relationship** for more information.
 
 9. Click **Save and exit** or click the arrow next to the button to select **Save and add another**.
     - **Save and add another** will save the current event and clear the form.
@@ -95,7 +95,7 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 
 3. Click **Create new Tracked Entity Instance**.
 
-- You shoulkd now be presented with a form for register a new **Tracked Entity Instance**. You can choose to either register with or without a program.
+- You are now presented with a form for registering a new **Tracked Entity Instance**. You can choose to either register with or without a program.
   If a program is selected, the new **Tracked Entity Instance** will be enrolled in said program. You can also change the **Organisation unit** by removing the one that is automatically set and selecting a new one.
 
 4. Fill in the desired (and possibly manditory attributes and enrollment details).
