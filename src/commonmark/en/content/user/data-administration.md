@@ -197,6 +197,44 @@ An error exists in the right-side validation rule definition. Go to
 **Maintenance** app \> **Validation rule** and click **Edit** on the
 offending rule. Click **Right side** and make the required corrections.
 
+### ProgramRules with no condition
+
+Report will highlight all the **Program rules** not configured with **Condition**. Evaluation for rules not having condition are always evaluated as false.
+
+### ProgramRules with no priority
+
+Report will highlight all the **Program rules** not configured with **Priority**. This is optional but its existence is very important when **ProgramRuleActionType** is **ASSIGN**. Rules with ASSIGN action type should have high priotity then the rest 
+of the action types.
+
+### ProgramRules with no action
+
+Report will highlight all the **Program rules** not configured with any **ProgramRuleAction**.
+
+### ProgramRuleVariables without dataEeements
+
+Report will highlight all the **Program rule variables** not configured with **DataElement**. Report will be based on source type configuration. DataElement should be provided when the source type of ProgramRuleVariable is **DataElement**.
+
+### ProgramRuleVariables without attibutes
+
+Report will highlight all the **Program rule variables** not configured with **TrackedEntityAttribute**. Report will be based on source type configuration. TrackedEntityAttribute should be provided when the source type of ProgramRuleVariable is **Attribute**.
+
+### ProgramRuleActions with no data Objects.
+
+Report will highlight all the **Program rule actions** not configured with any Data object. Data object can be either **DataElement** of **TrackedEntityAttribute**. There are certain ProgramRuleActions which are responsible for assinging values to either dataelement or
+trackedentityattribute.
+
+### ProgramRuleActions with no notification
+
+Report will highlight all the **Program rule actions** which have ProgramRuleActionType set to SENDMESSAGE/SCHEDULEMESSAGE but configuration does not provide any link to notification.
+
+### ProgramRuleActions with no section id
+
+Report will highlight all the **Program rule actions** which have ProgramRuleActionType set to **HIDESECTION** but configuration does not provide any section id.
+
+### ProgramRuleActions with no program stage id
+
+Report will highlight all the **Program rule actions** which have ProgramRuleActionType set to **HIDEPROGRAMSTAGE** but configuration does not provide any program stage id.
+
 ## Maintenance
 
 <!--DHIS2-SECTION-ID:data_admin_maintenance-->
