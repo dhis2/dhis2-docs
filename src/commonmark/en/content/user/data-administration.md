@@ -203,8 +203,7 @@ Report will highlight all the **Program rules** not configured with **Condition*
 
 ### ProgramRules with no priority
 
-Report will highlight all the **Program rules** not configured with **Priority**. This is optional but its existence is very important when **ProgramRuleActionType** is **ASSIGN**. Rules with ASSIGN action type should have high priotity then the rest 
-of the action types.
+Report will highlight all the **Program rules** not configured with **Priority**. This is optional but its existence is very important when **ProgramRuleActionType** is **ASSIGN**. Rules with ASSIGN action type should have high priotity then the rest of the action types.
 
 ### ProgramRules with no action
 
