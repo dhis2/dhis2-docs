@@ -78,7 +78,7 @@ objects. You create these metadata objects in the **Maintenance** app.
 <td><p>A program to record single event without registration</p></td>
 <td><p>Create, edit, share, delete, show details and translate</p></td>
 </tr>
- <tr class="even">
+<tr class="even">
 +<td><p>Tracker program</p></td>
 +<td><p>A program to record single event without registration</p></td>
 +<td><p>Create, edit, share, delete, show details and translate</p></td>
@@ -1029,22 +1029,22 @@ functions. The functions can be applied to data elements and attributes:
 </tr>
 <tr class="odd">
 <td><p>d2:condition</p></td>
-<td><p>(boolean-expr, true-val, false-val)</p></td>
-<td><p>Evaluates the conditional expression and if true returns the true value, if false returns the false value. The conditional expression must be quoted.</p></td>
+<td><p>(boolean-expr, true-expr, false-expr)</p></td>
+<td><p>Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The conditional expression must be quoted. The true-expr and false-expr arguments must follow the rules of any program indicator expression (including functions).</p></td>
 </tr>
 <tr class="even">
 <td><p>d2:zing</p></td>
-<td><p>(number)</p></td>
-<td><p>Evaluates the data element/attribute of type number to zero if the value is negative, otherwise to the value itself.</p></td>
+<td><p>(expression)</p></td>
+<td><p>Returns zero if the expression is negative, otherwise returns the expression value. The expression must follow the rules of any program indicator expression (including functions).</p></td>
 </tr>
 <tr class="odd">
 <td><p>d2:oizp</p></td>
-<td><p>(number)</p></td>
-<td><p>Evaluates the data element/attribute of type number to one if the value is zero or positive, otherwise to zero.</p></td>
+<td><p>(expression)</p></td>
+<td><p>Returns one if the expression is zero or positive, otherwise returns zero. The expression must follow the rules of any program indicator expression (including functions).</p></td>
 </tr>
 <tr class="even">
 <td><p>d2:zpvc</p></td>
-<td><p>(object, [,object, object,...])</p></td>
+<td><p>(object, [,object ...])</p></td>
 <td><p>Returns the number of numeric zero and positive values among the given object arguments. Can be provided any number of arguments.</p></td>
 </tr>
 <tr class="odd">
@@ -1066,6 +1066,36 @@ functions. The functions can be applied to data elements and attributes:
 <td><p>d2:countIfCondition</p></td>
 <td><p>(dataElement, condition)</p></td>
 <td><p>Useful only for enrollment program indicators. Counts the number of data values that matches the given condition criteria for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The condition is supplied as a expression in single quotes, for example '&lt;10' if only the values less than 10 should be counted.</p></td>
+</tr>
+<tr class="odd">
+<td><p>if</p></td>
+<td><p>(boolean-expr, true-expr, false-expr)</p></td>
+<td><p>Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. This is identical to the d2:condition function except that the boolean-expr is not quoted.</p></td>
+</tr>
+<tr class="even">
+<td><p>isNull</p></td>
+<td><p>(object)</p></td>
+<td><p>Returns true if the object value is missing (null), otherwise false.</p></td>
+</tr>
+<tr class="odd">
+<td><p>isNotNull</p></td>
+<td><p>(object)</p></td>
+<td><p>Returns true if the object value is not missing (not null), otherwise false.</p></td>
+</tr>
+<tr class="even">
+<td><p>firstNonNull</p></td>
+<td><p>(object [, object ...])</p></td>
+<td><p>Returns the value of the first object that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values.</p></td>
+</tr>
+<tr class="odd">
+<td><p>greatest</p></td>
+<td><p>(expression [, expression ...])</p></td>
+<td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments. Each expression must follow the rules of any program indicator expression (including functions).</p></td>
+</tr>
+<tr class="even">
+<td><p>least</p></td>
+<td><p>(expression [, expression ...])</p></td>
+<td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. Each expression must follow the rules of any program indicator expression (including functions).</p></td>
 </tr>
 </tbody>
 </table>
@@ -1101,6 +1131,18 @@ An expression that uses the "countIfValue" function to only count the number of 
 An expression that uses the "zpvc" function looks like this:
 
     d2:zpvc(A{GPkGfbmArby}),#{mCXR7u4kNBW.NFkjsNiQ9PH}),4,-1)
+
+An expression that uses the "if" and "isnull" functions looks like this:
+
+    if(isNull(A{GPkGfbmArby}),10,20)
+
+An expression that uses the "firstNonNull" function looks like this:
+
+    firstNonNull(A{GPkGfbmArby}),#{mCXR7u4kNBW.NFkjsNiQ9PH},44)
+
+An expression that uses the "greatest" function looks like this:
+
+    greatest(#{mCXR7u4kNBW.k8ja2Aif1Ae},#{mCXR7u4kNBW.NFkjsNiQ9PH},1)
 
 #### Variables to use in a program indicator expression or filter
 

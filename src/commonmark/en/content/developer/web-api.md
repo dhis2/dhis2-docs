@@ -5431,7 +5431,7 @@ are allowed in expressions are described in the following table.
 <td>Refers to a combination of program stage and data element id.</td>
 </tr>
 <tr class="even">
-<td>#{&lt;attribute-id&gt;}</td>
+<td>A{&lt;attribute-id&gt;}</td>
 <td>Refers to a tracked entity attribute.</td>
 </tr>
 <tr class="odd">
