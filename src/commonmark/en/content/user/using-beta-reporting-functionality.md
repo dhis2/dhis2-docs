@@ -1,6 +1,8 @@
-# Reporting functionality in the Beta reports-app
+# Reporting functionality in the Beta Reports app
 
 <!--DHIS2-SECTION-ID:using_the_beta_reports_app-->
+
+A new Reports App (Beta) is introduced in release 2.32 and serves as an optional replacement of the original [Reports App](#using_reporting), offering a more intuitive and user-friendly interface. Unlike the previous reports app, however, it does not support Data Approvals.
 
 ## Using standard reports
 
@@ -15,7 +17,7 @@ pre-defined reports will appear in the main window.
 
 You run/view a report by clicking on the triple-dot icon of the report and then
 selecting "Create" from the contextual menu. If there are any
-pre-defined paramaters, you will see a report parameter window where you
+pre-defined parameters, you will see a report parameter window where you
 must fill in the values needed for orgunit and/or reporting month,
 depending on what has been defined in the underlying report table(s).
 Click on "Generate Report" when you are ready. The report will either appear
