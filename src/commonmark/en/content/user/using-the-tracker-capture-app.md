@@ -475,6 +475,15 @@ Polygons can also be deleted
 2.  Click the **trash can icon** at the left side of the map, and select
     **Clear all**
 
+## How to assign a user to an event
+
+In the Maintenance App a program stage can be configured to allow user assignment.
+If user assignment is enabled, you will be able to assign a user to an event.
+
+1. Click the **Assigned user** field.
+2. Scroll or search for a user.
+3. Click the user.
+
 ## Manage a TEI's enrollments
 
 <!--DHIS2-SECTION-ID:manage_tracked_entity_instance_enrollment-->
@@ -634,6 +643,10 @@ automatically generated value.
 5.  Search for the relative and select it.
 
 6.  Click **Save**.
+
+> Note: If the relationship is a bi-directional relationship, the relationship will be displayed in the TEI that the relationship
+> was created in and in the TEI that the relationship was linked to. Also, if the relationship is bi-directional, each end of the
+> relationship will have a unique name that will be displayed in the relationship widget under the "Relationship" column.
 
 ## Share a TEI dashboard
 
