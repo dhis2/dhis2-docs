@@ -728,7 +728,7 @@ configuration dialog.
 
     ![](resources/images/maps/maps_tracked_entity_layer_dialog_RELATIONSHIPS.png)
 
-    > **Note**
+    > **Caution**
     >
     > Displaying tracked entity relationships in Maps is an experimental feature
 
