@@ -1,4 +1,4 @@
-# Using the Data Visualizer app
+# Classic Data Visualizer (deprecated)
 
 <!--DHIS2-SECTION-ID:data_vis-->
 
@@ -6,13 +6,13 @@ This chapter refers to the legacy version of the data visualizer. For
 the current version, please refer to the [new data visualizer](./data_visualizer.html)
 chapter.
 
-## About the Data Visualizer app
+## About the Classic Data Visualizer app
 
 <!--DHIS2-SECTION-ID:data_vis_intro-->
 
 ![](resources/images/visualizer/column_chart.png)
 
-With the **Data Visualizer** app, you can select content, for example
+With the ** Classic Data Visualizer** app, you can select content, for example
 indicators, data elements, periods and organisation units, for an
 analysis. The app works well over poor Internet connections and
 generates charts in the web browser.
@@ -31,7 +31,7 @@ generates charts in the web browser.
 
 <!--DHIS2-SECTION-ID:datavis_create_chart-->
 
-1.  Open the **Data Visualizer** app and select a chart type.
+1.  Open the **Classic Data Visualizer** app and select a chart type.
 
 2.  In the menu to the left, select the metadata you want to analyse.
     You must select one or more elements from all of the three
@@ -57,7 +57,7 @@ generates charts in the web browser.
 
 <!--DHIS2-SECTION-ID:datavis_chart_types-->
 
-The **Data Visualizer** app has nine different chart types, each with
+The **Classic Data Visualizer** app has nine different chart types, each with
 different characteristics. To select a chart type:
 
 1.  In **Chart type**, click the chart type you need.
@@ -139,7 +139,7 @@ system. There are three main dimensions in the system:
 
   - Organisation units: Describes where the event took place.
 
-The Data Visualizer app lets you use these dimensions completely
+The Classic Data Visualizer app lets you use these dimensions completely
 flexible in terms of appearing as series, categories and filter.
 
 > **Note**
@@ -158,7 +158,7 @@ flexible in terms of appearing as series, categories and filter.
 
 ### Select indicators
 
-The Data Visualizer app can display any number of indicators and data
+The Classic Data Visualizer app can display any number of indicators and data
 elements in a chart. You can select both indicators and data elements to
 appear together in the same chart, with their order of appearance the
 same as the order in which they are selected.
@@ -176,7 +176,7 @@ same as the order in which they are selected.
 
 ### Select data elements
 
-The Data Visualizer app can display any number of indicators and data
+The Classic Data Visualizer app can display any number of indicators and data
 elements in a chart. You can select both indicators and data elements to
 appear together in the same chart, with their order of appearance the
 same as the order in which they are selected.
@@ -194,7 +194,7 @@ same as the order in which they are selected.
 
 ### Select reporting rates
 
-The Data Visualizer app can display reporting rates in a chart, by
+The Classic Data Visualizer app can display reporting rates in a chart, by
 itself or together with indicators and data elements. Reporting rates
 are defined by data sets.
 
