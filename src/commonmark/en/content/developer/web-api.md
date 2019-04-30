@@ -17786,6 +17786,45 @@ as
 
     /api/30/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
 
+
+## Potential Duplicate api
+Potential Duplicates are the records we work with in the deduplication feature of DHIS 2. Due to the nature of the deduplication feature, the api for working with Potential Duplicates are somewhat restricted.
+
+A Potential Duplicate represents a singe record, or a pair of records that are suspected to be a duplicate.
+
+The basic payload of a Potential Duplicate looks like this:
+
+      {
+        "teiA": "<id>",
+        "teiB": "<id>|null"
+        "status": "OPEN|INVALID|MERGED"
+      }
+
+You can retrieve a list of Potential duplicates using the following endpoint:
+
+          GET /api/potentialDuplicates
+
+Additionally you can inspect individual records using:
+
+          GET /api/potentialDuplicates/<id>
+
+To create a new Potential Duplicate, you can use this endpoint:
+
+          POST /api/potentialDuplicates
+
+The payload you provide needs atleast teiA to be a valid trackedEntityInstance, but teiB is optional. If teiB is set, it also needs to point to an existing trackedEntityInstance.
+
+          {
+              "teiA": "<id>", (required)
+              "teiB": "<id>" (optional)
+          }
+
+You cannot update or delete Potential Duplicates. However, you can mark them as INVALID. You can mark a record as INVALID using the following endpoint:
+
+          PUT /api/potentialDuplicates/<id>/invalidate
+
+Marking a Potential Duplicate as INVALID will indicate the record is not a valid duplicate, and can be considered the same as removing the record. The record is still persisted in the database.
+
 ## Email
 
 <!--DHIS2-SECTION-ID:webapi_email-->
