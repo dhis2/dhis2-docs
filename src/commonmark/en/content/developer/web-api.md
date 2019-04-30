@@ -16685,7 +16685,7 @@ A user can be assigned to an event. This can be done by including the appropriat
 
 The id refers to the if of the user. Only one user can be assigned to an event at a time.
 
-
+User assignment must be enabled in the program stage before users can be assigned to events.
 #### Getting events
 
 <!--DHIS2-SECTION-ID:webapi_getting_events-->
