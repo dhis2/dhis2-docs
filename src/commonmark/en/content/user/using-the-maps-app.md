@@ -242,7 +242,7 @@ Along the bottom of the thematic card from left to right are:
 ### Create a thematic layer
 
 To create an event layer, choose **Thematic** on the **Add
-layer**selection. This opens the Events layer configuration dialog.
+layer** selection. This opens the Events layer configuration dialog.
 
 1.  In the **DATA** tab:
 
@@ -296,9 +296,27 @@ layer**selection. This opens the Events layer configuration dialog.
             unit** the map data will appear differently for users at
             different levels in the organisation unit hierarchy.
 
+4.  In the **FILTER** tab:
+
+    ![](resources/images/maps/maps_thematic_layer_dialog_FILTER.png)
+
+      - Click ADD FILTER and select an available data item to add a new
+        filter to the data set.
+
+          - Select a data dimension from the drop down box. You can 
+            reduce the number of dimensions shown by using the search field.
+            Click on the name to select a dimension. 
+
+          - When a dimension is selected you get a second drop down with
+            dimension items. Check the items you want to include in the
+            filter. 
+
+        Multiple filters may be added. Click the trash button on the right of
+        the filter to remove it.
+
 <!--DHIS2-SECTION-ID:using_maps_thematic_layer_style-->
 
-4.  In the **STYLE** tab:
+5.  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_thematic_layer_dialog_STYLE.png)
 
@@ -322,15 +340,14 @@ layer**selection. This opens the Events layer configuration dialog.
             values in the **Low size** and **High size** boxes
             respectively.
 
-5.  Click **ADD LAYER**.
+6.  Click **ADD LAYER**.
 
 ### Modify a thematic layer
 
 1.  In the layer panel, click the edit (pencil) icon on the thematic
     layer card.
 
-2.  Modify the setting on the DATA, PERIOD, ORG UNITS and STYLE tabs as
-    desired.
+2.  Modify the setting on any of the tabs as desired.
 
 3.  Click **UPDATE LAYER**.
 
@@ -426,7 +443,7 @@ To clear all data in a thematic layer:
 <!--DHIS2-SECTION-ID:using_maps_event_layer-->
 
 The event layer displays the geographical location of events registered
-in the DHIS2 tracker. Provided that events have associated
+in the DHIS2 tracker. Provided that events have associated point or polygon 
 coordinates, you can use this layer to drill down from the aggregated
 data displayed in the thematic layers to the underlying individual
 events or cases.
@@ -508,7 +525,21 @@ layer** selection. This opens the Events layer configuration dialog.
             In the **Period** field, select one of the relative periods,
             for example **This month** or **Last year**.
 
-3.  In the **FILTER** tab:
+3.  In the **ORG UNITS** tab:
+
+    ![](resources/images/maps/maps_event_layer_dialog_ORG_UNITS.png)
+
+      - Select the organisation units you want to include in the layer.
+        It is possible to select either
+
+          - One or more specific organisation units, or
+
+          - A relative level in the organisation unit hierarchy, with
+            respect to the user. By selecting a **User organisation
+            unit** the map data will appear differently for users at
+            different levels in the organisation unit hierarchy.
+
+4.  In the **FILTER** tab:
 
     ![](resources/images/maps/maps_event_layer_dialog_FILTER.png)
 
@@ -534,20 +565,6 @@ layer** selection. This opens the Events layer configuration dialog.
 
         Multiple filters may be added. Click the trash button on the right of
         the filter to remove it.
-
-4.  In the **ORG UNITS** tab:
-
-    ![](resources/images/maps/maps_event_layer_dialog_ORG_UNITS.png)
-
-      - Select the organisation units you want to include in the layer.
-        It is possible to select either
-
-          - One or more specific organisation units, or
-
-          - A relative level in the organisation unit hierarchy, with
-            respect to the user. By selecting a **User organisation
-            unit** the map data will appear differently for users at
-            different levels in the organisation unit hierarchy.
 
 5.  In the **STYLE** tab:
 
