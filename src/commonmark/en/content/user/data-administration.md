@@ -197,6 +197,42 @@ An error exists in the right-side validation rule definition. Go to
 **Maintenance** app \> **Validation rule** and click **Edit** on the
 offending rule. Click **Right side** and make the required corrections.
 
+### Program rules without a condition
+
+The offending program rule does not have a condition under the 'Enter program rule expression' section.
+
+### Program rules without an action
+
+The offending program rule does not have an action under the 'Define program rule actions' section.
+
+### Program rules without a priority
+
+The offending program rule does not have a priority under the 'Enter program rule details' section.
+
+### Program rule variables without a data element
+
+The offending program rule variable does not have a data element set.
+
+### Program rule variables without an attribute
+
+The offending program rule variable does not have an attribute set.
+
+### Program rule actions without a data object
+
+The offending program rule does not have a data object set under the 'Define program rule actions' section.
+
+### Program rule actions without a notification
+
+The offending program rule does not have a notification set under the 'Define program rule actions' section.
+
+### Program rule actions without a section id
+
+The offending program rule does not have a section id set under the 'Define program rule actions' section.
+
+### Program rule actions without a stage id
+
+The offending program rule does not have a stage id set under the 'Define program rule actions' section.
+
 ## Maintenance
 
 <!--DHIS2-SECTION-ID:data_admin_maintenance-->
