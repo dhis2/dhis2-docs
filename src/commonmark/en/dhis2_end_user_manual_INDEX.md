@@ -8,6 +8,7 @@ title: 'DHIS 2 End User guide'
 !INCLUDE "content/user/using-the-data-entry-app.md"
 !INCLUDE "content/user/control-data-quality.md"
 !INCLUDE "content/user/using-reporting-functionality.md"
+!INCLUDE "content/user/using-beta-reporting-functionality.md"
 !INCLUDE "content/user/analyze-data-in-pivot-tables.md"
 !INCLUDE "content/user/data-visualizer.md"
 !INCLUDE "content/user/using-the-data-visualizer-app.md"

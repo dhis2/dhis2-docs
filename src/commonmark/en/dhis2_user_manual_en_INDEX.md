@@ -22,6 +22,7 @@ title: 'DHIS 2 User guide'
 !INCLUDE "content/user/control-data-quality.md"
 !INCLUDE "content/user/data-approval.md"
 !INCLUDE "content/user/using-reporting-functionality.md"
+!INCLUDE "content/user/using-beta-reporting-functionality.md"
 !INCLUDE "content/user/set-user-account-preferences.md"
 !INCLUDE "content/user/manage-users-user-roles-and-user-groups.md"
 !INCLUDE "content/user/visualize-usage-statistics.md"
