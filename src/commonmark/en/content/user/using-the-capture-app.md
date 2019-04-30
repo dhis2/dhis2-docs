@@ -67,7 +67,9 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 
 2. Select the relationship type you want to create.
 
-- You now have to options: **Link to an existing Tracked Entity Instance** or **Create new Tracked Entity Instance**.
+- You now have two options: **Link to an existing Tracked Entity Instance** or **Create new Tracked Entity Instance**.
+
+![delete event](resources/images/capture_app/relationship_options.png)
 
 ### Link to an existing Tracked Entity Instance
 
@@ -76,6 +78,8 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 - You should now be presented with some options for searching for a **Tracked Entity Instance**.
   You have the option to select a **program**. If a **program** is selected the attributes are derived from the selected **program**.
   If no **program** is selected, only the attributes that belong to the **Tracked Entity Instance** will be visible.
+
+  ![delete event](resources/images/capture_app/search_tei.png)
 
     - If the **Tracked Entity Instance** or **program** is configured with a unique attribute, this attribure can be
       used for finding a spesific **Tracked Entity Instance** or **program**. This attribute should be presented alone.
@@ -97,6 +101,8 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 
 - You are now presented with a form for registering a new **Tracked Entity Instance**. You can choose to either register with or without a program.
   If a program is selected, the new **Tracked Entity Instance** will be enrolled in said program. You can also change the **Organisation unit** by removing the one that is automatically set and selecting a new one.
+
+  ![delete event](resources/images/capture_app/register_tei.png)
 
 4. Fill in the desired (and possibly manditory attributes and enrollment details).
 
