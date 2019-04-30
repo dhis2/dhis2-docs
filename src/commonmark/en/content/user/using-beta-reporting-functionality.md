@@ -2,7 +2,7 @@
 
 <!--DHIS2-SECTION-ID:using_the_beta_reports_app-->
 
-A new Reports App (Beta) is introduced in release 2.32 and serves as an optional replacement of the original [Reports App](#using_reporting), offering a more intuitive and user-friendly interface. Unlike the previous reports app, however, it does not support Data Approvals.
+A new Reports app (Beta) is introduced in release 2.32 and serves as an optional replacement of the original [Reports app](#using_reporting), offering a more intuitive and user-friendly interface. Unlike the previous Reports app, however, it does not support Data Approvals.
 
 ## Using standard reports
 
