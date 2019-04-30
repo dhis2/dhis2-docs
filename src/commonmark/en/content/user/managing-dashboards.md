@@ -210,14 +210,17 @@ the original analytical object.
 It is possible to filter on Organisation Units, Periods and other 
 dynamic dimensions depending on the DHIS2 instance.
 
-![](resources/images/dashboard/dashboard-filters.png)
-
 To add a filter, click on the **Add Filter** button and choose the
-dimension, a dialog opens where the filter selection can be made.
+dimension:
+
+![Adding a filter](resources/images/dashboard/dashboard-filters.png)
+
+A dialog opens where the filter selection can be made.
+
+![Org Unit filter selection](resources/images/dashboard/dashboard-orgunit-filter-dialog.png)
+
 Click on **Confirm** in the dialog to apply the filter to the 
 current dashboard.
-
-![](resources/images/dashboard/dashboard-orgunit-filter-dialog.png)
 
 Filters are not stored, when switching to a different dashboard they
 are lost.
@@ -226,7 +229,7 @@ indicate that what is shown in the dashboard items is not the original
 analytical object, but a manipulated one where the filters override
 the stored dimensions' values.
 
-![](resources/images/dashboard/dashboard-filter-badges.png)
+![Current filters displayed as badges above the dashboard](resources/images/dashboard/dashboard-filter-badges.png)
 
 Filter badges can be clicked for opening the filter selection dialogs
 thus allowing for filter editing.
