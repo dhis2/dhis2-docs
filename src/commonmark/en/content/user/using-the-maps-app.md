@@ -730,8 +730,7 @@ configuration dialog.
 
     > **Note**
     >
-    > Data table filters are temporary and are not saved with the map layers
-    > as part of the favourite.
+    > Displaying tracked entity relationships in Maps is an experimental feature
 
       - If a Tracked Entity Type with has been selected, you can select the **Display Tracked Entity relationships** checkbox
 
