@@ -724,8 +724,19 @@ configuration dialog.
       - Set the **Follow up** status of the tracked entity for the given
         program.
 
-2.  In the **PERIOD**
-    tab
+2.  In the **Relationships** tab
+
+    ![](resources/images/maps/maps_tracked_entity_layer_dialog_RELATIONSHIPS.png)
+
+    > **Caution**
+    >
+    > Displaying tracked entity relationships in Maps is an experimental feature
+
+      - If a Tracked Entity Type with has been selected, you can select the **Display Tracked Entity relationships** checkbox
+
+      - Once checked, you can select the type of relationship to diplay on the map from the dropdown list. Only relationships FROM the selected Tracked Entity type are available.
+
+3.  In the **PERIOD** tab
 
     ![](resources/images/maps/maps_tracked_entity_layer_dialog_PERIOD.png)
 
@@ -735,8 +746,7 @@ configuration dialog.
       - If a program is selected, you can set start and end dates for
         the program period.
 
-3.  In the **ORG UNITS**
-    tab:
+4.  In the **ORG UNITS** tab:
 
     ![](resources/images/maps/maps_tracked_entity_layer_dialog_ORG_UNITS.png)
 
@@ -752,8 +762,7 @@ configuration dialog.
           - **Selected and all below**: Included tracked entities in and
             all below selected org units.
 
-4.  In the **STYLE**
-    tab:
+5.  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_tracked_entity_layer_dialog_STYLE.png)
 
@@ -766,7 +775,9 @@ configuration dialog.
         tracked entity. The buffer distance in meters can be modified
         here.
 
-5.  Click **ADD/UPDATE LAYER**.
+      - If a relationship type has been selected on the relationships tab you can select **color**, **point size**, and **line color** for relationships and related tracked entities instances
+
+6.  Click **ADD/UPDATE LAYER**.
 
 ### Modify a tracked entity layer
 
