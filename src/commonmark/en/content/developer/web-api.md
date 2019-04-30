@@ -10855,7 +10855,7 @@ Sorting can be applied to the query for the enrollment and incident dates of the
 
         /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
         &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
-        &pageSize=10page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+        &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
 
 Paging can be applied to the query by specifying the page number and the page size parameters. If page number is specified but page size is not, a page size of 50 will be used. If page size is specified but page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
 
@@ -11055,7 +11055,7 @@ As an example, to get a response in Excel format you can use a file extension in
 
     /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd&dimension=WZbXY0S00lP.de0FEHSIoxh
         &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
-        &pageSize=10page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+        &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
 
 The default response JSON format will look similar to this:
 
