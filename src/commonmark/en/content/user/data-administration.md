@@ -203,27 +203,27 @@ Report will highlight all the **Program rules** not configured with **Condition*
 
 ### ProgramRules with no priority
 
-Report will highlight all the **Program rules** not configured with **Priority**. This is optional but its existence is very important when **ProgramRuleActionType** is **ASSIGN**. Rules with ASSIGN action type should have high priotity then the rest of the action types.
+Report will highlight all the **Program rules** not configured with **Priority**. This is optional but its existence is very important when **ProgramRuleActionType** is **ASSIGN**. Rules with ASSIGN action type should have higher priority then the rest of the action types.
 
 ### ProgramRules with no action
 
 Report will highlight all the **Program rules** not configured with any **ProgramRuleAction**.
 
-### ProgramRuleVariables without dataEeements
+### ProgramRuleVariables without dataElements
 
 Report will highlight all the **Program rule variables** not configured with **DataElement**. Report will be based on source type configuration. DataElement should be provided when the source type of ProgramRuleVariable is **DataElement**.
 
-### ProgramRuleVariables without attibutes
+### ProgramRuleVariables without attributes
 
 Report will highlight all the **Program rule variables** not configured with **TrackedEntityAttribute**. Report will be based on source type configuration. TrackedEntityAttribute should be provided when the source type of ProgramRuleVariable is **Attribute**.
 
 ### ProgramRuleActions with no data Objects.
 
-Report will highlight all the **Program rule actions** not configured with any Data object. Data object can be either **DataElement** of **TrackedEntityAttribute**. There are certain ProgramRuleActions which are responsible for assinging values to either dataelement or trackedentityattribute.
+Report will highlight all the **Program rule actions** not configured with any Data object. Data object can be either **DataElement** of **TrackedEntityAttribute**. There are certain ProgramRuleActions which are responsible for assinging values to either dataElement or trackedEntityAttribute.
 
 ### ProgramRuleActions with no notification
 
-Report will highlight all the **Program rule actions** which have ProgramRuleActionType set to SENDMESSAGE/SCHEDULEMESSAGE but configuration does not provide any link to notification.
+Report will highlight all the **Program rule actions** which have ProgramRuleActionType set to SENDMESSAGE/SCHEDULEMESSAGE where the configuration does not provide any link to notification.
 
 ### ProgramRuleActions with no section id
 
