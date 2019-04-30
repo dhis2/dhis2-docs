@@ -33,9 +33,9 @@
     the field. This will open a map where you can search for a location and capture
     a polygon (button in the upper rigth corner of the map).
 
-7. If desired you can add a comment by clicking the **Write comment** button at he bottom of the form.
+7. If desired you can add a comment by clicking the **Write comment** button at the bottom of the form.
 
-8. If desired you can add a relationship by clicking the **Add relationship** button at he bottom of the form.
+8. If desired you can add a relationship by clicking the **Add relationship** button at the bottom of the form.
    See the section about **Adding a relationship** for more information.
 
 9. Click **Save and exit** or click the arrow next to the button to select **Save and add another**.
@@ -69,7 +69,7 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 
 - You now have two options: **Link to an existing Tracked Entity Instance** or **Create new Tracked Entity Instance**.
 
-![delete event](resources/images/capture_app/relationship_options.png)
+![relationship options](resources/images/capture_app/relationship_options.png)
 
 ### Link to an existing Tracked Entity Instance
 
@@ -79,10 +79,10 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
   You have the option to select a **program**. If a **program** is selected the attributes are derived from the selected **program**.
   If no **program** is selected, only the attributes that belong to the **Tracked Entity Instance** will be visible.
 
-  ![delete event](resources/images/capture_app/search_tei.png)
+  ![search for Tracked Entity Instance](resources/images/capture_app/search_tei.png)
 
-    - If the **Tracked Entity Instance** or **program** is configured with a unique attribute, this attribure can be
-      used for finding a spesific **Tracked Entity Instance** or **program**. This attribute should be presented alone.
+    - If the **Tracked Entity Instance** or **program** is configured with a unique attribute, this attribute can be
+      used for finding a specific **Tracked Entity Instance** or **program**. This attribute should be presented alone.
       When the unique attribute field has been filled out, click the **Search** button located right below
       the unique attribute field.
 
@@ -93,7 +93,7 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
    To create a relationship click the **Link** button on the **Tracked Entity Instance** you would like to create a relationship to.
    
 - If you did not find the **Tracked Entity Instance** you were looking for, you can either click the **New search** or **Edit search** buttons.
-  **New search** will take you to new blank search while **Edit search** will take you back to the search you just did keeping the search criterias.
+  **New search** will take you to new blank search while **Edit search** will take you back to the search you just performed keeping the search criteria.
 
 ### Create new Tracked Entity Instance
 
@@ -102,9 +102,9 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 - You are now presented with a form for registering a new **Tracked Entity Instance**. You can choose to either register with or without a program.
   If a program is selected, the new **Tracked Entity Instance** will be enrolled in said program. You can also change the **Organisation unit** by removing the one that is automatically set and selecting a new one.
 
-  ![delete event](resources/images/capture_app/register_tei.png)
+  ![register new Tracked Entity Instance](resources/images/capture_app/register_tei.png)
 
-4. Fill in the desired (and possibly manditory attributes and enrollment details).
+4. Fill in the desired (and possibly manditory) attributes and enrollment details.
 
 5. Click **Create Tracked Entity Instance and Link**.
 
@@ -190,7 +190,7 @@ assigned to a program stage.
 
     Along the top of the event list are button with the same names as the column headers in the list.
 
-4. Use the buttons on the top of the list to filter based on a report date or a spesific data element.
+4. Use the buttons on the top of the list to filter based on a report date or a specific data element.
 
     ![filter event](resources/images/capture_app/filter_event.png)
 
