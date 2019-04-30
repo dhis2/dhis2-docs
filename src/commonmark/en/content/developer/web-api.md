@@ -17371,6 +17371,75 @@ An event filter can be deleted by using the following api
     [DELETE]  /api/32/eventFilters/{uid}
 
 
+### Relationships
+Relationships are links between two entities in tracker. These entities can be tracked entity instances, enrollments and events.
+
+There are multiple endpoints that allow you to see, create, delete and update relationships. The most common is the /api/trackedEntityInstances endpoint, where you can include relationships in the payload to create, update or deleting them if you omit them - Similar to how you work with enrollments and events in the same endpoint. All the tracker endpoints, /api/trackedEntityInstances, /api/enrollments and /api/events also list their relationships if requested in the field filter.
+
+The standard endpoint for relationships is, however, /api/relationships. This endpoint provides all the normal CRUD operations for relationships.
+ 
+List all relationships require you to provide the UID of the trackedEntityInstance, Enrollment or event that you want to list all the relationships for:  
+
+    GET /api/relationships?tei=ABCDEF12345
+    GET /api/relationships?enrollment=ABCDEF12345
+    GET /api/relationships?event=ABCDEF12345
+
+This request will return a list of any relationship you have access to see that includes the trackedEntityInstance, enrollment or event you specified. Each relationship is represented with the following JSON:
+
+    {
+      "relationshipType": "dDrh5UyCyvQ",
+      "relationshipName": "Mother-Child",
+      "relationship": "t0HIBrc65Rm",
+      "bidirectional": false,
+      "from": {
+        "trackedEntityInstance": {
+          "trackedEntityInstance": "vOxUH373fy5"
+        },
+      "to": {
+        "trackedEntityInstance": {
+          "trackedEntityInstance": "pybd813kIWx"
+        },
+      "created": "2019-04-26T09:30:56.267",
+      "lastUpdated": "2019-04-26T09:30:56.267"
+    }
+
+You can also view specified relationships using the following endpoint:
+
+    GET /api/relationships/<id>
+
+To create or update a relationship, you can use the following endpoints:
+
+    POST /api/relationships
+    PUT /api/relationships
+
+And use the following payload structure:
+
+    {
+      "relationshipType": "dDrh5UyCyvQ",
+      "from": {
+        "trackedEntityInstance": {
+          "trackedEntityInstance": "vOxUH373fy5"
+        },
+      "to": {
+        "trackedEntityInstance": {
+          "trackedEntityInstance": "pybd813kIWx"
+        }
+    }
+
+To delete a relationship, you can use this endpoint:
+
+      DELETE /api/relationships/<id>
+
+In our example payloads, we use a relationship between trackedEntityInstances. Because of this, the "from" and "to" properties of our payloads include "trackedEntityInstance" objects. If your relationship includes other entities, you can use the following properties:
+
+      "enrollment": {
+        "enrollment": <id>
+      }
+
+      "event": {
+        "event": <id>
+      }
+
 ### Update strategies
 
 <!--DHIS2-SECTION-ID:webapi_tei_update_strategies-->
