@@ -165,7 +165,7 @@
 </tr>
 <tr class="odd">
 <td><p><strong>Skip zero data values in analytics tables</strong></p></td>
-<td><p>Skip zero data values in analytics tables</p></td>
+<td><p>Does not include in analytics tables any aggregate data values that are zero. This can reduce analytics tables sizes, and speed up the building and accessing of the analytics tables, if you have aggregate data values that are zero and stored (the data element is configured to store zero values).</p></td>
 </tr>
 </tbody>
 </table>
