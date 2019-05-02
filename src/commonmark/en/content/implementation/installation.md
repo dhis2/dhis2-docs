@@ -1509,8 +1509,7 @@ mandatory. The commented properties are optional. The configuration file
 should be placed in a directory which is pointed to by a *DHIS2\_HOME*
 environment variable. The comment (\#) must be removed for a property
 value to take effect. You can copy and paste the following content as a
-viable starting point for your own configuration
-    file.
+viable starting point for your own configuration file.
 
     # ----------------------------------------------------------------------
     # Database connection for PostgreSQL
@@ -1551,7 +1550,7 @@ viable starting point for your own configuration
     # system.sql_view_table_protection = on
     
     # server.base.url = https://play.dhis2.org/dev 
-
+    
     # ----------------------------------------------------------------------
     # Encryption
     # ----------------------------------------------------------------------
@@ -1603,6 +1602,13 @@ viable starting point for your own configuration
     
     # Node identifier, optional, useful in clusters
     # node.id = 'node-1'
+    
+    # ----------------------------------------------------------------------
+    # Analytics
+    # ----------------------------------------------------------------------
+    
+    # Analytics server-side cache expiration in seconds
+    # analytics.cache.expiration = 3600
     
     # ----------------------------------------------------------------------
     # System monitoring
