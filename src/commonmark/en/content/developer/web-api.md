@@ -2124,81 +2124,69 @@ following payload to change the style:
       ...
     }
 
-## AMQP/RabbitMQ integration
+## ActiveMQ Artemis / AMQP 1.0 integration
 
-<!--DHIS2-SECTION-ID:webapi_amqp_rabbitmq_integration-->
+<!--DHIS2-SECTION-ID:webapi_amqp_integration-->
 
-If you have an external system that needs to know about updates inside
-of DHIS2 (update data element, create org unit, etc.) you can set up a
-rabbitmq message broker, and have it receive messages from DHIS2, then
-other clients can listen to this broker and be notified when events
-happen. Configuration of this is performed in "dhis.conf" where the following
-keys are available (defaults values are shown):
+By default DHIS2 will start up an embedded instance of ActiveMQ Artemis when the
+instance is booting up. For most use-cases you do not need to configure anything
+to make use of this, but if you infrastructure have an existing AMQP 1.0 compliant
+service you want to use, you can change the defaults in your *dhis.conf* file using
+the keys in the table down below.
 
-    rabbitmq.host =
-    rabbitmq.port = 5672
-    rabbitmq.addresses =
-    rabbitmq.virtual-host = /
-    rabbitmq.exchange = dhis2
-    rabbitmq.username = guest
-    rabbitmq.password = guest
-    rabbitmq.connection-timeout = 60000
-
-The only required key to enable rabbitmq is "host", if the rest of the
-values are applicable for your instance you can just use the defaults
-provided.
-
-Inside DHIS2 it communicates with AMQP using a topic exchange called
-"dhis2" (unless you have configured it to be called something else), and
-the following keys are sent out:
-
-    metadata.<type>.<action>.<id>
-
-Where type can be any type inside of DHIS2 (data element, indicator, org
-unit, etc.), action is *CREATE, UPDATE, DELETE* and *id* is the id of the
-type being handled. The event also contains a payload, for *CREATE* and
-*DELETE* this is the full serialized version of the object, for *UPDATE*
-its a patch containing the updates that are happening on that object.
-
-## Kafka integration
-
-<!--DHIS2-SECTION-ID:webapi_kafka_integration-->
-
-Kafka integration was added in 2.30 and is currently supported for doing
-bulk imports of tracker data (tracked entities, enrollments, events), to
-integrate with kafka you need to first install and configure Kafka (see
-<https://docs.confluent.io/current/installation/installing_cp/index.html>
-for more information), then update your "dhis.conf" with at least the
-"*kafka.bootstrap-servers*" key, an example can be seen below (only
-*bootstrap-servers* is required, the rest is just to show the defaults):
-
-    kafka.bootstrap-servers = localhost:9092
-    kafka.client-id = dhis2
-    kafka.retries = 10
-    kafka.max-poll-records = 1000
-
-After adding this, you will need to create the topics that you are
-interested in using, below we will show how that is done for tracker
-data (the only currently supported topics).
-
-### Kafka tracker integration
-
-For doing bulk imports of tracker data, 3 new endpoints has been
-created:
-
-    /api/trackedEntityInstances/queue (topic: bulk-tracked-entities)
-    /api/enrollments/queue (topic: bulk-enrollments)
-    /api/events/queue (topic: bulk-events)
-
-You can use these endpoints exactly as you would with the normal tracker
-endpoint, the only difference is that they are all asynchronous, and you
-will need to get the import summaries using normal task summary
-approach. Internally there is a scheduled system job called "Kafka Job"
-which runs every second to check for new objects waiting in Kafka.
-
-The topics will be created by DHIS2 if they don't exist, but be aware
-that they will then have their basic default settings applied (1
-replication factor, and 1 partition only).
+<table>
+  <caption>
+    AMQP Configuration Keys
+  </caption>
+  <colgroup>
+    <col style="width: 15%" />
+    <col style="width: 30%" />
+    <col style="width: 55%" />
+  </colgroup>
+  <thead>
+    <tr class="header">
+      <th>Key</th>
+      <th>Value (default first)</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="odd">
+      <td>amqp.mode</td>
+      <td><code>EMBEDDED</code> | <code>NATIVE</code></td>
+      <td>The default <code>EMBEDDED</code> starts up an internal AMQP service when the
+      DHIS2 instance is starting up. If you want to connect to an external AMQP service
+      you need to set the mode to <code>NATIVE</code>.</td>
+    </tr>
+    <tr class="odd">
+      <td>amqp.host</td>
+      <td><code>127.0.0.1</code></td>
+      <td>Host to bind to.</td>
+    </tr>
+    <tr class="even">
+      <td>amqp.port</td>
+      <td><code>15672</code></td>
+      <td>If mode is <code>EMBEDDED</code> then start the embedded server on this port,
+      if <code>NATIVE</code> then the client will use this port to connect to.</td>
+    </tr>
+    <tr class="odd">
+      <td>amqp.username</td>
+      <td><code>guest</code></td>
+      <td>Username to connect to if using <code>NATIVE</code> mode.</td>
+    </tr>
+    <tr class="even">
+      <td>amqp.password</td>
+      <td><code>guest</code></td>
+      <td>Password to connect to if using <code>NATIVE</code> mode.</td>
+    </tr>
+    <tr class="odd">
+      <td>amqp.embedded.persistence</td>
+      <td><code>false</code> | <code>true</code></td>
+      <td>If mode is <code>EMBEDDED</code>, this property controls persistence of
+      the internal queue.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## CSV metadata import
 
