@@ -1639,13 +1639,45 @@ When you want to move a whole set of data set, program or category combo
 metadata from one server to another (possibly empty) server, we have
 three special endpoints for just that purpose:
 
-    /api/26/dataSets/ID/metadata.json
+    /api/<version>/dataSets/ID/metadata.json
 
-    /api/26/programs/ID/metadata.json
+    /api/<version>/programs/ID/metadata.json
 
-    /api/26/categoryCombos/ID/metadata.json
+    /api/<version>/categoryCombos/ID/metadata.json
+    
+    /api/<version>/dashboards/{uid}/metadata.json
 
-These exports can then be imported using */api/26/metadata*.
+These exports can then be imported using */api/<version>/metadata*.
+
+These endpoints also support the following parameters:
+
+<table>
+<caption>Export Parameter</caption>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 21%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Options</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>skipSharing</td>
+<td>false/true</td>
+<td>Enabling this will strip the sharing properties from the exported objects. This includes <em>user</em>, <em>publicAccess</em>, <em>userGroupAccesses</em>, <em>userAccesses</em>, and <em>externalAccess</em>.</td>
+</tr>
+<tr class="odd">
+<td>download</td>
+<td>false/true</td>
+<td>Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download.</td>
+</tr>
+</tbody>
+</table>
 
 ## Metadata import
 
