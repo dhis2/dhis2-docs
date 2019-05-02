@@ -2028,13 +2028,13 @@ system. Calculated totals do not have a denominator.
 
 > **Note**
 >
-> You never enter indicators directly in DHIS2, you calculate them.
+> You never enter indicator values directly in DHIS2, you calculate them.
 
 An indicator formula can consist of mathematical operators, for example
-plus and minus, and of the following elements:
+plus and minus; functions (see below); and of the following elements:
 
 <table>
-<caption>Indicator formula</caption>
+<caption>Indicator elements</caption>
 <colgroup>
 <col style="width: 36%" />
 <col style="width: 30%" />
@@ -2042,7 +2042,7 @@ plus and minus, and of the following elements:
 </colgroup>
 <thead>
 <tr class="header">
-<th>Formula element</th>
+<th>Indicator element</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -2082,6 +2082,55 @@ plus and minus, and of the following elements:
 <td><p>Component</p></td>
 <td><p>Click <strong>Programs</strong> and select a program to view all data elements, attributes and indicators related to a specific program.</p>
 <p>The program components you include in your formula will have a program tag assigned to them.</p></td>
+</tr>
+</tbody>
+</table>
+
+You can use the following functions in an indicator formula:
+<table>
+<caption>Indicator functions</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Indicator Function</p></th>
+<th><p>Arguments</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>if</p></td>
+<td><p>(boolean-expr, true-expr, false-expr)</p></td>
+<td><p>Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression.</p></td>
+</tr>
+<tr class="even">
+<td><p>isNull</p></td>
+<td><p>(element)</p></td>
+<td><p>Returns true if the element value is missing (null), otherwise false.</p></td>
+</tr>
+<tr class="odd">
+<td><p>isNotNull</p></td>
+<td><p>(element)</p></td>
+<td><p>Returns true if the element value is not missing (not null), otherwise false.</p></td>
+</tr>
+<tr class="even">
+<td><p>firstNonNull</p></td>
+<td><p>(element [, element ...])</p></td>
+<td><p>Returns the value of the first element that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values.</p></td>
+</tr>
+<tr class="odd">
+<td><p>greatest</p></td>
+<td><p>(expression [, expression ...])</p></td>
+<td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments.</p></td>
+</tr>
+<tr class="even">
+<td><p>least</p></td>
+<td><p>(expression [, expression ...])</p></td>
+<td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
 </tr>
 </tbody>
 </table>
