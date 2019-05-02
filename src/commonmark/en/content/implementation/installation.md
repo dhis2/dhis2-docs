@@ -939,6 +939,15 @@ Note that several instructions have been omitted for brevity in the
 above example. Consult the reverse proxy section for a detailed
 configuration guide.
 
+## Analytics cache configuration
+
+<!--DHIS2-SECTION-ID:install_analytics_cache_configuration-->
+
+DHIS 2 supports a server-side cache for analytics API responses, used by all of the analytics web apps. This cache sits within the DHIS 2 application and hence is protected by the DHIS 2 authentication and security layer. You can configure the expiration of cached entries in seconds. To enable the cache you can define the `analytics.cache.expiration` property in `dhis.conf`. The example below enabled the cache and sets expiration to one hour.
+
+	analytics.cache.expiration = 3600
+
+
 ## Starting Tomcat at boot time
 
 <!--DHIS2-SECTION-ID:install_starting_tomcat_boot_time-->
