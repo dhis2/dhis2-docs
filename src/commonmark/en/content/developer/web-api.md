@@ -2154,7 +2154,9 @@ the keys in the table down below.
     <tr class="odd">
       <td>amqp.mode</td>
       <td><code>EMBEDDED</code> | <code>NATIVE</code></td>
-      <td>Host to bind to.</td>
+      <td>The default <code>EMBEDDED</code> starts up an internal AMQP service when the
+      DHIS2 instance is starting up. If you want to connect to an external AMQP service
+      you need to set the mode to <code>NATIVE</code>.</td>
     </tr>
     <tr class="odd">
       <td>amqp.host</td>
