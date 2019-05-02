@@ -418,6 +418,12 @@ API endpoint */api/periodTypes*)
 </tbody>
 </table>
 
+
+### Relative Periods
+
+<!--DHIS2-SECTION-ID:webapi_date_relative_period_values-->
+
+
 In some parts of the API, like for the analytics resource, you can
 utilize relative periods in addition to fixed periods (defined above).
 The relative periods are relative to the current date, and allows e.g.
@@ -2118,81 +2124,69 @@ following payload to change the style:
       ...
     }
 
-## AMQP/RabbitMQ integration
+## ActiveMQ Artemis / AMQP 1.0 integration
 
-<!--DHIS2-SECTION-ID:webapi_amqp_rabbitmq_integration-->
+<!--DHIS2-SECTION-ID:webapi_amqp_integration-->
 
-If you have an external system that needs to know about updates inside
-of DHIS2 (update data element, create org unit, etc.) you can set up a
-rabbitmq message broker, and have it receive messages from DHIS2, then
-other clients can listen to this broker and be notified when events
-happen. Configuration of this is performed in "dhis.conf" where the following
-keys are available (defaults values are shown):
+By default DHIS2 will start up an embedded instance of ActiveMQ Artemis when the
+instance is booting up. For most use-cases you do not need to configure anything
+to make use of this, but if you infrastructure have an existing AMQP 1.0 compliant
+service you want to use, you can change the defaults in your *dhis.conf* file using
+the keys in the table down below.
 
-    rabbitmq.host =
-    rabbitmq.port = 5672
-    rabbitmq.addresses =
-    rabbitmq.virtual-host = /
-    rabbitmq.exchange = dhis2
-    rabbitmq.username = guest
-    rabbitmq.password = guest
-    rabbitmq.connection-timeout = 60000
-
-The only required key to enable rabbitmq is "host", if the rest of the
-values are applicable for your instance you can just use the defaults
-provided.
-
-Inside DHIS2 it communicates with AMQP using a topic exchange called
-"dhis2" (unless you have configured it to be called something else), and
-the following keys are sent out:
-
-    metadata.<type>.<action>.<id>
-
-Where type can be any type inside of DHIS2 (data element, indicator, org
-unit, etc.), action is *CREATE, UPDATE, DELETE* and *id* is the id of the
-type being handled. The event also contains a payload, for *CREATE* and
-*DELETE* this is the full serialized version of the object, for *UPDATE*
-its a patch containing the updates that are happening on that object.
-
-## Kafka integration
-
-<!--DHIS2-SECTION-ID:webapi_kafka_integration-->
-
-Kafka integration was added in 2.30 and is currently supported for doing
-bulk imports of tracker data (tracked entities, enrollments, events), to
-integrate with kafka you need to first install and configure Kafka (see
-<https://docs.confluent.io/current/installation/installing_cp/index.html>
-for more information), then update your "dhis.conf" with at least the
-"*kafka.bootstrap-servers*" key, an example can be seen below (only
-*bootstrap-servers* is required, the rest is just to show the defaults):
-
-    kafka.bootstrap-servers = localhost:9092
-    kafka.client-id = dhis2
-    kafka.retries = 10
-    kafka.max-poll-records = 1000
-
-After adding this, you will need to create the topics that you are
-interested in using, below we will show how that is done for tracker
-data (the only currently supported topics).
-
-### Kafka tracker integration
-
-For doing bulk imports of tracker data, 3 new endpoints has been
-created:
-
-    /api/trackedEntityInstances/queue (topic: bulk-tracked-entities)
-    /api/enrollments/queue (topic: bulk-enrollments)
-    /api/events/queue (topic: bulk-events)
-
-You can use these endpoints exactly as you would with the normal tracker
-endpoint, the only difference is that they are all asynchronous, and you
-will need to get the import summaries using normal task summary
-approach. Internally there is a scheduled system job called "Kafka Job"
-which runs every second to check for new objects waiting in Kafka.
-
-The topics will be created by DHIS2 if they don't exist, but be aware
-that they will then have their basic default settings applied (1
-replication factor, and 1 partition only).
+<table>
+  <caption>
+    AMQP Configuration Keys
+  </caption>
+  <colgroup>
+    <col style="width: 15%" />
+    <col style="width: 30%" />
+    <col style="width: 55%" />
+  </colgroup>
+  <thead>
+    <tr class="header">
+      <th>Key</th>
+      <th>Value (default first)</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="odd">
+      <td>amqp.mode</td>
+      <td><code>EMBEDDED</code> | <code>NATIVE</code></td>
+      <td>The default <code>EMBEDDED</code> starts up an internal AMQP service when the
+      DHIS2 instance is starting up. If you want to connect to an external AMQP service
+      you need to set the mode to <code>NATIVE</code>.</td>
+    </tr>
+    <tr class="odd">
+      <td>amqp.host</td>
+      <td><code>127.0.0.1</code></td>
+      <td>Host to bind to.</td>
+    </tr>
+    <tr class="even">
+      <td>amqp.port</td>
+      <td><code>15672</code></td>
+      <td>If mode is <code>EMBEDDED</code> then start the embedded server on this port,
+      if <code>NATIVE</code> then the client will use this port to connect to.</td>
+    </tr>
+    <tr class="odd">
+      <td>amqp.username</td>
+      <td><code>guest</code></td>
+      <td>Username to connect to if using <code>NATIVE</code> mode.</td>
+    </tr>
+    <tr class="even">
+      <td>amqp.password</td>
+      <td><code>guest</code></td>
+      <td>Password to connect to if using <code>NATIVE</code> mode.</td>
+    </tr>
+    <tr class="odd">
+      <td>amqp.embedded.persistence</td>
+      <td><code>false</code> | <code>true</code></td>
+      <td>If mode is <code>EMBEDDED</code>, this property controls persistence of
+      the internal queue.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## CSV metadata import
 
@@ -10766,6 +10760,508 @@ The response will provide the count and extent in JSON format:
         count: 59
     }
 
+## Enrollment analytics
+
+<!--DHIS2-SECTION-ID:webapi_enrollment_analytics-->
+
+The enrollment analytics API lets you access aggregated event data and query *enrollments with their event data* captured in DHIS2. This resource lets you retrieve data for a program based on program stages and data elements - in addition to tracked entity attributes. When querying event data for a specific programstages within each enrollment, the data element values for each program stage will be returned as one row in the response from the api. If querying a data element in a program stage that is repeatable, the newest data element value will be used for that data element in the api reponse.
+
+### Dimensions and items
+
+<!--DHIS2-SECTION-ID:webapi_enrollment_analytics_dimensions-->
+
+Enrollment dimensions include data elements, attributes, organisation units and periods. The query analytics resource will simply return enrollments matching a set of criteria and does not perform any aggregation.
+
+<table>
+<caption>Enrollment dimensions</caption>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 11%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th>Dimension id</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data elements in program stages</td>
+<td>&lt;program stage id&gt;.&lt;data element id&gt;</td>
+<td>Data element identifiers must include the program stage when querying data for enrollments.
+
+    dimension=edqlbukwRfQ.vANAXwtLwcT
+    
+</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>&lt;id&gt;</td>
+<td>Attribute identifiers</td>
+</tr>
+<tr>
+<td>Periods</td>
+<td>pe</td>
+<td>ISO periods and relative periods, see &quot;date and period format&quot;</td>
+</tr>
+<tr>
+<td>Organisation units</td>
+<td>ou</td>
+<td>Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-&lt;level&gt; and OU_GROUP-&lt;group-id&gt;</td>
+</tr>
+</tbody>
+</table>
+
+### Enrollment query analytics
+
+<!--DHIS2-SECTION-ID:webapi_enrollment_query_analytics-->
+
+The *analytics/enrollments/query* resource lets you query for captured enrollments. This resource does not perform any aggregation, rather it lets you query and filter for information about enrollments.
+
+    /api/32/analytics/enrollments/query
+
+You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of data elements in program stages, tracked entity attributes, fixed and relative periods and organisation units. Dimensions can optionally have a query operator and a filter. Enrollment queries should be on the format described below.
+
+    /api/32/analytics/enrollments/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
+      &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
+
+For example, to retrieve enrollments in the from the "Antenatal care" program from January 2019, where the "First name" is picked up from attributes, "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the follou program stage - and only women that has "Cronic conditions" would be icluded, you can use the following query:
+
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd&dimension=w75KJ2mc4zz
+        &dimension=WZbXY0S00lP.de0FEHSIoxh:eq:1&dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD
+        &dimension=edqlbukwRfQ.vANAXwtLwcT&startDate=2019-01-01&endDate=2019-01-31
+
+To retrieve enrollments in the from the "Antenatal care" program from last month(relative to the point in time the query is executed), where the "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the folloup program stage - only including smoking women with hemoglobin less than 20:
+
+    api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+        &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD:eq:1
+        &dimension=edqlbukwRfQ.vANAXwtLwcT:lt:20&dimension=pe:LAST_MONTH
+
+Sorting can be applied to the query for the enrollment and incident dates of the enrollment:
+
+        /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
+        &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
+        &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+
+Paging can be applied to the query by specifying the page number and the page size parameters. If page number is specified but page size is not, a page size of 50 will be used. If page size is specified but page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
+
+    api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+        &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=pe:LAST_MONTH
+        &dimension=WZbXY0S00lP.sWoqcoByYmD&pageSize=10&page=2
+
+#### Filtering
+
+Filters can be applied to data elements, person attributes and person identifiers. The filtering is done through the query parameter value on the following format:
+
+    &dimension=<item-id>:<operator>:<filter-value>
+
+As an example, you can filter the "Weight" data element for values greater than 2000 and lower than 4000 like this:
+
+    &dimension=WZbXY0S00lP.UXz7xuGCEhU:GT:2000&dimension=WZbXY0S00lP.UXz7xuGCEhU:LT:4000
+
+You can filter the "Age" attribute for multiple, specific ages using the IN operator like this:
+
+    &dimension=qrur9Dvnyt5:IN:18;19;20
+
+You can specify multiple filters for a given item by repeating the operator and filter components, all separated with semi-colons:
+
+    &dimension=qrur9Dvnyt5:GT:5:LT:15
+
+The available operators are listed below.
+
+<table>
+<caption>Filter operators</caption>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EQ</td>
+<td>Equal to</td>
+</tr>
+<tr>
+<td>GT</td>
+<td>Greater than</td>
+</tr>
+<tr>
+<td>GE</td>
+<td>Greater than or equal to</td>
+</tr>
+<tr>
+<td>LT</td>
+<td>Less than</td>
+</tr>
+<tr>
+<td>LE</td>
+<td>Less than or equal to</td>
+</tr>
+<tr>
+<td>NE</td>
+<td>Not equal to</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td>Like (free text match)</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>Equal to one of multiple values separated by &quot;;&quot;</td>
+</tr>
+</tbody>
+</table>
+
+### Request query parameters
+
+<!--DHIS2-SECTION-ID:webapi_enrollment_analytics_query_parameters-->
+
+The analytics enrollment query API let you specify a range of query parameters.
+
+<table>
+<caption>Query parameters for enrollment query enpoint</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 48%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Query parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Options (default first)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>program</td>
+<td>Yes</td>
+<td>Program identifier.</td>
+<td>Any program identifier</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>No</td>
+<td>Start date for enrollments.</td>
+<td>Date in yyyy-MM-dd format</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>No</td>
+<td>End date for enrollments.</td>
+<td>Date in yyyy-MM-dd format</td>
+</tr>
+<tr>
+<td>dimension</td>
+<td>Yes</td>
+<td>Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format &lt;item-id&gt;:&lt;operator&gt;:&lt;filter&gt;. Filter values are case-insensitive.</td>
+<td>Operators can be EQ | GT | GE | LT | LE | NE | LIKE | IN</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>No</td>
+<td>Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format &lt;item-id&gt;:&lt;operator&gt;:&lt;filter&gt;. Filter values are case-insensitive.</td>
+<td></td>
+</tr>
+<tr>
+<td>programStatus</td>
+<td>No</td>
+<td>Specify enrollment status of enrollments to include.</td>
+<td>ACTIVE | COMPLETED | CANCELLED</td>
+</tr>
+<tr>
+<td>relativePeriodDate</td>
+<td>string</td>
+<td>No</td>
+<td>Date identifier e.g: &quot;2016-01-01&quot;. Overrides the start date of the relative period</td>
+</tr>
+<tr>
+<td>ouMode</td>
+<td>No</td>
+<td>The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only.</td>
+<td>DESCENDANTS, CHILDREN, SELECTED</td>
+</tr>
+<tr>
+<td>asc</td>
+<td>No</td>
+<td>Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code.</td>
+<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
+</tr>
+<tr>
+<td>desc</td>
+<td>No</td>
+<td>Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code.</td>
+<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
+</tr>
+<td>hierarchyMeta</td>
+<td>No</td>
+<td>Include names of organisation unit ancestors and hierarchy paths of organisation units in the metadata.</td>
+<td>false | true</td>
+</tr>
+<tr>
+<td>coordinatesOnly</td>
+<td>No</td>
+<td>Whether to only return enrollments which have coordinates.</td>
+<td>false | true</td>
+</tr>
+<tr>
+<td>page</td>
+<td>No</td>
+<td>The page number. Default page is 1.</td>
+<td>Numeric positive value</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>No</td>
+<td>The page size. Default size is 50 items per page.</td>
+<td>Numeric zero or positive value</td>
+</tr>
+</tbody>
+</table>
+
+#### Response formats
+
+The default response representation format is JSON. The requests must be using the HTTP *GET* method. The following response formats are supported.
+
+  - json (application/json)
+  - xml (application/xml)
+  - xls (application/vnd.ms-excel)
+  - csv  (application/csv)
+  - html (text/html)
+  - html+css (text/html)
+
+As an example, to get a response in Excel format you can use a file extension in the request URL like this:
+
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd&dimension=WZbXY0S00lP.de0FEHSIoxh
+        &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
+        &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+
+The default response JSON format will look similar to this:
+
+    {
+        "headers": [
+            {
+                "name": "pi",
+                "column": "Enrollment",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "tei",
+                "column": "Tracked entity instance",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "enrollmentdate",
+                "column": "Enrollment date",
+                "valueType": "DATE",
+                "type": "java.util.Date",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "incidentdate",
+                "column": "Incident date",
+                "valueType": "DATE",
+                "type": "java.util.Date",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "geometry",
+                "column": "Geometry",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "longitude",
+                "column": "Longitude",
+                "valueType": "NUMBER",
+                "type": "java.lang.Double",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "latitude",
+                "column": "Latitude",
+                "valueType": "NUMBER",
+                "type": "java.lang.Double",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "ouname",
+                "column": "Organisation unit name",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "oucode",
+                "column": "Organisation unit code",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "ou",
+                "column": "Organisation unit",
+                "valueType": "TEXT",
+                "type": "java.lang.String",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "de0FEHSIoxh",
+                "column": "WHOMCH Chronic conditions",
+                "valueType": "BOOLEAN",
+                "type": "java.lang.Boolean",
+                "hidden": false,
+                "meta": true
+            },
+            {
+                "name": "sWoqcoByYmD",
+                "column": "WHOMCH Smoking",
+                "valueType": "BOOLEAN",
+                "type": "java.lang.Boolean",
+                "hidden": false,
+                "meta": true
+            }
+        ],
+        "metaData": {
+            "pager": {
+                "page": 2,
+                "total": 163,
+                "pageSize": 4,
+                "pageCount": 41
+            },
+            "items": {
+                "ImspTQPwCqd": {
+                    "name": "Sierra Leone"
+                },
+                "PFDfvmGpsR3": {
+                    "name": "Care at birth"
+                },
+                "bbKtnxRZKEP": {
+                    "name": "Postpartum care visit"
+                },
+                "ou": {
+                    "name": "Organisation unit"
+                },
+                "PUZaKR0Jh2k": {
+                    "name": "Previous deliveries"
+                },
+                "edqlbukwRfQ": {
+                    "name": "Antenatal care visit"
+                },
+                "WZbXY0S00lP": {
+                    "name": "First antenatal care visit"
+                },
+                "sWoqcoByYmD": {
+                    "name": "WHOMCH Smoking"
+                },
+                "WSGAb5XwJ3Y": {
+                    "name": "WHO RMNCH Tracker"
+                },
+                "de0FEHSIoxh": {
+                    "name": "WHOMCH Chronic conditions"
+                }
+            },
+            "dimensions": {
+                "pe": [],
+                "ou": [
+                    "ImspTQPwCqd"
+                ],
+                "sWoqcoByYmD": [],
+                "de0FEHSIoxh": []
+            }
+        },
+        "width": 12,
+        "rows": [
+            [
+                "A0cP533hIQv",
+                "to8G9jAprnx",
+                "2019-02-02 12:05:00.0",
+                "2019-02-02 12:05:00.0",
+                "",
+                "0.0",
+                "0.0",
+                "Tonkomba MCHP",
+                "OU_193264",
+                "xIMxph4NMP1",
+                "0",
+                "1"
+            ],
+            [
+                "ZqiUn2uXmBi",
+                "SJtv0WzoYki",
+                "2019-02-02 12:05:00.0",
+                "2019-02-02 12:05:00.0",
+                "",
+                "0.0",
+                "0.0",
+                "Mawoma MCHP",
+                "OU_254973",
+                "Srnpwq8jKbp",
+                "0",
+                "0"
+            ],
+            [
+                "lE747mUAtbz",
+                "PGzTv2A1xzn",
+                "2019-02-02 12:05:00.0",
+                "2019-02-02 12:05:00.0",
+                "",
+                "0.0",
+                "0.0",
+                "Kunsho CHP",
+                "OU_193254",
+                "tdhB1JXYBx2",
+                "",
+                "0"
+            ],
+            [
+                "nmcqu9QF8ow",
+                "pav3tGLjYuq",
+                "2019-02-03 12:05:00.0",
+                "2019-02-03 12:05:00.0",
+                "",
+                "0.0",
+                "0.0",
+                "Korbu MCHP",
+                "OU_678893",
+                "m73lWmo5BDG",
+                "",
+                "1"
+            ]
+        ],
+        "height": 4
+    }
+
+The *headers* section of the response describes the content of the query result. The enrollment unique identifier, the tracked entity instance identifier, the enrollment date, the incident date, geometry, latitude, logitude, the organisation unit name and the organisation unit code appear as the first dimensions in the response and will always be present. Next comes the data elements,and tracked entity attributes which were specified as dimensions in the request, in this case the "WHOMCH Chronic conditions" and "WHOMCH smoking" data element dimensions. The header section contains the identifier of the dimension item in the "name" property and a readable dimension description in the "column" property.
+
+The *metaData* section, *ou* object contains the identifiers of all organisation units present in the response mapped to a string representing the hierarchy. This hierarchy string lists the identifiers of the ancestors (parents) of the organisation unit starting from the root. The *names* object contains the identifiers of all items in the response mapped to their names.
+
+The *rows* section contains the enrollments produced by the query. Each row represents exactly one enrollment.
+
 ## Org unit analytics
 
 <!--DHIS2-SECTION-ID:webapi_org_unit_analytics-->
@@ -12448,6 +12944,21 @@ case of GenericHttpGateway to send one or more parameter as http header.
       "username": "bulkuser",
       "password": "abc123"
     }
+    
+*SMPP Gateway*
+
+    {
+		"name": "smpp gateway2",
+		"systemId": "smppclient1",
+		"host": "localhost",
+		"systemType": "cp",
+		"numberPlanIndicator": "UNKNOWN",
+		"typeOfNumber": "UNKNOWN",
+		"bindType": "BIND_TX",
+		"port": 2775,
+		"password":"password",
+		"compressed": false
+	}
 
 *GenericHttp*
 
@@ -14716,7 +15227,14 @@ To query for tracked entity instances you can interact with the
 <tr class="odd">
 <td>lastUpdatedEndDate</td>
 <td>Filter for events which were updated up until this date.</td>
+</tr
+<tr class="even">
+<td>assignedUserMode</td>
+<td>Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
 </tr>
+<tr class="odd">
+<td>assignedUser</td>
+<td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
 </tbody>
 </table>
 
@@ -15552,6 +16070,16 @@ the tracker user interface.
 <td>Period object containing a period in which the event must be created. See <em>Period</em> definition below.</td>
 <td>{ &quot;periodFrom&quot;: -15, &quot;periodTo&quot;: 15}</td>
 </tr>
+<tr class="even">
+<td>assignedUserMode</td>
+<td>To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)| PROVIDED (events assigned to users provided in "assignedUsers" list) | NONE (events assigned to noone) | ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.</td>
+<td>"assignedUserMode": "PROVIDED"</td>
+</tr>
+<tr class="odd">
+<td>assignedUsers</td>
+<td>To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.</td>
+<td>"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]</td>
+</tr>
 </tbody>
 </table>
 
@@ -16150,6 +16678,17 @@ with a identifier reference to the server you are using.
 
     curl -X DELETE "localhost/api/29/events/ID" -u admin:district
 
+#### Assigning user to events
+
+<!--DHIS2-SECTION-ID:webapi_user_assign_event-->
+
+A user can be assigned to an event. This can be done by including the appropriate property in the payload when updating or creating the event. 
+
+      "assignedUser": "<id>"
+
+The id refers to the if of the user. Only one user can be assigned to an event at a time.
+
+User assignment must be enabled in the program stage before users can be assigned to events.
 #### Getting events
 
 <!--DHIS2-SECTION-ID:webapi_getting_events-->
@@ -16363,6 +16902,18 @@ i.e. *?fields=program,status*.
 <td>false</td>
 <td>When true, soft deleted events will be included in your query result.</td>
 </tr>
+<tr class="even">
+<td>assignedUserMode</td>
+<td>enum</td>
+<td>false</td>
+<td>Assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
+</tr>
+<tr class="odd">
+<td>assignedUser</td>
+<td>comma delimited strings</td>
+<td>false</td>
+<td>Filter the result down to a limited set of events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>. This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
+</tr>
 </tbody>
 </table>
 
@@ -16463,6 +17014,430 @@ based on data element
     value
 
     /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk&filter=qrur9Dvnyt5:GT:20:LT:50&order=qrur9Dvnyt5:desc
+
+#### Event filters
+
+<!--DHIS2-SECTION-ID:webapi_event_filters-->
+
+To create, read, update and delete event filters you
+can interact with the */api/eventFilters* resource.
+
+    /api/32/eventFilters
+
+##### Create and update an event filter definiton
+
+For creating and updating an event filter in the
+system, you will be working with the *eventFilters*
+resource. *POST* is used to create and *PUT* method is used to update. The event filter definitions are used in the
+Tracker Capture app to display relevant predefined "Working lists" in
+the tracker user interface.
+
+<table>
+<caption>Request Payload</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Request Property</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>name</td>
+<td>Name of the filter.</td>
+<td>"name":"My working list"</td>
+</tr>
+<tr class="even">
+<td>description</td>
+<td>A description of the filter.</td>
+<td>"description":"for listing all events assigned to me".</td>
+</tr>
+<tr class="odd">
+<td>program</td>
+<td>The uid of the program.</td>
+<td>"program" : "a3kGcGDCuk6"</td>
+</tr>
+<tr class="even">
+<td>programStage</td>
+<td>The uid of the program stage.</td>
+<td>"programStage" : "a3kGcGDCuk6"</td>
+</tr>
+<tr class="even">
+<td>eventQueryCriteria</td>
+<td>Object containing parameters for querying, sorting and filtering events.</td>
+<td>  
+  "eventQueryCriteria": {
+    "organisationUnit":"a3kGcGDCuk6",
+    "status": "COMPLETED",
+    "createdDate": {
+      "from": "2014-05-01",
+      "to": "2019-03-20"
+    },
+    "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],
+    "filters": ["a3kGcGDCuk6:EQ:1"],
+    "programStatus": "ACTIVE",
+    "ouMode": "SELECTED",
+    "assignedUserMode": "PROVIDED",
+    "assignedUsers" : ["a3kGcGDCuk7", "a3kGcGDCuk8"],
+    "followUp": false,
+    "trackedEntityInstance": "a3kGcGDCuk6",
+    "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],
+    "fields": "eventDate,dueDate",
+    "order": "dueDate:asc,createdDate:desc"
+  }
+</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption>Event Query Criteria definition</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>followUp</td>
+<td>Used to filter events based on enrollment followUp flag. Possible values are true|false.</td>
+<td>"followUp": true</td>
+</tr>
+<tr class="even">
+<td>organisationUnit</td>
+<td>To specify the uid of the organisation unit</td>
+<td>"organisationUnit": "a3kGcGDCuk7"</td>
+</tr>
+<tr class="odd">
+<td>ouMode</td>
+<td>To specify the OU selection mode. Possible values are SELECTED| CHILDREN|DESCENDANTS|ACCESSIBLE|CAPTURE|ALL</td>
+<td>"ouMode": "SELECTED"</td>
+</tr>
+<tr class="even">
+<td>assignedUserMode</td>
+<td>To specify the assigned user selection mode for events. Possible values are CURRENT| PROVIDED| NONE | ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.</td>
+<td>"assignedUserMode": "PROVIDED"</td>
+</tr>
+<tr class="odd">
+<td>assignedUsers</td>
+<td>To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.</td>
+<td>"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]</td>
+</tr>
+<tr class="even">
+<td>displayOrderColumns</td>
+<td>To specify the output ordering of columns</td>
+<td>"displayOrderColumns": ["eventDate", "dueDate", "program"]</td>
+</tr>
+<tr class="odd">
+<td>order</td>
+<td>To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "dataItem:direction".</td>
+<td>"order"="a3kGcGDCuk6:desc,eventDate:asc"</td>
+</tr>
+<tr class="even">
+<td>dataFilters</td>
+<td>To specify filters to be applied when listing events</td>
+<td>"dataFilters"=[{
+      "dataItem": "abcDataElementUid",
+      "le": "20",
+      "ge": "10",
+      "lt": "20",
+      "gt": "10",
+      "in": ["India", "Norway"],
+      "like": "abc",
+      "dateFilter": {
+        "startDate": "2014-05-01",
+        "endDate": "2019-03-20",
+        "startBuffer": -5,
+        "endBuffer": 5,
+        "period": "LAST_WEEK",
+        "type": "RELATIVE"
+      }
+    }]</td>
+</tr>
+<tr class="odd">
+<td>status</td>
+<td> Any valid EventStatus</td>
+<td>  "eventStatus": "COMPLETED"</td>
+</tr>
+<tr class="even">
+<td>events</td>
+<td>To specify list of events</td>
+<td>"events"=["a3kGcGDCuk6"]</td>
+</tr>
+<tr class="odd">
+<td>completedDate</td>
+<td>DateFilterPeriod object date filtering based on completed date.</td>
+<td>
+  "completedDate":{
+        "startDate": "2014-05-01",
+        "endDate": "2019-03-20",
+        "startBuffer": -5,
+        "endBuffer": 5,
+        "period": "LAST_WEEK",
+        "type": "RELATIVE"
+      }
+</td>
+</tr>
+<tr class="even">
+<td>eventDate</td>
+<td>DateFilterPeriod object date filtering based on event date.</td>
+<td>
+  "eventDate":{
+        "startBuffer": -5,
+        "endBuffer": 5,
+        "type": "RELATIVE"
+      }
+</td>
+</tr>
+<tr class="odd">
+<td>dueDate</td>
+<td>DateFilterPeriod object date filtering based on due date.</td>
+<td>
+ "dueDate": {
+        "period": "LAST_WEEK",
+        "type": "RELATIVE"
+      }
+</td>
+</tr>
+<tr class="even">
+<td>lastUpdatedDate</td>
+<td>DateFilterPeriod object date filtering based on last updated date.</td>
+<td>
+  "lastUpdatedDate":{
+        "startDate": "2014-05-01",
+        "endDate": "2019-03-20",
+        "type": "ABSOLUTE"
+      }
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<table>
+<caption>DateFilterPeriod object definition</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>type</td>
+<td>Specify whether the date period type is ABSOLUTE | RELATIVE</td>
+<td>"type" : "RELATIVE"</td>
+</tr>
+<tr class="even">
+<td>period</td>
+<td>Specify if a relative system defined period is to be used. Applicable only when "type" is RELATIVE. (see <a href="#webapi_date_relative_period_values">Relative Periods</a> for supported relative periods)</td>
+<td>"period" : "THIS_WEEK"</td>
+</tr>
+<tr class="odd">
+<td>startDate</td>
+<td>Absolute start date. Applicable only when "type" is ABSOLUTE</td>
+<td>"startDate":"2014-05-01"</td>
+</tr>
+<tr class="even">
+<td>endDate</td>
+<td>Absolute end date. Applicable only when "type" is ABSOLUTE</td>
+<td>"startDate":"2014-05-01"</td>
+</tr>
+<tr class="odd">
+<td>startBuffer</td>
+<td>Relative custom start date. Applicable only when "type" is RELATIVE</td>
+<td>"startBuffer":-10</td>
+</tr>
+<tr class="even">
+<td>endBuffer</td>
+<td>Relative custom end date. Applicable only when "type" is RELATIVE</td>
+<td>"startDate":+10</td>
+</tr>
+</tbody>
+</table>
+
+The available assigned user selection modes are explained in the
+following table.
+
+<table>
+<caption>Assigned user selection modes (event assignment)</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CURRENT</td>
+<td>Assigned to the current logged in user</td>
+</tr>
+<tr class="even">
+<td>PROVIDED</td>
+<td>Assigned to the users provided in the "assignedUser" parameter</td>
+</tr>
+<tr class="odd">
+<td>NONE</td>
+<td>Assigned to no users.</td>
+</tr>
+<tr class="even">
+<td>ANY</td>
+<td>Assigned to any users.</td>
+</tr>
+</tbody>
+</table>
+
+A sample payload that can be used to create/update an eventFilter is shown below.
+
+````
+{
+  "program": "ur1Edk5Oe2n",
+  "description": "Simple Filter for TB events",
+  "name": "TB events",
+  "eventQueryCriteria": {
+    "organisationUnit":"DiszpKrYNg8",
+    "eventStatus": "COMPLETED",
+    "eventDate": {
+      "startDate": "2014-05-01",
+      "endDate": "2019-03-20",
+      "startBuffer": -5,
+      "endBuffer": 5,
+      "period": "LAST_WEEK",
+      "type": "RELATIVE"
+    },
+    "dataFilters": [{
+      "dataItem": "abcDataElementUid",
+      "le": "20",
+      "ge": "10",
+      "lt": "20",
+      "gt": "10",
+      "in": ["India", "Norway"],
+      "like": "abc"
+    },
+    {
+      "dataItem": "dateDataElementUid",
+      "dateFilter": {
+        "startDate": "2014-05-01",
+        "endDate": "2019-03-20",
+        "type": "ABSOLUTE"
+      }
+    },
+    {
+      "dataItem": "anotherDateDataElementUid",
+      "dateFilter": {
+        "startBuffer": -5,
+        "endBuffer": 5,
+        "type": "RELATIVE"
+      }
+    },
+    {
+      "dataItem": "yetAnotherDateDataElementUid",
+      "dateFilter": {
+        "period": "LAST_WEEK",
+        "type": "RELATIVE"
+      }
+    }],
+    "programStatus": "ACTIVE"
+  }
+}
+````
+
+
+##### Retrieving and deleting event filters
+
+A specific event filter can be retrieved by using the following api
+
+    [GET]  /api/32/eventFilters/{uid}
+    
+All event filters can be retrieved by using the following api.
+
+    [GET]  /api/32/eventFilters?fields=*
+
+All event filters for a specific program can be retrieved by using the following api
+
+    [GET]  /api/32/eventFilters?filter=program:eq:IpHINAT79UW
+
+An event filter can be deleted by using the following api
+
+    [DELETE]  /api/32/eventFilters/{uid}
+
+
+### Relationships
+Relationships are links between two entities in tracker. These entities can be tracked entity instances, enrollments and events.
+
+There are multiple endpoints that allow you to see, create, delete and update relationships. The most common is the /api/trackedEntityInstances endpoint, where you can include relationships in the payload to create, update or deleting them if you omit them - Similar to how you work with enrollments and events in the same endpoint. All the tracker endpoints, /api/trackedEntityInstances, /api/enrollments and /api/events also list their relationships if requested in the field filter.
+
+The standard endpoint for relationships is, however, /api/relationships. This endpoint provides all the normal CRUD operations for relationships.
+ 
+List all relationships require you to provide the UID of the trackedEntityInstance, Enrollment or event that you want to list all the relationships for:  
+
+    GET /api/relationships?tei=ABCDEF12345
+    GET /api/relationships?enrollment=ABCDEF12345
+    GET /api/relationships?event=ABCDEF12345
+
+This request will return a list of any relationship you have access to see that includes the trackedEntityInstance, enrollment or event you specified. Each relationship is represented with the following JSON:
+
+    {
+      "relationshipType": "dDrh5UyCyvQ",
+      "relationshipName": "Mother-Child",
+      "relationship": "t0HIBrc65Rm",
+      "bidirectional": false,
+      "from": {
+        "trackedEntityInstance": {
+          "trackedEntityInstance": "vOxUH373fy5"
+        },
+      "to": {
+        "trackedEntityInstance": {
+          "trackedEntityInstance": "pybd813kIWx"
+        },
+      "created": "2019-04-26T09:30:56.267",
+      "lastUpdated": "2019-04-26T09:30:56.267"
+    }
+
+You can also view specified relationships using the following endpoint:
+
+    GET /api/relationships/<id>
+
+To create or update a relationship, you can use the following endpoints:
+
+    POST /api/relationships
+    PUT /api/relationships
+
+And use the following payload structure:
+
+    {
+      "relationshipType": "dDrh5UyCyvQ",
+      "from": {
+        "trackedEntityInstance": {
+          "trackedEntityInstance": "vOxUH373fy5"
+        },
+      "to": {
+        "trackedEntityInstance": {
+          "trackedEntityInstance": "pybd813kIWx"
+        }
+    }
+
+To delete a relationship, you can use this endpoint:
+
+      DELETE /api/relationships/<id>
+
+In our example payloads, we use a relationship between trackedEntityInstances. Because of this, the "from" and "to" properties of our payloads include "trackedEntityInstance" objects. If your relationship includes other entities, you can use the following properties:
+
+      "enrollment": {
+        "enrollment": <id>
+      }
+
+      "event": {
+        "event": <id>
+      }
 
 ### Update strategies
 
@@ -16734,6 +17709,18 @@ is as follows:
 <td>boolean</td>
 <td>Was this value collected somewhere else</td>
 </tr>
+<tr class="odd">
+<td>14</td>
+<td>completedDate</td>
+<td>date</td>
+<td>Completed date of event</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>completedBy</td>
+<td>string</td>
+<td>Username of user who completed event</td>
+</tr>
 </tbody>
 </table>
 
@@ -16797,6 +17784,45 @@ as
     shown:
 
     /api/30/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
+
+
+## Potential Duplicate api
+Potential Duplicates are the records we work with in the deduplication feature of DHIS 2. Due to the nature of the deduplication feature, the api for working with Potential Duplicates are somewhat restricted.
+
+A Potential Duplicate represents a singe record, or a pair of records that are suspected to be a duplicate.
+
+The basic payload of a Potential Duplicate looks like this:
+
+      {
+        "teiA": "<id>",
+        "teiB": "<id>|null"
+        "status": "OPEN|INVALID|MERGED"
+      }
+
+You can retrieve a list of Potential duplicates using the following endpoint:
+
+          GET /api/potentialDuplicates
+
+Additionally you can inspect individual records using:
+
+          GET /api/potentialDuplicates/<id>
+
+To create a new Potential Duplicate, you can use this endpoint:
+
+          POST /api/potentialDuplicates
+
+The payload you provide needs atleast teiA to be a valid trackedEntityInstance, but teiB is optional. If teiB is set, it also needs to point to an existing trackedEntityInstance.
+
+          {
+              "teiA": "<id>", (required)
+              "teiB": "<id>" (optional)
+          }
+
+You cannot update or delete Potential Duplicates. However, you can mark them as INVALID. You can mark a record as INVALID using the following endpoint:
+
+          PUT /api/potentialDuplicates/<id>/invalidate
+
+Marking a Potential Duplicate as INVALID will indicate the record is not a valid duplicate, and can be considered the same as removing the record. The record is still persisted in the database.
 
 ## Email
 

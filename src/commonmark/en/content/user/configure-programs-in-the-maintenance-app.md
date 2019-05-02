@@ -1167,11 +1167,15 @@ variables:
 </tr>
 <tr>
 <td><p>enrollment_count</p></td>
-<td><p>The count of enrollments (useful in combination with filters).</p></td>
+<td><p>The count of enrollments (useful in combination with filters). Aggregation type for the program indicator must be COUNT. </p></td>
 </tr>
 <tr>
 <td><p>tei_count</p></td>
-<td><p>The count of tracked entity instances (useful in combination with filters).</p></td>
+<td><p>The count of tracked entity instances (useful in combination with filters). Aggregation type for the program indicator must be COUNT.</p></td>
+</tr>
+<tr>
+<td><p>org_unit_count</p></td>
+<td><p>The count of organisation units (useful in combination with filters). Aggregation type for the program indicator must be COUNT.</p></td>
 </tr>
 <tr>
 <td><p>program_stage_name</p></td>
@@ -2048,6 +2052,13 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <td>Returns true if current user has this role otherwise false
 <p>Example expression:</p>
 <pre><code>d2:hasUserRole(&#39;UYXOT4A3ASA&#39;)</code></pre></td>
+</tr>
+<tr class="even">
+<td>d2:zScoreWFA</td>
+<td>Z-Score weight for age indicator</td>
+<td>Function calculates z-score based on data provided by WHO weight-for-age indicator. Its value varies between -3.5 to 3.5 depending upon the value of weight.
+<p>Example expression:</p>
+<pre><code>d2:zScoreWFA( ageInMonth, weight, gender )</code></pre></td>
 </tr>
 </tbody>
 </table>

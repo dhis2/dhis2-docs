@@ -29,7 +29,7 @@ The dashboard has two modes: view and edit/create. When you first log in
 to DHIS2, your most recently used dashboard will be displayed in view
 mode, if you are on the same computer as you were previously. If you are
 using a different computer, then the first starred dashboard will be
-displayed. if there are no starred dashboards, then the first dashboard
+displayed. If there are no starred dashboards, then the first dashboard (alphabetically)
 will be displayed. Starred dashboards always show first in the dashboard
 list.
 
@@ -184,8 +184,8 @@ delete the dashboard.
 ## Viewing a dashboard
 
 When in view mode, you can toggle showing the description, star a
-dashboard, apply a dashboard filter, and share the dashboard with other
-users and groups
+dashboard, apply filters, and share the dashboard with other
+users and groups.
 
 To view the description, click on the **i** button to the right of the
 title
@@ -202,15 +202,42 @@ a dashboard only applies to you, not other users.
 
 ### Filtering a dashboard
 
-To filter the dashboard by organisation unit, click on the **FILTER**
-button to the right of the dashboard title. Select the organisation
-units you want to apply to the dashboard. This only affects you, no
-other users. The only dashboard items that are impacted by the
-organisation unit filter are visualization items (pivot table, chart,
-map) that have their organisation unit configured to "User org unit". If
-you reload the dashboard, the filter will be cleared.
+Multiple filters can be applied to a dashboard for changing the data 
+displayed in the various dashboard items.
+The filters are applied to each dashboard item in the same way:
+each added filter overrides the original value for that dimension in
+the original chart, table or map (visualization).
+It is possible to filter on Organisation Units, Periods and other 
+dynamic dimensions depending on the DHIS2 instance.
 
-![](resources/images/dashboard/dashboard-orgunit-filter-dialog.png)
+To add a filter, click on the **Add Filter** button and choose the
+dimension:
+
+![Adding a filter](resources/images/dashboard/dashboard-filters.png)
+
+A dialog opens where the filter selection can be made.
+
+![Org Unit filter selection](resources/images/dashboard/dashboard-orgunit-filter-dialog.png)
+
+Click on **Confirm** in the dialog to apply the filter to the 
+current dashboard.
+
+Filters are not stored, so when switching to a different dashboard they
+are lost.
+Filter badges appear above the dashboard items to
+indicate that what is shown in the dashboard items is not the original
+visualization, but a manipulated one where the filters override
+the stored dimensions' values.
+
+![Current filters displayed as badges above the dashboard](resources/images/dashboard/dashboard-filter-badges.png)
+
+Filter badges can be clicked for opening the filter selection dialogs
+thus allowing for filter editing.
+A filter can be removed by clicking on the **Remove** button in the badge.
+Whenever a filter is added, edited or removed, the dashboard items
+reload to show the updated data.
+Filter badges are always visible at the top of the page when 
+scrolling the dashboard content.
 
 ## Dashboard items with charts, pivot tables and maps
 
@@ -243,8 +270,8 @@ smilies is supported and can be used by typing one of the following
 character combinations: :) :-) :( :-( :+1 :-1. URLs are automatically
 detected and converted into a clickable link.
 
-Interpretations are sorted by date descending, with the most recent shown on top.
-Interpretation replies are sorted by date ascending, with the oldest shown on top.
+Interpretations are sorted in descending order by date, with the most recent shown on top.
+Interpretation replies are sorted in ascending order by date, with the oldest shown on top.
 
 ![](resources/images/dashboard/dashboard-interpretations.png)
 
