@@ -198,16 +198,6 @@
 <p>Notifications about failures in processes such as analytics table generation will be sent here. This is useful for application monitoring.</p></td>
 </tr>
 <tr class="odd">
-<td><p><strong>Server base URL</strong></p></td>
-<td><p>Defines the full, externally accessible base URL for your server.</p>
-<p>The URL is used to provide links to your server from external locations such as emails sent from the system.</p>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>If you don't specify a server base URL, emails sent from the DHIS2 messaging system will not contain a reply link.</p>
-</blockquote>
-<p><em>https://apps.dhis2.org/demo</em> is the server base URL for the DHIS2 demo server.</p></td>
-</tr>
-<tr class="even">
 <td><p><strong>Google Analytics (Universal Analytics) key</strong></p></td>
 <td><p>Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.</p>
 <p>You can read more about Google Analytics at <a href="http://google.com/analytics" class="uri">http://google.com/analytics</a>.</p></td>
