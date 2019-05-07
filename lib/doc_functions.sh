@@ -99,7 +99,7 @@ update_localizations(){
        mkdir -p .tx
        cp en/resources/i18n/transifex-config .tx/config
        # <tx-project>.<resource-name>
-       txproject=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3`
+       txproject=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3 | head -1`
        if [ ${txproject} == "" ]; then
            txproject="master"
        fi
@@ -129,7 +129,7 @@ pull_translations(){
        mkdir -p .tx
        cp en/resources/i18n/transifex-config .tx/config
        # <tx-project>.<resource-name>
-       txproject=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3`
+       txproject=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3 | head -1`
        if [ ${txproject} == "" ]; then
            txproject="master"
        fi
@@ -166,7 +166,7 @@ build_docs(){
     target="$localisation_root/$lang"
     mkdir -p $target
 
-    gitbranch=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3`
+    gitbranch=`git ls-remote --heads origin | grep $(git rev-parse HEAD) | cut -d / -f 3 | head -1`
     githash=`git rev-parse --short HEAD`
     gitdate=`git show -s --format=%ci $githash`
     gityear=`date -d "${gitdate}" '+%Y'`
