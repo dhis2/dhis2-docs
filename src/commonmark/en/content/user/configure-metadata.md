@@ -2242,6 +2242,10 @@ case of percent) for the values to appear correctly formatted.
 
     In many countries indicators are assigned a code.
 
+5.  (Optional) In the **Color** field, assign a color to reprersent the indicator.
+
+5.  (Optional) In the **Icon** field, assign an icon to illustrate the meaning of the indicator.
+
 6.  In the **Description** field, type a brief, informative description
     of the indicator and how it is calculated.
 

@@ -852,8 +852,11 @@ objects:
 
       - **Code**
 
-      - **Description**
+      - **Color**
 
+      - **Icon**
+
+      - **Description**
 4.  Select number of **Decimals in data output**.
 
 5.  Select an **Aggregation type**.
