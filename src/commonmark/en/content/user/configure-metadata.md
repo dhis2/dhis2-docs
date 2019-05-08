@@ -4639,6 +4639,10 @@ sampled. For example:
     more than four digits to the left of the decimal place, they are not
     replaced with zeros.)
 
+7.  (Optional) Select an **Output category combo**. This dropdown will only show
+    if the selected data element has category-combos attached to it. If this is 
+    the case, you can select which categoryCombo you would like to use.
+
 7.  Select a **Period type**.
 
 8.  Assign one or more organisation unit levels. The output value will be
