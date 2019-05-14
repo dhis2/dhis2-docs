@@ -54,6 +54,12 @@ blockquote p {
   margin: 5px;
 }
 
+td blockquote{
+  margin: 0px;
+  margin-top:5px;
+  padding: 5px;
+}
+
 .center{
   display:block;
   margin-left:auto;
@@ -282,7 +288,7 @@ nav ul {
 
 img {
   max-width: 100%;
-  max-height: 450px;
+  max-height: 800px;
 }
 
 @page {
