@@ -1218,6 +1218,11 @@ Multiple transformers can be used by repeating the transformer
 <td>Arg1: page,Arg2: pageSize</td>
 <td>Pages a collection, default pageSize is 50.</td>
 </tr>
+<tr class="even">
+<td>pluck</td>
+<td>Optional Arg1: fieldName</td>
+<td>Converts an array of objects to an array of a selected field of that object. By default the first field that is returned by the collection is used (normally the ID).</td>
+</tr>
 </tbody>
 </table>
 
@@ -1237,6 +1242,12 @@ Examples of transformer
     /api/26/dataElements/ID?fields=id~rename(i),name~rename(n)
 
     /api/26/dataElementGroups?fields=id,displayName,dataElements~paging(1;20)
+    
+    Include an array with IDs of the organisation units:
+    /api/31/categoryOptions.json?fields=id,organisationUnits~pluck
+    
+    Include an array with the names of the organisation units (collection only returns field name):
+    /api/31/categoryOptions.json?fields=id,organisationUnits~pluck[name]
 
 ## Metadata create, read, update, delete, validate
 
