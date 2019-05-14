@@ -289,6 +289,7 @@ nav ul {
 img {
   max-width: 100%;
   max-height: 800px;
+  margin:3%;
 }
 
 @page {
