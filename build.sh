@@ -71,6 +71,7 @@ generate(){
 # format:
 #$> generate <doc name> <chapters subfolder> ["html","pdf","both"]
 # generate "dhis2_android_user_man" "android"
+# small change to test build
 generate "dhis2_android_capture_config_man" "android"
 # generate "dhis2_developer_manual" "developer"
 # generate "dhis2_user_manual_en" "user"
