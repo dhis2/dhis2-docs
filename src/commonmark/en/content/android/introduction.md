@@ -8,13 +8,6 @@ The document is divided into sections, which are intended to describe all the fe
 
 In addition, the document has sections for new features in the login, visual configurations, synchronization management and a list of known important errors.
 
-<!-- PALD: we should reuse the standard "asides" used for DHIS 2 documentation (Note, Tip, Caution, etc.)
-- Any issues around using a particular feature with Android are highlighted with an exclamation mark \!
-- Every time the icon ![](resources/images/image1_icon.png) is presented, a tip will be provided for a better use and understanding of the feature.
--->
-> ![](resources/images/image3_icon.png) **Under Construction**
->
-> When there is an error or issue in which we are currently working , you will find this icon.
 
 
 
