@@ -12,4 +12,4 @@ In addition, the document has sections for new features in the login, visual con
 - Any issues around using a particular feature with Android are highlighted with an exclamation mark \!
 - Every time the icon ![](resources/images/image1_icon.png) is presented, a tip will be provided for a better use and understanding of the feature.
 -->
-- When there is an error or issue in which we are currently working , you will find this icon ![](resources/images/image3_icon.png) { height=10px }
+- When there is an error or issue in which we are currently working , you will find this icon ![](resources/images/image3_icon.png) { height=1% }
