@@ -95,6 +95,10 @@ figcaption{
   background-image: url(../images/admon/important.png);
 }
 
+.Under Construction{
+  background-image: url(../images/admon/underconstruction.png);
+}
+
 .Caution, .Prudence{
   background-image: url(../images/admon/caution.png);
 }
