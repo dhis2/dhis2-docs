@@ -1,4 +1,4 @@
-# NEW Visual configurations
+# Visual configurations
 
 
 ## Meta data sync error
@@ -20,8 +20,10 @@ You can set your icon in the wallpaper using the DHIS2 App Widget. The icon will
 
 ![](resources/images/image32.png){ width=35%}
 
+> **Note**
+>
+> How to add a widget:
 
-How to add a widget:
  - Long press in your wallpaper
  - Select Widgets
  - Look for the DHIS2 Widget
