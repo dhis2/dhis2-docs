@@ -111,7 +111,7 @@ For screenshots of the DHIS 2 web interface, we recommend using Chrome browser, 
 
 > *Fireshot can even capture the full page, i.e. scrolled, if desired. It can also capture just a selected area (but the maximum width should always be 1440px)*
 
-When taking screenshots of the Android app, size should be set to **360x640**
+When taking screenshots of the Android app, size should be set to **360x640**.
 
 ### Section references
 
