@@ -44,6 +44,11 @@ conventions used in the document are explained below.
 > Information contained in these sections, if not heeded, could result
 > in permanent data loss or affect the overall usability of the system.
 
+> **Under Construction**
+>
+> Information contained in these sections, indicates that there is an error
+> or issue in which we are currently working.
+
     Program listings usually contain some type of computer code.
     They will be displayed with a shaded background and a different font.
 
