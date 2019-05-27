@@ -2,13 +2,13 @@
 
 <!--DHIS2-SECTION-ID:about_this_guide_-->
 
-The DHIS2 documentation is a collective effort and has been developed by
+The DHIS 2 documentation is a collective effort and has been developed by
 the development team and users. While the guide strives to be complete,
 there may be certain functionalities which have been omitted or which
 have yet to be documented. This section explains some of the conventions
 which are used throughout the document.
 
-DHIS2 is a browser-based application. In many cases, screenshots have
+DHIS 2 is a browser-based application. In many cases, screenshots have
 been included for enhanced clarity. Shortcuts to various functionalities
 are displayed such as **Data element** \> **Data element group**. The
 "\>" symbol indicates that you should click **Data element** and then
