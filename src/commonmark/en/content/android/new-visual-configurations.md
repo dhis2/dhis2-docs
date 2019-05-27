@@ -29,18 +29,19 @@ You can set your icon in the wallpaper using the DHIS2 App Widget. The icon will
 > - Look for the DHIS2 Widget
 > - Select
 >
->It will add a shortcut to your app.
+> It will add a shortcut to your app.
 
 ## Personalise the colour of the App
 
 You can set the generic theme of the app by configuring the them in our server:
 
 ![](resources/images/image28.png){width=80% }
+
 > **Note**
 >
 > How to set the server theme and flag:
 >
->- Go to **System Settings > Appearance > Style**
+> Go to **System Settings > Appearance > Style**
 > - Select your style:
 >   - Green
 >   - India (Orange)
@@ -65,9 +66,9 @@ Icons can be associated to programs, stages, data elements and the options of an
 
 In the Android App icons render in the home screen to illustrate all the programs available to a user, or while adding an stage. For data elements and options, the icons render for single event programs, when a section contains a single DE, showing the option set as a matrix or sequence of images.
 
-![](resources/images/image19.png){ width=30%}
-![](resources/images/image26.png){ width=30%}
-![](resources/images/image36.png){ width=30%}
+![](resources/images/image19.png){ width=25%}
+![](resources/images/image26.png){ width=25%}
+![](resources/images/image36.png){ width=25%}
 
 > **Note**
 >
