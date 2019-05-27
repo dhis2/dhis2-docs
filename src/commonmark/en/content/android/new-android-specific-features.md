@@ -1,8 +1,6 @@
-# NEW Android specific features
+# Android specific features
 
 ## Login
-
-![](resources/images/image39.png){width=35%}
 
 There are two ways to access the application:
 
@@ -14,11 +12,19 @@ There are two ways to access the application:
 
 2. QR: The user can use a QR code instead of typing the URL. Username and password must be entered manually.
 
-> **Note**
->
-> After the first login, the app will suggest URL and username of all successful connections.
->
-> You are able to make an *offline* login only if using the same user as the last online session.
+    > **Note**
+    >
+    > After the first login, the app will suggest URL and username of all successful connections.
+    >
+    > You are able to make an *offline* login only if using the same user as the last online session.
+ 
+ ![](resources/images/image39.png){width=35%}
+ 
+## Account Recovery
+
+The users will be able to restore their own password if they have the setting enabled: Enabled User Account Recovery.
+
+![](resources/images/image46.png){width=35%}
 
 ## Blocking session (PIN)
 
