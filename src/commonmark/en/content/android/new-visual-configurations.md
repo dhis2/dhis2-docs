@@ -42,11 +42,12 @@ You can set the generic theme of the app by configuring the them in our server:
 > How to set the server theme and flag:
 >
 > Go to **System Settings > Appearance > Style**
-> - Select your style:
->   - Green
->   - India (Orange)
->   - Light Blue
->   - Myanmar (red)
+>
+> - Select your style
+>   - Green,
+>   - India (Orange),
+>   - Light Blue,
+>   - Myanmar (red),
 >   - Vietnam
 > - Select your flag
 
