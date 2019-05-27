@@ -50,6 +50,7 @@ You can set the generic theme of the app by configuring the them in our server:
 >   - Myanmar (red),
 >   - Vietnam
 > - Select your flag
+>
 >![](resources/images/image23.png){ width=35%}
 
 ## Icon library for metadata
