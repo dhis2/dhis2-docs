@@ -23,13 +23,13 @@ You can set your icon in the wallpaper using the DHIS2 App Widget. The icon will
 > **Note**
 >
 > How to add a widget:
-
- - Long press in your wallpaper
- - Select Widgets
- - Look for the DHIS2 Widget
- - Select
-
-It will add a shortcut to your app.
+>
+> - Long press in your wallpaper
+> - Select Widgets
+> - Look for the DHIS2 Widget
+> - Select
+>
+>It will add a shortcut to your app.
 
 ## Personalise the colour of the App
 
