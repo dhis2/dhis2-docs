@@ -50,9 +50,9 @@ A contextual guide opens the first time the user opens the App.
 <!-- PALD alternative: "The Filter allows you to narrow down the data available from the ..." -->
 Allows the user to filter data from the available programs based on periods (specific day, week, month, or year) or organisation units.
 
-![](resources/images/image10.jpg){width=35%}
-![](resources/images/image4.jpg){width=35%}
-![](resources/images/image8.jpg){width=35%}
+![](resources/images/image10.jpg){width=25%}
+![](resources/images/image4.jpg){width=25%}
+![](resources/images/image8.jpg){width=25%}
 
 ## Org unit
 
@@ -149,9 +149,9 @@ Users should be able to navigate to the different enrollments from the list.
 
 The percentage of data completed in each event is shown in the top right corner of an event when it is opened after first registration.
 
-![](resources/images/image34.png){width=35%}
-![](resources/images/image27.png){width=35%}
-![](resources/images/image14.png){width=35%}
+![](resources/images/image34.png){width=25%}
+![](resources/images/image27.png){width=25%}
+![](resources/images/image14.png){width=25%}
 
 To complete an event click on the complete button. Three options will be offered
 
