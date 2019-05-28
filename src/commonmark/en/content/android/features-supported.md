@@ -44,56 +44,16 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |Data sharing levels / Can view data|Enables the user to see list of events within the program.|✓|✓||
 |Data sharing levels / No access|The user won&rsquo;t be able to see the program|✓|✓||
 
+## Program stage features
+|Feature|Description of feature|Program with registration|Program without registration|Notes on implementation|
+|-|-|-|-|-|
+|Event form - default|The default data entry form simply lists all attributes belonging to a program registration|✓|✓||
+|Event form - section forms|Sections forms allow you to split existing forms into segments|✓|✓||
 
 
 
-<td>
-<p>Program without registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td colspan="5" rowspan="1">
-<h3>Program stage features</h3>
-</td>
-</tr>
-<tr>
-<td>
-<p>Event form - default</p>
-</td>
-<td>
-<p>The default data entry form simply lists all attributes belonging to a program registration</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Program without registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Event form &ndash; section forms</p>
-<p>&nbsp;</p>
-</td>
-<td>
-<p>Sections forms allow you to split existing forms into segments</p>
-</td>
-<td>
-<p>Program with registration</p>
+
+
 </td>
 <td>
 <p>✓</p>
