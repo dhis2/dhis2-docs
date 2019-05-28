@@ -18,13 +18,13 @@ There are two ways to access the application:
     >
     > You are able to make an *offline* login only if using the same user as the last online session.
  
- ![](resources/images/image39.png){width=35%}
+ ![](resources/images/image39.png){.center width=35%}
  
 ## Account Recovery
 
 The users will be able to restore their own password if they have the setting enabled: Enabled User Account Recovery.
 
-![](resources/images/image46.png){width=35%}
+![](resources/images/image46.png){.center width=35%}
 
 ## Blocking session (PIN)
 
@@ -56,7 +56,7 @@ Allows the user to filter data from the available programs based on periods (spe
 
 ## Org unit
 
-![](resources/images/image30.png){width=35%}
+![](resources/images/image30.png){.center width=35%}
 
 The whole organisation unit tree is displayed. Organisation units not available for data entry will be colored in grey.
 User must check the box to select the org unit wanted.
@@ -68,7 +68,7 @@ User must check the box to select the org unit wanted.
 
 ## Differentiating tracker and event programs
 
-![](resources/images/image33.png){width=35%}
+![](resources/images/image33.png){.center width=35%}
 
 > **Tip**
 >
@@ -94,7 +94,7 @@ Three options will be presented:
 2. Complete and add new
 3. Complete later
 
-![](resources/images/image5.png){width=35%}
+![](resources/images/image5.png){.center width=35%}
 
 
 > **Note**
@@ -103,7 +103,7 @@ Three options will be presented:
 
 ### Reset search fields
 
-![](resources/images/image25.png){width=35%}
+![](resources/images/image25.png){.center width=35%}
 
 All tracker programs will take the user to the search screen. The search fields are used to look up for a specific entity, and the circled arrow at the top right corner to reset the search. All fields will be in blank for the user to make a new search.
 
@@ -164,7 +164,7 @@ To complete an event click on the complete button. Three options will be offered
 
 You can also complete by clicking by clicking on the three dots at the top right corner of the screen, then Details, then click on the percentage and select 'complete and close' button.
 
-![](resources/images/image41.png){width=35%}
+![](resources/images/image41.png){.center width=35%}
 
 
 > **Note**
