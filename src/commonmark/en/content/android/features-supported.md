@@ -23,115 +23,17 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |Completed events expiry days|Enables admins to lock data-entry a certain number of days after an event has been completed.|✓|✓||
 |Expiry period type + expiry days|Enables admins to set a period (eg weekly, monthly), and to lock data-entry a certain number of days after the end of the period.|✓|✓||
 |Allow future enrolment dates|If ticked, this enables a user to enter future Enrolment dates during enrolment in a Program; otherwise users are restricted to today or past dates.|✓|n/a||
+|Allow future incident dates|If ticked, this enables a user to enter future Incident dates during enrolment in a Program; otherwise users are restricted to today or past dates.|n/a|n/a||
+|Only enrol once (per tracked entity instance lifetime)|If ticked, prevents a TEI (eg person) from being enrolled in this Program more than once.|n/a|n/a||
+|Show incident date|If ticked, both Enrolment and Incident dates are shown to the user for data capture; otherwise, only the Enrolment date is shown/captured.|n/a|n/a||
+|Description of incident date|Allows an admin to customize the label that is used for the incident date.|✓|n/a||
+|Description of enrolment date|Allows an admin to customize the label that is used for the enrollment date.|✓|n/a||
+|Capture coordinates (enrolment)|Enables users to capture geographical coordinates during enrolment in the program.|✓|n/a||
+|Relationships ; create and update|Enables users to create and update relationships.|✓|n/a||
 
 
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Allow future incident dates</p>
-</td>
-<td>
-<p>If ticked, this enables a user to enter future Incident dates during enrolment in a Program; otherwise users are restricted to today or past dates.</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Only enrol once (per tracked entity instance lifetime)</p>
-</td>
-<td>
-<p>If ticked, prevents a TEI (eg person) from being enrolled in this Program more than once.</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Show incident date</p>
-</td>
-<td>
-<p>If ticked, both Enrolment and Incident dates are shown to the user for data capture; otherwise, only the Enrolment date is shown/captured.</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Description of incident date</p>
-</td>
-<td>
-<p>Allows an admin to customize the label that is used for the incident date.</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Description of enrolment date</p>
-</td>
-<td>
-<p>Allows an admin to customize the label that is used for the enrollment date.</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Capture coordinates (enrolment)</p>
-</td>
-<td>
-<p>Enables users to capture geographical coordinates during enrolment in the program.</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Relationships &ndash; create and update</p>
-</td>
-<td>
-<p>Enables users to create relationship types (eg mother-child, doctor-patient) which link two TEIs (eg patients); users can use this relationship to add links to other TEIs (eg patients).</p>
-</td>
-<td>
+
+
 <p>Program with registration</p>
 </td>
 <td>
