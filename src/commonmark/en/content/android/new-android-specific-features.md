@@ -31,15 +31,15 @@ The users will be able to restore their own password if they have the setting en
 User is able to lock the session using a 4 digit PIN. This allows to move to other apps in your phone without deleting the local data.
 If the user forgets the PIN number, log in by entering the credentials is also available.
 
-![](resources/images/image18.png){.center width=35%}
-![](resources/images/image24.png){.center width=35%}
+![](resources/images/image18.png){width=35%}
+![](resources/images/image24.png){width=35%}
 
 ## Instructions/ information buttons
 
 A contextual guide opens the first time the user opens the App.
 
-![](resources/images/image42.jpg){.center width=35%}
-![](resources/images/image12.png){.center width=35%}
+![](resources/images/image42.jpg){width=35%}
+![](resources/images/image12.png){width=35%}
 
 > **Tip**
 >
@@ -50,9 +50,9 @@ A contextual guide opens the first time the user opens the App.
 <!-- PALD alternative: "The Filter allows you to narrow down the data available from the ..." -->
 Allows the user to filter data from the available programs based on periods (specific day, week, month, or year) or organisation units.
 
-![](resources/images/image10.jpg){.center width=25%}
-![](resources/images/image4.jpg){.center width=25%}
-![](resources/images/image8.jpg){.center width=25%}
+![](resources/images/image10.jpg){ width=25%}
+![](resources/images/image4.jpg){ width=25%}
+![](resources/images/image8.jpg){ width=25%}
 
 ## Org unit
 
@@ -76,8 +76,8 @@ User must check the box to select the org unit wanted.
 
 ## Sharing Data
 
-![](resources/images/image9.png){.center width=35%}
-![](resources/images/image21.jpg){.center width=35%}
+![](resources/images/image9.png){ width=35%}
+![](resources/images/image21.jpg){ width=35%}
 
 ## Program with registration specific features
 
@@ -85,8 +85,8 @@ User must check the box to select the org unit wanted.
 
 User must enter the event and then click the 'Done' button in the bottom right corner.
 
-![](resources/images/image37.png){.center width=35%}
-![](resources/images/image6.png){.center width=35%}
+![](resources/images/image37.png){ width=35%}
+![](resources/images/image6.png){ width=35%}
 
 Three options will be presented:
 
@@ -114,8 +114,8 @@ User is able to search across all program of one tracked entity type (TET). In t
 When the user selects that option, the search fields available will only be the TET attributes (no program specific attributes).
 Search restrictions do not apply, because they belong to the programs.
 
-![](resources/images/image44.png){.center width=35%}
-![](resources/images/image22.png){.center width=35%}
+![](resources/images/image44.png){ width=35%}
+![](resources/images/image22.png){ width=35%}
 
 The search will return the found TEI's in the local database and also those in the Search OU of the user (when user is online). For those found online, the user will have to select them and the whole record will be downloaded.
 
@@ -130,8 +130,8 @@ User can see the TEI dashboard without any program by selecting the TEI in the l
 
 The dashboards will show the list of active enrollments.
 
-![](resources/images/image22.png){.center width=35%}
-![](resources/images/image38.png){.center width=35%}
+![](resources/images/image22.png){ width=35%}
+![](resources/images/image38.png){ width=35%}
 
 ### TEI enrollment history and new enrollment
 
@@ -140,8 +140,8 @@ User can also return to the 'TEI Dashboard without any program' by selecting 'Al
 
 Users should be able to navigate to the different enrollments from the list.
 
-![](resources/images/image40.png){.center width=35%}
-![](resources/images/image7.png){.center width=35%}
+![](resources/images/image40.png){ width=35%}
+![](resources/images/image7.png){ width=35%}
 
 ## Program without registration specific features
 
@@ -149,9 +149,9 @@ Users should be able to navigate to the different enrollments from the list.
 
 The percentage of data completed in each event is shown in the top right corner of an event when it is opened after first registration.
 
-![](resources/images/image34.png){.center width=25%}
-![](resources/images/image27.png){.center width=25%}
-![](resources/images/image14.png){.center width=25%}
+![](resources/images/image34.png){ width=25%}
+![](resources/images/image27.png){ width=25%}
+![](resources/images/image14.png){ width=25%}
 
 To complete an event click on the complete button. Three options will be offered
 
@@ -159,8 +159,8 @@ To complete an event click on the complete button. Three options will be offered
 1. Complete and add new
 1. Complete later
 
-![](resources/images/image35.png){.center width=35%}
-![](resources/images/image31.png){.center width=35%}
+![](resources/images/image35.png){ width=35%}
+![](resources/images/image31.png){ width=35%}
 
 You can also complete by clicking by clicking on the three dots at the top right corner of the screen, then Details, then click on the percentage and select 'complete and close' button.
 
