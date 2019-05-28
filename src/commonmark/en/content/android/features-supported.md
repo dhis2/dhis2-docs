@@ -23,32 +23,18 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |Completed events expiry days|Enables admins to lock data-entry a certain number of days after an event has been completed.|✓|✓||
 |Expiry period type + expiry days|Enables admins to set a period (eg weekly, monthly), and to lock data-entry a certain number of days after the end of the period.|✓|✓||
 |Allow future enrolment dates|If ticked, this enables a user to enter future Enrolment dates during enrolment in a Program; otherwise users are restricted to today or past dates.|✓|n/a||
-|Allow future incident dates|If ticked, this enables a user to enter future Incident dates during enrolment in a Program; otherwise users are restricted to today or past dates.|n/a|n/a||
-|Only enrol once (per tracked entity instance lifetime)|If ticked, prevents a TEI (eg person) from being enrolled in this Program more than once.|n/a|n/a||
-|Show incident date|If ticked, both Enrolment and Incident dates are shown to the user for data capture; otherwise, only the Enrolment date is shown/captured.|n/a|n/a||
+|Allow future incident dates|If ticked, this enables a user to enter future Incident dates during enrolment in a Program; otherwise users are restricted to today or past dates.|✓|n/a||
+|Only enrol once (per tracked entity instance lifetime)|If ticked, prevents a TEI (eg person) from being enrolled in this Program more than once.|✓|n/a||
+|Show incident date|If ticked, both Enrolment and Incident dates are shown to the user for data capture; otherwise, only the Enrolment date is shown/captured.|✓|n/a||
 |Description of incident date|Allows an admin to customize the label that is used for the incident date.|✓|n/a||
 |Description of enrolment date|Allows an admin to customize the label that is used for the enrollment date.|✓|n/a||
 |Capture coordinates (enrolment)|Enables users to capture geographical coordinates during enrolment in the program.|✓|n/a||
-|Relationships ; create and update|Enables users to create and update relationships.|✓|n/a||
+|Relationships: create and update|Enables users to create and update relationships.|✓|n/a||
+|Relationships - shortcut link to add a relative|This enables admins to add a link for one specific relationship to the Dashboard, enabling users to directly create a linked TEI (eg &lsquo;child&rsquo; patient).|-|n/a||
+|Attributes: display in list|This setting determines whether an Attribute can be viewed in lists such as search results, and whether it can be seen in the shortlist of Attributes shown under &lsquoProfile&rsquo; in the Dashboard.|✓|> **Note**The first three attributes will be shown||
 
 
 
-
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Relationships - shortcut link to add a relative</p>
-</td>
-<td>
-<p>This enables admins to add a link for one specific relationship to the Dashboard, enabling users to directly create a linked TEI (eg &lsquo;child&rsquo; patient).</p>
-</td>
-<td>
 <p>Program with registration</p>
 </td>
 <td>
