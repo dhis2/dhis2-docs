@@ -49,86 +49,18 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |-|-|-|-|-|
 |Event form - default|The default data entry form simply lists all attributes belonging to a program registration|✓|✓||
 |Event form - section forms|Sections forms allow you to split existing forms into segments|✓|✓||
+|Event form - custom|Define a custom event form as a HTML page.|-|-|Custom layouts are not supported in the Android App.|
+|Program stage notifications|You can set up automated notifications for when the program stage is completed, or at a set interval before/after scheduled event dates. These can be sent as internal DHIS2 messages, emails or SMS messages.|✓|n/a|This functionality is executed on the server side, once data is received. Will not work when the app is working offline.|
+|Repeatable|If Repeatable Is ticked, this stage can be repeated during one program enrollment. If t is not, then the stage can only happen once during a program enrollment.|✓|n/a||
+|Repeatable|If Repeatable Is ticked, this stage can be repeated during one program enrollment. If t is not, then the stage can only happen once during a program enrollment.|✓|n/a||
 
 
 
 
 
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Program without registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Event form &ndash; custom</p>
-</td>
-<td>
-<p>Define a custom event form as a HTML page.</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>&ndash;</p>
-</td>
-<td>
-<p>Custom layouts are not supported in the Android App.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>Program without registration</p>
-</td>
-<td>
-<p>&ndash;</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>Program stage notifications</p>
-<p>&nbsp;</p>
-</td>
-<td>
-<p>You can set up automated notifications for when the program stage is completed, or at a set interval before/after scheduled event dates. These can be sent as internal DHIS2 messages, emails or SMS messages.</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>
-<p><img title="" src="images/image1.png" alt="" />&nbsp;This functionality is executed on the server side, once data is received. Will not work when the app is working offline.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>Repeatable</p>
-</td>
-<td>
-<p>If Repeatable Is ticked, this stage can be repeated during one program enrollment. If t is not, then the stage can only happen once during a program enrollment.</p>
-</td>
-<td>
-<p>Program with registration</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
+
+
+
 <p>Repeatable + Standard interval days</p>
 </td>
 <td>
