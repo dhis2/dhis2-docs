@@ -77,100 +77,21 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |Messaging|Enables users to send ad-hoc free-text messages to TEIs (e.g. patients) via SMS or email.|&ndash||
 |Mark for follow-up (button with exclamation triangle)|Enables a user to mark a TEI (e.g. patient) as requiring follow-up.|✓||
 |Display TEI audit history|Enables a user to see a history of all edits to Attributes for this TEI (e.g. patient).|&ndash||
-|Inline program indicators|If a program indicator &lsquo;display in form&rsquo; box is ticked, the indicator appears on the Tracker Capture dashboard, and is updated live as data capture occurs.|✓|<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1723&amp;sa=D&amp;ust=1557433016354000">ANDROAPP-1723</a>: Some program indicators are not been shown even if display in form is selected||
+|Inline Program Indicators|If a program indicator &lsquo;display in form&rsquo; box is ticked, the indicator appears on the Tracker Capture dashboard, and is updated live as data capture occurs.|✓|<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1723&amp;sa=D&amp;ust=1557433016354000">ANDROAPP-1723</a>: Some program indicators are not been shown even if display in form is selected||
+|Delete events|Enables the user to delete an event.|✓||
+|Schedule events|In the event generation dialogue, the user should also see the option to schedule an event. The process is like creating an event, but the user will be sent back to the TEI dashboard after the event is scheduled.|✓||
+|Referral of patients|In the event generation dialogue, the user should also see the option to refer a patient. The process is like creating/scheduling an event, but the user can change the org unit and has to specify if is a one-time or permanent referral. 
+One time will just create the event in the specified OU.|✓||
+|Reset search fields|User is able to clean up the search fields by pressing on the rounded arrow icon on the top right corner of the search screen.|✓||
+|Search screen for all TE Type|User is able to search across all program of one tracked entity type (TET). In the Search screen there is a drop down which shows all the programs available for the active TET (active TET is defined by the selection of the program in the home screen). That drop down should also have an option with TET name. (Person in our server). 
+When the user selects that option, the search fields available will only be the TET attributes (no program specific attributes). All search restrictions do not apply, because they belong to the programs.|✓||
+|TEI Dashboard without program|User can see the TEI dashboard without any program by selecting the TEI in the list if the search was without program. 
+The dashboards will show the TET attributes in the details card followed by a list of active enrollments.|✓||
+|TEI enrollment history and new enrollment|User is able to see the complete historical record of the TEI. By clicking on the top right corner icon they will see a list of Active enrolments, followed by a list of past enrolments (completed or cancelled), followed by the programs in which the TEI could be enrolled. 
+Users should be able to navigate to the different enrolments from the list.|✓||
 
 
-<p>Inline program indicators</p>
-</td>
-<td>
-<p>If a program indicator &lsquo;display in form&rsquo; box is ticked, the indicator appears on the Tracker Capture dashboard, and is updated live as data capture occurs.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>
-<p>! <a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1723&amp;sa=D&amp;ust=1557433016354000">ANDROAPP-1723</a>: Some program indicators are not been shown even if display in form is selected</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>Delete events</p>
-</td>
-<td>
-<p>Enables the user to delete an event.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Schedule events</p>
-</td>
-<td>
-<p>In the event generation dialogue, the user should also see the option to schedule an event. The process is like creating an event, but the user will be sent back to the TEI dashboard after the event is scheduled.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Referral of patients</p>
-</td>
-<td>
-<p>In the event generation dialogue, the user should also see the option to refer a patient. The process is like creating/scheduling an event, but the user can change the org unit and has to specify if is a one-time or permanent referral.<br /><br />One time will just create the event in the specified OU,</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Reset search fields</p>
-</td>
-<td>
-<p>User is able to clean up the search fields by pressing on the rounded arrow icon on the top right corner of the search screen.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Search screen for all TE Type</p>
-</td>
-<td>
-<p>User is able to search across all program of one tracked entity type (TET). In the Search screen there is a drop down which shows all the programs available for the active TET (active TET is defined by the selection of the program in the home screen). That drop down should also have an option with TET name. (Person in our server)<br /><br />When the user selects that option, the search fields available will only be the TET attributes (no program specific attributes). All search restrictions do not apply, because they belong to the programs.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>TEI Dashboard without program</p>
-</td>
-<td>
-<p>User can see the TEI dashboard without any program by selecting the TEI in the list if the search was without program.<br /><br />The dashboards will show the TET attributes in the details card followed by a list of active enrollments.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>TEI enrollment history and new enrollment</p>
-</td>
-<td>
-<p>User is able to see the complete historical record of the TEI. By clicking on the top right corner icon they will see a list of Active enrolments, followed by a list of past enrolments (completed or cancelled), followed by the programs in which the TEI could be enrolled.<br /><br />Users should be able to navigate to the different enrolments from the list.</p>
-</td>
+
 <td>
 <p>✓</p>
 </td>
