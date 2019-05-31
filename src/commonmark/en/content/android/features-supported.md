@@ -76,22 +76,10 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |-|-|-|-|-|
 |Messaging|Enables users to send ad-hoc free-text messages to TEIs (e.g. patients) via SMS or email.|&ndash||
 |Mark for follow-up (button with exclamation triangle)|Enables a user to mark a TEI (e.g. patient) as requiring follow-up.|✓||
-|Display TEI audit history|
-|✓||
+|Display TEI audit history|Enables a user to see a history of all edits to Attributes for this TEI (e.g. patient).|&ndash||
+|Inline program indicators|If a program indicator &lsquo;display in form&rsquo; box is ticked, the indicator appears on the Tracker Capture dashboard, and is updated live as data capture occurs.|✓|<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1723&amp;sa=D&amp;ust=1557433016354000">ANDROAPP-1723</a>: Some program indicators are not been shown even if display in form is selected||
 
 
-<p>Display TEI audit history</p>
-</td>
-<td>
-<p>Enables a user to see a history of all edits to Attributes for this TEI (e.g. patient).</p>
-</td>
-<td>
-<p>&ndash;</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
 <p>Inline program indicators</p>
 </td>
 <td>
