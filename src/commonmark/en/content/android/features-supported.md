@@ -49,7 +49,7 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |-|-|-|-|-|
 |Event form - default|The default data entry form simply lists all attributes belonging to a program registration|✓|✓||
 |Event form - section forms|Sections forms allow you to split existing forms into segments|✓|✓||
-|Event form - custom|Define a custom event form as a HTML page.|-|-|Custom layouts are not supported in the Android App.|
+|Event form - custom|Define a custom event form as a HTML page.|&ndash|&ndash|Custom layouts are not supported in the Android App.|
 |Program stage notifications|You can set up automated notifications for when the program stage is completed, or at a set interval before/after scheduled event dates. These can be sent as internal DHIS2 messages, emails or SMS messages.|✓|n/a|This functionality is executed on the server side, once data is received. Will not work when the app is working offline.|
 |Repeatable|If Repeatable Is ticked, this stage can be repeated during one program enrollment. If t is not, then the stage can only happen once during a program enrollment.|✓|n/a||
 |Repeatable|If Repeatable Is ticked, this stage can be repeated during one program enrollment. If t is not, then the stage can only happen once during a program enrollment.|✓|n/a||
@@ -64,64 +64,22 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |Capture coordinates (event)/ Feature Type-Point|Enables the user to capture geographical coordinates when each event is created &ndash; particularly useful in devices that have GPS (eg Android), as instead of having to type in coordinates, the user can automatically populate them with the press of a button.|✓|✓||
 |Description of report date|Allows an admin to customize the label that is used for the event&rsquo;s date.|✓|✓||
 |Data elements &ndash; compulsory|This enables an admin to mark a data element as &lsquo;compulsory&rsquo;, meaning an event can&rsquo;t be saved until a value is captured.|✓|✓||
-|Data elements &ndash; allow provided elsewhere|On the form, this places a tick-box next to the selected data element, and enables previous data to be pulled into the data element.|-|n/a||
-|Data elements &ndash; display in reports|Displays the value of this data element into the single event without registration data entry function.|-|✓||
+|Data elements &ndash; allow provided elsewhere|On the form, this places a tick-box next to the selected data element, and enables previous data to be pulled into the data element.|&ndash|n/a||
+|Data elements &ndash; display in reports|Displays the value of this data element into the single event without registration data entry function.|&ndash|✓||
 |Data elements &ndash; date in future|For date Data Elements, this enables an admin to either prevent or allow future dates to be captured.|✓|✓||
-|Data elements &ndash; render options as radio|Enables an admin to choose how options will be displayed on-screen for each Data Element<br />(i.e. either as drop-down list or as radio buttons).|-|-||
+|Data elements &ndash; render options as radio|Enables an admin to choose how options will be displayed on-screen for each Data Element<br />(i.e. either as drop-down list or as radio buttons).|&ndash|&ndash||
 |Block entry form after completed|Prevents all edits to events after they have been completed.|✓|✓||
-|Event comments|Enables the user to add overall comments to an event. These comments are cumulative (new comments are added below existing comments).|-|n/a||
+|Event comments|Enables the user to add overall comments to an event. These comments are cumulative (new comments are added below existing comments).|&ndash|n/a||
+
+## Program with registration: Tracked entity dashboard features
+|Feature|Description of feature|Status|Notes on implementation|
+|-|-|-|-|-|
+|Messaging|Enables users to send ad-hoc free-text messages to TEIs (e.g. patients) via SMS or email.|&ndash||
+|Mark for follow-up (button with exclamation triangle)|Enables a user to mark a TEI (e.g. patient) as requiring follow-up.|✓||
+|Display TEI audit history|
+|✓||
 
 
-
-
-<p>&nbsp;</p>
-<table>
-<tbody>
-<tr>
-<td>
-<p>Feature</p>
-</td>
-<td>
-<p>Description of feature</p>
-</td>
-<td>
-<p>Status</p>
-</td>
-<td>
-<p>Notes on implementation</p>
-</td>
-</tr>
-<tr>
-<td colspan="4" rowspan="1">
-<h3>Program with registration: Tracked entity dashboard features</h3>
-</td>
-</tr>
-<tr>
-<td>
-<p>Messaging</p>
-</td>
-<td>
-<p>Enables users to send ad-hoc free-text messages to TEIs (e.g. patients) via SMS or email.</p>
-</td>
-<td>
-<p>&ndash;</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Mark for follow-up (button with exclamation triangle)</p>
-</td>
-<td>
-<p>Enables a user to mark a TEI (e.g. patient) as requiring follow-up.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
 <p>Display TEI audit history</p>
 </td>
 <td>
