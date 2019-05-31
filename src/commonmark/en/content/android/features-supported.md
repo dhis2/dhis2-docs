@@ -71,9 +71,9 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |Block entry form after completed|Prevents all edits to events after they have been completed.|✓|✓||
 |Event comments|Enables the user to add overall comments to an event. These comments are cumulative (new comments are added below existing comments).|&ndash|n/a||
 
-## Program with registration: Tracked entity dashboard features
+## Program with registration Tracked entity dashboard features
 |Feature|Description of feature|Status|Notes on implementation|
-|-|-|-|-|-|
+|-|-|-|-|
 |Messaging|Enables users to send ad-hoc free-text messages to TEIs (e.g. patients) via SMS or email.|&ndash||
 |Mark for follow-up (button with exclamation triangle)|Enables a user to mark a TEI (e.g. patient) as requiring follow-up.|✓||
 |Display TEI audit history|Enables a user to see a history of all edits to Attributes for this TEI (e.g. patient).|&ndash||
