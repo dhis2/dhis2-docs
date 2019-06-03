@@ -5,20 +5,20 @@
 
 In case of errors during the sync process, a message is displayed in the home screen which takes you to the sync error log. The sync error log gives details about the error and is prepared to be shared with admins.
 
-![](resources/images/image43.png){ width=35%}
-![](resources/images/image11.png){ width=35%}
+![](resources/images/image43.png){ width=25%}
+![](resources/images/image11.png){ width=25%}
 
 You can also open the sync errors log from **Settings**:
 
-![](resources/images/image15.png){ width=35%}
+![](resources/images/image15.png){ width=25%}
 
 
 ## Personalize your Icon
 
 
-You can set your icon in the wallpaper using the DHIS2 App Widget. The icon will be the flag configured in your server.
+You can set your icon in the wallpaper using the DHIS 2 App Widget. The icon will be the flag configured in your server.
 
-![](resources/images/image32.png){ width=35%}
+![](resources/images/image32.png){ width=25%}
 
 > **Note**
 >
@@ -26,7 +26,7 @@ You can set your icon in the wallpaper using the DHIS2 App Widget. The icon will
 >
 > - Long press in your wallpaper
 > - Select Widgets
-> - Look for the DHIS2 Widget
+> - Look for the DHIS 2 Widget
 > - Select
 >
 > It will add a shortcut to your app.
@@ -51,7 +51,7 @@ You can set the generic theme of the app by configuring the them in our server:
 >   - Vietnam
 > - Select your flag
 >
->![](resources/images/image23.png){ width=35%}
+>![](resources/images/image23.png){ width=25%}
 
 ## Icon library for metadata
 
@@ -86,8 +86,8 @@ Tracker and Event capture now have the ability to render colours for programs, s
 
 In the Android App, the color will be rendered as background color for programs and stages combined with an icon (if selected). For options it renders as the background colour during data entry form for single event programs. When the user selects a program with an assigned colour, that colour becomes the background theme for all screens in the domain of the program.
 
-![](resources/images/image19.png){ width=35%}
-![](resources/images/image2.png){ width=35%}
+![](resources/images/image19.png){ width=25%}
+![](resources/images/image2.png){ width=25%}
 
 > **Note**
 >
@@ -100,8 +100,8 @@ In the Android App, the color will be rendered as background color for programs 
 
 **Program Section**: when used in combination with icons, a Program Section with a single data element and associated Option Set can render the options in sequential or matrix layout (see screenshots).
 
-![](resources/images/image26.png){ width=35%}
-![](resources/images/image36.png){ width=35%}
+![](resources/images/image26.png){ width=25%}
+![](resources/images/image36.png){ width=25%}
 
 > **Note**
 >
