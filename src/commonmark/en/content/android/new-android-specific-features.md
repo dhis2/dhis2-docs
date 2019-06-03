@@ -40,8 +40,8 @@ If the user forgets the PIN number, log in by entering the credentials is also a
 
 A contextual guide opens the first time the user opens the App.
 
-![](resources/images/image42.jpg){width=35%}
-![](resources/images/image12.png){width=35%}
+![](resources/images/image42.jpg){width=25%}
+![](resources/images/image12.png){width=25%}
 
 > **Tip**
 >
