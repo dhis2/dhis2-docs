@@ -1,6 +1,8 @@
 # Android specific features
 
-## Login
+## Generic Features
+
+### Login
 
 There are two ways to access the application:
 
@@ -18,23 +20,23 @@ There are two ways to access the application:
     >
     > You are able to make an *offline* login only if using the same user as the last online session.
  
- ![](resources/images/image39.png){ width=35%}
+ ![](resources/images/image39.png){ width=25%}
  
-## Account Recovery
+### Account Recovery
 
 The users will be able to restore their own password if they have the setting enabled: Enabled User Account Recovery.
 
-![](resources/images/image46.png){ width=35%}
+![](resources/images/image46.png){ width=25%}
 
-## Blocking session (PIN)
+### Blocking session (PIN)
 
 User is able to lock the session using a 4 digit PIN. This allows to move to other apps in your phone without deleting the local data.
 If the user forgets the PIN number, log in by entering the credentials is also available.
 
-![](resources/images/image18.png){width=35%}
-![](resources/images/image24.png){width=35%}
+![](resources/images/image18.png){width=25%}
+![](resources/images/image24.png){width=25%}
 
-## Instructions/ information buttons
+### Instructions/ information buttons
 
 A contextual guide opens the first time the user opens the App.
 
@@ -45,7 +47,7 @@ A contextual guide opens the first time the user opens the App.
 >
 >  User is able to re-open<!-- PALD: unnecessary: (trigger)--> the instructions by clicking on the three dots at the top right corner of the screen.
 
-## Filter
+### Filter
 
 <!-- PALD alternative: "The Filter allows you to narrow down the data available from the ..." -->
 Allows the user to filter data from the available programs based on periods (specific day, week, month, or year) or organisation units.
@@ -54,9 +56,9 @@ Allows the user to filter data from the available programs based on periods (spe
 ![](resources/images/image4.jpg){ width=25%}
 ![](resources/images/image8.jpg){ width=25%}
 
-## Org unit
+### Org unit
 
-![](resources/images/image30.png){ width=35%}
+![](resources/images/image30.png){ width=25%}
 
 The whole organisation unit tree is displayed. Organisation units not available for data entry will be colored in grey.
 User must check the box to select the org unit wanted.
@@ -66,18 +68,18 @@ User must check the box to select the org unit wanted.
 >
 >  Mobile users are not expected to access the org. unit hierarchy of a whole country. Maximum number of org units is difficult to set, as the App does not set the limit, but the resources on the device (memory, processor). We could say below 250 org units should be safe, but still believe that is a very big number for a mobile use case.
 
-## Differentiating tracker and event programs
+### Differentiating tracker and event programs
 
-![](resources/images/image33.png){ width=35%}
+![](resources/images/image33.png){ width=25%}
 
 > **Tip**
 >
 >  An easy way to differentiate program is by looking at the word at the bottom left corner. The word 'Event' will always be in event programs. In tracker will appear the name of the tracked entity type (person, patient, building, etc.).
 
-## Sharing Data
+### Sharing Data
 
-![](resources/images/image9.png){ width=35%}
-![](resources/images/image21.jpg){ width=35%}
+![](resources/images/image9.png){ width=25%}
+![](resources/images/image21.jpg){ width=25%}
 
 ## Program with registration specific features
 
@@ -85,8 +87,8 @@ User must check the box to select the org unit wanted.
 
 User must enter the event and then click the 'Done' button in the bottom right corner.
 
-![](resources/images/image37.png){ width=35%}
-![](resources/images/image6.png){ width=35%}
+![](resources/images/image37.png){ width=25%}
+![](resources/images/image6.png){ width=25%}
 
 Three options will be presented:
 
@@ -94,7 +96,7 @@ Three options will be presented:
 2. Complete and add new
 3. Complete later
 
-![](resources/images/image5.png){ width=35%}
+![](resources/images/image5.png){ width=25%}
 
 
 > **Note**
@@ -103,7 +105,7 @@ Three options will be presented:
 
 ### Reset search fields
 
-![](resources/images/image25.png){ width=35%}
+![](resources/images/image25.png){ width=25%}
 
 All tracker programs will take the user to the search screen. The search fields are used to look up for a specific entity, and the circled arrow at the top right corner to reset the search. All fields will be in blank for the user to make a new search.
 
@@ -114,8 +116,8 @@ User is able to search across all program of one tracked entity type (TET). In t
 When the user selects that option, the search fields available will only be the TET attributes (no program specific attributes).
 Search restrictions do not apply, because they belong to the programs.
 
-![](resources/images/image44.png){ width=35%}
-![](resources/images/image22.png){ width=35%}
+![](resources/images/image44.png){ width=25%}
+![](resources/images/image22.png){ width=25%}
 
 The search will return the found TEI's in the local database and also those in the Search OU of the user (when user is online). For those found online, the user will have to select them and the whole record will be downloaded.
 
@@ -130,8 +132,8 @@ User can see the TEI dashboard without any program by selecting the TEI in the l
 
 The dashboards will show the list of active enrollments.
 
-![](resources/images/image22.png){ width=35%}
-![](resources/images/image38.png){ width=35%}
+![](resources/images/image22.png){ width=25%}
+![](resources/images/image38.png){ width=25%}
 
 ### TEI enrollment history and new enrollment
 
@@ -140,8 +142,8 @@ User can also return to the 'TEI Dashboard without any program' by selecting 'Al
 
 Users should be able to navigate to the different enrollments from the list.
 
-![](resources/images/image40.png){ width=35%}
-![](resources/images/image7.png){ width=35%}
+![](resources/images/image40.png){ width=25%}
+![](resources/images/image7.png){ width=25%}
 
 ## Program without registration specific features
 
@@ -159,12 +161,12 @@ To complete an event click on the complete button. Three options will be offered
 1. Complete and add new
 1. Complete later
 
-![](resources/images/image35.png){ width=35%}
-![](resources/images/image31.png){ width=35%}
+![](resources/images/image35.png){ width=25%}
+![](resources/images/image31.png){ width=25%}
 
 You can also complete by clicking by clicking on the three dots at the top right corner of the screen, then Details, then click on the percentage and select 'complete and close' button.
 
-![](resources/images/image41.png){ width=35%}
+![](resources/images/image41.png){ width=25%}
 
 
 > **Note**
