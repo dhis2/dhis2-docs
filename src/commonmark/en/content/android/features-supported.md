@@ -80,15 +80,11 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |Inline Program Indicators|If a program indicator "display in form" box is ticked, the indicator appears on the Tracker Capture dashboard, and is updated live as data capture occurs.|✓|<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1723&amp;sa=D&amp;ust=1557433016354000">ANDROAPP-1723</a>: Some program indicators are not been shown even if display in form is selected||
 |Delete events|Enables the user to delete an event.|✓||
 |Schedule events|In the event generation dialogue, the user should also see the option to schedule an event. The process is like creating an event, but the user will be sent back to the TEI dashboard after the event is scheduled.|✓||
-|Referral of patients|In the event generation dialogue, the user should also see the option to refer a patient. The process is like creating/scheduling an event, but the user can change the org unit and has to specify if is a one-time or permanent referral. 
-One time will just create the event in the specified OU.|✓||
+|Referral of patients|In the event generation dialogue, the user should also see the option to refer a patient. The process is like creating/scheduling an event, but the user can change the org unit and has to specify if is a one-time or permanent referral. One time will just create the event in the specified OU.|✓||
 |Reset search fields|User is able to clean up the search fields by pressing on the rounded arrow icon on the top right corner of the search screen.|✓||
-|Search screen for all TE Type|User is able to search across all program of one tracked entity type (TET). In the Search screen there is a drop down which shows all the programs available for the active TET (active TET is defined by the selection of the program in the home screen). That drop down should also have an option with TET name. (Person in our server). 
-When the user selects that option, the search fields available will only be the TET attributes (no program specific attributes). All search restrictions do not apply, because they belong to the programs.|✓||
-|TEI Dashboard without program|User can see the TEI dashboard without any program by selecting the TEI in the list if the search was without program. 
-The dashboards will show the TET attributes in the details card followed by a list of active enrollments.|✓||
-|TEI enrollment history and new enrollment|User is able to see the complete historical record of the TEI. By clicking on the top right corner icon they will see a list of Active enrolments, followed by a list of past enrolments (completed or cancelled), followed by the programs in which the TEI could be enrolled. 
-Users should be able to navigate to the different enrolments from the list.|✓||
+|Search screen for all TE Type|User is able to search across all program of one tracked entity type (TET). In the Search screen there is a drop down which shows all the programs available for the active TET (active TET is defined by the selection of the program in the home screen). That drop down should also have an option with TET name. (Person in our server). When the user selects that option, the search fields available will only be the TET attributes (no program specific attributes). All search restrictions do not apply, because they belong to the programs.|✓||
+|TEI Dashboard without program|User can see the TEI dashboard without any program by selecting the TEI in the list if the search was without program. The dashboards will show the TET attributes in the details card followed by a list of active enrollments.|✓||
+|TEI enrollment history and new enrollment|User is able to see the complete historical record of the TEI. By clicking on the top right corner icon they will see a list of Active enrolments, followed by a list of past enrolments (completed or cancelled), followed by the programs in which the TEI could be enrolled. Users should be able to navigate to the different enrolments from the list.|✓||
 
 ## Program without registration: Single event program specific features
 |Feature|Description of feature|Status|Notes on implementation|
@@ -98,6 +94,5 @@ Users should be able to navigate to the different enrolments from the list.|✓|
 |Edit events in grid|Allows the user to directly edit the data elements shown in the events listing/grid.|-||
 |View event audit history|Enables the user to see a history of all changes to the event&rsquo;s data elements.|-||
 |Show/hide columns (in event list/grid)|Enables the user to modify the data elements shown in the event listing/grid (applies to that user only).|-||
-|Field completion percentage|The percentage of data completed in each event is shown in the top right corner of an event when it is opened after first registration. 
-The percentages should be adapted to the effects of the program rules in the forms.|✓|The percentage of completion does not take into account the not-supported value types in the forms.||
+|Field completion percentage|The percentage of data completed in each event is shown in the top right corner of an event when it is opened after first registration. The percentages should be adapted to the effects of the program rules in the forms.|✓|The percentage of completion does not take into account the not-supported value types in the forms.||
 |Delete events|Enables the user to delete an event.|✓||
