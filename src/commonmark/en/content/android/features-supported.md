@@ -71,7 +71,7 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 |Block entry form after completed|Prevents all edits to events after they have been completed.|✓|✓||
 |Event comments|Enables the user to add overall comments to an event. These comments are cumulative (new comments are added below existing comments).|&ndash|n/a||
 
-## Program with registration Tracked entity dashboard features
+## Program with registration: Tracked entity dashboard features
 |Feature|Description of feature|Status|Notes on implementation|
 |-|-|-|-|
 |Messaging|Enables users to send ad-hoc free-text messages to TEIs (e.g. patients) via SMS or email.|&ndash||
@@ -90,108 +90,14 @@ The dashboards will show the TET attributes in the details card followed by a li
 |TEI enrollment history and new enrollment|User is able to see the complete historical record of the TEI. By clicking on the top right corner icon they will see a list of Active enrolments, followed by a list of past enrolments (completed or cancelled), followed by the programs in which the TEI could be enrolled. 
 Users should be able to navigate to the different enrolments from the list.|✓||
 
-
-
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td colspan="4" rowspan="1">
-<h3>Program without registration: Single event program specific features</h3>
-</td>
-</tr>
-<tr>
-<td>
-<p>Events listing (grid)</p>
-<p>&nbsp;</p>
-</td>
-<td>
-<p>A listing of existing events that is displayed once a program is selected.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Sort and filter events in grid</p>
-</td>
-<td>
-<p>Allows the user to sort listed events, or to filter events based on keywords or specific ranges of dates/numbers.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>
-<p><img title="" src="images/image1.png" alt="" />&nbsp;Events are sorted chronologically. The user can filter by period and organisation unit.</p>
-<p>&nbsp;</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>Edit events in grid</p>
-</td>
-<td>
-<p>Allows the user to directly edit the data elements shown in the events listing/grid.</p>
-</td>
-<td>
-<p>&ndash;</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>View event audit history</p>
-</td>
-<td>
-<p>Enables the user to see a history of all changes to the event&rsquo;s data elements.</p>
-</td>
-<td>
-<p>&ndash;</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Show/hide columns [in event list/grid]</p>
-</td>
-<td>
-<p>Enables the user to modify the data elements shown in the event listing/grid (applies to that user only).</p>
-</td>
-<td>
-<p>&ndash;</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>
-<p>Field completion percentage</p>
-</td>
-<td>
-<p>The percentage of data completed in each event is shown in the top right corner of an event when it is opened after first registration.<br /><br />The percentages should be adapted to the effects of the program rules in the forms.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>
-<p><img title="" src="images/image1.png" alt="" />The percentage of completion does not take into account the not-supported value types in the forms.</p>
-<p>&nbsp;</p>
-</td>
-</tr>
-<tr>
-<td>
-<p>Delete events</p>
-</td>
-<td>
-<p>Enables the user to delete an event.</p>
-</td>
-<td>
-<p>✓</p>
-</td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
+## Program without registration: Single event program specific features
+|Feature|Description of feature|Status|Notes on implementation|
+|-|-|-|-|
+|Events listing (grid)|A listing of existing events that is displayed once a program is selected.|✓||
+|Sort and filter events in grid|Allows the user to sort listed events, or to filter events based on keywords or specific ranges of dates/numbers.|✓|Events are sorted chronologically. The user can filter by period and organisation unit.||
+|Edit events in grid|Allows the user to directly edit the data elements shown in the events listing/grid.|&ndash||
+|View event audit history|Enables the user to see a history of all changes to the event&rsquo;s data elements.|&ndash||
+|Show/hide columns (in event list/grid)|Enables the user to modify the data elements shown in the event listing/grid (applies to that user only).|&ndash||
+|Field completion percentage|The percentage of data completed in each event is shown in the top right corner of an event when it is opened after first registration. 
+The percentages should be adapted to the effects of the program rules in the forms.|✓|The percentage of completion does not take into account the not-supported value types in the forms.||
+|Delete events|Enables the user to delete an event.|✓||
