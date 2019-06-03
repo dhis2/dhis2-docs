@@ -1,6 +1,6 @@
 # Settings
 
-![New Settings](resources/images/image17.png){  width=35%}
+![New Settings](resources/images/image17.png){  width=25%}
 <!-- PALD: I don't think the next image adds to the manual
 ![](resources/images/image29.png){ width=35%}
 -->
