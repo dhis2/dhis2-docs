@@ -12,158 +12,21 @@ Any issues around using a particular feature with Android are highlighted with a
 | ![](resources/images/image3_icon.png) | Work in progress. Feature not completely implemented yet or with unexpected behavior already reported |
 
 
+## Program rule Variable source types supported
+| Variable type| Description of variable type|Program with registration|Program without registration|Notes on implementation|
+|-|-|-|-|-|
+|Data element from the newest event for a program stage|This source type works the same way as "Data element from the newest event in the current program", except that it only evaluates values from a specific program stage.|![](resources/images/image3_icon.png)|n/a||
+|Data element from the newest event in the current program (with registration)|This source type is populated with the newest data value collected for the specified data element within the enrolment.|![](resources/images/image3_icon.png)|n/a||
+|Data element from the newest event in the current program (without registration)|This program rule variable will be populated with the newest data value found within the 10 newest events in the same organization unit.|n/a|![](resources/images/image3_icon.png)||
+|Data element in current event (with registration)|Variable takes the data element&rsquo;s value from the current event.|✓|n/a||
+|Data element in current event (without registration)|Contains the data value from the same event that the user currently has open.|n/a|✓||
+|Data element from previous event (with registration)|Program rule variables with this source type will contain the newest value from all previous events for the specified data element. The event currently open is not evaluated.|✓|n/a||
+|Data element from previous event (without registration)|This program rule variable will be populated with the newest data value found within the 10 events preceding the current event date (i.e. not including the current event).|n/a|✓||
+|Tracked entity attribute|Populates the program rule variable with a specified tracked entity attribute for the current TEI (e.g. current patient).|✓|n/a||
+|Calculated value|Calculated value.|✓|✓||
 
 
 
-
-
-<h3>Program rule Variable source types supported</h3>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<table>
-<tbody>
-<tr>
-<td colspan="1" rowspan="1">
-<p>Variable type</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Description of variable type</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program Type</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Status</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Notes on implementation</p>
-</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
-<p>Data element from the newest event for a program stage</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>This source type works the same way as &lsquo;Data element from the newest event in the current program&rsquo;, except that it only evaluates values from a specific program stage.</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p><img title="" src="images/image3.png" alt="" /></p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="2">
-<p>Data element from the newest event in the current program</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>This source type is populated with the newest data value collected for the specified data element within the enrolment.</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p><img title="" src="images/image3.png" alt="" /></p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
-<p>This program rule variable will be populated with the newest data value found within the 10 newest events in the same organization unit.</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program without registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p><img title="" src="images/image3.png" alt="" /></p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="2">
-<p>Data element in current event</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Variable takes the data element&rsquo;s value from the current event.</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>✓</p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
-<p>Contains the data value from the same event that the user currently has open.</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program without registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>✓</p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="2">
-<p>Data element from previous event</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program rule variables with this source type will contain the newest value from all previous events for the specified data element. The event currently open is not evaluated</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>✓</p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
-<p>This program rule variable will be populated with the newest data value found within the 10 events preceding the current event date (i.e. not including the current event).</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program without registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>✓</p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
-<p>Tracked entity attribute</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Populates the program rule variable with a specified tracked entity attribute for the current TEI (e.g. current patient).</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>✓</p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="2">
-<p>Calculated value</p>
-</td>
-<td colspan="1" rowspan="2">
-<p>Calculated value</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>✓</p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
 </tr>
 <tr>
 <td colspan="1" rowspan="1">
