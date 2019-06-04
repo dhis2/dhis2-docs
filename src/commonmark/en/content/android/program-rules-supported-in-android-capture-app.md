@@ -1,49 +1,22 @@
 # Program rules supported in Android Capture App
 
-The following is a comprehensive list of all Program rule components (variable types and actions) available in DHIS2, and notes on whether or not these have been implemented in the Android Capture app.
+The following is a comprehensive list of all Program rule components (variable types and actions) available in DHIS 2, and notes on whether or not these have been implemented in the Android Capture app.
 
-Any issues around using a particular feature with Android are highlighted with an exclamation mark !.
+Any issues around using a particular feature with Android are highlighted with an exclamation mark \!.
 
-Every time the icon ![](resources/images/image1_icon.png) is presented, a tip will be provided for a better use and understanding of the app.
+||||
+| :-: | :------ |
+| ✓ | Value type implemented |
+| - | Value type not implemented, but will be safely ignored (if not compulsory) |
+| n/a | Non-applicable|
+| ![](resources/images/image3_icon.png) | Work in progress. Feature not completely implemented yet or with unexpected behavior already reported |
 
 
-<table>
-<tbody>
-<tr>
-<td colspan="1" rowspan="1">
-<p>✓</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Component implemented</p>
-</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
-<p>&ndash;</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Component not implemented (rule fails)</p>
-</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
-<p>N/A</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Non-applicable</p>
-</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
-<p><img title="" src="images/image3.png" alt="" /></p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Work in progress. Feature not completely implemented yet or with unexpected behaviour already reported .</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>&nbsp;</p>
+
+
+
+
+
 <h3>Program rule Variable source types supported</h3>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
