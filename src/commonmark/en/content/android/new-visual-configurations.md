@@ -35,7 +35,7 @@ You can set your icon in the wallpaper using the DHIS 2 App Widget. The icon wil
 
 You can set the generic theme of the app by configuring the them in our server:
 
-![](resources/images/image28.png){width=80% }
+![](resources/images/image28.png){width=25% }
 
 > **Note**
 >
@@ -63,7 +63,7 @@ Icons can be associated to programs, stages, data elements and the options of an
 >
 > This feature is available from DHIS 2 2.30 onwards
 
-![](resources/images/image13.png){width=80% }
+![](resources/images/image13.png){width=25% }
 
 In the Android App icons render in the home screen to illustrate all the programs available to a user, or while adding an stage. For data elements and options, the icons render for single event programs, when a section contains a single DE, showing the option set as a matrix or sequence of images.
 
@@ -82,7 +82,7 @@ We plan to expand the collection of icons on each future version of DHIS2- for t
 
 Tracker and Event capture now have the ability to render colours for programs, stages, data elements and options in option sets. A colour picker is integrated in the Maintenance App, which shows as a palette, except for options which allows the selection of any colour.
 
-![](resources/images/image20.png){width=80% }
+![](resources/images/image20.png){width=25% }
 
 In the Android App, the color will be rendered as background color for programs and stages combined with an icon (if selected). For options it renders as the background colour during data entry form for single event programs. When the user selects a program with an assigned colour, that colour becomes the background theme for all screens in the domain of the program.
 
@@ -96,7 +96,7 @@ In the Android App, the color will be rendered as background color for programs 
 ## Rendering Types for Program Sections
 
 
-![](resources/images/image16.png){width=80% }
+![](resources/images/image16.png){width=25% }
 
 **Program Section**: when used in combination with icons, a Program Section with a single data element and associated Option Set can render the options in sequential or matrix layout (see screenshots).
 
