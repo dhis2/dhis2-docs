@@ -102,8 +102,6 @@ Any issues around using a particular feature with Android are highlighted with a
 
 \*Available in DHIS2 v2.30
 
----
-
 ## Standard variables to use in program rule expressions
 
 ![](resources/images/image1_icon.png)Available in DHIS2 v2.30
