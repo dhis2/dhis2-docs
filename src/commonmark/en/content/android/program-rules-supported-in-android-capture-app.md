@@ -42,7 +42,7 @@ Any issues around using a particular feature with Android are highlighted with a
 |Error on Complete|Shows a pop-up warning to the user if, when "complete"; is clicked, a rule is true, and prevents user from continuing until rule is no longer true.|✓|✓||
 |Make Field Mandatory|Sets a data element as "mandatory"; if rule is true.|✓|✓||
 |Display Text (Event Programs)|Used to display information that is not an error or a warning, for example feedback.|✓|✓| Text is displayed in all sections.||
-|Display Text (Tracker Programs)|Used to display information that is not an error or a warning, for example feedback.|✓|✓|1. Rules triggered by "Current event variables" are showing the text ONLY in the form. 2. Rules triggered by "Built-in variables" display text ONLY on the indicators tab. 3. The other Program rule variables are displaying the text in BOTH the form and the indicator tab.||
+|Display Text (Tracker Programs)|Used to display information that is not an error or a warning, for example feedback.|✓|✓|Rules triggered by "Current event variables" are showing the text ONLY in the form. Rules triggered by "Built-in variables" display text ONLY on the indicators tab. The other Program rule variables are displaying the text in BOTH the form and the indicator tab.||
 |Display Key Value/Pair (Event Programs)|Used to display information drawn from a data element.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|Key value / pair is not displayed in event programs||
 |Display Key Value/Pair (Traker Programs)|Used to display information drawn from a data element.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|Rules triggered by "Current event variables" are not showing the key value / pair||
 |Hide Program Stage|Hides a whole program stage from the user if the rule is true.|n/a|n/a|Action rule only supported for&nbsp;Data element from the newest event in the current program variable type.||
@@ -52,54 +52,12 @@ Any issues around using a particular feature with Android are highlighted with a
 
 !<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1793&amp;sa=D&amp;ust=1557433016498000">ANDROAPP-1793</a> Program Rules support names and codes for option sets variables from 1.2.1
 
-| Action| Description of action| Data element from the newest event in the current program| Data element from the newest event for a program stage| Tracked Entity Atribute |Notes on implementation|
+| Action| Description of action| Data element from the newest event in the current program (with regustration)|Data element from the newest event in the current program (without registration)| Data element from previous event (with registration) |Data element from previous event (without registration)| Data element from the newest event for a program stage (with registration)|Tracked Entity Atribute (with registration) |Notes on implementation|
+|-|-|-|-|-|-|-|-|-|
+|Hide Field|Hides an individual data element if the rule is true.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|✓|✓|![](resources/images/image3_icon.png)|✓||
 
-|-|-|-|-|-|-|
 
 
-
-<p>Description of action</p>
-</td>
-<td colspan="2" rowspan="1">
-<p>Data element from the newest event in the current program</p>
-</td>
-<td colspan="2" rowspan="1">
-<p>Data element from previous event</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Data element from the newest event for a program stage</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Tracked entity attribute</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Notes on implementation</p>
-</td>
-</tr>
-<tr>
-<td colspan="2" rowspan="1">&nbsp;</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program without registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program without registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">
-<p>Program with registration</p>
-</td>
-<td colspan="1" rowspan="1">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1">
 <p>Hide Field</p>
 </td>
 <td colspan="1" rowspan="1">
