@@ -41,27 +41,23 @@ Any issues around using a particular feature with Android are highlighted with a
 |Show Error|Shows a pop-up error message to the user as soon as a rule is true, and prevents user from continuing until rule is no longer true.|✓|✓||
 |Error on Complete|Shows a pop-up warning to the user if, when "complete"; is clicked, a rule is true, and prevents user from continuing until rule is no longer true.|✓|✓||
 |Make Field Mandatory|Sets a data element as "mandatory"; if rule is true.|✓|✓||
-|Display Text|Used to display information that is not an error or a warning, for example feedback.|✓|✓|Event Programs: text is displayed in all sections. Tracker Programs: 1. Rules triggered by "Current event variables" are showing the text ONLY in the form. 2. Rules triggered by "Built-in variables" display text ONLY on the indicators tab. 3. The other Program rule variables are displaying the text in BOTH the form and the indicator tab.||
-|Display Key Value/Pair|Used to display information drawn from a data element.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|Event Programs:key value / pair is not displayed in event programs. Tracker Programs: Rules triggered by "Current event variables" are not showing the key value / pair||
+|Display Text (Event Programs)|Used to display information that is not an error or a warning, for example feedback.|✓|✓| Text is displayed in all sections.||
+|Display Text (Tracker Programs)|Used to display information that is not an error or a warning, for example feedback.|✓|✓|1. Rules triggered by "Current event variables" are showing the text ONLY in the form. 2. Rules triggered by "Built-in variables" display text ONLY on the indicators tab. 3. The other Program rule variables are displaying the text in BOTH the form and the indicator tab.||
+|Display Key Value/Pair (Event Programs)|Used to display information drawn from a data element.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|Key value / pair is not displayed in event programs||
+|Display Key Value/Pair (Traker Programs)|Used to display information drawn from a data element.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|Rules triggered by "Current event variables" are not showing the key value / pair||
 |Hide Program Stage|Hides a whole program stage from the user if the rule is true.|n/a|n/a|Action rule only supported for&nbsp;Data element from the newest event in the current program variable type.||
 |Create event|Create an event within the same enrollment.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|This action will be available in future versions of DHIS2. <a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1131&amp;sa=D&amp;ust=1557433016497000">ANDROAPP-1131</a>||
 
+## Program rule Actions supported (Other variables)
+
+!<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1793&amp;sa=D&amp;ust=1557433016498000">ANDROAPP-1793</a> Program Rules support names and codes for option sets variables from 1.2.1
+
+| Action| Description of action| Data element from the newest event in the current program| Data element from the newest event for a program stage| Tracked Entity Atribute |Notes on implementation|
+
+|-|-|-|-|-|-|
 
 
 
-</table>
-<hr />
-<h3>Program rule Actions supported (Other variables)</h3>
-<p>!<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1793&amp;sa=D&amp;ust=1557433016498000">ANDROAPP-1793</a>&nbsp;Program Rules support names and codes for option sets variables from 1.2.1</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<table>
-<tbody>
-<tr>
-<td colspan="1" rowspan="1">
-<p>Action</p>
-</td>
-<td colspan="1" rowspan="1">
 <p>Description of action</p>
 </td>
 <td colspan="2" rowspan="1">
