@@ -52,7 +52,7 @@ Any issues around using a particular feature with Android are highlighted with a
 
 !<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1793&amp;sa=D&amp;ust=1557433016498000">ANDROAPP-1793</a> Program Rules support names and codes for option sets variables from 1.2.1
 
-| Action| Description of action| Data element from the newest event in the current program (with regustration)|Data element from the newest event in the current program (without registration)| Data element from previous event (with registration) |Data element from previous event (without registration)| Data element from the newest event for a program stage (with registration)|Tracked Entity Atribute (with registration) |Notes on implementation|
+| Action| Description of Action| Data Element from the Newest Event in the Current Program (with registration)|Data Element from the Newest Event in the Current Program (without registration)| Data Element from Previous Event (with registration) |Data Element from Previous Event (without registration)| Data Element from the Newest Event for a Program Stage (with registration)|Tracked Entity Atribute (with registration) |Notes on implementation|
 |-|-|-|-|-|-|-|-|-|
 |Hide Field|Hides an individual data element if the rule is true.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|✓|✓|![](resources/images/image3_icon.png)|✓||
 
