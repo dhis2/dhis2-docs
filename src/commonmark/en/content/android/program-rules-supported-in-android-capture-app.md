@@ -13,7 +13,7 @@ Any issues around using a particular feature with Android are highlighted with a
 
 
 ## Program rule Variable source types supported
-| Variable type| Description of variable type|Program with registration|Program without registration|Notes on implementation|
+| Variable type| Description of variable type| Program with registration| Program without registration| Notes on implementation|
 |-|-|-|-|-|
 |Data element from the newest event for a program stage|This source type works the same way as "Data element from the newest event in the current program", except that it only evaluates values from a specific program stage.|![](resources/images/image3_icon.png)|n/a||
 |Data element from the newest event in the current program (with registration)|This source type is populated with the newest data value collected for the specified data element within the enrolment.|![](resources/images/image3_icon.png)|n/a||
@@ -27,7 +27,8 @@ Any issues around using a particular feature with Android are highlighted with a
 
 ## Program rule Actions supported (Data element in current event)
 !<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1793&amp;sa=D&amp;ust=1557433016465000">ANDROAPP-1793</a>&nbsp;Program Rules support names and codes for option sets variables from 1.2.1
-| Action|Description of action|Program with registration|Program without registration|Notes on implementation|
+
+| Action| Description of action| Program with registration| Program without registration| Notes on implementation|
 |-|-|-|-|-|
 |Hide Field|Hides an individual data element if the rule is true.|✓|✓|! If you change the value after the field is hidden, it will revert the action depending on the value type rule engine default value. We recommend its use combined with the hasvalue function.||
 |Hide Section|Hides a whole section and its data elements if the rule is true.|✓|✓||
