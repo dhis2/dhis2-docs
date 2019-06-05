@@ -100,11 +100,11 @@ Any issues around using a particular feature with Android are highlighted with a
 | d2:zpvc    | Returns the number of numeric zero and positive values among the given object arguments. Can be provided any number of arguments.   | ✓    | |
 | d2:inOrgUnitGroup\* | Evaluates whether the current organization unit is in the argument group. The argument can be defined with either ID or organization unit group code. | ![](resources/images/image3_icon.png) | |
 
-\*Available in DHIS2 v2.30
+\* Available in DHIS2 v2.30
 
 ## Standard variables to use in program rule expressions
 
-![](resources/images/image1_icon.png)Available in DHIS2 v2.30
+\* Available in DHIS2 v2.30
 
 | Variable     | Description of function       | Status | Notes on implementation |
 | --- | -------------------------------------------- | --- | -- |
