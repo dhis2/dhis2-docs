@@ -2,7 +2,7 @@
 
 The following is a comprehensive list of all Program indicator variables available in DHIS2, and notes on whether or not these have been implemented in the Android Capture app.
 
-Any issues around using a particular feature with Android are highlighted with an exclamation mark \!
+Any issues around using a particular feature with Android are highlighted with an exclamation mark.
 
 |legend|description|
 |:--:|:------|
