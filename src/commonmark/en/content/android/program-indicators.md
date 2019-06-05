@@ -4,12 +4,10 @@ The following is a comprehensive list of all Program indicator variables availa
 
 Any issues around using a particular feature with Android are highlighted with an exclamation mark \!.
 
----
-
 |        |  |
 | ---- | -- |
-| ✓    | Component implemented   |
-| –    | Component not implemented (rule fails)    |
+|  ✓    | Component implemented   |
+|  –    | Component not implemented (rule fails)    |
 | N/A  | Non-applicable |
 | ![](resources/images/image3_icon.png) | Work in progress. Feature not completely implemented yet or with unexpected behaviour already reported . |
 
