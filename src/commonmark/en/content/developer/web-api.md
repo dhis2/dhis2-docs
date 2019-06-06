@@ -17000,7 +17000,7 @@ tracked entity instance in the year 2014:
 
 Query files associated with event data values. In specific case when fetching image file an additional parameter can be provided to fetch image with different dimensions. If dimension is not provided, system will return original image. Parameter will be ignored in case of fetching non image files e.g pdf. Possible dimension values are *small*, *medium* and *large*. Any value other than those mentioned will be discarded and original image will be returned.
 
-    /api/30/events/files?eventUid=hcmcWlYkg9u&dataElementUid=C0W4aFuVm4P&1559654218496&dimension=small
+    /api/30/events/files?eventUid=hcmcWlYkg9u&dataElementUid=C0W4aFuVm4P&dimension=small
 
 #### Event grid query
 
