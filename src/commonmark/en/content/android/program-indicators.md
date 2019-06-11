@@ -15,7 +15,7 @@ Any issues around using a particular feature with Android are highlighted with a
 | Variable type| Description of variable type|Status|Notes on implementation|
 |-|---|:-:|---|
 |Event Date<br/>event_date|The date of when the event took place.|✓||
-|Due Date<br/>due_date|![](resources/images/image3_icon.png)|✓||
+|Due Date<br/>due_date|The date of when an event is due.|✓||
 |Incident Date<br/>incident_date|The date of the incidence of the event.|✓||
 |Enrollment Date (not visible on UI)<br/>enrollment_date|The date of when the tracked entity instance was enrolled in the program.|✓||
 |Enrollment Status<br/>enrollment_status|Can be used to include or exclude enrollments in certain statuses.|&ndash;||
