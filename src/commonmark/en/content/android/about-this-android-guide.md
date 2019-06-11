@@ -44,7 +44,7 @@ conventions used in the document are explained below.
 > Information contained in these sections, if not heeded, could result
 > in permanent data loss or affect the overall usability of the system.
 
-> **Construction**
+> **Work In Progress**
 >
 > Information contained in these sections, will indicate that these 
 > are issues or errors we are currently working on.
