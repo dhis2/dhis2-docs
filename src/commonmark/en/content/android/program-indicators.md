@@ -13,7 +13,7 @@ Any issues around using a particular feature with Android are highlighted with a
 
 ## Variables to use in a program indicator expression or filter
 | Variable type| Description of variable type|Status|Notes on implementation|
-|-|-|:-:|-|
+|-|---|:-:|---|
 |Event Date<br/>event_date|The date of when the event took place.|✓||
 |Due Date<br/>due_date|![](resources/images/image3_icon.png)|✓||
 |Incident Date<br/>incident_date|The date of the incidence of the event.|✓||
