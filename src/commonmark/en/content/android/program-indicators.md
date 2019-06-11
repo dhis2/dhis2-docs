@@ -7,7 +7,7 @@ Any issues around using a particular feature with Android are highlighted with a
 |legend|description|
 |:--:|:------|
 |✓|Component implemented|
-|-|Component not implemented (rule fails) |
+|&ndash;|Component not implemented (rule fails) |
 |n/a|Not applicable|
 |![](resources/images/image3_icon.png)|Work in progress. Feature not completely implemented yet or with unexpected behaviour already reported.|
 
@@ -18,7 +18,7 @@ Any issues around using a particular feature with Android are highlighted with a
 |Due Date<br/>due_date|![](resources/images/image3_icon.png)|✓||
 |Incident Date<br/>incident_date|The date of the incidence of the event.|✓||
 |Enrollment Date (not visible on UI)<br/>enrollment_date|The date of when the tracked entity instance was enrolled in the program.|✓||
-|Enrollment Status<br/>enrollment_status|Can be used to include or exclude enrollments in certain statuses.|–||
+|Enrollment Status<br/>enrollment_status|Can be used to include or exclude enrollments in certain statuses.|&ndash;||
 |Current Date<br/>current_date|The current date.|✓||
 |Completed Date|The date the event is completed.|![](resources/images/image3_icon.png)||
 |Value Count<br/>value_count|The number of non-null values in the expression part of the event.|✓||
