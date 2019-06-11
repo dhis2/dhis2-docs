@@ -7,7 +7,7 @@ Any issues around using a particular feature with Android are highlighted with a
 ||||
 | :-: | :------ |
 | ✓ | Value type implemented |
-| - | Value type not implemented, but will be safely ignored (if not compulsory) |
+| &ndash; | Value type not implemented, but will be safely ignored (if not compulsory) |
 | n/a | Non-applicable|
 | ![](resources/images/image3_icon.png) | Work in progress. Feature not completely implemented yet or with unexpected behavior already reported |
 
