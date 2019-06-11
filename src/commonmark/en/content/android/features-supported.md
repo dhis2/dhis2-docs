@@ -14,7 +14,7 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 
 ## Program features
 |Feature|Description of feature|Program with registration|Program without registration|Notes on implementation|
-|-|--|:-:|:-:|--|
+|-|---|:-:|:-:|---|
 |Data entry method for option sets|Enables an admin to choose how options will be displayed on-screen across the entire program (ie either as drop-down lists or as radio buttons)|&ndash;|&ndash;|This will be replaced by the new rendering options.|
 |Combination of categories<br />(Attribute CatCombo)|Allows an admin to attach a Category (set of Options) to the Program, requiring users to categorize each enrolment. (This is called an Attribute Category Combination in DHIS 2.)|✓|✓||
 |Data approval workflow|If an admin selects a pre-configured Data Approval Workflow, this will be used to enforce an &lsquo;approval&rsquo; or &lsquo;acceptance and approval&rsquo; cascade, enabling users to sign-off and lock data.|&ndash;|&ndash;||
@@ -46,7 +46,7 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 
 ## Program stage features
 |Feature|Description of feature|Program with registration|Program without registration|Notes on implementation|
-|-|--|:-:|:-:|--|
+|-|---|:-:|:-:|---|
 |Event form - default|The default data entry form simply lists all attributes belonging to a program registration|✓|✓||
 |Event form - section forms|Sections forms allow you to split existing forms into segments|✓|✓||
 |Event form - custom|Define a custom event form as a HTML page.|&ndash;|&ndash;|Custom layouts are not supported in the Android App.|
@@ -73,7 +73,7 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 
 ## Program with registration: Tracked entity dashboard features
 |Feature|Description of feature|Status|Notes on implementation|
-|-|--|:-:|--|
+|-|---|:-:|---|
 |Messaging|Enables users to send ad-hoc free-text messages to TEIs (e.g. patients) via SMS or email.|&ndash;||
 |Mark for follow-up (button with exclamation triangle)|Enables a user to mark a TEI (e.g. patient) as requiring follow-up.|✓||
 |Display TEI audit history|Enables a user to see a history of all edits to Attributes for this TEI (e.g. patient).|-||
@@ -88,7 +88,7 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 
 ## Program without registration: Single event program specific features
 |Feature|Description of feature|Status|Notes on implementation|
-|-|--|:-:|--|
+|-|---|:-:|---|
 |Events listing (grid)|A listing of existing events that is displayed once a program is selected.|✓||
 |Sort and filter events in grid|Allows the user to sort listed events, or to filter events based on keywords or specific ranges of dates/numbers.|✓|Events are sorted chronologically. The user can filter by period and organisation unit.||
 |Edit events in grid|Allows the user to directly edit the data elements shown in the events listing/grid.|&ndash;||
