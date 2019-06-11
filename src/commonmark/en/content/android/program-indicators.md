@@ -12,8 +12,8 @@ Any issues around using a particular feature with Android are highlighted with a
 |![](resources/images/image3_icon.png)|Work in progress. Feature not completely implemented yet or with unexpected behaviour already reported.|
 
 ## Variables to use in a program indicator expression or filter
-| Variable type| Description of variable typeStatus|Notes on implementation|
-|-|-|-|-|
+| Variable type| Description of variable type|Status|Notes on implementation|
+|-|-|:-:|-|
 |Event Date<br/>event_date|The date of when the event took place.|✓||
 |Due Date<br/>due_date|![](resources/images/image3_icon.png)|✓||
 |Incident Date<br/>incident_date|The date of the incidence of the event.|✓||
