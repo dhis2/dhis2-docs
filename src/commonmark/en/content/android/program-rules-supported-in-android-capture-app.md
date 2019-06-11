@@ -14,7 +14,7 @@ Any issues around using a particular feature with Android are highlighted with a
 
 ## Program rule Variable source types supported
 | Variable type| Description of variable type| Program with registration| Program without registration| Notes on implementation|
-|-|-|-|-|-|
+|-|-|:-:|:-:|-|
 |Data element from the newest event for a program stage|This source type works the same way as "Data element from the newest event in the current program", except that it only evaluates values from a specific program stage.|![](resources/images/image3_icon.png)|n/a||
 |Data element from the newest event in the current program (with registration)|This source type is populated with the newest data value collected for the specified data element within the enrolment.|![](resources/images/image3_icon.png)|n/a||
 |Data element from the newest event in the current program (without registration)|This program rule variable will be populated with the newest data value found within the 10 newest events in the same organization unit.|n/a|![](resources/images/image3_icon.png)||
@@ -29,7 +29,7 @@ Any issues around using a particular feature with Android are highlighted with a
 !<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1793&amp;sa=D&amp;ust=1557433016465000">ANDROAPP-1793</a>&nbsp;Program Rules support names and codes for option sets variables from 1.2.1
 
 | Action| Description of action| Program with registration| Program without registration| Notes on implementation|
-|-|-|-|-|-|
+|-|-|:-:|:-:|-|
 |Hide Field|Hides an individual data element if the rule is true.|✓|✓|! If you change the value after the field is hidden, it will revert the action depending on the value type rule engine default value. We recommend its use combined with the hasvalue function.||
 |Hide Section|Hides a whole section and its data elements if the rule is true.|✓|✓||
 |Hide Option|Hide a single option for an option set in a given data element/tracked entity attribute. When combined with <b>show option group</b> the <b>hide option</b> takes precedence|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)||
@@ -53,7 +53,7 @@ Any issues around using a particular feature with Android are highlighted with a
 !<a href="https://www.google.com/url?q=https://jira.dhis2.org/browse/ANDROAPP-1793&amp;sa=D&amp;ust=1557433016498000">ANDROAPP-1793</a> Program Rules support names and codes for option sets variables from 1.2.1
 
 | Action| Description of Action| Data Element from the Newest Event in the Current Program (with registration)|Data Element from the Newest Event in the Current Program (without registration)| Data Element from Previous Event (with registration) |Data Element from Previous Event (without registration)| Data Element from the Newest Event for a Program Stage (with registration)|Tracked Entity Atribute (with registration) |Notes on implementation|
-|-|-|-|-|-|-|-|-|-|
+|-|-|:-:|:-:|:-:|:-:|:-:|:-:|-|
 |Hide Field|Hides an individual data element if the rule is true.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|✓|✓|![](resources/images/image3_icon.png)|✓||
 |Hide Section|Hides a whole section and its data elements if the rule is true.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|✓|✓|![](resources/images/image3_icon.png)|✓||
 |Hide Option|Hide a single option for an option set in a given data element/tracked entity attribute. When combined with <b>show option group</b> the <b>hide option</b> takes precedence.|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)|![](resources/images/image3_icon.png)||
@@ -74,7 +74,7 @@ Any issues around using a particular feature with Android are highlighted with a
 ## Functions to use in program rule expressions
 
 | Function   | Description of function | Status        | Notes on implementation |
-| ---- | ----------------------------- | ---- | -- |
+| ---- | ----------------------------- | :----: | -- |
 | d2:ceil    | Rounds the input argument up to the nearest whole number.   | ✓    | |
 | d2:floor   | Rounds the input argument down to the nearest whole number. | ✓    | |
 | d2:round   | Rounds the input argument to the nearest whole number.      | ✓    | |
@@ -107,7 +107,7 @@ Any issues around using a particular feature with Android are highlighted with a
 Available in DHIS2 v2.30
 
 | Variable     | Description of function       | Status | Notes on implementation |
-| --- | -------------------------------------------- | --- | -- |
+| --- | -------------------------------------------- | :---: | -- |
 | V{current_date}       | Contains the current date whenever the rule is executed. | ✓      | |
 | V{event_date}         | Contains the event date of the current event execution. Will not have a value at the moment the rule is executed as part of the registration form. | ✓      | |
 | V{due_date} \*        | This variable will contain the current date when the rule is executed. Note: This means that the rule might produce different results at different times, even if nothing else has changed.     | ✓      | |
