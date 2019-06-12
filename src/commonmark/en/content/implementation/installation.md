@@ -181,7 +181,7 @@ startup. If the DHIS 2 database user does not have permission to create
 extensions you can create it from the console using the *postgres* user
 with the following commands:
 
-    sudo -u postgres psql -c "create extension postgis;" dhis
+    sudo -u postgres psql -c "create extension postgis;" dhis2
 
 Exit the console and return to your previous user with *\\q* followed by
 *exit*.
@@ -337,6 +337,16 @@ greatest operating system support including Ubuntu LTS 14.04. The
     sudo apt-get update
     sudo apt-get install oracle-java8-installer
 
+> **Note**
+>
+>The Oracle Java 8 JDK installer PPA has been discontinued.  Oracle downloads
+>now require an Oracle account.  As an alternative, you may use the 
+>OpenJDK 8 version.
+>
+>```
+>    sudo apt-get install openjdk-8-jdk
+>```
+
 Check that your installation is okay by invoking:
 
     java -version
@@ -369,7 +379,7 @@ home directory of the dhis user:
 
     cd /home/dhis/
     sudo tomcat8-instance-create tomcat-dhis
-    sudo chown -R test:test test-dhis/
+    sudo chown -R dhis:dhis tomcat-dhis/
 
 This will create an instance in a directory called *tomcat-dhis*. Note
 that the tomcat7-user package allows for creating any number of dhis
