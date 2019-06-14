@@ -8734,7 +8734,7 @@ Will search for the following:
 <tr class="even">
 <td>max</td>
 <td>The type to return the maxCount for</td>
-<td>String [CHART|</td>
+<td>String [CHART|MAP|REPORT_TABLE|USER|REPORT|RESOURCE]</td>
 <td>N/A</td>
 </tr>
 </tbody>
