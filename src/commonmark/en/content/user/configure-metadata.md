@@ -182,11 +182,9 @@ option could be reused. This is important if particular category options
 
     1.  **Name**
 
-    2.  **Short name**
+    2.  **Start date**
 
-    3.  **Start date**
-
-    4.  **End date**
+    3.  **End date**
 
 4.  Select organisation units and assign them.
 
