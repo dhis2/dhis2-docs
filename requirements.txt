@@ -19,7 +19,7 @@ python-slugify==1.2.6
 PyYAML==3.13
 requests==2.21.0
 six==1.11.0
-tinycss2==0.6.1
+tinycss2==1.0.0
 transifex-client==0.13.6
 Unidecode==1.0.23
 urllib3==1.23
