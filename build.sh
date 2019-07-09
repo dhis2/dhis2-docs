@@ -19,6 +19,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # if gnu coreutils is installed, we can ensure it is first in the path
   # for convenience
   PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  if [[ ! $(command -v gsed) ]]; then
+    echo "This script requires gnu-sed to be installed on Mac. Exiting."
+    echo "(hint: brew install gnu-sed)"
+    exit 0
+  fi
+  # if gnu sed is installed, we can ensure it is first in the path
+  # for convenience
+  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 #
 # ensure language packs are installed. e.g. for French
