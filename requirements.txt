@@ -16,7 +16,7 @@ ply==3.11
 pycparser==2.18
 Pyphen==0.9.5
 python-slugify==1.2.6
-PyYAML==3.13
+PyYAML==4.2b1
 requests==2.21.0
 six==1.11.0
 tinycss2==1.0.0
