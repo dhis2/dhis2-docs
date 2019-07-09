@@ -1,13 +1,18 @@
 python3 -m venv --without-pip venv
 source venv/bin/activate
 curl https://bootstrap.pypa.io/get-pip.py | python
-deactivate 
+deactivate
 source venv/bin/activate
-pip install -r requirements.txt 
+pip install -r requirements.txt
 cd tools/python/markdown-pp-master
 python3 setup.py develop
 pip install MarkdownPP
 cd -
-cp ./tools/pandoc* ./venv/bin/
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # use the mac pandoc binaries
+  cp ./tools/mac/pandoc* ./venv/bin/
+else
+  # default to the linux pandoc binaries
+  cp ./tools/linux/pandoc* ./venv/bin/
+fi
 deactivate
-
