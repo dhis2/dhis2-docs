@@ -2205,9 +2205,13 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 
 <!--DHIS2-SECTION-ID:about_relationship_types-->
 
-A relationship type defines the relationship between tracked entity A
-and tracked entity B, for example mother and child.
+A relationship represents a link between two entities in the Tracker-model. A relationship is considered data in DHIS2 and is based on a Relationship Type, similar to how a Tracked Entity Instance is based on a Tracked Entity Type.
 
+Relationships always include two entities, and these entities can include Tracked Entity Instances, Enrollments and Events, and any combination of these. Note that not all of these combinations are available in the current apps.
+
+In addition, relationships can be defined as unidirectional or bidirectional. The only functional difference is currently that these requires different levels of access to create. Unidirectional relationships requires the user to have data write access to the “from” entity and data read access for the “to” entity, while bidirectional relationships require data write access for both sides.
+
+For more information about configuration and the meaning of 'From constraint' and 'To constraint', see #relationship_model_relationship_type.
 ### Create or edit a relationship type
 
 <!--DHIS2-SECTION-ID:create_relationship_type-->
@@ -2221,15 +2225,19 @@ and tracked entity B, for example mother and child.
 
 4.  (Optional) Assign a **Code**.
 
-5.  In the **A is to B** field, enter a description of which
-    relationship tracked entity A has to tracked entity B, for example
-    mother.
+4.  (Optional) Provide a **Description** of the relationship.
 
-6.  In the **B is to A** field, enter a description of which
-    relationship tracked entity B has to tracked entity A, for example
-    child.
+5. (Optional) Select whether the relationship should be bidirectional
 
-7.  Click **Save**.
+6. Provide **Relationship name seen from inititating entity**. This is the name of the relationship that will be shown in the Data Entry app at the 'left' side of the relationship. E.g. in a Mother-child relationship this could be 'Mother of'.
+
+7. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
+
+9.  Select a 'From constraint'. This limits what kind of entities that can be included in the relationship. See #relationship_model_relationship_type.
+
+9.  Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. See #relationship_model_relationship_type.
+
+9.  Click **Save**.
 
 ## Configure tracked entity types
 
