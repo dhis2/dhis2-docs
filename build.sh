@@ -3,6 +3,12 @@
 #
 # Requirements:
 #
+# ensure python3 is available:
+if [[ ! $(command -v python3) ]]; then
+  echo "This script requires python3 to be installed. Exiting."
+  exit 0
+fi
+#
 # ensure language packs are installed. e.g. for French
 #> sudo apt-get install language-pack-fr
 #
