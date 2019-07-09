@@ -2211,7 +2211,8 @@ Relationships always include two entities, and these entities can include Tracke
 
 In addition, relationships can be defined as unidirectional or bidirectional. The only functional difference is currently that these requires different levels of access to create. Unidirectional relationships requires the user to have data write access to the “from” entity and data read access for the “to” entity, while bidirectional relationships require data write access for both sides.
 
-For more information about configuration and the meaning of 'From constraint' and 'To constraint', see #relationship_model_relationship_type.
+For more information about configuration and the meaning of 'From constraint' and 'To constraint', see [Relationship model](relationship_model#relationship_model_relationship_type).
+
 ### Create or edit a relationship type
 
 <!--DHIS2-SECTION-ID:create_relationship_type-->
@@ -2233,9 +2234,9 @@ For more information about configuration and the meaning of 'From constraint' an
 
 7. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
 
-9.  Select a 'From constraint'. This limits what kind of entities that can be included in the relationship. See #relationship_model_relationship_type.
+9.  Select a 'From constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](relationship_model#relationship_model_relationship_type).
 
-9.  Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. See #relationship_model_relationship_type.
+9.  Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](relationship_model#relationship_model_relationship_type).
 
 9.  Click **Save**.
 
@@ -2517,7 +2518,7 @@ programs.
 
 8.  (Optional) Add **Tracked entity type attributes**. This is used to
     configure search, see [Configure
-    Search](../search/search.xml#configure_search) for more information.
+    Search](configure_search) for more information.
 
 9.  (Optional) Enter an **Alternative name** of the tracked entity.
 
