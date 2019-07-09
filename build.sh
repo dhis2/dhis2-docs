@@ -9,6 +9,18 @@ if [[ ! $(command -v python3) ]]; then
   exit 0
 fi
 #
+# If on mac, ensure we have gnu coreutils for command compatibility
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ ! $(command -v gdate) ]]; then
+    echo "This script requires coreutils to be installed on Mac. Exiting."
+    echo "(hint: brew install coreutils)"
+    exit 0
+  fi
+  # if gnu coreutils is installed, we can ensure it is first in the path
+  # for convenience
+  PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+fi
+#
 # ensure language packs are installed. e.g. for French
 #> sudo apt-get install language-pack-fr
 #
