@@ -5,33 +5,34 @@
 #
 # ensure python3 is available:
 if [[ ! $(command -v python3) ]]; then
-  echo "This script requires python3 to be installed. Exiting."
+  echo "This script requires python3, and some other libraries:"
+  echo "  brew install python3 cairo pango gdk-pixbuf libffi"
+  echo "Exiting."
   exit 0
 fi
 #
 # If on mac, ensure we have gnu coreutils for command compatibility
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [[ ! $(command -v gdate) ]]; then
-    echo "This script requires coreutils to be installed on Mac. Exiting."
-    echo "(hint: brew install coreutils)"
+  if [[ ! $(command -v gdate) ]] || [[ ! $(command -v gsed) ]]; then
+    echo "This script requires coreutils and gnu-sed to be installed on Mac:"
+    echo "  brew install coreutils gnu-sed)"
+    echo "Exiting."
     exit 0
   fi
-  # if gnu coreutils is installed, we can ensure it is first in the path
-  # for convenience
-  PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-  if [[ ! $(command -v gsed) ]]; then
-    echo "This script requires gnu-sed to be installed on Mac. Exiting."
-    echo "(hint: brew install gnu-sed)"
-    exit 0
-  fi
-  # if gnu sed is installed, we can ensure it is first in the path
-  # for convenience
-  PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+  # once gnu coreutils and gnu-sed are installed, we can ensure they are
+  # first in the path, for convenience
+  corepath="/usr/local/opt/coreutils/libexec/gnubin"
+  sedpath="/usr/local/opt/gnu-sed/libexec/gnubin"
+  export PATH="$sedpath:$corepath:$PATH"
 fi
 #
 # ensure language packs are installed. e.g. for French
 #> sudo apt-get install language-pack-fr
 #
+
+# set the default locale for the build
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # perform all actions relative to the path of this script
 SCRIPT_DIR="${BASH_SOURCE%/*}"
