@@ -15,7 +15,7 @@ fi
 if [[ "$OSTYPE" == "darwin"* ]]; then
   if [[ ! $(command -v gdate) ]] || [[ ! $(command -v gsed) ]]; then
     echo "This script requires coreutils and gnu-sed to be installed on Mac:"
-    echo "  brew install coreutils gnu-sed)"
+    echo "  brew install coreutils gnu-sed"
     echo "Exiting."
     exit 0
   fi

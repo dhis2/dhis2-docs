@@ -10,9 +10,9 @@ pip install MarkdownPP
 cd -
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # use the mac pandoc binaries
-  cp ./tools/mac/pandoc* ./venv/bin/
+  unzip ./tools/mac/pandoc.zip -d ./venv/bin/
 else
   # default to the linux pandoc binaries
-  cp ./tools/linux/pandoc* ./venv/bin/
+  unzip ./tools/linux/pandoc.zip -d ./venv/bin/
 fi
 deactivate

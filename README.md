@@ -163,10 +163,10 @@ You can also continue to use HTML tables when you really need more complexity (b
 
 ### "DHIS2" or "DHIS 2", that is the question
 
-In short, the correct form is "DHIS 2" when referring to the software system in normal written text. For convenience, some variables, paths, etc. use the compact form, and they should, of course, be respected in the documentation. 
+In short, the correct form is "DHIS 2" when referring to the software system in normal written text. For convenience, some variables, paths, etc. use the compact form, and they should, of course, be respected in the documentation.
 
 
-# Building documents
+# Building the documents
 
 The documents are built in stages:
 
@@ -176,12 +176,34 @@ The documents are built in stages:
 
 Weasyprint has several [requirements](https://weasyprint.readthedocs.io/en/latest/install.html) that must be installed on the system:
 
-On Ubuntu:
+### On Ubuntu
 ```
 sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
 ```
 
-In order to build:
+### On Mac OSX (with Homebrew)
+```
+brew install python3 cairo pango gdk-pixbuf libffi
+brew install coreutils gnu-sed
+```
+
+### On Windows 10 (64-bit)
+_Building on Windows 10 is achieved via the ubuntu app:_
+1. Enable WSL
+
+  a. In the search bar, type “turn windows features on or off,” open the item.
+
+  b. A new window will pop up with a list of features with check boxes next to them. Scroll down to Windows Subsystem for Linux and check the box. This will install the necessary files, your computer will then restart, after which the installation is complete.
+
+2. Download Ubuntu from the Microsoft Store.
+
+  a. Open the Microsoft Store and search for Ubuntu.
+
+  b. Select one of the available apps (I tested this with `Ubuntu 18.04 LTS`)
+
+  
+
+## In order to build:
 
 - run the build.sh script:
 ```
@@ -190,7 +212,7 @@ In order to build:
 
 > **NOTE**
 >
-> The first time it is run, the build script will create a python virtual env and install the dependencies from the requirements.txt file. It will copy pandoc (v2.2.1), and install a "modified" version of markdown-pp; these are provided in the tools directory. The venv will then be activated to perform the rest of the build. **This should work on Linux, but hasn't been tested on other platforms!**
+> The first time it is run, the build script will create a python virtual env and install the dependencies from the requirements.txt file. It will copy pandoc (v2.7.3), and install a "modified" version of markdown-pp; these are provided in the tools directory. The venv will then be activated to perform the rest of the build. **This should work on Linux, but hasn't been tested on other platforms!**
 
 The generated files are placed in a `target` directory:
 
