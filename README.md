@@ -188,8 +188,10 @@ brew install coreutils gnu-sed
 ```
 
 ### On Windows 10 (64-bit)
-_Building on Windows 10 is achieved via the ubuntu app:_
-1. Enable WSL
+
+Building on Windows 10 is achieved via the ubuntu app:
+
+1. Enable Windows Subsystem for Linux (WSL)
 
   a. In the search bar, type “turn windows features on or off,” open the item.
 
@@ -201,7 +203,21 @@ _Building on Windows 10 is achieved via the ubuntu app:_
 
   b. Select one of the available apps (I tested this with `Ubuntu 18.04 LTS`)
 
-  
+  Once the app is installed you can initialise it: start the app and set a ubuntu user name and password (these are independent from your Windows user). You should then update the packages:
+
+  ```
+  sudo apt-get update
+  ```
+  You can then continue as on native ubuntu:
+  ```
+  sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+  ```
+
+  > **NOTE**
+  >
+  > Microsoft warns against modifying files from both Windows itself _and_ the Linux subsystem.
+  > If you wish to use Windows for checking out and editing the docs, note that the user directory on Windows is typically under `/mnt/c/Users/<windows-user>` in the Ubuntu app. From there you can navigate to the checked-out repository and perform the build; Windows would then be used for the source, and Linux for the output.
+  > _Alternatively, you can do everything in the Ubuntu app!_
 
 ## In order to build:
 
@@ -250,8 +266,10 @@ The generated files are placed in a `target` directory:
 │               ├── html
 │               └── user_stories_book.pdf
 └── tools
-    ├── pandoc
-    ├── pandoc-citeproc
+    ├── linux
+    |   └── pandoc.zip
+    ├── mac
+    |   └── pandoc.zip
     └── python
         └── markdown-pp-master
             ├── images
