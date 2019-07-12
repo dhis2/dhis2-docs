@@ -228,7 +228,7 @@ Building on Windows 10 is achieved via the ubuntu app:
 
 > **NOTE**
 >
-> The first time it is run, the build script will create a python virtual env and install the dependencies from the requirements.txt file. It will copy pandoc (v2.7.3), and install a "modified" version of markdown-pp; these are provided in the tools directory. The venv will then be activated to perform the rest of the build. **This should work on Linux, but hasn't been tested on other platforms!**
+> The first time it is run, the build script will create a python virtual env and install the dependencies from the requirements.txt file. It will copy pandoc (v2.7.3), and install a "modified" version of markdown-pp; these are provided in the tools directory. The venv will then be activated to perform the rest of the build.
 
 The generated files are placed in a `target` directory:
 
