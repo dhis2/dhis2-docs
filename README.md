@@ -111,6 +111,8 @@ For screenshots of the DHIS 2 web interface, we recommend using Chrome browser, 
 
 > *Fireshot can even capture the full page, i.e. scrolled, if desired. It can also capture just a selected area (but the maximum width should always be 1440px)*
 
+When taking screenshots of the Android app, size should be set to **360x640**.
+
 ### Section references
 
 In order to provide fixed references within the document, we can set a fixed text string to be applied to any section. For our markdown docs this is done by adding a comment after the section heading in the form:
@@ -176,7 +178,7 @@ Weasyprint has several [requirements](https://weasyprint.readthedocs.io/en/lates
 
 ### On Ubuntu
 ```
-sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info unzip
 ```
 
 ### On Mac OSX (with Homebrew)
@@ -208,7 +210,7 @@ Building on Windows 10 is achieved via the ubuntu app:
   ```
   You can then continue as on native ubuntu:
   ```
-  sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+  sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info unzip
   ```
 
   > **NOTE**
