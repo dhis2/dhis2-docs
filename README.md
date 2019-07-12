@@ -1,6 +1,6 @@
-# dhis2-markdown-docs
-All of your favourite documents - in markdown format!
+# DHIS 2 Documentation
 
+All of your favourite documentation - in markdown format!
 
 # Updating the documents
 This is the easy bit, and is all that most people have to do. The following sections describe the format, structure and a few considerations necessary for correctly generating the desired output.
@@ -85,6 +85,33 @@ It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but
 
 Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._
 
+#### Styling images
+
+If you want to control the alignment and size of images, you can take advantage of an extension of the pandoc processing tool that we use. It allows you to set attributes such as width, height and class in curly brackets at the end of the image definition. For example:
+```
+![](resources/images/maintainence/predictor_sequential.png){ width=50% }
+```
+will make your image 50% of the page width (it is best to use percentages to support a variety of output forms), while
+```
+![](resources/images/maintainence/predictor_sequential.png){ .center width=50% }
+```
+will also centre the image on the page (due to the definition of the `.center` class in css).
+
+When images are written like
+```
+![Approving and accepting](resources/images/data_approval/approval_level_steps.png)
+```
+i.e. with caption text in the square brackets, they are rendered as figures with captions. These are centred by default, with a centred, italicised caption.
+
+#### Taking screenshots
+
+For screenshots of the DHIS 2 web interface, we recommend using Chrome browser, with the following two extensions:
+1. [Window Resizer](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en). Us this to set the resolution to **1440x900**
+2. [Fireshot](https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg?hl=en). Use this to quickly create a snapshot of the **visible part**
+
+> *Fireshot can even capture the full page, i.e. scrolled, if desired. It can also capture just a selected area (but the maximum width should always be 1440px)*
+
+When taking screenshots of the Android app, size should be set to **360x640**.
 
 ### Section references
 
@@ -151,7 +178,7 @@ Weasyprint has several [requirements](https://weasyprint.readthedocs.io/en/lates
 
 ### On Ubuntu
 ```
-sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info unzip
 ```
 
 ### On Mac OSX (with Homebrew)
@@ -183,7 +210,7 @@ Building on Windows 10 is achieved via the ubuntu app:
   ```
   You can then continue as on native ubuntu:
   ```
-  sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+  sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info unzip
   ```
 
   > **NOTE**
@@ -269,6 +296,6 @@ As we transition to markdown, please bear in mind the following issues and short
 - [X] Chunked HTML output should use the same identifiers as the docbook output
 - [X] Intra- (and inter-) document links need updating to generate properly
 - [ ] "Asides" (NOTE, TIP, WARNING, etc.) have classes applied in a post-processing step which doesn't apply to PDF output. (could be done as a pandoc filter instead).
-- [ ] Section regarding documentation and Docbook needs rewrite (obviously)
+- [X] Section regarding documentation and Docbook needs rewrite (obviously)
 - [ ] build environment needs improvement to allow easy generation on various platforms (but most developers will not need to build as they can see the expected output in a good markdown editor)
 - [ ] in conjunction with previous point, the build script could be changed to a more robust build tool
