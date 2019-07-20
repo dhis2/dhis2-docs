@@ -15350,7 +15350,7 @@ To query for tracked entity instances you can interact with the
 <td>Tracked entity identifer. Restricts instances to the given tracked instance type.</td>
 </tr>
 <tr class="odd">
-<td>trackedEntityInstsane</td>
+<td>trackedEntityInstance</td>
 <td>Tracked entity instance identifier. Should not be used together with trackedEntity.</td>
 </tr>
 <tr class="even">
@@ -15522,7 +15522,7 @@ updating tracker objects, the only difference is that the
     }
 
     curl -X POST -d @data.json -H "Content-Type: application/json"
-      "http://server/api/26/trackedEntityInstasnces?strategy=DELETE"
+      "http://server/api/26/trackedEntityInstances?strategy=DELETE"
 
 *Example: Bulk deletion of enrollments:*
 
