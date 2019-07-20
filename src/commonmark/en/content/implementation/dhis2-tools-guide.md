@@ -501,7 +501,7 @@ remedies:
                   name]</code></p>
 <p>If it is still not running, check the log file with <code>dhis2-logview
                   [instance name]</code> to see if there is any information indicating why it has failed to start.</p>
-<p>If it is running and you can see it with netstat then you need to check your nginx configuration file to ensure that the locatio is correctly mapped.</p></td>
+<p>If it is running and you can see it with netstat then you need to check your nginx configuration file to ensure that the location is correctly mapped.</p></td>
 </tr>
 <tr class="odd">
 <td><p>You can access the site but you see a blank page in your browser.</p></td>
