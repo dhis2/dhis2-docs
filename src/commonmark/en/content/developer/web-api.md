@@ -18445,7 +18445,7 @@ interface.
 
 > **Note**
 >
-> Previous to 2.28, installed apps would only be stored on the instace's
+> Previous to 2.28, installed apps would only be stored on the instance's
 > local filesystem.
 
 If the DHIS2 instance has been configured to use cloud storage, apps
