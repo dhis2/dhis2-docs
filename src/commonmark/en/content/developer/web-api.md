@@ -16280,7 +16280,7 @@ resource.
 <td>Tracked entity identifier. Restricts instances to the given tracked instance type.</td>
 </tr>
 <tr class="odd">
-<td>trackedEntityInstsane</td>
+<td>trackedEntityInstance</td>
 <td>Tracked entity instance identifier. Should not be used together with trackedEntity.</td>
 </tr>
 <tr class="even">
@@ -17538,7 +17538,7 @@ updating tracker objects, the only difference is that the
     }
 
     curl -X POST -d @data.json -H "Content-Type: application/json"
-      "http://server/api/29/trackedEntityInstasnces?strategy=DELETE"
+      "http://server/api/29/trackedEntityInstances?strategy=DELETE"
 
 *Example: Bulk deletion of enrollments:*
 
@@ -18445,7 +18445,7 @@ interface.
 
 > **Note**
 >
-> Previous to 2.28, installed apps would only be stored on the instace's
+> Previous to 2.28, installed apps would only be stored on the instance's
 > local filesystem.
 
 If the DHIS2 instance has been configured to use cloud storage, apps
