@@ -2034,8 +2034,6 @@ date".
 <td>(object, [,object, object,...])</td>
 <td>Returns the number of numeric zero and positive values among the given object arguments. Can be provided with any number of arguments.</td>
 </tr>
-
-
 <tr class="even">
 <td>d2:validatePattern</td>
 <td>(text, regex-pattern)</td>
