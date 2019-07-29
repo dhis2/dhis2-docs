@@ -1112,22 +1112,22 @@ variables:
 <pre><code>V{program_stage_id} == &#39;YPSSfbmAtt1&#39;</code></pre></td>
 </tr>
 <tr class="even">
-<td><p>reporting_period_start</p></td>
+<td><p>analytics_period_start</p></td>
 <td><p>Can be used in filters or expressions for comparing any date to the first date in each reporting period.</p>
-<pre><code>d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{reporting_period_start})</code></pre></td>
+<pre><code>d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{analytics_period_start})</code></pre></td>
 </tr>
 <tr class="odd">
-<td><p>reporting_period_end</p></td>
+<td><p>analytics_period_end</p></td>
 <td><p>Can be used in filters or expressions for comparing any date to the last inclusive date in each reporting period.</p></td>
 </tr>
 </tbody>
 </table>
 
-A filter that uses the "Reporting period end" variable to only include
+A filter that uses the "Analytics period end" variable to only include
 women who has an LMP that would be in the first
     trimester:
 
-    d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{reporting_period_end}) <= 84
+    d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{analytics_period_end}) <= 84
 
 An expression that uses the "value count" variable looks like
     this:
