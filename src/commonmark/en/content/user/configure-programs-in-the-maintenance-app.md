@@ -2105,6 +2105,20 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <p>Example expression:</p>
 <pre><code>d2:zScoreWFA( ageInMonth, weight, gender )</code></pre></td>
 </tr>
+<tr class="odd">
+<td>d2:minValue</td>
+<td>Get minimum value for provided item</td>
+<td>Function gets minimum value of provided data element across entire enrollment.
+<p>Example expression:</p>
+<pre><code>d2:minValue( 'blood-pressure' )</code></pre></td>
+</tr>
+<tr class="even">
+<td>d2:maxValue</td>
+<td>Get maximum value for provided item</td>
+<td>Function gets maximum value of provided data element across entire enrollment.
+<p>Example expression:</p>
+<pre><code>d2:maxValue( 'blood-pressure' )</code></pre></td>
+</tr>
 </tbody>
 </table>
 
