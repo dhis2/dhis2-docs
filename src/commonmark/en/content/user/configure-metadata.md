@@ -4638,18 +4638,18 @@ sampled. For example:
     replaced with zeros.)
 
 7.  (Optional) Select an **Output category combo**. This dropdown will only show
-    if the selected data element has category-combos attached to it. If this is 
+    if the selected data element has categoryCombos attached to it. If this is 
     the case, you can select which categoryCombo you would like to use.
 
-7.  Select a **Period type**.
+8.  Select a **Period type**.
 
-8.  Assign one or more organisation unit levels. The output value will be
+9.  Assign one or more organisation unit levels. The output value will be
     assigned to an organisation unit at this level (or these levels).
     The input values will come from the organisation unit to which the
     output is assigned, or from any level lower under the output
     organisation unit.
 
-9.  Create a **Generator**. The generator is the expression that is used
+10.  Create a **Generator**. The generator is the expression that is used
     to calculate the predicted value.
 
     1.  Type a **Description** of the generator expression.
@@ -4675,32 +4675,44 @@ sampled. For example:
         </thead>
         <tbody>
         <tr class="odd">
-        <td><p>AVG</p></td>
-        <td><p>Average (mean) value</p></td>
+        <td><p>avg(x)</p></td>
+        <td><p>Average (mean) value of x</p></td>
         </tr>
         <tr class="even">
-        <td><p>COUNT</p></td>
-        <td><p>Count of the data values</p></td>
+        <td><p>count(x)</p></td>
+        <td><p>Count of the values of x</p></td>
         </tr>
         <tr class="odd">
-        <td><p>MAX</p></td>
-        <td><p>Maximum value</p></td>
+        <td><p>max(x)</p></td>
+        <td><p>Maximum value of x</p></td>
         </tr>
         <tr class="even">
-        <td><p>MEDIAN</p></td>
-        <td><p>Median value</p></td>
+        <td><p>median(x)</p></td>
+        <td><p>Median value of x</p></td>
         </tr>
         <tr class="odd">
-        <td><p>MIN</p></td>
-        <td><p>Minimum value</p></td>
+        <td><p>min(x)</p></td>
+        <td><p>Minimum value of x</p></td>
         </tr>
         <tr class="even">
-        <td><p>STDDEV</p></td>
-        <td><p>Standard deviation</p></td>
+        <td><p>percentileCont(p, x)</p></td>
+        <td><p>Continuous percentile of x, where p is the percentile as a floating point number between 0 and 1. For example, p = 0 will return the lowest value, p = 0.5 will return the median, p = 0.75 will return the 75th percentile, p = 1 will return the highest value, etc. Continuous means that the value will be interpolated if necessary. For example, percentileCont( 0.5, #{FTRrcoaog83} ) will return 2.5 if the sampled values of data element FTRrcoaog83 are 1, 2, 3, and 4.</p></td>
         </tr>
         <tr class="odd">
-        <td><p>SUM</p></td>
-        <td><p>Sum of the values</p></td>
+        <td><p>stddev(x)</p></td>
+        <td><p>Standard deviation of x. Note: this function is still available for backwards comptibility and is eqivalent to stddevPop. It's suggested that you use the newer functions stddevPop or stddevSamp instead for greater clarity and for compatibility with future versions of DHIS 2.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>stddevPop(x)</p></td>
+        <td><p>Population standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / n )</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>stddevSamp(x)</p></td>
+        <td><p>Sample standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / ( n - 1 ) ). Note that this value is not computed when there is only one sample.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>sum(x)</p></td>
+        <td><p>Sum of the values of x</p></td>
         </tr>
         </tbody>
         </table>
@@ -4735,11 +4747,11 @@ sampled. For example:
         </thead>
         <tbody>
         <tr class="odd">
-        <td><p>IF(test, valueIfTrue, valueIfFalse)</p></td>
+        <td><p>if(test, valueIfTrue, valueIfFalse)</p></td>
         <td><p>Evaluates <strong>test</strong> which is an expression that evaluates to a boolean value -- see <strong>Boolean expression notes</strong> below. If the test is <strong>true</strong>, returns the <strong>valueIfTrue</strong> expression. If it is <strong>false</strong>, returns the <strong>valueIfFalse</strong> expression.</p></td>
         </tr>
         <tr class="even">
-        <td><p>ISNULL(item)</p></td>
+        <td><p>isNull(item)</p></td>
         <td><p>Returns the boolean value <strong>true</strong> if the <strong>item</strong> is null (missing), otherwise returns <strong>false</strong>. The <strong>item</strong> can be any selected item from the right (data element, program data element, etc.).</p></td>
         </tr>
         </tbody>
@@ -4768,19 +4780,19 @@ sampled. For example:
         </thead>
         <tbody>
         <tr class="odd">
-        <td><p>SUM(#{FTRrcoaog83.tMwM3ZBd7BN})</p></td>
+        <td><p>sum(#{FTRrcoaog83.tMwM3ZBd7BN})</p></td>
         <td><p>Sum of the sampled values of data element FTRrcoaog83 and category option combination (disaggregation) tMwM3ZBd7BN</p></td>
         </tr>
         <tr class="even">
-        <td><p>AVG(#{FTRrcoaog83}) + 2 * STDDEV(#{FTRrcoaog83})</p></td>
-        <td><p>Average of the sampled values of of data element FTRrcoaog83 (sum of all disaggregations) plus twice its standard deviation</p></td>
+        <td><p>avg(#{FTRrcoaog83}) + 2 * stddevSamp(#{FTRrcoaog83})</p></td>
+        <td><p>Average of the sampled values of of data element FTRrcoaog83 (sum of all disaggregations) plus twice its sample standard deviation</p></td>
         </tr>
         <tr class="odd">
-        <td><p>SUM(#{FTRrcoaog83}) / SUM([days])</p></td>
+        <td><p>sum(#{FTRrcoaog83}) / sum([days])</p></td>
         <td><p>Sum of all sampled values of data element FTRrcoaog83 (sum of all disaggregations) divided by the number of days in all sample periods (resulting in the overall average daily value)</p></td>
         </tr>
         <tr class="even">
-        <td><p>SUM(#{FTRrcoaog83}) + #{T7OyqQpUpNd}</p></td>
+        <td><p>sum(#{FTRrcoaog83}) + #{T7OyqQpUpNd}</p></td>
         <td><p>Sum of all sampled values of data element FTRrcoaog83 plus the value of data element T7OyqQpUpNd in the period being predicted for</p></td>
         </tr>
         <tr class="odd">
@@ -4788,8 +4800,16 @@ sampled. For example:
         <td><p>1.2 times the value of data element T7OyqQpUpNd in the period being predicted for</p></td>
         </tr>
         <tr class="even">
-        <td><p>IF(ISNULL(#{T7OyqQpUpNd}), 10, 20)</p></td>
+        <td><p>if(isNull(#{T7OyqQpUpNd}), 10, 20)</p></td>
         <td><p>If the data element T7OyqQpUpNd is null, then 10, otherwise 20.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>percentileCont(0.5, #{T7OyqQpUpNd})</p></td>
+        <td><p>Continuous 50th percentile of the sampled values for data element T7OyqQpUpNd. Note that this is the same as median(#{T7OyqQpUpNd})</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>if(count(#{T7OyqQpUpNd}) == 1, 0, stddevSamp(#{T7OyqQpUpNd}))</p></td>
+        <td><p>If there is one sample value present for data element T7OyqQpUpNd, then 0, otherwise the sample standard deviation of these sample values. (Note that if no samples are present then the stddevSamp returns no value, so no value is predicted.)</p></td>
         </tr>
         </tbody>
         </table>
