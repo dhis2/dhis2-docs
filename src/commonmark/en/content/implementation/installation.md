@@ -356,13 +356,6 @@ by installing this package:
 
     sudo apt-get install oracle-java8-set-default
 
-### System Settings
-
-<!--DHIS2-SECTION-ID:Provide global system settings-->
-
-Following system settings will be provided in dhis.conf. Previously these were configured in Settings app.
-
-    # server.base.url = https://play.dhis2.org/dev 
 
 ### Tomcat and DHIS2 installation
 
@@ -401,22 +394,22 @@ environment:
 The Tomcat configiration file is located in
 *tomcat-dhis/conf/server.xml*. The element which defines the connection
 to DHIS is the *Connector* element with port 8080. You can change the
-port number in the Connector element to a desired port if necessary. If
-UTF-8 encoding of request data is needed, make sure that the
-*URIEncoding* attribute is set to *UTF-8*.
+port number in the Connector element to a desired port if necessary. 
+The *relaxedQueryChars* attribute is necessary to allow certain characters 
+in URLs used by the DHIS2 front-end.
 
     <Connector port="8080" protocol="HTTP/1.1"
       connectionTimeout="20000"
       redirectPort="8443"
-      URIEncoding="UTF-8" />
+      relaxedQueryChars="[]" />
 
 The next step is to download the DHIS2 WAR file and place it into the
-webapps directory of Tomcat. You can download the DHIS2 version 2.30 WAR
-release like this (replace 2.30 with your preferred version if
+webapps directory of Tomcat. You can download the DHIS2 version 2.31 WAR
+release like this (replace 2.31 with your preferred version if
 necessary):
 
 ```
-    wget https://releases.dhis2.org/2.30/dhis.war
+    wget https://releases.dhis2.org/2.31/dhis.war
 ```
 
 > **Note**
@@ -477,6 +470,12 @@ Assuming that the WAR file is called ROOT.war, you can now access your
 DHIS2 instance at the following URL:
 
     http://localhost:8080
+
+## Base URL configuration
+
+To set the base URL of the DHIS2 instance, you can specify the following property in the `dhis.conf` configuration file. This URL should point to the location where end users can reach DHIS2 over the network.
+
+	server.base.url = https://play.dhis2.org/dev
 
 ## File store configuration
 
@@ -1513,13 +1512,7 @@ https://foo.mydomain.org/dhis.
 
 <!--DHIS2-SECTION-ID:install_dhis2_configuration_reference-->
 
-The following describes the full set of configuration options for the
-*dhis.conf* configuration file. The uncommented properties are
-mandatory. The commented properties are optional. The configuration file
-should be placed in a directory which is pointed to by a *DHIS2\_HOME*
-environment variable. The comment (\#) must be removed for a property
-value to take effect. You can copy and paste the following content as a
-viable starting point for your own configuration file.
+The following describes the full set of configuration options for the *dhis.conf* configuration file. The uncommented properties are mandatory. The commented properties are optional. The configuration file should be placed in a directory which is pointed to by a *DHIS2\_HOME* environment variable. The comment (\#) must be removed for a property value to take effect. You can copy and paste the following content as a viable starting point for your own configuration file.
 
     # ----------------------------------------------------------------------
     # Database connection for PostgreSQL
@@ -1547,6 +1540,13 @@ viable starting point for your own configuration file.
     # connection.pool.max_size = 40
     
     # ----------------------------------------------------------------------
+    # Server
+    # ----------------------------------------------------------------------
+    
+    # Base URL to the DHIS 2 instance
+    # server.base.url = https://play.dhis2.org/dev 
+    
+    # ----------------------------------------------------------------------
     # System
     # ----------------------------------------------------------------------
     
@@ -1558,8 +1558,6 @@ viable starting point for your own configuration file.
     
     # SQL view protected tables, can be 'on', 'off'
     # system.sql_view_table_protection = on
-    
-    # server.base.url = https://play.dhis2.org/dev 
     
     # ----------------------------------------------------------------------
     # Encryption
