@@ -1123,7 +1123,7 @@ variables:
 </tbody>
 </table>
 
-A filter that uses the "Reporting period end" variable to only include
+A filter that uses the "Analytics period end" variable to only include
 women who has an LMP that would be in the first
     trimester:
 
