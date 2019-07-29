@@ -15265,17 +15265,21 @@ To query for tracked entity instances you can interact with the
 </tr>
 <tr class="even">
 <td>lastUpdatedStartDate</td>
-<td>Filter for events which were updated after this date.</td>
+<td>Filter for events which were updated after this date. Cannot be used together with <em>lastUpdatedDuration</em>.</td>
 </tr>
 <tr class="odd">
 <td>lastUpdatedEndDate</td>
-<td>Filter for events which were updated up until this date.</td>
-</tr
+<td>Filter for events which were updated up until this date. Cannot be used together with <em>lastUpdatedDuration</em>.</td>
+</tr>
 <tr class="even">
+<td>lastUpdatedDuration</td>
+<td>Include only items which are updated within the given duration. The format is <value><time-unit>, where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with <em>lastUpdatedStartDate</em> and/or <em>lastUpdatedEndDate</em>.</td>
+</tr>
+<tr class="odd">
 <td>assignedUserMode</td>
 <td>Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>assignedUser</td>
 <td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
 </tbody>
@@ -16276,30 +16280,34 @@ resource.
 <td>End date of enrollment in the given program for the tracked entity instance.</td>
 </tr>
 <tr class="even">
+<td>lastUpdatedDuration</td>
+<td>Include only items which are updated within the given duration. The format is <value><time-unit>, where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds).</td>
+</tr>
+<tr class="odd">
 <td>trackedEntity</td>
 <td>Tracked entity identifier. Restricts instances to the given tracked instance type.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>trackedEntityInstance</td>
 <td>Tracked entity instance identifier. Should not be used together with trackedEntity.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>page</td>
 <td>The page number. Default page is 1.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>pageSize</td>
 <td>The page size. Default size is 50 rows per page.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>totalPages</td>
 <td>Indicates whether to include the total number of pages in the paging response (implies higher response time).</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>skipPaging</td>
 <td>Indicates whether paging should be ignored and all rows should be returned.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>includeDeleted</td>
 <td>Indicates whether to include soft deleted enrollments or not. It is false by default.</td>
 </tr>
@@ -16832,81 +16840,85 @@ i.e. *?fields=program,status*.
 <td>lastUpdatedStartDate</td>
 <td>date</td>
 <td>false</td>
-<td>Filter for events which were updated after this date.</td>
+<td>Filter for events which were updated after this date. Cannot be used together with <em>lastUpdatedDuration</em>.</td>
 </tr>
 <tr class="even">
 <td>lastUpdatedEndDate</td>
 <td>date</td>
 <td>false</td>
-<td>Filter for events which were updated up until this date.</td>
+<td>Filter for events which were updated up until this date. Cannot be used together with <em>lastUpdatedDuration</em>.</td>
 </tr>
 <tr class="odd">
+<td>lastUpdatedDuration</td>
+<td>Include only items which are updated within the given duration. The format is <value><time-unit>, where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with <em>lastUpdatedStartDate</em> and/or <em>lastUpdatedEndDate</em>.</td>
+</tr>
+<tr class="even">
 <td>skipMeta</td>
 <td>boolean</td>
 <td>false</td>
 <td>Exclude the meta data part of response (improves performance)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>page</td>
 <td>integer</td>
 <td>false</td>
 <td>Page number</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>pageSize</td>
 <td>integer</td>
 <td>false</td>
 <td>Number of items in each page</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>totalPages</td>
 <td>boolean</td>
 <td>false</td>
 <td>Indicates whether to include the total number of pages in the paging response.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>skipPaging</td>
 <td>boolean</td>
 <td>false</td>
 <td>Indicates whether to skip paging in the query and return all events.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>dataElementIdScheme</td>
 <td>string</td>
 <td>false</td>
 <td>Data element ID scheme to use for export, valid options are UID and CODE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>categoryOptionComboIdScheme</td>
 <td>string</td>
 <td>false</td>
 <td>Category Option Combo ID scheme to use for export, valid options are UID and CODE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>orgUnitIdScheme</td>
 <td>string</td>
 <td>false</td>
 <td>Organisation Unit ID scheme to use for export, valid options are UID and CODE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>programIdScheme</td>
 <td>string</td>
 <td>false</td>
 <td>Program ID scheme to use for export, valid options are UID and CODE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>programStageIdScheme</td>
 <td>string</td>
 <td>false</td>
 <td>Program Stage ID scheme to use for export, valid options are UID and CODE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>idScheme</td>
 <td>string</td>
 <td>false</td>
 <td>Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>order</td>
 <td>string</td>
 <td>false</td>
@@ -16915,43 +16927,43 @@ i.e. *?fields=program,status*.
 <pre><code>order=orgUnitName:DESC</code></pre>
 <pre><code>order=lastUpdated:ASC</code></pre></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>event</td>
 <td>comma delimited strings</td>
 <td>false</td>
 <td>Filter the result down to a limited set of IDs by using <em>event=id1;id2</em>.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>attributeCc**</td>
 <td>string</td>
 <td>false</td>
 <td>Attribute category combo identifier (must be combined with <em>attributeCos</em>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>attributeCos**</td>
 <td>string</td>
 <td>false</td>
 <td>Attribute category option identifiers, separated with ; (must be combined with <em>attributeCc</em>)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>async</td>
 <td>false | true</td>
 <td>false</td>
 <td>Indicates whether the import should be done asynchronous or synchronous.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>includeDeleted</td>
 <td>boolean</td>
 <td>false</td>
 <td>When true, soft deleted events will be included in your query result.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>assignedUserMode</td>
 <td>enum</td>
 <td>false</td>
 <td>Assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>assignedUser</td>
 <td>comma delimited strings</td>
 <td>false</td>
