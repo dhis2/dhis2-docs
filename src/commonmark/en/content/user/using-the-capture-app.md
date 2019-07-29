@@ -104,7 +104,7 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 
   ![register new Tracked Entity Instance](resources/images/capture_app/register_tei.png)
 
-4. Fill in the desired (and possibly manditory) attributes and enrollment details.
+4. Fill in the desired (and possibly mandatory) attributes and enrollment details.
 
 5. Click **Create Tracked Entity Instance and Link**.
 
