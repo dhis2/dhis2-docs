@@ -442,7 +442,7 @@ script has been invoked as root.
     fi
     
     export CATALINA_BASE="/home/dhis/tomcat-dhis"
-    /usr/share/tomcat7/bin/startup.sh
+    /usr/share/tomcat8/bin/startup.sh
     echo "Tomcat started"
 
 ### Running DHIS2
