@@ -16850,6 +16850,8 @@ i.e. *?fields=program,status*.
 </tr>
 <tr class="odd">
 <td>lastUpdatedDuration</td>
+<td>string</td>
+<td>false</td>
 <td>Include only items which are updated within the given duration. The format is <value><time-unit>, where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with <em>lastUpdatedStartDate</em> and/or <em>lastUpdatedEndDate</em>.</td>
 </tr>
 <tr class="even">
@@ -16929,41 +16931,47 @@ i.e. *?fields=program,status*.
 </tr>
 <tr class="even">
 <td>event</td>
-<td>comma delimited strings</td>
+<td>comma delimited string</td>
 <td>false</td>
 <td>Filter the result down to a limited set of IDs by using <em>event=id1;id2</em>.</td>
 </tr>
 <tr class="odd">
-<td>attributeCc**</td>
+<td>skipEventId</td>
+<td>boolean</td>
+<td>false</td>
+<td>Skips event identifiers in the response</td>
+</tr>
+<tr class="even">
+<td>attributeCc (**)</td>
 <td>string</td>
 <td>false</td>
 <td>Attribute category combo identifier (must be combined with <em>attributeCos</em>)</td>
 </tr>
-<tr class="even">
-<td>attributeCos**</td>
+<tr class="odd">
+<td>attributeCos (**)</td>
 <td>string</td>
 <td>false</td>
 <td>Attribute category option identifiers, separated with ; (must be combined with <em>attributeCc</em>)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>async</td>
 <td>false | true</td>
 <td>false</td>
 <td>Indicates whether the import should be done asynchronous or synchronous.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>includeDeleted</td>
 <td>boolean</td>
 <td>false</td>
 <td>When true, soft deleted events will be included in your query result.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>assignedUserMode</td>
 <td>enum</td>
 <td>false</td>
 <td>Assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>assignedUser</td>
 <td>comma delimited strings</td>
 <td>false</td>
@@ -16972,7 +16980,7 @@ i.e. *?fields=program,status*.
 </tbody>
 </table>
 
-\*\***Note:** If the query contains neither *attributeCC* nor
+\*\* **Note:** If the query contains neither *attributeCC* nor
 *attributeCos*, the server returns events for all attribute option
 combos where the user has read access.
 
