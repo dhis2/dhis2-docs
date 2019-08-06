@@ -15280,7 +15280,7 @@ To query for tracked entity instances you can interact with the
 <td>Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
 </tr>
 <tr class="even">
-<td>assignedUser</td>
+<td>assignedUsers</td>
 <td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
 </tbody>
 </table>
