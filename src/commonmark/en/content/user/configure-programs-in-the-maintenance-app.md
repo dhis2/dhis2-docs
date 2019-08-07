@@ -2295,9 +2295,9 @@ programs.
 
 7. (Optional) In the **Field mask** field, you may type a template that's used to provide
    hints for correct formating of the data element in Capture and Tracker Capture apps.
-   The following are special characters and their meaning in the mask.
+   The following are special characters that can be used in the mask to match more than one character.
 
-   | Character     |    Meaning     |
+   | Character     |    Match       |
    | ------------- |----------------|
    |       \#      |     digit      |
    |       x       |lower case letter|
