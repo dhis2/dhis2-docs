@@ -2293,9 +2293,20 @@ programs.
 
 6.  (Optional) Type a **Description**.
 
-7.  Select an **Option set**.
+7. (Optional) In the **Field mask** field, you may type a template that's used to provide
+   hints for correct formating of the data element in Capture and Tracker Capture apps.
+   The following are special characters and their meaning in the mask.
 
-8.  In the **Value type** field, select the type of data that the
+   | Character     |    Meaning     |
+   | ------------- |----------------|
+   |       \#      |     digit      |
+   |       x       |lower case letter|
+   |       X       | capital letter |
+   |       \*      | any character  |
+
+8.  Select an **Option set**.
+
+9.  In the **Value type** field, select the type of data that the
     tracked entity attribute will record.
 
     <table>
