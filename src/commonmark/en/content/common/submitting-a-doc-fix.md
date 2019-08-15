@@ -22,7 +22,7 @@ We want to fix this, so...
 
 1. We log on to GitHub: https://github.com/dhis2/dhis2-docs
 
-  > If you don't have an account, follow ths `Sign up` link on the GitHub site  
+  > If you don't have an account, follow the `Sign up` link on the GitHub site  
   (public accounts are free)
   ![GitHub sign in](resources/images/doc_pr_001b.png)
 
@@ -35,7 +35,7 @@ We want to fix this, so...
   ![Documentation index files](resources/images/doc_pr_002.png)
 
   a. In this case, the chapter we want is in the User Manual
-  so I open `dhis2_user_manual_en_INDEX.md`. We open the index file:
+  so we open the `dhis2_user_manual_en_INDEX.md` index file:
   > Select `Raw` or `Edit` mode in order to view the index properly!
     ![Index file content](resources/images/doc_pr_003.png)
 
@@ -47,12 +47,12 @@ we need to go to: [https://github.com/dhis2/dhis2-docs/blob/master/src/commonmar
 
   ![Capture app chapter](resources/images/doc_pr_004b.png)
 
-4. From here we can select to edit the file (_pencil icon_). An edit
+4. From here we can choose to edit the file (_pencil icon_). An edit
 panel is displayed:
 
   > Don't worry about the blue warning at the top that says we don't have
-  write access to the file. Here we have found and highlighted the offending
-  word!
+  write access to the file!  
+  Here we have found and highlighted the offending word!
   ![Edit](resources/images/doc_pr_005.png)
   We can make the change and preview it in the `Preview changes` tab if we want.  
   Here is the preview:
