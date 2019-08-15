@@ -12,7 +12,7 @@ This section is intended as a walk-through guide to making simple changes.
 
 ## Typo fix walk-through
 
-In this scenario, we are reading the document and find a typo (_the word
+In this scenario, we are reading the documentation and find a typo (_the word
 "manditory" should be "mand**a**tory"_):
 
 ![A typo in Capture app documentation](resources/images/doc_pr_001.png)
