@@ -5,8 +5,8 @@
 For small changes to the document, it's actually very easy for anyone to
 submit changes without going through the whole process of raising a JIRA
 issue against DHIS 2. This can be done directly in
-[GitHub](https://github.com/dhis2/dhis2-docs) and requires no knowledge of
-the git. _All you need is a GitHub account!_.
+[GitHub](https://github.com/dhis2/dhis2-docs) and requires no knowledge of git.
+_All you need is a GitHub account!_.
 
 This section is intended as a walk-through guide to making simple changes.
 
