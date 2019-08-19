@@ -2106,6 +2106,20 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <pre><code>d2:zScoreWFA( ageInMonth, weight, gender )</code></pre></td>
 </tr>
 <tr class="odd">
+<td>d2:zScoreHFA</td>
+<td>Z-Score height for age indicator</td>
+<td>Function calculates z-score based on data provided by WHO height-for-age indicator. Its value varies between -3.5 to 3.5 depending upon the value of height.
+<p>Example expression:</p>
+<pre><code>d2:zScoreHFA( ageInMonth, height, gender )</code></pre></td>
+</tr>
+<tr class="even">
+<td>d2:zScoreWFH</td>
+<td>Z-Score weight for height indicator</td>
+<td>Function calculates z-score based on data provided by WHO weight-for-height indicator. Its value varies between -3.5 to 3.5 depending upon the value of height.
+<p>Example expression:</p>
+<pre><code>d2:zScoreWFH( height, weight, gender )</code></pre></td>
+</tr>
+<tr class="odd">
 <td>d2:minValue</td>
 <td>Get minimum value for provided item</td>
 <td>Function gets minimum value of provided data element across entire enrollment.
