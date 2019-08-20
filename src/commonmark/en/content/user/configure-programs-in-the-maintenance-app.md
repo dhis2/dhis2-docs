@@ -86,22 +86,22 @@ objects. You create these metadata objects in the **Maintenance** app.
 <tr class="even">
 <td><p>Program indicator</p></td>
 <td><p>An expression based on data elements and attributes of tracked entities which you use to calculate values based on a formula.</p></td>
-<td><p>Create, edit, share, delete, show details and translate</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
 </tr>
 <tr class="odd">
 <td><p>Program rule</p></td>
 <td><p>Allows you to create and control dynamic behaviour of the user interface in the <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps.</p></td>
-<td><p>Create, edit, delete, show details and translate</p></td>
+<td><p>Create, edit, clone, delete, show details and translate</p></td>
 </tr>
 <tr class="even">
 <td><p>Program rule variable</p></td>
 <td><p>Variables you use to create program rule expressions.</p></td>
-<td><p>Create, edit, delete, show details and translate</p></td>
+<td><p>Create, edit, clone, delete, show details and translate</p></td>
 </tr>
 <tr class="odd">
 <td><p>Relationship type</p></td>
 <td><p>Defines the relationship between tracked entity A and tracked entity B, for example mother and child.</p></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
 </tr>
 <tr class="even">
 <td><p>Tracked entity type</p></td>
@@ -111,7 +111,7 @@ objects. You create these metadata objects in the **Maintenance** app.
 <p><strong>Note</strong></p>
 <p>A program must be specified with only one tracked entity. Only tracked entity as same as the tracked entity of program can enroll into that program.</p>
 </blockquote></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
 </tr>
 <tr class="odd">
 <td><p>Tracked entity attribute</p></td>
@@ -127,17 +127,17 @@ objects. You create these metadata objects in the **Maintenance** app.
 <tr class="even">
 <td><p>Program stage</p></td>
 <td><p>A program stage defines which actions should be taken at each stage.</p></td>
-<td><p>Create, edit, change sort order, delete, show details and translate</p></td>
+<td><p>Create, edit, share, change sort order, delete, show details and translate</p></td>
 </tr>
 <tr class="even">
 <td><p>Program indicator group</p></td>
 <td><p>A group of program indicators</p></td>
-<td><p>Create, edit, delete, show details and translate</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
 </tr>
 <tr class="odd">
 <td><p>Validation rule</p></td>
 <td><p>A validation rule is based on an expression which defines a relationship between data element values.</p></td>
-<td><p>Create, edit and delete</p></td>
+<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
 </tr>
 <tr class="even">
 <td><p>Program notification</p></td>
