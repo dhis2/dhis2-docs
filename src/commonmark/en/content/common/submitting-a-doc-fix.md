@@ -43,7 +43,7 @@ We want to fix this, so...
   `content/user/using-the-capture-app.md`
 
 3. The reference we found above is the path from the current location, so
-we need to go to: [https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/**content/user/using-the-capture-app.m**](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/using-the-capture-app.md)
+we need to go to: [https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/**content/user/using-the-capture-app.md**](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/using-the-capture-app.md)
 
   ![Capture app chapter](resources/images/doc_pr_004b.png)
 
