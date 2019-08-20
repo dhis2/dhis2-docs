@@ -786,7 +786,7 @@ easy way. To start using the top bar:
 
 ![](resources/images/tracker_capture/top_bar.png)
 
-### Chage table display mode for **Timeline Data Entry** widget
+### Change table display mode for **Timeline Data Entry** widget
 
 The **Timeline Data Entry** widget has 5 diffrent table display modes that can be selected. The different options are:
 - **Default form** - Shows all data elements verticaly.
