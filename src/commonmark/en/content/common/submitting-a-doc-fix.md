@@ -36,7 +36,8 @@ We want to fix this, so...
   
   > You may notice the button near the top right that says "Branch: **master**". This indicates that we
   are looking at the documents for the master branch (i.e. the documentation for the very latest version of DHIS 2).
-  If we wanted to edit the document for, say, version 2.29 instead, then we would use that button to select branch 2.29!
+  If we wanted to edit the document for, say, version 2.29 instead, then we would use that button to select branch 2.29!  
+  (_2.29 is the earliest version supported in this markdown format_).
 
   a. In this case, the chapter we want is in the User Manual
   so we open the `dhis2_user_manual_en_INDEX.md` index file:
