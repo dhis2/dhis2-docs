@@ -269,7 +269,7 @@ Specifies the average number of object locks allocated for each transaction. Thi
 
 Restart PostgreSQL by invoking `sudo /etc/init.d/postgresql restart`
 
-### Database configuration
+### System configuration
 
 <!--DHIS2-SECTION-ID:install_database_configuration-->
 
@@ -282,6 +282,10 @@ the *DHIS2\_HOME* directory. As an example this location could be:
 A configuration file for PostgreSQL corresponding to the above setup has
 these properties:
 
+    # ----------------------------------------------------------------------
+    # Database connection
+    # ----------------------------------------------------------------------
+    
     # Hibernate SQL dialect
     connection.dialect = org.hibernate.dialect.PostgreSQLDialect
     
@@ -296,18 +300,21 @@ these properties:
     
     # Database password
     connection.password = xxxx
+            
+    # ----------------------------------------------------------------------
+    # Server
+    # ----------------------------------------------------------------------
     
-    # Database schema behavior, can be validate, update, create, create-drop
-    connection.schema = update
+    # Enable secure settings if system is deployed on HTTPS, default 'off'
+    server.https = on
     
-    # Encryption password (sensitive)
-    encryption.password = xxxx
+    # Server base URL
+    # server.base.url = http://server.com/
+    
 
-The *encryption.password* property is the password used when encrypting
-and decrypting data in the database. Note that the password must not be
-changed once it has been set and data has been encrypted as the data can
-then no longer be decrypted. Remember to set a strong password of at
-least **24 characters**.
+It is strongly recommended to enable the *server.https* setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when enabled.
+
+The *server.base.url* setting refers to the URL which the system is accessed by end users on the network.
 
 Note that the configuration file supports environment variables. This
 means that you can set certain properties as environment variables and
@@ -684,15 +691,20 @@ through these steps:
 
 <!--DHIS2-SECTION-ID:install_password_configuration-->
 
-To provide security to the encryption alogorithm you will have to set a
+To provide security to the encryption algorithm you will have to set a
 password in the *dhis.conf* configuration file through the
 *encryption.password* property:
 
     encryption.password = xxxx
 
-The password must be at least **24 characters long** and it is
-recommended to use a mix of numbers and lower- and uppercase letters.
-The encryption password must be kept secret.
+The *encryption.password* property is the password used when encrypting
+and decrypting data in the database. Note that the password must not be
+changed once it has been set and data has been encrypted as the data can
+then no longer be decrypted. 
+
+The password must be at least **24 characters long**. A mix of numbers 
+and lower- and uppercase letters are recommended. The encryption password 
+must be kept secret.
 
 ### Considerations for encryption
 
@@ -1545,6 +1557,9 @@ The following describes the full set of configuration options for the *dhis.conf
     
     # Base URL to the DHIS 2 instance
     # server.base.url = https://play.dhis2.org/dev 
+    
+    # Enable secure settings if system is deployed on HTTPS, can be 'off', 'on'
+    # server.https = on
     
     # ----------------------------------------------------------------------
     # System
