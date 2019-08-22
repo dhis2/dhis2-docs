@@ -80,7 +80,7 @@ objects. You create these metadata objects in the **Maintenance** app.
 </tr>
 <tr class="even">
 +<td><p>Tracker program</p></td>
-+<td><p>A program to record single event without registration</p></td>
++<td><p>A program to record single or multiple events with registration</p></td>
 +<td><p>Create, edit, share, delete, show details and translate</p></td>
 +</tr>
 <tr class="even">
