@@ -11,7 +11,7 @@
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>What do you want to do?</p></th>
+<th colspan=2><p>What do you want to do?</p></th>
 <th><p>Link to documentation</p></th>
 <th><p>Related app(s)</p></th>
 </tr>
@@ -168,7 +168,6 @@
 <td><p>Learn about event and tracker programs</p></td>
 <td><p>Create a program</p></td>
 <td><a href="https://docs.dhis2.org/master/en/user/html/configure_programs_in_maintenance_app.html">Configure programs in the Maintenance app</a>
-<p><a href="https://docs.dhis2.org/master/en/user/html/configure_programs_in_legacy_app.html">Configure programs in the Programs/Attributes app (legacy app)</a></p></td>
 <td><p><strong>Maintenance</strong></p>
 <p><strong>Program</strong></p></td>
 </tr>
