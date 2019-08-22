@@ -1,4 +1,4 @@
-# Data Visualizer
+# Using the Data Visualizer app
 
 <!--DHIS2-SECTION-ID:data_visualizer-->
 
