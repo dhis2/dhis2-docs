@@ -47,12 +47,6 @@
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/data_vis.html">Using the Data Visualizer app</a></p></td>
 <td><p><strong>Data Visualizer</strong></p></td>
 </tr>
-<tr class="even">
-<td></td>
-<td><p>Visualize data in a map</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/using_gis.html">Using the GIS app</a></p></td>
-<td><p><strong>GIS</strong></p></td>
-</tr>
 <tr class="odd">
 <td></td>
 <td><p>Visualize data in a better map</p></td>
@@ -159,7 +153,7 @@
 <tr class="even">
 <td></td>
 <td><p>Import coordinates and configure the <strong>GIS</strong> app</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/gis_creating.html">Configure the GIS app</a></p>
+<td><p><a href="https://docs.dhis2.org/master/en/user/html/gis_creating.html">Configure the Maps app</a></p>
 <p><a href="https://docs.dhis2.org/master/en/user/html/manage_legend.html">Manage legends</a></p>
 <p><a href="https://docs.dhis2.org/master/en/user/html/manage_external_maplayer.html">Manage external map layers</a></p></td>
 <td><p><strong>Maintenance</strong></p></td>

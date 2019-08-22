@@ -1,4 +1,4 @@
-# Configure the GIS app
+# Configure the Maps app
 
 <!--DHIS2-SECTION-ID:gis_creating-->
 
@@ -6,7 +6,7 @@
 
 <!--DHIS2-SECTION-ID:gis_creating_context-->
 
-Setting up the GIS simply means storing coordinates for the organisation
+Setting up the Maps simply means storing coordinates for the organisation
 units you want to show on the map in the database. Coordinates are often
 distributed in proprietary formats and will need to be converted to a
 format which DHIS2 understands. ESRI shapefiles are the most common
