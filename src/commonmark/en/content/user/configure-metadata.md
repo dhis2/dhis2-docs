@@ -836,7 +836,7 @@ objects:
 
 18. Assign one or multiple **Legends**.
 
-    Legends are used in for example the **GIS** app to display certain
+    Legends are used in for example the **Maps** app to display certain
     data elements with certain icons.
 
 19. Set the **Aggregation levels** to allow the data element to be
@@ -2707,9 +2707,9 @@ one root unit.
 13. (Optional) Enter **Latitude** and **Longitude**.
 
     You must have latitude and longitude values to create maps in the
-    **GIS** app. Then your organisation units can be represented as
+    **Maps** app. Then your organisation units can be represented as
     points on a map, for example a health facility. Without this
-    information, the **GIS** app will not work.
+    information, the **Maps** app will not work.
 
     It might be more efficient to import coordinates later as a batch
     job for all organisation units using the **Import-Export** app. You
@@ -2776,7 +2776,7 @@ units that are hospitals in an **Hospital** group.
 
     4.  **Symbol**: Select a symbol which will be used to display the
         organisation unit (points only) when the layer is displayed in
-        the **GIS** app.
+        the **Maps** app.
 
 4.  In the organisation tree, click the organisation units you want to
     add to the organisation unit group.
@@ -2926,7 +2926,7 @@ creates a new organisation unit level if necessary. The system also
 assigns a generic name to this level, for example "Level 5". You can
 replace the generic name with a contextual name, for example "Country",
 "Province", "District" or "Health Facility". DHIS2 uses the contextual
-names anywhere levels are referred to, for example in the **GIS** app.
+names anywhere levels are referred to, for example in the **Maps** app.
 
 1.  Open the **Maintenance** app and click **Organisation unit** \>
     **Organisation unit level**.
@@ -4183,7 +4183,7 @@ cultural region.
 
 You can create, edit, clone, delete, show details and translate legends
 to make the maps you're setting up for your users meaningful. You create
-maps in the **GIS** app.
+maps in the **Maps** app.
 
 > **Note**
 >
@@ -4407,7 +4407,7 @@ cultural region.
 
 You can assign a legend to an indicator or a data element in the
 **Maintenance** app, either when you create the object or edit it. When
-you then select the indicator or data element in the **GIS** app, the
+you then select the indicator or data element in the **Maps** app, the
 system automatically selects the assigned legend.
 
 ### See also
@@ -4638,7 +4638,7 @@ sampled. For example:
     replaced with zeros.)
 
 7.  (Optional) Select an **Output category combo**. This dropdown will only show
-    if the selected data element has categoryCombos attached to it. If this is 
+    if the selected data element has categoryCombos attached to it. If this is
     the case, you can select which categoryCombo you would like to use.
 
 8.  Select a **Period type**.
@@ -5240,7 +5240,7 @@ and XYZ tiles.
 3.  In the **Name** field, type a name that describes the content of the
     external map layer.
 
-    This is the name you'll see in the **GIS** app.
+    This is the name you'll see in the **Maps** app.
 
 4.  (Optional) In the **Code** field, assign a code.
 
@@ -5277,15 +5277,11 @@ and XYZ tiles.
 
 8.  Select a **Placement**:
 
-      - **Bottom - basemap**: For the GIS app, this places the external
-        map layer above other DHIS2 base maps but below the thematic map
-        layers. For the Maps app, this makes the external map layer
+      - **Bottom - basemap**: For the Maps app, this makes the external map layer
         selectable as the base map (i.e. as an alternative to the DHIS2
         base maps).
 
-      - **Top - overlay**: For the GIS app, this places the external map
-        layer above the thematic map layers but below facility and event
-        data layers. For the Maps app, this allows the external map to
+      - **Top - overlay**: For the Maps app, this allows the external map to
         be added from the Add Layer selection and placed anywhere above
         the base map.
 

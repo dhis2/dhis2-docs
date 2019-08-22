@@ -303,13 +303,13 @@ layer** selection. This opens the Events layer configuration dialog.
       - Click ADD FILTER and select an available data item to add a new
         filter to the data set.
 
-          - Select a data dimension from the drop down box. You can 
+          - Select a data dimension from the drop down box. You can
             reduce the number of dimensions shown by using the search field.
-            Click on the name to select a dimension. 
+            Click on the name to select a dimension.
 
           - When a dimension is selected you get a second drop down with
             dimension items. Check the items you want to include in the
-            filter. 
+            filter.
 
         Multiple filters may be added. Click the trash button on the right of
         the filter to remove it.
@@ -443,7 +443,7 @@ To clear all data in a thematic layer:
 <!--DHIS2-SECTION-ID:using_maps_event_layer-->
 
 The event layer displays the geographical location of events registered
-in the DHIS2 tracker. Provided that events have associated point or polygon 
+in the DHIS2 tracker. Provided that events have associated point or polygon
 coordinates, you can use this layer to drill down from the aggregated
 data displayed in the thematic layers to the underlying individual
 events or cases.
@@ -554,7 +554,7 @@ layer** selection. This opens the Events layer configuration dialog.
           - For data item of type *number*, you can select operators like
             equal, not equal, greater than or less than.
 
-          - For data item og type *boolean* (yes/no), you can check the box
+          - For data item of type *boolean* (yes/no), you can check the box
             if the condition should be valid or true.
 
           - For data item of type *text* you will get two choices:
@@ -734,7 +734,7 @@ configuration dialog.
 
       - If a Tracked Entity Type with has been selected, you can select the **Display Tracked Entity relationships** checkbox
 
-      - Once checked, you can select the type of relationship to diplay on the map from the dropdown list. Only relationships FROM the selected Tracked Entity type are available.
+      - Once checked, you can select the type of relationship to display on the map from the dropdown list. Only relationships FROM the selected Tracked Entity type are available.
 
 3.  In the **PERIOD** tab
 
@@ -1185,7 +1185,7 @@ following layers are supported:
     cells (from 2010).
 
   - Elevation above sea-level. You can adjust the min and max values so
-    it better representes the terrain in your region.
+    it better represents the terrain in your region.
 
   - Temperature: Land surface temperatures collected from satellite.
     Blank spots will appear in areas with a persistent cloud cover.
@@ -1226,7 +1226,7 @@ External map layers are represented as either:
     are selected as any other basemap.
 
   - Overlays  
-  
+
     These are available in the **Add layer** selection. Unlike basemaps,
     overlays can be placed above or below any other overlay layers.
 
@@ -1445,12 +1445,12 @@ You can download your map as an image by clicking on the Download button in the 
 ![](resources/images/maps/maps_download.png)
 
 Map download is not supported in Internet Explorer or Safari, we recommend to
-use Google Chrome og Firefox.
+use Google Chrome or Firefox.
 
 1.  Select if you want to include the map name or not. This option is only
     available if the map is saved.
 
-2.  Select if you want to inclide the map legend. You can position the legend
+2.  Select if you want to include the map legend. You can position the legend
     in one of the 4 corners of your map.
 
 3.  Click **Download** to download your map.  

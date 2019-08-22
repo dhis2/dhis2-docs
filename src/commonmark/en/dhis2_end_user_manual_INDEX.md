@@ -11,8 +11,6 @@ title: 'DHIS 2 End User guide'
 !INCLUDE "content/user/using-beta-reporting-functionality.md"
 !INCLUDE "content/user/analyze-data-in-pivot-tables.md"
 !INCLUDE "content/user/data-visualizer.md"
-!INCLUDE "content/user/classic-data-visualizer.md"
-!INCLUDE "content/user/using-the-gis-app.md"
 !INCLUDE "content/user/using-the-maps-app.md"
 !INCLUDE "content/user/managing-dashboards.md"
 !INCLUDE "content/user/messaging.md"

@@ -262,8 +262,8 @@ days, after that the invitation becomes invalid.
 
 3. (Optional) Provide values for the fields **OpenID, LDAP identifier, Mobile phone number, WhatsApp, Facebook messenger, Skype, Telegram and Twitter**.
 
-4. Select an **Interface language**.<br/> 
-You can select a language into which fixed elements of the DHIS2 user interface have been translated. 
+4. Select an **Interface language**.<br/>
+You can select a language into which fixed elements of the DHIS2 user interface have been translated.
 
 5. Select a **Database language**. <br/>
 You can select a language into which implementation-supplied
@@ -282,10 +282,10 @@ have access to the district's data, as well as all of the facilities
 contained within the district.
 
 8. (Optional) Select **Data output and analysis organisation units**.<br/><br/>
-The data output and analysis organisation units controls for 
-which organisation units the user can view aggregated data in the 
-analytics apps, for example the **Pivot Table** and **GIS** apps. You 
-can assign any number of data output and analysis organisation units to 
+The data output and analysis organisation units controls for
+which organisation units the user can view aggregated data in the
+analytics apps, for example the **Pivot Table** and **Maps** apps. You 
+can assign any number of data output and analysis organisation units to
 a user.<br/><br/>
 Users will have access to all sub-organisation units of the
 assigned organisation units. You shouldn't select the descendants of an
@@ -294,7 +294,7 @@ you've assigned the user to a district, you shouldn't select the
 facilities within that district.<br/><br/>
 
 > **Note**
-> 
+>
 >Assigning data output and analysis organisation units organisation units is optional. If you don't specify
 >any organisation unit, the user will have access to the full
 >organisation unit hierarchy for viewing aggregated data. As with the
@@ -311,7 +311,7 @@ facilities within that district.<br/><br/>
 9. Click **Show more options** and an additional
 three fields will show. (Optional) <br/><br/>
 
-10. In the **Search organisation units** 
+10. In the **Search organisation units**
 select the organisation units you want the user to be able to search in.<br/><br/>
 
 11. (Optional) In the **Available user groups** section, double-click the
@@ -327,7 +327,7 @@ dimensions that will restrict the user's view.
 > Let's say you have defined *Implementing Partner* as a category option group set, and you have shared with this user only one or more specific implementing partners (category option groups). If you want to make sure that the user does not see totals in analytics that include values from other groups, assign *Implementing Partner* to the user.<br/><br/>
 This insures that any data visible to the user through the analytics apps will be filtered to select only the Implementing Partner category option group(s) which are visible to the user.<br/><br/>
 
-13. Click **Save**. 
+13. Click **Save**.
 
 ### Edit user objects
 
