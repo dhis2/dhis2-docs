@@ -91,7 +91,7 @@
 </tr>
 <tr class="even">
 <td></td>
-<td><p>Visualize statistics about how users work with the <strong>Dashboard</strong>, <strong>Pivot Table</strong>, <strong>GIS</strong>, <strong>Event Visualizer</strong>, <strong>Data Visualizer</strong> and <strong>Event Reports</strong> apps</p></td>
+<td><p>Visualize statistics about how users work with the <strong>Dashboard</strong>, <strong>Pivot Table</strong>, <strong>Maps</strong>, <strong>Event Visualizer</strong>, <strong>Data Visualizer</strong> and <strong>Event Reports</strong> apps</p></td>
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/using_usage_analytics.html">Visualize usage statistics</a></p></td>
 <td><p><strong>Usage Analytics</strong></p></td>
 </tr>
@@ -152,7 +152,7 @@
 </tr>
 <tr class="even">
 <td></td>
-<td><p>Import coordinates and configure the <strong>GIS</strong> app</p></td>
+<td><p>Import coordinates and configure the <strong>Maps</strong> app</p></td>
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/gis_creating.html">Configure the Maps app</a></p>
 <p><a href="https://docs.dhis2.org/master/en/user/html/manage_legend.html">Manage legends</a></p>
 <p><a href="https://docs.dhis2.org/master/en/user/html/manage_external_maplayer.html">Manage external map layers</a></p></td>
