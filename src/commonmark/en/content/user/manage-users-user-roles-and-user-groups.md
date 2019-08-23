@@ -402,36 +402,6 @@ assigned to the selected organisation units.
 
 <!--DHIS2-SECTION-ID:user_manage_password-->
 
-The following rules apply when you create a new password:
-
-  - Password must contain at least one special character, that is any
-    character other then alphabets and digit numbers.
-
-  - Password must contain at least one upper case character.
-
-  - Password must contain at least one digit number.
-
-  - Password can not contain user's user name or email address.
-
-  - Password can not contain generic words for example *system*,
-    *admin*, *user*, *login*, *manager* etc.
-
-  - Password can not be one of the previous 24 passwords the user has
-    used.
-
-    This doesn't apply in case a super user resets the password for
-    another user.
-
-  - Password must contain more than minimum number of characters.
-
-    > **Note**
-    >
-    > You can configure the minimum number of characters: Open the
-    > **System Settings** app and click **Access** \> **Minimum
-    > characters in password**.
-
-  - Password can not contain more than 40 characters
-
 To change a user's password:
 
 1.  Open the **Users** app and click **User**.
@@ -442,6 +412,28 @@ To change a user's password:
 3.  Enter a new password and retype it.
 
 4.  Click **Save**.
+
+#### Password requirements
+
+The following rules apply when you create a new password. The password must:
+
+  - Contain at least 8 characters. Note that this number is configurable through the system setting "Minium characters in password", which can be up to 14 characters. 
+  
+  - Not contain more than 40 characters
+
+  - Contain at least one special character (non-alphanumeric character).
+
+  - Contain at least one upper-case character.  
+  
+  - Contain at least one lower-case character.
+
+  - Contain at least one digit (number).
+
+  - Not contain the username or email address of the user account.
+
+  - Not contain generic words such as *system*, *admin*, *user*, *login*, and *manager*.
+
+  - Not be one of the previous 24 passwords the user has used. This does not apply in case when a super user resets the password for another user.
 
 ### Delete user objects
 
@@ -461,7 +453,7 @@ To change a user's password:
 2.  In the object list, click the menu icon of the relevant object and
     select **Show details**.
 
-### Disable a user's Two Factor Authentication
+### Disable Two Factor Authentication for a user
 
 If a user has enabled Two Factor Authentication and then loses access to
 his/her authentication device (e.g. smartphone gets lost or broken),
