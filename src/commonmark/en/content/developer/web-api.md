@@ -13006,25 +13006,28 @@ case of GenericHttpGateway to send one or more parameter as http header.
 *GenericHttp*
 
     {
-      "name" : "generic",
-      "messageParameter": "message",
-      "recipientParameter": "msisdn",
-      "urlTemplate": "http://localhost:template",
-      "useGet":"true",
+      "name": "Generic",
+	  "configurationTemplate": "{\"to\": \"${recipients}\",\"body\": \"${text}\"}",
+	  "useGet": false,
+	  "contentType": "APPLICATION_JSON",
+	  "urlTemplate":"https://samplegateway.com/messages",
       "parameters": [
         {
-          "key": "username",
-          "value": "user12",
-          "classified": "false",
-          "header": "false"
+            "header": true,
+			"encode": false,
+			"key": "username",
+			"value": "user_uio",
+			"confidential": true
         },
         {
-          "key": "password",
-          "value": "XXX",
-          "classified": "true",
-        		"header": "false"
+            "header": true,
+			"encode": false,
+			"key": "password",
+			"value": "123abcxyz",
+			"confidential": true
         }
-      ]
+      ],
+      "isDefault": false
     }
 
 In generic http gateway any number of parameters can be added. Header can be set to true if any of them is required to be sent in http header.
