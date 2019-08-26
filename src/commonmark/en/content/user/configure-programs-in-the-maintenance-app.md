@@ -1458,7 +1458,7 @@ The number of days to repeat the repeatable program stage.
 
 #### Access
 
-<!--DHIS2-SECTION-ID:access-->
+<!--DHIS2-SECTION-ID:tracker_program_access-->
 
 Access options decide who can capture data for the program or view/edit
 the program's metadata. A program can be shared to organisation units,
@@ -1506,7 +1506,7 @@ Change roles and access:
 
 #### Create program notifications
 
-<!--DHIS2-SECTION-ID:create_program_notifications-->
+<!--DHIS2-SECTION-ID:create_tracker_program_notifications-->
 
 You can create program notifications for programs with registration and
 their program stages. The notifications are sent either via the internal
@@ -1924,7 +1924,7 @@ expression and filter. The order of evaluation is:
 <li><p>Average (Yes/No)</p></li>
 <li><p>Count</p></li>
 <li><p>Custom</p>
-<p>The &quot;custom&q     uot; aggregation type allows you to specify the aggregation type in-line in the expression.er aggregation  types are applied to the entire expression.</p>
+<p>The &quot;custom&quot; aggregation type allows you to specify the aggregation type in-line in the expression. All other aggregation  types are applied to the entire expression.</p>
 <p>Using the &quot;custom&quot; aggregation type might lead to an exception of the order of evaluation described above where individual parts of the expression can be evaluated and aggregated, as opposed to the entire expression being evaluated prior to aggregation.</p></li>
 <li><p>Default</p></li>
 <li><p>Max</p></li>
