@@ -263,7 +263,7 @@ layer** selection. This opens the Events layer configuration dialog.
     ![](resources/images/maps/maps_thematic_layer_dialog_PERIOD.png)
 
       - select the time span over which the thematic data is mapped.
-        You can select either a fixed period or a relative period.
+        You can select either a relative or a fixed period.
 
           - Relative period  
 
