@@ -1748,7 +1748,7 @@ exporter. The various parameters are listed below.
 </tr>
 <tr class="odd">
 <td>mergeMode</td>
-<td>MERGE, REPLACE</td>
+<td>REPLACE, MERGE</td>
 <td>Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, <strong>MERGE</strong> mode will only overwrite the old property if the new one is not-null, for <strong>REPLACE</strong> mode all properties are overwritten regardless of null or not.</td>
 </tr>
 <tr class="even">
