@@ -4125,7 +4125,7 @@ This example will show how to send individual data values to be saved in
 a request. This can be achieved by sending a *POST* request to the
 *dataValues* resource:
 
-    https://play.dhis2.org/demo/api/26/dataValues
+    /api/26/dataValues
 
 The following query parameters are supported for this resource:
 
@@ -4166,13 +4166,13 @@ The following query parameters are supported for this resource:
 </tr>
 <tr class="odd">
 <td>cc</td>
-<td>No (must combine with cp)</td>
-<td>Attribute combo identifier</td>
+<td>No (must be combined with cp)</td>
+<td>Attribute category combo identifier</td>
 </tr>
 <tr class="even">
 <td>cp</td>
-<td>No (must combine with cc)</td>
-<td>Attribute option identifiers, separated with ; for multiple values</td>
+<td>No (must be combined with cc)</td>
+<td>Attribute category option identifiers, separated with ; for multiple values</td>
 </tr>
 <tr class="odd">
 <td>ds</td>
@@ -4209,10 +4209,12 @@ An example of a request looks like this:
 
 This resource also allows a special syntax for associating the value to
 an attribute option combination. This can be done by sending the
-identifier of the attribute combination, together with the identifier(s)
-of the attribute option(s) which the value represents within the
-combination. An example looks like
-    this:
+identifier of the attribute category combination, together with the identifiers
+of the attribute category options which the value represents within the
+combination. The category combination is specified with the `cc` parameter, while
+the category options are specified as a semi-colon separated string with the `cp`
+parameter. It is necessary to ensure that the category options are all part
+of the category combination. An example looks like this:
 
     curl "https://play.dhis2.org/demo/api/26/dataValues?de=s46m5MS0hxu&ou=DiszpKrYNg8
       &pe=201308&cc=dzjKKQq0cSO&cp=wbrDrL2aYEc;btOyqprQ9e8&value=26"
@@ -11037,13 +11039,13 @@ The analytics enrollment query API let you specify a range of query parameters.
 <td>asc</td>
 <td>No</td>
 <td>Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code.</td>
-<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
+<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
 </tr>
 <tr>
 <td>desc</td>
 <td>No</td>
 <td>Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code.</td>
-<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
+<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
 </tr>
 <td>hierarchyMeta</td>
 <td>No</td>
@@ -17925,43 +17927,46 @@ as
     /api/30/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
 
 
-## Potential Duplicate api
-Potential Duplicates are the records we work with in the deduplication feature of DHIS 2. Due to the nature of the deduplication feature, the api for working with Potential Duplicates are somewhat restricted.
+## Potential Duplicates  
 
-A Potential Duplicate represents a singe record, or a pair of records that are suspected to be a duplicate.
+Potential duplicates are records we work with in the data deduplication feature. Due to the nature of the deduplication feature, this API endpoint is somewhat restricted.
 
-The basic payload of a Potential Duplicate looks like this:
+A potential duplicate represents a single or pair of records which are suspected to be a duplicate.
 
-      {
-        "teiA": "<id>",
-        "teiB": "<id>|null"
-        "status": "OPEN|INVALID|MERGED"
-      }
+The payload of a potential duplicate looks like this:
 
-You can retrieve a list of Potential duplicates using the following endpoint:
+    {
+      "teiA": "<id>",
+      "teiB": "<id>|null"
+      "status": "OPEN|INVALID|MERGED"
+    }
 
-          GET /api/potentialDuplicates
+You can retrieve a list of potential duplicates using the following endpoint:
 
-Additionally you can inspect individual records using:
+    GET /api/potentialDuplicates
 
-          GET /api/potentialDuplicates/<id>
+Additionally you can inspect individual records:
 
-To create a new Potential Duplicate, you can use this endpoint:
+    GET /api/potentialDuplicates/<id>
 
-          POST /api/potentialDuplicates
+To create a new potential duplicate, you can use this endpoint:
 
-The payload you provide needs atleast teiA to be a valid trackedEntityInstance, but teiB is optional. If teiB is set, it also needs to point to an existing trackedEntityInstance.
+    POST /api/potentialDuplicates
 
-          {
-              "teiA": "<id>", (required)
-              "teiB": "<id>" (optional)
-          }
+The payload you provide needs at least _teiA_ to be a valid tracked entity instance; _teiB_ is optional. If _teiB_ is set, it also needs to point to an existing tracked entity instance.
 
-You cannot update or delete Potential Duplicates. However, you can mark them as INVALID. You can mark a record as INVALID using the following endpoint:
+    {
+        "teiA": "<id>", (required)
+        "teiB": "<id>" (optional)
+    }
 
-          PUT /api/potentialDuplicates/<id>/invalidate
+You can mark a potential duplicate as _invalid_ to tell the system that the potential duplicate has been investigated and deemed to be not a duplicate. To do so you can use the following endpoint:
 
-Marking a Potential Duplicate as INVALID will indicate the record is not a valid duplicate, and can be considered the same as removing the record. The record is still persisted in the database.
+    PUT /api/potentialDuplicates/<id>/invalidation
+
+To hard delete a potential duplicate:
+
+    DELETE /api/potentialDuplicates/<id>
 
 ## Email
 
