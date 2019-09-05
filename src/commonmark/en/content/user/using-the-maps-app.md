@@ -262,19 +262,36 @@ layer** selection. This opens the Events layer configuration dialog.
 
     ![](resources/images/maps/maps_thematic_layer_dialog_PERIOD.png)
 
-      - select the time span over which the thematic data is aggregated.
-        You can select either a fixed period or a relative period.
+      - select the time span over which the thematic data is mapped.
+        You can select either a relative or a fixed period.
+
+          - Relative period  
+
+            In the **Period type** field select **Relative**, then
+            select one of the relative periods, for example **Last year** or 
+            **Last 12 months**, in the **Period** field. If you select a
+            relative period covering mutiple years/months/weeks/days 
+            the layer can be displayed as
+
+              - Single (aggregate)
+
+                Show aggregate values for the relative period selected (default).
+
+              - Timeline
+
+                Includes a timeline allowing you to step through the periods.
+                Only one timeline layer can be added to the same map. 
+
+              - Split map views
+
+                Show multiple maps allowing you to compare different periods
+                side by side. Supported for relative periods with 12 items
+                or below. Can not be combined with other layer types.  
 
           - Fixed period  
 
             In the **Period type** field select period length, then
             select the target in the **Period** field.
-
-          - Relative period  
-
-            In the **Period type** field select **Relative**, then
-            select one of the relative periods, for example **This
-            month** or **Last year**, in the **Period** field.
 
           - Start/end dates  
 
