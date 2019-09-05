@@ -81,6 +81,35 @@ The `!INCLUDE` directives point to the "chapters" that are used to make up the m
 
 It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but currently the documents are split up at chapter level only.
 
+### Index files and SUBMODULES
+
+In addition to the `!INCLUDE` directives explained above, we now support `!SUBMODULE` directives.
+The `!SUBMODULE` directives function the same way as `!INCLUDE`, but allow **referencing another repository** instead of a file below the path of the `*_INDEX.md` files.
+
+The format of these directives is as follows:
+```
+!SUBMODULE "<repository>" "<branch>" "<path to chapter>" 
+```
+- `<repository>` (just the repository name - currently we only support repositories in https://github.com/dhis2/)
+- `<branch>`
+- `<path to chapter>` (from the repository root)
+
+
+e.g. using submodules, the equivalent to the above might be dhis2_android_user_man_INDEX.md:
+```
+!INCLUDE "content/common/about-this-guide.md"
+!SUBMODULE "dhis2-android-capture-app" "master" "docs/configure-dhis2-programs-to-work-on-android-apps.md"
+!SUBMODULE "dhis2-android-capture-app" "master" "docs/android-event-capture-app.md"
+!SUBMODULE "dhis2-android-capture-app" "master" "docs/android-aggregate-data-capture-app.md"
+!SUBMODULE "dhis2-android-capture-app" "master" "docs/android-tracker-capture-app.md"
+```
+
+> **NOTE**
+>
+> These are not true _git submodules_, as they are simply cloned during the build process, and deleted on completion.
+
+
+
 ### Adding images
 
 Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._

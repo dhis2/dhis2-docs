@@ -11,6 +11,7 @@ from os import path
 from MarkdownPP.Module import Module
 from MarkdownPP.Transform import Transform
 
+BASE="content/submodules/"
 
 class Include(Module):
     """
@@ -37,6 +38,13 @@ class Include(Module):
 
         linenum = 0
         for line in data:
+
+            # a little hack to make a !SUBMODULE directive look like an !INCLUDE directive!
+            if line[0:10] == "!SUBMODULE":
+                parts=line.strip().replace('\'','').replace('"','').split(" ")
+                line='!INCLUDE "'+BASE+parts[1]+'/'+parts[3]+'"'
+
+
             match = self.includere.search(line)
             if match:
                 includedata = self.include(match)
