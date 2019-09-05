@@ -1,12 +1,49 @@
+readonly GIT_BASE="https://github.com/dhis2/"
+
 shared_resources() {
     mkdir -p $1/resources/
     cp -r $src/resources/* $1/resources/
 }
 
+include_submodules() {
+
+  exec 3<> $1
+  while read line <&3
+  do {
+    #echo "line $line"
+
+      read -r -a words <<< $line
+      #echo "words0 ${words[0]}"
+      if [ "${words[0]}" == "!SUBMODULE" ]
+      then
+          submodule_name=${words[1]}
+          submodule_branch=${words[2]}
+          submodule_file=${words[3]}
+          {
+            mkdir -p $src/content/submodules
+            pushd $src/content/submodules
+            echo "git clone -b ${submodule_branch//\"} --depth 1 $GIT_BASE${submodule_name//\"}"
+            git clone -q -b ${submodule_branch//\"} --depth 1 $GIT_BASE${submodule_name//\"}
+            popd
+          }
+      fi
+
+  }
+  done
+  exec 3>&-
+
+}
 
 assemble_content() {
     echo "assembling $1"
     md=`basename $1 | sed 's:_INDEX\.:\.:'`
+    # for s in `cat $1 | sed "s/^/'/ ; s/\$/'/"`
+    # do
+    #     include_submodules $s
+    # done
+
+    include_submodules $1
+
     markdown-pp $1 -o $tmp/$md
 }
 
@@ -45,7 +82,6 @@ make_html() {
     echo "splitting the html file into chunks"
     chunked_template="$tmp/resources/templates/dhis2_chunked_template.html"
     chunker ${name}_full.html ${chunked_template}
-
 
 }
 
@@ -86,6 +122,16 @@ assemble(){
           assemble_resources $r $tmp
       done
     done
+
+    for path in `grep "SUBMODULE" ${name}_INDEX.md | sed 's/[^"]*"/content\/submodules\//' | sed 's/" "[^"]*" "/\//' | sed 's/[^/]*"//' | sort -u`; do
+      for r in `find $path -type f | grep "resources/images"`; do
+          # echo "resource: $r"
+          assemble_resources $r $tmp
+      done
+    done
+
+    # clean up any "submodule" clones!
+    rm -rf $src/content/submodules/*
 
 }
 
