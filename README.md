@@ -95,7 +95,7 @@ The format of these directives is as follows:
 - `<path to chapter>` (from the repository root)
 
 
-e.g. using submodules, the equivalent to the above might be dhis2_android_user_man_INDEX.md:
+e.g. using submodules, the equivalent to the above, for dhis2_android_user_man_INDEX.md, might be:
 ```
 !INCLUDE "content/common/about-this-guide.md"
 !SUBMODULE "dhis2-android-capture-app" "master" "docs/configure-dhis2-programs-to-work-on-android-apps.md"
