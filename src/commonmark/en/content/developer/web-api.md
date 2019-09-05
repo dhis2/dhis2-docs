@@ -8695,7 +8695,7 @@ detailed information about each object on a users dashboard.
 
 <!--DHIS2-SECTION-ID:webapi_searching_dasboards-->
 
-When setting a dashboard it is convenient from a consumer point of view
+When a user is building a dashboard it is convenient
 to be able to search for various analytical resources using the
 */dashboards/q* resource. This resource lets you search for matches on
 the name property of the following objects: charts, maps, report tables,
@@ -8703,7 +8703,55 @@ users, reports and resources. You can do a search by making a *GET*
 request on the following resource URL pattern, where my-query should be
 replaced by the preferred search query:
 
-    /api/26/dashboards/q/my-query.json
+    /api/32/dashboards/q/my-query.json
+
+For example, this query:
+
+    /api/32/dashboards/q/ma?count=6&maxCount=20&max=CHART&max=MAP
+
+Will search for the following:
+* analytical object name contains the string "ma"
+* return up to 6 of each type
+* for CHART and MAP types, return up to 20
+
+
+
+<table>
+<caption>dashboards/q query parameters</caption>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 44%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Query parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>count</td>
+<td>The number of items of each type to return</td>
+<td>Positive integer</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>maxCount</td>
+<td>The number of items of max types to return</td>
+<td>Positive integer</td>
+<td>25</td>
+</tr>
+<tr class="even">
+<td>max</td>
+<td>The type to return the maxCount for</td>
+<td>String [CHART|MAP|REPORT_TABLE|USER|REPORT|RESOURCE]</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
 
 JSON and XML response formats are supported. The response in JSON format
 will contain references to matching resources and counts of how many
