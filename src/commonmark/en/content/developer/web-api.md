@@ -17855,7 +17855,8 @@ as
     /api/30/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
 
 
-## Potential Duplicates
+## Potential Duplicates  
+
 Potential duplicates are records we work with in the data deduplication feature. Due to the nature of the deduplication feature, this API endpoint is somewhat restricted.
 
 A potential duplicate represents a single or pair of records which are suspected to be a duplicate.
@@ -17880,18 +17881,20 @@ To create a new potential duplicate, you can use this endpoint:
 
     POST /api/potentialDuplicates
 
-The payload you provide needs at least teiA to be a valid tracked entity instance; teiB is optional. If teiB is set, it also needs to point to an existing tracked entity instance.
+The payload you provide needs at least _teiA_ to be a valid tracked entity instance; _teiB_ is optional. If _teiB_ is set, it also needs to point to an existing tracked entity instance.
 
     {
         "teiA": "<id>", (required)
         "teiB": "<id>" (optional)
     }
 
-You cannot update or delete potential duplicates. However, you can mark them as _invalid_. You can mark a record as _invalid_ using the following endpoint:
+You can mark a potential duplicate as _invalid_ to tell the system that the potential duplicate has been investigated and deemed to be not a duplicate. To do so you can use the following endpoint:
 
-    PUT /api/potentialDuplicates/<id>/invalidate
+    PUT /api/potentialDuplicates/<id>/invalidation
 
-Marking a potential duplicate as invalid will indicate the record is not a valid duplicate, and can be considered the same as removing the record.
+To hard delete a potential duplicate:
+
+    DELETE /api/potentialDuplicates/<id>
 
 ## Email
 
