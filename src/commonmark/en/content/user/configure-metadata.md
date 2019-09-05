@@ -621,6 +621,20 @@ objects:
     element. Be as precise as possible and include complete information
     about how the data element is measured and what its purpose is.
 
+8. (Optional) In the **Field mask** field, you may type a template that's used to provide
+   hints for correct formatting of the data element in Capture and Tracker Capture apps.
+   The following are special characters that can be used in the mask. The special characters match exactly one character of the given type.
+
+   | Character     |    Match       |
+   | ------------- |----------------|
+   |      \\d      |     digit      |
+   |      \\x      |lower case letter|
+   |      \\X      | capital letter |
+   |      \\w      |any alphanumeric character|
+
+   For example, the pattern can be used to show hyphens as needed in the input field of the data element. E.g "\d\d\d-\d\d\d-\d\d\d, would 
+   show a hyphen for every third digit.
+
 9.  In the **Form name** field, type an alternative name of the data
     element. This name can be used in either section or automatic data
     entry forms. The form name is applied automatically.

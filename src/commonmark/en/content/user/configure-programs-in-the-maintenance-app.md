@@ -3475,9 +3475,23 @@ programs.
 
 6.  (Optional) Type a **Description**.
 
-7.  Select an **Option set**.
+7. (Optional) In the **Field mask** field, you may type a template that's used to provide
+   hints for correct formatting of the attribute in Capture and Tracker Capture apps.
+   The following are special characters that can be used in the mask. The special characters match exactly one character of the given type.
 
-8.  In the **Value type** field, select the type of data that the
+   | Character     |    Match       |
+   | ------------- |----------------|
+   |      \\d      |     digit      |
+   |      \\x      |lower case letter|
+   |      \\X      | capital letter |
+   |      \\w      |any alphanumeric character|
+
+  For example, the pattern can be used to show hyphens as needed in the input field of the data element. E.g "\d\d\d-\d\d\d-\d\d\d, would 
+  show an hyphen for every third digit.
+
+8.  Select an **Option set**.
+
+9.  In the **Value type** field, select the type of data that the
     tracked entity attribute will record.
 
     <table>
