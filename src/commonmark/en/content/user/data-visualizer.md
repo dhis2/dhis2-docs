@@ -50,6 +50,6 @@ interpretation and regenerate the visualization with the current date.
 
 ## See visualization as map
 
-Sometimes it can be useful to see how visualization would look like on map. To achieve this you can select "Open as: Map" visualization type after you build your visualization.
+Sometimes it can be useful to see how visualization would look like on map. To achieve this you can select "Open as Map" visualization type after you build your visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-open-as-map.png)
