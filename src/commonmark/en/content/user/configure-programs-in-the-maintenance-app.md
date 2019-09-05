@@ -678,12 +678,1194 @@ time.
 
 <!--DHIS2-SECTION-ID:configure_tracker_program_in_Maintenance_app-->
 
+### About Tracker programs
+Single or multiple event programs *with* registration are called Tracker programs. A program must be specified with only one tracked entity. Only tracked entities that are the same as the tracked entity of program can enroll into that
+program. A program needs several types of metadata that you create in the **Maintenance** apps.
+
+### Workflow: Create a tracker program
+
+<!--DHIS2-SECTION-ID:workflow_tracker_program-->
+
+1.  Enter the tracker program details.
+
+2.  Enter enrollment details.
+
+3.  Assign attributes and create  **section** or **custom** registration form.
+
+4. Create program stages.
+
+5. Configure access, and assign to organisation units.
+
+6. Create program and program stage notification(s).
+
+### Create or edit a Tracker program
+
+1. Open the **Maintenance** app and click **Program** \> **Program**.
+
+2. Click the add button and select **Tracker Program** in the popup menu.
+
+3. Enter program details:
+<table>
+    <colgroup>
+        <col style="width: 50%" />
+        <col style="width: 50%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th><p>Field</p></th>
+            <th><p>Description</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td>
+                <p><strong>Name</strong></p>
+            </td>
+            <td><p>The name of the program.</p></td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p><strong>Color</strong></p>
+            </td>
+            <td><p>Color used for this program in Tracker capture.</p></td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <p><strong>Icon</strong></p>
+            </td>
+            <td><p>Icon used for this program in Tracker capture</p></td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p><strong>Short name</strong></p>
+            </td>
+            <td>
+                <p>
+                    A short name of the program. The short name is used as the
+                    default chart or table title in the analytics apps.
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <p><strong>Description</strong></p>
+            </td>
+            <td><p>A detailed description of the program.</p></td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p><strong>Version</strong></p>
+            </td>
+            <td>
+                <p>
+                    The version of the program. This is used for example when
+                    people collect data offline in an Android implementation.
+                    When they go online and synchronize their metadata, they
+                    should get the latest version of the program.
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <p><strong>Tracked Entity Type</strong></p>
+            </td>
+            <td>
+                <p>
+                    The tracked entity type you want to use. A program can only
+                    have one type of tracked entity.
+                </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p><strong>Category combination</strong></p>
+            </td>
+            <td>
+                <p>
+                    The category combination you want to use. The default
+                    setting is <strong>None</strong>.
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <p><strong>Display front page list</strong></p>
+            </td>
+            <td>
+                <p>
+                    Select checkbox to display a list of Tracked Entity
+                    Instances in Tracker Capture. If not selected, the Search
+                    will be displayed.
+                </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p><strong>First stage appears on registration page</strong></p>
+            </td>
+            <td>
+                <p>
+                    Select checkbox to display the first program stage together
+                    with the registration (enrollment).
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <p><strong>Access level</strong></p>
+            </td>
+            <td><p>Choose the access level of the program.</p></td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p><strong>Completed events expiry days</strong></p>
+            </td>
+            <td>
+                <p>
+                    Defines the number of days for which you can edit a
+                    completed event. This means that when an event is completed
+                    and the specified number of expiry days has passed, the
+                    event is locked.
+                </p>
+                <p>
+                    If you set &quot;Completed events expiry days&quot; to
+                    10&quot;, an event is locked ten days after the completion
+                    date. After this date you can no longer edit the event.
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <p><strong>Expiry period type</strong></p>
+                <p><strong>Expiry days</strong></p>
+            </td>
+            <td>
+                <p>
+                    The expiry days defines for how many days after the end of
+                    the previous period, an event can be edited. The period type
+                    is defined by the expiry period type. This means that when
+                    the specified number of expiry days has passed since the end
+                    date of the previous period, the events from that period are
+                    locked.
+                </p>
+                <p>
+                    If you set the expiry type to &quot;Monthly&quot; and the
+                    expiry days to &quot;10&quot; and the month is October, then
+                    you can't add or edit an event to October after the 10th of
+                    November.
+                </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <strong>Minimum number of attributes required to search</strong>
+            </td>
+            <td>
+                <p>
+                    Specify the number of tracked entity attributes that needs
+                    to be filled in to search for Tracked Entities in the
+                    Program.
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <strong>Maximum number of tracked entity instances to return in
+                    search</strong>
+            </td>
+            <td>
+                <p>
+                    Specify the maximum number of tracked entity instances that
+                    should be returned in a search. Enter 0 for no limit.
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+4. Enter enrollment details:
+<table>
+    <colgroup>
+        <col style="width: 50%" />
+        <col style="width: 50%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th><p>Field</p></th>
+            <th><p>Description</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td><strong>Allow future enrollment dates</strong></td>
+            <td>
+                <p>
+                    Select checkbox if you want to allow tracked entity
+                    instances to be enrolled in the program on a future date.
+                </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td><strong>Allow future incident dates</strong></td>
+            <td>
+                <p>
+                    Select checkbox if you want to allow the incident date in
+                    the program to be on a future date.
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <strong>Only enroll once (per tracked entity instance lifetime)</strong>
+            </td>
+            <td>
+                <p>
+                    Select checkbox if you want a tracked entity to be able to
+                    enroll only once in a program. This setting is useful for
+                    example in child vaccination or post-mortem examination
+                    programs where it wouldn’t make sense to enroll a tracked
+                    entity more than once.
+                </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td><strong>Show incident date</strong></td>
+            <td>
+                <p>
+                    This setting allows you to show or hide the incident date
+                    field when a tracked entity enroll in the program.
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td><strong>Description of incident date</strong></td>
+            <td>
+                <p>Type a description of the incident date</p>
+                <p>For example:</p>
+                <p>In an immunization program for child under 1 year old, the
+                    incident date is the child's birthday. </p>
+                <p>In a maternal program, the incident date is the date of last
+                    menstrual period. </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td><strong>Type a description of the enrollment date</strong></td>
+            <td>
+                <p>
+                    The date when the tracked entity is enrolled into the
+                    program
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td><strong>Ignore overdue events</strong></td>
+            <td>
+                <p>
+                    When a tracked entity enrolls into the program, the events
+                    corresponding to the program stages are created. If you
+                    select this checkbox, the system will not generate overdue
+                    events.
+                </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td><strong>Feature type</strong></td>
+            <td>
+                <p>
+                    Sets wether the program is going to capture a geographical
+                    feature type or not.
+                </p>
+                <ul>
+                <li><strong>None:</strong>Nothing is captured.</li>
+                <li><strong>Polygon:</strong> An area is captured. For single
+                event programs the area will be the area representing the
+                event being captured. For tracker programs, the area will
+                represent the area of the enrollment. </li>
+                <li><strong>Point:</strong>: A point/coordinate is captured. For
+                single event programs the point will be representing the
+                event being captured. For tracker programs, the point will
+                represent the enrollment. </li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td><strong>Related program</strong></td>
+            <td>
+                <p>
+                    Choose a Tracker program which is related to the program you
+                    are creating, for example an ANC and a Child program.
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+#### Assign tracked entity attributes.
+
+<!--DHIS2-SECTION-ID:assign_tracked_entity_attributes-->
+
+  1. In the list of **Available program tracked entity attributes**, double-click the
+        attributes you want to assign to the program.
+
+  2. (Opptional) For each assigned attribute, add additional settings:
+<table>
+        <colgroup>
+            <col style="width: 50%" />
+            <col style="width: 50%" />
+        </colgroup>
+        <thead>
+            <tr class="header">
+                <th><p>Setting</p></th>
+                <th><p>Description</p></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="odd">
+                <td>
+                    <p><strong>Display in list</strong></p>
+                </td>
+                <td>
+                    <p>
+                        Displays the value of this attribute in the list of tracked
+                        entity instances in Tracker capture.
+                    </p>
+                </td>
+            </tr>
+            <tr class="even">
+                <td>
+                    <p><strong>Mandatory</strong></p>
+                </td>
+                <td>
+                    <p>
+                        The value of this attribute must be filled into data entry
+                        form before you can complete the event.
+                    </p>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>
+                    <p><strong>Date in future</strong></p>
+                </td>
+                <td>
+                    <p>
+                        Will allow user to select a date in future for date
+                        attributes.
+                    </p>
+                </td>
+            </tr>
+            <tr class="even">
+                <td>
+                    <p><strong>Mobile render type</strong></p>
+                </td>
+                <td>
+                    <p>
+                        Can be used to select different render types for mobile
+                        devices. Available options vary depending on the attribute's
+                        value type. For example, for a numerical value you may
+                        select &quot;Default&quot;, &quot;Value&quot;,
+                        &quot;Slider&quot;, &quot;Linear scale&quot;, and
+                        &quot;Spinner&quot;.
+                    </p>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>
+                    <p><strong>Desktop render type</strong></p>
+                </td>
+                <td>
+                    <p>WARNING: NOT IMPLEMENTED YET.</p>
+                    <p>
+                        Can be used to select different render types for desktop
+                        (i.e. the web interface). Available options vary depending
+                        on the attribute's value type. For example, for a numerical
+                        value you may select &quot;Default&quot;, &quot;Value&quot;,
+                        &quot;Slider&quot;, &quot;Linear scale&quot;, and
+                        &quot;Spinner&quot;.
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+</table>
+
+
+#### Create program stages
+
+<!--DHIS2-SECTION-ID:create_program_stages-->
+
+A program consist of program stages. A program stage defines which
+actions should be taken at each stage.
+
 > **Note**
 >
-> From release 2.27, you create event programs (programs without
-> registration) in the **Maintenance** app. You still create tracker
-> programs (programs with registration) in the **Program / Attributes**
-> app.
+> Changes to a program stage is not saved until you save the program.
+
+1. Click the plus sign to create a program stage.
+2. Enter program stage details:
+    1. Enter a **Name**.
+    2.  (Optional) select a **Color** and an **Icon** that will be used
+by the data capture apps to identify this program stage.
+    3. Enter a **Description**.
+    4. In the **Scheduled days from start** field, enter the minimum
+number of days to wait for starting the program stage.
+3. Enter repeatable program stage details.
+    1. Specify if the program stage is **Repeatable** or not.
+    2. Select a **Period type**.
+    3. Clear **Display generate event box after completed** if you
+don't want to display *Create new event box* to create new event
+for a repeatable stage after you click *Complete* for an event
+of the stage in data entry form. This field is selected by
+default.
+    4. Enter **Standard interval days**.
+The number of days to repeat the repeatable program stage.  
+4. Enter form details
+
+    <table>
+        <colgroup>
+            <col style="width: 50%" />
+            <col style="width: 50%" />
+        </colgroup>
+        <thead>
+            <tr class="header">
+                <th><p>Option</p></th>
+                <th><p>Action</p></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="odd">
+                <td>
+                    <p><strong>Auto-generate event</strong></p>
+                </td>
+                <td>
+                    <p>
+                        Clear check box to prevent creating an event of this program
+                        stage automatically when a entity is enrolled in the program.
+                    </p>
+                </td>
+            </tr>
+            <tr class="even">
+                <td>
+                    <p><strong>Open data entry form after enrollment</strong></p>
+                </td>
+                <td>
+                    <p>
+                        Select check box to automatically open the event of this
+                        stage as soon as the entity has enrolled into the program.
+                    </p>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>
+                    <p><strong>Report date to use</strong></p>
+                </td>
+                <td>
+                    If you have selected the
+                    <strong>Open data entry form after enrollment</strong> check
+                    box, also select a <strong>Report date to use</strong>:
+                    <strong>Date of incident</strong> or
+                    <strong>Date of enrollment</strong>.
+                    <p>
+                        This is the date used as report date for an event that has
+                        been opened automatically.
+                    </p>
+                    <p>
+                        If the <strong>Report date to use</strong> is selected as
+                        one of those two ('incident date'/'enrollment date'), in
+                        Dashboard, the 'Report date' of the event will be set as one
+                        of those two.
+                    </p>
+                </td>
+            </tr>
+            <tr class="even">
+                <td>
+                    <p><strong>User assignment of events</strong></p>
+                </td>
+                <td>
+                    <p>
+                        Select check box to enable user assignment of the program
+                        stage.
+                    </p>
+                    <p>
+                        This means that in Tracker capture there will be a list of
+                        users to which the event can be assigned.
+                    </p>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>
+                    <p><strong>Block entry form after completed</strong></p>
+                </td>
+                <td>
+                    <p>
+                        Select check box to block the entry form after completion of
+                        the event of this stage.
+                    </p>
+                    <p>
+                        This means that the data in the entry form can't be changed
+                        until you reset the status to incomplete.
+                    </p>
+                </td>
+            </tr>
+            <tr class="even">
+                <td>
+                    <p>
+                        <strong>Ask user to complete program when stage is
+                            completed</strong>
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        Select check box to trigger a pop-up which asks the user if
+                        he/she wants to create the event of next stage.
+                    </p>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>
+                    <p>
+                        <strong>Ask user to create new event when stage is
+                            complete</strong>
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        Select check box to trigger a pop-up which asks the users if
+                        he/she wants to create a new event of this stage when an
+                        event of this stage is completed.
+                    </p>
+                    <p>
+                        This property is active only if you have selected
+                        <strong>Repeatable</strong>.
+                    </p>
+                </td>
+            </tr>
+            <tr class="even">
+                <td>
+                    <p><strong>Generate events by enrollment date</strong></p>
+                </td>
+                <td>
+                    <p>
+                        Check on it for auto-generating due dates of events from
+                        program-stages of this program based on the enrollment date.
+                        If it is not checked, the due dates are generated based on
+                        incident date.
+                    </p>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>
+                    <p><strong>Hide due dates</strong></p>
+                </td>
+                <td><p>Select checkbox to hide due dates for events.</p></td>
+            </tr>
+            <tr class="even">
+                <td><strong>Feature type</strong></td>
+                <td>
+                    <p>
+                        Sets wether the program is going to capture a geographical
+                        feature type or not.
+                    </p>
+                    <ul>
+                    <li><strong>None:</strong>Nothing is captured.</li>
+                    <li>
+                        <strong>Polygon: </strong> An area is captured. For single
+                        event programs the area will be the area representing the
+                        event being captured. For tracker programs, the area will
+                        represent the area of the enrollment.
+                    </li>
+                    <li>
+                        <strong>Point:</strong>: A point/coordinate is captured. For
+                        single event programs the point will be representing the
+                        event being captured. For tracker programs, the point will
+                        represent the enrollment.
+                    </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>
+                    <p><strong>Pre-generate event UID</strong></p>
+                </td>
+                <td>
+                    <p>Select check box to pre-generate unique event id numbers.</p>
+                </td>
+            </tr>
+            <tr class="even">
+                <td>
+                    <p><strong>Description of report date</strong></p>
+                </td>
+                <td>
+                    <p>Type a description of the report date.</p>
+                    <p>This description is displayed in the data entry form.</p>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td>
+                    <p><strong>Description of due date</strong></p>
+                </td>
+                <td><p>Type a description of the due date.</p></td>
+            </tr>
+        </tbody>
+    </table>
+
+5.  Assign data elements to program stage:
+
+    1.  In the list of **Available data elements**, double-click the
+        data elements you want to assign to the program stage.
+
+    2.  For each assigned data element, review the properties. You can
+        select:
+
+<table>
+    <colgroup>
+        <col style="width: 50%" />
+        <col style="width: 50%" />
+    </colgroup>
+    <thead>
+        <tr class="header">
+            <th><p>Option</p></th>
+            <th><p>Action</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td>
+                <p><strong>Compulsory</strong></p>
+            </td>
+            <td>
+                <p>
+                    The value of this data element must be filled into data
+                    entry form before completing the event.
+                </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p><strong>Allow provided elsewhere</strong></p>
+            </td>
+            <td>
+                <p>
+                    Specify if the value of this data element comes from other
+                    facility, not in the facility where this data is entered.
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <p><strong>Display in reports</strong></p>
+            </td>
+            <td>
+                <p>
+                    Display the value of this data element into the single event
+                    without registration data entry function.
+                </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p><strong>Date in future</strong></p>
+            </td>
+            <td>
+                <p>Allow to select a date in future for date data elements.</p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <p><strong>Skip synchronization</strong></p>
+            </td>
+            <td>
+                <p>
+                    Allow data element to be skipped when running data
+                    synchronization jobs.
+                </p>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p><strong>Mobile render type</strong></p>
+            </td>
+            <td>
+                <p>
+                    Can be used to select different render types for mobile
+                    devices. Available options vary depending on the attribute's
+                    value type. For example, for a numerical value you may
+                    select &quot;Default&quot;, &quot;Value&quot;,
+                    &quot;Slider&quot;, &quot;Linear scale&quot;, and
+                    &quot;Spinner&quot;.
+                </p>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td>
+                <p><strong>Desktop render type</strong></p>
+            </td>
+            <td>
+                <p>WARNING: NOT IMPLEMENTED YET.</p>
+                <p>
+                    Can be used to select different render types for desktop
+                    (i.e. the web interface). Available options vary depending
+                    on the attribute's value type. For example, for a numerical
+                    value you may select &quot;Default&quot;, &quot;Value&quot;,
+                    &quot;Slider&quot;, &quot;Linear scale&quot;, and
+                    &quot;Spinner&quot;.
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+6. Create data entry forms for program stage
+
+    The data entry forms decide how the data elements will be displayed to
+    the user in the **Tracker Capture** app.
+
+   1.  Click **Create data entry form**.
+
+   2.  Click **Basic**, **Section** or **Custom**.
+
+   3.  To create a **Basic** data entry form: Drag and drop the data
+       elements in the order you want.
+
+   4.  To create a **Section** data entry form:
+
+       1.  Click the add button and enter a section's name, description and
+           render type for desktop and mobile.
+
+       2.  Click the section so it's highlighted by a black line.
+
+       3.  Add data elements by clicking the plus sign next to the data
+           elements' names.
+
+       4.  Repeat above steps until you've all the sections you need.
+
+       5.  Change the section order: click the options menu, then drag the
+           section to the place you want.
+
+       6.  To create a **Custom** data entry from: Use the WYSIWYG editor to
+           create a completely customized form. If you select **Source**, you
+           can paste HTML code directly in the editing area. You can also
+           insert images for example flags or logos.
+
+   5.  Click add stage.
+
+
+#### Access
+
+<!--DHIS2-SECTION-ID:tracker_program_access-->
+
+Access options decide who can capture data for the program or view/edit
+the program's metadata. A program can be shared to organisation units,
+and in addition, the main program and any program stages' access options
+can be configured through the **Sharing dialog**. Access options are
+available in the **Access** tab.
+
+Assign organization units:
+
+1.  In the organisation tree, double-click the organisation units you
+    want to add to the program to.
+
+    You can locate an organisation unit in the tree by expanding the
+    branches (click on the arrow symbol), or by searching for it by
+    name. The selected organisation units display in orange.
+
+Change roles and access:
+
+1.  Scroll down to the **Roles and access** section.
+
+    The first row shows the main program's access options, and each
+    subsequent row shows the options of one program stage. Program
+    stages with a warning icon (exclamation mark) contain access options
+    that deviate from the main program, meaning they are accessed by a
+    different combination of users.
+
+2.  Click on either of the rows and the **Sharing dialog** will show.
+
+3.  Modify the access options accordingly. See documentation on the
+    sharing dialog for details.
+
+4.  Click the **Apply** button.
+
+5.  Repeat the process for each program/program stage. You can also copy
+    all access options from the main program to your child programs:
+
+    1.  Select the program stages you want to have similar access
+        options as the main program by toggling the checkboxes on the
+        right hand side of the program stages. You can also choose to
+        **Select all** program stages, **Deselect all** program stages
+        or **Select similar** stages, in terms of access options, to
+        that of the main program. Similar stages are toggled by default.
+
+    2.  Click **Apply to selected stages**
+
+#### Create program notifications
+
+<!--DHIS2-SECTION-ID:create_tracker_program_notifications-->
+
+You can create program notifications for programs with registration and
+their program stages. The notifications are sent either via the internal
+DHIS2 messaging system, via e-mail or via text messages (SMS). You can
+use program notifications to, for example, send an automatic reminder to
+a tracked entity 10 days before a scheduled appointment. You use the
+program’s tracked entity attributes (for example first name) and program
+parameters (for example enrollment date) to create a notification
+template.
+
+
+1.  Open the **Maintenance** app and click **Program and then
+    notifications**.
+
+    A list of existing program notifications for the selected program
+    opens. If the program doesn't have any program notifications, the
+    list is empty.
+
+2.  Click on add button and select **Program notification**.
+
+	![](resources/images/program/what_to_send.png)
+![](resources/images/program/where_to_send.png)
+	![](resources/images/program/who_to_send.png)	
+
+3.  Enter a **Name**.
+
+4.  Create the **Subject template**.
+
+    Double-click the parameters in the **Parameters** field to add them
+    to your subject.
+
+    > **Note**
+    >
+    > The subject is not included in text messages.
+
+5.  Create the **Message template**.
+
+    Double-click the parameter names in the **Parameters** field to add
+    them to your message.
+
+    Dear A{w75KJ2mc4zz}, You're now enrolled in V{program\_name}.
+
+6.  In the **When-to-send it** field, select what should trigger the
+    notification.
+
+    <table>
+    <colgroup>
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th><p>Trigger</p></th>
+    <th><p>Description</p></th>
+    <th><p>Note</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p>Program enrollment</p></td>
+    <td><p>The program notification is sent when the TEI enrols in the program.</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Program completion</p></td>
+    <td><p>The program notification is sent when the program of TEI is completed</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Days scheduled (incident date)</p></td>
+    <td><p>The program notification is sent XX number of days before or after the incident date</p></td>
+    <td><p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Days scheduled (enrollment date)</p></td>
+    <td><p>The program notification is sent XX number of days before or after the enrollment date</p></td>
+    <td><p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Program Rule</p></td>
+    <td><p>Notification will be triggered as a result of program rule exeuction.</p></td>
+    <td><p>Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful.</p></td>
+    </tr>
+    </tbody>
+    </table>
+
+
+7.  In the **Who-to-send-it** field, select who should receive the
+    program notification.
+
+    <table>
+    <colgroup>
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th><p>Recipient type</p></th>
+    <th><p>Description</p></th>
+    <th><p>Note</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p>Tracked entity instance</p></td>
+    <td><p>Receives program notifications via e-mail or text message.</p></td>
+    <td><p>To receive a program notification, the recipient must have an e-mail address or a phone number attribute.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Organisation unit contact</p></td>
+    <td><p>Receives program notifications via e-mail or text message.</p></td>
+    <td><p>To receive a program notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number.</p></td>
+    </tr>
+    <tr class="odd">
+    <td>Users at organisation unit:</td>
+    <td><p>All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system.</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>User group</p></td>
+    <td><p>All members of the selected user group receive the program notifications via the internal DHIS2 messaging system</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Limit To Hierarchy</p></td>
+    <td><p>Send notification only to those users who belong to any of the organisation unit in the hierarchy.</p></td>
+    <td><p>This option is only available when User Group is selected as recipient.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Parent OrgUnit Only</p></td>
+    <td><p>Send notification only to those users who belong to parent organisation unit.</p></td>
+    <td><p>This option is only available when User Group is selected as recipient.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Program Attribute</p></td>
+    <td><p>TrackedEntityAttribute can also be selected as recipient.</p></td>
+    <td><p>This parameter will only be effective if TrackedEntityAttribute value type is PHONE_NUMBER/EMAIL.</p></td>
+    </tr>
+    </tbody>
+    </table>
+
+8.  Click **Save**.
+
+
+### Create a program stage notification
+
+![](resources/images/program/what_to_send-psnt.png)
+
+![](resources/images/program/what_to_send-psnt.png)
+
+![](resources/images/program/what_to_send-psnt.png)
+
+1.  Open the **Maintenance** app and click **Program and then
+    notifications**.
+
+    A list of existing program stage notifications for the selected
+    program stage opens. If the program stage doesn't have any program
+    stage notifications, the list is empty.
+
+2.  Click on add button and select**Program stage notification**.
+
+3.  Click **Add new**.
+
+4.  Enter a **Name**.
+
+5.  Create the **Subject template**.
+
+    Double-click the parameter names in the **Parameters** field to add
+    them to your subject.
+
+    > **Note**
+    >
+    > The subject is not included in text messages.
+
+6.  Create the **Message template**.
+
+    Double-click the parameter names in the **Parameters** field to add
+    them to your message.
+
+    Dear A{w75KJ2mc4zz}, please come to your appointment the
+    V{due\_date}.
+
+7.  In the **When-to-send-it** field, select what should trigger the
+    notification.
+
+    <table>
+    <colgroup>
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th><p>Trigger</p></th>
+    <th><p>Description</p></th>
+    <th><p>Note</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p>Program stage completion</p></td>
+    <td><p>The program stage notification is sent when the program stage is completed</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Days scheduled (due date)</p></td>
+    <td><p>The program stage notification is sent XX number of days before or after the due date</p></td>
+    <td><p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Program Rule</p></td>
+    <td><p>Notification will be triggered as a result of program rule execution.</p></td>
+    <td><p>Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful.</p></td>
+    </tr>
+    </tbody>
+    </table>
+
+8.  In the **Recipients** field, select who should receive the program
+    stage notification. You can select:
+
+    <table>
+    <colgroup>
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    </colgroup>
+    <thead>
+    <tr class="header">
+    <th><p>Recipient type</p></th>
+    <th><p>Description</p></th>
+    <th><p>Note</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p>Tracked entity instance</p></td>
+    <td><p>Receives program notifications via e-mail or text message.</p></td>
+    <td><p>To receive a program stage notification, the recipient must have an e-mail address or a phone number attribute.</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Organisation unit contact</p></td>
+    <td><p>Receives program notifications via e-mail or text message.</p></td>
+    <td><p>To receive a program stage notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number.</p>
+    <p>The system selects the same organisation unit as where the event took place.</p></td>
+    </tr>
+    <tr class="odd">
+    <td>Users at organisation unit:</td>
+    <td><p>All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system.</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>User group</p></td>
+    <td><p>All members of the selected user group receive the program notifications via the internal DHIS2 messaging system</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Limit To Hierarchy</p></td>
+    <td><p>Send notification only to those users who belong to any of the organisation unit in the hierarchy.</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="even">
+    <td><p>Parent OrgUnit Only</p></td>
+    <td><p>Send notification only to those users who belong to parent organisation unit.</p></td>
+    <td><p>-</p></td>
+    </tr>
+    <tr class="odd">
+    <td><p>Data Element</p></td>
+    <td><p>Data Element associated with ProgramStage can be selected as recipient.</p></td>
+    <td><p>Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL.</p></td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+9.  Click **Save**.
+
+
+### Reference information: Program notification parameters
+
+<!--DHIS2-SECTION-ID:reference_information_event_program_notification_parameters-->
+
+<table>
+<caption>Program notification parameters to use in program notifications</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Notification type</p></th>
+<th><p>Variable name</p></th>
+<th><p>Variable code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Program</p></td>
+<td><p>Current date</p></td>
+<td><pre><code>V{current_date}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Days since enrollment date</p></td>
+<td><pre><code>V{days_since_enrollment_date}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Enrollment date</p></td>
+<td><pre><code>V{enrollment_date}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Incident date</p></td>
+<td><pre><code>V{incident_date}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Organisation unit name</p></td>
+<td><pre><code>V{org_unit_name}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Program name</p></td>
+<td><pre><code>V{program_name}</code></pre></td>
+</tr>
+<tr class="odd">
+<td><p>Program stage</p></td>
+<td><p>Current date</p></td>
+<td><pre><code>V{current_date}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Days since due date</p></td>
+<td><pre><code>V{days_since_due_date}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Days until due date</p></td>
+<td><pre><code>V{days_until_due_date}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Due date</p></td>
+<td><pre><code>V{due_date}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Organisation unit name</p></td>
+<td><pre><code>V{org_unit_name}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Program name</p></td>
+<td><pre><code>V{program_name}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Program stage name</p></td>
+<td><pre><code>V{program_stage_name}</code></pre></td>
+</tr>
+</tbody>
+</table>
 
 ## Configure program indicators
 
@@ -735,7 +1917,7 @@ expression and filter. The order of evaluation is:
 <li><p>Average (Yes/No)</p></li>
 <li><p>Count</p></li>
 <li><p>Custom</p>
-<p>The &quot;custom&quot; aggregation type allows you to specify the aggregation type in-line in the expression. All other aggregation types are applied to the entire expression.</p>
+<p>The &quot;custom&quot; aggregation type allows you to specify the aggregation type in-line in the expression. All other aggregation  types are applied to the entire expression.</p>
 <p>Using the &quot;custom&quot; aggregation type might lead to an exception of the order of evaluation described above where individual parts of the expression can be evaluated and aggregated, as opposed to the entire expression being evaluated prior to aggregation.</p></li>
 <li><p>Default</p></li>
 <li><p>Max</p></li>
