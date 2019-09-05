@@ -870,10 +870,8 @@ program. A program needs several types of metadata that you create in the **Main
         </tr>
         <tr class="odd">
             <td>
-                <strong
-                    >Maximum number of tracked entity instances to return in
-                    search</strong
-                >
+                <strong>Maximum number of tracked entity instances to return in
+                    search</strong>
             </td>
             <td>
                 <p>
@@ -918,8 +916,7 @@ program. A program needs several types of metadata that you create in the **Main
         </tr>
         <tr class="odd">
             <td>
-                <strong>Only enroll once (per tracked entity instance lifetime)</strong
-                >
+                <strong>Only enroll once (per tracked entity instance lifetime)</strong>
             </td>
             <td>
                 <p>
@@ -1142,7 +1139,7 @@ The number of days to repeat the repeatable program stage.
                 <td>
                     <p>
                         Clear check box to prevent creating an event of this program
-                        stage automatically when a entity enroll in the program.
+                        stage automatically when a entity is enrolled in the program.
                     </p>
                 </td>
             </tr>
@@ -1212,10 +1209,8 @@ The number of days to repeat the repeatable program stage.
             <tr class="even">
                 <td>
                     <p>
-                        <strong
-                            >Ask user to complete program when stage is
-                            completed</strong
-                        >
+                        <strong>Ask user to complete program when stage is
+                            completed</strong>
                     </p>
                 </td>
                 <td>
@@ -1228,10 +1223,8 @@ The number of days to repeat the repeatable program stage.
             <tr class="odd">
                 <td>
                     <p>
-                        <strong
-                            >Ask user to create new event when stage is
-                            complete</strong
-                        >
+                        <strong>Ask user to create new event when stage is
+                            complete</strong>
                     </p>
                 </td>
                 <td>
