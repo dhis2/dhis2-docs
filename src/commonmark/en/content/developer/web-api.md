@@ -13006,28 +13006,100 @@ case of GenericHttpGateway to send one or more parameter as http header.
 *GenericHttp*
 
     {
-      "name" : "generic",
-      "messageParameter": "message",
-      "recipientParameter": "msisdn",
-      "urlTemplate": "http://localhost:template",
-      "useGet":"true",
+      "name": "Generic",
+	  "configurationTemplate": "{\"to\": \"${recipients}\",\"body\": \"${text}\"}",
+	  "useGet": false,
+	  "contentType": "APPLICATION_JSON",
+	  "urlTemplate":"https://samplegateway.com/messages",
       "parameters": [
         {
-          "key": "username",
-          "value": "user12",
-          "classified": "false",
-          "header": "false"
+            "header": true,
+			"encode": false,
+			"key": "username",
+			"value": "user_uio",
+			"confidential": true
         },
         {
-          "key": "password",
-          "value": "XXX",
-          "classified": "true",
-        		"header": "false"
+            "header": true,
+			"encode": false,
+			"key": "password",
+			"value": "123abcxyz",
+			"confidential": true
         }
-      ]
+      ],
+      "isDefault": false
     }
 
-In generic http gateway any number of parameters can be added. Header can be set to true if any of them is required to be sent in http header.
+In generic http gateway any number of parameters can be added. 
+
+<table>
+<caption>Generic SMS gateway parameters</caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>name</td>
+<td>String</td>
+<td>name of the gateway</td>
+</tr>
+<tr class="even">
+<td>configurationTemplate</td>
+<td>String</td>
+<td>Configuration template which get populated with parameter values. For example configuration template given above will be populated like this { "to": "+27001234567", "body": "Hello World!"}</td>
+</tr>
+<tr class="odd">
+<td>useGet</td>
+<td>Boolean</td>
+<td>Http POST nethod will be used by default. In order to change it and Http GET, user can set useGet flag to true.</td>
+</tr>
+<tr class="even">
+<td>contentType</td>
+<td>String</td>
+<td>Content type specify what type of data is being sent. Supported types are APPLICATION_JSON, APPLICATION_XML, FORM_URL_ENCODED, TEXT_PLAIN</td>
+</tr>
+<tr class="odd">
+<td>urlTemplate</td>
+<td>String</td>
+<td>Url template</td>
+</tr>
+<tr class="even">
+<td>header</td>
+<td>Boolean</td>
+<td>If parameter needs to be sent in Http headers</td>
+</tr>
+<tr class="odd">
+<td>encode</td>
+<td>Boolean</td>
+<td>If parameter needs to be encoded</td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>String</td>
+<td>parameter key</td>
+</tr>
+<tr class="odd">
+<td>value</td>
+<td>String</td>
+<td>parameter value</td>
+</tr>
+<tr class="even">
+<td>confidential</td>
+<td>Boolean</td>
+<td>If parameter is confidential. This parameter will not be exposed through API</td>
+</tr>
+</tbody>
+</table>
+
 HTTP.OK will be returned if configurations are saved successfully otherwise *Error*
 
 ## SMS Commands
