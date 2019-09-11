@@ -104,6 +104,8 @@ e.g. using submodules, the equivalent to the above, for dhis2_android_user_man_I
 !SUBMODULE "dhis2-android-capture-app" "master" "docs/android-tracker-capture-app.md"
 ```
 
+These `!SUBMODULE` directives would, in this example, point to the respective chapters inside a `docs` folder within the `https://github.com/dhis2/dhis2-android-capture-app` repository.
+
 > **NOTE**
 >
 > These are not true _git submodules_, as they are simply cloned during the build process, and deleted on completion.
