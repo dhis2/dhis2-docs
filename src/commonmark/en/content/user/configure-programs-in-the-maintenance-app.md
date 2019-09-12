@@ -1102,7 +1102,7 @@ program. A program needs several types of metadata that you create in the **Main
         2. Click the section so it is highlighted by a black border.
         3. Add data elements by clicking the plus sign next to the name of the data elements you wish to add.
         4. Repeat above steps until you have all the sections you need.
-        5. To change the section order: click the options menu, then drag the section to the place you want.  
+            To change the section order: click the options menu, then drag the section to the place you want.  
 	
     4. To create a **Custom** registration form: Use the WYSIWYG editor to create a completely customized form. If you select Source, you can paste HTML code directly in the editing area. You can also insert images for example flags or logos.
 
