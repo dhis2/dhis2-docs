@@ -6012,46 +6012,14 @@ This will give you a response containing a list of approval parameters and statu
     ]
 
 The returned parameters are:
-
-<table>
-<caption>Bulk data approval returned parameters</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Return Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>aoc</td>
-<td>Attribute option combination identifier</td>
-</tr>
-<tr class="even">
-<td>pe</td>
-<td>Period identifier</td>
-</tr>
-<tr class="odd">
-<td>ou</td>
-<td>Organisation Unit identifier</td>
-</tr>
-<tr class="even">
-<td>permissions</td>
-<td>The permissions mayApprove, mayUnapprove, mayAccept, mayUnaccept, and mayReadData (same definitions as for get single approval status.)</td>
-</tr>
-<tr class="odd">
-<td>state</td>
-<td>One of the data approval states (same as for get single approval status.)</td>
-</tr>
-<tr class="even">
-<td>wf</td>
-<td>Data approval workflow identifier</td>
-</tr>
-</tbody>
-</table>
+| Return Parameter | Description |
+| :- | :--- |
+| aoc | Attribute option combination identifier |
+| pe | Period identifier |
+| ou | Organisation Unit identifier |
+| permissions | The permissions: 'mayApprove', 'mayUnapprove', 'mayAccept', 'mayUnaccept', and 'mayReadData' (same definitions as for get single approval status.) |
+| state | One of the data approval states (same as for get single approval status.) |
+| wf | Data approval workflow identifier |
 
 ### Approve data
 
