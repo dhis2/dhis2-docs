@@ -322,6 +322,8 @@ In the event list you will be able to view the assignee per event. Moreover, you
 
 ## Tracker programs
 
+<!--DHIS2-SECTION-ID:capture_tracker_programs-->
+
 The Capture app doesn't support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
 
 ![tracker program](resources/images/capture_app/tracker_program.png)
