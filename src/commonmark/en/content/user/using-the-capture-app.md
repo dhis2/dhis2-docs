@@ -2,6 +2,14 @@
 
 <!--DHIS2-SECTION-ID:capture_app-->
 
+## About the Capture app
+
+<!--DHIS2-SECTION-ID:about_capture_app-->
+
+The Capture app serves as a replacement for the Event Capture app. In the future, the intention is to incorporate the Tracker Capture app and the Data Entry app into the Capture app.
+
+In the Capture app you register events that occurred at a particular time and place. An event can happen at any given point in time. This stands in contrast to routine data, which can be captured for predefined, regular intervals. Events are sometimes called cases or records. In DHIS2, events are linked to a program. The Capture app lets you select the organisation unit and program and specify a date when a event happened, before entering information for the event.
+
 ## Register an event
 
 <!--DHIS2-SECTION-ID:capture_register_event-->
@@ -176,7 +184,7 @@ assigned to a program stage.
 
 > Note: You can reorganize the order of the data elements by draging and dropping them in the list.
 
-## Filter an evnet list
+## Filter an event list
 
 <!--DHIS2-SECTION-ID:capture_filter_event_list-->
 
@@ -196,7 +204,7 @@ assigned to a program stage.
 
 > Note: Data elements will have slightly diffrent way that they are filtered. A **Number** data element will for instance show a rang to filter on while a **Text** data element will ask you to enter a search query to filter on.
 
-## Sort an evnet list
+## Sort an event list
 
 <!--DHIS2-SECTION-ID:capture_sort_event_list-->
 
@@ -235,3 +243,85 @@ assigned to a program stage.
     ![download event list](resources/images/capture_app/download_event_list.png)
 
 > Note: You can download an event list in JSON, XML or CSV formats.
+
+## Working lists
+
+<!--DHIS2-SECTION-ID:capture_working_lists-->
+
+Working lists are list templates with predefined filters, columns and event sort order.
+
+### View working list
+
+1. Select an organisation unit.
+
+2. Select a program that has a working list associated with it.
+
+3. The working list templates should be available above the event list itself.
+
+   ![available working lists](resources/images/capture_app/working_lists_available.png)
+
+4. Click on a working list template button to activate it.
+
+    ![working list active](resources/images/capture_app/working_list_active.png)
+
+## User assignment
+
+<!--DHIS2-SECTION-ID:capture_user_assignment-->
+
+Events can be assigned to users. This feature must be enabled per program.
+
+### Assigning new events
+
+<!--DHIS2-SECTION-ID:capture_user_assignment_new-->
+
+1. Select an organisation unit and a program with user assignment enabled.
+
+2. Click **New Event** in the upper right corner.
+
+3. You will find the assignee section near the bottom of the data entry page. Search for and select the user you would like to assign the event to. The assignee will be preserved when you save the event.
+
+    ![new user assignment](resources/images/capture_app/user_assignment_new.png)
+
+    ![new user assignment selected](resources/images/capture_app/user_assignment_new_filled.png)
+
+### Change assignee
+
+<!--DHIS2-SECTION-ID:capture_user_assignment_edit-->
+
+1. Select an organisation unit and a program with user assignment enabled.
+
+2. Click an event in the list
+
+3. In the right column you will find the assignee section.
+
+    ![edit user assignment](resources/images/capture_app/user_assignment_edit.png)
+
+4. Click the edit button, or the **Assign** button if the event is not currently assigned to anyone.
+
+    ![change user assignment button](resources/images/capture_app/user_assignment_edit_button.png)
+
+    ![add user assignment button](resources/images/capture_app/user_assignment_edit_add.png)
+
+5. Search for and select the user you would like to reassign the event to. The assignment is saved immediately.
+
+### Assignee in the event list
+
+<!--DHIS2-SECTION-ID:capture_user_assignment_event_list-->
+
+In the event list you will be able to view the assignee per event. Moreover, you can sort and filter the list by the assignee.
+
+#### Filter by assignee
+
+1. Click the **Assigned to** filter.
+
+    ![event list assigned to](resources/images/capture_app/user_assignment_event_list.png)
+
+2. Select your preferred assignee filter and then click update.
+
+    ![event list assigned to options](resources/images/capture_app/user_assignment_event_list_options.png)
+
+## Tracker programs
+
+The Capture app doesn't support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
+
+![tracker program](resources/images/capture_app/tracker_program.png)
