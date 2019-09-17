@@ -323,6 +323,7 @@ When choosing to open the registration form, the search values will
 automatically be filled into the registration form.
 
 ### Flagging tracked entity instance as potential duplicate
+
 When searching for tracked entity instances in the tracker capture app, the user
 will sometimes suspect that one or more of the search hits are duplicates of
 other tracked entity instances. The user has the option of clicking on the
@@ -331,11 +332,14 @@ other tracked entity instances. The user has the option of clicking on the
 Tracked entity instances flagged in this way will be marked as "possible duplicate"
 in the DHIS2 database. The flag indicates that the tracked entity instance is/has a
 duplicate. The presence of such a flag is visible to the user in two places. One is
-the result list itself(in this example Mark Robinson is already flagged as a potential
+the result list itself (in this example Mark Robinson is already flagged as a potential
 duplicate):
-![](resources/images/tracker_capture/tracker_capture_search_results.png)
+
+![Tracker capture search results](resources/images/tracker_capture/tracker_capture_search_results.png)
+
 The other place is within the tracked entity instance dashboard:
-![](resources/images/tracker_capture/tracked_entity_instance_flagged_as_duplicate.png)
+
+![Tracked entity instance flagged as duplicate](resources/images/tracker_capture/tracked_entity_instance_flagged_as_duplicate.png)
 
 In addition to informing users about the tracked entity instance potentially
 being a duplicate, the  flag will be used by the underlying system for finding and
