@@ -377,7 +377,7 @@
 <td>F_DATA_MART_ADMIN</td>
 </tr>
 <tr class="even">
-<td>Administrate data vizualiser</td>
+<td>Administrate data visualiser</td>
 <td>F_DV_ADMIN</td>
 </tr>
 <tr class="odd">
@@ -441,7 +441,7 @@
 <td>F_DATAADMIN_LOCK</td>
 </tr>
 <tr class="even">
-<td>Data Admin UnLocking</td>
+<td>Data Admin Unlocking</td>
 <td>F_DATAADMIN_UNLOCK</td>
 </tr>
 <tr class="odd">
