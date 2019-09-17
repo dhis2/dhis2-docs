@@ -11355,6 +11355,25 @@ The *metaData* section, *ou* object contains the identifiers of all organisation
 
 The *rows* section contains the enrollments produced by the query. Each row represents exactly one enrollment.
 
+### Support of analytics across tracked entity instance relationships with program indicators
+
+LUCIANO
+
+The non-aggregation enrollment analytics API also supports linking Program Indicators to Relationship Types, in order to show the result of a calculation of a specific Program Indicator applied to the related entities of the listed Tracked Entity Instance.
+
+![](resources/images/enrollments/enrollments-pi-relationship.jpg)
+
+For the Program Indicator/Relationship Type link to work, the `/api/32/analytics/enrollments/query` API requires an additional dimension which must include the chosen Relationship Type UID and the chosen Program Indicator UID:
+
+    /api/32/analytics/enrollments/query/<program-id>?dimension=<relationshiptype-id>.<programindicator-id>&...
+
+For example, to retrive a list of enrollemnts from the "WHO RMNCH Tracker" program for January 2019 and display the count of Malaria Cases linked to that Enrollemnt by "Malaria case linked to person" type of relationship, you can use the following query
+
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=mxZDvSZYxlw.nFICjJluo74&startDate=2019-01-01&endDate=2019-01-31    
+
+The API supports using Program Indicators which are not associated to the "main" Program (that is the Program UID specified after `/query/`).
+
+
 ## Org unit analytics
 
 <!--DHIS2-SECTION-ID:webapi_org_unit_analytics-->
