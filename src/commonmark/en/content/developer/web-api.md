@@ -5854,7 +5854,7 @@ This will give you a response something like this:
 The returned parameters are:
 
 <table>
-<caption>Data approval query parameters</caption>
+<caption>Data approval returned parameters</caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 75%" />
@@ -5968,6 +5968,58 @@ from the following
     resource:
 
     GET api/dataApprovals/categoryOptionCombos?wf=rIUL3hYOjJc&pe=201801&ou=YuQRtpLP10I
+
+### Bulk get approval status
+
+To get a list of multiple approval statuses, you can issue a GET request similar to this:
+
+    GET http://server.com/api/dataApprovals/multiple?wf=rIUL3hYOjJc&pe=201801,201802&ou=YuQRtpLP10I
+
+The parameters wf, pe, ou, and aoc are the same as for getting a single approval status, except that you can provide a comma-separated list of one or more values for each parameter.
+
+This will give you a response containing a list of approval parameters and statuses, something like this:
+
+    [
+      {
+          aoc: "HllvX50cXC0",
+          pe: "201801",
+          level: "KaTJLhGmU95",
+          ou: "YuQRtpLP10I",
+          permissions: {
+              mayApprove: false,
+              mayUnapprove: true,
+              mayAccept: true,
+              mayUnaccept: false,
+              mayReadData: true
+          },
+          state: "APPROVED_HERE",
+          wf: "rIUL3hYOjJc"
+      },
+      {
+          aoc: "HllvX50cXC0",
+          pe: "201802",
+          ou: "YuQRtpLP10I",
+          permissions: {
+              mayApprove: true,
+              mayUnapprove: false,
+              mayAccept: false,
+              mayUnaccept: false,
+              mayReadData: true
+          },
+          state: "UNAPPROVED_READY",
+          wf: "rIUL3hYOjJc"
+      }
+    ]
+
+The returned parameters are:
+| Return Parameter | Description |
+| :- | :--- |
+| aoc | Attribute option combination identifier |
+| pe | Period identifier |
+| ou | Organisation Unit identifier |
+| permissions | The permissions: 'mayApprove', 'mayUnapprove', 'mayAccept', 'mayUnaccept', and 'mayReadData' (same definitions as for get single approval status.) |
+| state | One of the data approval states (same as for get single approval status.) |
+| wf | Data approval workflow identifier |
 
 ### Approve data
 
