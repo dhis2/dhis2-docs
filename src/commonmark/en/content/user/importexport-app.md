@@ -27,7 +27,11 @@ which can be found below.
 
 ## Importing data
 
+<!--DHIS2-SECTION-ID:importing_data-->
+
 ### Import progress logger
+
+<!--DHIS2-SECTION-ID:import_process_logger-->
 
 No matter what you import ("Metadata", "Data", "Events" or "GML" data),
 you can always view the progress of the import by opening the logger at the
@@ -41,7 +45,17 @@ bottom of the screen.
 
 ![](resources/images/import_export/logger-close.png)
 
+### Metadata Import Summaries
+
+<!--DHIS2-SECTION-ID:metadata_import_summaries-->
+
+On import request completion, we show import summaries above the import form. Any conflicts or errors are shown in a paginated table under totals.
+
+![](resources/images/import_export/import_summary.png)
+
 ### Metadata Import
+
+<!--DHIS2-SECTION-ID:metadata_import-->
 
 Metadata Import can be accessed from the sidebar by clicking on
 Metadata Import.
@@ -92,6 +106,8 @@ Metadata Import.
 > You can control this using **Reference Mode** option available under **MORE OPTIONS**, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
 
 #### Matching Identifiers in DXF2
+
+<!--DHIS2-SECTION-ID:matching_identifiers_in_dxf2-->
 
 The DXF2 format currently support matching for two identifiers, the
 internal DHIS2 identifier (known as a UID), and also using an external
@@ -194,14 +210,6 @@ Import.
 
 1.  Click on the **Import** button which will upload the file and start the
     importing process.
-
-## Metadata Import Summaries
-
-<!--DHIS2-SECTION-ID:metadata_import_summaries-->
-
-On import request completion, we show import summaries above the import form. Any conflicts or errors are shown in a paginated table under totals.
-
-![](resources/images/import_export/import_summary.png)
 
 ## Exporting data
 
@@ -344,6 +352,8 @@ belong together with the main object.
 
 ### Data export
 
+<!--DHIS2-SECTION-ID:data_export-->
+
 Data export can be accessed from the sidebar by clicking on Data
 export.
 
@@ -371,6 +381,8 @@ export.
 9.  The exported file is downloaded to your local computer.
 
 ### Event export
+
+<!--DHIS2-SECTION-ID:event_export-->
 
 Event export can be accessed from the sidebar by clicking on Event
 export.
