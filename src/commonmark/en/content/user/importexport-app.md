@@ -31,7 +31,7 @@ which can be found below.
 
 ### Import progress logger
 
-<!--DHIS2-SECTION-ID:import_process_logger-->
+<!--DHIS2-SECTION-ID:import_progress_logger-->
 
 No matter what you import ("Metadata", "Data", "Events" or "GML" data),
 you can always view the progress of the import by opening the logger at the
@@ -45,11 +45,12 @@ bottom of the screen.
 
 ![](resources/images/import_export/logger-close.png)
 
-### Metadata Import Summaries
+### Import Summaries
 
 <!--DHIS2-SECTION-ID:metadata_import_summaries-->
 
-On import request completion, we show import summaries above the import form. Any conflicts or errors are shown in a paginated table under totals.
+On import request completion, we show import summaries above the import form.
+Any conflicts or errors are shown in a paginated table under totals.
 
 ![](resources/images/import_export/import_summary.png)
 
