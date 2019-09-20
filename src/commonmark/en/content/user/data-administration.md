@@ -625,6 +625,14 @@ Some aspects of the data synchronization feature to be aware of:
     Therefore, if you need to synchronise the old data, you should change 
     the SettingKey.
 
+  - Both, Tracker Programs and Event Programs synchronisation job supports 
+    paging in order to avoid timeouts and to deal with unstable network.
+    Default page size for "Event Programs Data Sync" job is set to 60. 
+    Default page size for "Tracker Programs Data Sync" job is set to 20.
+        
+    Default values can be overridden by using *syncTrackerPageSize* 
+    respectively *syncEventsPageSize* SettingKey.
+
 ## Metadata Synchronization Scheduling
 
 <!--DHIS2-SECTION-ID:dataAdmin_metaDataSync-->
