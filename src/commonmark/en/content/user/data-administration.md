@@ -663,7 +663,7 @@ Some aspects of the data synchronization feature to be aware of:
     program data, complete data set registrations) that were *last 
     changed before the specified date*. The SettingKey is used in the 
     synchronisation job all the time. Therefore, if you need to synchronise 
-    the old data, you should change the SettingKey.)
+    the old data, you should change the SettingKey.
     
   - Both, Tracker Programs and Event Programs synchronisation job supports 
     paging in order to avoid timeouts and to deal with unstable network.
