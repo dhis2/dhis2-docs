@@ -15376,6 +15376,12 @@ parameters can be used to specify the dimensions of the
     curl http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?height=200&width=200
       > image.jpg
 
+API also support *dimension* parameter. It can take three possible values and those are *small, medium or original*. Image type attributes will be stored in pre-generated sizes
+and will be furnished upon request based on the value of *dimension* parameter.
+
+    curl http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium
+      
+      
 #### Tracked entity instance query
 
 <!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_query-->
