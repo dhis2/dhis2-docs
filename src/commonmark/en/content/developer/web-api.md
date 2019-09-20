@@ -11357,8 +11357,6 @@ The *rows* section contains the enrollments produced by the query. Each row repr
 
 ### Support of analytics across tracked entity instance relationships with program indicators
 
-LUCIANO
-
 The non-aggregation enrollment analytics API also supports linking Program Indicators to Relationship Types, in order to show the result of a calculation of a specific Program Indicator applied to the related entities of the listed Tracked Entity Instance.
 
 ![](resources/images/enrollments/enrollments-pi-relationship.jpg)
