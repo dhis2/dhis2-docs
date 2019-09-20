@@ -18554,11 +18554,11 @@ To remove the JavaScript content you can use a DELETE-e "request.
 
 This section covers pull and push of data and metadata.
 
-### Data push
+### Data value push
 
 <!--DHIS2-SECTION-ID:webapi_sync_data_push-->
 
-To initiate a data push to a remote server one must first configure the
+To initiate a data value push to a remote server one must first configure the
 URL and credentials for the relevant server from System settings \>
 Synchronization, then make a POST request to the following resource:
 

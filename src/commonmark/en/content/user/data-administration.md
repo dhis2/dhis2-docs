@@ -562,7 +562,7 @@ DHIS2 provides synchronisation of data between remotely distributed
 instances and a central instance of DHIS2. This can be useful e.g. when
 you have deployed multiple stand-alone instances of DHIS2 which are
 required to submit data values to a central DHIS2 instance. Both tracker
-data and aggregate data synchronisation is supported..
+data and aggregate data synchronisation is supported.
 
 These are the steps to enable data synchronization:
 
@@ -573,8 +573,12 @@ These are the steps to enable data synchronization:
     the refresh, since this value is encrypted, so you can consider it
     saved.
 
-  - Using the Scheduler app, create a new job using the "Program Data
-    Synchronization". Make sure it is enabled when you finish.
+  - Using the Scheduler app, create a new job using the "Event Programs 
+    Data Sync" and/or "Tracker Programs Data Sync" job type. Make sure it 
+    is enabled when you finish. (Note: If the "Program Data Synchronization" 
+    job, available in previous versions, was set up in Scheduler app before, 
+    it was automatically replaced by the two new jobs "Event Programs Data Sync" 
+    and "Tracker Programs Data Sync" with the identical settings. )
 
 Some aspects of the data synchronization feature to be aware of:
 
@@ -610,7 +614,7 @@ Some aspects of the data synchronization feature to be aware of:
     job to run when there are few online users, then later change this
     to your own preference. If you do not want or need to synchronise all 
     the data, there is a possibility to <a href="#skip_changed_before">skip 
-    some of the data being synchronised</a>.  
+    some of the data being synchronised</a>.
 
     When DHIS2 synchronises tracker data, it determines the set of data
     to synchronise based on the last time it was synchronised. Each of
@@ -656,10 +660,18 @@ Some aspects of the data synchronization feature to be aware of:
   
     The *syncSkipSyncForDataChangedBefore* SettingKey can be used to skip 
     the synchronisation of all the data (data values, Event and Tracker 
-    program data, complete data set registrations) that were *last 
-    changed before the specified date*. The SettingKey is used in the 
-    synchronisation job all the time. Therefore, if you need to synchronise 
-    the old data, you should change the SettingKey.
+    program data) that were *last changed before the specified date*. 
+    The SettingKey is used in the synchronisation job all the time. 
+    Therefore, if you need to synchronise the old data, you should change 
+    the SettingKey.
+    
+  - Both, Tracker Programs and Event Programs synchronisation job supports 
+    paging in order to avoid timeouts and to deal with unstable network.
+    Default page size for "Event Programs Data Sync" job is set to 60. 
+    Default page size for "Tracker Programs Data Sync" job is set to 20.
+    
+    If default values do not fit your purpose, own page size can be specified 
+    via parameter in particular sync job in Scheduler app.
 
 ## Metadata Synchronization Scheduling
 
