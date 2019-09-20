@@ -258,11 +258,11 @@ Working lists are list templates with predefined filters, columns and event sort
 
 3. The working list templates should be available above the event list itself.
 
-   ![available working lists](resources/images/capture_app/working_lists_available.png)
+   ![](resources/images/capture_app/working_lists_available.png)
 
 4. Click on a working list template button to activate it.
 
-    ![working list active](resources/images/capture_app/working_list_active.png)
+    ![](resources/images/capture_app/working_list_active.png)
 
 ## User assignment
 
@@ -280,9 +280,9 @@ Events can be assigned to users. This feature must be enabled per program.
 
 3. You will find the assignee section near the bottom of the data entry page. Search for and select the user you would like to assign the event to. The assignee will be preserved when you save the event.
 
-    ![new user assignment](resources/images/capture_app/user_assignment_new.png)
+    ![](resources/images/capture_app/user_assignment_new.png)
 
-    ![new user assignment selected](resources/images/capture_app/user_assignment_new_filled.png)
+    ![](resources/images/capture_app/user_assignment_new_filled.png)
 
 ### Change assignee
 
@@ -294,13 +294,13 @@ Events can be assigned to users. This feature must be enabled per program.
 
 3. In the right column you will find the assignee section.
 
-    ![edit user assignment](resources/images/capture_app/user_assignment_edit.png)
+    ![](resources/images/capture_app/user_assignment_edit.png)
 
 4. Click the edit button, or the **Assign** button if the event is not currently assigned to anyone.
 
-    ![change user assignment button](resources/images/capture_app/user_assignment_edit_button.png)
+    ![](resources/images/capture_app/user_assignment_edit_button.png)
 
-    ![add user assignment button](resources/images/capture_app/user_assignment_edit_add.png)
+    ![](resources/images/capture_app/user_assignment_edit_add.png)
 
 5. Search for and select the user you would like to reassign the event to. The assignment is saved immediately.
 
@@ -314,11 +314,11 @@ In the event list you will be able to view the assignee per event. Moreover, you
 
 1. Click the **Assigned to** filter.
 
-    ![event list assigned to](resources/images/capture_app/user_assignment_event_list.png)
+    ![](resources/images/capture_app/user_assignment_event_list.png)
 
 2. Select your preferred assignee filter and then click update.
 
-    ![event list assigned to options](resources/images/capture_app/user_assignment_event_list_options.png)
+    ![](resources/images/capture_app/user_assignment_event_list_options.png)
 
 ## Tracker programs
 
@@ -326,4 +326,4 @@ In the event list you will be able to view the assignee per event. Moreover, you
 
 The Capture app doesn't support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
 
-![tracker program](resources/images/capture_app/tracker_program.png)
+![](resources/images/capture_app/tracker_program.png)
