@@ -2607,7 +2607,7 @@ looks like this:
 </tr>
 <tr class="odd">
 <td>7</td>
-<td>Rule type</td>
+<td>Rule type (ignored)</td>
 <td>No</td>
 <td>VALIDATION | SURVEILLANCE</td>
 <td>Type of validation rule.</td>
