@@ -2235,12 +2235,11 @@ the keys in the table down below.
 
 <!--DHIS2-SECTION-ID:webapi_csv_metadata_import-->
 
-DHIS2 supports import of metadata in the CSV format. Columns which are
-not required can be omitted in the CSV file, but the order will be
-affected. If you would like to specify columns which appear late in the
-order but not specify columns which appear early in the order you can
-include empty columns ("") for them. The following object types are
-supported:
+DHIS2 supports import of metadata in the CSV format, such as data elements, organisation units and validation rules. Properties for the various metadata objects are identified based on the column order/column index (see below for details). You can omit non-required object properties/columns, but since the column order is significant, an empty column must be included. In other words, if you would like to specify properties/columns which appear late in the column order but not specify certain columns which appear early in the order you can include empty/blank columns for them.
+
+The first row of the CSV file is considered to be a header and is ignored during import.
+
+The following object types are supported:
 
   - Data elements
 
@@ -2854,7 +2853,7 @@ The CSV format for these imports are the same
 <td>Stable code. Max 50 char.</td>
 </tr>
 <tr class="even">
-<td>4</td>
+<td>4UID</td>
 <td>Short name</td>
 <td>No</td>
 <td></td>
