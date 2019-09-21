@@ -2853,7 +2853,7 @@ The CSV format for these imports are the same
 <td>Stable code. Max 50 char.</td>
 </tr>
 <tr class="even">
-<td>4UID</td>
+<td>4</td>
 <td>Short name</td>
 <td>No</td>
 <td></td>
