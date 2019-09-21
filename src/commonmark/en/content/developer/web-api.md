@@ -2343,14 +2343,14 @@ listed in the following sections.
 </tr>
 <tr class="odd">
 <td>9</td>
-<td>Aggregation operator</td>
+<td>Aggregation type</td>
 <td>No</td>
 <td>SUM | AVERAGE | AVERAGE_SUM_ORG_UNIT | COUNT | STDDEV | VARIANCE | MIN | MAX | NONE</td>
-<td>Operator indicating how to aggregate data in the time dimension. Max 16 char.</td>
+<td>Aggregation type indicating how to aggregate data in various dimensions. Max 16 char.</td>
 </tr>
 <tr class="even">
 <td>10</td>
-<td>Category combination UID</td>
+<td>Category combination</td>
 <td>No</td>
 <td>UID</td>
 <td>UID of category combination. Will default to default category combination if not specified.</td>
@@ -2441,7 +2441,7 @@ you do not use which appear to the right of the ones
 </tr>
 <tr class="even">
 <td>4</td>
-<td>Parent UID</td>
+<td>Parent</td>
 <td>No</td>
 <td>UID</td>
 <td>UID of parent organisation unit.</td>
@@ -2603,28 +2603,28 @@ looks like this:
 <td>Importance</td>
 <td>No</td>
 <td>MEDIUM | HIGH | LOW</td>
-<td></td>
+<td>Importance of validation rule.</td>
 </tr>
 <tr class="odd">
 <td>7</td>
 <td>Rule type</td>
 <td>No</td>
 <td>VALIDATION | SURVEILLANCE</td>
-<td></td>
+<td>Type of validation rule.</td>
 </tr>
 <tr class="even">
 <td>8</td>
 <td>Operator</td>
 <td>No</td>
 <td>equal_to | not_equal_to | greater_than | greater_than_or_equal_to | less_than | less_than_or_equal_to | compulsory_pair | exclusive_pair</td>
-<td></td>
+<td>Expression operator.</td>
 </tr>
 <tr class="odd">
 <td>9</td>
 <td>Period type</td>
 <td>No</td>
 <td>Monthly | Daily | Weekly | Quarterly | SixMontly | Yearly</td>
-<td></td>
+<td>Period type.</td>
 </tr>
 <tr class="even">
 <td>10</td>
@@ -2642,10 +2642,10 @@ looks like this:
 </tr>
 <tr class="even">
 <td>12</td>
-<td>Left side null if blank</td>
+<td>Left side missing value strategy</td>
 <td>No</td>
-<td>false | true</td>
-<td>Boolean.</td>
+<td>SKIP_IF_ANY_VALUE_MISSING | SKIP_IF_ALL_VALUES_MISSING | NEVER_SKIP</td>
+<td>Behavior in case of missing values in left side expression.</td>
 </tr>
 <tr class="odd">
 <td>13</td>
@@ -2663,10 +2663,10 @@ looks like this:
 </tr>
 <tr class="odd">
 <td>15</td>
-<td>Right side null if blank</td>
+<td>Right side missing value strategy</td>
 <td>No</td>
-<td>false | true</td>
-<td>Boolean.</td>
+<td>SKIP_IF_ANY_VALUE_MISSING | SKIP_IF_ALL_VALUES_MISSING | NEVER_SKIP</td>
+<td>Behavior in case of missing values in right side expression.</td>
 </tr>
 </tbody>
 </table>
