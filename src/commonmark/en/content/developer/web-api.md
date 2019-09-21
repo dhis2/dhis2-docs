@@ -2239,25 +2239,62 @@ DHIS2 supports import of metadata in the CSV format, such as data elements, orga
 
 The first row of the CSV file is considered to be a header and is ignored during import.
 
-The following object types are supported:
+To upload metadata in CSV format you can make a POST request to the metadata endpoint:
 
-  - Data elements
+	/POST /api/metadata?classKey=<class-key>
 
-  - Data element groups
+The following object types are supported. The `classKey` query parameter is mandatory and found next to each object type in the table below.
 
-  - Category options
+<table>
+<caption>Object types and keys</caption>
+<tr>
+<th>Object type</th>
+<th>Class key</th>
+</tr>
+<tr>
+<td>Data elements</td>
+<td>DATA_ELEMENT</td>
+</tr>
+<tr>
+<td>Data element groups</td>
+<td>DATA_ELEMENT_GROUP
+</tr>
+<tr>
+<td>Category options</td>
+<td>CATEGORY_OPTION</td>
+</tr>
+<tr>
+<td>Category option groups</td>
+<td>CATEGORY_OPTION_GROUP</td>
+</tr>
+<tr>
+<td>Organisation units</td>
+<td>ORGANISATION_UNIT</td>
+</tr>
+<tr>
+<td>Organisation unit groups</td>
+<td>ORGANISATION_UNIT_GROUP</td>
+</tr>
+<tr>
+<td>Validation rules</td>
+<td>VALIDATION_RULE</td>
+</tr>
+<tr>
+<td>Option sets</td>
+<td>OPTION_SET</td>
+</tr>
+<tr>
+<td>Translations</td>
+<td>TRANSLATION</td>
+</tr>
+</table>
 
-  - Category option groups
+Tip: If using `curl`, the `--data-binary` option should be used as it preserves line breaks and newlines, which is essential for CSV data.
 
-  - Organisation units
+As an example, to upload a file of data elements in CSV format with `curl` you can use the following command:
 
-  - Organisation unit groups
-
-  - Validation rules
-
-  - Translations
-
-  - Option sets
+	curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT" /
+	-H "Content-Type:application/csv" -u admin:district -v
 
 The formats for the currently supported object types for CSV import are
 listed in the following sections.
