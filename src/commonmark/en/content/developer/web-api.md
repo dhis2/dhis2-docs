@@ -2241,9 +2241,9 @@ The first row of the CSV file is considered to be a header and is ignored during
 
 To upload metadata in CSV format you can make a POST request to the metadata endpoint:
 
-	/POST /api/metadata?classKey=<class-key>
+    POST /api/metadata?classKey=<class-key>
 
-The following object types are supported. The `classKey` query parameter is mandatory and found next to each object type in the table below.
+The following object types are supported. The `classKey` query parameter is mandatory and can be found next to each object type in the table below.
 
 <table>
 <caption>Object types and keys</caption>
@@ -2296,8 +2296,7 @@ As an example, to upload a file of data elements in CSV format with `curl` you c
 	curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT" /
 	-H "Content-Type:application/csv" -u admin:district -v
 
-The formats for the currently supported object types for CSV import are
-listed in the following sections.
+The formats for the currently supported object types for CSV import are listed in the following sections.
 
 ### Data elements
 
