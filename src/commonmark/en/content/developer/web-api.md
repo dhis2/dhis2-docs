@@ -2241,7 +2241,7 @@ The first row of the CSV file is considered to be a header and is ignored during
 
 To upload metadata in CSV format you can make a POST request to the metadata endpoint:
 
-    POST /api/metadata?classKey=<class-key>
+    POST /api/metadata?classKey={class-key}
 
 The following object types are supported. The `classKey` query parameter is mandatory and can be found next to each object type in the table below.
 
