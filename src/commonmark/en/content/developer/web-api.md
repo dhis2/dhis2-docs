@@ -2237,13 +2237,13 @@ the keys in the table down below.
 
 DHIS2 supports import of metadata in the CSV format, such as data elements, organisation units and validation rules. Properties for the various metadata objects are identified based on the column order/column index (see below for details). You can omit non-required object properties/columns, but since the column order is significant, an empty column must be included. In other words, if you would like to specify properties/columns which appear late in the column order but not specify certain columns which appear early in the order you can include empty/blank columns for them.
 
-The first row of the CSV file is considered to be a header and is ignored during import.
+The first row of the CSV file is considered to be a header and is ignored during import. The _comma_ character should be used as text delimiter. Text which contains commas must be enclosed in _double quotes_.
 
 To upload metadata in CSV format you can make a POST request to the metadata endpoint:
 
-	/POST /api/metadata?classKey=<class-key>
+    POST /api/metadata?classKey=<class-key>
 
-The following object types are supported. The `classKey` query parameter is mandatory and found next to each object type in the table below.
+The following object types are supported. The `classKey` query parameter is mandatory and can be found next to each object type in the table below.
 
 <table>
 <caption>Object types and keys</caption>
@@ -2296,8 +2296,7 @@ As an example, to upload a file of data elements in CSV format with `curl` you c
 	curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT" /
 	-H "Content-Type:application/csv" -u admin:district -v
 
-The formats for the currently supported object types for CSV import are
-listed in the following sections.
+The formats for the currently supported object types for CSV import are listed in the following sections.
 
 ### Data elements
 
