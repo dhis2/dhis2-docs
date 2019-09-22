@@ -1158,9 +1158,7 @@ using the ':' operator.
 
     /api/26/dataSets?fields=:all,!organisationUnits
 
-**Example**: Include only id, name and the collection of organisation
-units from a data set, but exclude the id from organisation
-    units:
+**Example**: Include only id, name and the collection of organisation units from a data set, but exclude the id from organisation units:
 
     /api/26/dataSets/BfMAe6Itzgt?fields=id,name,organisationUnits[:all,!id]
 
@@ -2241,7 +2239,7 @@ The first row of the CSV file is considered to be a header and is ignored during
 
 To upload metadata in CSV format you can make a POST request to the metadata endpoint:
 
-    POST /api/metadata?classKey={class-key}
+    POST /api/metadata?classKey=CLASS-KEY
 
 The following object types are supported. The `classKey` query parameter is mandatory and can be found next to each object type in the table below.
 
@@ -2294,7 +2292,7 @@ Tip: If using `curl`, the `--data-binary` option should be used as it preserves 
 As an example, to upload a file of data elements in CSV format with `curl` you can use the following command:
 
 	curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT" /
-	-H "Content-Type:application/csv" -u admin:district -v
+	-H "Content-Type:application/csv" -u admin:district
 
 The formats for the currently supported object types for CSV import are listed in the following sections.
 
