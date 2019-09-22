@@ -2237,7 +2237,7 @@ the keys in the table down below.
 
 DHIS2 supports import of metadata in the CSV format, such as data elements, organisation units and validation rules. Properties for the various metadata objects are identified based on the column order/column index (see below for details). You can omit non-required object properties/columns, but since the column order is significant, an empty column must be included. In other words, if you would like to specify properties/columns which appear late in the column order but not specify certain columns which appear early in the order you can include empty/blank columns for them.
 
-The first row of the CSV file is considered to be a header and is ignored during import.
+The first row of the CSV file is considered to be a header and is ignored during import. The _comma_ character should be used as text delimiter.
 
 To upload metadata in CSV format you can make a POST request to the metadata endpoint:
 
