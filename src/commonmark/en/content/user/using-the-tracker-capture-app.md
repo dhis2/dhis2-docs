@@ -246,6 +246,27 @@ Lists can also be downloaded or printed.
 
 ![](resources/images/tracker_capture/tracker_capture_lists_download.png)
 
+#### Custom predefined lists
+
+If the program has any custom tracked entity filters associated with it,
+these will take the place of the four predefined lists mentioned above.
+The predefined lists will when well configured be an effective way to find
+or work with the data relevant for the user in that program.
+
+Working lists can be defined with a wide variety of options, here are some
+examples:
+
+- Display all TEIs with at least one event in a given program stage that
+- has a due date on the current date.
+- Display all TEIs that has at least one event that is assigned to the
+- logged in user.
+- Display all TEIs that is active, but is not assigned to any user.
+
+![Predefined working lists in tracker capture](resources/images/tracker_capture/predefined_working_list_based_on_user_assignment.png)
+
+See the API documentation for a full list of functionality supported for
+these predefined tracked entity instance filters.
+
 ### Search
 
 <!--DHIS2-SECTION-ID:advanced_tracked_entity_instance_search-->
