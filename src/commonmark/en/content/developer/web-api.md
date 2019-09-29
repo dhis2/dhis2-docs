@@ -123,23 +123,29 @@ the grant types.
 An OAuth2 client can be added through the Web API. As an example we can
 send a payload like this:
 
-    {
-       "name" : "OAuth2 Demo Client",
-       "cid" : "demo",
-       "secret" : "1e6db50c-0fee-11e5-98d0-3c15c2c6caf6",
-       "grantTypes" : [
-          "password",
-          "refresh_token",
-          "authorization_code"
-       ],
-       "redirectUris" : [
-          "http://www.example.org"
-       ]
-    }
+```json
+{
+   "name" : "OAuth2 Demo Client",
+   "cid" : "demo",
+   "secret" : "1e6db50c-0fee-11e5-98d0-3c15c2c6caf6",
+   "grantTypes" : [
+	  "password",
+	  "refresh_token",
+	  "authorization_code"
+   ],
+   "redirectUris" : [
+	  "http://www.example.org"
+   ]
+}
+```
 
-    SERVER="https://play.dhis2.org/dev"
-    curl -X POST -H "Content-Type: application/json" -d @client.json
-      -u admin:district $SERVER/api/oAuth2Clients
+The payload can be sent with the following command:
+
+```bash
+SERVER="https://play.dhis2.org/dev"
+curl -X POST -H "Content-Type: application/json" -d @client.json
+  -u admin:district $SERVER/api/oAuth2Clients
+```
 
 We will use this client as the basis for our next grant type examples.
 
@@ -152,28 +158,34 @@ grant type is similar to basic authentication in the sense that it
 requires the client to collect the users username and password. As an
 example we can use our demo server:
 
-    SERVER="https://play.dhis2.org/dev"
-    SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
+```bash
+SERVER="https://play.dhis2.org/dev"
+SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
 
-    curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/token
-    -d grant_type=password -d username=admin -d password=district
+curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/token
+-d grant_type=password -d username=admin -d password=district
+```
 
 This will give you a response similar to this:
 
-    {
-       "expires_in" : 43175,
-       "scope" : "ALL",
-       "access_token" : "07fc551c-806c-41a4-9a8c-10658bd15435",
-       "refresh_token" : "a4e4de45-4743-481d-9345-2cfe34732fcc",
-       "token_type" : "bearer"
-    }
+```json
+{
+   "expires_in" : 43175,
+   "scope" : "ALL",
+   "access_token" : "07fc551c-806c-41a4-9a8c-10658bd15435",
+   "refresh_token" : "a4e4de45-4743-481d-9345-2cfe34732fcc",
+   "token_type" : "bearer"
+}
+```
 
 For now, we will concentrate on the **access\_token**, which is what we
 will use as our authentication (bearer) token. As an example we will get
 all data elements using our token:
 
-    SERVER="https://play.dhis2.org/dev"
-    curl -H "Authorization: Bearer 07fc551c-806c-41a4-9a8c-10658bd15435" $SERVER/api/26/dataElements.json
+```bash
+SERVER="https://play.dhis2.org/dev"
+curl -H "Authorization: Bearer 07fc551c-806c-41a4-9a8c-10658bd15435" $SERVER/api/26/dataElements.json
+```
 
 #### Grant type refresh\_token
 
@@ -186,12 +198,14 @@ can make another round trip to the server and use **refresh\_token**
 which allows you to get an updated token without needing to ask for the
 user credentials one more time.
 
-    SERVER="https://play.dhis2.org/dev"
-    SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
-    REFRESH_TOKEN="a4e4de45-4743-481d-9345-2cfe34732fcc"
+```bash
+SERVER="https://play.dhis2.org/dev"
+SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
+REFRESH_TOKEN="a4e4de45-4743-481d-9345-2cfe34732fcc"
 
-    curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/token
-    -d grant_type=refresh_token -d refresh_token=$REFRESH_TOKEN
+curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/token
+-d grant_type=refresh_token -d refresh_token=$REFRESH_TOKEN
+```
 
 The response will be exactly the same as when you get an token to start
 with.
@@ -211,9 +225,11 @@ Step 1: Using a browser visit this URL (if you have more than one
 redirect URIs, you might want to add
 \&redirect\_uri=http://www.example.org) :
 
-    SERVER="https://play.dhis2.org/dev"
+```bash
+SERVER="https://play.dhis2.org/dev"
 
-    $SERVER/uaa/oauth/authorize?client_id=demo&response_type=code
+$SERVER/uaa/oauth/authorize?client_id=demo&response_type=code
+```
 
 Step 2: After the user have successfully logged in and accepted your
 client access, it will redirect back to your redirect uri like this:
@@ -223,11 +239,13 @@ client access, it will redirect back to your redirect uri like this:
 Step 3: This step is similar to what we did in the password grant type,
 using the given code, we will now ask for a access token:
 
-    SERVER="https://play.dhis2.org/dev"
-    SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
+```bash
+SERVER="https://play.dhis2.org/dev"
+SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
 
-    curl -X POST -u demo:$SECRET -H "Accept: application/json" $SERVER/uaa/oauth/token
-      -d grant_type=authorization_code -d code=XYZ
+curl -X POST -u demo:$SECRET -H "Accept: application/json" $SERVER/uaa/oauth/token
+-d grant_type=authorization_code -d code=XYZ
+```
 
 ## Error and info messages
 
@@ -236,12 +254,14 @@ using the given code, we will now ask for a access token:
 The Web API uses a consistent format for all error/warning and
 informational messages:
 
-    {
-       "httpStatus" : "Forbidden",
-       "message" : "You don't have the proper permissions to read objects of this type.",
-       "httpStatusCode" : 403,
-       "status" : "ERROR"
-    }
+```json
+{
+  "httpStatus": "Forbidden",
+  "message": "You don't have the proper permissions to read objects of this type.",
+  "httpStatusCode": 403,
+  "status": "ERROR"
+}
+```
 
 Here we can see from the message that the user tried to access a
 resource I did not have access to. It uses the http status code 403, the
