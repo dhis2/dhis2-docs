@@ -233,6 +233,14 @@ Report will highlight all the **Program rule actions** which have ProgramRuleAct
 
 Report will highlight all the **Program rule actions** which have ProgramRuleActionType set to **HIDEPROGRAMSTAGE** but configuration does not provide any program stage id.
 
+### Invalid program indicator expression
+
+Reports all the violations in program indicator expression caused by invalid **DataElement** or invalid **TrackedEntityAttribute**.
+
+### Invalid program indicator filter expression
+
+Reports all the violations in program indicator filter expression caused by invalid **DataElement** or invalid **TrackedEntityAttribute**.
+
 ## Maintenance
 
 <!--DHIS2-SECTION-ID:data_admin_maintenance-->
