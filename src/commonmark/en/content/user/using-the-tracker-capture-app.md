@@ -481,8 +481,9 @@ Sometimes it might be nessascary to refer a patient to a different
     ****Report date****.
 
 5.  Click either **One-time referral** which will only refer TEI for one
-    single event or **Move permanently** which will move TEI and all its
-    future events permantly to the selected **Organisation Unit**.
+    single event or **Move permanently** which will move TEI ownership
+    to the selected **Organisation Unit**. Further access to the TEI
+    will be based on the ownership organisation unit.
 
 ### Mandatory data elements in events
 Some data elements in an event might be mandatory (marked with a red star next to the data element lable).
@@ -536,6 +537,27 @@ If user assignment is enabled, you will be able to assign a user to an event.
 ## Manage a TEI's enrollments
 
 <!--DHIS2-SECTION-ID:manage_tracked_entity_instance_enrollment-->
+The Enrollment widget gives access to information and functionality
+for the enrollment in the selected program.
+
+![Enrollments widget](resources/images/tracker_capture/enrollment_widget.png)
+
+### TEI ownership
+
+The current ownership of all enrollments in the selected program is displayed
+in the "Owned by" part of the enrollment widget. The ownership will always start
+out as the organisation unit that first enrolled the TEI into the given program.
+
+Ownership can be different for a TEIS different programs, for example one clinic can
+follow up a patient in HIV, while another clinic follows up the same patient in MCH.
+
+To update the ownership for a TEI/program combination, the user has to utilize the
+referral functionality and select the "Move permanently" option while referring.
+
+A user that has capture access to the organisation unit that is the current owner of the
+TEI/Program will have write access to all enrollments for that TEI/Program combination.
+A user that has search access to the organisation unit that is the current owner will have
+access to search and find the TEI/Program combindation.
 
 ### Deactivate a TEI's enrollment
 
