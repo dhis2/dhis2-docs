@@ -1348,7 +1348,7 @@ A specific example of posting the constant to the demo
 
 If everything went well, you should see an output similar to:
 
-``` json
+```json
 {
   "status":"SUCCESS",
   "importCount":{"imported":1,"updated":0,"ignored":0,"deleted":0},
@@ -1360,7 +1360,7 @@ The process will be exactly the same for updating, you make your changes
 to the JSON/XML payload, find out the *ID* of the constant, and then
 send a PUT request to the endpoint including ID:
 
-``` bash
+```bash
 curl -X PUT -d @pi.json -H "Content-Type: application/json"
 -u user:password http://server/api/26/constants/ID
 ```
@@ -3363,7 +3363,7 @@ two types of metadata.
 
 **Sample response:**
 
-```
+```json
 {
     "date": "2016-06-30T06:10:23.120+0000",
     "dataElements": [{
@@ -3486,7 +3486,7 @@ representation which will take us to
 <http://play.dhis2.org/demo/api/24/dataValueSets>. The format looks like
 this:
 
-``` xml
+```xml
 <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0" dataSet="dataSetID"
   completeDate="date" period="period" orgUnit="orgUnitID" attributeOptionCombo="aocID">
   <dataValue dataElement="dataElementID" categoryOptionCombo="cocID" value="1" comment="comment1"/>
@@ -3497,26 +3497,29 @@ this:
 
 JSON is supported in this format:
 
-    {
-      "dataSet": "dataSetID",
-      "completeDate": "date",
-      "period": "period",
-      "orgUnit": "orgUnitID",
-      "attributeOptionCombo", "aocID",
-      "dataValues": [
-        { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "1", "comment": "comment1" },
-        { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "2", "comment": "comment2" },
-        { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "3", "comment": "comment3" }
-      ]
-    }
+```json
+{
+  "dataSet": "dataSetID",
+  "completeDate": "date",
+  "period": "period",
+  "orgUnit": "orgUnitID",
+  "attributeOptionCombo", "aocID",
+  "dataValues": [
+    { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "1", "comment": "comment1" },
+    { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "2", "comment": "comment2" },
+    { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "3", "comment": "comment3" }
+  ]
+}
+```
 
-CSV is supported in this
-    format:
+CSV is supported in this format:
 
-    "dataelement","period","orgunit","catoptcombo","attroptcombo","value","storedby","lastupd","comment"
-    "dataElementID","period","orgUnitID","cocID","aocID","1","username","2015-04-01","comment1"
-    "dataElementID","period","orgUnitID","cocID","aocID","2","username","2015-04-01","comment2"
-    "dataElementID","period","orgUnitID","cocID","aocID","3","username","2015-04-01","comment3"
+```csv
+"dataelement","period","orgunit","catoptcombo","attroptcombo","value","storedby","lastupd","comment"
+"dataElementID","period","orgUnitID","cocID","aocID","1","username","2015-04-01","comment1"
+"dataElementID","period","orgUnitID","cocID","aocID","2","username","2015-04-01","comment2"
+"dataElementID","period","orgUnitID","cocID","aocID","3","username","2015-04-01","comment3"
+```
 
 *Note:* Please refer to the date and period section above for time
 formats.
@@ -3550,7 +3553,7 @@ cases of dysentery and 16 cases of cholera. We have now gathered enough
 information to be able to put together the XML data value set
 message:
 
-``` xml
+```xml
 <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0" dataSet="pBOMPrpg1QX"
   completeDate="2014-02-03" period="201401" orgUnit="DiszpKrYNg8">
   <dataValue dataElement="f7n9E0hX8qk" value="12"/>
@@ -3561,7 +3564,7 @@ message:
 
 In JSON format:
 
-``` json
+```json
 {
   "dataSet": "pBOMPrpg1QX",
   "completeDate": "2014-02-03",
@@ -6725,7 +6728,7 @@ user:
 
 A corresponding payload in JSON and POST command look like this:
 
-```
+```json
 {
   "subject": "Hey",
   "text": "How are you?",
@@ -6897,7 +6900,7 @@ message conversation. The resource is located
 The options for this resource is a list of users, user groups and
 organisation units. The request should look like this:
 
-```
+```json
 {
     "users": [
         {
@@ -6963,7 +6966,7 @@ attachment with the message.
 When creating a new message, the ids can be passed in the request body
 to link the uploaded files to the message being created.
 
-```
+```json
 {
   "subject": "Hey",
   "text": "How are you?",
@@ -9740,68 +9743,70 @@ you will get an analytics response in JSON
 
 The JSON response will look like this:
 
+```json
+{
+  "headers": [
     {
-        "headers": [
-            {
-                "name": "dx",
-                "column": "Data",
-                "meta": true,
-                "type": "java.lang.String"
-            },
-            {
-                "name": "pe",
-                "column": "Period",
-                "meta": true,
-                "type": "java.lang.String"
-            },
-            {
-                "name": "value",
-                "column": "Value",
-                "meta": false,
-                "type": "java.lang.Double"
-            }
-        ],
-        "height": 4,
-        "metaData": {
-            "pe": [
-                "2016Q1",
-                "2016Q2"
-            ],
-            "ou": [
-                "ImspTQPwCqd"
-            ],
-            "names": {
-                "2016Q1": "Jan to Mar 2016",
-                "2016Q2": "Apr to Jun 2016",
-                "FbKK4ofIv5R": "Measles Coverage <1 y",
-                "ImspTQPwCqd": "Sierra Leone",
-                "eTDtyyaSA7f": "Fully Immunized Coverage"
-            }
-        },
-        "rows": [
-            [
-                "eTDtyyaSA7f",
-                "2016Q2",
-                "81.1"
-            ],
-            [
-                "eTDtyyaSA7f",
-                "2016Q1",
-                "74.7"
-            ],
-            [
-                "FbKK4ofIv5R",
-                "2016Q2",
-                "88.9"
-            ],
-            [
-                "FbKK4ofIv5R",
-                "2016Q1",
-                "84.0"
-            ]
-        ],
-        "width": 3
+      "name": "dx",
+      "column": "Data",
+      "meta": true,
+      "type": "java.lang.String"
+    },
+    {
+      "name": "pe",
+      "column": "Period",
+      "meta": true,
+      "type": "java.lang.String"
+    },
+    {
+      "name": "value",
+      "column": "Value",
+      "meta": false,
+      "type": "java.lang.Double"
     }
+  ],
+  "height": 4,
+  "metaData": {
+    "pe": [
+      "2016Q1",
+      "2016Q2"
+    ],
+    "ou": [
+      "ImspTQPwCqd"
+    ],
+    "names": {
+      "2016Q1": "Jan to Mar 2016",
+      "2016Q2": "Apr to Jun 2016",
+      "FbKK4ofIv5R": "Measles Coverage <1 y",
+      "ImspTQPwCqd": "Sierra Leone",
+      "eTDtyyaSA7f": "Fully Immunized Coverage"
+    }
+  },
+  "rows": [
+    [
+      "eTDtyyaSA7f",
+      "2016Q2",
+      "81.1"
+    ],
+    [
+      "eTDtyyaSA7f",
+      "2016Q1",
+      "74.7"
+    ],
+    [
+      "FbKK4ofIv5R",
+      "2016Q2",
+      "88.9"
+    ],
+    [
+      "FbKK4ofIv5R",
+      "2016Q1",
+      "84.0"
+    ]
+  ],
+  "width": 3
+}
+```
 
 The response represents a table of dimensional data. The *headers* array
 gives an overview of which columns are included in the table and what
@@ -10624,93 +10629,136 @@ the
 
 The default response JSON format will look similar to this:
 
+```json
+{
+  "headers": [
     {
-        "headers": [
-        {
-            "name": "psi",
-            "column": "Event",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": false
-        },
-        {
-            "name": "ps",
-            "column": "Program stage",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": false
-        },
-        {
-            "name": "eventdate",
-            "column": "Event date",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": false
-        },
-        {
-            "name": "coordinates",
-            "column": "Coordinates",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": false
-        },
-        {
-            "name": "ouname",
-            "column": "Organisation unit name",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": false
-        },
-        {
-            "name": "oucode",
-            "column": "Organisation unit code",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": false
-        },
-        {
-            "name": "ou",
-            "column": "Organisation unit",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": false
-        },
-        {
-            "name": "oZg33kd9taw",
-            "column": "Gender",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": false
-        },
-        {
-            "name": "qrur9Dvnyt5",
-            "column": "Age",
-            "type": "java.lang.String",
-            "hidden": false,
-            "meta": false
-        } ],
-        "metaData": {
-            "names": {
-                "qrur9Dvnyt5": "Age",
-                "eBAyeGv0exc": "Inpatient morbidity and mortality",
-                "ImspTQPwCqd": "Sierra Leone",
-                "O6uvpzGd5pu": "Bo",
-                "YuQRtpLP10I": "Badjia",
-                "oZg33kd9taw": "Gender"
-            },
-            "ouHierarchy": {
-                "YuQRtpLP10I": "/ImspTQPwCqd/O6uvpzGd5pu"
-            },
-        },
-        "width": 8,
-        "height": 4,
-        "rows": [
-            ["yx9IDINf82o", "Zj7UnCAulEk", "2016-08-05", "[5.12, 1.23]", "Ngelehun", "OU_559", "YuQRtpLP10I", "Female", "50"],
-            ["IPNa7AsCyFt", "Zj7UnCAulEk", "2016-06-12", "[5.22, 1.43]", "Ngelehun", "OU_559", "YuQRtpLP10I", "Female", "50"],
-            ["ZY9JL9dkhD2", "Zj7UnCAulEk", "2016-06-15", "[5.42, 1.33]", "Ngelehun", "OU_559", "YuQRtpLP10I", "Female", "50"],
-            ["MYvh4WAUdWt", "Zj7UnCAulEk", "2016-06-16", "[5.32, 1.53]", "Ngelehun", "OU_559", "YuQRtpLP10I", "Female", "50"]
-        ]
+      "name": "psi",
+      "column": "Event",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": false
+    },
+    {
+      "name": "ps",
+      "column": "Program stage",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": false
+    },
+    {
+      "name": "eventdate",
+      "column": "Event date",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": false
+    },
+    {
+      "name": "coordinates",
+      "column": "Coordinates",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": false
+    },
+    {
+      "name": "ouname",
+      "column": "Organisation unit name",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": false
+    },
+    {
+      "name": "oucode",
+      "column": "Organisation unit code",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": false
+    },
+    {
+      "name": "ou",
+      "column": "Organisation unit",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": false
+    },
+    {
+      "name": "oZg33kd9taw",
+      "column": "Gender",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": false
+    },
+    {
+      "name": "qrur9Dvnyt5",
+      "column": "Age",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": false
     }
+  ],
+  "metaData": {
+    "names": {
+      "qrur9Dvnyt5": "Age",
+      "eBAyeGv0exc": "Inpatient morbidity and mortality",
+      "ImspTQPwCqd": "Sierra Leone",
+      "O6uvpzGd5pu": "Bo",
+      "YuQRtpLP10I": "Badjia",
+      "oZg33kd9taw": "Gender"
+    },
+    "ouHierarchy": {
+      "YuQRtpLP10I": "/ImspTQPwCqd/O6uvpzGd5pu"
+    }
+  },
+  "width": 8,
+  "height": 4,
+  "rows": [
+    [
+      "yx9IDINf82o",
+      "Zj7UnCAulEk",
+      "2016-08-05",
+      "[5.12, 1.23]",
+      "Ngelehun",
+      "OU_559",
+      "YuQRtpLP10I",
+      "Female",
+      "50"
+    ],
+    [
+      "IPNa7AsCyFt",
+      "Zj7UnCAulEk",
+      "2016-06-12",
+      "[5.22, 1.43]",
+      "Ngelehun",
+      "OU_559",
+      "YuQRtpLP10I",
+      "Female",
+      "50"
+    ],
+    [
+      "ZY9JL9dkhD2",
+      "Zj7UnCAulEk",
+      "2016-06-15",
+      "[5.42, 1.33]",
+      "Ngelehun",
+      "OU_559",
+      "YuQRtpLP10I",
+      "Female",
+      "50"
+    ],
+    [
+      "MYvh4WAUdWt",
+      "Zj7UnCAulEk",
+      "2016-06-16",
+      "[5.32, 1.53]",
+      "Ngelehun",
+      "OU_559",
+      "YuQRtpLP10I",
+      "Female",
+      "50"
+    ]
+  ]
+}
+```
 
 The *headers* section of the response describes the content of the query
 result. The event unique identifier, the program stage identifier, the
@@ -10850,91 +10898,93 @@ An example looks like
 The default response representation format is JSON. The requests must be
 using the HTTP *GET* method. The response will look similar to this:
 
+```json
+{
+  "headers": [
     {
-        "headers": [
-            {
-                "name": "oZg33kd9taw",
-                "column": "Gender",
-                "type": "java.lang.String",
-                "meta": false
-            },
-            {
-                "name": "qrur9Dvnyt5",
-                "column": "Age",
-                "type": "java.lang.String",
-                "meta": false
-            },
-            {
-                "name": "pe",
-                "column": "Period",
-                "type": "java.lang.String",
-                "meta": false
-            },
-            {
-                "name": "ou",
-                "column": "Organisation unit",
-                "type": "java.lang.String",
-                "meta": false
-            },
-            {
-                "name": "value",
-                "column": "Value",
-                "type": "java.lang.String",
-                "meta": false
-            }
-        ],
-        "metaData": {
-            "names": {
-                "eBAyeGv0exc": "Inpatient morbidity and mortality"
-            }
-        },
-        "width": 5,
-        "height": 39,
-        "rows": [
-            [
-                "Female",
-                "95",
-                "201605",
-                "O6uvpzGd5pu",
-                "2"
-            ],
-            [
-                "Female",
-                "63",
-                "201605",
-                "O6uvpzGd5pu",
-                "2"
-            ],
-            [
-                "Female",
-                "67",
-                "201605",
-                "O6uvpzGd5pu",
-                "1"
-            ],
-            [
-                "Female",
-                "71",
-                "201605",
-                "O6uvpzGd5pu",
-                "1"
-            ],
-            [
-                "Female",
-                "75",
-                "201605",
-                "O6uvpzGd5pu",
-                "14"
-            ],
-            [
-                "Female",
-                "73",
-                "201605",
-                "O6uvpzGd5pu",
-                "5"
-            ],
-        ]
+      "name": "oZg33kd9taw",
+      "column": "Gender",
+      "type": "java.lang.String",
+      "meta": false
+    },
+    {
+      "name": "qrur9Dvnyt5",
+      "column": "Age",
+      "type": "java.lang.String",
+      "meta": false
+    },
+    {
+      "name": "pe",
+      "column": "Period",
+      "type": "java.lang.String",
+      "meta": false
+    },
+    {
+      "name": "ou",
+      "column": "Organisation unit",
+      "type": "java.lang.String",
+      "meta": false
+    },
+    {
+      "name": "value",
+      "column": "Value",
+      "type": "java.lang.String",
+      "meta": false
     }
+  ],
+  "metaData": {
+    "names": {
+      "eBAyeGv0exc": "Inpatient morbidity and mortality"
+    }
+  },
+  "width": 5,
+  "height": 39,
+  "rows": [
+    [
+      "Female",
+      "95",
+      "201605",
+      "O6uvpzGd5pu",
+      "2"
+    ],
+    [
+      "Female",
+      "63",
+      "201605",
+      "O6uvpzGd5pu",
+      "2"
+    ],
+    [
+      "Female",
+      "67",
+      "201605",
+      "O6uvpzGd5pu",
+      "1"
+    ],
+    [
+      "Female",
+      "71",
+      "201605",
+      "O6uvpzGd5pu",
+      "1"
+    ],
+    [
+      "Female",
+      "75",
+      "201605",
+      "O6uvpzGd5pu",
+      "14"
+    ],
+    [
+      "Female",
+      "73",
+      "201605",
+      "O6uvpzGd5pu",
+      "5"
+    ]
+  ]
+}
+```
 
 Note that the max limit for rows to return in a single response is 10
 000. If the query produces more than the max limit, a *409 Conflict*
@@ -10956,37 +11006,64 @@ point and extent of each cluster. If the *includeClusterPoints* query
 parameter is set to true, a comma-separated string with the identifiers
 of the underlying events is included. A sample response looks like this:
 
+```json
+{
+  "headers": [
     {
-        "headers": [{
-            "name": "count",
-            "column": "Count",
-            "type": "java.lang.Long",
-            "meta": false
-        }, {
-            "name": "center",
-            "column": "Center",
-            "type": "java.lang.String",
-            "meta": false
-        }, {
-            "name": "extent",
-            "column": "Extent",
-            "type": "java.lang.String",
-            "meta": false
-        }, {
-            "name": "points",
-            "column": "Points",
-            "type": "java.lang.String",
-            "meta": false
-        }],
-        "width": 3,
-        "height": 4,
-        "rows": [
-            ["3", "POINT(-13.15818 8.47567)", "BOX(-13.26821 8.4St7215,-13.08711 8.47807)", ""],
-            ["9", "POINT(-13.11184 8.66424)", "BOX(-13.24982 8.51961,-13.05816 8.87696)", ""],
-            ["1", "POINT(-12.46144 7.50597)", "BOX(-12.46144 7.50597,-12.46144 7.50597)", ""],
-            ["7", "POINT(-12.47964 8.21533)", "BOX(-12.91769 7.66775,-12.21011 8.49713)", ""]
-        ]
+      "name": "count",
+      "column": "Count",
+      "type": "java.lang.Long",
+      "meta": false
+    },
+    {
+      "name": "center",
+      "column": "Center",
+      "type": "java.lang.String",
+      "meta": false
+    },
+    {
+      "name": "extent",
+      "column": "Extent",
+      "type": "java.lang.String",
+      "meta": false
+    },
+    {
+      "name": "points",
+      "column": "Points",
+      "type": "java.lang.String",
+      "meta": false
     }
+  ],
+  "width": 3,
+  "height": 4,
+  "rows": [
+    [
+      "3",
+      "POINT(-13.15818 8.47567)",
+      "BOX(-13.26821 8.4St7215,-13.08711 8.47807)",
+      ""
+    ],
+    [
+      "9",
+      "POINT(-13.11184 8.66424)",
+      "BOX(-13.24982 8.51961,-13.05816 8.87696)",
+      ""
+    ],
+    [
+      "1",
+      "POINT(-12.46144 7.50597)",
+      "BOX(-12.46144 7.50597,-12.46144 7.50597)",
+      ""
+    ],
+    [
+      "7",
+      "POINT(-12.47964 8.21533)",
+      "BOX(-12.91769 7.66775,-12.21011 8.49713)",
+      ""
+    ]
+  ]
+}
+```
 
 ### Event count and extent analytics
 
@@ -11002,10 +11079,12 @@ resource. A request looks like
 
 The response will provide the count and extent in JSON format:
 
-    {
-        extent: "BOX(-13.2682125910096 7.38679562779441,-10.4261178860988 9.90401290212795)",
-        count: 59
-    }
+```json
+{
+  extent: "BOX(-13.2682125910096 7.38679562779441,-10.4261178860988 9.90401290212795)",
+  count: 59
+}
+```
 
 ## Enrollment analytics
 
@@ -11294,214 +11373,216 @@ As an example, to get a response in Excel format you can use a file extension in
 
 The default response JSON format will look similar to this:
 
+```json
+{
+  "headers": [
     {
-        "headers": [
-            {
-                "name": "pi",
-                "column": "Enrollment",
-                "valueType": "TEXT",
-                "type": "java.lang.String",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "tei",
-                "column": "Tracked entity instance",
-                "valueType": "TEXT",
-                "type": "java.lang.String",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "enrollmentdate",
-                "column": "Enrollment date",
-                "valueType": "DATE",
-                "type": "java.util.Date",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "incidentdate",
-                "column": "Incident date",
-                "valueType": "DATE",
-                "type": "java.util.Date",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "geometry",
-                "column": "Geometry",
-                "valueType": "TEXT",
-                "type": "java.lang.String",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "longitude",
-                "column": "Longitude",
-                "valueType": "NUMBER",
-                "type": "java.lang.Double",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "latitude",
-                "column": "Latitude",
-                "valueType": "NUMBER",
-                "type": "java.lang.Double",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "ouname",
-                "column": "Organisation unit name",
-                "valueType": "TEXT",
-                "type": "java.lang.String",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "oucode",
-                "column": "Organisation unit code",
-                "valueType": "TEXT",
-                "type": "java.lang.String",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "ou",
-                "column": "Organisation unit",
-                "valueType": "TEXT",
-                "type": "java.lang.String",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "de0FEHSIoxh",
-                "column": "WHOMCH Chronic conditions",
-                "valueType": "BOOLEAN",
-                "type": "java.lang.Boolean",
-                "hidden": false,
-                "meta": true
-            },
-            {
-                "name": "sWoqcoByYmD",
-                "column": "WHOMCH Smoking",
-                "valueType": "BOOLEAN",
-                "type": "java.lang.Boolean",
-                "hidden": false,
-                "meta": true
-            }
-        ],
-        "metaData": {
-            "pager": {
-                "page": 2,
-                "total": 163,
-                "pageSize": 4,
-                "pageCount": 41
-            },
-            "items": {
-                "ImspTQPwCqd": {
-                    "name": "Sierra Leone"
-                },
-                "PFDfvmGpsR3": {
-                    "name": "Care at birth"
-                },
-                "bbKtnxRZKEP": {
-                    "name": "Postpartum care visit"
-                },
-                "ou": {
-                    "name": "Organisation unit"
-                },
-                "PUZaKR0Jh2k": {
-                    "name": "Previous deliveries"
-                },
-                "edqlbukwRfQ": {
-                    "name": "Antenatal care visit"
-                },
-                "WZbXY0S00lP": {
-                    "name": "First antenatal care visit"
-                },
-                "sWoqcoByYmD": {
-                    "name": "WHOMCH Smoking"
-                },
-                "WSGAb5XwJ3Y": {
-                    "name": "WHO RMNCH Tracker"
-                },
-                "de0FEHSIoxh": {
-                    "name": "WHOMCH Chronic conditions"
-                }
-            },
-            "dimensions": {
-                "pe": [],
-                "ou": [
-                    "ImspTQPwCqd"
-                ],
-                "sWoqcoByYmD": [],
-                "de0FEHSIoxh": []
-            }
-        },
-        "width": 12,
-        "rows": [
-            [
-                "A0cP533hIQv",
-                "to8G9jAprnx",
-                "2019-02-02 12:05:00.0",
-                "2019-02-02 12:05:00.0",
-                "",
-                "0.0",
-                "0.0",
-                "Tonkomba MCHP",
-                "OU_193264",
-                "xIMxph4NMP1",
-                "0",
-                "1"
-            ],
-            [
-                "ZqiUn2uXmBi",
-                "SJtv0WzoYki",
-                "2019-02-02 12:05:00.0",
-                "2019-02-02 12:05:00.0",
-                "",
-                "0.0",
-                "0.0",
-                "Mawoma MCHP",
-                "OU_254973",
-                "Srnpwq8jKbp",
-                "0",
-                "0"
-            ],
-            [
-                "lE747mUAtbz",
-                "PGzTv2A1xzn",
-                "2019-02-02 12:05:00.0",
-                "2019-02-02 12:05:00.0",
-                "",
-                "0.0",
-                "0.0",
-                "Kunsho CHP",
-                "OU_193254",
-                "tdhB1JXYBx2",
-                "",
-                "0"
-            ],
-            [
-                "nmcqu9QF8ow",
-                "pav3tGLjYuq",
-                "2019-02-03 12:05:00.0",
-                "2019-02-03 12:05:00.0",
-                "",
-                "0.0",
-                "0.0",
-                "Korbu MCHP",
-                "OU_678893",
-                "m73lWmo5BDG",
-                "",
-                "1"
-            ]
-        ],
-        "height": 4
+      "name": "pi",
+      "column": "Enrollment",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "tei",
+      "column": "Tracked entity instance",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "enrollmentdate",
+      "column": "Enrollment date",
+      "valueType": "DATE",
+      "type": "java.util.Date",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "incidentdate",
+      "column": "Incident date",
+      "valueType": "DATE",
+      "type": "java.util.Date",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "geometry",
+      "column": "Geometry",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "longitude",
+      "column": "Longitude",
+      "valueType": "NUMBER",
+      "type": "java.lang.Double",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "latitude",
+      "column": "Latitude",
+      "valueType": "NUMBER",
+      "type": "java.lang.Double",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "ouname",
+      "column": "Organisation unit name",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "oucode",
+      "column": "Organisation unit code",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "ou",
+      "column": "Organisation unit",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "de0FEHSIoxh",
+      "column": "WHOMCH Chronic conditions",
+      "valueType": "BOOLEAN",
+      "type": "java.lang.Boolean",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "sWoqcoByYmD",
+      "column": "WHOMCH Smoking",
+      "valueType": "BOOLEAN",
+      "type": "java.lang.Boolean",
+      "hidden": false,
+      "meta": true
     }
+  ],
+  "metaData": {
+    "pager": {
+      "page": 2,
+      "total": 163,
+      "pageSize": 4,
+      "pageCount": 41
+    },
+    "items": {
+      "ImspTQPwCqd": {
+        "name": "Sierra Leone"
+      },
+      "PFDfvmGpsR3": {
+        "name": "Care at birth"
+      },
+      "bbKtnxRZKEP": {
+        "name": "Postpartum care visit"
+      },
+      "ou": {
+        "name": "Organisation unit"
+      },
+      "PUZaKR0Jh2k": {
+        "name": "Previous deliveries"
+      },
+      "edqlbukwRfQ": {
+        "name": "Antenatal care visit"
+      },
+      "WZbXY0S00lP": {
+        "name": "First antenatal care visit"
+      },
+      "sWoqcoByYmD": {
+        "name": "WHOMCH Smoking"
+      },
+      "WSGAb5XwJ3Y": {
+        "name": "WHO RMNCH Tracker"
+      },
+      "de0FEHSIoxh": {
+        "name": "WHOMCH Chronic conditions"
+      }
+    },
+    "dimensions": {
+      "pe": [],
+      "ou": [
+        "ImspTQPwCqd"
+      ],
+      "sWoqcoByYmD": [],
+      "de0FEHSIoxh": []
+    }
+  },
+  "width": 12,
+  "rows": [
+    [
+      "A0cP533hIQv",
+      "to8G9jAprnx",
+      "2019-02-02 12:05:00.0",
+      "2019-02-02 12:05:00.0",
+      "",
+      "0.0",
+      "0.0",
+      "Tonkomba MCHP",
+      "OU_193264",
+      "xIMxph4NMP1",
+      "0",
+      "1"
+    ],
+    [
+      "ZqiUn2uXmBi",
+      "SJtv0WzoYki",
+      "2019-02-02 12:05:00.0",
+      "2019-02-02 12:05:00.0",
+      "",
+      "0.0",
+      "0.0",
+      "Mawoma MCHP",
+      "OU_254973",
+      "Srnpwq8jKbp",
+      "0",
+      "0"
+    ],
+    [
+      "lE747mUAtbz",
+      "PGzTv2A1xzn",
+      "2019-02-02 12:05:00.0",
+      "2019-02-02 12:05:00.0",
+      "",
+      "0.0",
+      "0.0",
+      "Kunsho CHP",
+      "OU_193254",
+      "tdhB1JXYBx2",
+      "",
+      "0"
+    ],
+    [
+      "nmcqu9QF8ow",
+      "pav3tGLjYuq",
+      "2019-02-03 12:05:00.0",
+      "2019-02-03 12:05:00.0",
+      "",
+      "0.0",
+      "0.0",
+      "Korbu MCHP",
+      "OU_678893",
+      "m73lWmo5BDG",
+      "",
+      "1"
+    ]
+  ],
+  "height": 4
+}
+```
 
 The *headers* section of the response describes the content of the query result. The enrollment unique identifier, the tracked entity instance identifier, the enrollment date, the incident date, geometry, latitude, logitude, the organisation unit name and the organisation unit code appear as the first dimensions in the response and will always be present. Next comes the data elements,and tracked entity attributes which were specified as dimensions in the request, in this case the "WHOMCH Chronic conditions" and "WHOMCH smoking" data element dimensions. The header section contains the identifier of the dimension item in the "name" property and a readable dimension description in the "column" property.
 
@@ -12014,62 +12095,64 @@ response in JSON
 
 The JSON response looks like this:
 
-    [
-      {
-        "year": 2016,
-        "week": 5,
-        "mapViews": 2181,
-        "chartViews": 2227,
-        "reportTableViews": 5633,
-        "eventReportViews": 6757,
-        "eventChartViews": 9860,
-        "dashboardViews": 10082,
-        "totalViews": 46346,
-        "averageViews": 468,
-        "averageMapViews": 22,
-        "averageChartViews": 22,
-        "averageReportTableViews": 56,
-        "averageEventReportViews": 68,
-        "averageEventChartViews": 99,
-        "averageDashboardViews": 101,
-        "savedMaps": 1805,
-        "savedCharts": 2205,
-        "savedReportTables": 1995,
-        "savedEventReports": 1679,
-        "savedEventCharts": 1613,
-        "savedDashboards": 0,
-        "savedIndicators": 1831,
-        "activeUsers": 99,
-        "users": 969
-      },
-      {
-        "year": 2016,
-        "week": 6,
-        "mapViews": 2018,
-        "chartViews": 2267,
-        "reportTableViews": 4714,
-        "eventReportViews": 6697,
-        "eventChartViews": 9511,
-        "dashboardViews": 12181,
-        "totalViews": 47746,
-        "averageViews": 497,
-        "averageMapViews": 21,
-        "averageChartViews": 23,
-        "averageReportTableViews": 49,
-        "averageEventReportViews": 69,
-        "averageEventChartViews": 99,
-        "averageDashboardViews": 126,
-        "savedMaps": 1643,
-        "savedCharts": 1935,
-        "savedReportTables": 1867,
-        "savedEventReports": 1977,
-        "savedEventCharts": 1714,
-        "savedDashboards": 0,
-        "savedIndicators": 1646,
-        "activeUsers": 96,
-        "users": 953
-      }
-    ]
+```json
+[
+  {
+	"year": 2016,
+	"week": 5,
+	"mapViews": 2181,
+	"chartViews": 2227,
+	"reportTableViews": 5633,
+	"eventReportViews": 6757,
+	"eventChartViews": 9860,
+	"dashboardViews": 10082,
+	"totalViews": 46346,
+	"averageViews": 468,
+	"averageMapViews": 22,
+	"averageChartViews": 22,
+	"averageReportTableViews": 56,
+	"averageEventReportViews": 68,
+	"averageEventChartViews": 99,
+	"averageDashboardViews": 101,
+	"savedMaps": 1805,
+	"savedCharts": 2205,
+	"savedReportTables": 1995,
+	"savedEventReports": 1679,
+	"savedEventCharts": 1613,
+	"savedDashboards": 0,
+	"savedIndicators": 1831,
+	"activeUsers": 99,
+	"users": 969
+  },
+  {
+	"year": 2016,
+	"week": 6,
+	"mapViews": 2018,
+	"chartViews": 2267,
+	"reportTableViews": 4714,
+	"eventReportViews": 6697,
+	"eventChartViews": 9511,
+	"dashboardViews": 12181,
+	"totalViews": 47746,
+	"averageViews": 497,
+	"averageMapViews": 21,
+	"averageChartViews": 23,
+	"averageReportTableViews": 49,
+	"averageEventReportViews": 69,
+	"averageEventChartViews": 99,
+	"averageDashboardViews": 126,
+	"savedMaps": 1643,
+	"savedCharts": 1935,
+	"savedReportTables": 1867,
+	"savedEventReports": 1977,
+	"savedEventCharts": 1714,
+	"savedDashboards": 0,
+	"savedIndicators": 1646,
+	"activeUsers": 96,
+	"users": 953
+  }
+]
+```
 
 ### Retrieve statistics for a favorite
 
@@ -19795,23 +19878,26 @@ GET request to the *metadataRepo* resource:
 A metadata package entry contains information about the package and a
 URL to the relevant package. An index could look like this:
 
+```json
+{
+  "packages": [
     {
-      "packages": [ {
-        "id": "sierre-leone-demo",
-        "name": "Sierra Leone demo",
-        "description": "Sierra Leone demo database",
-        "version": "0.1",
-        "href": "https://dhis2.org/metadata-repo/221/sierra-leone-demo/metadata.json"
-      },
-      {
-        "id": "trainingland-org-units",
-        "name": "Trainingland organisation units",
-        "description": "Trainingland organisation units with four levels",
-        "version": "0.1",
-        "href": "https://dhis2.org/metadata-repo/221/trainingland-org-units/metadata.json"
-      }
-     ]
+      "id": "sierre-leone-demo",
+      "name": "Sierra Leone demo",
+      "description": "Sierra Leone demo database",
+      "version": "0.1",
+      "href": "https://dhis2.org/metadata-repo/221/sierra-leone-demo/metadata.json"
+    },
+    {
+      "id": "trainingland-org-units",
+      "name": "Trainingland organisation units",
+      "description": "Trainingland organisation units with four levels",
+      "version": "0.1",
+      "href": "https://dhis2.org/metadata-repo/221/trainingland-org-units/metadata.json"
     }
+  ]
+}
+```
 
 A client can follow the URLs and install a metadata package through a
 POST request with content type *text/plain* with the metadata package
