@@ -105,5 +105,6 @@ generate "dhis2_end_user_manual" "end-user"
 generate "dhis2_implementation_guide" "implementer"
 generate "user_stories_book" "user-stories"
 generate "dhis2_draft_chapters" "draft"
+generate "dhis2_android_capture_app" "android-app"
 
 rm -rf $tmp
