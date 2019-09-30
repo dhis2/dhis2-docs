@@ -15376,7 +15376,7 @@ parameters can be used to specify the dimensions of the
     curl http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?height=200&width=200
       > image.jpg
 
-API also support *dimension* parameter. It can take three possible values and those are *small, medium or original*. Image type attributes will be stored in pre-generated sizes
+API also support *dimension* parameter. It can take three possible values and those are *small(254 x 254), medium(512 x 512), large(1024 x 1024) or original*. Image type attributes will be stored in pre-generated sizes
 and will be furnished upon request based on the value of *dimension* parameter.
 
     curl http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium
