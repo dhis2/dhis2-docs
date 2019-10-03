@@ -677,61 +677,65 @@ normally overwrite locales other than current users).
 *Example of data element with translation array filtered on user
 locale:*
 
+```json
+{
+  "id": "FTRrcoaog83",
+  "displayName": "Accute French",
+  "translations": [
     {
-      "id": "FTRrcoaog83",
-      "displayName": "Accute French",
-      "translations": [
-        {
-          "property": "SHORT_NAME",
-          "locale": "fr",
-          "value": "Accute French"
-        },
-        {
-          "property": "NAME",
-          "locale": "fr",
-          "value": "Accute French"
-        }
-      ]
+      "property": "SHORT_NAME",
+      "locale": "fr",
+      "value": "Accute French"
+    },
+    {
+      "property": "NAME",
+      "locale": "fr",
+      "value": "Accute French"
     }
+  ]
+}
+```
 
 *Example of data element with translations turned off:*
 
-    {
-      "id": "FTRrcoaog83",
-      "displayName": "Accute Flaccid Paralysis (Deaths < 5 yrs)",
-      "translations": [
-        {
-          "property": "FORM_NAME",
-          "locale": "en_FK",
-          "value": "aa"
-        },
-        {
-          "property": "SHORT_NAME",
-          "locale": "en_GB",
-          "value": "Accute Flaccid Paral"
-        },
-        {
-          "property": "SHORT_NAME",
-          "locale": "fr",
-          "value": "Accute French"
-        },
-        {
-          "property": "NAME",
-          "locale": "fr",
-          "value": "Accute French"
-        },
-        {
-          "property": "NAME",
-          "locale": "en_FK",
-          "value": "aa"
-        },
-        {
-          "property": "DESCRIPTION",
-          "locale": "en_FK",
-          "value": "aa"
-        }
-      ]
-    }
+```json
+{
+  "id": "FTRrcoaog83",
+  "displayName": "Accute Flaccid Paralysis (Deaths < 5 yrs)",
+  "translations": [
+	{
+	  "property": "FORM_NAME",
+	  "locale": "en_FK",
+	  "value": "aa"
+	},
+	{
+	  "property": "SHORT_NAME",
+	  "locale": "en_GB",
+	  "value": "Accute Flaccid Paral"
+	},
+	{
+	  "property": "SHORT_NAME",
+	  "locale": "fr",
+	  "value": "Accute French"
+	},
+	{
+	  "property": "NAME",
+	  "locale": "fr",
+	  "value": "Accute French"
+	},
+	{
+	  "property": "NAME",
+	  "locale": "en_FK",
+	  "value": "aa"
+	},
+	{
+	  "property": "DESCRIPTION",
+	  "locale": "en_FK",
+	  "value": "aa"
+	}
+  ]
+}
+```
 
 Note that even if you get the unfiltered result, and are using the
 appropriate type endpoint i..e */api/26/dataElements* we do not allow
@@ -750,24 +754,28 @@ locale ID and the the *value* itself.
 
 *Example of NAME property for French locale:*
 
-    {
-      "property": "NAME",
-      "locale": "fr",
-      "value": "Paralysie Flasque Aiguë (Décès <5 ans)"
-    }
+```json
+{
+  "property": "NAME",
+  "locale": "fr",
+  "value": "Paralysie Flasque Aiguë (Décès <5 ans)"
+}
+```
 
 This payload would then be added to a translation array, and sent back
 to the appropriate endpoint:
 
-    {
-      "translations": [
-        {
-          "property": "NAME",
-          "locale": "fr",
-          "value": "Paralysie Flasque Aiguë (Décès <5 ans)"
-        }
-      ]
-    }
+```json
+{
+  "translations": [
+	{
+	  "property": "NAME",
+	  "locale": "fr",
+	  "value": "Paralysie Flasque Aiguë (Décès <5 ans)"
+	}
+  ]
+}
+```
 
 For a an data element with ID *FTRrcoaog83* you can **PUT** this to
 */api/26/dataElements/FTRrcoaog83/translations*. Make sure to send all
@@ -1343,16 +1351,20 @@ are F\_CONSTANT\_ADD, and the important properties are: *name* and
 *value*. From this we can create a JSON payload and save it as a file
 called constant.json:
 
-    {
-      "name": "PI",
-      "value": "3.14159265359"
-    }
+```json
+{
+  "name": "PI",
+  "value": "3.14159265359"
+}
+```
 
 The same content as an XML payload:
 
-    <constant name="PI" xmlns="http://dhis2.org/schema/dxf/2.0">
-      <value>3.14159265359</value>
-    </constant>
+```xml
+<constant name="PI" xmlns="http://dhis2.org/schema/dxf/2.0">
+  <value>3.14159265359</value>
+</constant>
+```
 
 We are now ready create the new *constant* by sending a POST request to
 the *constants*endpoint with the JSON payload using curl:
@@ -1454,13 +1466,15 @@ request:
 You can add or remove multiple objects from a collection in one request
 with a payload like this:
 
-    {
-      "identifiableObjects": [
-        { "id": "IDA" },
-        { "id": "IDB" },
-        { "id": "IDC" }
-      ]
-    }
+```json
+{
+  "identifiableObjects": [
+	{ "id": "IDA" },
+	{ "id": "IDB" },
+	{ "id": "IDC" }
+  ]
+}
+```
 
 Using this payload you can add, replace or delete items:
 
@@ -1482,22 +1496,26 @@ Items:*
 <!--DHIS2-SECTION-ID:webapi_collections_adding_removing_objects_single_request-->
 
 You can both add and remove objects from a collection in a single POST
-request with the following type of payload:
+request to the following URL:
 
     POST /api/26/categories/IDA/categoryOptions
 
-    {
-      "additions": [
-        { "id": "IDA" },
-        { "id": "IDB" },
-        { "id": "IDC" }
-      ],
-      "deletions": [
-        { "id": "IDD" },
-        { "id": "IDE" },
-        { "id": "IDF" }
-      ]
-    }
+The payload format is:
+
+```json
+{
+  "additions": [
+	{ "id": "IDA" },
+	{ "id": "IDB" },
+	{ "id": "IDC" }
+  ],
+  "deletions": [
+	{ "id": "IDD" },
+	{ "id": "IDE" },
+	{ "id": "IDF" }
+  ]
+}
+```
 
 ### Validating payloads
 
@@ -1516,34 +1534,34 @@ schema endpoint. If you wanted to validate the constant from the create
 section before, you would send it like this:
 
     POST /api/schemas/constant
-    { payload }
 
-A simple (non-validating) example would
-    be:
+A simple (non-validating) example would be:
 
     curl -X POST -d "{\"name\": \"some name\"}" -H "Content-Type: application/json"
     -u admin:district https://play.dhis2.org/dev/api/schemas/dataElement
 
 Which would yield the result:
 
-    [
-       {
-          "message" : "Required property missing.",
-          "property" : "type"
-       },
-       {
-          "property" : "aggregationOperator",
-          "message" : "Required property missing."
-       },
-       {
-          "property" : "domainType",
-          "message" : "Required property missing."
-       },
-       {
-          "property" : "shortName",
-          "message" : "Required property missing."
-       }
-    ]
+```json
+[
+   {
+	  "message" : "Required property missing.",
+	  "property" : "type"
+   },
+   {
+	  "property" : "aggregationOperator",
+	  "message" : "Required property missing."
+   },
+   {
+	  "property" : "domainType",
+	  "message" : "Required property missing."
+   },
+   {
+	  "property" : "shortName",
+	  "message" : "Required property missing."
+   }
+]
+```
 
 ### Partial updates
 
@@ -1558,10 +1576,14 @@ The payload for doing partial updates are the same as when you are
 doing a full update, the only difference is that you only include the
 properties you want to update, i.e.:
 
-    { // file.json
-      "name": "Updated Name",
-      "zeroIsSignificant": true
-    }
+```json
+{
+  "name": "Updated Name",
+  "zeroIsSignificant": true
+}
+```
+
+An example curl command looks like this:
 
     curl -X PATCH -d @file.json -H "Content-Type: application/json"
     -u admin:district https://play.dhis2.org/dev/api/26/dataElements/fbfJHSPpUQD
@@ -2082,30 +2104,33 @@ set, which is usually needed when rendering some of the specific types:
 </table>
 
 *renderingType* can be set when creating or updating the metadata listed
-in the first table. An example payload for the renderingType looks like
-this:
+in the first table. An example payload for the rendering type for program stage section looks like this:
 
-    Program Stage Section:
-    {
-      ...
-      "renderingType": {
-        "type": "MATRIX"
-      }
-      ...
-    }
+```json
+{
+  ...
+  "renderingType": {
+	"type": "MATRIX"
+  }
+  ...
+}
+```
 
-    Value type (Data Element, Tracked Entity Attribute)
-    {
-      ...
-      "renderingType": {
-        "type": "SLIDER",
-        "min": 0,
-        "max": 1000,
-        "step": 50,
-        "decimalPoints": 0
-      }
-      ...
-    }
+For data element and tracked entity attribute:
+
+```json
+{
+  ...
+  "renderingType": {
+	"type": "SLIDER",
+	"min": 0,
+	"max": 1000,
+	"step": 50,
+	"decimalPoints": 0
+  }
+  ...
+}
+```
 
 ## Object Style (Experimental)
 
@@ -2176,14 +2201,14 @@ all objects that supports style:
 When creating or updating any of these objects, you can include the
 following payload to change the style:
 
-    {
-      ...
-      "style": {
-        "color": "#ffffff",
-        "icon": "my-beautiful-icon"
-      }
-      ...
-    }
+```json
+{
+  "style": {
+	"color": "#ffffff",
+	"icon": "my-beautiful-icon"
+  }
+}
+```
 
 ## ActiveMQ Artemis / AMQP 1.0 integration
 
@@ -3028,28 +3053,30 @@ replaced by defaults when not supplied.
 On successfully creating a file resource the returned data will contain
 a *response* field which in turn contains the *fileResource* like this:
 
-    {
-      "httpStatus": "Accepted",
-      "httpStatusCode": 202,
-      "status": "OK",
-      "response": {
-        "responseType": "FileResource",
-        "fileResource": {
-          "name": "name-of-file.png",
-          "created": "2015-10-16T16:34:20.654+0000",
-          "lastUpdated": "2015-10-16T16:34:20.667+0000",
-          "externalAccess": false,
-          "publicAccess": "--------",
-          "user": { ... },
-          "displayName": "name-of-file.png",
-          "contentType": "image/png",
-          "contentLength": 512571,
-          "contentMd5": "4e1fc1c3f999e5aa3228d531e4adde58",
-          "storageStatus": "PENDING",
-          "id": "xm4JwRwke0i"
-        }
-      }
-    }
+```json
+{
+  "httpStatus": "Accepted",
+  "httpStatusCode": 202,
+  "status": "OK",
+  "response": {
+	"responseType": "FileResource",
+	"fileResource": {
+	  "name": "name-of-file.png",
+	  "created": "2015-10-16T16:34:20.654+0000",
+	  "lastUpdated": "2015-10-16T16:34:20.667+0000",
+	  "externalAccess": false,
+	  "publicAccess": "--------",
+	  "user": { ... },
+	  "displayName": "name-of-file.png",
+	  "contentType": "image/png",
+	  "contentLength": 512571,
+	  "contentMd5": "4e1fc1c3f999e5aa3228d531e4adde58",
+	  "storageStatus": "PENDING",
+	  "id": "xm4JwRwke0i"
+	}
+  }
+}
+```
 
 Note that the response is a *202 Accepted*, indicating that the returned
 resource has been submitted for background processing (persisting to the
@@ -3138,16 +3165,18 @@ This section explains the Metadata Versioning APIs available starting
 
 **Sample response:**
 
-    {
-        "name": "Version_4",
-        "created": "2016-06-30T06:01:28.684+0000",
-        "lastUpdated": "2016-06-30T06:01:28.685+0000",
-        "externalAccess": false,
-        "displayName": "Version_4",
-        "type": "BEST_EFFORT",
-        "hashCode": "848bf6edbaf4faeb7d1a1169445357b0",
-        "id": "Ayz2AEMB6ry"
-    }
+```json
+{
+	"name": "Version_4",
+	"created": "2016-06-30T06:01:28.684+0000",
+	"lastUpdated": "2016-06-30T06:01:28.685+0000",
+	"externalAccess": false,
+	"displayName": "Version_4",
+	"type": "BEST_EFFORT",
+	"hashCode": "848bf6edbaf4faeb7d1a1169445357b0",
+	"id": "Ayz2AEMB6ry"
+}
+```
 
 **Example: Get the details of version with name "Version\_2"**
 
@@ -3158,16 +3187,18 @@ This section explains the Metadata Versioning APIs available starting
 
 **Sample response:**
 
-    {
-        "name": "Version_2",
-        "created": "2016-06-30T05:59:33.238+0000",
-        "lastUpdated": "2016-06-30T05:59:33.239+0000",
-        "externalAccess": false,
-        "displayName": "Version_2",
-        "type": "BEST_EFFORT",
-        "hashCode": "8050fb1a604e29d5566675c86d02d10b",
-        "id": "SaNyhusVxBG"
-    }
+```json
+{
+	"name": "Version_2",
+	"created": "2016-06-30T05:59:33.238+0000",
+	"lastUpdated": "2016-06-30T05:59:33.239+0000",
+	"externalAccess": false,
+	"displayName": "Version_2",
+	"type": "BEST_EFFORT",
+	"hashCode": "8050fb1a604e29d5566675c86d02d10b",
+	"id": "SaNyhusVxBG"
+}
+```
 
   - /api/metadata/version/history - This api will return the list of all
     metadata versions of the system on which it is invoked.
@@ -3208,27 +3239,29 @@ This section explains the Metadata Versioning APIs available starting
 
 **Sample response:**
 
-    {
-        "metadataversions": [{
-            "name": "Version_1",
-            "type": "BEST_EFFORT",
-            "created": "2016-06-30T05:54:41.139+0000",
-            "id": "SjnhUp6r4hG",
-            "hashCode": "fd1398ff7ec9fcfd5b59d523c8680798"
-         }, {
-             "name": "Version_2",
-             "type": "BEST_EFFORT",
-             "created": "2016-06-30T05:59:33.238+0000",
-             "id": "SaNyhusVxBG",
-             "hashCode": "8050fb1a604e29d5566675c86d02d10b"
-         }, {
-             "name": "Version_3",
-             "type": "BEST_EFFORT",
-             "created": "2016-06-30T06:01:23.680+0000",
-             "id": "FVkGzSjAAYg",
-             "hashCode": "70b779ea448b0da23d8ae0bd59af6333"
-         }]
-    }
+```json
+{
+	"metadataversions": [{
+		"name": "Version_1",
+		"type": "BEST_EFFORT",
+		"created": "2016-06-30T05:54:41.139+0000",
+		"id": "SjnhUp6r4hG",
+		"hashCode": "fd1398ff7ec9fcfd5b59d523c8680798"
+	 }, {
+		 "name": "Version_2",
+		 "type": "BEST_EFFORT",
+		 "created": "2016-06-30T05:59:33.238+0000",
+		 "id": "SaNyhusVxBG",
+		 "hashCode": "8050fb1a604e29d5566675c86d02d10b"
+	 }, {
+		 "name": "Version_3",
+		 "type": "BEST_EFFORT",
+		 "created": "2016-06-30T06:01:23.680+0000",
+		 "id": "FVkGzSjAAYg",
+		 "hashCode": "70b779ea448b0da23d8ae0bd59af6333"
+	 }]
+}
+```
 
 **Example: Get the list of all versions in this system created after
 "Version\_2"**
@@ -3240,21 +3273,23 @@ This section explains the Metadata Versioning APIs available starting
 
 **Sample response:**
 
-    {
-        "metadataversions": [{
-            "name": "Version_3",
-            "type": "BEST_EFFORT",
-            "created": "2016-06-30T06:01:23.680+0000",
-            "id": "FVkGzSjAAYg",
-            "hashCode": "70b779ea448b0da23d8ae0bd59af6333"
-        }, {
-            "name": "Version_4",
-            "type": "BEST_EFFORT",
-            "created": "2016-06-30T06:01:28.684+0000",
-            "id": "Ayz2AEMB6ry",
-            "hashCode": "848bf6edbaf4faeb7d1a1169445357b0"
-        }]
-     }
+```json
+{
+	"metadataversions": [{
+		"name": "Version_3",
+		"type": "BEST_EFFORT",
+		"created": "2016-06-30T06:01:23.680+0000",
+		"id": "FVkGzSjAAYg",
+		"hashCode": "70b779ea448b0da23d8ae0bd59af6333"
+	}, {
+		"name": "Version_4",
+		"type": "BEST_EFFORT",
+		"created": "2016-06-30T06:01:28.684+0000",
+		"id": "Ayz2AEMB6ry",
+		"hashCode": "848bf6edbaf4faeb7d1a1169445357b0"
+	}]
+ }
+```
 
   - /api/metadata/version/create - This api will create the metadata
     version for the version type as specified in the parameter.
@@ -3319,25 +3354,27 @@ two types of metadata.
 
 **Sample response:**
 
-    {
-        "name": "Version_1",
-        "created": "2016-06-30T05:54:41.139+0000",
-        "lastUpdated": "2016-06-30T05:54:41.333+0000",
-        "externalAccess": false,
-        "publicAccess": "--------",
-        "user": {
-            "name": "John Traore",
-            "created": "2013-04-18T17:15:08.407+0000",
-            "lastUpdated": "2016-04-06T00:06:06.571+0000",
-            "externalAccess": false,
-            "displayName": "John Traore",
-            "id": "xE7jOejl9FI"
-        },
-        "displayName": "Version_1",
-        "type": "BEST_EFFORT",
-        "hashCode": "fd1398ff7ec9fcfd5b59d523c8680798",
-        "id": "SjnhUp6r4hG"
-    }
+```json
+{
+	"name": "Version_1",
+	"created": "2016-06-30T05:54:41.139+0000",
+	"lastUpdated": "2016-06-30T05:54:41.333+0000",
+	"externalAccess": false,
+	"publicAccess": "--------",
+	"user": {
+		"name": "John Traore",
+		"created": "2013-04-18T17:15:08.407+0000",
+		"lastUpdated": "2016-04-06T00:06:06.571+0000",
+		"externalAccess": false,
+		"displayName": "John Traore",
+		"id": "xE7jOejl9FI"
+	},
+	"displayName": "Version_1",
+	"type": "BEST_EFFORT",
+	"hashCode": "fd1398ff7ec9fcfd5b59d523c8680798",
+	"id": "SjnhUp6r4hG"
+}
+```
 
   - /api/metadata/version/{versionName}/data - This api will download
     the actual metadata specific to the version name passed as path
@@ -3645,31 +3682,36 @@ specify the period and orgUnit attributes on the individual data value
 elements instead of on the outer data value set element. This will
 enable us to send data values for various periods and org units:
 
-    <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0">
-      <dataValue dataElement="f7n9E0hX8qk" period="201401" orgUnit="DiszpKrYNg8" value="12"/>
-      <dataValue dataElement="f7n9E0hX8qk" period="201401" orgUnit="FNnj3jKGS7i" value="14"/>
-      <dataValue dataElement="f7n9E0hX8qk" period="201402" orgUnit="DiszpKrYNg8" value="16"/>
-      <dataValue dataElement="f7n9E0hX8qk" period="201402" orgUnit="Jkhdsf8sdf4" value="18"/>
-    </dataValueSet>
+```xml
+<dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0">
+  <dataValue dataElement="f7n9E0hX8qk" period="201401" orgUnit="DiszpKrYNg8" value="12"/>
+  <dataValue dataElement="f7n9E0hX8qk" period="201401" orgUnit="FNnj3jKGS7i" value="14"/>
+  <dataValue dataElement="f7n9E0hX8qk" period="201402" orgUnit="DiszpKrYNg8" value="16"/>
+  <dataValue dataElement="f7n9E0hX8qk" period="201402" orgUnit="Jkhdsf8sdf4" value="18"/>
+</dataValueSet>
+```
 
 In JSON format:
 
-    {
-      "dataValues": [
-        { "dataElement": "f7n9E0hX8qk", "period": "201401", "orgUnit": "DiszpKrYNg8", "value": "12" },
-        { "dataElement": "f7n9E0hX8qk", "period": "201401", "orgUnit": "FNnj3jKGS7i", "value": "14" },
-        { "dataElement": "f7n9E0hX8qk", "period": "201402", "orgUnit": "DiszpKrYNg8", "value": "16" },
-        { "dataElement": "f7n9E0hX8qk", "period": "201402", "orgUnit": "Jkhdsf8sdf4", "value": "18" }
-      ]
-    }
+```json
+{
+  "dataValues": [
+	{ "dataElement": "f7n9E0hX8qk", "period": "201401", "orgUnit": "DiszpKrYNg8", "value": "12" },
+	{ "dataElement": "f7n9E0hX8qk", "period": "201401", "orgUnit": "FNnj3jKGS7i", "value": "14" },
+	{ "dataElement": "f7n9E0hX8qk", "period": "201402", "orgUnit": "DiszpKrYNg8", "value": "16" },
+	{ "dataElement": "f7n9E0hX8qk", "period": "201402", "orgUnit": "Jkhdsf8sdf4", "value": "18" }
+  ]
+}
+```
 
-In CSV
-    format:
+In CSV format:
 
-    "dataelement","period","orgunit","categoryoptioncombo","attributeoptioncombo","value"
-    "f7n9E0hX8qk","201401","DiszpKrYNg8","bRowv6yZOF2","bRowv6yZOF2","1"
-    "Ix2HsbDMLea","201401","DiszpKrYNg8","bRowv6yZOF2","bRowv6yZOF2","2"
-    "eY5ehpbEsB7","201401","DiszpKrYNg8","bRowv6yZOF2","bRowv6yZOF2","3"
+```csv
+"dataelement","period","orgunit","categoryoptioncombo","attributeoptioncombo","value"
+"f7n9E0hX8qk","201401","DiszpKrYNg8","bRowv6yZOF2","bRowv6yZOF2","1"
+"Ix2HsbDMLea","201401","DiszpKrYNg8","bRowv6yZOF2","bRowv6yZOF2","2"
+"eY5ehpbEsB7","201401","DiszpKrYNg8","bRowv6yZOF2","bRowv6yZOF2","3"
+```
 
 We test by using cURL to send the data values in XML
     format:
@@ -3689,10 +3731,12 @@ when you want to verify the impact your request had. The first time we
 send the data value set request above the server will respond with the
 following*import summary*:
 
-    <importSummary>
-      <dataValueCount imported="2" updated="1" ignored="1"/>
-      <dataSetComplete>false</dataSetComplete>
-    </importSummary>
+```xml
+<importSummary>
+  <dataValueCount imported="2" updated="1" ignored="1"/>
+  <dataSetComplete>false</dataSetComplete>
+</importSummary>
+```
 
 This message tells us that 3 data values were imported, 1 data value was
 updated while zero data values were ignored. The single update comes as
@@ -3888,18 +3932,21 @@ the status at the task summaries API. The API response indicates the
 unique identifier of the job, type of job and the URL you can use to
 monitor the import job status. The response will look similar to this:
 
-    {
-      "httpStatus": "OK",
-      "httpStatusCode": 200,
-      "status": "OK",
-      "message": "Initiated dataValueImport",
-      "response": {
-        "name": "dataValueImport",
-        "id": "YR1UxOUXmzT",
-        "created": "2018-08-20T14:17:28.429",
-        "jobType": "DATAVALUE_IMPORT",
-        "relativeNotifierEndpoint": "/api/system/tasks/DATAVALUE_IMPORT/YR1UxOUXmzT"
-      }
+```json
+{
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Initiated dataValueImport",
+  "response": {
+	"name": "dataValueImport",
+	"id": "YR1UxOUXmzT",
+	"created": "2018-08-20T14:17:28.429",
+	"jobType": "DATAVALUE_IMPORT",
+	"relativeNotifierEndpoint": "/api/system/tasks/DATAVALUE_IMPORT/YR1UxOUXmzT"
+  }
+}
+```
 
 Please read the section on *asynchronous task status* for more
 information.
@@ -4191,20 +4238,22 @@ You can request the data in JSON format like
 
 The response will look something like this:
 
-    {
-      "dataSet": "pBOMPrpg1QX",
-      "completeDate": "2014-02-03",
-      "period": "201401",
-      "orgUnit": "DiszpKrYNg8",
-      "dataValues": [
-        { "dataElement": "eY5ehpbEsB7", "categoryOptionCombo": "bRowv6yZOF2", "period": "201401",
-          "orgUnit": "DiszpKrYNg8", "value": "10003" },
-        { "dataElement": "Ix2HsbDMLea", "categoryOptionCombo": "bRowv6yZOF2", "period": "201401",
-          "orgUnit": "DiszpKrYNg8", "value": "10002" },
-        { "dataElement": "f7n9E0hX8qk", "categoryOptionCombo": "bRowv6yZOF2", "period": "201401",
-          "orgUnit": "DiszpKrYNg8", "value": "10001" }
-      ]
-    }
+```json
+{
+  "dataSet": "pBOMPrpg1QX",
+  "completeDate": "2014-02-03",
+  "period": "201401",
+  "orgUnit": "DiszpKrYNg8",
+  "dataValues": [
+	{ "dataElement": "eY5ehpbEsB7", "categoryOptionCombo": "bRowv6yZOF2", "period": "201401",
+	  "orgUnit": "DiszpKrYNg8", "value": "10003" },
+	{ "dataElement": "Ix2HsbDMLea", "categoryOptionCombo": "bRowv6yZOF2", "period": "201401",
+	  "orgUnit": "DiszpKrYNg8", "value": "10002" },
+	{ "dataElement": "f7n9E0hX8qk", "categoryOptionCombo": "bRowv6yZOF2", "period": "201401",
+	  "orgUnit": "DiszpKrYNg8", "value": "10001" }
+  ]
+}
+```
 
 Note that data values are softly deleted, i.e. a deleted value has the
 *deleted* property set to true instead of being permanently deleted.
@@ -4222,11 +4271,13 @@ You can also request data in CSV format like
 The response will look like
     this:
 
-    dataelement,period,orgunit,categoryoptioncombo,attributeoptioncombo,value,storedby,lastupdated,comment,followup
-    f7n9E0hX8qk,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,12,system,2015-04-05T19:58:12.000,comment1,false
-    Ix2HsbDMLea,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,14,system,2015-04-05T19:58:12.000,comment2,false
-    eY5ehpbEsB7,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,16,system,2015-04-05T19:58:12.000,comment3,false
-    FTRrcoaog83,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,12,system,2014-03-02T21:45:05.519,comment4,false
+```csv
+dataelement,period,orgunit,categoryoptioncombo,attributeoptioncombo,value,storedby,lastupdated,comment,followup
+f7n9E0hX8qk,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,12,system,2015-04-05T19:58:12.000,comment1,false
+Ix2HsbDMLea,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,14,system,2015-04-05T19:58:12.000,comment2,false
+eY5ehpbEsB7,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,16,system,2015-04-05T19:58:12.000,comment3,false
+FTRrcoaog83,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,12,system,2014-03-02T21:45:05.519,comment4,false
+```
 
 The following constraints apply to the data value sets resource:
 
