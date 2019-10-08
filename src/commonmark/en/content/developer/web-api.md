@@ -15370,14 +15370,13 @@ values. The value of an attribute with the image value type is the id of
 the associated file resource. A GET request to the
 */api/trackedEntityInstances/\<entityId\>/\<attributeId\>/image*
 endpoint will return the actual image. The optional height and width
-parameters can be used to specify the dimensions of the
-    image.
+parameters can be used to specify the dimensions of the image.
 
     curl http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?height=200&width=200
       > image.jpg
 
-API also support *dimension* parameter. It can take three possible values and those are *small(254 x 254), medium(512 x 512), large(1024 x 1024) or original*. Image type attributes will be stored in pre-generated sizes
-and will be furnished upon request based on the value of *dimension* parameter.
+The API also supports a *dimension* parameter. It can take three possible values: *small(254 x 254), medium(512 x 512), large(1024 x 1024) or original*. Image type attributes will be stored in pre-generated sizes
+and will be furnished upon request based on the value of the *dimension* parameter.
 
     curl http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium
       
@@ -17225,7 +17224,7 @@ tracked entity instance in the year 2014:
     /api/29/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
       &trackedEntityInstance=gfVxE3ALA9m&startDate=2014-01-01&endDate=2014-12-31
 
-Query files associated with event data values. In specific case when fetching image file an additional parameter can be provided to fetch image with different dimensions. If dimension is not provided, system will return original image. Parameter will be ignored in case of fetching non image files e.g pdf. Possible dimension values are *small(254 x 254), medium(512 x 512), large(1024 x 1024) or original*. Any value other than those mentioned will be discarded and original image will be returned.
+Query files associated with event data values. In the specific case of fetching an image file an additional parameter can be provided to fetch the image with different dimensions. If dimension is not provided, the system will return the original image. The parameter will be ignored in case of fetching non-image files e.g pdf. Possible dimension values are *small(254 x 254), medium(512 x 512), large(1024 x 1024) or original*. Any value other than those mentioned will be discarded and the original image will be returned.
 
     /api/30/events/files?eventUid=hcmcWlYkg9u&dataElementUid=C0W4aFuVm4P&dimension=small
 
