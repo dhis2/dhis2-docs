@@ -1131,13 +1131,13 @@ number of days to wait for starting the program stage.
 3. Enter repeatable program stage details.
     1. Specify if the program stage is **Repeatable** or not.
     2. Select a **Period type**.
-    3. Clear **Display generate event box after completed** if you
-don't want to display *Create new event box* to create new event
-for a repeatable stage after you click *Complete* for an event
-of the stage in data entry form. This field is selected by
-default.
-    4. Enter **Standard interval days**.
-The number of days to repeat the repeatable program stage.  
+    3. Clear **Display generate event box after completed** if you 
+    don't want to display *Create new event box* to create new event
+    for a repeatable stage after you click *Complete* for an event
+    of the stage in data entry form. This field is selected by
+    default.
+    5. Enter **Standard interval days**. The number of days to repeat the repeatable program stage.  
+    6. (Optional) Select a  **Default next scheduled date**. This will show a list of assigned data elements of type **date**. If an element is selected, the Tracker client will use this as the default starting date. The data element can be used by program rules to dynamically schedule intervals between events.
 4. Enter form details
 
     <table>
