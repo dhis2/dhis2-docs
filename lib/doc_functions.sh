@@ -7,13 +7,14 @@ shared_resources() {
 
 include_submodules() {
 
-  exec 3<> $1
-  while read line <&3
+  DONE=false
+  until $DONE
   do {
-    #echo "line $line"
+      read line || DONE=true
+      # echo "line $line"
 
       read -r -a words <<< $line
-      #echo "words0 ${words[0]}"
+      # echo "words0 ${words[0]}"
       if [ "${words[0]}" == "!SUBMODULE" ]
       then
           submodule_name=${words[1]}
@@ -27,10 +28,8 @@ include_submodules() {
             popd
           }
       fi
-
   }
-  done
-  exec 3>&-
+  done < $1
 
 }
 
