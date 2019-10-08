@@ -275,18 +275,18 @@ layer** selection. This opens the Events layer configuration dialog.
 
               - Single (aggregate)
 
-              Show aggregate values for the relative period selected (default).
+                Show aggregate values for the relative period selected (default).
 
               - Timeline
 
-              Includes a timeline allowing you to step through the periods.
-              Only one timeline layer can be added to the same map. 
+                Includes a timeline allowing you to step through the periods.
+                Only one timeline layer can be added to the same map. 
 
               - Split map views
 
-              Show multiple maps allowing you to compare different periods
-              side by side. Supported for relative periods with 12 items
-              or below. Can not be combined with other layer types.  
+                Show multiple maps allowing you to compare different periods
+                side by side. Supported for relative periods with 12 items
+                or below. Can not be combined with other layer types.  
 
           - Fixed period  
 
