@@ -54,16 +54,17 @@ assemble_resources() {
 }
 
 make_html() {
+
     cd $TMPBASE/$lang
     name=$1
     subdir=$2
     mkdir -p ${target}/${subdir}/html
     shared_resources ${target}/${subdir}/html
-    for res in `grep '(resources/images' ${name}.md | sed 's/.*resources\/images\/\([^)]*\)).*/resources\/images\/\1/'`; do
+    for res in `egrep -o '(resources/images[^)]*)' ${name}.md | uniq`; do
         mkdir -p ${target}/${subdir}/html/`dirname $res`
         cp $res ${target}/${subdir}/html/$res
     done
-    echo "compiling $name.md to html"
+    echo "compiling ${name}.md to html"
     chapters="bookinfo.md ${name}.md"
     css="./resources/css/dhis2.css"
     template="./resources/templates/dhis2_template.html"
