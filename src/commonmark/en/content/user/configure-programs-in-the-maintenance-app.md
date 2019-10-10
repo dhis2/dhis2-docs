@@ -2153,14 +2153,6 @@ for different data element and attribute value types:
 <p>Can also directly be checked for equality in filters:</p>
 <pre><code>#{mCXR7u4kNBW.JKJKBausssl} == &#39;2011-10-28&#39;</code></pre></td>
 </tr>
-<tr class="odd">
-<td><p>Date</p>
-<p>Age</p></td>
-<td><p>Date fields. Most useful when combined with a d2:daysBetween function, which produces a number that can be aggregated as an expression or used in filters:</p>
-<pre><code>d2:daysBetween(#{mCXR7u4kNBW.JKJKBausssl},V{enrollment_date}) &gt; 100</code></pre>
-<p>Can also directly be checked for equality in filters:</p>
-<pre><code>#{mCXR7u4kNBW.JKJKBausssl} == &#39;2011-10-28&#39;</code></pre></td>
-</tr>
 </tbody>
 </table>
 
