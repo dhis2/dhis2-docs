@@ -5369,6 +5369,11 @@ expressions are described in the following table.
 <td>Refers to a constant value.</td>
 </tr>
 <tr class="even">
+<td>N{&lt;indicator-id&gt;}</td>
+<td>Indicator</td>
+<td>Refers to an existing Indicator.</td>
+</tr>
+<tr class="even">
 <td>OUG{&lt;orgunitgroup-id&gt;}</td>
 <td>Organisation unit group</td>
 <td>Refers to the count of organisation units within an organisation unit group.</td>
