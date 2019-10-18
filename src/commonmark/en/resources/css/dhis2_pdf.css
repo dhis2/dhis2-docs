@@ -64,12 +64,14 @@ td blockquote{
   display:block;
   margin-left:auto;
   margin-right:auto;
+  text-align: center;
 }
 
 figure{
   display:block;
   margin-left:auto;
   margin-right:auto;
+  text-align: center;
 }
 
 figcaption{
@@ -199,7 +201,7 @@ h2.subtitle {
   position: absolute;
   bottom:100px;
   left: 0px;
-  height:100px;
+  height:120px;
   width:100%;
 }
 
@@ -211,6 +213,13 @@ p.productionInfo {
   border: none;
 }
 
+p.productionInfoSub {
+  font-size: 20px;
+  font-weight: normal;
+  font-family: 'Rubik', sans-serif;
+  color: #393D4D;
+  border: none;
+}
 
 dt code {
   font-weight: bold;

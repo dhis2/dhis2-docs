@@ -105,5 +105,7 @@ generate "dhis2_implementation_guide" "implementer"
 generate "user_stories_book" "user-stories"
 generate "dhis2_draft_chapters" "draft"
 generate "dhis2_android_capture_app" "android-app"
+# generate "dhis2_bottleneck_analysis_manual" "bna-app"
+# generate "dhis2_scorecard_manual" "scorecard-app"
 
 rm -rf $tmp

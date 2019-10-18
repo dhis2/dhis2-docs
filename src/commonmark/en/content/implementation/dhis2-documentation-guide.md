@@ -202,9 +202,9 @@ It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but
 
 ### Using images
 
-Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`.
+Image resources should be included inside a folder structure beginning with `resources`<!-- prevent processing -->`/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources`<!-- prevent processing -->`/images/<rest-of-path>`.
 
-This is important because the `resources/images` string is used to identify images in the files. Images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation. *The paths are partially reversed to ensure they remain unique when collecting images from multiple thematic folders.*
+This is important because the `resources`<!-- prevent processing -->`/images` string is used to identify images in the files. Images will be collected under `resources`<!-- prevent processing -->`/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation. *The paths are partially reversed to ensure they remain unique when collecting images from multiple thematic folders.*
 
 
 ### Section references
