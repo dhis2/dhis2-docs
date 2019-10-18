@@ -26,6 +26,7 @@ class Include(Module):
 
     # check for any images that need to have their path shifted
     imagepath = re.compile(r"].*\((resources/images/.*)[ )]")
+    simpleimagepath = re.compile(r"logo:.*(resources/images/)")
 
     # matches title lines in Markdown files
     titlere = re.compile(r"^(:?#+.*|={3,}|-{3,})$")
@@ -42,7 +43,7 @@ class Include(Module):
             # a little hack to make a !SUBMODULE directive look like an !INCLUDE directive!
             if line[0:10] == "!SUBMODULE":
                 parts=line.strip().replace('\'','').replace('"','').split(" ")
-                line='!INCLUDE "'+BASE+parts[1]+'/'+parts[3]+'"'
+                line='!INCLUDE "'+BASE+parts[1].split('/')[-1]+'/'+parts[3]+'"'
 
 
             match = self.includere.search(line)
@@ -63,7 +64,7 @@ class Include(Module):
         filename = match.group(1) or match.group(2)
 
         dirname = path.dirname(filename)
-        #print(pwd,dirname)
+        # print(pwd,dirname)
 
         shift = int(match.group(3) or 0)
 
@@ -84,9 +85,11 @@ class Include(Module):
                     data[linenum:linenum+1] = self.include(match, dirname)
 
                 image = self.imagepath.search(line)
-
+                if not image:
+                    image = self.simpleimagepath.search(line)
                 if image:
                     data[linenum] = line.replace("resources/images","resources/images/"+dirname)
+                    # print(line)
 
                 if shift:
                     titlematch = self.titlere.search(line)

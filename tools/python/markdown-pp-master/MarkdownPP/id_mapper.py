@@ -13,7 +13,7 @@ link_list = []
 
 def map_ids(soup):
     '''
-    Recursively updated the section ids based on the DHIS2-SECTION-ID comments.
+    Recursively updates the section ids based on the DHIS2-SECTION-ID comments.
     Start at the bottom of the tree and work up to the parents.
     '''
 
