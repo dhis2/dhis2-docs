@@ -14916,10 +14916,34 @@ To retrieve a logo, you can *GET* the following:
 
     GET /api/26/staticContent/<key>
 
-Example request to retrieve the file stored for
-    logo\_front:
+Example of requests to retrieve the file stored for logo\_front:
 
-    curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -L -X GET -u admin:district -v
+__*a) Adding "Accept: text/html" to the HTTP header.*__ In this case, the endpoint will return a default image if nothing is defined. Will return an image stream when a custom or default image is found.
+
+    curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -H "Accept: text/html" -L -X GET -u admin:district -v
+
+__*b) Adding "Accept: application/json" to the HTTP header.*__ With this parameter set, the endpoint will never return a default image if the custom logo is not found. Instead, an error message will be returned. When the custom image is found this endpoint will return a JSON response containing the path/URL to the respective image.
+
+    curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -H "Accept: application/json" -L -X GET -u admin:district -v
+ 
+```javascript
+// Example of a success message.
+{
+    "images": {
+        "png": "http://localhost:8080/dhis/api/staticContent/logo_front"
+    }
+}
+```
+
+```javascript
+// Example of an error message.
+{
+    "httpStatus": "Not Found",
+    "httpStatusCode": 404,
+    "status": "ERROR",
+    "message": "No custom file found."
+}
+```
 
 To use custom logos, you need to enable the corresponding system
 settings by setting it to *true*. If the corresponding setting is false,
