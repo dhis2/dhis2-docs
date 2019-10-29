@@ -29,7 +29,7 @@ class Include(Module):
     simpleimagepath = re.compile(r"logo:.*(resources/images/)")
 
     # matches title lines in Markdown files
-    titlere = re.compile(r"^(:?#+.*|={3,}|-{3,})$")
+    titlere = re.compile(r"^(:?#+.*|={4,}|-{4,})$")
 
     # includes should happen before anything else
     priority = 0
@@ -64,7 +64,7 @@ class Include(Module):
         filename = match.group(1) or match.group(2)
 
         dirname = path.dirname(filename)
-        # print(pwd,dirname)
+        # print(pwd,filename)
 
         shift = int(match.group(3) or 0)
 
@@ -79,6 +79,7 @@ class Include(Module):
             # line by line, apply shift and recursively include file data
             linenum = 0
             for line in data:
+                # print(line)
                 match = self.includere.search(line)
                 if match:
                     dirname = path.dirname(filename)
