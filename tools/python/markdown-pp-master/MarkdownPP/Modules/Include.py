@@ -109,7 +109,10 @@ class Include(Module):
 
                 titlematch = self.titlere.search(line)
                 if titlematch:
-                    data[linenum] = re.sub(r'<!-- *{-} *-->', '{-}', data[linenum])
+                    try:
+                        data[linenum] = re.sub(r'<!-- *{-} *-->', '{-}', data[linenum])
+                    except IndexError:
+                        pass
 
                 linenum += 1
 
