@@ -704,7 +704,9 @@ program. A program needs several types of metadata that you create in the **Main
 
 2. Click the add button and select **Tracker Program** in the popup menu.
 
-3. Enter program details:
+#### Enter program details
+
+<!--DHIS2-SECTION-ID:tracker_enter_programs_details-->
 <table>
     <colgroup>
         <col style="width: 50%" />
@@ -883,7 +885,9 @@ program. A program needs several types of metadata that you create in the **Main
     </tbody>
 </table>
 
-4. Enter enrollment details:
+#### Enter enrollment details
+
+<!--DHIS2-SECTION-ID:enter_enrollment_details-->
 <table>
     <colgroup>
         <col style="width: 50%" />
