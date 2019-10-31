@@ -18,24 +18,21 @@ transforming the data into a suitable format and ensuring the name which
 are contained in the geospatial data match exactly with the names of the
 organization units which they should be matched to.
 
-If you go to the organisation unit module and edit one of the units, you
-can see a text field called Coordinates. Here you may fill in its
-coordinates directly (geojson format) which is useful if you just want
-to update a couple of units.
+Only organisation units with POINT geometry types can be edited through the
+Maintenance App at this time.  To modify POLYGON geometries, please us the
+GML import feature.
 
-An example point/facility coordinate:
+To edit the POINT coordinates of an organisation unit, open the Maintenance
+App and navigate to the Organisation Unit section.  Click on the Organisation
+Unit you would like to view or edit, you can search or filter the list from
+on the left-hand side of the screen.  Once an organisation unit is selected,
+you can edit the **Latitude** and **Longitude** values to update the POINT
+coordinates.  If the Organisation Unit has a POLYGON geometry, the coordinates
+cannot be edited.
 
-    [29.341,-11.154]
-
-An example polygon/area coordinates
-    string:
-
-    [[[[29.343,-11.154],[28.329,-11.342],[28.481,-10.239],[29.833,-10.412]]]]
-
-However, if you are going to e.g. add coordinates for all units at a
-certain level you don't want to do that manually. This is where the
-automatic GML import comes into play and the following section explains
-the preferred way of using it.
+If you are going to add or update coordinates for a large number of units, or
+if you need to update polygon geometries, you should use the automatic GML
+import.  The following section explains how to perform a GML import.
 
 > **Important**
 >
