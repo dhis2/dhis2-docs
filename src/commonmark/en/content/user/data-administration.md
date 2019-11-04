@@ -388,25 +388,6 @@ system.
     This table provides a mapping between data elements and all possible
     category option combinations.
 
-## Duplicate data elimination
-
-<!--DHIS2-SECTION-ID:dataAdmin_duplicateDataElimination-->
-
-This function is useful when data has been entered mistakenly for two
-data elements which represents the same phenomena.
-
-Start by selecting the data element to eliminate from the list and click
-confirm. Then select the data element to keep and click confirm again.
-Finally, verify the selection and click merge.
-
-In the situation where data exists for the data element to eliminate and
-not for the one to keep, the data will be moved to the one to keep. When
-data exists for both data elements, the data which was updated last will
-be used. When data exists only for the one to keep, no action will be
-taken. The data element to eliminate will eventually be deleted, except
-when it is a multidimensional data element and has other data
-registered.
-
 ## Data statistics
 
 <!--DHIS2-SECTION-ID:dataAdmin_dataStatistics-->
