@@ -246,9 +246,13 @@ with the user name and password that you provide.<br/><br/>
 Choose this option if you want to send an invitation by email to the
 user. Then she/he must return to DHIS2 and finish setting up their user
 account. The account that the user finishes setting up will be limited
-according to how you configure the account.<br/><br/>
-In order to use this feature "Enable email message notifications" in
-SystemSettings -\> Messaging should be checked.<br/><br/>
+according to how you configure the account.<br/>
+> **Note**
+>
+> In order to use this feature the system should have a valid email 
+> configuration in SystemSettings -\> Email
+
+
 Enter the email address to which the invitation should be sent. If you
 want to, you may also enter the user name that the account will have. If
 you leave the user name empty, then the user may choose their own user
