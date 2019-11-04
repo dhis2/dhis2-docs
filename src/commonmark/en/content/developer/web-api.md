@@ -993,6 +993,12 @@ associated objects or collection of objects, are supported as well.
 </tbody>
 </table>
 
+When using the "like" and "ilike" operators you can use the _ character (underscore) to match one single character.
+
+Get options with name "Q0_1" (matches to "Q011", "Q021", "Q031", etc.):
+
+    /api/28/options.json?filter=name:ilike:Q0_1
+
 Operators will be applied as logical **and** query, if you need a **or**
 query, you can have a look at our *in* filter (also have a look at the
 section below). The filtering mechanism allows for recursion. See below
