@@ -4674,7 +4674,8 @@ sampled. For example:
         not yet supported.
 
         To use sampled, past period data, you should enclose any items
-        you select in one of the following aggregate functions:
+        you select in one of the following aggregate functions (note that
+        these function names are case-sensitive):
 
         <table>
         <colgroup>
@@ -4714,7 +4715,7 @@ sampled. For example:
         </tr>
         <tr class="odd">
         <td><p>stddev(x)</p></td>
-        <td><p>Standard deviation of x. Note: this function is still available for backwards comptibility and is eqivalent to stddevPop. It's suggested that you use the newer functions stddevPop or stddevSamp instead for greater clarity and for compatibility with future versions of DHIS 2.</p></td>
+        <td><p>Standard deviation of x. This function is eqivalent to stddevSamp. It's suggested that you use the function stddevSamp instead for greater clarity.</p></td>
         </tr>
         <tr class="even">
         <td><p>stddevPop(x)</p></td>
@@ -4744,9 +4745,9 @@ sampled. For example:
         option inserts \[days\] into the expression which resolves to
         the number of days in the period from which the data came.
 
-        You can also use the following functions in your expression,
-        either inside or containing aggregate functions, or independent
-        of them:
+        You can also use the following non-aggregating functions in your
+        expression, either inside aggregate functions, or containing
+        aggregate functions, or independent of aggregate functions:
 
         <table>
         <colgroup>
@@ -4767,6 +4768,26 @@ sampled. For example:
         <tr class="even">
         <td><p>isNull(item)</p></td>
         <td><p>Returns the boolean value <strong>true</strong> if the <strong>item</strong> is null (missing), otherwise returns <strong>false</strong>. The <strong>item</strong> can be any selected item from the right (data element, program data element, etc.).</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>isNotNull</p></td>
+        <td><p>(item)</p></td>
+        <td><p>Returns <strong>true</strong> if the <strong>item</strong> value is not missing (not null), otherwise <strong>false</strong>.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>firstNonNull</p></td>
+        <td><p>(item [, item ...])</p></td>
+        <td><p>Returns the value of the first <strong>item</strong> that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous items have missing values.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>greatest</p></td>
+        <td><p>(expression [, expression ...])</p></td>
+        <td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>least</p></td>
+        <td><p>(expression [, expression ...])</p></td>
+        <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
         </tr>
         </tbody>
         </table>
@@ -4838,8 +4859,10 @@ sampled. For example:
         program data elements, attributes or indicators. Organisation
         unit counts are not yet supported. As with the generator
         function, you may click on (or type) any of the elements below
-        the expression field: ( ) \* / + - Days. The functions IF() and
-        ISNULL() as described above may also be used.
+        the expression field: ( ) \* / + - Days.
+
+        The non-aggregating functions described above may also be used
+        in skip tests.
 
         The expression must evaluate to a boolean value of **true** or
         **false**. See **Boolean expression notes** above.
