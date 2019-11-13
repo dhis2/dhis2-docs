@@ -3295,21 +3295,31 @@ If the #{variableWithText} in the above example was 'ABCD', then the result of t
 <tr class="even">
 <td>d2:zScoreWFA</td>
 <td>Z-Score weight for age indicator</td>
-<td>Function calculates z-score based on data provided by WHO weight-for-age indicator. Its value varies between -3.5 to 3.5 depending upon the value of weight.
+<td>Calculates z-score based on data provided by WHO weight-for-age indicator.
+e varies between -3.5 to 3.5 depending upon the value of weight.
 <p>Example expression:</p>
-<pre><code>d2:zScoreWFA( ageInMonth, weight, gender )</code></pre></td>
+<pre><code>d2:zScoreWFA( ageInMonths, weight, gender )</code></pre>
+
+> **Gender**
+>
+> Gender is concidered female by default. Any of the following codes can
+> be used to denote male: 'Male', 'MALE', 'male', 'ma', 'm', 'M', 0, false
+
+</td>
 </tr>
 <tr class="odd">
 <td>d2:zScoreHFA</td>
 <td>Z-Score height for age indicator</td>
-<td>Function calculates z-score based on data provided by WHO height-for-age indicator. Its value varies between -3.5 to 3.5 depending upon the value of height.
+<td>Calculates z-score based on data provided by WHO height-for-age indicator.
+Its value varies between -3.5 to 3.5 depending upon the value of height.
 <p>Example expression:</p>
-<pre><code>d2:zScoreHFA( ageInMonth, height, gender )</code></pre></td>
+<pre><code>d2:zScoreHFA( ageInMonths, height, gender )</code></pre></td>
 </tr>
 <tr class="even">
 <td>d2:zScoreWFH</td>
 <td>Z-Score weight for height indicator</td>
-<td>Function calculates z-score based on data provided by WHO weight-for-height indicator. Its value varies between -3.5 to 3.5 depending upon the value of height.
+<td>Calculates z-score based on data provided by WHO weight-for-height indicator.
+Its value varies between -3.5 to 3.5 depending upon the value of the weight.
 <p>Example expression:</p>
 <pre><code>d2:zScoreWFH( height, weight, gender )</code></pre></td>
 </tr>
@@ -3448,19 +3458,19 @@ For more information about configuration and the meaning of 'From constraint' an
 
 4.  (Optional) Assign a **Code**.
 
-4.  (Optional) Provide a **Description** of the relationship.
+5.  (Optional) Provide a **Description** of the relationship.
 
-5. (Optional) Select whether the relationship should be bidirectional
+6. (Optional) Select whether the relationship should be bidirectional
 
-6. Provide **Relationship name seen from inititating entity**. This is the name of the relationship that will be shown in the Data Entry app at the 'left' side of the relationship. E.g. in a Mother-child relationship this could be 'Mother of'.
+7. Provide **Relationship name seen from inititating entity**. This is the name of the relationship that will be shown in the Data Entry app at the 'left' side of the relationship. E.g. in a Mother-child relationship this could be 'Mother of'.
 
-7. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
+8. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
 
 9.  Select a 'From constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](relationship_model#relationship_model_relationship_type).
 
-9.  Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](relationship_model#relationship_model_relationship_type).
+10. Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](relationship_model#relationship_model_relationship_type).
 
-9.  Click **Save**.
+11. Click **Save**.
 
 ## Configure tracked entity types
 
