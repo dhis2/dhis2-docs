@@ -17372,37 +17372,40 @@ i.e. *?fields=program,status*.
 <td>dataElementIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Data element ID scheme to use for export, valid options are UID and CODE</td>
+<td>Data element ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="even">
 <td>categoryOptionComboIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Category Option Combo ID scheme to use for export, valid options are UID and CODE</td>
+<td>Category Option Combo ID scheme to use for export, valid options are UID, CODE and 
+ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="odd">
 <td>orgUnitIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Organisation Unit ID scheme to use for export, valid options are UID and CODE</td>
+<td>Organisation Unit ID scheme to use for export, valid options are UID, CODE and 
+ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="even">
 <td>programIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Program ID scheme to use for export, valid options are UID and CODE</td>
+<td>Program ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="odd">
 <td>programStageIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Program Stage ID scheme to use for export, valid options are UID and CODE</td>
+<td>Program Stage ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="even">
 <td>idScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.</td>
+<td>Allows to set id scheme for data element, category option combo, orgUnit, program and program 
+stage at once.</td>
 </tr>
 <tr class="odd">
 <td>order</td>
@@ -17513,9 +17516,25 @@ tracked entity instance in the year 2014:
     /api/29/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
       &trackedEntityInstance=gfVxE3ALA9m&startDate=2014-01-01&endDate=2014-12-31
 
-Query files associated with event data values. In the specific case of fetching an image file an additional parameter can be provided to fetch the image with different dimensions. If dimension is not provided, the system will return the original image. The parameter will be ignored in case of fetching non-image files e.g pdf. Possible dimension values are *small(254 x 254), medium(512 x 512), large(1024 x 1024) or original*. Any value other than those mentioned will be discarded and the original image will be returned.
+Query files associated with event data values. In the specific case of fetching an image file an 
+additional parameter can be provided to fetch the image with different dimensions. If dimension is 
+not provided, the system will return the original image. The parameter will be ignored in case of 
+fetching non-image files e.g pdf. Possible dimension values are *small(254 x 254), 
+medium(512 x 512), large(1024 x 1024) or original*. Any value other than those mentioned will be 
+discarded and the original image will be returned.
 
     /api/30/events/files?eventUid=hcmcWlYkg9u&dataElementUid=C0W4aFuVm4P&dimension=small
+    
+Retrieve events with specified Organisation unit and Program, and use _Attribute:Gq0oWTf2DtN_ as 
+identifier scheme
+    
+    /api/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
+
+Retrieve events with specified Organisation unit and Program, and use UID as identifier scheme for 
+orgUnits, Code as identifier scheme for Program stages and _Attribute:Gq0oWTf2DtN_ as identifier 
+scheme for the rest of the metadata with assigned attribute.
+    
+    api/events.json?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN&orgUnitIdScheme=UID&programStageIdScheme=Code
 
 #### Event grid query
 
