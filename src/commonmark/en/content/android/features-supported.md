@@ -542,7 +542,7 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 <p>Auto-generate event</p>
 </td>
 <td>
-<p>If ticked, a &lsquo;booking&rsquo; is generated for this Program Stage upon enrolment, based on the &lsquo;Scheduled days from start&rsquo;.</p>
+<p>If ticked, a &lsquo;booking&rsquo; is generated for this Program Stage upon enrolment, based on the &lsquo;Scheduled days from start&rsquo;. If the tracker end user tries to change the enrollment date after an event is generated, a warning will appear to inform that the generated event date(s) will not change automatically.</p>
 </td>
 <td>
 <p>Program with registration</p>
@@ -557,7 +557,7 @@ In the notes, ‘admin’ refers to someone who develops and configures a DHIS2 
 <p>Generate events based on enrolment date (not incident date)</p>
 </td>
 <td>
-<p>Check on it for auto-generating due dates of events from program-stages of this program based on the enrollment date. If it is not checked, the due dates are generated based on incident date.</p>
+<p>Check on it for auto-generating due dates of events from program-stages of this program based on the enrollment date. If it is not checked, the due dates are generated based on incident date. If the tracker end user tries to change the incident date after an event is generated, a warning will appear to inform that the generated event date(s) will not change automatically.</p>
 </td>
 <td>
 <p>Program with registration</p>
