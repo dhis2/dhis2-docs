@@ -270,7 +270,7 @@ layer** selection. This opens the Events layer configuration dialog.
             In the **Period type** field select **Relative**, then
             select one of the relative periods, for example **Last year** or 
             **Last 12 months**, in the **Period** field. If you select a
-            relative period covering mutiple years/months/weeks/days 
+            relative period covering multiple years/months/weeks/days 
             the layer can be displayed as
 
               - Single (aggregate)
@@ -628,27 +628,21 @@ layer** selection. This opens the Events layer configuration dialog.
 
 ### Modify information in event pop-up windows
 
-For events in a cluster map, you can modify the information displayed in
-the event pop-up window.
+You can modify the information displayed in the event pop-up window.
 
 
 ![](resources/images/maps/maps_eventlayer_eventinfopopup.png)
 
-1.  Open the **Programs / Attributes** app.
+1.  Open the **Maintenance** app.
 
-2.  Click **Program**.
+2.  Select **Program**.
 
-3.  Click the program you want to modify and select **View program
-    stages**.
+3.  Click the program you want to modify and select **2 Assign data elements**.
 
-4.  Click the program stage name and select **Edit**.
-
-5.  Scroll down to the **Selected data elements** section.
-
-6.  For every data element you want to display in the pop-up window,
+4.  For every data element you want to display in the pop-up window,
     select corresponding **Display in reports**.
 
-7.  Click **Update**.
+5.  Click **Save**.
 
 ### Download raw event layer data
 

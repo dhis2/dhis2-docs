@@ -5558,6 +5558,11 @@ expressions are described in the following table.
 <td>Refers to a constant value.</td>
 </tr>
 <tr class="even">
+<td>N{&lt;indicator-id&gt;}</td>
+<td>Indicator</td>
+<td>Refers to an existing Indicator.</td>
+</tr>
+<tr class="odd">
 <td>OUG{&lt;orgunitgroup-id&gt;}</td>
 <td>Organisation unit group</td>
 <td>Refers to the count of organisation units within an organisation unit group.</td>
@@ -5602,6 +5607,10 @@ An example which uses a reporting rate looks like this:
 Another example which uses actual data set reports:
 
     R{BfMAe6Itzgt.ACTUAL_REPORTS} / R{BfMAe6Itzgt.EXPECTED_REPORTS}
+
+An example which uses an existing indicator would look like this:
+
+    N{Rigf2d2Zbjp} * #{P3jJH5Tu5VC.S34ULMcHMca}
 
 Expressions can be any kind of valid mathematical expression, as an
 example:
@@ -14907,10 +14916,34 @@ To retrieve a logo, you can *GET* the following:
 
     GET /api/26/staticContent/<key>
 
-Example request to retrieve the file stored for
-    logo\_front:
+Example of requests to retrieve the file stored for logo\_front:
 
-    curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -L -X GET -u admin:district -v
+__*a) Adding "Accept: text/html" to the HTTP header.*__ In this case, the endpoint will return a default image if nothing is defined. Will return an image stream when a custom or default image is found.
+
+    curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -H "Accept: text/html" -L -X GET -u admin:district -v
+
+__*b) Adding "Accept: application/json" to the HTTP header.*__ With this parameter set, the endpoint will never return a default image if the custom logo is not found. Instead, an error message will be returned. When the custom image is found this endpoint will return a JSON response containing the path/URL to the respective image.
+
+    curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -H "Accept: application/json" -L -X GET -u admin:district -v
+ 
+```javascript
+// Example of a success message.
+{
+    "images": {
+        "png": "http://localhost:8080/dhis/api/staticContent/logo_front"
+    }
+}
+```
+
+```javascript
+// Example of an error message.
+{
+    "httpStatus": "Not Found",
+    "httpStatusCode": 404,
+    "status": "ERROR",
+    "message": "No custom file found."
+}
+```
 
 To use custom logos, you need to enable the corresponding system
 settings by setting it to *true*. If the corresponding setting is false,
@@ -15626,12 +15659,16 @@ values. The value of an attribute with the image value type is the id of
 the associated file resource. A GET request to the
 */api/trackedEntityInstances/\<entityId\>/\<attributeId\>/image*
 endpoint will return the actual image. The optional height and width
-parameters can be used to specify the dimensions of the
-    image.
+parameters can be used to specify the dimensions of the image.
 
     curl http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?height=200&width=200
       > image.jpg
 
+The API also supports a *dimension* parameter. It can take three possible values: *small(254 x 254), medium(512 x 512), large(1024 x 1024) or original*. Image type attributes will be stored in pre-generated sizes
+and will be furnished upon request based on the value of the *dimension* parameter.
+
+    curl http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium
+      
 #### Tracked entity instance query
 
 <!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_query-->
@@ -17476,7 +17513,7 @@ tracked entity instance in the year 2014:
     /api/29/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
       &trackedEntityInstance=gfVxE3ALA9m&startDate=2014-01-01&endDate=2014-12-31
 
-Query files associated with event data values. In specific case when fetching image file an additional parameter can be provided to fetch image with different dimensions. If dimension is not provided, system will return original image. Parameter will be ignored in case of fetching non image files e.g pdf. Possible dimension values are *small*, *medium* and *large*. Any value other than those mentioned will be discarded and original image will be returned.
+Query files associated with event data values. In the specific case of fetching an image file an additional parameter can be provided to fetch the image with different dimensions. If dimension is not provided, the system will return the original image. The parameter will be ignored in case of fetching non-image files e.g pdf. Possible dimension values are *small(254 x 254), medium(512 x 512), large(1024 x 1024) or original*. Any value other than those mentioned will be discarded and the original image will be returned.
 
     /api/30/events/files?eventUid=hcmcWlYkg9u&dataElementUid=C0W4aFuVm4P&dimension=small
 

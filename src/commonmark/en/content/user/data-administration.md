@@ -388,24 +388,37 @@ system.
     This table provides a mapping between data elements and all possible
     category option combinations.
 
-## Duplicate data elimination
+## Analytics tables management
 
-<!--DHIS2-SECTION-ID:dataAdmin_duplicateDataElimination-->
+<!--DHIS2-SECTION-ID:analytics_tables_management-->
 
-This function is useful when data has been entered mistakenly for two
-data elements which represents the same phenomena.
+DHIS2 generates database tables which the system then uses as basis for
+various analytics functions. These tables are also valuable if you write
+advanced SQL reports. In the **Data Administration** app, you can execute the tables 
+generation immediately. If you want to schedule them to be executed at regular intervals, 
+this can be done in the **Scheduler** app. This means that you can refresh recent analytics on 
+demand and see updated pivot tables without waiting for all of the past years data to
+re-process.
 
-Start by selecting the data element to eliminate from the list and click
-confirm. Then select the data element to keep and click confirm again.
-Finally, verify the selection and click merge.
+> **Note**
+> 
+> You can also generate the tables through the web API. This task is
+> typically performed by a system administrator.
+1.  Open the **Data Administration** app and click **Analytics Tables**.
 
-In the situation where data exists for the data element to eliminate and
-not for the one to keep, the data will be moved to the one to keep. When
-data exists for both data elements, the data which was updated last will
-be used. When data exists only for the one to keep, no action will be
-taken. The data element to eliminate will eventually be deleted, except
-when it is a multidimensional data element and has other data
-registered.
+2.  Select the parts of the analytics process you want to skip:
+
+      - **Skip generation of resource tables**
+
+      - **Skip generation of aggregate data and completeness data**
+
+      - **Skip generation of event data**
+
+      - **Skip generation of enrollment data**
+
+3.  Select **Number of last years of data to include**.
+
+4.  Click **Start export**.
 
 ## Data statistics
 

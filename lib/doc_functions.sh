@@ -7,13 +7,14 @@ shared_resources() {
 
 include_submodules() {
 
-  exec 3<> $1
-  while read line <&3
+  DONE=false
+  until $DONE
   do {
-    #echo "line $line"
+      read line || DONE=true
+      # echo "line $line"
 
       read -r -a words <<< $line
-      #echo "words0 ${words[0]}"
+      # echo "words0 ${words[0]}"
       if [ "${words[0]}" == "!SUBMODULE" ]
       then
           submodule_name=${words[1]}
@@ -22,15 +23,21 @@ include_submodules() {
           {
             mkdir -p $src/content/submodules
             pushd $src/content/submodules
-            echo "git clone -b ${submodule_branch//\"} --depth 1 $GIT_BASE${submodule_name//\"}"
-            git clone -q -b ${submodule_branch//\"} --depth 1 $GIT_BASE${submodule_name//\"}
+            if [[ "${submodule_name//\"}" == "http"* ]]; then
+              # the repository is defined with a full URL
+              echo "git clone -b ${submodule_branch//\"} --depth 1 ${submodule_name//\"}"
+              git clone -q -b ${submodule_branch//\"} --depth 1 ${submodule_name//\"}
+            else
+              # only repository name is given - assume dhis2 project on github
+              echo "git clone -b ${submodule_branch//\"} --depth 1 $GIT_BASE${submodule_name//\"}"
+              git clone -q -b ${submodule_branch//\"} --depth 1 $GIT_BASE${submodule_name//\"}
+            fi
+
             popd
           }
       fi
-
   }
-  done
-  exec 3>&-
+  done < $1
 
 }
 
@@ -55,17 +62,22 @@ assemble_resources() {
 }
 
 make_html() {
+
     cd $TMPBASE/$lang
     name=$1
     subdir=$2
     mkdir -p ${target}/${subdir}/html
     shared_resources ${target}/${subdir}/html
-    for res in `grep '(resources/images' ${name}.md | sed 's/.*resources\/images\/\([^)]*\)).*/resources\/images\/\1/'`; do
+    for res in `egrep -o '(resources/images[^)]*)' ${name}.md | uniq`; do
         mkdir -p ${target}/${subdir}/html/`dirname $res`
         cp $res ${target}/${subdir}/html/$res
     done
-    echo "compiling $name.md to html"
-    chapters="bookinfo.md ${name}.md"
+    for res in `egrep -o 'resources/images[^)]*' custom_bookinfo.md | uniq`; do
+        mkdir -p ${target}/${subdir}/html/`dirname $res`
+        cp $res ${target}/${subdir}/html/$res
+    done
+    echo "compiling ${name}.md to html"
+    chapters="custom_bookinfo.md bookinfo.md ${name}.md"
     css="./resources/css/dhis2.css"
     template="./resources/templates/dhis2_template.html"
     thanks=""
@@ -92,7 +104,7 @@ make_pdf() {
     echo "making pdf in $PWD"
     mkdir -p ${target}/${subdir}
     echo "compiling $name.md to pdf"
-    chapters="bookinfo.md ${name}.md"
+    chapters="custom_bookinfo.md bookinfo.md ${name}.md"
     css="./resources/css/dhis2_pdf.css"
     template="./resources/templates/dhis2_template.html"
     thanks=""
@@ -116,14 +128,14 @@ assemble(){
         assemble_content $f
     done
 
-    for path in `grep "INCLUDE" ${name}_INDEX.md | sed 's/[^"]*"//' | sed 's/[^/]*"//' | sort -u`; do
+    for path in `grep "INCLUDE" ${name}_INDEX.md | sed 's/,.*// ; s/[^"]*"// ; s/[^/]*"//' | sort -u`; do
       for r in `find $path -type f | grep "resources/images"`; do
           # echo "resource: $r"
           assemble_resources $r $tmp
       done
     done
 
-    for path in `grep "SUBMODULE" ${name}_INDEX.md | sed 's/[^"]*"/content\/submodules\//' | sed 's/" "[^"]*" "/\//' | sed 's/[^/]*"//' | sort -u`; do
+    for path in `grep "SUBMODULE" ${name}_INDEX.md | sed 's/[^"]*"/content\/submodules\// ; s/http[^"]*\/// ; s/,.*// ; s/" "[^"]*" "/\// ; s/[^/]*"//' | sort -u`; do
       for r in `find $path -type f | grep "resources/images"`; do
           # echo "resource: $r"
           assemble_resources $r $tmp
@@ -217,11 +229,15 @@ build_docs(){
     gitdate=`git show -s --format=%ci $githash`
     gityear=`date -d "${gitdate}" '+%Y'`
     gitmonth=`LC_TIME=${locale}.utf8 date -d "${gitdate}" '+%B'`
-    sed -i "s/<git-branch>/$gitbranch/" bookinfo*.md
-    sed -i "s/<git-hash>/$githash/" bookinfo*.md
-    sed -i "s/<git-date>/$gitdate/" bookinfo*.md
-    sed -i "s/<git-year>/$gityear/" bookinfo*.md
-    sed -i "s/<git-month>/$gitmonth/" bookinfo*.md
+    sed -i "s/<git-branch>/$gitbranch/" bookinfo.md
+    sed -i "s/<git-hash>/$githash/" bookinfo.md
+    sed -i "s/<git-date>/$gitdate/" bookinfo.md
+    sed -i "s/<git-year>/$gityear/" bookinfo.md
+    sed -i "s/<git-month>/$gitmonth/" bookinfo.md
+
+    echo -e "$(head -100 ${tmp}/${name}.md | sed -n '/---/,/---/p')" > custom_bookinfo.md
+    touch custom_bookinfo.md
+    sed -i ' s/\([^ :]*\)\/resources\/images\(.*\)/resources\/images\/\1\2/' custom_bookinfo.md
 
     if [ $selection == "html" ]
     then

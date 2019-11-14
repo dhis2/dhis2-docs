@@ -98,12 +98,14 @@ generate(){
 # format:
 #$> generate <doc name> <chapters subfolder> ["html","pdf","both"]
 generate "dhis2_android_user_man" "android"
-generate "dhis2_android_capture_config_man" "android"
 generate "dhis2_developer_manual" "developer"
 generate "dhis2_user_manual_en" "user"
 generate "dhis2_end_user_manual" "end-user"
 generate "dhis2_implementation_guide" "implementer"
 generate "user_stories_book" "user-stories"
 generate "dhis2_draft_chapters" "draft"
+generate "dhis2_android_capture_app" "android-app"
+generate "dhis2_bottleneck_analysis_manual" "bna-app"
+generate "dhis2_scorecard_manual" "scorecard-app"
 
 rm -rf $tmp
