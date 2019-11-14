@@ -5333,6 +5333,11 @@ expressions are described in the following table.
 <td>Refers to a constant value.</td>
 </tr>
 <tr class="even">
+<td>N{&lt;indicator-id&gt;}</td>
+<td>Indicator</td>
+<td>Refers to an existing Indicator.</td>
+</tr>
+<tr class="odd">
 <td>OUG{&lt;orgunitgroup-id&gt;}</td>
 <td>Organisation unit group</td>
 <td>Refers to the count of organisation units within an organisation unit group.</td>
@@ -5377,6 +5382,10 @@ An example which uses a reporting rate looks like this:
 Another example which uses actual data set reports:
 
     R{BfMAe6Itzgt.ACTUAL_REPORTS} / R{BfMAe6Itzgt.EXPECTED_REPORTS}
+
+An example which uses an existing indicator would look like this:
+
+    N{Rigf2d2Zbjp} * #{P3jJH5Tu5VC.S34ULMcHMca}
 
 Expressions can be any kind of valid mathematical expression, as an
 example:
