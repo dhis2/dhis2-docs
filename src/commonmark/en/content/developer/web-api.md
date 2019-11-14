@@ -15541,14 +15541,16 @@ adding the ?expiration=\<number-of-days\> to the
 
     GET /api/29/trackedEntityAttributes/Gs1ICEQTPlG/generate?ORG_UNIT_CODE=OSLO
 
-    {
-        "ownerObject": "TRACKEDENTITYATTRIBUTE",
-        "ownerUid": "Gs1ICEQTPlG",
-        "key": "RANDOM(X)-OSL",
-        "value": "C-OSL",
-        "created": "2018-03-02T12:01:36.680",
-        "expiryDate": "2018-03-05T12:01:36.678"
-    }
+```json
+{
+	"ownerObject": "TRACKEDENTITYATTRIBUTE",
+	"ownerUid": "Gs1ICEQTPlG",
+	"key": "RANDOM(X)-OSL",
+	"value": "C-OSL",
+	"created": "2018-03-02T12:01:36.680",
+	"expiryDate": "2018-03-05T12:01:36.678"
+}
+```
 
 ##### Generate and reserve value endpoint
 
@@ -15572,32 +15574,34 @@ expiration time in the same way. By adding the
 
     GET /api/29/trackedEntityAttributes/Gs1ICEQTPlG/generateAndReserve?numberToReserve=3&ORG_UNIT_CODE=OSLO
 
-    [
-        {
-            "ownerObject": "TRACKEDENTITYATTRIBUTE",
-            "ownerUid": "Gs1ICEQTPlG",
-            "key": "RANDOM(X)-OSL",
-            "value": "B-OSL",
-            "created": "2018-03-02T13:22:35.175",
-            "expiryDate": "2018-05-01T13:22:35.174"
-        },
-        {
-            "ownerObject": "TRACKEDENTITYATTRIBUTE",
-            "ownerUid": "Gs1ICEQTPlG",
-            "key": "RANDOM(X)-OSL",
-            "value": "Q-OSL",
-            "created": "2018-03-02T13:22:35.175",
-            "expiryDate": "2018-05-01T13:22:35.174"
-        },
-        {
-            "ownerObject": "TRACKEDENTITYATTRIBUTE",
-            "ownerUid": "Gs1ICEQTPlG",
-            "key": "RANDOM(X)-OSL",
-            "value": "S-OSL",
-            "created": "2018-03-02T13:22:35.175",
-            "expiryDate": "2018-05-01T13:22:35.174"
-        }
-    ]
+```json
+[
+	{
+		"ownerObject": "TRACKEDENTITYATTRIBUTE",
+		"ownerUid": "Gs1ICEQTPlG",
+		"key": "RANDOM(X)-OSL",
+		"value": "B-OSL",
+		"created": "2018-03-02T13:22:35.175",
+		"expiryDate": "2018-05-01T13:22:35.174"
+	},
+	{
+		"ownerObject": "TRACKEDENTITYATTRIBUTE",
+		"ownerUid": "Gs1ICEQTPlG",
+		"key": "RANDOM(X)-OSL",
+		"value": "Q-OSL",
+		"created": "2018-03-02T13:22:35.175",
+		"expiryDate": "2018-05-01T13:22:35.174"
+	},
+	{
+		"ownerObject": "TRACKEDENTITYATTRIBUTE",
+		"ownerUid": "Gs1ICEQTPlG",
+		"key": "RANDOM(X)-OSL",
+		"value": "S-OSL",
+		"created": "2018-03-02T13:22:35.175",
+		"expiryDate": "2018-05-01T13:22:35.174"
+	}
+]
+```
 
 ##### Reserved values
 
@@ -15953,152 +15957,154 @@ The response in JSON/XML is in object format and can look like the
 following (please note that field filtering is supported, so if you want
 a full view, you might want to add fields=\*):
 
-    {
-        "trackedEntityInstances": [
-            {
-                "lastUpdated": "2014-03-28 12:27:52.399",
-                "trackedEntity": "cyl5vuJ5ETQ",
-                "created": "2014-03-26 15:40:19.997",
-                "orgUnit": "ueuQlqb8ccl",
-                "trackedEntityInstance": "tphfdyIiVL6",
-                "relationships": [],
-                "attributes": [
-                    {
-                        "displayName": "Address",
-                        "attribute": "AMpUYgxuCaE",
-                        "type": "string",
-                        "value": "2033 Akasia St"
-                    },
-                    {
-                        "displayName": "TB number",
-                        "attribute": "ruQQnf6rswq",
-                        "type": "string",
-                        "value": "1Z 989 408 56 9356 521 9"
-                    },
-                    {
-                        "displayName": "Weight in kg",
-                        "attribute": "OvY4VVhSDeJ",
-                        "type": "number",
-                        "value": "68.1"
-                    },
-                    {
-                        "displayName": "Email",
-                        "attribute": "NDXw0cluzSw",
-                        "type": "string",
-                        "value": "LiyaEfrem@armyspy.com"
-                    },
-                    {
-                        "displayName": "Gender",
-                        "attribute": "cejWyOfXge6",
-                        "type": "optionSet",
-                        "value": "Female"
-                    },
-                    {
-                        "displayName": "Phone number",
-                        "attribute": "P2cwLGskgxn",
-                        "type": "phoneNumber",
-                        "value": "085 813 9447"
-                    },
-                    {
-                        "displayName": "First name",
-                        "attribute": "dv3nChNSIxy",
-                        "type": "string",
-                        "value": "Liya"
-                    },
-                    {
-                        "displayName": "Last name",
-                        "attribute": "hwlRTFIFSUq",
-                        "type": "string",
-                        "value": "Efrem"
-                    },
-                    {
-                        "code": "Height in cm",
-                        "displayName": "Height in cm",
-                        "attribute": "lw1SqmMlnfh",
-                        "type": "number",
-                        "value": "164"
-                    },
-                    {
-                        "code": "City",
-                        "displayName": "City",
-                        "attribute": "VUvgVao8Y5z",
-                        "type": "string",
-                        "value": "Kranskop"
-                    },
-                    {
-                        "code": "State",
-                        "displayName": "State",
-                        "attribute": "GUOBQt5K2WI",
-                        "type": "number",
-                        "value": "KwaZulu-Natal"
-                    },
-                    {
-                        "code": "Zip code",
-                        "displayName": "Zip code",
-                        "attribute": "n9nUvfpTsxQ",
-                        "type": "number",
-                        "value": "3282"
-                    },
-                    {
-                        "code": "Mother maiden name",
-                        "displayName": "Mother maiden name",
-                        "attribute": "o9odfev2Ty5",
-                        "type": "string",
-                        "value": "Gabriel"
-                    },
-                    {
-                        "code": "National identifier",
-                        "displayName": "National identifier",
-                        "attribute": "AuPLng5hLbE",
-                        "type": "string",
-                        "value": "465700042"
-                    },
-                    {
-                        "code": "Occupation",
-                        "displayName": "Occupation",
-                        "attribute": "A4xFHyieXys",
-                        "type": "string",
-                        "value": "Biophysicist"
-                    },
-                    {
-                        "code": "Company",
-                        "displayName": "Company",
-                        "attribute": "kyIzQsj96BD",
-                        "type": "string",
-                        "value": "Sav-A-Center"
-                    },
-                    {
-                        "code": "Vehicle",
-                        "displayName": "Vehicle",
-                        "attribute": "VHfUeXpawmE",
-                        "type": "string",
-                        "value": "2008 Citroen Picasso"
-                    },
-                    {
-                        "code": "Blood type",
-                        "displayName": "Blood type",
-                        "attribute": "H9IlTX2X6SL",
-                        "type": "string",
-                        "value": "B-"
-                    },
-                    {
-                        "code": "Latitude",
-                        "displayName": "Latitude",
-                        "attribute": "Qo571yj6Zcn",
-                        "type": "string",
-                        "value": "-30.659626"
-                    },
-                    {
-                        "code": "Longitude",
-                        "displayName": "Longitude",
-                        "attribute": "RG7uGl4w5Jq",
-                        "type": "string",
-                        "value": "26.916172"
-                    }
-                ]
-            }
-        ]
-    }
+```json
+{
+	"trackedEntityInstances": [
+		{
+			"lastUpdated": "2014-03-28 12:27:52.399",
+			"trackedEntity": "cyl5vuJ5ETQ",
+			"created": "2014-03-26 15:40:19.997",
+			"orgUnit": "ueuQlqb8ccl",
+			"trackedEntityInstance": "tphfdyIiVL6",
+			"relationships": [],
+			"attributes": [
+				{
+					"displayName": "Address",
+					"attribute": "AMpUYgxuCaE",
+					"type": "string",
+					"value": "2033 Akasia St"
+				},
+				{
+					"displayName": "TB number",
+					"attribute": "ruQQnf6rswq",
+					"type": "string",
+					"value": "1Z 989 408 56 9356 521 9"
+				},
+				{
+					"displayName": "Weight in kg",
+					"attribute": "OvY4VVhSDeJ",
+					"type": "number",
+					"value": "68.1"
+				},
+				{
+					"displayName": "Email",
+					"attribute": "NDXw0cluzSw",
+					"type": "string",
+					"value": "LiyaEfrem@armyspy.com"
+				},
+				{
+					"displayName": "Gender",
+					"attribute": "cejWyOfXge6",
+					"type": "optionSet",
+					"value": "Female"
+				},
+				{
+					"displayName": "Phone number",
+					"attribute": "P2cwLGskgxn",
+					"type": "phoneNumber",
+					"value": "085 813 9447"
+				},
+				{
+					"displayName": "First name",
+					"attribute": "dv3nChNSIxy",
+					"type": "string",
+					"value": "Liya"
+				},
+				{
+					"displayName": "Last name",
+					"attribute": "hwlRTFIFSUq",
+					"type": "string",
+					"value": "Efrem"
+				},
+				{
+					"code": "Height in cm",
+					"displayName": "Height in cm",
+					"attribute": "lw1SqmMlnfh",
+					"type": "number",
+					"value": "164"
+				},
+				{
+					"code": "City",
+					"displayName": "City",
+					"attribute": "VUvgVao8Y5z",
+					"type": "string",
+					"value": "Kranskop"
+				},
+				{
+					"code": "State",
+					"displayName": "State",
+					"attribute": "GUOBQt5K2WI",
+					"type": "number",
+					"value": "KwaZulu-Natal"
+				},
+				{
+					"code": "Zip code",
+					"displayName": "Zip code",
+					"attribute": "n9nUvfpTsxQ",
+					"type": "number",
+					"value": "3282"
+				},
+				{
+					"code": "Mother maiden name",
+					"displayName": "Mother maiden name",
+					"attribute": "o9odfev2Ty5",
+					"type": "string",
+					"value": "Gabriel"
+				},
+				{
+					"code": "National identifier",
+					"displayName": "National identifier",
+					"attribute": "AuPLng5hLbE",
+					"type": "string",
+					"value": "465700042"
+				},
+				{
+					"code": "Occupation",
+					"displayName": "Occupation",
+					"attribute": "A4xFHyieXys",
+					"type": "string",
+					"value": "Biophysicist"
+				},
+				{
+					"code": "Company",
+					"displayName": "Company",
+					"attribute": "kyIzQsj96BD",
+					"type": "string",
+					"value": "Sav-A-Center"
+				},
+				{
+					"code": "Vehicle",
+					"displayName": "Vehicle",
+					"attribute": "VHfUeXpawmE",
+					"type": "string",
+					"value": "2008 Citroen Picasso"
+				},
+				{
+					"code": "Blood type",
+					"displayName": "Blood type",
+					"attribute": "H9IlTX2X6SL",
+					"type": "string",
+					"value": "B-"
+				},
+				{
+					"code": "Latitude",
+					"displayName": "Latitude",
+					"attribute": "Qo571yj6Zcn",
+					"type": "string",
+					"value": "-30.659626"
+				},
+				{
+					"code": "Longitude",
+					"displayName": "Longitude",
+					"attribute": "RG7uGl4w5Jq",
+					"type": "string",
+					"value": "26.916172"
+				}
+			]
+		}
+	]
+}
+```
 
 #### Tracked entity instance grid query
 
@@ -16450,53 +16456,55 @@ are always present. The following columns correspond to attributes
 specified in the query. The *rows* section contains one row per
 instance.
 
-    {
-        "headers": [{
-            "name": "instance",
-            "column": "Instance",
-            "type": "java.lang.String"
-        }, {
-            "name": "created",
-            "column": "Created",
-            "type": "java.lang.String"
-        }, {
-            "name": "lastupdated",
-            "column": "Last updated",
-            "type": "java.lang.String"
-        }, {
-            "name": "ou",
-            "column": "Org unit",
-            "type": "java.lang.String"
-        }, {
-            "name": "te",
-            "column": "Tracked entity",
-            "type": "java.lang.String"
-        }, {
-            "name": "zHXD5Ve1Efw",
-            "column": "Date of birth type",
-            "type": "java.lang.String"
-        }, {
-            "name": "AMpUYgxuCaE",
-            "column": "Address",
-            "type": "java.lang.String"
-        }],
-        "metaData": {
-            "names": {
-                "cyl5vuJ5ETQ": "Person"
-            }
-        },
-        "width": 7,
-        "height": 7,
-        "rows": [
-            ["yNCtJ6vhRJu", "2013-09-08 21:40:28.0", "2014-01-09 19:39:32.19", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "21 Kenyatta Road"],
-            ["fSofnQR6lAU", "2013-09-08 21:40:28.0", "2014-01-09 19:40:19.62", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "56 Upper Road"],
-            ["X5wZwS5lgm2", "2013-09-08 21:40:28.0", "2014-01-09 19:40:31.11", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "56 Main Road"],
-            ["pCbogmlIXga", "2013-09-08 21:40:28.0", "2014-01-09 19:40:45.02", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "12 Lower Main Road"],
-            ["WnUXrY4XBMM", "2013-09-08 21:40:28.0", "2014-01-09 19:41:06.97", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "13 Main Road"],
-            ["xLNXbDs9uDF", "2013-09-08 21:40:28.0", "2014-01-09 19:42:25.66", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "14 Mombasa Road"],
-            ["foc5zag6gbE", "2013-09-08 21:40:28.0", "2014-01-09 19:42:36.93", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "15 Upper Hill"]
-        ]
-    }
+```json
+{
+	"headers": [{
+		"name": "instance",
+		"column": "Instance",
+		"type": "java.lang.String"
+	}, {
+		"name": "created",
+		"column": "Created",
+		"type": "java.lang.String"
+	}, {
+		"name": "lastupdated",
+		"column": "Last updated",
+		"type": "java.lang.String"
+	}, {
+		"name": "ou",
+		"column": "Org unit",
+		"type": "java.lang.String"
+	}, {
+		"name": "te",
+		"column": "Tracked entity",
+		"type": "java.lang.String"
+	}, {
+		"name": "zHXD5Ve1Efw",
+		"column": "Date of birth type",
+		"type": "java.lang.String"
+	}, {
+		"name": "AMpUYgxuCaE",
+		"column": "Address",
+		"type": "java.lang.String"
+	}],
+	"metaData": {
+		"names": {
+			"cyl5vuJ5ETQ": "Person"
+		}
+	},
+	"width": 7,
+	"height": 7,
+	"rows": [
+		["yNCtJ6vhRJu", "2013-09-08 21:40:28.0", "2014-01-09 19:39:32.19", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "21 Kenyatta Road"],
+		["fSofnQR6lAU", "2013-09-08 21:40:28.0", "2014-01-09 19:40:19.62", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "56 Upper Road"],
+		["X5wZwS5lgm2", "2013-09-08 21:40:28.0", "2014-01-09 19:40:31.11", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "56 Main Road"],
+		["pCbogmlIXga", "2013-09-08 21:40:28.0", "2014-01-09 19:40:45.02", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "12 Lower Main Road"],
+		["WnUXrY4XBMM", "2013-09-08 21:40:28.0", "2014-01-09 19:41:06.97", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "13 Main Road"],
+		["xLNXbDs9uDF", "2013-09-08 21:40:28.0", "2014-01-09 19:42:25.66", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "14 Mombasa Road"],
+		["foc5zag6gbE", "2013-09-08 21:40:28.0", "2014-01-09 19:42:36.93", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "15 Upper Hill"]
+	]
+}
+```
 
 #### Tracked entity instance filters
 
@@ -16679,13 +16687,15 @@ identifier of the person from the *trackedEntityInstances* resource.
 Then, you will need to get the program identifier from the *programs*
 resource. A template payload can be seen below:
 
-    {
-      "trackedEntityInstance": "ZRyCnJ1qUXS",
-      "orgUnit": "ImspTQPwCqd",
-      "program": "S8uo8AlvYMz",
-      "enrollmentDate": "2013-09-17",
-      "incidentDate": "2013-09-17"
-    }
+```json
+{
+  "trackedEntityInstance": "ZRyCnJ1qUXS",
+  "orgUnit": "ImspTQPwCqd",
+  "program": "S8uo8AlvYMz",
+  "enrollmentDate": "2013-09-17",
+  "incidentDate": "2013-09-17"
+}
+```
 
 This payload should be used in a **POST** request to the enrollments
 resource identified by the following URL:
@@ -16907,23 +16917,25 @@ The response in JSON/XML is in object format and can look like the
 following (please note that field filtering is supported, so if you want
 a full view, you might want to add fields=\*):
 
-    {
-        "enrollments": [
-            {
-                "lastUpdated": "2014-03-28T05:27:48.512+0000",
-                "trackedEntity": "cyl5vuJ5ETQ",
-                "created": "2014-03-28T05:27:48.500+0000",
-                "orgUnit": "DiszpKrYNg8",
-                "program": "ur1Edk5Oe2n",
-                "enrollment": "HLFOK0XThjr",
-                "trackedEntityInstance": "qv0j4JBXQX0",
-                "followup": false,
-                "enrollmentDate": "2013-05-23T05:27:48.490+0000",
-                "incidentDate": "2013-05-10T05:27:48.490+0000",
-                "status": "ACTIVE"
-            }
-        ]
-    }
+```json
+{
+	"enrollments": [
+		{
+			"lastUpdated": "2014-03-28T05:27:48.512+0000",
+			"trackedEntity": "cyl5vuJ5ETQ",
+			"created": "2014-03-28T05:27:48.500+0000",
+			"orgUnit": "DiszpKrYNg8",
+			"program": "ur1Edk5Oe2n",
+			"enrollment": "HLFOK0XThjr",
+			"trackedEntityInstance": "qv0j4JBXQX0",
+			"followup": false,
+			"enrollmentDate": "2013-05-23T05:27:48.490+0000",
+			"incidentDate": "2013-05-10T05:27:48.490+0000",
+			"status": "ACTIVE"
+		}
+	]
+}
+```
 
 ### Events
 
@@ -16961,16 +16973,18 @@ where we send events from the "Inpatient morbidity and mortality"
 program for the "Ngelehun CHC" facility in the demo database can be seen
 below:
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
-      eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
-      <coordinate latitude="59.8" longitude="10.9" />
-      <dataValues>
-        <dataValue dataElement="qrur9Dvnyt5" value="22" />
-        <dataValue dataElement="oZg33kd9taw" value="Male" />
-        <dataValue dataElement="msodh3rEMJa" value="2013-05-18" />
-      </dataValues>
-    </event>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
+  eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
+  <coordinate latitude="59.8" longitude="10.9" />
+  <dataValues>
+	<dataValue dataElement="qrur9Dvnyt5" value="22" />
+	<dataValue dataElement="oZg33kd9taw" value="Male" />
+	<dataValue dataElement="msodh3rEMJa" value="2013-05-18" />
+  </dataValues>
+</event>
+```
 
 To perform some testing we can save the XML payload as a file
 called*event.xml* and send it as a POST request to the events resource
@@ -16981,23 +16995,25 @@ in the API using curl with the following command:
 
 The same payload in JSON format looks like this:
 
-    {
-      "program": "eBAyeGv0exc",
-      "orgUnit": "DiszpKrYNg8",
-      "eventDate": "2013-05-17",
-      "status": "COMPLETED",
-      "completedDate": "2013-05-18",
-      "storedBy": "admin",
-      "coordinate": {
-        "latitude": 59.8,
-        "longitude": 10.9
-      },
-      "dataValues": [
-        { "dataElement": "qrur9Dvnyt5", "value": "22" },
-        { "dataElement": "oZg33kd9taw", "value": "Male" },
-        { "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
-      ]
-    }
+```json
+{
+  "program": "eBAyeGv0exc",
+  "orgUnit": "DiszpKrYNg8",
+  "eventDate": "2013-05-17",
+  "status": "COMPLETED",
+  "completedDate": "2013-05-18",
+  "storedBy": "admin",
+  "coordinate": {
+	"latitude": 59.8,
+	"longitude": 10.9
+  },
+  "dataValues": [
+	{ "dataElement": "qrur9Dvnyt5", "value": "22" },
+	{ "dataElement": "oZg33kd9taw", "value": "Male" },
+	{ "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
+  ]
+}
+```
 
 To send this you can save it to a file called *event.json* and use curl
 like
@@ -17008,84 +17024,88 @@ like
 We also support sending multiple events at the same time. A payload in
 XML format might look like this:
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <events>
-        <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
-          eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
-          <coordinate latitude="59.8" longitude="10.9" />
-          <dataValues>
-            <dataValue dataElement="qrur9Dvnyt5" value="22" />
-            <dataValue dataElement="oZg33kd9taw" value="Male" />
-          </dataValues>
-        </event>
-        <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
-          eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
-          <coordinate latitude="59.8" longitude="10.9" />
-          <dataValues>
-            <dataValue dataElement="qrur9Dvnyt5" value="26" />
-            <dataValue dataElement="oZg33kd9taw" value="Female" />
-          </dataValues>
-        </event>
-    </events>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<events>
+	<event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
+	  eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
+	  <coordinate latitude="59.8" longitude="10.9" />
+	  <dataValues>
+		<dataValue dataElement="qrur9Dvnyt5" value="22" />
+		<dataValue dataElement="oZg33kd9taw" value="Male" />
+	  </dataValues>
+	</event>
+	<event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
+	  eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
+	  <coordinate latitude="59.8" longitude="10.9" />
+	  <dataValues>
+		<dataValue dataElement="qrur9Dvnyt5" value="26" />
+		<dataValue dataElement="oZg33kd9taw" value="Female" />
+	  </dataValues>
+	</event>
+</events>
+```
 
 You will receive an import summary with the response which can be
 inspected in order to get information about the outcome of the request,
 like how many values were imported successfully. The payload in JSON
 format looks like this:
 
-    {
-      "events": [
-      {
-        "program": "eBAyeGv0exc",
-        "orgUnit": "DiszpKrYNg8",
-        "eventDate": "2013-05-17",
-        "status": "COMPLETED",
-        "storedBy": "admin",
-        "coordinate": {
-          "latitude": "59.8",
-          "longitude": "10.9"
-        },
-        "dataValues": [
-          { "dataElement": "qrur9Dvnyt5", "value": "22" },
-          { "dataElement": "oZg33kd9taw", "value": "Male" }
-        ] },
-      {
-        "program": "eBAyeGv0exc",
-        "orgUnit": "DiszpKrYNg8",
-        "eventDate": "2013-05-17",
-        "status": "COMPLETED",
-        "storedBy": "admin",
-        "coordinate": {
-          "latitude": "59.8",
-          "longitude": "10.9"
-        },
-        "dataValues": [
-          { "dataElement": "qrur9Dvnyt5", "value": "26" },
-          { "dataElement": "oZg33kd9taw", "value": "Female" }
-        ] }
-      ]
-    }
+```json
+{
+  "events": [
+  {
+	"program": "eBAyeGv0exc",
+	"orgUnit": "DiszpKrYNg8",
+	"eventDate": "2013-05-17",
+	"status": "COMPLETED",
+	"storedBy": "admin",
+	"coordinate": {
+	  "latitude": "59.8",
+	  "longitude": "10.9"
+	},
+	"dataValues": [
+	  { "dataElement": "qrur9Dvnyt5", "value": "22" },
+	  { "dataElement": "oZg33kd9taw", "value": "Male" }
+	] },
+  {
+	"program": "eBAyeGv0exc",
+	"orgUnit": "DiszpKrYNg8",
+	"eventDate": "2013-05-17",
+	"status": "COMPLETED",
+	"storedBy": "admin",
+	"coordinate": {
+	  "latitude": "59.8",
+	  "longitude": "10.9"
+	},
+	"dataValues": [
+	  { "dataElement": "qrur9Dvnyt5", "value": "26" },
+	  { "dataElement": "oZg33kd9taw", "value": "Female" }
+	] }
+  ]
+}
+```
 
-From 2.30 you can also use GeoJson to store any kind of geometry on your
-event. An example payload using GeoJson instead of the former latitude
-and longitude properties can be seen here:
+You can also use GeoJson to store any kind of geometry on your event. An example payload using GeoJson instead of the former latitude and longitude properties can be seen here:
 
-    {
-      "program": "eBAyeGv0exc",
-      "orgUnit": "DiszpKrYNg8",
-      "eventDate": "2013-05-17",
-      "status": "COMPLETED",
-      "storedBy": "admin",
-      "geometry": {
-        "type": "POINT",
-        "coordinates": [59.8, 10.9]
-      },
-      "dataValues": [
-        { "dataElement": "qrur9Dvnyt5", "value": "22" },
-        { "dataElement": "oZg33kd9taw", "value": "Male" },
-        { "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
-      ]
-    }
+```json
+{
+  "program": "eBAyeGv0exc",
+  "orgUnit": "DiszpKrYNg8",
+  "eventDate": "2013-05-17",
+  "status": "COMPLETED",
+  "storedBy": "admin",
+  "geometry": {
+	"type": "POINT",
+	"coordinates": [59.8, 10.9]
+  },
+  "dataValues": [
+	{ "dataElement": "qrur9Dvnyt5", "value": "22" },
+	{ "dataElement": "oZg33kd9taw", "value": "Male" },
+	{ "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
+  ]
+}
+```json
 
 As part of the import summary you will also get the identifier
 *reference* to the event you just sent, together with a *href* element
@@ -17848,7 +17868,7 @@ following table.
 
 A sample payload that can be used to create/update an eventFilter is shown below.
 
-````
+```json
 {
   "program": "ur1Edk5Oe2n",
   "description": "Simple Filter for TB events",
@@ -17936,22 +17956,24 @@ List all relationships require you to provide the UID of the trackedEntityInstan
 
 This request will return a list of any relationship you have access to see that includes the trackedEntityInstance, enrollment or event you specified. Each relationship is represented with the following JSON:
 
-    {
-      "relationshipType": "dDrh5UyCyvQ",
-      "relationshipName": "Mother-Child",
-      "relationship": "t0HIBrc65Rm",
-      "bidirectional": false,
-      "from": {
-        "trackedEntityInstance": {
-          "trackedEntityInstance": "vOxUH373fy5"
-        },
-      "to": {
-        "trackedEntityInstance": {
-          "trackedEntityInstance": "pybd813kIWx"
-        },
-      "created": "2019-04-26T09:30:56.267",
-      "lastUpdated": "2019-04-26T09:30:56.267"
-    }
+```json
+{
+  "relationshipType": "dDrh5UyCyvQ",
+  "relationshipName": "Mother-Child",
+  "relationship": "t0HIBrc65Rm",
+  "bidirectional": false,
+  "from": {
+	"trackedEntityInstance": {
+	  "trackedEntityInstance": "vOxUH373fy5"
+	},
+  "to": {
+	"trackedEntityInstance": {
+	  "trackedEntityInstance": "pybd813kIWx"
+	},
+  "created": "2019-04-26T09:30:56.267",
+  "lastUpdated": "2019-04-26T09:30:56.267"
+}
+```
 
 You can also view specified relationships using the following endpoint:
 
@@ -17964,17 +17986,19 @@ To create or update a relationship, you can use the following endpoints:
 
 And use the following payload structure:
 
-    {
-      "relationshipType": "dDrh5UyCyvQ",
-      "from": {
-        "trackedEntityInstance": {
-          "trackedEntityInstance": "vOxUH373fy5"
-        },
-      "to": {
-        "trackedEntityInstance": {
-          "trackedEntityInstance": "pybd813kIWx"
-        }
-    }
+```json
+{
+  "relationshipType": "dDrh5UyCyvQ",
+  "from": {
+	"trackedEntityInstance": {
+	  "trackedEntityInstance": "vOxUH373fy5"
+	},
+  "to": {
+	"trackedEntityInstance": {
+	  "trackedEntityInstance": "pybd813kIWx"
+	}
+}
+```
 
 To delete a relationship, you can use this endpoint:
 
@@ -17982,13 +18006,21 @@ To delete a relationship, you can use this endpoint:
 
 In our example payloads, we use a relationship between trackedEntityInstances. Because of this, the "from" and "to" properties of our payloads include "trackedEntityInstance" objects. If your relationship includes other entities, you can use the following properties:
 
-      "enrollment": {
-        "enrollment": <id>
-      }
+```json
+{
+  "enrollment": {
+	"enrollment": <id>
+  }
+}
+```
 
-      "event": {
-        "event": <id>
-      }
+```json
+{
+  "event": {
+	"event": <id>
+  }
+}
+```
 
 ### Update strategies
 
@@ -18037,39 +18069,45 @@ updating tracker objects, the only difference is that the
 
 *Example: Bulk deletion of tracked entity instances:*
 
-    {
-      "trackedEntityInstances": [
-        { "trackedEntityInstance": "ID1" },
-        { "trackedEntityInstance": "ID2" },
-        { "trackedEntityInstance": "ID3" }
-      ]
-    }
+```json
+{
+  "trackedEntityInstances": [
+	{ "trackedEntityInstance": "ID1" },
+	{ "trackedEntityInstance": "ID2" },
+	{ "trackedEntityInstance": "ID3" }
+  ]
+}
+```
 
     curl -X POST -d @data.json -H "Content-Type: application/json"
       "http://server/api/29/trackedEntityInstances?strategy=DELETE"
 
 *Example: Bulk deletion of enrollments:*
 
-    {
-      "enrollments": [
-        { "enrollment": "ID1" },
-        { "enrollment": "ID2" },
-        { "enrollment": "ID3" }
-      ]
-    }
+```json
+{
+  "enrollments": [
+	{ "enrollment": "ID1" },
+	{ "enrollment": "ID2" },
+	{ "enrollment": "ID3" }
+  ]
+}
+```
 
     curl -X POST -d @data.json -H "Content-Type: application/json"
       "http://server/api/29/enrollments?strategy=DELETE"
 
 *Example: Bulk deletion of events:*
 
-    {
-      "events": [
-        { "event": "ID1" },
-        { "event": "ID2" },
-        { "event": "ID3" }
-      ]
-    }
+```json
+{
+  "events": [
+	{ "event": "ID1" },
+	{ "event": "ID2" },
+	{ "event": "ID3" }
+  ]
+}
+```
 
     curl -X POST -d @data.json -H "Content-Type: application/json"
       "http://server/api/29/events?strategy=DELETE"
@@ -18345,11 +18383,13 @@ A potential duplicate represents a single or pair of records which are suspected
 
 The payload of a potential duplicate looks like this:
 
-    {
-      "teiA": "<id>",
-      "teiB": "<id>|null"
-      "status": "OPEN|INVALID|MERGED"
-    }
+```json
+{
+  "teiA": "<id>",
+  "teiB": "<id>|null"
+  "status": "OPEN|INVALID|MERGED"
+}
+```
 
 You can retrieve a list of potential duplicates using the following endpoint:
 
@@ -18365,10 +18405,12 @@ To create a new potential duplicate, you can use this endpoint:
 
 The payload you provide needs at least _teiA_ to be a valid tracked entity instance; _teiB_ is optional. If _teiB_ is set, it also needs to point to an existing tracked entity instance.
 
-    {
-        "teiA": "<id>", (required)
-        "teiB": "<id>" (optional)
-    }
+```json
+{
+	"teiA": "<id>", (required)
+	"teiB": "<id>" (optional)
+}
+```
 
 You can mark a potential duplicate as _invalid_ to tell the system that the potential duplicate has been investigated and deemed to be not a duplicate. To do so you can use the following endpoint:
 
@@ -18400,10 +18442,12 @@ with a given subject and text in JSON or XML. The email will be sent to
 the notification email address as defined in the DHIS2 general system
 settings:
 
-    {
-      "subject": "Integrity check summary",
-      "text": "All checks ran successfully"
-    }
+```json
+{
+  "subject": "Integrity check summary",
+  "text": "All checks ran successfully"
+}
+```
 
 You can send a system email notification by posting to the notification
 resource like
@@ -18455,29 +18499,31 @@ To request the sharing status for an object use a GET request to:
 
 The response looks like the below.
 
-    {
-        "meta": {
-            "allowPublicAccess": true,
-            "allowExternalAccess": false
-        },
-        "object": {
-            "id": "fbfJHSPpUQD",
-            "name": "ANC 1st visit",
-            "publicAccess": "rw------",
-            "externalAccess": false,
-            "user": {},
-            "userGroupAccesses": [
-                {
-                    "id": "hj0nnsVsPLU",
-                    "access": "rw------"
-                },
-                {
-                    "id": "qMjBflJMOfB",
-                    "access": "r-------"
-                }
-            ]
-        }
-    }
+```json
+{
+	"meta": {
+		"allowPublicAccess": true,
+		"allowExternalAccess": false
+	},
+	"object": {
+		"id": "fbfJHSPpUQD",
+		"name": "ANC 1st visit",
+		"publicAccess": "rw------",
+		"externalAccess": false,
+		"user": {},
+		"userGroupAccesses": [
+			{
+				"id": "hj0nnsVsPLU",
+				"access": "rw------"
+			},
+			{
+				"id": "qMjBflJMOfB",
+				"access": "r-------"
+			}
+		]
+	}
+}
+```
 
 ### Set sharing status
 
@@ -18486,23 +18532,25 @@ The response looks like the below.
 You can define the sharing status for an object using the same URL with
 a POST request, where the payload in JSON format looks like this:
 
-    {
-        "object": {
-            "publicAccess": "rw------",
-            "externalAccess": false,
-            "user": {},
-            "userGroupAccesses": [
-                {
-                    "id": "hj0nnsVsPLU",
-                    "access": "rw------"
-                },
-                {
-                    "id": "qMjBflJMOfB",
-                    "access": "r-------"
-                }
-            ]
-        }
-    }
+```json
+{
+	"object": {
+		"publicAccess": "rw------",
+		"externalAccess": false,
+		"user": {},
+		"userGroupAccesses": [
+			{
+				"id": "hj0nnsVsPLU",
+				"access": "rw------"
+			},
+			{
+				"id": "qMjBflJMOfB",
+				"access": "r-------"
+			}
+		]
+	}
+}
+```
 
 In this example, the payload defines the object to have read-write
 public access, no external access (without login), read-write access to
@@ -18665,30 +18713,28 @@ To configure jobs you can do a POST request to the following resource:
 
 Adding job without parameters in JSON format:
 
-```
-        {
-          "name": "",
-          "jobType": "JOBTYPE",
-          "cronExpression": "0 * * ? * *",
-        }
-
+```json
+{
+  "name": "",
+  "jobType": "JOBTYPE",
+  "cronExpression": "0 * * ? * *",
+}
 ```
 
 Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
 
-```
-        {
-          "name": "Analytics last two years",
-          "jobType": "ANALYTICS_TABLE",
-          "cronExpression": "0 * * ? * *",
-          "jobParameters":
-          {
-              "lastYears": "2",
-              "skipTableTypes": [],
-              "skipResourceTables": false
-          }
-        }
-
+```json
+{
+  "name": "Analytics last two years",
+  "jobType": "ANALYTICS_TABLE",
+  "cronExpression": "0 * * ? * *",
+  "jobParameters":
+  {
+	  "lastYears": "2",
+	  "skipTableTypes": [],
+	  "skipResourceTables": false
+  }
+}
 ```
 
 List all jobConfigurations:
@@ -18699,66 +18745,64 @@ Retrieve a job: (ANALYTICS\_TABLE example):
 
     GET /api/jobConfigurations/KBcP6Qw37gT
 
-```
-        {
-          "lastUpdated": "2018-02-22T15:15:34.067",
-          "id": "KBcP6Qw37gT",
-          "href": "http://localhost:8080/api/jobConfigurations/KBcP6Qw37gT",
-          "created": "2018-02-22T15:15:34.067",
-          "name": "analytics last two years",
-          "jobStatus": "SCHEDULED",
-          "displayName": "analytics last two years",
-          "enabled": true,
-          "externalAccess": false,
-          "continuousExecution": false,
-          "jobType": "ANALYTICS_TABLE",
-          "nextExecutionTime": "2018-02-26T03:00:00.000",
-          "cronExpression": "0 0 3 ? * MON",
-          "jobParameters": {
-            "lastYears": 2,
-            "skipTableTypes": [],
-            "skipResourceTables": false
-          },
-          "favorite": false,
-          "configurable": true,
-          "access": {
-            "read": true,
-            "update": true,
-            "externalize": true,
-            "delete": true,
-            "write": true,
-            "manage": true
-          },
-          "lastUpdatedBy": {
-            "id": "GOLswS44mh8"
-          },
-          "favorites": [],
-          "translations": [],
-          "userGroupAccesses": [],
-          "attributeValues": [],
-          "userAccesses": []
-        }
-
+```json
+{
+  "lastUpdated": "2018-02-22T15:15:34.067",
+  "id": "KBcP6Qw37gT",
+  "href": "http://localhost:8080/api/jobConfigurations/KBcP6Qw37gT",
+  "created": "2018-02-22T15:15:34.067",
+  "name": "analytics last two years",
+  "jobStatus": "SCHEDULED",
+  "displayName": "analytics last two years",
+  "enabled": true,
+  "externalAccess": false,
+  "continuousExecution": false,
+  "jobType": "ANALYTICS_TABLE",
+  "nextExecutionTime": "2018-02-26T03:00:00.000",
+  "cronExpression": "0 0 3 ? * MON",
+  "jobParameters": {
+	"lastYears": 2,
+	"skipTableTypes": [],
+	"skipResourceTables": false
+  },
+  "favorite": false,
+  "configurable": true,
+  "access": {
+	"read": true,
+	"update": true,
+	"externalize": true,
+	"delete": true,
+	"write": true,
+	"manage": true
+  },
+  "lastUpdatedBy": {
+	"id": "GOLswS44mh8"
+  },
+  "favorites": [],
+  "translations": [],
+  "userGroupAccesses": [],
+  "attributeValues": [],
+  "userAccesses": []
+}
 ```
 
 Updating job with parameters in JSON format (ANALYTICS\_TABLE example):
 
     PUT /api/jobConfiguration/KBcP6Qw37gT
 
-```
-        {
-          "name": "analytics last two years",
-          "enabled": true,
-          "cronExpression": "0 0 3 ? * MON",
-          "continuousExecution": false,
-          "jobType": "ANALYTICS_TABLE",
-          "jobParameters": {
-            "lastYears": "3",
-            "skipTableTypes": [],
-            "skipResourceTables": false
-          }
-        }
-
+```json
+{
+  "name": "analytics last two years",
+  "enabled": true,
+  "cronExpression": "0 0 3 ? * MON",
+  "continuousExecution": false,
+  "jobType": "ANALYTICS_TABLE",
+  "jobParameters": {
+	"lastYears": "3",
+	"skipTableTypes": [],
+	"skipResourceTables": false
+  }
+}
 ```
 
 Deleting a job:
@@ -18989,43 +19033,45 @@ You can retrieve apps with a GET request:
 
 A sample JSON response is described below.
 
-    {
-       [
-        {
-          "name": "Tabular Tracker Capture",
-          "description": "Tabular Tracker Capture is an app that makes you more effective.",
-          "sourceUrl": "https://github.com/dhis2/App-repository",
-          "appType": "DASHBOARD_WIDGET",
-          "status": "PENDING",
-          "id": "NSD06BVoV21",
-          "developer": {
-              "name": "DHIS",
-              "organisation": "Uio",
-              "address": "Oslo",
-              "email": "dhis@abc.com",
-            }
-          "versions": [
-            {
-              "id": "upAPqrVgwK6",
-              "version": "1.2",
-              "minDhisVersion": "2.17",
-              "maxDhisVersion": "2.20",
-              "downloadUrl": "https://www.dhis2.org/download/appstore/tabular-tracker-capture-12.zip",
-              "demoUrl": "http://play.dhis2.org/demo"
-            }
-          ]
-          "images": [
-            {
-              "id": "upAPqrVgwK6",
-              "logo": "true",
-              "imageUrl": "https://www.dhis2.org/download/appstore/tabular-tracker-capture-12.png",
-              "description": "added feature snapshot",
-              "caption": "dialog",
-            }
-          ]
-        }
-      ]
-    }
+```json
+{
+  [
+	{
+	  "name": "Tabular Tracker Capture",
+	  "description": "Tabular Tracker Capture is an app that makes you more effective.",
+	  "sourceUrl": "https://github.com/dhis2/App-repository",
+	  "appType": "DASHBOARD_WIDGET",
+	  "status": "PENDING",
+	  "id": "NSD06BVoV21",
+	  "developer": {
+		  "name": "DHIS",
+		  "organisation": "Uio",
+		  "address": "Oslo",
+		  "email": "dhis@abc.com",
+		}
+	  "versions": [
+		{
+		  "id": "upAPqrVgwK6",
+		  "version": "1.2",
+		  "minDhisVersion": "2.17",
+		  "maxDhisVersion": "2.20",
+		  "downloadUrl": "https://www.dhis2.org/download/appstore/tabular-tracker-capture-12.zip",
+		  "demoUrl": "http://play.dhis2.org/demo"
+		}
+	  ]
+	  "images": [
+		{
+		  "id": "upAPqrVgwK6",
+		  "logo": "true",
+		  "imageUrl": "https://www.dhis2.org/download/appstore/tabular-tracker-capture-12.png",
+		  "description": "added feature snapshot",
+		  "caption": "dialog",
+		}
+	  ]
+	}
+  ]
+}
+```
 
 ### Install apps
 
@@ -19109,10 +19155,12 @@ Example curl request for
 
 Example response:
 
-    [
-        "foo",
-        "bar"
-    ]
+```json
+[
+	"foo",
+	"bar"
+]
+```
 
 For a list of all keys in a namespace:
 
@@ -19125,10 +19173,12 @@ Example curl request for
 
 Example response:
 
-    [
-        "key_1",
-        "key_2"
-    ]
+```json
+[
+	"key_1",
+	"key_2"
+]
+```
 
 To retrieve a value for an existing key from a namespace:
 
@@ -19141,9 +19191,11 @@ Example curl request for
 
 Example response:
 
-    {
-        "foo":"bar"
-    }
+```json
+{
+	"foo":"bar"
+}
+```
 
 To retrieve meta-data for an existing key from a namespace:
 
@@ -19156,12 +19208,14 @@ Example curl request for
 
 Example response:
 
-    {
-        "created": "...",
-        "user": {...},
-        "namespace": "foo",
-        "key": "key_1"
-    }
+```json
+{
+	"created": "...",
+	"user": {...},
+	"namespace": "foo",
+	"key": "key_1"
+}
+```
 
 ### Create values
 
@@ -19179,12 +19233,14 @@ Example curl request for create, assuming a valid json
 
 Example response:
 
-    {
-        "httpStatus": "OK",
-        "httpStatusCode": 201,
-        "status": "OK",
-        "message": "Key 'key_1' created."
-    }
+```json
+{
+	"httpStatus": "OK",
+	"httpStatusCode": 201,
+	"status": "OK",
+	"message": "Key 'key_1' created."
+}
+```
 
 If you require the data you store to be encrypted (for example user
 credentials or similar) you can append a query to the url like this:
@@ -19207,12 +19263,14 @@ Example curl request for update, assuming valid JSON
 
 Example response:
 
-    {
-        "httpStatus": "OK",
-        "httpStatusCode": 200,
-        "status": "OK",
-        "message": "Key 'key_1' updated."
-    }
+```json
+{
+	"httpStatus": "OK",
+	"httpStatusCode": 200,
+	"status": "OK",
+	"message": "Key 'key_1' updated."
+}
+```
 
 ### Delete keys
 
@@ -19229,12 +19287,14 @@ Example curl request for
 
 Example response:
 
-    {
-        "httpStatus": "OK",
-        "httpStatusCode": 200,
-        "status": "OK",
-        "message": "Key 'key_1' deleted from namespace 'foo'."
-    }
+```json
+{
+	"httpStatus": "OK",
+	"httpStatusCode": 200,
+	"status": "OK",
+	"message": "Key 'key_1' deleted from namespace 'foo'."
+}
+```
 
 To delete all keys in a namespace:
 
@@ -19247,12 +19307,14 @@ Example curl request for
 
 Example response:
 
-    {
-        "httpStatus": "OK",
-        "httpStatusCode": 200,
-        "status": "OK",
-        "message": "Namespace 'foo' deleted."
-    }
+```json
+{
+	"httpStatus": "OK",
+	"httpStatusCode": 200,
+	"status": "OK",
+	"message": "Namespace 'foo' deleted."
+}
+```
 
 ### Sharing datastore keys
 
@@ -19271,7 +19333,8 @@ To modify sharing settings for a specific datastore key:
 
 with the following request:
 
-    {
+```json
+{
     "object": {
         "publicAccess": "rw------",
         "externalAccess": false,
@@ -19288,8 +19351,8 @@ with the following request:
             }
         ]
     }
-    }
-
+}
+```
 
 ## User data store
 
@@ -19368,10 +19431,12 @@ Example
 
     curl -X GET -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/26/userDataStore" -v
 
-    [
-      "foo",
-      "bar"
-    ]
+```json
+[
+  "foo",
+  "bar"
+]
+```
 
 ### Get keys
 
@@ -19386,10 +19451,12 @@ Example
 
     curl -X GET -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/26/userDataStore/foo" -v
 
-    [
-      "key_1",
-      "key_2"
-    ]
+```json
+[
+  "key_1",
+  "key_2"
+]
+```
 
 ### Get values
 
@@ -19404,9 +19471,11 @@ Example
 
     curl -X GET -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/26/userDataStore/foo/bar"
 
-    {
-      "some": "value"
-    }
+```json
+{
+  "some": "value"
+}
+```
 
 ### Create value
 
@@ -19422,12 +19491,14 @@ Example
     curl -X POST -H "Content-Type: application/json" -u admin:district -d "['some value']"
       "play.dhis2.org/api/26/userDataStore/foo/bar"
 
-    {
-      "httpStatus": "Created",
-      "httpStatusCode": 201,
-      "status": "OK",
-      "message": "Key 'bar' in namespace 'foo' created."
-    }
+```json
+{
+  "httpStatus": "Created",
+  "httpStatusCode": 201,
+  "status": "OK",
+  "message": "Key 'bar' in namespace 'foo' created."
+}
+```
 
 If you require the value to be encrypted (For example user credetials
 and such) you can append a query to the url like this:
@@ -19448,12 +19519,14 @@ Example
     curl -X PUT -H "Content-Type: application/json" -u admin:district -d "['new value']"
       "play.dhis2.org/api/26/userDataStore/foo/bar"
 
-    {
-      "httpStatus":"Created",
-      "httpStatusCode":201,
-      "status":"OK",
-      "message":"Key 'bar' in namespace 'foo' updated."
-    }
+```json
+{
+  "httpStatus":"Created",
+  "httpStatusCode":201,
+  "status":"OK",
+  "message":"Key 'bar' in namespace 'foo' updated."
+}
+```
 
 ### Delete key
 
@@ -19468,12 +19541,14 @@ Example
 
     curl -X DELETE -u admin:district "play.dhis2.org/api/26/userDataStore/foo/bar"
 
-    {
-      "httpStatus":"OK",
-      "httpStatusCode":200,
-      "status":"OK",
-      "message":"Key 'bar' deleted from the namespace 'foo."
-    }
+```json
+{
+  "httpStatus":"OK",
+  "httpStatusCode":200,
+  "status":"OK",
+  "message":"Key 'bar' deleted from the namespace 'foo."
+}
+```
 
 ### Delete namespace
 
@@ -19488,12 +19563,14 @@ Example
 
     curl -X DELETE -u admin:district "play.dhis2.org/api/26/userDataStore/foo"
 
-    {
-      "httpStatus":"OK",
-      "httpStatusCode":200,
-      "status":"OK",
-      "message":"All keys from namespace 'foo' deleted."
-    }
+```json
+{
+  "httpStatus":"OK",
+  "httpStatusCode":200,
+  "status":"OK",
+  "message":"All keys from namespace 'foo' deleted."
+}
+```
 
 ## Predictors
 
@@ -19517,27 +19594,29 @@ resource:
 
 A sample payload looks like this:
 
-    {
-        "id": "AG10KUJCrRk",
-        "name": "Malaria Outbreak Threshold Predictor",
-        "shortName": "Malaria Outbreak Predictor",
-        "description": "Computes the threshold for potential malaria outbreaks based on the mean plus 1.5x the std dev",
-        "output": {
-            "id": "nXJJZNVAy0Y"
-        },
-        "generator": {
-            "expression": "AVG(#{r6nrJANOqMw})+1.5*STDDEV(#{r6nrJANOqMw})",
-            "dataElements": [],
-            "sampleElements": [{
-                "id": "r6nrJANOqMw"
-            }]
-        },
-        "periodType": "Monthly",
-        "sequentialSampleCount": 4,
-        "sequentialSkipCount": 1,
-        "annualSampleCount": 3,
-        "organisationUnitLevels": [4]
-    }
+```json
+{
+	"id": "AG10KUJCrRk",
+	"name": "Malaria Outbreak Threshold Predictor",
+	"shortName": "Malaria Outbreak Predictor",
+	"description": "Computes the threshold for potential malaria outbreaks based on the mean plus 1.5x the std dev",
+	"output": {
+		"id": "nXJJZNVAy0Y"
+	},
+	"generator": {
+		"expression": "AVG(#{r6nrJANOqMw})+1.5*STDDEV(#{r6nrJANOqMw})",
+		"dataElements": [],
+		"sampleElements": [{
+			"id": "r6nrJANOqMw"
+		}]
+	},
+	"periodType": "Monthly",
+	"sequentialSampleCount": 4,
+	"sequentialSkipCount": 1,
+	"annualSampleCount": 3,
+	"organisationUnitLevels": [4]
+}
+```
 
 The output element refers to the identifier of the data element for
 which to saved predicted data values. The generator element refers to the
@@ -19638,25 +19717,28 @@ eq and in.
 
 <!--DHIS2-SECTION-ID:webapi_add_update_min_max_data_element-->
 
-To add a new min-max data element, use POST request with JSON content
-with below format:
+To add a new min-max data element, use POST request to:
 
     POST /api/minMaxDataElements.json
 
-    {
-      "min": 1,
-      "generated": false,
-      "max": 100,
-      "dataElement": {
-        "id": "UOlfIjgN8X6"
-       },
-      "source": {
-        "id": "DiszpKrYNg8"
-      },
-      "optionCombo": {
-        "id": "psbwp3CQEhs"
-      }
-    }
+The JSON content format looks like this:
+
+```json
+{
+  "min": 1,
+  "generated": false,
+  "max": 100,
+  "dataElement": {
+	"id": "UOlfIjgN8X6"
+   },
+  "source": {
+	"id": "DiszpKrYNg8"
+  },
+  "optionCombo": {
+	"id": "psbwp3CQEhs"
+  }
+}
+```
 
 If the combination of data element, organisation unit and category
 option combo exists, the min-max value will be updated.
@@ -19665,11 +19747,13 @@ option combo exists, the min-max value will be updated.
 
 <!--DHIS2-SECTION-ID:webapi_delete_min_max_data_element-->
 
-To delete a min-max data element, send a request with DELETE method and
-JSON content with same format as above:
+To delete a min-max data element, send a request with DELETE method:
 
     DELETE /api/minMaxDataElements.json
 
+The JSON content is in similar format as above:
+
+```json
     {
       "min": 1,
       "generated": false,
@@ -19684,6 +19768,7 @@ JSON content with same format as above:
         "id": "psbwp3CQEhs"
       }
     }
+```
 
 ## Lock exceptions
 
@@ -19952,23 +20037,27 @@ populated you can do a *POST* request like this using *JSON*
 
     curl -d @hooks.json "localhost/api/analyticsTableHooks" -H "Content-Type:application/json" -u admin:district -v
 
-    {
-      "name": "Update 'Area' in org unit group set resource table",
-      "phase": "RESOURCE_TABLE_POPULATED",
-      "resourceTableType": "ORG_UNIT_GROUP_SET_STRUCTURE",
-      "sql": "update _organisationunitgroupsetstructure_temp set \"uIuxlbV1vRT\" = 'b0EsAxm8Nge'"
-    }
+```json
+{
+  "name": "Update 'Area' in org unit group set resource table",
+  "phase": "RESOURCE_TABLE_POPULATED",
+  "resourceTableType": "ORG_UNIT_GROUP_SET_STRUCTURE",
+  "sql": "update _organisationunitgroupsetstructure_temp set \"uIuxlbV1vRT\" = 'b0EsAxm8Nge'"
+}
+```
 
 To create a hook which should run after the data value analytics table
 has been populated you can do a *POST* request like this using *JSON*
 format:
 
-    {
-      "name": "Update 'Currently on treatment' data in analytics table",
-      "phase": "ANALYTICS_TABLE_POPULATED",
-      "analyticsTableType": "DATA_VALUE",
-      "sql": "update analytics_temp set monthly = '200212' where \"monthly\" in ('200210', '200211')"
-    }
+```json
+{
+  "name": "Update 'Currently on treatment' data in analytics table",
+  "phase": "ANALYTICS_TABLE_POPULATED",
+  "analyticsTableType": "DATA_VALUE",
+  "sql": "update analytics_temp set monthly = '200212' where \"monthly\" in ('200210', '200211')"
+}
+```
 
 ## Metadata repository
 
@@ -20033,16 +20122,18 @@ This endpoint returns a list of information about the available icons.
 Each entry contains information about the icon, and a reference to the
 actual icon.
 
-    {
-      key: "mosquito_outline",
-      description: "",
-      keywords: [
-        "malaria",
-        "mosquito",
-        "denge"
-      ],
-      href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
-    }
+```json
+{
+  key: "mosquito_outline",
+  description: "",
+  keywords: [
+	"malaria",
+	"mosquito",
+	"denge"
+  ],
+  href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
+}
+```
 
 The keywords can be used to filter which icons to return. Passing a list
 of keywords with the request will only return icons that match all the
