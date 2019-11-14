@@ -2470,9 +2470,11 @@ row will always be ignored. Note how you can skip columns and rely on
 default values to be used by the system. You can also skip columns which
 you do not use which appear to the right of the ones
 
-    name,uid,code,shortname,description
-    "Women participated in skill development training",,"D0001","Women participated development training"
-    "Women participated in community organizations",,"D0002","Women participated community organizations"
+```csv
+name,uid,code,shortname,description
+"Women participated in skill development training",,"D0001","Women participated development training"
+"Women participated in community organizations",,"D0002","Women participated community organizations"
+```
 
 ### Organisation units
 
@@ -2615,9 +2617,11 @@ you do not use which appear to the right of the ones
 A minimal example for importing organisation units with a parent unit
 looks like this:
 
-    name,uid,code,parent
-    "West province",,"WESTP","ImspTQPwCqd"
-    "East province",,"EASTP","ImspTQPwCqd"
+```csv
+name,uid,code,parent
+"West province",,"WESTP","ImspTQPwCqd"
+"East province",,"EASTP","ImspTQPwCqd"
+```
 
 ### Validation rules
 
@@ -2823,19 +2827,21 @@ an option set. The three last values represent an option. The first
 three values representing the option set should be repeated for each
 option.
 
-    optionsetname,optionsetuid,optionsetcode,optionname,optionuid,optioncode
-    "Color",,"COLOR","Blue",,"BLUE"
-    "Color",,"COLOR","Green",,"GREEN"
-    "Color",,"COLOR","Yellow",,"YELLOW"
-    "Sex",,,"Male",,"MALE"
-    "Sex",,,"Female",,"FEMALE"
-    "Sex",,,"Unknown",,"UNKNOWN"
-    "Result",,,"High",,"HIGH"
-    "Result",,,"Medium",,"MEDIUM"
-    "Result",,,"Low",,"LOW"
-    "Impact","cJ82jd8sd32","IMPACT","Great",,"GREAT"
-    "Impact","cJ82jd8sd32","IMPACT","Medium",,"MEDIUM"
-    "Impact","cJ82jd8sd32","IMPACT","Poor",,"POOR"
+```csv
+optionsetname,optionsetuid,optionsetcode,optionname,optionuid,optioncode
+"Color",,"COLOR","Blue",,"BLUE"
+"Color",,"COLOR","Green",,"GREEN"
+"Color",,"COLOR","Yellow",,"YELLOW"
+"Sex",,,"Male",,"MALE"
+"Sex",,,"Female",,"FEMALE"
+"Sex",,,"Unknown",,"UNKNOWN"
+"Result",,,"High",,"HIGH"
+"Result",,,"Medium",,"MEDIUM"
+"Result",,,"Low",,"LOW"
+"Impact","cJ82jd8sd32","IMPACT","Great",,"GREAT"
+"Impact","cJ82jd8sd32","IMPACT","Medium",,"MEDIUM"
+"Impact","cJ82jd8sd32","IMPACT","Poor",,"POOR"
+```
 
 ### Collection membership
 
@@ -3090,8 +3096,7 @@ Even though the content has not been fully stored yet the file resource
 can now be used, for example as referenced content in a data value (see
 [Working with file data values](#datavalue_file)). If we need to check
 the updated *storageStatus* or otherwise retrieve the meta-data of the
-file, the *fileResources* endpoint can be
-    queried.
+file, the *fileResources* endpoint can be queried.
 
     curl -v https://server/api/26/fileResources/xm4JwRwke0i -H "Accept: application/json"
 
@@ -3158,8 +3163,7 @@ This section explains the Metadata Versioning APIs available starting
 
 **Example: Get the current metadata version of this system**
 
-**Sample
-    request:**
+**Sample request:**
 
     curl -u admin:district "https://play.dhis2.org/dev/api/metadata/version"
 
@@ -4019,13 +4023,14 @@ row is assumed to be a header row and will be ignored during import.
 </tbody>
 </table>
 
-An example of a CSV file which can be imported into DHIS2 is seen
-    below.
+An example of a CSV file which can be imported into DHIS2 is seen below.
 
-    "dataelement","period","orgunit","categoryoptioncombo","attroptioncombo","value","storedby","timestamp"
-    "DUSpd8Jq3M7","201202","gP6hn503KUX","Prlt0C1RF0s",,"7","bombali","2010-04-17"
-    "DUSpd8Jq3M7","201202","gP6hn503KUX","V6L425pT3A0",,"10","bombali","2010-04-17"
-    "DUSpd8Jq3M7","201202","OjTS752GbZE","V6L425pT3A0",,"9","bombali","2010-04-06"
+```csv
+"dataelement","period","orgunit","categoryoptioncombo","attroptioncombo","value","storedby","timestamp"
+"DUSpd8Jq3M7","201202","gP6hn503KUX","Prlt0C1RF0s",,"7","bombali","2010-04-17"
+"DUSpd8Jq3M7","201202","gP6hn503KUX","V6L425pT3A0",,"10","bombali","2010-04-17"
+"DUSpd8Jq3M7","201202","OjTS752GbZE","V6L425pT3A0",,"9","bombali","2010-04-06"
+```
 
 ### Generating data value set template
 
@@ -4220,16 +4225,18 @@ last 10 days you can make a request like
 
 The response will look like this:
 
-    <?xml version='1.0' encoding='UTF-8'?>
-    <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0" dataSet="pBOMPrpg1QX"
-      completeDate="2014-01-02" period="201401" orgUnit="DiszpKrYNg8">
-    <dataValue dataElement="eY5ehpbEsB7" period="201401" orgUnit="DiszpKrYNg8"
-      categoryOptionCombo="bRowv6yZOF2" value="10003"/>
-    <dataValue dataElement="Ix2HsbDMLea" period="201401" orgUnit="DiszpKrYNg8"
-      categoryOptionCombo="bRowv6yZOF2" value="10002"/>
-    <dataValue dataElement="f7n9E0hX8qk" period="201401" orgUnit="DiszpKrYNg8"
-      categoryOptionCombo="bRowv6yZOF2" value="10001"/>
-    </dataValueSet>
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0" dataSet="pBOMPrpg1QX"
+  completeDate="2014-01-02" period="201401" orgUnit="DiszpKrYNg8">
+<dataValue dataElement="eY5ehpbEsB7" period="201401" orgUnit="DiszpKrYNg8"
+  categoryOptionCombo="bRowv6yZOF2" value="10003"/>
+<dataValue dataElement="Ix2HsbDMLea" period="201401" orgUnit="DiszpKrYNg8"
+  categoryOptionCombo="bRowv6yZOF2" value="10002"/>
+<dataValue dataElement="f7n9E0hX8qk" period="201401" orgUnit="DiszpKrYNg8"
+  categoryOptionCombo="bRowv6yZOF2" value="10001"/>
+</dataValueSet>
+```
 
 You can request the data in JSON format like
     this:
@@ -4471,37 +4478,39 @@ few important differences. We will describe these differences with
 reference to a small
     example:
 
-    <adx xmlns="urn:ihe:qrph:adx:2015" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="urn:ihe:qrph:adx:2015 ../schema/adx_loose.xsd" exported="2015-02-08T19:30:00Z">
+```xml
+<adx xmlns="urn:ihe:qrph:adx:2015" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:ihe:qrph:adx:2015 ../schema/adx_loose.xsd" exported="2015-02-08T19:30:00Z">
 
-      <group orgUnit="OU_559" period="2015-06-01/P1M" completeDate="2015-07-01" dataSet="(TB/HIV)VCCT">
+  <group orgUnit="OU_559" period="2015-06-01/P1M" completeDate="2015-07-01" dataSet="(TB/HIV)VCCT">
 
-        <dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="32"/>
-        <dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="20"/>
-        <dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
-        <dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
-        <dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
+	<dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="32"/>
+	<dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="20"/>
+	<dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
+	<dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
+	<dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
 
-        <dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE0-14" value="32"/>
-        <dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE0-14" value="20"/>
-        <dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
-        <dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
-        <dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
+	<dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE0-14" value="32"/>
+	<dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE0-14" value="20"/>
+	<dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
+	<dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
+	<dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
 
-        <dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="32"/>
-        <dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="20"/>
-        <dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
-        <dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
-        <dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
+	<dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="32"/>
+	<dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="20"/>
+	<dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
+	<dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
+	<dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
 
-        <dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE15-24" value="32"/>
-        <dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE15-24" value="20"/>
-        <dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
-        <dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
-        <dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
+	<dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE15-24" value="32"/>
+	<dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE15-24" value="20"/>
+	<dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
+	<dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
+	<dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
 
-      </group>
-    </adx>
+  </group>
+</adx>
+```
 
 ### The adx root element
 
@@ -4654,8 +4663,7 @@ that
   - The producer and consumer can match their codes to a 3rd party
     authoritative source, such as a vterminology service. Note that in
     the example above the Gender and AgeGroup codes are using code lists
-    from the [WHO Global Health
-    Observatory](http://apps.who.int/gho/data/node.resources.api).
+    from the [WHO Global Health Observatory](http://apps.who.int/gho/data/node.resources.api).
 
 Note that this feature may be extremely useful, for example when
 producing disaggregated data from an EMR system, but there may be cases
@@ -5691,13 +5699,15 @@ if successful and provide a textual description of the reason why the
 validation failed if not. The *description* provides a textual
 description of the expression.
 
-    {
-        "httpStatus": "OK",
-        "httpStatusCode": 200,
-        "status": "OK",
-        "message": "Valid",
-        "description": "Acute Flaccid Paralysis"
-    }
+```json
+{
+	"httpStatus": "OK",
+	"httpStatusCode": 200,
+	"status": "OK",
+	"message": "Valid",
+	"description": "Acute Flaccid Paralysis"
+}
+```
 
 ## Complete data set registrations
 
@@ -5725,12 +5735,14 @@ Importing both *XML* and *JSON* formatted payloads are supported. The
 basic format of this payload, given as *XML* in this example, is like
 so:
 
+```xml
     <completeDataSetRegistrations xmlns="http://dhis2.org/schema/dxf/2.0">
       <completeDataSetRegistration period="200810" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
         attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
       <completeDataSetRegistration period="200811" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
         attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
     </completeDataSetRegistrations>
+```
 
 The *storedBy* attribute is optional (as it is a nullable property on
 the complete registration object). You can also optionally set the
@@ -6164,37 +6176,39 @@ The parameters wf, pe, ou, and aoc are the same as for getting a single approval
 
 This will give you a response containing a list of approval parameters and statuses, something like this:
 
-    [
-      {
-          aoc: "HllvX50cXC0",
-          pe: "201801",
-          level: "KaTJLhGmU95",
-          ou: "YuQRtpLP10I",
-          permissions: {
-              mayApprove: false,
-              mayUnapprove: true,
-              mayAccept: true,
-              mayUnaccept: false,
-              mayReadData: true
-          },
-          state: "APPROVED_HERE",
-          wf: "rIUL3hYOjJc"
-      },
-      {
-          aoc: "HllvX50cXC0",
-          pe: "201802",
-          ou: "YuQRtpLP10I",
-          permissions: {
-              mayApprove: true,
-              mayUnapprove: false,
-              mayAccept: false,
-              mayUnaccept: false,
-              mayReadData: true
-          },
-          state: "UNAPPROVED_READY",
-          wf: "rIUL3hYOjJc"
-      }
-    ]
+```json
+[
+  {
+	  aoc: "HllvX50cXC0",
+	  pe: "201801",
+	  level: "KaTJLhGmU95",
+	  ou: "YuQRtpLP10I",
+	  permissions: {
+		  mayApprove: false,
+		  mayUnapprove: true,
+		  mayAccept: true,
+		  mayUnaccept: false,
+		  mayReadData: true
+	  },
+	  state: "APPROVED_HERE",
+	  wf: "rIUL3hYOjJc"
+  },
+  {
+	  aoc: "HllvX50cXC0",
+	  pe: "201802",
+	  ou: "YuQRtpLP10I",
+	  permissions: {
+		  mayApprove: true,
+		  mayUnapprove: false,
+		  mayAccept: false,
+		  mayUnaccept: false,
+		  mayReadData: true
+	  },
+	  state: "UNAPPROVED_READY",
+	  wf: "rIUL3hYOjJc"
+  }
+]
+```
 
 The returned parameters are:
 | Return Parameter | Description |
@@ -6298,21 +6312,23 @@ You can unaccept a bulk of records by posting to the
 
 The approval payload is supported as JSON and looks like this:
 
-    {
-      "wf": [
-        "pBOMPrpg1QX", "lyLU2wR22tC"
-      ],
-      "pe": [
-        "201601", "201602"
-      ],
-      "approvals": [{
-          "ou": "cDw53Ej8rju",
-          "aoc": "ranftQIH5M9"
-        }, {
-          "ou": "cDw53Ej8rju",
-          "aoc": "fC3z1lcAW5x"
-        }]
-    }
+```json
+{
+  "wf": [
+	"pBOMPrpg1QX", "lyLU2wR22tC"
+  ],
+  "pe": [
+	"201601", "201602"
+  ],
+  "approvals": [{
+	  "ou": "cDw53Ej8rju",
+	  "aoc": "ranftQIH5M9"
+	}, {
+	  "ou": "cDw53Ej8rju",
+	  "aoc": "fC3z1lcAW5x"
+	}]
+}
+```
 
 ## Auditing
 
@@ -6744,41 +6760,47 @@ the link to the *messageConversations* resource at
 tells us that we can use a POST request to create a new message using
 the following XML format for sending to multiple users:
 
-    <message xmlns="http://dhis2.org/schema/dxf/2.0">
-      <subject>This is the subject</subject>
-      <text>This is the text</text>
-      <users>
-        <user id="user1ID" />
-        <user id="user2ID" />
-        <user id="user3ID" />
-      </users>
-    </message>
+```xml
+<message xmlns="http://dhis2.org/schema/dxf/2.0">
+  <subject>This is the subject</subject>
+  <text>This is the text</text>
+  <users>
+	<user id="user1ID" />
+	<user id="user2ID" />
+	<user id="user3ID" />
+  </users>
+</message>
+```
 
 For sending to all users contained in one or more user groups, we can
 use:
 
-    <message xmlns="http://dhis2.org/schema/dxf/2.0">
-      <subject>This is the subject</subject>
-      <text>This is the text</text>
-      <userGroups>
-        <userGroup id="userGroup1ID" />
-        <userGroup id="userGroup2ID" />
-        <userGroup id="userGroup3ID" />
-      </userGroups>
-    </message>
+```xml
+<message xmlns="http://dhis2.org/schema/dxf/2.0">
+  <subject>This is the subject</subject>
+  <text>This is the text</text>
+  <userGroups>
+	<userGroup id="userGroup1ID" />
+	<userGroup id="userGroup2ID" />
+	<userGroup id="userGroup3ID" />
+  </userGroups>
+</message>
+```
 
 For sending to all users connected to one or more organisation units, we
 can use:
 
-    <message xmlns="http://dhis2.org/schema/dxf/2.0">
-      <subject>This is the subject</subject>
-      <text>This is the text</text>
-      <organisationUnits>
-        <organisationUnit id="ou1ID" />
-        <organisationUnit id="ou2ID" />
-        <organisationUnit id="ou3ID" />
-      </organisationUnits>
-    </message>
+```xml
+<message xmlns="http://dhis2.org/schema/dxf/2.0">
+  <subject>This is the subject</subject>
+  <text>This is the text</text>
+  <organisationUnits>
+	<organisationUnit id="ou1ID" />
+	<organisationUnit id="ou2ID" />
+	<organisationUnit id="ou3ID" />
+  </organisationUnits>
+</message>
+```
 
 Since we want to send a message to our friend the mobile user we need to
 look up her identifier. We do so by going to the Web API entry point and
@@ -6790,13 +6812,15 @@ that her identifier is *PhzytPW3g2J*. We are now ready to put our XML
 message together to form a message where we want to ask the mobile user
 whether she has reported data for January 2014:
 
-    <message xmlns="http://dhis2.org/schema/dxf/2.0">
-      <subject>Mortality data reporting</subject>
-      <text>Have you reported data for the Mortality data set for January 2014?</text>
-      <users>
-        <user id="PhzytPW3g2J" />
-      </users>
-    </message>
+```xml
+<message xmlns="http://dhis2.org/schema/dxf/2.0">
+  <subject>Mortality data reporting</subject>
+  <text>Have you reported data for the Mortality data set for January 2014?</text>
+  <users>
+	<user id="PhzytPW3g2J" />
+  </users>
+</message>
+```
 
 To test this we save the XML content into a file called *message.xml*.
 We use cURL to dispatch the message the the DHIS2 demo instance where we
@@ -6852,13 +6876,15 @@ representation and we authenticate as the *mobile* user:
 
 In response we get the following XML:
 
-    <messageConversations xmlns="http://dhis2.org/schema/dxf/2.0"
-      link="https://play.dhis2.org/demo/api/messageConversations">
-      <messageConversation name="Mortality data reporting" id="ZjHHSjyyeJ2"
-        link="https://play.dhis2.org/demo/api/messageConversations/ZjHHSjyyeJ2"/>
-      <messageConversation name="DHIS2 version 2.7 is deployed" id="GDBqVfkmnp2"
-        link="https://play.dhis2.org/demo/api/messageConversations/GDBqVfkmnp2"/>
-    </messageConversations>
+```xml
+<messageConversations xmlns="http://dhis2.org/schema/dxf/2.0"
+  link="https://play.dhis2.org/demo/api/messageConversations">
+  <messageConversation name="Mortality data reporting" id="ZjHHSjyyeJ2"
+	link="https://play.dhis2.org/demo/api/messageConversations/ZjHHSjyyeJ2"/>
+  <messageConversation name="DHIS2 version 2.7 is deployed" id="GDBqVfkmnp2"
+	link="https://play.dhis2.org/demo/api/messageConversations/GDBqVfkmnp2"/>
+</messageConversations>
+```
 
 From the response we are able to read the identifier of the newly sent
 message which is *ZjHHSjyyeJ2*. Note that the link to the specific
@@ -7021,27 +7047,29 @@ The request returns an object that represents the attachment. The id of
 this object must be used when creating a message in order to link the
 attachment with the message.
 
-    {
-       "created":"2018-07-20T16:54:18.210",
-       "lastUpdated":"2018-07-20T16:54:18.212",
-       "externalAccess":false,
-       "publicAccess":"--------",
-       "user":{
-          "name":"John Traore",
-          "created":"2013-04-18T17:15:08.407",
-          "lastUpdated":"2018-03-09T23:06:54.512",
-          "externalAccess":false,
-          "displayName":"John Traore",
-          "favorite":false,
-          "id":"xE7jOejl9FI"
-       },
-       "lastUpdatedBy":{
-          "id":"xE7jOejl9FI",
-          "name":"John Traore"
-       },
-       "favorite":false,
-       "id":"fTpI4GOmujz"
-    }
+```json
+{
+   "created":"2018-07-20T16:54:18.210",
+   "lastUpdated":"2018-07-20T16:54:18.212",
+   "externalAccess":false,
+   "publicAccess":"--------",
+   "user":{
+	  "name":"John Traore",
+	  "created":"2013-04-18T17:15:08.407",
+	  "lastUpdated":"2018-03-09T23:06:54.512",
+	  "externalAccess":false,
+	  "displayName":"John Traore",
+	  "favorite":false,
+	  "id":"xE7jOejl9FI"
+   },
+   "lastUpdatedBy":{
+	  "id":"xE7jOejl9FI",
+	  "name":"John Traore"
+   },
+   "favorite":false,
+   "id":"fTpI4GOmujz"
+}
+```
 
 When creating a new message, the ids can be passed in the request body
 to link the uploaded files to the message being created.
@@ -7180,63 +7208,65 @@ filtering can look like this:
 The output in JSON response format could look like below (additional
 fields omitted for brevity):
 
-    {
-        "interpretations": [{
-            "id": "XSHiFlHAhhh",
-            "created": "2013-05-30T10:24:06.181+0000",
-            "text": "Data looks suspicious, could be a data entry mistake.",
-            "type": "REPORT_TABLE",
-            "likes": 2,
-            "user": {
-              "id": "uk7diLujYif"
-            },
-            "reportTable": {
-              "id": "LcSxnfeBxyi"
-            }
-        }, {
-            "id": "kr4AnZmYL43",
-            "created": "2013-05-29T14:47:13.081+0000",
-            "text": "Delivery rates in Bo looks high.",
-            "type": "CHART",
-            "likes": 3,
-            "user": {
-              "id": "uk7diLujYif"
-            },
-            "chart": {
-              "id": "HDEDqV3yv3H"
-            },
-            mentions: [
-            {
-              "created": "2018-06-25T10:25:54.498",
-              "username": "boateng"
-            }
-            ],
-            "comments": [{
-                "id": "iB4Etq8yTE6",
-                "text": "This report indicates a surge.",
-                "user": {
-                    "id": "B4XIfwOcGyI"
-                }, {
-                "id": "iB4Etq8yTE6",
-                "text": "Likely caused by heavy rainfall.",
-                "user": {
-                    "id": "B4XIfwOcGyI"
-                },
-                {
-                "id": "SIjkdENan8p",
-                "text": "Have a look at this @boateng.",
-                "user": {
-                  "id": "xE7jOejl9FI"
-                },
-                "mentions": [{
-                  "created": "2018-06-25T10:03:52.316",
-                  "username": "boateng"
-                }]
-                }
-              }]
-            }
-        }]
-    }
+```json
+{
+	"interpretations": [{
+		"id": "XSHiFlHAhhh",
+		"created": "2013-05-30T10:24:06.181+0000",
+		"text": "Data looks suspicious, could be a data entry mistake.",
+		"type": "REPORT_TABLE",
+		"likes": 2,
+		"user": {
+		  "id": "uk7diLujYif"
+		},
+		"reportTable": {
+		  "id": "LcSxnfeBxyi"
+		}
+	}, {
+		"id": "kr4AnZmYL43",
+		"created": "2013-05-29T14:47:13.081+0000",
+		"text": "Delivery rates in Bo looks high.",
+		"type": "CHART",
+		"likes": 3,
+		"user": {
+		  "id": "uk7diLujYif"
+		},
+		"chart": {
+		  "id": "HDEDqV3yv3H"
+		},
+		mentions: [
+		{
+		  "created": "2018-06-25T10:25:54.498",
+		  "username": "boateng"
+		}
+		],
+		"comments": [{
+			"id": "iB4Etq8yTE6",
+			"text": "This report indicates a surge.",
+			"user": {
+				"id": "B4XIfwOcGyI"
+			}, {
+			"id": "iB4Etq8yTE6",
+			"text": "Likely caused by heavy rainfall.",
+			"user": {
+				"id": "B4XIfwOcGyI"
+			},
+			{
+			"id": "SIjkdENan8p",
+			"text": "Have a look at this @boateng.",
+			"user": {
+			  "id": "xE7jOejl9FI"
+			},
+			"mentions": [{
+			  "created": "2018-06-25T10:03:52.316",
+			  "username": "boateng"
+			}]
+			}
+		  }]
+		}
+	}]
+}
+```
 
 <table>
 <caption>Interpretation fields</caption>
@@ -7453,17 +7483,19 @@ The like information is found in the *likes* field, which represents the
 number of likes, and the *likedBy* array, which enumerates the users who
 have liked the interpretation.
 
-    {
-        "id": "XSHiFlHAhhh",
-        "text": "Data looks suspicious, could be a data entry mistake.",
-        "type": "REPORT_TABLE",
-        "likes": 2,
-        "likedBy": [{
-            "id": "k7Hg12fJ2f1"
-        }, {
-            "id: "gYhf26fFkjFS"
-        }]
-    }
+```json
+{
+	"id": "XSHiFlHAhhh",
+	"text": "Data looks suspicious, could be a data entry mistake.",
+	"type": "REPORT_TABLE",
+	"likes": 2,
+	"likedBy": [{
+		"id": "k7Hg12fJ2f1"
+	}, {
+		"id: "gYhf26fFkjFS"
+	}]
+}
+```
 
 ## Viewing analytical resource representations
 
@@ -8605,37 +8637,41 @@ We continue by adding one pre-defined and one dynamically configured map
 to our HTML document. You can browse the list of available maps using
 the Web API here: <http://play.dhis2.org/demo/api/24/maps>.
 
-    function setLinks() {
-      DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
+```javascript
+function setLinks() {
+  DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
 
-      DHIS.getMap({
-     url: base,
-     el: "map2",
-     mapViews: [
-       columns: [ // Chart series
-      columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
-       ],
-       rows: [ // Chart categories
-      rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units
-       ],
-       filters: [
-      filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
-       ],
-       // All following options are optional
-       classes: 7,
-       colorLow: "02079c",
-       colorHigh: "e5ecff",
-       opacity: 0.9,
-       legendSet: {id: "fqs276KXCXi"}
-     ]
-      });
-    }
+  DHIS.getMap({
+ url: base,
+ el: "map2",
+ mapViews: [
+   columns: [ // Chart series
+  columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
+   ],
+   rows: [ // Chart categories
+  rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units
+   ],
+   filters: [
+  filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
+   ],
+   // All following options are optional
+   classes: 7,
+   colorLow: "02079c",
+   colorHigh: "e5ecff",
+   opacity: 0.9,
+   legendSet: {id: "fqs276KXCXi"}
+ ]
+  });
+}
+```
 
 Finally we include some *div* elements in the body section of the HTML
 document with the identifiers referred to in the plug-in JavaScript.
 
-    <div id="map1"></div>
-    <div id="map2"></div>
+```html
+<div id="map1"></div>
+<div id="map2"></div>
+```
 
 To see a complete working example please visit
 <http://play.dhis2.org/portal/map.html>.
@@ -8650,11 +8686,13 @@ Web portal. To use the carousel we need to import a few files in the
 head section of our HTML
     page:
 
-    <link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v213/ext/resources/css/ext-plugin-gray.css" />
-    <link rel="stylesheet" type="text/css" href="https://play.dhis2.org/demo/dhis-web-commons/javascripts/ext-ux/carousel/css/carousel.css" />
-    <script type="text/javascript" src="https://extjs-public.googlecode.com/svn/tags/extjs-4.0.7/release/ext-all.js"></script>
-    <script type="text/javascript" src="https://play.dhis2.org/demo/dhis-web-commons/javascripts/ext-ux/carousel/Carousel.js"></script>
-    <script type="text/javascript" src="https://play.dhis2.org/demo/dhis-web-commons/javascripts/plugin/plugin.js"></script>
+```html
+<link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v213/ext/resources/css/ext-plugin-gray.css" />
+<link rel="stylesheet" type="text/css" href="https://play.dhis2.org/demo/dhis-web-commons/javascripts/ext-ux/carousel/css/carousel.css" />
+<script type="text/javascript" src="https://extjs-public.googlecode.com/svn/tags/extjs-4.0.7/release/ext-all.js"></script>
+<script type="text/javascript" src="https://play.dhis2.org/demo/dhis-web-commons/javascripts/ext-ux/carousel/Carousel.js"></script>
+<script type="text/javascript" src="https://play.dhis2.org/demo/dhis-web-commons/javascripts/plugin/plugin.js"></script>
+```
 
 The first file is the CSS stylesheet for the chart plug-in. The second
 file is the CSS stylesheet for the carousel widget. The third file is
@@ -8674,17 +8712,19 @@ rendered into *div* elements which all have a CSS class called *chart*.
 In the carousel configuration we can then define a *selector* expression
 which refers to those div elements like this:
 
-    DHIS.getChart({ uid: 'R0DVGvXDUNP', el: 'chartA1', url: base });
-    DHIS.getChart({ uid: 'X0CPnV6uLjR', el: 'chartA2', url: base });
-    DHIS.getChart({ uid: 'j1gNXBgwKVm', el: 'chartA3', url: base });
-    DHIS.getChart({ uid: 'X7PqaXfevnL', el: 'chartA4', url: base });
+```javascript
+DHIS.getChart({ uid: 'R0DVGvXDUNP', el: 'chartA1', url: base });
+DHIS.getChart({ uid: 'X0CPnV6uLjR', el: 'chartA2', url: base });
+DHIS.getChart({ uid: 'j1gNXBgwKVm', el: 'chartA3', url: base });
+DHIS.getChart({ uid: 'X7PqaXfevnL', el: 'chartA4', url: base });
 
-    new Ext.ux.carousel.Carousel( 'chartCarousel', {
-      autoPlay: true,
-      itemSelector: 'div.chart',
-      interval: 5,
-      showPlayButton: true
-    });
+new Ext.ux.carousel.Carousel( 'chartCarousel', {
+  autoPlay: true,
+  itemSelector: 'div.chart',
+  interval: 5,
+  showPlayButton: true
+});
+```
 
 The first argument in the configuration is the id of the div element in
 which you want to render the carousel. The *autoPlay* configuration
@@ -8694,12 +8734,13 @@ chart should be displayed. The *showPlayButton* defines whether we want
 to render a button for the user to start and stop the carousel. Finally
 we need to insert the div elements in the body of the HTML document:
 
-    <div id="chartCarousel">
-
-    <div id="chartA1"></div>
-    <div id="chartA2"></div>
-    <div id="chartA3"></div>
-    <div id="chartA4"></div>
+```html
+<div id="chartCarousel">
+<div id="chartA1"></div>
+<div id="chartA2"></div>
+<div id="chartA3"></div>
+<div id="chartA4"></div>
+```
 
 To see a complete working example please visit
 <http://play.dhis2.org/portal/carousel.html>.
@@ -8719,15 +8760,16 @@ constructed with SQL compared combining the multiple objects of the Web
 API. As an example, lets assume we have been asked to provide a view of
 all organization units with their names, parent names, organization unit
 level and name, and the coordinates listed in the database. The view
-might look something like
-    this:
+might look something like this:
 
-    SELECT ou.name as orgunit, par.name as parent, ou.coordinates, ous.level, oul.name from organisationunit ou
-    INNER JOIN _orgunitstructure ous ON ou.organisationunitid = ous.organisationunitid
-    INNER JOIN organisationunit par ON ou.parentid = par.organisationunitid
-    INNER JOIN orgunitlevel oul ON ous.level = oul.level
-    WHERE ou.coordinates is not null
-    ORDER BY oul.level, par.name, ou.name
+```sql
+SELECT ou.name as orgunit, par.name as parent, ou.coordinates, ous.level, oul.name from organisationunit ou
+INNER JOIN _orgunitstructure ous ON ou.organisationunitid = ous.organisationunitid
+INNER JOIN organisationunit par ON ou.parentid = par.organisationunitid
+INNER JOIN orgunitlevel oul ON ous.level = oul.level
+WHERE ou.coordinates is not null
+ORDER BY oul.level, par.name, ou.name
+```
 
 We will use *curl* to first execute the view on the DHIS2 server. This
 is essentially a materialization process, and ensures that we have the
@@ -8884,43 +8926,44 @@ array of dashboard items. The response in JSON format will look similar
 to this response (certain information has been removed for the sake of
 brevity).
 
-    {
-    "lastUpdated" : "2013-10-15T18:17:34.084+0000",
-    "id" : "vQFhmLJU5sK",
-    "created" : "2013-09-08T20:55:58.060+0000",
-    "name" : "Mother and Child Health",
-    "href" : "https://play.dhis2.org/demo/api/dashboards/vQFhmLJU5sK",
-    "publicAccess" : "--------",
-    "externalAccess" : false,
-    "itemCount" : 17,
-    "displayName" : "Mother and Child Health",
-    "access" : {
-    "update" : true,
-    "externalize" : true,
-    "delete" : true,
-    "write" : true,
-    "read" : true,
-    "manage" : true
-    },
-    "user" : {
-    "id" : "xE7jOejl9FI",
-    "name" : "John Traore",
-    "created" : "2013-04-18T15:15:08.407+0000",
-    "lastUpdated" : "2014-12-05T03:50:04.148+0000",
-    "href" : "https://play.dhis2.org/demo/api/users/xE7jOejl9FI"
-    },
-    "dashboardItems" : [{
-    "id" : "bu1IAnPFa9H",
-    "created" : "2013-09-09T12:12:58.095+0000",
-    "lastUpdated" : "2013-09-09T12:12:58.095+0000"
+```json
+{
+  "lastUpdated" : "2013-10-15T18:17:34.084+0000",
+  "id": "vQFhmLJU5sK",
+  "created": "2013-09-08T20:55:58.060+0000",
+  "name": "Mother and Child Health",
+  "href": "https://play.dhis2.org/demo/api/dashboards/vQFhmLJU5sK",
+  "publicAccess": "--------",
+  "externalAccess": false,
+  "itemCount": 17,
+  "displayName": "Mother and Child Health",
+  "access": {
+    "update": true,
+    "externalize": true,
+    "delete": true,
+    "write": true,
+    "read": true,
+    "manage": true
+  },
+  "user": {
+    "id": "xE7jOejl9FI",
+    "name": "John Traore",
+    "created": "2013-04-18T15:15:08.407+0000",
+    "lastUpdated": "2014-12-05T03:50:04.148+0000",
+    "href": "https://play.dhis2.org/demo/api/users/xE7jOejl9FI"
+  },
+  "dashboardItems": [{
+    "id": "bu1IAnPFa9H",
+    "created": "2013-09-09T12:12:58.095+0000",
+    "lastUpdated": "2013-09-09T12:12:58.095+0000"
     }, {
-    "id" : "ppFEJmWWDa1",
-    "created" : "2013-09-10T13:57:02.480+0000",
-    "lastUpdated" : "2013-09-10T13:57:02.480+0000"
-    }
-    ],
-    "userGroupAccesses" : []
-    }
+    "id": "ppFEJmWWDa1",
+    "created": "2013-09-10T13:57:02.480+0000",
+    "lastUpdated": "2013-09-10T13:57:02.480+0000"
+  }],
+  "userGroupAccesses": []
+}
+```
 
 A more tailored response can be obtained by specifying specific fields
 in the request. An example is provided below, which would return more
@@ -8947,11 +8990,10 @@ For example, this query:
     /api/32/dashboards/q/ma?count=6&maxCount=20&max=CHART&max=MAP
 
 Will search for the following:
-* analytical object name contains the string "ma"
-* return up to 6 of each type
-* for CHART and MAP types, return up to 20
 
-
+* Analytical object name contains the string "ma"
+* Return up to 6 of each type
+* For CHART and MAP types, return up to 20 items
 
 <table>
 <caption>dashboards/q query parameters</caption>
@@ -8995,44 +9037,46 @@ will contain references to matching resources and counts of how many
 matches were found in total and for each type of resource. It will look
 similar to this:
 
-    {
-        "charts": [{
-            "name": "ANC: 1-3 dropout rate Yearly",
-            "id": "LW0O27b7TdD"
-        }, {
-            "name": "ANC: 1 and 3 coverage Yearly",
-            "id": "UlfTKWZWV4u"
-        }, {
-            "name": "ANC: 1st and 3rd trends Monthly",
-            "id": "gnROK20DfAA"
-        }],
-        "maps": [{
-            "name": "ANC: 1st visit at facility (fixed) 2013",
-            "id": "YOEGBvxjAY0"
-        }, {
-            "name": "ANC: 3rd visit coverage 2014 by district",
-            "id": "ytkZY3ChM6J"
-        }],
-        "reportTables": [{
-            "name": "ANC: ANC 1 Visits Cumulative Numbers",
-            "id": "tWg9OiyV7mu"
-        }],
-        "reports": [{
-            "name": "ANC: 1st Visit Cumulative Chart",
-            "id": "Kvg1AhYHM8Q"
-        }, {
-            "name": "ANC: Coverages This Year",
-            "id": "qYVNH1wkZR0"
-        }],
-        "searchCount": 8,
-        "chartCount": 3,
-        "mapCount": 2,
-        "reportTableCount": 1,
-        "reportCount": 2,
-        "userCount": 0,
-        "patientTabularReportCount": 0,
-        "resourceCount": 0
-    }
+```json
+{
+	"charts": [{
+		"name": "ANC: 1-3 dropout rate Yearly",
+		"id": "LW0O27b7TdD"
+	}, {
+		"name": "ANC: 1 and 3 coverage Yearly",
+		"id": "UlfTKWZWV4u"
+	}, {
+		"name": "ANC: 1st and 3rd trends Monthly",
+		"id": "gnROK20DfAA"
+	}],
+	"maps": [{
+		"name": "ANC: 1st visit at facility (fixed) 2013",
+		"id": "YOEGBvxjAY0"
+	}, {
+		"name": "ANC: 3rd visit coverage 2014 by district",
+		"id": "ytkZY3ChM6J"
+	}],
+	"reportTables": [{
+		"name": "ANC: ANC 1 Visits Cumulative Numbers",
+		"id": "tWg9OiyV7mu"
+	}],
+	"reports": [{
+		"name": "ANC: 1st Visit Cumulative Chart",
+		"id": "Kvg1AhYHM8Q"
+	}, {
+		"name": "ANC: Coverages This Year",
+		"id": "qYVNH1wkZR0"
+	}],
+	"searchCount": 8,
+	"chartCount": 3,
+	"mapCount": 2,
+	"reportTableCount": 1,
+	"reportCount": 2,
+	"userCount": 0,
+	"patientTabularReportCount": 0,
+	"resourceCount": 0
+}
+```
 
 ### Creating, updating and removing dashboards
 
@@ -11066,9 +11110,9 @@ using the HTTP *GET* method. The response will look similar to this:
 }
 ```
 
-Note that the max limit for rows to return in a single response is 10
-000. If the query produces more than the max limit, a *409 Conflict*
-status code will be returned.
+Note that the max limit for rows to return in a single response is 10 000. 
+If the query produces more than the max limit, a *409 Conflict* status code 
+will be returned.
 
 ### Event clustering analytics
 
@@ -12541,13 +12585,15 @@ identifiers you want to be returned with the response. The default is to
 return one identifier. The response will contain a JSON object with a
 array named codes, similar to this:
 
-    {
-      "codes": [
-        "Y0moqFplrX4",
-        "WI0VHXuWQuV",
-        "BRJNBBpu4ki"
-      ]
-    }
+```json
+{
+  "codes": [
+	"Y0moqFplrX4",
+	"WI0VHXuWQuV",
+	"BRJNBBpu4ki"
+  ]
+}
+```
 
 The DHIS2 UID format has these requirements:
 
@@ -12573,31 +12619,33 @@ requesting this resource does not have full authority in the system then
 only the first seven properties will be included, as this information is
 security sensitive.
 
-    {
-        contextPath: "http://yourdomain.com",
-        userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62 Safari/537.36",
-        version: "2.13-SNAPSHOT",
-        revision: "11852",
-        buildTime: "2013-09-01T21:36:21.000+0000",
-        serverDate: "2013-09-02T12:35:54.311+0000",
-        environmentVariable: "DHIS2_HOME",
-        javaVersion: "1.7.0_06",
-        javaVendor: "Oracle Corporation",
-        javaIoTmpDir: "/tmp",
-        javaOpts: "-Xms600m -Xmx1500m -XX:PermSize=400m -XX:MaxPermSize=500m",
-        osName: "Linux",
-        osArchitecture: "amd64",
-        osVersion: "3.2.0-52-generic",
-        externalDirectory: "/home/dhis/config/dhis2",
-        databaseInfo: {
-            type: "PostgreSQL",
-            name: "dhis2",
-            user: "dhis",
-            spatialSupport: false
-        },
-        memoryInfo: "Mem Total in JVM: 848 Free in JVM: 581 Max Limit: 1333",
-        cpuCores: 8
-    }
+```json
+{
+	contextPath: "http://yourdomain.com",
+	userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62 Safari/537.36",
+	version: "2.13-SNAPSHOT",
+	revision: "11852",
+	buildTime: "2013-09-01T21:36:21.000+0000",
+	serverDate: "2013-09-02T12:35:54.311+0000",
+	environmentVariable: "DHIS2_HOME",
+	javaVersion: "1.7.0_06",
+	javaVendor: "Oracle Corporation",
+	javaIoTmpDir: "/tmp",
+	javaOpts: "-Xms600m -Xmx1500m -XX:PermSize=400m -XX:MaxPermSize=500m",
+	osName: "Linux",
+	osArchitecture: "amd64",
+	osVersion: "3.2.0-52-generic",
+	externalDirectory: "/home/dhis/config/dhis2",
+	databaseInfo: {
+		type: "PostgreSQL",
+		name: "dhis2",
+		user: "dhis",
+		spatialSupport: false
+	},
+	memoryInfo: "Mem Total in JVM: 848 Free in JVM: 581 Max Limit: 1333",
+	cpuCores: 8
+}
+```
 
 To get information about the system context (*contextPath* and
 *userAgent*) only you can do a GET request to the below URL. JSON and
@@ -12738,14 +12786,16 @@ The response will provide information about the status, such as the
 notification level, category, time and status. The *completed* property
 indicates whether the process is considered to be complete.
 
-    [{
-        "uid": "hpiaeMy7wFX",
-        "level": "INFO",
-        "category": "DATAVALUE_IMPORT",
-        "time": "2015-09-02T07:43:14.595+0000",
-        "message": "Import done",
-        "completed": true
-    }]
+```json
+[{
+	"uid": "hpiaeMy7wFX",
+	"level": "INFO",
+	"category": "DATAVALUE_IMPORT",
+	"time": "2015-09-02T07:43:14.595+0000",
+	"message": "Import done",
+	"completed": true
+}]
+```
 
 #### Monitoring all tasks for a category
 
@@ -12768,41 +12818,43 @@ a GET request to the system tasks resource:
 
 The response will look similar to this:
 
-    [{
-        "EVENT_IMPORT": {},
-        "DATA_STATISTICS": {},
-        "RESOURCE_TABLE": {},
-        "FILE_RESOURCE_CLEANUP": {},
-        "METADATA_IMPORT": {},
-        "CREDENTIALS_EXPIRY_ALERT": {},
-        "SMS_SEND": {},
-        "MOCK": {},
-        "ANALYTICSTABLE_UPDATE": {},
-        "COMPLETE_DATA_SET_REGISTRATION_IMPORT": {},
-        "DATAVALUE_IMPORT": {},
-        "DATA_SET_NOTIFICATION": {},
-        "DATA_INTEGRITY": {
-            "OB1qGRlCzap": [{
-                "uid": "LdHQK0PXZyF",
-                "level": "INFO",
-                "category": "DATA_INTEGRITY",
-                "time": "2018-03-26T15:02:32.171",
-                "message": "Data integrity checks completed in 38.31 seconds.",
-                "completed": true
-            }]
-        },
-        "PUSH_ANALYSIS": {},
-        "MONITORING": {},
-        "VALIDATION_RESULTS_NOTIFICATION": {},
-        "REMOVE_EXPIRED_RESERVED_VALUES": {},
-        "DATA_SYNC": {},
-        "SEND_SCHEDULED_MESSAGE": {},
-        "DATAVALUE_IMPORT_INTERNAL": {},
-        "PROGRAM_NOTIFICATIONS": {},
-        "META_DATA_SYNC": {},
-        "ANALYTICS_TABLE": {},
-        "PREDICTOR": {}
-    }]
+```json
+[{
+	"EVENT_IMPORT": {},
+	"DATA_STATISTICS": {},
+	"RESOURCE_TABLE": {},
+	"FILE_RESOURCE_CLEANUP": {},
+	"METADATA_IMPORT": {},
+	"CREDENTIALS_EXPIRY_ALERT": {},
+	"SMS_SEND": {},
+	"MOCK": {},
+	"ANALYTICSTABLE_UPDATE": {},
+	"COMPLETE_DATA_SET_REGISTRATION_IMPORT": {},
+	"DATAVALUE_IMPORT": {},
+	"DATA_SET_NOTIFICATION": {},
+	"DATA_INTEGRITY": {
+		"OB1qGRlCzap": [{
+			"uid": "LdHQK0PXZyF",
+			"level": "INFO",
+			"category": "DATA_INTEGRITY",
+			"time": "2018-03-26T15:02:32.171",
+			"message": "Data integrity checks completed in 38.31 seconds.",
+			"completed": true
+		}]
+	},
+	"PUSH_ANALYSIS": {},
+	"MONITORING": {},
+	"VALIDATION_RESULTS_NOTIFICATION": {},
+	"REMOVE_EXPIRED_RESERVED_VALUES": {},
+	"DATA_SYNC": {},
+	"SEND_SCHEDULED_MESSAGE": {},
+	"DATAVALUE_IMPORT_INTERNAL": {},
+	"PROGRAM_NOTIFICATIONS": {},
+	"META_DATA_SYNC": {},
+	"ANALYTICS_TABLE": {},
+	"PREDICTOR": {}
+}]
+```
 
 ### View asynchronous task summaries
 
@@ -12822,37 +12874,39 @@ An example request might look like this:
 
 The response will look similar to this:
 
-    {
-        "responseType": "ImportSummary",
-        "status": "SUCCESS",
-        "importOptions": {
-            "idSchemes": {},
-            "dryRun": false,
-            "async": true,
-            "importStrategy": "CREATE_AND_UPDATE",
-            "mergeMode": "REPLACE",
-            "reportMode": "FULL",
-            "skipExistingCheck": false,
-            "sharing": false,
-            "skipNotifications": false,
-            "datasetAllowsPeriods": false,
-            "strictPeriods": false,
-            "strictCategoryOptionCombos": false,
-            "strictAttributeOptionCombos": false,
-            "strictOrganisationUnits": false,
-            "requireCategoryOptionCombo": false,
-            "requireAttributeOptionCombo": false,
-            "skipPatternValidation": false
-        },
-        "description": "Import process completed successfully",
-        "importCount": {
-            "imported": 0,
-            "updated": 431,
-            "ignored": 0,
-            "deleted": 0
-        },
-        "dataSetComplete": "false"
-    }
+```json
+{
+	"responseType": "ImportSummary",
+	"status": "SUCCESS",
+	"importOptions": {
+		"idSchemes": {},
+		"dryRun": false,
+		"async": true,
+		"importStrategy": "CREATE_AND_UPDATE",
+		"mergeMode": "REPLACE",
+		"reportMode": "FULL",
+		"skipExistingCheck": false,
+		"sharing": false,
+		"skipNotifications": false,
+		"datasetAllowsPeriods": false,
+		"strictPeriods": false,
+		"strictCategoryOptionCombos": false,
+		"strictAttributeOptionCombos": false,
+		"strictOrganisationUnits": false,
+		"requireCategoryOptionCombo": false,
+		"requireAttributeOptionCombo": false,
+		"skipPatternValidation": false
+	},
+	"description": "Import process completed successfully",
+	"importCount": {
+		"imported": 0,
+		"updated": 431,
+		"ignored": 0,
+		"deleted": 0
+	},
+	"dataSetComplete": "false"
+}
+```
 
 You might also retrieve import summaries for multiple tasks of a
 specific category with a request like
@@ -12910,13 +12964,15 @@ translations through the Web API using the *translations* resource.
 
 You can create a translation with a POST request in JSON format:
 
-    {
-      "objectId": "P3jJH5Tu5VC",
-      "className": "DataElement",
-      "locale": "es",
-      "property": "name",
-      "value": "Casos de fiebre amarilla"
-    }
+```json
+{
+  "objectId": "P3jJH5Tu5VC",
+  "className": "DataElement",
+  "locale": "es",
+  "property": "name",
+  "value": "Casos de fiebre amarilla"
+}
+```
 
     POST /api/26/translations
 
@@ -13103,13 +13159,15 @@ MAX\_ALLOWED\_RECIPIENTS limit which is 200.
 
     /api/26/sms/outbound
 
-    {
-      "message":"Sms Text",
-      "recipients": [
-        "47XXXXXX1",
-        "47XXXXXX2"
-      ]
-    }
+```json
+{
+  "message":"Sms Text",
+  "recipients": [
+	"47XXXXXX1",
+	"47XXXXXX2"
+  ]
+}
+```
 
 The Web API also supports a query parameter version, but the
 parametrised API can only be used for sending SMS to a single
@@ -13257,15 +13315,17 @@ parameters.
 
     /api/26/sms/inbound
 
-    {
-      "text": "sample text",
-      "originator": "47XXXXXXXX",
-      "gatewayid": "unknown",
-      "receiveddate": "2016-05-01",
-      "sentdate":"2016-05-01",
-      "smsencoding": "1",
-      "smsstatus":"1"
-    }
+```json
+{
+  "text": "sample text",
+  "originator": "47XXXXXXXX",
+  "gatewayid": "unknown",
+  "receiveddate": "2016-05-01",
+  "sentdate":"2016-05-01",
+  "smsencoding": "1",
+  "smsstatus":"1"
+}
+```
 
 The Web API also supports a query parameter-based
     version.
@@ -13354,65 +13414,73 @@ Sample JSON payloads for each gateway are given below. POST is used to
 create and PUT to update configurations. Header parameter can be used in
 case of GenericHttpGateway to send one or more parameter as http header.
 
-*Clickatell*
+#### Clickatell
 
-    {
-      "name" : "clickatell",
-      "username": "clickatelluser",
-      "password": "abc123",
-      "authtoken": "XXXXXXXXXXXXXXXXXXXX",
-      "urlTemplate": "https://platform.clickatell.com/messages"
-    }
+```json
+{
+  "name" : "clickatell",
+  "username": "clickatelluser",
+  "password": "abc123",
+  "authtoken": "XXXXXXXXXXXXXXXXXXXX",
+  "urlTemplate": "https://platform.clickatell.com/messages"
+}
+```
 
-*Bulksms*
+#### Bulksms
 
-    {
-      "name": "bulkSMS",
-      "username": "bulkuser",
-      "password": "abc123"
-    }
+```json
+{
+  "name": "bulkSMS",
+  "username": "bulkuser",
+  "password": "abc123"
+}
+```
     
-*SMPP Gateway*
+#### SMPP Gateway
 
-    {
-		"name": "smpp gateway2",
-		"systemId": "smppclient1",
-		"host": "localhost",
-		"systemType": "cp",
-		"numberPlanIndicator": "UNKNOWN",
-		"typeOfNumber": "UNKNOWN",
-		"bindType": "BIND_TX",
-		"port": 2775,
-		"password":"password",
-		"compressed": false
+```json
+{
+	"name": "smpp gateway2",
+	"systemId": "smppclient1",
+	"host": "localhost",
+	"systemType": "cp",
+	"numberPlanIndicator": "UNKNOWN",
+	"typeOfNumber": "UNKNOWN",
+	"bindType": "BIND_TX",
+	"port": 2775,
+	"password":"password",
+	"compressed": false
+}
+```
+
+#### GenericHttp
+
+```json
+{
+  "name": "Generic",
+  "configurationTemplate": "{\"to\": \"${recipients}\",\"body\": \"${text}\"}",
+  "useGet": false,
+  "contentType": "APPLICATION_JSON",
+  "urlTemplate":"https://samplegateway.com/messages",
+  "parameters": [
+	{
+		"header": true,
+		"encode": false,
+		"key": "username",
+		"value": "user_uio",
+		"confidential": true
+	},
+	{
+		"header": true,
+		"encode": false,
+		"key": "password",
+		"value": "123abcxyz",
+		"confidential": true
 	}
-
-*GenericHttp*
-
-    {
-      "name": "Generic",
-	  "configurationTemplate": "{\"to\": \"${recipients}\",\"body\": \"${text}\"}",
-	  "useGet": false,
-	  "contentType": "APPLICATION_JSON",
-	  "urlTemplate":"https://samplegateway.com/messages",
-      "parameters": [
-        {
-            "header": true,
-			"encode": false,
-			"key": "username",
-			"value": "user_uio",
-			"confidential": true
-        },
-        {
-            "header": true,
-			"encode": false,
-			"key": "password",
-			"value": "123abcxyz",
-			"confidential": true
-        }
-      ],
-      "isDefault": false
-    }
+  ],
+  "isDefault": false
+}
+```
 
 In generic http gateway any number of parameters can be added. 
 
@@ -13570,38 +13638,40 @@ Note that message resource accepts a wrapper object named
 
     POST /api/26/messages
 
-    {
-        "programMessages": [{
-            "recipients": {
-                "trackedEntityInstance": {
-                    "id": "UN810PwyVYO"
-                },
-                "organisationUnit": {
-                    "id": "Rp268JB6Ne4"
-                },
-                "phoneNumbers": [
-                    "55512345",
-                    "55545678"
-                ],
-                "emailAddresses": [
-                    "johndoe@mail.com",
-                    "markdoe@mail.com"
-                ]
-            },
-            "programInstance": {
-                "id": "f3rg8gFag8j"
-            },
-            "programStageInstance": {
-                "id": "pSllsjpfLH2"
-            },
-            "deliveryChannels": [
-                "SMS", "EMAIL"
-            ],
-            "subject": "Outbreak alert",
-            "text": "An outbreak has been detected",
-            "storeCopy": false
-        }]
-    }
+```json
+{
+	"programMessages": [{
+		"recipients": {
+			"trackedEntityInstance": {
+				"id": "UN810PwyVYO"
+			},
+			"organisationUnit": {
+				"id": "Rp268JB6Ne4"
+			},
+			"phoneNumbers": [
+				"55512345",
+				"55545678"
+			],
+			"emailAddresses": [
+				"johndoe@mail.com",
+				"markdoe@mail.com"
+			]
+		},
+		"programInstance": {
+			"id": "f3rg8gFag8j"
+		},
+		"programStageInstance": {
+			"id": "pSllsjpfLH2"
+		},
+		"deliveryChannels": [
+			"SMS", "EMAIL"
+		],
+		"subject": "Outbreak alert",
+		"text": "An outbreak has been detected",
+		"storeCopy": false
+	}]
+}
+```
 
 The fields are explained in the following table.
 
@@ -13673,22 +13743,24 @@ entity instance looks like this:
     curl -d @message.json "https://play.dhis2.org/demo/api/26/messages"
       -H "Content-Type:application/json" -u admin:district -v
 
-    {
-        "programMessages": [{
-            "recipients": {
-                "trackedEntityInstance": {
-                    "id": "PQfMcpmXeFE"
-                }
-            },
-            "programInstance": {
-                "id": "JMgRZyeLWOo"
-            },
-            "deliveryChannels": [
-                "SMS"
-            ],
-            "text": "Please make a visit on Thursday"
-        }]
-    }
+```json
+{
+	"programMessages": [{
+		"recipients": {
+			"trackedEntityInstance": {
+				"id": "PQfMcpmXeFE"
+			}
+		},
+		"programInstance": {
+			"id": "JMgRZyeLWOo"
+		},
+		"deliveryChannels": [
+			"SMS"
+		],
+		"text": "Please make a visit on Thursday"
+	}]
+}
+```
 
 ### Retrieving and deleting program messages
 
@@ -13886,42 +13958,44 @@ support collection references etc. A simple example payload to create
 would be, the password should be sent in plain text (remember to only
 use this on a SSL enabled server) and will be encrypted on the backend:
 
-    {
-      "id": "Mj8balLULKp",
-      "firstName": "John",
-      "surname": "Doe",
-      "email": "johndoe@mail.com",
-      "userCredentials": {
-        "id": "lWCkJ4etppc",
-        "userInfo": {
-          "id": "Mj8balLULKp"
-        },
-        "username": "johndoe123",
-        "password": "Your-password-123",
-        "skype": "john.doe",
-        "telegram": "joh.doe",
-        "whatsApp": "+1-541-754-3010",
-        "facebookMessenger": "john.doe",
-        "avatar": {
-          "id": "<fileResource id>"
-        },
-        "userRoles": [
-          {
-            "id": "Ufph3mGRmMo"
-          }
-        ]
-      },
-      "organisationUnits": [
-        {
-          "id": "Rp268JB6Ne4"
-        }
-      ],
-      "userGroups": [
-        {
-          "id": "wl5cDMuUhmF"
-        }
-      ]
-    }
+```json
+{
+  "id": "Mj8balLULKp",
+  "firstName": "John",
+  "surname": "Doe",
+  "email": "johndoe@mail.com",
+  "userCredentials": {
+	"id": "lWCkJ4etppc",
+	"userInfo": {
+	  "id": "Mj8balLULKp"
+	},
+	"username": "johndoe123",
+	"password": "Your-password-123",
+	"skype": "john.doe",
+	"telegram": "joh.doe",
+	"whatsApp": "+1-541-754-3010",
+	"facebookMessenger": "john.doe",
+	"avatar": {
+	  "id": "<fileResource id>"
+	},
+	"userRoles": [
+	  {
+		"id": "Ufph3mGRmMo"
+	  }
+	]
+  },
+  "organisationUnits": [
+	{
+	  "id": "Rp268JB6Ne4"
+	}
+  ],
+  "userGroups": [
+	{
+	  "id": "wl5cDMuUhmF"
+	}
+  ]
+}
+```
 
     curl -X POST -u user:pass -d @u.json -H "Content-Type: application/json" http://server/api/26/users
 
@@ -13955,23 +14029,25 @@ or by transferring the password in plain text. The payload to use for
 the invite is the same as for creating users. An example payload in JSON
 looks like this:
 
-    {
-      "firstName": "John",
-      "surname": "Doe",
-      "email": "johndoe@mail.com",
-      "userCredentials": {
-        "username": "johndoe",
-        "userRoles": [ {
-          "id": "Euq3XfEIEbx"
-        } ]
-      },
-      "organisationUnits": [ {
-        "id": "ImspTQPwCqd"
-      } ],
-      "userGroups": [ {
-        "id": "vAvEltyXGbD"
-      } ]
-    }
+```json
+{
+  "firstName": "John",
+  "surname": "Doe",
+  "email": "johndoe@mail.com",
+  "userCredentials": {
+	"username": "johndoe",
+	"userRoles": [ {
+	  "id": "Euq3XfEIEbx"
+	} ]
+  },
+  "organisationUnits": [ {
+	"id": "ImspTQPwCqd"
+  } ],
+  "userGroups": [ {
+	"id": "vAvEltyXGbD"
+  } ]
+}
+```
 
 The user invite entity can be posted like
     this:
@@ -13981,35 +14057,37 @@ The user invite entity can be posted like
 To send out invites for multiple users at the same time you must use a
 slightly different format. For JSON:
 
-    {
-      "users": [ {
-        "firstName": "John",
-        "surname": "Doe",
-        "email": "johndoe@mail.com",
-        "userCredentials": {
-          "username": "johndoe",
-          "userRoles": [ {
-            "id": "Euq3XfEIEbx"
-          } ]
-        },
-        "organisationUnits": [ {
-          "id": "ImspTQPwCqd"
-          } ]
-        }, {
-        "firstName": "Tom",
-        "surname": "Johnson",
-        "email": "tomj@mail.com",
-        "userCredentials": {
-          "userRoles": [ {
-            "id": "Euq3XfEIEbx"
-          } ]
-        },
-        "organisationUnits": [ {
-          "id": "ImspTQPwCqd"
-          } ]
-        }
-      ]
-    }
+```json
+{
+  "users": [ {
+	"firstName": "John",
+	"surname": "Doe",
+	"email": "johndoe@mail.com",
+	"userCredentials": {
+	  "username": "johndoe",
+	  "userRoles": [ {
+		"id": "Euq3XfEIEbx"
+	  } ]
+	},
+	"organisationUnits": [ {
+	  "id": "ImspTQPwCqd"
+	  } ]
+	}, {
+	"firstName": "Tom",
+	"surname": "Johnson",
+	"email": "tomj@mail.com",
+	"userCredentials": {
+	  "userRoles": [ {
+		"id": "Euq3XfEIEbx"
+	  } ]
+	},
+	"organisationUnits": [ {
+	  "id": "ImspTQPwCqd"
+	  } ]
+	}
+  ]
+}
+```
 
 To create multiple invites you can post the payload to the
 api/users/invites resource like
@@ -14057,10 +14135,12 @@ replicated user which you will use to authenticate later. Note that you
 need the ALL authority to perform this action. To replicate a user you
 can post a JSON payload looking like below:
 
-    {
-      "username": "replica",
-      "password": "Replica.1234"
-    }
+```json
+{
+  "username": "replica",
+  "password": "Replica.1234"
+}
+```
 
 This payload can be posted to the replica resource, where you provide
 the identifier of the user to replicate in the URL:
@@ -14839,22 +14919,24 @@ list to fill positions for which it does not exist a persisted level.
 To set the organisation unit levels you can issue a POST request with a
 JSON payload looking like this.
 
-    {
-      "organisationUnitLevels": [{
-        "name": "National",
-        "level": 1,
-        "offlineLevels": 3
-      }, {
-        "name": "District",
-        "level": 2
-      }, {
-        "name": "Chiefdom",
-        "level": 3
-      }, {
-        "name": "Facility",
-        "level": 4
-      }]
-    }
+```json
+{
+  "organisationUnitLevels": [{
+	"name": "National",
+	"level": 1,
+	"offlineLevels": 3
+  }, {
+	"name": "District",
+	"level": 2
+  }, {
+	"name": "Chiefdom",
+	"level": 3
+  }, {
+	"name": "Facility",
+	"level": 4
+  }]
+}
+```
 
 To do functional testing with curl you can issue the following
     command.
@@ -15127,10 +15209,12 @@ the *i18n* resource.
 The endpoint is located at *api/i18n* and the request format is a simple
 array of the key-value pairs:
 
-    [
-      "access_denied",
-      "uploading_data_notification"
-    ]
+```json
+[
+  "access_denied",
+  "uploading_data_notification"
+]
+```
 
 The request must be of type *POST* and use *application/json* as
 content-type. An example using curl, assuming the request data is saved
@@ -15141,10 +15225,12 @@ as a file keys.json:
 
 The result will look like this:
 
-    {
-      "access_denied":"Access denied",
-      "uploading_data_notification":"Uploading locally stored data to the server"
-    }
+```json
+{
+  "access_denied":"Access denied",
+  "uploading_data_notification":"Uploading locally stored data to the server"
+}
+```
 
 ## SVG conversion
 
@@ -15224,24 +15310,28 @@ tracked entity instances and programs are supported.
 For creating a new person in the system, you will be working with the
 *trackedEntityInstances* resource. A template payload can be seen below:
 
-    {
-        "trackedEntity": "tracked-entity-id",
-        "orgUnit": "org-unit-id",
-        "geometry": <GeoJson>,
-        "attributes": [ {
-            "attribute": "attribute-id",
-            "value": "attribute-value"
-        } ]
-    }
+```json
+{
+	"trackedEntity": "tracked-entity-id",
+	"orgUnit": "org-unit-id",
+	"geometry": <GeoJson>,
+	"attributes": [ {
+		"attribute": "attribute-id",
+		"value": "attribute-value"
+	} ]
+}
+```
 
 The field "geometry" accepts a GeoJson object, where the type of the
 GeoJson have to match the featureType of the TrackedEntityType
 definition. An example GeoJson object looks like this:
 
-    {
-      "type": "Point",
-      "coordinates": [1, 1]
-    }
+```json
+{
+  "type": "Point",
+  "coordinates": [1, 1]
+}
+```
 
 > **Note**
 >
@@ -15259,20 +15349,22 @@ URL:
 For example, let us create a new instance of a person tracked entity and
 specify its first name and last name attributes:
 
-    {
-      "trackedEntity": "nEenWmSyUEp",
-      "orgUnit": "DiszpKrYNg8",
-      "attributes": [
-        {
-          "attribute": "w75KJ2mc4zz",
-          "value": "Joe"
-        },
-        {
-          "attribute": "zDhUuAYrxNC",
-          "value": "Smith"
-        }
-      ]
-    }
+```json
+{
+  "trackedEntity": "nEenWmSyUEp",
+  "orgUnit": "DiszpKrYNg8",
+  "attributes": [
+	{
+	  "attribute": "w75KJ2mc4zz",
+	  "value": "Joe"
+	},
+	{
+	  "attribute": "zDhUuAYrxNC",
+	  "value": "Smith"
+	}
+  ]
+}
+```
 
 To push this to the server you can use the cURL command like
     this:
@@ -15283,38 +15375,40 @@ To push this to the server you can use the cURL command like
 To create multiple instances in one request you can wrap the payload in
 an outer array like this and POST to the same resource as above:[]()
 
-    {
-      "trackedEntityInstances": [
-        {
-          "trackedEntity": "nEenWmSyUEp",
-          "orgUnit": "DiszpKrYNg8",
-          "attributes": [
-            {
-              "attribute": "w75KJ2mc4zz",
-              "value": "Joe"
-            },
-            {
-              "attribute": "zDhUuAYrxNC",
-              "value": "Smith"
-            }
-          ]
-        },
-        {
-          "trackedEntity": "nEenWmSyUEp",
-          "orgUnit": "DiszpKrYNg8",
-          "attributes": [
-            {
-              "attribute": "w75KJ2mc4zz",
-              "value": "Jennifer"
-            },
-            {
-              "attribute": "zDhUuAYrxNC",
-              "value": "Johnson"
-            }
-          ]
-        }
-      ]
-    }
+```json
+{
+  "trackedEntityInstances": [
+	{
+	  "trackedEntity": "nEenWmSyUEp",
+	  "orgUnit": "DiszpKrYNg8",
+	  "attributes": [
+		{
+		  "attribute": "w75KJ2mc4zz",
+		  "value": "Joe"
+		},
+		{
+		  "attribute": "zDhUuAYrxNC",
+		  "value": "Smith"
+		}
+	  ]
+	},
+	{
+	  "trackedEntity": "nEenWmSyUEp",
+	  "orgUnit": "DiszpKrYNg8",
+	  "attributes": [
+		{
+		  "attribute": "w75KJ2mc4zz",
+		  "value": "Jennifer"
+		},
+		{
+		  "attribute": "zDhUuAYrxNC",
+		  "value": "Johnson"
+		}
+	  ]
+	}
+  ]
+}
+```
 
 The system does not allow the creation of a tracked entity instance
 (as well as enrollment and event) with an UID that was already used in
@@ -15363,25 +15457,27 @@ method. The URL is equal to the one above used for update.
 It is also possible to both create (and update) a tracked entity
 instance and at the same time enroll into a program.
 
-    {
-        "trackedEntity": "tracked-entity-id",
-        "orgUnit": "org-unit-id",
-        "attributes": [ {
-            "attribute": "attribute-id",
-            "value": "attribute-value"
-        } ],
-        "enrollments": [ {
-            "orgUnit": "org-unit-id",
-            "program": "program-id",
-            "enrollmentDate": "2013-09-17",
-            "incidentDate": "2013-09-17"
-         }, {
-            "orgUnit": "org-unit-id",
-            "program": "program-id",
-            "enrollmentDate": "2013-09-17",
-            "incidentDate": "2013-09-17"
-         } ]
-    }
+```json
+{
+	"trackedEntity": "tracked-entity-id",
+	"orgUnit": "org-unit-id",
+	"attributes": [ {
+		"attribute": "attribute-id",
+		"value": "attribute-value"
+	} ],
+	"enrollments": [ {
+		"orgUnit": "org-unit-id",
+		"program": "program-id",
+		"enrollmentDate": "2013-09-17",
+		"incidentDate": "2013-09-17"
+	 }, {
+		"orgUnit": "org-unit-id",
+		"program": "program-id",
+		"enrollmentDate": "2013-09-17",
+		"incidentDate": "2013-09-17"
+	 } ]
+}
+```
 
 You would send this to the server as you would normally when creating or
 updating a new tracked entity instance.
@@ -15396,78 +15492,80 @@ updating a new tracked entity instance.
 It is also possible to create (and update) a tracked entity instance, at
 the same time enroll into a program and create an event.
 
-    {
-        "trackedEntityType": "nEenWmSyUEp",
-        "orgUnit": "DiszpKrYNg8",
-        "attributes": [
-          {
-            "attribute": "w75KJ2mc4zz",
-            "value": "Joe"
-          },
-          {
-            "attribute": "zDhUuAYrxNC",
-            "value": "Rufus"
-          },
-          {
-             "attribute":"cejWyOfXge6",
-             "value":"Male"
-          }
-        ],
-        "enrollments":[
-          {
-             "orgUnit":"DiszpKrYNg8",
-             "program":"ur1Edk5Oe2n",
-             "enrollmentDate":"2017-09-15",
-             "incidentDate":"2017-09-15",
-             "events":[
-                {
-                   "program":"ur1Edk5Oe2n",
-                   "orgUnit":"DiszpKrYNg8",
-                   "eventDate":"2017-10-17",
-                   "status":"COMPLETED",
-                   "storedBy":"admin",
-                   "programStage":"EPEcjy3FWmI",
-                   "coordinate":{
-                      "latitude":"59.8",
-                      "longitude":"10.9"
-                   },
-                   "dataValues":[
-                      {
-                         "dataElement":"qrur9Dvnyt5",
-                         "value":"22"
-                      },
-                      {
-                         "dataElement":"oZg33kd9taw",
-                         "value":"Male"
-                      }
-                   ]
-                },
-                {
-                   "program":"ur1Edk5Oe2n",
-                   "orgUnit":"DiszpKrYNg8",
-                   "eventDate":"2017-10-17",
-                   "status":"COMPLETED",
-                   "storedBy":"admin",
-                   "programStage":"EPEcjy3FWmI",
-                   "coordinate":{
-                      "latitude":"59.8",
-                      "longitude":"10.9"
-                   },
-                   "dataValues":[
-                      {
-                         "dataElement":"qrur9Dvnyt5",
-                         "value":"26"
-                      },
-                      {
-                         "dataElement":"oZg33kd9taw",
-                         "value":"Female"
-                      }
-                   ]
-                }
-             ]
-          }
-       ]
-    }
+```json
+{
+	"trackedEntityType": "nEenWmSyUEp",
+	"orgUnit": "DiszpKrYNg8",
+	"attributes": [
+	  {
+		"attribute": "w75KJ2mc4zz",
+		"value": "Joe"
+	  },
+	  {
+		"attribute": "zDhUuAYrxNC",
+		"value": "Rufus"
+	  },
+	  {
+		 "attribute":"cejWyOfXge6",
+		 "value":"Male"
+	  }
+	],
+	"enrollments":[
+	  {
+		 "orgUnit":"DiszpKrYNg8",
+		 "program":"ur1Edk5Oe2n",
+		 "enrollmentDate":"2017-09-15",
+		 "incidentDate":"2017-09-15",
+		 "events":[
+			{
+			   "program":"ur1Edk5Oe2n",
+			   "orgUnit":"DiszpKrYNg8",
+			   "eventDate":"2017-10-17",
+			   "status":"COMPLETED",
+			   "storedBy":"admin",
+			   "programStage":"EPEcjy3FWmI",
+			   "coordinate":{
+				  "latitude":"59.8",
+				  "longitude":"10.9"
+			   },
+			   "dataValues":[
+				  {
+					 "dataElement":"qrur9Dvnyt5",
+					 "value":"22"
+				  },
+				  {
+					 "dataElement":"oZg33kd9taw",
+					 "value":"Male"
+				  }
+			   ]
+			},
+			{
+			   "program":"ur1Edk5Oe2n",
+			   "orgUnit":"DiszpKrYNg8",
+			   "eventDate":"2017-10-17",
+			   "status":"COMPLETED",
+			   "storedBy":"admin",
+			   "programStage":"EPEcjy3FWmI",
+			   "coordinate":{
+				  "latitude":"59.8",
+				  "longitude":"10.9"
+			   },
+			   "dataValues":[
+				  {
+					 "dataElement":"qrur9Dvnyt5",
+					 "value":"26"
+				  },
+				  {
+					 "dataElement":"oZg33kd9taw",
+					 "value":"Female"
+				  }
+			   ]
+			}
+		 ]
+	  }
+   ]
+}
+```
 
 Note: The example above can fail if provided UIDs are not present in the
 system.
@@ -15513,14 +15611,16 @@ variables should only be supplied if you know what you are doing.
 
     GET /api/29/trackedEntityAttributes/Gs1ICEQTPlG/requiredValues
 
-    {
-        "REQUIRED": [
-            "ORG_UNIT_CODE"
-        ],
-        "OPTIONAL": [
-            "RANDOM"
-        ]
-    }
+```json
+{
+	"REQUIRED": [
+		"ORG_UNIT_CODE"
+	],
+	"OPTIONAL": [
+		"RANDOM"
+	]
+}
+```
 
 ##### Generate value endpoint
 
@@ -17744,25 +17844,25 @@ the tracker user interface.
 <td>completedDate</td>
 <td>DateFilterPeriod object date filtering based on completed date.</td>
 <td>
-  "completedDate":{
-        "startDate": "2014-05-01",
-        "endDate": "2019-03-20",
-        "startBuffer": -5,
-        "endBuffer": 5,
-        "period": "LAST_WEEK",
-        "type": "RELATIVE"
-      }
+  "completedDate": {
+    "startDate": "2014-05-01",
+    "endDate": "2019-03-20",
+    "startBuffer": -5,
+    "endBuffer": 5,
+    "period": "LAST_WEEK",
+    "type": "RELATIVE"
+  }
 </td>
 </tr>
 <tr class="even">
 <td>eventDate</td>
 <td>DateFilterPeriod object date filtering based on event date.</td>
 <td>
-  "eventDate":{
-        "startBuffer": -5,
-        "endBuffer": 5,
-        "type": "RELATIVE"
-      }
+  "eventDate": {
+	"startBuffer": -5,
+	"endBuffer": 5,
+	"type": "RELATIVE"
+  }
 </td>
 </tr>
 <tr class="odd">
@@ -17779,11 +17879,11 @@ the tracker user interface.
 <td>lastUpdatedDate</td>
 <td>DateFilterPeriod object date filtering based on last updated date.</td>
 <td>
-  "lastUpdatedDate":{
-        "startDate": "2014-05-01",
-        "endDate": "2019-03-20",
-        "type": "ABSOLUTE"
-      }
+  "lastUpdatedDate": {
+	"startDate": "2014-05-01",
+	"endDate": "2019-03-20",
+	"type": "ABSOLUTE"
+  }
 </td>
 </tr>
 
@@ -17965,11 +18065,13 @@ This request will return a list of any relationship you have access to see that 
   "from": {
 	"trackedEntityInstance": {
 	  "trackedEntityInstance": "vOxUH373fy5"
-	},
+	}
+  },
   "to": {
 	"trackedEntityInstance": {
 	  "trackedEntityInstance": "pybd813kIWx"
-	},
+	}
+  },
   "created": "2019-04-26T09:30:56.267",
   "lastUpdated": "2019-04-26T09:30:56.267"
 }
@@ -17992,11 +18094,13 @@ And use the following payload structure:
   "from": {
 	"trackedEntityInstance": {
 	  "trackedEntityInstance": "vOxUH373fy5"
-	},
+	}
+  },
   "to": {
 	"trackedEntityInstance": {
 	  "trackedEntityInstance": "pybd813kIWx"
 	}
+  }
 }
 ```
 
@@ -18009,7 +18113,7 @@ In our example payloads, we use a relationship between trackedEntityInstances. B
 ```json
 {
   "enrollment": {
-	"enrollment": <id>
+	"enrollment": "<id>"
   }
 }
 ```
@@ -18017,7 +18121,7 @@ In our example payloads, we use a relationship between trackedEntityInstances. B
 ```json
 {
   "event": {
-	"event": <id>
+	"event": "<id>"
   }
 }
 ```
@@ -18316,10 +18420,12 @@ is as follows:
 *Example of 2 events with 2 different data value
     each:*
 
+```csv
     EJNxP3WreNP,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,1,,
     EJNxP3WreNP,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,2,,
     qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,3,,
     qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,4,,
+```
 
 #### Import strategy: SYNC
 
