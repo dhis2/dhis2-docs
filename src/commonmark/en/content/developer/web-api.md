@@ -17655,7 +17655,7 @@ identifier scheme
     /api/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
 
 Retrieve events with specified Organisation unit and Program, and use UID as identifier scheme for 
-orgUnits, Code as identifier scheme for Program stages and _Attribute:Gq0oWTf2DtN_ as identifier 
+orgUnits, Code as identifier scheme for Program stages, and _Attribute:Gq0oWTf2DtN_ as identifier 
 scheme for the rest of the metadata with assigned attribute.
     
     api/events.json?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN&orgUnitIdScheme=UID&programStageIdScheme=Code
