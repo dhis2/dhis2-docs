@@ -668,6 +668,16 @@ Some aspects of the data synchronization feature to be aware of:
         
     Default values can be overridden by using *syncTrackerPageSize* 
     respectively *syncEventsPageSize* SettingKey.
+    
+    **Example of cURL requests to change the paging settings:**
+    
+    Set page size to 5 for Event Programs data synchronization:
+    
+        curl -X POST '<DHIS2_URL>/api/systemSettings/syncEventsPageSize?value=5' -u <user>:<password> -H "Content-Type: text/plain"
+    
+    Set page size to 15 for Tracker Programs data synchronization:
+        
+        curl -X POST '<DHIS2_URL>/api/systemSettings/syncTrackerPageSize?value=15' -u <user>:<password> -H "Content-Type: text/plain"
 
 ## Metadata Synchronization Scheduling
 
