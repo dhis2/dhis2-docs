@@ -16908,37 +16908,40 @@ i.e. *?fields=program,status*.
 <td>dataElementIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Data element ID scheme to use for export, valid options are UID and CODE</td>
+<td>Data element ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="even">
 <td>categoryOptionComboIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Category Option Combo ID scheme to use for export, valid options are UID and CODE</td>
+<td>Category Option Combo ID scheme to use for export, valid options are UID, CODE and 
+ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="odd">
 <td>orgUnitIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Organisation Unit ID scheme to use for export, valid options are UID and CODE</td>
+<td>Organisation Unit ID scheme to use for export, valid options are UID, CODE and 
+ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="even">
 <td>programIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Program ID scheme to use for export, valid options are UID and CODE</td>
+<td>Program ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="odd">
 <td>programStageIdScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Program Stage ID scheme to use for export, valid options are UID and CODE</td>
+<td>Program Stage ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID}</td>
 </tr>
 <tr class="even">
 <td>idScheme</td>
 <td>string</td>
 <td>false</td>
-<td>Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.</td>
+<td>Allows to set id scheme for data element, category option combo, orgUnit, program and program 
+stage at once.</td>
 </tr>
 <tr class="odd">
 <td>order</td>
@@ -17042,6 +17045,17 @@ tracked entity instance in the year 2014:
 
     /api/29/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
       &trackedEntityInstance=gfVxE3ALA9m&startDate=2014-01-01&endDate=2014-12-31
+
+Retrieve events with specified Organisation unit and Program, and use _Attribute:Gq0oWTf2DtN_ as 
+identifier scheme
+
+    /api/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
+
+Retrieve events with specified Organisation unit and Program, and use UID as identifier scheme for 
+orgUnits, Code as identifier scheme for Program stages, and _Attribute:Gq0oWTf2DtN_ as identifier 
+scheme for the rest of the metadata with assigned attribute.
+
+    api/events.json?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN&orgUnitIdScheme=UID&programStageIdScheme=Code
 
 #### Event grid query
 
