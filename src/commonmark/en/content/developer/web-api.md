@@ -2949,9 +2949,11 @@ The CSV format for these imports are the same
 
 An example for category options looks like this:
 
-    name,uid,code,shortname
-    "Male",,"MALE"
-    "Female",,"FEMALE"
+```csv
+name,uid,code,shortname
+"Male",,"MALE"
+"Female",,"FEMALE"
+```
 
 ## Deleted objects
 
@@ -5118,11 +5120,13 @@ A POST request to the doucuments endpoint will create a new document:
     curl -X POST -d @document.json -H "Content-type: application/json"
       http://dhis.domain/api/29/documents
 
-    {
-      "name": "dhis home",
-      "external": true,
-      "url": "https://www.dhis2.org"
-    }
+```json
+{
+  "name": "dhis home",
+  "external": true,
+  "url": "https://www.dhis2.org"
+}
+```
 
 A GET request with the id of a document appended will return information
 about the document. A PUT request to the same endpoint will update the
