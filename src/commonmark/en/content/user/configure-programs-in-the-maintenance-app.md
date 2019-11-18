@@ -3372,7 +3372,7 @@ Its value varies between -3.5 to 3.5 depending upon the value of the weight.
 <td>(string)</td>
 <td>Contains status of the current event or enrollment.
 <p>Example expression to check status is:</p>
-<pre><code>V{event_status) == &#39;COMPLETED&#39;</code></pre></td>
+<pre><code>V{event_status} == &#39;COMPLETED&#39;</code></pre></td>
 </tr>
 <tr class="even">
 <td>V{due_date}</td>

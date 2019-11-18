@@ -188,7 +188,7 @@ See also:
 [Sharing](https://ci.dhis2.org/docs/master/en/user/html/sharing.html)
 
 [Manage program
-notifications](https://docs.dhis2.org/master/en/user/html/manage_program_notification.html)
+notifications](https://docs.dhis2.org/master/en/user/html/configure_tracker_program_in_Maintenance_app.html#create-a-program-stage-notification)
 
 [Mange push
 reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
