@@ -3870,8 +3870,8 @@ for value types. For information about all other cases, see
 <tbody>
 <tr class="odd">
 <td>BOOLEAN</td>
-<td>true | false | 1 | 0 | t | f |</td>
-<td>Used when the value is a boolean, true or false value. The import service does not care if the input has upper or lower case initial.</td>
+<td>true | True | TRUE | false | False | FALSE | 1 | 0 | t | f |</td>
+<td>Used when the value is a boolean, true or false value. The import service does not care if the input begins with an uppercase or lowercase letter, or if it's all uppercase.</td>
 </tr>
 </tbody>
 </table>
