@@ -7221,10 +7221,10 @@ fields omitted for brevity):
 		"type": "REPORT_TABLE",
 		"likes": 2,
 		"user": {
-		  "id": "uk7diLujYif"
+			"id": "uk7diLujYif"
 		},
 		"reportTable": {
-		  "id": "LcSxnfeBxyi"
+			"id": "LcSxnfeBxyi"
 		}
 	}, {
 		"id": "kr4AnZmYL43",
@@ -7233,41 +7233,38 @@ fields omitted for brevity):
 		"type": "CHART",
 		"likes": 3,
 		"user": {
-		  "id": "uk7diLujYif"
+			"id": "uk7diLujYif"
 		},
 		"chart": {
-		  "id": "HDEDqV3yv3H"
+			"id": "HDEDqV3yv3H"
 		},
-		mentions: [
-		{
-		  "created": "2018-06-25T10:25:54.498",
-		  "username": "boateng"
-		}
-		],
+		"mentions": [{
+			"created": "2018-06-25T10:25:54.498",
+			"username": "boateng"
+		}],
 		"comments": [{
 			"id": "iB4Etq8yTE6",
 			"text": "This report indicates a surge.",
 			"user": {
 				"id": "B4XIfwOcGyI"
-			}, {
+			}
+		}, {
 			"id": "iB4Etq8yTE6",
 			"text": "Likely caused by heavy rainfall.",
 			"user": {
 				"id": "B4XIfwOcGyI"
-			},
-			{
+			}
+		}, {
 			"id": "SIjkdENan8p",
 			"text": "Have a look at this @boateng.",
 			"user": {
-			  "id": "xE7jOejl9FI"
+				"id": "xE7jOejl9FI"
 			},
 			"mentions": [{
-			  "created": "2018-06-25T10:03:52.316",
-			  "username": "boateng"
+				"created": "2018-06-25T10:03:52.316",
+				"username": "boateng"
 			}]
-			}
-		  }]
-		}
+		}]
 	}]
 }
 ```
@@ -7496,7 +7493,7 @@ have liked the interpretation.
 	"likedBy": [{
 		"id": "k7Hg12fJ2f1"
 	}, {
-		"id: "gYhf26fFkjFS"
+		"id": "gYhf26fFkjFS"
 	}]
 }
 ```
@@ -12711,7 +12708,7 @@ general.
 
 Tasks which often take a long time to complete can be performed
 asynchronously. After initiating an async task you can poll the status
-through the *system/tasks* resource by supplying the task category and
+through the `system/tasks` resource by supplying the task category and
 the task identifier of interest.
 
 When polling for the task status you need to authenticate as the same
@@ -18690,15 +18687,11 @@ submit this to the sharing resource using
     curl -d @sharing.json "localhost/api/26/sharing?type=dataElement&id=fbfJHSPpUQD"
       -H "Content-Type:application/json" -u admin:district -v
 
-## Scheduling (Experimental)
+## Scheduling
 
 <!--DHIS2-SECTION-ID:webapi_scheduling-->
 
-In 2.29 we introduced a new way of scheduling jobs on the server. Each
-type of job has different properties for configuration, giving you more
-control over how jobs are run. In addition, you can configure the same
-job to run with different configurations and at different intervals if
-required.
+DHIS 2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
 
 <table>
 <caption>Main properties</caption>
@@ -18712,32 +18705,32 @@ required.
 <tbody>
 <tr class="odd">
 <td>name</td>
-<td>Name of the job</td>
+<td>Name of the job.</td>
 <td>String</td>
 </tr>
 <tr class="even">
 <td>cronExpression</td>
-<td>The cron expression resembles a time interval. It must follow a specific pattern, see <a href="https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm" class="uri">https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm</a> for guidelines</td>
+<td>The cron expression which defines the interval for when the job should run. See the [cron expression reference](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm) for details.</td>
 <td>String (Cron expression)</td>
 </tr>
 <tr class="odd">
 <td>jobType</td>
-<td>The job type represent which task is run. In the next table, you can get an overview of existing job types. Each job type can have a a specific set of parameters for job configuration https://play.dhis2.org/dev/api/jobConfigurations/jobTypesExtended for an overview of the parameters designed for a job type. A JobConfiguration has a &quot;configurable&quot; property which is adopted by the job type. Some jobs are system jobs which only allows for altering of the cron expression.</td>
+<td>The job type represent which task is run. In the next table, you can get an overview of existing job types. Each job type can have a a specific set of parameters for job configuration.</td>
 <td>String (Enum)</td>
 </tr>
 <tr class="even">
 <td>jobParameters</td>
-<td>Parameters of job if applicable for job type</td>
+<td>Job parameters, if applicable for job type.</td>
 <td>(See list of job types)</td>
 </tr>
 <tr class="odd">
 <td>continuousExecution</td>
-<td>A job may be added as a continuous job which means, as soon as the job finished, it will be scheduled to run again right away. Set &quot;continuouseExecution&quot; to true in the payload if continuous execution is desired</td>
+<td>A job may be added as a continuous job which means, as soon as the job finished, it will be scheduled to run again right away. You can set `continuousExecution` to true in the payload for the job to run continuously.</td>
 <td>Boolean</td>
 </tr>
 <tr class="even">
 <td>enabled</td>
-<td>A job can be added to the system without it being scheduled by setting &quot;enabled&quot; to false in the JSON payload. Use this if you want to temporarily stop scheduling for a job, or if a job configuration is not complete yet.</td>
+<td>A job can be added to the system without it being scheduled by setting `enabled` to false in the JSON payload. Use this if you want to temporarily stop scheduling for a job, or if a job configuration is not complete yet.</td>
 <td>Boolean</td>
 </tr>
 </tbody>
