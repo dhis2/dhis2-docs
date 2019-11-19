@@ -13959,6 +13959,8 @@ support collection references etc. A simple example payload to create
 would be, the password should be sent in plain text (remember to only
 use this on a SSL enabled server) and will be encrypted on the backend:
 
+Note: that userGroups are not supported in the payload for user creation. There is a many-to-many relationship between User and UserGroup, and UserGroup is the owner of the relationship. If needed you may update UserGroup with a list of Users.
+
 ```json
 {
   "id": "Mj8balLULKp",
@@ -13989,15 +13991,9 @@ use this on a SSL enabled server) and will be encrypted on the backend:
 	{
 	  "id": "Rp268JB6Ne4"
 	}
-  ],
-  "userGroups": [
-	{
-	  "id": "wl5cDMuUhmF"
-	}
   ]
 }
 ```
-
     curl -X POST -u user:pass -d @u.json -H "Content-Type: application/json" http://server/api/26/users
 
 After the user is created, a *Location* header is sent back with the
