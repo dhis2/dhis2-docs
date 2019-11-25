@@ -14000,7 +14000,9 @@ use this on a SSL enabled server) and will be encrypted on the backend:
 
     curl -X POST -u user:pass -d @u.json -H "Content-Type: application/json" http://server/api/26/users
     
-**Note:** In the user creation payload, user groups are only supported when importing or **POST**ing a *single user* at a time. If you attempt to create more than one user while specifiying user groups, you will not recieve an error and the users will be created but no user groups will be assinged. This is by design and is limited because of the many-to-many relationship between Users and User Groups whereby User Groups is the owner of the relationship. To update or create a mulitple users and their user groups, consider a program to **POST** one at a time, or **POST**/import all users followed by another action to update their user groups while specifiying the new user's ID's.
+>  **Note:**
+>
+>  In the user creation payload, user groups are only supported when importing or **POST**ing a *single user* at a time. If you attempt to create more than one user while specifiying user groups, you will not recieve an error and the users will be created but no user groups will be assinged. This is by design and is limited because of the many-to-many relationship between Users and User Groups whereby User Groups is the owner of the relationship. To update or create a mulitple users and their user groups, consider a program to **POST** one at a time, or **POST**/import all users followed by another action to update their user groups while specifiying the new user's ID's.
 
 After the user is created, a *Location* header is sent back with the
 newly generated ID (you can also provide your own using /api/system/id
