@@ -146,7 +146,7 @@ In addition, **APP: Server-Side Resources** contains some strings that are used 
 > - **APP: Server-Side Resources**, if required. For Tracker Capture this is **not required**.
 
 
-Within the projects we have resources, which represent localization files in the source code. In order to support multiple DHIS2 versions, with the same localization files, the _branch_ is associated with each instance of the file. So, for **APP: Data Visualizer** the list of resources looks like this in the Web Editor:
+Within the projects we have resources, which represent localization files in the source code. In order to support multiple DHIS2 versions, with the same localization files, the _version_ is associated with each instance of the file. So, for **APP: Data Visualizer** the list of resources looks like this in the Web Editor:
 
 ![](resources/images/implementation_guide/transifex_data_vis.jpg)
 
