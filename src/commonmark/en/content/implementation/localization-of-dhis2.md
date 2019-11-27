@@ -123,7 +123,7 @@ Once you have access as a translator, you can start translating through the tran
 Transifex have a useful guide here:
 [Translating Online with the Web Editor](https://docs.transifex.com/translation/translating-with-the-web-editor)
 
-As far as possible, the projects represent DHIS 2 apps one-to-one, for example the "APP: Data Visualizer" project contains the translation strings for the Data Visualizer app.
+As far as possible, the projects represent DHIS 2 apps one-to-one. For example, the **APP: Data Visualizer** project contains the translation strings for the Data Visualizer app.
 
 Our transifex projects for DHIS2 User Interface all start with one of the following:
 
