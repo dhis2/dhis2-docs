@@ -187,18 +187,28 @@ Please contact us via email translate@dhis2.org, or on the [Community of Practic
 Once resources for that language are more than 20% translated, they will start to be pulled into the system. They will then
 become visible in the development demo versions, and be available in future releases.
 
+> **Note**
+>
+> DHIS 2 manages metadata (database) locales independently from the UI. _See the following section._ 
+
 
 ## Metadata/Database translations
+
+<!--DHIS2-SECTION-ID:metadata-database-translations-->
+
+In addition to translation of the user interface, DHIS 2 also supports
+the localization of the metadata content in the database. It is possible
+to translate individual objects through the **Maintenance app**, but in
+order to better support a standard translation workflow, a specialized
+app has been developed for this purpose.
+
+New metadata locales can be added in **Maintenance app > Locales**.
 
 ### DHIS 2 Translations app
 
 <!--DHIS2-SECTION-ID:translations-app-->
 
-In addition to translation of the user interface, DHIS 2 also supports
-the localization of the metadata content in the database. It is possible
-to translate individual objects through the maintenance app, but in
-order to better support a standard translation workflow, a specialized
-app has been developed for this purpose. The DHIS 2 **Translation app** can
+The DHIS 2 **Translation app** can 
 be used to translate all metadata (data elements, categories,
 organization units, etc) into any locale which is present in the
 database.
