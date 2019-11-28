@@ -116,10 +116,10 @@ have some useful instructions here:
 
 1. Email the DHIS 2 team at translate@dhis2.org to request access.   
 Please provide:
-	- the name(s) and email(s) of the user(s) you would like us to give access to, and
+	- the name, email address and translation language of the user(s) you would like us to give access to, and
 	- a little bit of information about why you are interested in contributing to the DHIS 2 translations
 
-#### Contribute translations
+#### Edit translations
 
 Once you have access as a translator, you can start translating through the transifex Web Editor.
 
