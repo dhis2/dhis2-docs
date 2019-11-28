@@ -12,6 +12,19 @@ time formats, currency and other aspects must be considered. In addition
 to translation of the user interface itself, metadata content which is
 contained in the database must also be considered to be translated.
 
+Interface translations are compiled into the system itself, such that new translations
+can only be accessed by taking a newer version of DHIS 2.
+Database translations, on the other hand, are specific to your implementation
+and can be added to your existing DHIS 2 instance.
+
+These two aspects are managed independently and the processes and tools are outlined
+below.
+
+
+## User Interface localization
+
+### Overview
+
 DHIS 2 supports internationalization (i18n) of the user interface through
 the use of Java property strings and PO files. Java property files are used
 when messages originate from the back-end Java server, while PO files
@@ -21,14 +34,14 @@ Regardless of the specific format, each element in the user interface has
 been assigned a specific key which is linked to a value.
 As an example, consider the following key/value pairs from a Java property file.
 
-```
+```properties
     org_unit_tree=Organisation Unit Tree
     error_occurred=An error has occurred.
 ```
 
 In French the same key/value pairs would appear as follows
 
-```
+```properties
     org_unit_tree=Arborescence des unités d'organisation
     error_occurred=Une erreur s'est produite
 ```
@@ -60,12 +73,6 @@ chooses Brazilian Portuguese as their language:
 3.  If there is no message in either the base language or the variant language,
     choose the ultimate fallback language, English.
 
->  **Note**
->
->   It is not necessary to translate a string from the original
->   language (English) if the translated string is the same. You can
->   simply leave it blank. By default, DHIS 2 will use English values
->   for all strings which have not been translated.
 
 >  **Important**
 >
@@ -86,13 +93,7 @@ chooses Brazilian Portuguese as their language:
 >   value by the application. You must place this variable notation in
 >   the correct position and be sure not to modify it.
 
-There are tools which can be used to support the
-localization of the user interface as well as the database content. These two
-aspects are managed independently and the processes and tools are outlined
-below.
-
-
-## User Interface localization
+### Translation Platform
 
 <!--DHIS2-SECTION-ID:translation-server-->
 
@@ -101,12 +102,14 @@ managing translations. You can access the DHIS2 resources at
 [translate.dhis2.org](https://translate.dhis2.org), or directly at
 https://www.transifex.com/hisp-uio/public.
 
-### Register as a translator
+### How do I contribute to translations? 
+
+#### Register as a translator
 
 The first step is to  get access to the project. There are two ways to do this:
 
 1. Navigate to the platform and create an account with transifex, then
-	- request access to to our organisation "HISP UiO" as a member of the "DHIS 2 Core Apps" translation team.  
+	- request access to our organisation "HISP UiO" as a member of the "DHIS 2 Core Apps" translation team.  
 	Transifex
 have some useful instructions here:
 [Getting Started as a Translator](https://docs.transifex.com/getting-started-1/translators)
@@ -116,7 +119,7 @@ Please provide:
 	- the name(s) and email(s) of the user(s) you would like us to give access to, and
 	- a little bit of information about why you are interested in contributing to the DHIS 2 translations
 
-### Contribute translations
+#### Contribute translations
 
 Once you have access as a translator, you can start translating through the transifex Web Editor.
 
@@ -137,7 +140,6 @@ In addition, **APP: Server-Side Resources** contains some strings that are used 
 - "Pivot Tables"
 - "Reports"
 
-
 > **Tip**
 >
 > To ensure that there are full translations for a particular app, e.g. "Tracker Capture", you need to make sure translations are complete in:
@@ -157,20 +159,33 @@ i.e. there is only one source resource for the app (`en.pot`), but we have added
 > In general, we request translators focus on the "**master**" resource; it usually contains all strings from previous versions, and when translations are added the platform will fill in matching translations on the previous versions too.
 
 
-### View your translations in the system
+### When will new translations be available in the system?
 
 We have a nightly service that pulls new translations from the transifex platform and opens a pull request on the source code.
 
-The service Loops over all projects and supported languages and does the following:
+The service loops over all projects and supported languages and does the following:
 
 1. Pulls localization files from transifex (**where translations are more than 20% complete**)
 2. Raises a pull request on the source code if changes are found for the language
 
 The pull requests are reviewed and merged into the code base as part of the normal development process.
 
+> **Info**
+>
+> The translations adde to transifex will, in general, be in the next available stable release for all supported DHIS 2 versions
+>
+> _If you need to ensure that your translations are in the next stable release, contact us (translate@dhis2.org) expalining your needs, and we'll let you know what we can do._ 
+
 > **Tip**
 >
 > The translations you add in transifex should be visible in all development demo versions on our play server (https://play.dhis2.org) within a few days, in most cases.
+
+### How do I add a new language?
+
+Please contact us via email translate@dhis2.org, or on the [Community of Practice](https://community.dhis2.org/c/translation) and we'll add that language to the projects on transifex.
+
+Once resources for that language are more than 20% translated, they will start to be pulled into the system. They will then
+become visible in the development demo versions, and be available in future releases.
 
 
 ## Metadata/Database translations
