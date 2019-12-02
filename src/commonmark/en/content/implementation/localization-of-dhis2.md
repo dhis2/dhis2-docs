@@ -30,30 +30,16 @@ the use of Java property strings and PO files. Java property files are used
 when messages originate from the back-end Java server, while PO files
 are used for front-end apps written in JavaScript.
 The DHIS 2 Android apps use a specific XML format.
-Regardless of the specific format, each element in the user interface has
-been assigned a specific key which is linked to a value.
-As an example, consider the following key/value pairs from a Java property file.
 
-```properties
-    org_unit_tree=Organisation Unit Tree
-    error_occurred=An error has occurred.
-```
-
-In French the same key/value pairs would appear as follows
-
-```properties
-    org_unit_tree=Arborescence des unités d'organisation
-    error_occurred=Une erreur s'est produite
-```
-
-Note that the keys (text before the = symbol) are the same in both
-examples, but the values (after the = ) symbol are in each of the
-respective languages. Each of these values would need to be
-translated from the original language (English) to the destination
-language (e.g. French). When the user specifies French for the user
-interface language, all of the strings would then appear in French
-instead of the default language (English). Any strings which have not
-been translated, would appear in English.
+> **Note**
+> 
+> The translator need not worry about the different resource file formats; 
+> the translation platform hides the details, and only displays the strings
+> that require translation.  
+> For example, the figure below shows the source and target strings when
+> translating a resource to French.  
+>
+> ![](resources/images/i18n/translation_ui.jpg)
 
 There should always be an English string for all messages in DHIS 2.
 When the user selects a given language, and a translation is present in that
@@ -76,14 +62,13 @@ chooses Brazilian Portuguese as their language:
 
 >  **Important**
 >
->   There are a number of key/value pairs such as
->   "format.FinancialApril.startDate=dd MMM yyyy 'to '" which are used
+>   There are a number of source strings such as "dd MMM yyyy 'to '" which are used
 >   for date/time formatting in various parts of DHIS 2. Part of the value
 >   should not be translated because it is actually a special formatting
 >   field used by either Java or JavaScript to interpolate or format a string.
->   In this example the special string which should be be translated is
->   "dd MMM yyyy".  The part of the value which can be translated would be
->   "to", for instance to "a" in Spanish. If these data format template
+>   In this example the part of the value which **can** be translated would be
+>   "to", for instance to "a" in Spanish. The special string which should **not** 
+>   be translated is "dd MMM yyyy". If these date format template
 >   strings are translated, it may result in errors in the application!     
 
 >  **Important**
