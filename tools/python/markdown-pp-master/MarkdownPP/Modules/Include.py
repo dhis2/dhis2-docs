@@ -89,7 +89,7 @@ class Include(Module):
                 if not image:
                     image = self.simpleimagepath.search(line)
                 if image:
-                    data[linenum] = line.replace("resources/images","resources/images/"+dirname)
+                    data[linenum] = line.replace("resources/images","resources/images/"+dirname).replace('//','/')
                     # print(line)
 
                 if shift:
