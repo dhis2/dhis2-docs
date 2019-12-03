@@ -598,7 +598,7 @@ synchronization.
 <p>The system will use this setting for metadata synchronization too.</p>
 <blockquote>
 <p><strong>Note</strong></p>
-<p>To enable data and metadata synchronization, you must also enable <strong>Data synchronization</strong> and <strong>Metadata synchronization</strong> in the <strong>Scheduler</strong> app.</p>
+<p>To enable data and metadata synchronization, you must also enable jobs for <strong>Data synchronization</strong> and <strong>Metadata synchronization</strong> in the <strong>Scheduler</strong> app.</p>
 </blockquote></td>
 </tr>
 <tr class="even">
