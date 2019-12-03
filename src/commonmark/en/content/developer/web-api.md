@@ -8870,12 +8870,14 @@ Values for these variables cannot be supplied as part of the URL. They are alway
 
 For example, the following SQL view of type *query* shows all the organisation units that are assigned to the user:
 
+```sql
     select ou.path, ou.name
     from organisationunit ou_user
     join organisationunit ou on ou.path like ou_user.path || '%'
     join usermembership um on um.organisationunitid = ou_user.organisationunitid
     where um.userinfoid = ${_current_user_id}
     order by ou.path
+```
 
 ### Filtering
 
