@@ -17230,7 +17230,7 @@ You can also use GeoJson to store any kind of geometry on your event. An example
 	{ "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
   ]
 }
-```json
+```
 
 As part of the import summary you will also get the identifier
 *reference* to the event you just sent, together with a *href* element
@@ -18063,7 +18063,7 @@ A sample payload that can be used to create/update an eventFilter is shown below
     "programStatus": "ACTIVE"
   }
 }
-````
+```
 
 
 ##### Retrieving and deleting event filters
