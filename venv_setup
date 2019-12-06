@@ -7,6 +7,9 @@ pip install -r requirements.txt
 cd tools/python/markdown-pp-master
 python3 setup.py develop
 pip install MarkdownPP
+cd tools/python/pd_attr_list
+python3 setup.py develop
+pip install pd_attr_list
 cd -
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # use the mac pandoc binaries

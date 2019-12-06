@@ -6,3 +6,4 @@ venv/
 .idea/
 .DS_Store
 src/commonmark/en/content/submodules/
+mkdocs/

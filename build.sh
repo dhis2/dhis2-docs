@@ -97,16 +97,21 @@ generate(){
 # comment as you wish
 # format:
 #$> generate <doc name> <chapters subfolder> ["html","pdf","both"]
-generate "dhis2_android_user_man" "android"
-generate "dhis2_developer_manual" "developer"
-generate "dhis2_user_manual_en" "user"
-generate "dhis2_end_user_manual" "end-user"
-generate "dhis2_implementation_guide" "implementer"
-generate "user_stories_book" "user-stories"
-generate "dhis2_draft_chapters" "draft"
+# generate "dhis2_android_user_man" "android"
+# generate "dhis2_developer_manual" "developer"
+# generate "dhis2_user_manual_en" "user"
+# generate "dhis2_end_user_manual" "end-user"
+# generate "dhis2_implementation_guide" "implementer"
+# generate "user_stories_book" "user-stories"
+# generate "dhis2_draft_chapters" "draft"
 generate "dhis2_android_capture_app" "android-app"
+<<<<<<< HEAD
 generate "dhis2_android_sdk_user_guide" "android-sdk"
 generate "dhis2_bottleneck_analysis_manual" "bna-app"
 generate "dhis2_scorecard_manual" "scorecard-app"
+=======
+# generate "dhis2_bottleneck_analysis_manual" "bna-app"
+# generate "dhis2_scorecard_manual" "scorecard-app"
+>>>>>>> feat: save some stuff
 
-rm -rf $tmp
+#rm -rf $tmp
