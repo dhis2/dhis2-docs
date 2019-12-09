@@ -235,7 +235,7 @@ build_docs(){
     sed -i "s/<git-year>/$gityear/" bookinfo.md
     sed -i "s/<git-month>/$gitmonth/" bookinfo.md
 
-    echo -e "$(head -100 ${tmp}/${name}.md | sed -n '/---/,/---/p')" > custom_bookinfo.md
+    echo -e "$(head -100 ${tmp}/${name}.md | sed -n '/---$/,/---$/p')" > custom_bookinfo.md
     touch custom_bookinfo.md
     sed -i ' s/\([^ :]*\)\/resources\/images\(.*\)/resources\/images\/\1\2/' custom_bookinfo.md
 
