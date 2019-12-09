@@ -84,6 +84,7 @@ make_html() {
     if [ -f "./resources/i18n/thanks/${name}_${lang}.html" ]; then
         thanks=" -B ./resources/i18n/thanks/${name}_${lang}.html "
     fi
+
     pandoc ${thanks} ${chapters} -c ${css} --template="${template}" --toc -N --section-divs -t html5 -o ${target}/${subdir}/html/${name}_full.html
 
     cd ${target}/${subdir}/html/
@@ -218,7 +219,8 @@ build_docs(){
     lang=$4
     locale=$5
 
-    cd $TMPBASE/$lang
+    tmp="$TMPBASE/$lang"
+    cd $tmp
     echo "Working in $PWD"
 
     target="$localisation_root/$lang"
