@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
     name='pd_attr_list',
-    version='2',
+    version='0.1.0',
     description= 'Parse markdown attributes like pandoc',
     url='',
     author='philld',

@@ -115,6 +115,24 @@ make_pdf() {
     pandoc ${thanks} ${chapters} -c ${css} --template="${template}" --toc -N --section-divs --pdf-engine=weasyprint -o ${target}/${subdir}/${name}.pdf
 }
 
+
+make_mkdocs() {
+    cd $TMPBASE/$lang
+    name=$1
+    subdir=$2
+    echo "making mkdocs output in $PWD"
+    mkdir -p ${target}/${subdir}
+    echo "compiling $name.md to pdf"
+    chapters="custom_bookinfo.md bookinfo.md ${name}.md"
+    css="./resources/css/dhis2_pdf.css"
+    template="./resources/templates/dhis2_template.html"
+    thanks=""
+    if [ -f "./resources/i18n/thanks/${name}_${lang}.html" ]; then
+        thanks=" -B ./resources/i18n/thanks/${name}_${lang}.html "
+    fi
+    pandoc ${thanks} ${chapters} -c ${css} --template="${template}" --toc -N --section-divs --pdf-engine=weasyprint -o ${target}/${subdir}/${name}.pdf
+}
+
 assemble(){
     name=$1
 
