@@ -4669,33 +4669,11 @@ sampled. For example:
 
     2.  Select a **Missing value strategy**. This selection sets how the system evaluates a validation rule if data is missing.
 
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Option</p></th>
-        <th><p>Description</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p>Skip if any value is missing</p></td>
-        <td><p>The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.</p>
-        <p>Always select this option you use the <strong>Exclusive pair</strong> or <strong>Compulsory pair</strong> operator.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>Skip if all values are missing</p></td>
-        <td><p>The validation rule will be skipped only if all of the operands which compose it are missing.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>Never skip</p></td>
-        <td><p>The validation rule will never be skipped in case of missing data, and all missing operands will be treated effectively as a zero.</p></td>
-        </tr>
-        </tbody>
-        </table>
+        |Option|Description|
+        |--- |--- |
+        |Skip if any value is missing|The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.<br><br>Always select this option you use the **Exclusive pair** or **Compulsory pair** operator.|
+        |Skip if all values are missing|The validation rule will be skipped only if all of the values which compose it are missing.|
+        |Never skip|The validation rule will never be skipped in case of missing data, and all missing values will be treated effectively as a zero.|
 
     3.  Enter the generator expression. You can build the expression by selecting data elements for aggregate data, or program data elements, attributes or indicators. Organisation unit counts are not yet supported.
 
