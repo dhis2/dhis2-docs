@@ -19,8 +19,8 @@ License: [BSD](http://www.opensource.org/licenses/bsd-license.php)
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from markdown.extensions import Extension
-from markdown.treeprocessors import Treeprocessor
+from . import Extension
+from ..treeprocessors import Treeprocessor
 import re
 
 
@@ -163,7 +163,7 @@ class AttrListTreeprocessor(Treeprocessor):
 
 class AttrListExtension(Extension):
     def extendMarkdown(self, md):
-        md.treeprocessors.register(AttrListTreeprocessor(md), 'pd_attr_list', 9)
+        md.treeprocessors.register(AttrListTreeprocessor(md), 'attr_list', 8)
 
 
 def makeExtension(**kwargs):  # pragma: no cover

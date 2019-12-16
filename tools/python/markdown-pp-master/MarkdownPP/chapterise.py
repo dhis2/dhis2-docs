@@ -35,9 +35,14 @@ def main():
     parser.add_argument('FILENAME', help='Input file name (or directory if '
                         'watching)')
 
+    parser.add_argument('OUTPUT', help='Output file name')
+
+    parser.add_argument('-e','--editpath', help='path to display for editing chapters')
+
     args = parser.parse_args()
 
     book = args.FILENAME
+    outfile = args.OUTPUT
     #root=html_doc.split('/')[-1].replace('.md','')
 
     bmap={}
@@ -56,6 +61,16 @@ def main():
                     # if so, treat as a new chapter
                     found = re.search('^# (.+?)($|<!--.*$)', line.rstrip()).group(1)
                     newname = slugify(found)
+                    edit = ""
+                    if newname:
+                        if args.editpath:
+                            edit = args.editpath
+                        else:
+                            try:
+                                edit = re.search('<!-- DHIS2-EDIT:(.*)-->', line.rstrip()).group(1)
+                            except AttributeError:
+                                edit = ""
+
 
                     if lastname:
                         chk = hashlib.md5(lastchapter.encode('utf-8')).hexdigest()
@@ -71,8 +86,12 @@ def main():
 
                     lastname = book+"/"+newname
                     lastfound = found
-                    lastchapter = line
-                    content += '        - '+lastfound+": "+lastname+'.md"\n'
+
+                    if edit:
+                        lastchapter = '---\nedit_url: '+edit+'\n---\n# '+found+'\n'
+                    else:
+                        lastchapter = line
+                    content += '          - "'+lastfound+'": '+lastname+'.md\n'
 
                     print(book,newname)
                     chapter+=1
@@ -92,8 +111,12 @@ def main():
                 pass
 
             if chapter == 0:
-                content += line
-            elif found == '':
+                try:
+                    title = re.search('^title:[ \'\"]*(.+?)[ \'\"]*$', line.rstrip()).group(1)
+                    content += '        '+title+':\n'
+                except AttributeError:
+                    pass
+            if found == '':
                 # continue current chapter
                 lastchapter += line
 
@@ -112,7 +135,7 @@ def main():
     #ob.close()
 
 # update the Yaml file
-    ub = open("mkdocs.yaml",'a')
+    ub = open(outfile,'a')
     ub.write(content)
     ub.close()
 

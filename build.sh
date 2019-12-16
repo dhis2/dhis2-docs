@@ -61,12 +61,14 @@ src="$SCRIPT_DIR/src/commonmark/en"
 TMPBASE="$SCRIPT_DIR/tmp"
 tmp="$TMPBASE/en"
 localisation_root="$SCRIPT_DIR/target/commonmark"
+mkdocs_out="$SCRIPT_DIR/target/mkdocs"
 
 # clear the output directories
 rm -rf $TMPBASE
 mkdir -p $TMPBASE
 rm -rf $localisation_root
 mkdir -p $localisation_root
+rm -rf $mkdocs_out
 
 # include helper functions
 . "$SCRIPT_DIR/lib/doc_functions.sh"
@@ -80,16 +82,19 @@ generate(){
     then
       selection="both"
     fi
+    lang=en
+    locale=en_UK
 
     echo "+--------------------------------------------------------"
     echo "| Processing: $name"
     echo "+--------------------------------------------------------"
 
     assemble $name
-    update_localizations $name
-
     # go to the temp directory and build the documents - put output in target directory
-    build_docs $name $subdir $selection en en_UK
+    build_docs $name $subdir $selection $lang $locale
+
+    # update transifex from latest source files
+    update_localizations $name
 
 }
 
@@ -97,21 +102,33 @@ generate(){
 # comment as you wish
 # format:
 #$> generate <doc name> <chapters subfolder> ["html","pdf","both"]
-# generate "dhis2_android_user_man" "android"
-# generate "dhis2_developer_manual" "developer"
-# generate "dhis2_user_manual_en" "user"
-# generate "dhis2_end_user_manual" "end-user"
-# generate "dhis2_implementation_guide" "implementer"
-# generate "user_stories_book" "user-stories"
-# generate "dhis2_draft_chapters" "draft"
-generate "dhis2_android_capture_app" "android-app"
-<<<<<<< HEAD
-generate "dhis2_android_sdk_user_guide" "android-sdk"
+mkdir $tmp
+cp -a $src/resources/mkdocs/* $tmp/
+myml=$tmp/mkdocs.yml
+
+echo "    - User:" >> $myml
+generate "dhis2_user_manual_en" "user"
+generate "dhis2_end_user_manual" "end-user"
 generate "dhis2_bottleneck_analysis_manual" "bna-app"
 generate "dhis2_scorecard_manual" "scorecard-app"
-=======
-# generate "dhis2_bottleneck_analysis_manual" "bna-app"
-# generate "dhis2_scorecard_manual" "scorecard-app"
->>>>>>> feat: save some stuff
 
-#rm -rf $tmp
+echo "    - Developer:" >> $myml
+generate "dhis2_developer_manual" "developer"
+generate "dhis2_android_sdk_user_guide" "android-sdk"
+
+echo "    - Implementer:" >> $myml
+generate "dhis2_implementation_guide" "implementer"
+generate "dhis2_android_capture_app" "android-app"
+generate "user_stories_book" "user-stories"
+
+pushd $tmp
+  pushd docs
+    ln -s ../resources .
+  popd
+  rm -rf resources/mkdocs
+  mkdocs build
+popd
+
+generate "dhis2_draft_chapters" "draft"
+
+rm -rf $tmp
