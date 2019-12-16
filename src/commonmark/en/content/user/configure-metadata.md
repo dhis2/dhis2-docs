@@ -4663,20 +4663,21 @@ sampled. For example:
     output is assigned, or from any level lower under the output
     organisation unit.
 
-10.  Create a **Generator**. The generator is the expression that is used
-    to calculate the predicted value.
+10. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
 
     1.  Type a **Description** of the generator expression.
 
-    2.  Enter the generator expression. You can build the expression by
-        selecting data elements for aggregate data, or program data
-        elements, attributes or indicators. Organisation unit counts are
-        not yet supported.
+    2.  Select a **Missing value strategy**. This selection sets how the system evaluates a validation rule if data is missing.
 
-        To use sampled, past period data, you should enclose any items
-        you select in one of the following aggregate functions (note that
-        these function names are case-sensitive):
+        |Option|Description|
+        |--- |--- |
+        |Skip if any value is missing|The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.<br><br>Always select this option you use the **Exclusive pair** or **Compulsory pair** operator.|
+        |Skip if all values are missing|The validation rule will be skipped only if all of the values which compose it are missing.|
+        |Never skip|The validation rule will never be skipped in case of missing data, and all missing values will be treated effectively as a zero.|
 
+    3.  Enter the generator expression. You can build the expression by selecting data elements for aggregate data, or program data elements, attributes or indicators. Organisation unit counts are not yet supported.
+
+        To use sampled, past period data, you should enclose any items you select in one of the following aggregate functions (note that these function names are case-sensitive):
         <table>
         <colgroup>
         <col style="width: 50%" />
@@ -4849,7 +4850,7 @@ sampled. For example:
         </tbody>
         </table>
 
-10. (Optional) Create a **Sample skip test**. The sample skip test tells
+11. (Optional) Create a **Sample skip test**. The sample skip test tells
     which previous periods if any to exclude from the sample.
 
     1.  Type a **Description** of the skip test.
@@ -4896,22 +4897,22 @@ sampled. For example:
         </tbody>
         </table>
 
-11. Enter a **Sequential sample count** value.
+12. Enter a **Sequential sample count** value.
 
     This is for how many sequential periods the calculation should go
     back in time to sample data for the calculations.
 
-12. Enter an **Annual sample count** value.
+13. Enter an **Annual sample count** value.
 
     This is for how many years the calculation should go back in time to
     sample data for the calculations.
 
-13. (Optional) Enter a **Sequential skip count** value.
+14. (Optional) Enter a **Sequential skip count** value.
 
     This is how many sequential periods, immediately preceding the
     predicted value period, should be skipped before sampling the data.
 
-14. Click **Save**.
+15. Click **Save**.
 
 ### Create or edit a predictor group
 
