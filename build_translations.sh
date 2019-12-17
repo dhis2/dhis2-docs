@@ -112,7 +112,7 @@ if [ ${LOCALISE} -eq 1  ]; then
             ln -s ../resources .
           popd
           rm -rf resources/mkdocs
-          mkdocs build
+          mkdocs build --dirty
         popd
 
         translate "dhis2_draft_chapters" "draft" "both" $lang $locale

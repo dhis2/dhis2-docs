@@ -61,14 +61,12 @@ src="$SCRIPT_DIR/src/commonmark/en"
 TMPBASE="$SCRIPT_DIR/tmp"
 tmp="$TMPBASE/en"
 localisation_root="$SCRIPT_DIR/target/commonmark"
-mkdocs_out="$SCRIPT_DIR/target/mkdocs"
 
 # clear the output directories
 rm -rf $TMPBASE
 mkdir -p $TMPBASE
 rm -rf $localisation_root
 mkdir -p $localisation_root
-rm -rf $mkdocs_out
 
 # include helper functions
 . "$SCRIPT_DIR/lib/doc_functions.sh"
@@ -126,7 +124,7 @@ pushd $tmp
     ln -s ../resources .
   popd
   rm -rf resources/mkdocs
-  mkdocs build
+  mkdocs build --dirty
 popd
 
 generate "dhis2_draft_chapters" "draft"

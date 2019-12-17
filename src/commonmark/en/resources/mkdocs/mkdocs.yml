@@ -65,7 +65,7 @@ markdown_extensions:
     - pymdownx.tilde
 
 # output when building
-site_dir: ../../target/mkdocs/<language>/
+site_dir: ../../target/commonmark/<language>/
 
 
 nav:
