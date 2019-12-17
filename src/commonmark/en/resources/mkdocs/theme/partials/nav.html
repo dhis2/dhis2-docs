@@ -29,13 +29,13 @@
   <select onChange="window.document.location.href=this.options[this.selectedIndex].value;">
       {% for key, value in config.dhis2_languages.items() %}
         {% if key == config.dhis2_language %}
-          <option value="/{{ config.dhis2_version }}/{{ value }}/{{ page.url }}"><p>{{ value }}</option>
+          <option value="/{{ config.dhis2_version }}/{{ key }}/"><p>{{ value }}</option>
         {% endif %}
       {% endfor %}
 
       {% for key, value in config.dhis2_languages.items() %}
         {% if key != config.dhis2_language %}
-          <option value="/{{ config.dhis2_version }}/{{ value }}/{{ page.url }}"><p>{{ value }}</option>
+          <option value="/{{ config.dhis2_version }}/{{ key }}/"><p>{{ value }}</option>
         {% endif %}
       {% endfor %}
   </select>
