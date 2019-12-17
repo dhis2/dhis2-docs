@@ -15,7 +15,7 @@ mkdocs-minify-plugin==0.2.1
 mkdocs-rtd-dropdown==1.0.2
 mkdocs-windmill==1.0.3
 pdfrw==0.4
-Pillow==5.2.0
+Pillow==6.2.0
 ply==3.11
 pycparser==2.18
 Pyphen==0.9.5
