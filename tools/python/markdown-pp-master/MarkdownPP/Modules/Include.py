@@ -149,10 +149,10 @@ class Include(Module):
                             tit=line
                             # print(" ",line.strip(),' --> ', edit)
                             data[linenum] = data[linenum].strip()+" <!-- DHIS2-EDIT:" + edit + " -->"+"\n"
-                        try:
-                            data[linenum] = re.sub(r'<!-- *{-} *-->', '{-}', data[linenum])
-                        except IndexError:
-                            pass
+                        # try:
+                        #     data[linenum] = re.sub(r'<!-- *{-} *-->', '{-}', data[linenum])
+                        # except IndexError:
+                        #     pass
 
                 comment_block_end = self.comment_end.search(line)
                 if comment_block_end:
