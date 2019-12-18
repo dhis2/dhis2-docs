@@ -13441,7 +13441,6 @@ case of GenericHttpGateway to send one or more parameter as http header.
 {
   "name" : "clickatell",
   "username": "clickatelluser",
-  "password": "abc123",
   "authtoken": "XXXXXXXXXXXXXXXXXXXX",
   "urlTemplate": "https://platform.clickatell.com/messages"
 }
