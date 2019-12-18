@@ -1,12 +1,12 @@
 
 .md-typeset {
-  //font-size: .7rem;
+  font-size: .67rem;
 }
 ​
 .md-typeset p {
-  //font-size: .7rem;
-  //padding-top: .1em;
-  //padding-bottom: .1em;
+  font-size: .67rem;
+  padding-top: .1em;
+  padding-bottom: .1em;
 }
 ​
 .md-typeset code {
@@ -49,9 +49,13 @@
 
 .md-typeset td blockquote {
   margin: 0px;
-  margin-top:5px;
+  margin-top: 5px;
   padding: 5px;
   padding-top: 35px;
+}
+
+.md-nav {
+  font-size: .62rem;
 }
 
 .center {
