@@ -259,6 +259,10 @@ body {
 	color: var(--grey600);
 }
 
+.md-nav__title{
+	margin-bottom:15px;
+}
+
 .md-footer-nav {
   margin:1rem 0 2rem;
 	background-color: white;
@@ -413,15 +417,48 @@ caption {
 
 
 select {
-  position: relative;
-  border:1px solid rgba(0,0,0,.07);
-  background-color:white;
-  margin-bottom:15px;
-  left:12px;
-  width:160px;
-  padding:5px;
+
+  /* styling */
+  background-color: white;
+  border: thin solid var(--grey400);
+  border-radius: 4px;
   display: inline-block;
+  font: inherit;
+  line-height: 1.5em;
+  padding: 0.5em 3.5em 0.5em 1em;
+  width:95%;
+
+  /* reset */
+  margin-bottom: 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
+
+
+select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+select:focus {
+  border-color: var(--grey500);
+  outline: 0;
+}
+
 
 /* change to the github icon to the official logo ¯\_(ツ)_/¯ */
 .md-source__icon svg {
