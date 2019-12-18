@@ -1,38 +1,20 @@
 # DHIS2 Documentation
 
-## Versions
-- master
-- 2.33
-- 2.32
-- 2.31
-- 2.30
-- 2.29
+The DHIS2 documentation is a collective effort and has been developed by the development team and users. While the guide strives to be complete, there may be certain functionalities which have been omitted or which have yet to be documented.
 
+_We welcome updates and suggestions from the community, via github, and provide edit links at the top of the chapters._
 
+The documentation is organised into the following categories:
 
-## Warranty and License
-could be hidden somewhere else (link in footer?)
+## User
 
-**Warranty:**
+The User guides cover the background and purpose of DHIS 2 together with instructions and explanations of how to perform tasks such as data entry, meta-data set-up, import and export of data, aggregation, reporting and other topics related to the usage of the software.  
+The End user manual is a light-weight version of the User manual meant for end users such as district records officers and data entry clerks.
 
-THIS DOCUMENT IS PROVIDED BY THE AUTHORS ''AS IS'' AND ANY EXPRESS OR
-IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
-STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-ANY WAY OUT OF THE USE OF THIS MANUAL AND PRODUCTS MENTIONED HEREIN,
-EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+## Implementer
 
+The Implementer guides are targeted at implementers and super-users and addresses subjects such as system design, database development, data harmonization, analysis, deployment, human resources needed and integration with other systems. Configuration of the Android app is also covered.
 
-**License:**
+## Developer
 
-Permission is granted to copy, distribute and/or modify this document
-under the terms of the GNU Free Documentation License, Version 1.3 or
-any later version published by the Free Software Foundation; with no
-Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A
-copy of the license is included in the source of this documentation, and
-is available here online: [http://www.gnu.org/licenses/fdl.html](http://www.gnu.org/licenses/fdl.html)
+The developer manuals provides a detailed description of the DHIS2 core API and functionality, as well as the Android DHIS2 Software Development Kit (SDK). They serves as essential resources for developers building upon the DHIS2 platform.
