@@ -22,7 +22,7 @@ extra:
     dhis2_language: '<language>'
     dhis2_languages:
         en: 'English'
-        fr: 'Francais'
+        fr: 'Français'
 
 theme:
     name: material
