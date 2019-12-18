@@ -80,16 +80,19 @@ generate(){
     then
       selection="both"
     fi
+    lang=en
+    locale=en_UK
 
     echo "+--------------------------------------------------------"
     echo "| Processing: $name"
     echo "+--------------------------------------------------------"
 
     assemble $name
-    update_localizations $name
-
     # go to the temp directory and build the documents - put output in target directory
-    build_docs $name $subdir $selection en en_UK
+    build_docs $name $subdir $selection $lang $locale
+
+    # update transifex from latest source files
+    update_localizations $name
 
 }
 
@@ -97,15 +100,33 @@ generate(){
 # comment as you wish
 # format:
 #$> generate <doc name> <chapters subfolder> ["html","pdf","both"]
-generate "dhis2_android_user_man" "android"
-generate "dhis2_developer_manual" "developer"
+mkdir $tmp
+cp -a $src/resources/mkdocs/* $tmp/
+myml=$tmp/mkdocs.yml
+
+echo "    - User:" >> $myml
 generate "dhis2_user_manual_en" "user"
 generate "dhis2_end_user_manual" "end-user"
-generate "dhis2_implementation_guide" "implementer"
-generate "user_stories_book" "user-stories"
-generate "dhis2_draft_chapters" "draft"
-generate "dhis2_android_capture_app" "android-app"
 generate "dhis2_bottleneck_analysis_manual" "bna-app"
 generate "dhis2_scorecard_manual" "scorecard-app"
+
+echo "    - Implementer:" >> $myml
+generate "dhis2_implementation_guide" "implementer"
+generate "dhis2_android_capture_app" "android-app"
+generate "user_stories_book" "user-stories"
+
+echo "    - Developer:" >> $myml
+generate "dhis2_developer_manual" "developer"
+generate "dhis2_android_sdk_user_guide" "android-sdk"
+
+pushd $tmp
+  pushd docs
+    ln -s ../resources .
+  popd
+  rm -rf resources/mkdocs
+  mkdocs build --dirty
+popd
+
+generate "dhis2_draft_chapters" "draft"
 
 rm -rf $tmp

@@ -8859,6 +8859,26 @@ The variable parameter must contain alphanumeric characters only. The
 variables must contain alphanumeric, dash, underscore and whitespace
 characters only.
 
+SQL Views of type *query* also support two system-defined variables that allow the query to access information about the user executing the view:
+
+ | variable | means |
+ | -------- | ----- |
+ | ${_current_user_id} | the user's database id |
+ | ${_current_username} | the user's username |
+
+Values for these variables cannot be supplied as part of the URL. They are always filled with information about the user.
+
+For example, the following SQL view of type *query* shows all the organisation units that are assigned to the user:
+
+```sql
+    select ou.path, ou.name
+    from organisationunit ou_user
+    join organisationunit ou on ou.path like ou_user.path || '%'
+    join usermembership um on um.organisationunitid = ou_user.organisationunitid
+    where um.userinfoid = ${_current_user_id}
+    order by ou.path
+```
+
 ### Filtering
 
 <!--DHIS2-SECTION-ID:webapi_sql_view_filtering-->
@@ -13999,6 +14019,10 @@ use this on a SSL enabled server) and will be encrypted on the backend:
 ```
 
     curl -X POST -u user:pass -d @u.json -H "Content-Type: application/json" http://server/api/26/users
+    
+>  **Note**
+>
+>  In the user creation payload, user groups are only supported when importing or **POST**ing a *single user* at a time. If you attempt to create more than one user while specifiying user groups, you will not recieve an error and the users will be created but no user groups will be assigned. This is by design and is limited because of the many-to-many relationship between Users and User Groups whereby User Groups is the owner of the relationship. To update or create mulitple users and their user groups, consider a program to **POST** one at a time, or **POST**/import all users followed by another action to update their user groups while specifiying the new user's ID's.
 
 After the user is created, a *Location* header is sent back with the
 newly generated ID (you can also provide your own using /api/system/id
@@ -17206,7 +17230,7 @@ You can also use GeoJson to store any kind of geometry on your event. An example
 	{ "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
   ]
 }
-```json
+```
 
 As part of the import summary you will also get the identifier
 *reference* to the event you just sent, together with a *href* element
@@ -18039,7 +18063,7 @@ A sample payload that can be used to create/update an eventFilter is shown below
     "programStatus": "ACTIVE"
   }
 }
-````
+```
 
 
 ##### Retrieving and deleting event filters

@@ -359,33 +359,6 @@
 </tbody>
 </table>
 
-## Messaging settings
-
-<!--DHIS2-SECTION-ID:system_messaging_settings-->
-
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Setting</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><strong>Enable message email notifications</strong></p></td>
-<td><p>Defines whether DHIS2 user messages should be delivered to the email address associated with the user by default. This setting can be overridden by user settings.</p></td>
-</tr>
-<tr class="even">
-<td><p><strong>Enable message SMS notifications</strong></p></td>
-<td><p>Defines whether DHIS2 user messages should be delivered as SMS to the mobile phone number associated with the user by default. This setting can be overridden by user settings.</p></td>
-</tr>
-</tbody>
-</table>
-
 ## Access settings
 
 <!--DHIS2-SECTION-ID:system_access_settings-->
@@ -598,7 +571,7 @@ synchronization.
 <p>The system will use this setting for metadata synchronization too.</p>
 <blockquote>
 <p><strong>Note</strong></p>
-<p>To enable data and metadata synchronization, you must also enable <strong>Data synchronization</strong> and <strong>Metadata synchronization</strong> in the <strong>Data administration</strong> app &gt; <strong>Scheduling</strong>.</p>
+<p>To enable data and metadata synchronization, you must also enable jobs for <strong>Data synchronization</strong> and <strong>Metadata synchronization</strong> in the <strong>Scheduler</strong> app.</p>
 </blockquote></td>
 </tr>
 <tr class="even">
