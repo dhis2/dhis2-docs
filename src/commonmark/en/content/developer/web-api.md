@@ -18883,6 +18883,20 @@ Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
 }
 ```
 
+Adding job with parameters in JSON format (PUSH\_ANALYSIS example):
+
+```json
+ {
+ 	"name": "test-push-anlysis-chart",
+ 	"jobType": "PUSH_ANALYSIS",
+ 	"cronExpression": "0 * * ? * *",
+ 	"jobParameters": {
+ 		"pushAnalysis": ["jtcMAKhWwnc"]
+
+ 	}
+ }
+```
+
 List all jobConfigurations:
 
     GET /api/jobConfigurations
