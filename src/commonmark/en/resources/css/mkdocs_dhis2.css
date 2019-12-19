@@ -158,6 +158,10 @@ body {
   background:white;
 }
 
+article {
+	color:var(--grey900);
+}
+
 /* .md-header {
 	background-color: white;
 	color: var(--grey700);
@@ -298,12 +302,12 @@ body {
   color:var(--grey900);
 }
 
-.md-typeset blockquote.caution, .md-typeset blockquote.important {
+.md-typeset blockquote.caution, .md-typeset blockquote.prudence, .md-typeset blockquote.important {
   background-color:var(--yellow050);
   border:1px solid var(--yellow200);
 }
 
-.md-typeset blockquote.warning {
+.md-typeset blockquote.warning, .md-typeset blockquote.attention, .md-typeset blockquote.danger {
   background-color:var(--red050);
   border:2px solid var(--red500);
 }
