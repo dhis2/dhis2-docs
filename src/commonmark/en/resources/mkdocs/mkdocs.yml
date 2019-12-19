@@ -11,7 +11,7 @@ use_directory_urls: false
 # docs_dir:
 
 extra:
-    dhis2_version: <version>
+    dhis2_version: '<version>'
     dhis2_versions:
         - 'master'
         - '2.33'
