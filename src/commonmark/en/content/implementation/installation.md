@@ -111,11 +111,15 @@ You should create a dedicated user for running DHIS2. **Under no
 circumstances, should you run the DHIS2 server as a privileged user such
 as root.** Create a new user called dhis by invoking:
 
-    sudo useradd -d /home/dhis -m dhis -s /bin/false
+```console
+sudo useradd -d /home/dhis -m dhis -s /bin/false
+```
 
 Then to set the password for your account invoke:
 
-    sudo passwd dhis
+```console
+sudo passwd dhis
+```
 
 Make sure you set a strong password with at least 15 random characters.
 
@@ -127,8 +131,10 @@ Start by creating a suitable directory for the DHIS2 configuration
 files. This directory will also be used for apps, files and log files.
 An example directory could be:
 
-    mkdir /home/dhis/config
-    chown dhis:dhis /home/dhis/config
+```console
+mkdir /home/dhis/config
+chown dhis:dhis /home/dhis/config
+```
 
 DHIS2 will look for an environment variable called *DHIS2\_HOME* to
 locate the DHIS2 configuration directory. This directory will be
@@ -146,14 +152,18 @@ correspond to the time zone of your DHIS2 location. You can easily
 reconfigure the time zone by invoking the below and following the
 instructions.
 
-    sudo dpkg-reconfigure tzdata
+```console
+sudo dpkg-reconfigure tzdata
+```
 
 PostgreSQL is sensitive to locales so you might have to install your
 locale first. To check existing locales and install new ones (e.g.
 Norwegian):
 
-    locale -a
-    sudo locale-gen nb_NO.UTF-8
+```console
+locale -a
+sudo locale-gen nb_NO.UTF-8
+```
 
 ### PostgreSQL installation
 
@@ -195,36 +205,48 @@ is optional in terms of getting DHIS2 to run. PostgreSQL is configured
 and tuned through the *postgresql.conf* file which can be edited like
 this:
 
-    sudo nano /etc/postgresql/10/main/postgresql.conf
+```console
+sudo nano /etc/postgresql/10/main/postgresql.conf
+```
 
 and set the following properties:
 
-    max_connections = 200
+```properties
+max_connections = 200
+```
 
 Determines maximum number of connections which PostgreSQL will allow.
 
-    shared_buffers = 3200MB
+```properties
+shared_buffers = 3200MB
+```
 
 Determines how much memory should be allocated exclusively for
 PostgreSQL caching. This setting controls the size of the kernel shared
 memory which should be reserved for PostgreSQL. Should be set to around
 40% of total memory dedicated for PostgreSQL.
 
-    work_mem = 20MB
+```properties
+work_mem = 20MB
+```
 
 Determines the amount of memory used for internal sort and hash
 operations. This setting is per connection, per query so a lot of memory
 may be consumed if raising this too high. Setting this value correctly
 is essential for DHIS2 aggregation performance.
 
-    maintenance_work_mem = 512MB
+```properties
+maintenance_work_mem = 512MB
+```
 
 Determines the amount of memory PostgreSQL can use for maintenance
 operations such as creating indexes, running vacuum, adding foreign
 keys. Incresing this value might improve performance of index creation
 during the analytics generation processes.
 
-    effective_cache_size = 8000MB
+```properties
+effective_cache_size = 8000MB
+```
 
 An estimate of how much memory is available for disk caching by the
 operating system (not an allocation) and isdb.no used by PostgreSQL to
@@ -237,12 +259,16 @@ PostgreSQL delegates the second layer to the operating system disk cache
 and the size of available memory can be given with the
 effective\_cache\_size setting.
 
-    checkpoint_completion_target = 0.8
+```properties
+checkpoint_completion_target = 0.8
+```
 
 Sets the memory used for buffering during the WAL write process.
 Increasing this value might improve throughput in write-heavy systems.
 
-    synchronous_commit = off
+```properties
+synchronous_commit = off
+```
 
 Specifies whether transaction commits will wait for WAL records to be
 written to the disk before returning to the client or not. Setting this
@@ -252,22 +278,31 @@ client and it actually being safe, but the database state cannot be
 corrupted and this is a good alternative for performance-intensive and
 write-heavy systems like DHIS2.
 
-    wal_writer_delay = 10000ms
+```properties
+wal_writer_delay = 10000ms
+```
 
 Specifies the delay between WAL write operations. Setting this to a high
 value will improve performance on write-heavy systems since potentially
 many write operations can be executed within a single flush to disk.
 
-	random_page_cost = 1.1
+```properties
+random_page_cost = 1.1
+```
 
 *SSD only.* Sets the query planner's estimate of the cost of a non-sequentially-fetched disk page. A low value will cause the system to prefer index scans over sequential scans. A low value makes sense for databases running on SSDs or being heavily cached in memory. The default value is 4.0 which is reasonable for traditional disks.
 
-    max_locks_per_transaction = 96
+```properties
+max_locks_per_transaction = 96
+```
 
 Specifies the average number of object locks allocated for each transaction. This is set mainly to allow upgrade routines which touch a large number of tables to complete.
 
+Restart PostgreSQL by invoking the following command:
 
-Restart PostgreSQL by invoking `sudo /etc/init.d/postgresql restart`
+```console
+sudo /etc/init.d/postgresql restart
+```
 
 ### System configuration
 
@@ -277,39 +312,43 @@ The database connection information is provided to DHIS2 through a
 configuration file called *dhis.conf*. Create this file and save it in
 the *DHIS2\_HOME* directory. As an example this location could be:
 
-    sudo -u dhis nano /home/dhis/config/dhis.conf
+```console
+sudo -u dhis nano /home/dhis/config/dhis.conf
+```
 
 A configuration file for PostgreSQL corresponding to the above setup has
 these properties:
 
-    # ----------------------------------------------------------------------
-    # Database connection
-    # ----------------------------------------------------------------------
-    
-    # Hibernate SQL dialect
-    connection.dialect = org.hibernate.dialect.PostgreSQLDialect
-    
-    # JDBC driver class
-    connection.driver_class = org.postgresql.Driver
-    
-    # Database connection URL
-    connection.url = jdbc:postgresql:dhis2
-    
-    # Database username
-    connection.username = dhis
-    
-    # Database password
-    connection.password = xxxx
-            
-    # ----------------------------------------------------------------------
-    # Server
-    # ----------------------------------------------------------------------
-    
-    # Enable secure settings if system is deployed on HTTPS, default 'off'
-    server.https = on
-    
-    # Server base URL
-    # server.base.url = http://server.com/
+```properties
+# ----------------------------------------------------------------------
+# Database connection
+# ----------------------------------------------------------------------
+
+# Hibernate SQL dialect
+connection.dialect = org.hibernate.dialect.PostgreSQLDialect
+
+# JDBC driver class
+connection.driver_class = org.postgresql.Driver
+
+# Database connection URL
+connection.url = jdbc:postgresql:dhis2
+
+# Database username
+connection.username = dhis
+
+# Database password
+connection.password = xxxx
+		
+# ----------------------------------------------------------------------
+# Server
+# ----------------------------------------------------------------------
+
+# Enable secure settings if system is deployed on HTTPS, default 'off'
+server.https = on
+
+# Server base URL
+# server.base.url = http://server.com/
+```
     
 
 It is strongly recommended to enable the *server.https* setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when enabled.
@@ -350,8 +389,8 @@ greatest operating system support including Ubuntu LTS 14.04. The
 >now require an Oracle account.  As an alternative, you may use the 
 >OpenJDK 8 version.
 >
->```
->    sudo apt-get install openjdk-8-jdk
+>```console
+>sudo apt-get install openjdk-8-jdk
 >```
 
 Check that your installation is okay by invoking:
@@ -405,18 +444,20 @@ port number in the Connector element to a desired port if necessary.
 The *relaxedQueryChars* attribute is necessary to allow certain characters 
 in URLs used by the DHIS2 front-end.
 
-    <Connector port="8080" protocol="HTTP/1.1"
-      connectionTimeout="20000"
-      redirectPort="8443"
-      relaxedQueryChars="[]" />
+```xml
+<Connector port="8080" protocol="HTTP/1.1"
+  connectionTimeout="20000"
+  redirectPort="8443"
+  relaxedQueryChars="[]" />
+```
 
 The next step is to download the DHIS2 WAR file and place it into the
 webapps directory of Tomcat. You can download the DHIS2 version 2.31 WAR
 release like this (replace 2.31 with your preferred version if
 necessary):
 
-```
-    wget https://releases.dhis2.org/2.31/dhis.war
+```console
+wget https://releases.dhis2.org/2.31/dhis.war
 ```
 
 > **Note**
@@ -426,8 +467,8 @@ necessary):
 >the DHIS2 version 2.31.1 WAR release like this (replace 2.31 with your
 >preferred version, and 2.31.1 with you preferred patch, if necessary):
 >
->```
->    wget https://releases.dhis2.org/2.31/2.31.1/dhis.war
+>```console
+>wget https://releases.dhis2.org/2.31/2.31.1/dhis.war
 >```
 
 Move the WAR file into the Tomcat webapps directory. We want to call the
@@ -440,17 +481,19 @@ DHIS2 should never be run as a privileged user. After you have modified
 the setenv.sh file, modify the startup script to check and see if the
 script has been invoked as root.
 
-    #!/bin/sh
-    set -e
-    
-    if [ "$(id -u)" -eq "0" ]; then
-      echo "This script must NOT be run as root" 1>&2
-      exit 1
-    fi
-    
-    export CATALINA_BASE="/home/dhis/tomcat-dhis"
-    /usr/share/tomcat8/bin/startup.sh
-    echo "Tomcat started"
+```bash
+#!/bin/sh
+set -e
+
+if [ "$(id -u)" -eq "0" ]; then
+  echo "This script must NOT be run as root" 1>&2
+  exit 1
+fi
+
+export CATALINA_BASE="/home/dhis/tomcat-dhis"
+/usr/share/tomcat8/bin/startup.sh
+echo "Tomcat started"
+```
 
 ### Running DHIS2
 
@@ -482,7 +525,9 @@ DHIS2 instance at the following URL:
 
 To set the base URL of the DHIS2 instance, you can specify the following property in the `dhis.conf` configuration file. This URL should point to the location where end users can reach DHIS2 over the network.
 
-	server.base.url = https://play.dhis2.org/dev
+```properties
+server.base.url = https://play.dhis2.org/dev
+```
 
 ## File store configuration
 
@@ -495,25 +540,26 @@ directory under the *DHIS2\_HOME* external directory location.
 You can also configure DHIS2 to store files on cloud-based storage
 providers. Currently, AWS S3 is the only supported provider. To enable
 cloud-based storage you must define the following addtional properties
-in your *dhis.conf*
-    file:
+in your *dhis.conf* file:
 
-    # File store provider. Currently 'filesystem' and 'aws-s3' are supported.
-    filestore.provider = filesystem
-    
-    # Directory / bucket name. Refers to subdirectory in external directory on file system and bucket on AWS S3.
-    filestore.container = files
-    
-    # The following configuration is applicable only on non-filesystem providers (AWS S3)
-    
-    # Datacenter location. Not required but recommended for performance reasons.
-    filestore.location = eu-west-1
-    
-    # Public identity / username
-    filestore.identity = xxxx
-    
-    # Secret password (sensitive)
-    filestore.secret = xxxx
+```properties
+# File store provider. Currently 'filesystem' and 'aws-s3' are supported.
+filestore.provider = filesystem
+
+# Directory / bucket name. Refers to subdirectory in external directory on file system and bucket on AWS S3.
+filestore.container = files
+
+# The following configuration is applicable only on non-filesystem providers (AWS S3)
+
+# Datacenter location. Not required but recommended for performance reasons.
+filestore.location = eu-west-1
+
+# Public identity / username
+filestore.identity = xxxx
+
+# Secret password (sensitive)
+filestore.secret = xxxx
+```
 
 This configuration is an example reflecting the defaults and should be
 changed to fit your needs. In other words, you can omit it entirely if
@@ -583,20 +629,22 @@ configuration should be done in the main DHIS 2 configuration file
 (dhis.conf). LDAP users, or entries, are identified by distinguished
 names (DN from now on). An example configuration looks like this:
 
-    # LDAP server URL
-    ldap.url = ldaps://domain.org:636
-    
-    # LDAP manager entry distinguished name
-    ldap.manager.dn = cn=johndoe,dc=domain,dc=org
-    
-    # LDAP manager entry password
-    ldap.manager.password = xxxx
-    
-    # LDAP base search
-    ldap.search.base = dc=domain,dc=org
-    
-    # LDAP search filter
-    ldap.search.filter = (cn={0})
+```properties
+# LDAP server URL
+ldap.url = ldaps://domain.org:636
+
+# LDAP manager entry distinguished name
+ldap.manager.dn = cn=johndoe,dc=domain,dc=org
+
+# LDAP manager entry password
+ldap.manager.password = xxxx
+
+# LDAP base search
+ldap.search.base = dc=domain,dc=org
+
+# LDAP search filter
+ldap.search.filter = (cn={0})
+```
 
 The LDAP configuration properties are explained below:
 
@@ -695,7 +743,9 @@ To provide security to the encryption algorithm you will have to set a
 password in the *dhis.conf* configuration file through the
 *encryption.password* property:
 
+```properties
     encryption.password = xxxx
+```
 
 The *encryption.password* property is the password used when encrypting
 and decrypting data in the database. Note that the password must not be
@@ -741,24 +791,26 @@ The configuration for read replicas in *dhis.conf* looks like the below.
 Each replica is specified with the configuration key *readN* prefix,
 where N refers to the replica number.
 
-    # Read replica 1 configuration
-    
-    # Database connection URL, username and password
-    read1.connection.url = jdbc:postgresql://127.0.0.11/dbread1
-    read1.connection.username = dhis
-    read1.connection.password = xxxx
-    
-    # Read replica 2 configuration
-    
-    # Database connection URL, username and password
-    read2.connection.url = jdbc:postgresql://127.0.0.12/dbread2
-    read2.connection.username = dhis
-    read2.connection.password = xxxx
-    
-    # Read replica 3 configuration
-    
-    # Database connection URL, fallback to master for username and password
-    read3.connection.url = jdbc:postgresql://127.0.0.13/dbread3
+```properties
+# Read replica 1 configuration
+
+# Database connection URL, username and password
+read1.connection.url = jdbc:postgresql://127.0.0.11/dbread1
+read1.connection.username = dhis
+read1.connection.password = xxxx
+
+# Read replica 2 configuration
+
+# Database connection URL, username and password
+read2.connection.url = jdbc:postgresql://127.0.0.12/dbread2
+read2.connection.username = dhis
+read2.connection.password = xxxx
+
+# Read replica 3 configuration
+
+# Database connection URL, fallback to master for username and password
+read3.connection.url = jdbc:postgresql://127.0.0.13/dbread3
+```
 
 Note that you must restart your servlet container for the changes to
 take effect. DHIS 2 will automatically distribute the load across the
@@ -834,28 +886,32 @@ An example setup for a cluster of two web servers is described below.
 For *server A* available at hostname *193.157.199.131* the following can
 be specified in *dhis.conf*:
 
-    # Cluster configuration for server A
-    
-    # Hostname for this web server
-    cluster.hostname = 193.157.199.131
-    
-    # Ports for cache listener, can be omitted
-    cluster.cache.port = 4001
-    cluster.cache.remote.object.port = 5001
-    
-    # List of Host:port participating in the cluster
-    cluster.members = 193.157.199.132:4001
+```properties
+# Cluster configuration for server A
+
+# Hostname for this web server
+cluster.hostname = 193.157.199.131
+
+# Ports for cache listener, can be omitted
+cluster.cache.port = 4001
+cluster.cache.remote.object.port = 5001
+
+# List of Host:port participating in the cluster
+cluster.members = 193.157.199.132:4001
+```
 
 For *server B* available at hostname *193.157.199.132* the following can
 be specified in *dhis.conf* (notice how port configuration is omitted):
 
-    # Cluster configuration for server B
-    
-    # Hostname for this web server
-    cluster.hostname = 193.157.199.132
-    
-    # List of servers participating in cluster
-    cluster.members = 193.157.199.131:4001
+```properties
+# Cluster configuration for server B
+
+# Hostname for this web server
+cluster.hostname = 193.157.199.132
+
+# List of servers participating in cluster
+cluster.members = 193.157.199.131:4001
+```
 
 You must restart each Tomcat instance to make the changes take effect.
 The two instances have now been made aware of each other and DHIS 2 will
@@ -901,7 +957,7 @@ is only done if Redis is enabled. An example snippet of the *dhis.conf*
 configuration file with Redis enabled and leader election time
 configured is shown below.
 
-``` 
+```properties
 # Redis Configuration
 
 redis.enabled = true
@@ -915,8 +971,7 @@ redis.password = <your password>
 redis.use.ssl = false
 
 # Optional, defaults to 2 minutes
-leader.time.to.live.minutes=4
- 
+leader.time.to.live.minutes=4 
 ```
 
 ### Load balancing
@@ -935,7 +990,7 @@ using *nginx*, in which case you will define an *upstream* element which
 enumerates the location of the backend instances and later use that
 element in the *proxy* location block.
 
-``` 
+```text
 http {
 
   # Upstream element with sticky sessions
@@ -974,8 +1029,9 @@ configuration guide.
 
 DHIS 2 supports a server-side cache for analytics API responses, used by all of the analytics web apps. This cache sits within the DHIS 2 application and hence is protected by the DHIS 2 authentication and security layer. You can configure the expiration of cached entries in seconds. To enable the cache you can define the `analytics.cache.expiration` property in `dhis.conf`. The example below enabled the cache and sets expiration to one hour.
 
-	analytics.cache.expiration = 3600
-
+```properties
+analytics.cache.expiration = 3600
+```
 
 ## Starting Tomcat at boot time
 
@@ -987,25 +1043,27 @@ achieve that the first step is to create init scripts. Create a new file
 called `tomcat` and paste the below content into it (adjust the HOME
 variable to your environment):
 
-    #!/bin/sh
-    #Tomcat init script
-    
-    HOME=/home/dhis/tomcat/bin
-    
-    case $1 in
-    start)
-            sh ${HOME}/startup.sh
-            ;;
-    stop)
-            sh ${HOME}/shutdown.sh
-            ;;
-    restart)
-            sh ${HOME}/shutdown.sh
-            sleep 5
-            sh ${HOME}/startup.sh
-            ;;
-    esac
-    exit 0
+```bash
+#!/bin/sh
+#Tomcat init script
+
+HOME=/home/dhis/tomcat/bin
+
+case $1 in
+start)
+		sh ${HOME}/startup.sh
+		;;
+stop)
+		sh ${HOME}/shutdown.sh
+		;;
+restart)
+		sh ${HOME}/shutdown.sh
+		sleep 5
+		sh ${HOME}/startup.sh
+		;;
+esac
+exit 0
+```
 
 Move the script to the init script directory and make them executable by
 invoking:
@@ -1075,42 +1133,44 @@ blocks. The following snippet will configure nginx to proxy pass
 by default) to our Tomcat instance. Include the following configuration
 in nginx.conf:
 
-    http {
-      gzip on; # Enables compression, incl Web API content-types
-      gzip_types
-        "application/json;charset=utf-8" application/json
-        "application/javascript;charset=utf-8" application/javascript text/javascript
-        "application/xml;charset=utf-8" application/xml text/xml
-        "text/css;charset=utf-8" text/css
-        "text/plain;charset=utf-8" text/plain;
-    
-      server {
-        listen               80;
-        root  /home/dhis/tomcat/webapps/ROOT; # Update path!
-        client_max_body_size 10M;
-    
-        # Serve static files
-    
-        location ~ (\.js|\.css|\.gif|\.woff|\.ttf|\.eot|\.ico|(/dhis-web-commons/|/images/|/icons/).*\.png)$ {
-          add_header  Cache-Control public;
-          expires     14d;
-        }
-    
-        # Proxy pass to servlet container
-    
-        location / {
-          proxy_pass                http://localhost:8080/;
-          proxy_redirect            off;
-          proxy_set_header          Host               $host;
-          proxy_set_header          X-Real-IP          $remote_addr;
-          proxy_set_header          X-Forwarded-For    $proxy_add_x_forwarded_for;
-          proxy_set_header          X-Forwarded-Proto  http;
-          proxy_buffer_size         128k;
-          proxy_buffers             8 128k;
-          proxy_busy_buffers_size   256k;
-        }
-      }
-    }
+```
+http {
+  gzip on; # Enables compression, incl Web API content-types
+  gzip_types
+	"application/json;charset=utf-8" application/json
+	"application/javascript;charset=utf-8" application/javascript text/javascript
+	"application/xml;charset=utf-8" application/xml text/xml
+	"text/css;charset=utf-8" text/css
+	"text/plain;charset=utf-8" text/plain;
+
+  server {
+	listen               80;
+	root  /home/dhis/tomcat/webapps/ROOT; # Update path!
+	client_max_body_size 10M;
+
+	# Serve static files
+
+	location ~ (\.js|\.css|\.gif|\.woff|\.ttf|\.eot|\.ico|(/dhis-web-commons/|/images/|/icons/).*\.png)$ {
+	  add_header  Cache-Control public;
+	  expires     14d;
+	}
+
+	# Proxy pass to servlet container
+
+	location / {
+	  proxy_pass                http://localhost:8080/;
+	  proxy_redirect            off;
+	  proxy_set_header          Host               $host;
+	  proxy_set_header          X-Real-IP          $remote_addr;
+	  proxy_set_header          X-Forwarded-For    $proxy_add_x_forwarded_for;
+	  proxy_set_header          X-Forwarded-Proto  http;
+	  proxy_buffer_size         128k;
+	  proxy_buffers             8 128k;
+	  proxy_busy_buffers_size   256k;
+	}
+  }
+}
+```
 
 You can now access your DHIS2 instance at *http://localhost*. Since the
 reverse proxy has been set up we can improve security by making Tomcat
@@ -1158,62 +1218,64 @@ which must be passed on to use HTTPS. Remember to replace
 *\<server-ip\>* with the IP of your server. These blocks should replace
 the one from the previous section.
 
-    http {
-      gzip on; # Enables compression, incl Web API content-types
-      gzip_types
-        "application/json;charset=utf-8" application/json
-        "application/javascript;charset=utf-8" application/javascript text/javascript
-        "application/xml;charset=utf-8" application/xml text/xml
-        "text/css;charset=utf-8" text/css
-        "text/plain;charset=utf-8" text/plain;
-    
-      # HTTP server - rewrite to force use of SSL
-    
-      server {
-        listen     80;
-        rewrite    ^ https://<server-url>$request_uri? permanent;
-      }
-    
-      # HTTPS server
-    
-      server {
-        listen               443 ssl;
-        root  /home/dhis/tomcat/webapps/ROOT; # Update path!
-        client_max_body_size 10M;
-    
-        ssl                  on;
-        ssl_certificate      server.crt;
-        ssl_certificate_key  server.key;
-    
-        ssl_session_cache    shared:SSL:20m;
-        ssl_session_timeout  10m;
-    
-        ssl_protocols              TLSv1 TLSv1.1 TLSv1.2;
-        ssl_ciphers                RC4:HIGH:!aNULL:!MD5;
-        ssl_prefer_server_ciphers  on;
-    
-        # Serve static files
-    
-        location ~ (\.js|\.css|\.gif|\.woff|\.ttf|\.eot|\.ico|(/dhis-web-commons/|/images/|/icons/).*\.png)$ {
-          add_header  Cache-Control public;
-          expires     14d;
-        }
-    
-        # Proxy pass to servlet container
-    
-        location / {
-          proxy_pass                http://localhost:8080/;
-          proxy_redirect            off;
-          proxy_set_header          Host               $host;
-          proxy_set_header          X-Real-IP          $remote_addr;
-          proxy_set_header          X-Forwarded-For    $proxy_add_x_forwarded_for;
-          proxy_set_header          X-Forwarded-Proto  https;
-          proxy_buffer_size         128k;
-          proxy_buffers             8 128k;
-          proxy_busy_buffers_size   256k;
-        }
-      }
-    }
+```
+http {
+  gzip on; # Enables compression, incl Web API content-types
+  gzip_types
+	"application/json;charset=utf-8" application/json
+	"application/javascript;charset=utf-8" application/javascript text/javascript
+	"application/xml;charset=utf-8" application/xml text/xml
+	"text/css;charset=utf-8" text/css
+	"text/plain;charset=utf-8" text/plain;
+
+  # HTTP server - rewrite to force use of SSL
+
+  server {
+	listen     80;
+	rewrite    ^ https://<server-url>$request_uri? permanent;
+  }
+
+  # HTTPS server
+
+  server {
+	listen               443 ssl;
+	root  /home/dhis/tomcat/webapps/ROOT; # Update path!
+	client_max_body_size 10M;
+
+	ssl                  on;
+	ssl_certificate      server.crt;
+	ssl_certificate_key  server.key;
+
+	ssl_session_cache    shared:SSL:20m;
+	ssl_session_timeout  10m;
+
+	ssl_protocols              TLSv1 TLSv1.1 TLSv1.2;
+	ssl_ciphers                RC4:HIGH:!aNULL:!MD5;
+	ssl_prefer_server_ciphers  on;
+
+	# Serve static files
+
+	location ~ (\.js|\.css|\.gif|\.woff|\.ttf|\.eot|\.ico|(/dhis-web-commons/|/images/|/icons/).*\.png)$ {
+	  add_header  Cache-Control public;
+	  expires     14d;
+	}
+
+	# Proxy pass to servlet container
+
+	location / {
+	  proxy_pass                http://localhost:8080/;
+	  proxy_redirect            off;
+	  proxy_set_header          Host               $host;
+	  proxy_set_header          X-Real-IP          $remote_addr;
+	  proxy_set_header          X-Forwarded-For    $proxy_add_x_forwarded_for;
+	  proxy_set_header          X-Forwarded-Proto  https;
+	  proxy_buffer_size         128k;
+	  proxy_buffers             8 128k;
+	  proxy_busy_buffers_size   256k;
+	}
+  }
+}
+```
 
 Note the last "https" header value which is required to inform the
 servlet container that the request is coming over HTTPS. In order for
@@ -1234,65 +1296,67 @@ in our server setup. The cached content will be stored in directory
 /var/cache/nginx, and up to 250 MB of storage will be allocated. Nginx
 will create this directory automatically.
 
-    http {
-      # ...
-      root              /home/dhis/tomcat/webapps/ROOT; # Update path!
-      proxy_cache_path  /var/cache/nginx  levels=1:2  keys_zone=dhis:250m  inactive=1d;
-    
-      gzip on; # Enables compression, incl Web API content-types
-      gzip_types
-        "application/json;charset=utf-8" application/json
-        "application/javascript;charset=utf-8" application/javascript text/javascript
-        "application/xml;charset=utf-8" application/xml text/xml
-        "text/css;charset=utf-8" text/css
-        "text/plain;charset=utf-8" text/plain;
-    
-      # HTTP server - rewrite to force use of HTTPS
-    
-      server {
-        listen     80;
-        rewrite    ^ https://www.domain.com/$request_uri? permanent;
-      }
-    
-      # HTTPS server
-    
-      server {
-        listen               443 ssl;
-        client_max_body_size 10M;
-    
-        ssl                  on;
-        ssl_certificate      server.crt;
-        ssl_certificate_key  server.key;
-    
-        ssl_session_timeout  30m;
-    
-        ssl_protocols              SSLv2 SSLv3 TLSv1;
-        ssl_ciphers                HIGH:!aNULL:!MD5;
-        ssl_prefer_server_ciphers  on;
-    
-        # Serve static files
-    
-        location ~ (\.js|\.css|\.gif|\.woff|\.ttf|\.eot|\.ico|(/dhis-web-commons/|/images/|/icons/).*\.png)$ {
-          add_header  Cache-Control public;
-          expires     14d;
-        }
-    
-        # Proxy pass to servlet container and potentially cache response
-    
-        location / {
-          proxy_pass                http://localhost:8080/;
-          proxy_redirect            off;
-          proxy_set_header          Host               $host;
-          proxy_set_header          X-Real-IP          $remote_addr;
-          proxy_set_header          X-Forwarded-For    $proxy_add_x_forwarded_for;
-          proxy_set_header          X-Forwarded-Proto  https;
-          proxy_buffer_size         128k;
-          proxy_buffers             8 128k;
-          proxy_busy_buffers_size   256k;
-          proxy_cache               dhis;
-        }
-      }
-    }
+```
+http {
+  # ...
+  root              /home/dhis/tomcat/webapps/ROOT; # Update path!
+  proxy_cache_path  /var/cache/nginx  levels=1:2  keys_zone=dhis:250m  inactive=1d;
+
+  gzip on; # Enables compression, incl Web API content-types
+  gzip_types
+	"application/json;charset=utf-8" application/json
+	"application/javascript;charset=utf-8" application/javascript text/javascript
+	"application/xml;charset=utf-8" application/xml text/xml
+	"text/css;charset=utf-8" text/css
+	"text/plain;charset=utf-8" text/plain;
+
+  # HTTP server - rewrite to force use of HTTPS
+
+  server {
+	listen     80;
+	rewrite    ^ https://www.domain.com/$request_uri? permanent;
+  }
+
+  # HTTPS server
+
+  server {
+	listen               443 ssl;
+	client_max_body_size 10M;
+
+	ssl                  on;
+	ssl_certificate      server.crt;
+	ssl_certificate_key  server.key;
+
+	ssl_session_timeout  30m;
+
+	ssl_protocols              SSLv2 SSLv3 TLSv1;
+	ssl_ciphers                HIGH:!aNULL:!MD5;
+	ssl_prefer_server_ciphers  on;
+
+	# Serve static files
+
+	location ~ (\.js|\.css|\.gif|\.woff|\.ttf|\.eot|\.ico|(/dhis-web-commons/|/images/|/icons/).*\.png)$ {
+	  add_header  Cache-Control public;
+	  expires     14d;
+	}
+
+	# Proxy pass to servlet container and potentially cache response
+
+	location / {
+	  proxy_pass                http://localhost:8080/;
+	  proxy_redirect            off;
+	  proxy_set_header          Host               $host;
+	  proxy_set_header          X-Real-IP          $remote_addr;
+	  proxy_set_header          X-Forwarded-For    $proxy_add_x_forwarded_for;
+	  proxy_set_header          X-Forwarded-Proto  https;
+	  proxy_buffer_size         128k;
+	  proxy_buffers             8 128k;
+	  proxy_busy_buffers_size   256k;
+	  proxy_cache               dhis;
+	}
+  }
+}
+```
 
 > **Important**
 > 
@@ -1312,7 +1376,7 @@ Certain web API calls in DHIS 2, like the `analytics` APIs, are compute intensiv
 
 The below nginx configuration will rate limit the `analytics` web API, and has the following elements at the *http* and *location* block level (the configuration is shortened for brevity):
 
-````
+```
 http {
   ..
   limit_req_zone $binary_remote_addr zone=limit_analytics:10m rate=5r/s;
@@ -1327,7 +1391,7 @@ http {
     }
   }
 }
-````
+```
 
 The various elements of the configuration can be described as:
 
@@ -1385,26 +1449,28 @@ resources. For instance, when your server is deployed at somedomain.com,
 you can set a dedicated subdomain at api.somedomain.com, and point URLs
 from your portal to this subdomain.
 
-    server {
-      listen       80;
-      server_name  api.somedomain.com;
-        
-      location ~ ^/(api/(charts|chartValues|reports|reportTables|documents|maps|organisationUnits)|dhis-web-commons/javascripts|images|dhis-web-commons-ajax-json|dhis-web-mapping|dhis-web-visualizer) {
-        if ($request_method != GET) {
-          return 405;
-        }
-    
-        proxy_pass         http://localhost:8080;
-        proxy_redirect     off;
-        proxy_set_header   Host               $host;
-        proxy_set_header   X-Real-IP          $remote_addr;
-        proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
-        proxy_set_header   X-Forwarded-Proto  http;
-        proxy_set_header   Authorization      "Basic YWRtaW46ZGlzdHJpY3Q=";
-        proxy_set_header   Cookie             "";
-        proxy_hide_header  Set-Cookie;
-      }
-    }
+```
+server {
+  listen       80;
+  server_name  api.somedomain.com;
+	
+  location ~ ^/(api/(charts|chartValues|reports|reportTables|documents|maps|organisationUnits)|dhis-web-commons/javascripts|images|dhis-web-commons-ajax-json|dhis-web-mapping|dhis-web-visualizer) {
+	if ($request_method != GET) {
+	  return 405;
+	}
+
+	proxy_pass         http://localhost:8080;
+	proxy_redirect     off;
+	proxy_set_header   Host               $host;
+	proxy_set_header   X-Real-IP          $remote_addr;
+	proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
+	proxy_set_header   X-Forwarded-Proto  http;
+	proxy_set_header   Authorization      "Basic YWRtaW46ZGlzdHJpY3Q=";
+	proxy_set_header   Cookie             "";
+	proxy_hide_header  Set-Cookie;
+  }
+}
+```
 
 ### Basic reverse proxy setup with Apache
 
@@ -1435,7 +1501,9 @@ connect to Tomcat with. The Tomcat `server.xml` file should be located
 in the /conf/ director of your Tomcat installation. Be sure this line is
 uncommented.You can set the port to anything you like which is unused.
 
+```xml
     <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
+```
 
 Now, we need to make the adjustments to the Apache HTTP server which
 will answer requests on port 80 and pass them to the Tomcat server
@@ -1444,17 +1512,19 @@ through an AJP connector. Edit the file
 below. Be sure that the port defined in the configuration file matches
 the one from Tomcat.
 
-    <IfModule mod_proxy.c>
-    
-    ProxyRequests Off
-    ProxyPass /dhis  ajp://localhost:8009/dhis
-    ProxyPassReverse /dhis  ajp://localhost:8009/dhis
-    
-    <Location "/dhis">
-      Order allow,deny
-      Allow from all
-    </Location>     
-    </IfModule>
+```
+<IfModule mod_proxy.c>
+
+ProxyRequests Off
+ProxyPass /dhis  ajp://localhost:8009/dhis
+ProxyPassReverse /dhis  ajp://localhost:8009/dhis
+
+<Location "/dhis">
+  Order allow,deny
+  Allow from all
+</Location>     
+</IfModule>
+```
 
 You now can restart Tomcat and the Apache HTTPD server and your DHIS2
 instance should be available on http://*myserver*/dhis where *myserver*
@@ -1526,125 +1596,127 @@ https://foo.mydomain.org/dhis.
 
 The following describes the full set of configuration options for the *dhis.conf* configuration file. The uncommented properties are mandatory. The commented properties are optional. The configuration file should be placed in a directory which is pointed to by a *DHIS2\_HOME* environment variable. The comment (\#) must be removed for a property value to take effect. You can copy and paste the following content as a viable starting point for your own configuration file.
 
-    # ----------------------------------------------------------------------
-    # Database connection for PostgreSQL
-    # ----------------------------------------------------------------------
-    
-    # Hibernate SQL dialect
-    connection.dialect = org.hibernate.dialect.PostgreSQLDialect
-    
-    # JDBC driver class
-    connection.driver_class = org.postgresql.Driver
-    
-    # Database connection URL
-    connection.url = jdbc:postgresql:dhis2
-    
-    # Database username
-    connection.username = dhis
-    
-    # Database password (sensitive)
-    connection.password = xxxx
-    
-    # Database schema behavior, can be 'validate', 'update', 'create', 'create-drop'
-    connection.schema = update
-    
-    # Max size of connection pool (default: 40)
-    # connection.pool.max_size = 40
-    
-    # ----------------------------------------------------------------------
-    # Server
-    # ----------------------------------------------------------------------
-    
-    # Base URL to the DHIS 2 instance
-    # server.base.url = https://play.dhis2.org/dev 
-    
-    # Enable secure settings if system is deployed on HTTPS, can be 'off', 'on'
-    # server.https = on
-    
-    # ----------------------------------------------------------------------
-    # System
-    # ----------------------------------------------------------------------
-    
-    # System mode for database read operations only, can be 'off', 'on'
-    # system.read_only_mode = off
-    
-    # Session timeout in seconds, default is 3600
-    # system.session.timeout = 3600
-    
-    # SQL view protected tables, can be 'on', 'off'
-    # system.sql_view_table_protection = on
-    
-    # ----------------------------------------------------------------------
-    # Encryption
-    # ----------------------------------------------------------------------
-    
-    # Encryption password (sensitive)
-    # encryption.password = xxxx
-    
-    # ----------------------------------------------------------------------
-    # File store
-    # ----------------------------------------------------------------------
-    
-    # File store provider, currently 'filesystem' and 'aws-s3' are supported
-    # filestore.provider = filesystem
-    
-    # Directory / bucket name, refers to folder within DHIS2_HOME on file system, 'bucket' on AWS S3
-    # filestore.container = files
-    
-    # Datacenter location (not required)
-    # filestore.location = eu-west-1
-    
-    # Public identity / username
-    # filestore.identity = dhis2-id
-    
-    # Secret key / password (sensitive)
-    # filestore.secret = xxxx
-    
-    # ----------------------------------------------------------------------
-    # LDAP
-    # ----------------------------------------------------------------------
-    
-    # LDAP server URL
-    # ldap.url = ldaps://300.20.300.20:636
-    
-    # LDAP manager user distinguished name
-    # ldap.manager.dn = cn=JohnDoe,ou=Country,ou=Admin,dc=hisp,dc=org
-    
-    # LDAP manager user password (sensitive)
-    # ldap.manager.password = xxxx
-    
-    # LDAP entry distinguished name search base
-    # ldap.search.base = dc=hisp,dc=org
-    
-    # LDAP entry distinguished name filter
-    # ldap.search.filter = (cn={0})
-    
-    # ----------------------------------------------------------------------
-    # Node
-    # ----------------------------------------------------------------------
-    
-    # Node identifier, optional, useful in clusters
-    # node.id = 'node-1'
-    
-    # ----------------------------------------------------------------------
-    # Analytics
-    # ----------------------------------------------------------------------
-    
-    # Analytics server-side cache expiration in seconds
-    # analytics.cache.expiration = 3600
-    
-    # ----------------------------------------------------------------------
-    # System monitoring
-    # ----------------------------------------------------------------------
-    
-    # System monitoring URL
-    # system.monitoring.url = 
-    
-    # System monitoring username
-    # system.monitoring.username = 
-    
-    # System monitoring password
-    # system.monitoring.password =
+```properties
+# ----------------------------------------------------------------------
+# Database connection for PostgreSQL
+# ----------------------------------------------------------------------
+
+# Hibernate SQL dialect
+connection.dialect = org.hibernate.dialect.PostgreSQLDialect
+
+# JDBC driver class
+connection.driver_class = org.postgresql.Driver
+
+# Database connection URL
+connection.url = jdbc:postgresql:dhis2
+
+# Database username
+connection.username = dhis
+
+# Database password (sensitive)
+connection.password = xxxx
+
+# Database schema behavior, can be 'validate', 'update', 'create', 'create-drop'
+connection.schema = update
+
+# Max size of connection pool (default: 40)
+# connection.pool.max_size = 40
+
+# ----------------------------------------------------------------------
+# Server
+# ----------------------------------------------------------------------
+
+# Base URL to the DHIS 2 instance
+# server.base.url = https://play.dhis2.org/dev 
+
+# Enable secure settings if system is deployed on HTTPS, can be 'off', 'on'
+# server.https = on
+
+# ----------------------------------------------------------------------
+# System
+# ----------------------------------------------------------------------
+
+# System mode for database read operations only, can be 'off', 'on'
+# system.read_only_mode = off
+
+# Session timeout in seconds, default is 3600
+# system.session.timeout = 3600
+
+# SQL view protected tables, can be 'on', 'off'
+# system.sql_view_table_protection = on
+
+# ----------------------------------------------------------------------
+# Encryption
+# ----------------------------------------------------------------------
+
+# Encryption password (sensitive)
+# encryption.password = xxxx
+
+# ----------------------------------------------------------------------
+# File store
+# ----------------------------------------------------------------------
+
+# File store provider, currently 'filesystem' and 'aws-s3' are supported
+# filestore.provider = filesystem
+
+# Directory / bucket name, refers to folder within DHIS2_HOME on file system, 'bucket' on AWS S3
+# filestore.container = files
+
+# Datacenter location (not required)
+# filestore.location = eu-west-1
+
+# Public identity / username
+# filestore.identity = dhis2-id
+
+# Secret key / password (sensitive)
+# filestore.secret = xxxx
+
+# ----------------------------------------------------------------------
+# LDAP
+# ----------------------------------------------------------------------
+
+# LDAP server URL
+# ldap.url = ldaps://300.20.300.20:636
+
+# LDAP manager user distinguished name
+# ldap.manager.dn = cn=JohnDoe,ou=Country,ou=Admin,dc=hisp,dc=org
+
+# LDAP manager user password (sensitive)
+# ldap.manager.password = xxxx
+
+# LDAP entry distinguished name search base
+# ldap.search.base = dc=hisp,dc=org
+
+# LDAP entry distinguished name filter
+# ldap.search.filter = (cn={0})
+
+# ----------------------------------------------------------------------
+# Node
+# ----------------------------------------------------------------------
+
+# Node identifier, optional, useful in clusters
+# node.id = 'node-1'
+
+# ----------------------------------------------------------------------
+# Analytics
+# ----------------------------------------------------------------------
+
+# Analytics server-side cache expiration in seconds
+# analytics.cache.expiration = 3600
+
+# ----------------------------------------------------------------------
+# System monitoring
+# ----------------------------------------------------------------------
+
+# System monitoring URL
+# system.monitoring.url = 
+
+# System monitoring username
+# system.monitoring.username = 
+
+# System monitoring password
+# system.monitoring.password =
+```
 
 ## Application logging
 
@@ -1671,17 +1743,21 @@ background processes. The main file includes the background process logs as well
 In order to override the default log configuration you can specify a Java system property with the name *log4j.configuration* and a value pointing to the Log4j configuration file on the classpath. If you want to point to a
 file on the file system (i.e. outside Tomcat) you can use the *file* prefix e.g. like this:
 
-    -Dlog4j.configuration=file:/home/dhis/config/log4j.properties
+```properties
+-Dlog4j.configuration=file:/home/dhis/config/log4j.properties
+```
 
 Java system properties can be set e.g. through the *JAVA\_OPTS* environment variable or in the tomcat startup script.
 
 A second approach to overriding the log configuration is to specify logging properties in the *dhis.conf* configuration file. The supported properties are:
 
-	# Max size for log files, default is '100MB'
-	logging.file.max_size = 250MB
-	
-	# Max number of rolling log archive files, default is 0
-	logging.file.max_archives = 2
+```properties
+# Max size for log files, default is '100MB'
+logging.file.max_size = 250MB
+
+# Max number of rolling log archive files, default is 0
+logging.file.max_archives = 2
+```
 
 DHIS2 will eventually phase out logging to standard out / catalina.out and as a result it is recommended to rely on the logs under DHIS2\_HOME.
 
