@@ -530,7 +530,7 @@ in your *dhis.conf* file:
 # File store provider. Currently 'filesystem' and 'aws-s3' are supported.
 filestore.provider = filesystem
 
-# Directory / bucket name. Refers to subdirectory in external directory on file system and bucket on AWS S3.
+# Directory in external directory on local file system and bucket on AWS S3.
 filestore.container = files
 
 # The following configuration is applicable only on non-filesystem providers (AWS S3)
