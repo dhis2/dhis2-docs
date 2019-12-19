@@ -111,13 +111,13 @@ You should create a dedicated user for running DHIS2. **Under no
 circumstances, should you run the DHIS2 server as a privileged user such
 as root.** Create a new user called dhis by invoking:
 
-```console
+```
 sudo useradd -d /home/dhis -m dhis -s /bin/false
 ```
 
 Then to set the password for your account invoke:
 
-```console
+```
 sudo passwd dhis
 ```
 
@@ -131,7 +131,7 @@ Start by creating a suitable directory for the DHIS2 configuration
 files. This directory will also be used for apps, files and log files.
 An example directory could be:
 
-```console
+```
 mkdir /home/dhis/config
 chown dhis:dhis /home/dhis/config
 ```
@@ -152,7 +152,7 @@ correspond to the time zone of your DHIS2 location. You can easily
 reconfigure the time zone by invoking the below and following the
 instructions.
 
-```console
+```
 sudo dpkg-reconfigure tzdata
 ```
 
@@ -160,7 +160,7 @@ PostgreSQL is sensitive to locales so you might have to install your
 locale first. To check existing locales and install new ones (e.g.
 Norwegian):
 
-```console
+```
 locale -a
 sudo locale-gen nb_NO.UTF-8
 ```
@@ -205,7 +205,7 @@ is optional in terms of getting DHIS2 to run. PostgreSQL is configured
 and tuned through the *postgresql.conf* file which can be edited like
 this:
 
-```console
+```
 sudo nano /etc/postgresql/10/main/postgresql.conf
 ```
 
@@ -300,7 +300,7 @@ Specifies the average number of object locks allocated for each transaction. Thi
 
 Restart PostgreSQL by invoking the following command:
 
-```console
+```
 sudo /etc/init.d/postgresql restart
 ```
 
@@ -312,7 +312,7 @@ The database connection information is provided to DHIS2 through a
 configuration file called *dhis.conf*. Create this file and save it in
 the *DHIS2\_HOME* directory. As an example this location could be:
 
-```console
+```
 sudo -u dhis nano /home/dhis/config/dhis.conf
 ```
 
@@ -377,13 +377,13 @@ which owns the file is allowed to read it:
 
 The recommended Java JDK for DHIS 2 is OpenJDK 8. You can issue the following command to install OpenJDK 8:
 
-```console
+```
 sudo apt-get install openjdk-8-jdk
 ```
 
 Verify that your installation is okay by invoking:
 
-```console
+```
 java -version
 ```
 
@@ -440,7 +440,7 @@ webapps directory of Tomcat. You can download the DHIS2 version 2.31 WAR
 release like this (replace 2.31 with your preferred version if
 necessary):
 
-```console
+```
 wget https://releases.dhis2.org/2.31/dhis.war
 ```
 
@@ -451,7 +451,7 @@ wget https://releases.dhis2.org/2.31/dhis.war
 >the DHIS2 version 2.31.1 WAR release like this (replace 2.31 with your
 >preferred version, and 2.31.1 with you preferred patch, if necessary):
 >
->```console
+>```
 >wget https://releases.dhis2.org/2.31/2.31.1/dhis.war
 >```
 
@@ -1072,8 +1072,8 @@ A reverse proxy is a proxy server that acts on behalf of a server. Using
 a reverse proxy in combination with a servlet container is optional but
 has many advantages:
 
-  - Requests can be mapped and passed on to multiple servlet containers
-    - this improves flexibility and makes it easier to run multiple
+  - Requests can be mapped and passed on to multiple servlet containers.
+    This improves flexibility and makes it easier to run multiple
     instances of DHIS2 on the same server. It also makes it possible to
     change the internal server setup without affecting clients.
 
@@ -1486,7 +1486,7 @@ in the /conf/ director of your Tomcat installation. Be sure this line is
 uncommented.You can set the port to anything you like which is unused.
 
 ```xml
-    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
+<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
 ```
 
 Now, we need to make the adjustments to the Apache HTTP server which
@@ -1554,11 +1554,11 @@ Now, we need to edit the default-ssl (located at
 SSL transfer functionality of Apache.
 
     <VirtualHost *:443>
-            ServerAdmin wemaster@mydomain.org
-           SSLEngine On
-           SSLCertificateFile /etc/apache2/ssl/server.crt
-           SSLCertificateKeyFile /etc/apache2/ssl/server.key
-    ...
+        ServerAdmin wemaster@mydomain.org
+        SSLEngine On
+        SSLCertificateFile /etc/apache2/ssl/server.crt
+        SSLCertificateKeyFile /etc/apache2/ssl/server.key
+        ...
 
 Be sure that the \*:80 section of this file is changed to port \*:443,
 which is the default SSL port. Also, be sure to change the ServerAdmin
@@ -1578,7 +1578,9 @@ https://foo.mydomain.org/dhis.
 
 <!--DHIS2-SECTION-ID:install_dhis2_configuration_reference-->
 
-The following describes the full set of configuration options for the *dhis.conf* configuration file. The uncommented properties are mandatory. The commented properties are optional. The configuration file should be placed in a directory which is pointed to by a *DHIS2\_HOME* environment variable. The comment (\#) must be removed for a property value to take effect. You can copy and paste the following content as a viable starting point for your own configuration file.
+The following describes the full set of configuration options for the *dhis.conf* configuration file. The configuration file should be placed in a directory which is pointed to by a *DHIS2\_HOME* environment variable.
+
+Note that you should not attempt to use this configuration file directly, rather use it as a reference for the available configuration options.
 
 ```properties
 # ----------------------------------------------------------------------
@@ -1611,95 +1613,95 @@ connection.schema = update
 # ----------------------------------------------------------------------
 
 # Base URL to the DHIS 2 instance
-# server.base.url = https://play.dhis2.org/dev 
+server.base.url = https://play.dhis2.org/dev 
 
 # Enable secure settings if system is deployed on HTTPS, can be 'off', 'on'
-# server.https = on
+server.https = on
 
 # ----------------------------------------------------------------------
 # System
 # ----------------------------------------------------------------------
 
 # System mode for database read operations only, can be 'off', 'on'
-# system.read_only_mode = off
+system.read_only_mode = off
 
 # Session timeout in seconds, default is 3600
-# system.session.timeout = 3600
+system.session.timeout = 3600
 
 # SQL view protected tables, can be 'on', 'off'
-# system.sql_view_table_protection = on
+system.sql_view_table_protection = on
 
 # ----------------------------------------------------------------------
 # Encryption
 # ----------------------------------------------------------------------
 
 # Encryption password (sensitive)
-# encryption.password = xxxx
+encryption.password = xxxx
 
 # ----------------------------------------------------------------------
 # File store
 # ----------------------------------------------------------------------
 
 # File store provider, currently 'filesystem' and 'aws-s3' are supported
-# filestore.provider = filesystem
+filestore.provider = filesystem
 
 # Directory / bucket name, refers to folder within DHIS2_HOME on file system, 'bucket' on AWS S3
-# filestore.container = files
+filestore.container = files
 
 # Datacenter location (not required)
-# filestore.location = eu-west-1
+filestore.location = eu-west-1
 
 # Public identity / username
-# filestore.identity = dhis2-id
+filestore.identity = dhis2-id
 
 # Secret key / password (sensitive)
-# filestore.secret = xxxx
+filestore.secret = xxxx
 
 # ----------------------------------------------------------------------
 # LDAP
 # ----------------------------------------------------------------------
 
 # LDAP server URL
-# ldap.url = ldaps://300.20.300.20:636
+ldap.url = ldaps://300.20.300.20:636
 
 # LDAP manager user distinguished name
-# ldap.manager.dn = cn=JohnDoe,ou=Country,ou=Admin,dc=hisp,dc=org
+ldap.manager.dn = cn=JohnDoe,ou=Country,ou=Admin,dc=hisp,dc=org
 
 # LDAP manager user password (sensitive)
-# ldap.manager.password = xxxx
+ldap.manager.password = xxxx
 
 # LDAP entry distinguished name search base
-# ldap.search.base = dc=hisp,dc=org
+ldap.search.base = dc=hisp,dc=org
 
 # LDAP entry distinguished name filter
-# ldap.search.filter = (cn={0})
+ldap.search.filter = (cn={0})
 
 # ----------------------------------------------------------------------
 # Node
 # ----------------------------------------------------------------------
 
 # Node identifier, optional, useful in clusters
-# node.id = 'node-1'
+node.id = 'node-1'
 
 # ----------------------------------------------------------------------
 # Analytics
 # ----------------------------------------------------------------------
 
 # Analytics server-side cache expiration in seconds
-# analytics.cache.expiration = 3600
+analytics.cache.expiration = 3600
 
 # ----------------------------------------------------------------------
 # System monitoring
 # ----------------------------------------------------------------------
 
 # System monitoring URL
-# system.monitoring.url = 
+system.monitoring.url = 
 
 # System monitoring username
-# system.monitoring.username = 
+system.monitoring.username = 
 
-# System monitoring password
-# system.monitoring.password =
+# System monitoring password (sensitive)
+system.monitoring.password = xxxx
 ```
 
 ## Application logging
