@@ -54,10 +54,14 @@ $if(title)$
 $if(applicable_txt)$
 <h2 class="subtitle">$applicable_txt$</h2>
 $endif$
+$if(logo)$
+<img src="$logo$" class="center" style="width:200px;"/>
+$endif$
 </div>
 
 <div class="productionDiv">
   <p class="productionInfo">$author$</p>
+  <p class="productionInfoSub">$subauthor$</p>
   <p class="productionInfo">$month$ $year$</p>
 </div>
 
@@ -69,6 +73,7 @@ $endif$
 <div id="pagebreak"/>
 
 <p class="subtitle">$copyright_txt$ &copy; 2006-$year$ $author$</p>
+<p class="author">$subauthor$</p>
 <!--
  $for(author)$
 <p class="author">Copyright &copy; $author$</p>

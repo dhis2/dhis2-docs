@@ -54,6 +54,32 @@ blockquote p {
   margin: 5px;
 }
 
+td blockquote{
+  margin: 0px;
+  margin-top:5px;
+  padding: 5px;
+}
+
+.center{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+}
+
+figure{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+}
+
+figcaption{
+  text-align:center;
+  margin:1em;
+  font-style:italic;
+}
+
 .Note{
   background-image: url(../images/admon/note.png);
 }
@@ -70,7 +96,7 @@ blockquote p {
   background-image: url(../images/admon/caution.png);
 }
 
-.Warning, .Attention{
+.Warning, .Attention, .Danger{
   background-image: url(../images/admon/warning.png);
 }
 
@@ -175,7 +201,7 @@ h2.subtitle {
   position: absolute;
   bottom:100px;
   left: 0px;
-  height:100px;
+  height:120px;
   width:100%;
 }
 
@@ -187,6 +213,13 @@ p.productionInfo {
   border: none;
 }
 
+p.productionInfoSub {
+  font-size: 20px;
+  font-weight: normal;
+  font-family: 'Rubik', sans-serif;
+  color: #393D4D;
+  border: none;
+}
 
 dt code {
   font-weight: bold;
@@ -264,7 +297,8 @@ nav ul {
 
 img {
   max-width: 100%;
-  max-height: 450px;
+  max-height: 800px;
+  margin:3%;
 }
 
 @page {

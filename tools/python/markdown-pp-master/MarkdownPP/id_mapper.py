@@ -13,7 +13,7 @@ link_list = []
 
 def map_ids(soup):
     '''
-    Recursively updated the section ids based on the DHIS2-SECTION-ID comments.
+    Recursively updates the section ids based on the DHIS2-SECTION-ID comments.
     Start at the bottom of the tree and work up to the parents.
     '''
 
@@ -55,7 +55,7 @@ def main():
     # perform the id mapping
     map_ids(soup)
 
-    # update any modified links 
+    # update any modified links
     for l in soup.find_all(href=link_list):
         original = l['href']
         l['href']= link_remap[original]
@@ -63,12 +63,12 @@ def main():
     # add class to the blockquotes/asides
     for b in soup.find_all('blockquote'):
         for s in b.find_all('strong'):
-            b['class'] = s.string    
-            break     
+            b['class'] = s.string
+            break
 
     # overwrite the original file
     chw = open(html_doc,'w')
-    chw.write(soup.prettify())
+    chw.write(str(soup))
     chw.close()
 
 
