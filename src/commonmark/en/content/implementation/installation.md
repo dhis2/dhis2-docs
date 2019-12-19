@@ -990,7 +990,7 @@ using *nginx*, in which case you will define an *upstream* element which
 enumerates the location of the backend instances and later use that
 element in the *proxy* location block.
 
-```
+```text
 http {
 
   # Upstream element with sticky sessions
