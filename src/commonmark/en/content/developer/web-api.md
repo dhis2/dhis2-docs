@@ -13478,7 +13478,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
 ```json
 {
   "name": "Generic",
-  "configurationTemplate": "{\"to\": \"${recipients}\",\"body\": \"${text}\"}",
+  "configurationTemplate": "{\"to\": \"${recipients}\",\"body\": \"${text}\", \"deliveryReport\":\"${deliveryReport}\"}",
   "useGet": false,
   "contentType": "APPLICATION_JSON",
   "urlTemplate":"https://samplegateway.com/messages",
@@ -13496,6 +13496,13 @@ case of GenericHttpGateway to send one or more parameter as http header.
 		"key": "password",
 		"value": "123abcxyz",
 		"confidential": true
+	},
+	{
+		"header": false,
+		"encode": false,
+		"key": "deliveryReport",
+		"value": "yes",
+		"confidential": false
 	}
   ],
   "isDefault": false
