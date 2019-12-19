@@ -14,8 +14,6 @@ title: 'DHIS 2 User guide'
 !INCLUDE "content/user/using-the-capture-app.md"
 !INCLUDE "content/user/analyze-data-in-pivot-tables.md"
 !INCLUDE "content/user/data-visualizer.md"
-!INCLUDE "content/user/classic-data-visualizer.md"
-!INCLUDE "content/user/using-the-gis-app.md"
 !INCLUDE "content/user/using-the-maps-app.md"
 !INCLUDE "content/user/using-the-event-reports-app.md"
 !INCLUDE "content/user/using-the-event-visualizer-app.md"

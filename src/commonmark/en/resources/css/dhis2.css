@@ -59,16 +59,24 @@ blockquote p {
   margin: 5px;
 }
 
+td blockquote{
+  margin: 0px;
+  margin-top:5px;
+  padding: 5px;
+  padding-top:35px;
+}
 .center{
   display:block;
   margin-left:auto;
   margin-right:auto;
+  text-align: center;
 }
 
 figure{
   display:block;
   margin-left:auto;
   margin-right:auto;
+  text-align: center;
 }
 
 figcaption{
@@ -273,6 +281,7 @@ nav ul {
 img {
   max-width: 100%;
   max-height: 800px;
+  margin:3%;
 }
 
 hr {
