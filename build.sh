@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# build resources from the master branch
+git checkout master -- src/commonmark/en/resources
+git checkout master -- tools
+git checkout master -- lib
+git checkout master -- venv_setup
+git checkout master -- requirements.txt
+
 #
 # Requirements:
 #
