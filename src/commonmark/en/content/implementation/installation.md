@@ -65,15 +65,15 @@ perform.
 
 Later DHIS2 versions require the following software versions to operate.
 
-  - Java JRE version 8 or later.
+  - Java JDK or JRE version 8 or later.
 
-  - Any operating system for which a Java JRE version 8 exists.
+  - Any operating system for which a Java JDK or JRE version 8 exists.
 
   - PostgreSQL database version 9.6 or later.
 
   - PostGIS database extension version 2.2 or later.
 
-  - Tomcat servlet container version 8 or later, or other Servlet API
+  - Tomcat servlet container version 8.5 or later, or other Servlet API
     3.1 compliant servlet containers like Jetty 9.
 
 ## Server setup
@@ -375,33 +375,17 @@ which owns the file is allowed to read it:
 
 <!--DHIS2-SECTION-ID:install_java_installation-->
 
-Oracle Java 8 JDK is the recommended Java option as it provides the
-greatest operating system support including Ubuntu LTS 14.04. The
-*webupd8team Java PPA* provides the necessary packages.
+The recommended Java JDK for DHIS 2 is OpenJDK 8. You can issue the following command to install OpenJDK 8:
 
-    sudo add-apt-repository ppa:webupd8team/java
-    sudo apt-get update
-    sudo apt-get install oracle-java8-installer
+```console
+sudo apt-get install openjdk-8-jdk
+```
 
-> **Note**
->
->The Oracle Java 8 JDK installer PPA has been discontinued.  Oracle downloads
->now require an Oracle account.  As an alternative, you may use the 
->OpenJDK 8 version.
->
->```console
->sudo apt-get install openjdk-8-jdk
->```
+Verify that your installation is okay by invoking:
 
-Check that your installation is okay by invoking:
-
-    java -version
-
-You can also ensure that the appropriate environment variables are set
-by installing this package:
-
-    sudo apt-get install oracle-java8-set-default
-
+```console
+java -version
+```
 
 ### Tomcat and DHIS2 installation
 
