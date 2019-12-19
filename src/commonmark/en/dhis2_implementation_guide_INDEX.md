@@ -20,7 +20,6 @@ title: 'DHIS 2 Implementer guide'
 !INCLUDE "content/implementation/indicators.md"
 !INCLUDE "content/implementation/users-and-user-roles.md"
 !INCLUDE "content/implementation/data-analysis-tools-overview.md"
-!INCLUDE "content/implementation/pivot-tables-and-the-mydatamart-tool.md"
 !INCLUDE "content/implementation/dhis2-as-a-platform.md"
 !INCLUDE "content/implementation/localization-of-dhis2.md"
 !INCLUDE "content/implementation/dhis2-tools-guide.md"
