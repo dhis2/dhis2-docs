@@ -1,0 +1,3 @@
+[mkdocs.plugins]
+edit_url = edit_url.plugin:EditUrlPlugin
+

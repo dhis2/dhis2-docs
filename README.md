@@ -81,6 +81,37 @@ The `!INCLUDE` directives point to the "chapters" that are used to make up the m
 
 It is perfectly valid to use `!INCLUDE` directives in the sub-documents too, but currently the documents are split up at chapter level only.
 
+### Index files and SUBMODULES
+
+In addition to the `!INCLUDE` directives explained above, we now support `!SUBMODULE` directives.
+The `!SUBMODULE` directives function the same way as `!INCLUDE`, but allow **referencing another repository** instead of a file below the path of the `*_INDEX.md` files.
+
+The format of these directives is as follows:
+```
+!SUBMODULE "<repository>" "<branch>" "<path to chapter>" 
+```
+- `<repository>` (just the repository name - currently we only support repositories in https://github.com/dhis2/)
+- `<branch>`
+- `<path to chapter>` (from the repository root)
+
+
+e.g. using submodules, the equivalent to the above, for dhis2_android_user_man_INDEX.md, might be:
+```
+!INCLUDE "content/common/about-this-guide.md"
+!SUBMODULE "dhis2-android-capture-app" "master" "docs/configure-dhis2-programs-to-work-on-android-apps.md"
+!SUBMODULE "dhis2-android-capture-app" "master" "docs/android-event-capture-app.md"
+!SUBMODULE "dhis2-android-capture-app" "master" "docs/android-aggregate-data-capture-app.md"
+!SUBMODULE "dhis2-android-capture-app" "master" "docs/android-tracker-capture-app.md"
+```
+
+These `!SUBMODULE` directives would, in this example, point to the respective chapters inside a `docs` folder within the `https://github.com/dhis2/dhis2-android-capture-app` repository.
+
+> **NOTE**
+>
+> These are not true _git submodules_, as they are simply cloned during the build process, and deleted on completion.
+
+
+
 ### Adding images
 
 Image resources should be included inside a folder structure beginning with `resources/images/` relative to the current document. e.g. for the chapter `content/android/android-event-capture-app.md`, the images are somewhere under `content/android/resources/images/<rest-of-path>`. _The images will be collected under `resources/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation._
@@ -106,7 +137,7 @@ i.e. with caption text in the square brackets, they are rendered as figures with
 #### Taking screenshots
 
 For screenshots of the DHIS 2 web interface, we recommend using Chrome browser, with the following two extensions:
-1. [Window Resizer](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en). Us this to set the resolution to **1440x900**
+1. [Window Resizer](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en). Use this to set the resolution to **1440x900**
 2. [Fireshot](https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg?hl=en). Use this to quickly create a snapshot of the **visible part**
 
 > *Fireshot can even capture the full page, i.e. scrolled, if desired. It can also capture just a selected area (but the maximum width should always be 1440px)*
@@ -228,7 +259,7 @@ Building on Windows 10 is achieved via the ubuntu app:
 
 > **NOTE**
 >
-> The first time it is run, the build script will create a python virtual env and install the dependencies from the requirements.txt file. It will copy pandoc (v2.7.3), and install a "modified" version of markdown-pp; these are provided in the tools directory. The venv will then be activated to perform the rest of the build. **This should work on Linux, but hasn't been tested on other platforms!**
+> The first time it is run, the build script will create a python virtual env and install the dependencies from the requirements.txt file. It will copy pandoc (v2.7.3), and install a "modified" version of markdown-pp; these are provided in the tools directory. The venv will then be activated to perform the rest of the build.
 
 The generated files are placed in a `target` directory:
 
