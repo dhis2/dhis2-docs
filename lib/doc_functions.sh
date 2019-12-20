@@ -126,7 +126,7 @@ add_to_mkdocs() {
     mkdir -p docs/${name}
     cp ${name}.md docs/
     pushd docs
-      if "$lang" != "en"
+      if [ "$lang" != "en" ]
       then
           tx_url="https://www.transifex.com/hisp-uio"
           lang_edit="${tx_url}/dhis-2-documentation-${txproject}/translate/#${lang}/${name//_/-}-md"
