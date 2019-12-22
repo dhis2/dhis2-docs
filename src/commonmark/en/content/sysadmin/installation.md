@@ -111,13 +111,13 @@ You should create a dedicated user for running DHIS2. **Under no
 circumstances, should you run the DHIS2 server as a privileged user such
 as root.** Create a new user called dhis by invoking:
 
-```
+```bash
 sudo useradd -d /home/dhis -m dhis -s /bin/false
 ```
 
 Then to set the password for your account invoke:
 
-```
+```bash
 sudo passwd dhis
 ```
 
@@ -131,7 +131,7 @@ Start by creating a suitable directory for the DHIS2 configuration
 files. This directory will also be used for apps, files and log files.
 An example directory could be:
 
-```
+```bash
 mkdir /home/dhis/config
 chown dhis:dhis /home/dhis/config
 ```
@@ -152,7 +152,7 @@ correspond to the time zone of your DHIS2 location. You can easily
 reconfigure the time zone by invoking the below and following the
 instructions.
 
-```
+```bash
 sudo dpkg-reconfigure tzdata
 ```
 
@@ -160,7 +160,7 @@ PostgreSQL is sensitive to locales so you might have to install your
 locale first. To check existing locales and install new ones (e.g.
 Norwegian):
 
-```
+```bash
 locale -a
 sudo locale-gen nb_NO.UTF-8
 ```
@@ -172,15 +172,21 @@ sudo locale-gen nb_NO.UTF-8
 Install PostgreSQL by
     invoking:
 
-    sudo apt-get install postgresql-10 postgresql-contrib-10 postgresql-10-postgis-2.4
+```bash
+sudo apt-get install postgresql-10 postgresql-contrib-10 postgresql-10-postgis-2.4
+```
 
 Create a non-privileged user called *dhis* by invoking:
 
-    sudo -u postgres createuser -SDRP dhis
+```bash
+sudo -u postgres createuser -SDRP dhis
+```
 
 Enter a secure password at the prompt. Create a database by invoking:
 
-    sudo -u postgres createdb -O dhis dhis2
+```bash
+sudo -u postgres createdb -O dhis dhis2
+```
 
 Return to your session by invoking `exit` You now have a PostgreSQL user
 called *dhis* and a database called *dhis2*.
@@ -191,7 +197,9 @@ startup. If the DHIS 2 database user does not have permission to create
 extensions you can create it from the console using the *postgres* user
 with the following commands:
 
-    sudo -u postgres psql -c "create extension postgis;" dhis2
+```bash
+sudo -u postgres psql -c "create extension postgis;" dhis2
+```
 
 Exit the console and return to your previous user with *\\q* followed by
 *exit*.
@@ -205,7 +213,7 @@ is optional in terms of getting DHIS2 to run. PostgreSQL is configured
 and tuned through the *postgresql.conf* file which can be edited like
 this:
 
-```
+```bash
 sudo nano /etc/postgresql/10/main/postgresql.conf
 ```
 
@@ -300,7 +308,7 @@ Specifies the average number of object locks allocated for each transaction. Thi
 
 Restart PostgreSQL by invoking the following command:
 
-```
+```bash
 sudo /etc/init.d/postgresql restart
 ```
 
@@ -312,7 +320,7 @@ The database connection information is provided to DHIS2 through a
 configuration file called *dhis.conf*. Create this file and save it in
 the *DHIS2\_HOME* directory. As an example this location could be:
 
-```
+```bash
 sudo -u dhis nano /home/dhis/config/dhis.conf
 ```
 
