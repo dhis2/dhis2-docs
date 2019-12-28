@@ -13408,7 +13408,7 @@ GET method.
 
 New gateway configuraitons can be added using POST. POST api requires type request parameter and currently its value can have either one *http,bulksms,clickatell*. First added gateway will be set to default. Only one gateway is allowed to be default at one time. Default gateway can only be changed through its api. If default gateway is removed then the next one the list will automatically becomes default.
 
-	POST /api/26/gateways?type=http
+	POST /api/26/gateways
 	
 Configuration can be updated with by providing uid and gateway configurations as mentioned below
 	
@@ -13439,6 +13439,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
 
 ```json
 {
+  "type" : "clickatell",
   "name" : "clickatell",
   "username": "clickatelluser",
   "authtoken": "XXXXXXXXXXXXXXXXXXXX",
@@ -13450,6 +13451,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
 
 ```json
 {
+  "type": "bulksms",
   "name": "bulkSMS",
   "username": "bulkuser",
   "password": "abc123"
@@ -13460,6 +13462,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
 
 ```json
 {
+	"type": "smpp",
 	"name": "smpp gateway2",
 	"systemId": "smppclient1",
 	"host": "localhost",
@@ -13477,6 +13480,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
 
 ```json
 {
+  "type": "http",
   "name": "Generic",
   "configurationTemplate": "{\"to\": \"${recipients}\",\"body\": \"${text}\", \"deliveryReport\":\"${deliveryReport}\"}",
   "useGet": false,
