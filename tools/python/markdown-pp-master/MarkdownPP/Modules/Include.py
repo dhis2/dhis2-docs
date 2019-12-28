@@ -49,7 +49,7 @@ class Include(Module):
         linenum = 0
         for line in data:
 
-            branch=BRANCH
+            branch=BRANCH.replace('origin/','')
 
             # a little hack to make a !SUBMODULE directive look like an !INCLUDE directive!
             if line[0:10] == "!SUBMODULE":

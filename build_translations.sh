@@ -98,14 +98,17 @@ if [ ${LOCALISE} -eq 1  ]; then
         translate "dhis2_bottleneck_analysis_manual" "bna-app" "both" $lang $locale
         translate "dhis2_scorecard_manual" "scorecard-app" "both" $lang $locale
 
-        echo "    - Developer:" >> $myml
-        translate "dhis2_developer_manual" "developer" "both" $lang $locale
-        translate "dhis2_android_sdk_user_guide" "android-sdk" "both" $lang $locale
-
         echo "    - Implementer:" >> $myml
         translate "dhis2_implementation_guide" "implementer" "both" $lang $locale
         translate "dhis2_android_capture_app" "android-app" "both" $lang $locale
         translate "user_stories_book" "user-stories" "both" $lang $locale
+
+        echo "    - Developer:" >> $myml
+        translate "dhis2_developer_manual" "developer" "both" $lang $locale
+        translate "dhis2_android_sdk_user_guide" "android-sdk" "both" $lang $locale
+
+        echo "    - Sysadmin:" >> $myml
+        translate "dhis2_system_administration_guide" "sysadmin" "both" $lang $locale
 
         pushd $tmp
           pushd docs

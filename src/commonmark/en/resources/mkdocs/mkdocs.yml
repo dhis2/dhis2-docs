@@ -10,18 +10,19 @@ repo_name: 'dhis2-docs on GitHub'
 use_directory_urls: false
 # docs_dir:
 
-dhis2_version: <version>
-dhis2_versions:
-    - 'master'
-    - '2.33'
-    - '2.32'
-    - '2.31'
-    - '2.30'
-    - '2.29'
-dhis2_language: '<language>'
-dhis2_languages:
-    en: 'English'
-    fr: 'Francais'
+extra:
+    dhis2_version: '<version>'
+    dhis2_versions:
+        - 'master'
+        - '2.33'
+        - '2.32'
+        - '2.31'
+        - '2.30'
+        - '2.29'
+    dhis2_language: '<language>'
+    dhis2_languages:
+        en: 'English'
+        fr: 'Français'
 
 theme:
     name: material

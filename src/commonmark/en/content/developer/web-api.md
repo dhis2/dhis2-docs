@@ -207,8 +207,7 @@ curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/tok
 -d grant_type=refresh_token -d refresh_token=$REFRESH_TOKEN
 ```
 
-The response will be exactly the same as when you get an token to start
-with.
+The response will be exactly the same as when you get a token to start with.
 
 #### Grant type authorization\_code
 
@@ -1068,7 +1067,8 @@ It is also possible to combine identifiable filter with property based filter an
 
     api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
 
-    api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1&rootJunction=OR
+    api/dataElements.json?filter=identifiable:token:ANC visit /
+    &filter=displayName:ilike:tt1&rootJunction=OR
 
 ## Metadata field filter
 
@@ -1262,24 +1262,25 @@ Multiple transformers can be used by repeating the transformer
 
 <!--DHIS2-SECTION-ID:webapi_field_transformers_examples-->
 
-Examples of transformer
-    usage.
+Examples of transformer usage.
 
-    /api/26/dataElements?fields=dataSets~size
+```
+/api/26/dataElements?fields=dataSets~size
 
-    /api/26/dataElements?fields=dataSets~isEmpty
+/api/26/dataElements?fields=dataSets~isEmpty
 
-    /api/26/dataElements?fields=dataSets~isNotEmpty
+/api/26/dataElements?fields=dataSets~isNotEmpty
 
-    /api/26/dataElements/ID?fields=id~rename(i),name~rename(n)
+/api/26/dataElements/ID?fields=id~rename(i),name~rename(n)
 
-    /api/26/dataElementGroups?fields=id,displayName,dataElements~paging(1;20)
-    
-    Include an array with IDs of the organisation units:
-    /api/31/categoryOptions.json?fields=id,organisationUnits~pluck
-    
-    Include an array with the names of the organisation units (collection only returns field name):
-    /api/31/categoryOptions.json?fields=id,organisationUnits~pluck[name]
+/api/26/dataElementGroups?fields=id,displayName,dataElements~paging(1;20)
+
+# Include array with IDs of organisation units:
+/api/31/categoryOptions.json?fields=id,organisationUnits~pluck
+
+# Include array with names of organisation units (collection only returns field name):
+/api/31/categoryOptions.json?fields=id,organisationUnits~pluck[name]
+```
 
 ## Metadata create, read, update, delete, validate
 
@@ -1369,14 +1370,18 @@ The same content as an XML payload:
 We are now ready create the new *constant* by sending a POST request to
 the *constants*endpoint with the JSON payload using curl:
 
-    curl -d @constant.json "http://server/api/26/constants" -X POST
-    -H "Content-Type: application/json" -u user:password
+```bash
+curl -d @constant.json "http://server/api/26/constants" -X POST
+-H "Content-Type: application/json" -u user:password
+```
 
 A specific example of posting the constant to the demo
     server:
 
-    curl -d @constant.json "https://play.dhis2.org/api/26/constants" -X POST
-    -H "Content-Type: application/json" -u admin:district
+```bash
+curl -d @constant.json "https://play.dhis2.org/api/26/constants" -X POST
+-H "Content-Type: application/json" -u admin:district
+```
 
 If everything went well, you should see an output similar to:
 
@@ -1394,7 +1399,7 @@ send a PUT request to the endpoint including ID:
 
 ```bash
 curl -X PUT -d @pi.json -H "Content-Type: application/json"
--u user:password http://server/api/26/constants/ID
+-u user:password "http://server/api/26/constants/ID"
 ```
 
 ### Deleting objects
@@ -1407,8 +1412,9 @@ example from the last section and use a *constant*. Let's assume that
 the id is *abc123*, then all you need to do is the send the DELETE
 request to the endpoint + id:
 
-    curl -X DELETE -u user:password
-    http://server/api/26/constants/ID
+```bash
+curl -X DELETE -u user:password "http://server/api/26/constants/ID"
+```
 
 A successful delete should return HTTP status 204 (no content).
 
@@ -1537,8 +1543,10 @@ section before, you would send it like this:
 
 A simple (non-validating) example would be:
 
-    curl -X POST -d "{\"name\": \"some name\"}" -H "Content-Type: application/json"
-    -u admin:district https://play.dhis2.org/dev/api/schemas/dataElement
+```bash
+curl -X POST -d "{\"name\": \"some name\"}" -H "Content-Type: application/json"
+-u admin:district "https://play.dhis2.org/dev/api/schemas/dataElement"
+```
 
 Which would yield the result:
 
@@ -1585,8 +1593,10 @@ properties you want to update, i.e.:
 
 An example curl command looks like this:
 
-    curl -X PATCH -d @file.json -H "Content-Type: application/json"
-    -u admin:district https://play.dhis2.org/dev/api/26/dataElements/fbfJHSPpUQD
+```bash
+curl -X PATCH -d @file.json -H "Content-Type: application/json"
+-u admin:district "https://play.dhis2.org/dev/api/26/dataElements/fbfJHSPpUQD"
+```
 
 ## Metadata export
 
@@ -1665,22 +1675,30 @@ enable/disable export of certain types by setting *type=true/false*.
 
 Export all metadata:
 
-    curl -u user:pass http://server/api/26/metadata
+```bash
+curl -u user:pass "http://server/api/26/metadata"
+```
 
 Export all metadata ordered by lastUpdated
     descending:
 
-    curl -u user:pass http://server/api/26/metadata?defaultOrder=lastUpdated:desc
+```bash
+curl -u user:pass "http://server/api/26/metadata?defaultOrder=lastUpdated:desc"
+```
 
 Export id and displayName for all data elements, ordered by
     displayName:
 
-    curl -u user:pass http://server/api/26/metadata?dataElements:fields=id,name&dataElements:order=displayName:desc
+```bash
+curl -u user:pass "http://server/api/26/metadata?dataElements:fields=id,name&dataElements:order=displayName:desc"
+```
 
 Export data elements and indicators where name starts with
     "ANC":
 
-    curl -u user:pass http://server/api/26/metadata?filter=name:^like:ANC&dataElements=true&indicators=true
+```bash
+curl -u user:pass "http://server/api/26/metadata?filter=name:^like:ANC&dataElements=true&indicators=true"
+```
 
 ### Metadata export with dependencies
 
@@ -1690,13 +1708,15 @@ When you want to move a whole set of data set, program or category combo
 metadata from one server to another (possibly empty) server, we have
 three special endpoints for just that purpose:
 
-    /api/<version>/dataSets/ID/metadata.json
+```
+/api/<version>/dataSets/ID/metadata.json
 
-    /api/<version>/programs/ID/metadata.json
+/api/<version>/programs/ID/metadata.json
 
-    /api/<version>/categoryCombos/ID/metadata.json
-    
-    /api/<version>/dashboards/{uid}/metadata.json
+/api/<version>/categoryCombos/ID/metadata.json
+
+/api/<version>/dashboards/{uid}/metadata.json
+```
 
 These exports can then be imported using */api/<version>/metadata*.
 
@@ -1837,14 +1857,18 @@ If you need information about who created, edited, or deleted DHIS2
 metadata objects you can enable metadata audit. There are two
 configuration options (dhis.conf) you can enable to support this:
 
-    metadata.audit.log = on
+```properties
+metadata.audit.log = on
+```
 
 This enables additional log output in your servlet container (e.g.
 tomcat catalina.log) which contains full information about the object
 created, object edited, or object deleted including full JSON payload,
 date of audit event, and the user who did the action.
 
-    metadata.audit.persist = on
+```properties
+metadata.audit.persist = on
+```
 
 This enables persisted audits, i.e. audits saved to the database. The
 information stored is the same as with audit log; however this
@@ -2336,8 +2360,10 @@ Tip: If using `curl`, the `--data-binary` option should be used as it preserves 
 
 As an example, to upload a file of data elements in CSV format with `curl` you can use the following command:
 
-	curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT" /
-	-H "Content-Type:application/csv" -u admin:district
+```bash
+curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT" /
+-H "Content-Type:application/csv" -u admin:district
+```
 
 The formats for the currently supported object types for CSV import are listed in the following sections.
 
@@ -18891,6 +18917,20 @@ Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
 	  "skipResourceTables": false
   }
 }
+```
+
+Adding job with parameters in JSON format (PUSH\_ANALYSIS example):
+
+```json
+ {
+ 	"name": "test-push-anlysis-chart",
+ 	"jobType": "PUSH_ANALYSIS",
+ 	"cronExpression": "0 * * ? * *",
+ 	"jobParameters": {
+ 		"pushAnalysis": ["jtcMAKhWwnc"]
+
+ 	}
+ }
 ```
 
 List all jobConfigurations:
