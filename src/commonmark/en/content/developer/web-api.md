@@ -4911,7 +4911,7 @@ model.
 <li><p><strong>SCHEDULEMESSAGE</strong> - To schedule message at completion of event/enrollment or at data value update.</p>
 <ul>
 <li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
-<li><p><em>Date to send message</em> - Expression which is going to be used for evaluation of scheduled date.</p></li>
+<li><p><em>Date to send message</em> - Expression which is going to be used for evaluation of scheduled date. This expression should result in Date, any other resultant will be discarded and notification will not get scheduled.</p></li>
 </ul></li>
 </ul></td>
 <td>Compulsory</td>
