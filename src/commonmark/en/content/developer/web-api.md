@@ -9466,7 +9466,8 @@ will not be included as dimensions in the actual response. As an
 example, to query for certain data elements filtered by the periods and
 organisation units you can use the following URL:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&filter=pe:2014Q1;2014Q2&filter=ou:O6uvpzGd5pu;lc3eMKXaEfw
+    /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&filter=pe:2014Q1;2014Q2
+      &filter=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 The *aggregationType* query parameter lets you define which aggregation
 operator should be used for the query. By default the aggregation
@@ -9478,7 +9479,8 @@ undefined. This query parameter allows you to override the default and
 specify a specific aggregation operator. As an example you can set the
 aggregation operator to "count" with the following URL:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2014Q1&dimension=ou:O6uvpzGd5pu&aggregationType=COUNT
+    /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2014Q1&dimension=ou:O6uvpzGd5pu
+      &aggregationType=COUNT
 
 The *measureCriteria* query parameter lets you filter out ranges of data
 records to return. You can instruct the system to return only records
@@ -9529,7 +9531,8 @@ ordered data. The data will be ordered in ascending(or descending) order
 of values. An example request for ordering the values in descending
 order is:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:LAST_12_MONTHS&dimension=ou:O6uvpzGd5pu&order=DESC
+    /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:LAST_12_MONTHS
+      &dimension=ou:O6uvpzGd5pu&order=DESC
 
 ### Dimensions and items
 
@@ -9845,7 +9848,7 @@ Items from all of the various *dx* types can be combined in an analytics
 request. An example looks like this:
 
     /api/26/analytics.json
-      ?dimension=dx:Uvn6LCg7dVU;BfMAe6Itzgt.REPORTING_RATE;BfMAe6Itzgt.ACTUAL_REPORTS;IpHINAT79UW.a3kGcGDCuk6
+      ?dimension=dx:Uvn6LCg7dVU;BfMAe6Itzgt.REPORTING_RATE;IpHINAT79UW.a3kGcGDCuk6
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
 The group syntax can be used together with any other item as well. An
@@ -9860,7 +9863,7 @@ combinations and use wildcards e.g. to specify all category option
 combination values:
 
     /api/26/analytics.json
-      ?dimension=dx:Uvn6LCg7dVU.*j8vBiBqGf6O;Uvn6LCg7dVU.Z4oQs46iTeR;Uvn6LCg7dVU.Z4oQs46iTeR.j8vBiBqGf6O
+      ?dimension=dx:Uvn6LCg7dVU.*.j8vBiBqGf6O;Uvn6LCg7dVU.Z4oQs46iTeR
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
 > **Tip**
@@ -10211,9 +10214,9 @@ can issue a request like
     this:
 
     /api/analytics/rawData.json?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU;Jtf34kNZhzP
-    &dimension=J5jldMd8OHv&dimension=Bpx0589u8y0
-    &dimension=pe:LAST_12_MONTHS
-    &dimension=ou:O6uvpzGd5pu;fdc6uOvgoji
+      &dimension=J5jldMd8OHv&dimension=Bpx0589u8y0
+      &dimension=pe:LAST_12_MONTHS
+      &dimension=ou:O6uvpzGd5pu;fdc6uOvgoji
 
 The *startDate* and *endDate* parameters allow for fetching data linked
 to any period between those dates. This avoids the need for defining all
@@ -10221,27 +10224,27 @@ periods explicitly in the
     request:
 
     /api/analytics/rawData.json?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU;Jtf34kNZhzP
-    &dimension=J5jldMd8OHv&dimension=Bpx0589u8y0
-    &startDate=2015-01-01&endDate=2015-12-31
-    &dimension=ou:O6uvpzGd5pu;fdc6uOvgoji
+      &dimension=J5jldMd8OHv&dimension=Bpx0589u8y0
+      &startDate=2015-01-01&endDate=2015-12-31
+      &dimension=ou:O6uvpzGd5pu;fdc6uOvgoji
 
 The *filter* parameter can be used to filter a response without
 including that dimension as part of the response, this time in CSV
 format:
 
     /api/analytics/rawData.csv?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU;Jtf34kNZhzP
-    &filter=J5jldMd8OHv:uYxK4wmcPqA;tDZVQ1WtwpA
-    &startDate=2015-01-01&endDate=2015-12-31
-    &dimension=ou:O6uvpzGd5pu
+      &filter=J5jldMd8OHv:uYxK4wmcPqA;tDZVQ1WtwpA
+      &startDate=2015-01-01&endDate=2015-12-31
+      &dimension=ou:O6uvpzGd5pu
 
 The *outputIdScheme* parameter is useful if you want human readable data
 responses as it can be set to *NAME* like this:
 
     /api/analytics/rawData.csv?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
-    &filter=J5jldMd8OHv:uYxK4wmcPqA;tDZVQ1WtwpA
-    &startDate=2017-01-01&endDate=2017-12-31
-    &dimension=ou:O6uvpzGd5pu
-    &outputIdScheme=NAME
+      &filter=J5jldMd8OHv:uYxK4wmcPqA;tDZVQ1WtwpA
+      &startDate=2017-01-01&endDate=2017-12-31
+      &dimension=ou:O6uvpzGd5pu
+      &outputIdScheme=NAME
 
 The response from the *rawData* resource will look identical to the
 regular analytics resource; the difference is that the response contain
@@ -10260,7 +10263,7 @@ this SQL by doing a GET request with content type "text/html" or
 "text/plain" like below. The dimension and filter syntax is identical to
 regular analytics queries:
 
-    /api/26/analytics/debug/sql?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/analytics/debug/sql?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &filter=pe:2016Q1;2016Q2&filter=ou:O6uvpzGd5pu
 
 ## Event analytics
@@ -10677,8 +10680,8 @@ programme" program between March and December 2016, where the "Weight"
 data element, filtered for values larger than
     2000:
 
-    /api/26/analytics/events/query/IpHINAT79UW?stage=A03MvHHogjR&startDate=2016-03-01&endDate=2016-12-31
-      &dimension=ou:O6uvpzGd5pu&dimension=UXz7xuGCEhU:GT:2000
+    /api/26/analytics/events/query/IpHINAT79UW?stage=A03MvHHogjR&startDate=2016-03-01
+      &endDate=2016-12-31&dimension=ou:O6uvpzGd5pu&dimension=UXz7xuGCEhU:GT:2000
 
 Sorting can be applied to the query for the event date of the event and
 any dimensions. To sort descending on the event date and ascending on
@@ -10959,10 +10962,10 @@ as values to indicate which ones to use as table columns and rows.
 Instead of generating a plain, normalized data source, the event
 analytics resource will now generate the data in table layout. The
 column and rows dimensions must be present as a data dimension in the
-query (not a filter). Such a request can look like
-    this:
+query (not a filter). Such a request can look like this:
 
-    /api/29/analytics.html+css?dimension=dx:cYeuwXTCPkU;fbfJHSPpUQD&dimension=pe:WEEKS_THIS_YEAR&filter=ou:ImspTQPwCqd&displayProperty=SHORTNAME&columns=dx&rows=pe
+    /api/29/analytics.html+css?dimension=dx:cYeuwXTCPkU;fbfJHSPpUQD&dimension=pe:WEEKS_THIS_YEAR
+      &filter=ou:ImspTQPwCqd&displayProperty=SHORTNAME&columns=dx&rows=pe
 
 ### Event aggregate analytics
 
@@ -11061,8 +11064,8 @@ described below:
 An example looks like
     this:
 
-    /api/26/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk&dimension=qrur9Dvnyt5-Yf6UHoPkdS6
-      &dimension=ou:ImspTQPwCqd&dimension=pe:LAST_12_MONTHS
+    /api/26/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
+      &dimension=qrur9Dvnyt5-Yf6UHoPkdS6&dimension=ou:ImspTQPwCqd&dimension=pe:LAST_MONTH
 
 #### Response formats
 
@@ -11169,8 +11172,9 @@ The *analytics/events/cluster* resource provides clustered geospatial
 event data. A request looks like
     this:
 
-    /api/26/analytics/events/cluster/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31&dimension=ou:LEVEL-2
-      &clusterSize=100000&bbox=-13.2682125,7.3721619,-10.4261178,9.904012&includeClusterPoints=false
+    /api/26/analytics/events/cluster/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+      &dimension=ou:LEVEL-2&clusterSize=100000
+      &bbox=-13.2682125,7.3721619,-10.4261178,9.904012&includeClusterPoints=false
 
 The cluster response provides the count of underlying points, the centre
 point and extent of each cluster. If the *includeClusterPoints* query
@@ -11246,7 +11250,8 @@ for a specific query. The query syntax is equal to the *events/query*
 resource. A request looks like
     this:
 
-    /api/26/analytics/events/count/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31&dimension=ou:O6uvpzGd5pu
+    /api/26/analytics/events/count/eBAyeGv0exc?startDate=2016-01-01
+      &endDate=2016-10-31&dimension=ou:O6uvpzGd5pu
 
 The response will provide the count and extent in JSON format:
 
@@ -11324,29 +11329,31 @@ You can specify any number of dimensions and any number of filters in a query. D
     /api/32/analytics/enrollments/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
       &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
-For example, to retrieve enrollments in the from the "Antenatal care" program from January 2019, where the "First name" is picked up from attributes, "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the follou program stage - and only women that has "Cronic conditions" would be icluded, you can use the following query:
+For example, to retrieve enrollments in the from the "Antenatal care" program from January 2019, where the "First name" is picked up from attributes, "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the following program stage, and only women that has "Cronic conditions" would be included, you can use the following query:
 
-    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd&dimension=w75KJ2mc4zz
-        &dimension=WZbXY0S00lP.de0FEHSIoxh:eq:1&dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD
-        &dimension=edqlbukwRfQ.vANAXwtLwcT&startDate=2019-01-01&endDate=2019-01-31
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+      &dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.de0FEHSIoxh:eq:1&dimension=w75KJ2mc4zz
+      &dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=edqlbukwRfQ.vANAXwtLwcT
+      &startDate=2019-01-01&endDate=2019-01-31
 
-To retrieve enrollments in the from the "Antenatal care" program from last month(relative to the point in time the query is executed), where the "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the folloup program stage - only including smoking women with hemoglobin less than 20:
+To retrieve enrollments in the from the "Antenatal care" program from last month (relative to the point in time the query is executed), where the "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the folloup program stage, only including smoking women with hemoglobin less than 20:
 
-    api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
-        &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD:eq:1
-        &dimension=edqlbukwRfQ.vANAXwtLwcT:lt:20&dimension=pe:LAST_MONTH
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+      &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz
+      &dimension=WZbXY0S00lP.sWoqcoByYmD:eq:1&dimension=edqlbukwRfQ.vANAXwtLwcT:lt:20
+      &dimension=pe:LAST_MONTH
 
 Sorting can be applied to the query for the enrollment and incident dates of the enrollment:
 
-        /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
-        &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
-        &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
+      &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH
+      &stage=WZbXY0S00lP&pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
 
 Paging can be applied to the query by specifying the page number and the page size parameters. If page number is specified but page size is not, a page size of 50 will be used. If page size is specified but page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
 
-    api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
-        &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=pe:LAST_MONTH
-        &dimension=WZbXY0S00lP.sWoqcoByYmD&pageSize=10&page=2
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+      &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=pe:LAST_MONTH
+      &dimension=WZbXY0S00lP.sWoqcoByYmD&pageSize=10&page=2
 
 #### Filtering
 
@@ -11539,8 +11546,8 @@ The default response representation format is JSON. The requests must be using t
 As an example, to get a response in Excel format you can use a file extension in the request URL like this:
 
     /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd&dimension=WZbXY0S00lP.de0FEHSIoxh
-        &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
-        &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
+      &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
+      &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
 
 The default response JSON format will look similar to this:
 
@@ -11769,14 +11776,15 @@ The non-aggregation enrollment analytics API also supports linking Program Indic
 
 For the Program Indicator/Relationship Type link to work, the `/api/32/analytics/enrollments/query` API requires an additional dimension which must include the chosen Relationship Type UID and the chosen Program Indicator UID:
 
-    /api/32/analytics/enrollments/query/<program-id>?dimension=<relationshiptype-id>.<programindicator-id>&...
+    /api/32/analytics/enrollments/query/<program-id>
+      ?dimension=<relationshiptype-id>.<programindicator-id>
 
 For example, to retrive a list of enrollemnts from the "WHO RMNCH Tracker" program for January 2019 and display the count of Malaria Cases linked to that Enrollemnt by "Malaria case linked to person" type of relationship, you can use the following query
 
-    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=mxZDvSZYxlw.nFICjJluo74&startDate=2019-01-01&endDate=2019-01-31    
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=mxZDvSZYxlw.nFICjJluo74
+      &startDate=2019-01-01&endDate=2019-01-31    
 
-The API supports using Program Indicators which are not associated to the "main" Program (that is the Program UID specified after `/query/`).
-
+The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
 
 ## Org unit analytics
 
@@ -11850,7 +11858,8 @@ To fetch org unit analytics data for two org units and two org unit group sets:
 
 To fetch org unit analytics data in table mode with one group set rendered as columns:
 
-	GET /api/orgUnitAnalytics?ou=fdc6uOvgoji;jUb8gELQApl;lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv&columns=J5jldMd8OHv
+	GET /api/orgUnitAnalytics?ou=fdc6uOvgoji;jUb8gELQApl;lc3eMKXaEfw;PMa2VCrupOd
+	  &ougs=J5jldMd8OHv&columns=J5jldMd8OHv
 
 ## Data set report
 
@@ -11924,7 +11933,8 @@ An example request to retrieve a report for a data set and org unit for 2018 loo
 
 To get a data set report with a filter you can use the `filter` parameter. In this case the filter is based on an org unit group set and two org unit groups:
 
-    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&filter=J5jldMd8OHv:RXL3lPSK8oG;tDZVQ1WtwpA
+    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd
+      &filter=J5jldMd8OHv:RXL3lPSK8oG;tDZVQ1WtwpA
 
 ### Response formats
 
@@ -12225,11 +12235,11 @@ DHIS2, and by user.
 </table>
 
 The API query can be used without username, and will then find the top
-favorites of the system. If username is specified, the response will
-only contain the top favorites of that
-    user.
+favorites of the system.
 
     /api/24/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC
+
+If username is specified, the response will only contain the top favorites of that user.
 
     /api/24/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC&username=admin
 
@@ -12261,8 +12271,8 @@ Execute this command against the demo database to get an usage analytics
 response in JSON
     format:
 
-    curl "play.dhis2.org/demo/api/24/dataStatistics?startDate=2016-02-01&endDate=2016-02-14&
-    interval=WEEK" -u admin:district
+    curl "play.dhis2.org/demo/api/24/dataStatistics?startDate=2016-02-01&endDate=2016-02-14
+      &interval=WEEK" -u admin:district
 
 The JSON response looks like this:
 
