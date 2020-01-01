@@ -2887,7 +2887,7 @@ objects:
         <tr class="even">
         <td><p><strong>Schedule Message</strong></p></td>
         <td><p><strong>Message template to send</strong></p>
-        <p><strong>Data field which contains expression to evaluate the date which notification should be sent at.</strong></p></td>
+        <p><strong>Data field which contains expression to evaluate the date which notification should be sent at. If this expression results in any value other than Date, then resultant will be discarded and notification will not get scheduled.</strong></p></td>
         <td><p>Schedule Message will schedule notification at date provided by Expression in the data field. Sample expression is given below</p>
         <pre><code>d2:addDays( &#39;2018-04-20&#39;, &#39;2&#39; )</code></pre>
         <p>Message template will be parsed and variables will be substituted with actual values.</p></td>
