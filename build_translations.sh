@@ -114,6 +114,9 @@ if [ ${LOCALISE} -eq 1  ]; then
         translate "dhis2_developer_manual" "developer" "both" $lang $locale
         translate "dhis2_android_sdk_user_guide" "android-sdk" "both" $lang $locale
 
+        echo "    - Sysadmin:" >> $myml
+        translate "dhis2_system_administration_guide" "sysadmin" "both" $lang $locale
+
         pushd $tmp
           pushd docs
             ln -s ../resources .

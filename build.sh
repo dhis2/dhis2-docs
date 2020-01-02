@@ -127,6 +127,9 @@ echo "    - Developer:" >> $myml
 generate "dhis2_developer_manual" "developer"
 generate "dhis2_android_sdk_user_guide" "android-sdk"
 
+echo "    - Sysadmin:" >> $myml
+generate "dhis2_system_administration_guide" "sysadmin"
+
 pushd $tmp
   pushd docs
     ln -s ../resources .
