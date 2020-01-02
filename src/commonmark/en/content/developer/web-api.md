@@ -1397,7 +1397,7 @@ send a PUT request to the endpoint including ID:
 
 ```bash
 curl -X PUT -d @pi.json -H "Content-Type: application/json"
--u user:password "http://server/api/26/constants/ID"
+  -u user:password "http://server/api/26/constants/ID"
 ```
 
 ### Deleting objects
@@ -1472,10 +1472,13 @@ with a payload like this:
 
 ```json
 {
-  "identifiableObjects": [
-	{ "id": "IDA" },
-	{ "id": "IDB" },
-	{ "id": "IDC" }
+  "identifiableObjects": [{
+      "id": "IDA"
+    }, {
+      "id": "IDB"
+    }, {
+      "id": "IDC"
+    }
   ]
 }
 ```
@@ -1508,15 +1511,21 @@ The payload format is:
 
 ```json
 {
-  "additions": [
-	{ "id": "IDA" },
-	{ "id": "IDB" },
-	{ "id": "IDC" }
+  "additions": [{
+      "id": "IDA"
+    }, {
+      "id": "IDB"
+    }, {
+	  "id": "IDC"
+	}
   ],
-  "deletions": [
-	{ "id": "IDD" },
-	{ "id": "IDE" },
-	{ "id": "IDF" }
+  "deletions": [{
+      "id": "IDD"
+    }, {
+      "id": "IDE"
+    }, {
+      "id": "IDF"
+    }
   ]
 }
 ```
@@ -1593,7 +1602,7 @@ An example curl command looks like this:
 
 ```bash
 curl -X PATCH -d @file.json -H "Content-Type: application/json"
--u admin:district "https://play.dhis2.org/dev/api/26/dataElements/fbfJHSPpUQD"
+  -u admin:district "https://play.dhis2.org/dev/api/26/dataElements/fbfJHSPpUQD"
 ```
 
 ## Metadata export
