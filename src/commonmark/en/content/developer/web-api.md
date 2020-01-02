@@ -2038,6 +2038,7 @@ Program Stage Section are LISTING as default.
 <tr class="even">
 <td>BOOLEAN</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>-</td>
@@ -2052,26 +2053,32 @@ Program Stage Section are LISTING as default.
 <tr class="odd">
 <td>INTEGER_POSITIVE</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>INTEGER_NEGATIVE</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>INTEGER_ZERO_OR_POSITIVE</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>NUMBER</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>UNIT_INTERVAL</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>PERCENTAGE</td>
 <td>No</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -2127,16 +2134,13 @@ set, which is usually needed when rendering some of the specific types:
 </tbody>
 </table>
 
-*renderingType* can be set when creating or updating the metadata listed
-in the first table. An example payload for the rendering type for program stage section looks like this:
+The *renderingType* can be set when creating or updating the metadata listed in the first table. An example payload for the rendering type for program stage section looks like this:
 
 ```json
 {
-  ...
   "renderingType": {
 	"type": "MATRIX"
   }
-  ...
 }
 ```
 
@@ -2144,7 +2148,6 @@ For data element and tracked entity attribute:
 
 ```json
 {
-  ...
   "renderingType": {
 	"type": "SLIDER",
 	"min": 0,
@@ -2152,7 +2155,6 @@ For data element and tracked entity attribute:
 	"step": 50,
 	"decimalPoints": 0
   }
-  ...
 }
 ```
 
@@ -2361,8 +2363,8 @@ Tip: If using `curl`, the `--data-binary` option should be used as it preserves 
 As an example, to upload a file of data elements in CSV format with `curl` you can use the following command:
 
 ```bash
-curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT" /
--H "Content-Type:application/csv" -u admin:district
+curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT"
+  -H "Content-Type:application/csv" -u admin:district
 ```
 
 The formats for the currently supported object types for CSV import are listed in the following sections.
@@ -2498,8 +2500,8 @@ you do not use which appear to the right of the ones
 
 ```csv
 name,uid,code,shortname,description
-"Women participated in skill development training",,"D0001","Women participated development training"
-"Women participated in community organizations",,"D0002","Women participated community organizations"
+"Women participated skill development training",,"D0001","Women participated in training"
+"Women participated community organizations",,"D0002","Women participated in organizations"
 ```
 
 ### Organisation units
@@ -3073,11 +3075,10 @@ The contents of a file resources is not directly accessible but is
 referenced from other objects (such as data values) to store binary
 content of virtually unlimited size.
 
-Creation of the file resource itself is done through the
-`api/fileResources` endpoint as a multipart upload POST-request:
+Creation of the file resource itself is done through the `api/fileResources` endpoint as a multipart upload POST-request:
 
 ```bash
-curl -X POST -v -F "file=@/Path/to/file;filename=name-of-file.png" https://server/api/26/fileResources
+curl -X POST -v -F "file=@/Path/to/file;filename=name-of-file.png" "https://server/api/26/fileResources"
 ```
 
 The only form parameter required is the *file* which is the file to
@@ -3085,7 +3086,7 @@ upload. The filename and content-type should also be included in the
 request but will be replaced with defaults when not supplied.
 
 On successfully creating a file resource the returned data will contain
-a *response* field which in turn contains the *fileResource* like this:
+a `response` field which in turn contains the `fileResource` like this:
 
 ```json
 {
@@ -3739,11 +3740,27 @@ In JSON format:
 
 ```json
 {
-  "dataValues": [
-	{ "dataElement": "f7n9E0hX8qk", "period": "201401", "orgUnit": "DiszpKrYNg8", "value": "12" },
-	{ "dataElement": "f7n9E0hX8qk", "period": "201401", "orgUnit": "FNnj3jKGS7i", "value": "14" },
-	{ "dataElement": "f7n9E0hX8qk", "period": "201402", "orgUnit": "DiszpKrYNg8", "value": "16" },
-	{ "dataElement": "f7n9E0hX8qk", "period": "201402", "orgUnit": "Jkhdsf8sdf4", "value": "18" }
+  "dataValues": [{
+      "dataElement": "f7n9E0hX8qk", 
+      "period": "201401", 
+      "orgUnit": "DiszpKrYNg8", 
+      "value": "12"
+    }, {
+      "dataElement": "f7n9E0hX8qk", 
+      "period": "201401", 
+      "orgUnit": "FNnj3jKGS7i", 
+      "value": "14"
+    }, {
+      "dataElement": "f7n9E0hX8qk", 
+      "period": "201402", 
+      "orgUnit": "DiszpKrYNg8", 
+      "value": "16"
+    }, {
+      "dataElement": "f7n9E0hX8qk", 
+      "period": "201402", 
+      "orgUnit": "Jkhdsf8sdf4", 
+      "value": "18"
+    }
   ]
 }
 ```
@@ -3776,7 +3793,7 @@ curl --data-binary @datavalueset.csv "https://play.dhis2.org/demo/24/api/dataVal
 The data value set resource provides an XML response which is useful
 when you want to verify the impact your request had. The first time we
 send the data value set request above the server will respond with the
-following*import summary*:
+following import summary:
 
 ```xml
 <importSummary>
@@ -3879,10 +3896,11 @@ They can also be supplied as XML attributes on the data value set
 element like below. XML attributes will override query string
 parameters.
 
-    <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0" dataElementIdScheme="code"
-      orgUnitIdScheme="name" dryRun="true" importStrategy="CREATE">
-      ..
-    </dataValueSet>
+```xml
+<dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0" dataElementIdScheme="code"
+  orgUnitIdScheme="name" dryRun="true" importStrategy="CREATE">
+</dataValueSet>
+```
 
 Note that the *preheatCache* parameter can have huge impact for
 performance. For small import files, leaving it to false will be fast.
@@ -3932,10 +3950,11 @@ objects. Identifier schemes can be specified in the XML message as well
 as in the request as query parameters. To specify it in the XML payload
 you can do this:
 
-    <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0"
-      dataElementIdScheme="CODE" orgUnitIdScheme="UID" idScheme="CODE">
-      ..
-    </dataValueSet>
+```xml
+<dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0"
+  dataElementIdScheme="CODE" orgUnitIdScheme="UID" idScheme="CODE">
+</dataValueSet>
+```
 
 The parameter table above explains how the id schemes can be specified
 as query parameters. The following rules apply for what takes
@@ -4069,7 +4088,7 @@ row is assumed to be a header row and will be ignored during import.
 An example of a CSV file which can be imported into DHIS2 is seen below.
 
 ```csv
-"dataelement","period","orgunit","categoryoptioncombo","attroptioncombo","value","storedby","timestamp"
+"dataelement","period","orgunit","catoptcombo","attroptcombo","value","storedby","timestamp"
 "DUSpd8Jq3M7","201202","gP6hn503KUX","Prlt0C1RF0s",,"7","bombali","2010-04-17"
 "DUSpd8Jq3M7","201202","gP6hn503KUX","V6L425pT3A0",,"10","bombali","2010-04-17"
 "DUSpd8Jq3M7","201202","OjTS752GbZE","V6L425pT3A0",,"9","bombali","2010-04-06"
@@ -4295,13 +4314,25 @@ The response will look something like this:
   "completeDate": "2014-02-03",
   "period": "201401",
   "orgUnit": "DiszpKrYNg8",
-  "dataValues": [
-	{ "dataElement": "eY5ehpbEsB7", "categoryOptionCombo": "bRowv6yZOF2", "period": "201401",
-	  "orgUnit": "DiszpKrYNg8", "value": "10003" },
-	{ "dataElement": "Ix2HsbDMLea", "categoryOptionCombo": "bRowv6yZOF2", "period": "201401",
-	  "orgUnit": "DiszpKrYNg8", "value": "10002" },
-	{ "dataElement": "f7n9E0hX8qk", "categoryOptionCombo": "bRowv6yZOF2", "period": "201401",
-	  "orgUnit": "DiszpKrYNg8", "value": "10001" }
+  "dataValues": [{
+      "dataElement": "eY5ehpbEsB7", 
+      "categoryOptionCombo": "bRowv6yZOF2", 
+      "period": "201401",
+	  "orgUnit": "DiszpKrYNg8", 
+	  "value": "10003"
+	}, {
+	  "dataElement": "Ix2HsbDMLea", 
+	  "categoryOptionCombo": "bRowv6yZOF2", 
+	  "period": "201401",
+	  "orgUnit": "DiszpKrYNg8", 
+	  "value": "10002"
+	}, {
+	  "dataElement": "f7n9E0hX8qk", 
+	  "categoryOptionCombo": "bRowv6yZOF2", 
+	  "period": "201401",
+	  "orgUnit": "DiszpKrYNg8", 
+	  "value": "10001"
+	}
   ]
 }
 ```
@@ -4320,7 +4351,7 @@ You can also request data in CSV format like this:
 The response will look like this:
 
 ```csv
-dataelement,period,orgunit,categoryoptioncombo,attributeoptioncombo,value,storedby,lastupdated,comment,followup
+dataelement,period,orgunit,catoptcombo,attroptcombo,value,storedby,lastupdated,comment,followup
 f7n9E0hX8qk,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,12,system,2015-04-05T19:58:12.000,comment1,false
 Ix2HsbDMLea,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,14,system,2015-04-05T19:58:12.000,comment2,false
 eY5ehpbEsB7,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,16,system,2015-04-05T19:58:12.000,comment3,false
@@ -4522,15 +4553,12 @@ profile.
 The structure of an ADX data message is quite similar to what you might
 already be familiar with from DXF 2 data described earlier. There are a
 few important differences. We will describe these differences with
-reference to a small
-    example:
+reference to a small example:
 
 ```xml
 <adx xmlns="urn:ihe:qrph:adx:2015" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="urn:ihe:qrph:adx:2015 ../schema/adx_loose.xsd" exported="2015-02-08T19:30:00Z">
-
   <group orgUnit="OU_559" period="2015-06-01/P1M" completeDate="2015-07-01" dataSet="(TB/HIV)VCCT">
-
 	<dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="32"/>
 	<dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="20"/>
 	<dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
@@ -4554,7 +4582,6 @@ reference to a small
 	<dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
 	<dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
 	<dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
-
   </group>
 </adx>
 ```
