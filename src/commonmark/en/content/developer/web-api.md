@@ -114,8 +114,8 @@ OAuth2 roles but rather provides applications access based on user roles
 of the DHIS2 user.
 
 Each client for which you want to allow OAuth 2 authentication must be
-registered in DHIS2. To add a new OAuth2 client go to *Apps \> Settings
-\> OAuth2 Clients*, click add new and enter the desired client name and
+registered in DHIS2. To add a new OAuth2 client go to *Apps > Settings
+> OAuth2 Clients*, click add new and enter the desired client name and
 the grant types.
 
 #### Adding a client using the Web API
@@ -128,12 +128,12 @@ send a payload like this:
    "name" : "OAuth2 Demo Client",
    "cid" : "demo",
    "secret" : "1e6db50c-0fee-11e5-98d0-3c15c2c6caf6",
-   "grantTypes" : [
+   "grantTypes": [
 	  "password",
 	  "refresh_token",
 	  "authorization_code"
    ],
-   "redirectUris" : [
+   "redirectUris": [
 	  "http://www.example.org"
    ]
 }
@@ -170,11 +170,11 @@ This will give you a response similar to this:
 
 ```json
 {
-   "expires_in" : 43175,
-   "scope" : "ALL",
-   "access_token" : "07fc551c-806c-41a4-9a8c-10658bd15435",
-   "refresh_token" : "a4e4de45-4743-481d-9345-2cfe34732fcc",
-   "token_type" : "bearer"
+   "expires_in": 43175,
+   "scope": "ALL",
+   "access_token": "07fc551c-806c-41a4-9a8c-10658bd15435",
+   "refresh_token": "a4e4de45-4743-481d-9345-2cfe34732fcc",
+   "token_type": "bearer"
 }
 ```
 
@@ -203,7 +203,7 @@ SERVER="https://play.dhis2.org/dev"
 SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
 REFRESH_TOKEN="a4e4de45-4743-481d-9345-2cfe34732fcc"
 
-curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/token
+curl -X POST -H "Accept: application/json" -u demo:$SECRET "$SERVER/uaa/oauth/token"
 -d grant_type=refresh_token -d refresh_token=$REFRESH_TOKEN
 ```
 
@@ -217,16 +217,14 @@ Authorized code grant type is the recommended approach if you don't want
 to store the user credentials externally. It allows DHIS2 to collect the
 username/password directly from the user instead of the client
 collecting them and then authenticating on behalf of the user. Please be
-aware that this approach uses the **redirect\_uris** part of the client
+aware that this approach uses the `redirectUris` part of the client
 payload.
 
 Step 1: Using a browser visit this URL (if you have more than one
-redirect URIs, you might want to add
-\&redirect\_uri=http://www.example.org) :
+redirect URIs, you might want to add `&redirect_uri=http://www.example.org`:
 
 ```bash
 SERVER="https://play.dhis2.org/dev"
-
 $SERVER/uaa/oauth/authorize?client_id=demo&response_type=code
 ```
 
@@ -742,12 +740,12 @@ other available locales.
 
 To read and update translations you can use the special translations
 endpoint for each object resource. These can be accessed by **GET** or
-**PUT** on the appropriate
-*/api/26/\<object-type\>/\<object-id\>/translations* endpoint. As an
-example, for a data element with identifier *FTRrcoaog83* you could use
-*/api/26/dataElements/FTRrcoaog83/translations* to get and update
+**PUT** on the appropriate `/api/26/<object-type>/<object-id>/translations` endpoint.
+
+As an example, for a data element with identifier *FTRrcoaog83* you could use
+`/api/26/dataElements/FTRrcoaog83/translations` to get and update
 translations. The fields available are *property* with options **NAME**,
-**SHORT\_NAME**, **DESCRIPTION**, the *locale* which supports any valid
+**SHORT_NAME**, **DESCRIPTION**, the *locale* which supports any valid
 locale ID and the the *value* itself.
 
 Example of NAME property for French locale:
@@ -790,7 +788,7 @@ follows the DHIS 2 major version numbering. As an example, the API
 version for DHIS 2.25 is *25*.
 
 You can access a specific API version by including the version number
-after the */api* component, as an example like this:
+after the `/api` component, as an example like this:
 
     /api/26/dataElements
 
@@ -1343,7 +1341,7 @@ example , we will create and update an *constant*. To figure out the
 format, we can use the new *schema* endpoint for getting format
 description. So we will start with getting that info:
 
-    http://<<server>>/api/schemas/constant.json
+    http://<server>/api/schemas/constant.json
 
 From the output, you can see that the required authorities for create
 are F\_CONSTANT\_ADD, and the important properties are: *name* and
@@ -1370,7 +1368,7 @@ the *constants*endpoint with the JSON payload using curl:
 
 ```bash
 curl -d @constant.json "http://server/api/26/constants" -X POST
--H "Content-Type: application/json" -u user:password
+  -H "Content-Type: application/json" -u user:password
 ```
 
 A specific example of posting the constant to the demo
@@ -1378,16 +1376,21 @@ A specific example of posting the constant to the demo
 
 ```bash
 curl -d @constant.json "https://play.dhis2.org/api/26/constants" -X POST
--H "Content-Type: application/json" -u admin:district
+  -H "Content-Type: application/json" -u admin:district
 ```
 
 If everything went well, you should see an output similar to:
 
 ```json
 {
-  "status":"SUCCESS",
-  "importCount":{"imported":1,"updated":0,"ignored":0,"deleted":0},
-  "type":"Constant"
+  "status": "SUCCESS",
+  "importCount": {
+    "imported": 1,
+    "updated": 0,
+    "ignored": 0,
+    "deleted": 0
+  },
+  "type": "Constant"
 }
 ```
 
@@ -3134,11 +3137,11 @@ likely being uploaded to a cloud-based store somewhere) as seen by the
 Even though the content has not been fully stored yet the file resource
 can now be used, for example as referenced content in a data value (see
 [Working with file data values](#datavalue_file)). If we need to check
-the updated *storageStatus* or otherwise retrieve the meta-data of the
+the updated *storageStatus* or otherwise retrieve the metadata of the
 file, the `fileResources` endpoint can be queried.
 
 ```bash
-curl -v https://server/api/26/fileResources/xm4JwRwke0i -H "Accept: application/json"
+curl -v "https://server/api/26/fileResources/xm4JwRwke0i" -H "Accept: application/json"
 ```
 
 This request will return the `FileResource` object as seen in the
@@ -3206,8 +3209,8 @@ This section explains the Metadata Versioning APIs available starting
 
 Request:
 
-```bash
-curl -u admin:district "https://play.dhis2.org/dev/api/metadata/version"
+```
+/api/metadata/version
 ```
 
 Response:
@@ -3229,8 +3232,8 @@ Response:
 
 Request:
 
-```bash
-curl -u admin:district "https://play.dhis2.org/dev/api/metadata/version?versionName=Version_2"
+```
+/api/metadata/version?versionName=Version_2
 ```
 
 Response:
@@ -3282,8 +3285,8 @@ Response:
 
 Request:
 
-```bash
-curl -u admin:district "https://play.dhis2.org/dev/api/metadata/version/history"
+```
+/api/metadata/version/history
 ```
 
 Response:
@@ -3316,8 +3319,8 @@ Response:
 
 Request:
 
-```bash
-curl -u admin:district "https://play.dhis2.org/dev/api/metadata/version/history?baseline=Version_2"
+```
+/api/metadata/version/history?baseline=Version_2
 ```
 
 Response:
@@ -3617,9 +3620,24 @@ JSON is supported in this format:
   "orgUnit": "orgUnitID",
   "attributeOptionCombo", "aocID",
   "dataValues": [
-    { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "1", "comment": "comment1" },
-    { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "2", "comment": "comment2" },
-    { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "3", "comment": "comment3" }
+    {
+      "dataElement": "dataElementID", 
+      "categoryOptionCombo": "cocID", 
+      "value": "1", 
+      "comment": "comment1"
+    },
+    {
+      "dataElement": "dataElementID", 
+      "categoryOptionCombo": "cocID", 
+      "value": "2", 
+      "comment": "comment2"
+    },
+    {
+      "dataElement": "dataElementID", 
+      "categoryOptionCombo": "cocID", 
+      "value": "3", 
+      "comment": "comment3"
+    }
   ]
 }
 ```
@@ -3684,9 +3702,18 @@ In JSON format:
   "period": "201401",
   "orgUnit": "DiszpKrYNg8",
   "dataValues": [
-    { "dataElement": "f7n9E0hX8qk", "value": "1" },
-    { "dataElement": "Ix2HsbDMLea", "value": "2" },
-    { "dataElement": "eY5ehpbEsB7", "value": "3" }
+    {
+      "dataElement": "f7n9E0hX8qk", 
+      "value": "1"
+    },
+    {
+      "dataElement": "Ix2HsbDMLea", 
+      "value": "2"
+    },
+    {
+      "dataElement": "eY5ehpbEsB7", 
+      "value": "3"
+    }
   ]
 }
 ```
@@ -3758,22 +3785,26 @@ In JSON format:
 
 ```json
 {
-  "dataValues": [{
+  "dataValues": [
+    {
       "dataElement": "f7n9E0hX8qk", 
       "period": "201401", 
       "orgUnit": "DiszpKrYNg8", 
       "value": "12"
-    }, {
+    }, 
+    {
       "dataElement": "f7n9E0hX8qk", 
       "period": "201401", 
       "orgUnit": "FNnj3jKGS7i", 
       "value": "14"
-    }, {
+    }, 
+    {
       "dataElement": "f7n9E0hX8qk", 
       "period": "201402", 
       "orgUnit": "DiszpKrYNg8", 
       "value": "16"
-    }, {
+    }, 
+    {
       "dataElement": "f7n9E0hX8qk", 
       "period": "201402", 
       "orgUnit": "Jkhdsf8sdf4", 
@@ -4331,19 +4362,22 @@ The response will look something like this:
   "completeDate": "2014-02-03",
   "period": "201401",
   "orgUnit": "DiszpKrYNg8",
-  "dataValues": [{
+  "dataValues": [
+    {
       "dataElement": "eY5ehpbEsB7", 
       "categoryOptionCombo": "bRowv6yZOF2", 
       "period": "201401",
       "orgUnit": "DiszpKrYNg8", 
       "value": "10003"
-    }, {
+    }, 
+    {
       "dataElement": "Ix2HsbDMLea", 
       "categoryOptionCombo": "bRowv6yZOF2", 
       "period": "201401",
       "orgUnit": "DiszpKrYNg8", 
       "value": "10002"
-    }, {
+    }, 
+    {
       "dataElement": "f7n9E0hX8qk", 
       "categoryOptionCombo": "bRowv6yZOF2", 
       "period": "201401",
@@ -6096,8 +6130,7 @@ approval workflow, period, organisation unit and attribute option combo.
 <!--DHIS2-SECTION-ID:webapi_data_approval_get_status-->
 
 To get approval information for a data set you can issue a GET request
-similar to
-    this:
+similar to this:
 
     GET http://server.com/api/dataApprovals?wf=rIUL3hYOjJc&pe=201801&ou=YuQRtpLP10I
 
@@ -6427,10 +6460,12 @@ The approval payload is supported as JSON and looks like this:
   "pe": [
     "201601", "201602"
   ],
-  "approvals": [{
+  "approvals": [
+    {
       "ou": "cDw53Ej8rju",
       "aoc": "ranftQIH5M9"
-    }, {
+    }, 
+    {
       "ou": "cDw53Ej8rju",
       "aoc": "fC3z1lcAW5x"
     }
@@ -7138,24 +7173,24 @@ organisation units. The request should look like this:
 
 ```json
 {
-    "users": [
-        {
-        "id": "OYLGMiazHtW"
-        },
-        {
-        "id": "N3PZBUlN8vq"
-        }
-    ],
-    "userGroups": [
-        {
-        "id": "DiszpKrYNg8"
-        }
-    ],
-    "organisationUnits": [
-        {
-        "id": "DiszpKrYNg8"
-        }
-    ]
+  "users": [
+    {
+      "id": "OYLGMiazHtW"
+    },
+    {
+      "id": "N3PZBUlN8vq"
+    }
+  ],
+  "userGroups": [
+    {
+      "id": "DiszpKrYNg8"
+    }
+  ],
+  "organisationUnits": [
+    {
+      "id": "DiszpKrYNg8"
+    }
+  ]
 }
 
 ```
@@ -7230,6 +7265,7 @@ to link the uploaded files to the message being created.
     {
       "fTpI4GOmujz",
       "h2ZsOxMFMfq"
+    }
   ]
 }
 ```
@@ -7342,58 +7378,68 @@ fields omitted for brevity):
 
 ```json
 {
-  "interpretations": [{
-    "id": "XSHiFlHAhhh",
-    "created": "2013-05-30T10:24:06.181+0000",
-    "text": "Data looks suspicious, could be a data entry mistake.",
-    "type": "REPORT_TABLE",
-    "likes": 2,
-    "user": {
-      "id": "uk7diLujYif"
-    },
-    "reportTable": {
-      "id": "LcSxnfeBxyi"
-    }
-  }, {
-    "id": "kr4AnZmYL43",
-    "created": "2013-05-29T14:47:13.081+0000",
-    "text": "Delivery rates in Bo looks high.",
-    "type": "CHART",
-    "likes": 3,
-    "user": {
-      "id": "uk7diLujYif"
-    },
-    "chart": {
-      "id": "HDEDqV3yv3H"
-    },
-    "mentions": [{
-      "created": "2018-06-25T10:25:54.498",
-      "username": "boateng"
-    }],
-    "comments": [{
-      "id": "iB4Etq8yTE6",
-      "text": "This report indicates a surge.",
+  "interpretations": [
+    {
+      "id": "XSHiFlHAhhh",
+      "created": "2013-05-30T10:24:06.181+0000",
+      "text": "Data looks suspicious, could be a data entry mistake.",
+      "type": "REPORT_TABLE",
+      "likes": 2,
       "user": {
-        "id": "B4XIfwOcGyI"
-      }
-    }, {
-      "id": "iB4Etq8yTE6",
-      "text": "Likely caused by heavy rainfall.",
-      "user": {
-        "id": "B4XIfwOcGyI"
-      }
-    }, {
-      "id": "SIjkdENan8p",
-      "text": "Have a look at this @boateng.",
-      "user": {
-        "id": "xE7jOejl9FI"
+        "id": "uk7diLujYif"
       },
-      "mentions": [{
-        "created": "2018-06-25T10:03:52.316",
-        "username": "boateng"
-      }]
-    }]
-  }]
+      "reportTable": {
+        "id": "LcSxnfeBxyi"
+      }
+    }, {
+      "id": "kr4AnZmYL43",
+      "created": "2013-05-29T14:47:13.081+0000",
+      "text": "Delivery rates in Bo looks high.",
+      "type": "CHART",
+      "likes": 3,
+      "user": {
+        "id": "uk7diLujYif"
+      },
+      "chart": {
+        "id": "HDEDqV3yv3H"
+      },
+      "mentions": [
+        {
+          "created": "2018-06-25T10:25:54.498",
+          "username": "boateng"
+        }
+      ],
+      "comments": [
+        {
+          "id": "iB4Etq8yTE6",
+          "text": "This report indicates a surge.",
+          "user": {
+            "id": "B4XIfwOcGyI"
+          }
+        },
+        {
+          "id": "iB4Etq8yTE6",
+          "text": "Likely caused by heavy rainfall.",
+          "user": {
+            "id": "B4XIfwOcGyI"
+          }
+        }, 
+        {
+          "id": "SIjkdENan8p",
+          "text": "Have a look at this @boateng.",
+          "user": {
+            "id": "xE7jOejl9FI"
+          },
+          "mentions": [
+            {
+              "created": "2018-06-25T10:03:52.316",
+              "username": "boateng"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -7626,11 +7672,14 @@ have liked the interpretation.
   "text": "Data looks suspicious, could be a data entry mistake.",
   "type": "REPORT_TABLE",
   "likes": 2,
-  "likedBy": [{
-    "id": "k7Hg12fJ2f1"
-  }, {
-    "id": "gYhf26fFkjFS"
-  }]
+  "likedBy": [
+    {
+      "id": "k7Hg12fJ2f1"
+    },
+    {
+      "id": "gYhf26fFkjFS"
+    }
+  ]
 }
 ```
 
@@ -7813,63 +7862,65 @@ We start by having a look at what the complete html file could look
 like. This setup puts two tables in our web page. The first one is
 referring to an existing table. The second is configured inline.
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
-      <script src="https://dhis2-cdn.org/v227/plugin/reporttable.js"></script>
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
+  <script src="https://dhis2-cdn.org/v227/plugin/reporttable.js"></script>
 
-      <script>
-        reportTablePlugin.url = "https://play.dhis2.org/demo";
-        reportTablePlugin.username = "admin";
-        reportTablePlugin.password = "district";
-        reportTablePlugin.loadingIndicator = true;
+  <script>
+	reportTablePlugin.url = "https://play.dhis2.org/demo";
+	reportTablePlugin.username = "admin";
+	reportTablePlugin.password = "district";
+	reportTablePlugin.loadingIndicator = true;
 
-        // Referring to an existing table through the id parameter, render to "report1" div
+	// Referring to an existing table through the id parameter, render to "report1" div
 
-        var r1 = { el: "report1", id: "R0DVGvXDUNP" };
+	var r1 = { el: "report1", id: "R0DVGvXDUNP" };
 
-        // Table configuration, render to "report2" div
+	// Table configuration, render to "report2" div
 
-        var r2 = {
-          el: "report2",
-          columns: [
-            {dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
-          ],
-          rows: [
-            {dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
-          ],
-          filters: [
-            {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
-          ],
+	var r2 = {
+	  el: "report2",
+	  columns: [
+		{dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
+	  ],
+	  rows: [
+		{dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
+	  ],
+	  filters: [
+		{dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
+	  ],
 
-          // All following properties are optional
-          title: "My custom title",
-          showColTotals: false,
-          showRowTotals: false,
-          showColSubTotals: false,
-          showRowSubTotals: false,
-          showDimensionLabels: false,
-          hideEmptyRows: true,
-          skipRounding: true,
-          aggregationType: "AVERAGE",
-          showHierarchy: true,
-          completedOnly: true,
-          displayDensity: "COMFORTABLE",
-          fontSize: "SMALL",
-          digitGroupSeparator: "COMMA",
-          legendSet: {id: "fqs276KXCXi"}
-        };
+	  // All following properties are optional
+	  title: "My custom title",
+	  showColTotals: false,
+	  showRowTotals: false,
+	  showColSubTotals: false,
+	  showRowSubTotals: false,
+	  showDimensionLabels: false,
+	  hideEmptyRows: true,
+	  skipRounding: true,
+	  aggregationType: "AVERAGE",
+	  showHierarchy: true,
+	  completedOnly: true,
+	  displayDensity: "COMFORTABLE",
+	  fontSize: "SMALL",
+	  digitGroupSeparator: "COMMA",
+	  legendSet: {id: "fqs276KXCXi"}
+	};
 
-        reportTablePlugin.load([r1, r2]);
-      </script>
-    </head>
+	reportTablePlugin.load([r1, r2]);
+  </script>
+</head>
 
-    <body>
-      <div id="report1"></div>
-      <div id="report2"></div>
-    </body>
-    </html>
+<body>
+  <div id="report1"></div>
+  <div id="report2"></div>
+</body>
+</html>
+```
 
 Two files are included in the header section of the HTML document. The
 first file is the jQuery JavaScript library (we use the DHIS2 content
@@ -7897,14 +7948,16 @@ To sum up, if you want to have e.g. "ANC 1 Coverage", "ANC 2 Coverage"
 and "ANC 3 Coverage" on the columns in your table you can make the
 following *columns* config:
 
-    columns: [{
-      dimension: "dx",
-      items: [
-        {id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
-        {id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
-        {id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
-      ]
-    }]
+```json
+columns: [{
+  dimension: "dx",
+  items: [
+	{id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
+	{id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
+	{id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
+  ]
+}]
+```
 
 <table>
 <caption>Pivot table plug-in configuration</caption>
@@ -8134,68 +8187,70 @@ We start by having a look at what the complete html file could look
 like. This setup puts two charts in our web page. The first one is
 referring to an existing chart. The second is configured inline.
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
-      <script src="https://dhis2-cdn.org/v227/plugin/chart.js"></script>
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
+  <script src="https://dhis2-cdn.org/v227/plugin/chart.js"></script>
 
-      <script>
-        chartPlugin.url = "https://play.dhis2.org/demo";
-        chartPlugin.username = "admin";
-        chartPlugin.password = "district";
-        chartPlugin.loadingIndicator = true;
+  <script>
+	chartPlugin.url = "https://play.dhis2.org/demo";
+	chartPlugin.username = "admin";
+	chartPlugin.password = "district";
+	chartPlugin.loadingIndicator = true;
 
-        // Referring to an existing chart through the id parameter, render to "report1" div
+	// Referring to an existing chart through the id parameter, render to "report1" div
 
-        var r1 = { el: "report1", id: "R0DVGvXDUNP" };
+	var r1 = { el: "report1", id: "R0DVGvXDUNP" };
 
-        // Chart configuration, render to "report2" div
+	// Chart configuration, render to "report2" div
 
-        var r2 = {
-          el: "report2",
-          columns: [
-            {dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
-          ],
-          rows: [
-            {dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
-          ],
-          filters: [
-            {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
-          ],
+	var r2 = {
+	  el: "report2",
+	  columns: [
+		{dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
+	  ],
+	  rows: [
+		{dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
+	  ],
+	  filters: [
+		{dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
+	  ],
 
-          // All following properties are optional
-          title: "Custom title",
-          type: "line",
-          showValues: false,
-          hideEmptyRows: true,
-          regressionType: "LINEAR",
-          completedOnly: true,
-          targetLineValue: 100,
-          targetLineTitle: "My target line title",
-          baseLineValue: 20,
-          baseLineTitle: "My base line title",
-          aggregationType: "AVERAGE",
-          rangeAxisMaxValue: 100,
-          rangeAxisMinValue: 20,
-          rangeAxisSteps: 5,
-          rangeAxisDecimals: 2,
-          rangeAxisTitle: "My range axis title",
-          domainAxisTitle: "My domain axis title",
-          hideLegend: true
-        };
+	  // All following properties are optional
+	  title: "Custom title",
+	  type: "line",
+	  showValues: false,
+	  hideEmptyRows: true,
+	  regressionType: "LINEAR",
+	  completedOnly: true,
+	  targetLineValue: 100,
+	  targetLineTitle: "My target line title",
+	  baseLineValue: 20,
+	  baseLineTitle: "My base line title",
+	  aggregationType: "AVERAGE",
+	  rangeAxisMaxValue: 100,
+	  rangeAxisMinValue: 20,
+	  rangeAxisSteps: 5,
+	  rangeAxisDecimals: 2,
+	  rangeAxisTitle: "My range axis title",
+	  domainAxisTitle: "My domain axis title",
+	  hideLegend: true
+	};
 
-        // Render the charts
+	// Render the charts
 
-        chartPlugin.load(r1, r2);
-      </script>
-    </head>
+	chartPlugin.load(r1, r2);
+  </script>
+</head>
 
-    <body>
-      <div id="report1"></div>
-      <div id="report2"></div>
-    </body>
-    </html>
+<body>
+  <div id="report1"></div>
+  <div id="report2"></div>
+</body>
+</html>
+```
 
 Two files are included in the header section of the HTML document. The
 first file is the jQuery JavaScript library (we use the DHIS2 content
@@ -8223,14 +8278,16 @@ To sum up, if you want to have e.g. "ANC 1 Coverage", "ANC 2 Coverage"
 and "ANC 3 Coverage" on the columns in your chart you can make the
 following *columns* config:
 
-    columns: [{
-      dimension: "dx",
-      items: [
-        {id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
-        {id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
-        {id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
-      ]
-    }]
+```json
+columns: [{
+  dimension: "dx",
+  items: [
+	{id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
+	{id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
+	{id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
+  ]
+}]
+```
 
 <table>
 <caption>Chart plug-in configuration</caption>
@@ -8487,56 +8544,58 @@ We start by having a look at what the complete html file could look
 like. This setup puts two maps in our web page. The first one is
 referring to an existing map. The second is configured inline.
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v215/ext/resources/css/ext-plugin-gray.css" />
-      <script src="http://dhis2-cdn.org/v215/ext/ext-all.js"></script>
-      <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
-      <script src="http://dhis2-cdn.org/v215/openlayers/OpenLayers.js"></script>
-      <script src="http://dhis2-cdn.org/v215/plugin/map.js"></script>
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v215/ext/resources/css/ext-plugin-gray.css" />
+  <script src="http://dhis2-cdn.org/v215/ext/ext-all.js"></script>
+  <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+  <script src="http://dhis2-cdn.org/v215/openlayers/OpenLayers.js"></script>
+  <script src="http://dhis2-cdn.org/v215/plugin/map.js"></script>
 
-      <script>
-        var base = "https://play.dhis2.org/demo";
+  <script>
+	var base = "https://play.dhis2.org/demo";
 
-        // Login - if OK, call the setLinks function
+	// Login - if OK, call the setLinks function
 
-        Ext.onReady( function() {
-          Ext.Ajax.request({
-            url: base + "dhis-web-commons-security/login.action",
-            method: "POST",
-            params: { j_username: "portal", j_password: "Portal123" },
-            success: setLinks
-          });
-        });
+	Ext.onReady( function() {
+	  Ext.Ajax.request({
+		url: base + "dhis-web-commons-security/login.action",
+		method: "POST",
+		params: { j_username: "portal", j_password: "Portal123" },
+		success: setLinks
+	  });
+	});
 
-        function setLinks() {
-          DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
+	function setLinks() {
+	  DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
 
-          DHIS.getMap({
-            url: base,
-            el: "map2",
-            mapViews: [{
-              columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
-              rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units,
-              filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
-              // All following options are optional
-              classes: 7,
-              colorLow: "02079c",
-              colorHigh: "e5ecff",
-              opacity: 0.9,
-              legendSet: {id: "fqs276KXCXi"}
-            }]
-          });
-        }
-      </script>
-    </head>
+	  DHIS.getMap({
+		url: base,
+		el: "map2",
+		mapViews: [{
+		  columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
+		  rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units,
+		  filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
+		  // All following options are optional
+		  classes: 7,
+		  colorLow: "02079c",
+		  colorHigh: "e5ecff",
+		  opacity: 0.9,
+		  legendSet: {id: "fqs276KXCXi"}
+		}]
+	  });
+	}
+  </script>
+</head>
 
-    <body>
-      <div id="map1"></div>
-      <div id="map2"></div>
-    </body>
-    </html>
+<body>
+  <div id="map1"></div>
+  <div id="map2"></div>
+</body>
+</html>
+```
 
 Four files and Google Maps are included in the header section of the
 HTML document. The first two files are the Ext JS JavaScript library (we
@@ -8587,10 +8646,12 @@ the web api). The data dimension also has an array property called
 To sum up, if you want to have a layer with e.g. "ANC 1 Coverage" in
 your map you can make the following *columns* config:
 
-    columns: [{
-      dimension: "in", // could be "in", "de", "ds", "dc", "pe", "ou" or any dimension id
-      items: [{id: "Uvn6LCg7dVU"}], // the id of ANC 1 Coverage
-    }]
+```json
+columns: [{
+  dimension: "in", // could be "in", "de", "ds", "dc", "pe", "ou" or any dimension id
+  items: [{id: "Uvn6LCg7dVU"}], // the id of ANC 1 Coverage
+}]
+```
 
 <table>
 <caption>GIS map plug-in configuration</caption>
