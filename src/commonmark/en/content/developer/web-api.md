@@ -4359,16 +4359,18 @@ Note that data values are softly deleted, i.e. a deleted value has the
 This is useful when integrating multiple systems in order to communicate
 deletions. You can include deleted values in the response like this:
 
-    /api/26/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8&includeDeleted=true
+    /api/26/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401
+      &orgUnit=DiszpKrYNg8&includeDeleted=true
 
 You can also request data in CSV format like this:
 
-    https://play.dhis2.org/demo/api/26/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8
+    /api/26/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401
+      &orgUnit=DiszpKrYNg8
 
 The response will look like this:
 
 ```csv
-dataelement,period,orgunit,catoptcombo,attroptcombo,value,storedby,lastupdated,comment,followup
+dataelement,period,orgunit,catoptcombo,attroptcombo,value,storedby,lastupdated,comment,flwup
 f7n9E0hX8qk,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,12,system,2015-04-05T19:58:12.000,comment1,false
 Ix2HsbDMLea,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,14,system,2015-04-05T19:58:12.000,comment2,false
 eY5ehpbEsB7,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,16,system,2015-04-05T19:58:12.000,comment3,false
@@ -4395,7 +4397,7 @@ The following constraints apply to the data value sets resource:
 
 This example will show how to send individual data values to be saved in
 a request. This can be achieved by sending a *POST* request to the
-*dataValues* resource:
+`dataValues` resource:
 
     /api/26/dataValues
 
