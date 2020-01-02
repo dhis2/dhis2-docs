@@ -15052,9 +15052,9 @@ To delete data set notification template you can issue a DELETE request:
 
     DELETE /api/26/dataSetNotficationTemplates/<uid>
 
-JSON payload sample is given below
+JSON payload sample is given below:
 
-```
+```json
 {
     "name": "dataSetNotificationTemplate1",
     "notificationTrigger": "COMPLETION",
@@ -15170,13 +15170,15 @@ Example of requests to retrieve the file stored for `logo_front`:
 * Adding "Accept: text/html" to the HTTP header.*__ In this case, the endpoint will return a default image if nothing is defined. Will return an image stream when a custom or default image is found.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -H "Accept: text/html" -L -X GET -u admin:district -v
+curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" 
+  -H "Accept: text/html" -L -X GET -u admin:district -v
 ```
 
 * Adding "Accept: application/json" to the HTTP header.*__ With this parameter set, the endpoint will never return a default image if the custom logo is not found. Instead, an error message will be returned. When the custom image is found this endpoint will return a JSON response containing the path/URL to the respective image.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -H "Accept: application/json" -L -X GET -u admin:district -v
+curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" 
+  -H "Accept: application/json" -L -X GET -u admin:district -v
 ```
 
 Success and error messages will look like this:
