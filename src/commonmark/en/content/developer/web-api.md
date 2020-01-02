@@ -5821,12 +5821,12 @@ basic format of this payload, given as *XML* in this example, is like
 so:
 
 ```xml
-    <completeDataSetRegistrations xmlns="http://dhis2.org/schema/dxf/2.0">
-      <completeDataSetRegistration period="200810" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
-        attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
-      <completeDataSetRegistration period="200811" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
-        attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
-    </completeDataSetRegistrations>
+<completeDataSetRegistrations xmlns="http://dhis2.org/schema/dxf/2.0">
+  <completeDataSetRegistration period="200810" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
+	attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
+  <completeDataSetRegistration period="200811" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
+	attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
+</completeDataSetRegistrations>
 ```
 
 The *storedBy* attribute is optional (as it is a nullable property on
