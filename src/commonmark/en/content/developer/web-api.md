@@ -9527,7 +9527,7 @@ like this:
       &dimension=ou:O6uvpzGd5pu&tableLayout=true&columns=dx;ou&rows=pe
 
 The *order* parameter can be used for analytics resource to generate
-ordered data. The data will be ordered in ascending(or descending) order
+ordered data. The data will be ordered in ascending (or descending) order
 of values. An example request for ordering the values in descending
 order is:
 
@@ -9611,16 +9611,13 @@ identifier*, and each dimension can have a set of *dimension items*:
 
 It is not necessary to be aware of which objects are used for the
 various dynamic dimensions when designing analytics queries. You can get
-a complete list of dynamic dimensions by visiting this URL in the Web
-API:
+a complete list of dynamic dimensions by visiting this URL in the Web API:
 
     /api/26/dimensions
 
-The base URL to the analytics resource is *api/analytics*. To request
+The base URL to the analytics resource is `api/analytics`. To request
 specific dimensions and dimension items you can use a query string on
-the following format, where *dim-id* and *dim-item* should be
-substituted with real
-    values:
+the following format, where `dim-id` and `dim-item` should be substituted with real values:
 
     /api/26/analytics?dimension=dim-id:dim-item;dim-item&dimension=dim-id:dim-item;dim-item
 
@@ -9640,36 +9637,33 @@ string, for instance like this:
       &dimension=co&dimension=pe:201601&dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 When selecting data elements you can also select all data elements in a
-group as items by using the DE\_GROUP-\<id\> syntax:
+group as items by using the DE_GROUP-<id> syntax:
 
     /api/26/analytics?dimension=dx:DE_GROUP-h9cuJOkOwY2
       &dimension=pe:201601&dimension=ou:O6uvpzGd5pu
 
 When selecting data set reporting rates, the syntax contains of a data
-set identifier followed by a reporting rate
-    metric:
+set identifier followed by a reporting rate metric:
 
     /api/26/analytics?dimension=dx:BfMAe6Itzgt.REPORTING_RATE;BfMAe6Itzgt.ACTUAL_REPORTS
       &dimension=pe:201601&dimension=ou:O6uvpzGd5pu
 
 To query for program data elements (of tracker domain type) you can get
 those by specifying the program for each data element using the
-\<program-id\>.\<dataelement-id\>
-    syntax:
+<program-id>.<dataelement-id> syntax:
 
     /api/26/analytics.json?dimension=dx:eBAyeGv0exc.qrur9Dvnyt5;eBAyeGv0exc.GieVkTxp4HH
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
 To query for program attributes (tracked entity attributes) you can get
 those by specifying the program for each attribute using the
-\<program.id\>.\<attribute-id\>
-    syntax:
+<program.id>.<attribute-id> syntax:
 
     /api/26/analytics.json?dimension=dx:IpHINAT79UW.a3kGcGDCuk6;IpHINAT79UW.UXz7xuGCEhU
       &dimension=pe:LAST_4_QUARTERS&dimension=ou:ImspTQPwCqd
 
 To query for organisation unit group sets and data elements you can use
-the following URL - notice how the group set identifier is used as
+the following URL. Notice how the group set identifier is used as
 dimension identifier and the groups as dimension items:
 
     /api/26/analytics?dimension=Bpx0589u8y0:oRVt7g429ZO;MAs88nJc9nL
@@ -9677,8 +9671,7 @@ dimension identifier and the groups as dimension items:
 
 To query for data elements and categories you can use this URL. Use the
 category identifier as dimension identifier and the category options as
-dimension
-    items:
+dimension items:
 
     /api/26/analytics?dimension=dx:s46m5MS0hxu;fClA2Erf6IO&dimension=pe:2016
       &dimension=YNZyaJHiHYq:btOyqprQ9e8;GEqzEKCHoGA&filter=ou:ImspTQPwCqd
@@ -9708,7 +9701,7 @@ specified like this:
 
 When selecting organisation units you can also select all organisation
 units in an organisation unit group to be included as dimension items
-using the OU\_GROUP-\<id\> syntax. The organisation units in the groups
+using the OU_GROUP-<id> syntax. The organisation units in the groups
 can optionally be constrained by any number of boundary organisation
 units. Both the level and the group items can be repeated any number of
 times:
@@ -9744,14 +9737,14 @@ below.
   - For the organisation unit dimension you can specify the items to be
     the organisation unit or sub-units of the organisation unit
     associated with the user currently authenticated for the request
-    using they keys USER\_ORGUNIT or USER\_ORGUNIT\_CHILDREN as items,
+    using they keys `USER_ORGUNIT` or `USER_ORGUNIT_CHILDREN` as items,
     respectively. You can also specify organisation unit identifiers
     directly, or a combination of both.
 
   - For the organisation unit dimension you can specify the organisation
     hierarchy level and the boundary unit to use for the request on the
-    format LEVEL-\<level\>-\<boundary-id\>; as an example
-    LEVEL-3-ImspTQPwCqd implies all organisation units below the given
+    format `LEVEL-<level>-<boundary-id>`; as an example
+    `LEVEL-3-ImspTQPwCqd` implies all organisation units below the given
     boundary unit at level 3 in the hierarchy.
 
   - For the organisation unit dimension the dimension items are the
@@ -9767,7 +9760,7 @@ below.
 
 <!--DHIS2-SECTION-ID:webapi_analytics_dx_dimension-->
 
-The *dx* dimension is a special dimension which can contain all of the
+The `dx` dimension is a special dimension which can contain all of the
 following data types.
 
 <table>
@@ -9844,7 +9837,7 @@ following data types.
 </tbody>
 </table>
 
-Items from all of the various *dx* types can be combined in an analytics
+Items from all of the various `dx` types can be combined in an analytics
 request. An example looks like this:
 
     /api/26/analytics.json
@@ -9881,7 +9874,7 @@ combination values:
 The analytics response containing aggregate data can be returned in
 various representation formats. As usual, you can indicate interest in a
 specific format by appending a file extension to the URL, through the
-*Accept* HTTP header or through the *format* query parameter. The
+`Accept` HTTP header or through the `format` query parameter. The
 default format is JSON. The available formats and content-types are
 listed below.
 
@@ -9909,8 +9902,7 @@ The analytics responses must be retrieved using the HTTP *GET* method.
 This allows for direct linking to analytics responses from Web pages as
 well as other HTTP-enabled clients. To do functional testing we can use
 the cURL library. By executing this command against the demo database
-you will get an analytics response in JSON
-    format:
+you will get an analytics response in JSON format:
 
     curl "play.dhis2.org/demo/api/26/analytics.json?dimension=dx:eTDtyyaSA7f;FbKK4ofIv5R
       &dimension=pe:2016Q1;2016Q2&filter=ou:ImspTQPwCqd" -u admin:district
@@ -10210,8 +10202,7 @@ organisation units are included.
 
 To retrieve a response with specific data elements, specific periods,
 specific organisation units and all data for two custom dimensions you
-can issue a request like
-    this:
+can issue a request like this:
 
     /api/analytics/rawData.json?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU;Jtf34kNZhzP
       &dimension=J5jldMd8OHv&dimension=Bpx0589u8y0
@@ -10787,16 +10778,14 @@ supported.
   - xls (application/vnd.ms-excel)
 
 As an example, to get a response in Excel format you can use a file
-extension in the request URL like
-    this:
+extension in the request URL like this:
 
     /api/26/analytics/events/query/eBAyeGv0exc.xls?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=oZg33kd9taw&dimension=qrur9Dvnyt5
 
 You can set the hierarchyMeta query parameter to true in order to
 include names of all ancestor organisation units in the meta-section of
-the
-    response:
+the response:
 
     /api/26/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:YuQRtpLP10I&dimension=qrur9Dvnyt5:EQ:50&hierarchyMeta=true
@@ -10971,7 +10960,7 @@ query (not a filter). Such a request can look like this:
 
 <!--DHIS2-SECTION-ID:webapi_event_aggregate_analytics-->
 
-The *analytics/events/aggregate* resource lets you retrieve *aggregated
+The `/analytics/events/aggregate` resource lets you retrieve *aggregated
 numbers* of events captured in DHIS2. This resource lets you retrieve
 aggregate data based on a program and optionally a program stage, and
 lets you filter on any event dimension.
@@ -10982,8 +10971,7 @@ The events aggregate resource does not return the event information
 itself, rather the aggregate numbers of events matching the request
 query. Event dimensions include data elements, person attributes, person
 identifiers, periods and organisation units. Aggregate event queries
-should be on the format described
-    below.
+should be on the format described below.
 
     /api/26/analytics/events/aggregate/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
       &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
@@ -10992,16 +10980,14 @@ For example, to retrieve aggregate numbers for events from the
 "Inpatient morbidity and mortality" program between January and October
 2016, where the "Gender" and "Age" data elements are included, the "Age"
 dimension item is filtered on "18" and the "Gender" item is filtered on
-"Female", you can use the following
-    query:
+"Female", you can use the following query:
 
     /api/26/analytics/events/aggregate/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=oZg33kd9taw:EQ:Female&dimension=qrur9Dvnyt5:GT:50
 
 To retrieve data for fixed and relative periods instead of start and end
 date, in this case May 2016 and last 12 months, and the organisation
-unit associated with the current user, you can use the following
-    query:
+unit associated with the current user, you can use the following query:
 
     /api/26/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:201605;LAST_12_MONTHS
       &dimension=ou:USER_ORGUNIT;fdc6uOvgo7ji&dimension=oZg33kd9taw
@@ -11015,15 +11001,13 @@ filter the aggregate numbers in it, you can use the following syntax:
 
 To specify the "Bo" organisation unit and the period "2016" as filters,
 and the "Mode of discharge" and Gender" as dimensions, where "Gender" is
-filtered on the "Male" item, you can use a query like
-    this:
+filtered on the "Male" item, you can use a query like this:
 
     /api/26/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
       &dimension=fWIAEtYVEGk&dimension=oZg33kd9taw:EQ:Male
 
-To create a "Top 3 report" for "Mode of discharge" you can use the limit
-and sortOrder query parameters similar to
-    this:
+To create a "top 3 report" for "Mode of discharge" you can use the limit
+and sortOrder query parameters similar to this:
 
     /api/26/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
       &dimension=fWIAEtYVEGk&limit=3&sortOrder=DESC
@@ -11038,13 +11022,13 @@ events.
       &dimension=pe:LAST_12_MONTHS&dimension=fWIAEtYVEGk&value=qrur9Dvnyt5&aggregationType=AVERAGE
 
 To base event analytics aggregation on a specific data element or attribute
-of value type date or date time you can use the *timeField* parameter:
+of value type date or date time you can use the `timeField` parameter:
 
     /api/29/analytics/events/aggregate/IpHINAT79UW.json?dimension=ou:ImspTQPwCqd
     &dimension=pe:LAST_12_MONTHS&dimension=cejWyOfXge6&stage=A03MvHHogjR&timeField=ENROLLMENT_DATE
 
 To base event analytics aggregation on a specific data element or attribute
-of value type organisation unit you can use the *orgUnitField* parameter:
+of value type organisation unit you can use the `orgUnitField` parameter:
 
     /api/29/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
     &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk&orgUnitField=S33cRBsnXPo
@@ -11169,15 +11153,14 @@ will be returned.
 <!--DHIS2-SECTION-ID:webapi_event_clustering_analytics-->
 
 The *analytics/events/cluster* resource provides clustered geospatial
-event data. A request looks like
-    this:
+event data. A request looks like this:
 
     /api/26/analytics/events/cluster/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:LEVEL-2&clusterSize=100000
       &bbox=-13.2682125,7.3721619,-10.4261178,9.904012&includeClusterPoints=false
 
 The cluster response provides the count of underlying points, the centre
-point and extent of each cluster. If the *includeClusterPoints* query
+point and extent of each cluster. If the `includeClusterPoints` query
 parameter is set to true, a comma-separated string with the identifiers
 of the underlying events is included. A sample response looks like this:
 
@@ -14271,7 +14254,7 @@ Returns the set of authorities granted to the current user:
     /api/me/authorization
 
 Returns true or false, indicating whether the current user has been
-granted the given \<auth\> authorization:
+granted the given `<auth>` authorization:
 
     /api/me/authorization/<auth>
 
@@ -15493,7 +15476,7 @@ For updating a tracked entity instance, the payload is the equal to the
 previous section. The difference is that you must use the HTTP **PUT**
 method for the request when sending the payload. You will also need to
 append the person identifier to the *trackedEntityInstances* resource in
-the URL like this, where \<tracked-entity-instance-identifier\> should
+the URL like this, where `<tracked-entity-instance-identifier>` should
 be replaced by the identifier of the tracked entity instance:
 
     /api/trackedEntityInstances/<tracked-entity-instance-id>
@@ -15664,7 +15647,7 @@ when upgrading to 2.29.
 > As of 2.29, all these endpoint will require you to include any
 > variables reported by the *requiredValues* endpoint listed as
 > required. Existing patterns, consisting of only “\#”, will be upgraded
-> to the new TextPattern syntax “RANDOM(\<old-pattern\>)”. The RANDOM
+> to the new TextPattern syntax `RANDOM(<old-pattern>)`. The RANDOM
 > segment of the TextPattern is not a required variable, so this
 > endpoint will work as before for patterns defined before 2.29.
 
@@ -15707,8 +15690,7 @@ If your TextPattern includes required values, you can pass them as
 parameters like the example below:
 
 The expiration time can also be overridden at the time of generation, by
-adding the ?expiration=\<number-of-days\> to the
-    request.
+adding the `?expiration=<number-of-days>` to the request.
 
     GET /api/29/trackedEntityAttributes/Gs1ICEQTPlG/generate?ORG_UNIT_CODE=OSLO
 
@@ -15739,9 +15721,8 @@ If your TextPattern includes required values, you can pass them as
 parameters like the example below:
 
 Similar to the /generate endpoint, this endpoint can also specify the
-expiration time in the same way. By adding the
-?expiration=\<number-of-days\> you can override the default 60
-    days.
+expiration time in the same way. By adding the `?expiration=<number-of-days>` 
+you can override the default 60 days.
 
     GET /api/29/trackedEntityAttributes/Gs1ICEQTPlG/generateAndReserve?numberToReserve=3&ORG_UNIT_CODE=OSLO
 
@@ -15832,7 +15813,7 @@ expired.
 Working with image attributes is a lot like working with file data
 values. The value of an attribute with the image value type is the id of
 the associated file resource. A GET request to the
-*/api/trackedEntityInstances/\<entityId\>/\<attributeId\>/image*
+`/api/trackedEntityInstances/<entityId>/<attributeId>/image`
 endpoint will return the actual image. The optional height and width
 parameters can be used to specify the dimensions of the image.
 
