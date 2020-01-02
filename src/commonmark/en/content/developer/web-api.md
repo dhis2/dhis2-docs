@@ -14648,7 +14648,7 @@ The available system settings are listed below.
 </tr>
 <tr class="odd">
 <td>helpPageLink</td>
-<td>Link to help page. Default: &quot;<a href="http://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html">https://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html</a></td>
+<td>Link to help page.</td>
 </tr>
 <tr class="even">
 <td>keyAcceptanceRequiredForApproval</td>
