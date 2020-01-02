@@ -463,8 +463,8 @@ This section provides an explanation of the identifier scheme concept.
 Identifier schemes are used to map metadata objects to other metadata
 during import, and to render metadata as part of exports. Please note
 that not all schemes works for all web-api calls, and not not all
-schemes can be used for both input and output (this is outlined in the
-sections explaining the various Web APIs).
+schemes can be used for both input and output. This is outlined in the
+sections explaining the various Web APIs.
 
 The full set of identifier scheme object types available are listed
 below, using the name of the property to use in queries:
@@ -673,8 +673,7 @@ JSON/XML payloads are normally pre-filtered for you, which means they
 can not directly be used to import/export translations (as that would
 normally overwrite locales other than current users).
 
-*Example of data element with translation array filtered on user
-locale:*
+Example of data element with translation array filtered on user locale:
 
 ```json
 {
@@ -695,7 +694,7 @@ locale:*
 }
 ```
 
-*Example of data element with translations turned off:*
+Example of data element with translations turned off:
 
 ```json
 {
@@ -751,7 +750,7 @@ translations. The fields available are *property* with options **NAME**,
 **SHORT\_NAME**, **DESCRIPTION**, the *locale* which supports any valid
 locale ID and the the *value* itself.
 
-*Example of NAME property for French locale:*
+Example of NAME property for French locale:
 
 ```json
 {
@@ -777,7 +776,7 @@ to the appropriate endpoint:
 ```
 
 For a an data element with ID *FTRrcoaog83* you can **PUT** this to
-*/api/26/dataElements/FTRrcoaog83/translations*. Make sure to send all
+`/api/26/dataElements/FTRrcoaog83/translations`. Make sure to send all
 translations for the specific object and not just for a single locale
 (if not you will potentially overwrite existing locales for other
 locales).
@@ -1205,8 +1204,7 @@ further customization of the properties on the server side.
 
 This will rename the *id* property to *i* and *name* property to *n*.
 
-Multiple transformers can be used by repeating the transformer
-    syntax:
+Multiple transformers can be used by repeating the transformer syntax:
 
     /api/26/dataElementGroups.json?fields=id,displayName,dataElements~isNotEmpty~rename(haveDataElements)
 
@@ -3378,7 +3376,7 @@ two types of metadata.
 > It's recommended to have ATOMIC type of versions to ensure that all
 > systems (central and local) have the same metadata. Any missing
 > reference is caught in the validation phase itself. Please see the
-> importer details for better understanding.
+> importer details for a full explanation.
 
 ### Create metadata version
 
@@ -3623,8 +3621,9 @@ CSV is supported in this format:
 "dataElementID","period","orgUnitID","cocID","aocID","3","username","2015-04-01","comment3"
 ```
 
-*Note:* Please refer to the date and period section above for time
-formats.
+> **Note**
+>
+> Please refer to the date and period section above for time formats.
 
 From the example we can see that we need to identify the period, the
 data set, the org unit (facility) and the data elements for which to
@@ -3789,8 +3788,7 @@ curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/26/dataValueSets"
 ```
 
 Note that when using CSV format you must use the binary data option to
-preserve the line-breaks in the CSV
-    file:
+preserve the line-breaks in the CSV file:
 
 ```bash
 curl --data-binary @datavalueset.csv "https://play.dhis2.org/demo/24/api/dataValueSets"
@@ -4345,7 +4343,7 @@ The response will look something like this:
 ```
 
 Note that data values are softly deleted, i.e. a deleted value has the
-*deleted* property set to true instead of being permanently deleted.
+`deleted` property set to true instead of being permanently deleted.
 This is useful when integrating multiple systems in order to communicate
 deletions. You can include deleted values in the response like this:
 
@@ -4625,7 +4623,7 @@ flexible and allows us to support all existing period types in DHIS2
 ### ADX period definitions
 
 DHIS2 supports a limited number of periods or durations during import.
-Periods should begin with the date which the duration begins,followed by
+Periods should begin with the date which the duration begins, followed by
 a "/" and then the duration notation as noted in the table. The
 following table details all of the ADX supported period types, along
 with examples.
@@ -6127,20 +6125,21 @@ similar to
 </tbody>
 </table>
 
-(Note: for backwards compatibility, the parameter ds for data set may
-be given instead of wf for workflow in this and other data approval
-requests as described below. If the data set is given, the workflow
-associated with that data set will be used.)
+> **Note**
+>
+> For backwards compatibility, the parameter `ds` for data set may be given instead of `wf` for workflow in this and other data approval requests as described below. If the data set is given, the workflow associated with that data set will be used.
 
 This will give you a response something like this:
 
-    {
-      "mayApprove": false,
-      "mayUnapprove": false,
-      "mayAccept": false,
-      "mayUnaccept": false,
-      "state": "UNAPPROVED_ELSEWHERE"
-    }
+```json
+{
+  "mayApprove": false,
+  "mayUnapprove": false,
+  "mayAccept": false,
+  "mayUnaccept": false,
+  "state": "UNAPPROVED_ELSEWHERE"
+}
+```
 
 The returned parameters are:
 
@@ -6385,22 +6384,22 @@ approved. In particular, both of the following must be true:
 <!--DHIS2-SECTION-ID:webapi_data_approval_bulk_approve_data-->
 
 You can approve a bulk of data records by posting to
-the*api/dataApprovals/approvals* resource.
+the `/api/dataApprovals/approvals` resource.
 
     POST /api/26/dataApprovals/approvals
 
 You can unapprove a bulk of data records by posting to the
-*api/dataApprovals/unapprovals* resource.
+`api/dataApprovals/unapprovals` resource.
 
     POST /api/26/dataApprovals/unapprovals
 
 You can accept a bulk of records by posting to the
-*api/dataAcceptances/acceptances* resource.
+`api/dataAcceptances/acceptances` resource.
 
     POST /api/26/dataAcceptances/acceptances
 
 You can unaccept a bulk of records by posting to the
-*api/dataAcceptances/unacceptances* resource.
+`api/dataAcceptances/unacceptances` resource.
 
     POST /api/26/dataAcceptances/unacceptances
 
@@ -6959,7 +6958,7 @@ curl -d @message.json "https://play.dhis2.org/demo/api/26/messageConversations"
 ```
 
 If all is well we receive a *201 Created* HTTP status code. Also note
-that we receive a *Location*HTTP header which value informs us of the
+that we receive a *Location* HTTP header which value informs us of the
 URL of the newly created message conversation resource - this can be
 used by a consumer to perform further action.
 
@@ -7015,14 +7014,11 @@ due to better text search, but you can supply your own operator.
 
 <!--DHIS2-SECTION-ID:webapi_managing_messages-->
 
-*Note: the Web-API calls discussed in this section were introduced in
-DHIS 2.17*
-
 As users receive and send messages, conversations will start to pile up
 in their inboxes, eventually becoming laborious to track. We will now
 have a look at managing a users message inbox by removing and marking
 conversations through the Web-API. We will do so by performing some
-maintenance in the inbox of the *DHIS Administrator* user.
+maintenance in the inbox of the "DHIS Administrator" user.
 
 First, let's have a look at removing a few messages from the inbox. Be
 sure to note that all removal operations described here only remove the
@@ -7030,12 +7026,12 @@ relation between a user and a message conversation. In practical terms
 this means that we are not deleting the messages themselves (or any
 content for that matter) but are simply removing the message thread from
 the user such that it is not longer listed in the
-*/api/messageConversations* resource.
+`/api/messageConversations` resource.
 
 To remove a message conversation from a users inbox we need to issue a
 *DELETE* request to the resource identified by the id of the message
 conversation and the participating user. For example, to remove the user
-with id *xE7jOejl9FI* from the conversation with id *jMe43trzrdi*:
+with id `xE7jOejl9FI` from the conversation with id `jMe43trzrdi`:
 
 ```bash
     curl "https://play.dhis2.org/demo/api/26/messageConversations/jMe43
@@ -7045,12 +7041,20 @@ If the request was successful the server will reply with a *200 OK*. The
 response body contains an XML or JSON object (according to the accept
 header of the request) containing the id of the removed user.
 
-    { "removed" : ["xE7jOejl9FI"] }
+```json
+{
+  "removed" : ["xE7jOejl9FI"]
+}
+```
 
 On failure the returned object will contain a message payload which
 describes the error.
 
-    { "message" : "No user with uid: dMV6G0tPAEa" }
+```json
+{
+  "message" : "No user with uid: dMV6G0tPAEa"
+}
+```
 
 The observant reader will already have noticed that the object returned
 on success in our example is actually a list of ids (containing a single
@@ -7087,11 +7091,11 @@ track of certain conversations.
 
 Marking messages read or unread follows similar semantics as batch
 removals, and also supports batch operations. To mark messages as read
-we issue a *POST* to the *messageConversations/read* resource with a
+we issue a *POST* to the `messageConversations/read` resource with a
 request body containing one or more message ids. To mark messages as
-unread we issue an identical request to the
-*messageConversations/unread* resource. As is the case for removals, an
-optional *user* request parameter can be given.
+unread we issue an identical request to the `messageConversations/unread` 
+resource. As is the case for removals, an optional *user* request parameter 
+can be given.
 
 Let's mark a couple of messages as read by the current user:
 
@@ -12750,10 +12754,7 @@ this URL:
     /api/26/system/info
 
 JSON and JSONP response formats are supported. The system info response
-currently includes the below properties. Note that if the user who is
-requesting this resource does not have full authority in the system then
-only the first seven properties will be included, as this information is
-security sensitive.
+currently includes the below properties.
 
 ```json
 {
@@ -12783,8 +12784,12 @@ security sensitive.
 }
 ```
 
-To get information about the system context (*contextPath* and
-*userAgent*) only you can do a GET request to the below URL. JSON and
+> **Note**
+>
+> If the user who is requesting this resource does not have full authority in the system then only the first seven properties will be included, as this information is security sensitive.
+
+To get information about the system context (`contextPath` and
+`userAgent`) only you can do a GET request to the below URL. JSON and
 JSONP response formats are supported:
 
     /api/26/system/context
@@ -13291,7 +13296,7 @@ there is no gateway configured.
 message text in JSON format as shown below.
 
 NOTE: Recipients list will be partitioned if its size exceed
-MAX\_ALLOWED\_RECIPIENTS limit which is 200.
+`MAX_ALLOWED_RECIPIENTS` limit which is 200.
 
     /api/26/sms/outbound
 
@@ -13780,7 +13785,7 @@ Program messages can be sent to various recipients:
 
 Below is a sample JSON payload for sending messages using POST requests.
 Note that message resource accepts a wrapper object named
-*programMessages* which can contain any number of program messages.
+`programMessages` which can contain any number of program messages.
 
     POST /api/26/messages
 
@@ -14648,7 +14653,7 @@ The available system settings are listed below.
 </tr>
 <tr class="odd">
 <td>helpPageLink</td>
-<td>Link to help page. Default: &quot;<a href="http://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html">https://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html</a></td>
+<td>Link to help page.</td>
 </tr>
 <tr class="even">
 <td>keyAcceptanceRequiredForApproval</td>
@@ -15052,9 +15057,9 @@ To delete data set notification template you can issue a DELETE request:
 
     DELETE /api/26/dataSetNotficationTemplates/<uid>
 
-JSON payload sample is given below
+JSON payload sample is given below:
 
-```
+```json
 {
     "name": "dataSetNotificationTemplate1",
     "notificationTrigger": "COMPLETION",
@@ -15170,13 +15175,15 @@ Example of requests to retrieve the file stored for `logo_front`:
 * Adding "Accept: text/html" to the HTTP header.*__ In this case, the endpoint will return a default image if nothing is defined. Will return an image stream when a custom or default image is found.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -H "Accept: text/html" -L -X GET -u admin:district -v
+curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" 
+  -H "Accept: text/html" -L -X GET -u admin:district -v
 ```
 
 * Adding "Accept: application/json" to the HTTP header.*__ With this parameter set, the endpoint will never return a default image if the custom logo is not found. Instead, an error message will be returned. When the custom image is found this endpoint will return a JSON response containing the path/URL to the respective image.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" -H "Accept: application/json" -L -X GET -u admin:district -v
+curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" 
+  -H "Accept: application/json" -L -X GET -u admin:district -v
 ```
 
 Success and error messages will look like this:
@@ -15236,7 +15243,9 @@ For the CORS whitelist configuration you can make a POST request with an
 array of URLs to whitelist as payload using "application/json" as
 content-type, for instance:
 
-    ["www.google.com", "www.dhis2.org", "www.who.int"]
+```json
+["www.google.com", "www.dhis2.org", "www.who.int"]
+```
 
     GET POST /api/26/configuration/corsWhitelist
 
@@ -15366,8 +15375,9 @@ More than one type can be
 </tbody>
 </table>
 
-*NOTE:*Fields which are confidential will be provided in the output but
-with no values.
+> **Note**
+>
+> Fields which are confidential will be provided in the output but without values.
 
 ## Internationalization
 
@@ -15419,13 +15429,13 @@ a *svg* query parameter, and an optional query parameter *filename* can
 be used to specify the filename of the response attachment file. Note
 that the file extension should be omitted. For PNG you can send a *POST*
 request to the following URL with Content-type
-*application/x-www-form-urlencoded*, identical to a regular HTML form
+`application/x-www-form-urlencoded`, identical to a regular HTML form
 submission.
 
     api/svg.png
 
 For PDF you can send a *POST* request to the following URL with
-Content-type *application/x-www-form-urlencoded*.
+content-type `application/x-www-form-urlencoded`.
 
     api/svg.pdf
 
@@ -15744,8 +15754,9 @@ the same time enroll into a program and create an event.
 }
 ```
 
-Note: The example above can fail if provided UIDs are not present in the
-system.
+> **Note**
+>
+> The example above can fail if provided UIDs are not present in the system.
 
 You would send this to the server as you would normally when creating or
 updating a new tracked entity instance.
@@ -15770,7 +15781,7 @@ when upgrading to 2.29.
 > **Note**
 >
 > As of 2.29, all these endpoint will require you to include any
-> variables reported by the *requiredValues* endpoint listed as
+> variables reported by the `requiredValues` endpoint listed as
 > required. Existing patterns, consisting of only “\#”, will be upgraded
 > to the new TextPattern syntax `RANDOM(<old-pattern>)`. The RANDOM
 > segment of the TextPattern is not a required variable, so this
@@ -16235,8 +16246,8 @@ representations.
   - xml (application/xml)
 
 The response in JSON/XML is in object format and can look like the
-following (please note that field filtering is supported, so if you want
-a full view, you might want to add fields=\*):
+following. Please note that field filtering is supported, so if you want
+a full view, you might want to add `fields=*` to the query:
 
 ```json
 {
@@ -17195,8 +17206,8 @@ representations.
   - xml (application/xml)
 
 The response in JSON/XML is in object format and can look like the
-following (please note that field filtering is supported, so if you want
-a full view, you might want to add fields=\*):
+following. Please note that field filtering is supported, so if you want
+a full view, you might want to add `fields=*` to the query:
 
 ```json
 {
@@ -17779,9 +17790,9 @@ stage at once.</td>
 </tbody>
 </table>
 
-\*\* **Note:** If the query contains neither *attributeCC* nor
-*attributeCos*, the server returns events for all attribute option
-combos where the user has read access.
+> **Note**
+>
+> If the query contains neither `attributeCC` nor `attributeCos`, the server returns events for all attribute option combos where the user has read access.
 
 ##### Examples
 
@@ -19203,8 +19214,8 @@ curl --data-binary @script.js "localhost/api/26/files/script"
   -H "Content-Type:application/javascript" -u admin:district -v
 ```
 
-Note that we use the --data-binary option to preserve formatting of the
-file content. You can fetch the JavaScript content with a GET-request:
+Note that we use the `--data-binary` option to preserve formatting of the
+file content. You can fetch the JavaScript content with a GET request:
 
     /api/26/files/script
 
