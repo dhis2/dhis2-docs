@@ -20508,11 +20508,11 @@ actual icon.
 ```json
 {
   key: "mosquito_outline",
-  description: "",
+  description: "Mosquito outline",
   keywords: [
     "malaria",
     "mosquito",
-	"dengue"
+    "dengue"
   ],
   href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
 }
