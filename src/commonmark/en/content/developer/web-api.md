@@ -2038,6 +2038,7 @@ Program Stage Section are LISTING as default.
 <tr class="even">
 <td>BOOLEAN</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>-</td>
@@ -2052,26 +2053,32 @@ Program Stage Section are LISTING as default.
 <tr class="odd">
 <td>INTEGER_POSITIVE</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>INTEGER_NEGATIVE</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>INTEGER_ZERO_OR_POSITIVE</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>NUMBER</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>UNIT_INTERVAL</td>
 <td>No</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>PERCENTAGE</td>
 <td>No</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -2127,16 +2134,13 @@ set, which is usually needed when rendering some of the specific types:
 </tbody>
 </table>
 
-*renderingType* can be set when creating or updating the metadata listed
-in the first table. An example payload for the rendering type for program stage section looks like this:
+The *renderingType* can be set when creating or updating the metadata listed in the first table. An example payload for the rendering type for program stage section looks like this:
 
 ```json
 {
-  ...
   "renderingType": {
 	"type": "MATRIX"
   }
-  ...
 }
 ```
 
@@ -2144,7 +2148,6 @@ For data element and tracked entity attribute:
 
 ```json
 {
-  ...
   "renderingType": {
 	"type": "SLIDER",
 	"min": 0,
@@ -2152,7 +2155,6 @@ For data element and tracked entity attribute:
 	"step": 50,
 	"decimalPoints": 0
   }
-  ...
 }
 ```
 
@@ -2361,8 +2363,8 @@ Tip: If using `curl`, the `--data-binary` option should be used as it preserves 
 As an example, to upload a file of data elements in CSV format with `curl` you can use the following command:
 
 ```bash
-curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT" /
--H "Content-Type:application/csv" -u admin:district
+curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DATA_ELEMENT"
+  -H "Content-Type:application/csv" -u admin:district
 ```
 
 The formats for the currently supported object types for CSV import are listed in the following sections.
@@ -2498,8 +2500,8 @@ you do not use which appear to the right of the ones
 
 ```csv
 name,uid,code,shortname,description
-"Women participated in skill development training",,"D0001","Women participated development training"
-"Women participated in community organizations",,"D0002","Women participated community organizations"
+"Women participated skill development training",,"D0001","Women participated in training"
+"Women participated community organizations",,"D0002","Women participated in organizations"
 ```
 
 ### Organisation units
@@ -3073,11 +3075,10 @@ The contents of a file resources is not directly accessible but is
 referenced from other objects (such as data values) to store binary
 content of virtually unlimited size.
 
-Creation of the file resource itself is done through the
-`api/fileResources` endpoint as a multipart upload POST-request:
+Creation of the file resource itself is done through the `api/fileResources` endpoint as a multipart upload POST-request:
 
 ```bash
-curl -X POST -v -F "file=@/Path/to/file;filename=name-of-file.png" https://server/api/26/fileResources
+curl -X POST -v -F "file=@/Path/to/file;filename=name-of-file.png" "https://server/api/26/fileResources"
 ```
 
 The only form parameter required is the *file* which is the file to
@@ -3085,7 +3086,7 @@ upload. The filename and content-type should also be included in the
 request but will be replaced with defaults when not supplied.
 
 On successfully creating a file resource the returned data will contain
-a *response* field which in turn contains the *fileResource* like this:
+a `response` field which in turn contains the `fileResource` like this:
 
 ```json
 {
