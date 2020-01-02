@@ -178,7 +178,7 @@ This will give you a response similar to this:
 }
 ```
 
-For now, we will concentrate on the **access\_token**, which is what we
+For now, we will concentrate on the `access_token`, which is what we
 will use as our authentication (bearer) token. As an example we will get
 all data elements using our token:
 
@@ -192,9 +192,9 @@ curl -H "Authorization: Bearer 07fc551c-806c-41a4-9a8c-10658bd15435" $SERVER/api
 <!--DHIS2-SECTION-ID:webapi_refresh_token-->
 
 In general the access tokens have limited validity. You can have a look
-at the **expires\_in** property of the response in the previous example
-to understand when a token expires. To get a fresh **access\_token** you
-can make another round trip to the server and use **refresh\_token**
+at the `expires_in` property of the response in the previous example
+to understand when a token expires. To get a fresh `access_token` you
+can make another round trip to the server and use `refresh_token`
 which allows you to get an updated token without needing to ask for the
 user credentials one more time.
 
@@ -209,7 +209,7 @@ curl -X POST -H "Accept: application/json" -u demo:$SECRET "$SERVER/uaa/oauth/to
 
 The response will be exactly the same as when you get a token to start with.
 
-#### Grant type authorization\_code
+#### Grant type authorization_code
 
 <!--DHIS2-SECTION-ID:webapi_authorization_code-->
 
@@ -1081,10 +1081,10 @@ recursion. To filter at the "root" level you can just use the name of
 the field, i.e. *?fields=id,name* which would only display the *id* and
 *name* for every object. For objects that are either collections or
 complex objects with properties on their own you can use the format
-*?fields=id,name,dataSets\[id,name\]* which would return *id*, *name* of
+`?fields=id,name,dataSets[id,name]` which would return *id*, *name* of
 the root, and the *id* and *name* of every data set on that object.
 Negation can be done with the exclamation operator, and we have a set of
-presets of field select (see below). Both XML and JSON are supported.
+presets of field select. Both XML and JSON are supported.
 
 **Example**: Get *id* and *name* on the indicators resource:
 
@@ -1095,13 +1095,13 @@ from the dataSets on dataElements:
 
     /api/26/dataElements?fields=id,name,dataSets[id,name]
 
-To exclude a field from the output you can use the exclamation (\!)
+To exclude a field from the output you can use the exclamation `!`
 operator. This is allowed anywhere in the query and will simply not
-include that property (as it might have been inserted in some of the
-presets).
+include that property as it might have been inserted in some of the
+presets.
 
 A few presets (selected fields groups) are available and can be applied
-using the ':' operator.
+using the `:` operator.
 
 <table>
 <caption>Property operators</caption>
@@ -1344,7 +1344,7 @@ description. So we will start with getting that info:
     http://<server>/api/schemas/constant.json
 
 From the output, you can see that the required authorities for create
-are F\_CONSTANT\_ADD, and the important properties are: *name* and
+are `F_CONSTANT_ADD`, and the important properties are: *name* and
 *value*. From this we can create a JSON payload and save it as a file
 called constant.json:
 
@@ -1618,8 +1618,8 @@ resource representations are supported.
 
 The most common parameters are described below in the "Export Parameter"
 table. You can also apply this to all available types by using
-*type:fields=\<filter\>* and *type:filter=\<filter\>*- You can also
-enable/disable export of certain types by setting *type=true/false*.
+`type:fields=<filter>` and `type:filter=<filter>`. You can also
+enable/disable export of certain types by setting `type=true|false`.
 
 <table>
 <caption>Export Parameter</caption>
@@ -3315,7 +3315,7 @@ Response:
 }
 ```
 
-**Example:** Get the list of all versions in this system created after "Version\_2"
+**Example:** Get the list of all versions in this system created after "Version_2"
 
 Request:
 
@@ -3378,7 +3378,7 @@ Metadata Version type governs how the importer should treat the given
 version. This type will be used while importing the metadata. There are
 two types of metadata.
 
-  - *BEST\_EFFORT*: This type suggests that missing references can be
+  - *BEST_EFFORT*: This type suggests that missing references can be
     ignored and the importer can continue importing the metadata (e.g.
     missing data elements on a data element group import).
 
@@ -3549,12 +3549,12 @@ starting 2.24
     sync might fail as the metadata dependencies are not present in the
     local instance.
 
-  - Assume the local instance is at Version\_12 and if this api is used
-    to sync Version\_15 (of type BEST\_EFFORT) from the central
+  - Assume the local instance is at `Version_12` and if this endpoint is used
+    to sync `Version_15` (of type `BEST_EFFORT`) from the central
     instance, the scheduler will start syncing metadata from
-    Version\_16. So the local instance will not have the metadata
-    versions between Version\_12 and Version\_15. You need to manually
-    sync the missing versions using this API only.
+    `Version_16`. So the local instance will not have the metadata
+    versions between `Version_12` and `Version_15`. You need to manually
+    sync the missing versions using this endpoints only.
 
 ### Sync metadata version
 
@@ -3586,7 +3586,7 @@ use the DHIS2 demo on <http://play.dhis2.org/demo> as basis and we
 recommend that you follow the provided links with a web browser while
 reading (log in with *admin/district* as username/password). We assume
 that we have collected case-based data using a simple software client
-running on mobile phones for the *Mortality \<5 years* data set in the
+running on mobile phones for the *Mortality <5 years* data set in the
 community of *Ngelehun CHC* (in *Badjia* chiefdom, *Bo* district) for
 the month of January 2014. We have now aggregated our data into a
 statistical report and want to send that data to the national DHIS2
@@ -3665,9 +3665,9 @@ To obtain the identifier for the data set we return to the entry point
 at <http://play.dhis2.org/demo/api/24> and follow the embedded link
 pointing at the *dataSets* resource located at
 <http://play.dhis2.org/demo/api/24/dataSets>. From there we find and
-follow the link to the *Mortality \< 5 years* data set which leads us to
+follow the link to the *Mortality < 5 years* data set which leads us to
 <http://play.dhis2.org/demo/api/24/dataSets/pBOMPrpg1QX>. The resource
-representation for the *Mortality \< 5 years* data set conveniently
+representation for the *Mortality < 5 years* data set conveniently
 advertises links to the data elements which are members of it. From here
 we can follow these links and obtain the identifiers of the data
 elements. For brevity we will only report on three data elements:
@@ -4149,7 +4149,7 @@ An example of a CSV file which can be imported into DHIS2 is seen below.
 <!--DHIS2-SECTION-ID:webapi_data_values_template-->
 
 To generate a data value set template for a certain data set you can use
-the */api/dataSets/\<id\>/dataValueSet* resource. XML and JSON response
+the */api/dataSets/<id>/dataValueSet* resource. XML and JSON response
 formats are supported. Example:
 
     /api/26/dataSets/BfMAe6Itzgt/dataValueSet.json
@@ -4586,7 +4586,7 @@ download from the *dataValues/files* endpoint. This is especially true
 for large files which might require time consuming uploads happening in
 the background to a an external file store (depending on the system
 configuration). Retrieving the file resource meta-data from the
-*api/fileResources/\<id\>* endpoint allows checking the *storageStatus*
+`api/fileResources/<id>` endpoint allows checking the *storageStatus*
 of the content before attempting to download it.
 
 ## ADX data format
@@ -4767,15 +4767,15 @@ at the *group* level.
 
 The most significant difference is the way that disaggregation is
 represented. DXF uses the categoryOptionCombo to indicate disaggregation
-of data. In adx the disaggregations (eg AGE\_GROUP and SEX) are
+of data. In adx the disaggregations (e.g. AGE_GROUP and SEX) are
 expressed explicitly as attributes. One important constraint on using
 adx is that the categories used for dataElements in the dataSet MUST
 have a code assigned to them, and further, that code must be of a form
 which is suitable for use as an XML attribute. The exact constraint on
 an XML attribute name is described in the W3C XML standard - in practice
-this means no spaces, no non-alphanumeric characters other than '\_' and
+this means no spaces, no non-alphanumeric characters other than '_' and
 it may not start with a letter. The example above shows examples of
-'good' category codes ('GENDER' and 'HIV\_AGE').
+'good' category codes ('GENDER' and 'HIV_AGE').
 
 This restriction on the form of codes applies only to categories.
 Currently the convention is not enforced by DHIS2 when you are assigning
@@ -5133,7 +5133,7 @@ programRuleVariable model.
 
 <!--DHIS2-SECTION-ID:webapi_creating_program_rules-->
 
-\-coming-
+- TODO Coming -
 
 ## Forms
 
@@ -7286,8 +7286,8 @@ can be accessed with a GET request to the following URL.
 
     https://play.dhis2.org/demo/api/26/messageConversations/<mcId>/<msgId>/attachments/<attachmentId>
 
-Where \<mcId\> is the *messageConversation* ID, \<msgId\> is the ID of
-the *message* that contains the attachment, and \<attachmentId\> is the
+Where <mcId> is the *messageConversation* ID, <msgId> is the ID of
+the *message* that contains the attachment, and <attachmentId> is the
 ID of the specific *messageAttachment*.
 
 ### Tickets and Validation Result Notifications
@@ -9098,7 +9098,7 @@ url for your SQL view like
 This request will return a result including org units with "bo" in the
 name and which has org unit level 2.
 
-The following example will return all org units with orgunit\_level 2 or
+The following example will return all org units with `orgunit_level` 2 or
 4:
 
     /api/sqlViews/w3UxFykyHFy/data.json?filter=orgunit_level:in:[2,4]
@@ -9329,7 +9329,7 @@ dashboard resource similar to this:
 <!--DHIS2-SECTION-ID:webapi_adding_moving_removing_dashboard_items-->
 
 In order to add dashboard items a consumer can use the
-*/api/dashboards/\<dashboard-id\>/items/content* resource, where
+`/api/dashboards/<dashboard-id>/items/content` resource, where
 \<dashboard-id\> should be replaced by the relevant dashboard
 identifier. The request must use the *POST* method. The URL syntax and
 parameters are described in detail in the following table.
@@ -9379,9 +9379,9 @@ add the resource to it.
 
 In order to move a dashboard item to a new position within the list of
 items in a dashboard, a consumer can make a *POST* request to the
-following resource URL, where \<dashboard-id\> should be replaced by the
-identifier of the dashboard, \<item-id\> should be replaced by the
-identifier of the dashboard item and \<index\> should be replaced by the
+following resource URL, where `<dashboard-id>` should be replaced by the
+identifier of the dashboard, `<item-id>` should be replaced by the
+identifier of the dashboard item and `<index>` should be replaced by the
 new position of the item in the dashboard, where the index is
 zero-based:
 
@@ -9389,8 +9389,8 @@ zero-based:
 
 To remove a dashboard item completely from a specific dashboard a
 consumer can make a *DELETE* request to the below resource URL, where
-\<dashboard-id\> should be replaced by the identifier of the dashboard
-and \<item-id\> should be replaced by the identifier of the dashboard
+`<dashboard-id>` should be replaced by the identifier of the dashboard
+and `<item-id>` should be replaced by the identifier of the dashboard
 item. The dashboard item identifiers can be retrieved through a GET
 request to the dashboard resource URL.
 
@@ -9398,12 +9398,11 @@ request to the dashboard resource URL.
 
 To remove a specific content resource within a dashboard item a consumer
 can make a *DELETE* request to the below resource URL, where
-\<content-resource-id\> should be replaced by the identifier of a
+`<content-resource-id>` should be replaced by the identifier of a
 resource associated with the dashboard item; e.g. the identifier of a
 report or a user. For instance, this can be used to remove a single
 report from a dashboard item of type reports, as opposed to removing the
-dashboard item
-    completely:
+dashboard item completely:
 
     /api/26/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
 
@@ -9859,7 +9858,7 @@ the current user you can use a URL like this:
 
 When selecting organisation units for a dimension you can select an
 entire level optionally constrained by any number of boundary
-organisation units with the LEVEL-\<level\> syntax. Boundary refers to a
+organisation units with the `LEVEL-<level>` syntax. Boundary refers to a
 top node in a sub-hierarchy, meaning that all organisation units at the
 given level below the given boundary organisation unit in the hierarchy
 will be included in the response, and is provided as regular organisation unit 
@@ -10038,8 +10037,8 @@ combination values:
 >
 > A great way to learn how to use the analytics API is to use the DHIS2
 > *pivot table* app. You can play around with pivot tables using the
-> various dimensions and items and click Download \> Plain data source
-> \> JSON to see the resulting analytics API calls in the address bar of
+> various dimensions and items and click Download > Plain data source
+> > JSON to see the resulting analytics API calls in the address bar of
 > your Web browser.
 
 ### Response formats
@@ -13814,19 +13813,19 @@ One particular command can be deleted using DELETE.
 
 #### SMSCommand parser types
 
-  - KEY\_VALUE\_PARSER
+  - KEY_VALUE_PARSER
 
-  - J2ME\_PARSER
+  - J2ME_PARSER
 
-  - ALERT\_PARSER
+  - ALERT_PARSER
 
-  - UNREGISTERED\_PARSER
+  - UNREGISTERED_PARSER
 
-  - TRACKED\_ENTITY\_REGISTRATION\_PARSER
+  - TRACKED_ENTITY_REGISTRATION_PARSER
 
-  - PROGRAM\_STAGE\_DATAENTRY\_PARSER
+  - PROGRAM_STAGE_DATAENTRY_PARSER
 
-  - EVENT\_REGISTRATION\_PARSER
+  - EVENT_REGISTRATION_PARSER
 
 ## Program Messages
 
@@ -13849,7 +13848,7 @@ Program messages can be sent using two delivery channels:
 Program messages can be sent to various recipients:
 
   - Tracked entity instance: The system will look up attributes of value
-    type PHONE\_NUMBER or EMAIL (depending on the specified delivery
+    type PHONE_NUMBER or EMAIL (depending on the specified delivery
     channels) and use the corresponding attribute values.
 
   - Organisation unit: The system will use the phone number or email
@@ -15200,8 +15199,8 @@ curl "http://localhost/api/26/filledOrganisationUnitLevels" -H "Content-Type:app
 The *staticContent* resource allows you to upload and retrieve custom
 logos used in DHIS2. The resource lets the user upload a file with an
 associated key, which can later be retrieved using the key. Only PNG
-files are supported and can only be uploaded to the "logo\_banner" and
-"logo\_front" keys.
+files are supported and can only be uploaded to the `logo_banner` and
+`logo_front` keys.
 
     /api/26/staticContent
 
@@ -15860,7 +15859,7 @@ when upgrading to 2.29.
 >
 > As of 2.29, all these endpoint will require you to include any
 > variables reported by the `requiredValues` endpoint listed as
-> required. Existing patterns, consisting of only “\#”, will be upgraded
+> required. Existing patterns, consisting of only `#`, will be upgraded
 > to the new TextPattern syntax `RANDOM(<old-pattern>)`. The RANDOM
 > segment of the TextPattern is not a required variable, so this
 > endpoint will work as before for patterns defined before 2.29.
@@ -18864,7 +18863,7 @@ curl -d @email.json "localhost/api/26/email/notification" -X POST -H "Content-Ty
 ### Outbound emails
 
 You can also send a general email notification by posting to the
-notification resource as mentioned below. "F\_SEND\_EMAIL" or "All"
+notification resource as mentioned below. `F_SEND_EMAIL` or `ALL`
 authority has to be in the system to make use of this api. Subject
 parameter is optional. "DHIS 2" string will be sent as default subject
 if it is not provided in url. Url should be encoded in order to use this
@@ -19127,7 +19126,7 @@ Adding job without parameters in JSON format:
 }
 ```
 
-Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
+Adding job with parameters in JSON format (ANALYTICS_TABLE example):
 
 ```json
 {
@@ -19143,7 +19142,7 @@ Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
 }
 ```
 
-Adding job with parameters in JSON format (PUSH\_ANALYSIS example):
+Adding job with parameters in JSON format (PUSH_ANALYSIS example):
 
 ```json
  {
@@ -19151,7 +19150,9 @@ Adding job with parameters in JSON format (PUSH\_ANALYSIS example):
    "jobType": "PUSH_ANALYSIS",
    "cronExpression": "0 * * ? * *",
    "jobParameters": {
-     "pushAnalysis": ["jtcMAKhWwnc"]
+     "pushAnalysis": [
+       "jtcMAKhWwnc"
+     ]
     }
  }
 ```
@@ -19160,7 +19161,7 @@ List all jobConfigurations:
 
     GET /api/jobConfigurations
 
-Retrieve a job: (ANALYTICS\_TABLE example):
+Retrieve a job: (ANALYTICS_TABLE example):
 
     GET /api/jobConfigurations/KBcP6Qw37gT
 
@@ -19205,7 +19206,7 @@ Retrieve a job: (ANALYTICS\_TABLE example):
 }
 ```
 
-Updating job with parameters in JSON format (ANALYTICS\_TABLE example):
+Updating job with parameters in JSON format (ANALYTICS_TABLE example):
 
     PUT /api/jobConfiguration/KBcP6Qw37gT
 
@@ -19319,7 +19320,7 @@ This section covers pull and push of data and metadata.
 <!--DHIS2-SECTION-ID:webapi_sync_data_push-->
 
 To initiate a data value push to a remote server one must first configure the
-URL and credentials for the relevant server from System settings \>
+URL and credentials for the relevant server from System settings >
 Synchronization, then make a POST request to the following resource:
 
     /api/26/synchronization/dataPush
@@ -19349,7 +19350,7 @@ credentials you can make a GET request to the following resource:
 The */api/apps* endpoint can be used for installing, deleting and
 listing apps. The app key is based on the app name, but with all
 non-alphanumerical characters removed, and spaces replaced with a dash.
-*My app\!* will return the key *My-app*.
+*My app!* will return the key *My-app*.
 
 > **Note**
 >
@@ -20352,25 +20353,25 @@ Analytics table hooks have the following fields:
 </tbody>
 </table>
 
-The *ANALYTICS\_TABLE\_POPULATED* phase takes place after the analytics
+The *ANALYTICS_TABLE_POPULATED* phase takes place after the analytics
 table has been populated, but before indexes have been created and the
 temp table has been swapped with the main table. As a result, the SQL
-script should refer to the analytics temp table, e.g. *analytics\_temp*,
-*analytics\_completeness\_temp*.
+script should refer to the analytics temp table, e.g. *analytics_temp*,
+*analytics_completeness_temp*.
 
-This applies also to the *RESOURCE\_TABLE\_POPULATED* phase, which takes
+This applies also to the *RESOURCE_TABLE_POPULATED* phase, which takes
 place after the resource table has been populated, but before indexes
 have been created and the temp table has been swapped with the main
 table. As a result, the SQL script should refer to the resource temp
-table, e.g. *\_orgunitstructure\_temp*, *\_categorystructure\_temp*.
+table, e.g. *_orgunitstructure_temp*, *_categorystructure_temp*.
 
 You should define only one of the *resourceTableType* and
 *analyticsTableType* fields, depending on which *phase* is defined.
 
 You can refer to the temporary database table which matches the
 specified hook table type only (other temporary tables will not be
-available). As an example, if you specify *ORG\_UNIT\_STRUCTURE* as the
-resource table type, you can refer to the *\_orgunitstructure\_temp*
+available). As an example, if you specify *ORG_UNIT_STRUCTURE* as the
+resource table type, you can refer to the *_orgunitstructure_temp*
 temporary database table only.
 
 The following table shows the valid combinations of phases, table types
