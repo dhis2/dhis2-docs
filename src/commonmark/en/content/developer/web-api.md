@@ -1552,7 +1552,7 @@ A simple (non-validating) example would be:
 
 ```bash
 curl -X POST -d "{\"name\": \"some name\"}" -H "Content-Type: application/json"
--u admin:district "https://play.dhis2.org/dev/api/schemas/dataElement"
+  -u admin:district "https://play.dhis2.org/dev/api/schemas/dataElement"
 ```
 
 Which would yield the result:
@@ -1761,8 +1761,8 @@ These endpoints also support the following parameters:
 
 <!--DHIS2-SECTION-ID:webapi_metadata_import-->
 
-This section explains the metadata API which is available at
-*/api/23/metadata* and */api/26/metadata*endpoints. XML and JSON
+This section explains the metadata API which is available at 
+`/api/23/metadata` and `/api/26/metadata` endpoints. XML and JSON 
 resource representations are supported.
 
 The importer allows you to import metadata exported with the new
@@ -2365,7 +2365,9 @@ The following object types are supported. The `classKey` query parameter is mand
 </tr>
 </table>
 
-Tip: If using `curl`, the `--data-binary` option should be used as it preserves line breaks and newlines, which is essential for CSV data.
+> **Tip**
+>
+> If using *curl*, the `--data-binary` option should be used as it preserves line breaks and newlines, which is essential for CSV data.
 
 As an example, to upload a file of data elements in CSV format with `curl` you can use the following command:
 
@@ -3085,7 +3087,8 @@ content of virtually unlimited size.
 Creation of the file resource itself is done through the `api/fileResources` endpoint as a multipart upload POST-request:
 
 ```bash
-curl -X POST -v -F "file=@/Path/to/file;filename=name-of-file.png" "https://server/api/26/fileResources"
+curl "https://server/api/26/fileResources" -X POST 
+  -F "file=@/Path/to/file;filename=name-of-file.png" 
 ```
 
 The only form parameter required is the *file* which is the file to
@@ -3122,23 +3125,23 @@ a `response` field which in turn contains the `fileResource` like this:
 
 Note that the response is a *202 Accepted*, indicating that the returned
 resource has been submitted for background processing (persisting to the
-external file store in this case). Also note the *storageStatus* field
+external file store in this case). Also note the `storageStatus` field
 which indicates whether the contents have been stored or not. At this
 point the persistence to the external store is not yet finished (it is
 likely being uploaded to a cloud-based store somewhere) as seen by the
-*PENDING* status.
+`PENDING` status.
 
 Even though the content has not been fully stored yet the file resource
 can now be used, for example as referenced content in a data value (see
 [Working with file data values](#datavalue_file)). If we need to check
 the updated *storageStatus* or otherwise retrieve the meta-data of the
-file, the *fileResources* endpoint can be queried.
+file, the `fileResources` endpoint can be queried.
 
 ```bash
 curl -v https://server/api/26/fileResources/xm4JwRwke0i -H "Accept: application/json"
 ```
 
-This request will return the *FileResource* object as seen in the
+This request will return the `FileResource` object as seen in the
 response of the above example.
 
 ### File resource constraints
@@ -3211,14 +3214,14 @@ Response:
 
 ```json
 {
-	"name": "Version_4",
-	"created": "2016-06-30T06:01:28.684+0000",
-	"lastUpdated": "2016-06-30T06:01:28.685+0000",
-	"externalAccess": false,
-	"displayName": "Version_4",
-	"type": "BEST_EFFORT",
-	"hashCode": "848bf6edbaf4faeb7d1a1169445357b0",
-	"id": "Ayz2AEMB6ry"
+  "name": "Version_4",
+  "created": "2016-06-30T06:01:28.684+0000",
+  "lastUpdated": "2016-06-30T06:01:28.685+0000",
+  "externalAccess": false,
+  "displayName": "Version_4",
+  "type": "BEST_EFFORT",
+  "hashCode": "848bf6edbaf4faeb7d1a1169445357b0",
+  "id": "Ayz2AEMB6ry"
 }
 ```
 
@@ -3234,14 +3237,14 @@ Response:
 
 ```json
 {
-	"name": "Version_2",
-	"created": "2016-06-30T05:59:33.238+0000",
-	"lastUpdated": "2016-06-30T05:59:33.239+0000",
-	"externalAccess": false,
-	"displayName": "Version_2",
-	"type": "BEST_EFFORT",
-	"hashCode": "8050fb1a604e29d5566675c86d02d10b",
-	"id": "SaNyhusVxBG"
+  "name": "Version_2",
+  "created": "2016-06-30T05:59:33.238+0000",
+  "lastUpdated": "2016-06-30T05:59:33.239+0000",
+  "externalAccess": false,
+  "displayName": "Version_2",
+  "type": "BEST_EFFORT",
+  "hashCode": "8050fb1a604e29d5566675c86d02d10b",
+  "id": "SaNyhusVxBG"
 }
 ```
 
@@ -3287,25 +3290,25 @@ Response:
 
 ```json
 {
-	"metadataversions": [{
-		"name": "Version_1",
-		"type": "BEST_EFFORT",
-		"created": "2016-06-30T05:54:41.139+0000",
-		"id": "SjnhUp6r4hG",
-		"hashCode": "fd1398ff7ec9fcfd5b59d523c8680798"
-	 }, {
-		 "name": "Version_2",
-		 "type": "BEST_EFFORT",
-		 "created": "2016-06-30T05:59:33.238+0000",
-		 "id": "SaNyhusVxBG",
-		 "hashCode": "8050fb1a604e29d5566675c86d02d10b"
-	 }, {
-		 "name": "Version_3",
-		 "type": "BEST_EFFORT",
-		 "created": "2016-06-30T06:01:23.680+0000",
-		 "id": "FVkGzSjAAYg",
-		 "hashCode": "70b779ea448b0da23d8ae0bd59af6333"
-	 }]
+  "metadataversions": [{
+    "name": "Version_1",
+    "type": "BEST_EFFORT",
+    "created": "2016-06-30T05:54:41.139+0000",
+    "id": "SjnhUp6r4hG",
+    "hashCode": "fd1398ff7ec9fcfd5b59d523c8680798"
+  }, {
+    "name": "Version_2",
+    "type": "BEST_EFFORT",
+    "created": "2016-06-30T05:59:33.238+0000",
+    "id": "SaNyhusVxBG",
+    "hashCode": "8050fb1a604e29d5566675c86d02d10b"
+  }, {
+    "name": "Version_3",
+    "type": "BEST_EFFORT",
+    "created": "2016-06-30T06:01:23.680+0000",
+    "id": "FVkGzSjAAYg",
+    "hashCode": "70b779ea448b0da23d8ae0bd59af6333"
+  }]
 }
 ```
 
@@ -3321,19 +3324,19 @@ Response:
 
 ```json
 {
-	"metadataversions": [{
-		"name": "Version_3",
-		"type": "BEST_EFFORT",
-		"created": "2016-06-30T06:01:23.680+0000",
-		"id": "FVkGzSjAAYg",
-		"hashCode": "70b779ea448b0da23d8ae0bd59af6333"
-	}, {
-		"name": "Version_4",
-		"type": "BEST_EFFORT",
-		"created": "2016-06-30T06:01:28.684+0000",
-		"id": "Ayz2AEMB6ry",
-		"hashCode": "848bf6edbaf4faeb7d1a1169445357b0"
-	}]
+  "metadataversions": [{
+    "name": "Version_3",
+    "type": "BEST_EFFORT",
+    "created": "2016-06-30T06:01:23.680+0000",
+    "id": "FVkGzSjAAYg",
+    "hashCode": "70b779ea448b0da23d8ae0bd59af6333"
+  }, {
+    "name": "Version_4",
+    "type": "BEST_EFFORT",
+    "created": "2016-06-30T06:01:28.684+0000",
+    "id": "Ayz2AEMB6ry",
+    "hashCode": "848bf6edbaf4faeb7d1a1169445357b0"
+  }]
  }
 ```
 
@@ -3403,23 +3406,23 @@ Response:
 
 ```json
 {
-	"name": "Version_1",
-	"created": "2016-06-30T05:54:41.139+0000",
-	"lastUpdated": "2016-06-30T05:54:41.333+0000",
-	"externalAccess": false,
-	"publicAccess": "--------",
-	"user": {
-		"name": "John Traore",
-		"created": "2013-04-18T17:15:08.407+0000",
-		"lastUpdated": "2016-04-06T00:06:06.571+0000",
-		"externalAccess": false,
-		"displayName": "John Traore",
-		"id": "xE7jOejl9FI"
-	},
-	"displayName": "Version_1",
-	"type": "BEST_EFFORT",
-	"hashCode": "fd1398ff7ec9fcfd5b59d523c8680798",
-	"id": "SjnhUp6r4hG"
+  "name": "Version_1",
+  "created": "2016-06-30T05:54:41.139+0000",
+  "lastUpdated": "2016-06-30T05:54:41.333+0000",
+  "externalAccess": false,
+  "publicAccess": "--------",
+  "user": {
+    "name": "John Traore",
+    "created": "2013-04-18T17:15:08.407+0000",
+    "lastUpdated": "2016-04-06T00:06:06.571+0000",
+    "externalAccess": false,
+    "displayName": "John Traore",
+    "id": "xE7jOejl9FI"
+  },
+  "displayName": "Version_1",
+  "type": "BEST_EFFORT",
+  "hashCode": "fd1398ff7ec9fcfd5b59d523c8680798",
+  "id": "SjnhUp6r4hG"
 }
 ```
 
@@ -4019,11 +4022,11 @@ monitor the import job status. The response will look similar to this:
   "status": "OK",
   "message": "Initiated dataValueImport",
   "response": {
-	"name": "dataValueImport",
-	"id": "YR1UxOUXmzT",
-	"created": "2018-08-20T14:17:28.429",
-	"jobType": "DATAVALUE_IMPORT",
-	"relativeNotifierEndpoint": "/api/system/tasks/DATAVALUE_IMPORT/YR1UxOUXmzT"
+    "name": "dataValueImport",
+    "id": "YR1UxOUXmzT",
+    "created": "2018-08-20T14:17:28.429",
+    "jobType": "DATAVALUE_IMPORT",
+    "relativeNotifierEndpoint": "/api/system/tasks/DATAVALUE_IMPORT/YR1UxOUXmzT"
   }
 }
 ```
@@ -4332,20 +4335,20 @@ The response will look something like this:
       "dataElement": "eY5ehpbEsB7", 
       "categoryOptionCombo": "bRowv6yZOF2", 
       "period": "201401",
-	  "orgUnit": "DiszpKrYNg8", 
-	  "value": "10003"
-	}, {
-	  "dataElement": "Ix2HsbDMLea", 
-	  "categoryOptionCombo": "bRowv6yZOF2", 
-	  "period": "201401",
-	  "orgUnit": "DiszpKrYNg8", 
-	  "value": "10002"
-	}, {
-	  "dataElement": "f7n9E0hX8qk", 
-	  "categoryOptionCombo": "bRowv6yZOF2", 
-	  "period": "201401",
-	  "orgUnit": "DiszpKrYNg8", 
-	  "value": "10001"
+      "orgUnit": "DiszpKrYNg8", 
+      "value": "10003"
+    }, {
+      "dataElement": "Ix2HsbDMLea", 
+      "categoryOptionCombo": "bRowv6yZOF2", 
+      "period": "201401",
+      "orgUnit": "DiszpKrYNg8", 
+      "value": "10002"
+    }, {
+      "dataElement": "f7n9E0hX8qk", 
+      "categoryOptionCombo": "bRowv6yZOF2", 
+      "period": "201401",
+      "orgUnit": "DiszpKrYNg8", 
+      "value": "10001"
 	}
   ]
 }
@@ -5800,11 +5803,11 @@ description of the expression.
 
 ```json
 {
-	"httpStatus": "OK",
-	"httpStatusCode": 200,
-	"status": "OK",
-	"message": "Valid",
-	"description": "Acute Flaccid Paralysis"
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Valid",
+  "description": "Acute Flaccid Paralysis"
 }
 ```
 
@@ -6281,33 +6284,33 @@ This will give you a response containing a list of approval parameters and statu
 ```json
 [
   {
-	  aoc: "HllvX50cXC0",
-	  pe: "201801",
-	  level: "KaTJLhGmU95",
-	  ou: "YuQRtpLP10I",
-	  permissions: {
-		  mayApprove: false,
-		  mayUnapprove: true,
-		  mayAccept: true,
-		  mayUnaccept: false,
-		  mayReadData: true
-	  },
-	  state: "APPROVED_HERE",
-	  wf: "rIUL3hYOjJc"
+    aoc: "HllvX50cXC0",
+    pe: "201801",
+    level: "KaTJLhGmU95",
+    ou: "YuQRtpLP10I",
+    permissions: {
+      mayApprove: false,
+      mayUnapprove: true,
+      mayAccept: true,
+      mayUnaccept: false,
+      mayReadData: true
+    },
+    state: "APPROVED_HERE",
+    wf: "rIUL3hYOjJc"
   },
   {
-	  aoc: "HllvX50cXC0",
-	  pe: "201802",
-	  ou: "YuQRtpLP10I",
-	  permissions: {
-		  mayApprove: true,
-		  mayUnapprove: false,
-		  mayAccept: false,
-		  mayUnaccept: false,
-		  mayReadData: true
-	  },
-	  state: "UNAPPROVED_READY",
-	  wf: "rIUL3hYOjJc"
+    aoc: "HllvX50cXC0",
+    pe: "201802",
+    ou: "YuQRtpLP10I",
+    permissions: {
+      mayApprove: true,
+      mayUnapprove: false,
+      mayAccept: false,
+      mayUnaccept: false,
+      mayReadData: true
+    },
+    state: "UNAPPROVED_READY",
+    wf: "rIUL3hYOjJc"
   }
 ]
 ```
@@ -6417,18 +6420,19 @@ The approval payload is supported as JSON and looks like this:
 ```json
 {
   "wf": [
-	"pBOMPrpg1QX", "lyLU2wR22tC"
+    "pBOMPrpg1QX", "lyLU2wR22tC"
   ],
   "pe": [
-	"201601", "201602"
+    "201601", "201602"
   ],
   "approvals": [{
-	  "ou": "cDw53Ej8rju",
-	  "aoc": "ranftQIH5M9"
-	}, {
-	  "ou": "cDw53Ej8rju",
-	  "aoc": "fC3z1lcAW5x"
-	}]
+      "ou": "cDw53Ej8rju",
+      "aoc": "ranftQIH5M9"
+    }, {
+      "ou": "cDw53Ej8rju",
+      "aoc": "fC3z1lcAW5x"
+    }
+  ]
 }
 ```
 
@@ -6867,9 +6871,9 @@ the following XML format for sending to multiple users:
   <subject>This is the subject</subject>
   <text>This is the text</text>
   <users>
-	<user id="user1ID" />
-	<user id="user2ID" />
-	<user id="user3ID" />
+    <user id="user1ID" />
+    <user id="user2ID" />
+    <user id="user3ID" />
   </users>
 </message>
 ```
@@ -6882,9 +6886,9 @@ use:
   <subject>This is the subject</subject>
   <text>This is the text</text>
   <userGroups>
-	<userGroup id="userGroup1ID" />
-	<userGroup id="userGroup2ID" />
-	<userGroup id="userGroup3ID" />
+    <userGroup id="userGroup1ID" />
+    <userGroup id="userGroup2ID" />
+    <userGroup id="userGroup3ID" />
   </userGroups>
 </message>
 ```
@@ -6897,9 +6901,9 @@ can use:
   <subject>This is the subject</subject>
   <text>This is the text</text>
   <organisationUnits>
-	<organisationUnit id="ou1ID" />
-	<organisationUnit id="ou2ID" />
-	<organisationUnit id="ou3ID" />
+    <organisationUnit id="ou1ID" />
+    <organisationUnit id="ou2ID" />
+    <organisationUnit id="ou3ID" />
   </organisationUnits>
 </message>
 ```
@@ -6919,7 +6923,7 @@ whether she has reported data for January 2014:
   <subject>Mortality data reporting</subject>
   <text>Have you reported data for the Mortality data set for January 2014?</text>
   <users>
-	<user id="PhzytPW3g2J" />
+    <user id="PhzytPW3g2J" />
   </users>
 </message>
 ```
@@ -6988,9 +6992,9 @@ In response we get the following XML:
 <messageConversations xmlns="http://dhis2.org/schema/dxf/2.0"
   link="https://play.dhis2.org/demo/api/messageConversations">
   <messageConversation name="Mortality data reporting" id="ZjHHSjyyeJ2"
-	link="https://play.dhis2.org/demo/api/messageConversations/ZjHHSjyyeJ2"/>
+    link="https://play.dhis2.org/demo/api/messageConversations/ZjHHSjyyeJ2"/>
   <messageConversation name="DHIS2 version 2.7 is deployed" id="GDBqVfkmnp2"
-	link="https://play.dhis2.org/demo/api/messageConversations/GDBqVfkmnp2"/>
+    link="https://play.dhis2.org/demo/api/messageConversations/GDBqVfkmnp2"/>
 </messageConversations>
 ```
 
@@ -7179,16 +7183,16 @@ attachment with the message.
   "publicAccess":"--------",
   "user":{
     "name":"John Traore",
-	"created":"2013-04-18T17:15:08.407",
-	"lastUpdated":"2018-03-09T23:06:54.512",
-	"externalAccess":false,
-	"displayName":"John Traore",
-	"favorite":false,
-	"id":"xE7jOejl9FI"
+    "created":"2013-04-18T17:15:08.407",
+    "lastUpdated":"2018-03-09T23:06:54.512",
+    "externalAccess":false,
+    "displayName":"John Traore",
+    "favorite":false,
+    "id":"xE7jOejl9FI"
   },
   "lastUpdatedBy":{
     "id":"xE7jOejl9FI",
-	"name":"John Traore"
+    "name":"John Traore"
   },
   "favorite":false,
   "id":"fTpI4GOmujz"
@@ -7336,58 +7340,58 @@ fields omitted for brevity):
 
 ```json
 {
-	"interpretations": [{
-		"id": "XSHiFlHAhhh",
-		"created": "2013-05-30T10:24:06.181+0000",
-		"text": "Data looks suspicious, could be a data entry mistake.",
-		"type": "REPORT_TABLE",
-		"likes": 2,
-		"user": {
-			"id": "uk7diLujYif"
-		},
-		"reportTable": {
-			"id": "LcSxnfeBxyi"
-		}
-	}, {
-		"id": "kr4AnZmYL43",
-		"created": "2013-05-29T14:47:13.081+0000",
-		"text": "Delivery rates in Bo looks high.",
-		"type": "CHART",
-		"likes": 3,
-		"user": {
-			"id": "uk7diLujYif"
-		},
-		"chart": {
-			"id": "HDEDqV3yv3H"
-		},
-		"mentions": [{
-			"created": "2018-06-25T10:25:54.498",
-			"username": "boateng"
-		}],
-		"comments": [{
-			"id": "iB4Etq8yTE6",
-			"text": "This report indicates a surge.",
-			"user": {
-				"id": "B4XIfwOcGyI"
-			}
-		}, {
-			"id": "iB4Etq8yTE6",
-			"text": "Likely caused by heavy rainfall.",
-			"user": {
-				"id": "B4XIfwOcGyI"
-			}
-		}, {
-			"id": "SIjkdENan8p",
-			"text": "Have a look at this @boateng.",
-			"user": {
-				"id": "xE7jOejl9FI"
-			},
-			"mentions": [{
-				"created": "2018-06-25T10:03:52.316",
-				"username": "boateng"
-			}]
-		}]
-	}]
+  "interpretations": [{
+    "id": "XSHiFlHAhhh",
+    "created": "2013-05-30T10:24:06.181+0000",
+    "text": "Data looks suspicious, could be a data entry mistake.",
+    "type": "REPORT_TABLE",
+    "likes": 2,
+    "user": {
+      "id": "uk7diLujYif"
+    },
+    "reportTable": {
+      "id": "LcSxnfeBxyi"
+    }
+  }, {
+    "id": "kr4AnZmYL43",
+    "created": "2013-05-29T14:47:13.081+0000",
+    "text": "Delivery rates in Bo looks high.",
+    "type": "CHART",
+    "likes": 3,
+    "user": {
+      "id": "uk7diLujYif"
+    },
+    "chart": {
+      "id": "HDEDqV3yv3H"
+    },
+    "mentions": [{
+      "created": "2018-06-25T10:25:54.498",
+      "username": "boateng"
+    }],
+    "comments": [{
+      "id": "iB4Etq8yTE6",
+      "text": "This report indicates a surge.",
+      "user": {
+        "id": "B4XIfwOcGyI"
+      }
+    }, {
+      "id": "iB4Etq8yTE6",
+      "text": "Likely caused by heavy rainfall.",
+      "user": {
+        "id": "B4XIfwOcGyI"
+      }
+    }, {
+      "id": "SIjkdENan8p",
+      "text": "Have a look at this @boateng.",
+      "user": {
+        "id": "xE7jOejl9FI"
+      },
+      "mentions": [{
+        "created": "2018-06-25T10:03:52.316",
+        "username": "boateng"
+      }]
+    }]
+  }]
 }
 ```
 
@@ -7616,15 +7620,15 @@ have liked the interpretation.
 
 ```json
 {
-	"id": "XSHiFlHAhhh",
-	"text": "Data looks suspicious, could be a data entry mistake.",
-	"type": "REPORT_TABLE",
-	"likes": 2,
-	"likedBy": [{
-		"id": "k7Hg12fJ2f1"
-	}, {
-		"id": "gYhf26fFkjFS"
-	}]
+  "id": "XSHiFlHAhhh",
+  "text": "Data looks suspicious, could be a data entry mistake.",
+  "type": "REPORT_TABLE",
+  "likes": 2,
+  "likedBy": [{
+    "id": "k7Hg12fJ2f1"
+  }, {
+    "id": "gYhf26fFkjFS"
+  }]
 }
 ```
 
@@ -9192,42 +9196,42 @@ similar to this:
 
 ```json
 {
-	"charts": [{
-		"name": "ANC: 1-3 dropout rate Yearly",
-		"id": "LW0O27b7TdD"
-	}, {
-		"name": "ANC: 1 and 3 coverage Yearly",
-		"id": "UlfTKWZWV4u"
-	}, {
-		"name": "ANC: 1st and 3rd trends Monthly",
-		"id": "gnROK20DfAA"
-	}],
-	"maps": [{
-		"name": "ANC: 1st visit at facility (fixed) 2013",
-		"id": "YOEGBvxjAY0"
-	}, {
-		"name": "ANC: 3rd visit coverage 2014 by district",
-		"id": "ytkZY3ChM6J"
-	}],
-	"reportTables": [{
-		"name": "ANC: ANC 1 Visits Cumulative Numbers",
-		"id": "tWg9OiyV7mu"
-	}],
-	"reports": [{
-		"name": "ANC: 1st Visit Cumulative Chart",
-		"id": "Kvg1AhYHM8Q"
-	}, {
-		"name": "ANC: Coverages This Year",
-		"id": "qYVNH1wkZR0"
-	}],
-	"searchCount": 8,
-	"chartCount": 3,
-	"mapCount": 2,
-	"reportTableCount": 1,
-	"reportCount": 2,
-	"userCount": 0,
-	"patientTabularReportCount": 0,
-	"resourceCount": 0
+  "charts": [{
+    "name": "ANC: 1-3 dropout rate Yearly",
+    "id": "LW0O27b7TdD"
+  }, {
+    "name": "ANC: 1 and 3 coverage Yearly",
+    "id": "UlfTKWZWV4u"
+  }, {
+    "name": "ANC: 1st and 3rd trends Monthly",
+    "id": "gnROK20DfAA"
+  }],
+  "maps": [{
+    "name": "ANC: 1st visit at facility (fixed) 2013",
+    "id": "YOEGBvxjAY0"
+  }, {
+    "name": "ANC: 3rd visit coverage 2014 by district",
+    "id": "ytkZY3ChM6J"
+  }],
+  "reportTables": [{
+    "name": "ANC: ANC 1 Visits Cumulative Numbers",
+    "id": "tWg9OiyV7mu"
+  }],
+  "reports": [{
+    "name": "ANC: 1st Visit Cumulative Chart",
+    "id": "Kvg1AhYHM8Q"
+  }, {
+    "name": "ANC: Coverages This Year",
+    "id": "qYVNH1wkZR0"
+  }],
+  "searchCount": 8,
+  "chartCount": 3,
+  "mapCount": 2,
+  "reportTableCount": 1,
+  "reportCount": 2,
+  "userCount": 0,
+  "patientTabularReportCount": 0,
+  "resourceCount": 0
 }
 ```
 
@@ -12371,58 +12375,58 @@ The JSON response looks like this:
 ```json
 [
   {
-	"year": 2016,
-	"week": 5,
-	"mapViews": 2181,
-	"chartViews": 2227,
-	"reportTableViews": 5633,
-	"eventReportViews": 6757,
-	"eventChartViews": 9860,
-	"dashboardViews": 10082,
-	"totalViews": 46346,
-	"averageViews": 468,
-	"averageMapViews": 22,
-	"averageChartViews": 22,
-	"averageReportTableViews": 56,
-	"averageEventReportViews": 68,
-	"averageEventChartViews": 99,
-	"averageDashboardViews": 101,
-	"savedMaps": 1805,
-	"savedCharts": 2205,
-	"savedReportTables": 1995,
-	"savedEventReports": 1679,
-	"savedEventCharts": 1613,
-	"savedDashboards": 0,
-	"savedIndicators": 1831,
-	"activeUsers": 99,
-	"users": 969
+    "year": 2016,
+    "week": 5,
+    "mapViews": 2181,
+    "chartViews": 2227,
+    "reportTableViews": 5633,
+    "eventReportViews": 6757,
+    "eventChartViews": 9860,
+    "dashboardViews": 10082,
+    "totalViews": 46346,
+    "averageViews": 468,
+    "averageMapViews": 22,
+    "averageChartViews": 22,
+    "averageReportTableViews": 56,
+    "averageEventReportViews": 68,
+    "averageEventChartViews": 99,
+    "averageDashboardViews": 101,
+    "savedMaps": 1805,
+    "savedCharts": 2205,
+    "savedReportTables": 1995,
+    "savedEventReports": 1679,
+    "savedEventCharts": 1613,
+    "savedDashboards": 0,
+    "savedIndicators": 1831,
+    "activeUsers": 99,
+    "users": 969
   },
   {
-	"year": 2016,
-	"week": 6,
-	"mapViews": 2018,
-	"chartViews": 2267,
-	"reportTableViews": 4714,
-	"eventReportViews": 6697,
-	"eventChartViews": 9511,
-	"dashboardViews": 12181,
-	"totalViews": 47746,
-	"averageViews": 497,
-	"averageMapViews": 21,
-	"averageChartViews": 23,
-	"averageReportTableViews": 49,
-	"averageEventReportViews": 69,
-	"averageEventChartViews": 99,
-	"averageDashboardViews": 126,
-	"savedMaps": 1643,
-	"savedCharts": 1935,
-	"savedReportTables": 1867,
-	"savedEventReports": 1977,
-	"savedEventCharts": 1714,
-	"savedDashboards": 0,
-	"savedIndicators": 1646,
-	"activeUsers": 96,
-	"users": 953
+    "year": 2016,
+    "week": 6,
+    "mapViews": 2018,
+    "chartViews": 2267,
+    "reportTableViews": 4714,
+    "eventReportViews": 6697,
+    "eventChartViews": 9511,
+    "dashboardViews": 12181,
+    "totalViews": 47746,
+    "averageViews": 497,
+    "averageMapViews": 21,
+    "averageChartViews": 23,
+    "averageReportTableViews": 49,
+    "averageEventReportViews": 69,
+    "averageEventChartViews": 99,
+    "averageDashboardViews": 126,
+    "savedMaps": 1643,
+    "savedCharts": 1935,
+    "savedReportTables": 1867,
+    "savedEventReports": 1977,
+    "savedEventCharts": 1714,
+    "savedDashboards": 0,
+    "savedIndicators": 1646,
+    "activeUsers": 96,
+    "users": 953
   }
 ]
 ```
@@ -12634,7 +12638,7 @@ Analytics tables clear will drop all analytics tables.
 
 Analytics table analyze will collects statistics about the contents of analytics tables in the database.
 
-	POST PUT /api/26/maintenance/analyticsTablesAnalyze
+    POST PUT /api/26/maintenance/analyticsTablesAnalyze
 
 Expired invitations clear will remove all user account invitations which
 have expired.
@@ -12653,19 +12657,19 @@ elements where zero data is defined as not significant:
 
 Soft deleted data value removal will permanently delete soft deleted data values.
 
-	POST PUT /api/26/maintenance/softDeletedDataValueRemoval
+    POST PUT /api/26/maintenance/softDeletedDataValueRemoval
 
 Soft deleted program stage instance removal will permanently delete soft deleted events.
 
-	POST PUT /api/26/maintenance/softDeletedProgramStageInstanceRemoval
+    POST PUT /api/26/maintenance/softDeletedProgramStageInstanceRemoval
 
 Soft deleted program instance removal will permanently delete soft deleted enrollments.
 
-	POST PUT /api/26/maintenance/softDeletedProgramInstanceRemoval
+    POST PUT /api/26/maintenance/softDeletedProgramInstanceRemoval
 
 Soft deleted tracked entity instance removal will permanently delete soft deleted tracked entity instances.
 
-	POST PUT /api/26/maintenance/softDeletedTrackedEntityInstanceRemoval
+    POST PUT /api/26/maintenance/softDeletedTrackedEntityInstanceRemoval
 
 Drop SQL views will drop all SQL views in the database. Note that it will not delete the DHIS 2 SQL view entities.
 
@@ -12705,7 +12709,7 @@ Metadata validation will apply all metadata validation rules and return the resu
 
 App reload will refresh the DHIS 2 managed cache of installed apps by reading from the file system.
 
-	POST PUT /api/26/appReload
+    POST PUT /api/26/appReload
 
 Maintenance operations are supported in a batch style with a POST request to the api/maintenance resource where the operations are supplied as query parameters:
 
@@ -12737,9 +12741,9 @@ array named codes, similar to this:
 ```json
 {
   "codes": [
-	"Y0moqFplrX4",
-	"WI0VHXuWQuV",
-	"BRJNBBpu4ki"
+    "Y0moqFplrX4",
+    "WI0VHXuWQuV",
+    "BRJNBBpu4ki"
   ]
 }
 ```
@@ -12767,29 +12771,29 @@ currently includes the below properties.
 
 ```json
 {
-	contextPath: "http://yourdomain.com",
-	userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62 Safari/537.36",
-	version: "2.13-SNAPSHOT",
-	revision: "11852",
-	buildTime: "2013-09-01T21:36:21.000+0000",
-	serverDate: "2013-09-02T12:35:54.311+0000",
-	environmentVariable: "DHIS2_HOME",
-	javaVersion: "1.7.0_06",
-	javaVendor: "Oracle Corporation",
-	javaIoTmpDir: "/tmp",
-	javaOpts: "-Xms600m -Xmx1500m -XX:PermSize=400m -XX:MaxPermSize=500m",
-	osName: "Linux",
-	osArchitecture: "amd64",
-	osVersion: "3.2.0-52-generic",
-	externalDirectory: "/home/dhis/config/dhis2",
-	databaseInfo: {
-		type: "PostgreSQL",
-		name: "dhis2",
-		user: "dhis",
-		spatialSupport: false
-	},
-	memoryInfo: "Mem Total in JVM: 848 Free in JVM: 581 Max Limit: 1333",
-	cpuCores: 8
+  contextPath: "http://yourdomain.com",
+  userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62 Safari/537.36",
+  version: "2.13-SNAPSHOT",
+  revision: "11852",
+  buildTime: "2013-09-01T21:36:21.000+0000",
+  serverDate: "2013-09-02T12:35:54.311+0000",
+  environmentVariable: "DHIS2_HOME",
+  javaVersion: "1.7.0_06",
+  javaVendor: "Oracle Corporation",
+  javaIoTmpDir: "/tmp",
+  javaOpts: "-Xms600m -Xmx1500m -XX:PermSize=400m -XX:MaxPermSize=500m",
+  osName: "Linux",
+  osArchitecture: "amd64",
+  osVersion: "3.2.0-52-generic",
+  externalDirectory: "/home/dhis/config/dhis2",
+  databaseInfo: {
+    type: "PostgreSQL",
+    name: "dhis2",
+    user: "dhis",
+    spatialSupport: false
+  },
+  memoryInfo: "Mem Total in JVM: 848 Free in JVM: 581 Max Limit: 1333",
+  cpuCores: 8
 }
 ```
 
@@ -12938,12 +12942,12 @@ indicates whether the process is considered to be complete.
 
 ```json
 [{
-	"uid": "hpiaeMy7wFX",
-	"level": "INFO",
-	"category": "DATAVALUE_IMPORT",
-	"time": "2015-09-02T07:43:14.595+0000",
-	"message": "Import done",
-	"completed": true
+  "uid": "hpiaeMy7wFX",
+  "level": "INFO",
+  "category": "DATAVALUE_IMPORT",
+  "time": "2015-09-02T07:43:14.595+0000",
+  "message": "Import done",
+  "completed": true
 }]
 ```
 
@@ -12970,39 +12974,39 @@ The response will look similar to this:
 
 ```json
 [{
-	"EVENT_IMPORT": {},
-	"DATA_STATISTICS": {},
-	"RESOURCE_TABLE": {},
-	"FILE_RESOURCE_CLEANUP": {},
-	"METADATA_IMPORT": {},
-	"CREDENTIALS_EXPIRY_ALERT": {},
-	"SMS_SEND": {},
-	"MOCK": {},
-	"ANALYTICSTABLE_UPDATE": {},
-	"COMPLETE_DATA_SET_REGISTRATION_IMPORT": {},
-	"DATAVALUE_IMPORT": {},
-	"DATA_SET_NOTIFICATION": {},
-	"DATA_INTEGRITY": {
-		"OB1qGRlCzap": [{
-			"uid": "LdHQK0PXZyF",
-			"level": "INFO",
-			"category": "DATA_INTEGRITY",
-			"time": "2018-03-26T15:02:32.171",
-			"message": "Data integrity checks completed in 38.31 seconds.",
-			"completed": true
-		}]
-	},
-	"PUSH_ANALYSIS": {},
-	"MONITORING": {},
-	"VALIDATION_RESULTS_NOTIFICATION": {},
-	"REMOVE_EXPIRED_RESERVED_VALUES": {},
-	"DATA_SYNC": {},
-	"SEND_SCHEDULED_MESSAGE": {},
-	"DATAVALUE_IMPORT_INTERNAL": {},
-	"PROGRAM_NOTIFICATIONS": {},
-	"META_DATA_SYNC": {},
-	"ANALYTICS_TABLE": {},
-	"PREDICTOR": {}
+  "EVENT_IMPORT": {},
+  "DATA_STATISTICS": {},
+  "RESOURCE_TABLE": {},
+  "FILE_RESOURCE_CLEANUP": {},
+  "METADATA_IMPORT": {},
+  "CREDENTIALS_EXPIRY_ALERT": {},
+  "SMS_SEND": {},
+  "MOCK": {},
+  "ANALYTICSTABLE_UPDATE": {},
+  "COMPLETE_DATA_SET_REGISTRATION_IMPORT": {},
+  "DATAVALUE_IMPORT": {},
+  "DATA_SET_NOTIFICATION": {},
+  "DATA_INTEGRITY": {
+    "OB1qGRlCzap": [{
+      "uid": "LdHQK0PXZyF",
+      "level": "INFO",
+      "category": "DATA_INTEGRITY",
+      "time": "2018-03-26T15:02:32.171",
+      "message": "Data integrity checks completed in 38.31 seconds.",
+      "completed": true
+    }]
+  },
+  "PUSH_ANALYSIS": {},
+  "MONITORING": {},
+  "VALIDATION_RESULTS_NOTIFICATION": {},
+  "REMOVE_EXPIRED_RESERVED_VALUES": {},
+  "DATA_SYNC": {},
+  "SEND_SCHEDULED_MESSAGE": {},
+  "DATAVALUE_IMPORT_INTERNAL": {},
+  "PROGRAM_NOTIFICATIONS": {},
+  "META_DATA_SYNC": {},
+  "ANALYTICS_TABLE": {},
+  "PREDICTOR": {}
 }]
 ```
 
@@ -13026,35 +13030,35 @@ The response will look similar to this:
 
 ```json
 {
-	"responseType": "ImportSummary",
-	"status": "SUCCESS",
-	"importOptions": {
-		"idSchemes": {},
-		"dryRun": false,
-		"async": true,
-		"importStrategy": "CREATE_AND_UPDATE",
-		"mergeMode": "REPLACE",
-		"reportMode": "FULL",
-		"skipExistingCheck": false,
-		"sharing": false,
-		"skipNotifications": false,
-		"datasetAllowsPeriods": false,
-		"strictPeriods": false,
-		"strictCategoryOptionCombos": false,
-		"strictAttributeOptionCombos": false,
-		"strictOrganisationUnits": false,
-		"requireCategoryOptionCombo": false,
-		"requireAttributeOptionCombo": false,
-		"skipPatternValidation": false
-	},
-	"description": "Import process completed successfully",
-	"importCount": {
-		"imported": 0,
-		"updated": 431,
-		"ignored": 0,
-		"deleted": 0
-	},
-	"dataSetComplete": "false"
+  "responseType": "ImportSummary",
+  "status": "SUCCESS",
+  "importOptions": {
+    "idSchemes": {},
+    "dryRun": false,
+    "async": true,
+    "importStrategy": "CREATE_AND_UPDATE",
+    "mergeMode": "REPLACE",
+    "reportMode": "FULL",
+    "skipExistingCheck": false,
+    "sharing": false,
+    "skipNotifications": false,
+    "datasetAllowsPeriods": false,
+    "strictPeriods": false,
+    "strictCategoryOptionCombos": false,
+    "strictAttributeOptionCombos": false,
+    "strictOrganisationUnits": false,
+    "requireCategoryOptionCombo": false,
+    "requireAttributeOptionCombo": false,
+    "skipPatternValidation": false
+  },
+  "description": "Import process completed successfully",
+  "importCount": {
+    "imported": 0,
+    "updated": 431,
+    "ignored": 0,
+    "deleted": 0
+  },
+  "dataSetComplete": "false"
 }
 ```
 
@@ -13313,8 +13317,8 @@ NOTE: Recipients list will be partitioned if its size exceed
 {
   "message":"Sms Text",
   "recipients": [
-	"47XXXXXX1",
-	"47XXXXXX2"
+    "47XXXXXX1",
+    "47XXXXXX2"
   ]
 }
 ```
@@ -13537,10 +13541,10 @@ GET method.
 
 New gateway configuraitons can be added using POST. POST api requires type request parameter and currently its value can have either one *http,bulksms,clickatell*. First added gateway will be set to default. Only one gateway is allowed to be default at one time. Default gateway can only be changed through its api. If default gateway is removed then the next one the list will automatically becomes default.
 
-	POST /api/26/gateways
-	
+    POST /api/26/gateways
+
 Configuration can be updated with by providing uid and gateway configurations as mentioned below
-	
+
 	PUT /api/26/gateways/{uids}
 
 Configurations can be removed for specific gateway type using DELETE
@@ -13591,17 +13595,17 @@ case of GenericHttpGateway to send one or more parameter as http header.
 
 ```json
 {
-	"type": "smpp",
-	"name": "smpp gateway2",
-	"systemId": "smppclient1",
-	"host": "localhost",
-	"systemType": "cp",
-	"numberPlanIndicator": "UNKNOWN",
-	"typeOfNumber": "UNKNOWN",
-	"bindType": "BIND_TX",
-	"port": 2775,
-	"password":"password",
-	"compressed": false
+  "type": "smpp",
+  "name": "smpp gateway2",
+  "systemId": "smppclient1",
+  "host": "localhost",
+  "systemType": "cp",
+  "numberPlanIndicator": "UNKNOWN",
+  "typeOfNumber": "UNKNOWN",
+  "bindType": "BIND_TX",
+  "port": 2775,
+  "password":"password",
+  "compressed": false
 }
 ```
 
@@ -13616,27 +13620,27 @@ case of GenericHttpGateway to send one or more parameter as http header.
   "contentType": "APPLICATION_JSON",
   "urlTemplate":"https://samplegateway.com/messages",
   "parameters": [
-	{
-		"header": true,
-		"encode": false,
-		"key": "username",
-		"value": "user_uio",
-		"confidential": true
-	},
-	{
-		"header": true,
-		"encode": false,
-		"key": "password",
-		"value": "123abcxyz",
-		"confidential": true
-	},
-	{
-		"header": false,
-		"encode": false,
-		"key": "deliveryReport",
-		"value": "yes",
-		"confidential": false
-	}
+    {
+      "header": true,
+      "encode": false,
+      "key": "username",
+      "value": "user_uio",
+      "confidential": true
+    },
+    {
+      "header": true,
+      "encode": false,
+      "key": "password",
+      "value": "123abcxyz",
+      "confidential": true
+    },
+    {
+      "header": false,
+      "encode": false,
+      "key": "deliveryReport",
+      "value": "yes",
+      "confidential": false
+    }
   ],
   "isDefault": false
 }
@@ -13800,36 +13804,36 @@ Note that message resource accepts a wrapper object named
 
 ```json
 {
-	"programMessages": [{
-		"recipients": {
-			"trackedEntityInstance": {
-				"id": "UN810PwyVYO"
-			},
-			"organisationUnit": {
-				"id": "Rp268JB6Ne4"
-			},
-			"phoneNumbers": [
-				"55512345",
-				"55545678"
-			],
-			"emailAddresses": [
-				"johndoe@mail.com",
-				"markdoe@mail.com"
-			]
-		},
-		"programInstance": {
-			"id": "f3rg8gFag8j"
-		},
-		"programStageInstance": {
-			"id": "pSllsjpfLH2"
-		},
-		"deliveryChannels": [
-			"SMS", "EMAIL"
-		],
-		"subject": "Outbreak alert",
-		"text": "An outbreak has been detected",
-		"storeCopy": false
-	}]
+  "programMessages": [{
+    "recipients": {
+      "trackedEntityInstance": {
+        "id": "UN810PwyVYO"
+      },
+      "organisationUnit": {
+        "id": "Rp268JB6Ne4"
+      },
+      "phoneNumbers": [
+        "55512345",
+        "55545678"
+      ],
+      "emailAddresses": [
+        "johndoe@mail.com",
+        "markdoe@mail.com"
+      ]
+    },
+    "programInstance": {
+      "id": "f3rg8gFag8j"
+    },
+    "programStageInstance": {
+      "id": "pSllsjpfLH2"
+    },
+    "deliveryChannels": [
+      "SMS", "EMAIL"
+    ],
+    "subject": "Outbreak alert",
+    "text": "An outbreak has been detected",
+    "storeCopy": false
+  }]
 }
 ```
 
@@ -13907,20 +13911,20 @@ curl -d @message.json "https://play.dhis2.org/demo/api/26/messages"
 
 ```json
 {
-	"programMessages": [{
-		"recipients": {
-			"trackedEntityInstance": {
-				"id": "PQfMcpmXeFE"
-			}
-		},
-		"programInstance": {
-			"id": "JMgRZyeLWOo"
-		},
-		"deliveryChannels": [
-			"SMS"
-		],
-		"text": "Please make a visit on Thursday"
-	}]
+  "programMessages": [{
+    "recipients": {
+      "trackedEntityInstance": {
+        "id": "PQfMcpmXeFE"
+      }
+    },
+    "programInstance": {
+      "id": "JMgRZyeLWOo"
+    },
+    "deliveryChannels": [
+      "SMS"
+    ],
+    "text": "Please make a visit on Thursday"
+  }]
 }
 ```
 
@@ -14127,34 +14131,34 @@ use this on a SSL enabled server) and will be encrypted on the backend:
   "surname": "Doe",
   "email": "johndoe@mail.com",
   "userCredentials": {
-	"id": "lWCkJ4etppc",
-	"userInfo": {
-	  "id": "Mj8balLULKp"
-	},
-	"username": "johndoe123",
-	"password": "Your-password-123",
-	"skype": "john.doe",
-	"telegram": "joh.doe",
-	"whatsApp": "+1-541-754-3010",
-	"facebookMessenger": "john.doe",
-	"avatar": {
-	  "id": "<fileResource id>"
-	},
-	"userRoles": [
-	  {
-		"id": "Ufph3mGRmMo"
-	  }
-	]
+    "id": "lWCkJ4etppc",
+    "userInfo": {
+    "id": "Mj8balLULKp"
+  },
+  "username": "johndoe123",
+  "password": "Your-password-123",
+  "skype": "john.doe",
+  "telegram": "joh.doe",
+  "whatsApp": "+1-541-754-3010",
+  "facebookMessenger": "john.doe",
+  "avatar": {
+    "id": "<fileResource id>"
+  },
+  "userRoles": [
+    {
+      "id": "Ufph3mGRmMo"
+    }
+  ]
   },
   "organisationUnits": [
-	{
-	  "id": "Rp268JB6Ne4"
-	}
+  {
+    "id": "Rp268JB6Ne4"
+  }
   ],
   "userGroups": [
-	{
-	  "id": "wl5cDMuUhmF"
-	}
+  {
+    "id": "wl5cDMuUhmF"
+  }
   ]
 }
 ```
@@ -14204,17 +14208,17 @@ looks like this:
   "surname": "Doe",
   "email": "johndoe@mail.com",
   "userCredentials": {
-	"username": "johndoe",
-	"userRoles": [ {
-	  "id": "Euq3XfEIEbx"
-	} ]
+    "username": "johndoe",
+    "userRoles": [{
+      "id": "Euq3XfEIEbx"
+    }]
   },
   "organisationUnits": [ {
-	"id": "ImspTQPwCqd"
+    "id": "ImspTQPwCqd"
   } ],
   "userGroups": [ {
-	"id": "vAvEltyXGbD"
-  } ]
+    "id": "vAvEltyXGbD"
+  }]
 }
 ```
 
@@ -14230,31 +14234,31 @@ slightly different format. For JSON:
 ```json
 {
   "users": [ {
-	"firstName": "John",
-	"surname": "Doe",
-	"email": "johndoe@mail.com",
-	"userCredentials": {
-	  "username": "johndoe",
-	  "userRoles": [ {
-		"id": "Euq3XfEIEbx"
-	  } ]
-	},
-	"organisationUnits": [ {
-	  "id": "ImspTQPwCqd"
-	  } ]
-	}, {
-	"firstName": "Tom",
-	"surname": "Johnson",
-	"email": "tomj@mail.com",
-	"userCredentials": {
-	  "userRoles": [ {
-		"id": "Euq3XfEIEbx"
-	  } ]
-	},
-	"organisationUnits": [ {
-	  "id": "ImspTQPwCqd"
-	  } ]
-	}
+    "firstName": "John",
+    "surname": "Doe",
+    "email": "johndoe@mail.com",
+    "userCredentials": {
+      "username": "johndoe",
+      "userRoles": [ {
+        "id": "Euq3XfEIEbx"
+      } ]
+    },
+    "organisationUnits": [ {
+      "id": "ImspTQPwCqd"
+      } ]
+    }, {
+    "firstName": "Tom",
+    "surname": "Johnson",
+    "email": "tomj@mail.com",
+    "userCredentials": {
+      "userRoles": [ {
+        "id": "Euq3XfEIEbx"
+      } ]
+    },
+    "organisationUnits": [ {
+      "id": "ImspTQPwCqd"
+      } ]
+    }
   ]
 }
 ```
@@ -15101,18 +15105,18 @@ JSON payload looking like this.
 ```json
 {
   "organisationUnitLevels": [{
-	"name": "National",
-	"level": 1,
-	"offlineLevels": 3
+    "name": "National",
+    "level": 1,
+    "offlineLevels": 3
   }, {
-	"name": "District",
-	"level": 2
+    "name": "District",
+    "level": 2
   }, {
-	"name": "Chiefdom",
-	"level": 3
+    "name": "Chiefdom",
+    "level": 3
   }, {
-	"name": "Facility",
-	"level": 4
+    "name": "Facility",
+    "level": 4
   }]
 }
 ```
@@ -15505,13 +15509,13 @@ For creating a new person in the system, you will be working with the
 
 ```json
 {
-	"trackedEntity": "tracked-entity-id",
-	"orgUnit": "org-unit-id",
-	"geometry": <GeoJson>,
-	"attributes": [ {
-		"attribute": "attribute-id",
-		"value": "attribute-value"
-	} ]
+  "trackedEntity": "tracked-entity-id",
+  "orgUnit": "org-unit-id",
+  "geometry": "<Geo JSON>",
+  "attributes": [{
+    "attribute": "attribute-id",
+    "value": "attribute-value"
+  }]
 }
 ```
 
@@ -15547,14 +15551,14 @@ specify its first name and last name attributes:
   "trackedEntity": "nEenWmSyUEp",
   "orgUnit": "DiszpKrYNg8",
   "attributes": [
-	{
-	  "attribute": "w75KJ2mc4zz",
-	  "value": "Joe"
-	},
-	{
-	  "attribute": "zDhUuAYrxNC",
-	  "value": "Smith"
-	}
+    {
+      "attribute": "w75KJ2mc4zz",
+      "value": "Joe"
+    },
+    {
+      "attribute": "zDhUuAYrxNC",
+      "value": "Smith"
+    }
   ]
 }
 ```
@@ -15572,34 +15576,34 @@ an outer array like this and POST to the same resource as above:[]()
 ```json
 {
   "trackedEntityInstances": [
-	{
-	  "trackedEntity": "nEenWmSyUEp",
-	  "orgUnit": "DiszpKrYNg8",
-	  "attributes": [
-		{
-		  "attribute": "w75KJ2mc4zz",
-		  "value": "Joe"
-		},
-		{
-		  "attribute": "zDhUuAYrxNC",
-		  "value": "Smith"
-		}
-	  ]
-	},
-	{
-	  "trackedEntity": "nEenWmSyUEp",
-	  "orgUnit": "DiszpKrYNg8",
-	  "attributes": [
-		{
-		  "attribute": "w75KJ2mc4zz",
-		  "value": "Jennifer"
-		},
-		{
-		  "attribute": "zDhUuAYrxNC",
-		  "value": "Johnson"
-		}
-	  ]
-	}
+    {
+      "trackedEntity": "nEenWmSyUEp",
+      "orgUnit": "DiszpKrYNg8",
+      "attributes": [
+        {
+          "attribute": "w75KJ2mc4zz",
+          "value": "Joe"
+        },
+        {
+          "attribute": "zDhUuAYrxNC",
+          "value": "Smith"
+        }
+      ]
+    },
+    {
+      "trackedEntity": "nEenWmSyUEp",
+      "orgUnit": "DiszpKrYNg8",
+      "attributes": [
+        {
+          "attribute": "w75KJ2mc4zz",
+          "value": "Jennifer"
+        },
+        {
+          "attribute": "zDhUuAYrxNC",
+          "value": "Johnson"
+        }
+      ]
+    }
   ]
 }
 ```
@@ -15653,23 +15657,23 @@ instance and at the same time enroll into a program.
 
 ```json
 {
-	"trackedEntity": "tracked-entity-id",
-	"orgUnit": "org-unit-id",
-	"attributes": [ {
-		"attribute": "attribute-id",
-		"value": "attribute-value"
-	} ],
-	"enrollments": [ {
-		"orgUnit": "org-unit-id",
-		"program": "program-id",
-		"enrollmentDate": "2013-09-17",
-		"incidentDate": "2013-09-17"
-	 }, {
-		"orgUnit": "org-unit-id",
-		"program": "program-id",
-		"enrollmentDate": "2013-09-17",
-		"incidentDate": "2013-09-17"
-	 } ]
+  "trackedEntity": "tracked-entity-id",
+  "orgUnit": "org-unit-id",
+  "attributes": [{
+    "attribute": "attribute-id",
+    "value": "attribute-value"
+  }],
+  "enrollments": [{
+    "orgUnit": "org-unit-id",
+    "program": "program-id",
+    "enrollmentDate": "2013-09-17",
+    "incidentDate": "2013-09-17"
+   }, {
+    "orgUnit": "org-unit-id",
+    "program": "program-id",
+    "enrollmentDate": "2013-09-17",
+    "incidentDate": "2013-09-17"
+   }]
 }
 ```
 
@@ -15690,76 +15694,76 @@ the same time enroll into a program and create an event.
 
 ```json
 {
-	"trackedEntityType": "nEenWmSyUEp",
-	"orgUnit": "DiszpKrYNg8",
-	"attributes": [
-	  {
-		"attribute": "w75KJ2mc4zz",
-		"value": "Joe"
-	  },
-	  {
-		"attribute": "zDhUuAYrxNC",
-		"value": "Rufus"
-	  },
-	  {
-		 "attribute":"cejWyOfXge6",
-		 "value":"Male"
-	  }
-	],
-	"enrollments":[
-	  {
-		 "orgUnit":"DiszpKrYNg8",
-		 "program":"ur1Edk5Oe2n",
-		 "enrollmentDate":"2017-09-15",
-		 "incidentDate":"2017-09-15",
-		 "events":[
-			{
-			   "program":"ur1Edk5Oe2n",
-			   "orgUnit":"DiszpKrYNg8",
-			   "eventDate":"2017-10-17",
-			   "status":"COMPLETED",
-			   "storedBy":"admin",
-			   "programStage":"EPEcjy3FWmI",
-			   "coordinate":{
-				  "latitude":"59.8",
-				  "longitude":"10.9"
-			   },
-			   "dataValues":[
-				  {
-					 "dataElement":"qrur9Dvnyt5",
-					 "value":"22"
-				  },
-				  {
-					 "dataElement":"oZg33kd9taw",
-					 "value":"Male"
-				  }
-			   ]
-			},
-			{
-			   "program":"ur1Edk5Oe2n",
-			   "orgUnit":"DiszpKrYNg8",
-			   "eventDate":"2017-10-17",
-			   "status":"COMPLETED",
-			   "storedBy":"admin",
-			   "programStage":"EPEcjy3FWmI",
-			   "coordinate":{
-				  "latitude":"59.8",
-				  "longitude":"10.9"
-			   },
-			   "dataValues":[
-				  {
-					 "dataElement":"qrur9Dvnyt5",
-					 "value":"26"
-				  },
-				  {
-					 "dataElement":"oZg33kd9taw",
-					 "value":"Female"
-				  }
-			   ]
-			}
-		 ]
-	  }
-   ]
+  "trackedEntityType": "nEenWmSyUEp",
+  "orgUnit": "DiszpKrYNg8",
+  "attributes": [
+    {
+      "attribute": "w75KJ2mc4zz",
+      "value": "Joe"
+    },
+    {
+      "attribute": "zDhUuAYrxNC",
+      "value": "Rufus"
+	},
+    {
+     "attribute":"cejWyOfXge6",
+     "value":"Male"
+    }
+  ],
+  "enrollments":[
+    {
+      "orgUnit":"DiszpKrYNg8",
+      "program":"ur1Edk5Oe2n",
+      "enrollmentDate":"2017-09-15",
+      "incidentDate":"2017-09-15",
+      "events":[
+        {
+          "program":"ur1Edk5Oe2n",
+          "orgUnit":"DiszpKrYNg8",
+          "eventDate":"2017-10-17",
+          "status":"COMPLETED",
+          "storedBy":"admin",
+          "programStage":"EPEcjy3FWmI",
+          "coordinate": {
+            "latitude":"59.8",
+            "longitude":"10.9"
+          },
+          "dataValues": [
+            {
+              "dataElement":"qrur9Dvnyt5",
+              "value":"22"
+            },
+            {
+              "dataElement":"oZg33kd9taw",
+              "value":"Male"
+            }
+         ]
+      },
+      {
+         "program":"ur1Edk5Oe2n",
+         "orgUnit":"DiszpKrYNg8",
+         "eventDate":"2017-10-17",
+         "status":"COMPLETED",
+         "storedBy":"admin",
+         "programStage":"EPEcjy3FWmI",
+         "coordinate": {
+           "latitude":"59.8",
+           "longitude":"10.9"
+         },
+         "dataValues":[
+           {
+             "dataElement":"qrur9Dvnyt5",
+             "value":"26"
+           },
+           {
+             "dataElement":"oZg33kd9taw",
+             "value":"Female"
+           }
+         ]
+       }
+     ]
+    }
+  ]  
 }
 ```
 
@@ -15812,12 +15816,12 @@ variables should only be supplied if you know what you are doing.
 
 ```json
 {
-	"REQUIRED": [
-		"ORG_UNIT_CODE"
-	],
-	"OPTIONAL": [
-		"RANDOM"
-	]
+  "REQUIRED": [
+    "ORG_UNIT_CODE"
+  ],
+  "OPTIONAL": [
+    "RANDOM"
+  ]
 }
 ```
 
@@ -15841,12 +15845,12 @@ adding the `?expiration=<number-of-days>` to the request.
 
 ```json
 {
-	"ownerObject": "TRACKEDENTITYATTRIBUTE",
-	"ownerUid": "Gs1ICEQTPlG",
-	"key": "RANDOM(X)-OSL",
-	"value": "C-OSL",
-	"created": "2018-03-02T12:01:36.680",
-	"expiryDate": "2018-03-05T12:01:36.678"
+  "ownerObject": "TRACKEDENTITYATTRIBUTE",
+  "ownerUid": "Gs1ICEQTPlG",
+  "key": "RANDOM(X)-OSL",
+  "value": "C-OSL",
+  "created": "2018-03-02T12:01:36.680",
+  "expiryDate": "2018-03-05T12:01:36.678"
 }
 ```
 
@@ -15873,30 +15877,30 @@ you can override the default 60 days.
 
 ```json
 [
-	{
-		"ownerObject": "TRACKEDENTITYATTRIBUTE",
-		"ownerUid": "Gs1ICEQTPlG",
-		"key": "RANDOM(X)-OSL",
-		"value": "B-OSL",
-		"created": "2018-03-02T13:22:35.175",
-		"expiryDate": "2018-05-01T13:22:35.174"
-	},
-	{
-		"ownerObject": "TRACKEDENTITYATTRIBUTE",
-		"ownerUid": "Gs1ICEQTPlG",
-		"key": "RANDOM(X)-OSL",
-		"value": "Q-OSL",
-		"created": "2018-03-02T13:22:35.175",
-		"expiryDate": "2018-05-01T13:22:35.174"
-	},
-	{
-		"ownerObject": "TRACKEDENTITYATTRIBUTE",
-		"ownerUid": "Gs1ICEQTPlG",
-		"key": "RANDOM(X)-OSL",
-		"value": "S-OSL",
-		"created": "2018-03-02T13:22:35.175",
-		"expiryDate": "2018-05-01T13:22:35.174"
-	}
+  {
+    "ownerObject": "TRACKEDENTITYATTRIBUTE",
+    "ownerUid": "Gs1ICEQTPlG",
+    "key": "RANDOM(X)-OSL",
+    "value": "B-OSL",
+    "created": "2018-03-02T13:22:35.175",
+    "expiryDate": "2018-05-01T13:22:35.174"
+  },
+  {
+    "ownerObject": "TRACKEDENTITYATTRIBUTE",
+    "ownerUid": "Gs1ICEQTPlG",
+    "key": "RANDOM(X)-OSL",
+    "value": "Q-OSL",
+    "created": "2018-03-02T13:22:35.175",
+    "expiryDate": "2018-05-01T13:22:35.174"
+  },
+  {
+    "ownerObject": "TRACKEDENTITYATTRIBUTE",
+    "ownerUid": "Gs1ICEQTPlG",
+    "key": "RANDOM(X)-OSL",
+    "value": "S-OSL",
+    "created": "2018-03-02T13:22:35.175",
+    "expiryDate": "2018-05-01T13:22:35.174"
+  }
 ]
 ```
 
@@ -16260,150 +16264,122 @@ a full view, you might want to add `fields=*` to the query:
 
 ```json
 {
-	"trackedEntityInstances": [
-		{
-			"lastUpdated": "2014-03-28 12:27:52.399",
-			"trackedEntity": "cyl5vuJ5ETQ",
-			"created": "2014-03-26 15:40:19.997",
-			"orgUnit": "ueuQlqb8ccl",
-			"trackedEntityInstance": "tphfdyIiVL6",
-			"relationships": [],
-			"attributes": [
-				{
-					"displayName": "Address",
-					"attribute": "AMpUYgxuCaE",
-					"type": "string",
-					"value": "2033 Akasia St"
-				},
-				{
-					"displayName": "TB number",
-					"attribute": "ruQQnf6rswq",
-					"type": "string",
-					"value": "1Z 989 408 56 9356 521 9"
-				},
-				{
-					"displayName": "Weight in kg",
-					"attribute": "OvY4VVhSDeJ",
-					"type": "number",
-					"value": "68.1"
-				},
-				{
-					"displayName": "Email",
-					"attribute": "NDXw0cluzSw",
-					"type": "string",
-					"value": "LiyaEfrem@armyspy.com"
-				},
-				{
-					"displayName": "Gender",
-					"attribute": "cejWyOfXge6",
-					"type": "optionSet",
-					"value": "Female"
-				},
-				{
-					"displayName": "Phone number",
-					"attribute": "P2cwLGskgxn",
-					"type": "phoneNumber",
-					"value": "085 813 9447"
-				},
-				{
-					"displayName": "First name",
-					"attribute": "dv3nChNSIxy",
-					"type": "string",
-					"value": "Liya"
-				},
-				{
-					"displayName": "Last name",
-					"attribute": "hwlRTFIFSUq",
-					"type": "string",
-					"value": "Efrem"
-				},
-				{
-					"code": "Height in cm",
-					"displayName": "Height in cm",
-					"attribute": "lw1SqmMlnfh",
-					"type": "number",
-					"value": "164"
-				},
-				{
-					"code": "City",
-					"displayName": "City",
-					"attribute": "VUvgVao8Y5z",
-					"type": "string",
-					"value": "Kranskop"
-				},
-				{
-					"code": "State",
-					"displayName": "State",
-					"attribute": "GUOBQt5K2WI",
-					"type": "number",
-					"value": "KwaZulu-Natal"
-				},
-				{
-					"code": "Zip code",
-					"displayName": "Zip code",
-					"attribute": "n9nUvfpTsxQ",
-					"type": "number",
-					"value": "3282"
-				},
-				{
-					"code": "Mother maiden name",
-					"displayName": "Mother maiden name",
-					"attribute": "o9odfev2Ty5",
-					"type": "string",
-					"value": "Gabriel"
-				},
-				{
-					"code": "National identifier",
-					"displayName": "National identifier",
-					"attribute": "AuPLng5hLbE",
-					"type": "string",
-					"value": "465700042"
-				},
-				{
-					"code": "Occupation",
-					"displayName": "Occupation",
-					"attribute": "A4xFHyieXys",
-					"type": "string",
-					"value": "Biophysicist"
-				},
-				{
-					"code": "Company",
-					"displayName": "Company",
-					"attribute": "kyIzQsj96BD",
-					"type": "string",
-					"value": "Sav-A-Center"
-				},
-				{
-					"code": "Vehicle",
-					"displayName": "Vehicle",
-					"attribute": "VHfUeXpawmE",
-					"type": "string",
-					"value": "2008 Citroen Picasso"
-				},
-				{
-					"code": "Blood type",
-					"displayName": "Blood type",
-					"attribute": "H9IlTX2X6SL",
-					"type": "string",
-					"value": "B-"
-				},
-				{
-					"code": "Latitude",
-					"displayName": "Latitude",
-					"attribute": "Qo571yj6Zcn",
-					"type": "string",
-					"value": "-30.659626"
-				},
-				{
-					"code": "Longitude",
-					"displayName": "Longitude",
-					"attribute": "RG7uGl4w5Jq",
-					"type": "string",
-					"value": "26.916172"
-				}
-			]
-		}
-	]
+  "trackedEntityInstances": [
+    {
+      "lastUpdated": "2014-03-28 12:27:52.399",
+      "trackedEntity": "cyl5vuJ5ETQ",
+      "created": "2014-03-26 15:40:19.997",
+      "orgUnit": "ueuQlqb8ccl",
+      "trackedEntityInstance": "tphfdyIiVL6",
+      "relationships": [],
+      "attributes": [
+        {
+          "displayName": "Address",
+          "attribute": "AMpUYgxuCaE",
+          "type": "string",
+          "value": "2033 Akasia St"
+        },
+        {
+          "displayName": "TB number",
+          "attribute": "ruQQnf6rswq",
+          "type": "string",
+          "value": "1Z 989 408 56 9356 521 9"
+        },
+        {
+          "displayName": "Weight in kg",
+          "attribute": "OvY4VVhSDeJ",
+          "type": "number",
+          "value": "68.1"
+        },
+        {
+          "displayName": "Email",
+          "attribute": "NDXw0cluzSw",
+          "type": "string",
+          "value": "LiyaEfrem@armyspy.com"
+        },
+        {
+          "displayName": "Gender",
+          "attribute": "cejWyOfXge6",
+          "type": "optionSet",
+          "value": "Female"
+        },
+        {
+          "displayName": "Phone number",
+          "attribute": "P2cwLGskgxn",
+          "type": "phoneNumber",
+          "value": "085 813 9447"
+        },
+        {
+          "displayName": "First name",
+          "attribute": "dv3nChNSIxy",
+          "type": "string",
+          "value": "Liya"
+        },
+        {
+          "displayName": "Last name",
+          "attribute": "hwlRTFIFSUq",
+          "type": "string",
+          "value": "Efrem"
+        },
+        {
+          "code": "Height in cm",
+          "displayName": "Height in cm",
+          "attribute": "lw1SqmMlnfh",
+          "type": "number",
+          "value": "164"
+        },
+        {
+          "code": "City",
+          "displayName": "City",
+          "attribute": "VUvgVao8Y5z",
+          "type": "string",
+          "value": "Kranskop"
+        },
+        {
+          "code": "State",
+          "displayName": "State",
+          "attribute": "GUOBQt5K2WI",
+          "type": "number",
+          "value": "KwaZulu-Natal"
+        },
+        {
+          "code": "Zip code",
+          "displayName": "Zip code",
+          "attribute": "n9nUvfpTsxQ",
+          "type": "number",
+          "value": "3282"
+        },
+        {
+          "code": "National identifier",
+          "displayName": "National identifier",
+          "attribute": "AuPLng5hLbE",
+          "type": "string",
+          "value": "465700042"
+        },
+        {
+          "code": "Blood type",
+          "displayName": "Blood type",
+          "attribute": "H9IlTX2X6SL",
+          "type": "string",
+          "value": "B-"
+        },
+        {
+          "code": "Latitude",
+          "displayName": "Latitude",
+          "attribute": "Qo571yj6Zcn",
+          "type": "string",
+          "value": "-30.659626"
+        },
+        {
+          "code": "Longitude",
+          "displayName": "Longitude",
+          "attribute": "RG7uGl4w5Jq",
+          "type": "string",
+          "value": "26.916172"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -16759,51 +16735,51 @@ instance.
 
 ```json
 {
-	"headers": [{
-		"name": "instance",
-		"column": "Instance",
-		"type": "java.lang.String"
-	}, {
-		"name": "created",
-		"column": "Created",
-		"type": "java.lang.String"
-	}, {
-		"name": "lastupdated",
-		"column": "Last updated",
-		"type": "java.lang.String"
-	}, {
-		"name": "ou",
-		"column": "Org unit",
-		"type": "java.lang.String"
-	}, {
-		"name": "te",
-		"column": "Tracked entity",
-		"type": "java.lang.String"
-	}, {
-		"name": "zHXD5Ve1Efw",
-		"column": "Date of birth type",
-		"type": "java.lang.String"
-	}, {
-		"name": "AMpUYgxuCaE",
-		"column": "Address",
-		"type": "java.lang.String"
-	}],
-	"metaData": {
-		"names": {
-			"cyl5vuJ5ETQ": "Person"
-		}
-	},
-	"width": 7,
-	"height": 7,
-	"rows": [
-		["yNCtJ6vhRJu", "2013-09-08 21:40:28.0", "2014-01-09 19:39:32.19", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "21 Kenyatta Road"],
-		["fSofnQR6lAU", "2013-09-08 21:40:28.0", "2014-01-09 19:40:19.62", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "56 Upper Road"],
-		["X5wZwS5lgm2", "2013-09-08 21:40:28.0", "2014-01-09 19:40:31.11", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "56 Main Road"],
-		["pCbogmlIXga", "2013-09-08 21:40:28.0", "2014-01-09 19:40:45.02", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "12 Lower Main Road"],
-		["WnUXrY4XBMM", "2013-09-08 21:40:28.0", "2014-01-09 19:41:06.97", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "13 Main Road"],
-		["xLNXbDs9uDF", "2013-09-08 21:40:28.0", "2014-01-09 19:42:25.66", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "14 Mombasa Road"],
-		["foc5zag6gbE", "2013-09-08 21:40:28.0", "2014-01-09 19:42:36.93", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "15 Upper Hill"]
-	]
+  "headers": [{
+    "name": "instance",
+    "column": "Instance",
+    "type": "java.lang.String"
+  }, {
+    "name": "created",
+    "column": "Created",
+    "type": "java.lang.String"
+  }, {
+    "name": "lastupdated",
+    "column": "Last updated",
+    "type": "java.lang.String"
+  }, {
+    "name": "ou",
+    "column": "Org unit",
+    "type": "java.lang.String"
+  }, {
+    "name": "te",
+    "column": "Tracked entity",
+    "type": "java.lang.String"
+  }, {
+    "name": "zHXD5Ve1Efw",
+    "column": "Date of birth type",
+    "type": "java.lang.String"
+  }, {
+    "name": "AMpUYgxuCaE",
+    "column": "Address",
+    "type": "java.lang.String"
+  }],
+  "metaData": {
+    "names": {
+      "cyl5vuJ5ETQ": "Person"
+    }
+  },
+  "width": 7,
+  "height": 7,
+  "rows": [
+    ["yNCtJ6vhRJu", "2013-09-08 21:40:28.0", "2014-01-09 19:39:32.19", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "21 Kenyatta Road"],
+    ["fSofnQR6lAU", "2013-09-08 21:40:28.0", "2014-01-09 19:40:19.62", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "56 Upper Road"],
+    ["X5wZwS5lgm2", "2013-09-08 21:40:28.0", "2014-01-09 19:40:31.11", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "56 Main Road"],
+    ["pCbogmlIXga", "2013-09-08 21:40:28.0", "2014-01-09 19:40:45.02", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "12 Lower Main Road"],
+    ["WnUXrY4XBMM", "2013-09-08 21:40:28.0", "2014-01-09 19:41:06.97", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "13 Main Road"],
+    ["xLNXbDs9uDF", "2013-09-08 21:40:28.0", "2014-01-09 19:42:25.66", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "14 Mombasa Road"],
+    ["foc5zag6gbE", "2013-09-08 21:40:28.0", "2014-01-09 19:42:36.93", "DiszpKrYNg8", "cyl5vuJ5ETQ", "A", "15 Upper Hill"]
+  ]
 }
 ```
 
@@ -17220,21 +17196,21 @@ a full view, you might want to add `fields=*` to the query:
 
 ```json
 {
-	"enrollments": [
-		{
-			"lastUpdated": "2014-03-28T05:27:48.512+0000",
-			"trackedEntity": "cyl5vuJ5ETQ",
-			"created": "2014-03-28T05:27:48.500+0000",
-			"orgUnit": "DiszpKrYNg8",
-			"program": "ur1Edk5Oe2n",
-			"enrollment": "HLFOK0XThjr",
-			"trackedEntityInstance": "qv0j4JBXQX0",
-			"followup": false,
-			"enrollmentDate": "2013-05-23T05:27:48.490+0000",
-			"incidentDate": "2013-05-10T05:27:48.490+0000",
-			"status": "ACTIVE"
-		}
-	]
+  "enrollments": [
+    {
+      "lastUpdated": "2014-03-28T05:27:48.512+0000",
+      "trackedEntity": "cyl5vuJ5ETQ",
+      "created": "2014-03-28T05:27:48.500+0000",
+      "orgUnit": "DiszpKrYNg8",
+      "program": "ur1Edk5Oe2n",
+      "enrollment": "HLFOK0XThjr",
+      "trackedEntityInstance": "qv0j4JBXQX0",
+      "followup": false,
+      "enrollmentDate": "2013-05-23T05:27:48.490+0000",
+      "incidentDate": "2013-05-10T05:27:48.490+0000",
+      "status": "ACTIVE"
+    }
+  ]
 }
 ```
 
@@ -17280,9 +17256,9 @@ below:
   eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
   <coordinate latitude="59.8" longitude="10.9" />
   <dataValues>
-	<dataValue dataElement="qrur9Dvnyt5" value="22" />
-	<dataValue dataElement="oZg33kd9taw" value="Male" />
-	<dataValue dataElement="msodh3rEMJa" value="2013-05-18" />
+    <dataValue dataElement="qrur9Dvnyt5" value="22" />
+    <dataValue dataElement="oZg33kd9taw" value="Male" />
+    <dataValue dataElement="msodh3rEMJa" value="2013-05-18" />
   </dataValues>
 </event>
 ```
@@ -17311,9 +17287,13 @@ The same payload in JSON format looks like this:
 	"longitude": 10.9
   },
   "dataValues": [
-	{ "dataElement": "qrur9Dvnyt5", "value": "22" },
-	{ "dataElement": "oZg33kd9taw", "value": "Male" },
-	{ "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
+	{
+	  "dataElement": "qrur9Dvnyt5", "value": "22"
+	}, {
+	  "dataElement": "oZg33kd9taw", "value": "Male"
+	}, {
+	  "dataElement": "msodh3rEMJa", "value": "2013-05-18"
+	}
   ]
 }
 ```
@@ -17335,7 +17315,7 @@ XML format might look like this:
   <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
     eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
     <coordinate latitude="59.8" longitude="10.9" />
-	<dataValues>
+    <dataValues>
       <dataValue dataElement="qrur9Dvnyt5" value="22" />
       <dataValue dataElement="oZg33kd9taw" value="Male" />
     </dataValues>
@@ -17360,33 +17340,33 @@ format looks like this:
 {
   "events": [
   {
-	"program": "eBAyeGv0exc",
-	"orgUnit": "DiszpKrYNg8",
-	"eventDate": "2013-05-17",
-	"status": "COMPLETED",
-	"storedBy": "admin",
-	"coordinate": {
-	  "latitude": "59.8",
-	  "longitude": "10.9"
-	},
-	"dataValues": [
-	  { "dataElement": "qrur9Dvnyt5", "value": "22" },
-	  { "dataElement": "oZg33kd9taw", "value": "Male" }
-	] },
+    "program": "eBAyeGv0exc",
+    "orgUnit": "DiszpKrYNg8",
+    "eventDate": "2013-05-17",
+    "status": "COMPLETED",
+    "storedBy": "admin",
+    "coordinate": {
+      "latitude": "59.8",
+      "longitude": "10.9"
+    },
+    "dataValues": [
+      { "dataElement": "qrur9Dvnyt5", "value": "22" },
+      { "dataElement": "oZg33kd9taw", "value": "Male" }
+    ] },
   {
-	"program": "eBAyeGv0exc",
-	"orgUnit": "DiszpKrYNg8",
-	"eventDate": "2013-05-17",
-	"status": "COMPLETED",
-	"storedBy": "admin",
-	"coordinate": {
-	  "latitude": "59.8",
-	  "longitude": "10.9"
-	},
-	"dataValues": [
-	  { "dataElement": "qrur9Dvnyt5", "value": "26" },
-	  { "dataElement": "oZg33kd9taw", "value": "Female" }
-	] }
+    "program": "eBAyeGv0exc",
+    "orgUnit": "DiszpKrYNg8",
+    "eventDate": "2013-05-17",
+    "status": "COMPLETED",
+    "storedBy": "admin",
+    "coordinate": {
+      "latitude": "59.8",
+      "longitude": "10.9"
+    },
+    "dataValues": [
+      { "dataElement": "qrur9Dvnyt5", "value": "26" },
+      { "dataElement": "oZg33kd9taw", "value": "Female" }
+    ] }
   ]
 }
 ```
@@ -17401,13 +17381,17 @@ You can also use GeoJson to store any kind of geometry on your event. An example
   "status": "COMPLETED",
   "storedBy": "admin",
   "geometry": {
-	"type": "POINT",
-	"coordinates": [59.8, 10.9]
+    "type": "POINT",
+    "coordinates": [59.8, 10.9]
   },
   "dataValues": [
-	{ "dataElement": "qrur9Dvnyt5", "value": "22" },
-	{ "dataElement": "oZg33kd9taw", "value": "Male" },
-	{ "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
+    {
+      "dataElement": "qrur9Dvnyt5", "value": "22"
+    }, { 
+      "dataElement": "oZg33kd9taw", "value": "Male"
+    }, {
+      "dataElement": "msodh3rEMJa", "value": "2013-05-18"
+    }
   ]
 }
 ```
@@ -18090,9 +18074,9 @@ the tracker user interface.
 <td>DateFilterPeriod object date filtering based on event date.</td>
 <td>
   "eventDate": {
-	"startBuffer": -5,
-	"endBuffer": 5,
-	"type": "RELATIVE"
+    "startBuffer": -5,
+    "endBuffer": 5,
+    "type": "RELATIVE"
   }
 </td>
 </tr>
@@ -18100,10 +18084,10 @@ the tracker user interface.
 <td>dueDate</td>
 <td>DateFilterPeriod object date filtering based on due date.</td>
 <td>
- "dueDate": {
-        "period": "LAST_WEEK",
-        "type": "RELATIVE"
-      }
+  "dueDate": {
+    "period": "LAST_WEEK",
+    "type": "RELATIVE"
+  }
 </td>
 </tr>
 <tr class="even">
@@ -18111,9 +18095,9 @@ the tracker user interface.
 <td>DateFilterPeriod object date filtering based on last updated date.</td>
 <td>
   "lastUpdatedDate": {
-	"startDate": "2014-05-01",
-	"endDate": "2019-03-20",
-	"type": "ABSOLUTE"
+    "startDate": "2014-05-01",
+    "endDate": "2019-03-20",
+    "type": "ABSOLUTE"
   }
 </td>
 </tr>
@@ -18294,14 +18278,14 @@ This request will return a list of any relationship you have access to see that 
   "relationship": "t0HIBrc65Rm",
   "bidirectional": false,
   "from": {
-	"trackedEntityInstance": {
-	  "trackedEntityInstance": "vOxUH373fy5"
-	}
+    "trackedEntityInstance": {
+      "trackedEntityInstance": "vOxUH373fy5"
+    }
   },
   "to": {
-	"trackedEntityInstance": {
-	  "trackedEntityInstance": "pybd813kIWx"
-	}
+    "trackedEntityInstance": {
+      "trackedEntityInstance": "pybd813kIWx"
+    }
   },
   "created": "2019-04-26T09:30:56.267",
   "lastUpdated": "2019-04-26T09:30:56.267"
@@ -18323,14 +18307,14 @@ And use the following payload structure:
 {
   "relationshipType": "dDrh5UyCyvQ",
   "from": {
-	"trackedEntityInstance": {
-	  "trackedEntityInstance": "vOxUH373fy5"
-	}
+    "trackedEntityInstance": {
+      "trackedEntityInstance": "vOxUH373fy5"
+    }
   },
   "to": {
-	"trackedEntityInstance": {
-	  "trackedEntityInstance": "pybd813kIWx"
-	}
+    "trackedEntityInstance": {
+      "trackedEntityInstance": "pybd813kIWx"
+    }
   }
 }
 ```
@@ -18344,7 +18328,7 @@ In our example payloads, we use a relationship between trackedEntityInstances. B
 ```json
 {
   "enrollment": {
-	"enrollment": "<id>"
+    "enrollment": "<id>"
   }
 }
 ```
@@ -18352,7 +18336,7 @@ In our example payloads, we use a relationship between trackedEntityInstances. B
 ```json
 {
   "event": {
-	"event": "<id>"
+    "event": "<id>"
   }
 }
 ```
@@ -18407,9 +18391,13 @@ updating tracker objects, the only difference is that the
 ```json
 {
   "trackedEntityInstances": [
-	{ "trackedEntityInstance": "ID1" },
-	{ "trackedEntityInstance": "ID2" },
-	{ "trackedEntityInstance": "ID3" }
+    {
+      "trackedEntityInstance": "ID1"
+    }, { 
+      "trackedEntityInstance": "ID2"
+    }, { 
+      "trackedEntityInstance": "ID3"
+    }
   ]
 }
 ```
@@ -18424,9 +18412,13 @@ curl -X POST -d @data.json -H "Content-Type: application/json"
 ```json
 {
   "enrollments": [
-	{ "enrollment": "ID1" },
-	{ "enrollment": "ID2" },
-	{ "enrollment": "ID3" }
+    {
+       "enrollment": "ID1"
+    }, { 
+      "enrollment": "ID2" 
+    }, { 
+      "enrollment": "ID3"
+    }
   ]
 }
 ```
@@ -18441,9 +18433,13 @@ curl -X POST -d @data.json -H "Content-Type: application/json"
 ```json
 {
   "events": [
-	{ "event": "ID1" },
-	{ "event": "ID2" },
-	{ "event": "ID3" }
+    {
+      "event": "ID1"
+    }, { 
+      "event": "ID2"
+    }, { 
+      "event": "ID3"
+    }
   ]
 }
 ```
@@ -18750,8 +18746,8 @@ The payload you provide needs at least _teiA_ to be a valid tracked entity insta
 
 ```json
 {
-	"teiA": "<id>", (required)
-	"teiB": "<id>" (optional)
+  "teiA": "<id>", (required)
+  "teiB": "<id>" (optional)
 }
 ```
 
@@ -18849,27 +18845,27 @@ The response looks like the below.
 
 ```json
 {
-	"meta": {
-		"allowPublicAccess": true,
-		"allowExternalAccess": false
-	},
-	"object": {
-		"id": "fbfJHSPpUQD",
-		"name": "ANC 1st visit",
-		"publicAccess": "rw------",
-		"externalAccess": false,
-		"user": {},
-		"userGroupAccesses": [
-			{
-				"id": "hj0nnsVsPLU",
-				"access": "rw------"
-			},
-			{
-				"id": "qMjBflJMOfB",
-				"access": "r-------"
-			}
-		]
-	}
+  "meta": {
+    "allowPublicAccess": true,
+    "allowExternalAccess": false
+  },
+  "object": {
+    "id": "fbfJHSPpUQD",
+    "name": "ANC 1st visit",
+    "publicAccess": "rw------",
+    "externalAccess": false,
+    "user": {},
+    "userGroupAccesses": [
+      {
+        "id": "hj0nnsVsPLU",
+        "access": "rw------"
+      },
+      {
+        "id": "qMjBflJMOfB",
+        "access": "r-------"
+      }
+    ]
+  }
 }
 ```
 
@@ -18882,21 +18878,21 @@ a POST request, where the payload in JSON format looks like this:
 
 ```json
 {
-	"object": {
-		"publicAccess": "rw------",
-		"externalAccess": false,
-		"user": {},
-		"userGroupAccesses": [
-			{
-				"id": "hj0nnsVsPLU",
-				"access": "rw------"
-			},
-			{
-				"id": "qMjBflJMOfB",
-				"access": "r-------"
-			}
-		]
-	}
+  "object": {
+    "publicAccess": "rw------",
+    "externalAccess": false,
+    "user": {},
+    "userGroupAccesses": [
+      {
+        "id": "hj0nnsVsPLU",
+        "access": "rw------"
+      },
+      {
+        "id": "qMjBflJMOfB",
+        "access": "r-------"
+      }
+    ]
+  }
 }
 ```
 
@@ -19075,9 +19071,9 @@ Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
   "cronExpression": "0 * * ? * *",
   "jobParameters":
   {
-	  "lastYears": "2",
-	  "skipTableTypes": [],
-	  "skipResourceTables": false
+    "lastYears": "2",
+    "skipTableTypes": [],
+    "skipResourceTables": false
   }
 }
 ```
@@ -19086,13 +19082,12 @@ Adding job with parameters in JSON format (PUSH\_ANALYSIS example):
 
 ```json
  {
- 	"name": "test-push-anlysis-chart",
- 	"jobType": "PUSH_ANALYSIS",
- 	"cronExpression": "0 * * ? * *",
- 	"jobParameters": {
- 		"pushAnalysis": ["jtcMAKhWwnc"]
-
- 	}
+   "name": "test-push-anlysis-chart",
+   "jobType": "PUSH_ANALYSIS",
+   "cronExpression": "0 * * ? * *",
+   "jobParameters": {
+     "pushAnalysis": ["jtcMAKhWwnc"]
+    }
  }
 ```
 
@@ -19120,22 +19115,22 @@ Retrieve a job: (ANALYTICS\_TABLE example):
   "nextExecutionTime": "2018-02-26T03:00:00.000",
   "cronExpression": "0 0 3 ? * MON",
   "jobParameters": {
-	"lastYears": 2,
-	"skipTableTypes": [],
-	"skipResourceTables": false
+    "lastYears": 2,
+    "skipTableTypes": [],
+    "skipResourceTables": false
   },
   "favorite": false,
   "configurable": true,
   "access": {
-	"read": true,
-	"update": true,
-	"externalize": true,
-	"delete": true,
-	"write": true,
-	"manage": true
+    "read": true,
+    "update": true,
+    "externalize": true,
+    "delete": true,
+    "write": true,
+    "manage": true
   },
   "lastUpdatedBy": {
-	"id": "GOLswS44mh8"
+    "id": "GOLswS44mh8"
   },
   "favorites": [],
   "translations": [],
@@ -19157,9 +19152,9 @@ Updating job with parameters in JSON format (ANALYTICS\_TABLE example):
   "continuousExecution": false,
   "jobType": "ANALYTICS_TABLE",
   "jobParameters": {
-	"lastYears": "3",
-	"skipTableTypes": [],
-	"skipResourceTables": false
+    "lastYears": "3",
+    "skipTableTypes": [],
+    "skipResourceTables": false
   }
 }
 ```
@@ -19405,39 +19400,39 @@ A sample JSON response is described below.
 ```json
 {
   [
-	{
-	  "name": "Tabular Tracker Capture",
-	  "description": "Tabular Tracker Capture is an app that makes you more effective.",
-	  "sourceUrl": "https://github.com/dhis2/App-repository",
-	  "appType": "DASHBOARD_WIDGET",
-	  "status": "PENDING",
-	  "id": "NSD06BVoV21",
-	  "developer": {
-		  "name": "DHIS",
-		  "organisation": "Uio",
-		  "address": "Oslo",
-		  "email": "dhis@abc.com",
-		}
-	  "versions": [
-		{
-		  "id": "upAPqrVgwK6",
-		  "version": "1.2",
-		  "minDhisVersion": "2.17",
-		  "maxDhisVersion": "2.20",
-		  "downloadUrl": "https://www.dhis2.org/download/appstore/tabular-tracker-capture-12.zip",
-		  "demoUrl": "http://play.dhis2.org/demo"
-		}
-	  ]
-	  "images": [
-		{
-		  "id": "upAPqrVgwK6",
-		  "logo": "true",
-		  "imageUrl": "https://www.dhis2.org/download/appstore/tabular-tracker-capture-12.png",
-		  "description": "added feature snapshot",
-		  "caption": "dialog",
-		}
-	  ]
-	}
+    {
+      "name": "Tabular Tracker Capture",
+      "description": "Tabular Tracker Capture is an app that makes you more effective.",
+      "sourceUrl": "https://github.com/dhis2/App-repository",
+      "appType": "DASHBOARD_WIDGET",
+      "status": "PENDING",
+      "id": "NSD06BVoV21",
+      "developer": {
+        "name": "DHIS",
+        "organisation": "Uio",
+        "address": "Oslo",
+        "email": "dhis@abc.com",
+      },
+      "versions": [
+        {
+          "id": "upAPqrVgwK6",
+          "version": "1.2",
+          "minDhisVersion": "2.17",
+          "maxDhisVersion": "2.20",
+          "downloadUrl": "https://www.dhis2.org/download/appstore/tabular-tracker-capture-12.zip",
+          "demoUrl": "http://play.dhis2.org/demo"
+        }
+      ],
+      "images": [
+        {
+          "id": "upAPqrVgwK6",
+          "logo": "true",
+          "imageUrl": "https://www.dhis2.org/download/appstore/tabular-tracker-capture-12.png",
+          "description": "added feature snapshot",
+          "caption": "dialog",
+        }
+      ]
+    }
   ]
 }
 ```
@@ -19527,8 +19522,8 @@ Example response:
 
 ```json
 [
-	"foo",
-	"bar"
+  "foo",
+  "bar"
 ]
 ```
 
@@ -19546,8 +19541,8 @@ Example response:
 
 ```json
 [
-	"key_1",
-	"key_2"
+  "key_1",
+  "key_2"
 ]
 ```
 
@@ -19565,7 +19560,7 @@ Example response:
 
 ```json
 {
-	"foo":"bar"
+  "foo":"bar"
 }
 ```
 
@@ -19583,10 +19578,10 @@ Example response:
 
 ```json
 {
-	"created": "...",
-	"user": {...},
-	"namespace": "foo",
-	"key": "key_1"
+  "created": "...",
+  "user": {...},
+  "namespace": "foo",
+  "key": "key_1"
 }
 ```
 
@@ -19609,10 +19604,10 @@ Example response:
 
 ```json
 {
-	"httpStatus": "OK",
-	"httpStatusCode": 201,
-	"status": "OK",
-	"message": "Key 'key_1' created."
+  "httpStatus": "OK",
+  "httpStatusCode": 201,
+  "status": "OK",
+  "message": "Key 'key_1' created."
 }
 ```
 
@@ -19640,10 +19635,10 @@ Example response:
 
 ```json
 {
-	"httpStatus": "OK",
-	"httpStatusCode": 200,
-	"status": "OK",
-	"message": "Key 'key_1' updated."
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Key 'key_1' updated."
 }
 ```
 
@@ -19665,10 +19660,10 @@ Example response:
 
 ```json
 {
-	"httpStatus": "OK",
-	"httpStatusCode": 200,
-	"status": "OK",
-	"message": "Key 'key_1' deleted from namespace 'foo'."
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Key 'key_1' deleted from namespace 'foo'."
 }
 ```
 
@@ -19686,10 +19681,10 @@ Example response:
 
 ```json
 {
-	"httpStatus": "OK",
-	"httpStatusCode": 200,
-	"status": "OK",
-	"message": "Namespace 'foo' deleted."
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Namespace 'foo' deleted."
 }
 ```
 
@@ -19981,25 +19976,25 @@ A sample payload looks like this:
 
 ```json
 {
-	"id": "AG10KUJCrRk",
-	"name": "Malaria Outbreak Threshold Predictor",
-	"shortName": "Malaria Outbreak Predictor",
-	"description": "Computes the threshold for potential malaria outbreaks based on the mean plus 1.5x the std dev",
-	"output": {
-		"id": "nXJJZNVAy0Y"
-	},
-	"generator": {
-		"expression": "AVG(#{r6nrJANOqMw})+1.5*STDDEV(#{r6nrJANOqMw})",
-		"dataElements": [],
-		"sampleElements": [{
-			"id": "r6nrJANOqMw"
-		}]
-	},
-	"periodType": "Monthly",
-	"sequentialSampleCount": 4,
-	"sequentialSkipCount": 1,
-	"annualSampleCount": 3,
-	"organisationUnitLevels": [4]
+  "id": "AG10KUJCrRk",
+  "name": "Malaria Outbreak Threshold Predictor",
+  "shortName": "Malaria Outbreak Predictor",
+  "description": "Computes the threshold for potential malaria outbreaks based on the mean plus 1.5x the std dev",
+  "output": {
+    "id": "nXJJZNVAy0Y"
+  },
+  "generator": {
+    "expression": "AVG(#{r6nrJANOqMw})+1.5*STDDEV(#{r6nrJANOqMw})",
+    "dataElements": [],
+    "sampleElements": [{
+      "id": "r6nrJANOqMw"
+    }]
+  },
+  "periodType": "Monthly",
+  "sequentialSampleCount": 4,
+  "sequentialSkipCount": 1,
+  "annualSampleCount": 3,
+  "organisationUnitLevels": [4]
 }
 ```
 
@@ -20114,13 +20109,13 @@ The JSON content format looks like this:
   "generated": false,
   "max": 100,
   "dataElement": {
-	"id": "UOlfIjgN8X6"
+    "id": "UOlfIjgN8X6"
    },
   "source": {
-	"id": "DiszpKrYNg8"
+    "id": "DiszpKrYNg8"
   },
   "optionCombo": {
-	"id": "psbwp3CQEhs"
+    "id": "psbwp3CQEhs"
   }
 }
 ```
@@ -20515,9 +20510,9 @@ actual icon.
   key: "mosquito_outline",
   description: "",
   keywords: [
-	"malaria",
-	"mosquito",
-	"denge"
+    "malaria",
+    "mosquito",
+	"dengue"
   ],
   href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
 }
