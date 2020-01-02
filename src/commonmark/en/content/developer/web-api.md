@@ -114,8 +114,8 @@ OAuth2 roles but rather provides applications access based on user roles
 of the DHIS2 user.
 
 Each client for which you want to allow OAuth 2 authentication must be
-registered in DHIS2. To add a new OAuth2 client go to *Apps \> Settings
-\> OAuth2 Clients*, click add new and enter the desired client name and
+registered in DHIS2. To add a new OAuth2 client go to *Apps > Settings
+> OAuth2 Clients*, click add new and enter the desired client name and
 the grant types.
 
 #### Adding a client using the Web API
@@ -128,12 +128,12 @@ send a payload like this:
    "name" : "OAuth2 Demo Client",
    "cid" : "demo",
    "secret" : "1e6db50c-0fee-11e5-98d0-3c15c2c6caf6",
-   "grantTypes" : [
+   "grantTypes": [
 	  "password",
 	  "refresh_token",
 	  "authorization_code"
    ],
-   "redirectUris" : [
+   "redirectUris": [
 	  "http://www.example.org"
    ]
 }
@@ -170,15 +170,15 @@ This will give you a response similar to this:
 
 ```json
 {
-   "expires_in" : 43175,
-   "scope" : "ALL",
-   "access_token" : "07fc551c-806c-41a4-9a8c-10658bd15435",
-   "refresh_token" : "a4e4de45-4743-481d-9345-2cfe34732fcc",
-   "token_type" : "bearer"
+   "expires_in": 43175,
+   "scope": "ALL",
+   "access_token": "07fc551c-806c-41a4-9a8c-10658bd15435",
+   "refresh_token": "a4e4de45-4743-481d-9345-2cfe34732fcc",
+   "token_type": "bearer"
 }
 ```
 
-For now, we will concentrate on the **access\_token**, which is what we
+For now, we will concentrate on the `access_token`, which is what we
 will use as our authentication (bearer) token. As an example we will get
 all data elements using our token:
 
@@ -192,9 +192,9 @@ curl -H "Authorization: Bearer 07fc551c-806c-41a4-9a8c-10658bd15435" $SERVER/api
 <!--DHIS2-SECTION-ID:webapi_refresh_token-->
 
 In general the access tokens have limited validity. You can have a look
-at the **expires\_in** property of the response in the previous example
-to understand when a token expires. To get a fresh **access\_token** you
-can make another round trip to the server and use **refresh\_token**
+at the `expires_in` property of the response in the previous example
+to understand when a token expires. To get a fresh `access_token` you
+can make another round trip to the server and use `refresh_token`
 which allows you to get an updated token without needing to ask for the
 user credentials one more time.
 
@@ -203,13 +203,13 @@ SERVER="https://play.dhis2.org/dev"
 SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
 REFRESH_TOKEN="a4e4de45-4743-481d-9345-2cfe34732fcc"
 
-curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/token
+curl -X POST -H "Accept: application/json" -u demo:$SECRET "$SERVER/uaa/oauth/token"
 -d grant_type=refresh_token -d refresh_token=$REFRESH_TOKEN
 ```
 
 The response will be exactly the same as when you get a token to start with.
 
-#### Grant type authorization\_code
+#### Grant type authorization_code
 
 <!--DHIS2-SECTION-ID:webapi_authorization_code-->
 
@@ -217,16 +217,14 @@ Authorized code grant type is the recommended approach if you don't want
 to store the user credentials externally. It allows DHIS2 to collect the
 username/password directly from the user instead of the client
 collecting them and then authenticating on behalf of the user. Please be
-aware that this approach uses the **redirect\_uris** part of the client
+aware that this approach uses the `redirectUris` part of the client
 payload.
 
 Step 1: Using a browser visit this URL (if you have more than one
-redirect URIs, you might want to add
-\&redirect\_uri=http://www.example.org) :
+redirect URIs, you might want to add `&redirect_uri=http://www.example.org`:
 
 ```bash
 SERVER="https://play.dhis2.org/dev"
-
 $SERVER/uaa/oauth/authorize?client_id=demo&response_type=code
 ```
 
@@ -742,12 +740,12 @@ other available locales.
 
 To read and update translations you can use the special translations
 endpoint for each object resource. These can be accessed by **GET** or
-**PUT** on the appropriate
-*/api/26/\<object-type\>/\<object-id\>/translations* endpoint. As an
-example, for a data element with identifier *FTRrcoaog83* you could use
-*/api/26/dataElements/FTRrcoaog83/translations* to get and update
+**PUT** on the appropriate `/api/26/<object-type>/<object-id>/translations` endpoint.
+
+As an example, for a data element with identifier *FTRrcoaog83* you could use
+`/api/26/dataElements/FTRrcoaog83/translations` to get and update
 translations. The fields available are *property* with options **NAME**,
-**SHORT\_NAME**, **DESCRIPTION**, the *locale* which supports any valid
+**SHORT_NAME**, **DESCRIPTION**, the *locale* which supports any valid
 locale ID and the the *value* itself.
 
 Example of NAME property for French locale:
@@ -790,7 +788,7 @@ follows the DHIS 2 major version numbering. As an example, the API
 version for DHIS 2.25 is *25*.
 
 You can access a specific API version by including the version number
-after the */api* component, as an example like this:
+after the `/api` component, as an example like this:
 
     /api/26/dataElements
 
@@ -1083,10 +1081,10 @@ recursion. To filter at the "root" level you can just use the name of
 the field, i.e. *?fields=id,name* which would only display the *id* and
 *name* for every object. For objects that are either collections or
 complex objects with properties on their own you can use the format
-*?fields=id,name,dataSets\[id,name\]* which would return *id*, *name* of
+`?fields=id,name,dataSets[id,name]` which would return *id*, *name* of
 the root, and the *id* and *name* of every data set on that object.
 Negation can be done with the exclamation operator, and we have a set of
-presets of field select (see below). Both XML and JSON are supported.
+presets of field select. Both XML and JSON are supported.
 
 **Example**: Get *id* and *name* on the indicators resource:
 
@@ -1097,13 +1095,13 @@ from the dataSets on dataElements:
 
     /api/26/dataElements?fields=id,name,dataSets[id,name]
 
-To exclude a field from the output you can use the exclamation (\!)
+To exclude a field from the output you can use the exclamation `!`
 operator. This is allowed anywhere in the query and will simply not
-include that property (as it might have been inserted in some of the
-presets).
+include that property as it might have been inserted in some of the
+presets.
 
 A few presets (selected fields groups) are available and can be applied
-using the ':' operator.
+using the `:` operator.
 
 <table>
 <caption>Property operators</caption>
@@ -1343,10 +1341,10 @@ example , we will create and update an *constant*. To figure out the
 format, we can use the new *schema* endpoint for getting format
 description. So we will start with getting that info:
 
-    http://<<server>>/api/schemas/constant.json
+    http://<server>/api/schemas/constant.json
 
 From the output, you can see that the required authorities for create
-are F\_CONSTANT\_ADD, and the important properties are: *name* and
+are `F_CONSTANT_ADD`, and the important properties are: *name* and
 *value*. From this we can create a JSON payload and save it as a file
 called constant.json:
 
@@ -1370,7 +1368,7 @@ the *constants*endpoint with the JSON payload using curl:
 
 ```bash
 curl -d @constant.json "http://server/api/26/constants" -X POST
--H "Content-Type: application/json" -u user:password
+  -H "Content-Type: application/json" -u user:password
 ```
 
 A specific example of posting the constant to the demo
@@ -1378,16 +1376,21 @@ A specific example of posting the constant to the demo
 
 ```bash
 curl -d @constant.json "https://play.dhis2.org/api/26/constants" -X POST
--H "Content-Type: application/json" -u admin:district
+  -H "Content-Type: application/json" -u admin:district
 ```
 
 If everything went well, you should see an output similar to:
 
 ```json
 {
-  "status":"SUCCESS",
-  "importCount":{"imported":1,"updated":0,"ignored":0,"deleted":0},
-  "type":"Constant"
+  "status": "SUCCESS",
+  "importCount": {
+    "imported": 1,
+    "updated": 0,
+    "ignored": 0,
+    "deleted": 0
+  },
+  "type": "Constant"
 }
 ```
 
@@ -1615,8 +1618,8 @@ resource representations are supported.
 
 The most common parameters are described below in the "Export Parameter"
 table. You can also apply this to all available types by using
-*type:fields=\<filter\>* and *type:filter=\<filter\>*- You can also
-enable/disable export of certain types by setting *type=true/false*.
+`type:fields=<filter>` and `type:filter=<filter>`. You can also
+enable/disable export of certain types by setting `type=true|false`.
 
 <table>
 <caption>Export Parameter</caption>
@@ -3134,11 +3137,11 @@ likely being uploaded to a cloud-based store somewhere) as seen by the
 Even though the content has not been fully stored yet the file resource
 can now be used, for example as referenced content in a data value (see
 [Working with file data values](#datavalue_file)). If we need to check
-the updated *storageStatus* or otherwise retrieve the meta-data of the
+the updated *storageStatus* or otherwise retrieve the metadata of the
 file, the `fileResources` endpoint can be queried.
 
 ```bash
-curl -v https://server/api/26/fileResources/xm4JwRwke0i -H "Accept: application/json"
+curl -v "https://server/api/26/fileResources/xm4JwRwke0i" -H "Accept: application/json"
 ```
 
 This request will return the `FileResource` object as seen in the
@@ -3206,8 +3209,8 @@ This section explains the Metadata Versioning APIs available starting
 
 Request:
 
-```bash
-curl -u admin:district "https://play.dhis2.org/dev/api/metadata/version"
+```
+/api/metadata/version
 ```
 
 Response:
@@ -3229,8 +3232,8 @@ Response:
 
 Request:
 
-```bash
-curl -u admin:district "https://play.dhis2.org/dev/api/metadata/version?versionName=Version_2"
+```
+/api/metadata/version?versionName=Version_2
 ```
 
 Response:
@@ -3282,8 +3285,8 @@ Response:
 
 Request:
 
-```bash
-curl -u admin:district "https://play.dhis2.org/dev/api/metadata/version/history"
+```
+/api/metadata/version/history
 ```
 
 Response:
@@ -3312,12 +3315,12 @@ Response:
 }
 ```
 
-**Example:** Get the list of all versions in this system created after "Version\_2"
+**Example:** Get the list of all versions in this system created after "Version_2"
 
 Request:
 
-```bash
-curl -u admin:district "https://play.dhis2.org/dev/api/metadata/version/history?baseline=Version_2"
+```
+/api/metadata/version/history?baseline=Version_2
 ```
 
 Response:
@@ -3375,7 +3378,7 @@ Metadata Version type governs how the importer should treat the given
 version. This type will be used while importing the metadata. There are
 two types of metadata.
 
-  - *BEST\_EFFORT*: This type suggests that missing references can be
+  - *BEST_EFFORT*: This type suggests that missing references can be
     ignored and the importer can continue importing the metadata (e.g.
     missing data elements on a data element group import).
 
@@ -3473,25 +3476,27 @@ Response:
 
 ```json
 {
-    "date": "2016-06-30T06:10:23.120+0000",
-    "dataElements": [{
-        "code": "ANC 5th Visit",
-        "created": "2016-06-30T06:10:09.870+0000",
-        "lastUpdated": "2016-06-30T06:10:09.870+0000",
-        "name": "ANC 5th Visit",
-        "id": "sCuZKDsix7Y",
-        "shortName": "ANC 5th Visit ",
-        "aggregationType": "SUM",
-        "domainType": "AGGREGATE",
-        "zeroIsSignificant": false,
-        "valueType": "NUMBER",
-        "categoryCombo": {
-            "id": "p0KPaWEg3cf"
-        },
-        "user": {
-            "id": "xE7jOejl9FI"
-        }
-    }]
+  "date": "2016-06-30T06:10:23.120+0000",
+  "dataElements": [
+    {
+      "code": "ANC 5th Visit",
+      "created": "2016-06-30T06:10:09.870+0000",
+      "lastUpdated": "2016-06-30T06:10:09.870+0000",
+      "name": "ANC 5th Visit",
+      "id": "sCuZKDsix7Y",
+      "shortName": "ANC 5th Visit ",
+      "aggregationType": "SUM",
+      "domainType": "AGGREGATE",
+      "zeroIsSignificant": false,
+      "valueType": "NUMBER",
+      "categoryCombo": {
+        "id": "p0KPaWEg3cf"
+      },
+      "user": {
+        "id": "xE7jOejl9FI"
+      }
+    }
+  ]
 }
 ```
 
@@ -3544,12 +3549,12 @@ starting 2.24
     sync might fail as the metadata dependencies are not present in the
     local instance.
 
-  - Assume the local instance is at Version\_12 and if this api is used
-    to sync Version\_15 (of type BEST\_EFFORT) from the central
+  - Assume the local instance is at `Version_12` and if this endpoint is used
+    to sync `Version_15` (of type `BEST_EFFORT`) from the central
     instance, the scheduler will start syncing metadata from
-    Version\_16. So the local instance will not have the metadata
-    versions between Version\_12 and Version\_15. You need to manually
-    sync the missing versions using this API only.
+    `Version_16`. So the local instance will not have the metadata
+    versions between `Version_12` and `Version_15`. You need to manually
+    sync the missing versions using this endpoints only.
 
 ### Sync metadata version
 
@@ -3581,7 +3586,7 @@ use the DHIS2 demo on <http://play.dhis2.org/demo> as basis and we
 recommend that you follow the provided links with a web browser while
 reading (log in with *admin/district* as username/password). We assume
 that we have collected case-based data using a simple software client
-running on mobile phones for the *Mortality \<5 years* data set in the
+running on mobile phones for the *Mortality <5 years* data set in the
 community of *Ngelehun CHC* (in *Badjia* chiefdom, *Bo* district) for
 the month of January 2014. We have now aggregated our data into a
 statistical report and want to send that data to the national DHIS2
@@ -3617,9 +3622,24 @@ JSON is supported in this format:
   "orgUnit": "orgUnitID",
   "attributeOptionCombo", "aocID",
   "dataValues": [
-    { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "1", "comment": "comment1" },
-    { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "2", "comment": "comment2" },
-    { "dataElement": "dataElementID", "categoryOptionCombo": "cocID", "value": "3", "comment": "comment3" }
+    {
+      "dataElement": "dataElementID", 
+      "categoryOptionCombo": "cocID", 
+      "value": "1", 
+      "comment": "comment1"
+    },
+    {
+      "dataElement": "dataElementID", 
+      "categoryOptionCombo": "cocID", 
+      "value": "2", 
+      "comment": "comment2"
+    },
+    {
+      "dataElement": "dataElementID", 
+      "categoryOptionCombo": "cocID", 
+      "value": "3", 
+      "comment": "comment3"
+    }
   ]
 }
 ```
@@ -3627,7 +3647,7 @@ JSON is supported in this format:
 CSV is supported in this format:
 
 ```csv
-"dataelement","period","orgunit","catoptcombo","attroptcombo","value","storedby","lastupd","comment"
+"dataelement","period","orgunit","catoptcombo","attroptcombo","value","storedby","lastupd","cmt"
 "dataElementID","period","orgUnitID","cocID","aocID","1","username","2015-04-01","comment1"
 "dataElementID","period","orgUnitID","cocID","aocID","2","username","2015-04-01","comment2"
 "dataElementID","period","orgUnitID","cocID","aocID","3","username","2015-04-01","comment3"
@@ -3645,9 +3665,9 @@ To obtain the identifier for the data set we return to the entry point
 at <http://play.dhis2.org/demo/api/24> and follow the embedded link
 pointing at the *dataSets* resource located at
 <http://play.dhis2.org/demo/api/24/dataSets>. From there we find and
-follow the link to the *Mortality \< 5 years* data set which leads us to
+follow the link to the *Mortality < 5 years* data set which leads us to
 <http://play.dhis2.org/demo/api/24/dataSets/pBOMPrpg1QX>. The resource
-representation for the *Mortality \< 5 years* data set conveniently
+representation for the *Mortality < 5 years* data set conveniently
 advertises links to the data elements which are members of it. From here
 we can follow these links and obtain the identifiers of the data
 elements. For brevity we will only report on three data elements:
@@ -3684,9 +3704,18 @@ In JSON format:
   "period": "201401",
   "orgUnit": "DiszpKrYNg8",
   "dataValues": [
-    { "dataElement": "f7n9E0hX8qk", "value": "1" },
-    { "dataElement": "Ix2HsbDMLea", "value": "2" },
-    { "dataElement": "eY5ehpbEsB7", "value": "3" }
+    {
+      "dataElement": "f7n9E0hX8qk", 
+      "value": "1"
+    },
+    {
+      "dataElement": "Ix2HsbDMLea", 
+      "value": "2"
+    },
+    {
+      "dataElement": "eY5ehpbEsB7", 
+      "value": "3"
+    }
   ]
 }
 ```
@@ -3758,22 +3787,26 @@ In JSON format:
 
 ```json
 {
-  "dataValues": [{
+  "dataValues": [
+    {
       "dataElement": "f7n9E0hX8qk", 
       "period": "201401", 
       "orgUnit": "DiszpKrYNg8", 
       "value": "12"
-    }, {
+    }, 
+    {
       "dataElement": "f7n9E0hX8qk", 
       "period": "201401", 
       "orgUnit": "FNnj3jKGS7i", 
       "value": "14"
-    }, {
+    }, 
+    {
       "dataElement": "f7n9E0hX8qk", 
       "period": "201402", 
       "orgUnit": "DiszpKrYNg8", 
       "value": "16"
-    }, {
+    }, 
+    {
       "dataElement": "f7n9E0hX8qk", 
       "period": "201402", 
       "orgUnit": "Jkhdsf8sdf4", 
@@ -4116,7 +4149,7 @@ An example of a CSV file which can be imported into DHIS2 is seen below.
 <!--DHIS2-SECTION-ID:webapi_data_values_template-->
 
 To generate a data value set template for a certain data set you can use
-the */api/dataSets/\<id\>/dataValueSet* resource. XML and JSON response
+the */api/dataSets/<id>/dataValueSet* resource. XML and JSON response
 formats are supported. Example:
 
     /api/26/dataSets/BfMAe6Itzgt/dataValueSet.json
@@ -4331,19 +4364,22 @@ The response will look something like this:
   "completeDate": "2014-02-03",
   "period": "201401",
   "orgUnit": "DiszpKrYNg8",
-  "dataValues": [{
+  "dataValues": [
+    {
       "dataElement": "eY5ehpbEsB7", 
       "categoryOptionCombo": "bRowv6yZOF2", 
       "period": "201401",
       "orgUnit": "DiszpKrYNg8", 
       "value": "10003"
-    }, {
+    }, 
+    {
       "dataElement": "Ix2HsbDMLea", 
       "categoryOptionCombo": "bRowv6yZOF2", 
       "period": "201401",
       "orgUnit": "DiszpKrYNg8", 
       "value": "10002"
-    }, {
+    }, 
+    {
       "dataElement": "f7n9E0hX8qk", 
       "categoryOptionCombo": "bRowv6yZOF2", 
       "period": "201401",
@@ -4359,16 +4395,18 @@ Note that data values are softly deleted, i.e. a deleted value has the
 This is useful when integrating multiple systems in order to communicate
 deletions. You can include deleted values in the response like this:
 
-    /api/26/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8&includeDeleted=true
+    /api/26/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401
+      &orgUnit=DiszpKrYNg8&includeDeleted=true
 
 You can also request data in CSV format like this:
 
-    https://play.dhis2.org/demo/api/26/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8
+    /api/26/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401
+      &orgUnit=DiszpKrYNg8
 
 The response will look like this:
 
 ```csv
-dataelement,period,orgunit,catoptcombo,attroptcombo,value,storedby,lastupdated,comment,followup
+dataelement,period,orgunit,catoptcombo,attroptcombo,value,storedby,lastupdated,comment,flwup
 f7n9E0hX8qk,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,12,system,2015-04-05T19:58:12.000,comment1,false
 Ix2HsbDMLea,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,14,system,2015-04-05T19:58:12.000,comment2,false
 eY5ehpbEsB7,201401,DiszpKrYNg8,bRowv6yZOF2,bRowv6yZOF2,16,system,2015-04-05T19:58:12.000,comment3,false
@@ -4395,7 +4433,7 @@ The following constraints apply to the data value sets resource:
 
 This example will show how to send individual data values to be saved in
 a request. This can be achieved by sending a *POST* request to the
-*dataValues* resource:
+`dataValues` resource:
 
     /api/26/dataValues
 
@@ -4548,7 +4586,7 @@ download from the *dataValues/files* endpoint. This is especially true
 for large files which might require time consuming uploads happening in
 the background to a an external file store (depending on the system
 configuration). Retrieving the file resource meta-data from the
-*api/fileResources/\<id\>* endpoint allows checking the *storageStatus*
+`api/fileResources/<id>` endpoint allows checking the *storageStatus*
 of the content before attempting to download it.
 
 ## ADX data format
@@ -4729,15 +4767,15 @@ at the *group* level.
 
 The most significant difference is the way that disaggregation is
 represented. DXF uses the categoryOptionCombo to indicate disaggregation
-of data. In adx the disaggregations (eg AGE\_GROUP and SEX) are
+of data. In adx the disaggregations (e.g. AGE_GROUP and SEX) are
 expressed explicitly as attributes. One important constraint on using
 adx is that the categories used for dataElements in the dataSet MUST
 have a code assigned to them, and further, that code must be of a form
 which is suitable for use as an XML attribute. The exact constraint on
 an XML attribute name is described in the W3C XML standard - in practice
-this means no spaces, no non-alphanumeric characters other than '\_' and
+this means no spaces, no non-alphanumeric characters other than '_' and
 it may not start with a letter. The example above shows examples of
-'good' category codes ('GENDER' and 'HIV\_AGE').
+'good' category codes ('GENDER' and 'HIV_AGE').
 
 This restriction on the form of codes applies only to categories.
 Currently the convention is not enforced by DHIS2 when you are assigning
@@ -5095,7 +5133,7 @@ programRuleVariable model.
 
 <!--DHIS2-SECTION-ID:webapi_creating_program_rules-->
 
-\-coming-
+- TODO Coming -
 
 ## Forms
 
@@ -6094,8 +6132,7 @@ approval workflow, period, organisation unit and attribute option combo.
 <!--DHIS2-SECTION-ID:webapi_data_approval_get_status-->
 
 To get approval information for a data set you can issue a GET request
-similar to
-    this:
+similar to this:
 
     GET http://server.com/api/dataApprovals?wf=rIUL3hYOjJc&pe=201801&ou=YuQRtpLP10I
 
@@ -6425,10 +6462,12 @@ The approval payload is supported as JSON and looks like this:
   "pe": [
     "201601", "201602"
   ],
-  "approvals": [{
+  "approvals": [
+    {
       "ou": "cDw53Ej8rju",
       "aoc": "ranftQIH5M9"
-    }, {
+    }, 
+    {
       "ou": "cDw53Ej8rju",
       "aoc": "fC3z1lcAW5x"
     }
@@ -7136,24 +7175,24 @@ organisation units. The request should look like this:
 
 ```json
 {
-    "users": [
-        {
-        "id": "OYLGMiazHtW"
-        },
-        {
-        "id": "N3PZBUlN8vq"
-        }
-    ],
-    "userGroups": [
-        {
-        "id": "DiszpKrYNg8"
-        }
-    ],
-    "organisationUnits": [
-        {
-        "id": "DiszpKrYNg8"
-        }
-    ]
+  "users": [
+    {
+      "id": "OYLGMiazHtW"
+    },
+    {
+      "id": "N3PZBUlN8vq"
+    }
+  ],
+  "userGroups": [
+    {
+      "id": "DiszpKrYNg8"
+    }
+  ],
+  "organisationUnits": [
+    {
+      "id": "DiszpKrYNg8"
+    }
+  ]
 }
 
 ```
@@ -7228,6 +7267,7 @@ to link the uploaded files to the message being created.
     {
       "fTpI4GOmujz",
       "h2ZsOxMFMfq"
+    }
   ]
 }
 ```
@@ -7246,8 +7286,8 @@ can be accessed with a GET request to the following URL.
 
     https://play.dhis2.org/demo/api/26/messageConversations/<mcId>/<msgId>/attachments/<attachmentId>
 
-Where \<mcId\> is the *messageConversation* ID, \<msgId\> is the ID of
-the *message* that contains the attachment, and \<attachmentId\> is the
+Where <mcId> is the *messageConversation* ID, <msgId> is the ID of
+the *message* that contains the attachment, and <attachmentId> is the
 ID of the specific *messageAttachment*.
 
 ### Tickets and Validation Result Notifications
@@ -7340,58 +7380,68 @@ fields omitted for brevity):
 
 ```json
 {
-  "interpretations": [{
-    "id": "XSHiFlHAhhh",
-    "created": "2013-05-30T10:24:06.181+0000",
-    "text": "Data looks suspicious, could be a data entry mistake.",
-    "type": "REPORT_TABLE",
-    "likes": 2,
-    "user": {
-      "id": "uk7diLujYif"
-    },
-    "reportTable": {
-      "id": "LcSxnfeBxyi"
-    }
-  }, {
-    "id": "kr4AnZmYL43",
-    "created": "2013-05-29T14:47:13.081+0000",
-    "text": "Delivery rates in Bo looks high.",
-    "type": "CHART",
-    "likes": 3,
-    "user": {
-      "id": "uk7diLujYif"
-    },
-    "chart": {
-      "id": "HDEDqV3yv3H"
-    },
-    "mentions": [{
-      "created": "2018-06-25T10:25:54.498",
-      "username": "boateng"
-    }],
-    "comments": [{
-      "id": "iB4Etq8yTE6",
-      "text": "This report indicates a surge.",
+  "interpretations": [
+    {
+      "id": "XSHiFlHAhhh",
+      "created": "2013-05-30T10:24:06.181+0000",
+      "text": "Data looks suspicious, could be a data entry mistake.",
+      "type": "REPORT_TABLE",
+      "likes": 2,
       "user": {
-        "id": "B4XIfwOcGyI"
-      }
-    }, {
-      "id": "iB4Etq8yTE6",
-      "text": "Likely caused by heavy rainfall.",
-      "user": {
-        "id": "B4XIfwOcGyI"
-      }
-    }, {
-      "id": "SIjkdENan8p",
-      "text": "Have a look at this @boateng.",
-      "user": {
-        "id": "xE7jOejl9FI"
+        "id": "uk7diLujYif"
       },
-      "mentions": [{
-        "created": "2018-06-25T10:03:52.316",
-        "username": "boateng"
-      }]
-    }]
-  }]
+      "reportTable": {
+        "id": "LcSxnfeBxyi"
+      }
+    }, {
+      "id": "kr4AnZmYL43",
+      "created": "2013-05-29T14:47:13.081+0000",
+      "text": "Delivery rates in Bo looks high.",
+      "type": "CHART",
+      "likes": 3,
+      "user": {
+        "id": "uk7diLujYif"
+      },
+      "chart": {
+        "id": "HDEDqV3yv3H"
+      },
+      "mentions": [
+        {
+          "created": "2018-06-25T10:25:54.498",
+          "username": "boateng"
+        }
+      ],
+      "comments": [
+        {
+          "id": "iB4Etq8yTE6",
+          "text": "This report indicates a surge.",
+          "user": {
+            "id": "B4XIfwOcGyI"
+          }
+        },
+        {
+          "id": "iB4Etq8yTE6",
+          "text": "Likely caused by heavy rainfall.",
+          "user": {
+            "id": "B4XIfwOcGyI"
+          }
+        }, 
+        {
+          "id": "SIjkdENan8p",
+          "text": "Have a look at this @boateng.",
+          "user": {
+            "id": "xE7jOejl9FI"
+          },
+          "mentions": [
+            {
+              "created": "2018-06-25T10:03:52.316",
+              "username": "boateng"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -7624,11 +7674,14 @@ have liked the interpretation.
   "text": "Data looks suspicious, could be a data entry mistake.",
   "type": "REPORT_TABLE",
   "likes": 2,
-  "likedBy": [{
-    "id": "k7Hg12fJ2f1"
-  }, {
-    "id": "gYhf26fFkjFS"
-  }]
+  "likedBy": [
+    {
+      "id": "k7Hg12fJ2f1"
+    },
+    {
+      "id": "gYhf26fFkjFS"
+    }
+  ]
 }
 ```
 
@@ -7811,63 +7864,65 @@ We start by having a look at what the complete html file could look
 like. This setup puts two tables in our web page. The first one is
 referring to an existing table. The second is configured inline.
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
-      <script src="https://dhis2-cdn.org/v227/plugin/reporttable.js"></script>
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
+  <script src="https://dhis2-cdn.org/v227/plugin/reporttable.js"></script>
 
-      <script>
-        reportTablePlugin.url = "https://play.dhis2.org/demo";
-        reportTablePlugin.username = "admin";
-        reportTablePlugin.password = "district";
-        reportTablePlugin.loadingIndicator = true;
+  <script>
+	reportTablePlugin.url = "https://play.dhis2.org/demo";
+	reportTablePlugin.username = "admin";
+	reportTablePlugin.password = "district";
+	reportTablePlugin.loadingIndicator = true;
 
-        // Referring to an existing table through the id parameter, render to "report1" div
+	// Referring to an existing table through the id parameter, render to "report1" div
 
-        var r1 = { el: "report1", id: "R0DVGvXDUNP" };
+	var r1 = { el: "report1", id: "R0DVGvXDUNP" };
 
-        // Table configuration, render to "report2" div
+	// Table configuration, render to "report2" div
 
-        var r2 = {
-          el: "report2",
-          columns: [
-            {dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
-          ],
-          rows: [
-            {dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
-          ],
-          filters: [
-            {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
-          ],
+	var r2 = {
+	  el: "report2",
+	  columns: [
+		{dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
+	  ],
+	  rows: [
+		{dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
+	  ],
+	  filters: [
+		{dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
+	  ],
 
-          // All following properties are optional
-          title: "My custom title",
-          showColTotals: false,
-          showRowTotals: false,
-          showColSubTotals: false,
-          showRowSubTotals: false,
-          showDimensionLabels: false,
-          hideEmptyRows: true,
-          skipRounding: true,
-          aggregationType: "AVERAGE",
-          showHierarchy: true,
-          completedOnly: true,
-          displayDensity: "COMFORTABLE",
-          fontSize: "SMALL",
-          digitGroupSeparator: "COMMA",
-          legendSet: {id: "fqs276KXCXi"}
-        };
+	  // All following properties are optional
+	  title: "My custom title",
+	  showColTotals: false,
+	  showRowTotals: false,
+	  showColSubTotals: false,
+	  showRowSubTotals: false,
+	  showDimensionLabels: false,
+	  hideEmptyRows: true,
+	  skipRounding: true,
+	  aggregationType: "AVERAGE",
+	  showHierarchy: true,
+	  completedOnly: true,
+	  displayDensity: "COMFORTABLE",
+	  fontSize: "SMALL",
+	  digitGroupSeparator: "COMMA",
+	  legendSet: {id: "fqs276KXCXi"}
+	};
 
-        reportTablePlugin.load([r1, r2]);
-      </script>
-    </head>
+	reportTablePlugin.load([r1, r2]);
+  </script>
+</head>
 
-    <body>
-      <div id="report1"></div>
-      <div id="report2"></div>
-    </body>
-    </html>
+<body>
+  <div id="report1"></div>
+  <div id="report2"></div>
+</body>
+</html>
+```
 
 Two files are included in the header section of the HTML document. The
 first file is the jQuery JavaScript library (we use the DHIS2 content
@@ -7895,14 +7950,16 @@ To sum up, if you want to have e.g. "ANC 1 Coverage", "ANC 2 Coverage"
 and "ANC 3 Coverage" on the columns in your table you can make the
 following *columns* config:
 
-    columns: [{
-      dimension: "dx",
-      items: [
-        {id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
-        {id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
-        {id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
-      ]
-    }]
+```json
+columns: [{
+  dimension: "dx",
+  items: [
+	{id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
+	{id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
+	{id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
+  ]
+}]
+```
 
 <table>
 <caption>Pivot table plug-in configuration</caption>
@@ -8132,68 +8189,70 @@ We start by having a look at what the complete html file could look
 like. This setup puts two charts in our web page. The first one is
 referring to an existing chart. The second is configured inline.
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
-      <script src="https://dhis2-cdn.org/v227/plugin/chart.js"></script>
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
+  <script src="https://dhis2-cdn.org/v227/plugin/chart.js"></script>
 
-      <script>
-        chartPlugin.url = "https://play.dhis2.org/demo";
-        chartPlugin.username = "admin";
-        chartPlugin.password = "district";
-        chartPlugin.loadingIndicator = true;
+  <script>
+	chartPlugin.url = "https://play.dhis2.org/demo";
+	chartPlugin.username = "admin";
+	chartPlugin.password = "district";
+	chartPlugin.loadingIndicator = true;
 
-        // Referring to an existing chart through the id parameter, render to "report1" div
+	// Referring to an existing chart through the id parameter, render to "report1" div
 
-        var r1 = { el: "report1", id: "R0DVGvXDUNP" };
+	var r1 = { el: "report1", id: "R0DVGvXDUNP" };
 
-        // Chart configuration, render to "report2" div
+	// Chart configuration, render to "report2" div
 
-        var r2 = {
-          el: "report2",
-          columns: [
-            {dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
-          ],
-          rows: [
-            {dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
-          ],
-          filters: [
-            {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
-          ],
+	var r2 = {
+	  el: "report2",
+	  columns: [
+		{dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
+	  ],
+	  rows: [
+		{dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
+	  ],
+	  filters: [
+		{dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
+	  ],
 
-          // All following properties are optional
-          title: "Custom title",
-          type: "line",
-          showValues: false,
-          hideEmptyRows: true,
-          regressionType: "LINEAR",
-          completedOnly: true,
-          targetLineValue: 100,
-          targetLineTitle: "My target line title",
-          baseLineValue: 20,
-          baseLineTitle: "My base line title",
-          aggregationType: "AVERAGE",
-          rangeAxisMaxValue: 100,
-          rangeAxisMinValue: 20,
-          rangeAxisSteps: 5,
-          rangeAxisDecimals: 2,
-          rangeAxisTitle: "My range axis title",
-          domainAxisTitle: "My domain axis title",
-          hideLegend: true
-        };
+	  // All following properties are optional
+	  title: "Custom title",
+	  type: "line",
+	  showValues: false,
+	  hideEmptyRows: true,
+	  regressionType: "LINEAR",
+	  completedOnly: true,
+	  targetLineValue: 100,
+	  targetLineTitle: "My target line title",
+	  baseLineValue: 20,
+	  baseLineTitle: "My base line title",
+	  aggregationType: "AVERAGE",
+	  rangeAxisMaxValue: 100,
+	  rangeAxisMinValue: 20,
+	  rangeAxisSteps: 5,
+	  rangeAxisDecimals: 2,
+	  rangeAxisTitle: "My range axis title",
+	  domainAxisTitle: "My domain axis title",
+	  hideLegend: true
+	};
 
-        // Render the charts
+	// Render the charts
 
-        chartPlugin.load(r1, r2);
-      </script>
-    </head>
+	chartPlugin.load(r1, r2);
+  </script>
+</head>
 
-    <body>
-      <div id="report1"></div>
-      <div id="report2"></div>
-    </body>
-    </html>
+<body>
+  <div id="report1"></div>
+  <div id="report2"></div>
+</body>
+</html>
+```
 
 Two files are included in the header section of the HTML document. The
 first file is the jQuery JavaScript library (we use the DHIS2 content
@@ -8221,14 +8280,16 @@ To sum up, if you want to have e.g. "ANC 1 Coverage", "ANC 2 Coverage"
 and "ANC 3 Coverage" on the columns in your chart you can make the
 following *columns* config:
 
-    columns: [{
-      dimension: "dx",
-      items: [
-        {id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
-        {id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
-        {id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
-      ]
-    }]
+```json
+columns: [{
+  dimension: "dx",
+  items: [
+	{id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
+	{id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
+	{id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
+  ]
+}]
+```
 
 <table>
 <caption>Chart plug-in configuration</caption>
@@ -8485,56 +8546,58 @@ We start by having a look at what the complete html file could look
 like. This setup puts two maps in our web page. The first one is
 referring to an existing map. The second is configured inline.
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v215/ext/resources/css/ext-plugin-gray.css" />
-      <script src="http://dhis2-cdn.org/v215/ext/ext-all.js"></script>
-      <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
-      <script src="http://dhis2-cdn.org/v215/openlayers/OpenLayers.js"></script>
-      <script src="http://dhis2-cdn.org/v215/plugin/map.js"></script>
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v215/ext/resources/css/ext-plugin-gray.css" />
+  <script src="http://dhis2-cdn.org/v215/ext/ext-all.js"></script>
+  <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+  <script src="http://dhis2-cdn.org/v215/openlayers/OpenLayers.js"></script>
+  <script src="http://dhis2-cdn.org/v215/plugin/map.js"></script>
 
-      <script>
-        var base = "https://play.dhis2.org/demo";
+  <script>
+	var base = "https://play.dhis2.org/demo";
 
-        // Login - if OK, call the setLinks function
+	// Login - if OK, call the setLinks function
 
-        Ext.onReady( function() {
-          Ext.Ajax.request({
-            url: base + "dhis-web-commons-security/login.action",
-            method: "POST",
-            params: { j_username: "portal", j_password: "Portal123" },
-            success: setLinks
-          });
-        });
+	Ext.onReady( function() {
+	  Ext.Ajax.request({
+		url: base + "dhis-web-commons-security/login.action",
+		method: "POST",
+		params: { j_username: "portal", j_password: "Portal123" },
+		success: setLinks
+	  });
+	});
 
-        function setLinks() {
-          DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
+	function setLinks() {
+	  DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
 
-          DHIS.getMap({
-            url: base,
-            el: "map2",
-            mapViews: [{
-              columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
-              rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units,
-              filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
-              // All following options are optional
-              classes: 7,
-              colorLow: "02079c",
-              colorHigh: "e5ecff",
-              opacity: 0.9,
-              legendSet: {id: "fqs276KXCXi"}
-            }]
-          });
-        }
-      </script>
-    </head>
+	  DHIS.getMap({
+		url: base,
+		el: "map2",
+		mapViews: [{
+		  columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
+		  rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units,
+		  filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
+		  // All following options are optional
+		  classes: 7,
+		  colorLow: "02079c",
+		  colorHigh: "e5ecff",
+		  opacity: 0.9,
+		  legendSet: {id: "fqs276KXCXi"}
+		}]
+	  });
+	}
+  </script>
+</head>
 
-    <body>
-      <div id="map1"></div>
-      <div id="map2"></div>
-    </body>
-    </html>
+<body>
+  <div id="map1"></div>
+  <div id="map2"></div>
+</body>
+</html>
+```
 
 Four files and Google Maps are included in the header section of the
 HTML document. The first two files are the Ext JS JavaScript library (we
@@ -8585,10 +8648,12 @@ the web api). The data dimension also has an array property called
 To sum up, if you want to have a layer with e.g. "ANC 1 Coverage" in
 your map you can make the following *columns* config:
 
-    columns: [{
-      dimension: "in", // could be "in", "de", "ds", "dc", "pe", "ou" or any dimension id
-      items: [{id: "Uvn6LCg7dVU"}], // the id of ANC 1 Coverage
-    }]
+```json
+columns: [{
+  dimension: "in", // could be "in", "de", "ds", "dc", "pe", "ou" or any dimension id
+  items: [{id: "Uvn6LCg7dVU"}], // the id of ANC 1 Coverage
+}]
+```
 
 <table>
 <caption>GIS map plug-in configuration</caption>
@@ -9033,7 +9098,7 @@ url for your SQL view like
 This request will return a result including org units with "bo" in the
 name and which has org unit level 2.
 
-The following example will return all org units with orgunit\_level 2 or
+The following example will return all org units with `orgunit_level` 2 or
 4:
 
     /api/sqlViews/w3UxFykyHFy/data.json?filter=orgunit_level:in:[2,4]
@@ -9264,7 +9329,7 @@ dashboard resource similar to this:
 <!--DHIS2-SECTION-ID:webapi_adding_moving_removing_dashboard_items-->
 
 In order to add dashboard items a consumer can use the
-*/api/dashboards/\<dashboard-id\>/items/content* resource, where
+`/api/dashboards/<dashboard-id>/items/content` resource, where
 \<dashboard-id\> should be replaced by the relevant dashboard
 identifier. The request must use the *POST* method. The URL syntax and
 parameters are described in detail in the following table.
@@ -9314,9 +9379,9 @@ add the resource to it.
 
 In order to move a dashboard item to a new position within the list of
 items in a dashboard, a consumer can make a *POST* request to the
-following resource URL, where \<dashboard-id\> should be replaced by the
-identifier of the dashboard, \<item-id\> should be replaced by the
-identifier of the dashboard item and \<index\> should be replaced by the
+following resource URL, where `<dashboard-id>` should be replaced by the
+identifier of the dashboard, `<item-id>` should be replaced by the
+identifier of the dashboard item and `<index>` should be replaced by the
 new position of the item in the dashboard, where the index is
 zero-based:
 
@@ -9324,8 +9389,8 @@ zero-based:
 
 To remove a dashboard item completely from a specific dashboard a
 consumer can make a *DELETE* request to the below resource URL, where
-\<dashboard-id\> should be replaced by the identifier of the dashboard
-and \<item-id\> should be replaced by the identifier of the dashboard
+`<dashboard-id>` should be replaced by the identifier of the dashboard
+and `<item-id>` should be replaced by the identifier of the dashboard
 item. The dashboard item identifiers can be retrieved through a GET
 request to the dashboard resource URL.
 
@@ -9333,12 +9398,11 @@ request to the dashboard resource URL.
 
 To remove a specific content resource within a dashboard item a consumer
 can make a *DELETE* request to the below resource URL, where
-\<content-resource-id\> should be replaced by the identifier of a
+`<content-resource-id>` should be replaced by the identifier of a
 resource associated with the dashboard item; e.g. the identifier of a
 report or a user. For instance, this can be used to remove a single
 report from a dashboard item of type reports, as opposed to removing the
-dashboard item
-    completely:
+dashboard item completely:
 
     /api/26/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
 
@@ -9794,7 +9858,7 @@ the current user you can use a URL like this:
 
 When selecting organisation units for a dimension you can select an
 entire level optionally constrained by any number of boundary
-organisation units with the LEVEL-\<level\> syntax. Boundary refers to a
+organisation units with the `LEVEL-<level>` syntax. Boundary refers to a
 top node in a sub-hierarchy, meaning that all organisation units at the
 given level below the given boundary organisation unit in the hierarchy
 will be included in the response, and is provided as regular organisation unit 
@@ -9973,8 +10037,8 @@ combination values:
 >
 > A great way to learn how to use the analytics API is to use the DHIS2
 > *pivot table* app. You can play around with pivot tables using the
-> various dimensions and items and click Download \> Plain data source
-> \> JSON to see the resulting analytics API calls in the address bar of
+> various dimensions and items and click Download > Plain data source
+> > JSON to see the resulting analytics API calls in the address bar of
 > your Web browser.
 
 ### Response formats
@@ -13749,19 +13813,19 @@ One particular command can be deleted using DELETE.
 
 #### SMSCommand parser types
 
-  - KEY\_VALUE\_PARSER
+  - KEY_VALUE_PARSER
 
-  - J2ME\_PARSER
+  - J2ME_PARSER
 
-  - ALERT\_PARSER
+  - ALERT_PARSER
 
-  - UNREGISTERED\_PARSER
+  - UNREGISTERED_PARSER
 
-  - TRACKED\_ENTITY\_REGISTRATION\_PARSER
+  - TRACKED_ENTITY_REGISTRATION_PARSER
 
-  - PROGRAM\_STAGE\_DATAENTRY\_PARSER
+  - PROGRAM_STAGE_DATAENTRY_PARSER
 
-  - EVENT\_REGISTRATION\_PARSER
+  - EVENT_REGISTRATION_PARSER
 
 ## Program Messages
 
@@ -13784,7 +13848,7 @@ Program messages can be sent using two delivery channels:
 Program messages can be sent to various recipients:
 
   - Tracked entity instance: The system will look up attributes of value
-    type PHONE\_NUMBER or EMAIL (depending on the specified delivery
+    type PHONE_NUMBER or EMAIL (depending on the specified delivery
     channels) and use the corresponding attribute values.
 
   - Organisation unit: The system will use the phone number or email
@@ -15135,8 +15199,8 @@ curl "http://localhost/api/26/filledOrganisationUnitLevels" -H "Content-Type:app
 The *staticContent* resource allows you to upload and retrieve custom
 logos used in DHIS2. The resource lets the user upload a file with an
 associated key, which can later be retrieved using the key. Only PNG
-files are supported and can only be uploaded to the "logo\_banner" and
-"logo\_front" keys.
+files are supported and can only be uploaded to the `logo_banner` and
+`logo_front` keys.
 
     /api/26/staticContent
 
@@ -15795,7 +15859,7 @@ when upgrading to 2.29.
 >
 > As of 2.29, all these endpoint will require you to include any
 > variables reported by the `requiredValues` endpoint listed as
-> required. Existing patterns, consisting of only “\#”, will be upgraded
+> required. Existing patterns, consisting of only `#`, will be upgraded
 > to the new TextPattern syntax `RANDOM(<old-pattern>)`. The RANDOM
 > segment of the TextPattern is not a required variable, so this
 > endpoint will work as before for patterns defined before 2.29.
@@ -18799,7 +18863,7 @@ curl -d @email.json "localhost/api/26/email/notification" -X POST -H "Content-Ty
 ### Outbound emails
 
 You can also send a general email notification by posting to the
-notification resource as mentioned below. "F\_SEND\_EMAIL" or "All"
+notification resource as mentioned below. `F_SEND_EMAIL` or `ALL`
 authority has to be in the system to make use of this api. Subject
 parameter is optional. "DHIS 2" string will be sent as default subject
 if it is not provided in url. Url should be encoded in order to use this
@@ -19062,7 +19126,7 @@ Adding job without parameters in JSON format:
 }
 ```
 
-Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
+Adding job with parameters in JSON format (ANALYTICS_TABLE example):
 
 ```json
 {
@@ -19078,7 +19142,7 @@ Adding job with parameters in JSON format (ANALYTICS\_TABLE example):
 }
 ```
 
-Adding job with parameters in JSON format (PUSH\_ANALYSIS example):
+Adding job with parameters in JSON format (PUSH_ANALYSIS example):
 
 ```json
  {
@@ -19086,7 +19150,9 @@ Adding job with parameters in JSON format (PUSH\_ANALYSIS example):
    "jobType": "PUSH_ANALYSIS",
    "cronExpression": "0 * * ? * *",
    "jobParameters": {
-     "pushAnalysis": ["jtcMAKhWwnc"]
+     "pushAnalysis": [
+       "jtcMAKhWwnc"
+     ]
     }
  }
 ```
@@ -19095,7 +19161,7 @@ List all jobConfigurations:
 
     GET /api/jobConfigurations
 
-Retrieve a job: (ANALYTICS\_TABLE example):
+Retrieve a job: (ANALYTICS_TABLE example):
 
     GET /api/jobConfigurations/KBcP6Qw37gT
 
@@ -19140,7 +19206,7 @@ Retrieve a job: (ANALYTICS\_TABLE example):
 }
 ```
 
-Updating job with parameters in JSON format (ANALYTICS\_TABLE example):
+Updating job with parameters in JSON format (ANALYTICS_TABLE example):
 
     PUT /api/jobConfiguration/KBcP6Qw37gT
 
@@ -19254,7 +19320,7 @@ This section covers pull and push of data and metadata.
 <!--DHIS2-SECTION-ID:webapi_sync_data_push-->
 
 To initiate a data value push to a remote server one must first configure the
-URL and credentials for the relevant server from System settings \>
+URL and credentials for the relevant server from System settings >
 Synchronization, then make a POST request to the following resource:
 
     /api/26/synchronization/dataPush
@@ -19284,7 +19350,7 @@ credentials you can make a GET request to the following resource:
 The */api/apps* endpoint can be used for installing, deleting and
 listing apps. The app key is based on the app name, but with all
 non-alphanumerical characters removed, and spaces replaced with a dash.
-*My app\!* will return the key *My-app*.
+*My app!* will return the key *My-app*.
 
 > **Note**
 >
@@ -20287,25 +20353,25 @@ Analytics table hooks have the following fields:
 </tbody>
 </table>
 
-The *ANALYTICS\_TABLE\_POPULATED* phase takes place after the analytics
+The *ANALYTICS_TABLE_POPULATED* phase takes place after the analytics
 table has been populated, but before indexes have been created and the
 temp table has been swapped with the main table. As a result, the SQL
-script should refer to the analytics temp table, e.g. *analytics\_temp*,
-*analytics\_completeness\_temp*.
+script should refer to the analytics temp table, e.g. *analytics_temp*,
+*analytics_completeness_temp*.
 
-This applies also to the *RESOURCE\_TABLE\_POPULATED* phase, which takes
+This applies also to the *RESOURCE_TABLE_POPULATED* phase, which takes
 place after the resource table has been populated, but before indexes
 have been created and the temp table has been swapped with the main
 table. As a result, the SQL script should refer to the resource temp
-table, e.g. *\_orgunitstructure\_temp*, *\_categorystructure\_temp*.
+table, e.g. *_orgunitstructure_temp*, *_categorystructure_temp*.
 
 You should define only one of the *resourceTableType* and
 *analyticsTableType* fields, depending on which *phase* is defined.
 
 You can refer to the temporary database table which matches the
 specified hook table type only (other temporary tables will not be
-available). As an example, if you specify *ORG\_UNIT\_STRUCTURE* as the
-resource table type, you can refer to the *\_orgunitstructure\_temp*
+available). As an example, if you specify *ORG_UNIT_STRUCTURE* as the
+resource table type, you can refer to the *_orgunitstructure_temp*
 temporary database table only.
 
 The following table shows the valid combinations of phases, table types
