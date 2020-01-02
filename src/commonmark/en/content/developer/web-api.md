@@ -3588,9 +3588,12 @@ this:
 ```xml
 <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0" dataSet="dataSetID"
   completeDate="date" period="period" orgUnit="orgUnitID" attributeOptionCombo="aocID">
-  <dataValue dataElement="dataElementID" categoryOptionCombo="cocID" value="1" comment="comment1"/>
-  <dataValue dataElement="dataElementID" categoryOptionCombo="cocID" value="2" comment="comment2"/>
-  <dataValue dataElement="dataElementID" categoryOptionCombo="cocID" value="3" comment="comment3"/>
+  <dataValue dataElement="dataElementID" 
+    categoryOptionCombo="cocID" value="1" comment="comment1"/>
+  <dataValue dataElement="dataElementID" 
+    categoryOptionCombo="cocID" value="2" comment="comment2"/>
+  <dataValue dataElement="dataElementID" 
+    categoryOptionCombo="cocID" value="3" comment="comment3"/>
 </dataValueSet>
 ```
 
@@ -3729,10 +3732,14 @@ enable us to send data values for various periods and org units:
 
 ```xml
 <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0">
-  <dataValue dataElement="f7n9E0hX8qk" period="201401" orgUnit="DiszpKrYNg8" value="12"/>
-  <dataValue dataElement="f7n9E0hX8qk" period="201401" orgUnit="FNnj3jKGS7i" value="14"/>
-  <dataValue dataElement="f7n9E0hX8qk" period="201402" orgUnit="DiszpKrYNg8" value="16"/>
-  <dataValue dataElement="f7n9E0hX8qk" period="201402" orgUnit="Jkhdsf8sdf4" value="18"/>
+  <dataValue dataElement="f7n9E0hX8qk" 
+    period="201401" orgUnit="DiszpKrYNg8" value="12"/>
+  <dataValue dataElement="f7n9E0hX8qk" 
+    period="201401" orgUnit="FNnj3jKGS7i" value="14"/>
+  <dataValue dataElement="f7n9E0hX8qk" 
+    period="201402" orgUnit="DiszpKrYNg8" value="16"/>
+  <dataValue dataElement="f7n9E0hX8qk" 
+    period="201402" orgUnit="Jkhdsf8sdf4" value="18"/>
 </dataValueSet>
 ```
 
@@ -5822,10 +5829,10 @@ so:
 
 ```xml
 <completeDataSetRegistrations xmlns="http://dhis2.org/schema/dxf/2.0">
-  <completeDataSetRegistration period="200810" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
-	attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
-  <completeDataSetRegistration period="200811" dataSet="eZDhcZi6FLP" organisationUnit="qhqAxPSTUXp"
-	attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
+  <completeDataSetRegistration period="200810" dataSet="eZDhcZi6FLP" 
+    organisationUnit="qhqAxPSTUXp" attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
+  <completeDataSetRegistration period="200811" dataSet="eZDhcZi6FLP" 
+    organisationUnit="qhqAxPSTUXp" attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
 </completeDataSetRegistrations>
 ```
 
@@ -17305,22 +17312,22 @@ XML format might look like this:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <events>
-	<event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
-	  eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
-	  <coordinate latitude="59.8" longitude="10.9" />
-	  <dataValues>
-		<dataValue dataElement="qrur9Dvnyt5" value="22" />
-		<dataValue dataElement="oZg33kd9taw" value="Male" />
-	  </dataValues>
-	</event>
-	<event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
-	  eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
-	  <coordinate latitude="59.8" longitude="10.9" />
-	  <dataValues>
-		<dataValue dataElement="qrur9Dvnyt5" value="26" />
-		<dataValue dataElement="oZg33kd9taw" value="Female" />
-	  </dataValues>
-	</event>
+  <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
+    eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
+    <coordinate latitude="59.8" longitude="10.9" />
+	<dataValues>
+      <dataValue dataElement="qrur9Dvnyt5" value="22" />
+      <dataValue dataElement="oZg33kd9taw" value="Male" />
+    </dataValues>
+  </event>
+  <event program="eBAyeGv0exc" orgUnit="DiszpKrYNg8"
+    eventDate="2013-05-17" status="COMPLETED" storedBy="admin">
+    <coordinate latitude="59.8" longitude="10.9" />
+    <dataValues>
+      <dataValue dataElement="qrur9Dvnyt5" value="26" />
+      <dataValue dataElement="oZg33kd9taw" value="Female" />
+    </dataValues>
+  </event>
 </events>
 ```
 
