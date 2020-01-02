@@ -59,8 +59,11 @@ if [[ `id -un` == "jenkins" ]]; then
 fi
 
 # set up the python environment
-if [ ! -d "venv" ]; then
+VENV_VERSION=1.1  # used to force a reset of the venv
+if [ ! -f "venv/${VENV_VERSION}" ]; then
+    rm -rf venv
     source venv_setup
+    touch "venv/${VENV_VERSION}"
 fi
 source ./venv/bin/activate
 
