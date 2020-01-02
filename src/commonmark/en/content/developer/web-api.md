@@ -144,7 +144,7 @@ The payload can be sent with the following command:
 ```bash
 SERVER="https://play.dhis2.org/dev"
 curl -X POST -H "Content-Type: application/json" -d @client.json
-  -u admin:district $SERVER/api/oAuth2Clients
+  -u admin:district "$SERVER/api/oAuth2Clients"
 ```
 
 We will use this client as the basis for our next grant type examples.
@@ -162,19 +162,19 @@ example we can use our demo server:
 SERVER="https://play.dhis2.org/dev"
 SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
 
-curl -X POST -H "Accept: application/json" -u demo:$SECRET $SERVER/uaa/oauth/token
--d grant_type=password -d username=admin -d password=district
+curl -X POST -H "Accept: application/json" -u demo:$SECRET "$SERVER/uaa/oauth/token"
+  -d grant_type=password -d username=admin -d password=district
 ```
 
 This will give you a response similar to this:
 
 ```json
 {
-   "expires_in": 43175,
-   "scope": "ALL",
-   "access_token": "07fc551c-806c-41a4-9a8c-10658bd15435",
-   "refresh_token": "a4e4de45-4743-481d-9345-2cfe34732fcc",
-   "token_type": "bearer"
+  "expires_in": 43175,
+  "scope": "ALL",
+  "access_token": "07fc551c-806c-41a4-9a8c-10658bd15435",
+  "refresh_token": "a4e4de45-4743-481d-9345-2cfe34732fcc",
+  "token_type": "bearer"
 }
 ```
 
@@ -184,7 +184,7 @@ all data elements using our token:
 
 ```bash
 SERVER="https://play.dhis2.org/dev"
-curl -H "Authorization: Bearer 07fc551c-806c-41a4-9a8c-10658bd15435" $SERVER/api/26/dataElements.json
+curl -H "Authorization: Bearer 07fc551c-806c-41a4-9a8c-10658bd15435" "$SERVER/api/26/dataElements.json"
 ```
 
 #### Grant type refresh\_token
@@ -204,7 +204,7 @@ SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
 REFRESH_TOKEN="a4e4de45-4743-481d-9345-2cfe34732fcc"
 
 curl -X POST -H "Accept: application/json" -u demo:$SECRET "$SERVER/uaa/oauth/token"
--d grant_type=refresh_token -d refresh_token=$REFRESH_TOKEN
+  -d "grant_type=refresh_token" -d "refresh_token=$REFRESH_TOKEN"
 ```
 
 The response will be exactly the same as when you get a token to start with.
@@ -241,7 +241,7 @@ SERVER="https://play.dhis2.org/dev"
 SECRET="1e6db50c-0fee-11e5-98d0-3c15c2c6caf6"
 
 curl -X POST -u demo:$SECRET -H "Accept: application/json" $SERVER/uaa/oauth/token
--d grant_type=authorization_code -d code=XYZ
+-d "grant_type=authorization_code" -d "code=XYZ"
 ```
 
 ## Error and info messages
