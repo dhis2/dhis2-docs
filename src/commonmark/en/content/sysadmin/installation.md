@@ -114,13 +114,13 @@ You should create a dedicated user for running DHIS2.
 
 Create a new user called dhis by invoking:
 
-```bash
+```sh
 sudo useradd -d /home/dhis -m dhis -s /bin/false
 ```
 
 Then to set the password for your account invoke:
 
-```bash
+```sh
 sudo passwd dhis
 ```
 
@@ -134,7 +134,7 @@ Start by creating a suitable directory for the DHIS2 configuration
 files. This directory will also be used for apps, files and log files.
 An example directory could be:
 
-```bash
+```sh
 mkdir /home/dhis/config
 chown dhis:dhis /home/dhis/config
 ```
@@ -155,7 +155,7 @@ correspond to the time zone of your DHIS2 location. You can easily
 reconfigure the time zone by invoking the below and following the
 instructions.
 
-```bash
+```sh
 sudo dpkg-reconfigure tzdata
 ```
 
@@ -163,7 +163,7 @@ PostgreSQL is sensitive to locales so you might have to install your
 locale first. To check existing locales and install new ones (e.g.
 Norwegian):
 
-```bash
+```sh
 locale -a
 sudo locale-gen nb_NO.UTF-8
 ```
@@ -175,19 +175,19 @@ sudo locale-gen nb_NO.UTF-8
 Install PostgreSQL by
     invoking:
 
-```bash
+```sh
 sudo apt-get install postgresql-10 postgresql-contrib-10 postgresql-10-postgis-2.4
 ```
 
 Create a non-privileged user called *dhis* by invoking:
 
-```bash
+```sh
 sudo -u postgres createuser -SDRP dhis
 ```
 
 Enter a secure password at the prompt. Create a database by invoking:
 
-```bash
+```sh
 sudo -u postgres createdb -O dhis dhis2
 ```
 
@@ -200,7 +200,7 @@ startup. If the DHIS 2 database user does not have permission to create
 extensions you can create it from the console using the *postgres* user
 with the following commands:
 
-```bash
+```sh
 sudo -u postgres psql -c "create extension postgis;" dhis2
 ```
 
@@ -216,7 +216,7 @@ is optional in terms of getting DHIS2 to run. PostgreSQL is configured
 and tuned through the *postgresql.conf* file which can be edited like
 this:
 
-```bash
+```sh
 sudo nano /etc/postgresql/10/main/postgresql.conf
 ```
 
@@ -311,7 +311,7 @@ Specifies the average number of object locks allocated for each transaction. Thi
 
 Restart PostgreSQL by invoking the following command:
 
-```bash
+```sh
 sudo /etc/init.d/postgresql restart
 ```
 
@@ -323,7 +323,7 @@ The database connection information is provided to DHIS2 through a
 configuration file called *dhis.conf*. Create this file and save it in
 the *DHIS2\_HOME* directory. As an example this location could be:
 
-```bash
+```sh
 sudo -u dhis nano /home/dhis/config/dhis.conf
 ```
 
@@ -381,7 +381,7 @@ database so it needs to be protected from unauthorized access. To do
 this invoke the following command which ensures that only the dhis user
 which owns the file is allowed to read it:
 
-```bash
+```sh
 chmod 0600 dhis.conf
 ```
 
@@ -408,7 +408,7 @@ java -version
 To install the Tomcat servlet container we will utilize the Tomcat user
 package by invoking:
 
-```bash
+```sh
 sudo apt-get install tomcat8-user
 ```
 
@@ -416,7 +416,7 @@ This package lets us easily create a new Tomcat instance. The instance
 will be created in the current directory. An appropriate location is the
 home directory of the dhis user:
 
-```bash
+```sh
 cd /home/dhis/
 sudo tomcat8-instance-create tomcat-dhis
 sudo chown -R dhis:dhis tomcat-dhis/
@@ -435,7 +435,7 @@ might vary from system to system, e.g. on AMD systems you might see
 */java-8-openjdk-amd64* Note that you should adjust this to your
 environment:
 
-```bash
+```sh
 export JAVA_HOME='/usr/lib/jvm/java-1.8.0-openjdk-amd64/'
 export JAVA_OPTS='-Xmx7500m -Xms4000m'
 export DHIS2_HOME='/home/dhis/config'
@@ -460,7 +460,7 @@ webapps directory of Tomcat. You can download the DHIS2 version 2.31 WAR
 release like this (replace 2.31 with your preferred version if
 necessary):
 
-```bash
+```sh
 wget https://releases.dhis2.org/2.31/dhis.war
 ```
 
@@ -479,7 +479,7 @@ Move the WAR file into the Tomcat webapps directory. We want to call the
 WAR file ROOT.war in order to make it available at localhost directly
 without a context path:
 
-```bash
+```sh
 mv dhis.war tomcat-dhis/webapps/ROOT.war
 ```
 
@@ -487,7 +487,7 @@ DHIS2 should never be run as a privileged user. After you have modified
 the setenv.sh file, modify the startup script to check and see if the
 script has been invoked as root.
 
-```bash
+```sh
 #!/bin/sh
 set -e
 
@@ -1046,7 +1046,7 @@ achieve that the first step is to create init scripts. Create a new file
 called `tomcat` and paste the below content into it (adjust the HOME
 variable to your environment):
 
-```bash
+```sh
 #!/bin/sh
 #Tomcat init script
 
@@ -1136,7 +1136,7 @@ blocks. The following snippet will configure nginx to proxy pass
 by default) to our Tomcat instance. Include the following configuration
 in nginx.conf:
 
-```
+```text
 http {
   gzip on; # Enables compression, incl Web API content-types
   gzip_types
@@ -1223,7 +1223,7 @@ which must be passed on to use HTTPS. Remember to replace
 *\<server-ip\>* with the IP of your server. These blocks should replace
 the one from the previous section.
 
-```
+```text
 http {
   gzip on; # Enables compression, incl Web API content-types
   gzip_types
@@ -1303,7 +1303,7 @@ in our server setup. The cached content will be stored in directory
 /var/cache/nginx, and up to 250 MB of storage will be allocated. Nginx
 will create this directory automatically.
 
-```
+```text
 http {
   # ...
   root              /home/dhis/tomcat/webapps/ROOT; # Update path!
@@ -1383,7 +1383,7 @@ Certain web API calls in DHIS 2, like the `analytics` APIs, are compute intensiv
 
 The below nginx configuration will rate limit the `analytics` web API, and has the following elements at the *http* and *location* block level (the configuration is shortened for brevity):
 
-```
+```text
 http {
   ..
   limit_req_zone $binary_remote_addr zone=limit_analytics:10m rate=5r/s;
@@ -1456,7 +1456,7 @@ resources. For instance, when your server is deployed at somedomain.com,
 you can set a dedicated subdomain at api.somedomain.com, and point URLs
 from your portal to this subdomain.
 
-```
+```text
 server {
   listen       80;
   server_name  api.somedomain.com;
@@ -1516,7 +1516,7 @@ through an AJP connector. Edit the file
 below. Be sure that the port defined in the configuration file matches
 the one from Tomcat.
 
-```
+```apache_conf
 <IfModule mod_proxy.c>
 
 ProxyRequests Off
@@ -1573,12 +1573,14 @@ Now, we need to edit the default-ssl (located at
 `/etc/apache2/sites-enabled/default-ssl`) file in order to enable the
 SSL transfer functionality of Apache.
 
-    <VirtualHost *:443>
-        ServerAdmin wemaster@mydomain.org
-        SSLEngine On
-        SSLCertificateFile /etc/apache2/ssl/server.crt
-        SSLCertificateKeyFile /etc/apache2/ssl/server.key
-        ...
+```apache_conf
+<VirtualHost *:443>
+	ServerAdmin wemaster@mydomain.org
+	SSLEngine On
+	SSLCertificateFile /etc/apache2/ssl/server.crt
+	SSLCertificateKeyFile /etc/apache2/ssl/server.key
+	...
+```
 
 Be sure that the \*:80 section of this file is changed to port \*:443,
 which is the default SSL port. Also, be sure to change the ServerAdmin
