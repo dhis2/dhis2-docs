@@ -1483,7 +1483,10 @@ server {
 
 <!--DHIS2-SECTION-ID:install_basic_reverse_proxy_setup_with_apache-->
 
-The Apache HTTP server is the most common
+The Apache HTTP server is a popular HTTP server. Depending on your exact 
+nature of deployment, you may need to use Apache as a reverse proxy for 
+your DHIS2 server. In this section, we will describe how to implement a 
+simple reverse proxy setup with Apache.
 
 > **Important**
 > 
@@ -1491,14 +1494,8 @@ The Apache HTTP server is the most common
 > you should not attempt to install both nginx and Apache on the same
 > server. If you have installed nginx please ignore this section.
 
-The Apache HTTP server is the most widely used HTTP server currently.
-Depdenign on your exact nature of deployment, you may need to use Apache
-as a reverse proxy for your DHIS2 server. In this section, we will
-describe how to implement a simple reverse proxy setup with Apache.
-
 First we need to install a few necessary programs modules for Apache and
-enable the
-    modules.
+enable the modules.
 
     sudo apt-get install apache2 libapache2-mod-proxy-html libapache2-mod-jk
     a2enmod proxy proxy_ajp proxy_connect
