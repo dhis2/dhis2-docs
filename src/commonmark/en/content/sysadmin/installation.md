@@ -41,17 +41,16 @@ DHIS2 is a database intensive application and requires that your server
 has an appropriate amount of RAM, number of CPU cores and a fast disk.
 These recommendations should be considered as rules-of-thumb and not
 exact measures. DHIS2 scales linearly on the amount of RAM and number of
-CPU cores so the more you can afford, the better the application will
-perform.
+CPU cores so the more you can afford, the better the application will perform.
 
-  - RAM: At least 1 GB memory per 1 million captured data records per
+  - *RAM:* At least 1 GB memory per 1 million captured data records per
     month or per 1000 concurrent users. At least 4 GB for a small
     instance, 12 GB for a medium instance.
 
-  - CPU cores: 4 CPU cores for a small instance, 8 CPU cores for a
+  - *CPU cores:* 4 CPU cores for a small instance, 8 CPU cores for a
     medium or large instance.
 
-  - Disk: Ideally use an SSD. Otherwise use a 7200 rpm disk. Minimum
+  - *Disk:* Ideally use an SSD. Otherwise use a 7200 rpm disk. Minimum
     read speed is 150 Mb/s, 200 Mb/s is good, 350 Mb/s or better is
     ideal. In terms of disk space, at least 60 GB is reccomended, but
     will depend entirely on the amount of data which is contained in the
@@ -361,7 +360,6 @@ server.https = on
 # Server base URL
 server.base.url = http://server.com/
 ```
-    
 
 It is strongly recommended to enable the *server.https* setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when enabled.
 
@@ -438,7 +436,7 @@ might vary from system to system, e.g. on AMD systems you might see
 environment:
 
 ```bash
-export JAVA_HOME='/usr/lib/jvm/java-8-oracle/'
+export JAVA_HOME='/usr/lib/jvm/java-1.8.0-openjdk-amd64/'
 export JAVA_OPTS='-Xmx7500m -Xms4000m'
 export DHIS2_HOME='/home/dhis/config'
 ```
