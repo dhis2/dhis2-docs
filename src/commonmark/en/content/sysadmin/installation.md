@@ -107,9 +107,13 @@ stage.
 
 <!--DHIS2-SECTION-ID:install_creating_user-->
 
-You should create a dedicated user for running DHIS2. **Under no
-circumstances, should you run the DHIS2 server as a privileged user such
-as root.** Create a new user called dhis by invoking:
+You should create a dedicated user for running DHIS2.
+
+> **Important**
+>
+> You should not run the DHIS2 server as a privileged user such as root.
+
+Create a new user called dhis by invoking:
 
 ```bash
 sudo useradd -d /home/dhis -m dhis -s /bin/false
@@ -507,7 +511,7 @@ DHIS2 can now be started by invoking:
 
     sudo -u dhis tomcat-dhis/bin/startup.sh
 
-> **Warning**
+> **Important**
 > 
 > The DHIS2 server should never be run as root or other privileged user.
 
@@ -929,24 +933,21 @@ In a cluster setup, a *Redis* instance is required and will handle
 shared user sessions, application cache and cluster node leadership.
 
 For optimum performance, *Redis Keyspace events* for _generic commands_ and _expired events_ need to be enabled in the Redis Server. If you are using a cloud platform-managed Redis server (like AWS ElastiCache for Redis or Azure Cache for Redis) you will have to enable keyspace event notifications using the respective cloud interfaces. If you are setting up a standalone Redis server, enabling keyspace event notifications can be done in the *redis.conf* file by adding or uncommenting the following line:
+
 ```
 notify-keyspace-events Egx
 ```
 
 DHIS2 will connect to Redis if the *redis.enabled* configuration
-property in *dhis.conf* is set to *true* along with the following four
-properties:
+property in *dhis.conf* is set to *true* along with the following properties:
 
-1.  *redis.host*: Specifies where the redis server is running. Defaults
-    to *localhost*. Mandatory.
+- *redis.host*: Specifies where the redis server is running. Defaults to *localhost*. Mandatory.
 
-2.  *redis.port*: Specifies the port in which the redis server is
-    listening. Defaults to *6379*. Optional.
+- *redis.port*: Specifies the port in which the redis server is listening. Defaults to *6379*. Optional.
 
-3.  *redis.password*: Specifies the authentication password. If a password is not required it can be left blank.
+- *redis.password*: Specifies the authentication password. If a password is not required it can be left blank.
 
-4.  *redis.use.ssl*: Specifies whether the Redis server has SSL enabled. Defaults to false. Optional.
-    Defaults to *false*.
+- *redis.use.ssl*: Specifies whether the Redis server has SSL enabled. Defaults to false. Optional. Defaults to *false*.
 
 When Redis is enabled, DHIS2 will automatically assign one of the
 running instances as the leader of the cluster. The leader instance will
