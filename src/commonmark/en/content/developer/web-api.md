@@ -3646,7 +3646,7 @@ JSON is supported in this format:
 CSV is supported in this format:
 
 ```csv
-"dataelement","period","orgunit","catoptcombo","attroptcombo","value","storedby","lastupd","cmt"
+"dataelement","period","orgunit","catoptcombo","attroptcombo","value","strby","lstupd","cmt"
 "dataElementID","period","orgUnitID","cocID","aocID","1","username","2015-04-01","comment1"
 "dataElementID","period","orgUnitID","cocID","aocID","2","username","2015-04-01","comment2"
 "dataElementID","period","orgUnitID","cocID","aocID","3","username","2015-04-01","comment3"
