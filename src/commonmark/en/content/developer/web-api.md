@@ -114,9 +114,8 @@ OAuth2 roles but rather provides applications access based on user roles
 of the DHIS2 user.
 
 Each client for which you want to allow OAuth 2 authentication must be
-registered in DHIS2. To add a new OAuth2 client go to *Apps > Settings
-> OAuth2 Clients*, click add new and enter the desired client name and
-the grant types.
+registered in DHIS2. To add a new OAuth2 client go to `Apps > Settings > OAuth2 Clients`, 
+click add new and enter the desired client name and the grant types.
 
 #### Adding a client using the Web API
 
@@ -125,17 +124,17 @@ send a payload like this:
 
 ```json
 {
-   "name" : "OAuth2 Demo Client",
-   "cid" : "demo",
-   "secret" : "1e6db50c-0fee-11e5-98d0-3c15c2c6caf6",
-   "grantTypes": [
-	  "password",
-	  "refresh_token",
-	  "authorization_code"
-   ],
-   "redirectUris": [
-	  "http://www.example.org"
-   ]
+  "name" : "OAuth2 Demo Client",
+  "cid" : "demo",
+  "secret" : "1e6db50c-0fee-11e5-98d0-3c15c2c6caf6",
+  "grantTypes": [
+    "password",
+    "refresh_token",
+    "authorization_code"
+  ],
+  "redirectUris": [
+    "http://www.example.org"
+  ]
 }
 ```
 
@@ -699,36 +698,36 @@ Example of data element with translations turned off:
   "id": "FTRrcoaog83",
   "displayName": "Accute Flaccid Paralysis (Deaths < 5 yrs)",
   "translations": [
-	{
-	  "property": "FORM_NAME",
-	  "locale": "en_FK",
-	  "value": "aa"
-	},
-	{
-	  "property": "SHORT_NAME",
-	  "locale": "en_GB",
-	  "value": "Accute Flaccid Paral"
-	},
-	{
-	  "property": "SHORT_NAME",
-	  "locale": "fr",
-	  "value": "Accute French"
-	},
-	{
-	  "property": "NAME",
-	  "locale": "fr",
-	  "value": "Accute French"
-	},
-	{
-	  "property": "NAME",
-	  "locale": "en_FK",
-	  "value": "aa"
-	},
-	{
-	  "property": "DESCRIPTION",
-	  "locale": "en_FK",
-	  "value": "aa"
-	}
+    {
+      "property": "FORM_NAME",
+      "locale": "en_FK",
+      "value": "aa"
+    },
+    {
+      "property": "SHORT_NAME",
+      "locale": "en_GB",
+      "value": "Accute Flaccid Paral"
+    },
+    {
+      "property": "SHORT_NAME",
+      "locale": "fr",
+      "value": "Accute French"
+    },
+    {
+      "property": "NAME",
+      "locale": "fr",
+      "value": "Accute French"
+    },
+    {
+      "property": "NAME",
+      "locale": "en_FK",
+      "value": "aa"
+    },
+    {
+      "property": "DESCRIPTION",
+      "locale": "en_FK",
+      "value": "aa"
+    }
   ]
 }
 ```
@@ -764,11 +763,11 @@ to the appropriate endpoint:
 ```json
 {
   "translations": [
-	{
-	  "property": "NAME",
-	  "locale": "fr",
-	  "value": "Paralysie Flasque Aiguë (Décès <5 ans)"
-	}
+    {
+      "property": "NAME",
+      "locale": "fr",
+      "value": "Paralysie Flasque Aiguë (Décès <5 ans)"
+    }
   ]
 }
 ```
@@ -1519,8 +1518,8 @@ The payload format is:
     }, {
       "id": "IDB"
     }, {
-	  "id": "IDC"
-	}
+      "id": "IDC"
+    }
   ],
   "deletions": [{
       "id": "IDD"
@@ -1563,20 +1562,20 @@ Which would yield the result:
 ```json
 [
    {
-	  "message" : "Required property missing.",
-	  "property" : "type"
+      "message" : "Required property missing.",
+      "property" : "type"
    },
    {
-	  "property" : "aggregationOperator",
-	  "message" : "Required property missing."
+      "property" : "aggregationOperator",
+      "message" : "Required property missing."
    },
    {
-	  "property" : "domainType",
-	  "message" : "Required property missing."
+      "property" : "domainType",
+      "message" : "Required property missing."
    },
    {
-	  "property" : "shortName",
-	  "message" : "Required property missing."
+      "property" : "shortName",
+      "message" : "Required property missing."
    }
 ]
 ```
@@ -2149,7 +2148,7 @@ The *renderingType* can be set when creating or updating the metadata listed in 
 ```json
 {
   "renderingType": {
-	"type": "MATRIX"
+    "type": "MATRIX"
   }
 }
 ```
@@ -2159,11 +2158,11 @@ For data element and tracked entity attribute:
 ```json
 {
   "renderingType": {
-	"type": "SLIDER",
-	"min": 0,
-	"max": 1000,
-	"step": 50,
-	"decimalPoints": 0
+    "type": "SLIDER",
+    "min": 0,
+    "max": 1000,
+    "step": 50,
+    "decimalPoints": 0
   }
 }
 ```
@@ -2240,8 +2239,8 @@ following payload to change the style:
 ```json
 {
   "style": {
-	"color": "#ffffff",
-	"icon": "my-beautiful-icon"
+    "color": "#ffffff",
+    "icon": "my-beautiful-icon"
   }
 }
 ```
@@ -3107,21 +3106,21 @@ a `response` field which in turn contains the `fileResource` like this:
   "httpStatusCode": 202,
   "status": "OK",
   "response": {
-	"responseType": "FileResource",
-	"fileResource": {
-	  "name": "name-of-file.png",
-	  "created": "2015-10-16T16:34:20.654+0000",
-	  "lastUpdated": "2015-10-16T16:34:20.667+0000",
-	  "externalAccess": false,
-	  "publicAccess": "--------",
-	  "user": { ... },
-	  "displayName": "name-of-file.png",
-	  "contentType": "image/png",
-	  "contentLength": 512571,
-	  "contentMd5": "4e1fc1c3f999e5aa3228d531e4adde58",
-	  "storageStatus": "PENDING",
-	  "id": "xm4JwRwke0i"
-	}
+    "responseType": "FileResource",
+    "fileResource": {
+      "name": "name-of-file.png",
+      "created": "2015-10-16T16:34:20.654+0000",
+      "lastUpdated": "2015-10-16T16:34:20.667+0000",
+      "externalAccess": false,
+      "publicAccess": "--------",
+      "user": { ... },
+      "displayName": "name-of-file.png",
+      "contentType": "image/png",
+      "contentLength": 512571,
+      "contentMd5": "4e1fc1c3f999e5aa3228d531e4adde58",
+      "storageStatus": "PENDING",
+      "id": "xm4JwRwke0i"
+    }
   }
 }
 ```
@@ -4385,7 +4384,7 @@ The response will look something like this:
       "period": "201401",
       "orgUnit": "DiszpKrYNg8", 
       "value": "10001"
-	}
+    }
   ]
 }
 ```
@@ -4614,29 +4613,29 @@ reference to a small example:
 <adx xmlns="urn:ihe:qrph:adx:2015" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="urn:ihe:qrph:adx:2015 ../schema/adx_loose.xsd" exported="2015-02-08T19:30:00Z">
   <group orgUnit="OU_559" period="2015-06-01/P1M" completeDate="2015-07-01" dataSet="(TB/HIV)VCCT">
-	<dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="32"/>
-	<dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="20"/>
-	<dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
-	<dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
-	<dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
+    <dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="32"/>
+    <dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="20"/>
+    <dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
+    <dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
+    <dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
 
-	<dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE0-14" value="32"/>
-	<dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE0-14" value="20"/>
-	<dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
-	<dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
-	<dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
+    <dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE0-14" value="32"/>
+    <dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE0-14" value="20"/>
+    <dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
+    <dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
+    <dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE0-14" value="10"/>
 
-	<dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="32"/>
-	<dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="20"/>
-	<dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
-	<dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
-	<dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
+    <dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="32"/>
+    <dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="20"/>
+    <dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
+    <dataValue dataElement="PLHIV_TB_0" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
+    <dataValue dataElement="PLHIV_TB_1" GENDER="FMLE" HIV_AGE="AGE15-24" value="10"/>
 
-	<dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE15-24" value="32"/>
-	<dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE15-24" value="20"/>
-	<dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
-	<dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
-	<dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
+    <dataValue dataElement="VCCT_0" GENDER="MLE" HIV_AGE="AGE15-24" value="32"/>
+    <dataValue dataElement="VCCT_1" GENDER="MLE" HIV_AGE="AGE15-24" value="20"/>
+    <dataValue dataElement="VCCT_2" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
+    <dataValue dataElement="PLHIV_TB_0" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
+    <dataValue dataElement="PLHIV_TB_1" GENDER="MLE" HIV_AGE="AGE15-24" value="10"/>
   </group>
 </adx>
 ```
@@ -7872,48 +7871,48 @@ referring to an existing table. The second is configured inline.
   <script src="https://dhis2-cdn.org/v227/plugin/reporttable.js"></script>
 
   <script>
-	reportTablePlugin.url = "https://play.dhis2.org/demo";
-	reportTablePlugin.username = "admin";
-	reportTablePlugin.password = "district";
-	reportTablePlugin.loadingIndicator = true;
+    reportTablePlugin.url = "https://play.dhis2.org/demo";
+    reportTablePlugin.username = "admin";
+    reportTablePlugin.password = "district";
+    reportTablePlugin.loadingIndicator = true;
 
-	// Referring to an existing table through the id parameter, render to "report1" div
+    // Referring to an existing table through the id parameter, render to "report1" div
 
-	var r1 = { el: "report1", id: "R0DVGvXDUNP" };
+    var r1 = { el: "report1", id: "R0DVGvXDUNP" };
 
-	// Table configuration, render to "report2" div
+    // Table configuration, render to "report2" div
 
-	var r2 = {
-	  el: "report2",
-	  columns: [
-		{dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
-	  ],
-	  rows: [
-		{dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
-	  ],
-	  filters: [
-		{dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
-	  ],
+    var r2 = {
+      el: "report2",
+      columns: [
+        {dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
+      ],
+      rows: [
+        {dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
+      ],
+      filters: [
+        {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
+      ],
 
-	  // All following properties are optional
-	  title: "My custom title",
-	  showColTotals: false,
-	  showRowTotals: false,
-	  showColSubTotals: false,
-	  showRowSubTotals: false,
-	  showDimensionLabels: false,
-	  hideEmptyRows: true,
-	  skipRounding: true,
-	  aggregationType: "AVERAGE",
-	  showHierarchy: true,
-	  completedOnly: true,
-	  displayDensity: "COMFORTABLE",
-	  fontSize: "SMALL",
-	  digitGroupSeparator: "COMMA",
-	  legendSet: {id: "fqs276KXCXi"}
-	};
+      // All following properties are optional
+      title: "My custom title",
+      showColTotals: false,
+      showRowTotals: false,
+      showColSubTotals: false,
+      showRowSubTotals: false,
+      showDimensionLabels: false,
+      hideEmptyRows: true,
+      skipRounding: true,
+      aggregationType: "AVERAGE",
+      showHierarchy: true,
+      completedOnly: true,
+      displayDensity: "COMFORTABLE",
+      fontSize: "SMALL",
+      digitGroupSeparator: "COMMA",
+      legendSet: {id: "fqs276KXCXi"}
+    };
 
-	reportTablePlugin.load([r1, r2]);
+    reportTablePlugin.load([r1, r2]);
   </script>
 </head>
 
@@ -7954,9 +7953,9 @@ following *columns* config:
 columns: [{
   dimension: "dx",
   items: [
-	{id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
-	{id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
-	{id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
+    {id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
+    {id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
+    {id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
   ]
 }]
 ```
@@ -8197,53 +8196,53 @@ referring to an existing chart. The second is configured inline.
   <script src="https://dhis2-cdn.org/v227/plugin/chart.js"></script>
 
   <script>
-	chartPlugin.url = "https://play.dhis2.org/demo";
-	chartPlugin.username = "admin";
-	chartPlugin.password = "district";
-	chartPlugin.loadingIndicator = true;
+    chartPlugin.url = "https://play.dhis2.org/demo";
+    chartPlugin.username = "admin";
+    chartPlugin.password = "district";
+    chartPlugin.loadingIndicator = true;
 
-	// Referring to an existing chart through the id parameter, render to "report1" div
+    // Referring to an existing chart through the id parameter, render to "report1" div
 
-	var r1 = { el: "report1", id: "R0DVGvXDUNP" };
+    var r1 = { el: "report1", id: "R0DVGvXDUNP" };
 
-	// Chart configuration, render to "report2" div
+    // Chart configuration, render to "report2" div
 
-	var r2 = {
-	  el: "report2",
-	  columns: [
-		{dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
-	  ],
-	  rows: [
-		{dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
-	  ],
-	  filters: [
-		{dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
-	  ],
+    var r2 = {
+      el: "report2",
+      columns: [
+        {dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
+      ],
+      rows: [
+        {dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
+      ],
+      filters: [
+        {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
+      ],
 
-	  // All following properties are optional
-	  title: "Custom title",
-	  type: "line",
-	  showValues: false,
-	  hideEmptyRows: true,
-	  regressionType: "LINEAR",
-	  completedOnly: true,
-	  targetLineValue: 100,
-	  targetLineTitle: "My target line title",
-	  baseLineValue: 20,
-	  baseLineTitle: "My base line title",
-	  aggregationType: "AVERAGE",
-	  rangeAxisMaxValue: 100,
-	  rangeAxisMinValue: 20,
-	  rangeAxisSteps: 5,
-	  rangeAxisDecimals: 2,
-	  rangeAxisTitle: "My range axis title",
-	  domainAxisTitle: "My domain axis title",
-	  hideLegend: true
-	};
+      // All following properties are optional
+      title: "Custom title",
+      type: "line",
+      showValues: false,
+      hideEmptyRows: true,
+      regressionType: "LINEAR",
+      completedOnly: true,
+      targetLineValue: 100,
+      targetLineTitle: "My target line title",
+      baseLineValue: 20,
+      baseLineTitle: "My base line title",
+      aggregationType: "AVERAGE",
+      rangeAxisMaxValue: 100,
+      rangeAxisMinValue: 20,
+      rangeAxisSteps: 5,
+      rangeAxisDecimals: 2,
+      rangeAxisTitle: "My range axis title",
+      domainAxisTitle: "My domain axis title",
+      hideLegend: true
+    };
 
-	// Render the charts
+    // Render the charts
 
-	chartPlugin.load(r1, r2);
+    chartPlugin.load(r1, r2);
   </script>
 </head>
 
@@ -8284,9 +8283,9 @@ following *columns* config:
 columns: [{
   dimension: "dx",
   items: [
-	{id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
-	{id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
-	{id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
+    {id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
+    {id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
+    {id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
   ]
 }]
 ```
@@ -8557,38 +8556,38 @@ referring to an existing map. The second is configured inline.
   <script src="http://dhis2-cdn.org/v215/plugin/map.js"></script>
 
   <script>
-	var base = "https://play.dhis2.org/demo";
+    var base = "https://play.dhis2.org/demo";
 
-	// Login - if OK, call the setLinks function
+    // Login - if OK, call the setLinks function
 
-	Ext.onReady( function() {
-	  Ext.Ajax.request({
-		url: base + "dhis-web-commons-security/login.action",
-		method: "POST",
-		params: { j_username: "portal", j_password: "Portal123" },
-		success: setLinks
-	  });
-	});
+    Ext.onReady( function() {
+      Ext.Ajax.request({
+        url: base + "dhis-web-commons-security/login.action",
+        method: "POST",
+        params: { j_username: "portal", j_password: "Portal123" },
+        success: setLinks
+      });
+    });
 
-	function setLinks() {
-	  DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
+    function setLinks() {
+      DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
 
-	  DHIS.getMap({
-		url: base,
-		el: "map2",
-		mapViews: [{
-		  columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
-		  rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units,
-		  filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
-		  // All following options are optional
-		  classes: 7,
-		  colorLow: "02079c",
-		  colorHigh: "e5ecff",
-		  opacity: 0.9,
-		  legendSet: {id: "fqs276KXCXi"}
-		}]
-	  });
-	}
+      DHIS.getMap({
+        url: base,
+        el: "map2",
+        mapViews: [{
+          columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
+          rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units,
+          filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
+          // All following options are optional
+          classes: 7,
+          colorLow: "02079c",
+          colorHigh: "e5ecff",
+          opacity: 0.9,
+          legendSet: {id: "fqs276KXCXi"}
+        }]
+      });
+    }
   </script>
 </head>
 
@@ -11951,7 +11950,7 @@ The API supports using program indicators which are not associated to the "main"
 
 The org unit analytics API provides statistics on org units classified by org unit group sets, i.e. counts of org units per org unit group within org unit group sets.
 
-	GET /api/orgUnitAnalytics?ou=<org-unit-id>&ougs=<org-unit-group-set-id>
+    GET /api/orgUnitAnalytics?ou=<org-unit-id>&ougs=<org-unit-group-set-id>
 
 The API requires at least one organisation unit and at least one organisation unit group set. Multiple org units and group sets can be provided separated by semicolon.
 
@@ -12009,16 +12008,16 @@ The org unit analytics endpoint support the following representation formats:
 
 To fetch org unit analytics for an org unit and org unit group set:
 
-	GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw&ougs=J5jldMd8OHv
+    GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw&ougs=J5jldMd8OHv
 
 To fetch org unit analytics data for two org units and two org unit group sets:
 
-	GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv;Bpx0589u8y0
+    GET /api/orgUnitAnalytics?ou=lc3eMKXaEfw;PMa2VCrupOd&ougs=J5jldMd8OHv;Bpx0589u8y0
 
 To fetch org unit analytics data in table mode with one group set rendered as columns:
 
-	GET /api/orgUnitAnalytics?ou=fdc6uOvgoji;jUb8gELQApl;lc3eMKXaEfw;PMa2VCrupOd
-	  &ougs=J5jldMd8OHv&columns=J5jldMd8OHv
+    GET /api/orgUnitAnalytics?ou=fdc6uOvgoji;jUb8gELQApl;lc3eMKXaEfw;PMa2VCrupOd
+      &ougs=J5jldMd8OHv&columns=J5jldMd8OHv
 
 ## Data set report
 
@@ -13609,7 +13608,7 @@ New gateway configuraitons can be added using POST. POST api requires type reque
 
 Configuration can be updated with by providing uid and gateway configurations as mentioned below
 
-	PUT /api/26/gateways/{uids}
+    PUT /api/26/gateways/{uids}
 
 Configurations can be removed for specific gateway type using DELETE
 method.
@@ -15768,7 +15767,7 @@ the same time enroll into a program and create an event.
     {
       "attribute": "zDhUuAYrxNC",
       "value": "Rufus"
-	},
+    },
     {
      "attribute":"cejWyOfXge6",
      "value":"Male"
@@ -17347,17 +17346,17 @@ The same payload in JSON format looks like this:
   "completedDate": "2013-05-18",
   "storedBy": "admin",
   "coordinate": {
-	"latitude": 59.8,
-	"longitude": 10.9
+    "latitude": 59.8,
+    "longitude": 10.9
   },
   "dataValues": [
-	{
-	  "dataElement": "qrur9Dvnyt5", "value": "22"
-	}, {
-	  "dataElement": "oZg33kd9taw", "value": "Male"
-	}, {
-	  "dataElement": "msodh3rEMJa", "value": "2013-05-18"
-	}
+    {
+      "dataElement": "qrur9Dvnyt5", "value": "22"
+    }, {
+      "dataElement": "oZg33kd9taw", "value": "Male"
+    }, {
+      "dataElement": "msodh3rEMJa", "value": "2013-05-18"
+    }
   ]
 }
 ```
