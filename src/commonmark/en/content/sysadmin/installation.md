@@ -74,7 +74,7 @@ Later DHIS2 versions require the following software versions to operate.
   - PostGIS database extension version 2.2 or later.
 
   - Tomcat servlet container version 8.5 or later, or other Servlet API
-    3.1 compliant servlet containers like Jetty 9.
+    3.1 compliant servlet containers.
 
 ## Server setup
 
@@ -355,7 +355,7 @@ connection.password = xxxx
 server.https = on
 
 # Server base URL
-# server.base.url = http://server.com/
+server.base.url = http://server.com/
 ```
     
 
@@ -368,7 +368,9 @@ means that you can set certain properties as environment variables and
 have them resolved by DHIS 2, e.g. like this where *DB\_PASSWD* is the
 name of the environment variable:
 
-    connection.password = ${DB_PASSWD}
+```properties
+connection.password = ${DB_PASSWD}
+```
 
 A common mistake is to have a white-space after the last property value
 so make sure there is no white-space at the end of any line. Also
@@ -377,7 +379,9 @@ database so it needs to be protected from unauthorized access. To do
 this invoke the following command which ensures that only the dhis user
 which owns the file is allowed to read it:
 
-    chmod 0600 dhis.conf
+```bash
+chmod 0600 dhis.conf
+```
 
 ### Java installation
 
@@ -402,15 +406,19 @@ java -version
 To install the Tomcat servlet container we will utilize the Tomcat user
 package by invoking:
 
-    sudo apt-get install tomcat8-user
+```bash
+sudo apt-get install tomcat8-user
+```
 
 This package lets us easily create a new Tomcat instance. The instance
 will be created in the current directory. An appropriate location is the
 home directory of the dhis user:
 
-    cd /home/dhis/
-    sudo tomcat8-instance-create tomcat-dhis
-    sudo chown -R dhis:dhis tomcat-dhis/
+```bash
+cd /home/dhis/
+sudo tomcat8-instance-create tomcat-dhis
+sudo chown -R dhis:dhis tomcat-dhis/
+```
 
 This will create an instance in a directory called *tomcat-dhis*. Note
 that the tomcat7-user package allows for creating any number of dhis
@@ -425,9 +433,11 @@ might vary from system to system, e.g. on AMD systems you might see
 */java-8-openjdk-amd64* Note that you should adjust this to your
 environment:
 
-    export JAVA_HOME='/usr/lib/jvm/java-8-oracle/'
-    export JAVA_OPTS='-Xmx7500m -Xms4000m'
-    export DHIS2_HOME='/home/dhis/config'
+```bash
+export JAVA_HOME='/usr/lib/jvm/java-8-oracle/'
+export JAVA_OPTS='-Xmx7500m -Xms4000m'
+export DHIS2_HOME='/home/dhis/config'
+```
 
 The Tomcat configiration file is located in
 *tomcat-dhis/conf/server.xml*. The element which defines the connection
@@ -448,7 +458,7 @@ webapps directory of Tomcat. You can download the DHIS2 version 2.31 WAR
 release like this (replace 2.31 with your preferred version if
 necessary):
 
-```
+```bash
 wget https://releases.dhis2.org/2.31/dhis.war
 ```
 
@@ -467,7 +477,9 @@ Move the WAR file into the Tomcat webapps directory. We want to call the
 WAR file ROOT.war in order to make it available at localhost directly
 without a context path:
 
-    mv dhis.war tomcat-dhis/webapps/ROOT.war
+```bash
+mv dhis.war tomcat-dhis/webapps/ROOT.war
+```
 
 DHIS2 should never be run as a privileged user. After you have modified
 the setenv.sh file, modify the startup script to check and see if the
@@ -1170,7 +1182,9 @@ only listen for local connections. In */conf/server.xml* you can add an
 *address* attribute with the value *localhost* to the Connector element
 for HTTP 1.1 like this:
 
-    <Connector address="localhost" protocol="HTTP/1.1" ... >
+```xml
+<Connector address="localhost" protocol="HTTP/1.1" />
+```
 
 ### Enabling SSL with nginx
 
@@ -1274,7 +1288,9 @@ servlet container that the request is coming over HTTPS. In order for
 tomcat to properly produce Location URLs using https you also need to
 add two other parameters to the Connector in tomcat's server.xml file:
 
-    <Connector scheme="https" proxyPort="443" ... >
+```xml
+<Connector scheme="https" proxyPort="443" />
+```
 
 ### Enabling caching and SSL with nginx
 
@@ -1588,11 +1604,13 @@ https://foo.mydomain.org/dhis.
 
 The following describes the full set of configuration options for the *dhis.conf* configuration file. The configuration file should be placed in a directory which is pointed to by a *DHIS2\_HOME* environment variable.
 
-Note that you should not attempt to use this configuration file directly, rather use it as a reference for the available configuration options.
+> **Note**
+>
+> You should not attempt to use this configuration file directly, rather use it as a reference for the available configuration options. Many of the properties are optional.
 
 ```properties
 # ----------------------------------------------------------------------
-# Database connection for PostgreSQL
+# Database connection for PostgreSQL [Mandatory]
 # ----------------------------------------------------------------------
 
 # Hibernate SQL dialect
@@ -1617,17 +1635,17 @@ connection.schema = update
 # connection.pool.max_size = 40
 
 # ----------------------------------------------------------------------
-# Server
+# Server [Mandatory]
 # ----------------------------------------------------------------------
 
 # Base URL to the DHIS 2 instance
 server.base.url = https://play.dhis2.org/dev 
 
 # Enable secure settings if system is deployed on HTTPS, can be 'off', 'on'
-server.https = on
+server.https = off
 
 # ----------------------------------------------------------------------
-# System
+# System [Optional]
 # ----------------------------------------------------------------------
 
 # System mode for database read operations only, can be 'off', 'on'
@@ -1640,20 +1658,20 @@ system.session.timeout = 3600
 system.sql_view_table_protection = on
 
 # ----------------------------------------------------------------------
-# Encryption
+# Encryption [Optional]
 # ----------------------------------------------------------------------
 
 # Encryption password (sensitive)
 encryption.password = xxxx
 
 # ----------------------------------------------------------------------
-# File store
+# File store [Optional]
 # ----------------------------------------------------------------------
 
 # File store provider, currently 'filesystem' and 'aws-s3' are supported
 filestore.provider = filesystem
 
-# Directory / bucket name, refers to folder within DHIS2_HOME on file system, 'bucket' on AWS S3
+# Directory / bucket name, folder below DHIS2_HOME on file system, 'bucket' on AWS S3
 filestore.container = files
 
 # Datacenter location (not required)
@@ -1666,7 +1684,7 @@ filestore.identity = dhis2-id
 filestore.secret = xxxx
 
 # ----------------------------------------------------------------------
-# LDAP
+# LDAP [Optional]
 # ----------------------------------------------------------------------
 
 # LDAP server URL
@@ -1685,21 +1703,21 @@ ldap.search.base = dc=hisp,dc=org
 ldap.search.filter = (cn={0})
 
 # ----------------------------------------------------------------------
-# Node
+# Node [Optional]
 # ----------------------------------------------------------------------
 
 # Node identifier, optional, useful in clusters
 node.id = 'node-1'
 
 # ----------------------------------------------------------------------
-# Analytics
+# Analytics [Optional]
 # ----------------------------------------------------------------------
 
 # Analytics server-side cache expiration in seconds
 analytics.cache.expiration = 3600
 
 # ----------------------------------------------------------------------
-# System monitoring
+# System monitoring [Optional]
 # ----------------------------------------------------------------------
 
 # System monitoring URL
