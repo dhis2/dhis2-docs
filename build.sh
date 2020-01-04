@@ -117,6 +117,7 @@ generate "user_stories_book" "user-stories"
 
 echo "    - Developer:" >> $myml
 generate "dhis2_developer_manual" "developer"
+echo "        DHIS2 API Javadocs: https://docs.dhis2.org/<version>/javadoc/" >> $myml
 generate "dhis2_android_sdk_user_guide" "android-sdk"
 
 echo "    - Sysadmin:" >> $myml

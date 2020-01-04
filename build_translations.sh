@@ -105,6 +105,7 @@ if [ ${LOCALISE} -eq 1  ]; then
 
         echo "    - Developer:" >> $myml
         translate "dhis2_developer_manual" "developer" "both" $lang $locale
+        echo "        DHIS2 API Javadocs: https://docs.dhis2.org/<version>/javadoc/" >> $myml
         translate "dhis2_android_sdk_user_guide" "android-sdk" "both" $lang $locale
 
         echo "    - Sysadmin:" >> $myml

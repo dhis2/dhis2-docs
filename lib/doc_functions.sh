@@ -274,6 +274,9 @@ build_docs(){
     sed -i "s/<version>/$gitbranch/" $tmp/mkdocs.yml
     sed -i "s/<language>/$lang/" $tmp/mkdocs.yml
 
+    sed -i "s/<version>/$gitbranch/" $tmp/docs/index.md
+    sed -i "s/<language>/$lang/" $tmp/docs/index.md
+
     echo -e "$(head -100 ${tmp}/${name}.md | sed -n '/---$/,/---$/p')" > ${name}_custom_bookinfo.md
     touch ${name}_custom_bookinfo.md
     sed -i 's/\([^ :]*\)\/resources\/images\(.*\)/resources\/images\/\1\2/' ${name}_custom_bookinfo.md
