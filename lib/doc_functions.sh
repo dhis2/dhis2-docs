@@ -420,16 +420,16 @@ build_docs(){
     touch $tmp/oldies.md
     echo "|${title//\'/}|[PDF](/${gitbranch}/${lang}/${subdir}/${name}.pdf)|[HTML single page](/${gitbranch}/${lang}/${subdir}/html/${name}_full.html)|" >> $tmp/oldies.md
 
-    # if [ $selection == "html" ]
-    # then
-    #   make_html $name $subdir
-    # elif [ $selection == "pdf" ]
-    # then
-    #   make_pdf $name $subdir
-    # else
-    #   make_html $name $subdir
-    #   make_pdf $name $subdir
-    # fi
+    if [ $selection == "html" ]
+    then
+      make_html $name $subdir
+    elif [ $selection == "pdf" ]
+    then
+      make_pdf $name $subdir
+    else
+      make_html $name $subdir
+      make_pdf $name $subdir
+    fi
 
     add_to_mkdocs $name $subdir
 
