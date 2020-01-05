@@ -111,13 +111,7 @@ if [ ${LOCALISE} -eq 1  ]; then
         echo "    - Sysadmin:" >> $myml
         translate "dhis2_system_administration_guide" "sysadmin" "both" $lang $locale
 
-        pushd $tmp
-          pushd docs
-            ln -s ../resources .
-          popd
-          rm -rf resources/mkdocs
-          mkdocs build --dirty
-        popd
+        make_mkdocs
 
         translate "dhis2_draft_chapters" "draft" "both" $lang $locale
 

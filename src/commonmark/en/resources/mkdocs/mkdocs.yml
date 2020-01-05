@@ -1,4 +1,4 @@
-site_name: DHIS2 Documentation (<version>)
+site_name: DHIS2 Documentation
 site_description: Official documentation of the DHIS 2 platform
 site_author: DHIS2 Documentation Team
 # site_url sets the canonical url - we want this to point to the latest version

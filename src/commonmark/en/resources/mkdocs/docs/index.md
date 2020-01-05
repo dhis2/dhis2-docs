@@ -17,19 +17,11 @@ The End user manual is a light-weight version of the User manual meant for end u
 
 - **Sysadmin**: The system administration guide aims to provide support for the installation and maintenance of the DHIS2 platform.
 
-
 > **Tip**
 >
 > The documentation is also available in the _classic_ formats, PDF's and single page HTML, using the links below.
 >
 |Document|||
 |--- |--- |--- |
-|User guide|[PDF](/<version>/<language>/user/dhis2_user_manual_en.pdf)|[HTML single page](/<version>/<language>/user/html/dhis2_user_manual_en_full.html)|
-|End user manual|[PDF](/<version>/<language>/user/dhis2_user_manual_en.pdf)|[HTML single page](/<version>/<language>/user/html/dhis2_user_manual_en_full.html)|
-|Developer guide|[PDF](/<version>/<language>/user/dhis2_user_manual_en.pdf)|[HTML single page](/<version>/<language>/user/html/dhis2_user_manual_en_full.html)|
-|Android SDK user guide|[PDF](/<version>/<language>/user/dhis2_user_manual_en.pdf)|[HTML single page](/<version>/<language>/user/html/dhis2_user_manual_en_full.html)|
-|Implementer guide|[PDF](/<version>/<language>/user/dhis2_user_manual_en.pdf)|[HTML single page](/<version>/<language>/user/html/dhis2_user_manual_en_full.html)|
-|Android Capture App configuration guide|[PDF](/<version>/<language>/user/dhis2_user_manual_en.pdf)|[HTML single page](/<version>/<language>/user/html/dhis2_user_manual_en_full.html)|
-|System Administrator guide|[PDF](/<version>/<language>/sysadmin/dhis2_system_administration_guide.pdf)|[HTML single page](/<version>/<language>/sysadmin/html/dhis2_system_administration_guide_full.html)|
 
 The DHIS2 documentation is a collective effort and has been developed by the development team and users. While the guides strive to be complete, there may be certain functionalities which have been omitted or which have yet to be documented.

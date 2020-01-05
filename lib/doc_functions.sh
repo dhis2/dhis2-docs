@@ -1,4 +1,124 @@
+
+#
+# Requirements:
+#
+# ensure python3 is available:
+if [[ ! $(command -v python3) ]]; then
+  echo "This script requires python3, and some other libraries:"
+  echo "  brew install python3 cairo pango gdk-pixbuf libffi"
+  echo "Exiting."
+  exit 0
+fi
+#
+# If on mac, ensure we have gnu coreutils for command compatibility
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ ! $(command -v gdate) ]] || [[ ! $(command -v gsed) ]]; then
+    echo "This script requires coreutils and gnu-sed to be installed on Mac:"
+    echo "  brew install coreutils gnu-sed"
+    echo "Exiting."
+    exit 0
+  fi
+  # once gnu coreutils and gnu-sed are installed, we can ensure they are
+  # first in the path, for convenience
+  corepath="/usr/local/opt/coreutils/libexec/gnubin"
+  sedpath="/usr/local/opt/gnu-sed/libexec/gnubin"
+  export PATH="$sedpath:$corepath:$PATH"
+fi
+#
+# ensure language packs are installed. e.g. for French
+#> sudo apt-get install language-pack-fr
+#
+
 readonly GIT_BASE="https://github.com/dhis2/"
+
+# set the default locale for the build
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# pushing docs to localisation platform (transifex) is only done on Jenkins
+LOCALISE=0
+if [[ `id -un` == "jenkins" ]]; then
+  # and only where configured
+  if [ -f ~/.transifexrc ]; then LOCALISE=1; fi
+fi
+
+# set up the python environment
+VENV_VERSION=1.2  # used to force a reset of the venv
+cd ${SCRIPT_DIR}
+if [ ! -f "venv/${VENV_VERSION}" ]; then
+    rm -rf venv
+    source venv_setup
+    touch "venv/${VENV_VERSION}"
+fi
+source ./venv/bin/activate
+
+# script variables
+src="${SCRIPT_DIR}/src/commonmark/en"
+TMPBASE="${SCRIPT_DIR}/tmp"
+tmp="${TMPBASE}/en"
+localisation_root="${SCRIPT_DIR}/target/commonmark"
+
+# clear the output directories
+rm -rf $TMPBASE
+mkdir -p $TMPBASE
+rm -rf $localisation_root
+mkdir -p $localisation_root
+
+# set up mkdocs
+mkdir $tmp
+cp -a $src/resources/mkdocs/* $tmp/
+myml=$tmp/mkdocs.yml
+
+# generate function called for each document
+generate(){
+    name=$1
+    subdir=$2
+    selection=$3
+    if [ ! $selection ]
+    then
+      selection="both"
+    fi
+    lang=en
+    locale=en_UK
+
+    echo "+--------------------------------------------------------"
+    echo "| Processing: $name"
+    echo "+--------------------------------------------------------"
+
+    assemble $name
+    # go to the temp directory and build the documents - put output in target directory
+    build_docs $name $subdir $selection $lang $locale
+
+    # update transifex from latest source files
+    update_localizations $name
+
+}
+
+# translate function called for each document
+translate(){
+    name=$1
+    subdir=$2
+    selection=$3
+    lang=$4
+    locale=$5
+
+    if [ ! $selection ]
+    then
+      selection="both"
+    fi
+
+    echo "+--------------------------------------------------------"
+    echo "| Processing: $name"
+    echo "+--------------------------------------------------------"
+
+    # we need to assemble the source documents to consolidate the resources
+    assemble $name
+
+    pull_translations $name
+    # build localised versions
+    build_docs $name $subdir $selection $lang $locale
+}
+
 
 shared_resources() {
     mkdir -p $1/resources/
@@ -240,7 +360,21 @@ pull_translations(){
 
 }
 
+make_mkdocs(){
+  pushd $tmp
+
+  sed -e "/|--- |--- |--- |/r${tmp}/oldies.md" -i docs/index.md
+
+  pushd docs
+    ln -s ../resources .
+  popd
+  rm -rf resources/mkdocs
+  mkdocs build --dirty
+  popd
+}
+
 build_docs(){
+
     name=$1
     subdir=$2
     selection=$3
@@ -274,23 +408,28 @@ build_docs(){
     sed -i "s/<version>/$gitbranch/" $tmp/mkdocs.yml
     sed -i "s/<language>/$lang/" $tmp/mkdocs.yml
 
-    sed -i "s/<version>/$gitbranch/" $tmp/docs/index.md
-    sed -i "s/<language>/$lang/" $tmp/docs/index.md
-
     echo -e "$(head -100 ${tmp}/${name}.md | sed -n '/---$/,/---$/p')" > ${name}_custom_bookinfo.md
     touch ${name}_custom_bookinfo.md
     sed -i 's/\([^ :]*\)\/resources\/images\(.*\)/resources\/images\/\1\2/' ${name}_custom_bookinfo.md
 
-    if [ $selection == "html" ]
+    title=$(grep "title:" ${name}_custom_bookinfo.md | sed 's/title://')
+    if [ "$title" == "" ]
     then
-      make_html $name $subdir
-    elif [ $selection == "pdf" ]
-    then
-      make_pdf $name $subdir
-    else
-      make_html $name $subdir
-      make_pdf $name $subdir
+      title=${name}
     fi
+    touch $tmp/oldies.md
+    echo "|${title//\'/}|[PDF](/${gitbranch}/${lang}/${subdir}/${name}.pdf)|[HTML single page](/${gitbranch}/${lang}/${subdir}/html/${name}_full.html)|" >> $tmp/oldies.md
+
+    # if [ $selection == "html" ]
+    # then
+    #   make_html $name $subdir
+    # elif [ $selection == "pdf" ]
+    # then
+    #   make_pdf $name $subdir
+    # else
+    #   make_html $name $subdir
+    #   make_pdf $name $subdir
+    # fi
 
     add_to_mkdocs $name $subdir
 
