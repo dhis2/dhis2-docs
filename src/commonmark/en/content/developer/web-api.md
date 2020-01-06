@@ -15977,7 +15977,7 @@ you can override the default 60 days.
 ##### Reserved values
 
 Reserved values is currently not accessible trough the api, however they
-are returned by the *generate* and *generateAndReserve*endpoints. The
+are returned by the `generate` and `generateAndReserve` endpoints. The
 following table explains the properties of the reserved value object:
 
 #####
@@ -16041,8 +16041,8 @@ curl "http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?
   > image.jpg
 ```
 
-The API also supports a *dimension* parameter. It can take three possible values: *small(254 x 254), medium(512 x 512), large(1024 x 1024) or original*. Image type attributes will be stored in pre-generated sizes
-and will be furnished upon request based on the value of the *dimension* parameter.
+The API also supports a *dimension* parameter. It can take three possible values: `small` (254x254), `medium` (512x512), `large` (1024x1024) or `original`. Image type attributes will be stored in pre-generated sizes
+and will be furnished upon request based on the value of the `dimension` parameter.
 
 ```bash
 curl "http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium"
@@ -16053,7 +16053,7 @@ curl "http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?
 <!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_query-->
 
 To query for tracked entity instances you can interact with the
-*/api/trackedEntityInstances* resource.
+`/api/trackedEntityInstances` resource.
 
     /api/29/trackedEntityInstances
 
@@ -16239,31 +16239,27 @@ To query on an attribute using multiple values in an IN
     api/29/trackedEntityInstances.json?ou=DiszpKrYNg8&filter=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
 
 To constrain the response to instances which are part of a specific
-program you can include a program query
-    parameter:
+program you can include a program query parameter:
 
     api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
-    &ouMode=DESCENDANTS&program=ur1Edk5Oe2n
+      &ouMode=DESCENDANTS&program=ur1Edk5Oe2n
 
-To specify program enrollment dates as part of the
-    query:
+To specify program enrollment dates as part of the query:
 
     api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu&program=ur1Edk5Oe2n
-    &programStartDate=2013-01-01&programEndDate=2013-09-01
+      &programStartDate=2013-01-01&programEndDate=2013-09-01
 
 To constrain the response to instances of a specific tracked entity you
-can include a tracked entity query
-    parameter:
+can include a tracked entity query parameter:
 
     api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
-    &ouMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
+      &ouMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
 
 By default the instances are returned in pages of size 50, to change
-this you can use the page and pageSize query
-    parameters:
+this you can use the page and pageSize query parameters:
 
     api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
-    &ouMode=DESCENDANTS&page=2&pageSize=3
+      &ouMode=DESCENDANTS&page=2&pageSize=3
 
 You can use a range of operators for the filtering:
 
@@ -16464,7 +16460,7 @@ parameters are defined, and one where *attribute* and *filter*
 parameters are defined. This endpoint uses a more compact "grid" format,
 and is an alternative to the query in the previous section.
 
-    api/29/trackedEntityInstances/query
+    /api/29/trackedEntityInstances/query
 
 ##### Request syntax
 
@@ -16671,10 +16667,10 @@ space which is %20, will use a logical AND query for each
 
     /api/29/trackedEntityInstances/query.json?query=isabel%20may&ou=DiszpKrYNg8
 
-A query where the attributes to include in the response are
-    specified:
+A query where the attributes to include in the response are specified:
 
-    /api/29/trackedEntityInstances/query.json?query=isabel&attribute=dv3nChNSIxy&attribute=AMpUYgxuCaE&ou=DiszpKrYNg8
+    /api/29/trackedEntityInstances/query.json?query=isabel
+      &attribute=dv3nChNSIxy&attribute=AMpUYgxuCaE&ou=DiszpKrYNg8
 
 To query for instances using one attribute with a filter and one
 attribute without a filter, with one organisation unit using the
@@ -16687,17 +16683,20 @@ A query for instances where one attribute is included in the response
 and one attribute us used as a
     filter:
 
-    /api/29/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A&filter=AMpUYgxuCaE:LIKE:Road&ou=DiszpKrYNg8
+    /api/29/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
+      &filter=AMpUYgxuCaE:LIKE:Road&ou=DiszpKrYNg8
 
 A query where multiple operand and filters are specified for a filter
 item:
 
-    /api/29/trackedEntityInstances/query.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:GT:150:LT:190
+    /api/29/trackedEntityInstances/query.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
+      &filter=lw1SqmMlnfh:GT:150:LT:190
 
 To query on an attribute using multiple values in an IN
     filter:
 
-    /api/29/trackedEntityInstances/query.json?ou=DiszpKrYNg8&attribute=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
+    /api/29/trackedEntityInstances/query.json?ou=DiszpKrYNg8
+      &attribute=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
 
 To constrain the response to instances which are part of a specific
 program you can include a program query parameter:
@@ -16708,7 +16707,8 @@ program you can include a program query parameter:
 To specify program enrollment dates as part of the query:
 
     /api/29/trackedEntityInstances/query.json?filter=zHXD5Ve1Efw:EQ:A
-      &ou=O6uvpzGd5pu&program=ur1Edk5Oe2n&programStartDate=2013-01-01&programEndDate=2013-09-01
+      &ou=O6uvpzGd5pu&program=ur1Edk5Oe2n&programStartDate=2013-01-01
+      &programEndDate=2013-09-01
 
 To constrain the response to instances of a specific tracked entity you
 can include a tracked entity query parameter:
@@ -17044,24 +17044,24 @@ resource. A template payload can be seen below:
 }
 ```
 
-This payload should be used in a **POST** request to the enrollments
+This payload should be used in a *POST* request to the enrollments
 resource identified by the following URL:
 
     /api/29/enrollments
 
-For cancelling or completing an enrollment, you can make a **PUT**
-request to the *enrollments* resource, including the identifier and the
+For cancelling or completing an enrollment, you can make a *PUT*
+request to the `enrollments` resource, including the identifier and the
 action you want to perform. For cancelling an enrollment for a tracked
 entity instance:
 
     /api/29/enrollments/<enrollment-id>/cancelled
 
 For completing a enrollment for a tracked entity instance you can make a
-**PUT** request to the following URL:
+*PUT* request to the following URL:
 
     /api/29/enrollments/<enrollment-id>/completed
 
-For deleting a enrollment, you can make a **DELETE** request to the
+For deleting a enrollment, you can make a *DELETE* request to the
 following URL:
 
     /api/29/enrollments/<enrollment-id>
@@ -17225,7 +17225,8 @@ program you can include a program query
 To specify program enrollment dates as part of the
     query:
 
-    /api/29/enrollments.json?&ou=O6uvpzGd5pu&program=ur1Edk5Oe2n&programStartDate=2013-01-01&programEndDate=2013-09-01
+    /api/29/enrollments.json?&ou=O6uvpzGd5pu&program=ur1Edk5Oe2n
+      &programStartDate=2013-01-01&programEndDate=2013-09-01
 
 To constrain the response to enrollments of a specific tracked entity
 you can include a tracked entity query
@@ -17434,10 +17435,16 @@ format looks like this:
       "longitude": "10.9"
     },
     "dataValues": [
-      { "dataElement": "qrur9Dvnyt5", "value": "26" },
-      { "dataElement": "oZg33kd9taw", "value": "Female" }
-    ] }
-  ]
+      {
+        "dataElement": "qrur9Dvnyt5", 
+        "value": "26"
+      },
+      {
+        "dataElement": "oZg33kd9taw", 
+        "value": "Female"
+      }
+    ]
+  } ]
 }
 ```
 
@@ -17456,11 +17463,16 @@ You can also use GeoJson to store any kind of geometry on your event. An example
   },
   "dataValues": [
     {
-      "dataElement": "qrur9Dvnyt5", "value": "22"
-    }, { 
-      "dataElement": "oZg33kd9taw", "value": "Male"
-    }, {
-      "dataElement": "msodh3rEMJa", "value": "2013-05-18"
+      "dataElement": "qrur9Dvnyt5", 
+      "value": "22"
+    }, 
+    { 
+      "dataElement": "oZg33kd9taw", 
+      "value": "Male"
+    }, 
+    {
+      "dataElement": "msodh3rEMJa", 
+      "value": "2013-05-18"
     }
   ]
 }
@@ -17920,7 +17932,8 @@ Retrieve events with specified Organisation unit and Program, and use UID as ide
 orgUnits, Code as identifier scheme for Program stages, and _Attribute:Gq0oWTf2DtN_ as identifier 
 scheme for the rest of the metadata with assigned attribute.
     
-    api/events.json?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN&orgUnitIdScheme=UID&programStageIdScheme=Code
+    api/events.json?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
+      &orgUnitIdScheme=UID&programStageIdScheme=Code
 
 #### Event grid query
 
@@ -17943,21 +17956,24 @@ data element values. api/events/query has support for this. Below are
 some examples
 
 A query to return an event grid containing only selected data elements
-for a program
-    stage
+for a program stage
 
-    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk&dataElement=qrur9Dvnyt5,fWIAEtYVEGk,K6uUAvq500H&order=lastUpdated:desc&pageSize=50&page=1&totalPages=true
+    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
+      &dataElement=qrur9Dvnyt5,fWIAEtYVEGk,K6uUAvq500H&order=lastUpdated:desc
+      &pageSize=50&page=1&totalPages=true
 
 A query to return an event grid containing all data elements of a
 program
     stage
 
-    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk&includeAllDataElements=true
+    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
+      &includeAllDataElements=true
 
 A query to filter events based on data element
     value
 
-    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk&filter=qrur9Dvnyt5:GT:20:LT:50
+    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
+      &filter=qrur9Dvnyt5:GT:20:LT:50
 
 In addition to the filtering, the above example also illustrates one
 thing: the fact that there are no data elements mentioned to be returned
@@ -17969,7 +17985,8 @@ We can also extend the above query to return us a grid sorted (asc|desc)
 based on data element
     value
 
-    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk&filter=qrur9Dvnyt5:GT:20:LT:50&order=qrur9Dvnyt5:desc
+    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
+      &filter=qrur9Dvnyt5:GT:20:LT:50&order=qrur9Dvnyt5:desc
 
 #### Event filters
 
