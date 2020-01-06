@@ -369,7 +369,7 @@ pull_translations(){
 make_mkdocs(){
   pushd $tmp
 
-  sed -e "/|--- |--- |--- |/r${tmp}/doc_links.md" -i docs/index.md
+  sed -e "/|--- |--- |--- |--- |/r${tmp}/doc_links.md" -i docs/index.md
 
   pushd docs
     ln -s ../resources .
@@ -439,6 +439,6 @@ build_docs(){
       title=${name}
     fi
     touch $tmp/doc_links.md
-    echo "|[${title//\'/}](/${gitbranch}/${lang}/${mylink//md/html}) | [Single page](/${gitbranch}/${lang}/${subdir}/html/${name}_full.html) | [PDF](/${gitbranch}/${lang}/${subdir}/${name}.pdf)|" >> $tmp/doc_links.md
+    echo "|${title//\'/}|[Explore](/${gitbranch}/${lang}/${mylink//md/html})|[View as Single Page](/${gitbranch}/${lang}/${subdir}/html/${name}_full.html)|[Download PDF](/${gitbranch}/${lang}/${subdir}/${name}.pdf)|" >> $tmp/doc_links.md
 
 }
