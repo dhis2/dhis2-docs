@@ -72,7 +72,7 @@ Later DHIS2 versions require the following software versions to operate.
 
   - PostGIS database extension version 2.2 or later.
 
-  - Tomcat servlet container version 8.5 or later, or other Servlet API
+  - Tomcat servlet container version 8.5.50 or later, or other Servlet API
     3.1 compliant servlet containers.
 
 ## Server setup
