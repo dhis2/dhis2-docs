@@ -11703,8 +11703,9 @@ The default response representation format is JSON. The requests must be using t
 
 As an example, to get a response in Excel format you can use a file extension in the request URL like this:
 
-    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd&dimension=WZbXY0S00lP.de0FEHSIoxh
-      &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
+    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
+      &dimension=WZbXY0S00lP.de0FEHSIoxh&columns=w75KJ2mc4zz
+      &dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
       &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
 
 The default response JSON format will look similar to this:
@@ -12024,7 +12025,7 @@ To fetch org unit analytics data in table mode with one group set rendered as co
 <!--DHIS2-SECTION-ID:webapi_data_set_report-->
 
 Data set reports can be generated trough the web api using the
-*/dataSetReport* resource. This resource generates reports on data set
+`/dataSetReport` resource. This resource generates reports on data set
 and returns the result in the form of a HTML table.
 
     /api/31/dataSetReport
@@ -12220,9 +12221,9 @@ aggregated at request.
 
 The usage analytics (data statistics) API supports two operations:
 
-  - POST: creates a view event
+  - *POST:* creates a view event
 
-  - GET: retrieves aggregated statistics
+  - *GET:* retrieves aggregated statistics
 
 ### Create view events (POST)
 
