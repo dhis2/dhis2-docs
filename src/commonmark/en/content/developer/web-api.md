@@ -6727,10 +6727,9 @@ interact with this endpoint.
 </table>
 
 Get all tracked entity instance audits of type READ with
-startDate=2018-03-01 and endDate=2018-04-24 in a page size of
-    5:
+startDate=2018-03-01 and endDate=2018-04-24 in a page size of 5:
 
-    api/27/audits/trackedEntityInstance.json?startDate=2018-03-01&endDate=2018-04-24&auditType=READ&pageSize=5
+    /api/27/audits/trackedEntityInstance.json?startDate=2018-03-01&endDate=2018-04-24&auditType=READ&pageSize=5
 
 ### Enrollment audits
 
@@ -6795,14 +6794,13 @@ available parameters to interact with this endpoint.
 </table>
 
 Get all enrollment audits with startDate=2018-03-01 and
-endDate=2018-04-24 in a page size of
-    5:
+endDate=2018-04-24 in a page size of 5:
 
-    api/audits/enrollment.json?startDate=2018-03-01&endDate=2018-04-24&pageSize=5
+    /api/audits/enrollment.json?startDate=2018-03-01&endDate=2018-04-24&pageSize=5
 
-Get all enrollment audits for user admin
+Get all enrollment audits for user admin:
 
-    api/audits/enrollment.json?user=admin
+    /api/audits/enrollment.json?user=admin
 
 ### Data approval audits
 
@@ -7057,9 +7055,9 @@ In 2.30 we added an URL search parameter:
 
     queryString=?&queryOperator=?
 
-The filter searches for matches in subject, messages' text and messages'
-senders for message conversations. The default query operator is token
-due to better text search, but you can supply your own operator.
+The filter searches for matches in subject, text and senders for message 
+conversations. The default query operator is *token*, however other operators 
+can be defined in the query.
 
 ### Managing messages
 
@@ -7085,7 +7083,7 @@ conversation and the participating user. For example, to remove the user
 with id `xE7jOejl9FI` from the conversation with id `jMe43trzrdi`:
 
 ```bash
-    curl "https://play.dhis2.org/demo/api/26/messageConversations/jMe43
+curl "https://play.dhis2.org/demo/api/26/messageConversations/jMe43
 ```
 
 If the request was successful the server will reply with a *200 OK*. The
@@ -7116,7 +7114,7 @@ are given as query string parameters. The following example removes two
 separate message conversations for the current user:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/messageConversations?mc=WzMRrCosqc0&mc=lxCjiigqrJm"
+curl "https://play.dhis2.org/demo/api/messageConversations?mc=WzMRrCosqc0&mc=lxCjiigqrJm"
   -X DELETE -u admin:district
 ```
 
@@ -7124,7 +7122,7 @@ If you have sufficient permissions, conversations can be removed on
 behalf of another user by giving an optional user id parameter.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/messageConversations?mc=WzMRrCosqc0&mc=lxCjiigqrJm&user=PhzytPW3g2J"
+curl "https://play.dhis2.org/demo/api/messageConversations?mc=WzMRrCosqc0&mc=lxCjiigqrJm&user=PhzytPW3g2J"
   -X DELETE -u admin:district
 ```
 
@@ -7207,7 +7205,10 @@ the attachment IDs when creating a new message.
 A POST request to the *attachments* resource will upload the file to the
 server.
 
-    curl -F file=@attachment.png -u admin:district https://play.dhis2.org/demo/api/messageConversations/attachments
+```
+curl -F file=@attachment.png "https://play.dhis2.org/demo/api/messageConversations/attachments"
+  -u admin:district 
+```
 
 The request returns an object that represents the attachment. The id of
 this object must be used when creating a message in order to link the
@@ -7215,25 +7216,25 @@ attachment with the message.
 
 ```json
 {
-  "created":"2018-07-20T16:54:18.210",
-  "lastUpdated":"2018-07-20T16:54:18.212",
-  "externalAccess":false,
-  "publicAccess":"--------",
-  "user":{
-    "name":"John Traore",
-    "created":"2013-04-18T17:15:08.407",
-    "lastUpdated":"2018-03-09T23:06:54.512",
-    "externalAccess":false,
-    "displayName":"John Traore",
-    "favorite":false,
-    "id":"xE7jOejl9FI"
+  "created": "2018-07-20T16:54:18.210",
+  "lastUpdated": "2018-07-20T16:54:18.212",
+  "externalAccess": false,
+  "publicAccess": "--------",
+  "user": {
+    "name": "John Traore",
+    "created": "2013-04-18T17:15:08.407",
+    "lastUpdated": "2018-03-09T23:06:54.512",
+    "externalAccess": false,
+    "displayName": "John Traore",
+    "favorite": false,
+    "id": "xE7jOejl9FI"
   },
-  "lastUpdatedBy":{
-    "id":"xE7jOejl9FI",
-    "name":"John Traore"
+  "lastUpdatedBy": {
+    "id": "xE7jOejl9FI",
+    "name": "John Traore"
   },
-  "favorite":false,
-  "id":"fTpI4GOmujz"
+  "favorite": false,
+  "id": "fTpI4GOmujz"
 }
 ```
 
@@ -7263,10 +7264,8 @@ to link the uploaded files to the message being created.
     }
   ],
   "attachments": [
-    {
-      "fTpI4GOmujz",
-      "h2ZsOxMFMfq"
-    }
+    "fTpI4GOmujz",
+    "h2ZsOxMFMfq"
   ]
 }
 ```
@@ -7281,13 +7280,13 @@ curl -d "Yes the Mortality data set has been reported"
 ```
 
 Once a message with an attachment has been created, the attached file
-can be accessed with a GET request to the following URL.
+can be accessed with a GET request to the following URL:
 
-    https://play.dhis2.org/demo/api/26/messageConversations/<mcId>/<msgId>/attachments/<attachmentId>
+    /api/messageConversations/<mcv-id>/<msg-id>/attachments/<attachment-id>
 
-Where <mcId> is the *messageConversation* ID, <msgId> is the ID of
-the *message* that contains the attachment, and <attachmentId> is the
-ID of the specific *messageAttachment*.
+Where <mcv-id> is the *message conversation* ID, <msg-id> is the ID of
+the *message* that contains the attachment and <attachment-id> is the
+ID of the specific *message attachment*.
 
 ### Tickets and Validation Result Notifications
 
@@ -7295,11 +7294,13 @@ ID of the specific *messageAttachment*.
 
 You can use the "write feedback" tool to create tickets and messages.
 The only difference between a ticket and a message is that you can give
-a status and a priority to a ticket. To do this, use these endpoints:
+a status and a priority to a ticket. To set the status:
 
-    POST https://play.dhis2.org/demo/api/26/messageConversations/<uid>/status
+    POST /api/messageConversations/<uid>/status
+    
+To set the priority:
 
-    POST https://play.dhis2.org/demo/api/26/messageConversations/<uid>/priority
+    POST /api/messageConversations/<uid>/priority
 
 In 2.29, messages generated by validation analysis now also be used in
 the status and priority properties. By default, messages generated by
@@ -7527,11 +7528,11 @@ in the interpretation
 You can filter by the interpretation comments mentions (mentions in any
 comment):
 
-    GET /api/30/interpretations?fields=*,comments[*]&filter=comments.mentions.username:in:[boateng]
+    GET /api/30/interpretations?fields=*,comments[*]
+      &filter=comments.mentions.username:in:[boateng]
 
-or you can filter by intepretations which contains the mentions either
-in the interpretation or in any comment (OR
-    junction):
+You can filter by intepretations which contains the mentions either
+in the interpretation or in any comment (OR junction):
 
     GET /api/30/interpretations?fields=*,comments[*]&filter=mentions:in:[boateng]
 
@@ -7635,9 +7636,8 @@ the comment text is the request body using the following URL pattern:
 Based on this we can use curl to update the comment:
 
 ```bash
-curl -d "I agree with that." -X PUT
-  https://play.dhis2.org/demo/api/26/interpretations/j8sjHLkK8uY/comments/idAzzhVWvh2"
-  -H "Content-Type:text/plain" -u admin:district
+curl "https://play.dhis2.org/demo/api/26/interpretations/j8sjHLkK8uY/comments/idAzzhVWvh2"
+  -d "I agree with that." -X PUT -H "Content-Type:text/plain" -u admin:district
 ```
 
 You can use the same URL pattern as above using a DELETE request to the

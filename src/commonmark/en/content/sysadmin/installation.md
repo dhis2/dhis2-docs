@@ -464,16 +464,14 @@ necessary):
 wget https://releases.dhis2.org/2.31/dhis.war
 ```
 
-> **Note**
->
->Alternatively, for patch releases, the folder structure is based on the patch
->release ID in a subfolder under the main release. For example, you can download
->the DHIS2 version 2.31.1 WAR release like this (replace 2.31 with your
->preferred version, and 2.31.1 with you preferred patch, if necessary):
->
->```
->wget https://releases.dhis2.org/2.31/2.31.1/dhis.war
->```
+Alternatively, for patch releases, the folder structure is based on the patch
+release ID in a subfolder under the main release. E.g. you can download
+the DHIS2 version 2.31.1 WAR release like this (replace 2.31 with your
+preferred version, and 2.31.1 with you preferred patch, if necessary):
+
+```
+wget https://releases.dhis2.org/2.31/2.31.1/dhis.war
+```
 
 Move the WAR file into the Tomcat webapps directory. We want to call the
 WAR file ROOT.war in order to make it available at localhost directly
