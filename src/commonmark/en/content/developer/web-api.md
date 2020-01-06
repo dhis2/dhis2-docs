@@ -15273,18 +15273,18 @@ Success and error messages will look like this:
 
 ```json
 {
-    "images": {
-        "png": "http://localhost:8080/dhis/api/staticContent/logo_front"
-    }
+  "images": {
+    "png": "http://localhost:8080/dhis/api/staticContent/logo_front"
+  }
 }
 ```
 
 ```json
 {
-    "httpStatus": "Not Found",
-    "httpStatusCode": 404,
-    "status": "ERROR",
-    "message": "No custom file found."
+  "httpStatus": "Not Found",
+  "httpStatusCode": 404,
+  "status": "ERROR",
+  "message": "No custom file found."
 }
 ```
 
