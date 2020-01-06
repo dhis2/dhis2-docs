@@ -142,6 +142,12 @@ add_to_mkdocs() {
     popd
     # rm $name.md
 
+    # Always add the javadoc link after the developer manual
+    if [ "${name}" == "dhis2_developer_manual" ]
+    then
+      echo "        DHIS2 API Javadocs: https://docs.dhis2.org/$gitbranch/javadoc/" >> ${TMPBASE}/$lang/mkdocs.yml
+    fi
+
 }
 
 assemble(){
