@@ -12508,9 +12508,11 @@ the identifier of the favorite of interest:
 The response will contain the number of views for the given favorite and
 look like this:
 
-    {
-      "views": 3
-    }
+```json
+{
+  "views": 3
+}
+```
 
 ## Geospatial features
 
@@ -12777,9 +12779,9 @@ App reload will refresh the DHIS 2 managed cache of installed apps by reading fr
 
 Maintenance operations are supported in a batch style with a POST request to the api/maintenance resource where the operations are supplied as query parameters:
 
-    POST PUT /api/26/maintenance?analyticsTablesClear=true&expiredInvitationsClear=true&periodPruning=true
-      &zeroDataValueRemoval=true&sqlViewsDrop=true&sqlViewsCreate=true&categoryOptionComboUpdate=true
-      &cacheClear=true&ouPathsUpdate=true
+    POST PUT /api/26/maintenance?analyticsTablesClear=true&expiredInvitationsClear=true
+      &periodPruning=true&zeroDataValueRemoval=true&sqlViewsDrop=true&sqlViewsCreate=true
+      &categoryOptionComboUpdate=true&cacheClear=true&ouPathsUpdate=true
 
 ## System resource
 
@@ -12836,7 +12838,7 @@ currently includes the below properties.
 ```json
 {
   contextPath: "http://yourdomain.com",
-  userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62 Safari/537.36",
+  userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62",
   version: "2.13-SNAPSHOT",
   revision: "11852",
   buildTime: "2013-09-01T21:36:21.000+0000",
@@ -12865,8 +12867,8 @@ currently includes the below properties.
 >
 > If the user who is requesting this resource does not have full authority in the system then only the first seven properties will be included, as this information is security sensitive.
 
-To get information about the system context (`contextPath` and
-`userAgent`) only you can do a GET request to the below URL. JSON and
+To get information about the system context only, i.e. `contextPath` and
+`userAgent`, you can make a GET request to the below URL. JSON and
 JSONP response formats are supported:
 
     /api/26/system/context
@@ -14215,20 +14217,21 @@ use this on a SSL enabled server) and will be encrypted on the backend:
   ]
   },
   "organisationUnits": [
-  {
-    "id": "Rp268JB6Ne4"
-  }
+    {
+      "id": "Rp268JB6Ne4"
+    }
   ],
   "userGroups": [
-  {
-    "id": "wl5cDMuUhmF"
-  }
+    {
+      "id": "wl5cDMuUhmF"
+    }
   ]
 }
 ```
 
 ```bash
-curl -X POST -u user:pass -d @u.json -H "Content-Type: application/json" "http://server/api/26/users"
+curl -X POST -d @u.json "http://server/api/26/users" -u user:pass 
+  -H "Content-Type: application/json" 
 ```    
     
 >  **Note**
@@ -14242,7 +14245,8 @@ to then use **PUT** instead of **POST** and the endpoint is now
 */api/users/ID*.
 
 ```bash
-curl -X PUT -u user:pass -d @u.json -H "Content-Type: application/json" "http://server/api/26/users/ID"
+curl -X PUT -d @u.json "http://server/api/26/users/ID" -u user:pass 
+  -H "Content-Type: application/json" 
 ```
 
 For more info about the full payload available, please see `/api/schemas/user`.
@@ -14289,7 +14293,8 @@ looks like this:
 The user invite entity can be posted like this:
 
 ```bash
-curl -d @invite.json "localhost/api/26/users/invite" -H "Content-Type:application/json" -u admin:district
+curl -d @invite.json "localhost/api/26/users/invite" -u admin:district
+  -H "Content-Type:application/json" 
 ```
 
 To send out invites for multiple users at the same time you must use a
@@ -14331,8 +14336,8 @@ To create multiple invites you can post the payload to the
 api/users/invites resource like this:
 
 ```bash
-curl -d @invites.json "localhost/api/26/users/invites" -H "Content-Type:application/json"
-  -u admin:district
+curl -d @invites.json "localhost/api/26/users/invites" -u admin:district
+  -H "Content-Type:application/json"
 ```
 
 There are certain requirements for user account invitations to be sent
@@ -14876,7 +14881,8 @@ As an example, to set the UI locale of the current user to French you
 can use the following command.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/userSettings/keyUiLocale?value=fr" -X POST -u admin:district
+curl "https://play.dhis2.org/demo/api/26/userSettings/keyUiLocale?value=fr" 
+  -X POST -u admin:district
 ```
 
 You should replace my-key with your real key and my-val with your real
@@ -15138,17 +15144,17 @@ JSON payload sample is given below:
 
 ```json
 {
-    "name": "dataSetNotificationTemplate1",
-    "notificationTrigger": "COMPLETION",
-    "relativeScheduledDays": 0,
-    "notificationRecipient": "ORGANISATION_UNIT_CONTACT",
-    "dataSets": [{
-        "id": "eZDhcZi6FLP"
-    }],
-    "deliveryChannels": ["SMS"],
-    "subjectTemplate": "V{data_name}",
-    "messageTemplate": "V{data_name}V{complete_registration_period}",
-    "sendStrategy": "SINGLE_NOTIFICATION"
+  "name": "dataSetNotificationTemplate1",
+  "notificationTrigger": "COMPLETION",
+  "relativeScheduledDays": 0,
+  "notificationRecipient": "ORGANISATION_UNIT_CONTACT",
+  "dataSets": [{
+    "id": "eZDhcZi6FLP"
+  }],
+  "deliveryChannels": ["SMS"],
+  "subjectTemplate": "V{data_name}",
+  "messageTemplate": "V{data_name}V{complete_registration_period}",
+  "sendStrategy": "SINGLE_NOTIFICATION"
 }
 
 ```
@@ -20200,20 +20206,20 @@ To delete a min-max data element, send a request with DELETE method:
 The JSON content is in similar format as above:
 
 ```json
-    {
-      "min": 1,
-      "generated": false,
-      "max": 100,
-      "dataElement": {
-        "id": "UOlfIjgN8X6"
-       },
-      "source": {
-        "id": "DiszpKrYNg8"
-      },
-      "optionCombo": {
-        "id": "psbwp3CQEhs"
-      }
-    }
+{
+  "min": 1,
+  "generated": false,
+  "max": 100,
+  "dataElement": {
+	"id": "UOlfIjgN8X6"
+   },
+  "source": {
+	"id": "DiszpKrYNg8"
+  },
+  "optionCombo": {
+	"id": "psbwp3CQEhs"
+  }
+}
 ```
 
 ## Lock exceptions
