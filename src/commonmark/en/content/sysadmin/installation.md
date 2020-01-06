@@ -1170,6 +1170,7 @@ http {
 	  proxy_buffer_size         128k;
 	  proxy_buffers             8 128k;
 	  proxy_busy_buffers_size   256k;
+	  proxy_cookie_path         ~*^/(.*) "/$1; SameSite=Lax";
 	}
   }
 }
@@ -1277,6 +1278,7 @@ http {
 	  proxy_buffer_size         128k;
 	  proxy_buffers             8 128k;
 	  proxy_busy_buffers_size   256k;
+	  proxy_cookie_path         ~*^/(.*) "/$1; SameSite=Lax";
 	}
   }
 }
@@ -1359,6 +1361,7 @@ http {
 	  proxy_buffer_size         128k;
 	  proxy_buffers             8 128k;
 	  proxy_busy_buffers_size   256k;
+	  proxy_cookie_path         ~*^/(.*) "/$1; SameSite=Lax";
 	  proxy_cache               dhis;
 	}
   }
