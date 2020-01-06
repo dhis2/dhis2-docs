@@ -21,6 +21,10 @@ The End user manual is a light-weight version of the User manual meant for end u
 
 - **Sysadmin**: The system administration guide aims to provide support for the installation and maintenance of the DHIS2 platform.<!-- sysadmin -->  
 
+|Quick Links |||
+|--- |--- |--- |
+
+
 > **Caution**
 >
 > The DHIS2 documentation is a collective effort and has been developed by the development team and users. While the guides strive to be complete, there may be certain functionalities which have been omitted or which have yet to be documented.
