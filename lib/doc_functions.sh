@@ -369,7 +369,10 @@ pull_translations(){
 make_mkdocs(){
   pushd $tmp
 
-  sed -e "/|--- |--- |--- |/r${tmp}/oldies.md" -i docs/index.md
+  for sect in "user" "developer" "implementer" "sysadmin"
+  do
+    sed -e "/<!-- ${sect} -->/r${tmp}/${sect}_links.md" -i docs/index.md
+  done
 
   pushd docs
     ln -s ../resources .
@@ -418,25 +421,42 @@ build_docs(){
     touch ${name}_custom_bookinfo.md
     sed -i 's/\([^ :]*\)\/resources\/images\(.*\)/resources\/images\/\1\2/' ${name}_custom_bookinfo.md
 
+    # if [ $selection == "html" ]
+    # then
+    #   make_html $name $subdir
+    # elif [ $selection == "pdf" ]
+    # then
+    #   make_pdf $name $subdir
+    # else
+    #   make_html $name $subdir
+    #   make_pdf $name $subdir
+    # fi
+
+    add_to_mkdocs $name $subdir
+
+    mylink=$(grep ${name} ${tmp}/mkdocs.yml | head -1 | sed 's/.* //')
+    mysection=$(grep "^    -" ${tmp}/mkdocs.yml | tail -1)
+    sect="user"
+    if [ "${mysection}" == "    - Developer:" ]
+    then
+      sect="developer"
+    fi
+    if [ "${mysection}" == "    - Implementer:" ]
+    then
+      sect="implementer"
+    fi
+    if [ "${mysection}" == "    - Sysadmin:" ]
+    then
+      sect="sysadmin"
+    fi
+
     title=$(grep "title:" ${name}_custom_bookinfo.md | sed 's/title://')
     if [ "$title" == "" ]
     then
       title=${name}
     fi
-    touch $tmp/oldies.md
-    echo "|${title//\'/}|[PDF](/${gitbranch}/${lang}/${subdir}/${name}.pdf)|[HTML single page](/${gitbranch}/${lang}/${subdir}/html/${name}_full.html)|" >> $tmp/oldies.md
-
-    if [ $selection == "html" ]
-    then
-      make_html $name $subdir
-    elif [ $selection == "pdf" ]
-    then
-      make_pdf $name $subdir
-    else
-      make_html $name $subdir
-      make_pdf $name $subdir
-    fi
-
-    add_to_mkdocs $name $subdir
+    touch $tmp/${sect}_links.md
+    #echo "    - [${title//\'/}](/${gitbranch}/${lang}/${mylink//md/html}) ^classic:^ ^[PDF](/${gitbranch}/${lang}/${subdir}/${name}.pdf)^  ^or^ ^[single page HTML](/${gitbranch}/${lang}/${subdir}/html/${name}_full.html)^ " >> $tmp/${sect}_links.md
+    echo "    - [${title//\'/}](/${gitbranch}/${lang}/${mylink//md/html}) | [Single page](/${gitbranch}/${lang}/${subdir}/html/${name}_full.html) | [PDF](/${gitbranch}/${lang}/${subdir}/${name}.pdf)  " >> $tmp/${sect}_links.md
 
 }
