@@ -23,4 +23,5 @@ title: 'DHIS 2 Implementer guide'
 !INCLUDE "content/implementation/localization-of-dhis2.md"
 !INCLUDE "content/implementation/dhis2-tools-guide.md"
 !INCLUDE "content/implementation/dhis2-documentation-guide.md"
+!INCLUDE "content/common/submitting-a-doc-fix.md"
 !INCLUDE "content/implementation/using-jira-for-dhis2-issues.md"

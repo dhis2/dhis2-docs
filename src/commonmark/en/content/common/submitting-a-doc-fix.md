@@ -2,7 +2,7 @@
 
 <!--DHIS2-SECTION-ID:submitting_doc_fixes-->
 
-For small changes to the document, it's actually very easy for anyone to
+For small changes to a document, it's actually very easy for anyone to
 submit changes without going through the whole process of raising a JIRA
 issue against DHIS 2. This can be done directly in
 [GitHub](https://github.com/dhis2/dhis2-docs) and requires no knowledge of git.
@@ -12,8 +12,8 @@ This section is intended as a walk-through guide to making simple changes.
 
 ## Typo fix walk-through
 
-In this scenario, we are reading the documentation and find a typo (_the word
-"manditory" should be "mand**a**tory"_):
+In this scenario, we are reading the documentation and find a typo (the word
+_manditory_ should be _mand**a**tory_):
 
 ![A typo in Capture app documentation](resources/images/doc_pr_001.png)
 
@@ -33,7 +33,7 @@ We want to fix this, so...
     The index files are here:  https://github.com/dhis2/dhis2-docs/tree/master/src/commonmark/en
 
     ![Documentation index files](resources/images/doc_pr_002.png)
-  
+
     > You may notice the button near the top right that says "Branch: **master**". This indicates that we
     are looking at the documents for the master branch (i.e. the documentation for the very latest version of DHIS 2).
     If we wanted to edit the document for, say, version 2.29 instead, then we would use that button to select branch 2.29!  
@@ -42,7 +42,7 @@ We want to fix this, so...
     a. In this case, the chapter we want is in the User Manual
     so we open the `dhis2_user_manual_en_INDEX.md` index file:
     > Select `Raw` or `Edit` mode in order to view the index properly!
-    
+
     ![Index file content](resources/images/doc_pr_003.png)
 
     Here we see that the "Using the Capture app" chapter is referenced as
@@ -56,13 +56,13 @@ we need to go to: [https://github.com/dhis2/dhis2-docs/blob/master/src/commonmar
 4. From here we can choose to edit the file (_pencil icon_). An edit
 panel is displayed:
 
-  
+
     Here we have found and highlighted the offending word!
     ![Edit](resources/images/doc_pr_005.png)
-    
+
     > Don't worry about the blue warning at the top that says we don't have
     write access to the file!  
-    
+
     We can make the change and preview it in the `Preview changes` tab if we want.  
     Here is the preview:
     ![Preview](resources/images/doc_pr_006.png)
@@ -71,7 +71,7 @@ panel is displayed:
     We add a title for the change (and an _optional_ description) and click
     `Propose file change`
     ![Submit the change](resources/images/doc_pr_007.png)
-    
+
     a. We see a summary of our changes and click `Create pull request`:
     ![Submit the change](resources/images/doc_pr_008.png)
 
