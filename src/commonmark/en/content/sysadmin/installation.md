@@ -72,7 +72,7 @@ Later DHIS2 versions require the following software versions to operate.
 
   - PostGIS database extension version 2.2 or later.
 
-  - Tomcat servlet container version 8.5 or later, or other Servlet API
+  - Tomcat servlet container version 8.5.50 or later, or other Servlet API
     3.1 compliant servlet containers.
 
 ## Server setup
@@ -484,8 +484,8 @@ mv dhis.war tomcat-dhis/webapps/ROOT.war
 ```
 
 DHIS2 should never be run as a privileged user. After you have modified
-the setenv.sh file, modify the startup script to check and see if the
-script has been invoked as root.
+the setenv.sh file, modify the startup script to check and verify that the
+script has not been invoked as root.
 
 ```sh
 #!/bin/sh
