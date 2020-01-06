@@ -484,8 +484,8 @@ mv dhis.war tomcat-dhis/webapps/ROOT.war
 ```
 
 DHIS2 should never be run as a privileged user. After you have modified
-the setenv.sh file, modify the startup script to check and see if the
-script has been invoked as root.
+the setenv.sh file, modify the startup script to check and verify that the
+script has not been invoked as root.
 
 ```sh
 #!/bin/sh
