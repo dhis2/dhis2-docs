@@ -13348,15 +13348,14 @@ You can browse all translations through the translations resource:
 
 You can use the standard filtering technique to fetch translations of
 interest. E.g. to get all translations for data elements in the Spanish
-locale you can use this
-    request:
+locale you can use this request:
 
     /api/26/translations.json?fields=*&filter=className:eq:DataElement&filter=locale:eq:es
 
-To get translations for a specific object for all
-    properties:
+To get translations for a specific object for all properties:
 
-    /api/26/translations.json?fields=*&filter=className:eq:DataElement&filter=locale:eq:fr&filter=objectId:eq:fbfJHSPpUQD
+    /api/26/translations.json?fields=*&filter=className:eq:DataElement
+      &filter=locale:eq:fr&filter=objectId:eq:fbfJHSPpUQD
 
 ## Short Message Service (SMS)
 
@@ -13370,12 +13369,8 @@ messages.
 The Web API supports sending outgoing SMS using the POST method. SMS can
 be sent to a single or multiple destinations. One or more gateways need
 to be configured before using the service. An SMS will not be sent if
-there is no gateway configured.
- It needs a set of recipients and
+there is no gateway configured. It needs a set of recipients and
 message text in JSON format as shown below.
-
-NOTE: Recipients list will be partitioned if its size exceed
-`MAX_ALLOWED_RECIPIENTS` limit which is 200.
 
     /api/26/sms/outbound
 
@@ -13383,17 +13378,21 @@ NOTE: Recipients list will be partitioned if its size exceed
 {
   "message":"Sms Text",
   "recipients": [
-    "47XXXXXX1",
-    "47XXXXXX2"
+    "004712341234",
+    "004712341235"
   ]
 }
 ```
+
+> ***Note***
+>
+> Recipients list will be partitioned if the size exceed `MAX_ALLOWED_RECIPIENTS` limit of 200.
 
 The Web API also supports a query parameter version, but the
 parametrised API can only be used for sending SMS to a single
 destination.
 
-    /api/26/sms/outbound?message=text&recipient=47XXXXXX
+    /api/26/sms/outbound?message=text&recipient=004712341234
 
 #### Gateway response codes
 
@@ -13538,7 +13537,7 @@ parameters.
 ```json
 {
   "text": "sample text",
-  "originator": "47XXXXXXXX",
+  "originator": "004712341234",
   "gatewayid": "unknown",
   "receiveddate": "2016-05-01",
   "sentdate":"2016-05-01",
@@ -13547,8 +13546,7 @@ parameters.
 }
 ```
 
-The Web API also supports a query parameter-based
-    version.
+The Web API also supports a query parameter-based version.
 
     /api/26/sms/inbound?message=text&originator=47XXXXXX&gateway=clickatel
 
@@ -13675,7 +13673,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
 }
 ```
 
-#### GenericHttp
+#### Generic HTTP
 
 ```json
 {
@@ -13788,10 +13786,8 @@ HTTP.OK will be returned if configurations are saved successfully otherwise *Err
 
 <!--DHIS2-SECTION-ID:webapi_sms_commands-->
 
-SMSCommands are being used to collect data through SMS. These commands
-belong to specific Parser Type. Each parser has different functionality.
-
-### API End Points
+SMS commands are being used to collect data through SMS. These commands
+belong to specific parser type. Each parser has different functionality.
 
 The list of commands can be retrieved using GET.
 
@@ -13813,7 +13809,7 @@ One particular command can be deleted using DELETE.
 
     DELETE /api/smsCommands/uid
 
-#### SMSCommand parser types
+#### SMS command parser types
 
   - KEY_VALUE_PARSER
 
@@ -13835,7 +13831,7 @@ One particular command can be deleted using DELETE.
 
 Program message lets you send messages to tracked entity instances,
 contact addresses associated with organisation units, phone numbers and
-email addresses. You can send messages through the *messages* resource.
+email addresses. You can send messages through the `messages` resource.
 
     /api/26/messages
 
@@ -14234,14 +14230,20 @@ curl -X POST -d @u.json "http://server/api/26/users" -u user:pass
   -H "Content-Type: application/json" 
 ```    
     
->  **Note**
->
->  In the user creation payload, user groups are only supported when importing or **POST**ing a *single user* at a time. If you attempt to create more than one user while specifiying user groups, you will not recieve an error and the users will be created but no user groups will be assigned. This is by design and is limited because of the many-to-many relationship between Users and User Groups whereby User Groups is the owner of the relationship. To update or create mulitple users and their user groups, consider a program to **POST** one at a time, or **POST**/import all users followed by another action to update their user groups while specifiying the new user's ID's.
+In the user creation payload, user groups are only supported when importing 
+or *POSTing* a single user at a time. If you attempt to create more than one 
+user while specifiying user groups, you will not recieve an error and the 
+users will be created but no user groups will be assigned. This is by design 
+and is limited because of the many-to-many relationship between Users and 
+User Groups whereby User Groups is the owner of the relationship. To update 
+or create mulitple users and their user groups, consider a program to *POST* 
+one at a time, or *POST* / import all users followed by another action to 
+update their user groups while specifiying the new user's identifiers.
 
 After the user is created, a *Location* header is sent back with the
 newly generated ID (you can also provide your own using /api/system/id
 endpoint). The same payload can then be used to do updates, but remember
-to then use **PUT** instead of **POST** and the endpoint is now
+to then use *PUT* instead of *POST* and the endpoint is now
 */api/users/ID*.
 
 ```bash
@@ -14259,7 +14261,7 @@ For more info about uploading and retrieving user avatars, please see the
 <!--DHIS2-SECTION-ID:webapi_user_invitations-->
 
 The Web API supports inviting people to create user accounts through the
-*invite* resource. To create an invitation you should POST a user in XML
+`invite` resource. To create an invitation you should POST a user in XML
 or JSON format to the invite resource. A specific username can be forced
 by defining the username in the posted entity. By omitting the username,
 the person will be able to specify it herself. The system will send out
@@ -14497,7 +14499,7 @@ curl "play.dhis2.org/demo/api/26/systemSettings/my-key" -d "My long value"
 To set system settings in bulk you can send a JSON object with a
 property and value for each system setting key-value pair using a POST request:
 
-```
+```json
 {
   "keyApplicationNotification": "Welcome",
   "keyApplicationIntro": "DHIS2",
@@ -15600,10 +15602,8 @@ definition. An example GeoJson object looks like this:
 }
 ```
 
-> **Note**
->
-> The "coordinates" field was introduced in 2.29, and accepts a
-> coordinate or polygon as a value.
+The "coordinates" field was introduced in 2.29, and accepts a coordinate 
+or a polygon as a value.
 
 For getting the IDs for *relationship*, *attributes* you can have a look
 at the respective resources *relationshipTypes*,
@@ -15715,7 +15715,7 @@ an update request. The same rules apply to enrollments and events.
 <!--DHIS2-SECTION-ID:webapi_deleting_tei-->
 
 In order to delete a tracked entity instance, make a request to the URL
-identifying the tracked entity instance with the HTTP **DELETE**
+identifying the tracked entity instance with the *DELETE*
 method. The URL is equal to the one above used for update.
 
 #### Create and enroll tracked entity instances
@@ -15836,10 +15836,6 @@ the same time enroll into a program and create an event.
   ]  
 }
 ```
-
-> **Note**
->
-> The example above can fail if provided UIDs are not present in the system.
 
 You would send this to the server as you would normally when creating or
 updating a new tracked entity instance.
@@ -16213,30 +16209,31 @@ parameters.
 A query for all instances associated with a specific organisation unit
 can look like this:
 
-    api/29/trackedEntityInstances.json?ou=DiszpKrYNg8
+    /api/29/trackedEntityInstances.json?ou=DiszpKrYNg8
 
 To query for instances using one attribute with a filter and one
 attribute without a filter, with one organisation unit using the
-descendants organisation unit query
-    mode:
+descendant organisation unit query mode:
 
-    api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&filter=AMpUYgxuCaE&ou=DiszpKrYNg8;yMCshbaVExv
+    /api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A
+      &filter=AMpUYgxuCaE&ou=DiszpKrYNg8;yMCshbaVExv
 
 A query for instances where one attribute is included in the response
-and one attribute us used as a
-    filter:
+and one attribute us used as a filter:
 
-    api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&filter=AMpUYgxuCaE:LIKE:Road&ou=DiszpKrYNg8
+    /api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A
+      &filter=AMpUYgxuCaE:LIKE:Road&ou=DiszpKrYNg8
 
 A query where multiple operand and filters are specified for a filter
 item:
 
-    api/29/trackedEntityInstances.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:GT:150:LT:190
+    api/29/trackedEntityInstances.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
+      &filter=lw1SqmMlnfh:GT:150:LT:190
 
-To query on an attribute using multiple values in an IN
-    filter:
+To query on an attribute using multiple values in an *IN* filter:
 
-    api/29/trackedEntityInstances.json?ou=DiszpKrYNg8&filter=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
+    api/29/trackedEntityInstances.json?ou=DiszpKrYNg8
+      &filter=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
 
 To constrain the response to instances which are part of a specific
 program you can include a program query parameter:
@@ -16246,8 +16243,8 @@ program you can include a program query parameter:
 
 To specify program enrollment dates as part of the query:
 
-    api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu&program=ur1Edk5Oe2n
-      &programStartDate=2013-01-01&programEndDate=2013-09-01
+    api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
+      &program=ur1Edk5Oe2n&programStartDate=2013-01-01&programEndDate=2013-09-01
 
 To constrain the response to instances of a specific tracked entity you
 can include a tracked entity query parameter:
@@ -17359,11 +17356,16 @@ The same payload in JSON format looks like this:
   },
   "dataValues": [
     {
-      "dataElement": "qrur9Dvnyt5", "value": "22"
-    }, {
-      "dataElement": "oZg33kd9taw", "value": "Male"
-    }, {
-      "dataElement": "msodh3rEMJa", "value": "2013-05-18"
+      "dataElement": "qrur9Dvnyt5", 
+      "value": "22"
+    },
+    {
+      "dataElement": "oZg33kd9taw", 
+      "value": "Male"
+    }, 
+    {
+      "dataElement": "msodh3rEMJa", 
+      "value": "2013-05-18"
     }
   ]
 }
@@ -17421,9 +17423,16 @@ format looks like this:
       "longitude": "10.9"
     },
     "dataValues": [
-      { "dataElement": "qrur9Dvnyt5", "value": "22" },
-      { "dataElement": "oZg33kd9taw", "value": "Male" }
-    ] },
+      {
+        "dataElement": "qrur9Dvnyt5", 
+        "value": "22"
+      },
+      {
+        "dataElement": "oZg33kd9taw", 
+        "value": "Male"
+      }
+    ]
+  },
   {
     "program": "eBAyeGv0exc",
     "orgUnit": "DiszpKrYNg8",
@@ -18328,20 +18337,19 @@ A sample payload that can be used to create/update an eventFilter is shown below
 
 A specific event filter can be retrieved by using the following api
 
-    [GET]  /api/32/eventFilters/{uid}
+    GET /api/32/eventFilters/{uid}
     
 All event filters can be retrieved by using the following api.
 
-    [GET]  /api/32/eventFilters?fields=*
+    GET /api/32/eventFilters?fields=*
 
 All event filters for a specific program can be retrieved by using the following api
 
-    [GET]  /api/32/eventFilters?filter=program:eq:IpHINAT79UW
+    GET /api/32/eventFilters?filter=program:eq:IpHINAT79UW
 
 An event filter can be deleted by using the following api
 
-    [DELETE]  /api/32/eventFilters/{uid}
-
+    DELETE /api/32/eventFilters/{uid}
 
 ### Relationships
 Relationships are links between two entities in tracker. These entities can be tracked entity instances, enrollments and events.
@@ -18741,10 +18749,10 @@ is as follows:
     each:*
 
 ```csv
-    EJNxP3WreNP,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,1,,
-    EJNxP3WreNP,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,2,,
-    qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,3,,
-    qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,4,,
+EJNxP3WreNP,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,1,,
+EJNxP3WreNP,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,2,,
+qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,3,,
+qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,4,,
 ```
 
 #### Import strategy: SYNC
@@ -18784,7 +18792,8 @@ configured with an access level of *CLOSED*. To break the glass for a
 tracked entity program combination, you can issue a POST request as
 shown:
 
-    /api/30/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8&program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
+    /api/30/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
+      &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
 #### Tracker Ownership Transfer
 
@@ -18795,10 +18804,10 @@ from one org unit to another. This will be useful in case of patient
 referrals or migrations. Only an owner (or users who have broken the
 glass) can transfer the ownership. To transfer ownership of a tracked
 entity-program to another organisation unit, you can issue a PUT request
-as
-    shown:
+as shown:
 
-    /api/30/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
+    /api/30/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8
+      &program=eBAyeGv0exc&ou=EJNxP3WreNP
 
 
 ## Potential Duplicates  
@@ -18812,7 +18821,7 @@ The payload of a potential duplicate looks like this:
 ```json
 {
   "teiA": "<id>",
-  "teiB": "<id>|null"
+  "teiB": "<id>",
   "status": "OPEN|INVALID|MERGED"
 }
 ```
@@ -18833,8 +18842,8 @@ The payload you provide needs at least _teiA_ to be a valid tracked entity insta
 
 ```json
 {
-  "teiA": "<id>", (required)
-  "teiB": "<id>" (optional)
+  "teiA": "<id>",
+  "teiB": "<id>"
 }
 ```
 
@@ -18876,11 +18885,11 @@ settings:
 ```
 
 You can send a system email notification by posting to the notification
-resource like
-    this:
+resource like this:
 
 ```bash
-curl -d @email.json "localhost/api/26/email/notification" -X POST -H "Content-Type:application/json" -u admin:district
+curl -d @email.json "localhost/api/26/email/notification" -X POST 
+  -H "Content-Type:application/json" -u admin:district
 ```
 
 ### Outbound emails
@@ -18893,7 +18902,8 @@ if it is not provided in url. Url should be encoded in order to use this
 API.
 
 ```bash
-curl "localhost/api/26/email/notification?recipients=xyz%40abc.com&message=sample%20email&subject=Test%20Email" -X POST -u admin:district
+curl "localhost/api/26/email/notification?recipients=xyz%40abc.com&message=sample%20email&subject=Test%20Email" 
+  -X POST -u admin:district
 ```
 
 ### Test message
