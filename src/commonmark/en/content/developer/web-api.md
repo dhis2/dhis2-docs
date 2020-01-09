@@ -4597,8 +4597,10 @@ reference to a small example:
 
 ```xml
 <adx xmlns="urn:ihe:qrph:adx:2015" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="urn:ihe:qrph:adx:2015 ../schema/adx_loose.xsd" exported="2015-02-08T19:30:00Z">
-  <group orgUnit="OU_559" period="2015-06-01/P1M" completeDate="2015-07-01" dataSet="(TB/HIV)VCCT">
+  xsi:schemaLocation="urn:ihe:qrph:adx:2015 ../schema/adx_loose.xsd" 
+  exported="2015-02-08T19:30:00Z">
+  <group orgUnit="OU_559" period="2015-06-01/P1M" 
+    completeDate="2015-07-01" dataSet="(TB/HIV)VCCT">
     <dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="32"/>
     <dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="20"/>
     <dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
