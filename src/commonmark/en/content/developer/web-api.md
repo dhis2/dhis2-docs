@@ -285,7 +285,7 @@ http status message *forbidden* and a descriptive message.
 </tr>
 <tr class="odd">
 <td>status</td>
-<td>DHIS2 status, possible values are <em>OK</em> | <em>WARNING</em> | <em>ERROR</em>, where <strong>OK</strong> is means everything was successful, <strong>ERROR</strong> means that operation did not complete and <strong>WARNING</strong> means operation was partially successful, if there message contains a <strong>response</strong> property, please look there for more information.</td>
+<td>DHIS2 status, possible values are <em>OK</em> | <em>WARNING</em> | <em>ERROR</em>, where `OK` means everything was successful, `ERROR` means that operation did not complete and `WARNING` means operation was partially successful, if there message contains a `response` property, please look there for more information.</td>
 </tr>
 <tr class="even">
 <td>message</td>
@@ -1280,18 +1280,22 @@ Examples of transformer usage.
 
 <!--DHIS2-SECTION-ID:webapi_metadata_crud-->
 
-While some of the web-api endpoints already contains support for CRUD
-(create, read, update, delete), from version 2.15 this is now supported
-on all endpoints. It should work as you expect, and the subsections will
-give more detailed information about create, update, and delete (read is
-already covered elsewhere, and have been supported for a long time).
+All metadata entities in DHIS2 have their own API endpoint which supports
+*CRUD* operations (create, read, update and delete). The endpoint URLs
+follows this format:
+
+    /api/<entityName>
+    
+The _entityName_ uses the camel-case notation. As an example, the endpoint
+for _data elements_ is:
+
+    /api/dataElements
 
 ### Create / update parameters
 
 <!--DHIS2-SECTION-ID:webapi_metadata_create_update-->
 
-The following query parameters are available for customizing your
-request.
+The following request query parameters are available across all metadata endpoints.
 
 <table>
 <caption>Available Query Filters</caption>
@@ -1611,7 +1615,9 @@ curl -X PATCH -d @file.json -H "Content-Type: application/json"
 <!--DHIS2-SECTION-ID:webapi_metadata_export-->
 
 This section explains the metatada API which is available at
-*/api/metadata*. XML and JSON resource representations are supported.
+`/api/metadata`. XML and JSON resource representations are supported.
+
+    /api/metadata
 
 The most common parameters are described below in the "Export Parameter"
 table. You can also apply this to all available types by using
@@ -1636,17 +1642,17 @@ enable/disable export of certain types by setting `type=true|false`.
 <tr class="odd">
 <td>fields</td>
 <td>Same as metadata field filter</td>
-<td>Default field filter to apply for all types, default is <strong>:owner</strong>.</td>
+<td>Default field filter to apply for all types, default is `:owner`.</td>
 </tr>
 <tr class="even">
 <td>filter</td>
 <td>Same as metadata object filter</td>
-<td>Default object filter to apply for all types, default is <strong>none</strong>.</td>
+<td>Default object filter to apply for all types, default is `none`.</td>
 </tr>
 <tr class="odd">
 <td>order</td>
 <td>Same as metadata order</td>
-<td>Default order to apply to all types, default is <strong>name</strong> if available, or <strong>created</strong> if not.</td>
+<td>Default order to apply to all types, default is `name` if available, or `created` if not.</td>
 </tr>
 <tr class="even">
 <td>translate</td>
@@ -1680,40 +1686,33 @@ enable/disable export of certain types by setting `type=true|false`.
 
 <!--DHIS2-SECTION-ID:webapi_metadata_export_examples-->
 
-Export all metadata:
+Export all metadata. Be careful as the response might be very large depending
+on your metadata configuration:
 
-```bash
-curl -u user:pass "http://server/api/metadata"
-```
+    /api/metadata
 
-Export all metadata ordered by lastUpdated
-    descending:
+Export all metadata ordered by lastUpdated descending:
 
-```bash
-curl -u user:pass "http://server/api/metadata?defaultOrder=lastUpdated:desc"
-```
+    /api/metadata?defaultOrder=lastUpdated:desc
 
-Export id and displayName for all data elements, ordered by
-    displayName:
+Export metadata only including indicators and indicator groups:
 
-```bash
-curl -u user:pass "http://server/api/metadata?dataElements:fields=id,name&dataElements:order=displayName:desc"
-```
+    /api/metadata?indicators=true&indicatorGroups=true
 
-Export data elements and indicators where name starts with
-    "ANC":
+Export id and displayName for all data elements, ordered by displayName:
 
-```bash
-curl -u user:pass "http://server/api/metadata?filter=name:^like:ANC&dataElements=true&indicators=true"
-```
+    /api/metadata?dataElements:fields=id,name&dataElements:order=displayName:desc
+
+Export data elements and indicators where name starts with "ANC":
+
+    /api/metadata?filter=name:^like:ANC&dataElements=true&indicators=true
 
 ### Metadata export with dependencies
 
 <!--DHIS2-SECTION-ID:webapi_dataset_program_export_dependencies-->
 
-When you want to move a whole set of data set, program or category combo
-metadata from one server to another (possibly empty) server, we have
-three special endpoints for just that purpose:
+When you want to exhchange metadata for a data set, program or category combo
+from one DHIS2 instance to another instance there are three dedicated endpoints available:
 
 ```
 /api/<version>/dataSets/ID/metadata.json
@@ -1725,7 +1724,7 @@ three special endpoints for just that purpose:
 /api/<version>/dashboards/{uid}/metadata.json
 ```
 
-These exports can then be imported using */api/<version>/metadata*.
+These exports can then be imported using `/api/<version>/metadata`.
 
 These endpoints also support the following parameters:
 
@@ -1785,42 +1784,42 @@ exporter. The various parameters are listed below.
 <tr class="odd">
 <td>importMode</td>
 <td>COMMIT, VALIDATE</td>
-<td>Sets overall import mode, decides whether or not to only <strong>VALIDATE</strong> or also <strong>COMMIT</strong> the metadata, this has similar functionality as our old dryRun flag.</td>
+<td>Sets overall import mode, decides whether or not to only `VALIDATE` or also `COMMIT` the metadata, this has similar functionality as our old dryRun flag.</td>
 </tr>
 <tr class="even">
 <td>identifier</td>
 <td>UID, CODE, AUTO</td>
-<td>Sets the identifier scheme to use for reference matching. <strong>AUTO</strong> means try <strong>UID</strong> first, then <strong>CODE</strong>.</td>
+<td>Sets the identifier scheme to use for reference matching. `AUTO` means try `UID` first, then `CODE`.</td>
 </tr>
 <tr class="odd">
 <td>importReportMode</td>
 <td>ERRORS, FULL, DEBUG</td>
-<td>Sets the <strong>ImportReport</strong> mode, controls how much is reported back after the import is done. <strong>ERRORS</strong> only includes <em>ObjectReports</em> for object which has errors. <strong>FULL</strong> returns an <em>ObjectReport</em> for all objects imported, and <strong>DEBUG</strong> returns the same plus a name for the object (if available).</td>
+<td>Sets the `ImportReport` mode, controls how much is reported back after the import is done. `ERRORS` only includes <em>ObjectReports</em> for object which has errors. `FULL` returns an <em>ObjectReport</em> for all objects imported, and `DEBUG` returns the same plus a name for the object (if available).</td>
 </tr>
 <tr class="even">
 <td>preheatMode</td>
 <td>REFERENCE, ALL, NONE</td>
-<td>Sets the preheater mode, used to signal if preheating should be done for <strong>ALL</strong> (as it was before with <em>preheatCache=true</em>) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to <strong>NONE</strong> is not recommended.</td>
+<td>Sets the preheater mode, used to signal if preheating should be done for `ALL` (as it was before with <em>preheatCache=true</em>) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to `NONE` is not recommended.</td>
 </tr>
 <tr class="odd">
 <td>importStrategy</td>
 <td>CREATE_AND_UPDATE, CREATE, UPDATE, DELETE</td>
-<td>Sets import strategy, <strong>CREATE_AND_UPDATE</strong> will try and match on identifier, if it doesn't exist, it will create the object.</td>
+<td>Sets import strategy, `CREATE_AND_UPDATE` will try and match on identifier, if it doesn't exist, it will create the object.</td>
 </tr>
 <tr class="even">
 <td>atomicMode</td>
 <td>ALL, NONE</td>
-<td>Sets atomic mode, in the old importer we always did a <em>best effort</em> import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the <strong>NONE</strong> mode emulated the old behavior.</td>
+<td>Sets atomic mode, in the old importer we always did a <em>best effort</em> import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the `NONE` mode emulated the old behavior.</td>
 </tr>
 <tr class="odd">
 <td>mergeMode</td>
 <td>REPLACE, MERGE</td>
-<td>Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, <strong>MERGE</strong> mode will only overwrite the old property if the new one is not-null, for <strong>REPLACE</strong> mode all properties are overwritten regardless of null or not.</td>
+<td>Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not.</td>
 </tr>
 <tr class="even">
 <td>flushMode</td>
 <td>AUTO, OBJECT</td>
-<td>Sets the flush mode, which controls when to flush the internal cache. It is <em>strongly</em> recommended to keep this to <strong>AUTO</strong> (which is the default). Only use <strong>OBJECT</strong> for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues).</td>
+<td>Sets the flush mode, which controls when to flush the internal cache. It is <em>strongly</em> recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues).</td>
 </tr>
 <tr class="odd">
 <td>skipSharing</td>
@@ -1830,7 +1829,7 @@ exporter. The various parameters are listed below.
 <tr class="even">
 <td>skipValidation</td>
 <td>false, true</td>
-<td>Skip validation for import. <strong>NOT RECOMMENDED</strong>.</td>
+<td>Skip validation for import. `NOT RECOMMENDED`.</td>
 </tr>
 <tr class="odd">
 <td>async</td>
@@ -4935,26 +4934,26 @@ model.
 <td>programRule- ActionType</td>
 <td>The type of action that is to be performed.
 <ul>
-<li><p><strong>DISPLAYTEXT</strong> - Displays a text in a given widget.</p></li>
-<li><p><strong>DISPLAYKEYVALUEPAIR</strong> - Displays a key and value pair(like a program indicator) in a given widget.</p></li>
-<li><p><strong>HIDEFIELD</strong> - Hide a specified dataElement or trackedEntityAttribute.</p>
+<li><p>`DISPLAYTEXT` - Displays a text in a given widget.</p></li>
+<li><p>`DISPLAYKEYVALUEPAIR` - Displays a key and value pair(like a program indicator) in a given widget.</p></li>
+<li><p>`HIDEFIELD` - Hide a specified dataElement or trackedEntityAttribute.</p>
 <ul>
 <li><p><em>content</em> - if defined, the text in <em>content</em> will be displayed to the end user in the instance where a value is previously entered into a field that is now about to be hidden (and therefore blanked). If <em>content</em> is not defined, a standard message will be shown to the user in this instance.</p></li>
 <li><p><em>dataElement</em> - if defined, the HIDEFIELD action will hide this dataElement when the rule is effective.</p></li>
 <li><p><em>trackedEntityDataValue</em> - if defined, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.</p></li>
 </ul></li>
-<li><p><strong>HIDESECTION</strong> - Hide a specified section.</p>
+<li><p>`HIDESECTION` - Hide a specified section.</p>
 <ul>
 <li><p><em>programStageSection</em> - must be defined. This is the programStageSection that will be hidden in case the parent rule is effective.</p></li>
 </ul></li>
-<li><p><strong>ASSIGN</strong> - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)</p>
+<li><p>`ASSIGN` - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)</p>
 <ul>
 <li><p><em>content</em> - if defined, the value in <em>data</em> is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a <em>programRule.priority</em> to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.</p></li>
 <li><p><em>data</em> - must be defined, data forms an expression that is evaluated and assigned to either a variable(#{myVariable}), a dataElement, or both.</p></li>
 <li><p><em>dataElement</em> - if defined, the value in <em>data</em> is assigned to this data element.</p></li>
 </ul>
 <p>Either the content or dataElement must be defined for the ASSIGN action to be effective.</p></li>
-<li><p><strong>SHOWWARNING</strong> - Show a warning to the user, not blocking the user from completing the event or registration.</p>
+<li><p>`SHOWWARNING` - Show a warning to the user, not blocking the user from completing the event or registration.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
@@ -4962,7 +4961,7 @@ model.
 <li><p><em>trackedEntityAttribute</em> - if defined, the warning message is displayed next to this tracked entity attribute.</p></li>
 </ul>
 <p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
-<li><p><strong>SHOWERROR</strong> - Show an error to the user, blocking the user from completing the event or registration.</p>
+<li><p>`SHOWERROR` - Show an error to the user, blocking the user from completing the event or registration.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
@@ -4970,35 +4969,35 @@ model.
 <li><p><em>trackedEntityAttribute</em> - if defined, the error message is linked to this tracked entity attribute.</p></li>
 </ul>
 <p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
-<li><p><strong>WARNINGONCOMPLETINON</strong> - Show a warning to the user on the &quot;Complete form&quot; dialog, but allowing the user to complete the event.</p>
+<li><p>`WARNINGONCOMPLETINON` - Show a warning to the user on the &quot;Complete form&quot; dialog, but allowing the user to complete the event.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
 <li><p><em>dataElement</em> - if defined, the warning message prefixed with the name/formName of the data element.</p></li>
 </ul></li>
-<li><p><strong>ERRORONCOMPLETION</strong> - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.</p>
+<li><p>`ERRORONCOMPLETION` - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
 <li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
 </ul></li>
-<li><p><strong>CREATEEVENT</strong> - Create an event within the same enrollment.</p>
+<li><p>`CREATEEVENT` - Create an event within the same enrollment.</p>
 <ul>
 <li><p><em>content</em></p></li>
 <li><p><em>data</em> - if defined, contains data values to assign the created event. The format is &lt;uid&gt;:&lt;data value&gt;. Where several values is specified, these are separated with comma.</p>
 <pre><code>AcMrnleqHqc:100,AqK1IHqCkEE:&#39;Polyhydramnios&#39;</code></pre></li>
 <li><p><em>programStage</em> - must be defined, and designates the program stage that the rule shall create an event of.</p></li>
 </ul></li>
-<li><p><strong>SETMANDATORYFIELD</strong> - Set a field to be mandatory.</p>
+<li><p>`SETMANDATORYFIELD` - Set a field to be mandatory.</p>
 <ul>
 <li><p><em>dataElement</em> - if defined, this data element will be set to be mandatory in the data entry form.</p></li>
 <li><p><em>trackedEntityAttribute</em> - if defined, this tracked entity attribute will be set to mandatory in the registration form or profile.</p></li>
 </ul></li>
-<li><p><strong>SENDMESSAGE</strong> - To send message at completion of event/enrollment or at data value update.</p>
+<li><p>`SENDMESSAGE` - To send message at completion of event/enrollment or at data value update.</p>
 <ul>
 <li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
 </ul></li>
-<li><p><strong>SCHEDULEMESSAGE</strong> - To schedule message at completion of event/enrollment or at data value update.</p>
+<li><p>`SCHEDULEMESSAGE` - To schedule message at completion of event/enrollment or at data value update.</p>
 <ul>
 <li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
 <li><p><em>Date to send message</em> - Expression which is going to be used for evaluation of scheduled date. This expression should result in Date, any other resultant will be discarded and notification will not get scheduled.</p></li>
@@ -6794,7 +6793,7 @@ The endpoint for data approval audits is located at
 the table below.
 
 <table>
-<caption><strong>Data approval query parameters</strong></caption>
+<caption>Data approval query parameters</caption>
 <colgroup>
 <col style="width: 12%" />
 <col style="width: 16%" />
@@ -18595,7 +18594,7 @@ The import process can be customized using a set of import parameters:
 <tr class="even">
 <td>importReportMode</td>
 <td>FULL, ERRORS, DEBUG</td>
-<td>Sets the <strong>ImportReport</strong> mode, controls how much is reported back after the import is done. <strong>ERRORS</strong> only includes <em>ObjectReports</em> for object which has errors. <strong>FULL</strong> returns an <em>ObjectReport</em> for all objects imported, and <strong>DEBUG</strong> returns the same plus a name for the object (if available).</td>
+<td>Sets the `ImportReport` mode, controls how much is reported back after the import is done. `ERRORS` only includes <em>ObjectReports</em> for object which has errors. `FULL` returns an <em>ObjectReport</em> for all objects imported, and `DEBUG` returns the same plus a name for the object (if available).</td>
 </tr>
 </tbody>
 </table>
