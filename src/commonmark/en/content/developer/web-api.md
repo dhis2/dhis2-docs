@@ -3581,22 +3581,20 @@ This section is about sending and reading data values.
 
 A common use-case for system integration is the need to send a set of
 data values from a third-party system into DHIS. In this example we will
-use the DHIS2 demo on <http://play.dhis2.org/demo> as basis and we
-recommend that you follow the provided links with a web browser while
-reading (log in with *admin/district* as username/password). We assume
+use the DHIS2 demo on `http://play.dhis2.org/demo` as basis. We assume
 that we have collected case-based data using a simple software client
 running on mobile phones for the *Mortality <5 years* data set in the
 community of *Ngelehun CHC* (in *Badjia* chiefdom, *Bo* district) for
 the month of January 2014. We have now aggregated our data into a
-statistical report and want to send that data to the national DHIS2
-instance.
+statistical report and want to send that data to the DHIS2 instance. The
+base URL to the demo API is `http://play.dhis2.org/demo/api`. The following
+links are relative to the base URL.
+
 
 The resource which is most appropriate for our purpose of sending data
-values is the *dataValueSets* resource. A data value set represents a
-set of data values which have a logical relationship, usually from being
-captured off the same data entry form. We follow the link to the HTML
-representation which will take us to
-<http://play.dhis2.org/demo/api/24/dataValueSets>. The format looks like
+values is the `/api/dataValueSets` resource. A data value set represents a
+set of data values which have a relationship, usually from being
+captured off the same data entry form. The format looks like
 this:
 
 ```xml
@@ -3660,25 +3658,21 @@ From the example we can see that we need to identify the period, the
 data set, the org unit (facility) and the data elements for which to
 report.
 
-To obtain the identifier for the data set we return to the entry point
-at <http://play.dhis2.org/demo/api/24> and follow the embedded link
-pointing at the *dataSets* resource located at
-<http://play.dhis2.org/demo/api/24/dataSets>. From there we find and
-follow the link to the *Mortality < 5 years* data set which leads us to
-<http://play.dhis2.org/demo/api/24/dataSets/pBOMPrpg1QX>. The resource
-representation for the *Mortality < 5 years* data set conveniently
+To obtain the identifier for the data set we make a request to the
+`/api/24/dataSets` resource. From there we find and follow the link to 
+the *Mortality < 5 years* data set which leads us to `/api/24/dataSets/pBOMPrpg1QX`. 
+The resource representation for the *Mortality < 5 years* data set conveniently
 advertises links to the data elements which are members of it. From here
 we can follow these links and obtain the identifiers of the data
 elements. For brevity we will only report on three data elements:
-*Measles* with id *f7n9E0hX8qk*, *Dysentery* with id *Ix2HsbDMLea* and
-*Cholera* with id *eY5ehpbEsB7*.
+*Measles* with id `f7n9E0hX8qk`, *Dysentery* with id `Ix2HsbDMLea` and
+*Cholera* with id `eY5ehpbEsB7`.
 
-What remains is to get hold of the identifier of the facility (org
-unit). The *dataSet* representation conveniently provides link to org
-units which report on it so we search for*Ngelehun CHC* and follow the
-link to the HTML representation at
-<http://play.dhis2.org/demo/api/24/organisationUnits/DiszpKrYNg8>, which
-tells us that the identifier of this org unit is *DiszpKrYNg8*.
+What remains is to get hold of the identifier of the organisation
+unit. The *dataSet* representation conveniently provides link to organisation
+units which report on it so we search for *Ngelehun CHC* and follow the
+link to the HTML representation at `/api/organisationUnits/DiszpKrYNg8`, which
+tells us that the identifier of this org unit is `DiszpKrYNg8`.
 
 From our case-based data we assume that we have 12 cases of measles, 14
 cases of dysentery and 16 cases of cholera. We have now gathered enough
@@ -3719,9 +3713,9 @@ In JSON format:
 }
 ```
 
-To perform functional testing we will use the _cURL_ tool which provides
+To perform functional testing we will use the _curl_ tool which provides
 an easy way of transferring data using HTTP. First we save the data
-value set XML content in a file called *datavalueset.xml* . From the
+value set XML content in a file called `datavalueset.xml`. From the
 directory where this file resides we invoke the following from the
 command line:
 
@@ -3740,17 +3734,17 @@ curl -d @datavalueset.json "https://play.dhis2.org/demo/api/26/dataValueSets"
 
 The command will dispatch a request to the demo Web API, set
 *application/xml* as the content-type and authenticate using
-admin/district as username/password. If all goes well this will return a
-*200 OK* HTTP status code. You can verify that the data has been
+`admin`/`district` as username/password. If all goes well this will return a
+`200 OK` HTTP status code. You can verify that the data has been
 received by opening the data entry module in DHIS2 and select the org
 unit, data set and period used in this example.
 
 The API follows normal semantics for error handling and HTTP status
-codes. If you supply an invalid username or password, *401 Unauthorized*
-is returned. If you supply a content-type other than application/xml,
-*415 Unsupported Media Type* is returned. If the XML content is invalid
-according to the DXF namespace, *400 Bad Request* is returned. If you
-provide an invalid identifier in the XML content, *409 Conflict* is
+codes. If you supply an invalid username or password, `401 Unauthorized`
+is returned. If you supply a content-type other than `application/xml`,
+`415 Unsupported Media Type` is returned. If the XML content is invalid
+according to the DXF namespace, `400 Bad Request` is returned. If you
+provide an invalid identifier in the XML content, `409 Conflict` is
 returned together with a descriptive message.
 
 ### Sending bulks of data values
@@ -3762,12 +3756,11 @@ sharing the same period and organisation unit. This example will show us
 how to send large bulks of data values which don't necessarily are
 logically related.
 
-Again we will interact with the with
-<http://play.dhis2.org/demo/api/24/dataValueSets> resource. This time we
-will not specify the dataSet and completeDate attributes. Also, we will
-specify the period and orgUnit attributes on the individual data value
+Again we will interact with the `/api/dataValueSets` resource. This time we
+will not specify the `dataSet` and `completeDate` attributes. Also, we will
+specify the `period` and `orgUnit` attributes on the individual data value
 elements instead of on the outer data value set element. This will
-enable us to send data values for various periods and org units:
+enable us to send data values for various periods and organisation units:
 
 ```xml
 <dataValueSet xmlns="http://dhis2.org/schema/dxf/2.0">
@@ -3824,7 +3817,7 @@ In CSV format:
 "eY5ehpbEsB7","201401","DiszpKrYNg8","bRowv6yZOF2","bRowv6yZOF2","3"
 ```
 
-We test by using cURL to send the data values in XML format:
+We test by using curl to send the data values in XML format:
 
 ```bash
 curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/26/dataValueSets"
@@ -3936,10 +3929,10 @@ The import process can be customized using a set of import parameters:
 </table>
 
 All parameters are optional and can be supplied as query parameters in
-the request URL like
-    this:
+the request URL like this:
 
-    /api/26/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=name&dryRun=true&importStrategy=CREATE
+    /api/26/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=name
+      &dryRun=true&importStrategy=CREATE
 
 They can also be supplied as XML attributes on the data value set
 element like below. XML attributes will override query string
@@ -3951,7 +3944,7 @@ parameters.
 </dataValueSet>
 ```
 
-Note that the *preheatCache* parameter can have huge impact for
+Note that the `preheatCache` parameter can have huge impact for
 performance. For small import files, leaving it to false will be fast.
 For large import files which contain a large number of distinct data
 elements and organisation units, setting it to true will be orders of
@@ -3963,8 +3956,7 @@ magnitude faster.
 
 Data value import supports a set of value types. For each value type
 there is a special requirement. The following table lists the edge cases
-for value types. For information about all other cases, see
-[Data elements](#webapi_csv_data_elements).
+for value types.
 
 <table>
 <caption>Value type requirements</caption>
@@ -3989,10 +3981,10 @@ for value types. For information about all other cases, see
 <!--DHIS2-SECTION-ID:webapi_data_values_identifier_schemes-->
 
 Regarding the id schemes, by default the identifiers used in the XML
-messages uses the DHIS2 stable object identifiers referred to as *uid*.
+messages uses the DHIS2 stable object identifiers referred to as `UID`.
 In certain interoperability situations we might experience that external
 system decides the identifiers of the objects. In that case we can use
-the *code* property of the organisation units and other objects to set
+the `code` property of the organisation units and other objects to set
 fixed identifiers. When importing data values we hence need to reference
 the code property instead of the identifier property of these metadata
 objects. Identifier schemes can be specified in the XML message as well
@@ -4029,16 +4021,16 @@ The following identifier schemes are available.
   - attribute (followed by UID of attribute)
 
 The attribute option is special and refers to meta-data attributes which
-have been marked as "unique". When using this option, "attribute" must
-be immediately followed by the uid of the attribute, e.g.
-"attributeDnrLSdo4hMl".
+have been marked as *unique*. When using this option, `attribute` must
+be immediately followed by the identifier of the attribute, e.g.
+"attribute:DnrLSdo4hMl".
 
 #### Async data value import
 
 <!--DHIS2-SECTION-ID:webapi_data_values_async_import-->
 
 Data values can be sent and imported in an asynchronous fashion by
-supplying an *async* query parameter set to *true*:
+supplying an `async` query parameter set to *true*:
 
     /api/26/dataValueSets?async=true
 
@@ -4148,10 +4140,10 @@ An example of a CSV file which can be imported into DHIS2 is seen below.
 <!--DHIS2-SECTION-ID:webapi_data_values_template-->
 
 To generate a data value set template for a certain data set you can use
-the */api/dataSets/<id>/dataValueSet* resource. XML and JSON response
+the `/api/dataSets/<id>/dataValueSet` resource. XML and JSON response
 formats are supported. Example:
 
-    /api/26/dataSets/BfMAe6Itzgt/dataValueSet.json
+    /api/dataSets/BfMAe6Itzgt/dataValueSet.json
 
 The parameters you can use to further adjust the output are described
 below:
@@ -4207,7 +4199,7 @@ This section explains how to retrieve data values from the Web API by
 interacting with the *dataValueSets* resource. Data values can be
 retrieved in *XML*, *JSON* and *CSV* format. Since we want to read data
 we will use the *GET* HTTP verb. We will also specify that we are
-interested in the XML resource representation by including an *Accept*
+interested in the XML resource representation by including an `Accept`
 HTTP header with our request. The following query parameters are
 required:
 
@@ -4310,11 +4302,11 @@ The following response formats are supported:
   - adx (application/adx+xml)
 
 Assuming that we have posted data values to DHIS2 according to the
-previous section called "Sending data values" we can now put together
+previous section called *Sending data values* we can now put together
 our request for a single data value set and request it using cURL:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/dataValueSets?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8"
+curl "https://play.dhis2.org/demo/api/33/dataValueSets?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8"
   -H "Accept:application/xml" -u admin:district
 ```
 
@@ -4326,7 +4318,7 @@ precedence over the start and end date parameters. An example looks like
 this:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/dataValueSets?dataSet=pBOMPrpg1QX&dataSet=BfMAe6Itzgt
+curl "https://play.dhis2.org/demo/api/33/dataValueSets?dataSet=pBOMPrpg1QX&dataSet=BfMAe6Itzgt
   &startDate=2013-01-01&endDate=2013-01-31&orgUnit=YuQRtpLP10I&orgUnit=vWbkYPRmKyS&children=true"
   -H "Accept:application/xml" -u admin:district
 ```
@@ -4334,7 +4326,7 @@ curl "https://play.dhis2.org/demo/api/26/dataValueSets?dataSet=pBOMPrpg1QX&dataS
 To retrieve data values which have been created or updated within the
 last 10 days you can make a request like this:
 
-    https://play.dhis2.org/demo/api/26/dataValueSets?dataSet=pBOMPrpg1QX&orgUnit=DiszpKrYNg8&lastUpdatedDuration=10d
+    /api/dataValueSets?dataSet=pBOMPrpg1QX&orgUnit=DiszpKrYNg8&lastUpdatedDuration=10d
 
 The response will look like this:
 
@@ -4353,7 +4345,7 @@ The response will look like this:
 
 You can request the data in JSON format like this:
 
-    https://play.dhis2.org/demo/api/26/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8
+    /api/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8
 
 The response will look something like this:
 
@@ -4394,12 +4386,12 @@ Note that data values are softly deleted, i.e. a deleted value has the
 This is useful when integrating multiple systems in order to communicate
 deletions. You can include deleted values in the response like this:
 
-    /api/26/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401
+    /api/33/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401
       &orgUnit=DiszpKrYNg8&includeDeleted=true
 
 You can also request data in CSV format like this:
 
-    /api/26/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401
+    /api/33/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401
       &orgUnit=DiszpKrYNg8
 
 The response will look like this:
@@ -4434,7 +4426,7 @@ This example will show how to send individual data values to be saved in
 a request. This can be achieved by sending a *POST* request to the
 `dataValues` resource:
 
-    /api/26/dataValues
+    /api/dataValues
 
 The following query parameters are supported for this resource:
 
@@ -4513,7 +4505,7 @@ operation lead to a saved or updated value, *200 OK* will be returned.
 An example of a request looks like this:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/dataValues?de=s46m5MS0hxu
+curl "https://play.dhis2.org/demo/api/33/dataValues?de=s46m5MS0hxu
   &pe=201301&ou=DiszpKrYNg8&co=Prlt0C1RF0s&value=12"
   -X POST -u admin:district
 ```
@@ -4558,12 +4550,12 @@ meaningful input and output.
 
 The process of storing one of these data values roughly goes like this:
 
-1.  Upload the file to the */api/26/fileResources* endpoint as described
+1.  Upload the file to the `/api/fileResources` endpoint as described
     in the file resource section.
 
-2.  Retrieve the 'id' property of the returned *FileResource*.
+2.  Retrieve the `id` property of the returned *FileResource*.
 
-3.  Store the retrieved id **as the value** to the data value using any
+3.  Store the retrieved id *as the value* to the data value using any
     of the methods described above.
 
 Only one-to-one relationships between data values and file resources are
@@ -4577,15 +4569,15 @@ will be the UID of the file resource. In order to retrieve the actual
 contents (meaning the file which is stored in the file resource mapped
 to the data value) a GET request must be made to *api/dataValues/files*
 mirroring the query parameters as they would be for the data value
-itself. The *dataValues/files* endpoint only supports GET requests.
+itself. The `/api/dataValues/files` endpoint only supports GET requests.
 
 It is worth noting that due to the underlying storage mechanism working
 asynchronously the file content might not be immediately ready for
-download from the *dataValues/files* endpoint. This is especially true
+download from the `/api/dataValues/files` endpoint. This is especially true
 for large files which might require time consuming uploads happening in
 the background to a an external file store (depending on the system
 configuration). Retrieving the file resource meta-data from the
-`api/fileResources/<id>` endpoint allows checking the *storageStatus*
+`/api/fileResources/<id>` endpoint allows checking the `storageStatus`
 of the content before attempting to download it.
 
 ## ADX data format
