@@ -65,13 +65,13 @@ Authentication and OAuth 2. You can verify and get information about the
 currently authenticated user by making a GET request to the following
 URL:
 
-    /api/26/me
+    /api/33/me
 
 And more information about authorities (and if a user have a certain
 authority) by using the endpoints:
 
-    /api/26/me/authorities
-    /api/26/me/authorities/ALL
+    /api/33/me/authorities
+    /api/33/me/authorities/ALL
 
 ### Basic Authentication
 
@@ -183,7 +183,7 @@ all data elements using our token:
 
 ```bash
 SERVER="https://play.dhis2.org/dev"
-curl -H "Authorization: Bearer 07fc551c-806c-41a4-9a8c-10658bd15435" "$SERVER/api/26/dataElements.json"
+curl -H "Authorization: Bearer 07fc551c-806c-41a4-9a8c-10658bd15435" "$SERVER/api/33/dataElements.json"
 ```
 
 #### Grant type refresh\_token
@@ -598,30 +598,30 @@ the response:
 An example of how these parameters can be used to get a full list of
 data element groups in XML response format is:
 
-    /api/26/dataElementGroups.xml?links=false&paging=false
+    /api/dataElementGroups.xml?links=false&paging=false
 
 You can query for elements on the name property instead of returning
 full list of elements using the *query* query variable. In this example
 we query for all data elements with the word "anaemia" in the name:
 
-    /api/26/dataElements?query=anaemia
+    /api/dataElements?query=anaemia
 
 You can get specific pages and page sizes of objects like this:
 
-    /api/26/dataElements.json?page=2&pageSize=20
+    /api/dataElements.json?page=2&pageSize=20
 
 You can completely disable paging like this:
 
-    /api/26/indicatorGroups.json?paging=false
+    /api/indicatorGroups.json?paging=false
 
 To order the result based on a specific property:
 
-    /api/26/indicators.json?order=shortName:desc
+    /api/indicators.json?order=shortName:desc
 
 You can find an object based on its ID across all object types through
 the *identifiableObjects* resource:
 
-    /api/26/identifiableObjects/<id>
+    /api/identifiableObjects/<id>
 
 ### Translation
 
@@ -733,16 +733,16 @@ Example of data element with translations turned off:
 ```
 
 Note that even if you get the unfiltered result, and are using the
-appropriate type endpoint i..e */api/26/dataElements* we do not allow
+appropriate type endpoint i..e */api/dataElements* we do not allow
 updates, as it would be too easy to make mistakes and overwrite the
 other available locales.
 
 To read and update translations you can use the special translations
 endpoint for each object resource. These can be accessed by **GET** or
-**PUT** on the appropriate `/api/26/<object-type>/<object-id>/translations` endpoint.
+**PUT** on the appropriate `/api/<object-type>/<object-id>/translations` endpoint.
 
 As an example, for a data element with identifier *FTRrcoaog83* you could use
-`/api/26/dataElements/FTRrcoaog83/translations` to get and update
+`/api/dataElements/FTRrcoaog83/translations` to get and update
 translations. The fields available are *property* with options **NAME**,
 **SHORT_NAME**, **DESCRIPTION**, the *locale* which supports any valid
 locale ID and the the *value* itself.
@@ -773,7 +773,7 @@ to the appropriate endpoint:
 ```
 
 For a an data element with ID *FTRrcoaog83* you can **PUT** this to
-`/api/26/dataElements/FTRrcoaog83/translations`. Make sure to send all
+`/api/dataElements/FTRrcoaog83/translations`. Make sure to send all
 translations for the specific object and not just for a single locale
 (if not you will potentially overwrite existing locales for other
 locales).
@@ -789,7 +789,7 @@ version for DHIS 2.25 is *25*.
 You can access a specific API version by including the version number
 after the `/api` component, as an example like this:
 
-    /api/26/dataElements
+    /api/dataElements
 
 If you omit the version part of the URL, the system will use the current
 API version. As an example, for DHIS 2.25, when omitting the API part,
@@ -995,28 +995,28 @@ for some examples.
 
 Get data elements with id property ID1 or ID2:
 
-    /api/26/dataElements?filter=id:eq:ID1&filter=id:eq:ID2
+    /api/dataElements?filter=id:eq:ID1&filter=id:eq:ID2
 
 Get all data elements which has the dataSet with id ID1:
 
-    /api/26/dataElements?filter=dataSetElements.dataSet.id:eq:ID1
+    /api/dataElements?filter=dataSetElements.dataSet.id:eq:ID1
 
 Get all data elements with aggregation operator "sum" and value type
 "int":
 
-    /api/26/dataElements.json?filter=aggregationOperator:eq:sum&filter=type:eq:int
+    /api/dataElements.json?filter=aggregationOperator:eq:sum&filter=type:eq:int
 
 You can do filtering within collections, e.g. to get data elements which
 are members of the "ANC" data element group you can use the following
 query using the id property of the associated data element groups:
 
-    /api/26/dataElements.json?filter=dataElementGroups.id:eq:qfxEYY9xAl6
+    /api/dataElements.json?filter=dataElementGroups.id:eq:qfxEYY9xAl6
 
 Since all operators are **and** by default, you can't find a data
 element matching more than one id, for that purpose you can use the *in*
 operator.
 
-    /api/26/dataElements.json?filter=id:in:[fbfJHSPpUQD,cYeuwXTCPkU]
+    /api/dataElements.json?filter=id:in:[fbfJHSPpUQD,cYeuwXTCPkU]
 
 ### Logical operators
 
@@ -1087,12 +1087,12 @@ presets of field select. Both XML and JSON are supported.
 
 **Example**: Get *id* and *name* on the indicators resource:
 
-    /api/26/indicators?fields=id,name
+    /api/indicators?fields=id,name
 
 **Example**: Get *id* and *name* from dataElements, and *id* and *name*
 from the dataSets on dataElements:
 
-    /api/26/dataElements?fields=id,name,dataSets[id,name]
+    /api/dataElements?fields=id,name,dataSets[id,name]
 
 To exclude a field from the output you can use the exclamation `!`
 operator. This is allowed anywhere in the query and will simply not
@@ -1180,15 +1180,15 @@ using the `:` operator.
 
 **Example**: Include all fields from dataSets except organisationUnits:
 
-    /api/26/dataSets?fields=:all,!organisationUnits
+    /api/dataSets?fields=:all,!organisationUnits
 
 **Example**: Include only id, name and the collection of organisation units from a data set, but exclude the id from organisation units:
 
-    /api/26/dataSets/BfMAe6Itzgt?fields=id,name,organisationUnits[:all,!id]
+    /api/dataSets/BfMAe6Itzgt?fields=id,name,organisationUnits[:all,!id]
 
 **Example**: Include nameable properties from all indicators:
 
-    /api/26/indicators.json?fields=:nameable
+    /api/indicators.json?fields=:nameable
 
 ### Field transformers
 
@@ -1197,13 +1197,13 @@ using the `:` operator.
 In DHIS2.17 we introduced field transformers, the idea is to allow
 further customization of the properties on the server side.
 
-    /api/26/dataElements/ID?fields=id~rename(i),name~rename(n)
+    /api/dataElements/ID?fields=id~rename(i),name~rename(n)
 
 This will rename the *id* property to *i* and *name* property to *n*.
 
 Multiple transformers can be used by repeating the transformer syntax:
 
-    /api/26/dataElementGroups.json?fields=id,displayName,dataElements~isNotEmpty~rename(haveDataElements)
+    /api/dataElementGroups.json?fields=id,displayName,dataElements~isNotEmpty~rename(haveDataElements)
 
 <table>
 <caption>Available Transformers</caption>
@@ -1260,21 +1260,21 @@ Multiple transformers can be used by repeating the transformer syntax:
 Examples of transformer usage.
 
 ```
-/api/26/dataElements?fields=dataSets~size
+/api/dataElements?fields=dataSets~size
 
-/api/26/dataElements?fields=dataSets~isEmpty
+/api/dataElements?fields=dataSets~isEmpty
 
-/api/26/dataElements?fields=dataSets~isNotEmpty
+/api/dataElements?fields=dataSets~isNotEmpty
 
-/api/26/dataElements/ID?fields=id~rename(i),name~rename(n)
+/api/dataElements/ID?fields=id~rename(i),name~rename(n)
 
-/api/26/dataElementGroups?fields=id,displayName,dataElements~paging(1;20)
+/api/dataElementGroups?fields=id,displayName,dataElements~paging(1;20)
 
 # Include array with IDs of organisation units:
-/api/31/categoryOptions.json?fields=id,organisationUnits~pluck
+/api/33/categoryOptions.json?fields=id,organisationUnits~pluck
 
 # Include array with names of organisation units (collection only returns field name):
-/api/31/categoryOptions.json?fields=id,organisationUnits~pluck[name]
+/api/33/categoryOptions.json?fields=id,organisationUnits~pluck[name]
 ```
 
 ## Metadata create, read, update, delete, validate
@@ -1366,7 +1366,7 @@ We are now ready create the new *constant* by sending a POST request to
 the *constants*endpoint with the JSON payload using curl:
 
 ```bash
-curl -d @constant.json "http://server/api/26/constants" -X POST
+curl -d @constant.json "http://server/api/constants" -X POST
   -H "Content-Type: application/json" -u user:password
 ```
 
@@ -1374,7 +1374,7 @@ A specific example of posting the constant to the demo
     server:
 
 ```bash
-curl -d @constant.json "https://play.dhis2.org/api/26/constants" -X POST
+curl -d @constant.json "https://play.dhis2.org/api/constants" -X POST
   -H "Content-Type: application/json" -u admin:district
 ```
 
@@ -1399,7 +1399,7 @@ send a PUT request to the endpoint including ID:
 
 ```bash
 curl -X PUT -d @pi.json -H "Content-Type: application/json"
-  -u user:password "http://server/api/26/constants/ID"
+  -u user:password "http://server/api/constants/ID"
 ```
 
 ### Deleting objects
@@ -1413,7 +1413,7 @@ the id is *abc123*, then all you need to do is the send the DELETE
 request to the endpoint + id:
 
 ```bash
-curl -X DELETE -u user:password "http://server/api/26/constants/ID"
+curl -X DELETE -u user:password "http://server/api/constants/ID"
 ```
 
 A successful delete should return HTTP status 204 (no content).
@@ -1433,7 +1433,7 @@ In order to add or remove objects to or from a collection of objects you
 can use the following
     pattern:
 
-    /api/26/{collection-object}/{collection-object-id}/{collection-name}/{object-id}
+    /api/{collection-object}/{collection-object-id}/{collection-name}/{object-id}
 
 You should use the POST method to add, and the DELETE method to remove
 an object. When there is a many-to-many relationship between objects,
@@ -1457,13 +1457,13 @@ As an example, in order to remove a data element with identifier IDB
 from a data element group with identifier IDA you can do a DELETE
 request:
 
-    DELETE /api/26/dataElementGroups/IDA/dataElements/IDB
+    DELETE /api/dataElementGroups/IDA/dataElements/IDB
 
 To add a category option with identifier IDB to a category with
 identifier IDA you can do a POST
 request:
 
-    POST /api/26/categories/IDA/categoryOptions/IDB
+    POST /api/categories/IDA/categoryOptions/IDB
 
 #### Adding or removing multiple objects
 
@@ -1489,16 +1489,16 @@ Using this payload you can add, replace or delete items:
 
 *Adding Items:*
 
-    POST /api/26/categories/IDA/categoryOptions
+    POST /api/categories/IDA/categoryOptions
 
 *Replacing Items:*
 
-    PUT /api/26/categories/IDA/categoryOptions
+    PUT /api/categories/IDA/categoryOptions
 
 *Delete
 Items:*
 
-    DELETE /api/26/categories/IDA/categoryOptions
+    DELETE /api/categories/IDA/categoryOptions
 
 #### Adding and removing objects in a single request
 
@@ -1507,7 +1507,7 @@ Items:*
 You can both add and remove objects from a collection in a single POST
 request to the following URL:
 
-    POST /api/26/categories/IDA/categoryOptions
+    POST /api/categories/IDA/categoryOptions
 
 The payload format is:
 
@@ -1604,7 +1604,7 @@ An example curl command looks like this:
 
 ```bash
 curl -X PATCH -d @file.json -H "Content-Type: application/json"
-  -u admin:district "https://play.dhis2.org/dev/api/26/dataElements/fbfJHSPpUQD"
+  -u admin:district "https://play.dhis2.org/dev/api/dataElements/fbfJHSPpUQD"
 ```
 
 ## Metadata export
@@ -1612,8 +1612,7 @@ curl -X PATCH -d @file.json -H "Content-Type: application/json"
 <!--DHIS2-SECTION-ID:webapi_metadata_export-->
 
 This section explains the metatada API which is available at
-*/api/23/metadata* and */api/26/metadata*endpoints. XML and JSON
-resource representations are supported.
+*/api/metadata*. XML and JSON resource representations are supported.
 
 The most common parameters are described below in the "Export Parameter"
 table. You can also apply this to all available types by using
@@ -1685,28 +1684,28 @@ enable/disable export of certain types by setting `type=true|false`.
 Export all metadata:
 
 ```bash
-curl -u user:pass "http://server/api/26/metadata"
+curl -u user:pass "http://server/api/metadata"
 ```
 
 Export all metadata ordered by lastUpdated
     descending:
 
 ```bash
-curl -u user:pass "http://server/api/26/metadata?defaultOrder=lastUpdated:desc"
+curl -u user:pass "http://server/api/metadata?defaultOrder=lastUpdated:desc"
 ```
 
 Export id and displayName for all data elements, ordered by
     displayName:
 
 ```bash
-curl -u user:pass "http://server/api/26/metadata?dataElements:fields=id,name&dataElements:order=displayName:desc"
+curl -u user:pass "http://server/api/metadata?dataElements:fields=id,name&dataElements:order=displayName:desc"
 ```
 
 Export data elements and indicators where name starts with
     "ANC":
 
 ```bash
-curl -u user:pass "http://server/api/26/metadata?filter=name:^like:ANC&dataElements=true&indicators=true"
+curl -u user:pass "http://server/api/metadata?filter=name:^like:ANC&dataElements=true&indicators=true"
 ```
 
 ### Metadata export with dependencies
@@ -1764,8 +1763,7 @@ These endpoints also support the following parameters:
 <!--DHIS2-SECTION-ID:webapi_metadata_import-->
 
 This section explains the metadata API which is available at 
-`/api/23/metadata` and `/api/26/metadata` endpoints. XML and JSON 
-resource representations are supported.
+`/api/metadata`. XML and JSON resource representations are supported.
 
 The importer allows you to import metadata exported with the new
 exporter. The various parameters are listed below.
@@ -1895,7 +1893,7 @@ audit might not be that useful.
 If you have enabled persisted metadata audits on your DHIS2 instance,
 you can access metadata audits at the following endpoint:
 
-    /api/29/metadataAudits
+    /api/33/metadataAudits
 
 The endpoints supports the following query parameters:
 
@@ -3024,12 +3022,12 @@ forward:
 Certain types of metadata objects can be marked as favorites for the
 currently logged in user. This applies currently for dashboards.
 
-    /api/29/dashboards/<uid>/favorite
+    /api/dashboards/<uid>/favorite
 
 To make a dashboard a favorite you can make a *POST* request (no content
 type required) to a URL like this:
 
-    /api/29/dashboards/iMnYyBfSxmM/favorite
+    /api/dashboards/iMnYyBfSxmM/favorite
 
 To remove a dashboard as a favorite you can make a *DELETE* request
 using the same URL as above.
@@ -3048,25 +3046,25 @@ Map and ReportTable.
 To get the subscribers of an object (return an array of user IDs) you
 can make a *GET* request:
 
-    /api/30/<object-type>/<object-id>/subscribers
+    /api/<object-type>/<object-id>/subscribers
 
 See example as follows:
 
-    /api/30/charts/DkPKc1EUmC2/subscribers
+    /api/charts/DkPKc1EUmC2/subscribers
 
 To check whether the current user is subscribed to an object (returns a
 boolean) you can perform a *GET* call:
 
-    /api/30/<object-type>/<object-id>/subscribed
+    /api/<object-type>/<object-id>/subscribed
 
 See example as follows:
 
-    /api/30/charts/DkPKc1EUmC2/subscribed
+    /api/charts/DkPKc1EUmC2/subscribed
 
 To subscribe/de-subscribe to an object you perform a *POST/DELETE*
 request (no content type required):
 
-    /api/30/<object-type>/<object-id>/subscriber
+    /api/<object-type>/<object-id>/subscriber
 
 ## File resources
 
@@ -3080,7 +3078,7 @@ is stored in the database like any other but the content (file) is
 stored elsewhere and is retrievable using the contained reference
 *(storageKey)*.
 
-    /api/26/fileResources
+    /api/fileResources
 
 The contents of a file resources is not directly accessible but is
 referenced from other objects (such as data values) to store binary
@@ -3089,7 +3087,7 @@ content of virtually unlimited size.
 Creation of the file resource itself is done through the `api/fileResources` endpoint as a multipart upload POST-request:
 
 ```bash
-curl "https://server/api/26/fileResources" -X POST 
+curl "https://server/api/fileResources" -X POST 
   -F "file=@/Path/to/file;filename=name-of-file.png" 
 ```
 
@@ -3140,7 +3138,7 @@ the updated *storageStatus* or otherwise retrieve the metadata of the
 file, the `fileResources` endpoint can be queried.
 
 ```bash
-curl "https://server/api/26/fileResources/xm4JwRwke0i" -H "Accept: application/json"
+curl "https://server/api/fileResources/xm4JwRwke0i" -H "Accept: application/json"
 ```
 
 This request will return the `FileResource` object as seen in the
@@ -3573,7 +3571,7 @@ curl -u admin:district "https://play.dhis2.org/dev/api/metadata/sync?versionName
 
 This section is about sending and reading data values.
 
-    /api/26/dataValueSets
+    /api/33/dataValueSets
 
 ### Sending data values
 
@@ -3659,8 +3657,8 @@ data set, the org unit (facility) and the data elements for which to
 report.
 
 To obtain the identifier for the data set we make a request to the
-`/api/24/dataSets` resource. From there we find and follow the link to 
-the *Mortality < 5 years* data set which leads us to `/api/24/dataSets/pBOMPrpg1QX`. 
+`/api/dataSets` resource. From there we find and follow the link to 
+the *Mortality < 5 years* data set which leads us to `/api/dataSets/pBOMPrpg1QX`. 
 The resource representation for the *Mortality < 5 years* data set conveniently
 advertises links to the data elements which are members of it. From here
 we can follow these links and obtain the identifiers of the data
@@ -3720,7 +3718,7 @@ directory where this file resides we invoke the following from the
 command line:
 
 ```bash
-curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/26/dataValueSets"
+curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/33/dataValueSets"
   -H "Content-Type:application/xml" -u admin:district
 ```
 
@@ -3728,7 +3726,7 @@ For sending JSON content you must set the content-type header
 accordingly:
 
 ```bash
-curl -d @datavalueset.json "https://play.dhis2.org/demo/api/26/dataValueSets"
+curl -d @datavalueset.json "https://play.dhis2.org/demo/api/33/dataValueSets"
   -H "Content-Type:application/json" -u admin:district
 ```
 
@@ -3820,7 +3818,7 @@ In CSV format:
 We test by using curl to send the data values in XML format:
 
 ```bash
-curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/26/dataValueSets"
+curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/33/dataValueSets"
   -H "Content-Type:application/xml" -u admin:district
 ```
 
@@ -3931,7 +3929,7 @@ The import process can be customized using a set of import parameters:
 All parameters are optional and can be supplied as query parameters in
 the request URL like this:
 
-    /api/26/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=name
+    /api/33/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=name
       &dryRun=true&importStrategy=CREATE
 
 They can also be supplied as XML attributes on the data value set
@@ -4032,7 +4030,7 @@ be immediately followed by the identifier of the attribute, e.g.
 Data values can be sent and imported in an asynchronous fashion by
 supplying an `async` query parameter set to *true*:
 
-    /api/26/dataValueSets?async=true
+    /api/33/dataValueSets?async=true
 
 This will initiate an asynchronous import job for which you can monitor
 the status at the task summaries API. The API response indicates the
@@ -4520,7 +4518,7 @@ parameter. It is necessary to ensure that the category options are all part
 of the category combination. An example looks like this:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/dataValues?de=s46m5MS0hxu&ou=DiszpKrYNg8
+curl "https://play.dhis2.org/demo/api/33/dataValues?de=s46m5MS0hxu&ou=DiszpKrYNg8
   &pe=201308&cc=dzjKKQq0cSO&cp=wbrDrL2aYEc;btOyqprQ9e8&value=26"
   -X POST -u admin:district
 ```
@@ -4529,7 +4527,7 @@ You can retrieve a data value with a request using the *GET* method. The
 value, comment and followUp params are not applicable in this regard:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/dataValues?de=s46m5MS0hxu
+curl "https://play.dhis2.org/demo/api/33/dataValues?de=s46m5MS0hxu
   &pe=201301&ou=DiszpKrYNg8&co=Prlt0C1RF0s"
   -u admin:district
 ```
@@ -4810,7 +4808,7 @@ DHIS2 demo server:
 
 ```bash
 curl -u admin:district -X POST -H "Content-Type: application/adx+xml"
-  -d @data.xml "https://play.dhis2.org/demo/api/26/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=code"
+  -d @data.xml "https://play.dhis2.org/demo/api/33/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=code"
 ```
 
 Note the query parameters are the same as are used with DXF data. The
@@ -4826,7 +4824,7 @@ data:
 
 ```bash
 curl -u admin:district -H "Accept: application/adx+xml"
- "https://play.dhis2.org/demo/api/26/dataValueSets?dataValueSets?orgUnit=M_CLINIC&dataSet=MALARIA&period=201501"
+ "https://play.dhis2.org/demo/api/33/dataValueSets?dataValueSets?orgUnit=M_CLINIC&dataSet=MALARIA&period=201501"
 ```
 
 Note the query parameters are the same as are used with DXF data. An
@@ -5173,21 +5171,21 @@ data values.
 
 To retrieve the form for a data set you can do a GET request like this:
 
-    /api/26/dataSets/<dataset-id>/form.json
+    /api/dataSets/<dataset-id>/form.json
 
 To retrieve the form for the data set with identifier "BfMAe6Itzgt" in
 XML:
 
-    /api/26/dataSets/BfMAe6Itzgt/form
+    /api/dataSets/BfMAe6Itzgt/form
 
 To retrieve the form including metadata in JSON:
 
-    /api/26/dataSets/BfMAe6Itzgt/form.json?metaData=true
+    /api/dataSets/BfMAe6Itzgt/form.json?metaData=true
 
 To retrieve the form filled with data values for a specific period and
 organisation unit in XML:
 
-    /api/26/dataSets/BfMAe6Itzgt/form.xml?ou=DiszpKrYNg8&pe=201401
+    /api/dataSets/BfMAe6Itzgt/form.xml?ou=DiszpKrYNg8&pe=201401
 
 When it comes to custom data entry forms, this resource also allows for
 creating such forms directly for a data set. This can be done through a
@@ -5195,7 +5193,7 @@ POST or PUT request with content type text/html where the payload is the
 custom form markup such as:
 
 ```bash
-curl -d @form.html "localhost/api/26/dataSets/BfMAe6Itzgt/form"
+curl -d @form.html "localhost/api/dataSets/BfMAe6Itzgt/form"
   -H "Content-Type:text/html" -u admin:district -X PUT
 ```
 
@@ -5235,13 +5233,13 @@ References to files can be stored with the document resource.
 
 A GET request to the documents endpoint will return all documents:
 
-    /api/29/documents
+    /api/documents
 
 A POST request to the doucuments endpoint will create a new document:
 
 ```bash
 curl -X POST -d @document.json -H "Content-type: application/json"
-  "http://dhis.domain/api/29/documents"
+  "http://dhis.domain/api/documents"
 ```
 
 ```json
@@ -5256,12 +5254,12 @@ A GET request with the id of a document appended will return information
 about the document. A PUT request to the same endpoint will update the
 fields of the document:
 
-    /api/29/documents/<documentId>
+    /api/documents/<documentId>
 
 Appending */data* to the GET request will return the actual file content
 of the document:
 
-    /api/29/documents/<documentId>/data
+    /api/documents/<documentId>/data
 
 ## Validation
 
@@ -5271,7 +5269,7 @@ To generate a data validation summary you can interact with the
 validation resource. The dataSet resource is optimized for data entry
 clients for validating a data set / form, and can be accessed like this:
 
-    /api/26/validation/dataSet/QX4ZTUbOt3a.json?pe=201501&ou=DiszpKrYNg8
+    /api/33/validation/dataSet/QX4ZTUbOt3a.json?pe=201501&ou=DiszpKrYNg8
 
 In addition to validate rules based on data set, there are two
 additional methods for performing validation: Custom validation and
@@ -5295,9 +5293,9 @@ with more validation types in coming versions.
 To retrieve validation rules which are relevant for a specific data set,
 meaning validation rules with formulas where all data elements are part
 of the specific data set, you can make a GET request to to
-*validationRules* resource like this:
+`validationRules` resource like this:
 
-    /api/26/validationRules?dataSet=<dataset-id>
+    /api/validationRules?dataSet=<dataset-id>
 
 The validation rules have a left side and a right side, which is
 compared for validity according to an operator. The valid operator
@@ -5421,18 +5419,18 @@ analysis might be slower.
 The validation results persisted can be viewed at the following
 endpoint:
 
-    /api/26/validationResults
+    /api/33/validationResults
 
 You can also inspect an individual result using the validation result id
 in this endpoint:
 
-    /api/26/validationResults/<id>
+    /api/33/validationResults/<id>
 
 Validation results are sent out to the appropriate users once every day,
 but can also be manually triggered to run on demand using the following
 api endpoint:
 
-    /api/26/validation/sendNotifications
+    /api/33/validation/sendNotifications
 
 Only unsent results are sent using this endpoint.
 
@@ -5595,7 +5593,7 @@ empty POST request to the *dataIntegrity* endpoint like so (demonstrated
 in curl syntax):
 
 ```bash
-curl -X POST "https://dhis.domain/api/26/dataIntegrity"
+curl -X POST "https://localhost/api/33/dataIntegrity"
 ```
 
 If successful the request will return HTTP 202 immediately. The location
@@ -5614,7 +5612,7 @@ Once data integrity is finished running the result can be fetched from
 the `system/taskSummaries` resource like so:
 
 ```bash
-curl "https://dhis.domain/api/26/system/taskSummaries/DATAINTEGRITY"
+curl "https://dhis.domain/api/33/system/taskSummaries/DATAINTEGRITY"
 ```
 
 The returned object contains a summary for each point of analysis,
@@ -5636,7 +5634,7 @@ This section describes indicators and indicator expressions.
 To retrieve indicators you can make a GET request to the indicators
 resource like this:
 
-    /api/26/indicators
+    /api/indicators
 
 Indicators represent expressions which can be calculated and presented
 as a result. The indicator expressions are split into a numerator and
@@ -5763,7 +5761,7 @@ example:
 To retrieve program indicators you can make a GET request to the program
 indicators resource like this:
 
-    /api/26/programIndicators
+    /api/programIndicators
 
 Program indicators can contain information collected in a program.
 Indicators have an expression which can contain references to data
@@ -5821,7 +5819,7 @@ data elements, constants and organisation unit groups. To validate and
 get the textual description of an expression you can make a GET request
 to the expressions resource:
 
-    /api/26/expressions/description?expression=<expression-string>
+    /api/expressions/description?expression=<expression-string>
 
 The response follows the standard JSON web message format. The *status*
 property indicates the outcome of the validation and will be "OK" if
@@ -5855,7 +5853,7 @@ This section explains how to register data sets as complete. This is
 achieved by interacting with the *completeDataSetRegistrations*
 resource:
 
-    /api/26/completeDataSetRegistrations
+    /api/33/completeDataSetRegistrations
 
 The endpoint supports the *POST* method for registering data set
 completions. The endpoint is functionally very similar to the
@@ -6036,7 +6034,7 @@ start/end date and to set the periods.
 An example request looks like this:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/completeDataSetRegistrations?dataSet=pBOMPrpg1QX
+curl "https://play.dhis2.org/demo/api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX
   &dataSet=pBOMPrpg1QX&startDate=2014-01-01&endDate=2014-01-31&orgUnit=YuQRtpLP10I
   &orgUnit=vWbkYPRmKyS&children=true"
   -H "Accept:application/xml" -u admin:district
@@ -6055,7 +6053,7 @@ This section explains how you can un-register the completeness of a data
 set. To un-complete a data set you will interact with the
 completeDataSetRegistrations resource:
 
-    /api/26/completeDataSetRegistrations
+    /api/33/completeDataSetRegistrations
 
 This resource supports *DELETE* for un-registration. The following query
 parameters are supported:
@@ -6116,7 +6114,7 @@ This section explains how to approve, unapprove and check approval
 status using the *dataApprovals* resource. Approval is done per data
 approval workflow, period, organisation unit and attribute option combo.
 
-    /api/26/dataApprovals
+    /api/33/dataApprovals
 
 ### Get approval status
 
@@ -6361,13 +6359,13 @@ To approve data you can issue a *POST* request to the *dataApprovals*
 resource. To un-approve data you can issue a *DELETE* request to the
 dataApprovals resource.
 
-    POST DELETE /api/26/dataApprovals
+    POST DELETE /api/33/dataApprovals
 
 To accept data that is already approved you can issue a *POST* request
 to the *dataAcceptances* resource. To un-accept data you can issue a
 *DELETE* request to the *dataAcceptances* resource.
 
-    POST DELETE /api/26/dataAcceptances
+    POST DELETE /api/33/dataAcceptances
 
 These requests contain the following parameters:
 
@@ -6426,22 +6424,22 @@ approved. In particular, both of the following must be true:
 You can approve a bulk of data records by posting to
 the `/api/dataApprovals/approvals` resource.
 
-    POST /api/26/dataApprovals/approvals
+    POST /api/33/dataApprovals/approvals
 
 You can unapprove a bulk of data records by posting to the
 `api/dataApprovals/unapprovals` resource.
 
-    POST /api/26/dataApprovals/unapprovals
+    POST /api/33/dataApprovals/unapprovals
 
 You can accept a bulk of records by posting to the
 `api/dataAcceptances/acceptances` resource.
 
-    POST /api/26/dataAcceptances/acceptances
+    POST /api/33/dataAcceptances/acceptances
 
 You can unaccept a bulk of records by posting to the
 `api/dataAcceptances/unacceptances` resource.
 
-    POST /api/26/dataAcceptances/unacceptances
+    POST /api/33/dataAcceptances/unacceptances
 
 The approval payload is supported as JSON and looks like this:
 
@@ -6538,7 +6536,7 @@ the table below.
 
 Get all audits for data set with ID "lyLU2wR22tC":
 
-    /api/26/audits/dataValue?ds=lyLU2wR22tC
+    /api/33/audits/dataValue?ds=lyLU2wR22tC
 
 ### Tracked entity data value audits
 
@@ -6593,7 +6591,7 @@ displayed in the table below.
 
 Get all audits which have data element ID eMyVanycQSC or qrur9Dvnyt5:
 
-    /api/26/audits/trackedEntityDataValue?de=eMyVanycQSC&de=qrur9Dvnyt5
+    /api/33/audits/trackedEntityDataValue?de=eMyVanycQSC&de=qrur9Dvnyt5
 
 ### Tracked entity attribute value audits
 
@@ -6648,7 +6646,7 @@ are displayed in the table below.
 
 Get all audits which have attribute with ID VqEFza8wbwA:
 
-    /api/26/audits/trackedEntityAttributeValue?tea=VqEFza8wbwA
+    /api/33/audits/trackedEntityAttributeValue?tea=VqEFza8wbwA
 
 ### Tracked entity instance audits
 
@@ -6721,7 +6719,7 @@ interact with this endpoint.
 Get all tracked entity instance audits of type READ with
 startDate=2018-03-01 and endDate=2018-04-24 in a page size of 5:
 
-    /api/27/audits/trackedEntityInstance.json?startDate=2018-03-01&endDate=2018-04-24&auditType=READ&pageSize=5
+    /api/33/audits/trackedEntityInstance.json?startDate=2018-03-01&endDate=2018-04-24&auditType=READ&pageSize=5
 
 ### Enrollment audits
 
@@ -6860,7 +6858,7 @@ the table below.
 
 Get all audits for data approval workflow RwNpkAM7Hw7:
 
-    /api/27/audits/dataApproval?wf=RwNpkAM7Hw7
+    /api/33/audits/dataApproval?wf=RwNpkAM7Hw7
 
 ## Message conversations
 
@@ -6872,7 +6870,7 @@ are grouped into conversations. To interact with message conversations
 you can send POST and GET request to the *messageConversations*
 resource.
 
-    /api/26/messageConversations
+    /api/33/messageConversations
 
 Messages are delivered to the DHIS2 message inbox but can also be sent
 to the user's email addresses and mobile phones as SMS. In this example
@@ -6938,10 +6936,8 @@ can use:
 
 Since we want to send a message to our friend the mobile user we need to
 look up her identifier. We do so by going to the Web API entry point and
-follow the link to the *users* resource at
-<http://play.dhis2.org/demo/api/24/users>. We continue by following link
-to the mobile user at
-<http://play.dhis2.org/demo/api/24/users/PhzytPW3g2J> where we learn
+follow the link to the *users* resource at `/api/users`. We continue by 
+following link to the mobile user at `/api/users/PhzytPW3g2J` where we learn
 that her identifier is *PhzytPW3g2J*. We are now ready to put our XML
 message together to form a message where we want to ask the mobile user
 whether she has reported data for January 2014:
@@ -6994,7 +6990,7 @@ A corresponding payload in JSON and POST command look like this:
 ```
 
 ```bash
-curl -d @message.json "https://play.dhis2.org/demo/api/26/messageConversations"
+curl -d @message.json "https://play.dhis2.org/demo/api/33/messageConversations"
   -H "Content-Type:application/json" -u admin:district -X POST
 ```
 
@@ -7010,7 +7006,7 @@ value to indicate that we are interested in the XML resource
 representation and we authenticate as the *mobile* user:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/messageConversations"
+curl "https://play.dhis2.org/demo/api/33/messageConversations"
   -H "Accept:application/xml" -u mobile:district
 ```
 
@@ -7029,10 +7025,8 @@ In response we get the following XML:
 From the response we are able to read the identifier of the newly sent
 message which is *ZjHHSjyyeJ2*. Note that the link to the specific
 resource is embedded and can be followed in order to read the full
-message. From the description at
-<http://play.dhis2.org/demo/api/24/messageConversations> we learned that
-we can reply directly to an existing message conversation once we know
-the URL by including the message text as the request payload (body). We
+message. We can reply directly to an existing message conversation once we know
+the URL by including the message text as the request payload. We
 are now able to construct a URL for sending our reply:
 
 ```bash
@@ -7075,7 +7069,7 @@ conversation and the participating user. For example, to remove the user
 with id `xE7jOejl9FI` from the conversation with id `jMe43trzrdi`:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/messageConversations/jMe43
+curl "https://play.dhis2.org/demo/api/33/messageConversations/jMe43trzrdi
 ```
 
 If the request was successful the server will reply with a *200 OK*. The
@@ -7157,7 +7151,7 @@ The response is a *200 OK* with the following JSON body:
 In 2.30 we have included the option to add recipients to an existing
 message conversation. The resource is located at:
 
-    https://play.dhis2.org/demo/api/30/messageConversations/id/recipients
+    https://play.dhis2.org/demo/api/33/messageConversations/id/recipients
 
 The options for this resource is a list of users, user groups and
 organisation units. The request should look like this:
@@ -7267,7 +7261,7 @@ parameter.
 
 ```bash
 curl -d "Yes the Mortality data set has been reported"
-  "https://play.dhis2.org/demo/api/26/messageConversations/ZjHHSjyyeJ2?attachments=fTpI4GOmujz,h2ZsOxMFMfq"
+  "https://play.dhis2.org/demo/api/33/messageConversations/ZjHHSjyyeJ2?attachments=fTpI4GOmujz,h2ZsOxMFMfq"
   -H "Content-Type:text/plain" -u mobile:district -X POST
 ```
 
@@ -7342,7 +7336,7 @@ reply, include the "internal" parameter, and set it to
 
 ```bash
 curl -d "This is an internal message"
-  "https://play.dhis2.org/demo/api/26/messageConversations/ZjHHSjyyeJ2?internal=true"
+  "https://play.dhis2.org/demo/api/33/messageConversations/ZjHHSjyyeJ2?internal=true"
   -H "Content-Type:text/plain" -u admin:district -X POST
 ```
 
@@ -7355,17 +7349,17 @@ charts, maps, event reports and event charts, you can write and share
 data interpretations. An interpretation can be a comment, question,
 observation or interpretation about a data report or visualization.
 
-    /api/30/interpretations
+    /api/interpretations
 
 ### Reading interpretations
 
 <!--DHIS2-SECTION-ID:webapi_reading_interpretations-->
 
 To read interpretations we will interact with the
-*/api/30/interpretations* resource. A typical GET request using field
+*/api/interpretations* resource. A typical GET request using field
 filtering can look like this:
 
-    GET /api/30/interpretations?fields=*,comments[id,text,user,mentions]
+    GET /api/interpretations?fields=*,comments[id,text,user,mentions]
 
 The output in JSON response format could look like below (additional
 fields omitted for brevity):
@@ -7507,7 +7501,7 @@ an example, by following the map link and appending /data one can
 retrieve a PNG (image) representation of the thematic map through the
 following URL:
 
-    https://play.dhis2.org/demo/api/30/maps/bhmHJ4ZCdCd/data
+    https://play.dhis2.org/demo/api/maps/bhmHJ4ZCdCd/data
 
 For all analytical objects you can filter by *mentions*. To retrieve all
 the interpretations/comments where a user has been mentioned you have
@@ -7515,18 +7509,18 @@ three options. You can filter by the interpretation mentions (mentions
 in the interpretation
     description):
 
-    GET /api/30/interpretations?fields=*,comments[*]&filter=mentions.username:in:[boateng]
+    GET /api/interpretations?fields=*,comments[*]&filter=mentions.username:in:[boateng]
 
 You can filter by the interpretation comments mentions (mentions in any
 comment):
 
-    GET /api/30/interpretations?fields=*,comments[*]
+    GET /api/interpretations?fields=*,comments[*]
       &filter=comments.mentions.username:in:[boateng]
 
 You can filter by intepretations which contains the mentions either
 in the interpretation or in any comment (OR junction):
 
-    GET /api/30/interpretations?fields=*,comments[*]&filter=mentions:in:[boateng]
+    GET /api/interpretations?fields=*,comments[*]&filter=mentions:in:[boateng]
 
 ### Writing interpretations
 
@@ -7538,29 +7532,29 @@ The URL pattern looks like the below, where {object-type} refers to the
 type of the object being interpreted, and {object-id} refers to the
 identifier of the object being interpreted.
 
-    /api/26/interpretations/{object-type}/{object-id}
+    /api/interpretations/{object-type}/{object-id}
 
 Valid options for object type are *reportTable*, *chart*, *map*,
 *eventReport*, *eventChart* and *dataSetReport*.
 
 Some valid examples for interpretations are listed below.
 
-    /api/26/interpretations/reportTable/yC86zJxU1i1
-    /api/26/interpretations/chart/ZMuYVhtIceD
-    /api/26/interpretations/map/FwLHSMCejFu
-    /api/26/interpretations/eventReport/xJmPLGP3Cde
-    /api/26/interpretations/eventChart/nEzXB2M9YBz
-    /api/26/interpretations/dataSetReport/tL7eCjmDIgM
+    /api/interpretations/reportTable/yC86zJxU1i1
+    /api/interpretations/chart/ZMuYVhtIceD
+    /api/interpretations/map/FwLHSMCejFu
+    /api/interpretations/eventReport/xJmPLGP3Cde
+    /api/interpretations/eventChart/nEzXB2M9YBz
+    /api/interpretations/dataSetReport/tL7eCjmDIgM
 
 As an example we will start by writing an interpretation for the chart
 with identifier *EbRN2VIbPdV*. To write chart interpretations we will
-interact with the */api/26/interpretations/chart/{chartId}* resource.
+interact with the */api/interpretations/chart/{chartId}* resource.
 The interpretation will be the request body. Based on this we can put
 together the following request using cURL:
 
 ```bash
 curl -d "This chart shows a significant ANC 1-3 dropout" -X POST
-  "https://play.dhis2.org/demo/api/26/interpretations/chart/EbRN2VIbPdV"
+  "https://play.dhis2.org/demo/api/interpretations/chart/EbRN2VIbPdV"
   -H "Content-Type:text/plain" -u admin:district
 ```
 
@@ -7577,13 +7571,13 @@ To update an existing interpretation you can use a PUT request where the
 interpretation text is the request body using the following URL pattern,
 where {id} refers to the interpretation identifier:
 
-    /api/26/interpretations/{id}
+    /api/interpretations/{id}
 
 Based on this we can use curl to update the interpretation:
 
 ```bash
 curl -d "This charts shows a high dropout" -X PUT
-  "https://play.dhis2.org/demo/api/26/interpretations/chart/EV08iI1cJRA"
+  "https://play.dhis2.org/demo/api/interpretations/chart/EV08iI1cJRA"
   -H "Content-Type:text/plain" -u admin:district
 ```
 
@@ -7599,7 +7593,7 @@ text as the request body using a POST request with content type
 "text/plain". The URL pattern looks like the below, where
 {interpretation-id} refers to the interpretation identifier.
 
-    /api/26/interpretations/{interpretation-id}/comments
+    /api/interpretations/{interpretation-id}/comments
 
 Second, we will write a comment to the interpretation we wrote in the
 example above. By looking at the interpretation response you will see
@@ -7607,12 +7601,12 @@ that a *Location* header is returned. This header tells us the URL of
 the newly created interpretation and from that we can read its
 identifier. This identifier is randomly generated so you will have to
 replace the one in the command below with your own. To write a comment
-we can interact with the */api/26/interpretations/{id}/comments"*
+we can interact with the */api/interpretations/{id}/comments"*
 resource like this:
 
 ```bash
 curl -d "An intervention is needed" -X POST
-  "https://play.dhis2.org/demo/api/26/interpretations/j8sjHLkK8uY/comments"
+  "https://play.dhis2.org/demo/api/interpretations/j8sjHLkK8uY/comments"
   -H "Content-Type:text/plain" -u admin:district
 ```
 
@@ -7623,12 +7617,12 @@ curl -d "An intervention is needed" -X POST
 To updating an interpretation comment you can use a PUT request where
 the comment text is the request body using the following URL pattern:
 
-    /api/26/interpretations/{interpretation-id}/comments/{comment-id}
+    /api/interpretations/{interpretation-id}/comments/{comment-id}
 
 Based on this we can use curl to update the comment:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/interpretations/j8sjHLkK8uY/comments/idAzzhVWvh2"
+curl "https://play.dhis2.org/demo/api/interpretations/j8sjHLkK8uY/comments/idAzzhVWvh2"
   -d "I agree with that." -X PUT -H "Content-Type:text/plain" -u admin:district
 ```
 
@@ -7642,7 +7636,7 @@ remove the interpretation comment.
 To like an interpretation you can use an empty POST request to the
 *like* resource:
 
-    POST /api/26/interpretations/{id}/like
+    POST /api/interpretations/{id}/like
 
 A like will be added for the currently authenticated user. A user can
 only like an interpretation once.
@@ -7653,7 +7647,7 @@ the same resource as for the like operation.
 The like status of an interpretation can be viewed by looking at the
 regular Web API representation:
 
-    GET /api/26/interpretations/{id}
+    GET /api/interpretations/{id}
 
 The like information is found in the *likes* field, which represents the
 number of likes, and the *likedBy* array, which enumerates the users who
@@ -7800,19 +7794,19 @@ resource is set up for relative periods for the period dimension.
 Some examples of valid URLs for retrieving various analytical
 representations are listed below.
 
-    /api/26/charts/R0DVGvXDUNP/data
-    /api/26/charts/R0DVGvXDUNP/data?date=2013-06-01
+    /api/charts/R0DVGvXDUNP/data
+    /api/charts/R0DVGvXDUNP/data?date=2013-06-01
 
-    /api/26/reportTables/jIISuEWxmoI/data.html
-    /api/26/reportTables/jIISuEWxmoI/data.html?date=2013-01-01
-    /api/26/reportTables/FPmvWs7bn2P/data.xls
-    /api/26/reportTables/FPmvWs7bn2P/data.pdf
+    /api/reportTables/jIISuEWxmoI/data.html
+    /api/reportTables/jIISuEWxmoI/data.html?date=2013-01-01
+    /api/reportTables/FPmvWs7bn2P/data.xls
+    /api/reportTables/FPmvWs7bn2P/data.pdf
 
-    /api/26/maps/DHE98Gsynpr/data
-    /api/26/maps/DHE98Gsynpr/data?date=2013-07-01
+    /api/maps/DHE98Gsynpr/data
+    /api/maps/DHE98Gsynpr/data?date=2013-07-01
 
-    /api/26/reports/OeJsA6K1Otx/data.pdf
-    /api/26/reports/OeJsA6K1Otx/data.pdf?date=2014-01-01
+    /api/reports/OeJsA6K1Otx/data.pdf
+    /api/reports/OeJsA6K1Otx/data.pdf?date=2014-01-01
 
 ## Plugins
 
@@ -8826,7 +8820,7 @@ config options:
 
 We continue by adding one pre-defined and one dynamically configured map
 to our HTML document. You can browse the list of available maps using
-the Web API here: <http://play.dhis2.org/demo/api/24/maps>.
+the Web API here: <http://play.dhis2.org/demo/api/33/maps>.
 
 ```javascript
 function setLinks() {
@@ -8944,7 +8938,7 @@ The SQL views resource allows you to create and retrieve the result set
 of SQL views. The SQL views can be executed directly against the
 database and render the result set through the Web API resource.
 
-    /api/26/sqlViews
+    /api/sqlViews
 
 SQL views are useful for creating data views which may be more easily
 constructed with SQL compared combining the multiple objects of the Web
@@ -8969,13 +8963,13 @@ from the server. You can first look up the SQL view from the
 api/sqlViews resource, then POST using the following command:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/sqlViews/dI68mLkP1wN/execute" -X POST -u admin:district
+curl "https://play.dhis2.org/demo/api/sqlViews/dI68mLkP1wN/execute" -X POST -u admin:district
 ```
 
 The next step in the process is the retrieval of the data.The basic
 structure of the URL is as follows
 
-    http://{server}/api/26/sqlViews/{id}/data(.csv)
+    http://{server}/api/sqlViews/{id}/data(.csv)
 
 The `{server}` parameter should be replaced with your own server. The
 next part of the URL `/api/sqlViews/` should be appended with the
@@ -8985,7 +8979,7 @@ json, xml, csv, xls, html and html+css. As an example, the following
 command would retrieve XML data for the SQL view defined above.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/sqlViews/dI68mLkP1wN/data.csv" -u admin:district
+curl "https://play.dhis2.org/demo/api/sqlViews/dI68mLkP1wN/data.csv" -u admin:district
 ```
 
 There are three types of SQL views:
@@ -9008,13 +9002,13 @@ appending *criteria* query parameters to the URL, using the column names
 and filter values separated by columns as parameter values, on the
 following format:
 
-    /api/26/sqlViews/{id}/data?criteria=col1:value1&criteria=col2:value2
+    /api/sqlViews/{id}/data?criteria=col1:value1&criteria=col2:value2
 
 As an example, to filter the SQL view result set above to only return
 organisation units at level 4 you can use the following
     URL:
 
-    https://play.dhis2.org/demo/api/26/sqlViews/dI68mLkP1wN/data.csv?criteria=level:4
+    https://play.dhis2.org/demo/api/sqlViews/dI68mLkP1wN/data.csv?criteria=level:4
 
 ### Variables
 
@@ -9042,7 +9036,7 @@ the following format:
 
 An example query corresponding to the example above can look like this:
 
-    /api/26/sqlViews/dI68mLkP1wN/data.json?var=valueType:int
+    /api/sqlViews/dI68mLkP1wN/data.json?var=valueType:int
 
 The *valueType* variable will be substituted with the *int* value, and
 the query will return data elements with int value type.
@@ -9115,7 +9109,7 @@ client could choose to visualize the single-object items directly in a
 user interface, while rendering the multi-object items as clickable
 links.
 
-    /api/26/dashboards
+    /api/dashboards
 
 ### Browsing dashboards
 
@@ -9125,14 +9119,14 @@ To get a list of your dashboards with basic information including
 identifier, name and link in JSON format you can make a *GET* request to
 the following URL:
 
-    /api/26/dashboards.json
+    /api/dashboards.json
 
 The dashboards resource will provide a list of dashboards. Remember that
 the dashboard object is shared so the list will be affected by the
 currently authenticated user. You can retrieve more information about a
 specific dashboard by following its link, similar to this:
 
-    /api/26/dashboards/vQFhmLJU5sK.json
+    /api/dashboards/vQFhmLJU5sK.json
 
 A dashboard contains information like name and creation date and an
 array of dashboard items. The response in JSON format will look similar
@@ -9182,7 +9176,7 @@ A more tailored response can be obtained by specifying specific fields
 in the request. An example is provided below, which would return more
 detailed information about each object on a users dashboard.
 
-    /api/26/dashboards/vQFhmLJU5sK/?fields=:all,dashboardItems[:all]
+    /api/dashboards/vQFhmLJU5sK/?fields=:all,dashboardItems[:all]
 
 ### Searching dashboards
 
@@ -9196,11 +9190,11 @@ users, reports and resources. You can do a search by making a *GET*
 request on the following resource URL pattern, where my-query should be
 replaced by the preferred search query:
 
-    /api/32/dashboards/q/my-query.json
+    /api/dashboards/q/my-query.json
 
 For example, this query:
 
-    /api/32/dashboards/q/ma?count=6&maxCount=20&max=CHART&max=MAP
+    /api/dashboards/q/ma?count=6&maxCount=20&max=CHART&max=MAP
 
 Will search for the following:
 
@@ -9313,7 +9307,7 @@ similar request payload the same api/dashboards resource.
 To remove a dashboard, you can make a *DELETE* request to the specific
 dashboard resource similar to this:
 
-    /api/26/dashboards/vQFhmLJU5sK
+    /api/dashboards/vQFhmLJU5sK
 
 ### Adding, moving and removing dashboard items and content
 
@@ -9358,7 +9352,7 @@ look like this, where the last id query parameter value is the chart
 resource
     identifier:
 
-    /api/26/dashboards/vQFhmLJU5sK/items/content?type=chart&id=LW0O27b7TdD
+    /api/dashboards/vQFhmLJU5sK/items/content?type=chart&id=LW0O27b7TdD
 
 When adding resource of type map, chart, report table and app, the API
 will create and add a new item to the dashboard. When adding a resource
@@ -9376,7 +9370,7 @@ identifier of the dashboard item and `<index>` should be replaced by the
 new position of the item in the dashboard, where the index is
 zero-based:
 
-    /api/26/dashboards/<dashboard-id>/items/<item-id>/position/<index>
+    /api/dashboards/<dashboard-id>/items/<item-id>/position/<index>
 
 To remove a dashboard item completely from a specific dashboard a
 consumer can make a *DELETE* request to the below resource URL, where
@@ -9385,7 +9379,7 @@ and `<item-id>` should be replaced by the identifier of the dashboard
 item. The dashboard item identifiers can be retrieved through a GET
 request to the dashboard resource URL.
 
-    /api/26/dashboards/<dashboard-id>/items/<item-id>
+    /api/dashboards/<dashboard-id>/items/<item-id>
 
 To remove a specific content resource within a dashboard item a consumer
 can make a *DELETE* request to the below resource URL, where
@@ -9395,7 +9389,7 @@ report or a user. For instance, this can be used to remove a single
 report from a dashboard item of type reports, as opposed to removing the
 dashboard item completely:
 
-    /api/26/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
+    /api/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
 
 ## Analytics
 
@@ -9410,7 +9404,7 @@ organisation units. Also, you can retrieve the aggregated data for a
 combination of any number of dimensions based on data elements and
 organisation unit group sets.
 
-    /api/26/analytics
+    /api/33/analytics
 
 ### Request query parameters
 
@@ -9631,7 +9625,7 @@ will not be included as dimensions in the actual response. As an
 example, to query for certain data elements filtered by the periods and
 organisation units you can use the following URL:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&filter=pe:2014Q1;2014Q2
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&filter=pe:2014Q1;2014Q2
       &filter=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 The *aggregationType* query parameter lets you define which aggregation
@@ -9644,7 +9638,7 @@ undefined. This query parameter allows you to override the default and
 specify a specific aggregation operator. As an example you can set the
 aggregation operator to "count" with the following URL:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2014Q1&dimension=ou:O6uvpzGd5pu
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2014Q1&dimension=ou:O6uvpzGd5pu
       &aggregationType=COUNT
 
 The *measureCriteria* query parameter lets you filter out ranges of data
@@ -9654,12 +9648,12 @@ equal, less than or less or equal to certain values. You can specify any
 number of criteria on the following format, where *critieria* and
 *value* should be substituted with real values:
 
-    /api/26/analytics?measureCriteria=criteria:value;criteria:value
+    /api/33/analytics?measureCriteria=criteria:value;criteria:value
 
 As an example, the following query will return only records where the
 data value is greater or equal to 6500 and less than 33000:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
       &dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw&measureCriteria=GE:6500;LT:33000
 
 Similar to *measureCriteria*, the *preAggregationMeasureCriteria* query
@@ -9667,7 +9661,7 @@ parameter lets you filter out data, only before aggregation is
 performed. For example, the following query only aggregates data where
 the original value is within the criteria defined:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
       &dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw&preAggregationMeasureCriteria=GE:10;LT:100
 
 The *startDate* and *endDate* parameters can be used to specify a custom 
@@ -9675,7 +9669,7 @@ date range to aggregate over. When specifying a date range you can not
 specify relative nor fixed periods as dimension or filter. The date range
 will filter the analytics response. You can use it like this:
 
-    /api/29/analytics.json?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/33/analytics.json?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=ou:ImspTQPwCqd&startDate=2018-01-01&endDate=2018-06-01
 
 In order to have the analytics resource generate the data in the shape
@@ -9688,7 +9682,7 @@ table columns and rows. The column and rows dimensions must be present
 as a data dimension in the query (not a filter). Such a request can look
 like this:
 
-    /api/26/analytics.html?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014Q1;2014Q2
+    /api/33/analytics.html?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014Q1;2014Q2
       &dimension=ou:O6uvpzGd5pu&tableLayout=true&columns=dx;ou&rows=pe
 
 The *order* parameter can be used for analytics resource to generate
@@ -9696,7 +9690,7 @@ ordered data. The data will be ordered in ascending (or descending) order
 of values. An example request for ordering the values in descending
 order is:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:LAST_12_MONTHS
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:LAST_12_MONTHS
       &dimension=ou:O6uvpzGd5pu&order=DESC
 
 ### Dimensions and items
@@ -9778,73 +9772,73 @@ It is not necessary to be aware of which objects are used for the
 various dynamic dimensions when designing analytics queries. You can get
 a complete list of dynamic dimensions by visiting this URL in the Web API:
 
-    /api/26/dimensions
+    /api/33/dimensions
 
 The base URL to the analytics resource is `api/analytics`. To request
 specific dimensions and dimension items you can use a query string on
 the following format, where `dim-id` and `dim-item` should be substituted with real values:
 
-    /api/26/analytics?dimension=dim-id:dim-item;dim-item&dimension=dim-id:dim-item;dim-item
+    /api/33/analytics?dimension=dim-id:dim-item;dim-item&dimension=dim-id:dim-item;dim-item
 
 As illustrated above, the dimension identifier is followed by a colon
 while the dimension items are separated by semi-colons. As an example, a
 query for two data elements, two periods and two organisation units can
 be done with the following URL:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=pe:2016Q1;2016Q2&dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 To query for data broken down by category option combinations instead of
 data element totals you can include the category dimension in the query
 string, for instance like this:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=co&dimension=pe:201601&dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 When selecting data elements you can also select all data elements in a
 group as items by using the DE_GROUP-<id> syntax:
 
-    /api/26/analytics?dimension=dx:DE_GROUP-h9cuJOkOwY2
+    /api/33/analytics?dimension=dx:DE_GROUP-h9cuJOkOwY2
       &dimension=pe:201601&dimension=ou:O6uvpzGd5pu
 
 When selecting data set reporting rates, the syntax contains of a data
 set identifier followed by a reporting rate metric:
 
-    /api/26/analytics?dimension=dx:BfMAe6Itzgt.REPORTING_RATE;BfMAe6Itzgt.ACTUAL_REPORTS
+    /api/33/analytics?dimension=dx:BfMAe6Itzgt.REPORTING_RATE;BfMAe6Itzgt.ACTUAL_REPORTS
       &dimension=pe:201601&dimension=ou:O6uvpzGd5pu
 
 To query for program data elements (of tracker domain type) you can get
 those by specifying the program for each data element using the
 <program-id>.<dataelement-id> syntax:
 
-    /api/26/analytics.json?dimension=dx:eBAyeGv0exc.qrur9Dvnyt5;eBAyeGv0exc.GieVkTxp4HH
+    /api/33/analytics.json?dimension=dx:eBAyeGv0exc.qrur9Dvnyt5;eBAyeGv0exc.GieVkTxp4HH
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
 To query for program attributes (tracked entity attributes) you can get
 those by specifying the program for each attribute using the
 <program.id>.<attribute-id> syntax:
 
-    /api/26/analytics.json?dimension=dx:IpHINAT79UW.a3kGcGDCuk6;IpHINAT79UW.UXz7xuGCEhU
+    /api/33/analytics.json?dimension=dx:IpHINAT79UW.a3kGcGDCuk6;IpHINAT79UW.UXz7xuGCEhU
       &dimension=pe:LAST_4_QUARTERS&dimension=ou:ImspTQPwCqd
 
 To query for organisation unit group sets and data elements you can use
 the following URL. Notice how the group set identifier is used as
 dimension identifier and the groups as dimension items:
 
-    /api/26/analytics?dimension=Bpx0589u8y0:oRVt7g429ZO;MAs88nJc9nL
+    /api/33/analytics?dimension=Bpx0589u8y0:oRVt7g429ZO;MAs88nJc9nL
       &dimension=pe:2016&dimension=ou:ImspTQPwCqd
 
 To query for data elements and categories you can use this URL. Use the
 category identifier as dimension identifier and the category options as
 dimension items:
 
-    /api/26/analytics?dimension=dx:s46m5MS0hxu;fClA2Erf6IO&dimension=pe:2016
+    /api/33/analytics?dimension=dx:s46m5MS0hxu;fClA2Erf6IO&dimension=pe:2016
       &dimension=YNZyaJHiHYq:btOyqprQ9e8;GEqzEKCHoGA&filter=ou:ImspTQPwCqd
 
 To query using relative periods and organisation units associated with
 the current user you can use a URL like this:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=pe:LAST_12_MONTHS&dimension=ou:USER_ORGUNIT
 
 When selecting organisation units for a dimension you can select an
@@ -9856,12 +9850,12 @@ will be included in the response, and is provided as regular organisation unit
 dimension items. The level value can either be a numerical level or refer to the identifier
 of the organisation unit level entity. A simple query for all org units at level three:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016&dimension=ou:LEVEL-3
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016&dimension=ou:LEVEL-3
 
 A query for level three and four with two boundary org units can be
 specified like this:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016
       &dimension=ou:LEVEL-3;LEVEL-4;O6uvpzGd5pu;lc3eMKXaEf
 
 When selecting organisation units you can also select all organisation
@@ -9871,14 +9865,14 @@ can optionally be constrained by any number of boundary organisation
 units. Both the level and the group items can be repeated any number of
 times:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016
       &dimension=ou:OU_GROUP-w0gFTTmsUcF;OU_GROUP-EYbopBOJWsW;O6uvpzGd5pu;lc3eMKXaEf
 
 You can utilize identifier schemes for the metadata part of the
 analytics response with the outputIdScheme property like this. You can
 use ID, code and attributes as identifier scheme:
 
-    /api/26/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=pe:2017Q1;2017Q2&dimension=ou:O6uvpzGd5pu&outputIdScheme=CODE
 
 A few things to be aware of when using the analytics resource are listed
@@ -10005,14 +9999,14 @@ following data types.
 Items from all of the various `dx` types can be combined in an analytics
 request. An example looks like this:
 
-    /api/26/analytics.json
+    /api/33/analytics.json
       ?dimension=dx:Uvn6LCg7dVU;BfMAe6Itzgt.REPORTING_RATE;IpHINAT79UW.a3kGcGDCuk6
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
 The group syntax can be used together with any other item as well. An
 example looks like this:
 
-    /api/26/analytics.json
+    /api/33/analytics.json
       ?dimension=dx:DE_GROUP-qfxEYY9xAl6;IN_GROUP-oehv9EO3vP7;BfMAe6Itzgt.REPORTING_RATE
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
@@ -10020,7 +10014,7 @@ Data element operands can optionally specify attribute option
 combinations and use wildcards e.g. to specify all category option
 combination values:
 
-    /api/26/analytics.json
+    /api/33/analytics.json
       ?dimension=dx:Uvn6LCg7dVU.*.j8vBiBqGf6O;Uvn6LCg7dVU.Z4oQs46iTeR
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
@@ -10060,7 +10054,7 @@ listed below.
 As an example, to request an analytics response in XML format you can
 use the following URL:
 
-    /api/26/analytics.xml?dimension=dx:fbfJHSPpUQD
+    /api/33/analytics.xml?dimension=dx:fbfJHSPpUQD
       &dimension=pe:2016&dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 The analytics responses must be retrieved using the HTTP *GET* method.
@@ -10227,7 +10221,7 @@ system to level 2 and import that data in the destination system.
 You can retrieve data in the raw data value set format from the
 dataValueSet resource:
 
-    /api/26/analytics/dataValueSet
+    /api/33/analytics/dataValueSet
 
 The following resource representations are supported:
 
@@ -10433,7 +10427,7 @@ The event analytics API lets you access aggregated event data and query
 on a program and optionally a program stage, and lets you retrieve and
 filter events on any event dimensions.
 
-    /api/26/analytics/events
+    /api/33/analytics/events
 
 ### Dimensions and items
 
@@ -10812,7 +10806,7 @@ The *analytics/events/query* resource lets you query for captured
 events. This resource does not perform any aggregation, rather it lets
 you query and filter for information about events.
 
-    /api/26/analytics/events/query
+    /api/33/analytics/events/query
 
 You can specify any number of dimensions and any number of filters in a
 query. Dimension item identifiers can refer to any of data elements,
@@ -10821,7 +10815,7 @@ organisation units. Dimensions can optionally have a query operator and
 a filter. Event queries should be on the format described
     below.
 
-    /api/26/analytics/events/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
+    /api/33/analytics/events/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
       &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
 For example, to retrieve events from the "Inpatient morbidity and
@@ -10830,7 +10824,7 @@ and "Age" data elements are included and the "Age" dimension is filtered
 on "18", you can use the following
     query:
 
-    /api/26/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/33/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu;fdc6uOvgoji&dimension=oZg33kd9taw&dimension=qrur9Dvnyt5:EQ:18
 
 To retrieve events for the "Birth" program stage of the "Child
@@ -10838,7 +10832,7 @@ programme" program between March and December 2016, where the "Weight"
 data element, filtered for values larger than
     2000:
 
-    /api/26/analytics/events/query/IpHINAT79UW?stage=A03MvHHogjR&startDate=2016-03-01
+    /api/33/analytics/events/query/IpHINAT79UW?stage=A03MvHHogjR&startDate=2016-03-01
       &endDate=2016-12-31&dimension=ou:O6uvpzGd5pu&dimension=UXz7xuGCEhU:GT:2000
 
 Sorting can be applied to the query for the event date of the event and
@@ -10846,7 +10840,7 @@ any dimensions. To sort descending on the event date and ascending on
 the "Age" data element dimension you can
     use:
 
-    /api/26/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/33/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=qrur9Dvnyt5&desc=EVENTDATE&asc=qrur9Dvnyt5
 
 Paging can be applied to the query by specifying the page number and the
@@ -10856,7 +10850,7 @@ number is not, a page number of 1 will be used. To get the third page of
 the response with a page size of 20 you can use a query like
     this:
 
-    /api/26/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/33/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=qrur9Dvnyt5&page=3&pageSize=20
 
 #### Filtering
@@ -10947,14 +10941,14 @@ supported.
 As an example, to get a response in Excel format you can use a file
 extension in the request URL like this:
 
-    /api/26/analytics/events/query/eBAyeGv0exc.xls?startDate=2016-01-01&endDate=2016-10-31
+    /api/33/analytics/events/query/eBAyeGv0exc.xls?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=oZg33kd9taw&dimension=qrur9Dvnyt5
 
 You can set the hierarchyMeta query parameter to true in order to
 include names of all ancestor organisation units in the meta-section of
 the response:
 
-    /api/26/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/33/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:YuQRtpLP10I&dimension=qrur9Dvnyt5:EQ:50&hierarchyMeta=true
 
 The default response JSON format will look similar to this:
@@ -11120,7 +11114,7 @@ analytics resource will now generate the data in table layout. The
 column and rows dimensions must be present as a data dimension in the
 query (not a filter). Such a request can look like this:
 
-    /api/29/analytics.html+css?dimension=dx:cYeuwXTCPkU;fbfJHSPpUQD&dimension=pe:WEEKS_THIS_YEAR
+    /api/33/analytics.html+css?dimension=dx:cYeuwXTCPkU;fbfJHSPpUQD&dimension=pe:WEEKS_THIS_YEAR
       &filter=ou:ImspTQPwCqd&displayProperty=SHORTNAME&columns=dx&rows=pe
 
 ### Event aggregate analytics
@@ -11132,7 +11126,7 @@ numbers* of events captured in DHIS2. This resource lets you retrieve
 aggregate data based on a program and optionally a program stage, and
 lets you filter on any event dimension.
 
-    /api/26/analytics/events/aggregate
+    /api/33/analytics/events/aggregate
 
 The events aggregate resource does not return the event information
 itself, rather the aggregate numbers of events matching the request
@@ -11140,7 +11134,7 @@ query. Event dimensions include data elements, person attributes, person
 identifiers, periods and organisation units. Aggregate event queries
 should be on the format described below.
 
-    /api/26/analytics/events/aggregate/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
+    /api/33/analytics/events/aggregate/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
       &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
 For example, to retrieve aggregate numbers for events from the
@@ -11149,34 +11143,34 @@ For example, to retrieve aggregate numbers for events from the
 dimension item is filtered on "18" and the "Gender" item is filtered on
 "Female", you can use the following query:
 
-    /api/26/analytics/events/aggregate/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/33/analytics/events/aggregate/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=oZg33kd9taw:EQ:Female&dimension=qrur9Dvnyt5:GT:50
 
 To retrieve data for fixed and relative periods instead of start and end
 date, in this case May 2016 and last 12 months, and the organisation
 unit associated with the current user, you can use the following query:
 
-    /api/26/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:201605;LAST_12_MONTHS
+    /api/33/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:201605;LAST_12_MONTHS
       &dimension=ou:USER_ORGUNIT;fdc6uOvgo7ji&dimension=oZg33kd9taw
 
 In order to specify "Female" as a filter for "Gender" for the data
 response, meaning "Gender" will not be part of the response but will
 filter the aggregate numbers in it, you can use the following syntax:
 
-    /api/26/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:2016;
+    /api/33/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:2016;
       &dimension=ou:O6uvpzGd5pu&filter=oZg33kd9taw:EQ:Female
 
 To specify the "Bo" organisation unit and the period "2016" as filters,
 and the "Mode of discharge" and Gender" as dimensions, where "Gender" is
 filtered on the "Male" item, you can use a query like this:
 
-    /api/26/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
+    /api/33/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
       &dimension=fWIAEtYVEGk&dimension=oZg33kd9taw:EQ:Male
 
 To create a "top 3 report" for "Mode of discharge" you can use the limit
 and sortOrder query parameters similar to this:
 
-    /api/26/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
+    /api/33/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
       &dimension=fWIAEtYVEGk&limit=3&sortOrder=DESC
 
 To specify a value dimension with a corresponding aggregation type you
@@ -11185,19 +11179,19 @@ value dimension will make the analytics engine return aggregate values
 for the values of that dimension in the response as opposed to counts of
 events.
 
-    /api/26/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk&dimension=ou:ImspTQPwCqd
+    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk&dimension=ou:ImspTQPwCqd
       &dimension=pe:LAST_12_MONTHS&dimension=fWIAEtYVEGk&value=qrur9Dvnyt5&aggregationType=AVERAGE
 
 To base event analytics aggregation on a specific data element or attribute
 of value type date or date time you can use the `timeField` parameter:
 
-    /api/29/analytics/events/aggregate/IpHINAT79UW.json?dimension=ou:ImspTQPwCqd
+    /api/33/analytics/events/aggregate/IpHINAT79UW.json?dimension=ou:ImspTQPwCqd
     &dimension=pe:LAST_12_MONTHS&dimension=cejWyOfXge6&stage=A03MvHHogjR&timeField=ENROLLMENT_DATE
 
 To base event analytics aggregation on a specific data element or attribute
 of value type organisation unit you can use the `orgUnitField` parameter:
 
-    /api/29/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
+    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
     &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk&orgUnitField=S33cRBsnXPo
 
 #### Ranges / legend sets
@@ -11215,7 +11209,7 @@ described below:
 An example looks like
     this:
 
-    /api/26/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
+    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
       &dimension=qrur9Dvnyt5-Yf6UHoPkdS6&dimension=ou:ImspTQPwCqd&dimension=pe:LAST_MONTH
 
 #### Response formats
@@ -11322,7 +11316,7 @@ will be returned.
 The *analytics/events/cluster* resource provides clustered geospatial
 event data. A request looks like this:
 
-    /api/26/analytics/events/cluster/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/33/analytics/events/cluster/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:LEVEL-2&clusterSize=100000
       &bbox=-13.2682125,7.3721619,-10.4261178,9.904012&includeClusterPoints=false
 
@@ -11400,7 +11394,7 @@ for a specific query. The query syntax is equal to the *events/query*
 resource. A request looks like
     this:
 
-    /api/26/analytics/events/count/eBAyeGv0exc?startDate=2016-01-01
+    /api/33/analytics/events/count/eBAyeGv0exc?startDate=2016-01-01
       &endDate=2016-10-31&dimension=ou:O6uvpzGd5pu
 
 The response will provide the count and extent in JSON format:
@@ -11472,36 +11466,36 @@ Enrollment dimensions include data elements, attributes, organisation units and 
 
 The *analytics/enrollments/query* resource lets you query for captured enrollments. This resource does not perform any aggregation, rather it lets you query and filter for information about enrollments.
 
-    /api/32/analytics/enrollments/query
+    /api/33/analytics/enrollments/query
 
 You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of data elements in program stages, tracked entity attributes, fixed and relative periods and organisation units. Dimensions can optionally have a query operator and a filter. Enrollment queries should be on the format described below.
 
-    /api/32/analytics/enrollments/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
+    /api/33/analytics/enrollments/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
       &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
 For example, to retrieve enrollments in the from the "Antenatal care" program from January 2019, where the "First name" is picked up from attributes, "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the following program stage, and only women that has "Cronic conditions" would be included, you can use the following query:
 
-    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
       &dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.de0FEHSIoxh:eq:1&dimension=w75KJ2mc4zz
       &dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=edqlbukwRfQ.vANAXwtLwcT
       &startDate=2019-01-01&endDate=2019-01-31
 
 To retrieve enrollments in the from the "Antenatal care" program from last month (relative to the point in time the query is executed), where the "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the folloup program stage, only including smoking women with hemoglobin less than 20:
 
-    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
       &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz
       &dimension=WZbXY0S00lP.sWoqcoByYmD:eq:1&dimension=edqlbukwRfQ.vANAXwtLwcT:lt:20
       &dimension=pe:LAST_MONTH
 
 Sorting can be applied to the query for the enrollment and incident dates of the enrollment:
 
-    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
+    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
       &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH
       &stage=WZbXY0S00lP&pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
 
 Paging can be applied to the query by specifying the page number and the page size parameters. If page number is specified but page size is not, a page size of 50 will be used. If page size is specified but page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
 
-    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
       &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=pe:LAST_MONTH
       &dimension=WZbXY0S00lP.sWoqcoByYmD&pageSize=10&page=2
 
@@ -11695,7 +11689,7 @@ The default response representation format is JSON. The requests must be using t
 
 As an example, to get a response in Excel format you can use a file extension in the request URL like this:
 
-    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
+    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
       &dimension=WZbXY0S00lP.de0FEHSIoxh&columns=w75KJ2mc4zz
       &dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
       &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
@@ -11925,14 +11919,14 @@ The non-aggregation enrollment analytics API also supports linking Program Indic
 
 ![](resources/images/enrollments/enrollments-pi-relationship.jpg)
 
-For the Program Indicator/Relationship Type link to work, the `/api/32/analytics/enrollments/query` API requires an additional dimension which must include the chosen Relationship Type UID and the chosen Program Indicator UID:
+For the Program Indicator/Relationship Type link to work, the `/api/33/analytics/enrollments/query` API requires an additional dimension which must include the chosen Relationship Type UID and the chosen Program Indicator UID:
 
-    /api/32/analytics/enrollments/query/<program-id>
+    /api/33/analytics/enrollments/query/<program-id>
       ?dimension=<relationshiptype-id>.<programindicator-id>
 
 For example, to retrive a list of enrollemnts from the "WHO RMNCH Tracker" program for January 2019 and display the count of Malaria Cases linked to that Enrollemnt by "Malaria case linked to person" type of relationship, you can use the following query
 
-    /api/32/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=mxZDvSZYxlw.nFICjJluo74
+    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=mxZDvSZYxlw.nFICjJluo74
       &startDate=2019-01-01&endDate=2019-01-31    
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
@@ -12020,7 +12014,7 @@ Data set reports can be generated trough the web api using the
 `/dataSetReport` resource. This resource generates reports on data set
 and returns the result in the form of a HTML table.
 
-    /api/31/dataSetReport
+    /api/33/dataSetReport
 
 ### Request query parameters
 
@@ -12080,11 +12074,11 @@ The data set report resource accepts `GET` requests only. The response content t
 
 An example request to retrieve a report for a data set and org unit for 2018 looks like this:
 
-    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
+    GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
 
 To get a data set report with a filter you can use the `filter` parameter. In this case the filter is based on an org unit group set and two org unit groups:
 
-    GET /api/31/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd
+    GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd
       &filter=J5jldMd8OHv:RXL3lPSK8oG;tDZVQ1WtwpA
 
 ### Response formats
@@ -12099,11 +12093,11 @@ The data set report endpoint supports output in the following formats. You can r
 
 A dedicated endpoint is available for data sets with custom HTML forms. This endpoint returns the HTML form content with content type `text/html` with data inserted into it. Note that you can use the general data set report endpoint also for data sets with custom forms; however that will return the report in JSON format as a grid. This endpoint only works for data sets with custom HTML forms.
 
-    GET /api/31/dataSetReport/custom
+    GET /api/33/dataSetReport/custom
 
 The syntax for this endpoint is otherwise equal to the general data set report endpoint. To retrieve a custom HTML data set report you can issue a request like this:
 
-    GET /api/31/dataSetReport/custom?ds=lyLU2wR22tC&pe=201810&ou=ImspTQPwCqd
+    GET /api/33/dataSetReport/custom?ds=lyLU2wR22tC&pe=201810&ou=ImspTQPwCqd
 
 
 ## Push Analysis
@@ -12122,12 +12116,12 @@ in the future.
 To get a HTML preview of an existing push analysis, you can do a GET
 request to the following endpoint:
 
-    /api/26/pushAnalysis/<id>/render
+    /api/33/pushAnalysis/<id>/render
 
 To manually trigger a push analysis job, you can do a POST request to
 this endpoint:
 
-    /api/26/pushAnalysis/<id>/run
+    /api/33/pushAnalysis/<id>/run
 
 A push analysis consists of the following properties, where some are
 required to automaticly run push analysis jobs:
@@ -12198,7 +12192,7 @@ event is recorded. The event consists of the user name, the UID of the
 favorite, when the event took place, and the type of event. The
 different types of events are listed in the table.
 
-    /api/26/dataStatistics
+    /api/33/dataStatistics
 
 The usage analytics API lets you retrieve aggregated snapshots of usage
 analytics based on time intervals. The API captures user views (for
@@ -12229,7 +12223,7 @@ favorite.
 URL that creates a new event view of
     charts:
 
-    POST /api/24/dataStatistics?eventType=CHART_VIEW&favorite=LW0O27b7TdD
+    POST /api/33/dataStatistics?eventType=CHART_VIEW&favorite=LW0O27b7TdD
 
 A successful save operation returns HTTP status code 201. The table
 below shows the supported types of events.
@@ -12332,7 +12326,7 @@ type of aggregation will be done.
 API query that creates a query for a monthly
     aggregation:
 
-    GET /api/24/dataStatistics?startDate=2014-01-02&endDate=2016-01-01&interval=MONTH
+    GET /api/33/dataStatistics?startDate=2014-01-02&endDate=2016-01-01&interval=MONTH
 
 ### Retrieve top favorites
 
@@ -12388,11 +12382,11 @@ DHIS2, and by user.
 The API query can be used without username, and will then find the top
 favorites of the system.
 
-    /api/24/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC
+    /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC
 
 If username is specified, the response will only contain the top favorites of that user.
 
-    /api/24/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC&username=admin
+    /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC&username=admin
 
 ### Response format
 
@@ -12411,7 +12405,7 @@ available formats and content types are:
 API query that requests an usage analytics response in XML
     format:
 
-    /api/24/dataStatistics.xml?startDate=2014-01-01&endDate=2016-01-01&interval=WEEK
+    /api/33/dataStatistics.xml?startDate=2014-01-01&endDate=2016-01-01&interval=WEEK
 
 You must retrieve the aggregated usage analytics response with the HTTP
 GET method. This allows you to link directly from Web pages and other
@@ -12422,7 +12416,7 @@ Execute this command against the demo database to get an usage analytics
 response in JSON format:
 
 ```bash
-curl "play.dhis2.org/demo/api/24/dataStatistics?startDate=2016-02-01&endDate=2016-02-14
+curl "play.dhis2.org/demo/api/33/dataStatistics?startDate=2016-02-01&endDate=2016-02-14
   &interval=WEEK" -u admin:district
 ```
 
@@ -12495,7 +12489,7 @@ You can retrieve the number of view for a specific favorite by using the
 *favorites* resource, where *{favorite-id}* should be substituted with
 the identifier of the favorite of interest:
 
-    /api/24/dataStatistics/favorites/{favorite-id}.json
+    /api/33/dataStatistics/favorites/{favorite-id}.json
 
 The response will contain the number of views for the given favorite and
 look like this:
@@ -12522,12 +12516,12 @@ As an example, to retrieve geo features for all organisation units at
 level 3 in the organisation unit hierarchy you can use a GET request
 with the following URL:
 
-    /api/26/geoFeatures.json?ou=ou:LEVEL-3
+    /api/33/geoFeatures.json?ou=ou:LEVEL-3
 
 To retrieve geo features for organisation units at level within the
 boundary of an organisation unit (e.g. at level 2) you can use this URL:
 
-    /api/26/geoFeatures.json?ou=ou:LEVEL-4;O6uvpzGd5pu
+    /api/33/geoFeatures.json?ou=ou:LEVEL-4;O6uvpzGd5pu
 
 The semantics of the response properties are described in the following
 table.
@@ -12600,11 +12594,11 @@ some examples follow.
 
 Get all features at level 2 and 4:
 
-    /api/26/organisationUnits.geojson?level=2&level=4
+    /api/organisationUnits.geojson?level=2&level=4
 
 Get all features at level 3 with a boundary organisation unit:
 
-    /api/26/organisationUnits.geojson?parent=fdc6uOvgoji&level=3
+    /api/organisationUnits.geojson?parent=fdc6uOvgoji&level=3
 
 ## Generating resource and analytics tables
 
@@ -12622,13 +12616,13 @@ various analysis functions. These tables are also valuable for users
 writing advanced SQL reports. They can be generated with a POST or PUT
 request to the following URL:
 
-    /api/26/resourceTables
+    /api/33/resourceTables
 
 The analytics tables are optimized for data aggregation and used
 currently in DHIS2 for the pivot table module. The analytics tables can
 be generated with a POST or PUT request to:
 
-    /api/26/resourceTables/analytics
+    /api/33/resourceTables/analytics
 
 <table>
 <caption>Analytics tables optional query parameters</caption>
@@ -12676,7 +12670,7 @@ be generated with a POST or PUT request to:
 "Data Quality" and "Data Surveillance" can be run through the monitoring
 task, triggered with the following endpoint:
 
-    /api/26/resourceTables/monitoring
+    /api/33/resourceTables/monitoring
 
 This task will analyse your validation rules, find any violations and
 persist them as validation results.
@@ -12692,54 +12686,54 @@ To perform maintenance you can interact with the *maintenance* resource. You sho
 
 Analytics tables clear will drop all analytics tables.
 
-    POST PUT /api/26/maintenance/analyticsTablesClear
+    POST PUT /api/maintenance/analyticsTablesClear
 
 Analytics table analyze will collects statistics about the contents of analytics tables in the database.
 
-    POST PUT /api/26/maintenance/analyticsTablesAnalyze
+    POST PUT /api/maintenance/analyticsTablesAnalyze
 
 Expired invitations clear will remove all user account invitations which
 have expired.
 
-    POST PUT /api/26/maintenance/expiredInvitationsClear
+    POST PUT /api/maintenance/expiredInvitationsClear
 
 Period pruning will remove periods which are not linked to any data
 values.
 
-    POST PUT /api/26/maintenance/periodPruning
+    POST PUT /api/maintenance/periodPruning
 
 Zero data value removal will delete zero data values linked to data
 elements where zero data is defined as not significant:
 
-    POST PUT /api/26/maintenance/zeroDataValueRemoval
+    POST PUT /api/maintenance/zeroDataValueRemoval
 
 Soft deleted data value removal will permanently delete soft deleted data values.
 
-    POST PUT /api/26/maintenance/softDeletedDataValueRemoval
+    POST PUT /api/maintenance/softDeletedDataValueRemoval
 
 Soft deleted program stage instance removal will permanently delete soft deleted events.
 
-    POST PUT /api/26/maintenance/softDeletedProgramStageInstanceRemoval
+    POST PUT /api/maintenance/softDeletedProgramStageInstanceRemoval
 
 Soft deleted program instance removal will permanently delete soft deleted enrollments.
 
-    POST PUT /api/26/maintenance/softDeletedProgramInstanceRemoval
+    POST PUT /api/maintenance/softDeletedProgramInstanceRemoval
 
 Soft deleted tracked entity instance removal will permanently delete soft deleted tracked entity instances.
 
-    POST PUT /api/26/maintenance/softDeletedTrackedEntityInstanceRemoval
+    POST PUT /api/maintenance/softDeletedTrackedEntityInstanceRemoval
 
 Drop SQL views will drop all SQL views in the database. Note that it will not delete the DHIS 2 SQL view entities.
 
-    POST PUT /api/26/maintenance/sqlViewsDrop
+    POST PUT /api/maintenance/sqlViewsDrop
 
 Create SQL views will recreate all SQL views in the database.
 
-    POST PUT /api/26/maintenance/sqlViewsCreate
+    POST PUT /api/maintenance/sqlViewsCreate
 
 Category option combo update will remove obsolete and generate missing category option combos for all category combinations.
 
-    POST PUT /api/26/maintenance/categoryOptionComboUpdate
+    POST PUT /api/maintenance/categoryOptionComboUpdate
 
 It is also possible to update category option combos for a single category combo using the following endpoint.
 
@@ -12747,31 +12741,31 @@ It is also possible to update category option combos for a single category combo
 
 Cache clearing will clear the application Hibernate cache and the analytics partition caches.
 
-    POST PUT /api/26/maintenance/cacheClear
+    POST PUT /api/maintenance/cacheClear
 
 Org unit paths update will re-generate the organisation unit path property. This can be useful e.g. if you imported org units with SQL.
 
-    POST PUT /api/26/maintenance/ouPathsUpdate
+    POST PUT /api/maintenance/ouPathsUpdate
 
 Data pruning will remove complete data set registrations, data approvals, data value audits and data values, in this case for an organisation unit.
 
-    POST PUT /api/26/maintenance/dataPruning/organisationUnits/<org-unit-id>
+    POST PUT /api/maintenance/dataPruning/organisationUnits/<org-unit-id>
 
 Data pruning for data elements, which will remove data value audits and data values.
 
-    POST PUT /api/26/maintenance/dataPruning/dataElement/<data-element-uid>
+    POST PUT /api/maintenance/dataPruning/dataElement/<data-element-uid>
 
 Metadata validation will apply all metadata validation rules and return the result of the operation.
 
-    POST PUT /api/26/metadataValidation
+    POST PUT /api/metadataValidation
 
 App reload will refresh the DHIS 2 managed cache of installed apps by reading from the file system.
 
-    POST PUT /api/26/appReload
+    POST PUT /api/appReload
 
 Maintenance operations are supported in a batch style with a POST request to the api/maintenance resource where the operations are supplied as query parameters:
 
-    POST PUT /api/26/maintenance?analyticsTablesClear=true&expiredInvitationsClear=true
+    POST PUT /api/maintenance?analyticsTablesClear=true&expiredInvitationsClear=true
       &periodPruning=true&zeroDataValueRemoval=true&sqlViewsDrop=true&sqlViewsCreate=true
       &categoryOptionComboUpdate=true&cacheClear=true&ouPathsUpdate=true
 
@@ -12789,7 +12783,7 @@ functions. The system resource can be found at */api/system*.
 To generate valid, random DHIS2 identifiers you can do a GET request to
 this resource:
 
-    /api/26/system/id?limit=3
+    /api/33/system/id?limit=3
 
 The *limit* query parameter is optional and indicates how many
 identifiers you want to be returned with the response. The default is to
@@ -12822,7 +12816,7 @@ The DHIS2 UID format has these requirements:
 To get information about the current system you can do a GET request to
 this URL:
 
-    /api/26/system/info
+    /api/33/system/info
 
 JSON and JSONP response formats are supported. The system info response
 currently includes the below properties.
@@ -12863,7 +12857,7 @@ To get information about the system context only, i.e. `contextPath` and
 `userAgent`, you can make a GET request to the below URL. JSON and
 JSONP response formats are supported:
 
-    /api/26/system/context
+    /api/33/system/context
 
 ### Check if username and password combination is correct
 
@@ -12873,7 +12867,7 @@ To check if some user credentials (a username and password combination)
 is correct you can make a *GET* request to the following resource using
 *basic authentication*:
 
-    /api/26/system/ping
+    /api/33/system/ping
 
 You can detect the outcome of the authentication by inspecting the *HTTP
 status code* of the response header. The meaning of the possible status
@@ -12988,11 +12982,11 @@ async-enabled endpoints.
 You can poll the task status through a GET request to the system tasks
 resource like this:
 
-    /api/29/system/tasks/{task-category-id}/{task-id}
+    /api/33/system/tasks/{task-category-id}/{task-id}
 
 An example request may look like this:
 
-    /api/29/system/tasks/DATAVALUE_IMPORT/j8Ki6TgreFw
+    /api/33/system/tasks/DATAVALUE_IMPORT/j8Ki6TgreFw
 
 The response will provide information about the status, such as the
 notification level, category, time and status. The *completed* property
@@ -13014,19 +13008,19 @@ indicates whether the process is considered to be complete.
 You can poll all tasks for a specific category through a GET request to
 the system tasks resource:
 
-    /api/26/system/tasks/{task-category-id}
+    /api/33/system/tasks/{task-category-id}
 
 An example request to poll for the status of data value import tasks
 looks like this:
 
-    /api/26/system/tasks/DATAVALUE_IMPORT
+    /api/33/system/tasks/DATAVALUE_IMPORT
 
 #### Monitor all tasks
 
 You can request a list of all currently running tasks in the system with
 a GET request to the system tasks resource:
 
-    /api/29/system/tasks
+    /api/33/system/tasks
 
 The response will look similar to this:
 
@@ -13078,11 +13072,11 @@ asynchronous task.
 
 To retrieve the summary of a specific task you can issue a request to:
 
-    /api/29/system/taskSummaries/{task-category-id}/{task-id}
+    /api/33/system/taskSummaries/{task-category-id}/{task-id}
 
 An example request might look like this:
 
-    /api/29/system/taskSummaries/DATAVALUE_IMPORT/k72jHfF13J1
+    /api/33/system/taskSummaries/DATAVALUE_IMPORT/k72jHfF13J1
 
 The response will look similar to this:
 
@@ -13124,7 +13118,7 @@ You might also retrieve import summaries for multiple tasks of a
 specific category with a request like
 this:
 
-    /api/29/system/taskSummaries/{task-category-id}
+    /api/33/system/taskSummaries/{task-category-id}
 
 ### Get appearance information
 
@@ -13133,12 +13127,12 @@ this:
 You can retrieve the available flag icons in JSON format with a GET
 request:
 
-    /api/26/system/flags
+    /api/33/system/flags
 
 You can retrieve the available UI styles in JSON format with a GET
 request:
 
-    /api/26/system/styles
+    /api/33/system/styles
 
 ## Locales
 
@@ -13153,7 +13147,7 @@ You can retrieve the available locales for the user interface through
 the following resource with a GET request. XML and JSON resource
 representations are supported.
 
-    /api/26/locales/ui
+    /api/33/locales/ui
 
 ### Database content locales
 
@@ -13161,7 +13155,7 @@ You can retrieve and create locales for database content with GET and
 POST requests through the following resource. XML and JSON resource
 representations are supported.
 
-    /api/26/locales/db
+    /api/33/locales/db
 
 ## Translations
 
@@ -13170,7 +13164,7 @@ representations are supported.
 DHIS2 allows for translations of database content. You can work with
 translations through the Web API using the *translations* resource.
 
-    /api/26/translations
+    /api/33/translations
 
 ### Create translation
 
@@ -13186,7 +13180,7 @@ You can create a translation with a POST request in JSON format:
 }
 ```
 
-    POST /api/26/translations
+    POST /api/33/translations
 
 The properties which support translations are listed in the table below.
 
@@ -13336,17 +13330,17 @@ The classes which support translations are listed in the table below.
 
 You can browse all translations through the translations resource:
 
-    GET /api/26/translations
+    GET /api/33/translations
 
 You can use the standard filtering technique to fetch translations of
 interest. E.g. to get all translations for data elements in the Spanish
 locale you can use this request:
 
-    /api/26/translations.json?fields=*&filter=className:eq:DataElement&filter=locale:eq:es
+    /api/33/translations.json?fields=*&filter=className:eq:DataElement&filter=locale:eq:es
 
 To get translations for a specific object for all properties:
 
-    /api/26/translations.json?fields=*&filter=className:eq:DataElement
+    /api/33/translations.json?fields=*&filter=className:eq:DataElement
       &filter=locale:eq:fr&filter=objectId:eq:fbfJHSPpUQD
 
 ## Short Message Service (SMS)
@@ -13364,7 +13358,7 @@ to be configured before using the service. An SMS will not be sent if
 there is no gateway configured. It needs a set of recipients and
 message text in JSON format as shown below.
 
-    /api/26/sms/outbound
+    /api/33/sms/outbound
 
 ```json
 {
@@ -13384,7 +13378,7 @@ The Web API also supports a query parameter version, but the
 parametrised API can only be used for sending SMS to a single
 destination.
 
-    /api/26/sms/outbound?message=text&recipient=004712341234
+    /api/33/sms/outbound?message=text&recipient=004712341234
 
 #### Gateway response codes
 
@@ -13524,7 +13518,7 @@ originator, received date and sent date are mandatory parameters. The
 rest are optional but the system will use the default value for these
 parameters.
 
-    /api/26/sms/inbound
+    /api/33/sms/inbound
 
 ```json
 {
@@ -13540,7 +13534,7 @@ parameters.
 
 The Web API also supports a query parameter-based version.
 
-    /api/26/sms/inbound?message=text&originator=47XXXXXX&gateway=clickatel
+    /api/33/sms/inbound?message=text&originator=47XXXXXX&gateway=clickatel
 
 <table>
 <caption>User query parameters</caption>
@@ -13588,33 +13582,33 @@ update SMS gateway configurations.
 The list of different gateways configured can be retrieved using a GET
 method.
 
-    GET /api/26/gateways
+    GET /api/33/gateways
 
 Configurations can also be retrieved for a specific gateway type using
 GET method.
 
-    GET /api/26/gateways/{uid}
+    GET /api/33/gateways/{uid}
 
 New gateway configuraitons can be added using POST. POST api requires type request parameter and currently its value can have either one *http,bulksms,clickatell*. First added gateway will be set to default. Only one gateway is allowed to be default at one time. Default gateway can only be changed through its api. If default gateway is removed then the next one the list will automatically becomes default.
 
-    POST /api/26/gateways
+    POST /api/33/gateways
 
 Configuration can be updated with by providing uid and gateway configurations as mentioned below
 
-    PUT /api/26/gateways/{uids}
+    PUT /api/33/gateways/{uids}
 
 Configurations can be removed for specific gateway type using DELETE
 method.
 
-    DELETE /api/26/gateways/{uid}
+    DELETE /api/33/gateways/{uid}
 
 Default gateway can be retrieved and updated.
 
-    GET /api/26/gateways/default
+    GET /api/33/gateways/default
 
 Default gateway can be set using the PUT method.
 
-    PUT /api/26/gateways/default/{uid}
+    PUT /api/33/gateways/default/{uid}
 
 ### Gateway configuration
 
@@ -13825,7 +13819,7 @@ Program message lets you send messages to tracked entity instances,
 contact addresses associated with organisation units, phone numbers and
 email addresses. You can send messages through the `messages` resource.
 
-    /api/26/messages
+    /api/33/messages
 
 ### Sending program messages
 
@@ -13854,7 +13848,7 @@ Below is a sample JSON payload for sending messages using POST requests.
 Note that message resource accepts a wrapper object named
 `programMessages` which can contain any number of program messages.
 
-    POST /api/26/messages
+    POST /api/33/messages
 
 ```json
 {
@@ -13959,7 +13953,7 @@ A minimalistic example for sending a message over SMS to a tracked
 entity instance looks like this:
 
 ```bash
-curl -d @message.json "https://play.dhis2.org/demo/api/26/messages"
+curl -d @message.json "https://play.dhis2.org/demo/api/33/messages"
   -H "Content-Type:application/json" -u admin:district
 ```
 
@@ -13986,15 +13980,15 @@ curl -d @message.json "https://play.dhis2.org/demo/api/26/messages"
 
 The list of messages can be retrieved using GET.
 
-    GET /api/26/messages
+    GET /api/33/messages
 
 One particular message can also be retrieved using GET.
 
-    GET /api/26/messages/{uid}
+    GET /api/33/messages/{uid}
 
 Message can be deleted using DELETE.
 
-    DELETE /api/26/messages/{uid}
+    DELETE /api/33/messages/{uid}
 
 ### Querying program messages
 
@@ -14018,23 +14012,23 @@ retrieving information.
 <tbody>
 <tr class="odd">
 <td>programInstance</td>
-<td>/api/26/messages?programInstance=6yWDMa0LP7</td>
+<td>/api/33/messages?programInstance=6yWDMa0LP7</td>
 </tr>
 <tr class="even">
 <td>programStageInstance</td>
-<td>/api/26/messages?programStageInstance=SllsjpfLH2</td>
+<td>/api/33/messages?programStageInstance=SllsjpfLH2</td>
 </tr>
 <tr class="odd">
 <td>trackedEntityInstance</td>
-<td>/api/26/messages?trackedEntityInstance=xdfejpfLH2</td>
+<td>/api/33/messages?trackedEntityInstance=xdfejpfLH2</td>
 </tr>
 <tr class="even">
 <td>organisationUnit</td>
-<td>/api/26/messages?ou=Sllsjdhoe3</td>
+<td>/api/33/messages?ou=Sllsjdhoe3</td>
 </tr>
 <tr class="odd">
 <td>processedDate</td>
-<td>/api/26/messages?processedDate=2016-02-01</td>
+<td>/api/33/messages?processedDate=2016-02-01</td>
 </tr>
 </tbody>
 </table>
@@ -14045,7 +14039,7 @@ retrieving information.
 
 This section covers the user resource methods.
 
-    /api/26/users
+    /api/33/users
 
 ### User query
 
@@ -14147,7 +14141,7 @@ A query for max 10 users with "konan" as first name or surname (case
 in-sensitive) who have a subset of authorities compared to the current
 user:
 
-    /api/26/users?query=konan&authSubset=true&pageSize=10
+    /api/33/users?query=konan&authSubset=true&pageSize=10
 
 ### User credentials query
 
@@ -14160,13 +14154,13 @@ object filters as the other endpoints.
 
 Get user credentials where username is admin:
 
-    /api/26/userCredentials?filter=username:eq:admin
+    /api/33/userCredentials?filter=username:eq:admin
 
 Get username and code from all user credentials where username starts
 with
     *adm*:
 
-    /api/26/userCredentials?fields=username,code&filter=username:^like:adm
+    /api/33/userCredentials?fields=username,code&filter=username:^like:adm
 
 ### User account create and update
 
@@ -14218,7 +14212,7 @@ use this on a SSL enabled server) and will be encrypted on the backend:
 ```
 
 ```bash
-curl -X POST -d @u.json "http://server/api/26/users" -u user:pass 
+curl -X POST -d @u.json "http://server/api/33/users" -u user:pass 
   -H "Content-Type: application/json" 
 ```    
     
@@ -14239,7 +14233,7 @@ to then use *PUT* instead of *POST* and the endpoint is now
 */api/users/ID*.
 
 ```bash
-curl -X PUT -d @u.json "http://server/api/26/users/ID" -u user:pass 
+curl -X PUT -d @u.json "http://server/api/33/users/ID" -u user:pass 
   -H "Content-Type: application/json" 
 ```
 
@@ -14287,7 +14281,7 @@ looks like this:
 The user invite entity can be posted like this:
 
 ```bash
-curl -d @invite.json "localhost/api/26/users/invite" -u admin:district
+curl -d @invite.json "localhost/api/33/users/invite" -u admin:district
   -H "Content-Type:application/json" 
 ```
 
@@ -14330,7 +14324,7 @@ To create multiple invites you can post the payload to the
 api/users/invites resource like this:
 
 ```bash
-curl -d @invites.json "localhost/api/26/users/invites" -u admin:district
+curl -d @invites.json "localhost/api/33/users/invites" -u admin:district
   -H "Content-Type:application/json"
 ```
 
@@ -14383,12 +14377,12 @@ can post a JSON payload looking like below:
 This payload can be posted to the replica resource, where you provide
 the identifier of the user to replicate in the URL:
 
-    /api/26/users/<uid>/replica
+    /api/33/users/<uid>/replica
 
 An example of replicating a user using curl looks like this:
 
 ```bash
-curl -d @replica.json "localhost/api/26/users/N3PZBUlN8vq/replica"
+curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
   -H "Content-Type:application/json" -u admin:district
 ```
 
@@ -14477,14 +14471,14 @@ You can manipulate system settings by interacting with the
 where both the key and the value are plain text strings. To save or
 update a system setting you can make a *POST* request to the following URL:
 
-    /api/26/systemSettings/my-key?value=my-val
+    /api/33/systemSettings/my-key?value=my-val
 
 Alternatively, you can submit the setting value as the request body,
 where content type is set to "text/plain". As an example, you can use
 curl like this:
 
 ```bash
-curl "play.dhis2.org/demo/api/26/systemSettings/my-key" -d "My long value"
+curl "play.dhis2.org/demo/api/33/systemSettings/my-key" -d "My long value"
   -H "Content-Type: text/plain" -u admin:district
 ```
 
@@ -14503,23 +14497,23 @@ You should replace my-key with your real key and my-val with your real
 value. To retrieve the value for a given key in plain text you can make
 a *GET* request to the following URL:
 
-    /api/26/systemSettings/my-key
+    /api/33/systemSettings/my-key
 
 Alternatively, you can specify the key as a query parameter:
 
-    /api/26/systemSettings?key=my-key
+    /api/33/systemSettings?key=my-key
 
 You can retrieve specific system settings as JSON by repeating the key
 query parameter:
 
 ```bash
-curl "play.dhis2.org/demo/api/26/systemSettings?key=keyApplicationNotification&key=keyApplicationIntro"
+curl "play.dhis2.org/demo/api/33/systemSettings?key=keyApplicationNotification&key=keyApplicationIntro"
   -u admin:district
 ```
 
 You can retrieve all system settings with a GET request:
 
-    /api/26/systemSettings
+    /api/33/systemSettings
 
 To delete a system setting, you can make a *DELETE* request to the URL
 similar to the one used above for retrieval.
@@ -14844,30 +14838,30 @@ and the value are plain text strings. The user setting will be linked to
 the user who is authenticated for the Web API request. To return a list
 of all user settings, you can send a *GET* request to the following URL:
 
-    /api/26/userSettings
+    /api/33/userSettings
 
 User settings not set by the user, will fall back to the equivalent
 system setting. To only return the values set explicitly by the user,
 you can append ?useFallback=false to the above URL, like this:
 
-    /api/26/userSettings?useFallback=false
+    /api/33/userSettings?useFallback=false
 
 To save or update a setting for the currently authenticated user you can
 make a *POST* request to the following URL:
 
-    /api/26/userSettings/my-key?value=my-val
+    /api/33/userSettings/my-key?value=my-val
 
 You can specify the user for which to save the setting explicitly with
 this syntax:
 
-    /api/26/userSettings/my-key?user=username&value=my-val
+    /api/33/userSettings/my-key?user=username&value=my-val
 
 Alternatively, you can submit the setting value as the request body,
 where content type is set to "text/plain". As an example, you can use
 curl like this:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/userSettings/my-key" -d "My long value"
+curl "https://play.dhis2.org/demo/api/33/userSettings/my-key" -d "My long value"
   -H "Content-Type: text/plain" -u admin:district
 ```
 
@@ -14875,7 +14869,7 @@ As an example, to set the UI locale of the current user to French you
 can use the following command.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/userSettings/keyUiLocale?value=fr" 
+curl "https://play.dhis2.org/demo/api/33/userSettings/keyUiLocale?value=fr" 
   -X POST -u admin:district
 ```
 
@@ -14883,7 +14877,7 @@ You should replace my-key with your real key and my-val with your real
 value. To retrieve the value for a given key in plain text you can make
 a *GET* request to the following URL:
 
-    /api/26/userSettings/my-key
+    /api/33/userSettings/my-key
 
 To delete a user setting, you can make a *DELETE* request to the URL
 similar to the one used above for retrieval.
@@ -14977,7 +14971,7 @@ additional query parameters.
 
 To get a list of organisation units you can use the following resource.
 
-    /api/26/organisationUnits
+    /api/33/organisationUnits
 
 <table>
 <caption>Organisation units query parameters</caption>
@@ -15054,7 +15048,7 @@ To get a list of organisation units you can use the following resource.
 To get an organisation unit with related organisation units you can use
 the following resource.
 
-    /api/24/organisationUnits/{id}
+    /api/33/organisationUnits/{id}
 
 <table>
 <caption>Organisation unit parameters</caption>
@@ -15102,16 +15096,16 @@ The *dataSets* resource follows the standard conventions as other
 metadata resources in DHIS2. This resource supports some additional
 query parameters.
 
-    /api/26/dataSets
+    /api/33/dataSets
 
 To retrieve the version of a data set you can issue a GET request:
 
-    GET /api/26/dataSets/<uid>/version
+    GET /api/33/dataSets/<uid>/version
 
 To bump (increase by one) the version of a data set you can issue a POST
 request:
 
-    POST /api/26/dataSets/<uid>/version
+    POST /api/33/dataSets/<uid>/version
 
 ### DataSet Notification Template
 
@@ -15120,19 +15114,19 @@ request:
 The *dataset notification templates* resource follows the standard
 conventions as other metadata resources in DHIS2.
 
-    GET /api/26/dataSetNotficationTemplates
+    GET /api/33/dataSetNotficationTemplates
 
 To retrieve data set notification template you can issue a GET request:
 
-    GET /api/26/dataSetNotficationTemplates/<uid>
+    GET /api/33/dataSetNotficationTemplates/<uid>
 
 To add data set notification template you can issue a POST request:
 
-    POST /api/26/dataSetNotficationTemplates
+    POST /api/33/dataSetNotficationTemplates
 
 To delete data set notification template you can issue a DELETE request:
 
-    DELETE /api/26/dataSetNotficationTemplates/<uid>
+    DELETE /api/33/dataSetNotficationTemplates/<uid>
 
 JSON payload sample is given below:
 
@@ -15161,7 +15155,7 @@ The *filledOrganisationUnitLevels* resource provides an ordered list of
 organisation unit levels, where generated levels are injected into the
 list to fill positions for which it does not exist a persisted level.
 
-    GET /api/26/filledOrganisationUnitLevels
+    GET /api/33/filledOrganisationUnitLevels
 
 To set the organisation unit levels you can issue a POST request with a
 JSON payload looking like this.
@@ -15188,7 +15182,7 @@ JSON payload looking like this.
 To do functional testing with curl you can issue the following command.
 
 ```bash
-curl "http://localhost/api/26/filledOrganisationUnitLevels" -H "Content-Type:application/json"
+curl "http://localhost/api/33/filledOrganisationUnitLevels" -H "Content-Type:application/json"
   -d @levels.json -u admin:district
 ```
 
@@ -15202,7 +15196,7 @@ associated key, which can later be retrieved using the key. Only PNG
 files are supported and can only be uploaded to the `logo_banner` and
 `logo_front` keys.
 
-    /api/26/staticContent
+    /api/33/staticContent
 
 <table>
 <caption>Static content keys</caption>
@@ -15230,12 +15224,12 @@ files are supported and can only be uploaded to the `logo_banner` and
 
 To upload a file, send the file with a *POST* request to:
 
-    POST /api/26/staticContent/<key>
+    POST /api/33/staticContent/<key>
 
 Example request to upload logo.png to the `logo_front` key:
 
 ```bash
-curl -F "file=@logo.png;type=image/png" "https://play.dhis2.org/demo/api/26/staticContent/logo_front"
+curl -F "file=@logo.png;type=image/png" "https://play.dhis2.org/demo/api/33/staticContent/logo_front"
   -X POST -H "Content-Type: multipart/form-data" -u admin:district
 ```
 
@@ -15245,21 +15239,21 @@ latest file uploaded.
 
 To retrieve a logo, you can *GET* the following:
 
-    GET /api/26/staticContent/<key>
+    GET /api/33/staticContent/<key>
 
 Example of requests to retrieve the file stored for `logo_front`:
 
 * Adding "Accept: text/html" to the HTTP header.*__ In this case, the endpoint will return a default image if nothing is defined. Will return an image stream when a custom or default image is found.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" 
+curl "https://play.dhis2.org/demo/api/33/staticContent/logo_front" 
   -H "Accept: text/html" -L -u admin:district
 ```
 
 * Adding "Accept: application/json" to the HTTP header.*__ With this parameter set, the endpoint will never return a default image if the custom logo is not found. Instead, an error message will be returned. When the custom image is found this endpoint will return a JSON response containing the path/URL to the respective image.
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/staticContent/logo_front" 
+curl "https://play.dhis2.org/demo/api/33/staticContent/logo_front" 
   -H "Accept: application/json" -L -u admin:district
 ```
 
@@ -15295,26 +15289,26 @@ resource. You can get XML and JSON responses through the *Accept* header
 or by using the .json or .xml extensions. You can *GET* all properties
 of the configuration from:
 
-    /api/26/configuration
+    /api/33/configuration
 
 You can send *GET* and *POST* requests to the following specific
 resources:
 
-    GET /api/26/configuration/systemId
+    GET /api/33/configuration/systemId
 
-    GET POST DELETE /api/26/configuration/feedbackRecipients
+    GET POST DELETE /api/33/configuration/feedbackRecipients
 
-    GET POST DELETE /api/26/configuration/offlineOrganisationUnitLevel
+    GET POST DELETE /api/33/configuration/offlineOrganisationUnitLevel
 
-    GET POST /api/26/configuration/infrastructuralDataElements
+    GET POST /api/33/configuration/infrastructuralDataElements
 
-    GET POST /api/26/configuration/infrastructuralIndicators
+    GET POST /api/33/configuration/infrastructuralIndicators
 
-    GET POST /api/26/configuration/infrastructuralPeriodType
+    GET POST /api/33/configuration/infrastructuralPeriodType
 
-    GET POST DELETE /api/26/configuration/selfRegistrationRole
+    GET POST DELETE /api/33/configuration/selfRegistrationRole
 
-    GET POST DELETE /api/26/configuration/selfRegistrationOrgUnit
+    GET POST DELETE /api/33/configuration/selfRegistrationOrgUnit
 
 For the CORS whitelist configuration you can make a POST request with an
 array of URLs to whitelist as payload using "application/json" as
@@ -15324,7 +15318,7 @@ content-type, for instance:
 ["www.google.com", "www.dhis2.org", "www.who.int"]
 ```
 
-    GET POST /api/26/configuration/corsWhitelist
+    GET POST /api/33/configuration/corsWhitelist
 
 For POST requests, the configuration value should be sent as the request
 payload as text. The following table shows appropriate configuration
@@ -15398,7 +15392,7 @@ As an example, to set the feedback recipients user group you can invoke
 the following curl command:
 
 ```bash
-curl "localhost/api/26/configuration/feedbackRecipients" -d "wl5cDMuUhmF"
+curl "localhost/api/33/configuration/feedbackRecipients" -d "wl5cDMuUhmF"
   -H "Content-Type:text/plain"-u admin:district
 ```
 
@@ -15411,18 +15405,18 @@ will provide read-only access to *UserSettings, SystemSettings and DHIS2
 server configurations* You can get XML and JSON responses through the
 *Accept* header. You can *GET* all settings from:
 
-    /api/28/configuration/settings
+    /api/33/configuration/settings
 
 You can get filtered settings based on setting type:
 
-    GET /api/28/configuration/settings/filter?type=USER_SETTING
+    GET /api/33/configuration/settings/filter?type=USER_SETTING
 
-    GET /api/28/configuration/settings/filter?type=CONFIGURATION
+    GET /api/33/configuration/settings/filter?type=CONFIGURATION
 
 More than one type can be
     provided
 
-    GET /api/28/configuration/settings/filter?type=USER_SETTING&type=SYSTEM_SETTING
+    GET /api/33/configuration/settings/filter?type=USER_SETTING&type=SYSTEM_SETTING
 
 <table>
 <caption>SettingType values</caption>
@@ -15463,7 +15457,7 @@ More than one type can be
 In order to retrieve key-value pairs for translated strings you can use
 the *i18n* resource.
 
-    /api/26/i18n
+    /api/33/i18n
 
 The endpoint is located at *api/i18n* and the request format is a simple
 array of the key-value pairs:
@@ -15480,7 +15474,7 @@ content-type. An example using curl, assuming the request data is saved
 as a file `keys.json`:
 
 ```bash
-curl -d @keys.json "play.dhis2.org/demo/api/26/i18n" -X POST
+curl -d @keys.json "play.dhis2.org/demo/api/33/i18n" -X POST
   -H "Content-Type: application/json" -u admin:district
 ```
 
@@ -15550,9 +15544,9 @@ content-type `application/x-www-form-urlencoded`.
 
 Tracker Web API consists of 3 endpoints that have full CRUD (create,
 read, update, delete) support. The 3 endpoints are
-*/api/29/trackedEntityInstances* */api/29/enrollments* and
-*/api/29/events* and they are responsible for Tracked entity instance,
-Enrollment and Event items.
+`/api/trackedEntityInstances`, `/api/enrollments` and
+`/api/events` and they are responsible for tracked entity instance,
+enrollment and event items.
 
 ### Tracked entity instance management
 
@@ -15562,7 +15556,7 @@ Tracked entity instances have full CRUD support in the Web-API. Together
 with the API for enrollment most operations needed for working with
 tracked entity instances and programs are supported.
 
-    /api/29/trackedEntityInstances
+    /api/33/trackedEntityInstances
 
 #### Creating a new tracked entity instance
 
@@ -15744,7 +15738,7 @@ updating a new tracked entity instance.
 
 ```bash
 curl -X POST -d @tei.json -H "Content-Type: application/json"
-  -u user:pass "http://server/api/29/trackedEntityInstances"
+  -u user:pass "http://server/api/33/trackedEntityInstances"
 ```
 
 #### Complete example of payload including: tracked entity instance, enrollment and event
@@ -15834,7 +15828,7 @@ updating a new tracked entity instance.
 
 ```bash
 curl -X POST -d @tei.json -H "Content-Type: application/json"
-  -u user:pass "http://server/api/29/trackedEntityInstances"
+  -u user:pass "http://server/api/33/trackedEntityInstances"
 ```
 
 #### Generated tracked entity instance attributes
@@ -15870,7 +15864,7 @@ the server will inject into the TextPattern when generating new values.
 Required variables have to be supplied for the generation, but optional
 variables should only be supplied if you know what you are doing.
 
-    GET /api/29/trackedEntityAttributes/Gs1ICEQTPlG/requiredValues
+    GET /api/33/trackedEntityAttributes/Gs1ICEQTPlG/requiredValues
 
 ```json
 {
@@ -15899,7 +15893,7 @@ parameters like the example below:
 The expiration time can also be overridden at the time of generation, by
 adding the `?expiration=<number-of-days>` to the request.
 
-    GET /api/29/trackedEntityAttributes/Gs1ICEQTPlG/generate?ORG_UNIT_CODE=OSLO
+    GET /api/33/trackedEntityAttributes/Gs1ICEQTPlG/generate?ORG_UNIT_CODE=OSLO
 
 ```json
 {
@@ -15931,7 +15925,7 @@ Similar to the /generate endpoint, this endpoint can also specify the
 expiration time in the same way. By adding the `?expiration=<number-of-days>` 
 you can override the default 60 days.
 
-    GET /api/29/trackedEntityAttributes/Gs1ICEQTPlG/generateAndReserve?numberToReserve=3&ORG_UNIT_CODE=OSLO
+    GET /api/33/trackedEntityAttributes/Gs1ICEQTPlG/generateAndReserve?numberToReserve=3&ORG_UNIT_CODE=OSLO
 
 ```json
 [
@@ -16025,7 +16019,7 @@ endpoint will return the actual image. The optional height and width
 parameters can be used to specify the dimensions of the image.
 
 ```bash
-curl "http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?height=200&width=200"
+curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?height=200&width=200"
   > image.jpg
 ```
 
@@ -16033,7 +16027,7 @@ The API also supports a *dimension* parameter. It can take three possible values
 and will be furnished upon request based on the value of the `dimension` parameter.
 
 ```bash
-curl "http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium"
+curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium"
 ```
       
 #### Tracked entity instance query
@@ -16043,7 +16037,7 @@ curl "http://server/api/29/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?
 To query for tracked entity instances you can interact with the
 `/api/trackedEntityInstances` resource.
 
-    /api/29/trackedEntityInstances
+    /api/33/trackedEntityInstances
 
 ##### Request syntax
 
@@ -16201,53 +16195,53 @@ parameters.
 A query for all instances associated with a specific organisation unit
 can look like this:
 
-    /api/29/trackedEntityInstances.json?ou=DiszpKrYNg8
+    /api/33/trackedEntityInstances.json?ou=DiszpKrYNg8
 
 To query for instances using one attribute with a filter and one
 attribute without a filter, with one organisation unit using the
 descendant organisation unit query mode:
 
-    /api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A
+    /api/33/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A
       &filter=AMpUYgxuCaE&ou=DiszpKrYNg8;yMCshbaVExv
 
 A query for instances where one attribute is included in the response
 and one attribute us used as a filter:
 
-    /api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A
+    /api/33/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A
       &filter=AMpUYgxuCaE:LIKE:Road&ou=DiszpKrYNg8
 
 A query where multiple operand and filters are specified for a filter
 item:
 
-    api/29/trackedEntityInstances.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
+    api/33/trackedEntityInstances.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
       &filter=lw1SqmMlnfh:GT:150:LT:190
 
 To query on an attribute using multiple values in an *IN* filter:
 
-    api/29/trackedEntityInstances.json?ou=DiszpKrYNg8
+    api/33/trackedEntityInstances.json?ou=DiszpKrYNg8
       &filter=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
 
 To constrain the response to instances which are part of a specific
 program you can include a program query parameter:
 
-    api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
+    api/33/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
       &ouMode=DESCENDANTS&program=ur1Edk5Oe2n
 
 To specify program enrollment dates as part of the query:
 
-    api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
+    api/33/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
       &program=ur1Edk5Oe2n&programStartDate=2013-01-01&programEndDate=2013-09-01
 
 To constrain the response to instances of a specific tracked entity you
 can include a tracked entity query parameter:
 
-    api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
+    api/33/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
       &ouMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
 
 By default the instances are returned in pages of size 50, to change
 this you can use the page and pageSize query parameters:
 
-    api/29/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
+    api/33/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A&ou=O6uvpzGd5pu
       &ouMode=DESCENDANTS&page=2&pageSize=3
 
 You can use a range of operators for the filtering:
@@ -16449,7 +16443,7 @@ parameters are defined, and one where *attribute* and *filter*
 parameters are defined. This endpoint uses a more compact "grid" format,
 and is an alternative to the query in the previous section.
 
-    /api/29/trackedEntityInstances/query
+    /api/33/trackedEntityInstances/query
 
 ##### Request syntax
 
@@ -16638,83 +16632,83 @@ parameters.
 A query for all instances associated with a specific organisation unit
 can look like this:
 
-    /api/29/trackedEntityInstances/query.json?ou=DiszpKrYNg8
+    /api/33/trackedEntityInstances/query.json?ou=DiszpKrYNg8
 
 A query on all attributes for a specific value and organisation unit,
 using an exact word match:
 
-    /api/29/trackedEntityInstances/query.json?query=scott&ou=DiszpKrYNg8
+    /api/33/trackedEntityInstances/query.json?query=scott&ou=DiszpKrYNg8
 
 A query on all attributes for a specific value, using a partial word
 match:
 
-    /api/29/trackedEntityInstances/query.json?query=LIKE:scott&ou=DiszpKrYNg8
+    /api/33/trackedEntityInstances/query.json?query=LIKE:scott&ou=DiszpKrYNg8
 
 You can query on multiple words separated by the the URL character for
 space which is %20, will use a logical AND query for each
     word:
 
-    /api/29/trackedEntityInstances/query.json?query=isabel%20may&ou=DiszpKrYNg8
+    /api/33/trackedEntityInstances/query.json?query=isabel%20may&ou=DiszpKrYNg8
 
 A query where the attributes to include in the response are specified:
 
-    /api/29/trackedEntityInstances/query.json?query=isabel
+    /api/33/trackedEntityInstances/query.json?query=isabel
       &attribute=dv3nChNSIxy&attribute=AMpUYgxuCaE&ou=DiszpKrYNg8
 
 To query for instances using one attribute with a filter and one
 attribute without a filter, with one organisation unit using the
 descendants organisation unit query mode:
 
-    /api/29/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
+    /api/33/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
       &attribute=AMpUYgxuCaE&ou=DiszpKrYNg8;yMCshbaVExv
 
 A query for instances where one attribute is included in the response
 and one attribute us used as a
     filter:
 
-    /api/29/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
+    /api/33/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
       &filter=AMpUYgxuCaE:LIKE:Road&ou=DiszpKrYNg8
 
 A query where multiple operand and filters are specified for a filter
 item:
 
-    /api/29/trackedEntityInstances/query.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
+    /api/33/trackedEntityInstances/query.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
       &filter=lw1SqmMlnfh:GT:150:LT:190
 
 To query on an attribute using multiple values in an IN
     filter:
 
-    /api/29/trackedEntityInstances/query.json?ou=DiszpKrYNg8
+    /api/33/trackedEntityInstances/query.json?ou=DiszpKrYNg8
       &attribute=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
 
 To constrain the response to instances which are part of a specific
 program you can include a program query parameter:
 
-    /api/29/trackedEntityInstances/query.json?filter=zHXD5Ve1Efw:EQ:A
+    /api/33/trackedEntityInstances/query.json?filter=zHXD5Ve1Efw:EQ:A
       &ou=O6uvpzGd5pu&ouMode=DESCENDANTS&program=ur1Edk5Oe2n
 
 To specify program enrollment dates as part of the query:
 
-    /api/29/trackedEntityInstances/query.json?filter=zHXD5Ve1Efw:EQ:A
+    /api/33/trackedEntityInstances/query.json?filter=zHXD5Ve1Efw:EQ:A
       &ou=O6uvpzGd5pu&program=ur1Edk5Oe2n&programStartDate=2013-01-01
       &programEndDate=2013-09-01
 
 To constrain the response to instances of a specific tracked entity you
 can include a tracked entity query parameter:
 
-    /api/29/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
+    /api/33/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
       &ou=O6uvpzGd5pu&ouMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
 
 By default the instances are returned in pages of size 50, to change
 this you can use the page and pageSize query parameters:
 
-    /api/29/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
+    /api/33/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
       &ou=O6uvpzGd5pu&ouMode=DESCENDANTS&page=2&pageSize=3
 
 To query for instances which have events of a given status within a
 given time span:
 
-    /api/29/trackedEntityInstances/query.json?ou=O6uvpzGd5pu
+    /api/33/trackedEntityInstances/query.json?ou=O6uvpzGd5pu
       &program=ur1Edk5Oe2n&eventStatus=LATE_VISIT
       &eventStartDate=2014-01-01&eventEndDate=2014-09-01
 
@@ -16849,7 +16843,7 @@ instance.
 To create, read, update and delete tracked entity instance filters you
 can interact with the */api/trackedEntityInstanceFilters* resource.
 
-    /api/29/trackedEntityInstanceFilters
+    /api/33/trackedEntityInstanceFilters
 
 ##### Create and update a tracked entity instance filter definiton
 
@@ -17012,7 +17006,7 @@ Enrollments have full CRUD support in the Web-API. Together with the API
 for tracked entity instances most operations needed for working with
 tracked entity instances and programs are supported.
 
-    /api/29/enrollments
+    /api/33/enrollments
 
 #### Enrolling a tracked entity instance into a program
 
@@ -17036,24 +17030,24 @@ resource. A template payload can be seen below:
 This payload should be used in a *POST* request to the enrollments
 resource identified by the following URL:
 
-    /api/29/enrollments
+    /api/33/enrollments
 
 For cancelling or completing an enrollment, you can make a *PUT*
 request to the `enrollments` resource, including the identifier and the
 action you want to perform. For cancelling an enrollment for a tracked
 entity instance:
 
-    /api/29/enrollments/<enrollment-id>/cancelled
+    /api/33/enrollments/<enrollment-id>/cancelled
 
 For completing a enrollment for a tracked entity instance you can make a
 *PUT* request to the following URL:
 
-    /api/29/enrollments/<enrollment-id>/completed
+    /api/33/enrollments/<enrollment-id>/completed
 
 For deleting a enrollment, you can make a *DELETE* request to the
 following URL:
 
-    /api/29/enrollments/<enrollment-id>
+    /api/33/enrollments/<enrollment-id>
 
 #### Enrollment instance query
 
@@ -17062,7 +17056,7 @@ following URL:
 To query for enrollments you can interact with the */api/enrollments*
 resource.
 
-    /api/29/enrollments
+    /api/33/enrollments
 
 ##### Request syntax
 
@@ -17203,25 +17197,25 @@ parameters.
 A query for all enrollments associated with a specific organisation unit
 can look like this:
 
-    /api/29/enrollments.json?ou=DiszpKrYNg8
+    /api/33/enrollments.json?ou=DiszpKrYNg8
 
 To constrain the response to enrollments which are part of a specific
 program you can include a program query
     parameter:
 
-    /api/29/enrollments.json?ou=O6uvpzGd5pu&ouMode=DESCENDANTS&program=ur1Edk5Oe2n
+    /api/33/enrollments.json?ou=O6uvpzGd5pu&ouMode=DESCENDANTS&program=ur1Edk5Oe2n
 
 To specify program enrollment dates as part of the
     query:
 
-    /api/29/enrollments.json?&ou=O6uvpzGd5pu&program=ur1Edk5Oe2n
+    /api/33/enrollments.json?&ou=O6uvpzGd5pu&program=ur1Edk5Oe2n
       &programStartDate=2013-01-01&programEndDate=2013-09-01
 
 To constrain the response to enrollments of a specific tracked entity
 you can include a tracked entity query
     parameter:
 
-    /api/29/enrollments.json?ou=O6uvpzGd5pu&ouMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
+    /api/33/enrollments.json?ou=O6uvpzGd5pu&ouMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
 
 To constrain the response to enrollments of a specific tracked entity
 instance you can include a tracked entity instance query parameter, in
@@ -17229,13 +17223,13 @@ this case we have restricted it to available enrollments viewable for
 current
     user:
 
-    /api/29/enrollments.json?ouMode=ACCESSIBLE&trackedEntityInstance=tphfdyIiVL6
+    /api/33/enrollments.json?ouMode=ACCESSIBLE&trackedEntityInstance=tphfdyIiVL6
 
 By default the enrollments are returned in pages of size 50, to change
 this you can use the page and pageSize query
     parameters:
 
-    /api/29/enrollments.json?ou=O6uvpzGd5pu&ouMode=DESCENDANTS&page=2&pageSize=3
+    /api/33/enrollments.json?ou=O6uvpzGd5pu&ouMode=DESCENDANTS&page=2&pageSize=3
 
 ##### Response format
 
@@ -17280,7 +17274,7 @@ a full view, you might want to add `fields=*` to the query:
 
 This section is about sending and reading events.
 
-    /api/29/events
+    /api/33/events
 
 #### Sending events
 
@@ -17328,7 +17322,7 @@ called*event.xml* and send it as a POST request to the events resource
 in the API using curl with the following command:
 
 ```bash
-curl -d @event.xml "https://play.dhis2.org/demo/api/29/events"
+curl -d @event.xml "https://play.dhis2.org/demo/api/33/events"
   -H "Content-Type:application/xml" -u admin:district
 ```
 
@@ -17367,7 +17361,7 @@ To send this you can save it to a file called *event.json* and use curl
 like this:
 
 ```bash
-curl -d @event.json "localhost/api/29/events" -H "Content-Type:application/json"
+curl -d @event.json "localhost/api/33/events" -H "Content-Type:application/json"
   -u admin:district
 ```
 
@@ -17591,12 +17585,12 @@ It is not allowed to update an already deleted event. The same applies
 to tracked entity instance and enrollment.
 
 ```bash
-curl -X PUT -d @updated_event.xml "localhost/api/29/events/ID"
+curl -X PUT -d @updated_event.xml "localhost/api/33/events/ID"
   -H "Content-Type: application/xml" -u admin:district
 ```
 
 ```bash
-curl -X PUT -d @updated_event.json "localhost/api/29/events/ID"
+curl -X PUT -d @updated_event.json "localhost/api/33/events/ID"
   -H "Content-Type: application/json" -u admin:district
 ```
 
@@ -17608,7 +17602,7 @@ To delete an existing event, all you need is to send a DELETE request
 with a identifier reference to the server you are using.
 
 ```bash
-curl -X DELETE "localhost/api/29/events/ID" -u admin:district
+curl -X DELETE "localhost/api/33/events/ID" -u admin:district
 ```
 
 #### Assigning user to events
@@ -17630,7 +17624,7 @@ To get an existing event you can issue a GET request including the
 identifier like this:
 
 ```bash
-curl "http://localhost/api/29/events/ID" -H "Content-Type: application/xml" -u admin:district
+curl "http://localhost/api/33/events/ID" -H "Content-Type: application/xml" -u admin:district
 ```
 
 #### Querying and reading events
@@ -17879,40 +17873,40 @@ Query for all events with children of a certain organisation unit:
 Query for all events with all descendants of a certain organisation
 unit, implying all organisation units in the sub-hierarchy:
 
-    /api/29/events.json?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS
+    /api/33/events.json?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS
 
 Query for all events with a certain program and organisation unit:
 
-    /api/29/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
+    /api/33/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
 
 Query for all events with a certain program and organisation unit,
 sorting by due date
     ascending:
 
-    /api/29/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&order=dueDate
+    /api/33/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&order=dueDate
 
 Query for the 10 events with the newest event date in a certain program
 and organisation unit - by paging and ordering by due date descending:
 
-    /api/29/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
+    /api/33/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
       &order=eventDate:desc&pageSize=10&page=1
 
 Query for all events with a certain program and organisation unit for a
 specific tracked entity instance:
 
-    /api/29/events.json?orgUnit=DiszpKrYNg8
+    /api/33/events.json?orgUnit=DiszpKrYNg8
       &program=eBAyeGv0exc&trackedEntityInstance=gfVxE3ALA9m
 
 Query for all events with a certain program and organisation unit older
 or equal to
     2014-02-03:
 
-    /api/29/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&endDate=2014-02-03
+    /api/33/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&endDate=2014-02-03
 
 Query for all events with a certain program stage, organisation unit and
 tracked entity instance in the year 2014:
 
-    /api/29/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
+    /api/33/events.json?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
       &trackedEntityInstance=gfVxE3ALA9m&startDate=2014-01-01&endDate=2014-12-31
 
 Query files associated with event data values. In the specific case of fetching an image file an 
@@ -17922,7 +17916,7 @@ fetching non-image files e.g pdf. Possible dimension values are *small(254 x 254
 medium(512 x 512), large(1024 x 1024) or original*. Any value other than those mentioned will be 
 discarded and the original image will be returned.
 
-    /api/30/events/files?eventUid=hcmcWlYkg9u&dataElementUid=C0W4aFuVm4P&dimension=small
+    /api/33/events/files?eventUid=hcmcWlYkg9u&dataElementUid=C0W4aFuVm4P&dimension=small
     
 Retrieve events with specified Organisation unit and Program, and use _Attribute:Gq0oWTf2DtN_ as 
 identifier scheme
@@ -17943,7 +17937,7 @@ query end point where a more compact "grid" format of events are
 returned. This is possible by interacting with
 /api/events/query.json|xml|xls|csv endpoint.
 
-    /api/26/events/query
+    /api/33/events/query
 
 Most of the query parameters mentioned in event querying and reading
 section above are valid here. However, since the grid to be returned
@@ -17959,7 +17953,7 @@ some examples
 A query to return an event grid containing only selected data elements
 for a program stage
 
-    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
+    /api/33/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
       &dataElement=qrur9Dvnyt5,fWIAEtYVEGk,K6uUAvq500H&order=lastUpdated:desc
       &pageSize=50&page=1&totalPages=true
 
@@ -17967,13 +17961,13 @@ A query to return an event grid containing all data elements of a
 program
     stage
 
-    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
+    /api/33/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
       &includeAllDataElements=true
 
 A query to filter events based on data element
     value
 
-    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
+    /api/33/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
       &filter=qrur9Dvnyt5:GT:20:LT:50
 
 In addition to the filtering, the above example also illustrates one
@@ -17986,7 +17980,7 @@ We can also extend the above query to return us a grid sorted (asc|desc)
 based on data element
     value
 
-    /api/28/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
+    /api/33/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
       &filter=qrur9Dvnyt5:GT:20:LT:50&order=qrur9Dvnyt5:desc
 
 #### Event filters
@@ -17996,7 +17990,7 @@ based on data element
 To create, read, update and delete event filters you
 can interact with the */api/eventFilters* resource.
 
-    /api/32/eventFilters
+    /api/33/eventFilters
 
 ##### Create and update an event filter definiton
 
@@ -18329,19 +18323,19 @@ A sample payload that can be used to create/update an eventFilter is shown below
 
 A specific event filter can be retrieved by using the following api
 
-    GET /api/32/eventFilters/{uid}
+    GET /api/33/eventFilters/{uid}
     
 All event filters can be retrieved by using the following api.
 
-    GET /api/32/eventFilters?fields=*
+    GET /api/33/eventFilters?fields=*
 
 All event filters for a specific program can be retrieved by using the following api
 
-    GET /api/32/eventFilters?filter=program:eq:IpHINAT79UW
+    GET /api/33/eventFilters?filter=program:eq:IpHINAT79UW
 
 An event filter can be deleted by using the following api
 
-    DELETE /api/32/eventFilters/{uid}
+    DELETE /api/33/eventFilters/{uid}
 
 ### Relationships
 Relationships are links between two entities in tracker. These entities can be tracked entity instances, enrollments and events.
@@ -18463,7 +18457,7 @@ on the server.
 
 To change the parameter, please use the strategy parameter:
 
-    POST /api/29/trackedEntityInstances?strategy=CREATE_AND_UPDATE
+    POST /api/33/trackedEntityInstances?strategy=CREATE_AND_UPDATE
 
 ### Tracker bulk deletion
 
@@ -18491,7 +18485,7 @@ updating tracker objects, the only difference is that the
 
 ```bash
 curl -X POST -d @data.json -H "Content-Type: application/json"
-  "http://server/api/29/trackedEntityInstances?strategy=DELETE"
+  "http://server/api/33/trackedEntityInstances?strategy=DELETE"
 ```
 
 *Example: Bulk deletion of enrollments:*
@@ -18512,7 +18506,7 @@ curl -X POST -d @data.json -H "Content-Type: application/json"
 
 ```bash
 curl -X POST -d @data.json -H "Content-Type: application/json"
-  "http://server/api/29/enrollments?strategy=DELETE"
+  "http://server/api/33/enrollments?strategy=DELETE"
 ```
 
 *Example: Bulk deletion of events:*
@@ -18533,7 +18527,7 @@ curl -X POST -d @data.json -H "Content-Type: application/json"
 
 ```bash
 curl -X POST -d @data.json -H "Content-Type: application/json"
-  "http://server/api/29/events?strategy=DELETE"
+  "http://server/api/33/events?strategy=DELETE"
 ```
 
 ### Identifier reuse and item deletion via POST and PUT methods
@@ -18784,7 +18778,7 @@ configured with an access level of *CLOSED*. To break the glass for a
 tracked entity program combination, you can issue a POST request as
 shown:
 
-    /api/30/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
+    /api/33/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
       &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
 #### Tracker Ownership Transfer
@@ -18798,7 +18792,7 @@ glass) can transfer the ownership. To transfer ownership of a tracked
 entity-program to another organisation unit, you can issue a PUT request
 as shown:
 
-    /api/30/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8
+    /api/33/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8
       &program=eBAyeGv0exc&ou=EJNxP3WreNP
 
 
@@ -18858,7 +18852,7 @@ been defined. You can set SMTP settings from the email settings screen
 and system notification email address from the general settings screen
 in DHIS2.
 
-    /api/26/email
+    /api/33/email
 
 ### System notification
 
@@ -18880,7 +18874,7 @@ You can send a system email notification by posting to the notification
 resource like this:
 
 ```bash
-curl -d @email.json "localhost/api/26/email/notification" -X POST 
+curl -d @email.json "localhost/api/33/email/notification" -X POST 
   -H "Content-Type:application/json" -u admin:district
 ```
 
@@ -18894,7 +18888,7 @@ if it is not provided in url. Url should be encoded in order to use this
 API.
 
 ```bash
-curl "localhost/api/26/email/notification?recipients=xyz%40abc.com&message=sample%20email&subject=Test%20Email" 
+curl "localhost/api/33/email/notification?recipients=xyz%40abc.com&message=sample%20email&subject=Test%20Email" 
   -X POST -u admin:district
 ```
 
@@ -18908,7 +18902,7 @@ it is required that your DHIS2 user account has a valid email address
 associated with it. You can send a test email like this:
 
 ```bash
-curl "localhost/api/26/email/test" -X POST -H "Content-Type:application/json" -u admin:district
+curl "localhost/api/33/email/test" -X POST -H "Content-Type:application/json" -u admin:district
 ```
 
 ## Sharing
@@ -18920,7 +18914,7 @@ specific user groups and to define whether objects should be publicly
 accessible or private. To get and set sharing status for objects you can
 interact with the *sharing* resource.
 
-    /api/26/sharing
+    /api/33/sharing
 
 ### Get sharing status
 
@@ -18928,7 +18922,7 @@ interact with the *sharing* resource.
 
 To request the sharing status for an object use a GET request to:
 
-    /api/26/sharing?type=dataElement&id=fbfJHSPpUQD
+    /api/33/sharing?type=dataElement&id=fbfJHSPpUQD
 
 The response looks like the below.
 
@@ -18991,7 +18985,7 @@ one user group and read-only access to another user group. You can
 submit this to the sharing resource using curl:
 
 ```bash
-curl -d @sharing.json "localhost/api/26/sharing?type=dataElement&id=fbfJHSPpUQD"
+curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
   -H "Content-Type:application/json" -u admin:district
 ```
 
@@ -19305,14 +19299,14 @@ To insert Javascript from a file called *script.js* you can interact
 with the *files/script* resource with a POST-request:
 
 ```bash
-curl --data-binary @script.js "localhost/api/26/files/script"
+curl --data-binary @script.js "localhost/api/33/files/script"
   -H "Content-Type:application/javascript" -u admin:district
 ```
 
 Note that we use the `--data-binary` option to preserve formatting of the
 file content. You can fetch the JavaScript content with a GET request:
 
-    /api/26/files/script
+    /api/33/files/script
 
 To remove the JavaScript content you can use a DELETE-request.
 
@@ -19324,13 +19318,13 @@ To insert CSS from a file called *style.css* you can interact with the
 *files/style* resource with a POST-request:
 
 ```bash
-curl --data-binary @style.css "localhost/api/26/files/style"
+curl --data-binary @style.css "localhost/api/33/files/style"
   -H "Content-Type:text/css" -u admin:district
 ```
 
 You can fetch the CSS content with a GET-request:
 
-    /api/26/files/style
+    /api/33/files/style
 
 To remove the JavaScript content you can use a DELETE-e "request.
 
@@ -19348,7 +19342,7 @@ To initiate a data value push to a remote server one must first configure the
 URL and credentials for the relevant server from System settings >
 Synchronization, then make a POST request to the following resource:
 
-    /api/26/synchronization/dataPush
+    /api/33/synchronization/dataPush
 
 ### Metadata pull
 
@@ -19357,7 +19351,7 @@ Synchronization, then make a POST request to the following resource:
 To initiate a metadata pull from a remote JSON document you can make a
 POST request with a *url* as request payload to the following resource:
 
-    /api/26/synchronization/metadataPull
+    /api/33/synchronization/metadataPull
 
 ### Availability check
 
@@ -19366,7 +19360,7 @@ POST request with a *url* as request payload to the following resource:
 To check the availability of the remote data server and verify user
 credentials you can make a GET request to the following resource:
 
-    /api/26/synchronization/availability
+    /api/33/synchronization/availability
 
 ## Apps
 
@@ -19383,7 +19377,7 @@ non-alphanumerical characters removed, and spaces replaced with a dash.
 > archive, excluding the file extension. URLs using the old format
 > should still return the correct app in the api.
 
-    /api/26/apps
+    /api/33/apps
 
 ### Get apps
 
@@ -19401,17 +19395,17 @@ resource and look for the *key* property. To list all installed apps in
 JSON:
 
 ```bash
-curl -u user:pass -H "Accept: application/json" "http://server.com/api/26/apps"
+curl -u user:pass -H "Accept: application/json" "http://server.com/api/33/apps"
 ```
 
 You can also simply point your web browser to the resource URL:
 
-    http://server.com/api/26/apps
+    http://server.com/api/33/apps
 
 The apps list can also be filtered by app type and by name, by appending
 one or more *filter* parameters to the URL:
 
-    http://server.com/api/26/apps?filter=appType:eq:DASHBOARD_APP&filter=name:ilike:youtube
+    http://server.com/api/33/apps?filter=appType:eq:DASHBOARD_APP&filter=name:ilike:youtube
 
 App names support the *eq* and *ilike* filter operators, while *appType*
 supports *eq* only.
@@ -19423,7 +19417,7 @@ supports *eq* only.
 To install an app, the following command can be issued:
 
 ```bash
-curl -X POST -u user:pass -F file=@app.zip "http://server.com/api/26/apps"
+curl -X POST -u user:pass -F file=@app.zip "http://server.com/api/33/apps"
 ```
 
 ### Delete an app
@@ -19433,7 +19427,7 @@ curl -X POST -u user:pass -F file=@app.zip "http://server.com/api/26/apps"
 To delete an app, you can issue the following command:
 
 ```bash
-curl -X DELETE -u user:pass "http://server.com/api/26/apps/<app-key>"
+curl -X DELETE -u user:pass "http://server.com/api/33/apps/<app-key>"
 ```
 
 ### Reload apps
@@ -19446,7 +19440,7 @@ to the file system, instead of uploading through the DHIS2 user
 interface.
 
 ```bash
-curl -X PUT -u user:pass "http://server.com/api/26/apps"
+curl -X PUT -u user:pass "http://server.com/api/33/apps"
 ```
 
 ### Share apps between instances
@@ -19474,9 +19468,9 @@ installing the same apps on each individual instance.
 <!--DHIS2-SECTION-ID:webapi_app_store-->
 
 The Web API exposes the content of the DHIS2 App Store as a JSON
-representation which can found at the *api/appStore* resource.
+representation which can found at the `/api/appStore` resource.
 
-    /api/26/appStore
+    /api/33/appStore
 
 ### Get apps
 
@@ -19484,7 +19478,7 @@ representation which can found at the *api/appStore* resource.
 
 You can retrieve apps with a GET request:
 
-    GET /api/28/appStore
+    GET /api/33/appStore
 
 A sample JSON response is described below.
 
@@ -19537,7 +19531,7 @@ appropriate permissions. An app is referred to using the *id* property
 of the relevant *version* of the *app*. An app is installed with a POST
 request with the version id to the following resource:
 
-    POST /api/26/appStore/{app-version-id}
+    POST /api/33/appStore/{app-version-id}
 
 ## Data store
 
@@ -19548,7 +19542,7 @@ their apps. Access to a datastore's key is based on its sharing settings. By def
 be able to use the sampleApp namespace in the datastore. If a namespace
 is not reserved, no specific access is required to use it.
 
-    /api/26/dataStore
+    /api/33/dataStore
 
 ### Data store structure
 
@@ -19601,12 +19595,12 @@ combination of namespace and key is unique. The value data type is JSON.
 
 For a list of all existing namespaces:
 
-    GET /api/26/dataStore
+    GET /api/33/dataStore
 
 Example curl request for listing:
 
 ```bash
-curl "play.dhis2.org/demo/api/26/dataStore" -u admin:district
+curl "play.dhis2.org/demo/api/33/dataStore" -u admin:district
 ```
 
 Example response:
@@ -19620,12 +19614,12 @@ Example response:
 
 For a list of all keys in a namespace:
 
-    GET /api/26/dataStore/<namespace>
+    GET /api/33/dataStore/<namespace>
 
 Example curl request for listing:
 
 ```bash
-curl "play.dhis2.org/demo/api/26/dataStore/foo" -u admin:district
+curl "play.dhis2.org/demo/api/33/dataStore/foo" -u admin:district
 ```
 
 Example response:
@@ -19639,12 +19633,12 @@ Example response:
 
 To retrieve a value for an existing key from a namespace:
 
-    GET /api/26/dataStore/<namespace>/<key>
+    GET /api/33/dataStore/<namespace>/<key>
 
 Example curl request for retrieval:
 
 ```bash
-curl "play.dhis2.org/demo/api/26/dataStore/foo/key_1"-u admin:district
+curl "play.dhis2.org/demo/api/33/dataStore/foo/key_1"-u admin:district
 ```
 
 Example response:
@@ -19657,12 +19651,12 @@ Example response:
 
 To retrieve meta-data for an existing key from a namespace:
 
-    GET /api/26/dataStore/<namespace>/<key>/metaData
+    GET /api/33/dataStore/<namespace>/<key>/metaData
 
 Example curl request for retrieval:
 
 ```bash
-curl "play.dhis2.org/demo/api/26/dataStore/foo/key_1/metaData" -u admin:district
+curl "play.dhis2.org/demo/api/33/dataStore/foo/key_1/metaData" -u admin:district
 ```
 
 Example response:
@@ -19682,12 +19676,12 @@ Example response:
 
 To create a new key and value for a namespace:
 
-    POST /api/26/dataStore/<namespace>/<key>
+    POST /api/33/dataStore/<namespace>/<key>
 
 Example curl request for create, assuming a valid JSON payload:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/dataStore/foo/key_1" -X POST
+curl "https://play.dhis2.org/demo/api/33/dataStore/foo/key_1" -X POST
   -H "Content-Type: application/json" -d "{\"foo\":\"bar\"}" -u admin:district
 ```
 
@@ -19705,7 +19699,7 @@ Example response:
 If you require the data you store to be encrypted (for example user
 credentials or similar) you can append a query to the url like this:
 
-    GET /api/26/dataStore/<namespace>/<key>?encrypt=true
+    GET /api/33/dataStore/<namespace>/<key>?encrypt=true
 
 ### Update values
 
@@ -19713,12 +19707,12 @@ credentials or similar) you can append a query to the url like this:
 
 To update a key that exists in a namespace:
 
-    PUT /api/26/dataStore/<namespace>/<key>
+    PUT /api/33/dataStore/<namespace>/<key>
 
 Example curl request for update, assuming valid JSON payload:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/26/dataStore/foo/key_1" -X PUT -d "[1, 2, 3]"
+curl "https://play.dhis2.org/demo/api/33/dataStore/foo/key_1" -X PUT -d "[1, 2, 3]"
   -H "Content-Type: application/json" -u admin:district
 ```
 
@@ -19739,12 +19733,12 @@ Example response:
 
 To delete an existing key from a namespace:
 
-    DELETE /api/26/dataStore/<namespace>/<key>
+    DELETE /api/33/dataStore/<namespace>/<key>
 
 Example curl request for delete:
 
 ```bash
-curl "play.dhis2.org/demo/api/26/dataStore/foo/key_1" -X DELETE -u admin:district
+curl "play.dhis2.org/demo/api/33/dataStore/foo/key_1" -X DELETE -u admin:district
 ```
 
 Example response:
@@ -19760,12 +19754,12 @@ Example response:
 
 To delete all keys in a namespace:
 
-    DELETE /api/26/dataStore/<namespace>
+    DELETE /api/33/dataStore/<namespace>
 
 Example curl request for delete:
 
 ```bash
-curl "play.dhis2.org/demo/api/26/dataStore/foo" -X DELETE -u admin:district
+curl "play.dhis2.org/demo/api/33/dataStore/foo" -X DELETE -u admin:district
 ```
 
 Example response:
@@ -19788,11 +19782,11 @@ Sharing of datastore keys follows the same principle as for other metadata shari
 
 To get sharing settings for a specific datastore key:
 
-    GET /api/31/sharing?type=dataStore&id=<uid>
+    GET /api/33/sharing?type=dataStore&id=<uid>
 
 To modify sharing settings for a specific datastore key:
 
-    POST /api/31/sharing?type=dataStore&id=<uid> 
+    POST /api/33/sharing?type=dataStore&id=<uid> 
 
 with the following request:
 
@@ -19829,7 +19823,7 @@ calls against the *userDataStore* will be associated with the logged in
 user. This means one can only see, change, remove and add values
 associated with the currently logged in user.
 
-    /api/26/userDataStore
+    /api/33/userDataStore
 
 ### User data store structure
 
@@ -19887,13 +19881,13 @@ values. The combination of user, namespace and key is unique.
 
 Returns an array of all existing namespaces
 
-    GET /api/26/userDataStore
+    GET /api/33/userDataStore
 
 Example
     request:
 
 ```bash
-curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/26/userDataStore"
+curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/33/userDataStore"
 ```
 
 ```json
@@ -19914,7 +19908,7 @@ Returns an array of all existing keys in a given namespace
 Example request:
 
 ```bash
-curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/26/userDataStore/foo"
+curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/33/userDataStore/foo"
 ```
 
 ```json
@@ -19930,12 +19924,12 @@ curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/2
 
 Returns the value for a given namespace and key
 
-    GET /api/26/userDataStore/<namespace>/<key>
+    GET /api/33/userDataStore/<namespace>/<key>
 
 Example request:
 
 ```bash
-curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/26/userDataStore/foo/bar"
+curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/33/userDataStore/foo/bar"
 ```
 
 ```json
@@ -19950,13 +19944,13 @@ curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/2
 
 Adds a new value to a given key in a given namespace.
 
-    POST /api/26/userDataStore/<namespace>/<key>
+    POST /api/33/userDataStore/<namespace>/<key>
 
 Example request:
 
 ```bash
 curl -X POST -H "Content-Type: application/json" -u admin:district -d "['some value']"
-  "play.dhis2.org/api/26/userDataStore/foo/bar"
+  "play.dhis2.org/api/33/userDataStore/foo/bar"
 ```
 
 ```json
@@ -19971,7 +19965,7 @@ curl -X POST -H "Content-Type: application/json" -u admin:district -d "['some va
 If you require the value to be encrypted (For example user credetials
 and such) you can append a query to the url like this:
 
-    GET /api/26/userDataStore/<namespace>/<key>?encrypt=true
+    GET /api/33/userDataStore/<namespace>/<key>?encrypt=true
 
 ### Update values
 
@@ -19979,13 +19973,13 @@ and such) you can append a query to the url like this:
 
 Updates an existing value
 
-    PUT /api/26/userDataStore/<namespace>/<key>
+    PUT /api/33/userDataStore/<namespace>/<key>
 
 Example request:
 
 ```bash
 curl -X PUT -H "Content-Type: application/json" -u admin:district -d "['new value']"
-  "play.dhis2.org/api/26/userDataStore/foo/bar"
+  "play.dhis2.org/api/33/userDataStore/foo/bar"
 ```
 
 ```json
@@ -20003,12 +19997,12 @@ curl -X PUT -H "Content-Type: application/json" -u admin:district -d "['new valu
 
 Delete a key
 
-    DELETE /api/26/userDataStore/<namespace>/<key>
+    DELETE /api/33/userDataStore/<namespace>/<key>
 
 Example request:
 
 ```bash
-curl -X DELETE -u admin:district "play.dhis2.org/api/26/userDataStore/foo/bar"
+curl -X DELETE -u admin:district "play.dhis2.org/api/33/userDataStore/foo/bar"
 ```
 
 ```json
@@ -20026,12 +20020,12 @@ curl -X DELETE -u admin:district "play.dhis2.org/api/26/userDataStore/foo/bar"
 
 Delete all keys in the given namespace
 
-    DELETE /api/26/userDataStore/<namespace>
+    DELETE /api/33/userDataStore/<namespace>
 
 Example request:
 
 ```bash
-curl -X DELETE -u admin:district "play.dhis2.org/api/26/userDataStore/foo"
+curl -X DELETE -u admin:district "play.dhis2.org/api/33/userDataStore/foo"
 ```
 
 ```json
@@ -20049,10 +20043,10 @@ curl -X DELETE -u admin:district "play.dhis2.org/api/26/userDataStore/foo"
 
 A predictor allows you to generate data values based on an expression.
 This can be used to generate targets, thresholds and estimated values.
-You can interact with predictors through the */api/26/predictors*
+You can interact with predictors through the */api/33/predictors*
 resource.
 
-    /api/26/predictors
+    /api/33/predictors
 
 ### Creating a predictor
 
@@ -20061,7 +20055,7 @@ resource.
 You can create a predictor with a POST request to the predictors
 resource:
 
-    POST /api/26/predictors
+    POST /api/33/predictors
 
 A sample payload looks like this:
 
@@ -20100,12 +20094,12 @@ expression to use when calculating the predicted values.
 To run all predictors (generating predicted values) you can make a POST
 request to the run resource:
 
-    POST /api/26/predictors/run
+    POST /api/33/predictors/run
 
 To run a single predictor you can make a POST request to the run
 resource for a predictor:
 
-    POST /api/26/predictors/AG10KUJCrRk/run
+    POST /api/33/predictors/AG10KUJCrRk/run
 
 ## Min-max data elements
 
