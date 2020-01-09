@@ -4938,8 +4938,8 @@ model.
 <li><p><strong>HIDEFIELD</strong> - Hide a specified dataElement or trackedEntityAttribute.</p>
 <ul>
 <li><p><em>content</em> - if defined, the text in <em>content</em> will be displayed to the end user in the instance where a value is previously entered into a field that is now about to be hidden (and therefore blanked). If <em>content</em> is not defined, a standard message will be shown to the user in this instance.</p></li>
-<li><p><em>dataElement</em> - if defined*, the HIDEFIELD action will hide this dataElement when the rule is effective.</p></li>
-<li><p><em>trackedEntityDataValue</em> - if defined*, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.</p></li>
+<li><p><em>dataElement</em> - if defined, the HIDEFIELD action will hide this dataElement when the rule is effective.</p></li>
+<li><p><em>trackedEntityDataValue</em> - if defined, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.</p></li>
 </ul></li>
 <li><p><strong>HIDESECTION</strong> - Hide a specified section.</p>
 <ul>
@@ -4947,27 +4947,27 @@ model.
 </ul></li>
 <li><p><strong>ASSIGN</strong> - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)</p>
 <ul>
-<li><p><em>content</em> - if defined*, the value in <em>data</em> is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a <em>programRule.priority</em> to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.</p></li>
+<li><p><em>content</em> - if defined, the value in <em>data</em> is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a <em>programRule.priority</em> to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.</p></li>
 <li><p><em>data</em> - must be defined, data forms an expression that is evaluated and assigned to either a variable(#{myVariable}), a dataElement, or both.</p></li>
-<li><p><em>dataElement</em> - if defined*, the value in <em>data</em> is assigned to this data element.</p></li>
+<li><p><em>dataElement</em> - if defined, the value in <em>data</em> is assigned to this data element.</p></li>
 </ul>
-<p>* Either the content or dataElement must be defined for the ASSIGN action to be effective.</p></li>
+<p>Either the content or dataElement must be defined for the ASSIGN action to be effective.</p></li>
 <li><p><strong>SHOWWARNING</strong> - Show a warning to the user, not blocking the user from completing the event or registration.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
-<li><p><em>dataElement</em> - if defined*, the warning message is displayed next to this data element.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined*, the warning message is displayed next to this tracked entity attribute.</p></li>
+<li><p><em>dataElement</em> - if defined, the warning message is displayed next to this data element.</p></li>
+<li><p><em>trackedEntityAttribute</em> - if defined, the warning message is displayed next to this tracked entity attribute.</p></li>
 </ul>
-<p>*Either dataElement or trackedEntityAttribute must be specified.</p></li>
+<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
 <li><p><strong>SHOWERROR</strong> - Show an error to the user, blocking the user from completing the event or registration.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
-<li><p><em>dataElement</em> - if defined*, the error message is linked to this data element.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined*, the error message is linked to this tracked entity attribute.</p></li>
+<li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
+<li><p><em>trackedEntityAttribute</em> - if defined, the error message is linked to this tracked entity attribute.</p></li>
 </ul>
-<p>*Either dataElement or trackedEntityAttribute must be specified.</p></li>
+<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
 <li><p><strong>WARNINGONCOMPLETINON</strong> - Show a warning to the user on the &quot;Complete form&quot; dialog, but allowing the user to complete the event.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
@@ -5125,7 +5125,7 @@ programRuleVariable model.
 <!--DHIS2-SECTION-ID:webapi_forms-->
 
 To retrieve information about a form (which corresponds to a data set
-and its sections) you can interact with the *form* resource. The form
+and its sections) you can interact with the `form` resource. The form
 response is accessible as XML and JSON and will provide information
 about each section (group) in the form as well as each field in the
 sections, including label and identifiers. By supplying period and
@@ -5276,10 +5276,6 @@ you can configure the periods, validation rule groups and organisation
 units to be included in the analysis and if you want to send out
 notifications for and/or persist the results found. The result of this
 analysis will be a list of violations found using your criteria.
-
-The way server jobs was scheduled was changed in 2.29. It now has
-options for configuration. See the [Scheduling](#webapi_scheduling) api
-for more information.
 
 The first path variable is an identifier referring to the data set to
 validate. XML and JSON resource representations are supported. The
