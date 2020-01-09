@@ -6713,7 +6713,8 @@ interact with this endpoint.
 Get all tracked entity instance audits of type READ with
 startDate=2018-03-01 and endDate=2018-04-24 in a page size of 5:
 
-    /api/33/audits/trackedEntityInstance.json?startDate=2018-03-01&endDate=2018-04-24&auditType=READ&pageSize=5
+    /api/33/audits/trackedEntityInstance.json?startDate=2018-03-01
+      &endDate=2018-04-24&auditType=READ&pageSize=5
 
 ### Enrollment audits
 
@@ -7142,10 +7143,9 @@ The response is a *200 OK* with the following JSON body:
 }
 ```
 
-In 2.30 we have included the option to add recipients to an existing
-message conversation. The resource is located at:
+You can add recipients to an existing message conversation. The resource is located at:
 
-    https://play.dhis2.org/demo/api/33/messageConversations/id/recipients
+    /api/33/messageConversations/id/recipients
 
 The options for this resource is a list of users, user groups and
 organisation units. The request should look like this:
