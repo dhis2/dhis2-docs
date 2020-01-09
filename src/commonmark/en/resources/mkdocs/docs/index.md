@@ -8,7 +8,8 @@
 
 > **Note**
 >
-> Start browsing by selecting a category from the menu at the top right, or use the _quick links_ below.
+> Start browsing by selecting a category from the menu at the top left, or use the _quick links_ below.  
+> _Get back to this page at any time by clicking the DHIS2 icon at the top left._ 
 
 The documentation is organised into the following categories:
 
