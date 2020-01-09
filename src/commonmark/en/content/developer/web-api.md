@@ -19442,11 +19442,6 @@ curl -X PUT -u user:pass "http://server.com/api/33/apps"
 
 <!--DHIS2-SECTION-ID:webapi_share_apps_between_instances-->
 
-> **Note**
->
-> Previous to 2.28, installed apps would only be stored on the instance's
-> local filesystem.
-
 If the DHIS2 instance has been configured to use cloud storage, apps
 will now be installed and stored on the cloud service. This will enable
 multiple instances share the same versions on installed apps, instead of
@@ -19454,7 +19449,8 @@ installing the same apps on each individual instance.
 
 > **Note**
 >
-> Apps installed previously to 2.28 will still be available on the
+> Previous to 2.28, installed apps would only be stored on the instance's
+> local filesystem. Apps installed before 2.28 will still be available on the
 > instance it was installed, but it will not be shared with other
 > instances, as it's still located on the instances local filesystem.
 
@@ -19522,8 +19518,8 @@ A sample JSON response is described below.
 <!--DHIS2-SECTION-ID:webapi_install_app_store_apps-->
 
 You can install apps on your instance of DHIS2 assuming you have the
-appropriate permissions. An app is referred to using the *id* property
-of the relevant *version* of the *app*. An app is installed with a POST
+appropriate permissions. An app is referred to using the `id` property
+of the relevant version of the app. An app is installed with a POST
 request with the version id to the following resource:
 
     POST /api/33/appStore/{app-version-id}
@@ -19533,7 +19529,11 @@ request with the version id to the following resource:
 <!--DHIS2-SECTION-ID:webapi_data_store-->
 
 Using the *dataStore* resource, developers can store arbitrary data for
-their apps. Access to a datastore's key is based on its sharing settings. By default all keys created are publicly accessible (read and write). Additionally,  access to a datastore's namespace is limited to the user's access to the corresponding app, if the app has reserved the namespace. For example a user with access to the "sampleApp" application will also
+their apps. Access to a datastore's key is based on its sharing settings. 
+By default all keys created are publicly accessible (read and write). 
+Additionally,  access to a datastore's namespace is limited to the user's 
+access to the corresponding app, if the app has reserved the namespace. 
+For example a user with access to the "sampleApp" application will also
 be able to use the sampleApp namespace in the datastore. If a namespace
 is not reserved, no specific access is required to use it.
 
