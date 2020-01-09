@@ -3731,7 +3731,7 @@ curl -d @datavalueset.json "https://play.dhis2.org/demo/api/33/dataValueSets"
 ```
 
 The command will dispatch a request to the demo Web API, set
-*application/xml* as the content-type and authenticate using
+`application/xml` as the content-type and authenticate using
 `admin`/`district` as username/password. If all goes well this will return a
 `200 OK` HTTP status code. You can verify that the data has been
 received by opening the data entry module in DHIS2 and select the org
