@@ -108,7 +108,7 @@ prompted for a 2FA code at login. You can read more about 2FA
 DHIS2 supports the OAuth2 authentication protocol. OAuth2 is an open
 standard for authorization which it allows third-party clients to
 connect on behalf of a DHIS2 user and get a reusable bearer token for
-subsequent requests to the Web API. DHIS 2 does not support fine-grained
+subsequent requests to the Web API. DHIS2 does not support fine-grained
 OAuth2 roles but rather provides applications access based on user roles
 of the DHIS2 user.
 
@@ -484,7 +484,7 @@ below, using the name of the property to use in queries:
 The general idScheme applies to all types of objects. It can be
 overridden by specific object types.
 
-The default scheme for all parameters is UID (stable DHIS 2
+The default scheme for all parameters is UID (stable DHIS2
 identifiers). The supported identifier schemes are described in the
 table below.
 
@@ -782,7 +782,7 @@ locales).
 <!--DHIS2-SECTION-ID:webapi_api_versions-->
 
 The Web API is versioned starting from DHIS 2.25. The API versioning
-follows the DHIS 2 major version numbering. As an example, the API
+follows the DHIS2 major version numbering. As an example, the API
 version for DHIS 2.25 is `25`.
 
 You can access a specific API version by including the version number
@@ -12715,7 +12715,7 @@ Soft deleted tracked entity instance removal will permanently delete soft delete
 
     POST PUT /api/maintenance/softDeletedTrackedEntityInstanceRemoval
 
-Drop SQL views will drop all SQL views in the database. Note that it will not delete the DHIS 2 SQL view entities.
+Drop SQL views will drop all SQL views in the database. Note that it will not delete the DHIS2 SQL view entities.
 
     POST PUT /api/maintenance/sqlViewsDrop
 
@@ -12751,7 +12751,7 @@ Metadata validation will apply all metadata validation rules and return the resu
 
     POST PUT /api/metadataValidation
 
-App reload will refresh the DHIS 2 managed cache of installed apps by reading from the file system.
+App reload will refresh the DHIS2 managed cache of installed apps by reading from the file system.
 
     POST PUT /api/appReload
 
@@ -18986,7 +18986,7 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 
 <!--DHIS2-SECTION-ID:webapi_scheduling-->
 
-DHIS 2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
+DHIS2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
 
 <table>
 <caption>Main properties</caption>
