@@ -4750,7 +4750,7 @@ with examples.
 ### Data values
 
 The dataValue element in adx is very similar to its equivalent in DXF.
-The mandatory attributes are *dataElement* and *value*. *orgUnit* and
+The mandatory attributes are *dataElement* and *value*. The *orgUnit* and
 *period* attributes don't appear in the dataValue as they are required
 at the *group* level.
 
