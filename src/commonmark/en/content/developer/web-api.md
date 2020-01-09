@@ -2010,9 +2010,6 @@ configuration, which will be shown in a second table.
 <li><p>LINEAR_SCALE</p></li>
 </ul></td>
 </tr>
-<tr class="odd">
-<td>Tracked entity attribute</td>
-</tr>
 </tbody>
 </table>
 
