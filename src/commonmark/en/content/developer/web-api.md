@@ -3615,7 +3615,7 @@ JSON is supported in this format:
   "completeDate": "date",
   "period": "period",
   "orgUnit": "orgUnitID",
-  "attributeOptionCombo", "aocID",
+  "attributeOptionCombo": "aocID",
   "dataValues": [
     {
       "dataElement": "dataElementID", 
