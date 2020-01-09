@@ -108,7 +108,7 @@ prompted for a 2FA code at login. You can read more about 2FA
 DHIS2 supports the OAuth2 authentication protocol. OAuth2 is an open
 standard for authorization which it allows third-party clients to
 connect on behalf of a DHIS2 user and get a reusable bearer token for
-subsequent requests to the Web API. DHIS 2 does not support fine-grained
+subsequent requests to the Web API. DHIS2 does not support fine-grained
 OAuth2 roles but rather provides applications access based on user roles
 of the DHIS2 user.
 
@@ -285,7 +285,7 @@ http status message *forbidden* and a descriptive message.
 </tr>
 <tr class="odd">
 <td>status</td>
-<td>DHIS2 status, possible values are <em>OK</em> | <em>WARNING</em> | <em>ERROR</em>, where <strong>OK</strong> is means everything was successful, <strong>ERROR</strong> means that operation did not complete and <strong>WARNING</strong> means operation was partially successful, if there message contains a <strong>response</strong> property, please look there for more information.</td>
+<td>DHIS2 status, possible values are <em>OK</em> | <em>WARNING</em> | <em>ERROR</em>, where `OK` means everything was successful, `ERROR` means that operation did not complete and `WARNING` means operation was partially successful, if there message contains a `response` property, please look there for more information.</td>
 </tr>
 <tr class="even">
 <td>message</td>
@@ -484,7 +484,7 @@ below, using the name of the property to use in queries:
 The general idScheme applies to all types of objects. It can be
 overridden by specific object types.
 
-The default scheme for all parameters is UID (stable DHIS 2
+The default scheme for all parameters is UID (stable DHIS2
 identifiers). The supported identifier schemes are described in the
 table below.
 
@@ -782,7 +782,7 @@ locales).
 <!--DHIS2-SECTION-ID:webapi_api_versions-->
 
 The Web API is versioned starting from DHIS 2.25. The API versioning
-follows the DHIS 2 major version numbering. As an example, the API
+follows the DHIS2 major version numbering. As an example, the API
 version for DHIS 2.25 is `25`.
 
 You can access a specific API version by including the version number
@@ -1280,18 +1280,22 @@ Examples of transformer usage.
 
 <!--DHIS2-SECTION-ID:webapi_metadata_crud-->
 
-While some of the web-api endpoints already contains support for CRUD
-(create, read, update, delete), from version 2.15 this is now supported
-on all endpoints. It should work as you expect, and the subsections will
-give more detailed information about create, update, and delete (read is
-already covered elsewhere, and have been supported for a long time).
+All metadata entities in DHIS2 have their own API endpoint which supports
+*CRUD* operations (create, read, update and delete). The endpoint URLs
+follows this format:
+
+    /api/<entityName>
+    
+The _entityName_ uses the camel-case notation. As an example, the endpoint
+for _data elements_ is:
+
+    /api/dataElements
 
 ### Create / update parameters
 
 <!--DHIS2-SECTION-ID:webapi_metadata_create_update-->
 
-The following query parameters are available for customizing your
-request.
+The following request query parameters are available across all metadata endpoints.
 
 <table>
 <caption>Available Query Filters</caption>
@@ -1611,7 +1615,9 @@ curl -X PATCH -d @file.json -H "Content-Type: application/json"
 <!--DHIS2-SECTION-ID:webapi_metadata_export-->
 
 This section explains the metatada API which is available at
-*/api/metadata*. XML and JSON resource representations are supported.
+`/api/metadata`. XML and JSON resource representations are supported.
+
+    /api/metadata
 
 The most common parameters are described below in the "Export Parameter"
 table. You can also apply this to all available types by using
@@ -1636,17 +1642,17 @@ enable/disable export of certain types by setting `type=true|false`.
 <tr class="odd">
 <td>fields</td>
 <td>Same as metadata field filter</td>
-<td>Default field filter to apply for all types, default is <strong>:owner</strong>.</td>
+<td>Default field filter to apply for all types, default is `:owner`.</td>
 </tr>
 <tr class="even">
 <td>filter</td>
 <td>Same as metadata object filter</td>
-<td>Default object filter to apply for all types, default is <strong>none</strong>.</td>
+<td>Default object filter to apply for all types, default is `none`.</td>
 </tr>
 <tr class="odd">
 <td>order</td>
 <td>Same as metadata order</td>
-<td>Default order to apply to all types, default is <strong>name</strong> if available, or <strong>created</strong> if not.</td>
+<td>Default order to apply to all types, default is `name` if available, or `created` if not.</td>
 </tr>
 <tr class="even">
 <td>translate</td>
@@ -1680,40 +1686,33 @@ enable/disable export of certain types by setting `type=true|false`.
 
 <!--DHIS2-SECTION-ID:webapi_metadata_export_examples-->
 
-Export all metadata:
+Export all metadata. Be careful as the response might be very large depending
+on your metadata configuration:
 
-```bash
-curl -u user:pass "http://server/api/metadata"
-```
+    /api/metadata
 
-Export all metadata ordered by lastUpdated
-    descending:
+Export all metadata ordered by lastUpdated descending:
 
-```bash
-curl -u user:pass "http://server/api/metadata?defaultOrder=lastUpdated:desc"
-```
+    /api/metadata?defaultOrder=lastUpdated:desc
 
-Export id and displayName for all data elements, ordered by
-    displayName:
+Export metadata only including indicators and indicator groups:
 
-```bash
-curl -u user:pass "http://server/api/metadata?dataElements:fields=id,name&dataElements:order=displayName:desc"
-```
+    /api/metadata?indicators=true&indicatorGroups=true
 
-Export data elements and indicators where name starts with
-    "ANC":
+Export id and displayName for all data elements, ordered by displayName:
 
-```bash
-curl -u user:pass "http://server/api/metadata?filter=name:^like:ANC&dataElements=true&indicators=true"
-```
+    /api/metadata?dataElements:fields=id,name&dataElements:order=displayName:desc
+
+Export data elements and indicators where name starts with "ANC":
+
+    /api/metadata?filter=name:^like:ANC&dataElements=true&indicators=true
 
 ### Metadata export with dependencies
 
 <!--DHIS2-SECTION-ID:webapi_dataset_program_export_dependencies-->
 
-When you want to move a whole set of data set, program or category combo
-metadata from one server to another (possibly empty) server, we have
-three special endpoints for just that purpose:
+When you want to exhchange metadata for a data set, program or category combo
+from one DHIS2 instance to another instance there are three dedicated endpoints available:
 
 ```
 /api/<version>/dataSets/ID/metadata.json
@@ -1725,7 +1724,7 @@ three special endpoints for just that purpose:
 /api/<version>/dashboards/{uid}/metadata.json
 ```
 
-These exports can then be imported using */api/<version>/metadata*.
+These exports can then be imported using `/api/<version>/metadata`.
 
 These endpoints also support the following parameters:
 
@@ -1785,42 +1784,42 @@ exporter. The various parameters are listed below.
 <tr class="odd">
 <td>importMode</td>
 <td>COMMIT, VALIDATE</td>
-<td>Sets overall import mode, decides whether or not to only <strong>VALIDATE</strong> or also <strong>COMMIT</strong> the metadata, this has similar functionality as our old dryRun flag.</td>
+<td>Sets overall import mode, decides whether or not to only `VALIDATE` or also `COMMIT` the metadata, this has similar functionality as our old dryRun flag.</td>
 </tr>
 <tr class="even">
 <td>identifier</td>
 <td>UID, CODE, AUTO</td>
-<td>Sets the identifier scheme to use for reference matching. <strong>AUTO</strong> means try <strong>UID</strong> first, then <strong>CODE</strong>.</td>
+<td>Sets the identifier scheme to use for reference matching. `AUTO` means try `UID` first, then `CODE`.</td>
 </tr>
 <tr class="odd">
 <td>importReportMode</td>
 <td>ERRORS, FULL, DEBUG</td>
-<td>Sets the <strong>ImportReport</strong> mode, controls how much is reported back after the import is done. <strong>ERRORS</strong> only includes <em>ObjectReports</em> for object which has errors. <strong>FULL</strong> returns an <em>ObjectReport</em> for all objects imported, and <strong>DEBUG</strong> returns the same plus a name for the object (if available).</td>
+<td>Sets the `ImportReport` mode, controls how much is reported back after the import is done. `ERRORS` only includes <em>ObjectReports</em> for object which has errors. `FULL` returns an <em>ObjectReport</em> for all objects imported, and `DEBUG` returns the same plus a name for the object (if available).</td>
 </tr>
 <tr class="even">
 <td>preheatMode</td>
 <td>REFERENCE, ALL, NONE</td>
-<td>Sets the preheater mode, used to signal if preheating should be done for <strong>ALL</strong> (as it was before with <em>preheatCache=true</em>) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to <strong>NONE</strong> is not recommended.</td>
+<td>Sets the preheater mode, used to signal if preheating should be done for `ALL` (as it was before with <em>preheatCache=true</em>) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to `NONE` is not recommended.</td>
 </tr>
 <tr class="odd">
 <td>importStrategy</td>
 <td>CREATE_AND_UPDATE, CREATE, UPDATE, DELETE</td>
-<td>Sets import strategy, <strong>CREATE_AND_UPDATE</strong> will try and match on identifier, if it doesn't exist, it will create the object.</td>
+<td>Sets import strategy, `CREATE_AND_UPDATE` will try and match on identifier, if it doesn't exist, it will create the object.</td>
 </tr>
 <tr class="even">
 <td>atomicMode</td>
 <td>ALL, NONE</td>
-<td>Sets atomic mode, in the old importer we always did a <em>best effort</em> import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the <strong>NONE</strong> mode emulated the old behavior.</td>
+<td>Sets atomic mode, in the old importer we always did a <em>best effort</em> import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the `NONE` mode emulated the old behavior.</td>
 </tr>
 <tr class="odd">
 <td>mergeMode</td>
 <td>REPLACE, MERGE</td>
-<td>Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, <strong>MERGE</strong> mode will only overwrite the old property if the new one is not-null, for <strong>REPLACE</strong> mode all properties are overwritten regardless of null or not.</td>
+<td>Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not.</td>
 </tr>
 <tr class="even">
 <td>flushMode</td>
 <td>AUTO, OBJECT</td>
-<td>Sets the flush mode, which controls when to flush the internal cache. It is <em>strongly</em> recommended to keep this to <strong>AUTO</strong> (which is the default). Only use <strong>OBJECT</strong> for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues).</td>
+<td>Sets the flush mode, which controls when to flush the internal cache. It is <em>strongly</em> recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues).</td>
 </tr>
 <tr class="odd">
 <td>skipSharing</td>
@@ -1830,7 +1829,7 @@ exporter. The various parameters are listed below.
 <tr class="even">
 <td>skipValidation</td>
 <td>false, true</td>
-<td>Skip validation for import. <strong>NOT RECOMMENDED</strong>.</td>
+<td>Skip validation for import. `NOT RECOMMENDED`.</td>
 </tr>
 <tr class="odd">
 <td>async</td>
@@ -4597,8 +4596,10 @@ reference to a small example:
 
 ```xml
 <adx xmlns="urn:ihe:qrph:adx:2015" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="urn:ihe:qrph:adx:2015 ../schema/adx_loose.xsd" exported="2015-02-08T19:30:00Z">
-  <group orgUnit="OU_559" period="2015-06-01/P1M" completeDate="2015-07-01" dataSet="(TB/HIV)VCCT">
+  xsi:schemaLocation="urn:ihe:qrph:adx:2015 ../schema/adx_loose.xsd" 
+  exported="2015-02-08T19:30:00Z">
+  <group orgUnit="OU_559" period="2015-06-01/P1M" 
+    completeDate="2015-07-01" dataSet="(TB/HIV)VCCT">
     <dataValue dataElement="VCCT_0" GENDER="FMLE" HIV_AGE="AGE0-14" value="32"/>
     <dataValue dataElement="VCCT_1" GENDER="FMLE" HIV_AGE="AGE0-14" value="20"/>
     <dataValue dataElement="VCCT_2" GENDER="FMLE" HIV_AGE="AGE0-14" value="10"/>
@@ -4933,70 +4934,70 @@ model.
 <td>programRule- ActionType</td>
 <td>The type of action that is to be performed.
 <ul>
-<li><p><strong>DISPLAYTEXT</strong> - Displays a text in a given widget.</p></li>
-<li><p><strong>DISPLAYKEYVALUEPAIR</strong> - Displays a key and value pair(like a program indicator) in a given widget.</p></li>
-<li><p><strong>HIDEFIELD</strong> - Hide a specified dataElement or trackedEntityAttribute.</p>
+<li><p>`DISPLAYTEXT` - Displays a text in a given widget.</p></li>
+<li><p>`DISPLAYKEYVALUEPAIR` - Displays a key and value pair(like a program indicator) in a given widget.</p></li>
+<li><p>`HIDEFIELD` - Hide a specified dataElement or trackedEntityAttribute.</p>
 <ul>
 <li><p><em>content</em> - if defined, the text in <em>content</em> will be displayed to the end user in the instance where a value is previously entered into a field that is now about to be hidden (and therefore blanked). If <em>content</em> is not defined, a standard message will be shown to the user in this instance.</p></li>
-<li><p><em>dataElement</em> - if defined*, the HIDEFIELD action will hide this dataElement when the rule is effective.</p></li>
-<li><p><em>trackedEntityDataValue</em> - if defined*, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.</p></li>
+<li><p><em>dataElement</em> - if defined, the HIDEFIELD action will hide this dataElement when the rule is effective.</p></li>
+<li><p><em>trackedEntityDataValue</em> - if defined, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.</p></li>
 </ul></li>
-<li><p><strong>HIDESECTION</strong> - Hide a specified section.</p>
+<li><p>`HIDESECTION` - Hide a specified section.</p>
 <ul>
 <li><p><em>programStageSection</em> - must be defined. This is the programStageSection that will be hidden in case the parent rule is effective.</p></li>
 </ul></li>
-<li><p><strong>ASSIGN</strong> - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)</p>
+<li><p>`ASSIGN` - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)</p>
 <ul>
-<li><p><em>content</em> - if defined*, the value in <em>data</em> is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a <em>programRule.priority</em> to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.</p></li>
+<li><p><em>content</em> - if defined, the value in <em>data</em> is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a <em>programRule.priority</em> to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.</p></li>
 <li><p><em>data</em> - must be defined, data forms an expression that is evaluated and assigned to either a variable(#{myVariable}), a dataElement, or both.</p></li>
-<li><p><em>dataElement</em> - if defined*, the value in <em>data</em> is assigned to this data element.</p></li>
+<li><p><em>dataElement</em> - if defined, the value in <em>data</em> is assigned to this data element.</p></li>
 </ul>
-<p>* Either the content or dataElement must be defined for the ASSIGN action to be effective.</p></li>
-<li><p><strong>SHOWWARNING</strong> - Show a warning to the user, not blocking the user from completing the event or registration.</p>
+<p>Either the content or dataElement must be defined for the ASSIGN action to be effective.</p></li>
+<li><p>`SHOWWARNING` - Show a warning to the user, not blocking the user from completing the event or registration.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
-<li><p><em>dataElement</em> - if defined*, the warning message is displayed next to this data element.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined*, the warning message is displayed next to this tracked entity attribute.</p></li>
+<li><p><em>dataElement</em> - if defined, the warning message is displayed next to this data element.</p></li>
+<li><p><em>trackedEntityAttribute</em> - if defined, the warning message is displayed next to this tracked entity attribute.</p></li>
 </ul>
-<p>*Either dataElement or trackedEntityAttribute must be specified.</p></li>
-<li><p><strong>SHOWERROR</strong> - Show an error to the user, blocking the user from completing the event or registration.</p>
+<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
+<li><p>`SHOWERROR` - Show an error to the user, blocking the user from completing the event or registration.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
-<li><p><em>dataElement</em> - if defined*, the error message is linked to this data element.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined*, the error message is linked to this tracked entity attribute.</p></li>
+<li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
+<li><p><em>trackedEntityAttribute</em> - if defined, the error message is linked to this tracked entity attribute.</p></li>
 </ul>
-<p>*Either dataElement or trackedEntityAttribute must be specified.</p></li>
-<li><p><strong>WARNINGONCOMPLETINON</strong> - Show a warning to the user on the &quot;Complete form&quot; dialog, but allowing the user to complete the event.</p>
+<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
+<li><p>`WARNINGONCOMPLETINON` - Show a warning to the user on the &quot;Complete form&quot; dialog, but allowing the user to complete the event.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
 <li><p><em>dataElement</em> - if defined, the warning message prefixed with the name/formName of the data element.</p></li>
 </ul></li>
-<li><p><strong>ERRORONCOMPLETION</strong> - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.</p>
+<li><p>`ERRORONCOMPLETION` - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.</p>
 <ul>
 <li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
 <li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
 <li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
 </ul></li>
-<li><p><strong>CREATEEVENT</strong> - Create an event within the same enrollment.</p>
+<li><p>`CREATEEVENT` - Create an event within the same enrollment.</p>
 <ul>
 <li><p><em>content</em></p></li>
 <li><p><em>data</em> - if defined, contains data values to assign the created event. The format is &lt;uid&gt;:&lt;data value&gt;. Where several values is specified, these are separated with comma.</p>
 <pre><code>AcMrnleqHqc:100,AqK1IHqCkEE:&#39;Polyhydramnios&#39;</code></pre></li>
 <li><p><em>programStage</em> - must be defined, and designates the program stage that the rule shall create an event of.</p></li>
 </ul></li>
-<li><p><strong>SETMANDATORYFIELD</strong> - Set a field to be mandatory.</p>
+<li><p>`SETMANDATORYFIELD` - Set a field to be mandatory.</p>
 <ul>
 <li><p><em>dataElement</em> - if defined, this data element will be set to be mandatory in the data entry form.</p></li>
 <li><p><em>trackedEntityAttribute</em> - if defined, this tracked entity attribute will be set to mandatory in the registration form or profile.</p></li>
 </ul></li>
-<li><p><strong>SENDMESSAGE</strong> - To send message at completion of event/enrollment or at data value update.</p>
+<li><p>`SENDMESSAGE` - To send message at completion of event/enrollment or at data value update.</p>
 <ul>
 <li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
 </ul></li>
-<li><p><strong>SCHEDULEMESSAGE</strong> - To schedule message at completion of event/enrollment or at data value update.</p>
+<li><p>`SCHEDULEMESSAGE` - To schedule message at completion of event/enrollment or at data value update.</p>
 <ul>
 <li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
 <li><p><em>Date to send message</em> - Expression which is going to be used for evaluation of scheduled date. This expression should result in Date, any other resultant will be discarded and notification will not get scheduled.</p></li>
@@ -5125,7 +5126,7 @@ programRuleVariable model.
 <!--DHIS2-SECTION-ID:webapi_forms-->
 
 To retrieve information about a form (which corresponds to a data set
-and its sections) you can interact with the *form* resource. The form
+and its sections) you can interact with the `form` resource. The form
 response is accessible as XML and JSON and will provide information
 about each section (group) in the form as well as each field in the
 sections, including label and identifiers. By supplying period and
@@ -5276,10 +5277,6 @@ you can configure the periods, validation rule groups and organisation
 units to be included in the analysis and if you want to send out
 notifications for and/or persist the results found. The result of this
 analysis will be a list of violations found using your criteria.
-
-The way server jobs was scheduled was changed in 2.29. It now has
-options for configuration. See the [Scheduling](#webapi_scheduling) api
-for more information.
 
 The first path variable is an identifier referring to the data set to
 validate. XML and JSON resource representations are supported. The
@@ -6715,7 +6712,8 @@ interact with this endpoint.
 Get all tracked entity instance audits of type READ with
 startDate=2018-03-01 and endDate=2018-04-24 in a page size of 5:
 
-    /api/33/audits/trackedEntityInstance.json?startDate=2018-03-01&endDate=2018-04-24&auditType=READ&pageSize=5
+    /api/33/audits/trackedEntityInstance.json?startDate=2018-03-01
+      &endDate=2018-04-24&auditType=READ&pageSize=5
 
 ### Enrollment audits
 
@@ -6795,7 +6793,7 @@ The endpoint for data approval audits is located at
 the table below.
 
 <table>
-<caption><strong>Data approval query parameters</strong></caption>
+<caption>Data approval query parameters</caption>
 <colgroup>
 <col style="width: 12%" />
 <col style="width: 16%" />
@@ -7144,10 +7142,9 @@ The response is a *200 OK* with the following JSON body:
 }
 ```
 
-In 2.30 we have included the option to add recipients to an existing
-message conversation. The resource is located at:
+You can add recipients to an existing message conversation. The resource is located at:
 
-    https://play.dhis2.org/demo/api/33/messageConversations/id/recipients
+    /api/33/messageConversations/id/recipients
 
 The options for this resource is a list of users, user groups and
 organisation units. The request should look like this:
@@ -12719,7 +12716,7 @@ Soft deleted tracked entity instance removal will permanently delete soft delete
 
     POST PUT /api/maintenance/softDeletedTrackedEntityInstanceRemoval
 
-Drop SQL views will drop all SQL views in the database. Note that it will not delete the DHIS 2 SQL view entities.
+Drop SQL views will drop all SQL views in the database. Note that it will not delete the DHIS2 SQL view entities.
 
     POST PUT /api/maintenance/sqlViewsDrop
 
@@ -12755,7 +12752,7 @@ Metadata validation will apply all metadata validation rules and return the resu
 
     POST PUT /api/metadataValidation
 
-App reload will refresh the DHIS 2 managed cache of installed apps by reading from the file system.
+App reload will refresh the DHIS2 managed cache of installed apps by reading from the file system.
 
     POST PUT /api/appReload
 
@@ -18597,7 +18594,7 @@ The import process can be customized using a set of import parameters:
 <tr class="even">
 <td>importReportMode</td>
 <td>FULL, ERRORS, DEBUG</td>
-<td>Sets the <strong>ImportReport</strong> mode, controls how much is reported back after the import is done. <strong>ERRORS</strong> only includes <em>ObjectReports</em> for object which has errors. <strong>FULL</strong> returns an <em>ObjectReport</em> for all objects imported, and <strong>DEBUG</strong> returns the same plus a name for the object (if available).</td>
+<td>Sets the `ImportReport` mode, controls how much is reported back after the import is done. `ERRORS` only includes <em>ObjectReports</em> for object which has errors. `FULL` returns an <em>ObjectReport</em> for all objects imported, and `DEBUG` returns the same plus a name for the object (if available).</td>
 </tr>
 </tbody>
 </table>
@@ -18990,7 +18987,7 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 
 <!--DHIS2-SECTION-ID:webapi_scheduling-->
 
-DHIS 2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
+DHIS2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
 
 <table>
 <caption>Main properties</caption>
@@ -19444,11 +19441,6 @@ curl -X PUT -u user:pass "http://server.com/api/33/apps"
 
 <!--DHIS2-SECTION-ID:webapi_share_apps_between_instances-->
 
-> **Note**
->
-> Previous to 2.28, installed apps would only be stored on the instance's
-> local filesystem.
-
 If the DHIS2 instance has been configured to use cloud storage, apps
 will now be installed and stored on the cloud service. This will enable
 multiple instances share the same versions on installed apps, instead of
@@ -19456,7 +19448,8 @@ installing the same apps on each individual instance.
 
 > **Note**
 >
-> Apps installed previously to 2.28 will still be available on the
+> Previous to 2.28, installed apps would only be stored on the instance's
+> local filesystem. Apps installed before 2.28 will still be available on the
 > instance it was installed, but it will not be shared with other
 > instances, as it's still located on the instances local filesystem.
 
@@ -19524,8 +19517,8 @@ A sample JSON response is described below.
 <!--DHIS2-SECTION-ID:webapi_install_app_store_apps-->
 
 You can install apps on your instance of DHIS2 assuming you have the
-appropriate permissions. An app is referred to using the *id* property
-of the relevant *version* of the *app*. An app is installed with a POST
+appropriate permissions. An app is referred to using the `id` property
+of the relevant version of the app. An app is installed with a POST
 request with the version id to the following resource:
 
     POST /api/33/appStore/{app-version-id}
@@ -19535,7 +19528,11 @@ request with the version id to the following resource:
 <!--DHIS2-SECTION-ID:webapi_data_store-->
 
 Using the *dataStore* resource, developers can store arbitrary data for
-their apps. Access to a datastore's key is based on its sharing settings. By default all keys created are publicly accessible (read and write). Additionally,  access to a datastore's namespace is limited to the user's access to the corresponding app, if the app has reserved the namespace. For example a user with access to the "sampleApp" application will also
+their apps. Access to a datastore's key is based on its sharing settings. 
+By default all keys created are publicly accessible (read and write). 
+Additionally,  access to a datastore's namespace is limited to the user's 
+access to the corresponding app, if the app has reserved the namespace. 
+For example a user with access to the "sampleApp" application will also
 be able to use the sampleApp namespace in the datastore. If a namespace
 is not reserved, no specific access is required to use it.
 
