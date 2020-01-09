@@ -98,9 +98,8 @@ requirement to provide secure interactions with the Web API.
 
 As of 2.30 DHIS2 supports two factor authentication. This means that you
 can enable 2FA in your user settings which means that you will be
-prompted for a 2FA code at login. You can read more about 2FA here:
-
-    https://www.google.com/landing/2step/
+prompted for a 2FA code at login. You can read more about 2FA 
+[here](https://www.google.com/landing/2step/).
 
 ### OAuth2
 
@@ -152,7 +151,7 @@ We will use this client as the basis for our next grant type examples.
 
 <!--DHIS2-SECTION-ID:webapi_oauth2_password-->
 
-The simplest of all grant types is the **password** grant type. This
+The simplest of all grant types is the *password* grant type. This
 grant type is similar to basic authentication in the sense that it
 requires the client to collect the users username and password. As an
 example we can use our demo server:
@@ -261,7 +260,7 @@ informational messages:
 
 Here we can see from the message that the user tried to access a
 resource I did not have access to. It uses the http status code 403, the
-http status message **forbidden** and a descriptive message.
+http status message *forbidden* and a descriptive message.
 
 <table>
 <caption>WebMessage properties</caption>
@@ -738,13 +737,13 @@ updates, as it would be too easy to make mistakes and overwrite the
 other available locales.
 
 To read and update translations you can use the special translations
-endpoint for each object resource. These can be accessed by **GET** or
-**PUT** on the appropriate `/api/<object-type>/<object-id>/translations` endpoint.
+endpoint for each object resource. These can be accessed by *GET* or
+*PUT* on the appropriate `/api/<object-type>/<object-id>/translations` endpoint.
 
 As an example, for a data element with identifier *FTRrcoaog83* you could use
 `/api/dataElements/FTRrcoaog83/translations` to get and update
-translations. The fields available are *property* with options **NAME**,
-**SHORT_NAME**, **DESCRIPTION**, the *locale* which supports any valid
+translations. The fields available are *property* with options *NAME*,
+*SHORT_NAME*, *DESCRIPTION*, the *locale* which supports any valid
 locale ID and the the *value* itself.
 
 Example of NAME property for French locale:
@@ -772,7 +771,7 @@ to the appropriate endpoint:
 }
 ```
 
-For a an data element with ID *FTRrcoaog83* you can **PUT** this to
+For a an data element with ID *FTRrcoaog83* you can *PUT* this to
 `/api/dataElements/FTRrcoaog83/translations`. Make sure to send all
 translations for the specific object and not just for a single locale
 (if not you will potentially overwrite existing locales for other
@@ -988,7 +987,7 @@ associated objects or collection of objects, are supported as well.
 </tbody>
 </table>
 
-Operators will be applied as logical **and** query, if you need a **or**
+Operators will be applied as logical *and* query, if you need a *or*
 query, you can have a look at our *in* filter (also have a look at the
 section below). The filtering mechanism allows for recursion. See below
 for some examples.
@@ -1012,7 +1011,7 @@ query using the id property of the associated data element groups:
 
     /api/dataElements.json?filter=dataElementGroups.id:eq:qfxEYY9xAl6
 
-Since all operators are **and** by default, you can't find a data
+Since all operators are *and* by default, you can't find a data
 element matching more than one id, for that purpose you can use the *in*
 operator.
 
@@ -1023,10 +1022,10 @@ operator.
 <!--DHIS2-SECTION-ID:webapi_metadata_logical_operator-->
 
 As mentioned in the section before, the default logical operator applied
-to the filters are **AND** which means that all object filters must be
+to the filters are *AND* which means that all object filters must be
 matched. There are however cases where you want to match on one of
 several filters (maybe id and code field) and in those cases it is
-possible to switch the root logical operator from **AND** to **OR**
+possible to switch the root logical operator from *AND* to *OR*
 using the *rootJunction* parameter.
 
 Example: Normal filtering where both id and code must match to have a
@@ -1043,9 +1042,9 @@ and now only one of the filters must match to have a result
 ### Identifiable token filter
 
 In addition to the specific property based filtering mentioned above,
-we also have **token** based **AND** filtering across a set of
+we also have *token* based *AND* filtering across a set of
 properties: id, code and name (also shortName if available). These
-properties are commonly referred as **identifiable**. The idea is to
+properties are commonly referred as *identifiable*. The idea is to
 filter metadata whose id, name, code or short name containing something.
 
 Example: Filter all data elements containing *2nd* in any of the
@@ -1055,7 +1054,7 @@ following: id,name,code, shortName
 
 It is also possible to specify multiple filtering values.
 
-Example: Get all data elements where *ANC visit* is found in any of the **identifiable** properties. The system returns all data elements where both tokens (ANC and visit) are found anywhere in identifiable properties.
+Example: Get all data elements where *ANC visit* is found in any of the *identifiable* properties. The system returns all data elements where both tokens (ANC and visit) are found anywhere in identifiable properties.
 
     api/dataElements.json?filter=identifiable:token:ANC visit
 
@@ -3148,11 +3147,11 @@ response of the above example.
 
 <!--DHIS2-SECTION-ID:webapi_file_resources_constraints-->
 
-  - File resources **must** be referenced (assigned) from another object
+  - File resources *must* be referenced (assigned) from another object
     in order to be persisted in the long term. A file resource which is
     created but not referenced by another object such as a data value is
     considered to be in *staging*. Any file resources which are in this
-    state and are older than **two hours** will be marked for deletion
+    state and are older than *two hours* will be marked for deletion
     and will eventually be purged from the system.
 
   - The ID returned by the initial creation of the file resource is not
@@ -3921,7 +3920,7 @@ The import process can be customized using a set of import parameters:
 <tr class="even">
 <td>force</td>
 <td>false | true</td>
-<td>Indicates whether the import should be forced. Data import could be rejected for various reasons of data set locking for example due to approval, data input period, expiry days, etc. In order to override such locks and force data input one can use data import with force=true. However, one needs to be a **superuser** for this parameter to work.</td>
+<td>Indicates whether the import should be forced. Data import could be rejected for various reasons of data set locking for example due to approval, data input period, expiry days, etc. In order to override such locks and force data input one can use data import with force=true. However, one needs to be a *superuser* for this parameter to work.</td>
 </tr>
 </tbody>
 </table>
@@ -6725,8 +6724,8 @@ startDate=2018-03-01 and endDate=2018-04-24 in a page size of 5:
 
 <!--DHIS2-SECTION-ID:webapi_enrollment_audits-->
 
-Once auditing is enabled for enrollments (**by setting allowAuditLog of
-tracker programs to true**), all read operations are logged. The
+Once auditing is enabled for enrollments (by setting allowAuditLog of
+tracker programs to true), all read operations are logged. The
 endpoint for accessing audit logs is api/audits/enrollment. Below are
 available parameters to interact with this endpoint.
 
@@ -7816,8 +7815,8 @@ DHIS2 comes with plugins which enable you to embed live data directly in
 your web portal or web site. Currently, plugins exist for charts, maps
 and pivot tables.
 
-Please be aware that **all of the code examples in this section are for
-demonstration purposes only**. They should not be used as is in
+Please be aware that all of the code examples in this section are for
+demonstration purposes only. They should not be used as is in
 production systems. To make things simple, the credentials
 (admin/district) have been embedded into the scripts. In a real scenario
 you should never expose credentials in javascript as it opens a
@@ -12588,9 +12587,9 @@ To export GeoJSON, you can simple add *.geosjon* as an extension to the
 endpoint */api/organisationUnits*, or you can use the *Accept* header
 *application/json+geojson*.
 
-Two parameters are supported **level** (defaults to 1) and **parent**
-(defaults to root organisation units), both can be added multiple times,
-some examples follow.
+Two parameters are supported: `level` (defaults to 1) and `parent`
+(defaults to root organisation units). Both can be included multiple times. 
+Some examples follow.
 
 Get all features at level 2 and 4:
 
@@ -15591,11 +15590,10 @@ definition. An example GeoJson object looks like this:
 The "coordinates" field was introduced in 2.29, and accepts a coordinate 
 or a polygon as a value.
 
-For getting the IDs for *relationship*, *attributes* you can have a look
-at the respective resources *relationshipTypes*,
-*trackedEntityAttributes*. To create a tracked entity instance you must
-use the HTTP **POST** method. You can post the payload the the following
-URL:
+For getting the IDs for `relationship` and `attributes` you can have a look
+at the respective resources `relationshipTypes`, `trackedEntityAttributes`.
+To create a tracked entity instance you must use the HTTP *POST* method. 
+You can post the payload the the following URL:
 
     /api/trackedEntityInstances
 
@@ -15673,7 +15671,7 @@ the system. That means that UIDs cannot be reused.
 <!--DHIS2-SECTION-ID:webapi_updating_tei-->
 
 For updating a tracked entity instance, the payload is the equal to the
-previous section. The difference is that you must use the HTTP **PUT**
+previous section. The difference is that you must use the HTTP *PUT*
 method for the request when sending the payload. You will also need to
 append the person identifier to the *trackedEntityInstances* resource in
 the URL like this, where `<tracked-entity-instance-identifier>` should
@@ -15688,7 +15686,7 @@ system. This means that if attributes/relationships are empty in the
 current payload, all existing attributes/relationships will be deleted
 from the system. From 2.31, it is possible to ignore empty
 attributes/relationships in the current payload. A request parameter of
-*ignoreEmptyCollection* set to **true** can be used in case you do not
+`ignoreEmptyCollection` set to `true` can be used in case you do not
 wish to send in any attributes/relationships and also do not want them
 to be deleted from the system.
 
@@ -17563,7 +17561,9 @@ describes the meaning of each element.
 </tbody>
 </table>
 
-**OrgUnit matching**: By default the orgUnit parameter will match on the
+##### OrgUnit matching
+
+By default the orgUnit parameter will match on the
 ID, you can also select the orgUnit id matching scheme by using the
 parameter orgUnitIdScheme=SCHEME, where the options are: *ID*, *UID*,
 *UUID*, *CODE*, and *NAME*. There is also the *ATTRIBUTE:* scheme, which
@@ -18465,7 +18465,7 @@ To change the parameter, please use the strategy parameter:
 
 Bulk deletion of tracker objects work in a similar fashion to adding and
 updating tracker objects, the only difference is that the
-*importStrategy* is **DELETE**.
+`importStrategy` is *DELETE*.
 
 *Example: Bulk deletion of tracked entity instances:*
 
@@ -20164,17 +20164,14 @@ resource:
 
     GET /api/minMaxDataElements.json
 
-You can filter the response like
-    this:
+You can filter the response like this:
 
     GET /api/minMaxDataElements.json?filter=dataElement.id:eq:UOlfIjgN8X6
 
     GET /api/minMaxDataElements.json?filter=dataElement.id:in:[UOlfIjgN8X6,xc8gmAKfO95]
 
 The filter parameter for min-max data elements supports two operators:
-eq and in.
-
-**Use fields paremeter**
+eq and in. You can also use the `fields` query parameter.
 
     GET /api/minMaxDataElements.json?fields=:all,dataElement[id,name]
 
