@@ -98,9 +98,8 @@ requirement to provide secure interactions with the Web API.
 
 As of 2.30 DHIS2 supports two factor authentication. This means that you
 can enable 2FA in your user settings which means that you will be
-prompted for a 2FA code at login. You can read more about 2FA here:
-
-    https://www.google.com/landing/2step/
+prompted for a 2FA code at login. You can read more about 2FA 
+[here](https://www.google.com/landing/2step/).
 
 ### OAuth2
 
