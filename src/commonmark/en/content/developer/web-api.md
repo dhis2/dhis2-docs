@@ -540,13 +540,13 @@ scheme for all other objects you can use these parameters:
 
 <!--DHIS2-SECTION-ID:webapi_browsing_the_web_api-->
 
-The entry point for browsing the Web API is */api/*. This resource
+The entry point for browsing the Web API is `/api`. This resource
 provide links to all available resources. Four resource representation
 formats are consistently available for all resources: HTML, XML, JSON
 and JSONP. Some resources will have other formats available, like MS
 Excel, PDF, CSV and PNG. To explore the API from a web browser, navigate
-to the */api/* entry point and follow the links to your desired
-resource, for instance */api/dataElements*. For all resources which
+to the `/api` entry point and follow the links to your desired
+resource, for instance `/api/dataElements`. For all resources which
 return a list of elements certain query parameters can be used to modify
 the response:
 
@@ -740,11 +740,11 @@ To read and update translations you can use the special translations
 endpoint for each object resource. These can be accessed by *GET* or
 *PUT* on the appropriate `/api/<object-type>/<object-id>/translations` endpoint.
 
-As an example, for a data element with identifier *FTRrcoaog83* you could use
+As an example, for a data element with identifier `FTRrcoaog83` you could use
 `/api/dataElements/FTRrcoaog83/translations` to get and update
-translations. The fields available are *property* with options *NAME*,
-*SHORT_NAME*, *DESCRIPTION*, the *locale* which supports any valid
-locale ID and the the *value* itself.
+translations. The fields available are `property` with options *NAME*,
+*SHORT_NAME*, *DESCRIPTION*, `locale` which supports any valid
+locale ID and the translated property `value`.
 
 Example of NAME property for French locale:
 
@@ -783,7 +783,7 @@ locales).
 
 The Web API is versioned starting from DHIS 2.25. The API versioning
 follows the DHIS 2 major version numbering. As an example, the API
-version for DHIS 2.25 is *25*.
+version for DHIS 2.25 is `25`.
 
 You can access a specific API version by including the version number
 after the `/api` component, as an example like this:
@@ -1069,26 +1069,26 @@ It is also possible to combine identifiable filter with property based filter an
 
 <!--DHIS2-SECTION-ID:webapi_metadata_field_filter-->
 
-In certain situations the default views of the metadata can be too
+In many situations the default views of the metadata can be too
 verbose. A client might only need a few fields from each object and want
 to remove unnecessary fields from the response. To discover which fields
 are available for each object please see the *schema* section.
 
-The format for include/exclude is very simple and allows for infinite
-recursion. To filter at the "root" level you can just use the name of
-the field, i.e. *?fields=id,name* which would only display the *id* and
-*name* for every object. For objects that are either collections or
+The format for include/exclude allows for infinite recursion. To filter 
+at the "root" level you can just use the name of the field, 
+i.e. `?fields=id,name` which would only display the `id` and
+`name` fields for every object. For objects that are either collections or
 complex objects with properties on their own you can use the format
-`?fields=id,name,dataSets[id,name]` which would return *id*, *name* of
-the root, and the *id* and *name* of every data set on that object.
+`?fields=id,name,dataSets[id,name]` which would return `id`, `name` of
+the root, and the `id` and `name` of every data set on that object.
 Negation can be done with the exclamation operator, and we have a set of
 presets of field select. Both XML and JSON are supported.
 
-**Example**: Get *id* and *name* on the indicators resource:
+**Example**: Get `id` and `name` on the indicators resource:
 
     /api/indicators?fields=id,name
 
-**Example**: Get *id* and *name* from dataElements, and *id* and *name*
+**Example**: Get `id` and `name` from dataElements, and `id` and `name`
 from the dataSets on dataElements:
 
     /api/dataElements?fields=id,name,dataSets[id,name]
@@ -2009,9 +2009,6 @@ configuration, which will be shown in a second table.
 <li><p>SLIDER</p></li>
 <li><p>LINEAR_SCALE</p></li>
 </ul></td>
-</tr>
-<tr class="odd">
-<td>Tracked entity attribute</td>
 </tr>
 </tbody>
 </table>
