@@ -6297,8 +6297,7 @@ from the following resource:
 
 To get a list of multiple approval statuses, you can issue a GET request similar to this:
 
-    GET /api/dataApprovals/multiple?wf=rIUL3hYOjJc&
-      pe=201801,201802&ou=YuQRtpLP10I
+    GET /api/dataApprovals/multiple?wf=rIUL3hYOjJc&pe=201801,201802&ou=YuQRtpLP10I
 
 The parameters wf, pe, ou, and aoc are the same as for getting a single approval status, except that you can provide a comma-separated list of one or more values for each parameter.
 
