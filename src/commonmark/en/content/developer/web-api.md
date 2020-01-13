@@ -458,7 +458,7 @@ for creating dynamic reports. The available relative period values are:
 This section provides an explanation of the identifier scheme concept.
 Identifier schemes are used to map metadata objects to other metadata
 during import, and to render metadata as part of exports. Please note
-that not all schemes works for all web-api calls, and not not all
+that not all schemes works for all API calls, and not not all
 schemes can be used for both input and output. This is outlined in the
 sections explaining the various Web APIs.
 
@@ -1050,20 +1050,20 @@ filter metadata whose id, name, code or short name containing something.
 Example: Filter all data elements containing *2nd* in any of the
 following: id,name,code, shortName
 
-    api/dataElements.json?filter=identifiable:token:2nd
+    /api/dataElements.json?filter=identifiable:token:2nd
 
 It is also possible to specify multiple filtering values.
 
 Example: Get all data elements where *ANC visit* is found in any of the *identifiable* properties. The system returns all data elements where both tokens (ANC and visit) are found anywhere in identifiable properties.
 
-    api/dataElements.json?filter=identifiable:token:ANC visit
+    /api/dataElements.json?filter=identifiable:token:ANC visit
 
 It is also possible to combine identifiable filter with property based filter and expect the *rootJunction* to be applied.
 
-    api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
+    /api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
 
-    api/dataElements.json?filter=identifiable:token:ANC visit /
-    &filter=displayName:ilike:tt1&rootJunction=OR
+    /api/dataElements.json?filter=identifiable:token:ANC visit
+      &filter=displayName:ilike:tt1&rootJunction=OR
 
 ## Metadata field filter
 
@@ -1172,7 +1172,7 @@ using the `:` operator.
 </tr>
 <tr class="even">
 <td>owner</td>
-<td>Returns all persisted property on a object where the object is the owner of all properties, this payload can be used to update through the web-api.</td>
+<td>Returns all persisted property on a object where the object is the owner of all properties, this payload can be used to update through the API.</td>
 </tr>
 </tbody>
 </table>
@@ -1540,7 +1540,7 @@ The payload format is:
 <!--DHIS2-SECTION-ID:webapi_validating_payloads-->
 
 System wide validation of metadata payloads are enabled from 2.19
-release, this means that create/update operations on the web-api
+release, this means that create/update operations on the API
 endpoints will be checked for valid payload before allowed changes to be
 made, to find out what validations are in place for a endpoint, please
 have a look at the /api/schemas endpoint, i.e. to figure out which
@@ -3079,7 +3079,7 @@ The contents of a file resources is not directly accessible but is
 referenced from other objects (such as data values) to store binary
 content of virtually unlimited size.
 
-Creation of the file resource itself is done through the `api/fileResources` endpoint as a multipart upload POST-request:
+Creation of the file resource itself is done through the `/api/fileResources` endpoint as a multipart upload POST-request:
 
 ```bash
 curl "https://server/api/fileResources" -X POST 
@@ -3447,7 +3447,7 @@ Response:
 <tr class="odd">
 <td><p>versionName</p></td>
 <td><p>true</p></td>
-<td><p>Path parameter of the form &quot;Version_&lt;id&gt;&quot; so that the api downloads the specific version</p></td>
+<td><p>Path parameter of the form &quot;Version_&lt;id&gt;&quot; so that the API downloads the specific version</p></td>
 </tr>
 </tbody>
 </table>
@@ -4560,7 +4560,7 @@ of file resources are not possible.
 The data value can now be retrieved as any other but the returned data
 will be the UID of the file resource. In order to retrieve the actual
 contents (meaning the file which is stored in the file resource mapped
-to the data value) a GET request must be made to *api/dataValues/files*
+to the data value) a GET request must be made to */api/dataValues/files*
 mirroring the query parameters as they would be for the data value
 itself. The `/api/dataValues/files` endpoint only supports GET requests.
 
@@ -6107,16 +6107,20 @@ This section explains how to approve, unapprove and check approval
 status using the *dataApprovals* resource. Approval is done per data
 approval workflow, period, organisation unit and attribute option combo.
 
+A data approval workflow is associated with a period type which defines
+the frequency of approval, an optional category combination, data approval
+levels which the workflow applies to and data sets which are covered by 
+the workflow and used for data collection. 
+
     /api/33/dataApprovals
 
 ### Get approval status
 
 <!--DHIS2-SECTION-ID:webapi_data_approval_get_status-->
 
-To get approval information for a data set you can issue a GET request
-similar to this:
+To get approval information for a data set you can issue a GET request:
 
-    GET http://server.com/api/dataApprovals?wf=rIUL3hYOjJc&pe=201801&ou=YuQRtpLP10I
+    /api/dataApprovals?wf=rIUL3hYOjJc&pe=201801&ou=YuQRtpLP10I
 
 <table style="width:100%;">
 <caption>Data approval query parameters</caption>
@@ -6160,7 +6164,7 @@ similar to this:
 >
 > For backwards compatibility, the parameter `ds` for data set may be given instead of `wf` for workflow in this and other data approval requests as described below. If the data set is given, the workflow associated with that data set will be used.
 
-This will give you a response something like this:
+This will produce a response similar to this:
 
 ```json
 {
@@ -6225,7 +6229,7 @@ The returned parameters are:
 <tbody>
 <tr class="odd">
 <td>UNAPPROVABLE</td>
-<td>Data approval does not apply to this selection. (Data is neither &quot;approved&quot; nor &quot;unapproved&quot;.)</td>
+<td>Data approval does not apply to this selection. (Data is neither approved nor unapproved.)</td>
 </tr>
 <tr class="even">
 <td>UNAPPROVED_WAITING</td>
@@ -6285,16 +6289,16 @@ of the approval levels. For example:
 
 For data sets which are associated with a category combo you might want
 to fetch data approval records for individual attribute option combos
-from the following
-    resource:
+from the following resource:
 
-    GET api/dataApprovals/categoryOptionCombos?wf=rIUL3hYOjJc&pe=201801&ou=YuQRtpLP10I
+    GET /api/dataApprovals/categoryOptionCombos?wf=rIUL3hYOjJc&pe=201801&ou=YuQRtpLP10I
 
 ### Bulk get approval status
 
 To get a list of multiple approval statuses, you can issue a GET request similar to this:
 
-    GET http://server.com/api/dataApprovals/multiple?wf=rIUL3hYOjJc&pe=201801,201802&ou=YuQRtpLP10I
+    GET /api/dataApprovals/multiple?wf=rIUL3hYOjJc&
+      pe=201801,201802&ou=YuQRtpLP10I
 
 The parameters wf, pe, ou, and aoc are the same as for getting a single approval status, except that you can provide a comma-separated list of one or more values for each parameter.
 
@@ -6420,17 +6424,17 @@ the `/api/dataApprovals/approvals` resource.
     POST /api/33/dataApprovals/approvals
 
 You can unapprove a bulk of data records by posting to the
-`api/dataApprovals/unapprovals` resource.
+`/api/dataApprovals/unapprovals` resource.
 
     POST /api/33/dataApprovals/unapprovals
 
 You can accept a bulk of records by posting to the
-`api/dataAcceptances/acceptances` resource.
+`/api/dataAcceptances/acceptances` resource.
 
     POST /api/33/dataAcceptances/acceptances
 
 You can unaccept a bulk of records by posting to the
-`api/dataAcceptances/unacceptances` resource.
+`/api/dataAcceptances/unacceptances` resource.
 
     POST /api/33/dataAcceptances/unacceptances
 
@@ -7670,11 +7674,11 @@ have liked the interpretation.
 DHIS2 has several resources for data analysis. These resources include
 *charts*, *maps*, *reportTables*, *reports* and *documents*. By visiting
 these resources you will retrieve information about the resource. For
-instance, by navigating to *api/charts/R0DVGvXDUNP* the response will
+instance, by navigating to */api/charts/R0DVGvXDUNP* the response will
 contain the name, last date of modification and so on for the chart. To
 retrieve the analytical representation, for instance a PNG
 representation of the chart, you can append */data* to all these
-resources. For instance, by visiting *api/charts/R0DVGvXDUNP/data* the
+resources. For instance, by visiting */api/charts/R0DVGvXDUNP/data* the
 system will return a PNG image of the chart.
 
 <table>
@@ -7697,37 +7701,37 @@ system will return a PNG image of the chart.
 <tr class="odd">
 <td>charts</td>
 <td>Charts</td>
-<td>api/charts/&lt;identifier&gt;/data</td>
+<td>/api/charts/&lt;identifier&gt;/data</td>
 <td>png</td>
 </tr>
 <tr class="even">
 <td>eventCharts</td>
 <td>Event charts</td>
-<td>api/eventCharts/&lt;identifier&gt;/data</td>
+<td>/api/eventCharts/&lt;identifier&gt;/data</td>
 <td>png</td>
 </tr>
 <tr class="odd">
 <td>maps</td>
 <td>Maps</td>
-<td>api/maps/&lt;identifier&gt;/data</td>
+<td>/api/maps/&lt;identifier&gt;/data</td>
 <td>png</td>
 </tr>
 <tr class="even">
 <td>reportTables</td>
 <td>Pivot tables</td>
-<td>api/reportTables/&lt;identifier&gt;/data</td>
+<td>/api/reportTables/&lt;identifier&gt;/data</td>
 <td>json | jsonp | html | xml | pdf | xls | csv</td>
 </tr>
 <tr class="odd">
 <td>reports</td>
 <td>Standard reports</td>
-<td>api/reports/&lt;identifier&gt;/data</td>
+<td>/api/reports/&lt;identifier&gt;/data</td>
 <td>pdf | xls | html</td>
 </tr>
 <tr class="even">
 <td>documents</td>
 <td>Resources</td>
-<td>api/documents/&lt;identifier&gt;/data</td>
+<td>/api/documents/&lt;identifier&gt;/data</td>
 <td>&lt;follows document&gt;</td>
 </tr>
 </tbody>
@@ -9767,7 +9771,7 @@ a complete list of dynamic dimensions by visiting this URL in the Web API:
 
     /api/33/dimensions
 
-The base URL to the analytics resource is `api/analytics`. To request
+The base URL to the analytics resource is `/api/analytics`. To request
 specific dimensions and dimension items you can use a query string on
 the following format, where `dim-id` and `dim-item` should be substituted with real values:
 
@@ -14159,8 +14163,8 @@ with
 
 <!--DHIS2-SECTION-ID:webapi_users_create_update-->
 
-Both creating and updating a user is supported through the web-api. The
-payload itself is similar to other payloads in the web-api, so they
+Both creating and updating a user is supported through the API. The
+payload itself is similar to other payloads in the API, so they
 support collection references etc. A simple example payload to create
 would be, the password should be sent in plain text (remember to only
 use this on a SSL enabled server) and will be encrypted on the backend:
@@ -15452,7 +15456,7 @@ the *i18n* resource.
 
     /api/33/i18n
 
-The endpoint is located at *api/i18n* and the request format is a simple
+The endpoint is located at */api/i18n* and the request format is a simple
 array of the key-value pairs:
 
 ```json
@@ -15545,7 +15549,7 @@ enrollment and event items.
 
 <!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_management-->
 
-Tracked entity instances have full CRUD support in the Web-API. Together
+Tracked entity instances have full CRUD support in the API. Together
 with the API for enrollment most operations needed for working with
 tracked entity instances and programs are supported.
 
@@ -16994,7 +16998,7 @@ interact with the */api/trackedEntityInstanceFilters* resource.
 
 <!--DHIS2-SECTION-ID:webapi_enrollment_management-->
 
-Enrollments have full CRUD support in the Web-API. Together with the API
+Enrollments have full CRUD support in the API. Together with the API
 for tracked entity instances most operations needed for working with
 tracked entity instances and programs are supported.
 
