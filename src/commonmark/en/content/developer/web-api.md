@@ -13366,7 +13366,7 @@ message text in JSON format as shown below.
 }
 ```
 
-> ***Note***
+> **Note**
 >
 > Recipients list will be partitioned if the size exceed `MAX_ALLOWED_RECIPIENTS` limit of 200.
 
