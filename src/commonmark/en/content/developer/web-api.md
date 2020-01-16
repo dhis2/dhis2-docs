@@ -783,12 +783,12 @@ locales).
 
 The Web API is versioned starting from DHIS 2.25. The API versioning
 follows the DHIS2 major version numbering. As an example, the API
-version for DHIS 2.25 is `25`.
+version for DHIS 2.33 is `33`.
 
 You can access a specific API version by including the version number
 after the `/api` component, as an example like this:
 
-    /api/dataElements
+    /api/33/dataElements
 
 If you omit the version part of the URL, the system will use the current
 API version. As an example, for DHIS 2.25, when omitting the API part,
@@ -1270,10 +1270,10 @@ Examples of transformer usage.
 /api/dataElementGroups?fields=id,displayName,dataElements~paging(1;20)
 
 # Include array with IDs of organisation units:
-/api/33/categoryOptions.json?fields=id,organisationUnits~pluck
+/api/categoryOptions.json?fields=id,organisationUnits~pluck
 
 # Include array with names of organisation units (collection only returns field name):
-/api/33/categoryOptions.json?fields=id,organisationUnits~pluck[name]
+/api/categoryOptions.json?fields=id,organisationUnits~pluck[name]
 ```
 
 ## Metadata create, read, update, delete, validate
@@ -6297,8 +6297,7 @@ from the following resource:
 
 To get a list of multiple approval statuses, you can issue a GET request similar to this:
 
-    GET /api/dataApprovals/multiple?wf=rIUL3hYOjJc&
-      pe=201801,201802&ou=YuQRtpLP10I
+    GET /api/dataApprovals/multiple?wf=rIUL3hYOjJc&pe=201801,201802&ou=YuQRtpLP10I
 
 The parameters wf, pe, ou, and aoc are the same as for getting a single approval status, except that you can provide a comma-separated list of one or more values for each parameter.
 
@@ -6307,33 +6306,33 @@ This will give you a response containing a list of approval parameters and statu
 ```json
 [
   {
-    aoc: "HllvX50cXC0",
-    pe: "201801",
-    level: "KaTJLhGmU95",
-    ou: "YuQRtpLP10I",
-    permissions: {
-      mayApprove: false,
-      mayUnapprove: true,
-      mayAccept: true,
-      mayUnaccept: false,
-      mayReadData: true
+    "aoc": "HllvX50cXC0",
+    "pe": "201801",
+    "level": "KaTJLhGmU95",
+    "ou": "YuQRtpLP10I",
+    "permissions": {
+      "mayApprove": false,
+      "mayUnapprove": true,
+      "mayAccept": true,
+      "mayUnaccept": false,
+      "mayReadData": true
     },
-    state: "APPROVED_HERE",
-    wf: "rIUL3hYOjJc"
+    "state": "APPROVED_HERE",
+    "wf": "rIUL3hYOjJc"
   },
   {
-    aoc: "HllvX50cXC0",
-    pe: "201802",
-    ou: "YuQRtpLP10I",
-    permissions: {
-      mayApprove: true,
-      mayUnapprove: false,
-      mayAccept: false,
-      mayUnaccept: false,
-      mayReadData: true
+    "aoc": "HllvX50cXC0",
+    "pe": "201802",
+    "ou": "YuQRtpLP10I",
+    "permissions": {
+      "mayApprove": true,
+      "mayUnapprove": false,
+      "mayAccept": false,
+      "mayUnaccept": false,
+      "mayReadData": true
     },
-    state: "UNAPPROVED_READY",
-    wf: "rIUL3hYOjJc"
+    "state": "UNAPPROVED_READY",
+    "wf": "rIUL3hYOjJc"
   }
 ]
 ```
