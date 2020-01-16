@@ -4491,11 +4491,9 @@ In the **Maintenance** app, you manage the following predictor objects:
 ### Sampling past periods
 
 Predictors can generate data values for periods that are in the past,
-present, or future. These values are based on data sampled from periods
-before the predicted period, and/or data from the predicted period. When
-you use data sampled from past periods (periods before the predicted
-period), several parameters determine the choice of which past periods
-to sample from:
+present, or future. These values are based on data from the predicted period, and/or sampled data from periods prior to the predicted period.
+
+If you need data only from the same period in which the prediction is made, then you don't need to read this section. This section describes how to sample data from periods prior to the predicted period.
 
 #### Sequential sample count
 
@@ -4771,23 +4769,19 @@ sampled. For example:
         <td><p>Returns the boolean value <strong>true</strong> if the <strong>item</strong> is null (missing), otherwise returns <strong>false</strong>. The <strong>item</strong> can be any selected item from the right (data element, program data element, etc.).</p></td>
         </tr>
         <tr class="odd">
-        <td><p>isNotNull</p></td>
-        <td><p>(item)</p></td>
+        <td><p>isNotNull(item)</p></td>
         <td><p>Returns <strong>true</strong> if the <strong>item</strong> value is not missing (not null), otherwise <strong>false</strong>.</p></td>
         </tr>
         <tr class="even">
-        <td><p>firstNonNull</p></td>
-        <td><p>(item [, item ...])</p></td>
+        <td><p>firstNonNull(item [, item ...])</p></td>
         <td><p>Returns the value of the first <strong>item</strong> that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous items have missing values.</p></td>
         </tr>
         <tr class="odd">
-        <td><p>greatest</p></td>
-        <td><p>(expression [, expression ...])</p></td>
+        <td><p>greatest(expression [, expression ...])</p></td>
         <td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments.</p></td>
         </tr>
         <tr class="even">
-        <td><p>least</p></td>
-        <td><p>(expression [, expression ...])</p></td>
+        <td><p>least(expression [, expression ...])</p></td>
         <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
         </tr>
         </tbody>
@@ -4833,11 +4827,11 @@ sampled. For example:
         </tr>
         <tr class="odd">
         <td><p>1.2 * #{T7OyqQpUpNd}</p></td>
-        <td><p>1.2 times the value of data element T7OyqQpUpNd in the period being predicted for</p></td>
+        <td><p>1.2 times the value of data element T7OyqQpUpNd, in the period being predicted for</p></td>
         </tr>
         <tr class="even">
-        <td><p>if(isNull(#{T7OyqQpUpNd}), 10, 20)</p></td>
-        <td><p>If the data element T7OyqQpUpNd is null, then 10, otherwise 20.</p></td>
+        <td><p>if(isNull(#{T7OyqQpUpNd}), 0, 1)</p></td>
+        <td><p>If the data element T7OyqQpUpNd is null in the period being predicted, then 0, otherwise 1.</p></td>
         </tr>
         <tr class="odd">
         <td><p>percentileCont(0.5, #{T7OyqQpUpNd})</p></td>
