@@ -10160,42 +10160,53 @@ data/indicator column, a period column and a value column. The first
 column contains indicator identifiers, the second contains ISO period
 identifiers and the third contains aggregated data values.
 
-### Constraints
+### Constraints and validation
 
 <!--DHIS2-SECTION-ID:webapi_analytics_constraints-->
 
-There are several constraints on the input you can provide to the
-analytics resource.
+There are several constraints to the input parameters you can provide to the
+analytics resource. If any of the constraints are violated, the API will
+return a *409 Conflict* response and a response message looking similar to this:
 
-  - At least one dimension must be specified in a query.
+```json
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "Only a single indicator can be specified as filter",
+  "errorCode": "E7108"
+}
+```
 
-  - Dimensions cannot be specified as dimension and filter
-    simultaneously.
+The `httpStatus` and `httpStatusCode` field indicate the HTTP status and
+status code per the HTTP specification. The `messsage` field provides a
+human-readable description of the validation error. The `errorCode` field
+provides a machine-readable code which can be used by clients to handle
+validation errors. The possible validation errors for the aggregate analytics
+API are described in the table below.
 
-  - At least one period must be specified as dimension or filter.
-
-  - Categories cannot be specified as filter.
-
-  - Only a single indicator can be specified as filter.
-
-  - Only a single reporting rate can be specified as filter.
-
-  - Data element group sets cannot be specified together with data sets.
-
-  - Categories can only be specified together with data elements, not
-    indicators or data sets.
-
-  - A dimension cannot be specified more than once.
-
-  - Fixed dimensions ("dx", "pe", "ou") must have at least one option if
-    included in a query.
-
-  - A table cannot contain more than 50 000 cells by default, this can
-    be configured under system settings.
-
-When a query request violates any of these constraints the server will
-return a response with status code 409 and content-type "text/plain"
-together with a textual description of the problem.
+| Error code | Message |
+| ---------- | ------- |
+| E7100      | Query parameters cannot be null |
+| E7101      | At least one dimension must be specified |
+| E7102      | At least one data dimension item or data element group set dimension item must be specified |
+| E7103      | Dimensions cannot be specified as dimension and filter simultaneously |
+| E7104      | At least one period as dimension or filter, or start and dates, must be specified |
+| E7105      | Periods and start and end dates cannot be specified simultaneously |
+| E7106      | Start date cannot be after end date |
+| E7107      | Start and end dates cannot be specified for reporting rates |
+| E7108      | Only a single indicator can be specified as filter |
+| E7109      | Only a single reporting rate can be specified as filter |
+| E7110      | Category option combos cannot be specified as filter |
+| E7111      | Dimensions cannot be specified more than once |
+| E7112      | Reporting rates can only be specified together with dimensions of type |
+| E7113      | Assigned categories cannot be specified when data elements are not specified |
+| E7114      | Assigned categories can only be specified together with data elements, not indicators or reporting rates |
+| E7115      | Data elements must be of a value and aggregation type that allow aggregation |
+| E7116      | Indicator expressions cannot contain cyclic references |
+| E7117      | A data dimension 'dx' must be specified when output format is DATA_VALUE_SET |
+| E7118      | A period dimension 'pe' must be specified when output format is DATA_VALUE_SET |
+| E7119      | An organisation unit dimension 'ou' must be specified when output format is DATA_VALUE_SET |
 
 ### Data value set format
 
@@ -11401,6 +11412,47 @@ The response will provide the count and extent in JSON format:
   count: 59
 }
 ```
+
+### Constraints and validation
+
+<!--DHIS2-SECTION-ID:webapi_event_analytics_constraints-->
+
+There are several constraints to the input parameters you can provide to the
+event analytics resource. If any of the constraints are violated, the API will
+return a *409 Conflict* response and a response message looking similar to this:
+
+```json
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "At least one organisation unit must be specified",
+  "errorCode": "E7200"
+}
+```
+
+The possible validation errors for the event analytics API are described 
+in the table below.
+
+| Error code | Message |
+| ---------- | ------- |
+| E7200      | At least one organisation unit must be specified |
+| E7201      | Dimensions cannot be specified more than once |
+| E7202      | Query items cannot be specified more than once |
+| E7203      | Value dimension cannot also be specified as an item or item filter |
+| E7204      | Value dimension or aggregate data must be specified when aggregation type is specified |
+| E7205      | Start and end date or at least one period must be specified |
+| E7206      | Start date is after end date |
+| E7207      | Page number must be a positive number |
+| E7208      | Page size must be zero or a positive number |
+| E7209      | Limit is larger than max limit |
+| E7210      | Time field is invalid |
+| E7211      | Org unit field is invalid |
+| E7212      | Cluster size must be a positive number |
+| E7213      | Bbox is invalid, must be on format: 'min-lng,min-lat,max-lng,max-lat' |
+| E7214      | Cluster field must be specified when bbox or cluster size are specified |
+| E7215      | Query item cannot specify both legend set and option set |
+| E7216      | Query item must be aggregateable when used in aggregate query );
 
 ## Enrollment analytics
 
@@ -13366,7 +13418,7 @@ message text in JSON format as shown below.
 }
 ```
 
-> ***Note***
+> **Note**
 >
 > Recipients list will be partitioned if the size exceed `MAX_ALLOWED_RECIPIENTS` limit of 200.
 
