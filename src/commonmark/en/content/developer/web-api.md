@@ -11452,7 +11452,7 @@ in the table below.
 | E7213      | Bbox is invalid, must be on format: 'min-lng,min-lat,max-lng,max-lat' |
 | E7214      | Cluster field must be specified when bbox or cluster size are specified |
 | E7215      | Query item cannot specify both legend set and option set |
-| E7216      | Query item must be aggregateable when used in aggregate query );
+| E7216      | Query item must be aggregateable when used in aggregate query |
 
 ## Enrollment analytics
 
