@@ -14541,6 +14541,12 @@ property and value for each system setting key-value pair using a POST request:
 }
 ```
 
+Translations for translatable Setting keys can be set by specifying locale as 
+a query parameter and translated value which can be specified 
+either as a query param or withing the body payload. See an example URL:
+
+    /api/33/systemSettings/<my-key>?locale=<my-locale>&value=<my-translated-value> 
+
 You should replace my-key with your real key and my-val with your real
 value. To retrieve the value for a given key in plain text you can make
 a *GET* request to the following URL:
@@ -14563,315 +14569,590 @@ You can retrieve all system settings with a GET request:
 
     /api/33/systemSettings
 
+To retrieve a specific translation for given translatable key you can specify 
+a locale as query param:
+
+    /api/33/systemSettings/<my-key>?locale=<my-locale>
+
+If present, the translation for given locale is returned. Otherwise, a default 
+value is returned. If no locale is specified for translatable key, user default 
+UI locale is used to fetch the correct translation. If given translation is not 
+present, again, the default value is returned.
+
+The priority for translatable keys is following:
+
+    specified locale > user's default UI locale > defaut value
+
 To delete a system setting, you can make a *DELETE* request to the URL
-similar to the one used above for retrieval.
+similar to the one used above for retrieval. If a translatable key is 
+used, all present translations will be deleted as well.
+
+To delete only a specific translation of translatable key, the same URL 
+as for adding a translation should be used and the empty value should be 
+provided:
+
+    /api/33/systemSettings/<my-key>?locale=<my-locale>&value=
 
 The available system settings are listed below.
 
 <table>
 <caption>System settings</caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 43%" />
+<col style="width: 43%" />
+<col style="width: 14%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th>Key</th>
 <th>Description</th>
+<th>Translatable</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>keyMessageEmailNotification</td>
-<td>Send email notification for messages</td>
-</tr>
-<tr class="even">
-<td>keyMessageSmsNotification</td>
-<td>Send sms notification for messages</td>
-</tr>
-<tr class="odd">
 <td>keyUiLocale</td>
 <td>Locale for the user interface</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyDbLocale</td>
 <td>Locale for the database</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyAnalysisDisplayProperty</td>
 <td>The property to display in analysis. Default: &quot;name&quot;</td>
+<td>No</td>
 </tr>
 <tr class="even">
+<td>keyAnalysisDigitGroupSeparator</td>
+<td>The separator used to separate digit groups</td>
+<td>No</td>
+</tr>
+<tr class="odd">
 <td>keyCurrentDomainType</td>
 <td>Not yet in use</td>
-</tr>
-<tr class="odd">
-<td>keyAutoSaveCaseEntryForm</td>
-<td>Autosave case entry forms</td>
+<td>No</td>
 </tr>
 <tr class="even">
-<td>keyAutoSaveDataEntryForm</td>
-<td>Autosave data entry forms</td>
-</tr>
-<tr class="odd">
 <td>keyTrackerDashboardLayout</td>
 <td>Used by tracker capture</td>
-</tr>
-<tr class="even">
-<td>keyAutoSavetTrackedEntityForm</td>
-<td>Autosave tracked entity forms</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>applicationTitle</td>
 <td>The application title. Default: &quot;DHIS2&quot;</td>
+<td>Yes</td>
 </tr>
 <tr class="even">
 <td>keyApplicationIntro</td>
 <td>The application introduction</td>
+<td>Yes</td>
 </tr>
 <tr class="odd">
 <td>keyApplicationNotification</td>
 <td>Application notification</td>
+<td>Yes</td>
 </tr>
 <tr class="even">
 <td>keyApplicationFooter</td>
 <td>Application left footer</td>
+<td>Yes</td>
 </tr>
 <tr class="odd">
 <td>keyApplicationRightFooter</td>
 <td>Application right footer</td>
+<td>Yes</td>
 </tr>
 <tr class="even">
 <td>keyFlag</td>
 <td>Application flag</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyFlagImage</td>
 <td>Flag used in dashboard menu</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>startModule</td>
 <td>The startpage of the application. Default: &quot;dhis-web-dashboard-integration&quot;</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>factorDeviation</td>
 <td>Data analysis standard deviation factor. Default: &quot;2d&quot;</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyEmailHostName</td>
 <td>Email server hostname</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyEmailPort</td>
 <td>Email server port</td>
-</tr>
+<td>No</td>
 <tr class="even">
 <td>keyEmailTls</td>
 <td>Use TLS. Default: &quot;true&quot;</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyEmailSender</td>
 <td>Email sender</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyEmailUsername</td>
 <td>Email server username</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyEmailPassword</td>
 <td>Email server password</td>
+<td>No</td>
 </tr>
 <tr class="even">
-<td>keyInstanceBaseUrl</td>
-<td>The base url of the application instance</td>
+<td>minPasswordLength</td>
+<td>Minimum length of password</td>
+<td>No</td>
 </tr>
 <tr class="odd">
-<td>keySmsConfig</td>
-<td>SMS configuration</td>
+<td>maxPasswordLength</td>
+<td>Maximum length of password</td>
+<td>No</td>
 </tr>
 <tr class="even">
+<td>keySmsSetting</td>
+<td>SMS configuration</td>
+<td>No</td>
+</tr>
+<tr class="odd">
 <td>keyCacheStrategy</td>
 <td>Cache strategy. Default: &quot;CACHE_6AM_TOMORROW&quot;</td>
-</tr>
-<tr class="odd">
-<td>keyCacheability</td>
-<td>PUBLIC or PRIVATE. Determines if proxy servers are allowed to cache data or not.</td>
+<td>No</td>
 </tr>
 <tr class="even">
-<td>phoneNumberAreaCode</td>
-<td>Phonenumber area code</td>
+<td>keyCacheability</td>
+<td>PUBLIC or PRIVATE. Determines if proxy servers are allowed to cache data or not.</td>
+<td>No</td>
 </tr>
 <tr class="odd">
+<td>phoneNumberAreaCode</td>
+<td>Phonenumber area code</td>
+<td>No</td>
+</tr>
+<tr class="even">
 <td>multiOrganisationUnitForms</td>
 <td>Enable multi-organisation unit forms. Default: &quot;false&quot;</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyConfig</td>
+<td></td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyAccountRecovery</td>
 <td>Enable user account recovery. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="odd">
-<td>googleAnalyticsUA</td>
-<td>Google Analytic UA key for tracking site-usage</td>
+<td>keyLockMultipleFailedLogins</td>
+<td>Enable locking access after multiple failed logins</td>
+<td>No</td>
 </tr>
 <tr class="even">
+<td>googleAnalyticsUA</td>
+<td>Google Analytic UA key for tracking site-usage</td>
+<td>No</td>
+</tr>
+<tr class="odd">
 <td>credentialsExpires</td>
 <td>Require user account password change. Default: &quot;0&quot; (Never)</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>credentialsExpiryAlert</td>
+<td>Enable alert when credentials are close to expiration date</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keySelfRegistrationNoRecaptcha</td>
 <td>Do not require recaptcha for self registration. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>recaptchaSecret</td>
 <td>Google API recaptcha secret. Default: dhis2 play instance API secret, but this will only works on you local instance and not in production.</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>recaptchaSite</td>
 <td>Google API recaptcha site. Default: dhis2 play instance API site, but this will only works on you local instance and not in production.</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyOpenIdProvider</td>
 <td>OpenID provider</td>
+<td>No</td>
 </tr>
 <tr class="odd">
+<td>keyOpenIdProviderLabel</td>
+<td>OpenID provider lable</td>
+<td>No</td>
+</tr>
+<tr class="even">
 <td>keyCanGrantOwnUserAuthorityGroups</td>
 <td>Allow users to grant own user roles. Default: &quot;false&quot;</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keySqlViewMaxLimit</td>
+<td>Max limit for SQL view</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyRespectMetaDataStartEndDatesInAnalyticsTableExport</td>
 <td>When &quot;true&quot;, analytics will skip data not within category option's start and end dates. Default: &quot;false&quot;</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keySkipDataTypeValidationInAnalyticsTableExport</td>
+<td>Skips data type validation in analytics table export</td>
+<td>No</td>
 </tr>
 <tr class="even">
-<td>keySkipZeroValuesInAnalyticsTableExport</td>
-<td>When &quot;true&quot;, analytics will skip zero data values for sum aggregation type data elements, ignoring the "zeroIsSignificant" setting for data elements. Default: &quot;false&quot;</td>
+<td>keyCustomLoginPageLogo</td>
+<td>Logo for custom login page</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyCustomTopMenuLogo</td>
+<td>Logo for custom top menu</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyCacheAnalyticsDataYearThreshold</td>
+<td>Analytics data older than this value (in years) will always be cached. &quot;0&quot; disabled this setting. Default: 0</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyCacheAnalyticsDataYearThreshold</td>
 <td>Analytics data older than this value (in years) will always be cached. &quot;0&quot; disabled this setting. Default: 0</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>analyticsFinancialYearStart</td>
 <td>Set financial year start. Default: October</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyIgnoreAnalyticsApprovalYearThreshold</td>
 <td>&quot;0&quot; check approval for all data. &quot;-1&quot; disable approval checking. &quot;1&quot; or higher checks approval for all data that is newer than &quot;1&quot; year.</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyAnalyticsMaxLimit</td>
 <td>Maximum number of analytics recors. Default: &quot;50000&quot;</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyAnalyticsMaintenanceMode</td>
 <td>Put analytics in maintenance mode. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyDatabaseServerCpus</td>
 <td>Number of database server CPUs. Default: &quot;0&quot; (Automatic)</td>
+<td>No</td>
 </tr>
 <tr class="odd">
-<td>helpPageLink</td>
-<td>Link to help page.</td>
+<td>keyLastSuccessfulAnalyticsTablesRuntime</td>
+<td>Keeps timestamp of last successful analytics tables run</td>
+<td>No</td>
 </tr>
 <tr class="even">
+<td>keyLastSuccessfulLatestAnalyticsPartitionRuntime</td>
+<td>Keeps timestamp of last successful latest analytics partition run</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyLastMonitoringRun</td>
+<td>Keeps timestamp of last monitoring run</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyLastSuccessfulDataSynch</td>
+<td>Keeps timestamp of last successful data values synchronization</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyLastSuccessfulEventsDataSynch</td>
+<td>Keeps timestamp of last successful Event programs data synchronization</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyLastCompleteDataSetRegistrationSyncSuccess</td>
+<td>Keeps timestamp of last successful completeness synchronization</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>syncSkipSyncForDataChangedBefore</td>
+<td>Specifies timestamp used to skip synchronization of all the data changed before this point in time</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyLastSuccessfulAnalyticsTablesUpdate</td>
+<td>Keeps timestamp of last successful analytics tables update</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyLastSuccessfulLatestAnalyticsPartitionUpdate</td>
+<td>Keeps timestamp of last successful latest analytics partition update</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyLastSuccessfulResourceTablesUpdate</td>
+<td>Keeps timestamp of last successful resource tables update</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyLastSuccessfulSystemMonitoringPush</td>
+<td>Keeps timestamp of last successful system monitoring push</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyLastSuccessfulMonitoring</td>
+<td>Keeps timestamp of last successful monitoring</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyNextAnalyticsTableUpdate</td>
+<td>Keeps timestamp of next analytics table update</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>helpPageLink</td>
+<td>Link to help page. Default: &quot;<a href="http://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html">https://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html</a></td>
+<td>No</td>
+</tr>
+<tr class="odd">
 <td>keyAcceptanceRequiredForApproval</td>
 <td>Acceptance required before approval. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keySystemNotificationsEmail</td>
 <td>Where to email system notifications</td>
+<td>No</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>keyAnalysisRelativePeriod</td>
 <td>Default relative period for analysis. Default: &quot;LAST_12_MONTHS&quot;</td>
+<td>No</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keyRequireAddToView</td>
 <td>Require authority to add to view object lists. Default: &quot;false&quot;</td>
-</tr>
-<tr class="even">
-<td>keyAllowObjectAssignment</td>
-<td>Allow assigning object to related objects during add or update. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="odd">
-<td>keyUseCustomLogoFront</td>
-<td>Enables the usage of a custom logo on the front page. Default: &quot;false&quot;</td>
+<td>keyAllowObjectAssignment</td>
+<td>Allow assigning object to related objects during add or update. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="even">
+<td>keyUseCustomLogoFront</td>
+<td>Enables the usage of a custom logo on the front page. Default: &quot;false&quot;</td>
+<td>No</td>
+</tr>
+<tr class="odd">
 <td>keyUseCustomLogoBanner</td>
 <td>Enables the usage of a custom banner on the website. Default: &quot;false&quot;</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyDataImportStrictPeriods</td>
+<td></td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyDataImportStrictPeriods</td>
 <td>Require periods to match period type of data set. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyDataImportStrictDataElements</td>
 <td>Require data elements to be part of data set. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyDataImportStrictCategoryOptionCombos</td>
 <td>Require category option combos to match category combo of data element. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyDataImportStrictOrganisationUnits</td>
 <td>Require organisation units to match assignment of data set. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyDataImportStrictAttributeOptionsCombos</td>
 <td>Require attribute option combis to match category combo of data set. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyDataImportRequireCategoryOptionCombo</td>
 <td>Require category option combo to be specified. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyDataImportRequireAttributeOptionCombo</td>
 <td>Require attribute option combo to be specified. Default: &quot;false&quot;</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyCustomJs</td>
 <td>Custom JavaScript to be used on the website</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyCustomCss</td>
 <td>Custom CSS to be used on the website</td>
+<td>No</td>
 </tr>
 <tr class="even">
 <td>keyCalendar</td>
 <td>The calendar type. Default: &quot;iso8601&quot;.</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td>keyDateFormat</td>
 <td>The format in which dates should be displayed. Default: &quot;yyyy-MM-dd&quot;.</td>
+<td>No</td>
 </tr>
 <tr class="even">
-<td>appStoreUrl</td>
-<td>The url used to point to the app store. Default: &quot;https://www.dhis2.org/appstore&quot;</td>
-</tr>
-<tr class="odd">
 <td>keyStyle</td>
 <td>The style used on the DHIS2 webpages. Default: &quot;light_blue/light_blue.css&quot;.</td>
+<td>No</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>keyRemoteInstanceUrl</td>
 <td>Url used to connect to remote instance</td>
+<td>No</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>keyRemoteInstanceUsername</td>
 <td>Username used to connect to remote DHIS2 instance</td>
-</tr>
-<tr class="even">
-<td>keyRemoteInstancePassword</td>
-<td>Password used to connect to remote DHIS2 instance</td>
+<td>No</td>
 </tr>
 <tr class="odd">
-<td>keyMapzenSearchApiKey</td>
-<td>Key for the Mapzen geo search API</td>
+<td>keyRemoteInstancePassword</td>
+<td>Password used to connect to remote DHIS2 instance</td>
+<td>No</td>
 </tr>
 <tr class="even">
+<td>keyGoogleMapsApiKey</td>
+<td>Google Maps API key</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyGoogleCloudApiKey</td>
+<td>Google Cloud API key</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyLastMetaDataSyncSuccess</td>
+<td>Keeps timestamp of last successful metadata synchronization	</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyVersionEnabled</td>
+<td>Enables metadata versioning</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyMetadataFailedVersion</td>
+<td>Keeps details about failed metadata version sync</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyMetadataLastFailedTime</td>
+<td>Keeps timestamp of last metadata synchronization failure</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyLastSuccessfulScheduledProgramNotifications</td>
+<td>Not in use</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyLastSuccessfulScheduledDataSetNotifications</td>
+<td>Not in use</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyRemoteMetadataVersion</td>
+<td>Details about metadata version of remote instance</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keySystemMetadataVersion</td>
+<td>Details about metadata version of the system</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyStopMetadataSync</td>
+<td>Flag to stop metadata synchronization</td>
+<td>No</td>
+</tr>
+<tr class="odd">
 <td>keyFileResourceRetentionStrategy</td>
 <td>Determines how long file resources associated with deleted or updated values are kept. NONE, THREE_MONTHS, ONE_YEAR, or FOREVER.</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>syncMaxRemoteServerAvailabilityCheckAttempts</td>
+<td>Specifies how many times the availability of remote server will be checked before synchronization jobs fail.</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>syncMaxAttempts</td>
+<td>Specifies max attempts for synchronization jobs</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>syncDelayBetweenRemoteServerAvailabilityCheckAttempts</td>
+<td>Delay between remote server availability checks</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>lastSuccessfulDataStatistics</td>
+<td>Keeps timestamp of last successful data analytics</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyHideDailyPeriods</td>
+<td>Not in use</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyHideWeeklyPeriods</td>
+<td>Not in use</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyHideMonthlyPeriods</td>
+<td>Not in use</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyHideBiMonthlyPeriods</td>
+<td>Not in use</td>
+<td>No</td>
 </tr>
 </tbody>
 </table>
