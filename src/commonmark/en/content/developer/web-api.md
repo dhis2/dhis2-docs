@@ -6107,12 +6107,14 @@ This section explains how to approve, unapprove and check approval
 status using the *dataApprovals* resource. Approval is done per data
 approval workflow, period, organisation unit and attribute option combo.
 
-A data approval workflow is associated with a period type which defines
-the frequency of approval, an optional category combination, data approval
-levels which the workflow applies to and data sets which are covered by 
-the workflow and used for data collection. 
-
     /api/33/dataApprovals
+
+A data approval workflow is associated with several entities:
+
+* A period type which defines the frequency of approval
+* An optional category combination
+* One or many data approval levels which are part of the workflow
+* One or many data sets which are used for data collection
 
 ### Get approval status
 
@@ -6289,17 +6291,17 @@ of the approval levels. For example:
 
 For data sets which are associated with a category combo you might want
 to fetch data approval records for individual attribute option combos
-from the following resource:
+from the following resource with a GET request:
 
-    GET /api/dataApprovals/categoryOptionCombos?wf=rIUL3hYOjJc&pe=201801&ou=YuQRtpLP10I
+    /api/dataApprovals/categoryOptionCombos?wf=rIUL3hYOjJc&pe=201801&ou=YuQRtpLP10I
 
 ### Bulk get approval status
 
 To get a list of multiple approval statuses, you can issue a GET request similar to this:
 
-    GET /api/dataApprovals/multiple?wf=rIUL3hYOjJc&pe=201801,201802&ou=YuQRtpLP10I
+    /api/dataApprovals/multiple?wf=rIUL3hYOjJc&pe=201801,201802&ou=YuQRtpLP10I
 
-The parameters wf, pe, ou, and aoc are the same as for getting a single approval status, except that you can provide a comma-separated list of one or more values for each parameter.
+The parameters `wf`, `pe`, `ou`, and `aoc` are the same as for getting a single approval status, except that you can provide a comma-separated list of one or more values for each parameter.
 
 This will give you a response containing a list of approval parameters and statuses, something like this:
 
@@ -6337,15 +6339,16 @@ This will give you a response containing a list of approval parameters and statu
 ]
 ```
 
-The returned parameters are:
-| Return Parameter | Description |
-| :- | :--- |
-| aoc | Attribute option combination identifier |
-| pe | Period identifier |
-| ou | Organisation Unit identifier |
-| permissions | The permissions: 'mayApprove', 'mayUnapprove', 'mayAccept', 'mayUnaccept', and 'mayReadData' (same definitions as for get single approval status.) |
-| state | One of the data approval states (same as for get single approval status.) |
-| wf | Data approval workflow identifier |
+The returned fields are described in the table below.
+
+| Field       | Description |
+| ----------- | ----------- |
+| aoc         | Attribute option combination identifier |
+| pe          | Period identifier |
+| ou          | Organisation Unit identifier |
+| permissions | The permissions: 'mayApprove', 'mayUnapprove', 'mayAccept', 'mayUnaccept', and 'mayReadData' (same definitions as for get single approval status). |
+| state       | One of the data approval states (same as for get single approval status.) |
+| wf          | Data approval workflow identifier |
 
 ### Approve data
 
@@ -6460,6 +6463,13 @@ The approval payload is supported as JSON and looks like this:
 }
 ```
 
+### Get data approval levels
+
+To retrieve data approval workflows and their data approval levels you 
+can make a GET request similar to this:
+
+    /api/dataApprovalWorkflows?fields=id,name,dataApprovalLevels[id,name,level,orgUnitLevel]
+
 ## Auditing
 
 <!--DHIS2-SECTION-ID:webapi_auditing-->
@@ -6530,7 +6540,7 @@ the table below.
 </tbody>
 </table>
 
-Get all audits for data set with ID "lyLU2wR22tC":
+Get all audits for data set with ID *lyLU2wR22tC*:
 
     /api/33/audits/dataValue?ds=lyLU2wR22tC
 
