@@ -19356,11 +19356,6 @@ DHIS2 allows for scheduling of jobs of various types. Each type of job has diffe
 <td>(See list of job types)</td>
 </tr>
 <tr class="odd">
-<td>continuousExecution</td>
-<td>A job may be added as a continuous job which means, as soon as the job finished, it will be scheduled to run again right away. You can set `continuousExecution` to true in the payload for the job to run continuously.</td>
-<td>Boolean</td>
-</tr>
-<tr class="even">
 <td>enabled</td>
 <td>A job can be added to the system without it being scheduled by setting `enabled` to false in the JSON payload. Use this if you want to temporarily stop scheduling for a job, or if a job configuration is not complete yet.</td>
 <td>Boolean</td>
@@ -19525,7 +19520,6 @@ Retrieve a job: (ANALYTICS_TABLE example):
   "displayName": "analytics last two years",
   "enabled": true,
   "externalAccess": false,
-  "continuousExecution": false,
   "jobType": "ANALYTICS_TABLE",
   "nextExecutionTime": "2018-02-26T03:00:00.000",
   "cronExpression": "0 0 3 ? * MON",
@@ -19564,7 +19558,6 @@ Updating job with parameters in JSON format (ANALYTICS_TABLE example):
   "name": "analytics last two years",
   "enabled": true,
   "cronExpression": "0 0 3 ? * MON",
-  "continuousExecution": false,
   "jobType": "ANALYTICS_TABLE",
   "jobParameters": {
     "lastYears": "3",
