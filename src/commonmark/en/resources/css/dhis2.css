@@ -86,24 +86,84 @@ figcaption{
 }
 
 .Note{
-  background-image: url(../images/admon/note.png);
+  background-image: url(../images/admin/note.png);
 }
 
 .Tip, .Truc {
-  background-image: url(../images/admon/tip.png);
+  background-image: url(../images/admin/tip.png);
 }
 
 .Important{
-  background-image: url(../images/admon/important.png);
+  background-image: url(../images/admin/important.png);
 }
 
 .Caution, .Prudence{
-  background-image: url(../images/admon/caution.png);
+  background-image: url(../images/admin/caution.png);
 }
 
 .Warning, .Attention, .Danger{
-  background-image: url(../images/admon/warning.png);
+  background-image: url(../images/admin/warning.png);
 }
+
+.Work, .work, .work_in_progress{
+  background-image: url(../images/admin/icon-wip.png);
+}
+
+
+:root {
+  --grey900: #212934;
+  --grey800: #404b5a;
+  --grey700: #4A5768;
+  --grey600: #6E7A8A;
+  --grey500: #A0ADBA;
+  --grey400: #D5DDE5;
+  --grey300: #E8EDF2;
+  --grey200: #F3F5F7;
+  --grey100: #F8F9FA;
+  --grey050: #FBFCFD;
+  --green900: #103713;
+  --green700: #2E7D32;
+  --green100: #e8f5e9;
+  --red900: #330202;
+  --red700: #B71C1C;
+  --red500: #D32F2F;
+  --red100: #ffe5e8;
+  --red050: #FFF5F6;
+  --blue900: #093371;
+  --blue700: #1565c0;
+  --blue500: #2196F3;
+  --blue300: #90caf9;
+  --blue200: #c5e3fc;
+  --blue100: #e3f2fd;
+  --blue050: #f5fbff;
+  --teal050: #F1F9F9;
+  --yellow050: #FFF8E1;
+  --yellow200: #FFE082;
+}
+
+blockquote {
+	background-color: var(--blue050);
+	border: 1px solid var(--blue200);
+  border-radius:3px;
+	border-left: normal;
+  margin-top:32px;
+	margin-bottom: 40px;
+	padding: 6px 16px 12px 52px;
+	background-position: 16px 12px;
+	background-repeat: no-repeat;
+  color:var(--grey900);
+}
+
+blockquote.Caution, blockquote.Prudence, blockquote.Important {
+  background-color:var(--yellow050);
+  border:1px solid var(--yellow200);
+}
+
+blockquote.Warning, blockquote.Attention, blockquote.Danger {
+  background-color:var(--red050);
+  border:2px solid var(--red500);
+}
+
 
 .thanks{
   border:1px solid #ddd;
