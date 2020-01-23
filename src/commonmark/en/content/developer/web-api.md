@@ -6299,7 +6299,7 @@ from the following resource with a GET request:
 
 To get a list of multiple approval statuses, you can issue a GET request similar to this:
 
-    /api/dataApprovals/multiple?wf=rIUL3hYOjJc&pe=201801,201802&ou=YuQRtpLP10I
+    /api/dataApprovals/approvals?wf=rIUL3hYOjJc&pe=201801,201802&ou=YuQRtpLP10I
 
 The parameters `wf`, `pe`, `ou`, and `aoc` are the same as for getting a single approval status, except that you can provide a comma-separated list of one or more values for each parameter.
 
@@ -6468,7 +6468,8 @@ The approval payload is supported as JSON and looks like this:
 To retrieve data approval workflows and their data approval levels you 
 can make a GET request similar to this:
 
-    /api/dataApprovalWorkflows?fields=id,name,dataApprovalLevels[id,name,level,orgUnitLevel]
+    /api/dataApprovalWorkflows?
+      fields=id,name,periodType,dataApprovalLevels[id,name,level,orgUnitLevel]
 
 ## Auditing
 
