@@ -105,7 +105,7 @@ figcaption{
   background-image: url(../images/admin/warning.png);
 }
 
-.Work, .work, .work_in_progress{
+.Work, .work, .work_in_progress, .Work_In_Progress{
   background-image: url(../images/admin/icon-wip.png);
 }
 
