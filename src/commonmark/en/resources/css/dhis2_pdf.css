@@ -107,7 +107,23 @@ figcaption{
   background-image: url(../images/admin/warning.png);
 }
 
-.Work, .work, .work_in_progress, .Work_In_Progress{
+.Complete, .complete {
+  background-image: url(../images/admin/icon-complete.png);
+}
+
+.Incomplete, .incomplete {
+  background-image: url(../images/admin/icon-incomplete.png);
+}
+
+.Not, .not, .not_applicable, .Not_applicable {
+  background-image: url(../images/admin/icon-na.png);
+}
+
+.Not, .not, .not_applicable, .Not_applicable {
+  background-image: url(../images/admin/icon-na.png);
+}
+
+.Work, .work, .work_in_progress, .Work_in_progress, .Work_In_Progress{
   background-image: url(../images/admin/icon-wip.png);
 }
 
