@@ -211,28 +211,20 @@ make_html() {
     # fix the section mappings in the full html file
     echo "remapping the section identifiers"
     id_mapper ${name}_full.html
+
+    # generate PDF from a copy of the full HTML
+    echo "converting the html file to PDF"
+    cp ${name}_full.html ${name}_toPDF.html
+    sed -i 's/dhis2\.css/dhis2_pdf.css/' ${name}_toPDF.html
+    weasyprint ${name}_toPDF.html ../${name}.pdf
+    rm ${name}_toPDF.html
+
+
     # split the full html file into chunks
     echo "splitting the html file into chunks"
     chunked_template="$tmp/resources/templates/dhis2_chunked_template.html"
     chunker ${name}_full.html ${chunked_template}
 
-}
-
-make_pdf() {
-    cd $TMPBASE/$lang
-    name=$1
-    subdir=$2
-    echo "making pdf in $PWD"
-    mkdir -p ${target}/${subdir}
-    echo "compiling $name.md to pdf"
-    chapters="${name}_custom_bookinfo.md ${name}_bookinfo.md ${name}.md"
-    css="./resources/css/dhis2_pdf.css"
-    template="./resources/templates/dhis2_template.html"
-    thanks=""
-    if [ -f "./resources/i18n/thanks/${name}_${lang}.html" ]; then
-        thanks=" -B ./resources/i18n/thanks/${name}_${lang}.html "
-    fi
-    pandoc ${thanks} ${chapters} -c ${css} --template="${template}" --toc -N --section-divs --pdf-engine=weasyprint -o ${target}/${subdir}/${name}.pdf
 }
 
 
@@ -418,16 +410,9 @@ build_docs(){
     touch ${name}_custom_bookinfo.md
     sed -i 's/\([^ :]*\)\/resources\/images\(.*\)/resources\/images\/\1\2/' ${name}_custom_bookinfo.md
 
-    if [ $selection == "html" ]
-    then
-      make_html $name $subdir
-    elif [ $selection == "pdf" ]
-    then
-      make_pdf $name $subdir
-    else
-      make_html $name $subdir
-      make_pdf $name $subdir
-    fi
+
+    make_html $name $subdir
+
 
     add_to_mkdocs $name $subdir
 
