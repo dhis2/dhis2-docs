@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# build resources from the master branch
+# we use the build resources from the master branch
 git checkout master -- src/commonmark/en/resources
 git checkout master -- tools
 git checkout master -- lib
 git checkout master -- venv_setup
 git checkout master -- requirements.txt
-
 
 
 # perform all actions relative to the path of this script
@@ -19,10 +18,8 @@ else
 fi
 
 
-
 # include helper functions
 . "$SCRIPT_DIR/lib/doc_functions.sh"
-
 
 
 # build localised versions
@@ -57,16 +54,15 @@ if [ ${LOCALISE} -eq 1  ]; then
 
         echo "    - Implementer:" >> $myml
         translate "dhis2_implementation_guide" "implementer" "both" $lang $locale
+        translate "dhis2_android_implementation_guideline" "implementer" "both" $lang $locale
         translate "dhis2_android_capture_app" "android-app" "both" $lang $locale
         translate "user_stories_book" "user-stories" "both" $lang $locale
 
         echo "    - Developer:" >> $myml
         translate "dhis2_developer_manual" "developer" "both" $lang $locale
-        translate "dhis2_android_sdk_user_guide" "android-sdk" "both" $lang $locale
+        translate "dhis2_android_sdk_developer_guide" "android-sdk" "both" $lang $locale
 
         make_mkdocs
-
-        translate "dhis2_draft_chapters" "draft" "both" $lang $locale
 
     done
 fi
