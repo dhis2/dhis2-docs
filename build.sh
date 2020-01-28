@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# build resources from the master branch
+# we use the build resources from the master branch
 git checkout master -- src/commonmark/en/resources
 git checkout master -- tools
 git checkout master -- lib
 git checkout master -- venv_setup
 git checkout master -- requirements.txt
-
-
 
 # perform all actions relative to the path of this script
 SCRIPT_DIR="${BASH_SOURCE%/*}"
@@ -23,8 +21,6 @@ fi
 . "$SCRIPT_DIR/lib/doc_functions.sh"
 
 
-
-
 # comment as you wish
 # format:
 #$> generate <doc name> <chapters subfolder> ["html","pdf","both"]
@@ -38,6 +34,7 @@ generate "dhis2_scorecard_manual" "scorecard-app"
 
 echo "    - Implementer:" >> $myml
 generate "dhis2_implementation_guide" "implementer"
+generate "dhis2_android_implementation_guideline" "implementer"
 generate "dhis2_android_capture_app" "android-app"
 generate "user_stories_book" "user-stories"
 
