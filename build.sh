@@ -38,7 +38,7 @@ generate "user_stories_book" "user-stories"
 
 echo "    - Developer:" >> $myml
 generate "dhis2_developer_manual" "developer"
-generate "dhis2_android_sdk_user_guide" "android-sdk"
+generate "dhis2_android_sdk_developer_guide" "android-sdk"
 
 echo "    - Sysadmin:" >> $myml
 generate "dhis2_system_administration_guide" "sysadmin"
