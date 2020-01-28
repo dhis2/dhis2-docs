@@ -10019,8 +10019,8 @@ combination values:
 >
 > A great way to learn how to use the analytics API is to use the DHIS2
 > *pivot table* app. You can play around with pivot tables using the
-> various dimensions and items and click Download > Plain data source
-> > JSON to see the resulting analytics API calls in the address bar of
+> various dimensions and items and click Download > Plain data source > JSON
+> to see the resulting analytics API calls in the address bar of
 > your Web browser.
 
 ### Response formats
