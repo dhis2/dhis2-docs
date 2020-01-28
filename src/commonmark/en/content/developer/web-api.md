@@ -123,9 +123,9 @@ send a payload like this:
 
 ```json
 {
-  "name" : "OAuth2 Demo Client",
-  "cid" : "demo",
-  "secret" : "1e6db50c-0fee-11e5-98d0-3c15c2c6caf6",
+  "name": "OAuth2 Demo Client",
+  "cid": "demo",
+  "secret": "1e6db50c-0fee-11e5-98d0-3c15c2c6caf6",
   "grantTypes": [
     "password",
     "refresh_token",
