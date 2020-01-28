@@ -218,8 +218,9 @@ collecting them and then authenticating on behalf of the user. Please be
 aware that this approach uses the `redirectUris` part of the client
 payload.
 
-Step 1: Using a browser visit this URL (if you have more than one
-redirect URIs, you might want to add `&redirect_uri=http://www.example.org`:
+Step 1: Visit the following URL using a web browser. If you have more than one
+redirect URIs, you might want to add `&redirect_uri=http://www.example.org` 
+to the URL:
 
 ```bash
 SERVER="https://play.dhis2.org/dev"
