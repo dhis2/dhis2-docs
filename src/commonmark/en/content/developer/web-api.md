@@ -14490,9 +14490,15 @@ property and value for each system setting key-value pair using a POST request:
 }
 ```
 
+Translations for translatable Setting keys can be set by specifying locale as 
+a query parameter and translated value which can be specified 
+either as a query param or withing the body payload. See an example URL:
+
+    /api/33/systemSettings/<my-key>?locale=<my-locale>&value=<my-translated-value>
+
 You should replace my-key with your real key and my-val with your real
-value. To retrieve the value for a given key in plain text you can make
-a *GET* request to the following URL:
+value. To retrieve the value for a given key (in JSON or plain text) 
+you can make a *GET* request to the following URL:
 
     /api/33/systemSettings/my-key
 
@@ -14512,8 +14518,29 @@ You can retrieve all system settings with a GET request:
 
     /api/33/systemSettings
 
+To retrieve a specific translation for given translatable key you can specify 
+a locale as query param:
+
+    /api/33/systemSettings/<my-key>?locale=<my-locale>
+
+If present, the translation for given locale is returned. Otherwise, a default 
+value is returned. If no locale is specified for translatable key, user default 
+UI locale is used to fetch the correct translation. If given translation is not 
+present, again, the default value is returned.
+
+The priority for translatable keys is following:
+
+    specified locale > user's default UI locale > defaut value
+
 To delete a system setting, you can make a *DELETE* request to the URL
-similar to the one used above for retrieval.
+similar to the one used above for retrieval. If a translatable key is 
+used, all present translations will be deleted as well.
+
+To delete only a specific translation of translatable key, the same URL 
+as for adding a translation should be used and the empty value should be 
+provided:
+
+    /api/33/systemSettings/<my-key>?locale=<my-locale>&value=
 
 The available system settings are listed below.
 
