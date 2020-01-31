@@ -13065,14 +13065,14 @@ where both the key and the value are plain text strings. To save or
 update a system setting you can make a *POST* request to the following
 URL:
 
-    /api/26/systemSettings/my-key?value=my-val
+    /api/31/systemSettings/my-key?value=my-val
 
 Alternatively, you can submit the setting value as the request body,
 where content type is set to "text/plain". As an example, you can use
 curl like
     this:
 
-    curl "play.dhis2.org/demo/api/26/systemSettings/my-key" -d "My long value"
+    curl "play.dhis2.org/demo/api/31/systemSettings/my-key" -d "My long value"
       -H "Content-Type: text/plain" -u admin:district -v
 
 To set system settings in bulk you can send a JSON object with a
@@ -13087,29 +13087,55 @@ request:
 }
 ```
 
-You should replace my-key with your real key and my-val with your real
-value. To retrieve the value for a given key in plain text you can make
-a *GET* request to the following URL:
+Translations for translatable Setting keys can be set by specifying locale as 
+a query parameter and translated value which can be specified 
+either as a query param or withing the body payload. See an example URL:
 
-    /api/26/systemSettings/my-key
+    /api/31/systemSettings/<my-key>?locale=<my-locale>&value=<my-translated-value> 
+
+You should replace my-key with your real key and my-val with your real
+value. To retrieve the value for a given key (in JSON or plain text) 
+you can make a *GET* request to the following URL:
+
+    /api/31/systemSettings/my-key
 
 Alternatively, you can specify the key as a query parameter:
 
-    /api/26/systemSettings?key=my-key
+    /api/31/systemSettings?key=my-key
 
 You can retrieve specific system settings as JSON by repeating the key
-query
-    parameter:
+query parameter:
 
-    curl "play.dhis2.org/demo/api/26/systemSettings?key=keyApplicationNotification&key=keyApplicationIntro"
+    curl "play.dhis2.org/demo/api/31/systemSettings?key=keyApplicationNotification&key=keyApplicationIntro"
       -H "Content-Type: application/json" -u admin:district -v
 
 You can retrieve all system settings with a GET request:
 
-    /api/26/systemSettings
+    /api/31/systemSettings
+
+To retrieve a specific translation for given translatable key you can specify 
+a locale as query param:
+
+    /api/31/systemSettings/<my-key>?locale=<my-locale>
+
+If present, the translation for given locale is returned. Otherwise, a default 
+value is returned. If no locale is specified for translatable key, user default 
+UI locale is used to fetch the correct translation. If given translation is not 
+present, again, the default value is returned.
+
+The priority for translatable keys is following:
+
+    specified locale > user's default UI locale > defaut value
 
 To delete a system setting, you can make a *DELETE* request to the URL
-similar to the one used above for retrieval.
+similar to the one used above for retrieval. If a translatable key is 
+used, all present translations will be deleted as well.
+
+To delete only a specific translation of translatable key, the same URL 
+as for adding a translation should be used and the empty value should be 
+provided:
+
+    /api/31/systemSettings/<my-key>?locale=<my-locale>&value=
 
 The available system settings are listed below.
 
