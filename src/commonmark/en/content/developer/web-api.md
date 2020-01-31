@@ -4476,7 +4476,7 @@ The following query parameters are supported for this resource:
 <tr class="even">
 <td>value</td>
 <td>No</td>
-<td>Data value</td>
+<td>Data value. For boolean values, the following will be accepted: true | True | TRUE | false | False | FALSE | 1 | 0 | t | f |</td>
 </tr>
 <tr class="odd">
 <td>comment</td>
