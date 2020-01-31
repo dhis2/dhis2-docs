@@ -14558,8 +14558,8 @@ either as a query param or withing the body payload. See an example URL:
     /api/33/systemSettings/<my-key>?locale=<my-locale>&value=<my-translated-value> 
 
 You should replace my-key with your real key and my-val with your real
-value. To retrieve the value for a given key in plain text you can make
-a *GET* request to the following URL:
+value. To retrieve the value for a given key (in JSON or plain text) 
+you can make a *GET* request to the following URL:
 
     /api/33/systemSettings/my-key
 
