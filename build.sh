@@ -21,6 +21,7 @@ fi
 echo "    - User:" >> $myml
 generate "dhis2_user_manual_en" "user"
 generate "dhis2_end_user_manual" "end-user"
+generate "dhis2_action_tracker_manual" "at-app"
 generate "dhis2_bottleneck_analysis_manual" "bna-app"
 generate "dhis2_scorecard_manual" "scorecard-app"
 
