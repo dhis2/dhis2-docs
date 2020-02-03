@@ -45,6 +45,7 @@ if [ ${LOCALISE} -eq 1  ]; then
         echo "    - User:" >> $myml
         translate "dhis2_user_manual_en" "user" "both" $lang $locale
         translate "dhis2_end_user_manual" "end-user" "both" $lang $locale
+        translate "dhis2_action_tracker_manual" "at-app" "both" $lang $locale
         translate "dhis2_bottleneck_analysis_manual" "bna-app" "both" $lang $locale
         translate "dhis2_scorecard_manual" "scorecard-app" "both" $lang $locale
 
