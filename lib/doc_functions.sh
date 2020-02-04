@@ -37,10 +37,12 @@ export LANG=en_US.UTF-8
 
 # pushing docs to localisation platform (transifex) is only done on Jenkins
 LOCALISE=0
-if [[ `id -un` == "jenkins" ]]; then
-  # and only where configured
-  if [ -f ~/.transifexrc ]; then LOCALISE=1; fi
-fi
+
+# !!!!! DO NOT TRY TO PUSH TO TRANSIFEX FROM THE DRAFTS BRANCH
+# if [[ `id -un` == "jenkins" ]]; then
+#   # and only where configured
+#   if [ -f ~/.transifexrc ]; then LOCALISE=1; fi
+# fi
 
 # set up the python environment
 VENV_VERSION=1.2  # used to force a reset of the venv

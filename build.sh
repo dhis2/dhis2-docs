@@ -18,27 +18,10 @@ fi
 # format:
 #$> generate <doc name> <chapters subfolder> ["html","pdf","both"]
 
-echo "    - User:" >> $myml
-generate "dhis2_user_manual_en" "user"
-generate "dhis2_end_user_manual" "end-user"
-generate "dhis2_bottleneck_analysis_manual" "bna-app"
-generate "dhis2_scorecard_manual" "scorecard-app"
-
 echo "    - Implementer:" >> $myml
-generate "dhis2_implementation_guide" "implementer"
-generate "dhis2_android_implementation_guideline" "implementer"
-generate "dhis2_android_capture_app" "android-app"
-generate "user_stories_book" "user-stories"
-
-echo "    - Developer:" >> $myml
-generate "dhis2_developer_manual" "developer"
-generate "dhis2_android_sdk_developer_guide" "android-sdk"
-
-echo "    - Sysadmin:" >> $myml
-generate "dhis2_system_administration_guide" "sysadmin"
+generate "dhis2_tracker_implementation_guide" "implementer"
 
 make_mkdocs
 
-generate "dhis2_draft_chapters" "draft"
 
-rm -rf $tmp
+# rm -rf $tmp
