@@ -360,6 +360,10 @@ deleted, but the user can't log in or use DHIS2.
 
 3.  Click **OK** to confirm.
 
+> **Warning** 
+> 
+> If you are using the [Android Capture App](https://www.dhis2.org/android) disabling a user will cause the application to delete the local data stored on the phone next time the user attemps an on-line login. Please make sure that when you use the *disable user* function all the data has been synced with the server. Or that you are using this funcionality to ensure data deletion in case of a device being lost.
+
 ### Display a user's profile
 
 1.  Open the **Users** app and click **User**.
