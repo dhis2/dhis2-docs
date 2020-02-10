@@ -500,6 +500,22 @@ When you create or modify a job, it will be rescheduled according to
 selected preferences. To run a job on demand, press the green triangle
 labelled "Run now". This action is only available for enabled jobs.
 
+### Scheduling types
+
+There are two different scheduling types a job can have.
+These can not be set manually but depend on the selected job.
+
+#### Scheduling type: Cron
+
+Cron jobs are executed periodically depending on a given cron expression.
+Technically two executions of a cron job won't overlap if the previous
+execution is still running when the next execution should start.
+
+#### Scheduling type: Delayed
+
+Delayed jobs are executed after a specified time after the previous execution
+finished running.
+
 ### Creating a job
 
 <!--DHIS2-SECTION-ID:dataAdmin_scheduling_config-->
@@ -507,32 +523,39 @@ labelled "Run now". This action is only available for enabled jobs.
 1.  Open the **Scheduler** app and click the add button in the bottom
     right corner.
 
-2.  Choose a suitable **Name** for the new job.
+1.  Choose a suitable **Name** for the new job.
 
-3.  Select a running frequency for the job, i.e. when and how often the
-    job should run.
-
-    1.  You can either select a pre-defined frequency from the
-        drop-down menu, or ...
-
-    2.  You can give the job a custom **Cron expression** if you want a
-        specific schedule, using the [Spring
-        scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
-        syntax.
-
-    3.  Enabling the **Continuous execution** option will make the job
-        run constantly. In other words, as soon as the job finishes, it
-        will be scheduled to run again right away. Selecting this option
-        will disable the other fields.
-
-4.  Select the **Job type** you want to schedule using the
+1.  Select the **Job type** you want to schedule using the
     drop-down menu.
 
-5.  If the job type is customizable, a **Parameters** section will
+1.  Select a running frequency for the job, i.e. when and how often the
+    job should run.
+
+    1.  If the selected job is scheduled by a delay:
+
+        1.  You can specify the delay between executions in seconds.
+            This value is mandatory.
+
+    1.  If the selected job is scheduled by a delay:
+
+        1.  You can either select a pre-defined frequency from the
+            drop-down menu, or ...
+
+        1.  You can give the job a custom **Cron expression** if you want a
+            specific schedule, using the [Spring
+            scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
+            syntax.
+
+        1.  Enabling the **Continuous execution** option will make the job
+            run constantly. In other words, as soon as the job finishes, it
+            will be scheduled to run again right away. Selecting this option
+            will disable the other fields.
+
+1.  If the job type is customizable, a **Parameters** section will
     appear below. These additional options specify the details of the
     scheduled job, and will vary greatly depending on the job type.
 
-6.  Press the **Add job** button to confirm the job creation. The newly
+1.  Press the **Add job** button to confirm the job creation. The newly
     created job should now be listed in the job overview, given that the
     **Show system jobs** setting is not enabled.
 

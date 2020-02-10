@@ -22,6 +22,7 @@ cd -
 # a temporary hacks
 cp tools/python/blockprocessors.py venv/lib/python3*/site-packages/markdown/
 cp tools/python/attr_list.py venv/lib/python3*/site-packages/markdown/extensions/
+cp tools/python/tables.py venv/lib/python3*/site-packages/markdown/extensions/
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # use the mac pandoc binaries
