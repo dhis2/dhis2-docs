@@ -102,9 +102,22 @@ figcaption {
   background-image: url(../images/admin/icon-wip.png);
 }
 
+.complete {
+  background-image: url(../images/admin/icon-complete.png);
+}
+
+.incomplete {
+  background-image: url(../images/admin/icon-incomplete.png);
+}
+
+.not_applicable {
+  background-image: url(../images/admin/icon-na.png);
+}
+
 .example {
   background-image: url(../images/admin/example.png);
 }
+
 
 .thanks {
   border: 1px solid #ddd;

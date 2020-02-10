@@ -4476,7 +4476,7 @@ The following query parameters are supported for this resource:
 <tr class="even">
 <td>value</td>
 <td>No</td>
-<td>Data value</td>
+<td>Data value. For boolean values, the following will be accepted: true | True | TRUE | false | False | FALSE | 1 | 0 | t | f |</td>
 </tr>
 <tr class="odd">
 <td>comment</td>
@@ -10028,8 +10028,8 @@ combination values:
 >
 > A great way to learn how to use the analytics API is to use the DHIS2
 > *pivot table* app. You can play around with pivot tables using the
-> various dimensions and items and click Download > Plain data source
-> > JSON to see the resulting analytics API calls in the address bar of
+> various dimensions and items and click Download > Plain data source > JSON
+> to see the resulting analytics API calls in the address bar of
 > your Web browser.
 
 ### Response formats
@@ -14558,8 +14558,8 @@ either as a query param or withing the body payload. See an example URL:
     /api/33/systemSettings/<my-key>?locale=<my-locale>&value=<my-translated-value> 
 
 You should replace my-key with your real key and my-val with your real
-value. To retrieve the value for a given key in plain text you can make
-a *GET* request to the following URL:
+value. To retrieve the value for a given key (in JSON or plain text) 
+you can make a *GET* request to the following URL:
 
     /api/33/systemSettings/my-key
 

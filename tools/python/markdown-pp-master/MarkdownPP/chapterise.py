@@ -50,6 +50,7 @@ def main():
     with open(book+".md") as ob:
         line = ob.readline()
         chapter=0
+        no_title=True
         lastchapter=""
         lastname=None
         lastfound=""
@@ -110,10 +111,11 @@ def main():
             except:
                 pass
 
-            if chapter == 0:
+            if chapter == 0 and no_title:
                 try:
                     title = re.search('^title:[ \'\"]*(.+?)[ \'\"]*$', line.rstrip()).group(1)
                     content += '        '+title+':\n'
+                    no_title = False
                 except AttributeError:
                     pass
             if found == '':
