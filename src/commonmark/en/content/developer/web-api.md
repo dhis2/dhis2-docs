@@ -81,40 +81,42 @@ The DHIS2 Web API supports *Basic authentication*. Basic authentication
 is a technique for clients to send login credentials over HTTP to a web
 server. Technically speaking, the username is appended with a colon and
 the password, Base64-encoded, prefixed Basic and supplied as the value
-of the *Authorization* HTTP header. More formally that is`
-Authorization: Basic
-base64encode(username:password)` Most network-aware development
-frameworks provides support for authentication using Basic, such as
-Apache HttpClient, Spring RestTemplate and C\# WebClient. An important
-note is that this authentication scheme provides no security since the
-username and password is sent in plain text and can be easily decoded.
-Using it is recommended only if the server is using SSL/TLS (HTTPS) to
-encrypt communication between itself and the client. Consider it a hard
-requirement to provide secure interactions with the Web API.
+of the *Authorization* HTTP header. More formally that is:
+
+    Authorization: Basic base64encode(username:password)
+    
+Most network-aware development environments provide support for Basic 
+authentication, such as *Apache HttpClient* and *Spring RestTemplate*. 
+An important note is that this authentication scheme provides no security 
+since the username and password are sent in plain text and can be easily 
+observed by an attacker. Using Basic is recommended only if the server is 
+using SSL/TLS (HTTPS) to encrypt communication with clients. Consider this 
+a hard requirement in order to provide secure interactions with the Web 
+API.
 
 ### Two factor authentication
 
 <!--DHIS2-SECTION-ID:webapi_2fa-->
 
-As of 2.30 DHIS2 supports two factor authentication. This means that you
-can enable 2FA in your user settings which means that you will be
-prompted for a 2FA code at login. You can read more about 2FA 
-[here](https://www.google.com/landing/2step/).
+DHIS2 supports two factor authentication. This can be enabled per user.
+When enabled, users will be asked to enter a 2FA code when logging in. You 
+can read more about 2FA [here](https://www.google.com/landing/2step/).
 
 ### OAuth2
 
 <!--DHIS2-SECTION-ID:webapi_oauth2-->
 
-DHIS2 supports the OAuth2 authentication protocol. OAuth2 is an open
+DHIS2 supports the *OAuth2* authentication protocol. OAuth2 is an open
 standard for authorization which it allows third-party clients to
-connect on behalf of a DHIS2 user and get a reusable bearer token for
+connect on behalf of a DHIS2 user and get a reusable *bearer token* for
 subsequent requests to the Web API. DHIS2 does not support fine-grained
 OAuth2 roles but rather provides applications access based on user roles
 of the DHIS2 user.
 
 Each client for which you want to allow OAuth 2 authentication must be
-registered in DHIS2. To add a new OAuth2 client go to `Apps > Settings > OAuth2 Clients`, 
-click add new and enter the desired client name and the grant types.
+registered in DHIS2. To add a new OAuth2 client go to `Apps > Settings > OAuth2 Clients`
+in the user interface, click *Add new* and enter the desired client name a
+nd the grant types.
 
 #### Adding a client using the Web API
 
@@ -316,7 +318,7 @@ For instance, if you want to express March 20, 2014 you must use
 *2014-03-20*.
 
 The period format is described in the following table (also available on
-API endpoint */api/periodTypes*)
+API endpoint `/api/periodTypes`)
 
 <table style="width:100%;">
 <caption>Period format</caption>
@@ -733,7 +735,7 @@ Example of data element with translations turned off:
 ```
 
 Note that even if you get the unfiltered result, and are using the
-appropriate type endpoint i..e */api/dataElements* we do not allow
+appropriate type endpoint i..e `/api/dataElements` we do not allow
 updates, as it would be too easy to make mistakes and overwrite the
 other available locales.
 
@@ -2999,7 +3001,7 @@ deleted.
 
 Whenever a object of type metadata is deleted, a log is being kept of
 the uid, code, the type and the time of when it was deleted. This API is
-available at */api/deletedObjects* field filtering and object filtering
+available at `/api/deletedObjects` field filtering and object filtering
 works similarly to other metadata resources.
 
 Get deleted objects of type data elements:
@@ -4561,7 +4563,7 @@ of file resources are not possible.
 The data value can now be retrieved as any other but the returned data
 will be the UID of the file resource. In order to retrieve the actual
 contents (meaning the file which is stored in the file resource mapped
-to the data value) a GET request must be made to */api/dataValues/files*
+to the data value) a GET request must be made to `/api/dataValues/files`
 mirroring the query parameters as they would be for the data value
 itself. The `/api/dataValues/files` endpoint only supports GET requests.
 
@@ -4799,7 +4801,7 @@ dataElements with different categoryCombos, resulting in a
 
 ### Importing data - HTTP POST
 
-DHIS2 exposes an endpoint for POST adx data at */api/dataValueSets*
+DHIS2 exposes an endpoint for POST adx data at `/api/dataValueSets`
 using *application/xml+adx* as content type. So, for example, the
 following curl command can be used to POST the example data above to the
 DHIS2 demo server:
@@ -4815,7 +4817,7 @@ same semantics as DXF.
 
 ### Exporting data - HTTP GET
 
-DHIS2 exposes an endpoint to GET adx data sets at */api/dataValueSets*
+DHIS2 exposes an endpoint to GET adx data sets at `/api/dataValueSets`
 using *application/xml+adx* as the accepted content type. So, for
 example, the following curl command can be used to retrieve the adx
 data:
@@ -6486,7 +6488,7 @@ data.
 <!--DHIS2-SECTION-ID:webapi_auditing_aggregate_audits-->
 
 The endpoint for aggregate data value audits is located at
-*/api/audits/dataValue*, and the available parameters are displayed in
+`/api/audits/dataValue`, and the available parameters are displayed in
 the table below.
 
 <table>
@@ -6551,7 +6553,7 @@ Get all audits for data set with ID *lyLU2wR22tC*:
 <!--DHIS2-SECTION-ID:webapi_tracked_entity_data_value_audits-->
 
 The endpoint for tracked entity data value audits is located at
-*/api/audits/trackedEntityDataValue*, and the available parameters are
+`/api/audits/trackedEntityDataValue`, and the available parameters are
 displayed in the table below.
 
 <table>
@@ -6606,7 +6608,7 @@ Get all audits which have data element ID eMyVanycQSC or qrur9Dvnyt5:
 <!--DHIS2-SECTION-ID:webapi_tracked_entity_attribute_value_audits-->
 
 The endpoint for tracked entity attribute value audits is located at
-*/api/audits/trackedEntityAttributeValue*, and the available parameters
+`/api/audits/trackedEntityAttributeValue`, and the available parameters
 are displayed in the table below.
 
 <table>
@@ -7364,7 +7366,7 @@ observation or interpretation about a data report or visualization.
 <!--DHIS2-SECTION-ID:webapi_reading_interpretations-->
 
 To read interpretations we will interact with the
-*/api/interpretations* resource. A typical GET request using field
+`/api/interpretations` resource. A typical GET request using field
 filtering can look like this:
 
     GET /api/interpretations?fields=*,comments[id,text,user,mentions]
@@ -7556,7 +7558,7 @@ Some valid examples for interpretations are listed below.
 
 As an example we will start by writing an interpretation for the chart
 with identifier *EbRN2VIbPdV*. To write chart interpretations we will
-interact with the */api/interpretations/chart/{chartId}* resource.
+interact with the `/api/interpretations/chart/{chartId}` resource.
 The interpretation will be the request body. Based on this we can put
 together the following request using cURL:
 
@@ -7609,7 +7611,7 @@ that a *Location* header is returned. This header tells us the URL of
 the newly created interpretation and from that we can read its
 identifier. This identifier is randomly generated so you will have to
 replace the one in the command below with your own. To write a comment
-we can interact with the */api/interpretations/{id}/comments"*
+we can interact with the `/api/interpretations/{id}/comments`
 resource like this:
 
 ```bash
@@ -7685,11 +7687,11 @@ have liked the interpretation.
 DHIS2 has several resources for data analysis. These resources include
 *charts*, *maps*, *reportTables*, *reports* and *documents*. By visiting
 these resources you will retrieve information about the resource. For
-instance, by navigating to */api/charts/R0DVGvXDUNP* the response will
+instance, by navigating to `/api/charts/R0DVGvXDUNP` the response will
 contain the name, last date of modification and so on for the chart. To
 retrieve the analytical representation, for instance a PNG
 representation of the chart, you can append */data* to all these
-resources. For instance, by visiting */api/charts/R0DVGvXDUNP/data* the
+resources. For instance, by visiting `/api/charts/R0DVGvXDUNP/data` the
 system will return a PNG image of the chart.
 
 <table>
@@ -9299,7 +9301,7 @@ similar to this:
 
 Creating, updating and deleting dashboards follow standard REST
 semantics. In order to create a new dashboard you can make a *POST*
-request to the */api/dashboards* resource. From a consumer perspective
+request to the `/api/dashboards` resource. From a consumer perspective
 it might be convenient to first create a dashboard and later add items
 to it. JSON and XML formats are supported for the request payload. To
 create a dashboard with the name "My dashboard" you can use a payload in
@@ -17976,7 +17978,7 @@ curl "http://localhost/api/33/events/ID" -H "Content-Type: application/xml" -u a
 This section explains how to read out the events that have been stored
 in the DHIS2 instance. For more advanced uses of the event data, please
 see the section on event analytics. The output format from the
-*/api/events* endpoint will match the format that is used to send events
+`/api/events` endpoint will match the format that is used to send events
 to it (which the analytics event api does not support). Both XML and
 JSON are supported, either through adding .json/.xml or by setting the
 appropriate *Accept* header. The query is paged by default and the
@@ -18330,7 +18332,7 @@ based on data element
 <!--DHIS2-SECTION-ID:webapi_event_filters-->
 
 To create, read, update and delete event filters you
-can interact with the */api/eventFilters* resource.
+can interact with the `/api/eventFilters` resource.
 
     /api/33/eventFilters
 
@@ -18956,9 +18958,9 @@ introduced support for the CSV format. Support for this format builds on
 what was described in the last section, so here we will only write about
 what the CSV specific parts are.
 
-To use the CSV format you must either use the */api/events.csv*
+To use the CSV format you must either use the `/api/events.csv`
 endpoint, or add *content-type: text/csv* for import, and *accept:
-text/csv* for export when using the */api/events* endpoint.
+text/csv* for export when using the `/api/events` endpoint.
 
 The order of column in the CSV which are used for both export and import
 is as follows:
@@ -19599,8 +19601,8 @@ synchronization, which requires remote server configuration.
 <!--DHIS2-SECTION-ID:webapi_schema-->
 
 A resource which can be used to introspect all available DXF 2 objects
-can be found on */api/schemas*. For specific resources you can have a
-look at */api/schemas/TYPE*.
+can be found on `/api/schemas`. For specific resources you can have a
+look at `/api/schemas/<type>`.
 
 To get all available schemas in XML:
 
@@ -19708,7 +19710,7 @@ credentials you can make a GET request to the following resource:
 
 <!--DHIS2-SECTION-ID:webapi_apps-->
 
-The */api/apps* endpoint can be used for installing, deleting and
+The `/api/apps` endpoint can be used for installing, deleting and
 listing apps. The app key is based on the app name, but with all
 non-alphanumerical characters removed, and spaces replaced with a dash.
 *My app!* will return the key *My-app*.
@@ -20385,7 +20387,7 @@ curl -X DELETE -u admin:district "play.dhis2.org/api/33/userDataStore/foo"
 
 A predictor allows you to generate data values based on an expression.
 This can be used to generate targets, thresholds and estimated values.
-You can interact with predictors through the */api/33/predictors*
+You can interact with predictors through the `/api/33/predictors`
 resource.
 
     /api/33/predictors
