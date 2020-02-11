@@ -760,14 +760,13 @@ The password must be at least **24 characters long**. A mix of numbers
 and lower- and uppercase letters are recommended. The encryption password 
 must be kept secret.
 
-### Considerations for encryption
-
-<!--DHIS2-SECTION-ID:install_considerations_for_encryption-->
-
-*A word of caution:* It is not possible to recover encrypted data if the
-encryption password is lost or changed. Conversely, the encryption
-provides no security if the password is compromised. Hence, great
-consideration should be given to storing the password in a safe place.
+> ** Important **
+>
+> A word of caution: It is not possible to recover encrypted data if the
+> encryption password is lost or changed. If the password is lost, so is 
+> the encrypted data.Conversely, the encryption provides no security if 
+> the password is compromised. Hence, great consideration should be given 
+> to storing the password in a safe place.
 
 ## Read replica database configuration
 
