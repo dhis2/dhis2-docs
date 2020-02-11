@@ -1542,13 +1542,12 @@ The payload format is:
 
 <!--DHIS2-SECTION-ID:webapi_validating_payloads-->
 
-System wide validation of metadata payloads are enabled from 2.19
-release, this means that create/update operations on the API
-endpoints will be checked for valid payload before allowed changes to be
-made, to find out what validations are in place for a endpoint, please
-have a look at the /api/schemas endpoint, i.e. to figure out which
-constraints a data element have, you would go to
-/api/schemas/dataElement.
+DHIS 2 supports system wide validation of metadata payloads, which means 
+that create and update operations on the API endpoints will be checked for 
+valid payload before allowing changes to be made. To find out what validations 
+are in place for a specific endpoint, have a look at the `/api/schemas` 
+endpoint, i.e. to figure out which constraints a data element have, you 
+would go to `/api/schemas/dataElement`.
 
 You can also validate your payload manually by sending it to the proper
 schema endpoint. If you wanted to validate the constant from the create
