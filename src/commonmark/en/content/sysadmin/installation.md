@@ -956,7 +956,7 @@ exclusively by one instance. Optionally you can configure the
 *leader.time.to.live.minutes* property in *dhis.conf* to set up how
 frequently the leader election needs to occur. It also gives an
 indication of how long it would take for another instance to take over
-as the leader after the previous leader has shutdown/crashed. The
+as the leader after the previous leader has become unavailable. The
 default value is 2 minutes. Note that assigning a leader in the cluster
 is only done if Redis is enabled. An example snippet of the *dhis.conf*
 configuration file with Redis enabled and leader election time
