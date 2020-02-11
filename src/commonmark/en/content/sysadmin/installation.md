@@ -926,7 +926,13 @@ ensure that their caches are kept in sync.
 In a cluster setup, a *Redis* instance is required and will handle
 shared user sessions, application cache and cluster node leadership.
 
-For optimum performance, *Redis Keyspace events* for _generic commands_ and _expired events_ need to be enabled in the Redis Server. If you are using a cloud platform-managed Redis server (like AWS ElastiCache for Redis or Azure Cache for Redis) you will have to enable keyspace event notifications using the respective cloud interfaces. If you are setting up a standalone Redis server, enabling keyspace event notifications can be done in the *redis.conf* file by adding or uncommenting the following line:
+For optimum performance, *Redis Keyspace events* for _generic commands_ 
+and _expired events_ need to be enabled in the Redis Server. If you are 
+using a cloud platform-managed Redis server (like *AWS ElastiCache for Redis* 
+or *Azure Cache for Redis*) you will have to enable keyspace event notifications 
+using the respective cloud console interfaces. If you are setting up a standalone 
+Redis server, enabling keyspace event notifications can be done in the 
+*redis.conf* file by adding or uncommenting the following line:
 
 ```
 notify-keyspace-events Egx
