@@ -1717,16 +1717,16 @@ When you want to exhchange metadata for a data set, program or category combo
 from one DHIS2 instance to another instance there are three dedicated endpoints available:
 
 ```
-/api/<version>/dataSets/ID/metadata.json
+/api/dataSets/{id}/metadata.json
 
-/api/<version>/programs/ID/metadata.json
+/api/programs/{id}/metadata.json
 
-/api/<version>/categoryCombos/ID/metadata.json
+/api/categoryCombos/{id}/metadata.json
 
-/api/<version>/dashboards/{uid}/metadata.json
+/api/dashboards/{id}/metadata.json
 ```
 
-These exports can then be imported using `/api/<version>/metadata`.
+These exports can then be imported using `/api/metadata`.
 
 These endpoints also support the following parameters:
 
