@@ -5492,6 +5492,37 @@ The following query parameters are supported:
 </tbody>
 </table>
 
+Sample output:
+```json
+    [{
+	"validationRuleId": "kgh54Xb9LSE",
+	"validationRuleDescription": "Malaria outbreak",
+	"organisationUnitId": "DiszpKrYNg8",
+	"organisationUnitDisplayName": "Ngelehun CHC",
+	"organisationUnitPath": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8",
+	"organisationUnitAncestorNames": "Sierra Leone / Bo / Badjia / ",
+	"periodId": "201901",
+	"periodDisplayName": "January 2019",
+	"importance": "MEDIUM",
+	"leftSideValue": 10.0,
+	"operator": ">",
+	"rightSideValue": 14.0
+}, {
+	"validationRuleId": "ZoG4yXZi3c3",
+	"validationRuleDescription": "ANC 2 cannot be higher than ANC 1",
+	"organisationUnitId": "DiszpKrYNg8",
+	"organisationUnitDisplayName": "Ngelehun CHC",
+	"organisationUnitPath": "/ImspTQPwCqd/O6uvpzGd5pu/YuQRtpLP10I/DiszpKrYNg8",
+	"organisationUnitAncestorNames": "Sierra Leone / Bo / Badjia / ",
+	"periodId": "201901",
+	"periodDisplayName": "January 2019",
+	"importance": "MEDIUM",
+	"leftSideValue": 22.0,
+	"operator": "<=",
+	"rightSideValue": 19.0
+}]
+```
+
 ### Standard deviation based outlier analysis
 
 <!--DHIS2-SECTION-ID:webapi_data_analysis_std_dev_outlier-->
