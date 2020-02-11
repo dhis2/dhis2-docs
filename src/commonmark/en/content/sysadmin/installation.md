@@ -873,7 +873,7 @@ The hostname must be visible to the participating servers on the network
 for the clustering to work. You might have to allow incoming and
 outgoing connections on the configured port numbers in the firewall.
 
-The port number of the server is specified using the*cluster.cache.port*
+The port number of the server is specified using the *cluster.cache.port*
 configuration property. The remote object port used for registry receive
 calls is specified using *cluster.cache.remote.object.port*. Specifying
 the port numbers is typically only useful when you have multiple cluster
@@ -1822,6 +1822,6 @@ about server installations for an explanation of the database
 configuration. The *dhis.conf* configuration file is located in the
 *conf* folder. Remember to restart the Live package for your changes to
 take effect. The server port is 8082 by default. This can be changed by
-modifying the value in the*jetty.port* configuration file located in the
+modifying the value in the *jetty.port* configuration file located in the
 *conf* directory.
 
