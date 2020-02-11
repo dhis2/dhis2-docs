@@ -877,13 +877,12 @@ The port number of the server is specified using the *cluster.cache.port*
 configuration property. The remote object port used for registry receive
 calls is specified using *cluster.cache.remote.object.port*. Specifying
 the port numbers is typically only useful when you have multiple cluster
-instances on the same server / virtual machine or if you need to
-explicitly specify the ports to be used so as to have them configured in
-firewall. When running cluster instances on separate servers / virtual
-machines it is often appropriate to use the default port number and omit
-the ports configuration properties. If omitted, 4001 will be assigned as
-the listener port and a random free port will be assigned as the remote
-object port.
+instances on the same server or if you need to explicitly specify the ports 
+to match a firewall configuration. When running cluster instances on separate 
+servers / virtual machines it is often appropriate to use the default port 
+number and omit the ports configuration properties. If omitted, 4001 will 
+be assigned as the listener port and a random free port will be assigned 
+as the remote object port.
 
 An example setup for a cluster of two web servers is described below.
 For *server A* available at hostname *193.157.199.131* the following can
