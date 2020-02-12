@@ -760,14 +760,13 @@ The password must be at least **24 characters long**. A mix of numbers
 and lower- and uppercase letters are recommended. The encryption password 
 must be kept secret.
 
-### Considerations for encryption
-
-<!--DHIS2-SECTION-ID:install_considerations_for_encryption-->
-
-*A word of caution:* It is not possible to recover encrypted data if the
-encryption password is lost or changed. Conversely, the encryption
-provides no security if the password is compromised. Hence, great
-consideration should be given to storing the password in a safe place.
+> ** Important **
+>
+> A word of caution: It is not possible to recover encrypted data if the
+> encryption password is lost or changed. If the password is lost, so is 
+> the encrypted data.Conversely, the encryption provides no security if 
+> the password is compromised. Hence, great consideration should be given 
+> to storing the password in a safe place.
 
 ## Read replica database configuration
 
@@ -874,16 +873,15 @@ The hostname must be visible to the participating servers on the network
 for the clustering to work. You might have to allow incoming and
 outgoing connections on the configured port numbers in the firewall.
 
-The port number of the server is specified using the*cluster.cache.port*
+The port number of the server is specified using the *cluster.cache.port*
 configuration property. The remote object port used for registry receive
 calls is specified using *cluster.cache.remote.object.port*. Specifying
 the port numbers is typically only useful when you have multiple cluster
-instances on the same server / virtual machine or if you need to
-explicitly specify the ports to be used so as to have them configured in
-firewall. When running cluster instances on separate servers / virtual
-machines it is often appropriate to use the default port number and omit
-the ports configuration properties. If omitted, 4001 will be assigned as
-the listener port and a random free port will be assigned as the remote
+instances on the same server or if you need to explicitly specify the ports 
+to match a firewall configuration. When running cluster instances on separate 
+servers it is often appropriate to use the default port number and omit 
+the ports configuration properties. If omitted, 4001 will be assigned as 
+the listener port and a random free port will be assigned as the remote 
 object port.
 
 An example setup for a cluster of two web servers is described below.
@@ -928,7 +926,13 @@ ensure that their caches are kept in sync.
 In a cluster setup, a *Redis* instance is required and will handle
 shared user sessions, application cache and cluster node leadership.
 
-For optimum performance, *Redis Keyspace events* for _generic commands_ and _expired events_ need to be enabled in the Redis Server. If you are using a cloud platform-managed Redis server (like AWS ElastiCache for Redis or Azure Cache for Redis) you will have to enable keyspace event notifications using the respective cloud interfaces. If you are setting up a standalone Redis server, enabling keyspace event notifications can be done in the *redis.conf* file by adding or uncommenting the following line:
+For optimum performance, *Redis Keyspace events* for _generic commands_ 
+and _expired events_ need to be enabled in the Redis Server. If you are 
+using a cloud platform-managed Redis server (like *AWS ElastiCache for Redis* 
+or *Azure Cache for Redis*) you will have to enable keyspace event notifications 
+using the respective cloud console interfaces. If you are setting up a standalone 
+Redis server, enabling keyspace event notifications can be done in the 
+*redis.conf* file by adding or uncommenting the following line:
 
 ```
 notify-keyspace-events Egx
@@ -952,7 +956,7 @@ exclusively by one instance. Optionally you can configure the
 *leader.time.to.live.minutes* property in *dhis.conf* to set up how
 frequently the leader election needs to occur. It also gives an
 indication of how long it would take for another instance to take over
-as the leader after the previous leader has shutdown/crashed. The
+as the leader after the previous leader has become unavailable. The
 default value is 2 minutes. Note that assigning a leader in the cluster
 is only done if Redis is enabled. An example snippet of the *dhis.conf*
 configuration file with Redis enabled and leader election time
@@ -1823,6 +1827,6 @@ about server installations for an explanation of the database
 configuration. The *dhis.conf* configuration file is located in the
 *conf* folder. Remember to restart the Live package for your changes to
 take effect. The server port is 8082 by default. This can be changed by
-modifying the value in the*jetty.port* configuration file located in the
+modifying the value in the *jetty.port* configuration file located in the
 *conf* directory.
 
