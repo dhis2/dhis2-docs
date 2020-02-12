@@ -9564,8 +9564,248 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 <td>The unique identifier.</td>
 </tr>
 <tr class="even">
+<td>code</td>
+<td>A custom code to identify the Visualiation.</td>
+</tr>
+<tr class="odd">
 <td>name</td>
 <td>The name of the Visualization</td>
+</tr>
+<tr class="even">
+<td>type</td>
+<td>The type of the Visualiation. The valid types are: COLUMN, STACKED_COLUMN, BAR, STACKED_BAR, LINE, AREA, PIE, RADAR, GAUGE, YEAR_OVER_YEAR_LINE YEAR_OVER_YEAR_COLUMN, SINGLE_VALUE, PIVOT_TABLE.</td>
+</tr>
+<tr class="odd">
+<td>title</td>
+<td>A custom title.</td>
+</tr>
+<tr class="even">
+<td>subtitle</td>
+<td>A custom subtitle.</td>
+</tr>
+<tr class="odd">
+<td>description</td>
+<td>Defines a custom description for the Visualization.</td>
+</tr>
+<tr class="even">
+<td>created</td>
+<td>The date/time of the Visualization creation.</td>
+</tr>
+<tr class="odd">
+<td>startDate</td>
+<td>The beginning date used for during the filtering.</td>
+</tr>
+<tr class="even">
+<td>endDate</td>
+<td>The ending date used for during the filtering.</td>
+</tr>
+<tr class="odd">
+<td>sortOrder</td>
+<td>The sorting order of this Visualization. Integer value.</td>
+</tr>
+<tr class="even">
+<td>user</td>
+<td>An object representing the creator of the Visualization.</td>
+</tr>
+<tr class="odd">
+<td>publicAccess</td>
+<td>Sets the permissions for public access.</td>
+</tr>
+<tr class="even">
+<td>displayDensity</td>
+<td>The display density of the text.</td>
+</tr>
+<tr class="odd">
+<td>fontSize</td>
+<td>The font size of the text.</td>
+</tr>
+<tr class="even">
+<td>relativePeriods</td>
+<td>An object representing the relative periods used in the analytics query.</td>
+</tr>
+<tr class="odd">
+<td>legendSet</td>
+<td>An object representing the definitions for the legend.</td>
+</tr>
+<tr class="even">
+<td>legendDisplayStyle</td>
+<td>The legend's display style. It can be: FILL or TEXT.</td>
+</tr>
+<tr class="odd">
+<td>legendDisplayStrategy</td>
+<td>The legend's display style. It can be: FIXED or BY_DATA_ITEM.</td>
+</tr>
+<tr class="even">
+<td>aggregationType</td>
+<td>Determines how the values in the pivot table are aggregated. Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT.</td>
+</tr>
+<tr class="odd">
+<td>regressionType</td>
+<td>A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS.</td>
+</tr>
+<tr class="even">
+<td>targetLineValue</td>
+<td>The chart target line. Accepts a Double type.</td>
+</tr>
+<tr class="odd">
+<td>targetLineLabel</td>
+<td>The chart target line label.</td>
+</tr>
+<tr class="even">
+<td>rangeAxisLabel</td>
+<td>The chart vertical axis (y) label/title.</td>
+</tr>
+<tr class="odd">
+<td>domainAxisLabel</td>
+<td>The chart horizontal axis (x) label/title.</td>
+</tr>
+<tr class="even">
+<td>rangeAxisMaxValue</td>
+<td>The chart axis maximum value. Values outside of the range will not be displayed.</td>
+</tr>
+<tr class="odd">
+<td>rangeAxisMinValue</td>
+<td>The chart axis minimum value. Values outside of the range will not be displayed.</td>
+</tr>
+<tr class="even">
+<td>rangeAxisSteps</td>
+<td>The number of axis steps between the minimum and maximum values.</td>
+</tr>
+<tr class="odd">
+<td>rangeAxisDecimals</td>
+<td>The number of decimals for the axes values.</td>
+</tr>
+<tr class="even">
+<td>baseLineValue</td>
+<td>A chart baseline value.</td>
+</tr>
+<tr class="odd">
+<td>baseLineLabel</td>
+<td>A chart baseline label.</td>
+</tr>
+<tr class="even">
+<td>digitGroupSeparator</td>
+<td>The digit group separator. Valid values: COMMA, SPACE or NONE.</td>
+</tr>
+<tr class="odd">
+<td>topLimit</td>
+<td>The top limit set for the Pivot table.</td>
+</tr>
+<tr class="even">
+<td>measureCriteria</td>
+<td>Describes the criteria applied to this measure.</td>
+</tr>
+<tr class="odd">
+<td>percentStackedValues</td>
+<td>Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>noSpaceBetweenColumns</td>
+<td>Show/hide space between columns. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>regression</td>
+<td>Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>externalAccess</td>
+<td>Indicates whether the Visualization is available as external read-only. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>userOrganisationUnit</td>
+<td>Indicates if the user has an organisation unit. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>userOrganisationUnitChildren</td>
+<td>Indicates if the user has a children organisation unit. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>userOrganisationUnitGrandChildren</td>
+<td>Indicates if the user has a grand children organisation unit . Boolean value.</td>
+</tr>
+<tr class="even">
+<td>reportingParams</td>
+<td>Object used to define boolean attributes related to reporting.</td>
+</tr>
+<tr class="odd">
+<td>rowTotals</td>
+<td>Displays (or not) the row totals. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>colTotals</td>
+<td>Displays (or not) the columns totals. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>rowSubTotals</td>
+<td>Displays (or not) the row sub-totals. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>colSubTotals</td>
+<td>Displays (or not) the columns sub-totals. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>cumulative</td>
+<td>Indicates whether the visualization contains cumulative values. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>hideEmptyColumns</td>
+<td>Indicates whether to hide columns with no data values.</td>
+</tr>
+<tr class="odd">
+<td>hideEmptyRows</td>
+<td>Indicates whether to hide rows with no data values. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>completedOnly</td>
+<td>Indicates whether to hide columns with no data values. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>skipRounding</td>
+<td>Apply or not rounding. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>showDimensionLabels</td>
+<td>Shows the dimension labels or not. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>hideTitle</td>
+<td>Hides the title or not. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>hideSubtitle</td>
+<td>Hides the subtitle or not. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>hideLegend</td>
+<td>Show/hide the legend. Very likely to be used by charts. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>showHierarchy</td>
+<td>Displays (or not) the organisation unit hierarchy names. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>showData</td>
+<td>Used by charts to hide or not data/values within the rendered model. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>lastUpdatedBy</td>
+<td>Object that represents the user that applied the last changes to the Visualization.</td>
+</tr>
+<tr class="odd">
+<td>lastUpdated</td>
+<td>The date/time of the last time the Visualization was changed.</td>
+</tr>
+<tr class="even">
+<td>favorites</td>
+<td>List of user ids who have marked this object as a favorite.</td>
+</tr>
+<tr class="odd">
+<td>subscribers</td>
+<td>List of user ids who have subscribed to this Visualization.</td>
+</tr>
+<tr class="even">
+<td>translations</td>
+<td>Set of available object translation, normally filtered by locale.</td>
 </tr>
 </tbody>
 </table>
