@@ -3635,7 +3635,7 @@ programs.
     </tr>
     <tr class="even">
     <td><p>Username</p></td>
-    <td><p>This will be populated with the username of the user which performs data entry automatically during the data entry process.</p></td>
+    <td><p> Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type</p></td>
     </tr>
     <tr class="odd">
     <td><p>Yes/No</p></td>
