@@ -546,11 +546,6 @@ finished running.
             scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
             syntax.
 
-        1.  Enabling the **Continuous execution** option will make the job
-            run constantly. In other words, as soon as the job finishes, it
-            will be scheduled to run again right away. Selecting this option
-            will disable the other fields.
-
 1.  If the job type is customizable, a **Parameters** section will
     appear below. These additional options specify the details of the
     scheduled job, and will vary greatly depending on the job type.
