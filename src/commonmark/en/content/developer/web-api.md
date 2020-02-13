@@ -9530,7 +9530,7 @@ dashboard item completely:
 
 The Visualization API is designed to help clients to interact with charts and pivot/report tables. The endpoints of this API are used by the Data Visualization application which allows the creation, configuration and management of charts and pivot tables based on the client's definitions. The main idea is to enable clients and users to have a unique and centralized API providing all types of charts and pivot tables as well as specific parameters and configuration for each type of visualization.
 
-This API was introduced with the expectation to unify both "charts" and "reportTables" APIs and entirely replace them by release **2.37** in favour of the "visualizations" API (which means that the "charts" and "reportTables" APIs should not be available anymore in the release version **2.37**. In other words, to make it very clear, the following resources/APIs:
+This API was introduced with the expectation to unify both "charts" and "reportTables" APIs and entirely replace them by release **2.37** in favour of the "visualizations" API (which means that the "charts" and "reportTables" APIs should not be available anymore in the release version **2.37**. In summary, the following resources/APIs:
 
     /api/charts, /api/reportTables
 
@@ -9540,7 +9540,7 @@ This API was introduced with the expectation to unify both "charts" and "reportT
 
 > **Note**
 >
-> New applications and clients should avoid using the "charts" and "reportTables" APIs as they will be deprecated soon, and finally removed by release **2.37**.
+> New applications and clients should avoid using the "charts" and "reportTables" APIs because they will be deprecated soon, and removed by release **2.37**.
 
 A Visualization object is composed of many attributes (some of them related to charts and others related to pivot tables), but the most important ones responsible to reflect the core information of the object are: *"id", "name", "type", "dataDimenstionItems", "columns", "rows" and "filters".*
 
