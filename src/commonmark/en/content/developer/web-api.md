@@ -7660,7 +7660,7 @@ Some valid examples for interpretations are listed below.
 
 > **Note**
 >
-> The "chart" and "reportTable" APIs will be entirely replaced by the "visualization" API by release 2.37.
+> The "charts" and "reportTables" APIs will be entirely replaced by the "visualizations" API by release 2.37.
 
     /api/interpretations/reportTable/yC86zJxU1i1
     /api/interpretations/chart/ZMuYVhtIceD
@@ -9386,7 +9386,7 @@ similar to this:
     "type": "LINE"
   }, {
     "name": "ANC: 1st and 2rd trends Monthly",
-    "id": "arf9OiyV7df",
+    "id": "jkf6OiyV7el",
     "type": "PIVOT_TABLE"
   }],
   "maps": [{
