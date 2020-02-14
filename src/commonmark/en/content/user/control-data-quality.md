@@ -141,7 +141,7 @@ internal DHIS 2 messaging system.
 
 6. Fill in the **Parameters** section, including the Validation rule groups.
 
-7. Press the **Add job** button to confirm the job creation. For more information on adding jobs, see [Scheduling](https://docs.dhis2.org/master/en/dhis2_user_manual_en/data-administration.html#scheduling).
+7. Press the **Add job** button to confirm the job creation. For more information on adding jobs, see [Scheduling](data-administration.html#scheduling).
 
 ### Run a validation rule analysis manually
 
