@@ -9749,7 +9749,7 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 </tr>
 <tr class="even">
 <td>hideEmptyColumns</td>
-<td>Indicates whether to hide columns with no data values.</td>
+<td>Indicates whether to hide columns with no data values. Boolean value.</td>
 </tr>
 <tr class="odd">
 <td>hideEmptyRows</td>
