@@ -202,6 +202,14 @@
 <td><p>Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.</p>
 <p>You can read more about Google Analytics at <a href="http://google.com/analytics" class="uri">http://google.com/analytics</a>.</p></td>
 </tr>
+<tr class="even">
+<td><p><strong>Google Maps API key</strong></p></td>
+<td><p>Defines the API key for the Google Maps API. This is used to display maps within DHIS2.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Bing Maps API key</strong></p></td>
+<td><p>Defines the API key for the Bing Maps API. This is used to display maps within DHIS2.</p></td>
+</tr>
 </tbody>
 </table>
 
@@ -446,10 +454,6 @@
 <tr class="odd">
 <td><p><strong>CORS whitelist</strong></p></td>
 <td><p>Whitelists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served.</p></td>
-</tr>
-<tr class="even">
-<td><p><strong>Google Maps API key</strong></p></td>
-<td><p>Defines the API key for the Google Maps API. This is used to display maps within DHIS2.</p></td>
 </tr>
 </tbody>
 </table>
