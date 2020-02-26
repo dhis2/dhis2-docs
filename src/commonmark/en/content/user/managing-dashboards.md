@@ -36,7 +36,6 @@ list.
 The screenshot below shows a dashboard called "Antenatal Care", which
 has been populated with charts and maps.
 
-
 ![](resources/images/dashboard/dashboard-view-mode.png)
 
 ### Searching in the list of dashboards
@@ -50,16 +49,15 @@ filter down to those that match your search text.
 
 You can set a specific height for the dashboards control bar by
 down-clicking and dragging the bottom edge of the control bar. When you
-finish dragging, the new height will be set. Clicking on **SHOW MORE**
+finish dragging, the new height will be set. Clicking on **Show more**
 will expand the control bar to its maximum height (10 "rows"). Clicking
-on **SHOW LESS** will reset the height to your customized height.
+on **Show less** will reset the height to your customized height.
 
 ## Creating a dashboard
 
 To create a new dashboard, click the green **+** button in the left
 corner of the control bar to go into create mode. Add a title in the
 title field, and optionally a description in the description field.
-
 
 ![](resources/images/dashboard/dashboard-add-new.png)
 
@@ -72,33 +70,29 @@ title field, and optionally a description in the description field.
 Add items to the dashboard by searching from the item selector in the
 upper right part of the dashboard area. Available items include:
 
-  - Pivot tables
+- Visualizations
 
-  - Charts
+- Maps
 
-  - Maps
+- Event reports
 
-  - Event reports
+- Event charts
 
-  - Event charts
+- Report
 
-  - Report
+- Resources
 
-  - Resources
+- Apps
 
-  - Apps
+- Email
 
-  - Email
+- Text boxes
 
-  - Text boxes
+- Spacer
 
-  - Spacer
-
-The list of items in the drop-down initially displays the first 5
-available from each category, based on the search text you enter. Email,
-text boxes and spacer items are also found in the drop-down. To view more
-items, click on **SEE MORE**, and the list for that type will be
-extended to 15 items. If you still do not find the item you want, try
+The list of items in the drop-down initially displays 10 visualizations (charts and tables), and 5 from each of the other categories, based on the search text you enter. Email, text boxes and spacer items are also found in the drop-down. To view more
+items, click on **Show more**, and the list for that type will be
+extended to 25 items. If you still do not find the item you want, try
 typing a more specific search text.
 
 ![](resources/images/dashboard/dashboard-item-selector.png)
@@ -126,8 +120,6 @@ displayed, but take up the defined space.
 
 ![](resources/images/dashboard/dashboard-spacer-view-mode.png)
 
-
-
 ## Removing items
 
 Remove items by clicking on the red trash can at the upper right of the
@@ -138,19 +130,15 @@ the removed item will "rise" upwards.
 ## Saving the dashboard
 
 When creating or editing a dashboard, changes are only saved when you
-click **SAVE CHANGES** button in the dashboard edit bar at the top of
-the page. If you don't want to save your changes, click the **EXIT
-WITHOUT SAVING** button to the upper right. You will then be returned to
+click **Save changes** button in the dashboard edit bar at the top of
+the page. If you don't want to save your changes, click the **Exit without saving** button to the upper right. You will then be returned to
 view mode with the dashboard you were previously viewing.
-
-
 
 ## Editing an existing dashboard
 
 If you have access rights to edit the currently active dashboard, there
-will be an **EDIT** button to the right of the dashboard title in view
+will be an **Edit** button to the right of the dashboard title in view
 mode. Click on this button to enter edit mode.
-
 
 ![](resources/images/dashboard/dashboard-title-bar.png)
 
@@ -176,10 +164,9 @@ shows the original dashboard title underneath the name input field.
 ## Deleting a dashboard
 
 If you have access to delete the dashboard, then there will be a
-**DELETE** button located above the dashboard, when in edit mode. A
+**Delete** button located above the dashboard, when in edit mode. A
 confirmation dialog will first be displayed to confirm that you want to
 delete the dashboard.
-
 
 ## Viewing a dashboard
 
@@ -189,7 +176,6 @@ users and groups.
 
 To view the description, click on the **i** button to the right of the
 title
-
 
 ![](resources/images/dashboard/dashboard-title-bar.png)
 
@@ -202,12 +188,12 @@ a dashboard only applies to you, not other users.
 
 ### Filtering a dashboard
 
-Multiple filters can be applied to a dashboard for changing the data 
+Multiple filters can be applied to a dashboard for changing the data
 displayed in the various dashboard items.
 The filters are applied to each dashboard item in the same way:
 each added filter overrides the original value for that dimension in
 the original chart, table or map (visualization).
-It is possible to filter on Organisation Units, Periods and other 
+It is possible to filter on Organisation Units, Periods and other
 dynamic dimensions depending on the DHIS2 instance.
 
 To add a filter, click on the **Add Filter** button and choose the
@@ -219,7 +205,7 @@ A dialog opens where the filter selection can be made.
 
 ![Org Unit filter selection](resources/images/dashboard/dashboard-orgunit-filter-dialog.png)
 
-Click on **Confirm** in the dialog to apply the filter to the 
+Click on **Confirm** in the dialog to apply the filter to the
 current dashboard.
 
 Filters are not stored, so when switching to a different dashboard they
@@ -236,7 +222,7 @@ thus allowing for filter editing.
 A filter can be removed by clicking on the **Remove** button in the badge.
 Whenever a filter is added, edited or removed, the dashboard items
 reload to show the updated data.
-Filter badges are always visible at the top of the page when 
+Filter badges are always visible at the top of the page when
 scrolling the dashboard content.
 
 ## Dashboard items with charts, pivot tables and maps
@@ -244,26 +230,30 @@ scrolling the dashboard content.
 ### Switching between visualizations
 
 Dashboard items showing charts, pivot tables and maps can be toggled
-between these visualizations. Click on the buttons in the upper right
-corner of the item to toggle between visualizations.
+between these visualizations. Click on the item menu button in the upper right corner of the item:
 
+![](resources/images/dashboard/dashboard-item-menu-button.png)
 
-![](resources/images/dashboard/dashboard-pluginitem-buttons.png)
+Then choose the desired view:
+
+![](resources/images/dashboard/dashboard-item-menu.png)
 
 ## Interpretations
 
 You can write interpretations for the chart, pivot table, map, event
-report, and event chart items. Click on the interpretations button
-![](resources/images/dashboard/dashboard-interpretations-button.png),
-and the item will be expanded vertically underneath to show the
+report, and event chart items. From the dashboard item menu, click on **Show interpretations and details**:
+
+![](resources/images/dashboard/dashboard-item-menu-interpretations.png)
+
+and the item will be expanded vertically underneath to show the description,
 interpretations and replies. You can like an interpretation, reply to an
 interpretation, and add your own interpretation. You can edit, share or delete
 your own interpretations and replies, and if you have moderator access,
 you can delete others’ interpretations.
 
-It is possible to format the description field, and interpretations 
-with **bold**, *italic* by using the Markdown style markers \* and \_ 
-for **bold** and *italic* respectively. The text field for writing new
+It is possible to format the description field, and interpretations
+with **bold**, _italic_ by using the Markdown style markers \* and \_
+for **bold** and _italic_ respectively. The text field for writing new
 interpretations has a toolbar for adding rich text. Keyboard shortcuts
 are also available: Ctrl/Cmd + B and Ctrl/Cmd + I. A limited set of
 smilies is supported and can be used by typing one of the following
@@ -285,38 +275,37 @@ sharing settings options. To share the dashboard with specific users or
 user groups, type in the name in the input field to add them to the
 dashboard sharing settings
 
-
 ![](resources/images/dashboard/dashboard-sharing-dialog.png)
 
 All dashboards have two sharing groups set by default.
 
-  - External access (without login)
+- External access (without login)
 
-    This option, when selected, provides access to the dashboard as an
-    external resource. This is useful for when you are creating an
-    external web portal but would like to call information from a
-    dashboard you have made internally within DHIS2. By default, this
-    option is not selected.
+  This option, when selected, provides access to the dashboard as an
+  external resource. This is useful for when you are creating an
+  external web portal but would like to call information from a
+  dashboard you have made internally within DHIS2. By default, this
+  option is not selected.
 
-  - Public access (with login)
+- Public access (with login)
 
-    This option allows the selected dashboard to be pushed to all users
-    within your DHIS2 instance. This can also be hidden from public view
-    by selecting the "None" option, which is the default option for new
-    dashboards.
+  This option allows the selected dashboard to be pushed to all users
+  within your DHIS2 instance. This can also be hidden from public view
+  by selecting the "None" option, which is the default option for new
+  dashboards.
 
 User groups that have been added manually can be assigned two types of
 permissions within the dashboard
 
-  - Can view
+- Can view
 
-    Provides the user group with view only rights to the dashboard.
+  Provides the user group with view only rights to the dashboard.
 
-  - Can edit and view
+- Can edit and view
 
-    Allows the user groups to edit the dashboard in addition to viewing
-    it. Editing allows for altering the layout, resizing and removing
-    items, renaming/deleting the dashboard etc.
+  Allows the user groups to edit the dashboard in addition to viewing
+  it. Editing allows for altering the layout, resizing and removing
+  items, renaming/deleting the dashboard etc.
 
 You can provide users with the url of the dashboard, allowing them to
 navigate directly to the dashboard. To get the dashboard url, just
