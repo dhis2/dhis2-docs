@@ -711,6 +711,50 @@ Some aspects of the data synchronization feature to be aware of:
     
     If default values do not fit your purpose, own page size can be specified 
     via parameter in particular sync job in Scheduler app.
+    
+#### WIP: Additional info regarding synchronization
+
+  - The synchronization support in DHIS2 can be split into two main parts:
+    - Metadata synchronization and
+    - Data synchronization
+  
+  ##### Metadata synchronization
+  - Metadata synchronization is a "pull" type of the synchronization where metadata 
+    are pulled from the central/remote instance. This goal of this feature is to be able 
+    to have a full control over the metadata configuration on one centrally located instance 
+    and be able to propagate the metadata changes to the instances in the field. By using a 
+    metadata synchronization job this can be achieved.
+  
+    Nowadays, when a metadata synchronization job is run, first, all the data are 
+    synchronized (pushed) to the central instance before the actual metadata pull takes 
+    place. This is to achieve that the locally stored data won't get corrupted by the 
+    metadata update and so won't get lost.
+    
+    More details about Metadata synchronization can be found in the specifically dedicated 
+    section to <a href="#webapi_metadata_synchronization">Metadata Synchronization</a>
+  
+  ##### Data synchronization
+  
+  Data synchronization is a "push" type of synchronization where the data are pushed to 
+  the central/remote instance from local/in field instances. The purpose of the data 
+  synchronization is to be able to collect the required data centrally (purposes can vary: 
+  high-level overview, better data insights, data centrally stored to prevent manipulation 
+  with data, etc. ).
+  
+  Currently the whole data synchronization is split into 3 synchronization jobs and 4 
+  separate parts. The goal is to allow the user to synchronize only the data he 
+  wants to synchronize without need to synchronize all the data present in the system. The 
+  3 synchronization jobs (and 4 parts) are following:
+  - **Tracker programs data sync** - Synchronizes data from Tracker programs
+  - **Event programs data sync** - Synchronizes data from Event programs (anonymous events)
+  - **Data sync** - Synchronizes Data values and Complete data registration sets 
+  (also called a _Completeness sync_). (There is an idea about splitting this job into two 
+  separate jobs to allowing even more granularity for the user when deciding what to 
+  synchronize and what not)
+  
+  From those 4 parts, all except the Completeness sync supports paging. Page sizes can be 
+  changed via the job configuration in Scheduler app and so the system can be tuned to 
+  specific network and hardware conditions.
 
 ## Metadata Synchronization Scheduling
 
