@@ -720,7 +720,7 @@ Some aspects of the data synchronization feature to be aware of:
   
   ##### Metadata synchronization
   - Metadata synchronization is a "pull" type of the synchronization where metadata 
-    are pulled from the central/remote instance. This goal of this feature is to be able 
+    are pulled from the central/remote instance. The goal of this feature is to be able 
     to have a full control over the metadata configuration on one centrally located instance 
     and be able to propagate the metadata changes to the instances in the field. By using a 
     metadata synchronization job this can be achieved.
@@ -755,6 +755,25 @@ Some aspects of the data synchronization feature to be aware of:
   From those 4 parts, all except the Completeness sync supports paging. Page sizes can be 
   changed via the job configuration in Scheduler app and so the system can be tuned to 
   specific network and hardware conditions.
+  
+  #####A bit of technical details
+  Tracker and Event program sync supports several features and have some special logic in 
+  place:
+  - skip synchronization and a _F_IGNORE_TRACKER_REQUIRED_VALUE_VALIDATION_ authority - There 
+  is a proper documentation above explaining how this feature and authority works
+  - Skip changed before - again there is a section above explaining the details
+  - Handling deleted items - there is a special logic for handling and synchronizing deleted 
+  items (for example events). For this reason, a new Import Strategy (SYNC) was introduced. In 
+  short, items that were already synchronized and later deleted locally, will propagate this 
+  deletion to the remote instance. Items that were created and deleted before they were 
+  synchronized to the remote instance won't be synchronized at all.
+  - SYNC Import Strategy (and so the implemented logic) is also heavily used by Android. In 
+  later version they completely rely on this import strategy.
+  - The sync functionality relies completely on Tracker and Event endpoints and so API. The 
+  logic for fetching correct data, skipping selected data, synchronizing at least once, handling 
+  paging was developed specifically for this purpose. However, for transmitting the data a 
+  regular API is used and so rely completely on it. The API was, of course, adjusted - new import 
+  startegy added, ...
 
 ## Metadata Synchronization Scheduling
 
