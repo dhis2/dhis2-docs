@@ -7695,7 +7695,7 @@ Some valid examples for interpretations are listed below.
 
 > **Note**
 >
-> The "charts" and "reportTables" APIs are deprecated. We recommend using the "visualizations" API instead.
+> The `charts` and `reportTables` APIs are deprecated. We recommend using the "visualizations" API instead.
 
     /api/interpretations/reportTable/yC86zJxU1i1
     /api/interpretations/chart/ZMuYVhtIceD
@@ -9565,7 +9565,7 @@ dashboard item completely:
 
 The Visualization API is designed to help clients to interact with charts and pivot/report tables. The endpoints of this API are used by the Data Visualization application which allows the creation, configuration and management of charts and pivot tables based on the client's definitions. The main idea is to enable clients and users to have a unique and centralized API providing all types of charts and pivot tables as well as specific parameters and configuration for each type of visualization.
 
-This API was introduced with the expectation to unify both "charts" and "reportTables" APIs and entirely replace them in favour of the "visualizations" API (which means that the usage of "charts" and "reportTables" APIs should be avoided). In summary, the following resources/APIs:
+This API was introduced with the expectation to unify both `charts` and "reportTables" APIs and entirely replace them in favour of the `visualizations` API (which means that the usage of `charts` and `reportTables` APIs should be avoided). In summary, the following resources/APIs:
 
     /api/charts, /api/reportTables
 
@@ -9575,9 +9575,9 @@ This API was introduced with the expectation to unify both "charts" and "reportT
 
 > **Note**
 >
-> New applications and clients should avoid using the "charts" and "reportTables" APIs because they are deprecated. Use the "visualizations" API instead.
+> New applications and clients should avoid using the `charts` and `reportTables` APIs because they are deprecated. Use the `visualizations` API instead.
 
-A Visualization object is composed of many attributes (some of them related to charts and others related to pivot tables), but the most important ones responsible to reflect the core information of the object are: *"id", "name", "type", "dataDimenstionItems", "columns", "rows" and "filters".*
+A Visualization object is composed of many attributes (some of them related to charts and others related to pivot tables), but the most important ones responsible to reflect the core information of the object are: *"id", "name", "type", "dataDimensionItems", "columns", "rows" and "filters".*
 
 The root endpoint of the API is `/api/visualizations`, and the list of current attributes and elements are described in the table below.
 
