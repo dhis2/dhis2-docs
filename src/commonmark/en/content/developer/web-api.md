@@ -9849,7 +9849,7 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 
 <!--DHIS2-SECTION-ID:webapi_visualization_retrieving_visualizations-->
 
-To retrieve a list all existing visualizations, in JSON format, with some basic information (including identifier, name and pagination) you can make a `GET` request to the URL below. You should see a list of all public/shared visualizations plus your private ones.
+To retrieve a list of all existing visualizations, in JSON format, with some basic information (including identifier, name and pagination) you can make a `GET` request to the URL below. You should see a list of all public/shared visualizations plus your private ones.
 
     GET /api/visualizations.json
 
