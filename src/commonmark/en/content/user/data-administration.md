@@ -536,7 +536,7 @@ finished running.
         1.  You can specify the delay between executions in seconds.
             This value is mandatory.
 
-    1.  If the selected job is scheduled by a delay:
+    1.  If the selected job is scheduled by periodic frequency:
 
         1.  You can either select a pre-defined frequency from the
             drop-down menu, or ...
