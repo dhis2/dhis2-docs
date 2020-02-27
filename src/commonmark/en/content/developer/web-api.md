@@ -3138,7 +3138,11 @@ object (e.g. the dashboard) in the metadata response.
 
 A logged user can subscribe to certain types of objects. Currently
 subscribable objects are those of type Chart, EventChart, EventReport,
-Map, ReportTable and Visualization. *Note that, by version **2.37**, Chart and ReportTable should be replaced Visualization.*
+Map, ReportTable and Visualization.
+
+> **Note**
+>
+> The Chart and ReportTable objects are deprecated. Use Visualization instead.
 
 To get the subscribers of an object (return an array of user IDs) you
 can make a *GET* request:
@@ -7600,7 +7604,7 @@ fields omitted for brevity):
 </tr>
 <tr class="odd">
 <td>type</td>
-<td>The type of analytical object being interpreted. Valid options: REPORT_TABLE, CHART, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT. **A new type VISUALIZATION should be introduced by release 2.37 and will replace both REPORT_TABLE and CHART.</td>
+<td>The type of analytical object being interpreted. Valid options: REPORT_TABLE, CHART, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT.
 </tr>
 <tr class="even">
 <td>user</td>
@@ -7616,7 +7620,7 @@ fields omitted for brevity):
 </tr>
 <tr class="odd">
 <td>visualization</td>
-<td>Association to the visualization if type is CHART or REPORT_TABLE (**both types should be replace by VISUALIZATION by release 2.37).</td>
+<td>Association to the visualization if type is CHART or REPORT_TABLE (**both types are in deprecation process in favour of VISUALIZATION**).</td>
 </tr>
 <tr class="even">
 <td>map</td>
@@ -7691,7 +7695,7 @@ Some valid examples for interpretations are listed below.
 
 > **Note**
 >
-> The "charts" and "reportTables" APIs will be entirely replaced by the "visualizations" API by release 2.37.
+> The "charts" and "reportTables" APIs are deprecated. We recommend using the "visualizations" API instead.
 
     /api/interpretations/reportTable/yC86zJxU1i1
     /api/interpretations/chart/ZMuYVhtIceD
@@ -9561,17 +9565,17 @@ dashboard item completely:
 
 The Visualization API is designed to help clients to interact with charts and pivot/report tables. The endpoints of this API are used by the Data Visualization application which allows the creation, configuration and management of charts and pivot tables based on the client's definitions. The main idea is to enable clients and users to have a unique and centralized API providing all types of charts and pivot tables as well as specific parameters and configuration for each type of visualization.
 
-This API was introduced with the expectation to unify both "charts" and "reportTables" APIs and entirely replace them by release **2.37** in favour of the "visualizations" API (which means that the "charts" and "reportTables" APIs should not be available anymore in the release version **2.37**. In summary, the following resources/APIs:
+This API was introduced with the expectation to unify both "charts" and "reportTables" APIs and entirely replace them in favour of the "visualizations" API (which means that the usage of "charts" and "reportTables" APIs should be avoided). In summary, the following resources/APIs:
 
     /api/charts, /api/reportTables
 
-*will be replaced by*
+*are being replaced by*
 
     /api/visualizations
 
 > **Note**
 >
-> New applications and clients should avoid using the "charts" and "reportTables" APIs because they will be deprecated soon, and removed by release **2.37**.
+> New applications and clients should avoid using the "charts" and "reportTables" APIs because they are deprecated. Use the "visualizations" API instead.
 
 A Visualization object is composed of many attributes (some of them related to charts and others related to pivot tables), but the most important ones responsible to reflect the core information of the object are: *"id", "name", "type", "dataDimenstionItems", "columns", "rows" and "filters".*
 
@@ -9775,8 +9779,8 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 <td>Displays (or not) the columns sub-totals. Boolean value.</td>
 </tr>
 <tr class="odd">
-<td>cumulative</td>
-<td>Indicates whether the visualization contains cumulative values. Boolean value.</td>
+<td>cumulativeValues</td>
+<td>Indicates whether the visualization is using cumulative values. Boolean value.</td>
 </tr>
 <tr class="even">
 <td>hideEmptyColumns</td>
