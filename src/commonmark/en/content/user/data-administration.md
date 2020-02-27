@@ -536,7 +536,7 @@ finished running.
         1.  You can specify the delay between executions in seconds.
             This value is mandatory.
 
-    1.  If the selected job is scheduled by a delay:
+    1.  If the selected job is scheduled by periodic frequency:
 
         1.  You can either select a pre-defined frequency from the
             drop-down menu, or ...
@@ -545,11 +545,6 @@ finished running.
             specific schedule, using the [Spring
             scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
             syntax.
-
-        1.  Enabling the **Continuous execution** option will make the job
-            run constantly. In other words, as soon as the job finishes, it
-            will be scheduled to run again right away. Selecting this option
-            will disable the other fields.
 
 1.  If the job type is customizable, a **Parameters** section will
     appear below. These additional options specify the details of the
