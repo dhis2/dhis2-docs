@@ -19486,7 +19486,7 @@ DHIS2 allows for scheduling of jobs of various types. Each type of job has diffe
 </tr>
 <tr class="even">
 <td>cronExpression</td>
-<td>The cron expression which defines the interval for when the job should run. See the [cron expression reference](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm) for details.</td>
+<td>The cron expression which defines the interval for when the job should run.</td>
 <td>String (Cron expression)</td>
 </tr>
 <tr class="odd">
@@ -19665,7 +19665,7 @@ Job without parameters looks in JSON format:
 }
 ```
 
-As an example, an analytics table job with parameters in JSON format looks like this:
+An example of an analytics table job with parameters in JSON format looks like this:
 
 ```json
 {
@@ -19680,7 +19680,7 @@ As an example, an analytics table job with parameters in JSON format looks like 
 }
 ```
 
-As another example, a push analysis jon with parameters in JSON format looks like this:
+As example of a push analysis job with parameters in JSON format looks like this:
 
 ```json
 {
@@ -19761,7 +19761,7 @@ Retrieve a job:
 
 ### Update job
 
-Updating job with parameters in JSON format:
+Update job with parameters in JSON format:
 
     PUT /api/jobConfiguration/KBcP6Qw37gT
 
@@ -19782,11 +19782,11 @@ Updating job with parameters in JSON format:
 
 ### Delete job
 
-Deleting a job:
+Delete a job:
 
     DELETE /api/jobConfiguration/KBcP6Qw37gT
 
-Some jobs with custom configuration parameters may not be added if the
+Note that some jobs with custom configuration parameters may not be added if the
 required system settings are not configured. An example of this is data
 synchronization, which requires remote server configuration.
 
