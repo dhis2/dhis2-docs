@@ -19522,19 +19522,16 @@ DHIS2 allows for scheduling of jobs of various types. Each type of job has diffe
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>DATA_INTEGRITY</td>
 <td>NONE</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>ANALYTICS_TABLE</td>
 <td><ul>
 <li><p>lastYears: Number of years back to include</p></li>
-<li><p>skipTableTypes: Skip generation of tables</p>
-<ul>
-<li><p>Possible values: DATA_VALUE, COMPLETENESS, COMPLETENESS_TARGET, ORG_UNIT_TARGET, EVENT, ENROLLMENT, VALIDATION_RESULT</p></li>
-</ul></li>
+<li><p>skipTableTypes: Skip generation of tables</p><p>Possible values: DATA_VALUE, COMPLETENESS, COMPLETENESS_TARGET, ORG_UNIT_TARGET, EVENT, ENROLLMENT, VALIDATION_RESULT</p></li>
 <li><p>skipResourceTables: Skip generation of resource tables</p></li>
 </ul></td>
 <td><ul>
@@ -19543,27 +19540,41 @@ DHIS2 allows for scheduling of jobs of various types. Each type of job has diffe
 <li><p>skipResourceTables (Boolean)</p></li>
 </ul></td>
 </tr>
-<tr class="odd">
+<tr>
+<td>CONTINUOUS_ANALYTICS_TABLE</td>
+<td><ul>
+<li><p>fullUpdateHourOfDay: Hour of day for full update of analytics tables (0-23)</p></li>
+<li><p>lastYears: Number of years back to include</p></li>
+<li><p>skipTableTypes: Skip generation of tables</p><p>Possible values: DATA_VALUE, COMPLETENESS, COMPLETENESS_TARGET, ORG_UNIT_TARGET, EVENT, ENROLLMENT, VALIDATION_RESULT</p></li>
+<li><p>skipResourceTables: Skip generation of resource tables</p></li>
+</ul></td>
+<td><ul>
+<li><p>lastYears (int:0)</p></li>
+<li><p>skipTableTypes (Array of String (Enum):None )</p></li>
+<li><p>skipResourceTables (Boolean)</p></li>
+</ul></td>
+</tr>
+<tr>
 <td>DATA_SYNC</td>
 <td>NONE</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr >
 <td>META_DATA_SYNC</td>
 <td>NONE</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>SEND_SCHEDULED_MESSAGE</td>
 <td>NONE</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>PROGRAM_NOTIFICATIONS</td>
 <td>NONE</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MONITORING (Validation rule analysis)</td>
 <td><ul>
 <li><p>relativeStart: A number related to date of execution which resembles the start of the period to monitor</p></li>
@@ -19580,7 +19591,7 @@ DHIS2 allows for scheduling of jobs of various types. Each type of job has diffe
 <li><p>persistsResults (Boolean:false)</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td>PUSH_ANALYSIS</td>
 <td><ul>
 <li><p>pushAnalysis: The uid of the push analysis you want to run</p></li>
@@ -19589,7 +19600,7 @@ DHIS2 allows for scheduling of jobs of various types. Each type of job has diffe
 <li><p>pushAnalysis (String:None)</p></li>
 </ul></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>PREDICTOR</td>
 <td><ul>
 <li><p>relativeStart: A number related to date of execution which resembles the start of the period to monitor</p></li>
@@ -19605,11 +19616,46 @@ DHIS2 allows for scheduling of jobs of various types. Each type of job has diffe
 </tbody>
 </table>
 
+### Get available job types
+
+To get a list of all available job types you can use the following endpoint:
+
+	GET /api/jobConfigurations/jobTypes
+
+The response contains information about each job type including name, job type, key, scheduling type and available parameters. The scheduling type can either be `CRON`, meaning jobs can be scheduled using a cron expression with the `cronExpression` field, or `FIXED_DELAY`, meaning jobs can be scheduled to run with a fixed delay in between with the `delay` field. The field delay is given in seconds. 
+
+A response will look similar to this:
+
+```json
+{
+  "jobTypes": [
+    {
+      "name": "Data integrity",
+      "jobType": "DATA_INTEGRITY",
+      "key": "dataIntegrityJob",
+      "schedulingType": "CRON"
+    }, {
+      "name": "Resource table",
+      "jobType": "RESOURCE_TABLE",
+      "key": "resourceTableJob",
+      "schedulingType": "CRON"
+    }, {
+      "name": "Continuous analytics table",
+      "jobType": "CONTINUOUS_ANALYTICS_TABLE",
+      "key": "continuousAnalyticsTableJob",
+      "schedulingType": "FIXED_DELAY"
+    }
+  ]
+}
+```
+
+### Create job
+
 To configure jobs you can do a POST request to the following resource:
 
     /api/jobConfigurations
 
-Adding job without parameters in JSON format:
+Job without parameters looks in JSON format:
 
 ```json
 {
@@ -19619,15 +19665,14 @@ Adding job without parameters in JSON format:
 }
 ```
 
-Adding job with parameters in JSON format (ANALYTICS_TABLE example):
+As an example, an analytics table job with parameters in JSON format looks like this:
 
 ```json
 {
-  "name": "Analytics last two years",
+  "name": "Analytics tables last two years",
   "jobType": "ANALYTICS_TABLE",
   "cronExpression": "0 * * ? * *",
-  "jobParameters":
-  {
+  "jobParameters": {
     "lastYears": "2",
     "skipTableTypes": [],
     "skipResourceTables": false
@@ -19635,11 +19680,11 @@ Adding job with parameters in JSON format (ANALYTICS_TABLE example):
 }
 ```
 
-Adding job with parameters in JSON format (PUSH_ANALYSIS example):
+As another example, a push analysis jon with parameters in JSON format looks like this:
 
 ```json
- {
-   "name": "test-push-anlysis-chart",
+{
+   "name": "Push anlysis charts",
    "jobType": "PUSH_ANALYSIS",
    "cronExpression": "0 * * ? * *",
    "jobParameters": {
@@ -19650,11 +19695,26 @@ Adding job with parameters in JSON format (PUSH_ANALYSIS example):
  }
 ```
 
-List all jobConfigurations:
+An example of a job with scheduling type `FIXED_DELAY` and 120 seconds delay looks like this:
+
+```json
+{
+  "name": "Continuous analytics table",
+  "jobType": "CONTINUOUS_ANALYTICS_TABLE",
+  "delay": "120",
+  "jobParameters": {
+    "fullUpdateHourOfDay": 4
+  }
+}
+```
+
+### Get jobs
+
+List all job configurations:
 
     GET /api/jobConfigurations
 
-Retrieve a job: (ANALYTICS_TABLE example):
+Retrieve a job:
 
     GET /api/jobConfigurations/KBcP6Qw37gT
 
@@ -19699,7 +19759,9 @@ Retrieve a job: (ANALYTICS_TABLE example):
 }
 ```
 
-Updating job with parameters in JSON format (ANALYTICS_TABLE example):
+### Update job
+
+Updating job with parameters in JSON format:
 
     PUT /api/jobConfiguration/KBcP6Qw37gT
 
@@ -19717,6 +19779,8 @@ Updating job with parameters in JSON format (ANALYTICS_TABLE example):
   }
 }
 ```
+
+### Delete job
 
 Deleting a job:
 
