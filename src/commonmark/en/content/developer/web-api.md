@@ -5765,7 +5765,7 @@ resource like this:
 Indicators represent expressions which can be calculated and presented
 as a result. The indicator expressions are split into a numerator and
 denominator. The numerators and denominators are mathematical
-expressions which can contain references to data elements, constants and
+expressions which can contain references to data elements, other indicators, constants and
 organisation unit groups. The variables will be substituted with data
 values when used e.g. in reports. Variables which are allowed in
 expressions are described in the following table.
@@ -5791,41 +5791,46 @@ expressions are described in the following table.
 <td>Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard &quot;*&quot; symbol can be used to indicate any value.</td>
 </tr>
 <tr class="even">
+<td>#{&lt;dataelement-id&gt;.&lt;categoryoptiongroup-id&gt;.&lt;attributeoptcombo-id&gt;}</td>
+<td>Category Option Group</td>
+<td>Refers to an aggregate data element and a category option group, containing multiple category option combinations.</td>
+</tr>
+<tr class="odd">
 <td>#{&lt;dataelement-id&gt;}</td>
 <td>Aggregate data element</td>
 <td>Refers to the total value of an aggregate data element across all category option combinations.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>D{&lt;program-id&gt;.&lt;dataelement-id&gt;</td>
 <td>Program data element</td>
 <td>Refers to the value of a tracker data element within a program.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>A{&lt;program-id&gt;.&lt;attribute-id&gt;</td>
 <td>Program tracked entity attribute</td>
 <td>Refers to the value of a tracked entity attribute within a program.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>I{program-indicator-id&gt;</td>
 <td>Program indicator</td>
 <td>Refers to the value of a program indicator.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>R{&lt;dataset-id&gt;.&lt;metric&gt;}</td>
 <td>Reporting rate</td>
 <td>Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>C{&lt;constant-id&gt;}</td>
 <td>Constant</td>
 <td>Refers to a constant value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>N{&lt;indicator-id&gt;}</td>
 <td>Indicator</td>
 <td>Refers to an existing Indicator.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>OUG{&lt;orgunitgroup-id&gt;}</td>
 <td>Organisation unit group</td>
 <td>Refers to the count of organisation units within an organisation unit group.</td>
