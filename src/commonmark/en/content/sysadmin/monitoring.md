@@ -6,7 +6,7 @@
 
 DHIS2 can export [Prometheus](https://prometheus.io/) compatible metrics for monitoring DHIS2 nodes.
 
-This section describes the steps required to install Prometheus and Grafana (https://grafana.com/) using a standard installation procedure (`apt-get`) and Docker and configure Grafana to show DHIS2 metrics.
+This section describes the steps required to install Prometheus and [Grafana](https://grafana.com/) using a standard installation procedure (`apt-get`) and Docker and configure Grafana to show DHIS2 metrics.
 
 For a list of the metrics exposed by a DHIS2 instance, please refer to the monitoring guide on [GitHub](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md).
 
@@ -273,7 +273,7 @@ journalctl -f -u nginx.service
 
 <!--DHIS2-SECTION-ID:grafana-->
 
-- Add a gpg key and install the OSS Grafana package from APT repo
+- Add a `gpg` key and install the OSS Grafana package from APT repo
 
 ```
 apt-get install -y apt-transport-https
