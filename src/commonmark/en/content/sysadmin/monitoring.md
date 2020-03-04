@@ -290,7 +290,7 @@ apt-get install grafana
 - If the system is using `systemd`, a new `grafana-service` is automatically created. Check the `systemd` file to gain some insight on the Grafana installation
 
 ```
-cat /usr/lib/systemd/system/grafana-server.service`
+cat /usr/lib/systemd/system/grafana-server.service
 ```
 
 This file is quite important because it offers information about the newly installed Grafana instance.
