@@ -1,13 +1,14 @@
-# DHIS2 Monitoring
+# Monitoring
 
 ## Introduction
 
 <!--DHIS2-SECTION-ID:monitoring-->
 
-DHIS2 can export Prometheus (https://prometheus.io/) compatible metrics for monitoring DHIS2 nodes.
+DHIS2 can export [Prometheus](https://prometheus.io/) compatible metrics for monitoring DHIS2 nodes.
+
 This section describes the steps required to install Prometheus and Grafana (https://grafana.com/) using a standard installation procedure (`apt-get`) and Docker and configure Grafana to show DHIS2 metrics.
 
-For a list of the metrics exposed by a DHIS2 instance, please refer to: https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md
+For a list of the metrics exposed by a DHIS2 instance, please refer to the monitoring guide on [GitHub](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md).
 
 ## Setup
 
@@ -19,13 +20,13 @@ The next sections describe how to set up Prometheus and Grafana and how to set u
 
 <!--DHIS2-SECTION-ID:prometheus-->
 
-- Download Prometheus from the official [download](https://prometheus.io/download/) page 
+- Download Prometheus from the official [download](https://prometheus.io/download/) page.
 
-- Make sure to filter for your operating system and your CPU architecture (Linux and amd64)
+- Make sure to filter for your operating system and your CPU architecture (Linux and amd64).
 
 - Make sure to select the latest stable version, and not the “rc” one, as it is not considered stable enough for now.
 
-- Download the archive, either by clicking on the link or using `wget`
+- Download the archive, either by clicking on the link or using `wget`.
 
 ```
 wget https://github.com/prometheus/prometheus/releases/download/v2.15.2/prometheus-2.15.2.linux-amd64.tar.gz
@@ -89,7 +90,7 @@ touch prometheus.service
 
 - Edit the newly created file, and paste the following content inside:
 
-```
+```properties
 [Unit]
 Description=Prometheus
 Wants=network-online.target
@@ -152,7 +153,6 @@ If there is already an Nginx instance running on the machine and you are unsure 
 ```
 > lsof | grep LISTEN | grep nginx
 
-
 nginx     15792     root    8u     IPv4         1140223421       0t0        TCP *:http (LISTEN)
 ```
 
@@ -186,11 +186,11 @@ touch /etc/nginx/conf.d/prometheus.conf
 
 ```
 server {
-    listen 1234;
+  listen 1234;
 
-    location / {
-      proxy_pass           http://localhost:9090/;
-    }
+  location / {
+    proxy_pass           http://localhost:9090/;
+  }
 }
 ```
 
@@ -237,7 +237,6 @@ apt-get install apache2-utils
 
 - Create an authentication file
 
-
 ```
 cd /etc/prometheus
 htpasswd -c .credentials admin 
@@ -245,19 +244,17 @@ htpasswd -c .credentials admin
 
 Choose a strong password, and make sure that the pass file was correctly created.
 
-
 - Edit the previosuly created Nginx configuration file (`/etc/nginx/conf.d/prometheus.conf`), and add the auth information
-
 
 ```
 server {
-    listen 1234;
+  listen 1234;
 
-    location / {
-      auth_basic           "Prometheus";
-      auth_basic_user_file /etc/prometheus/.credentials;
-      proxy_pass           http://localhost:9090/;
-    }
+  location / {
+    auth_basic           "Prometheus";
+    auth_basic_user_file /etc/prometheus/.credentials;
+    proxy_pass           http://localhost:9090/;
+  }
 }
 ```
 
@@ -272,13 +269,11 @@ journalctl -f -u nginx.service
 
 - `http://localhost:1234` should now prompt for username and password.
 
-
 ### Installing Grafana on Ubuntu and Debian
 
 <!--DHIS2-SECTION-ID:grafana-->
 
 - Add a gpg key and install the OSS Grafana package from APT repo
-
 
 ```
 apt-get install -y apt-transport-https
@@ -308,9 +303,7 @@ The **configuration file** is given via the `CONF_FILE` environment variable.
 The **PID of the file** is also determined by the `PID_FILE_DIR` environment variable.
 **Logging**, **data**, **plugins** and **provisioning** paths are given by environment variables.
 
-
 - Start the server
-
 
 ```
 systemctl start grafana-server
@@ -332,7 +325,6 @@ Select a Prometheus data source on the next window.
 
 Configure the datasource according to the Prometheus setup (use authentication, TSL, etc.)
 
-
 ### Installing Prometheus + Grafana using Docker
 
 <!--DHIS2-SECTION-ID:prometheus_grafana_docker-->
@@ -345,7 +337,6 @@ The configuration is based on this project: https://github.com/vegasbrianc/prome
 
 - Start the Prometheus stack using:
 
-
 ```
 docker stack deploy -c docker-stack.yml prom
 ```
@@ -355,7 +346,6 @@ The above command, may result in the following error:
 *this node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again*
 
 If that happens, you need to start Swarm. You can use the following command line:
-
 
 ```
 docker swarm init --advertise-addr <YOUR_IP>
@@ -396,7 +386,7 @@ The last block of the configuration file is named `scape_configs` and contains t
 
 A simple DHIS2 Prometheus monitoring file looks like this example:
 
-```
+```yaml
 global:
   scrape_interval:     15s
   evaluation_interval: 15s 
