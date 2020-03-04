@@ -3138,7 +3138,11 @@ object (e.g. the dashboard) in the metadata response.
 
 A logged user can subscribe to certain types of objects. Currently
 subscribable objects are those of type Chart, EventChart, EventReport,
-Map and ReportTable.
+Map, ReportTable and Visualization.
+
+> **Note**
+>
+> The Chart and ReportTable objects are deprecated. Use Visualization instead.
 
 To get the subscribers of an object (return an array of user IDs) you
 can make a *GET* request:
@@ -5765,7 +5769,7 @@ resource like this:
 Indicators represent expressions which can be calculated and presented
 as a result. The indicator expressions are split into a numerator and
 denominator. The numerators and denominators are mathematical
-expressions which can contain references to data elements, constants and
+expressions which can contain references to data elements, other indicators, constants and
 organisation unit groups. The variables will be substituted with data
 values when used e.g. in reports. Variables which are allowed in
 expressions are described in the following table.
@@ -5791,41 +5795,46 @@ expressions are described in the following table.
 <td>Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard &quot;*&quot; symbol can be used to indicate any value.</td>
 </tr>
 <tr class="even">
+<td>#{&lt;dataelement-id&gt;.&lt;categoryoptiongroup-id&gt;.&lt;attributeoptcombo-id&gt;}</td>
+<td>Category Option Group</td>
+<td>Refers to an aggregate data element and a category option group, containing multiple category option combinations.</td>
+</tr>
+<tr class="odd">
 <td>#{&lt;dataelement-id&gt;}</td>
 <td>Aggregate data element</td>
 <td>Refers to the total value of an aggregate data element across all category option combinations.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>D{&lt;program-id&gt;.&lt;dataelement-id&gt;</td>
 <td>Program data element</td>
 <td>Refers to the value of a tracker data element within a program.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>A{&lt;program-id&gt;.&lt;attribute-id&gt;</td>
 <td>Program tracked entity attribute</td>
 <td>Refers to the value of a tracked entity attribute within a program.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>I{program-indicator-id&gt;</td>
 <td>Program indicator</td>
 <td>Refers to the value of a program indicator.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>R{&lt;dataset-id&gt;.&lt;metric&gt;}</td>
 <td>Reporting rate</td>
 <td>Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>C{&lt;constant-id&gt;}</td>
 <td>Constant</td>
 <td>Refers to a constant value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>N{&lt;indicator-id&gt;}</td>
 <td>Indicator</td>
 <td>Refers to an existing Indicator.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>OUG{&lt;orgunitgroup-id&gt;}</td>
 <td>Organisation unit group</td>
 <td>Refers to the count of organisation units within an organisation unit group.</td>
@@ -7518,6 +7527,9 @@ fields omitted for brevity):
       },
       "reportTable": {
         "id": "LcSxnfeBxyi"
+      },
+      "visualization": {
+        "id": "LcSxnfeBxyi"
       }
     }, {
       "id": "kr4AnZmYL43",
@@ -7529,6 +7541,9 @@ fields omitted for brevity):
         "id": "uk7diLujYif"
       },
       "chart": {
+        "id": "HDEDqV3yv3H"
+      },
+      "visualization": {
         "id": "HDEDqV3yv3H"
       },
       "mentions": [
@@ -7594,11 +7609,11 @@ fields omitted for brevity):
 </tr>
 <tr class="odd">
 <td>type</td>
-<td>The type of analytical object being interpreted. Valid options: REPORT_TABLE, CHART, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT.</td>
+<td>The type of analytical object being interpreted. Valid options: REPORT_TABLE, CHART, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT.
 </tr>
 <tr class="even">
 <td>user</td>
-<td>Association to the user creating the interpretation.</td>
+<td>Association to the user who created the interpretation.</td>
 </tr>
 <tr class="odd">
 <td>reportTable</td>
@@ -7609,26 +7624,30 @@ fields omitted for brevity):
 <td>Association to the chart if type is CHART.</td>
 </tr>
 <tr class="odd">
+<td>visualization</td>
+<td>Association to the visualization if type is CHART or REPORT_TABLE (**both types are in deprecation process in favour of VISUALIZATION**).</td>
+</tr>
+<tr class="even">
 <td>map</td>
 <td>Association to the map if type is MAP.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>eventReport</td>
 <td>Association to the event report is type is EVENT_REPORT.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>eventChart</td>
 <td>Association to the event chart if type is EVENT_CHART.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>dataSet</td>
 <td>Association to the data set if type is DATASET_REPORT.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>comments</td>
 <td>Array of comments for the interpretation. The text field holds the actual comment.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>mentions</td>
 <td>Array of mentions for the interpretation. A list of users identifiers.</td>
 </tr>
@@ -7679,8 +7698,13 @@ Valid options for object type are *reportTable*, *chart*, *map*,
 
 Some valid examples for interpretations are listed below.
 
+> **Note**
+>
+> The `charts` and `reportTables` APIs are deprecated. We recommend using the `visualizations` API instead.
+
     /api/interpretations/reportTable/yC86zJxU1i1
     /api/interpretations/chart/ZMuYVhtIceD
+    /api/interpretations/visualization/hQxZGXqnLS9
     /api/interpretations/map/FwLHSMCejFu
     /api/interpretations/eventReport/xJmPLGP3Cde
     /api/interpretations/eventChart/nEzXB2M9YBz
@@ -9373,7 +9397,7 @@ Will search for the following:
 <tr class="even">
 <td>max</td>
 <td>The type to return the maxCount for</td>
-<td>String [CHART|MAP|REPORT_TABLE|USER|REPORT|RESOURCE]</td>
+<td>String [CHART|MAP|REPORT_TABLE|USER|REPORT|RESOURCE|VISUALIZATION]</td>
 <td>N/A</td>
 </tr>
 </tbody>
@@ -9395,6 +9419,15 @@ similar to this:
   }, {
     "name": "ANC: 1st and 3rd trends Monthly",
     "id": "gnROK20DfAA"
+  }],
+  "visualizations": [{
+    "name": "ANC: ANC 3 Visits Cumulative Numbers",
+    "id": "arf9OiyV7df",
+    "type": "LINE"
+  }, {
+    "name": "ANC: 1st and 2rd trends Monthly",
+    "id": "jkf6OiyV7el",
+    "type": "PIVOT_TABLE"
   }],
   "maps": [{
     "name": "ANC: 1st visit at facility (fixed) 2013",
@@ -9477,7 +9510,7 @@ parameters are described in detail in the following table.
 <tr class="odd">
 <td>type</td>
 <td>Type of the resource to be represented by the dashboard item</td>
-<td>chart | map | reportTable | users | reports | reportTables | resources | patientTabularReports | app</td>
+<td>chart | visualization | map | reportTable | users | reports | reportTables | resources | patientTabularReports | app</td>
 </tr>
 <tr class="even">
 <td>id</td>
@@ -9530,6 +9563,619 @@ report from a dashboard item of type reports, as opposed to removing the
 dashboard item completely:
 
     /api/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
+
+## Visualization
+
+<!--DHIS2-SECTION-ID:webapi_visualization-->
+
+The Visualization API is designed to help clients to interact with charts and pivot/report tables. The endpoints of this API are used by the Data Visualization application which allows the creation, configuration and management of charts and pivot tables based on the client's definitions. The main idea is to enable clients and users to have a unique and centralized API providing all types of charts and pivot tables as well as specific parameters and configuration for each type of visualization.
+
+This API was introduced with the expectation to unify both `charts` and `reportTables` APIs and entirely replace them in favour of the `visualizations` API (which means that the usage of `charts` and `reportTables` APIs should be avoided). In summary, the following resources/APIs:
+
+    /api/charts, /api/reportTables
+
+*are being replaced by*
+
+    /api/visualizations
+
+> **Note**
+>
+> New applications and clients should avoid using the `charts` and `reportTables` APIs because they are deprecated. Use the `visualizations` API instead.
+
+A Visualization object is composed of many attributes (some of them related to charts and others related to pivot tables), but the most important ones responsible to reflect the core information of the object are: *"id", "name", "type", "dataDimensionItems", "columns", "rows" and "filters".*
+
+The root endpoint of the API is `/api/visualizations`, and the list of current attributes and elements are described in the table below.
+
+<table>
+<caption>Visualization attributes</caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>The unique identifier.</td>
+</tr>
+<tr class="even">
+<td>code</td>
+<td>A custom code to identify the Visualiation.</td>
+</tr>
+<tr class="odd">
+<td>name</td>
+<td>The name of the Visualization</td>
+</tr>
+<tr class="even">
+<td>type</td>
+<td>The type of the Visualiation. The valid types are: COLUMN, STACKED_COLUMN, BAR, STACKED_BAR, LINE, AREA, PIE, RADAR, GAUGE, YEAR_OVER_YEAR_LINE YEAR_OVER_YEAR_COLUMN, SINGLE_VALUE, PIVOT_TABLE.</td>
+</tr>
+<tr class="odd">
+<td>title</td>
+<td>A custom title.</td>
+</tr>
+<tr class="even">
+<td>subtitle</td>
+<td>A custom subtitle.</td>
+</tr>
+<tr class="odd">
+<td>description</td>
+<td>Defines a custom description for the Visualization.</td>
+</tr>
+<tr class="even">
+<td>created</td>
+<td>The date/time of the Visualization creation.</td>
+</tr>
+<tr class="odd">
+<td>startDate</td>
+<td>The beginning date used for during the filtering.</td>
+</tr>
+<tr class="even">
+<td>endDate</td>
+<td>The ending date used for during the filtering.</td>
+</tr>
+<tr class="odd">
+<td>sortOrder</td>
+<td>The sorting order of this Visualization. Integer value.</td>
+</tr>
+<tr class="even">
+<td>user</td>
+<td>An object representing the creator of the Visualization.</td>
+</tr>
+<tr class="odd">
+<td>publicAccess</td>
+<td>Sets the permissions for public access.</td>
+</tr>
+<tr class="even">
+<td>displayDensity</td>
+<td>The display density of the text.</td>
+</tr>
+<tr class="odd">
+<td>fontSize</td>
+<td>The font size of the text.</td>
+</tr>
+<tr class="even">
+<td>relativePeriods</td>
+<td>An object representing the relative periods used in the analytics query.</td>
+</tr>
+<tr class="odd">
+<td>legendSet</td>
+<td>An object representing the definitions for the legend.</td>
+</tr>
+<tr class="even">
+<td>legendDisplayStyle</td>
+<td>The legend's display style. It can be: FILL or TEXT.</td>
+</tr>
+<tr class="odd">
+<td>legendDisplayStrategy</td>
+<td>The legend's display style. It can be: FIXED or BY_DATA_ITEM.</td>
+</tr>
+<tr class="even">
+<td>aggregationType</td>
+<td>Determines how the values in the pivot table are aggregated. Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT.</td>
+</tr>
+<tr class="odd">
+<td>regressionType</td>
+<td>A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS.</td>
+</tr>
+<tr class="even">
+<td>targetLineValue</td>
+<td>The chart target line. Accepts a Double type.</td>
+</tr>
+<tr class="odd">
+<td>targetLineLabel</td>
+<td>The chart target line label.</td>
+</tr>
+<tr class="even">
+<td>rangeAxisLabel</td>
+<td>The chart vertical axis (y) label/title.</td>
+</tr>
+<tr class="odd">
+<td>domainAxisLabel</td>
+<td>The chart horizontal axis (x) label/title.</td>
+</tr>
+<tr class="even">
+<td>rangeAxisMaxValue</td>
+<td>The chart axis maximum value. Values outside of the range will not be displayed.</td>
+</tr>
+<tr class="odd">
+<td>rangeAxisMinValue</td>
+<td>The chart axis minimum value. Values outside of the range will not be displayed.</td>
+</tr>
+<tr class="even">
+<td>rangeAxisSteps</td>
+<td>The number of axis steps between the minimum and maximum values.</td>
+</tr>
+<tr class="odd">
+<td>rangeAxisDecimals</td>
+<td>The number of decimals for the axes values.</td>
+</tr>
+<tr class="even">
+<td>baseLineValue</td>
+<td>A chart baseline value.</td>
+</tr>
+<tr class="odd">
+<td>baseLineLabel</td>
+<td>A chart baseline label.</td>
+</tr>
+<tr class="even">
+<td>digitGroupSeparator</td>
+<td>The digit group separator. Valid values: COMMA, SPACE or NONE.</td>
+</tr>
+<tr class="odd">
+<td>topLimit</td>
+<td>The top limit set for the Pivot table.</td>
+</tr>
+<tr class="even">
+<td>measureCriteria</td>
+<td>Describes the criteria applied to this measure.</td>
+</tr>
+<tr class="odd">
+<td>percentStackedValues</td>
+<td>Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>noSpaceBetweenColumns</td>
+<td>Show/hide space between columns. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>regression</td>
+<td>Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>externalAccess</td>
+<td>Indicates whether the Visualization is available as external read-only. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>userOrganisationUnit</td>
+<td>Indicates if the user has an organisation unit. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>userOrganisationUnitChildren</td>
+<td>Indicates if the user has a children organisation unit. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>userOrganisationUnitGrandChildren</td>
+<td>Indicates if the user has a grand children organisation unit . Boolean value.</td>
+</tr>
+<tr class="even">
+<td>reportingParams</td>
+<td>Object used to define boolean attributes related to reporting.</td>
+</tr>
+<tr class="odd">
+<td>rowTotals</td>
+<td>Displays (or not) the row totals. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>colTotals</td>
+<td>Displays (or not) the columns totals. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>rowSubTotals</td>
+<td>Displays (or not) the row sub-totals. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>colSubTotals</td>
+<td>Displays (or not) the columns sub-totals. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>cumulativeValues</td>
+<td>Indicates whether the visualization is using cumulative values. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>hideEmptyColumns</td>
+<td>Indicates whether to hide columns with no data values. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>hideEmptyRows</td>
+<td>Indicates whether to hide rows with no data values. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>completedOnly</td>
+<td>Indicates whether to hide columns with no data values. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>skipRounding</td>
+<td>Apply or not rounding. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>showDimensionLabels</td>
+<td>Shows the dimension labels or not. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>hideTitle</td>
+<td>Hides the title or not. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>hideSubtitle</td>
+<td>Hides the subtitle or not. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>hideLegend</td>
+<td>Show/hide the legend. Very likely to be used by charts. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>showHierarchy</td>
+<td>Displays (or not) the organisation unit hierarchy names. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>showData</td>
+<td>Used by charts to hide or not data/values within the rendered model. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>lastUpdatedBy</td>
+<td>Object that represents the user that applied the last changes to the Visualization.</td>
+</tr>
+<tr class="odd">
+<td>lastUpdated</td>
+<td>The date/time of the last time the Visualization was changed.</td>
+</tr>
+<tr class="even">
+<td>favorites</td>
+<td>List of user ids who have marked this object as a favorite.</td>
+</tr>
+<tr class="odd">
+<td>subscribers</td>
+<td>List of user ids who have subscribed to this Visualization.</td>
+</tr>
+<tr class="even">
+<td>translations</td>
+<td>Set of available object translation, normally filtered by locale.</td>
+</tr>
+</tbody>
+</table>
+
+### Retrieving visualizations
+
+<!--DHIS2-SECTION-ID:webapi_visualization_retrieving_visualizations-->
+
+To retrieve a list of all existing visualizations, in JSON format, with some basic information (including identifier, name and pagination) you can make a `GET` request to the URL below. You should see a list of all public/shared visualizations plus your private ones.
+
+    GET /api/visualizations.json
+
+If you want to retrieve the JSON definition of a specific Visualization you can add its respective identifier to the URL:
+
+    GET /api/visualizations/hQxZGXqnLS9.json
+
+The following representation is an example of a response in JSON format (for brevity, certain information has been removed). For the complete schema, please use `GET /api/schemas/visualization`.
+
+```json
+{
+  "lastUpdated": "2020-02-06T11:57:09.678",
+  "href": "http://my-domain/dhis/api/visualizations/hQxZGXqnLS9",
+  "id": "hQxZGXqnLS9",
+  "created": "2017-05-19T17:22:00.785",
+  "name": "ANC: ANC 1st visits last 12 months cumulative values",
+  "publicAccess": "rw------",
+  "userOrganisationUnitChildren": false,
+  "type": "LINE",
+  "access": {},
+  "reportingParams": {
+    "parentOrganisationUnit": false,
+    "reportingPeriod": false,
+    "organisationUnit": false,
+    "grandParentOrganisationUnit": false
+  },
+  "dataElementGroupSetDimensions": [],
+  "attributeDimensions": [],
+  "yearlySeries": [],
+  "filterDimensions": [
+    "dx"
+  ],
+  "columns": [
+    {
+      "id": "ou"
+    }
+  ],
+  "dataElementDimensions": [],
+  "categoryDimensions": [],
+  "rowDimensions": [
+    "pe"
+  ],
+  "columnDimensions": [
+    "ou"
+  ],
+  "dataDimensionItems": [
+    {
+      "dataDimensionItemType": "DATA_ELEMENT",
+      "dataElement": {
+        "id": "fbfJHSPpUQD"
+      }
+    }
+  ],
+  "filters": [
+    {
+      "id": "dx"
+    }
+  ],
+  "rows": [
+    {
+      "id": "pe"
+    }
+  ]
+}
+```
+A more tailored response can be obtained by specifying, in the URL, the fields you want to extract. Ie.:
+
+    GET /api/visualizations/hQxZGXqnLS9.json?fields=interpretations
+
+will return
+
+```json
+{
+  "interpretations": [
+    {
+      "id": "Lfr8I2RPU0C"
+    },
+    {
+      "id": "JuwgdJlJPGb"
+    },
+    {
+      "id": "WAoU2rSpyZp"
+    }
+  ]
+}
+```
+
+As seen, the `GET` above will return only the interpretations related to the given identifier (in this case `hQxZGXqnLS9`).
+
+### Creating, updating and removing visualizations
+
+<!--DHIS2-SECTION-ID:webapi_visualization_add_update_remove_visualizations-->
+
+These operations follow the standard *REST* semantics. A new Visualization can be created through a `POST` request to the `/api/visualizations` resource with a valid JSON payload. An example of payload could be:
+
+```json
+{
+  "columns": [
+    {
+      "dimension": "J5jldMd8OHv",
+      "items": [
+        {
+          "name": "CHP",
+          "id": "uYxK4wmcPqA",
+          "displayName": "CHP",
+          "displayShortName": "CHP",
+          "dimensionItemType": "ORGANISATION_UNIT_GROUP"
+        },
+        {
+          "name": "Hospital",
+          "id": "tDZVQ1WtwpA",
+          "displayName": "Hospital",
+          "displayShortName": "Hospital",
+          "dimensionItemType": "ORGANISATION_UNIT_GROUP"
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "dimension": "SooXFOUnciJ",
+      "items": [
+        {
+          "name": "DOD",
+          "id": "B0bjKC0szQX",
+          "displayName": "DOD",
+          "displayShortName": "DOD",
+          "dimensionItemType": "CATEGORY_OPTION_GROUP"
+        },
+        {
+          "name": "CDC",
+          "id": "OK2Nr4wdfrZ",
+          "displayName": "CDC",
+          "displayShortName": "CDC",
+          "dimensionItemType": "CATEGORY_OPTION_GROUP"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "dimension": "ou",
+      "items": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "displayName": "Sierra Leone",
+          "displayShortName": "Sierra Leone",
+          "dimensionItemType": "ORGANISATION_UNIT"
+        },
+        {
+          "name": "LEVEL-1",
+          "id": "LEVEL-H1KlN4QIauv",
+          "displayName": "LEVEL-1"
+        }
+      ]
+    }
+  ],
+  "name": "HIV Cases Monthly",
+  "description": "Cases of HIV across the months",
+  "category": "XY1vwCQskjX",
+  "showDimensionLabels": true,
+  "hideEmptyRows": true,
+  "hideEmptyColumns": true,
+  "skipRounding": true,
+  "aggregationType": "SUM",
+  "regressionType": "LINEAR",
+  "type": "PIVOT_TABLE",
+  "numberType": "VALUE",
+  "measureCriteria": "Some criteria",
+  "showHierarchy": true,
+  "completedOnly": true,
+  "displayDensity": "NORMAL",
+  "fontSize": "NORMAL",
+  "digitGroupSeparator": "SPACE",
+  "legendDisplayStyle": "FILL",
+  "legendDisplayStrategy": "FIXED",
+  "hideEmptyRowItems": "BEFORE_FIRST_AFTER_LAST",
+  "regression": false,
+  "cumulative": true,
+  "sortOrder": 1,
+  "topLimit": 2,
+  "rowTotals": true,
+  "colTotals": true,
+  "hideTitle": true,
+  "hideSubtitle": true,
+  "hideLegend": true,
+  "showData": true,
+  "baseLineLabel": "A base label",
+  "targetLineLabel": "A target label",
+  "targetLineValue": 45.5,
+  "baseLineValue": 19.99,
+  "percentStackedValues": true,
+  "noSpaceBetweenColumns": true,
+  "rowSubTotals": true,
+  "colSubTotals": true,
+  "domainAxisLabel": "A domain axis label",
+  "rangeAxisLabel": "A range axis label",
+  "rangeAxisMaxValue": 123.65,
+  "rangeAxisMinValue": 33.89,
+  "rangeAxisSteps": 5,
+  "rangeAxisDecimals": 10,
+  "userOrgUnitType": "TEI_SEARCH",
+  "externalAccess": false,
+  "publicAccess": "--------",
+  "reportingParams": {
+    "reportingPeriod": true,
+    "organisationUnit": true,
+    "parentOrganisationUnit": true,
+    "grandParentOrganisationUnit": true
+  },
+  "parentGraphMap": {
+    "ImspTQPwCqd": ""
+  },
+  "access": {
+    "read": true,
+    "update": true,
+    "externalize": true,
+    "delete": false,
+    "write": true,
+    "manage": false
+  },
+  "optionalAxes": [
+    {
+      "dimensionalItem": "fbfJHSPpUQD",
+      "axis": 1
+    },
+    {
+      "dimensionalItem": "cYeuwXTCPkU",
+      "axis": 2
+    }
+  ],
+  "relativePeriods": {
+    "thisYear": false,
+    "quartersLastYear": true,
+    "last52Weeks": false,
+    "thisWeek": false,
+    "lastMonth": false,
+    "last14Days": false,
+    "biMonthsThisYear": false,
+    "monthsThisYear": false,
+    "last2SixMonths": false,
+    "yesterday": false,
+    "thisQuarter": false,
+    "last12Months": false,
+    "last5FinancialYears": false,
+    "thisSixMonth": false,
+    "lastQuarter": false,
+    "thisFinancialYear": false,
+    "last4Weeks": false,
+    "last3Months": false,
+    "thisDay": false,
+    "thisMonth": false,
+    "last5Years": false,
+    "last6BiMonths": false,
+    "last4BiWeeks": false,
+    "lastFinancialYear": false,
+    "lastBiWeek": false,
+    "weeksThisYear": false,
+    "last6Months": false,
+    "last3Days": false,
+    "quartersThisYear": false,
+    "monthsLastYear": false,
+    "lastWeek": false,
+    "last7Days": false,
+    "thisBimonth": false,
+    "lastBimonth": false,
+    "lastSixMonth": false,
+    "thisBiWeek": false,
+    "lastYear": false,
+    "last12Weeks": false,
+    "last4Quarters": false
+  },
+  "user": {},
+  "yearlySeries": [
+    "THIS_YEAR"
+  ],
+  "userGroupAccesses": [
+    {
+      "access": "rwx-----",
+      "userGroupUid": "ZoHNWQajIoe",
+      "displayName": "Bo District M&E officers",
+      "id": "ZoHNWQajIoe"
+    }
+  ],
+  "userAccesses": [
+    {
+      "access": "--------",
+      "displayName": "John Barnes",
+      "id": "DXyJmlo9rge",
+      "userUid": "DXyJmlo9rge"
+    }
+  ],
+  "legendSet": {
+    "name": "Death rate up",
+    "id": "ham2eIDJ9k6",
+    "legends": [
+      {
+        "startValue": 1,
+        "endValue": 2,
+        "color": "red",
+        "image": "some-image"
+      },
+      {
+        "startValue": 2,
+        "endValue": 3,
+        "color": "blue",
+        "image": "other-image"
+      }
+    ]
+  }
+}
+```
+
+To update a specific Visualization, you can send a `PUT` request to the same `/api/visualizations` resource with a similar payload `PLUS` the respective Visualization's identifier, ie.:
+
+    PUT /api/visualizations/hQxZGXqnLS9
+
+Finally, to delete an existing Visualization, you can make a `DELETE` request specifying the identifier of the Visualization to be removed, as shown:
+
+    DELETE /api/visualizations/hQxZGXqnLS9
 
 ## Analytics
 
@@ -19500,11 +20146,6 @@ DHIS2 allows for scheduling of jobs of various types. Each type of job has diffe
 <td>(See list of job types)</td>
 </tr>
 <tr class="odd">
-<td>continuousExecution</td>
-<td>A job may be added as a continuous job which means, as soon as the job finished, it will be scheduled to run again right away. You can set `continuousExecution` to true in the payload for the job to run continuously.</td>
-<td>Boolean</td>
-</tr>
-<tr class="even">
 <td>enabled</td>
 <td>A job can be added to the system without it being scheduled by setting `enabled` to false in the JSON payload. Use this if you want to temporarily stop scheduling for a job, or if a job configuration is not complete yet.</td>
 <td>Boolean</td>
@@ -19731,7 +20372,6 @@ The response payload looks like this:
   "displayName": "analytics last two years",
   "enabled": true,
   "externalAccess": false,
-  "continuousExecution": false,
   "jobType": "ANALYTICS_TABLE",
   "nextExecutionTime": "2018-02-26T03:00:00.000",
   "cronExpression": "0 0 3 ? * MON",
@@ -19772,7 +20412,6 @@ Update a job with parameters using the following endpoint and JSON payload forma
   "name": "analytics last two years",
   "enabled": true,
   "cronExpression": "0 0 3 ? * MON",
-  "continuousExecution": false,
   "jobType": "ANALYTICS_TABLE",
   "jobParameters": {
     "lastYears": "3",
