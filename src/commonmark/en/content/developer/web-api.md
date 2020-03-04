@@ -20296,7 +20296,7 @@ To configure jobs you can do a POST request to the following resource:
 
     /api/jobConfigurations
 
-Job without parameters looks in JSON format:
+A job without parameters in JSON format looks like this :
 
 ```json
 {
@@ -20306,7 +20306,7 @@ Job without parameters looks in JSON format:
 }
 ```
 
-An example of an analytics table job with parameters in JSON format looks like this:
+An example of an analytics table job with parameters in JSON format:
 
 ```json
 {
@@ -20321,7 +20321,7 @@ An example of an analytics table job with parameters in JSON format looks like t
 }
 ```
 
-As example of a push analysis job with parameters in JSON format looks like this:
+As example of a push analysis job with parameters in JSON format:
 
 ```json
 {
@@ -20336,7 +20336,7 @@ As example of a push analysis job with parameters in JSON format looks like this
  }
 ```
 
-An example of a job with scheduling type `FIXED_DELAY` and 120 seconds delay looks like this:
+An example of a job with scheduling type `FIXED_DELAY` and 120 seconds delay:
 
 ```json
 {
@@ -20357,7 +20357,9 @@ List all job configurations:
 
 Retrieve a job:
 
-    GET /api/jobConfigurations/KBcP6Qw37gT
+    GET /api/jobConfigurations/{id}
+
+The response payload looks like this:
 
 ```json
 {
@@ -20401,9 +20403,9 @@ Retrieve a job:
 
 ### Update job
 
-Update job with parameters in JSON format:
+Update a job with parameters using the following endpoint and JSON payload format:
 
-    PUT /api/jobConfiguration/KBcP6Qw37gT
+    PUT /api/jobConfiguration/{id}
 
 ```json
 {
@@ -20421,9 +20423,9 @@ Update job with parameters in JSON format:
 
 ### Delete job
 
-Delete a job:
+Delete a job using:
 
-    DELETE /api/jobConfiguration/KBcP6Qw37gT
+    DELETE /api/jobConfiguration/{id}
 
 Note that some jobs with custom configuration parameters may not be added if the
 required system settings are not configured. An example of this is data
