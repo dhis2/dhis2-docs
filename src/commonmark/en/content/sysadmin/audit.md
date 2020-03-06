@@ -37,13 +37,13 @@ The audit matrix configuration can be defined in `dhis.conf`  file as below. By 
 ```properties
 metadata.audit.persist = on
 tracker.audit.persist = on
-audit.metadata=CREATE;UPDATE;DELETE
-audit.tracker=READ;CREATE;UPDATE;DELETE
+audit.metadata = CREATE;UPDATE;DELETE
+audit.tracker = READ;CREATE;UPDATE;DELETE
 ```
 
 ## Audit Scope
 
-Currently AuditScope includes: 
+Currently audit scopes include: 
 
 - `METADATA`: All metadata objects in DHIS2 (DataElement, DataSet, Cagegory, and more).
 - `TRACKER`: TrackedEntityInstance, Event, Enrollment, TrackedEntityAttributeValue, TrackedEntityDataValue.
