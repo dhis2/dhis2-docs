@@ -6,7 +6,7 @@
 
 DHIS2 can export [Prometheus](https://prometheus.io/) compatible metrics for monitoring DHIS2 nodes.
 
-This section describes the steps required to install Prometheus and Grafana (https://grafana.com/) using a standard installation procedure (`apt-get`) and Docker and configure Grafana to show DHIS2 metrics.
+This section describes the steps required to install Prometheus and [Grafana](https://grafana.com/) using a standard installation procedure (`apt-get`) and Docker and configure Grafana to show DHIS2 metrics.
 
 For a list of the metrics exposed by a DHIS2 instance, please refer to the monitoring guide on [GitHub](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md).
 
@@ -33,7 +33,6 @@ wget https://github.com/prometheus/prometheus/releases/download/v2.15.2/promethe
 ```
 
 - Untar the zip 
-
 
 ```
 tar xvzf prometheus-2.15.2.linux-amd64.tar.gz
@@ -81,7 +80,7 @@ chown -R prometheus:prometheus /data/prometheus /etc/prometheus/*
 
 <!--DHIS2-SECTION-ID:prometheus_create_service-->
 
-Head over to the `/lib/systemd/system` folder and create a new systemd file named `prometheus.service`
+To create a Prometheus _systemd_ service, head over to the `/lib/systemd/system` folder and create a new systemd file named `prometheus.service`.
 
 ```
 cd /lib/systemd/system
@@ -153,13 +152,12 @@ If there is already an Nginx instance running on the machine and you are unsure 
 ```
 > lsof | grep LISTEN | grep nginx
 
-nginx     15792     root    8u     IPv4         1140223421       0t0        TCP *:http (LISTEN)
+nginx   15792   root   8u   IPv4   1140223421   0t0   TCP *:http (LISTEN)
 ```
 
 The last column shows the port used by Nginx (`http` -> `80`).
 
-
-- By default, Nginx configuration is located in `/etc/nginx/nginx.conf`
+By default, Nginx configuration is located in `/etc/nginx/nginx.conf`
 
 Make sure that `nginx.conf` contains the `Virtual Host Config` section
 
@@ -175,14 +173,11 @@ include /etc/nginx/sites-enabled/*;
 
 - Create a new file in `/etc/nginx/conf.d` called `prometheus.conf`
 
-
 ```
 touch /etc/nginx/conf.d/prometheus.conf
 ```
 
-
 - Edit the newly created file, and paste the following content inside:
-
 
 ```
 server {
@@ -196,7 +191,6 @@ server {
 
 - Restart Nginx  and browse to http://localhost:1234
 
-
 ```
 systemctl restart nginx
 
@@ -206,7 +200,6 @@ journalctl -f -u nginx.service
 
 - Configure Prometheus for reverse proxing, by editing `/lib/systemd/system/prometheus.service` and add the following argument
 to the list of arguments passed to the Prometheus executable
-
 
 ```
 --web.external-url=https://localhost:1234
@@ -244,7 +237,7 @@ htpasswd -c .credentials admin
 
 Choose a strong password, and make sure that the pass file was correctly created.
 
-- Edit the previosuly created Nginx configuration file (`/etc/nginx/conf.d/prometheus.conf`), and add the auth information
+- Edit the previosuly created Nginx configuration file (`/etc/nginx/conf.d/prometheus.conf`), and add the authentication information.
 
 ```
 server {
@@ -273,12 +266,12 @@ journalctl -f -u nginx.service
 
 <!--DHIS2-SECTION-ID:grafana-->
 
-- Add a gpg key and install the OSS Grafana package from APT repo
+- Add a `gpg` key and install the OSS Grafana package from APT repo
 
-```
+```sh
 apt-get install -y apt-transport-https
 
-wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+wget -q -O - "https://packages.grafana.com/gpg.key" | sudo apt-key add -
 
 add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
 
@@ -290,7 +283,7 @@ apt-get install grafana
 - If the system is using `systemd`, a new `grafana-service` is automatically created. Check the `systemd` file to gain some insight on the Grafana installation
 
 ```
-cat /usr/lib/systemd/system/grafana-server.service`
+cat /usr/lib/systemd/system/grafana-server.service
 ```
 
 This file is quite important because it offers information about the newly installed Grafana instance.
@@ -313,7 +306,6 @@ systemctl start grafana-server
 
 The default login for Grafana is `admin` and the default password is also `admin`.
 You will be prompted to change the password on first access.
-
 
 - Configure Prometheus as a Grafana datasource
 
@@ -343,7 +335,7 @@ docker stack deploy -c docker-stack.yml prom
 
 The above command, may result in the following error:
 
-*this node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again*
+*This node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again*
 
 If that happens, you need to start Swarm. You can use the following command line:
 
@@ -366,7 +358,7 @@ docker stack rm prom
 
 The Prometheus configuration (`prometheus.yml`) file is located in the `prometheus` folder.
 
-- Access Grafana web console: http://localhost:3000 with username: `admin` and password `foobar`
+- Access Grafana web console at: http://localhost:3000 with username: `admin` and password: `foobar`
 
 ### Configure Prometheus to pull metrics from one or more DHIS2 instances
 
@@ -374,7 +366,9 @@ The Prometheus configuration (`prometheus.yml`) file is located in the `promethe
 
 Prior to using Prometheus, it needs basic configuring. Thus, we need to create a configuration file named `prometheus.yml`
 
-**Note:** The configuration file of Prometheus is written in YAML which strictly forbids to use tabs. If your file is incorrectly formatted, Prometheus will not start. Be careful when you edit it.
+> **Note**
+>
+> The configuration file of Prometheus is written in YAML which strictly forbids to use tabs. If your file is incorrectly formatted, Prometheus will not start. Be careful when you edit it.
 
 Prometheus’ configuration file is divided into three parts: `global`, `rule_files`, and `scrape_configs`.
 
@@ -414,5 +408,5 @@ Prometheus may or may not run on the same server as DHIS2: in the above configur
 
 The monitoring subsystem is disabled by default in DHIS2.
 
-Each metrics cluster has to be explicitely enabled in order for the metrics to be exported. To configure DHIS2 to export one or more metrics, check the following document: https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md#dhis2-monitoring-configuration
+Each metrics cluster has to be explicitely enabled in order for the metrics to be exported. To configure DHIS2 to export one or more metrics, check the this [document](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md#dhis2-monitoring-configuration).
 
