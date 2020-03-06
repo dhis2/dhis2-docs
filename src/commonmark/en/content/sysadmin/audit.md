@@ -2,24 +2,18 @@
 
 ## Introduction
 
-<!--DHIS2-SECTION-ID:audit-->
+DHIS2 supports a new audit service which is based on Apache ActiveMQ Artemis. Artemis is used as an asynchronous messaging system by DHIS2.
 
-From version 2.34 DHIS2 has implemented new Audit service that based on Apache ActiveMQ Artemis as an asynchronous messaging system.
+Aafter an entity is saved to database, an audit message will be sent to the Artemis message consumer service. The message will then be processed in a different thread.
 
-Basically, after an entity is saved to database, an Audit message will be sent to Artemis message consumer service. The message will then be processed in a different thread.
+Audit logs can be retrieved from the DHIS2 database. Currently there is no UI or API endpoint available for retriving audit entries.
 
-By this, the audit service will not block current application thread, thus improves system performance.
-
-Currently, there is no UI or API endpoint to retrive Audit entries. It's only available in database.
-
-`Note that by default the Auditing service is disabled. `
+Note that by default, the auditing service is disabled.
 
 
 ## Single Audit table
 
-<!--DHIS2-SECTION-ID:audit_table-->
-
-All audit entries will be saved into one single table named `audit`  as below
+All audit entries will be saved into one single table named `audit`.
 
 | Column     | Type                        |                                                                                                                                                   |   |
 |------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -38,28 +32,19 @@ All audit entries will be saved into one single table named `audit`  as below
 
 ## Setup
 
-<!--DHIS2-SECTION-ID:audit_configuration-->
-
-The audit matrix configuration can be defined in `dhis.conf`  file as below. By default those audit settings are disabled.
+The audit matrix configuration can be defined in `dhis.conf`  file as below. By default, audit is disabled.
  
-```
-# ------------------------------------------------
-# Audit
-# ------------------------------------------------
-
+```properties
 metadata.audit.persist = on
 tracker.audit.persist = on
 audit.metadata=CREATE;UPDATE;DELETE
 audit.tracker=READ;CREATE;UPDATE;DELETE
-
 ```
 
 ## Audit Scope
 
-<!--DHIS2-SECTION-ID:audit_scope-->
-
 Currently AuditScope includes: 
 
-- `METADATA`: all Metadata objects in DHIS2 ( DataElement, DataSet, Cagegory, etc. )
+- `METADATA`: All metadata objects in DHIS2 (DataElement, DataSet, Cagegory, and more).
 - `TRACKER`: TrackedEntityInstance, Event, Enrollment, TrackedEntityAttributeValue, TrackedEntityDataValue.
-- `AGGREGATE`: aggregate data value
+- `AGGREGATE`: Aggregate DataValue.
