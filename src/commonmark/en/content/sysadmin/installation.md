@@ -1038,6 +1038,33 @@ DHIS 2 supports a server-side cache for analytics API responses, used by all of 
 analytics.cache.expiration = 3600
 ```
 
+## Monitoring
+
+DHIS2 can export Prometheus compatible metrics for monitoring DHIS2 instances. The DHIS2 monitoring infrastructure is designed to expose metrics related to the application runtime and other application-related information.
+
+Infrastucture related metrics (such as host metrics, Tomcat or Postgres) are not directly exposed by the application monitoring engine and they have to be collected separately. The metrics currently exposed by the application are:
+
+- DHIS2 API (response time, number of calls, etc.)
+- JVM (Heap size, Garbage collection, etc.)
+- Hibernate (Queries, cache, etc)
+- C3P0 Database pool
+- Application uptime
+- CPU
+
+Monitoring can be enabled in `dhis.conf` with the following properties:
+
+```properties
+monitoring.api.enabled = true
+monitoring.jvm.enabled = true
+monitoring.dbpool.enabled = ture
+monitoring.hibernate.enabled	Hibernate
+monitoring.uptime.enabled	Uptime
+monitoring.cpu.enabled	CPU
+```
+
+For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
+
+
 ## Starting Tomcat at boot time
 
 <!--DHIS2-SECTION-ID:install_starting_tomcat_boot_time-->
