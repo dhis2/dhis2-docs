@@ -15,20 +15,18 @@ Note that by default, the auditing service is disabled.
 
 All audit entries will be saved into one single table named `audit`.
 
-| Column     | Type                        |                                                                                                                                                   |   |
-|------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|---|
-| auditid    | integer                     |                                                                                                                                                   |   |
-| audittype  | text                        | READ, CREATE, UPDATE, DELETE, SEARCH                                                                                                                  |   |
-| auditscope | text                        | METADATA, AGGREGATE, TRACKER                                                                                                                        |   |
-| klass      | text                        | Audit Entity Java class name                                                                                                                      |   |
+| Column     | Type                        | Description   |
+|------------|-----------------------------|---------------|
+| auditid    | integer                     |               |
+| audittype  | text                        | READ, CREATE, UPDATE, DELETE, SEARCH |
+| auditscope | text                        | METADATA, AGGREGATE, TRACKER |
+| klass      | text                        | Audit Entity Java class name |
 | attributes | jsonb                       | Json string stores attributes of the audit entity, used for searching. Example: {"valueType":"TEXT", "categoryCombo":"SWQW313FQY", "domainType":"TRACKER"} |   |
-| data       | bytea                       | Compressed Json string of the Audit Entity                                                                                                        |   |
-| createdat  | timestamp without time zone |                                                                                                                                                   |   |
-| createdby  | text                        |                                                                                                                                                   |   |
-| uid        | text                        |                                                                                                                                                   |   |
-| code       | text                        |                                                                                                                                                   |   |
-|            |                             |   
-
+| data       | bytea                       | Compressed Json string of the Audit Entity    
+| createdat  | timestamp without time zone |               |
+| createdby  | text                        |               | 
+| uid        | text                        |               |
+| code       | text                        |               |
 
 ## Setup
 
