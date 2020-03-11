@@ -25,7 +25,7 @@ chips in the layout area.
 
 ## Adding more axes
 
-When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For "column", "bar" and "line" charts you can do so by clicking "Manage axes" in the series dimension's context menu.
+When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For "column", "bar" and "line" charts you can do so by clicking "Manage chart axes" in the Data dimension's context menu. If the option is disabled, make sure that the Data dimension is on the Series axis and that at least two items have been added.
 
 ![](resources/images/data-visualizer/data-visualizer-axis-management-menu-option.png)
 
@@ -37,7 +37,7 @@ In the axis management dialog you can assign data items to the two axes.
 
 When viewing a visualization, you can expand the interpretations on the right
 side by clicking on the Interpretations button in the upper right corner.
-The visualization description will also be shown. The description suppots rich text format.
+The visualization description will also be shown. The description supports rich text format.
 
 To view the visualization according to the date of a particular interpretation,
 click on the interpretation or its "View" button. This will regenerate the visualization with the
