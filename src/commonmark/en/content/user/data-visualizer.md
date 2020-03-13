@@ -195,9 +195,17 @@ Saving your visualization makes it easy to find them later. You can also choose 
 
 2.  Enter the new name and/or description.
 
-3.  Click **Update**.
+3.  Click **Rename**.
 
 ![](resources/images/data-visualizer/data-visualizer-rename-dialog.png)
+
+### Delete a visualization
+
+1.  Click **File** \> **Delete**.
+
+2.  Click **Delete**.
+
+![](resources/images/data-visualizer/data-visualizer-delete-dialog.png)
 
 ## Visualization interpretations
 
@@ -208,6 +216,8 @@ New interpretations can be added by typing in the text field in the bottom right
 It is possible to format the text with **bold**, _italic_ by using the Markdown style markers `*` and `_` for **bold** and _italic_ respectively (keyboard shortcuts are also available: `Ctrl`/`Cmd` + `B` and `Ctrl`/`Cmd` + `I`). A limited set of emojis is supported and can be used by typing one of the following character combinations: `:)` `:-)` `:(` `:-(` `:+1` `:-1`. URLs are automatically detected and converted into a clickable link.
 
 To view the visualization according to the date of a particular interpretation, click on the interpretation or its `View` button. This will regenerate the visualization with the relevant date, which is indicated next to the visualization title. Clicking on `Back to all interpretations` will regenerate the visualization with the current date.
+
+To subscribe to the saved visualization, click the bell icon in the upper right corner. This will allow you to receive internal messages whenever another user likes/creates/updates an interpretation in this saved visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-view-interpretation.png)
 
@@ -225,6 +235,87 @@ Sharing settings can be accessed by clicking **File** \> **Share**. Change shari
 New users can be added by searching for them by name under `Add users and user groups`.
 
 ![](resources/images/data-visualizer/data-visualizer-share-dialog.png)
+
+## Download
+
+Visualizations can be downloaded using the **Download** menu. All visualization types support `Graphics` and `Plain data source` downloads, except for the `Pivot table` type that can be downloaded as `Table layout` and `Plain data source`.
+
+### `Graphics` download
+
+Downloads an image (.png) or a PDF (.pdf) file to your computer.
+
+### `Table layout` download
+
+Downloads a Excel (.xls), CSV (.csv) or HTML (.html) file to your computer.
+
+### `Plain data source` download
+
+You can download the data source behind a chart in JSON, XML, Excel,
+CSV, JXRML or Raw data SQL formats with different identification schemes
+(ID, Code, and Name). The data document uses identifiers of the
+dimension items and opens in a new browser window to display the URL of
+the request to the Web API in the address bar. This is useful for
+developers of apps and other client modules based on the DHIS2 Web API
+or for those who require a plan data source, for instance for import
+into statistical packages.
+
+<table>
+<caption>Available formats</caption>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 33%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Format</p></th>
+<th><p>Action</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>JSON</p></td>
+<td><p>Click <strong>JSON</strong></p></td>
+<td><p>Downloads JSON format based on the <strong>ID</strong>, <strong>Code</strong> or <strong>Name</strong> property.</p>
+</tr>
+<tr class="even">
+<td><p>XML</p></td>
+<td><p>Click <strong>XML</strong></p></td>
+<td><p>Downloads XML format based on the <strong>ID</strong>, <strong>Code</strong> or <strong>Name</strong> property.</p>
+</tr>
+<tr class="odd">
+<td><p>Microsoft Excel</p></td>
+<td><p>Click <strong>Microsoft Excel</strong></p></td>
+<td><p>Downloads Microsoft Excel format based on the <strong>ID</strong>, <strong>Code</strong> or <strong>Name</strong> property.</p>
+</tr>
+<tr class="even">
+<td><p>CSV</p></td>
+<td>Click <strong>CSV</strong></td>
+<td><p>Downloads CSV format based on the <strong>ID</strong>, <strong>Code</strong> or <strong>Name</strong> property.</p>
+</tr>
+<tr class="odd">
+<td><p>XML data value set</p></td>
+<td><p>Click <strong>Advanced > XML</strong></p></td>
+<td><p>TODO: NEEDS INFO</p></td>
+</tr>
+<tr class="even">
+<td><p>JSON data value set</p></td>
+<td><p>Click <strong>Advanced > JSON</strong></p></td>
+<td><p>TODO: NEEDS INFO</p></td>
+</tr>
+<tr class="odd">
+<td><p>JRXML</p></td>
+<td><p>Click <strong>Advanced > JRXML</strong></p></td>
+<td><p>Produces a template of a Jasper Report which can be further customized based on your exact needs and used as the basis for a standard report in DHIS 2.</p></td>
+</tr>
+<tr class="even">
+<td><p>Raw data SQL</p></td>
+<td><p>Click <strong>Advanced > Raw data SQL</strong></p></td>
+<td><p>Provides the actual SQL statement used to generate the data visualization. You can use it as a data source in a Jasper report, or as the basis for a SQL view.</p></td>
+</tr>
+</tbody>
+</table>
 
 ## See visualization as map
 
