@@ -72,19 +72,19 @@ Select the desired visualization type from the selector in the upper left corner
 </tr>
 <tr class="even">
 <td><p>Year over year (line)</p></td>
-<td><p></p></td>
+<td><p>TODO: NEEDS INFO </p></td>
 </tr>
 <tr class="odd">
 <td><p>Year over year (column)</p></td>
-<td><p></p></td>
+<td><p>TODO: NEEDS INFO </p></td>
 </tr>
 <tr class="even">
 <td><p>Single value</p></td>
-<td><p></p></td>
+<td><p>TODO: NEEDS INFO </p></td>
 </tr>
 <tr class="odd">
 <td><p>Pivot table</p></td>
-<td><p></p></td>
+<td><p>TODO: NEEDS INFO </p></td>
 </tr>
 </tbody>
 </table>
@@ -100,18 +100,18 @@ Just like in the dimensions menu, in the layout area you can also change the sel
 
 ![](resources/images/data-visualizer/data-visualizer-layout-area.png)
 
-- Series: A series is a set of continuous, related elements (for
+- **Series**: A series is a set of continuous, related elements (for
   example periods or data elements) which you want to visualize in
   order to emphasize trends or relations in its data. Also known as Columns for Pivot table visualizations.
 
 <!-- end list -->
 
-- Categories: A category is a set of elements (for example indicators
+- **Categories**: A category is a set of elements (for example indicators
   or organisation units) for which you want to compare its data. Also known as Rows for Pivot table visualizations.
 
 <!-- end list -->
 
-- Filter: The filter selection will filter the data displayed in the
+- **Filter**: The filter selection will filter the data displayed in the
   visualization. Note that if you use the data dimension as filter, you can
   only specify a single indicator or data set as filter item, whereas
   with other dimension types you can select any number of items.
@@ -122,16 +122,16 @@ Just like in the dimensions menu, in the layout area you can also change the sel
 
 A dimension refers to the elements which describe the data values in the system. There are three main dimensions in the system:
 
-- Data: Includes data elements, indicators and datasets (reporting
+- **Data**: Includes data elements, indicators and datasets (reporting
   rates), describing the phenomena or event of the data.
 
 <!-- end list -->
 
-- Periods: Describes when the event took place.
+- **Periods**: Describes when the event took place.
 
 <!-- end list -->
 
-- Organisation units: Describes where the event took place.
+- **Organisation units**: Describes where the event took place.
 
 Data Visualizer lets you use these dimensions completely flexible in terms of appearing as series, categories and filter.
 
@@ -147,13 +147,17 @@ When selecting a Period you have to option to choose between fixed periods and r
 
 #### Select organisation units
 
-NEEDS INFO
+TODO: NEEDS INFO
 
 ![](resources/images/data-visualizer/data-visualizer-organisation-unit-dimension-modal.png)
 
+## Change the display of your visualization
+
+TODO: NEEDS INFO, all options
+
 ## Adding more axes
 
-When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For "column", "bar" and "line" charts you can do so by clicking "Manage chart axes" in the Data dimension's context menu. If the option is disabled, make sure that the Data dimension is on the Series axis and that at least two items have been added.
+When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` and `Line` charts you can do so by clicking **Manage chart axes** in the `Data` dimension's context menu. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
 
 ![](resources/images/data-visualizer/data-visualizer-axis-management-menu-option.png)
 
@@ -161,23 +165,69 @@ In the axis management dialog you can assign data items to the two axes.
 
 ![](resources/images/data-visualizer/data-visualizer-axis-management-dialog.png)
 
-## Viewing visualization interpretations
+## Manage saved visualizations
 
-When viewing a visualization, you can expand the interpretations on the right
-side by clicking on the Interpretations button in the upper right corner.
-The visualization description will also be shown. The description supports rich text format.
+Saving your visualization makes it easy to find them later. You can also choose to share them with other users or display them on a dashboard.
 
-To view the visualization according to the date of a particular interpretation,
-click on the interpretation or its "View" button. This will regenerate the visualization with the
-relevant date, which is indicated next to the visualization title.
+### Open a visualization
+
+1.  Click **File** \> **Open**.
+
+2.  Enter the name of a visualization in the search field, or click the **<** and **>** arrows to navigate between different pages. The result can also be filtered by type and owner by using the corresponding menus in the top right corner.
+
+3.  Click the name of the one you want to open.
+
+![](resources/images/data-visualizer/data-visualizer-open-dialog.png)
+
+### Save a visualization
+
+1. a) Click **File** \> **Save**.
+
+2. Enter a **Name** and a **Description** for your visualization.
+
+3. Click **Save**.
+
+![](resources/images/data-visualizer/data-visualizer-save-dialog.png)
+
+### Rename a visualization
+
+1.  Click **File** \> **Rename**.
+
+2.  Enter the new name and/or description.
+
+3.  Click **Update**.
+
+![](resources/images/data-visualizer/data-visualizer-rename-dialog.png)
+
+## Visualization interpretations
+
+When viewing a saved visualization, you can expand the interpretations on the right side by clicking on the Interpretations button in the upper right corner. The visualization description will also be shown. The description supports rich text format.
+
+New interpretations can be added by typing in the text field in the bottom right corner. Other users can be mentioned with `@username`. Start by typing `@` plus the first letters of the username or real name and a mentioning bar will display the available users. Mentioned users will receive an internal DHIS2 message with the interpretation or comment. Interpretations can also be seen in the **Dashboard** app.
+
+It is possible to format the text with **bold**, _italic_ by using the Markdown style markers `*` and `_` for **bold** and _italic_ respectively (keyboard shortcuts are also available: `Ctrl`/`Cmd` + `B` and `Ctrl`/`Cmd` + `I`). A limited set of emojis is supported and can be used by typing one of the following character combinations: `:)` `:-)` `:(` `:-(` `:+1` `:-1`. URLs are automatically detected and converted into a clickable link.
+
+To view the visualization according to the date of a particular interpretation, click on the interpretation or its `View` button. This will regenerate the visualization with the relevant date, which is indicated next to the visualization title. Clicking on `Back to all interpretations` will regenerate the visualization with the current date.
 
 ![](resources/images/data-visualizer/data-visualizer-view-interpretation.png)
 
-Clicking on "Back to all interpretations" or the "Exit View" button inside the interpretations panel will clear the
-interpretation and regenerate the visualization with the current date.
+## Share a visualization
+
+Sharing settings can be accessed by clicking **File** \> **Share**. Change sharing settings for the user groups you want to modify, the available settings are:
+
+- **Can edit and view**: Can view and edit the visualization.
+
+- **Can view only**: Can only view the visualization.
+
+- **No access**: Won't have access to the visualization. This
+  setting is only applicable to **Public access** and **External access**.
+
+New users can be added by searching for them by name under `Add users and user groups`.
+
+![](resources/images/data-visualizer/data-visualizer-share-dialog.png)
 
 ## See visualization as map
 
-Sometimes it can be useful to see how visualization would look like on map. To achieve this you can select "Open as Map" visualization type after you build your visualization.
+To see how a visualization would look like on map, select the `Open as Map` Visualization type after you're finished building your visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-open-as-map.png)
