@@ -153,17 +153,15 @@ TODO: NEEDS INFO
 
 ## Change the display of your visualization
 
-The display of a visualization can be changed by enabling/disabling and configuring several options.
-Each visualization type can have a different set of available options.
-The options are organised in tabs in the dialog and in sections within each tab.
+The display of a visualization can be changed by enabling/disabling and configuring several options. Each visualization type can have a different set of available options. The options are organised in tabs in the **Options dialog** and in sections within each tab.
 
-1.  Open a saved visualization or start a new one by selecting the visualization type, configuring the layout and clicking Update
+1.  Click **Options** to open the **Options dialog**.
 
-2.  Click on **Options** to open the options dialog
+2.  Navigate the tabs in the dialog to see the available options.
 
-3.  Navigate the tabs and enable/disable/configure the various options
+3.  Configure the desired options as required.
 
-4.  Click **Update** in the dialog to apply the options to the visualization
+4.  Click **Update** to apply the changes to the visualization.
 
 ## Adding more axes
 
