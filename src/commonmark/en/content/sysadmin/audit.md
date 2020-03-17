@@ -47,7 +47,8 @@ Metadata
 Aggregate
 ```
 
-- For the Tracker Audit Scope, the audited objects are: Tracked Entity Instance, Enrollment, Event, Tracked Entity Attribute Value.
+- For the Tracker Audit Scope, the audited objects are:
+Tracked Entity Instance, Tracked Entity Attribute Value, Enrollment, Event
 
 - For the Metadata Scope, all "metadata" objects are audited.
 
@@ -71,6 +72,8 @@ DELETE
 ```
 
 As an example, when a new Tracked Entity Instance gets created, and if configured like so, the CREATE action is used to insert a new Audit entry in the audit db table.
+
+``` Note: the READ Audit Type will generate a lot of data in database and may have an impact on the performance. ```
 
 ## Setup
 
