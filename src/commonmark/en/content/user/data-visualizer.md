@@ -163,6 +163,203 @@ The display of a visualization can be changed by enabling/disabling and configur
 
 4.  Click **Update** to apply the changes to the visualization.
 
+### List of available options
+
+<table>
+<caption>Available options</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Option</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><p>Aggregation type</p></td>
+<td><p>Defines how the data elements or indicators will be aggregated within the visualization. Some of the aggregation types are <em>By data element</em>, <em>Count</em>, <em>Min</em> and <em>Max</em>.</p></td>
+</tr>
+<tr>
+<td><p>Base line</p></td>
+<td><p>Displays a horizontal line at the given domain value. Useful for example when you want to visualize how your performance has evolved since the beginning of a process.</p></td>
+</tr>
+<tr>
+<td><p>Column sub-totals</p></td>
+<td><p>Displays sub-totals in the table for each dimension.<br />
+If you only select one dimension, sub-totals will be hidden for those columns. This is because the values will be equal to the sub-totals.</p></td>
+</tr>
+<tr>
+<td><p>Column totals</p></td>
+<td><p>Displays total values in the table for each column, as well as a total for all values in the table.</p></td>
+</tr>
+<tr>
+<td><p>Only include completed events</p></td>
+<td><p>Includes only completed events in the aggregation process. This is useful for example to exclude partial events in indicator calculations.</p></td>
+</tr>
+<tr>
+<td><p>Cumulative</p></td>
+<td><p>Includes a column with cumulative values to the pivot table.</p></td>
+</tr>
+<tr>
+<td><p>Cumulative values</p></td>
+<td><p>Displays cumulative values in column, stacked column, bar, stacked bar, line and area charts</p></td>
+</tr>
+<tr>
+<td><p>Digit group separator</p></td>
+<td><p>Controls which character to separate groups of digits or "thousands". You can set it to <em>Comma</em>, <em>Space</em> or <em>None</em>.</p></td>
+</tr>
+<tr>
+<td><p>Display density</p></td>
+<td><p>Controls the size of the cells in the table. You can set it to <em>Comfortable</em>, <em>Normal</em> or <em>Compact</em>.
+<em>Compact</em> is useful when you want to fit large tables into the browser screen.</p></td>
+</tr>
+<tr>
+<td><p>Font size</p></td>
+<td><p>Controls the size of the table text font. You can set it to <em>Large</em>, <em>Normal</em> or <em>Small</em>.</p></td>
+</tr>
+<tr>
+<td><p>Hide empty columns</p></td>
+<td><p>Hides empty columns from the table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
+</tr>
+<tr>
+<td><p>Hide empty categories</p></td>
+<td><p>Hides the category items with no data from the chart.
+<em>Before first</em>: hides missing values only before the first value
+<em>After last</em>: hides missing values only after the last value
+<em>Before first and after last</em>: hides missing values only before the first value and after the last value
+<em>All</em>: hides all missing values
+This is useful for example when you create column and bar charts.</p></td>
+</tr>
+<tr>
+<td><p>Hide empty rows</p></td>
+<td><p>Hides empty rows from the table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
+</tr>
+<tr>
+<td><p>Legend key</p></td>
+<td><p>Toggles the legend on and off leaving more room for the chart itself.</p></td>
+</tr>
+<tr>
+<td><p>Display legend</p></td>
+<td><p>Applies a legend to the values. This means that you can apply a colour to the values.
+Select <em>By data item</em> to color the table cells individually according to each data element or indicator.
+You configure legends in the Maintenance app.
+The **Legend style** section allows to control where the color is applied, the text or background based on the selected legend.
+You can use this option for scorecards to identify high and low values at a glance.</p></td>
+</tr>
+<tr>
+<td><p>Limit minimum/maximum values</p></td>
+<td><p>Allows for the data to be filtered on the server side.
+You can instruct the system to return only records where the aggregated data value is equal, greater than, greater or equal, less than or less or equal to certain values.
+If both parts of the filter are used, it's possible to filter out a range of data records.</p></td>
+</tr>
+<tr>
+<td><p>No space between bars/columns</p></td>
+<td><p>Removes the space between the columns or bars in the chart. Useful for displaying the chart as an EPI curve.</p></td>
+</tr>
+<tr>
+<td><p>Number type</p></td>
+<td><p>Sets the type of value you want to display in the pivot table: <code>Value</code>, <code>Percentage of row</code> or <code>Percentage of column</code>.<br />
+The options <code>Percentage of row</code> and <code>Percentage of column</code> mean that you'll display values as percentages of row total or percentage of column total instead of the aggregated value. This is useful when you want to see the contribution of data elements, categories or organisation units to the total value.</p></td>
+</tr>
+<tr>
+<td><p>Organisation unit</p></td>
+<td><p>Controls whether to ask user to enter an organisation unit when creating a standard report in Reports app.</p></td>
+</tr>
+<tr>
+<td><p>Parent organisation unit</p></td>
+<td><p>Controls whether to ask user to enter a parent organisation unit when creating a standard report in Reports app.</p></td>
+</tr>
+<tr>
+<td><p>Reporting period</p></td>
+<td><p>Controls whether to ask user to enter a report period when creating a standard report in Reports app.</p></td>
+</tr>
+<tr>
+<td><p>Stacked values add up to 100%</p></td>
+<td><p>Displays 100 % stacked values in stacked column, stacked bar charts.</p></td>
+</tr>
+<tr>
+<td><p>Decimals</p></td>
+<td><p>Defines the number of decimals which will be used for range axis values.</p></td>
+</tr>
+<tr>
+<td><p>Axis title</p></td>
+<td><p>Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the chart, for example about the unit of measure.</p></td>
+</tr>
+<tr>
+<td><p>Axis range</p></td>
+<td><p>Defines the maximum and minimum value which will be visible on the range axis.</p></td>
+</tr>
+<tr>
+<td><p>Steps</p></td>
+<td><p>Defines the number of ticks which will be visible on the range axis.</p></td>
+</tr>
+<tr>
+<td><p>Include regression</p></td>
+<td><p>Includes a column with regression values to the pivot table.</p></td>
+</tr>
+<tr>
+<td><p>Trend line</p></td>
+<td><p>Displays the trend line which visualizes how your data evolves over time. For example if performance is improving or deteriorating. Useful when periods are selected as category.</p></td>
+</tr>
+<tr>
+<td><p>Row sub-totals</p></td>
+<td><p>Displays sub-totals in the table for each dimension.<br />
+If you only select one dimension, sub-totals will be hidden for those rows. This is because the values will be equal to the sub-totals.</p></td>
+</tr>
+<tr>
+<td><p>Row totals</p></td>
+<td><p>Displays total values in the table for each row, as well as a total for all values in the table.</p></td>
+</tr>
+<tr>
+<td><p>Value labels</p></td>
+<td><p>Shows the values above the series in the chart.</p></td>
+</tr>
+<tr>
+<td><p>Dimension labels</p></td>
+<td><p>Shows the dimension names as part of the pivot table.</p></td>
+</tr>
+<tr>
+<td><p>Display organisation unit hierarchy</p></td>
+<td><p>Shows the name of all ancestors for organisation units, for example "Sierra Leone / Bombali / Tamabaka / Sanya CHP" for Sanya CHP.
+The organisation units are then sorted alphabetically which will order the organisation units according to the hierarchy.
+When you download a pivot table with organisation units as rows and you've selected Display organisation unit hierarchy, each organisation unit level is rendered as a separate column. This is useful for example when you create Excel pivot tables on a local computer.</p></td>
+</tr>
+<tr>
+<td><p>Skip rounding</p></td>
+<td><p>Skips the rounding of data values, offering the full precision of data values. Can be useful for finance data where the full dollar amount is required.</p></td>
+</tr>
+<tr>
+<td><p>Custom sort order</p></td>
+<td><p>Controls the sort order of the values.</p></td>
+</tr>
+<tr>
+<td><p>Chart/Table subtitle</p></td>
+<td><p>Controls the subtitle that appears above the visualization.
+<em>Auto generated</em> uses the default subtitle generated from the visualization's dimensions/filters.
+<em>None</em> removes the subtitle from the chart.
+The <em>Custom</em> option allows to type a custom subtitle.</p></td>
+</tr>
+<tr>
+<td><p>Chart/Table title</p></td>
+<td><p>Controls the title that appears above the visualization.
+<em>Auto generated</em> uses the default title generated from the visualization's dimensions/filters.
+<em>None</em> removes the title from the chart.
+The <em>Custom</em> option allows to type a custom title.</p></td>
+</tr>
+<tr>
+<td><p>Target line</p></td>
+<td><p>Displays a horizontal line at the given domain value. Useful for example when you want to compare your performance to the current target.</p></td>
+</tr>
+<tr>
+<td><p>Top limit</p></td>
+<td><p>Controls the maximum number of rows to include in the pivot table.</p></td>
+</tr>
+</tbody>
+</table>
+
 ## Adding more axes
 
 When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` and `Line` charts you can do so by clicking **Manage chart axes** in the `Data` dimension's context menu. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
