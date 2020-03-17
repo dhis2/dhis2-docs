@@ -166,7 +166,6 @@ The display of a visualization can be changed by enabling/disabling and configur
 ### List of available options
 
 <table>
-<caption>Available options</caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 80%" />
@@ -188,12 +187,12 @@ The display of a visualization can be changed by enabling/disabling and configur
 </tr>
 <tr>
 <td><p>Column sub-totals</p></td>
-<td><p>Displays sub-totals in the table for each dimension.<br />
+<td><p>Displays sub-totals in a Pivot table for each dimension.<br />
 If you only select one dimension, sub-totals will be hidden for those columns. This is because the values will be equal to the sub-totals.</p></td>
 </tr>
 <tr>
 <td><p>Column totals</p></td>
-<td><p>Displays total values in the table for each column, as well as a total for all values in the table.</p></td>
+<td><p>Displays total values in a Pivot table for each column, as well as a total for all values in the table.</p></td>
 </tr>
 <tr>
 <td><p>Only include completed events</p></td>
@@ -201,11 +200,11 @@ If you only select one dimension, sub-totals will be hidden for those columns. T
 </tr>
 <tr>
 <td><p>Cumulative</p></td>
-<td><p>Includes a column with cumulative values to the pivot table.</p></td>
+<td><p>Includes a column with cumulative values to a Pivot table.</p></td>
 </tr>
 <tr>
 <td><p>Cumulative values</p></td>
-<td><p>Displays cumulative values in column, stacked column, bar, stacked bar, line and area charts</p></td>
+<td><p>Displays cumulative values in Column, Stacked column, Bar, Stacked bar, Line and Area visualizations</p></td>
 </tr>
 <tr>
 <td><p>Digit group separator</p></td>
@@ -213,40 +212,40 @@ If you only select one dimension, sub-totals will be hidden for those columns. T
 </tr>
 <tr>
 <td><p>Display density</p></td>
-<td><p>Controls the size of the cells in the table. You can set it to <em>Comfortable</em>, <em>Normal</em> or <em>Compact</em>.
+<td><p>Controls the size of the cells in a Pivot table. You can set it to <em>Comfortable</em>, <em>Normal</em> or <em>Compact</em>.
 <em>Compact</em> is useful when you want to fit large tables into the browser screen.</p></td>
 </tr>
 <tr>
 <td><p>Font size</p></td>
-<td><p>Controls the size of the table text font. You can set it to <em>Large</em>, <em>Normal</em> or <em>Small</em>.</p></td>
+<td><p>Controls the size of a Pivot table text font. You can set it to <em>Large</em>, <em>Normal</em> or <em>Small</em>.</p></td>
 </tr>
 <tr>
 <td><p>Hide empty columns</p></td>
-<td><p>Hides empty columns from the table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
+<td><p>Hides empty columns from a Pivot table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
 </tr>
 <tr>
 <td><p>Hide empty categories</p></td>
-<td><p>Hides the category items with no data from the chart.
+<td><p>Hides the category items with no data from the visualization.
 <em>Before first</em>: hides missing values only before the first value
 <em>After last</em>: hides missing values only after the last value
 <em>Before first and after last</em>: hides missing values only before the first value and after the last value
 <em>All</em>: hides all missing values
-This is useful for example when you create column and bar charts.</p></td>
+This is useful for example when you create Column and Bar visualizations.</p></td>
 </tr>
 <tr>
 <td><p>Hide empty rows</p></td>
-<td><p>Hides empty rows from the table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
+<td><p>Hides empty rows from a Pivot table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
 </tr>
 <tr>
 <td><p>Legend key</p></td>
-<td><p>Toggles the legend on and off leaving more room for the chart itself.</p></td>
+<td><p>Toggles the legend on and off leaving more room for the visualization itself.</p></td>
 </tr>
 <tr>
 <td><p>Display legend</p></td>
 <td><p>Applies a legend to the values. This means that you can apply a colour to the values.
-Select <em>By data item</em> to color the table cells individually according to each data element or indicator.
-You configure legends in the Maintenance app.
-The **Legend style** section allows to control where the color is applied, the text or background based on the selected legend.
+Select <em>By data item</em> to color a data point individually according to each data element or indicator.
+You configure legends in the <em>Maintenance app</em>.
+The <em>Legend style</em> section allows to control where the color is applied, the text or background based on the selected legend.
 You can use this option for scorecards to identify high and low values at a glance.</p></td>
 </tr>
 <tr>
@@ -257,11 +256,11 @@ If both parts of the filter are used, it's possible to filter out a range of dat
 </tr>
 <tr>
 <td><p>No space between bars/columns</p></td>
-<td><p>Removes the space between the columns or bars in the chart. Useful for displaying the chart as an EPI curve.</p></td>
+<td><p>Removes the space between the columns or bars in the visualization. Useful for displaying the visualization as an EPI curve.</p></td>
 </tr>
 <tr>
 <td><p>Number type</p></td>
-<td><p>Sets the type of value you want to display in the pivot table: <code>Value</code>, <code>Percentage of row</code> or <code>Percentage of column</code>.<br />
+<td><p>Sets the type of value you want to display in a Pivot table: <code>Value</code>, <code>Percentage of row</code> or <code>Percentage of column</code>.<br />
 The options <code>Percentage of row</code> and <code>Percentage of column</code> mean that you'll display values as percentages of row total or percentage of column total instead of the aggregated value. This is useful when you want to see the contribution of data elements, categories or organisation units to the total value.</p></td>
 </tr>
 <tr>
@@ -278,7 +277,7 @@ The options <code>Percentage of row</code> and <code>Percentage of column</code>
 </tr>
 <tr>
 <td><p>Stacked values add up to 100%</p></td>
-<td><p>Displays 100 % stacked values in stacked column, stacked bar charts.</p></td>
+<td><p>Displays 100 % stacked values in Stacked column and Stacked bar visualizations.</p></td>
 </tr>
 <tr>
 <td><p>Decimals</p></td>
@@ -286,7 +285,7 @@ The options <code>Percentage of row</code> and <code>Percentage of column</code>
 </tr>
 <tr>
 <td><p>Axis title</p></td>
-<td><p>Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the chart, for example about the unit of measure.</p></td>
+<td><p>Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.</p></td>
 </tr>
 <tr>
 <td><p>Axis range</p></td>
@@ -298,7 +297,7 @@ The options <code>Percentage of row</code> and <code>Percentage of column</code>
 </tr>
 <tr>
 <td><p>Include regression</p></td>
-<td><p>Includes a column with regression values to the pivot table.</p></td>
+<td><p>Includes a column with regression values to a Pivot table.</p></td>
 </tr>
 <tr>
 <td><p>Trend line</p></td>
@@ -306,26 +305,26 @@ The options <code>Percentage of row</code> and <code>Percentage of column</code>
 </tr>
 <tr>
 <td><p>Row sub-totals</p></td>
-<td><p>Displays sub-totals in the table for each dimension.<br />
+<td><p>Displays sub-totals in a Pivot table for each dimension.<br />
 If you only select one dimension, sub-totals will be hidden for those rows. This is because the values will be equal to the sub-totals.</p></td>
 </tr>
 <tr>
 <td><p>Row totals</p></td>
-<td><p>Displays total values in the table for each row, as well as a total for all values in the table.</p></td>
+<td><p>Displays total values in a Pivot table for each row, as well as a total for all values in the table.</p></td>
 </tr>
 <tr>
 <td><p>Value labels</p></td>
-<td><p>Shows the values above the series in the chart.</p></td>
+<td><p>Shows the values above the series in the visualization.</p></td>
 </tr>
 <tr>
 <td><p>Dimension labels</p></td>
-<td><p>Shows the dimension names as part of the pivot table.</p></td>
+<td><p>Shows the dimension names as part of a Pivot table.</p></td>
 </tr>
 <tr>
 <td><p>Display organisation unit hierarchy</p></td>
-<td><p>Shows the name of all ancestors for organisation units, for example "Sierra Leone / Bombali / Tamabaka / Sanya CHP" for Sanya CHP.
+<td><p>Shows the name of all ancestors for organisation units, for example <em>"Sierra Leone / Bombali / Tamabaka / Sanya CHP"</em> for <em>"Sanya CHP"</em>.
 The organisation units are then sorted alphabetically which will order the organisation units according to the hierarchy.
-When you download a pivot table with organisation units as rows and you've selected Display organisation unit hierarchy, each organisation unit level is rendered as a separate column. This is useful for example when you create Excel pivot tables on a local computer.</p></td>
+When you download a pivot table with organisation units as rows and you've selected <em>Display organisation unit hierarchy</em>, each organisation unit level is rendered as a separate column. This is useful for example when you create Excel pivot tables on a local computer.</p></td>
 </tr>
 <tr>
 <td><p>Skip rounding</p></td>
@@ -339,14 +338,14 @@ When you download a pivot table with organisation units as rows and you've selec
 <td><p>Chart/Table subtitle</p></td>
 <td><p>Controls the subtitle that appears above the visualization.
 <em>Auto generated</em> uses the default subtitle generated from the visualization's dimensions/filters.
-<em>None</em> removes the subtitle from the chart.
+<em>None</em> removes the subtitle.
 The <em>Custom</em> option allows to type a custom subtitle.</p></td>
 </tr>
 <tr>
 <td><p>Chart/Table title</p></td>
 <td><p>Controls the title that appears above the visualization.
 <em>Auto generated</em> uses the default title generated from the visualization's dimensions/filters.
-<em>None</em> removes the title from the chart.
+<em>None</em> removes the title.
 The <em>Custom</em> option allows to type a custom title.</p></td>
 </tr>
 <tr>
@@ -355,14 +354,14 @@ The <em>Custom</em> option allows to type a custom title.</p></td>
 </tr>
 <tr>
 <td><p>Top limit</p></td>
-<td><p>Controls the maximum number of rows to include in the pivot table.</p></td>
+<td><p>Controls the maximum number of rows to include in a Pivot table.</p></td>
 </tr>
 </tbody>
 </table>
 
 ## Adding more axes
 
-When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` and `Line` charts you can do so by clicking **Manage chart axes** in the `Data` dimension's context menu. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
+When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` and `Line` you can do so by clicking **Manage chart axes** in the `Data` dimension's context menu. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
 
 ![](resources/images/data-visualizer/data-visualizer-axis-management-menu-option.png)
 
@@ -455,7 +454,7 @@ Downloads a Excel (.xls), CSV (.csv) or HTML (.html) file to your computer.
 
 ### `Plain data source` download
 
-You can download the data source behind a chart in JSON, XML, Excel,
+You can download the data source behind a visualization in JSON, XML, Excel,
 CSV, JXRML or Raw data SQL formats with different identification schemes
 (ID, Code, and Name). The data document uses identifiers of the
 dimension items and opens in a new browser window to display the URL of
