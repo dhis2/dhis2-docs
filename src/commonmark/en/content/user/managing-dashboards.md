@@ -230,11 +230,7 @@ scrolling the dashboard content.
 ### Switching between visualizations
 
 Dashboard items showing charts, pivot tables and maps can be toggled
-between these visualizations. Click on the item menu button in the upper right corner of the item:
-
-![](resources/images/dashboard/dashboard-item-menu-button.png)
-
-Then choose the desired view:
+between these visualizations. Click on the item menu button in the upper right corner of the item and choose the desired view:
 
 ![](resources/images/dashboard/dashboard-item-menu.png)
 
