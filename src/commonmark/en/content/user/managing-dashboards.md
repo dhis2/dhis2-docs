@@ -278,10 +278,10 @@ All dashboards have two sharing groups set by default.
 - External access (without login)
 
   This option, when selected, provides access to the dashboard as an
-  external resource. This is useful for when you are creating an
+  external resource through the API. This is useful for when you are creating an
   external web portal but would like to call information from a
   dashboard you have made internally within DHIS2. By default, this
-  option is not selected.
+  option is not selected. For more information, see [Viewing analytical resource representations](https://docs.dhis2.org/master/en/developer/html/webapi_viewing_analytical_resource_representations.html#) in the developer guide.
 
 - Public access (with login)
 

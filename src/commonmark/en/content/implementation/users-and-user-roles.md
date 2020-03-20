@@ -212,7 +212,7 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
     Data set management section of the Maintenance app
 
 > **Tip**
-> 
+>
 > For users to be able to enter data, you must add them to an
 > organisational unit level and share a dataset with them.
 
@@ -259,7 +259,7 @@ Examples of common positions are:
 <td><p>National health managers</p>
 <p>Province health managers</p></td>
 <td><p>Monitor and analyse data</p></td>
-<td><p>Access to the reports module, the <strong>GIS</strong>, <strong>Data Quality</strong> apps and the dashboard.</p></td>
+<td><p>Access to the reports module, the <strong>Maps</strong>, <strong>Data Quality</strong> apps and the dashboard.</p></td>
 <td><p>Don't need access to enter data, modify data elements or data sets.</p></td>
 </tr>
 <tr class="odd">
@@ -280,4 +280,3 @@ Examples of common positions are:
 </tr>
 </tbody>
 </table>
-

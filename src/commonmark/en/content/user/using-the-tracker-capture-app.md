@@ -246,6 +246,27 @@ Lists can also be downloaded or printed.
 
 ![](resources/images/tracker_capture/tracker_capture_lists_download.png)
 
+#### Custom predefined lists
+
+If the program has any custom tracked entity filters associated with it,
+these will take the place of the four predefined lists mentioned above.
+The predefined lists will when well configured be an effective way to find
+or work with the data relevant for the user in that program.
+
+Working lists can be defined with a wide variety of options, here are some
+examples:
+
+- Display all TEIs with at least one event in a given program stage that
+- has a due date on the current date.
+- Display all TEIs that has at least one event that is assigned to the
+- logged in user.
+- Display all TEIs that is active, but is not assigned to any user.
+
+![Predefined working lists in tracker capture](resources/images/tracker_capture/predefined_working_list_based_on_user_assignment.png)
+
+See the API documentation for a full list of functionality supported for
+these predefined tracked entity instance filters.
+
 ### Search
 
 <!--DHIS2-SECTION-ID:advanced_tracked_entity_instance_search-->
@@ -314,8 +335,36 @@ For non-unique attributes search:
   - If a too large number of matches was found, you will be prompted to
     refine your search criteria
 
+![](resources/images/tracker_capture/tracker_capture_search_results.png)
+
+The search results have functionality for flagging tracked entity instances
+as possible duplicates, see next chapter.
+
 When choosing to open the registration form, the search values will
 automatically be filled into the registration form.
+
+### Flagging tracked entity instance as potential duplicate
+
+When searching for tracked entity instances in the tracker capture app, the user
+will sometimes suspect that one or more of the search hits are duplicates of
+other tracked entity instances. The user has the option of clicking on the
+**flag possible duplicate** link in the rightmost column of the search result grid.
+
+Tracked entity instances flagged in this way will be marked as "possible duplicate"
+in the DHIS2 database. The flag indicates that the tracked entity instance is/has a
+duplicate. The presence of such a flag is visible to the user in two places. One is
+the result list itself (in this example Mark Robinson is already flagged as a potential
+duplicate):
+
+![Tracker capture search results](resources/images/tracker_capture/tracker_capture_search_results.png)
+
+The other place is within the tracked entity instance dashboard:
+
+![Tracked entity instance flagged as duplicate](resources/images/tracker_capture/tracked_entity_instance_flagged_as_duplicate.png)
+
+In addition to informing users about the tracked entity instance potentially
+being a duplicate, the  flag will be used by the underlying system for finding and
+merging duplicates in coming versions of DHIS2.
 
 ### Breaking the glass
 
@@ -432,8 +481,9 @@ Sometimes it might be nessascary to refer a patient to a different
     ****Report date****.
 
 5.  Click either **One-time referral** which will only refer TEI for one
-    single event or **Move permanently** which will move TEI and all its
-    future events permantly to the selected **Organisation Unit**.
+    single event or **Move permanently** which will move TEI ownership
+    to the selected **Organisation Unit**. Further access to the TEI
+    will be based on the ownership organisation unit.
 
 ### Mandatory data elements in events
 Some data elements in an event might be mandatory (marked with a red star next to the data element lable).
@@ -487,6 +537,27 @@ If user assignment is enabled, you will be able to assign a user to an event.
 ## Manage a TEI's enrollments
 
 <!--DHIS2-SECTION-ID:manage_tracked_entity_instance_enrollment-->
+The Enrollment widget gives access to information and functionality
+for the enrollment in the selected program.
+
+![Enrollments widget](resources/images/tracker_capture/enrollment_widget.png)
+
+### TEI ownership
+
+The current ownership of all enrollments in the selected program is displayed
+in the "Owned by" part of the enrollment widget. The ownership will always start
+out as the organisation unit that first enrolled the TEI into the given program.
+
+Ownership can be different for a TEIS different programs, for example one clinic can
+follow up a patient in HIV, while another clinic follows up the same patient in MCH.
+
+To update the ownership for a TEI/program combination, the user has to utilize the
+referral functionality and select the "Move permanently" option while referring.
+
+A user that has capture access to the organisation unit that is the current owner of the
+TEI/Program will have write access to all enrollments for that TEI/Program combination.
+A user that has search access to the organisation unit that is the current owner will have
+access to search and find the TEI/Program combindation.
 
 ### Deactivate a TEI's enrollment
 
@@ -786,7 +857,7 @@ easy way. To start using the top bar:
 
 ![](resources/images/tracker_capture/top_bar.png)
 
-### Chage table display mode for **Timeline Data Entry** widget
+### Change table display mode for **Timeline Data Entry** widget
 
 The **Timeline Data Entry** widget has 5 diffrent table display modes that can be selected. The different options are:
 - **Default form** - Shows all data elements verticaly.

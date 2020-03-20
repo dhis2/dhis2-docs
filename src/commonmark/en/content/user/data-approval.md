@@ -133,15 +133,7 @@ want to approve at the same time as each other, assign them to the same
 workflow. For data sets that you want to approve independently, assign
 each data set to its own workflow.
 
-On the *System Approval Settings* page, you may select the option *Hide
-unapproved data in analytics* to hide unapproved data in reports, pivot
-table, data visualizer and GIS. If this option is checked, unapproved
-data will be hidden from users assigned to higher-level organisation
-units compared to where approval is required. Users who are assigned to
-organisation units where data is ready for approval can still view the
-data, as can users assigned to higher-level organisation units if they
-have the *Approve data at lower levels* authority. If this option is not
-checked, then all data is shown whether approved or not.
+Under *System Settings* -> *Analytics*, you can control what unapproved data (if any) will appear in analytics. See the "Analytics settings" section of this user guide. Note that users who are assigned to organisation units where data is ready for approval can alwyas view this data in analytics, as can users assigned to higher-level organisation units if they have the *Approve data at lower levels* authority or the *View unapproved data* authority.
 
 ## Data visibility
 

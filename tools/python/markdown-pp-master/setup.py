@@ -35,6 +35,7 @@ setup(
         'console_scripts': [
             'markdown-pp = MarkdownPP.main:main',
             'chunker = MarkdownPP.chunker:main',
+            'chapterise = MarkdownPP.chapterise:main',
             'id_mapper = MarkdownPP.id_mapper:main'
         ]
     },

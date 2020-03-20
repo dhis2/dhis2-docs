@@ -11,7 +11,7 @@
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>What do you want to do?</p></th>
+<th colspan=2><p>What do you want to do?</p></th>
 <th><p>Link to documentation</p></th>
 <th><p>Related app(s)</p></th>
 </tr>
@@ -46,12 +46,6 @@
 <td><p>Visualize data in a chart</p></td>
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/data_vis.html">Using the Data Visualizer app</a></p></td>
 <td><p><strong>Data Visualizer</strong></p></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Visualize data in a map</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/using_gis.html">Using the GIS app</a></p></td>
-<td><p><strong>GIS</strong></p></td>
 </tr>
 <tr class="odd">
 <td></td>
@@ -97,7 +91,7 @@
 </tr>
 <tr class="even">
 <td></td>
-<td><p>Visualize statistics about how users work with the <strong>Dashboard</strong>, <strong>Pivot Table</strong>, <strong>GIS</strong>, <strong>Event Visualizer</strong>, <strong>Data Visualizer</strong> and <strong>Event Reports</strong> apps</p></td>
+<td><p>Visualize statistics about how users work with the <strong>Dashboard</strong>, <strong>Pivot Table</strong>, <strong>Maps</strong>, <strong>Event Visualizer</strong>, <strong>Data Visualizer</strong> and <strong>Event Reports</strong> apps</p></td>
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/using_usage_analytics.html">Visualize usage statistics</a></p></td>
 <td><p><strong>Usage Analytics</strong></p></td>
 </tr>
@@ -158,8 +152,8 @@
 </tr>
 <tr class="even">
 <td></td>
-<td><p>Import coordinates and configure the <strong>GIS</strong> app</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/gis_creating.html">Configure the GIS app</a></p>
+<td><p>Import coordinates and configure the <strong>Maps</strong> app</p></td>
+<td><p><a href="https://docs.dhis2.org/master/en/user/html/gis_creating.html">Configure the Maps app</a></p>
 <p><a href="https://docs.dhis2.org/master/en/user/html/manage_legend.html">Manage legends</a></p>
 <p><a href="https://docs.dhis2.org/master/en/user/html/manage_external_maplayer.html">Manage external map layers</a></p></td>
 <td><p><strong>Maintenance</strong></p></td>
@@ -174,7 +168,6 @@
 <td><p>Learn about event and tracker programs</p></td>
 <td><p>Create a program</p></td>
 <td><a href="https://docs.dhis2.org/master/en/user/html/configure_programs_in_maintenance_app.html">Configure programs in the Maintenance app</a>
-<p><a href="https://docs.dhis2.org/master/en/user/html/configure_programs_in_legacy_app.html">Configure programs in the Programs/Attributes app (legacy app)</a></p></td>
 <td><p><strong>Maintenance</strong></p>
 <p><strong>Program</strong></p></td>
 </tr>

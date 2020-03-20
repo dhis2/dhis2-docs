@@ -233,6 +233,14 @@ Report will highlight all the **Program rule actions** which have ProgramRuleAct
 
 Report will highlight all the **Program rule actions** which have ProgramRuleActionType set to **HIDEPROGRAMSTAGE** but configuration does not provide any program stage id.
 
+### Invalid program indicator expression
+
+Reports all the violations in program indicator expression caused by invalid **DataElement** or invalid **TrackedEntityAttribute**.
+
+### Invalid program indicator filter expression
+
+Reports all the violations in program indicator filter expression caused by invalid **DataElement** or invalid **TrackedEntityAttribute**.
+
 ## Maintenance
 
 <!--DHIS2-SECTION-ID:data_admin_maintenance-->
@@ -380,24 +388,37 @@ system.
     This table provides a mapping between data elements and all possible
     category option combinations.
 
-## Duplicate data elimination
+## Analytics tables management
 
-<!--DHIS2-SECTION-ID:dataAdmin_duplicateDataElimination-->
+<!--DHIS2-SECTION-ID:analytics_tables_management-->
 
-This function is useful when data has been entered mistakenly for two
-data elements which represents the same phenomena.
+DHIS2 generates database tables which the system then uses as basis for
+various analytics functions. These tables are also valuable if you write
+advanced SQL reports. In the **Data Administration** app, you can execute the tables 
+generation immediately. If you want to schedule them to be executed at regular intervals, 
+this can be done in the **Scheduler** app. This means that you can refresh recent analytics on 
+demand and see updated pivot tables without waiting for all of the past years data to
+re-process.
 
-Start by selecting the data element to eliminate from the list and click
-confirm. Then select the data element to keep and click confirm again.
-Finally, verify the selection and click merge.
+> **Note**
+> 
+> You can also generate the tables through the web API. This task is
+> typically performed by a system administrator.
+1.  Open the **Data Administration** app and click **Analytics Tables**.
 
-In the situation where data exists for the data element to eliminate and
-not for the one to keep, the data will be moved to the one to keep. When
-data exists for both data elements, the data which was updated last will
-be used. When data exists only for the one to keep, no action will be
-taken. The data element to eliminate will eventually be deleted, except
-when it is a multidimensional data element and has other data
-registered.
+2.  Select the parts of the analytics process you want to skip:
+
+      - **Skip generation of resource tables**
+
+      - **Skip generation of aggregate data and completeness data**
+
+      - **Skip generation of event data**
+
+      - **Skip generation of enrollment data**
+
+3.  Select **Number of last years of data to include**.
+
+4.  Click **Start export**.
 
 ## Data statistics
 
@@ -479,6 +500,22 @@ When you create or modify a job, it will be rescheduled according to
 selected preferences. To run a job on demand, press the green triangle
 labelled "Run now". This action is only available for enabled jobs.
 
+### Scheduling types
+
+There are two different scheduling types a job can have.
+These can not be set manually but depend on the selected job.
+
+#### Scheduling type: Cron
+
+Cron jobs are executed periodically depending on a given cron expression.
+Technically two executions of a cron job won't overlap if the previous
+execution is still running when the next execution should start.
+
+#### Scheduling type: Delayed
+
+Delayed jobs are executed after a specified time after the previous execution
+finished running.
+
 ### Creating a job
 
 <!--DHIS2-SECTION-ID:dataAdmin_scheduling_config-->
@@ -486,32 +523,34 @@ labelled "Run now". This action is only available for enabled jobs.
 1.  Open the **Scheduler** app and click the add button in the bottom
     right corner.
 
-2.  Choose a suitable **Name** for the new job.
+1.  Choose a suitable **Name** for the new job.
 
-3.  Select a running frequency for the job, i.e. when and how often the
-    job should run.
-
-    1.  You can either select a pre-defined frequency from the
-        drop-down menu, or ...
-
-    2.  You can give the job a custom **Cron expression** if you want a
-        specific schedule, using the [Spring
-        scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
-        syntax.
-
-    3.  Enabling the **Continuous execution** option will make the job
-        run constantly. In other words, as soon as the job finishes, it
-        will be scheduled to run again right away. Selecting this option
-        will disable the other fields.
-
-4.  Select the **Job type** you want to schedule using the
+1.  Select the **Job type** you want to schedule using the
     drop-down menu.
 
-5.  If the job type is customizable, a **Parameters** section will
+1.  Select a running frequency for the job, i.e. when and how often the
+    job should run.
+
+    1.  If the selected job is scheduled by a delay:
+
+        1.  You can specify the delay between executions in seconds.
+            This value is mandatory.
+
+    1.  If the selected job is scheduled by periodic frequency:
+
+        1.  You can either select a pre-defined frequency from the
+            drop-down menu, or ...
+
+        1.  You can give the job a custom **Cron expression** if you want a
+            specific schedule, using the [Spring
+            scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
+            syntax.
+
+1.  If the job type is customizable, a **Parameters** section will
     appear below. These additional options specify the details of the
     scheduled job, and will vary greatly depending on the job type.
 
-6.  Press the **Add job** button to confirm the job creation. The newly
+1.  Press the **Add job** button to confirm the job creation. The newly
     created job should now be listed in the job overview, given that the
     **Show system jobs** setting is not enabled.
 
@@ -562,7 +601,7 @@ DHIS2 provides synchronisation of data between remotely distributed
 instances and a central instance of DHIS2. This can be useful e.g. when
 you have deployed multiple stand-alone instances of DHIS2 which are
 required to submit data values to a central DHIS2 instance. Both tracker
-data and aggregate data synchronisation is supported..
+data and aggregate data synchronisation is supported.
 
 These are the steps to enable data synchronization:
 
@@ -573,8 +612,12 @@ These are the steps to enable data synchronization:
     the refresh, since this value is encrypted, so you can consider it
     saved.
 
-  - Using the Scheduler app, create a new job using the "Program Data
-    Synchronization". Make sure it is enabled when you finish.
+  - Using the Scheduler app, create a new job using the "Event Programs 
+    Data Sync" and/or "Tracker Programs Data Sync" job type. Make sure it 
+    is enabled when you finish. (Note: If the "Program Data Synchronization" 
+    job, available in previous versions, was set up in Scheduler app before, 
+    it was automatically replaced by the two new jobs "Event Programs Data Sync" 
+    and "Tracker Programs Data Sync" with the identical settings. )
 
 Some aspects of the data synchronization feature to be aware of:
 
@@ -610,7 +653,7 @@ Some aspects of the data synchronization feature to be aware of:
     job to run when there are few online users, then later change this
     to your own preference. If you do not want or need to synchronise all 
     the data, there is a possibility to <a href="#skip_changed_before">skip 
-    some of the data being synchronised</a>.  
+    some of the data being synchronised</a>.
 
     When DHIS2 synchronises tracker data, it determines the set of data
     to synchronise based on the last time it was synchronised. Each of
@@ -660,6 +703,14 @@ Some aspects of the data synchronization feature to be aware of:
     changed before the specified date*. The SettingKey is used in the 
     synchronisation job all the time. Therefore, if you need to synchronise 
     the old data, you should change the SettingKey.
+    
+  - Both, Tracker Programs and Event Programs synchronisation job supports 
+    paging in order to avoid timeouts and to deal with unstable network.
+    Default page size for "Event Programs Data Sync" job is set to 60. 
+    Default page size for "Tracker Programs Data Sync" job is set to 20.
+    
+    If default values do not fit your purpose, own page size can be specified 
+    via parameter in particular sync job in Scheduler app.
 
 ## Metadata Synchronization Scheduling
 

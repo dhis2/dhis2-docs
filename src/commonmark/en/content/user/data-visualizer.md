@@ -1,19 +1,19 @@
-# Data Visualizer
+# Using the Data Visualizer app
 
 <!--DHIS2-SECTION-ID:data_visualizer-->
 
-## Creating and editing charts
+## Creating and editing visualizations
 
-When you open the data-visualizer app from the dhis2 menu, you are presented with a blank slate and you can start creating your chart right away.
+When you open the data-visualizer app from the dhis2 menu, you are presented with a blank slate and you can start creating your visualization right away.
 
 ![](resources/images/data-visualizer/data-visualizer-new.png)
 
-Select the desired chart type from the selector in the upper left corner:
+Select the desired visualization type from the selector in the upper left corner:
 
-![](resources/images/data-visualizer/data-visualizer-chart-type.png)
+![](resources/images/data-visualizer/data-visualizer-visualization-type.png)
 
 From the dimension menu on the left you can select the dimension you want
-to show in your chart, including data, period, organisation units and
+to show in your visualization, including data, period, organisation units and
 dynamic dimensions.
 
 ![](resources/images/data-visualizer/data-visualizer-dimensions.png)
@@ -33,23 +33,23 @@ In the axis management dialog you can assign data items to the two axes.
 
 ![](resources/images/data-visualizer/data-visualizer-axis-management-dialog.png)
 
-## Viewing chart interpretations
+## Viewing visualization interpretations
 
-When viewing a chart, you can expand the interpretations on the right
+When viewing a visualization, you can expand the interpretations on the right
 side by clicking on the Interpretations button in the upper right corner.
-The chart description will also be shown. The description suppots rich text format.
+The visualization description will also be shown. The description suppots rich text format.
 
-To view the chart according to the date of a particular interpretation,
-click on the interpretation or its "View" button. This will regenerate the chart with the
-relevant date, which is indicated next to the chart title.
+To view the visualization according to the date of a particular interpretation,
+click on the interpretation or its "View" button. This will regenerate the visualization with the
+relevant date, which is indicated next to the visualization title.
 
 ![](resources/images/data-visualizer/data-visualizer-view-interpretation.png)
 
 Clicking on "Back to all interpretations" or the "Exit View" button inside the interpretations panel will clear the
-interpretation and regenerate the chart with the current date.
+interpretation and regenerate the visualization with the current date.
 
-## See chart as map
+## See visualization as map
 
-Sometimes it can be useful to see how visualization would look like on map. To achieve this you can select "Open as: Map" chart type after you build your chart.
+Sometimes it can be useful to see how visualization would look like on map. To achieve this you can select "Open as Map" visualization type after you build your visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-open-as-map.png)

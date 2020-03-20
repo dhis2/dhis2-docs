@@ -12,40 +12,39 @@ time formats, currency and other aspects must be considered. In addition
 to translation of the user interface itself, metadata content which is
 contained in the database must also be considered to be translated.
 
+Interface translations are compiled into the system itself, such that new translations
+can only be accessed by taking a newer version of DHIS 2.
+Database translations, on the other hand, are specific to your implementation
+and can be added to your existing DHIS 2 instance.
+
+These two aspects are managed independently and the processes and tools are outlined
+below.
+
+
+## User Interface localization
+
+### Overview
+
 DHIS 2 supports internationalization (i18n) of the user interface through
 the use of Java property strings and PO files. Java property files are used
 when messages originate from the back-end Java server, while PO files
 are used for front-end apps written in JavaScript.
 The DHIS 2 Android apps use a specific XML format.
-Regardless of the specific format, each element in the user interface has
-been assigned a specific key which is linked to a value.
-As an example,consider the following key/value pairs from a Java property file.
 
-```
-    org_unit_tree=Organisation Unit Tree
-    error_occurred=An error has occurred.
-```
-
-In French the same key/value pairs would appear as follows
-
-```
-    org_unit_tree=Arborescence des unités d'organisation
-    error_occurred=Une erreur s'est produite
-```
-
-Note that the keys (text before the = symbol) are the same in both
-examples, but the values (after the = ) symbol are in each of the
-respective languages. Each of these values would need to be
-translated from the original language (English) to the destination
-language (e.g. French). When the user specifies French for the user
-interface language, all of the strings would then appear in French
-instead of the default language (English). Any strings which have not
-been translated, would appear in English.
+> **Note**
+> 
+> The translator need not worry about the different resource file formats; 
+> the translation platform hides the details, and only displays the strings
+> that require translation.  
+> For example, the figure below shows the source and target strings when
+> translating a resource to French.  
+>
+> ![](resources/images/i18n/translation_ui.jpg)
 
 There should always be an English string for all messages in DHIS 2.
 When the user selects a given language, and a translation is present in that
 language, then the translation will be shown. However, if the string in the
-desired language is missing then fallback rules will be applied.  In cases when
+desired language is missing then fallback rules will be applied. In cases when
 two given translations, such as Portuguese and Brazilian Portuguese share
 common messages, it is not required to perform a full translation in the
 variant language. Only messages which are different should be translated.  
@@ -60,161 +59,164 @@ chooses Brazilian Portuguese as their language:
 3.  If there is no message in either the base language or the variant language,
     choose the ultimate fallback language, English.
 
-> **Important**
+
+>  **Important**
 >
->   - There are a number of key/value pairs such as
->     "format.FinancialApril.startDate=dd MMM yyyy 'to '" which are used
->     for date/time formatting in various parts of DHIS 2. Part of the value
->     should not be translated because it is actually a special formatting
->     field used by either Java or JavaScript to interpolate or format a string.
->     In this example the special string which should be be translated is
->     "dd MMM yyyy".  The part of the value which can be translated would be
->     "to", for instance to "a" in Spanish. If these data format template
->     strings are translated, it may result in errors in the application.
->
->   - It is not necessary to translate a string from the original
->     language (English) if the translated string is the same. You can
->     simply leave it blank. By default, DHIS 2 will use English values
->     for all strings which have not been translated.
->
->   - All translated strings must be stored in escaped UTF-8 format. If
->     you are using the DHIS 2 translation portal (discussed below), be sure
->     your browser settings are set to UTF-8 when translating. If you are using
->     a text editor or other tool such as an IDE, you may need to convert
->     the UTF-8 characters to escaped syntax, using the Java
->     `native2ascii` utility.
->
->   - Some special variables (e.g. {0} ) use curly brackets. This
->     denotes a variable which will be replaced by a number or other
->     value by the application. You must place this variable notation in
->     the correct position and be sure not to modify it.
+>   There are a number of source strings such as "dd MMM yyyy 'to '" which are used
+>   for date/time formatting in various parts of DHIS 2. Part of the value
+>   should not be translated because it is actually a special formatting
+>   field used by either Java or JavaScript to interpolate or format a string.
+>   In this example the part of the value which **can** be translated would be
+>   "to", for instance to "a" in Spanish. The special string which should **not** 
+>   be translated is "dd MMM yyyy". If these date format template
+>   strings are translated, it may result in errors in the application!     
 
-There are a number of tools which can be used to support the
-localization of the user interface as well as the database content,
-which will be discussed below.
+>  **Important**
+>  
+>   Some special variables (e.g. {0} ) use curly brackets. This
+>   denotes a variable which will be replaced by a number or other
+>   value by the application. You must place this variable notation in
+>   the correct position and be sure not to modify it.
 
-## DHIS 2 i18n tool
-
-<!--DHIS2-SECTION-ID:dhis2-i18n-translations-tool-->
-
-The i18n resource editor is Java desktop application which can be
-downloaded from http://www.dhis2.org/downloads . It requires that you
-have checked out the DHIS2 source code from Github (check out
-http://www.dhis2.org/development if necessary) and have a Java Runtime
-Environment installed on your computer. On Windows, simply unpack the ZIP
-archive and click the executable file. On Linux, extract the archive,
-navigate inside the extracted directory and invoke the following command:
-
-    java -jar dhis-i18n-resourceeditor.jar
-
-1.  Press "Browse" when the application starts and select the path to
-    the "dhis-2" directory inside your local copy (checkout) of the
-    DHIS 2 source code repository, followed by OK.
-
-
-    ![](resources/images/i18n/i18n_tool_startup.png)
-
-
-2.  Next, select the destination locale which you will translate strings
-    into. Remember that if you want to create or add to a general
-    language translation, select e.g. "Portuguese - \[pt\]. If you want
-    to create a country-specific translation, select e.g. "Portuguese -
-    Brazil \[pt\_BR\]. Locales which already have keys translated will
-    show the text "Resources for this locale exist".
-
-
-    ![](resources/images/i18n/i18n_tool_select_locale.png)
-
-
-3.  Select one of the web modules from the left hand side to translate,
-    e.g. dhis-web-maintenance-dataset.
-
-
-    ![](resources/images/i18n/i18n_tool_main_window.png)
-
-    Once you have selected a module, click on a particular key from the
-    left-hand side. A reference value for the key will be displayed in
-    the lower right-hand pane, and the translation value will be
-    displayed in the upper right-hand pane. Keys with missing values
-    will be indicated with a red icon. If the value does not exist,
-    simply add the translation there.
-
-4.  Once you have finished translating, make sure to press the "Save"
-    button.
-
-5.  Once you have finished all of the translations, please submit a pull
-    request on the appropriate GitHub repository. A member of the development
-    team will review the translations for eventual incorporation into the
-    main source code.
-
-## Using the DHIS 2 translation portal
+### Translation Platform
 
 <!--DHIS2-SECTION-ID:translation-server-->
 
-A web-based portal solution has been setup in order to facilitate the
-translation of DHIS 2 into multiple languages. Simply direct your
-browser to <https://translate.dhis2.org/> and register for an account by
-providing a username, email address and password. The server will send
-you a confirmation email which you can use to activate your account.
-Once you have activated your account, simply press the "Log in" link
-from the main portal page, and provide your username and password.
+DHIS2 is now using [transifex](www.transifex.com) as our main platform for
+managing translations. You can access the DHIS2 resources at
+[translate.dhis2.org](https://translate.dhis2.org), or directly at
+https://www.transifex.com/hisp-uio/public.
 
-The first time you login, you should select your settings, by clicking
-"My account-\>Settings". Here you can select your interface language,
-the projects which you wish to work on, and the languages which you will
-translate into. Be sure to press "Save" when you have finished making
-your changes.
+### How do I contribute to translations? 
 
-To start translating, be sure you have logged in, and then press the
-"Home" link in the upper-right hand corner. Select a project (e.g.
-DHIS 2) and then click on the language which you wish to translate. The
-number of words which need to be translated will be displayed under the
-"Summary" field. Click on the module you wish to translate and then keep
-drilling down through the folders to find a module which needs
-translation, (e.g. dhis-web-\>dhis-web-caseentry). Now click on the
-"Summary" text which will say something like "194 words need attention".
-You will be directed to the string which requires translation.
+#### Register as a translator
+
+The first step is to  get access to the project. There are two ways to do this:
+
+1. Navigate to the platform and create an account with transifex, then
+	- request access to our organisation "HISP UiO" as a member of the "DHIS 2 Core Apps" translation team.  
+	Transifex
+have some useful instructions here:
+[Getting Started as a Translator](https://docs.transifex.com/getting-started-1/translators)
+
+1. Email the DHIS 2 team at translate@dhis2.org to request access.   
+Please provide:
+	- the name, email address and translation language of the user(s) you would like us to give access to, and
+	- a little bit of information about why you are interested in contributing to the DHIS 2 translations
+
+#### Edit translations
+
+Once you have access as a translator, you can start translating through the transifex Web Editor.
+
+Transifex have a useful guide here:
+[Translating Online with the Web Editor](https://docs.transifex.com/translation/translating-with-the-web-editor)
+
+As far as possible, the projects represent DHIS 2 apps one-to-one. For example, the **APP: Data Visualizer** project contains the translation strings for the Data Visualizer app.
+
+Our transifex projects for DHIS2 User Interface all start with one of the following:
+
+- **APP:** indicates that the project contains strings for a specific app
+- **APP-COMPONENT:** indicates that the project is a component library used by the apps
+- **ANDROID:** indicates that the project is an Andriod app
+
+In addition, **APP: Server-Side Resources** contains some strings that are used by several apps; namely:
+- "Data Entry"
+- "Maintenance"
+- "Pivot Tables"
+- "Reports"
+
+> **Tip**
+>
+> To ensure that there are full translations for a particular app, e.g. "Tracker Capture", you need to make sure translations are complete in:
+> - The app project: **APP: Tracker Capture**
+> - Any projects starting with **APP-COMPONENTS**
+> - **APP: Server-Side Resources**, if required. For Tracker Capture this is **not required**.
 
 
-![](resources/images/i18n/i18n_web_portal_translate.png)
+Within the projects we have resources, which represent localization files in the source code. In order to support multiple DHIS2 versions, with the same localization files, the _version_ is associated with each instance of the file. So, for **APP: Data Visualizer** the list of resources looks like this in the Web Editor:
 
-Simply translate the term, and then press "Submit".
+![](resources/images/implementation_guide/transifex_data_vis.jpg)
 
-Once you have finished translating a module/app, please submit a new issue
-on <https://jira.dhis2.org>. Your translations will be incorporated on a
-regular basis into the main source code of DHIS 2.
+i.e. there is only one source resource for the app (`en.pot`), but we have added the versions from 2.31 (v31) up to the latest development (master). The version is shown in the "Category" field, and is also visible as a prefix to the resource name, e.g. `v31--en-pot`.
+
+> **Note**
+>
+> In general, we request translators focus on the "**master**" resource; it usually contains all strings from previous versions, and when translations are added the platform will fill in matching translations on the previous versions too.
 
 
-## DHIS 2  translation app
+### When will new translations be available in the system?
 
-<!--DHIS2-SECTION-ID:translations-app-->
+We have a nightly service that pulls new translations from the transifex platform and opens a pull request on the source code.
+
+The service loops over all projects and supported languages and does the following:
+
+1. Pulls localization files from transifex (**where translations are more than 20% complete**)
+2. Raises a pull request on the source code if changes are found for the language
+
+The pull requests are reviewed and merged into the code base as part of the normal development process.
+
+> **Info**
+>
+> The translations adde to transifex will, in general, be in the next available stable release for all supported DHIS 2 versions
+>
+> _If you need to ensure that your translations are in the next stable release, contact us (translate@dhis2.org) expalining your needs, and we'll let you know what we can do._ 
+
+> **Tip**
+>
+> The translations you add in transifex should be visible in all development demo versions on our play server (https://play.dhis2.org) within a few days, in most cases.
+
+### How do I add a new language?
+
+Please contact us via email translate@dhis2.org, or on the [Community of Practice](https://community.dhis2.org/c/translation) and we'll add that language to the projects on transifex.
+
+Once resources for that language are more than 20% translated, they will start to be pulled into the system. They will then
+become visible in the development demo versions, and be available in future releases.
+
+> **Note**
+>
+> DHIS 2 manages metadata (database) locales independently from the UI. _See the following section._ 
+
+
+## Metadata/Database translations
+
+<!--DHIS2-SECTION-ID:metadata-database-translations-->
 
 In addition to translation of the user interface, DHIS 2 also supports
 the localization of the metadata content in the database. It is possible
-to translate individual objects through the maintenance app, but in
+to translate individual objects through the **Maintenance app**, but in
 order to better support a standard translation workflow, a specialized
-app has been developed for this purpose. The DHIS 2 translation app can
+app has been developed for this purpose.
+
+New metadata locales can be added in **Maintenance app > Locales**.
+
+### DHIS 2 Translations app
+
+<!--DHIS2-SECTION-ID:translations-app-->
+
+The DHIS 2 **Translation app** can 
 be used to translate all metadata (data elements, categories,
 organization units, etc) into any locale which is present in the
 database.
 
-To get started, simply choose the "Translations" app from the top level
+To get started, simply choose the **Translations app** from the top level
 menu.
 
 ![](resources/images/i18n/translations_app.png)
 
-1.  To get started, choose the type of object you wish to translate from the
+1.  Choose the type of object you wish to translate from the **Object**
     drop-down menu, such as "Data elements".
 
-2.  Next, be sure you have set the "Target locale" to the correct language.
+2.  Be sure you have set the **Target Locale** to the correct language.
 
 3.  Choose the specific object you wish to translate, and translate each
     of the properties (Name, Short name, Description, etc). These
-    properties will vary from object to object.
+    properties vary from object to object.
 
 4.  Press "Save" when you are done translating the specific object to
     save your changes.
 
 
-Note that you can search for a specific term using the search feature in the
+> **Note**
+>
+> You can search for a specific term using the search feature in the
 upper right hand corner of the app.

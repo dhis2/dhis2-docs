@@ -25,6 +25,13 @@ p code {
   white-space: normal;
 }
 
+
+
+blockquote,
+q {
+  quotes:none;
+}
+
 blockquote:before,
 q:before,
 blockquote:after,
@@ -58,18 +65,20 @@ td blockquote{
   margin: 0px;
   margin-top:5px;
   padding: 5px;
+  padding-top:35px;
 }
-
 .center{
   display:block;
   margin-left:auto;
   margin-right:auto;
+  text-align: center;
 }
 
 figure{
   display:block;
   margin-left:auto;
   margin-right:auto;
+  text-align: center;
 }
 
 figcaption{
@@ -79,24 +88,66 @@ figcaption{
 }
 
 .Note{
-  background-image: url(../images/admon/note.png);
+  background-image: url(../images/admin/note.png);
 }
 
 .Tip, .Truc {
-  background-image: url(../images/admon/tip.png);
+  background-image: url(../images/admin/tip.png);
 }
 
 .Important{
-  background-image: url(../images/admon/important.png);
+  background-image: url(../images/admin/important.png);
 }
 
 .Caution, .Prudence{
-  background-image: url(../images/admon/caution.png);
+  background-image: url(../images/admin/caution.png);
 }
 
 .Warning, .Attention, .Danger{
-  background-image: url(../images/admon/warning.png);
+  background-image: url(../images/admin/warning.png);
 }
+
+.Complete, .complete {
+  background-image: url(../images/admin/icon-complete.png);
+}
+
+.Incomplete, .incomplete {
+  background-image: url(../images/admin/icon-incomplete.png);
+}
+
+.Not, .not, .not_applicable, .Not_applicable {
+  background-image: url(../images/admin/icon-na.png);
+}
+
+.Not, .not, .not_applicable, .Not_applicable {
+  background-image: url(../images/admin/icon-na.png);
+}
+
+.Work, .work, .work_in_progress, .Work_in_progress, .Work_In_Progress{
+  background-image: url(../images/admin/icon-wip.png);
+}
+
+blockquote {
+	background-color: #f5fbff;
+	border: 1px solid #c5e3fc;
+  border-radius:3px;
+  margin-top:10px;
+	padding: 6px 16px 12px 52px;
+	background-position: 16px 12px;
+	background-repeat: no-repeat;
+  color:#212934;
+}
+
+blockquote.Caution, blockquote.Prudence, blockquote.Important {
+  background-color:#FFF8E1;
+  border:1px solid #FFE082;
+}
+
+blockquote.Warning, blockquote.Attention, blockquote.Danger {
+  background-color:#FFF5F6;
+  border:2px solid #D32F2F;
+}
+
 
 .thanks{
   border:1px solid #ddd;
@@ -199,7 +250,7 @@ h2.subtitle {
   position: absolute;
   bottom:100px;
   left: 0px;
-  height:100px;
+  height:120px;
   width:100%;
 }
 
@@ -211,6 +262,13 @@ p.productionInfo {
   border: none;
 }
 
+p.productionInfoSub {
+  font-size: 20px;
+  font-weight: normal;
+  font-family: 'Rubik', sans-serif;
+  color: #393D4D;
+  border: none;
+}
 
 dt code {
   font-weight: bold;

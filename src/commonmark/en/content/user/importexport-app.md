@@ -25,7 +25,38 @@ which can be found below.
 
 ![](resources/images/import_export/overview.png)
 
-## Metadata Import
+## Importing data
+
+<!--DHIS2-SECTION-ID:importing_data-->
+
+### Import progress logger
+
+<!--DHIS2-SECTION-ID:import_progress_logger-->
+
+No matter what you import ("Metadata", "Data", "Events" or "GML" data),
+you can always view the progress of the import by opening the logger at the
+bottom of the screen.
+
+* To open the logger, click on the "arrow up" icon on the right side:
+
+![](resources/images/import_export/logger-open.png)
+
+* To close the logger, click on the "arrow down" icon in the top-right corner:
+
+![](resources/images/import_export/logger-close.png)
+
+### Import Summaries
+
+<!--DHIS2-SECTION-ID:metadata_import_summaries-->
+
+On import request completion, we show import summaries above the import form.
+Any conflicts or errors are shown in a paginated table under totals.
+
+![](resources/images/import_export/import_summary.png)
+
+### Metadata Import
+
+<!--DHIS2-SECTION-ID:metadata_import-->
 
 Metadata Import can be accessed from the sidebar by clicking on
 Metadata Import.
@@ -35,18 +66,31 @@ Metadata Import.
 
 1.  Choose a file to upload
 
-2.  Select from the available formats e.g. *JSON* , *XML* or *CSV*
+1.  Select from the available formats e.g. *JSON* , *XML* or *CSV*
 
-3.  Choose **Dry Run** . *Yes* will do a test import without importing
+1.  Choose **Dry Run** . *Yes* will do a test import without importing
     any data into the database.
 
-4.  Choose a import strategy from
+1.  Select the appropriate settings of:
 
-5.  Click **MORE OPTIONS** if you want to adjust Reference Mode or
-    Object Type before importing.
+    * Idenfifier
+    * Import report mode
+    * Preheat mode
+    * Import strategy
+    * Atomic mode
+    * Merge mode
 
-6.  Click **Import** which will bring up the **Logger** at the bottom of
-    the page to show the progress.
+1.  Click **MORE OPTIONS** if you want to adjust one or more of the following
+    settings before importing:
+
+    * Flush mode
+    * Skip sharing
+    * Skip validation
+    * Async
+    * Inclusive strategy
+
+1.  Click on the **Import** button which will upload the file and start the
+    importing process.
 
 > **Tip**
 > 
@@ -62,7 +106,9 @@ Metadata Import.
 >
 > You can control this using **Reference Mode** option available under **MORE OPTIONS**, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
 
-### Matching Identifiers in DXF2
+#### Matching Identifiers in DXF2
+
+<!--DHIS2-SECTION-ID:matching_identifiers_in_dxf2-->
 
 The DXF2 format currently support matching for two identifiers, the
 internal DHIS2 identifier (known as a UID), and also using an external
@@ -76,7 +122,7 @@ legacy system's own identifiers in the code field, this identifier is
 required to be unique. This not only works for organisation units, but
 for all kinds of meta-data, allowing for easy import from other systems.
 
-## Data Import
+### Data Import
 
 <!--DHIS2-SECTION-ID:import-->
 
@@ -87,22 +133,36 @@ Import.
 
 1.  Choose a file to upload
 
-2.  Select from the available formats e.g. *JSON* , *XML* , *PDF* or
-    *ADX*
+1.  Select from the available formats: *JSON*, *XML*, *PDF*,
+    *ADX* or *CSV*
 
-3.  Select from the available formats e.g. *JSON* , *XML* , *PDF* or
-    *ADX*
+1.  Choose **Dry Run** . *Yes* will do a test import without importing
+    any data into the database.
 
-4.  Choose a import strategy from
+1.  Select the appropriate settings of:
 
-5.  Click *MORE OPTIONS* if you want to adjust Data Element ID Scheme,
-    Org. Unit ID Scheme, ID Scheme or Existing Record Check before
-    importing.
+    * Strategy
+    * Preheat cache
 
-6.  Click *Import* which will bring up the *Logger* at the bottom of the
-    page to show the progress.
+1.  Click **MORE OPTIONS** if you want to adjust one or more of the following
+    settings before importing:
 
-### PDF Data
+    * Data element id scheme
+    * Org unit id scheme
+    * Id scheme
+    * Skip existing check
+
+1.  Click on the **Import** button which will upload the file and start the
+    importing process.
+
+> **Tip**
+> 
+> **It is highly recommend to use the Dry run option** to test before
+> importing data; to make sure you keep control over any changes to your
+> Metadata, and to check for problems with out-of-sync data elements or
+> organisation unit names
+
+#### PDF Data
 
 <!--DHIS2-SECTION-ID:importPDFdata-->
 
@@ -114,24 +174,7 @@ form which can be used for off-line data entry.
 To import a PDF data file, navigate to the *PDF Data Import* item in the
 side menu. Upload the completed PDF file and click *Import*.
 
-## GML Import
-
-<!--DHIS2-SECTION-ID:gml_import-->
-
-GML Import can be accessed from the sidebar by clicking on GML
-Import.
-
-![](resources/images/import_export/gml_import.png)
-
-1.  Upload a file using the *GML* (Geographic Markup Language) format.
-
-2.  Choose **Dry Run** . *Yes* will do a test import without importing
-    any data into the database.
-
-3.  Click **Import** which will bring up the **Logger** at the bottom of
-    the page to show the progress.
-
-## Event Import
+### Event Import
 
 <!--DHIS2-SECTION-ID:event_import-->
 
@@ -149,18 +192,29 @@ import.
 
 4.  Choose **Org Unit ID Scheme**.
 
-5.  Click **Import** which will bring up the **Logger** at the bottom of
-    the page to show the progress.
+1.  Click on the **Import** button which will upload the file and start the
+    importing process.
 
-## Metadata Import Summaries
+### GML Import
 
-<!--DHIS2-SECTION-ID:metadata_import_summaries-->
+<!--DHIS2-SECTION-ID:gml_import-->
 
-On import request completion, we show import summaries above the import form. Any conflicts or errors are shown in a paginated table under totals.
+GML Import can be accessed from the sidebar by clicking on GML
+Import.
 
-![](resources/images/import_export/import_summary.png)
+![](resources/images/import_export/gml_import.png)
 
-## Metadata Export
+1.  Upload a file using the *GML* (Geographic Markup Language) format.
+
+2.  Choose **Dry Run** . *Yes* will do a test import without importing
+    any data into the database.
+
+1.  Click on the **Import** button which will upload the file and start the
+    importing process.
+
+## Exporting data
+
+### Metadata Export
 
 <!--DHIS2-SECTION-ID:metadata_export-->
 
@@ -183,7 +237,7 @@ Metadata export.
 
 6.  The exported file is downloaded to your local computer.
 
-## Metadata Export with Dependencies
+### Metadata Export with Dependencies
 
 <!--DHIS2-SECTION-ID:metadata_export_dependencies-->
 
@@ -297,7 +351,9 @@ belong together with the main object.
 
 6.  The exported file is downloaded to your local computer.
 
-## Data export
+### Data export
+
+<!--DHIS2-SECTION-ID:data_export-->
 
 Data export can be accessed from the sidebar by clicking on Data
 export.
@@ -318,14 +374,16 @@ export.
 6.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
 
 7.  Click *MORE OPTIONS* If you want to adjust Data Element ID Scheme,
-    Org. Unit ID Scheme or Category ID Scheme before export.
+    Org. Unit ID Scheme or ID Scheme before export.
 
 8.  Click **Export** which will bring up the **Logger** at the bottom of
     the page to show the progress.
 
 9.  The exported file is downloaded to your local computer.
 
-## Event export
+### Event export
+
+<!--DHIS2-SECTION-ID:event_export-->
 
 Event export can be accessed from the sidebar by clicking on Event
 export.

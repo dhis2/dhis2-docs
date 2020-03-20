@@ -182,11 +182,9 @@ option could be reused. This is important if particular category options
 
     1.  **Name**
 
-    2.  **Short name**
+    2.  **Start date**
 
-    3.  **Start date**
-
-    4.  **End date**
+    3.  **End date**
 
 4.  Select organisation units and assign them.
 
@@ -623,6 +621,20 @@ objects:
     element. Be as precise as possible and include complete information
     about how the data element is measured and what its purpose is.
 
+8. (Optional) In the **Field mask** field, you may type a template that's used to provide
+   hints for correct formatting of the data element in Capture and Tracker Capture apps.
+   The following are special characters that can be used in the mask. The special characters match exactly one character of the given type.
+
+   | Character     |    Match       |
+   | ------------- |----------------|
+   |      \\d      |     digit      |
+   |      \\x      |lower case letter|
+   |      \\X      | capital letter |
+   |      \\w      |any alphanumeric character|
+
+   For example, the pattern can be used to show hyphens as needed in the input field of the data element. E.g "\d\d\d-\d\d\d-\d\d\d, would 
+   show a hyphen for every third digit.
+
 9.  In the **Form name** field, type an alternative name of the data
     element. This name can be used in either section or automatic data
     entry forms. The form name is applied automatically.
@@ -838,7 +850,7 @@ objects:
 
 18. Assign one or multiple **Legends**.
 
-    Legends are used in for example the **GIS** app to display certain
+    Legends are used in for example the **Maps** app to display certain
     data elements with certain icons.
 
 19. Set the **Aggregation levels** to allow the data element to be
@@ -2709,9 +2721,9 @@ one root unit.
 13. (Optional) Enter **Latitude** and **Longitude**.
 
     You must have latitude and longitude values to create maps in the
-    **GIS** app. Then your organisation units can be represented as
+    **Maps** app. Then your organisation units can be represented as
     points on a map, for example a health facility. Without this
-    information, the **GIS** app will not work.
+    information, the **Maps** app will not work.
 
     It might be more efficient to import coordinates later as a batch
     job for all organisation units using the **Import-Export** app. You
@@ -2778,7 +2790,7 @@ units that are hospitals in an **Hospital** group.
 
     4.  **Symbol**: Select a symbol which will be used to display the
         organisation unit (points only) when the layer is displayed in
-        the **GIS** app.
+        the **Maps** app.
 
 4.  In the organisation tree, click the organisation units you want to
     add to the organisation unit group.
@@ -2928,7 +2940,7 @@ creates a new organisation unit level if necessary. The system also
 assigns a generic name to this level, for example "Level 5". You can
 replace the generic name with a contextual name, for example "Country",
 "Province", "District" or "Health Facility". DHIS2 uses the contextual
-names anywhere levels are referred to, for example in the **GIS** app.
+names anywhere levels are referred to, for example in the **Maps** app.
 
 1.  Open the **Maintenance** app and click **Organisation unit** \>
     **Organisation unit level**.
@@ -4185,7 +4197,7 @@ cultural region.
 
 You can create, edit, clone, delete, show details and translate legends
 to make the maps you're setting up for your users meaningful. You create
-maps in the **GIS** app.
+maps in the **Maps** app.
 
 > **Note**
 >
@@ -4409,7 +4421,7 @@ cultural region.
 
 You can assign a legend to an indicator or a data element in the
 **Maintenance** app, either when you create the object or edit it. When
-you then select the indicator or data element in the **GIS** app, the
+you then select the indicator or data element in the **Maps** app, the
 system automatically selects the assigned legend.
 
 ### See also
@@ -4479,11 +4491,9 @@ In the **Maintenance** app, you manage the following predictor objects:
 ### Sampling past periods
 
 Predictors can generate data values for periods that are in the past,
-present, or future. These values are based on data sampled from periods
-before the predicted period, and/or data from the predicted period. When
-you use data sampled from past periods (periods before the predicted
-period), several parameters determine the choice of which past periods
-to sample from:
+present, or future. These values are based on data from the predicted period, and/or sampled data from periods prior to the predicted period.
+
+If you need data only from the same period in which the prediction is made, then you don't need to read this section. This section describes how to sample data from periods prior to the predicted period.
 
 #### Sequential sample count
 
@@ -4640,30 +4650,32 @@ sampled. For example:
     replaced with zeros.)
 
 7.  (Optional) Select an **Output category combo**. This dropdown will only show
-    if the selected data element has category-combos attached to it. If this is 
+    if the selected data element has categoryCombos attached to it. If this is
     the case, you can select which categoryCombo you would like to use.
 
-7.  Select a **Period type**.
+8.  Select a **Period type**.
 
-8.  Assign one or more organisation unit levels. The output value will be
+9.  Assign one or more organisation unit levels. The output value will be
     assigned to an organisation unit at this level (or these levels).
     The input values will come from the organisation unit to which the
     output is assigned, or from any level lower under the output
     organisation unit.
 
-9.  Create a **Generator**. The generator is the expression that is used
-    to calculate the predicted value.
+10. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
 
     1.  Type a **Description** of the generator expression.
 
-    2.  Enter the generator expression. You can build the expression by
-        selecting data elements for aggregate data, or program data
-        elements, attributes or indicators. Organisation unit counts are
-        not yet supported.
+    2.  Select a **Missing value strategy**. This selection sets how the system evaluates a validation rule if data is missing.
 
-        To use sampled, past period data, you should enclose any items
-        you select in one of the following aggregate functions:
+        |Option|Description|
+        |--- |--- |
+        |Skip if any value is missing|The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.<br><br>Always select this option you use the **Exclusive pair** or **Compulsory pair** operator.|
+        |Skip if all values are missing|The validation rule will be skipped only if all of the values which compose it are missing.|
+        |Never skip|The validation rule will never be skipped in case of missing data, and all missing values will be treated effectively as a zero.|
 
+    3.  Enter the generator expression. You can build the expression by selecting data elements for aggregate data, or program data elements, attributes or indicators. Organisation unit counts are not yet supported.
+
+        To use sampled, past period data, you should enclose any items you select in one of the following aggregate functions (note that these function names are case-sensitive):
         <table>
         <colgroup>
         <col style="width: 50%" />
@@ -4677,32 +4689,44 @@ sampled. For example:
         </thead>
         <tbody>
         <tr class="odd">
-        <td><p>AVG</p></td>
-        <td><p>Average (mean) value</p></td>
+        <td><p>avg(x)</p></td>
+        <td><p>Average (mean) value of x</p></td>
         </tr>
         <tr class="even">
-        <td><p>COUNT</p></td>
-        <td><p>Count of the data values</p></td>
+        <td><p>count(x)</p></td>
+        <td><p>Count of the values of x</p></td>
         </tr>
         <tr class="odd">
-        <td><p>MAX</p></td>
-        <td><p>Maximum value</p></td>
+        <td><p>max(x)</p></td>
+        <td><p>Maximum value of x</p></td>
         </tr>
         <tr class="even">
-        <td><p>MEDIAN</p></td>
-        <td><p>Median value</p></td>
+        <td><p>median(x)</p></td>
+        <td><p>Median value of x</p></td>
         </tr>
         <tr class="odd">
-        <td><p>MIN</p></td>
-        <td><p>Minimum value</p></td>
+        <td><p>min(x)</p></td>
+        <td><p>Minimum value of x</p></td>
         </tr>
         <tr class="even">
-        <td><p>STDDEV</p></td>
-        <td><p>Standard deviation</p></td>
+        <td><p>percentileCont(p, x)</p></td>
+        <td><p>Continuous percentile of x, where p is the percentile as a floating point number between 0 and 1. For example, p = 0 will return the lowest value, p = 0.5 will return the median, p = 0.75 will return the 75th percentile, p = 1 will return the highest value, etc. Continuous means that the value will be interpolated if necessary. For example, percentileCont( 0.5, #{FTRrcoaog83} ) will return 2.5 if the sampled values of data element FTRrcoaog83 are 1, 2, 3, and 4.</p></td>
         </tr>
         <tr class="odd">
-        <td><p>SUM</p></td>
-        <td><p>Sum of the values</p></td>
+        <td><p>stddev(x)</p></td>
+        <td><p>Standard deviation of x. This function is eqivalent to stddevSamp. It's suggested that you use the function stddevSamp instead for greater clarity.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>stddevPop(x)</p></td>
+        <td><p>Population standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / n )</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>stddevSamp(x)</p></td>
+        <td><p>Sample standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / ( n - 1 ) ). Note that this value is not computed when there is only one sample.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>sum(x)</p></td>
+        <td><p>Sum of the values of x</p></td>
         </tr>
         </tbody>
         </table>
@@ -4720,9 +4744,9 @@ sampled. For example:
         option inserts \[days\] into the expression which resolves to
         the number of days in the period from which the data came.
 
-        You can also use the following functions in your expression,
-        either inside or containing aggregate functions, or independent
-        of them:
+        You can also use the following non-aggregating functions in your
+        expression, either inside aggregate functions, or containing
+        aggregate functions, or independent of aggregate functions:
 
         <table>
         <colgroup>
@@ -4737,12 +4761,28 @@ sampled. For example:
         </thead>
         <tbody>
         <tr class="odd">
-        <td><p>IF(test, valueIfTrue, valueIfFalse)</p></td>
+        <td><p>if(test, valueIfTrue, valueIfFalse)</p></td>
         <td><p>Evaluates <strong>test</strong> which is an expression that evaluates to a boolean value -- see <strong>Boolean expression notes</strong> below. If the test is <strong>true</strong>, returns the <strong>valueIfTrue</strong> expression. If it is <strong>false</strong>, returns the <strong>valueIfFalse</strong> expression.</p></td>
         </tr>
         <tr class="even">
-        <td><p>ISNULL(item)</p></td>
+        <td><p>isNull(item)</p></td>
         <td><p>Returns the boolean value <strong>true</strong> if the <strong>item</strong> is null (missing), otherwise returns <strong>false</strong>. The <strong>item</strong> can be any selected item from the right (data element, program data element, etc.).</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>isNotNull(item)</p></td>
+        <td><p>Returns <strong>true</strong> if the <strong>item</strong> value is not missing (not null), otherwise <strong>false</strong>.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>firstNonNull(item [, item ...])</p></td>
+        <td><p>Returns the value of the first <strong>item</strong> that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous items have missing values.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>greatest(expression [, expression ...])</p></td>
+        <td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>least(expression [, expression ...])</p></td>
+        <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
         </tr>
         </tbody>
         </table>
@@ -4770,33 +4810,41 @@ sampled. For example:
         </thead>
         <tbody>
         <tr class="odd">
-        <td><p>SUM(#{FTRrcoaog83.tMwM3ZBd7BN})</p></td>
+        <td><p>sum(#{FTRrcoaog83.tMwM3ZBd7BN})</p></td>
         <td><p>Sum of the sampled values of data element FTRrcoaog83 and category option combination (disaggregation) tMwM3ZBd7BN</p></td>
         </tr>
         <tr class="even">
-        <td><p>AVG(#{FTRrcoaog83}) + 2 * STDDEV(#{FTRrcoaog83})</p></td>
-        <td><p>Average of the sampled values of of data element FTRrcoaog83 (sum of all disaggregations) plus twice its standard deviation</p></td>
+        <td><p>avg(#{FTRrcoaog83}) + 2 * stddevSamp(#{FTRrcoaog83})</p></td>
+        <td><p>Average of the sampled values of of data element FTRrcoaog83 (sum of all disaggregations) plus twice its sample standard deviation</p></td>
         </tr>
         <tr class="odd">
-        <td><p>SUM(#{FTRrcoaog83}) / SUM([days])</p></td>
+        <td><p>sum(#{FTRrcoaog83}) / sum([days])</p></td>
         <td><p>Sum of all sampled values of data element FTRrcoaog83 (sum of all disaggregations) divided by the number of days in all sample periods (resulting in the overall average daily value)</p></td>
         </tr>
         <tr class="even">
-        <td><p>SUM(#{FTRrcoaog83}) + #{T7OyqQpUpNd}</p></td>
+        <td><p>sum(#{FTRrcoaog83}) + #{T7OyqQpUpNd}</p></td>
         <td><p>Sum of all sampled values of data element FTRrcoaog83 plus the value of data element T7OyqQpUpNd in the period being predicted for</p></td>
         </tr>
         <tr class="odd">
         <td><p>1.2 * #{T7OyqQpUpNd}</p></td>
-        <td><p>1.2 times the value of data element T7OyqQpUpNd in the period being predicted for</p></td>
+        <td><p>1.2 times the value of data element T7OyqQpUpNd, in the period being predicted for</p></td>
         </tr>
         <tr class="even">
-        <td><p>IF(ISNULL(#{T7OyqQpUpNd}), 10, 20)</p></td>
-        <td><p>If the data element T7OyqQpUpNd is null, then 10, otherwise 20.</p></td>
+        <td><p>if(isNull(#{T7OyqQpUpNd}), 0, 1)</p></td>
+        <td><p>If the data element T7OyqQpUpNd is null in the period being predicted, then 0, otherwise 1.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>percentileCont(0.5, #{T7OyqQpUpNd})</p></td>
+        <td><p>Continuous 50th percentile of the sampled values for data element T7OyqQpUpNd. Note that this is the same as median(#{T7OyqQpUpNd})</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>if(count(#{T7OyqQpUpNd}) == 1, 0, stddevSamp(#{T7OyqQpUpNd}))</p></td>
+        <td><p>If there is one sample value present for data element T7OyqQpUpNd, then 0, otherwise the sample standard deviation of these sample values. (Note that if no samples are present then the stddevSamp returns no value, so no value is predicted.)</p></td>
         </tr>
         </tbody>
         </table>
 
-10. (Optional) Create a **Sample skip test**. The sample skip test tells
+11. (Optional) Create a **Sample skip test**. The sample skip test tells
     which previous periods if any to exclude from the sample.
 
     1.  Type a **Description** of the skip test.
@@ -4806,8 +4854,10 @@ sampled. For example:
         program data elements, attributes or indicators. Organisation
         unit counts are not yet supported. As with the generator
         function, you may click on (or type) any of the elements below
-        the expression field: ( ) \* / + - Days. The functions IF() and
-        ISNULL() as described above may also be used.
+        the expression field: ( ) \* / + - Days.
+
+        The non-aggregating functions described above may also be used
+        in skip tests.
 
         The expression must evaluate to a boolean value of **true** or
         **false**. See **Boolean expression notes** above.
@@ -4841,22 +4891,22 @@ sampled. For example:
         </tbody>
         </table>
 
-11. Enter a **Sequential sample count** value.
+12. Enter a **Sequential sample count** value.
 
     This is for how many sequential periods the calculation should go
     back in time to sample data for the calculations.
 
-12. Enter an **Annual sample count** value.
+13. Enter an **Annual sample count** value.
 
     This is for how many years the calculation should go back in time to
     sample data for the calculations.
 
-13. (Optional) Enter a **Sequential skip count** value.
+14. (Optional) Enter a **Sequential skip count** value.
 
     This is how many sequential periods, immediately preceding the
     predicted value period, should be skipped before sampling the data.
 
-14. Click **Save**.
+15. Click **Save**.
 
 ### Create or edit a predictor group
 
@@ -5222,7 +5272,7 @@ and XYZ tiles.
 3.  In the **Name** field, type a name that describes the content of the
     external map layer.
 
-    This is the name you'll see in the **GIS** app.
+    This is the name you'll see in the **Maps** app.
 
 4.  (Optional) In the **Code** field, assign a code.
 
@@ -5259,15 +5309,11 @@ and XYZ tiles.
 
 8.  Select a **Placement**:
 
-      - **Bottom - basemap**: For the GIS app, this places the external
-        map layer above other DHIS2 base maps but below the thematic map
-        layers. For the Maps app, this makes the external map layer
+      - **Bottom - basemap**: For the Maps app, this makes the external map layer
         selectable as the base map (i.e. as an alternative to the DHIS2
         base maps).
 
-      - **Top - overlay**: For the GIS app, this places the external map
-        layer above the thematic map layers but below facility and event
-        data layers. For the Maps app, this allows the external map to
+      - **Top - overlay**: For the Maps app, this allows the external map to
         be added from the Add Layer selection and placed anywhere above
         the base map.
 

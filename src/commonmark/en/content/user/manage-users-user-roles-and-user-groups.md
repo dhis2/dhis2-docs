@@ -188,7 +188,7 @@ See also:
 [Sharing](https://ci.dhis2.org/docs/master/en/user/html/sharing.html)
 
 [Manage program
-notifications](https://docs.dhis2.org/master/en/user/html/manage_program_notification.html)
+notifications](https://docs.dhis2.org/master/en/user/html/configure_tracker_program_in_Maintenance_app.html#create-a-program-stage-notification)
 
 [Mange push
 reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
@@ -246,9 +246,14 @@ with the user name and password that you provide.<br/><br/>
 Choose this option if you want to send an invitation by email to the
 user. Then she/he must return to DHIS2 and finish setting up their user
 account. The account that the user finishes setting up will be limited
-according to how you configure the account.<br/><br/>
-In order to use this feature "Enable email message notifications" in
-SystemSettings -\> Messaging should be checked.<br/><br/>
+according to how you configure the account.
+
+> **Note**
+>
+> In order to use this feature the system should have a valid email 
+> configuration in SystemSettings -\> Email
+
+
 Enter the email address to which the invitation should be sent. If you
 want to, you may also enter the user name that the account will have. If
 you leave the user name empty, then the user may choose their own user
@@ -355,6 +360,10 @@ deleted, but the user can't log in or use DHIS2.
 
 3.  Click **OK** to confirm.
 
+> **Warning** 
+> 
+> If you are using the [Android Capture App](https://www.dhis2.org/android) disabling a user will cause the application to delete the local data stored on the phone next time the user attemps an on-line login. Please make sure that when you use the *disable user* function all the data has been synced with the server. Or that you are using this funcionality to ensure data deletion in case of a device being lost.
+
 ### Display a user's profile
 
 1.  Open the **Users** app and click **User**.
@@ -402,36 +411,6 @@ assigned to the selected organisation units.
 
 <!--DHIS2-SECTION-ID:user_manage_password-->
 
-The following rules apply when you create a new password:
-
-  - Password must contain at least one special character, that is any
-    character other then alphabets and digit numbers.
-
-  - Password must contain at least one upper case character.
-
-  - Password must contain at least one digit number.
-
-  - Password can not contain user's user name or email address.
-
-  - Password can not contain generic words for example *system*,
-    *admin*, *user*, *login*, *manager* etc.
-
-  - Password can not be one of the previous 24 passwords the user has
-    used.
-
-    This doesn't apply in case a super user resets the password for
-    another user.
-
-  - Password must contain more than minimum number of characters.
-
-    > **Note**
-    >
-    > You can configure the minimum number of characters: Open the
-    > **System Settings** app and click **Access** \> **Minimum
-    > characters in password**.
-
-  - Password can not contain more than 40 characters
-
 To change a user's password:
 
 1.  Open the **Users** app and click **User**.
@@ -442,6 +421,28 @@ To change a user's password:
 3.  Enter a new password and retype it.
 
 4.  Click **Save**.
+
+#### Password requirements
+
+The following rules apply when you create a new password. The password must:
+
+  - Contain at least 8 characters. Note that this number is configurable through the system setting "Minium characters in password", which can be up to 14 characters. 
+  
+  - Not contain more than 40 characters.
+
+  - Contain at least one special character (non-alphanumeric character).
+
+  - Contain at least one upper-case character.
+  
+  - Contain at least one lower-case character.
+
+  - Contain at least one digit (number).
+
+  - Not contain the username or email address of the user account.
+
+  - Not contain generic words such as *system*, *admin*, *user*, *login*, and *manager*.
+
+  - Not be one of the previous 24 passwords the user has used. This does not apply in case when a super user resets the password for another user.
 
 ### Delete user objects
 
@@ -461,7 +462,7 @@ To change a user's password:
 2.  In the object list, click the menu icon of the relevant object and
     select **Show details**.
 
-### Disable a user's Two Factor Authentication
+### Disable Two Factor Authentication for a user
 
 If a user has enabled Two Factor Authentication and then loses access to
 his/her authentication device (e.g. smartphone gets lost or broken),
