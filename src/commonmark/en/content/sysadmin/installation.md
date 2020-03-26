@@ -1040,77 +1040,29 @@ analytics.cache.expiration = 3600
 
 ## Monitoring
 
-DHIS2 can export Prometheus compatible metrics for monitoring DHIS2 instances. The DHIS2 monitoring infrastructure is designed to expose metrics related to the application runtime and other application-related information.
+DHIS 2 can export Prometheus compatible metrics for monitoring DHIS2 instances. The DHIS2 monitoring infrastructure is designed to expose metrics related to the application runtime and other application-related information.
 
 Infrastucture related metrics (such as host metrics, Tomcat or Postgres) are not directly exposed by the application monitoring engine and they have to be collected separately. The metrics currently exposed by the application are:
 
-- DHIS2 API (response time, number of calls, etc.)
+- DHIS 2 API (response time, number of calls, etc.)
 - JVM (Heap size, Garbage collection, etc.)
 - Hibernate (Queries, cache, etc)
 - C3P0 Database pool
 - Application uptime
 - CPU
 
-Monitoring can be enabled in `dhis.conf` with the following properties:
+Monitoring can be enabled in `dhis.conf` with the following properties (default is `false` for all properties):
 
 ```properties
 monitoring.api.enabled = true
 monitoring.jvm.enabled = true
 monitoring.dbpool.enabled = ture
-monitoring.hibernate.enabled	Hibernate
-monitoring.uptime.enabled	Uptime
-monitoring.cpu.enabled	CPU
+monitoring.hibernate.enabled = true
+monitoring.uptime.enabled = true
+monitoring.cpu.enabled = true
 ```
 
-For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
-
-
-## Starting Tomcat at boot time
-
-<!--DHIS2-SECTION-ID:install_starting_tomcat_boot_time-->
-
-In certain situations a server might reboot unexpectedly. It is hence
-preferable to have Tomcat start automatically when the server starts. To
-achieve that the first step is to create init scripts. Create a new file
-called `tomcat` and paste the below content into it (adjust the HOME
-variable to your environment):
-
-```sh
-#!/bin/sh
-#Tomcat init script
-
-HOME=/home/dhis/tomcat/bin
-
-case $1 in
-start)
-		sh ${HOME}/startup.sh
-		;;
-stop)
-		sh ${HOME}/shutdown.sh
-		;;
-restart)
-		sh ${HOME}/shutdown.sh
-		sleep 5
-		sh ${HOME}/startup.sh
-		;;
-esac
-exit 0
-```
-
-Move the script to the init script directory and make them executable by
-invoking:
-
-    sudo mv tomcat /etc/init.d
-    sudo chmod +x /etc/init.d/tomcat
-
-Next make sure the tomcat init script will be invoked during system
-startup and shutdown:
-
-    sudo /usr/sbin/update-rc.d -f tomcat defaults 81
-
-Tomcat will now be started at system startup and stopped at system
-shutdown. If you later need to revert this you can replace `defaults`
-with `remove` and invoke the above commands again.
+The recommended approach for collecting and visualization these metrics are through Prometheus and Grafana. For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
 
 ## Reverse proxy configuration
 
