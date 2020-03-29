@@ -354,16 +354,16 @@ connection.password = xxxx
 # Server
 # ----------------------------------------------------------------------
 
-# Enable secure settings if system is deployed on HTTPS, default 'off'
+# Enable secure settings if deployed on HTTPS, default 'off', can be 'on'
 server.https = on
 
 # Server base URL
-server.base.url = http://server.com/
+server.base.url = https://server.com/
 ```
 
-It is strongly recommended to enable the *server.https* setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when enabled.
+It is strongly recommended to enable the *server.https* setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when this setting is enabled.
 
-The *server.base.url* setting refers to the URL which the system is accessed by end users on the network.
+The *server.base.url* setting refers to the URL at which the system is accessed by end users over the network.
 
 Note that the configuration file supports environment variables. This
 means that you can set certain properties as environment variables and
@@ -374,11 +374,10 @@ name of the environment variable:
 connection.password = ${DB_PASSWD}
 ```
 
-A common mistake is to have a white-space after the last property value
-so make sure there is no white-space at the end of any line. Also
-remember that this file contains the clear text password for your DHIS2
-database so it needs to be protected from unauthorized access. To do
-this invoke the following command which ensures that only the dhis user
+
+Note that this file contains the password for your DHIS2 database in clear
+text so it needs to be protected from unauthorized access. To do this, 
+invoke the following command which ensures that only the dhis user
 which owns the file is allowed to read it:
 
 ```sh
@@ -461,7 +460,7 @@ release like this (replace 2.31 with your preferred version if
 necessary):
 
 ```sh
-wget https://releases.dhis2.org/2.31/dhis.war
+wget https://releases.dhis2.org/2.33/dhis.war
 ```
 
 Alternatively, for patch releases, the folder structure is based on the patch
@@ -470,7 +469,7 @@ the DHIS2 version 2.31.1 WAR release like this (replace 2.31 with your
 preferred version, and 2.31.1 with you preferred patch, if necessary):
 
 ```
-wget https://releases.dhis2.org/2.31/2.31.1/dhis.war
+wget https://releases.dhis2.org/2.33/2.33.1/dhis.war
 ```
 
 Move the WAR file into the Tomcat webapps directory. We want to call the
@@ -537,31 +536,31 @@ server.base.url = https://play.dhis2.org/dev
 
 <!--DHIS2-SECTION-ID:install_file_store_configuration-->
 
-DHIS2 is capable of capturing and storing files. By default files will
-be stored on the file system of the server which runs DHIS2 in a *files*
-directory under the *DHIS2\_HOME* external directory location.
+DHIS2 is capable of capturing and storing files. By default, files will
+be stored on the local file system of the server which runs DHIS2 in a *files*
+directory under the *DHIS2\_HOME* external directory location. 
 
 You can also configure DHIS2 to store files on cloud-based storage
-providers. Currently, AWS S3 is the only supported provider. To enable
+providers. AWS S3 is the only supported provider currently. To enable
 cloud-based storage you must define the following addtional properties
 in your *dhis.conf* file:
 
 ```properties
 # File store provider. Currently 'filesystem' and 'aws-s3' are supported.
-filestore.provider = filesystem
+filestore.provider = 'aws-s3'
 
-# Directory in external directory on local file system and bucket on AWS S3.
+# Directory in external directory on local file system and bucket on AWS S3
 filestore.container = files
 
-# The following configuration is applicable only on non-filesystem providers (AWS S3)
+# The following configuration is applicable to cloud storage only (AWS S3)
 
-# Datacenter location. Not required but recommended for performance reasons.
+# Datacenter location. Optional but recommended for performance reasons.
 filestore.location = eu-west-1
 
-# Public identity / username
+# Username / Access key on AWS S3
 filestore.identity = xxxx
 
-# Secret password (sensitive)
+# Password / Secret key on AWS S3 (sensitive)
 filestore.secret = xxxx
 ```
 
@@ -587,10 +586,9 @@ implementation.
 
 > **Note**
 > 
-> AWS S3 is the only supported provider (starting from version 2.27) but
-> more providers are likely to be added, such as Google Cloud Store and
-> Rackspace Cloud Files. Let the developers know if you have inquiries
-> about adding support for more providers.
+> AWS S3 is the only supported provider but more providers are likely to 
+> be added in the future, such as Google Cloud Store and Azure Blob Storage.
+> Let us know if you have a use case for additional providers.
 
 ## Google service account configuration
 
