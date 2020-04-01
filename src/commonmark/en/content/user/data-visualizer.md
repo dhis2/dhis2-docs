@@ -409,6 +409,12 @@ Saving your visualization makes it easy to find them later. You can also choose 
 
 2.  Click **Delete**.
 
+### Get the link to the visualization
+
+1. Click **File** \> **Get Link**.
+
+2. The URL can be copied via the browser's context menu that opens when right clicking on the link.
+
 ![](resources/images/data-visualizer/data-visualizer-delete-dialog.png)
 
 ## Visualization interpretations
