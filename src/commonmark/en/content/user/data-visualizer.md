@@ -507,12 +507,12 @@ into statistical packages.
 <tr class="odd">
 <td><p>XML data value set</p></td>
 <td><p>Click <strong>Advanced > XML</strong></p></td>
-<td><p>TODO: NEEDS INFO</p></td>
+<td><p>Downloads the raw data values as XML, as opposed to data which has been aggregated along various dimensions.</p></td>
 </tr>
 <tr class="even">
 <td><p>JSON data value set</p></td>
 <td><p>Click <strong>Advanced > JSON</strong></p></td>
-<td><p>TODO: NEEDS INFO</p></td>
+<td><p>Downloads the raw data values as JSON, as opposed to data which has been aggregated along various dimensions.</p></td>
 </tr>
 <tr class="odd">
 <td><p>JRXML</p></td>
