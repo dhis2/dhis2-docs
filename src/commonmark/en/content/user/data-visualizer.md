@@ -357,6 +357,13 @@ The <em>Custom</em> option allows to type a custom title.</p></td>
 </tbody>
 </table>
 
+## Adding Assigned Categories
+
+TODO: Two sentences about "what is AC"?
+Assigned Categories can be added by either using the **Assigned Categories** dimension from the dimension menu or by accessing the **Add Assigned Categories** option from the `Data` dimension's context menu (not available for `Gauge`, `Year over year` or `Single value`).
+
+![](resources/images/data-visualizer/data-visualizer-axis-management-menu-option.png)
+
 ## Adding more axes
 
 When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` and `Line` you can do so by clicking **Manage chart axes** in the `Data` dimension's context menu. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
