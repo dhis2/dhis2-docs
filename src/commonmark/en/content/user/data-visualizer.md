@@ -242,11 +242,9 @@ This is useful for example when you create Column and Bar visualizations.</p></t
 </tr>
 <tr>
 <td><p>Display legend</p></td>
-<td><p>Applies a legend to the values. This means that you can apply a colour to the values.
-Select <em>By data item</em> to color a data point individually according to each data element or indicator.
-You configure legends in the <em>Maintenance app</em>.
-The <em>Legend style</em> section allows to control where the color is applied, the text or background based on the selected legend.
-You can use this option for scorecards to identify high and low values at a glance.</p></td>
+<td><p>Applies a legend to the values. This means that you can apply a color to the values. You configure legends in the <em>Maintenance app</em>.</p>
+<p>The <em>Legend type</em> section allows to control which color is applied. Select <em>Use pre-defined legend per data item</em> to color a data point individually according to each data element or indicator. Select <em>Select a single legend for entire visualization</em> to use a single legend, chosen in a drop-down list of available legends.</p>
+<p>The <em>Legend style</em> section allows to control where the color is applied, the text or background based on the selected legend. You can use this option for scorecards to identify high and low values at a glance. Not applicable for <em>Single Value</em> visualizations.</p></td>
 </tr>
 <tr>
 <td><p>Limit minimum/maximum values</p></td>
