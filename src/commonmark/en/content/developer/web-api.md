@@ -14760,14 +14760,19 @@ the attribute in the response without any constraints. Attributes will
 be included in the response, while filters will only be used as
 criteria.
 
-Certain rules apply to which attributes are defined when no attributes
-are specified in the request:
+Note that you can specify "attribute" with filters or directly using the "filter" params for constraining the
+instances to return.
 
-  - If not specifying a program, the attributes defined to be displayed
-    in lists with no program will be included in the response.
+Certain rules apply to which attributes are returned.
 
-  - If specifying a program, the attributes linked to the program will
+  - If "query" is specified without any attributes or program, then all attributes that 
+    are marked as "Display in List without Program" is included in the response.
+
+  - If program is specified,  all the attributes linked to the program will
     be included in the response.
+
+  - If tracked entity type is specified, then all tracked entity type attributes 
+    will be included in the response.
 
 You can specify queries with words separated by space - in that
 situation the system will query for each word independently and return
