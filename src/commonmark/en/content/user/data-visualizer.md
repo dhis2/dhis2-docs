@@ -359,8 +359,7 @@ The <em>Custom</em> option allows to type a custom title.</p></td>
 
 ## Adding Assigned Categories
 
-TODO: Two sentences about "what is AC"?
-Assigned Categories can be added by either using the **Assigned Categories** dimension from the dimension menu or by accessing the **Add Assigned Categories** option from the `Data` dimension's context menu (not available for `Gauge`, `Year over year` or `Single value`).
+Assigned Categories is a composite dimension that represents associated category option combinations to the selected data element's category combination. This can be added by either using the **Assigned Categories** dimension from the dimension menu or by accessing the **Add Assigned Categories** option from the `Data` dimension's context menu (not available for `Gauge`, `Year over year` or `Single value`).
 
 ![](resources/images/data-visualizer/data-visualizer-axis-management-menu-option.png)
 
