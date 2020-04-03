@@ -147,7 +147,20 @@ When selecting a Period you have to option to choose between fixed periods and r
 
 #### Select organisation units
 
-TODO: NEEDS INFO
+The organisation units dialog is flexible in order to make selection easy for you. There are essentially three ways of selecting organisation units:
+
+- Explicit selection: Use the **tree** to explicitly select the organisation units you want to appear in the visualization. If you right-click on an organisation unit you can easily choose to select all org units below it.
+
+- Levels and groups: The **Level** and **Group** dropdowns are a convenient way to select all units in one or more org unit groups or at specific levels. Example: select *Chiefdom* (level 3) to get all org units at that level.
+
+  Please note that as soon as at least one level or group has been selected the org unit tree now acts as the boundary for the levels/groups. Example: if you select *Chiefdom* (level 3) and *Kailahun* org unit (at level 2) in the tree you get all chiefdom units inside Kailahun district.
+
+- The user's organisation units:
+  - User organisation unit: This is a way to dynamically select the org units which the logged in user is associated to.
+
+  - User sub-units: Selects the sub-units of the user organisation unit.
+
+  - User sub-x2-units: Selects the units two levels below the user organisation unit.
 
 ![](resources/images/data-visualizer/data-visualizer-organisation-unit-dimension-modal.png)
 
