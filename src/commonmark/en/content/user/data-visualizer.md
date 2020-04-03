@@ -165,7 +165,7 @@ The display of a visualization can be changed by enabling/disabling and configur
 
 ### List of available options
 
-<table>
+<table border="1">
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 80%" />
@@ -177,6 +177,9 @@ The display of a visualization can be changed by enabling/disabling and configur
 </tr>
 </thead>
 <tbody>
+<tr>
+<td colspan="2" align="center">Data tab</td>
+</tr>
 <tr>
 <td><p>Aggregation type</p></td>
 <td><p>Defines how the data elements or indicators will be aggregated within the visualization. Some of the aggregation types are <em>By data element</em>, <em>Count</em>, <em>Min</em> and <em>Max</em>.</p></td>
@@ -195,33 +198,16 @@ If you only select one dimension, sub-totals will be hidden for those columns. T
 <td><p>Displays total values in a Pivot table for each column, as well as a total for all values in the table.</p></td>
 </tr>
 <tr>
-<td><p>Only include completed events</p></td>
-<td><p>Includes only completed events in the aggregation process. This is useful for example to exclude partial events in indicator calculations.</p></td>
-</tr>
-<tr>
-<td><p>Cumulative</p></td>
-<td><p>Includes a column with cumulative values to a Pivot table.</p></td>
-</tr>
-<tr>
 <td><p>Cumulative values</p></td>
 <td><p>Displays cumulative values in Column, Stacked column, Bar, Stacked bar, Line and Area visualizations</p></td>
 </tr>
 <tr>
-<td><p>Digit group separator</p></td>
-<td><p>Controls which character to separate groups of digits or "thousands". You can set it to <em>Comma</em>, <em>Space</em> or <em>None</em>.</p></td>
+<td><p>Custom sort order</p></td>
+<td><p>Controls the sort order of the values.</p></td>
 </tr>
 <tr>
-<td><p>Display density</p></td>
-<td><p>Controls the size of the cells in a Pivot table. You can set it to <em>Comfortable</em>, <em>Normal</em> or <em>Compact</em>.
-<em>Compact</em> is useful when you want to fit large tables into the browser screen.</p></td>
-</tr>
-<tr>
-<td><p>Font size</p></td>
-<td><p>Controls the size of a Pivot table text font. You can set it to <em>Large</em>, <em>Normal</em> or <em>Small</em>.</p></td>
-</tr>
-<tr>
-<td><p>Hide empty columns</p></td>
-<td><p>Hides empty columns from a Pivot table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
+<td><p>Dimension labels</p></td>
+<td><p>Shows the dimension names as part of a Pivot table.</p></td>
 </tr>
 <tr>
 <td><p>Hide empty categories</p></td>
@@ -233,28 +219,12 @@ If you only select one dimension, sub-totals will be hidden for those columns. T
 This is useful for example when you create Column and Bar visualizations.</p></td>
 </tr>
 <tr>
+<td><p>Hide empty columns</p></td>
+<td><p>Hides empty columns from a Pivot table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
+</tr>
+<tr>
 <td><p>Hide empty rows</p></td>
 <td><p>Hides empty rows from a Pivot table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
-</tr>
-<tr>
-<td><p>Legend key</p></td>
-<td><p>Toggles the legend on and off leaving more room for the visualization itself.</p></td>
-</tr>
-<tr>
-<td><p>Display legend</p></td>
-<td><p>Applies a legend to the values. This means that you can apply a color to the values. You configure legends in the <em>Maintenance app</em>.</p>
-<p>The <em>Legend type</em> section allows to control which color is applied. Select <em>Use pre-defined legend per data item</em> to color a data point individually according to each data element or indicator. Select <em>Select a single legend for entire visualization</em> to use a single legend, chosen in a drop-down list of available legends.</p>
-<p>The <em>Legend style</em> section allows to control where the color is applied, the text or background based on the selected legend. You can use this option for scorecards to identify high and low values at a glance. Not applicable for <em>Single Value</em> visualizations.</p></td>
-</tr>
-<tr>
-<td><p>Limit minimum/maximum values</p></td>
-<td><p>Allows for the data to be filtered on the server side.
-You can instruct the system to return only records where the aggregated data value is equal, greater than, greater or equal, less than or less or equal to certain values.
-If both parts of the filter are used, it's possible to filter out a range of data records.</p></td>
-</tr>
-<tr>
-<td><p>No space between bars/columns</p></td>
-<td><p>Removes the space between the columns or bars in the visualization. Useful for displaying the visualization as an EPI curve.</p></td>
 </tr>
 <tr>
 <td><p>Number type</p></td>
@@ -262,44 +232,8 @@ If both parts of the filter are used, it's possible to filter out a range of dat
 The options <code>Percentage of row</code> and <code>Percentage of column</code> mean that you'll display values as percentages of row total or percentage of column total instead of the aggregated value. This is useful when you want to see the contribution of data elements, categories or organisation units to the total value.</p></td>
 </tr>
 <tr>
-<td><p>Organisation unit</p></td>
-<td><p>Controls whether to ask user to enter an organisation unit when creating a standard report in Reports app.</p></td>
-</tr>
-<tr>
-<td><p>Parent organisation unit</p></td>
-<td><p>Controls whether to ask user to enter a parent organisation unit when creating a standard report in Reports app.</p></td>
-</tr>
-<tr>
-<td><p>Reporting period</p></td>
-<td><p>Controls whether to ask user to enter a report period when creating a standard report in Reports app.</p></td>
-</tr>
-<tr>
-<td><p>Stacked values add up to 100%</p></td>
-<td><p>Displays 100 % stacked values in Stacked column and Stacked bar visualizations.</p></td>
-</tr>
-<tr>
-<td><p>Decimals</p></td>
-<td><p>Defines the number of decimals which will be used for range axis values.</p></td>
-</tr>
-<tr>
-<td><p>Axis title</p></td>
-<td><p>Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.</p></td>
-</tr>
-<tr>
-<td><p>Axis range</p></td>
-<td><p>Defines the maximum and minimum value which will be visible on the range axis.</p></td>
-</tr>
-<tr>
-<td><p>Steps</p></td>
-<td><p>Defines the number of ticks which will be visible on the range axis.</p></td>
-</tr>
-<tr>
-<td><p>Include regression</p></td>
-<td><p>Includes a column with regression values to a Pivot table.</p></td>
-</tr>
-<tr>
-<td><p>Trend line</p></td>
-<td><p>Displays the trend line which visualizes how your data evolves over time. For example if performance is improving or deteriorating. Useful when periods are selected as category.</p></td>
+<td><p>Only include completed events</p></td>
+<td><p>Includes only completed events in the aggregation process. This is useful for example to exclude partial events in indicator calculations.</p></td>
 </tr>
 <tr>
 <td><p>Row sub-totals</p></td>
@@ -311,33 +245,76 @@ If you only select one dimension, sub-totals will be hidden for those rows. This
 <td><p>Displays total values in a Pivot table for each row, as well as a total for all values in the table.</p></td>
 </tr>
 <tr>
+<td><p>Skip rounding</p></td>
+<td><p>Skips the rounding of data values, offering the full precision of data values. Can be useful for finance data where the full dollar amount is required.</p></td>
+</tr>
+<tr>
+<td><p>Stacked values add up to 100%</p></td>
+<td><p>Displays 100 % stacked values in Stacked column and Stacked bar visualizations.</p></td>
+</tr>
+<tr>
+<td><p>Target line</p></td>
+<td><p>Displays a horizontal line at the given domain value. Useful for example when you want to compare your performance to the current target.</p></td>
+</tr>
+<tr>
+<td><p>Trend line</p></td>
+<td><p>Displays the trend line which visualizes how your data evolves over time. For example if performance is improving or deteriorating. Useful when periods are selected as category.</p></td>
+</tr>
+<tr>
 <td><p>Value labels</p></td>
 <td><p>Shows the values above the series in the visualization.</p></td>
 </tr>
+
 <tr>
-<td><p>Dimension labels</p></td>
-<td><p>Shows the dimension names as part of a Pivot table.</p></td>
+<td colspan="2" align="center">Axes tab</td>
+</tr>
+<tr>
+<td><p>Axis range</p></td>
+<td><p>Defines the maximum and minimum value which will be visible on the range axis.</p></td>
+</tr>
+<tr>
+<td><p>Axis title</p></td>
+<td><p>Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.</p></td>
+</tr>
+<tr>
+<td><p>Decimals</p></td>
+<td><p>Defines the number of decimals which will be used for range axis values.</p></td>
+</tr>
+<tr>
+<td><p>Steps</p></td>
+<td><p>Defines the number of ticks which will be visible on the range axis.</p></td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">Legend tab</td>
+</tr>
+<tr>
+<td><p>Display legend</p></td>
+<td><p>Applies a legend to the values. This means that you can apply a color to the values. You configure legends in the <em>Maintenance app</em>.</p>
+<p>The <em>Legend type</em> section allows to control which color is applied. Select <em>Use pre-defined legend per data item</em> to color a data point individually according to each data element or indicator. Select <em>Select a single legend for entire visualization</em> to use a single legend, chosen in a drop-down list of available legends.</p>
+<p>The <em>Legend style</em> section allows to control where the color is applied, the text or background based on the selected legend. You can use this option for scorecards to identify high and low values at a glance. Not applicable for <em>Single Value</em> visualizations.</p></td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">Style tab</td>
+</tr>
+<tr>
+<td><p>Digit group separator</p></td>
+<td><p>Controls which character to separate groups of digits or "thousands". You can set it to <em>Comma</em>, <em>Space</em> or <em>None</em>.</p></td>
+</tr>
+<tr>
+<td><p>Display density</p></td>
+<td><p>Controls the size of the cells in a Pivot table. You can set it to <em>Comfortable</em>, <em>Normal</em> or <em>Compact</em>.
+<em>Compact</em> is useful when you want to fit large tables into the browser screen.</p></td>
 </tr>
 <tr>
 <td><p>Display organisation unit hierarchy</p></td>
 <td><p>Shows the name of all ancestors for organisation units, for example <em>"Sierra Leone / Bombali / Tamabaka / Sanya CHP"</em> for <em>"Sanya CHP"</em>.
 The organisation units are then sorted alphabetically which will order the organisation units according to the hierarchy.
 When you download a pivot table with organisation units as rows and you've selected <em>Display organisation unit hierarchy</em>, each organisation unit level is rendered as a separate column. This is useful for example when you create Excel pivot tables on a local computer.</p></td>
-</tr>
-<tr>
-<td><p>Skip rounding</p></td>
-<td><p>Skips the rounding of data values, offering the full precision of data values. Can be useful for finance data where the full dollar amount is required.</p></td>
-</tr>
-<tr>
-<td><p>Custom sort order</p></td>
-<td><p>Controls the sort order of the values.</p></td>
-</tr>
-<tr>
-<td><p>Chart/Table subtitle</p></td>
-<td><p>Controls the subtitle that appears above the visualization.
-<em>Auto generated</em> uses the default subtitle generated from the visualization's dimensions/filters.
-<em>None</em> removes the subtitle.
-The <em>Custom</em> option allows to type a custom subtitle.</p></td>
+</tr><tr>
+<td><p>Font size</p></td>
+<td><p>Controls the size of a Pivot table text font. You can set it to <em>Large</em>, <em>Normal</em> or <em>Small</em>.</p></td>
 </tr>
 <tr>
 <td><p>Chart/Table title</p></td>
@@ -347,8 +324,67 @@ The <em>Custom</em> option allows to type a custom subtitle.</p></td>
 The <em>Custom</em> option allows to type a custom title.</p></td>
 </tr>
 <tr>
-<td><p>Target line</p></td>
-<td><p>Displays a horizontal line at the given domain value. Useful for example when you want to compare your performance to the current target.</p></td>
+<td><p>Chart/Table subtitle</p></td>
+<td><p>Controls the subtitle that appears above the visualization.
+<em>Auto generated</em> uses the default subtitle generated from the visualization's dimensions/filters.
+<em>None</em> removes the subtitle.
+The <em>Custom</em> option allows to type a custom subtitle.</p></td>
+</tr>
+<tr>
+<td><p>Legend key</p></td>
+<td><p>Toggles the legend on and off leaving more room for the visualization itself.</p></td>
+</tr>
+<tr>
+<td><p>No space between bars/columns</p></td>
+<td><p>Removes the space between the columns or bars in the visualization. Useful for displaying the visualization as an EPI curve.</p></td>
+</tr>
+<tr>
+<td><p>Value labels</p></td>
+<td><p>Shows the values above the series in the visualization.</p></td>
+</tr>
+<tr>
+<td><p>Chart/Table title</p></td>
+<td><p>Controls the title that appears above the visualization.
+<em>Auto generated</em> uses the default title generated from the visualization's dimensions/filters.
+<em>None</em> removes the title.
+The <em>Custom</em> option allows to type a custom title.</p></td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">Limit values tab</td>
+</tr>
+<tr>
+<td><p>Limit minimum/maximum values</p></td>
+<td><p>Allows for the data to be filtered on the server side.
+You can instruct the system to return only records where the aggregated data value is equal, greater than, greater or equal, less than or less or equal to certain values.
+If both parts of the filter are used, it's possible to filter out a range of data records.</p></td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">Parameters tab</td>
+</tr>
+<tr>
+<td><p>Custom sort order</p></td>
+<td><p>Controls the sort order of the values.</p></td>
+</tr>
+<tr>
+<td><p>Include cumulative</p></td>
+<td><p>Includes a column with cumulative values to a Pivot table.</p></td>
+</tr>
+<tr>
+<td><p>Include regression</p></td>
+<td><p>Includes a column with regression values to a Pivot table.</p></td>
+</tr><tr>
+<td><p>Organisation unit</p></td>
+<td><p>Controls whether to ask user to enter an organisation unit when creating a standard report in Reports app.</p></td>
+</tr>
+<tr>
+<td><p>Parent organisation unit</p></td>
+<td><p>Controls whether to ask user to enter a parent organisation unit when creating a standard report in Reports app.</p></td>
+</tr>
+<tr>
+<td><p>Reporting period</p></td>
+<td><p>Controls whether to ask user to enter a report period when creating a standard report in Reports app.</p></td>
 </tr>
 <tr>
 <td><p>Top limit</p></td>
