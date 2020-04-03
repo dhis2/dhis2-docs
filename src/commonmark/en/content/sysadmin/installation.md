@@ -388,7 +388,9 @@ chmod 0600 dhis.conf
 
 <!--DHIS2-SECTION-ID:install_java_installation-->
 
-The recommended Java JDK for DHIS 2 is OpenJDK 8. You can issue the following command to install OpenJDK 8:
+The recommended Java JDK for DHIS 2 is OpenJDK 8. OpenJDK is licensed under 
+the GPL license and can be run free of charge. You can install it with the
+following command:
 
 ```
 sudo apt-get install openjdk-8-jdk
@@ -700,42 +702,6 @@ is not suitable or cannot for some reason be used as a DHIS2 username.
 
 DHIS2 allows for encryption of data. This however requires some extra
 setup.
-
-### Java Cryptography Extension
-
-<!--DHIS2-SECTION-ID:install_java_cryptography_extension-->
-
-DHIS2 uses an encryption algorithm classified as strong and therefore
-requires the *Java Cryptography Extension (JCE) Unlimited Strength
-Jurisdiction Policy Files* to be installed. These files can be installed
-through these steps:
-
-1.  Download the JCE Unlimited Strength Jurisdiction Policy Files for
-    your java version of Java from the Oracle Web site. Scroll down to
-    the "Java Cryptography Extension (JCE) Unlimited Strength
-    Jurisdiction Policy Files" section. It is important that the version
-    of the files match the version of Java on your
-    server.
-    
-    [http://www.oracle.com/technetwork/java/javase/downloads/index.html](http://www.oracle.com/technetwork/java/javase/downloads/index.htm)
-
-2.  Extract the downloaded ZIP archive. It contains two JAR files:
-    *local\_policy.jar* and *US\_export\_policy.jar*.
-
-3.  Locate the JDK directory of your Java installation. From there,
-    navigate into the *jre/security* directory. On Ubuntu it is often
-    found at */usr/lib/jvm/java-8-oracle/jre/lib/security*.
-
-4.  (Optional) Back up your existing *local\_policy.jar* and
-    *US\_export\_policy.jar* in case you want to revert to them later.
-
-5.  Copy the *local\_policy.jar* and *US\_export\_policy.jar* files into
-    the security folder. You should now have the following files which
-    completes the installation. Remember to restart your servlet
-    container for it to take effect.
-    
-        /usr/lib/jvm/java-8-oracle/jre/lib/security/local_policy.jar
-        /usr/lib/jvm/java-8-oracle/jre/lib/security/US_export_policy.jar
 
 ### Password configuration
 
@@ -1461,123 +1427,6 @@ server {
 }
 ```
 
-### Basic reverse proxy setup with Apache
-
-<!--DHIS2-SECTION-ID:install_basic_reverse_proxy_setup_with_apache-->
-
-The Apache HTTP server is a popular HTTP server. Depending on your exact 
-nature of deployment, you may need to use Apache as a reverse proxy for 
-your DHIS2 server. In this section, we will describe how to implement a 
-simple reverse proxy setup with Apache.
-
-> **Important**
-> 
-> Using nginx is the preferred option as reverse proxy with DHIS2 and
-> you should not attempt to install both nginx and Apache on the same
-> server. If you have installed nginx please ignore this section.
-
-First we need to install a few necessary programs modules for Apache and
-enable the modules.
-
-    sudo apt-get install apache2 libapache2-mod-proxy-html libapache2-mod-jk
-    a2enmod proxy proxy_ajp proxy_connect
-
-Lets define an AJP connector which Apache HTTP server will use to
-connect to Tomcat with. The Tomcat `server.xml` file should be located
-in the /conf/ director of your Tomcat installation. Be sure this line is
-uncommented.You can set the port to anything you like which is unused.
-
-```xml
-<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
-```
-
-Now, we need to make the adjustments to the Apache HTTP server which
-will answer requests on port 80 and pass them to the Tomcat server
-through an AJP connector. Edit the file
-`/etc/apache2/mods-enabled/proxy.conf` so that it looks like the example
-below. Be sure that the port defined in the configuration file matches
-the one from Tomcat.
-
-```apache_conf
-<IfModule mod_proxy.c>
-
-ProxyRequests Off
-ProxyPass /dhis  ajp://localhost:8009/dhis
-ProxyPassReverse /dhis  ajp://localhost:8009/dhis
-
-<Location "/dhis">
-  Order allow,deny
-  Allow from all
-</Location>     
-</IfModule>
-```
-
-You now can restart Tomcat and the Apache HTTPD server and your DHIS2
-instance should be available on http://*myserver*/dhis where *myserver*
-is the hostname of your server.
-
-### SSL encryption with Apache
-
-<!--DHIS2-SECTION-ID:install_ssl_encryption_with_apache-->
-
-Using Apache and the reverse proxy setup described in the previous
-section, we can easily implement encrypted transfer of data between
-clients and the server over HTTPS. This section will describe how to use
-self-signed certificates, although the same procedure could be used if
-you have fully-signed certificates as well.
-
-First (as root), generate the necessary private key files and CSR
-(Certificate Signing Request)
-
-    mkdir /etc/apache2/ssl
-    cd /etc/apache2/ssl
-    openssl genrsa -des3 -out server.key 1024
-    openssl req -new -key server.key -out server.csr
-
-We need to remove the password from the key, otherwise Apache will not
-be able to use it.
-
-    cp server.key server.key.org
-    openssl rsa -in server.key.org -out server.key
-
-Next, generate a self-signed certificate which will be valid for one
-year.
-
-    openssl x509 -req -days 365 -in server.csr -signkey \ server.key -out server.crt
-
-Now, lets configure Apache by enabling the SSL modules and creating a
-default site.
-
-    a2enmod ssl
-    a2ensite default-ssl
-
-Now, we need to edit the default-ssl (located at
-`/etc/apache2/sites-enabled/default-ssl`) file in order to enable the
-SSL transfer functionality of Apache.
-
-```apache_conf
-<VirtualHost *:443>
-	ServerAdmin wemaster@mydomain.org
-	SSLEngine On
-	SSLCertificateFile /etc/apache2/ssl/server.crt
-	SSLCertificateKeyFile /etc/apache2/ssl/server.key
-	...
-```
-
-Be sure that the \*:80 section of this file is changed to port \*:443,
-which is the default SSL port. Also, be sure to change the ServerAdmin
-to the webmaster's email. Lastly, we need to be sure that the hostname
-is setup properly in /etc/hosts. Just under the "localhost" line, be
-sure to add the server's IP address and domain name.
-
-    127.0.0.1 localhost
-    XXX.XX.XXX.XXX foo.mydomain.org
-
-Now, just restart Apache and you should be able to view
-https://foo.mydomain.org/dhis.
-
-    /etc/init.d/apache2 restart
-
 ## DHIS2 configuration reference
 
 <!--DHIS2-SECTION-ID:install_dhis2_configuration_reference-->
@@ -1612,7 +1461,7 @@ connection.password = xxxx
 connection.schema = update
 
 # Max size of connection pool (default: 40)
-# connection.pool.max_size = 40
+connection.pool.max_size = 40
 
 # ----------------------------------------------------------------------
 # Server [Mandatory]
@@ -1776,34 +1625,3 @@ to gunzip the copy if you created a compressed version. You can the
 invoke:
 
     psql -d dhis2 -U dhis -f dhis2.sql
-
-## DHIS2 Live setup
-
-<!--DHIS2-SECTION-ID:install_dhis2_live_setup-->
-
-The DHIS2 Live package is extremely convenient to install and run. It is
-intended for demonstrations, for users who want to explore the system
-and for small, offline installations typically at districts or
-facilities. It only requires a Java Runtime Environment and runs on all
-browsers except Internet Explorer 7 and lower.
-
-To install start by downloading DHIS2 Live from *http://dhis2.org* and
-extract the archive to any location. On Windows click the executable
-archive. On Linux invoke the startup.sh script. After the startup
-process is done your default web browser will automtically be pointed to
-*http://localhost:8082* where the application is accessible. A system
-tray menu is accessible on most operating systems where you can start
-and stop the server and start new browser sesssions. Please note that if
-you have the server running there is no need to start it again, simply
-open the application from the tray menu.
-
-DHIS2 Live is running on an embedded Jetty servlet container and an
-embedded H2 database. However it can easily be configured to run on
-other database systems such as PostgreSQL. Please read the section above
-about server installations for an explanation of the database
-configuration. The *dhis.conf* configuration file is located in the
-*conf* folder. Remember to restart the Live package for your changes to
-take effect. The server port is 8082 by default. This can be changed by
-modifying the value in the *jetty.port* configuration file located in the
-*conf* directory.
-
