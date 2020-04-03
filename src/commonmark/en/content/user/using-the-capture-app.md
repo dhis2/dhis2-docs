@@ -87,7 +87,7 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
   You have the option to select a **program**. If a **program** is selected the attributes are derived from the selected **program**.
   If no **program** is selected, only the attributes that belong to the **Tracked Entity Instance** will be visible.
 
-  ![search for Tracked Entity Instance](resources/images/capture_app/search_tei.png)
+    ![search for Tracked Entity Instance](resources/images/capture_app/search_tei.png)
 
     - If the **Tracked Entity Instance** or **program** is configured with a unique attribute, this attribute can be
       used for finding a specific **Tracked Entity Instance** or **program**. This attribute should be presented alone.
@@ -160,7 +160,7 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 
     ![delete event](resources/images/capture_app/delete_event.png)
 
-## Modify an event lists layout
+## Modify an event list layout
 
 <!--DHIS2-SECTION-ID:capture_modify_event_list_layout-->
 
@@ -244,25 +244,91 @@ assigned to a program stage.
 
 > Note: You can download an event list in JSON, XML or CSV formats.
 
-## Working lists
+## Predefined list views
 
-<!--DHIS2-SECTION-ID:capture_working_lists-->
+<!--DHIS2-SECTION-ID:capture_views-->
 
-Working lists are list templates with predefined filters, columns and event sort order.
+You can set up your own views and save them for later use. The views can also be shared with others. A view consists of filters, column order and event sort order.
 
-### View working list
+### Saving a new view
 
-1. Select an organisation unit.
+<!--DHIS2-SECTION-ID:capture_view_save-->
 
-2. Select a program that has a working list associated with it.
+1. Select an organisation unit and a program.
 
-3. The working list templates should be available above the event list itself.
+2. Set filters using the filter buttons above the event list (described in detail [here](#capture_filter_event_list)).
 
-   ![](resources/images/capture_app/working_lists_available.png)
+![](resources/images/capture_app/view_save_filters.png)
 
-4. Click on a working list template button to activate it.
+3. Set the column order by clicking the cog icon and then, in the popover, specify the layout according to your preference (how to modify the layout is described in detail [here](#capture_modify_event_list_layout)).
 
-    ![](resources/images/capture_app/working_list_active.png)
+![](resources/images/capture_app/view_save_column_order.png)
+
+4. Sort the events by clicking on one of the column headers (described in detail [here](#capture_sort_event_list)).
+
+![](resources/images/capture_app/view_save_sort_order.png)
+
+5. Open the more menu (three dots icon) to the right and then select "Save current view..."
+
+![](resources/images/capture_app/view_save_menu.png)
+
+6. Fill in a name for the view and click save.
+   
+![](resources/images/capture_app/view_save_name.png)
+
+### Loading a view
+
+<!--DHIS2-SECTION-ID:capture_view_load-->
+
+1. Select an organisation unit and a program with a predefined view.
+
+2. The views should be available above the event list itself. Click on a view to load it.
+
+![](resources/images/capture_app/view_load_unselected.png)
+
+3. An example of a loaded view.
+
+![](resources/images/capture_app/view_load_selected.png)
+
+### Updating a view
+
+<!--DHIS2-SECTION-ID:capture_view_update-->
+
+1. Load the view you would like to update (see [loading a view](#capture_view_load)).
+
+2. Make your changes to filters, column order and/or event sort order.
+
+> **Note**
+>
+> An asterisk(*) is appended to the view name when the view has unsaved changes.
+
+3. Open the more menu (three dots icon) to the right and then select "Update view".
+
+![](resources/images/capture_app/view_update.png)
+
+### Sharing a view
+
+<!--DHIS2-SECTION-ID:capture_view_share-->
+
+1. Load the view you would like to share (see [loading a view](#capture_view_load)).
+
+2. Open the more menu (three dot icon) to the right and then select "Share view..."
+   
+![](resources/images/capture_app/view_share.png)
+
+3. Make your changes. You would typically add users/groups (1) and/or change the access rights of users/groups added earlier (2).
+
+![](resources/images/capture_app/view_share_access.png)
+
+### Deleting a view
+
+<!--DHIS2-SECTION-ID:capture_view_delete-->
+
+1. Load the view you would like to delete (see [loading a view](#capture_view_load)).
+
+2. Open the more menu (three dots icon) to the right and then select "Delete view".
+   
+![](resources/images/capture_app/view_delete.png)
 
 ## User assignment
 

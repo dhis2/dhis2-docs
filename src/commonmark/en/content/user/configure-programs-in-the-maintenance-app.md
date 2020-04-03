@@ -2880,9 +2880,7 @@ objects:
         <tr class="odd">
         <td><p><strong>Send Message</strong></p></td>
         <td><p><strong>Message template to send</strong></p></td>
-        <td><p>Send Message triggers a notification based on provided message template. This action will be taken when ever there is a change in <strong>data value</strong>. However this behaviour can be controlled by providing event/enrollment status in program rule expression for example.</p>
-        <pre><code>V{event_status} == &#39;COMPLETED&#39;</code></pre>
-        <p>Message template will be parsed and variables will be substituted with actual values.</p></td>
+        <td><p>Send Message triggers a notification based on provided message template. This action will be taken immediately. The message template will be parsed and variables will be substituted with actual values.</p></td>
         </tr>
         <tr class="even">
         <td><p><strong>Schedule Message</strong></p></td>
