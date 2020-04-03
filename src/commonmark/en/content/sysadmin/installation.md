@@ -388,7 +388,9 @@ chmod 0600 dhis.conf
 
 <!--DHIS2-SECTION-ID:install_java_installation-->
 
-The recommended Java JDK for DHIS 2 is OpenJDK 8. You can issue the following command to install OpenJDK 8:
+The recommended Java JDK for DHIS 2 is OpenJDK 8. OpenJDK is licensed under 
+the GPL license and can be run free of charge. You can install it with the
+following command:
 
 ```
 sudo apt-get install openjdk-8-jdk
