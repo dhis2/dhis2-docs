@@ -14778,7 +14778,7 @@ One particular command can be deleted using DELETE.
 
     DELETE /api/smsCommands/uid
 
-#### SMS command parser types
+#### SMS command types
 
   - KEY_VALUE_PARSER
 
@@ -14793,6 +14793,22 @@ One particular command can be deleted using DELETE.
   - PROGRAM_STAGE_DATAENTRY_PARSER
 
   - EVENT_REGISTRATION_PARSER
+
+#### SMS command types for Android
+
+These command types can be used by Android app for data submission through SMS when internet is unavailable.
+
+  - AGGREGATE_DATASET
+
+  - ENROLLMENT
+
+  - TRACKER_EVENT
+
+  - SIMPLE_EVENT
+
+  - RELATIONSHIP
+
+  - DELETE
 
 ## Program Messages
 
