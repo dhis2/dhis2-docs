@@ -9,7 +9,7 @@ so on) contained in a zip file. It can be uploaded to a DHIS2
 installation directly through the user interface at runtime. A packaged
 app is a ZIP file with an [app
 manifest](http://www.w3.org/2008/webapps/manifest/) in its root
-directory. The manifest must be named `manifest.webapp`. A throrough
+directory. The manifest must be named `manifest.webapp`. A thorough
 description of apps can be obtained
 [here](https://developer.mozilla.org/en-US/Apps/Quickstart).
 
@@ -72,7 +72,7 @@ Among the properties are:
   - The *icons→48* property is used for the icon that is displayed on
     the list of apps that are installed on a DHIS2 instance.
 
-  - The *activities* property is an dhis-specific extension meant to
+  - The *activities* property is a dhis-specific extension meant to
     differentiate between a standard Open Web App and an app that can be
     installed in DHIS2.
 
@@ -106,12 +106,12 @@ app tries to reserve a namespace already in use, the installation of the
 other app will fail.
 
 If you have a collection of apps that want to share the same namespace,
-but also wish to reserve it, the users of the apps needs to have the
+but also wish to reserve it, the users of the apps need to have the
 authority to use the app that initially reserved the namespace.
 
 > **Note**
 > 
-> Namespaces will not be created until atleast one key-value pair is
+> Namespaces will not be created until at least one key-value pair is
 > present in the namespace. Specifying a namespace in the manifest only
 > restricts the access and does not create any data in the namespace.
 
@@ -175,7 +175,7 @@ like this:
 > **Note**
 > 
 > It is only the `manifest.webapp` file which must be placed in the
-> root. It is up the developer to organize CSS, images and JavaScript
+> root. It is up to the developer to organize CSS, images and JavaScript
 > files inside the app as needed.
 
 All the files in the project should be compressed into a standard zip
