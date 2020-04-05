@@ -1344,25 +1344,6 @@ The various elements of the configuration can be described as:
 
 For a full explanation please consult the [nginx documentation](https://www.nginx.com/blog/rate-limiting-nginx/).
 
-### Additional resources on SSL
-
-<!--DHIS2-SECTION-ID:install_additional_resources_ssl-->
-
-The configuration demonstrated above should be regarded as the absolute
-minumum in order to establish a secure server. However, encryption
-methods are constantly being updated, so implementers who are
-administerting their own server, show ensure that the server is
-regularly updated with recent security patches (particularly the HTTP
-server and SSL libraries).
-
-There are numerous additional tutorials and information available on the
-web, including a helpful [step-by-step
-guide](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04)
-for using the free [Lets Encrypt SSL certifcate
-system](https://letsencrypt.org/) . It may also be useful to regularly
-test your SSL security with [this
-website](https://www.ssllabs.com/ssltest/).
-
 ### Making resources available with nginx
 
 <!--DHIS2-SECTION-ID:install_making_resources_available_with_nginx-->
