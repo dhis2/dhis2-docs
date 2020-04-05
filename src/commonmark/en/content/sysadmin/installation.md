@@ -526,14 +526,6 @@ DHIS2 instance at the following URL:
 
     http://localhost:8080
 
-## Base URL configuration
-
-To set the base URL of the DHIS2 instance, you can specify the following property in the `dhis.conf` configuration file. This URL should point to the location where end users can reach DHIS2 over the network.
-
-```properties
-server.base.url = https://play.dhis2.org/dev
-```
-
 ## File store configuration
 
 <!--DHIS2-SECTION-ID:install_file_store_configuration-->
@@ -701,13 +693,7 @@ is not suitable or cannot for some reason be used as a DHIS2 username.
 <!--DHIS2-SECTION-ID:install_encryption_configuration-->
 
 DHIS2 allows for encryption of data. This however requires some extra
-setup.
-
-### Password configuration
-
-<!--DHIS2-SECTION-ID:install_password_configuration-->
-
-To provide security to the encryption algorithm you will have to set a
+setup. To provide security to the encryption algorithm you will have to set a
 password in the *dhis.conf* configuration file through the
 *encryption.password* property:
 
@@ -724,7 +710,7 @@ The password must be at least **24 characters long**. A mix of numbers
 and lower- and uppercase letters are recommended. The encryption password 
 must be kept secret.
 
-> ** Important **
+> **Important**
 >
 > A word of caution: It is not possible to recover encrypted data if the
 > encryption password is lost or changed. If the password is lost, so is 
