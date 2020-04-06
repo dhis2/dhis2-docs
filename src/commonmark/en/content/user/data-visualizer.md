@@ -32,59 +32,82 @@ Select the desired visualization type from the selector in the upper left corner
 <tr class="odd">
 <td><p>Column</p></td>
 <td><p>Displays information as vertical rectangular columns with lengths proportional to the values they represent.</p>
-<p>Useful when you want to, for example, compare performance of different districts.</p></td>
+<p>Useful when you want to, for example, compare performance of different districts.</p>
+<p>
+Layout restrictions: exactly 1 dimension as series, exactly 1 dimension as category.
+</p>
+</td>
 </tr>
 <tr class="even">
 <td><p>Stacked column</p></td>
 <td><p>Displays information as vertical rectangular columns, where bars representing multiple categories are stacked on top of each other.</p>
-<p>Useful when you want to, for example, display trends or sums of related data elements.</p></td>
+<p>Useful when you want to, for example, display trends or sums of related data elements.</p>
+<p>
+Layout restrictions: same as <em>Column</em>.
+</p></td>
 </tr>
 <tr class="odd">
 <td><p>Bar</p></td>
-<td><p>Same as column, only with horizontal bars.</p></td>
+<td><p>Same as <em>Column</em>, only with horizontal bars.</p></td>
 </tr>
 <tr class="even">
 <td><p>Stacked bar</p></td>
-<td><p>Same as stacked column, only with horizontal bars.</p></td>
+<td><p>Same as <em>Stacked column</em>, only with horizontal bars.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Line</p></td>
 <td><p>Displays information as a series of points connected by straight lines. Also referred to as time series.</p>
-<p>Useful when you want to, for example, visualize trends in indicator data over multiple time periods.</p></td>
+<p>Useful when you want to, for example, visualize trends in indicator data over multiple time periods.</p><p>
+Layout restrictions: same as <em>Column</em>.
+</p></td>
 </tr>
 <tr class="even">
 <td><p>Area</p></td>
 <td><p>Is based on a line (above), with the space between the axis and the line filled with colors and the lines stacked on top of each other.</p>
-<p>Useful when you want to compare the trends of related indicators.</p></td>
+<p>Useful when you want to compare the trends of related indicators.</p><p>
+Layout restrictions: same as <em>Column</em>.
+</p></td>
 </tr>
 <tr class="odd">
 <td><p>Pie</p></td>
 <td><p>Circle divided into sectors (or slices).</p>
-<p>Useful when you want to, for example, visualize the proportion of data for individual data elements compared to the total sum of all data elements.</p></td>
+<p>Useful when you want to, for example, visualize the proportion of data for individual data elements compared to the total sum of all data elements.</p><p>
+Layout restrictions: exactly 1 dimension as series, has no category.
+</p></td>
 </tr>
 <tr class="even">
 <td><p>Radar</p></td>
-<td><p>Displays data on axes starting from the same point. Also known as spider chart.</p></td>
+<td><p>Displays data on axes starting from the same point. Also known as spider chart.</p><p>
+Layout restrictions: same as <em>Column</em>.
+</p></td>
 </tr>
 <tr class="odd">
 <td><p>Gauge</p></td>
-<td><p>Semi-circle which displays values out of 100 %.</p></td>
+<td><p>Semi-circle which displays a single value, typically out of 100% (start and end values are configurable).</p><p>
+Layout restrictions: exactly 1 dimension with exactly 1 item as series, <em>data</em> dimension is locked to series.
+</p></td>
 </tr>
 <tr class="even">
 <td><p>Year over year (line)</p></td>
-<td><p>TODO: NEEDS INFO </p></td>
+<td><p>Useful when you want to compare one year of data to other years of data. Based on calendar years.</p><p>
+Layout restrictions: <em>period</em> dimension is disabled.
+</p></td>
 </tr>
 <tr class="odd">
 <td><p>Year over year (column)</p></td>
-<td><p>TODO: NEEDS INFO </p></td>
+<td><p>Same as <em>Year over year (line)</em>, only with columns.</p></td>
 </tr>
 <tr class="even">
 <td><p>Single value</p></td>
-<td><p>TODO: NEEDS INFO </p></td>
+<td><p>Displays a single value in a dashboard friendly way.</p><p>
+Layout restrictions: same as <em>Gauge</em>.
+</p></td>
 </tr>
 <tr class="odd">
 <td><p>Pivot table</p></td>
-<td><p>TODO: NEEDS INFO </p></td>
+<td><p>Summarizes the data of a more extensive table and might include sums, averages, or other statistics, which the pivot table groups together in a meaningful way.</p><p>
+Layout restrictions: none.
+</p></td>
 </tr>
 </tbody>
 </table>
