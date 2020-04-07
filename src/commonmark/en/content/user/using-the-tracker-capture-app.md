@@ -711,9 +711,11 @@ automatically generated value.
 
 4.  Select a relationship type.
 
-5.  Search for the relative and select it.
+5.  Search for the relative and select it. The search follows the same pattern as when searching for tracked entity instances from the tracker front page. Searches are by default covering the users search scope.
 
-6.  Click **Save**.
+6.  Select the tracked entity instance that matches the search criteria in the popup.
+
+7.  Click **Save**.
 
 > Note: If the relationship is a bi-directional relationship, the relationship will be displayed in the TEI that the relationship
 > was created in and in the TEI that the relationship was linked to. Also, if the relationship is bi-directional, each end of the
