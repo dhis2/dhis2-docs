@@ -354,16 +354,16 @@ connection.password = xxxx
 # Server
 # ----------------------------------------------------------------------
 
-# Enable secure settings if system is deployed on HTTPS, default 'off'
+# Enable secure settings if deployed on HTTPS, default 'off', can be 'on'
 server.https = on
 
 # Server base URL
-server.base.url = http://server.com/
+server.base.url = https://server.com/
 ```
 
-It is strongly recommended to enable the *server.https* setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when enabled.
+It is strongly recommended to enable the *server.https* setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when this setting is enabled.
 
-The *server.base.url* setting refers to the URL which the system is accessed by end users on the network.
+The *server.base.url* setting refers to the URL at which the system is accessed by end users over the network.
 
 Note that the configuration file supports environment variables. This
 means that you can set certain properties as environment variables and
@@ -374,11 +374,10 @@ name of the environment variable:
 connection.password = ${DB_PASSWD}
 ```
 
-A common mistake is to have a white-space after the last property value
-so make sure there is no white-space at the end of any line. Also
-remember that this file contains the clear text password for your DHIS2
-database so it needs to be protected from unauthorized access. To do
-this invoke the following command which ensures that only the dhis user
+
+Note that this file contains the password for your DHIS2 database in clear
+text so it needs to be protected from unauthorized access. To do this, 
+invoke the following command which ensures that only the dhis user
 which owns the file is allowed to read it:
 
 ```sh
@@ -389,7 +388,9 @@ chmod 0600 dhis.conf
 
 <!--DHIS2-SECTION-ID:install_java_installation-->
 
-The recommended Java JDK for DHIS 2 is OpenJDK 8. You can issue the following command to install OpenJDK 8:
+The recommended Java JDK for DHIS 2 is OpenJDK 8. OpenJDK is licensed under 
+the GPL license and can be run free of charge. You can install it with the
+following command:
 
 ```
 sudo apt-get install openjdk-8-jdk
@@ -461,7 +462,7 @@ release like this (replace 2.31 with your preferred version if
 necessary):
 
 ```sh
-wget https://releases.dhis2.org/2.31/dhis.war
+wget https://releases.dhis2.org/2.33/dhis.war
 ```
 
 Alternatively, for patch releases, the folder structure is based on the patch
@@ -470,7 +471,7 @@ the DHIS2 version 2.31.1 WAR release like this (replace 2.31 with your
 preferred version, and 2.31.1 with you preferred patch, if necessary):
 
 ```
-wget https://releases.dhis2.org/2.31/2.31.1/dhis.war
+wget https://releases.dhis2.org/2.33/2.33.1/dhis.war
 ```
 
 Move the WAR file into the Tomcat webapps directory. We want to call the
@@ -525,43 +526,35 @@ DHIS2 instance at the following URL:
 
     http://localhost:8080
 
-## Base URL configuration
-
-To set the base URL of the DHIS2 instance, you can specify the following property in the `dhis.conf` configuration file. This URL should point to the location where end users can reach DHIS2 over the network.
-
-```properties
-server.base.url = https://play.dhis2.org/dev
-```
-
 ## File store configuration
 
 <!--DHIS2-SECTION-ID:install_file_store_configuration-->
 
-DHIS2 is capable of capturing and storing files. By default files will
-be stored on the file system of the server which runs DHIS2 in a *files*
-directory under the *DHIS2\_HOME* external directory location.
+DHIS2 is capable of capturing and storing files. By default, files will
+be stored on the local file system of the server which runs DHIS2 in a *files*
+directory under the *DHIS2\_HOME* external directory location. 
 
 You can also configure DHIS2 to store files on cloud-based storage
-providers. Currently, AWS S3 is the only supported provider. To enable
+providers. AWS S3 is the only supported provider currently. To enable
 cloud-based storage you must define the following addtional properties
 in your *dhis.conf* file:
 
 ```properties
 # File store provider. Currently 'filesystem' and 'aws-s3' are supported.
-filestore.provider = filesystem
+filestore.provider = 'aws-s3'
 
-# Directory in external directory on local file system and bucket on AWS S3.
+# Directory in external directory on local file system and bucket on AWS S3
 filestore.container = files
 
-# The following configuration is applicable only on non-filesystem providers (AWS S3)
+# The following configuration is applicable to cloud storage only (AWS S3)
 
-# Datacenter location. Not required but recommended for performance reasons.
+# Datacenter location. Optional but recommended for performance reasons.
 filestore.location = eu-west-1
 
-# Public identity / username
+# Username / Access key on AWS S3
 filestore.identity = xxxx
 
-# Secret password (sensitive)
+# Password / Secret key on AWS S3 (sensitive)
 filestore.secret = xxxx
 ```
 
@@ -587,10 +580,9 @@ implementation.
 
 > **Note**
 > 
-> AWS S3 is the only supported provider (starting from version 2.27) but
-> more providers are likely to be added, such as Google Cloud Store and
-> Rackspace Cloud Files. Let the developers know if you have inquiries
-> about adding support for more providers.
+> AWS S3 is the only supported provider but more providers are likely to 
+> be added in the future, such as Google Cloud Store and Azure Blob Storage.
+> Let us know if you have a use case for additional providers.
 
 ## Google service account configuration
 
@@ -701,49 +693,7 @@ is not suitable or cannot for some reason be used as a DHIS2 username.
 <!--DHIS2-SECTION-ID:install_encryption_configuration-->
 
 DHIS2 allows for encryption of data. This however requires some extra
-setup.
-
-### Java Cryptography Extension
-
-<!--DHIS2-SECTION-ID:install_java_cryptography_extension-->
-
-DHIS2 uses an encryption algorithm classified as strong and therefore
-requires the *Java Cryptography Extension (JCE) Unlimited Strength
-Jurisdiction Policy Files* to be installed. These files can be installed
-through these steps:
-
-1.  Download the JCE Unlimited Strength Jurisdiction Policy Files for
-    your java version of Java from the Oracle Web site. Scroll down to
-    the "Java Cryptography Extension (JCE) Unlimited Strength
-    Jurisdiction Policy Files" section. It is important that the version
-    of the files match the version of Java on your
-    server.
-    
-    [http://www.oracle.com/technetwork/java/javase/downloads/index.html](http://www.oracle.com/technetwork/java/javase/downloads/index.htm)
-
-2.  Extract the downloaded ZIP archive. It contains two JAR files:
-    *local\_policy.jar* and *US\_export\_policy.jar*.
-
-3.  Locate the JDK directory of your Java installation. From there,
-    navigate into the *jre/security* directory. On Ubuntu it is often
-    found at */usr/lib/jvm/java-8-oracle/jre/lib/security*.
-
-4.  (Optional) Back up your existing *local\_policy.jar* and
-    *US\_export\_policy.jar* in case you want to revert to them later.
-
-5.  Copy the *local\_policy.jar* and *US\_export\_policy.jar* files into
-    the security folder. You should now have the following files which
-    completes the installation. Remember to restart your servlet
-    container for it to take effect.
-    
-        /usr/lib/jvm/java-8-oracle/jre/lib/security/local_policy.jar
-        /usr/lib/jvm/java-8-oracle/jre/lib/security/US_export_policy.jar
-
-### Password configuration
-
-<!--DHIS2-SECTION-ID:install_password_configuration-->
-
-To provide security to the encryption algorithm you will have to set a
+setup. To provide security to the encryption algorithm you will have to set a
 password in the *dhis.conf* configuration file through the
 *encryption.password* property:
 
@@ -760,7 +710,7 @@ The password must be at least **24 characters long**. A mix of numbers
 and lower- and uppercase letters are recommended. The encryption password 
 must be kept secret.
 
-> ** Important **
+> **Important**
 >
 > A word of caution: It is not possible to recover encrypted data if the
 > encryption password is lost or changed. If the password is lost, so is 
@@ -1394,25 +1344,6 @@ The various elements of the configuration can be described as:
 
 For a full explanation please consult the [nginx documentation](https://www.nginx.com/blog/rate-limiting-nginx/).
 
-### Additional resources on SSL
-
-<!--DHIS2-SECTION-ID:install_additional_resources_ssl-->
-
-The configuration demonstrated above should be regarded as the absolute
-minumum in order to establish a secure server. However, encryption
-methods are constantly being updated, so implementers who are
-administerting their own server, show ensure that the server is
-regularly updated with recent security patches (particularly the HTTP
-server and SSL libraries).
-
-There are numerous additional tutorials and information available on the
-web, including a helpful [step-by-step
-guide](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04)
-for using the free [Lets Encrypt SSL certifcate
-system](https://letsencrypt.org/) . It may also be useful to regularly
-test your SSL security with [this
-website](https://www.ssllabs.com/ssltest/).
-
 ### Making resources available with nginx
 
 <!--DHIS2-SECTION-ID:install_making_resources_available_with_nginx-->
@@ -1463,123 +1394,6 @@ server {
 }
 ```
 
-### Basic reverse proxy setup with Apache
-
-<!--DHIS2-SECTION-ID:install_basic_reverse_proxy_setup_with_apache-->
-
-The Apache HTTP server is a popular HTTP server. Depending on your exact 
-nature of deployment, you may need to use Apache as a reverse proxy for 
-your DHIS2 server. In this section, we will describe how to implement a 
-simple reverse proxy setup with Apache.
-
-> **Important**
-> 
-> Using nginx is the preferred option as reverse proxy with DHIS2 and
-> you should not attempt to install both nginx and Apache on the same
-> server. If you have installed nginx please ignore this section.
-
-First we need to install a few necessary programs modules for Apache and
-enable the modules.
-
-    sudo apt-get install apache2 libapache2-mod-proxy-html libapache2-mod-jk
-    a2enmod proxy proxy_ajp proxy_connect
-
-Lets define an AJP connector which Apache HTTP server will use to
-connect to Tomcat with. The Tomcat `server.xml` file should be located
-in the /conf/ director of your Tomcat installation. Be sure this line is
-uncommented.You can set the port to anything you like which is unused.
-
-```xml
-<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
-```
-
-Now, we need to make the adjustments to the Apache HTTP server which
-will answer requests on port 80 and pass them to the Tomcat server
-through an AJP connector. Edit the file
-`/etc/apache2/mods-enabled/proxy.conf` so that it looks like the example
-below. Be sure that the port defined in the configuration file matches
-the one from Tomcat.
-
-```apache_conf
-<IfModule mod_proxy.c>
-
-ProxyRequests Off
-ProxyPass /dhis  ajp://localhost:8009/dhis
-ProxyPassReverse /dhis  ajp://localhost:8009/dhis
-
-<Location "/dhis">
-  Order allow,deny
-  Allow from all
-</Location>     
-</IfModule>
-```
-
-You now can restart Tomcat and the Apache HTTPD server and your DHIS2
-instance should be available on http://*myserver*/dhis where *myserver*
-is the hostname of your server.
-
-### SSL encryption with Apache
-
-<!--DHIS2-SECTION-ID:install_ssl_encryption_with_apache-->
-
-Using Apache and the reverse proxy setup described in the previous
-section, we can easily implement encrypted transfer of data between
-clients and the server over HTTPS. This section will describe how to use
-self-signed certificates, although the same procedure could be used if
-you have fully-signed certificates as well.
-
-First (as root), generate the necessary private key files and CSR
-(Certificate Signing Request)
-
-    mkdir /etc/apache2/ssl
-    cd /etc/apache2/ssl
-    openssl genrsa -des3 -out server.key 1024
-    openssl req -new -key server.key -out server.csr
-
-We need to remove the password from the key, otherwise Apache will not
-be able to use it.
-
-    cp server.key server.key.org
-    openssl rsa -in server.key.org -out server.key
-
-Next, generate a self-signed certificate which will be valid for one
-year.
-
-    openssl x509 -req -days 365 -in server.csr -signkey \ server.key -out server.crt
-
-Now, lets configure Apache by enabling the SSL modules and creating a
-default site.
-
-    a2enmod ssl
-    a2ensite default-ssl
-
-Now, we need to edit the default-ssl (located at
-`/etc/apache2/sites-enabled/default-ssl`) file in order to enable the
-SSL transfer functionality of Apache.
-
-```apache_conf
-<VirtualHost *:443>
-	ServerAdmin wemaster@mydomain.org
-	SSLEngine On
-	SSLCertificateFile /etc/apache2/ssl/server.crt
-	SSLCertificateKeyFile /etc/apache2/ssl/server.key
-	...
-```
-
-Be sure that the \*:80 section of this file is changed to port \*:443,
-which is the default SSL port. Also, be sure to change the ServerAdmin
-to the webmaster's email. Lastly, we need to be sure that the hostname
-is setup properly in /etc/hosts. Just under the "localhost" line, be
-sure to add the server's IP address and domain name.
-
-    127.0.0.1 localhost
-    XXX.XX.XXX.XXX foo.mydomain.org
-
-Now, just restart Apache and you should be able to view
-https://foo.mydomain.org/dhis.
-
-    /etc/init.d/apache2 restart
-
 ## DHIS2 configuration reference
 
 <!--DHIS2-SECTION-ID:install_dhis2_configuration_reference-->
@@ -1614,7 +1428,7 @@ connection.password = xxxx
 connection.schema = update
 
 # Max size of connection pool (default: 40)
-# connection.pool.max_size = 40
+connection.pool.max_size = 40
 
 # ----------------------------------------------------------------------
 # Server [Mandatory]
@@ -1778,34 +1592,3 @@ to gunzip the copy if you created a compressed version. You can the
 invoke:
 
     psql -d dhis2 -U dhis -f dhis2.sql
-
-## DHIS2 Live setup
-
-<!--DHIS2-SECTION-ID:install_dhis2_live_setup-->
-
-The DHIS2 Live package is extremely convenient to install and run. It is
-intended for demonstrations, for users who want to explore the system
-and for small, offline installations typically at districts or
-facilities. It only requires a Java Runtime Environment and runs on all
-browsers except Internet Explorer 7 and lower.
-
-To install start by downloading DHIS2 Live from *http://dhis2.org* and
-extract the archive to any location. On Windows click the executable
-archive. On Linux invoke the startup.sh script. After the startup
-process is done your default web browser will automtically be pointed to
-*http://localhost:8082* where the application is accessible. A system
-tray menu is accessible on most operating systems where you can start
-and stop the server and start new browser sesssions. Please note that if
-you have the server running there is no need to start it again, simply
-open the application from the tray menu.
-
-DHIS2 Live is running on an embedded Jetty servlet container and an
-embedded H2 database. However it can easily be configured to run on
-other database systems such as PostgreSQL. Please read the section above
-about server installations for an explanation of the database
-configuration. The *dhis.conf* configuration file is located in the
-*conf* folder. Remember to restart the Live package for your changes to
-take effect. The server port is 8082 by default. This can be changed by
-modifying the value in the *jetty.port* configuration file located in the
-*conf* directory.
-
