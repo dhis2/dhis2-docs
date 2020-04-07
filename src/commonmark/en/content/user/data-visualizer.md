@@ -32,7 +32,7 @@ Select the desired visualization type from the selector in the upper left corner
 <tr class="odd">
 <td><p>Column</p></td>
 <td><p>Displays information as vertical rectangular columns with lengths proportional to the values they represent.</p>
-<p>Useful when you want to, for example, compare performance of different districts.</p>
+<p>Example: comparing performance of different districts.</p>
 <p>
 Layout restrictions: exactly 1 dimension as series, exactly 1 dimension as category.
 </p>
@@ -41,7 +41,7 @@ Layout restrictions: exactly 1 dimension as series, exactly 1 dimension as categ
 <tr class="even">
 <td><p>Stacked column</p></td>
 <td><p>Displays information as vertical rectangular columns, where bars representing multiple categories are stacked on top of each other.</p>
-<p>Useful when you want to, for example, display trends or sums of related data elements.</p>
+<p>Example: displaying trends or sums of related data elements.</p>
 <p>
 Layout restrictions: same as <em>Column</em>.
 </p></td>
@@ -57,21 +57,21 @@ Layout restrictions: same as <em>Column</em>.
 <tr class="odd">
 <td><p>Line</p></td>
 <td><p>Displays information as a series of points connected by straight lines. Also referred to as time series.</p>
-<p>Useful when you want to, for example, visualize trends in indicator data over multiple time periods.</p><p>
+<p>Example: visualizing trends in indicator data over intervals of time.</p><p>
 Layout restrictions: same as <em>Column</em>.
 </p></td>
 </tr>
 <tr class="even">
 <td><p>Area</p></td>
 <td><p>Is based on a line (above), with the space between the axis and the line filled with colors and the lines stacked on top of each other.</p>
-<p>Useful when you want to compare the trends of related indicators.</p><p>
+<p>Example: comparing the trends of related indicators.</p><p>
 Layout restrictions: same as <em>Column</em>.
 </p></td>
 </tr>
 <tr class="odd">
 <td><p>Pie</p></td>
 <td><p>Circle divided into sectors (or slices).</p>
-<p>Useful when you want to, for example, visualize the proportion of data for individual data elements compared to the total sum of all data elements.</p><p>
+<p>Example: visualizing the proportion of data for individual data elements compared to the total sum of all data elements.</p><p>
 Layout restrictions: exactly 1 dimension as series, has no category.
 </p></td>
 </tr>
@@ -174,11 +174,12 @@ The organisation units dialog is flexible in order to make selection easy for yo
 
 - Explicit selection: Use the **tree** to explicitly select the organisation units you want to appear in the visualization. If you right-click on an organisation unit you can easily choose to select all org units below it.
 
-- Levels and groups: The **Level** and **Group** dropdowns are a convenient way to select all units in one or more org unit groups or at specific levels. Example: select *Chiefdom* (level 3) to get all org units at that level.
+- Levels and groups: The **Level** and **Group** dropdowns are a convenient way to select all units in one or more org unit groups or at specific levels. Example: select _Chiefdom_ (level 3) to get all org units at that level.
 
-  Please note that as soon as at least one level or group has been selected the org unit tree now acts as the boundary for the levels/groups. Example: if you select *Chiefdom* (level 3) and *Kailahun* org unit (at level 2) in the tree you get all chiefdom units inside Kailahun district.
+  Please note that as soon as at least one level or group has been selected the org unit tree now acts as the boundary for the levels/groups. Example: if you select _Chiefdom_ (level 3) and _Kailahun_ org unit (at level 2) in the tree you get all chiefdom units inside Kailahun district.
 
 - The user's organisation units:
+
   - User organisation unit: This is a way to dynamically select the org units which the logged in user is associated to.
 
   - User sub-units: Selects the sub-units of the user organisation unit.
