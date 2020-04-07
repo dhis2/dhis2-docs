@@ -431,9 +431,11 @@ If both parts of the filter are used, it's possible to filter out a range of dat
 
 ## Adding Assigned Categories
 
-Assigned Categories is a composite dimension that represents associated category option combinations to the selected data element's category combination. This can be added by either using the **Assigned Categories** dimension from the dimension menu or by accessing the **Add Assigned Categories** option from the `Data` dimension's context menu (not available for `Gauge`, `Year over year` or `Single value`).
+Assigned Categories is a composite dimension that represents associated category option combinations to the selected data element's category combination. This can be added by dragging the **Assigned Categories** dimension from the left side dimensions panel and into the visualization layout:
 
-![](resources/images/data-visualizer/data-visualizer-axis-management-menu-option.png)
+![](resources/images/data-visualizer/data-visualizer-assigned-categories.png)
+
+Another way of adding assigned categories is by accessing the **Add Assigned Categories** option from the `Data` dimension's context menu (not available for `Gauge`, `Year over year` or `Single value`).
 
 ## Adding more axes
 
