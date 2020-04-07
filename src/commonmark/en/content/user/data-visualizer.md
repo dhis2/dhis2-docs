@@ -115,7 +115,7 @@ Layout restrictions: none.
 
 ### Select dimensions
 
-From the dimension menu on the left you can select the dimension you want to show in your visualization, including data, period, organisation units and dynamic dimensions. These can be added by clicking on a dimension, by dragging and dropping a dimension to the layout area or by hovering over a dimension and using on its' context menu (three dots).
+From the dimensions menu on the left you can select the dimensions you want to show in your visualization, including data, period, organisation units and dynamic dimensions. These can be added by clicking on a dimension, by dragging and dropping a dimension to the layout area or by hovering over a dimension and using on its context menu (three dots).
 
 ![](resources/images/data-visualizer/data-visualizer-dimensions.png)
 
@@ -124,7 +124,7 @@ Just like in the dimensions menu, in the layout area you can also change the sel
 ![](resources/images/data-visualizer/data-visualizer-layout-area.png)
 
 - **Series**: A series is a set of continuous, related elements (for
-  example periods or data elements) which you want to visualize in
+  example periods or data elements) that you want to visualize in
   order to emphasize trends or relations in its data. Also known as Columns for Pivot table visualizations.
 
 <!-- end list -->
@@ -143,7 +143,7 @@ Just like in the dimensions menu, in the layout area you can also change the sel
 
 <!--DHIS2-SECTION-ID:data_vis_select_dim_items-->
 
-A dimension refers to the elements which describe the data values in the system. There are three main dimensions in the system:
+A dimension refers to the elements that describe the data values in the system. There are three main dimensions in the system:
 
 - **Data**: Includes data elements, indicators and datasets (reporting
   rates), describing the phenomena or event of the data.
@@ -156,21 +156,21 @@ A dimension refers to the elements which describe the data values in the system.
 
 - **Organisation units**: Describes where the event took place.
 
-Data Visualizer lets you use these dimensions completely flexible in terms of appearing as series, categories and filter.
+Data Visualizer is highly flexible in terms of allowing you to use these dimensions as series, categories and filter.
 
-To select items for each one, open the dimension modal window by clicking on a dimension. This window will also be opened automatically when adding a dimension with out items to the layout. Select which items to add to the visualization by double-clicking an item or by selecting an item with a single click and using the arrows in the middle. The order of appearance will be the same as the order in which they are selected. Selected items can be reordered by dragging and dropping them in the Selected section.
+To select items for a dimension, open the dimension modal window by clicking on a dimension. This window will also be opened automatically when adding a dimension without selected items to the layout. Select which items to add to the visualization by double-clicking an item or by selecting an item with a single click and using the arrows in the middle. The order of appearance will be the same as the order in which they are selected. Selected items can be reordered by dragging and dropping them in the Selected section.
 
 ![](resources/images/data-visualizer/data-visualizer-dimension-modal.png)
 
 #### Select periods
 
-When selecting a Period you have to option to choose between fixed periods and relative periods. These can also be combined. Overlapping periods are filtered so that they only appear once. For relative periods the names are relative to the current date, e.g. if the current month is March and **Last month** is selected, the month of February is added.
+When selecting a Period you have to option to choose between fixed periods and relative periods. These can also be combined. Overlapping periods are filtered so that they only appear once. For relative periods the names are relative to the current date, e.g. if the current month is March and **Last month** is selected, the month of February is shown in the visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-period-dimension-modal.png)
 
 #### Select organisation units
 
-The organisation units dialog is flexible in order to make selection easy for you. There are essentially three ways of selecting organisation units:
+The organisation units dialog is flexible, offering essentially three ways of selecting organisation units:
 
 - Explicit selection: Use the **tree** to explicitly select the organisation units you want to appear in the visualization. If you right-click on an organisation unit you can easily choose to select all org units below it.
 
@@ -180,7 +180,7 @@ The organisation units dialog is flexible in order to make selection easy for yo
 
 - The user's organisation units:
 
-  - User organisation unit: This is a way to dynamically select the org units which the logged in user is associated to.
+  - User organisation unit: This is a way to dynamically select the org units that the logged in user is associated to.
 
   - User sub-units: Selects the sub-units of the user organisation unit.
 
@@ -257,11 +257,11 @@ This is useful for example when you create Column and Bar visualizations.</p></t
 </tr>
 <tr>
 <td><p>Hide empty columns</p></td>
-<td><p>Hides empty columns from a Pivot table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
+<td><p>Hides empty columns from a Pivot table. This is useful when you look at large tables where a large portion of the dimension items don't have data in order to keep the table more readable.</p></td>
 </tr>
 <tr>
 <td><p>Hide empty rows</p></td>
-<td><p>Hides empty rows from a Pivot table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
+<td><p>Hides empty rows from a Pivot table. This is useful when you look at large tables where a large portion of the dimension items don't have data in order to keep the table more readable.</p></td>
 </tr>
 <tr>
 <td><p>Number type</p></td>
@@ -295,7 +295,7 @@ If you only select one dimension, sub-totals will be hidden for those rows. This
 </tr>
 <tr>
 <td><p>Trend line</p></td>
-<td><p>Displays the trend line which visualizes how your data evolves over time. For example if performance is improving or deteriorating. Useful when periods are selected as category.</p></td>
+<td><p>Displays the trend line that visualizes how your data evolves over time. For example if performance is improving or deteriorating. Useful when periods are selected as category.</p></td>
 </tr>
 <tr>
 <td><p>Value labels</p></td>
@@ -307,7 +307,7 @@ If you only select one dimension, sub-totals will be hidden for those rows. This
 </tr>
 <tr>
 <td><p>Axis range</p></td>
-<td><p>Defines the maximum and minimum value which will be visible on the range axis.</p></td>
+<td><p>Defines the maximum and minimum value that will be visible on the range axis.</p></td>
 </tr>
 <tr>
 <td><p>Axis title</p></td>
@@ -315,11 +315,11 @@ If you only select one dimension, sub-totals will be hidden for those rows. This
 </tr>
 <tr>
 <td><p>Decimals</p></td>
-<td><p>Defines the number of decimals which will be used for range axis values.</p></td>
+<td><p>Defines the number of decimals that will be used for range axis values.</p></td>
 </tr>
 <tr>
 <td><p>Steps</p></td>
-<td><p>Defines the number of ticks which will be visible on the range axis.</p></td>
+<td><p>Defines the number of ticks that will be visible on the range axis.</p></td>
 </tr>
 
 <tr>
@@ -337,7 +337,7 @@ If you only select one dimension, sub-totals will be hidden for those rows. This
 </tr>
 <tr>
 <td><p>Digit group separator</p></td>
-<td><p>Controls which character to separate groups of digits or "thousands". You can set it to <em>Comma</em>, <em>Space</em> or <em>None</em>.</p></td>
+<td><p>Controls which character to use to separate groups of digits or "thousands". You can set it to <em>Comma</em>, <em>Space</em> or <em>None</em>.</p></td>
 </tr>
 <tr>
 <td><p>Display density</p></td>
@@ -358,14 +358,14 @@ When you download a pivot table with organisation units as rows and you've selec
 <td><p>Controls the title that appears above the visualization.
 <em>Auto generated</em> uses the default title generated from the visualization's dimensions/filters.
 <em>None</em> removes the title.
-The <em>Custom</em> option allows to type a custom title.</p></td>
+The <em>Custom</em> option allows you to type a custom title.</p></td>
 </tr>
 <tr>
 <td><p>Chart/Table subtitle</p></td>
 <td><p>Controls the subtitle that appears above the visualization.
 <em>Auto generated</em> uses the default subtitle generated from the visualization's dimensions/filters.
 <em>None</em> removes the subtitle.
-The <em>Custom</em> option allows to type a custom subtitle.</p></td>
+The <em>Custom</em> option allows you to type a custom subtitle.</p></td>
 </tr>
 <tr>
 <td><p>Legend key</p></td>
@@ -384,7 +384,7 @@ The <em>Custom</em> option allows to type a custom subtitle.</p></td>
 <td><p>Controls the title that appears above the visualization.
 <em>Auto generated</em> uses the default title generated from the visualization's dimensions/filters.
 <em>None</em> removes the title.
-The <em>Custom</em> option allows to type a custom title.</p></td>
+The <em>Custom</em> option allows you to type a custom title.</p></td>
 </tr>
 
 <tr>
@@ -432,7 +432,7 @@ If both parts of the filter are used, it's possible to filter out a range of dat
 
 ## Adding Assigned Categories
 
-Assigned Categories is a composite dimension that represents associated category option combinations to the selected data element's category combination. This can be added by dragging the **Assigned Categories** dimension from the left side dimensions panel and into the visualization layout:
+Assigned Categories is a composite dimension that represents associated category option combinations to the selected data element's category combination. This can be added by dragging the **Assigned Categories** dimension from the left side dimensions menu and into the visualization layout:
 
 ![](resources/images/data-visualizer/data-visualizer-assigned-categories.png)
 
@@ -450,7 +450,7 @@ In the axis management dialog you can assign data items to the two axes.
 
 ## Manage saved visualizations
 
-Saving your visualization makes it easy to find them later. You can also choose to share them with other users or display them on a dashboard.
+Saving your visualizations makes it easy to find them later. You can also choose to share them with other users or display them on a dashboard.
 
 ### Open a visualization
 
@@ -500,13 +500,13 @@ Saving your visualization makes it easy to find them later. You can also choose 
 
 When viewing a saved visualization, you can expand the interpretations on the right side by clicking on the Interpretations button in the upper right corner. The visualization description will also be shown. The description supports rich text format.
 
-New interpretations can be added by typing in the text field in the bottom right corner. Other users can be mentioned with `@username`. Start by typing `@` plus the first letters of the username or real name and a mentioning bar will display the available users. Mentioned users will receive an internal DHIS2 message with the interpretation or comment. Interpretations can also be seen in the **Dashboard** app.
+New interpretations can be added by typing in the text field in the bottom right corner. Other users can be mentioned with `@username`. Start by typing `@` plus the first letters of the username or real name and a list of matching users will be displayed. Mentioned users will receive an internal DHIS2 message with the interpretation or comment. Interpretations can also be seen in the **Dashboard** app.
 
 It is possible to format the text with **bold**, _italic_ by using the Markdown style markers `*` and `_` for **bold** and _italic_ respectively (keyboard shortcuts are also available: `Ctrl`/`Cmd` + `B` and `Ctrl`/`Cmd` + `I`). A limited set of emojis is supported and can be used by typing one of the following character combinations: `:)` `:-)` `:(` `:-(` `:+1` `:-1`. URLs are automatically detected and converted into a clickable link.
 
 To view the visualization according to the date of a particular interpretation, click on the interpretation or its `View` button. This will regenerate the visualization with the relevant date, which is indicated next to the visualization title. Clicking on `Back to all interpretations` will regenerate the visualization with the current date.
 
-To subscribe to the saved visualization, click the bell icon in the upper right corner. This will allow you to receive internal messages whenever another user likes/creates/updates an interpretation in this saved visualization.
+To subscribe to the saved visualization, click the bell icon in the upper right corner. You will then receive internal messages whenever another user likes/creates/updates an interpretation in this saved visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-view-interpretation.png)
 
@@ -527,7 +527,7 @@ New users can be added by searching for them by name under `Add users and user g
 
 ## Download
 
-Visualizations can be downloaded using the **Download** menu. All visualization types support `Graphics` and `Plain data source` downloads, except for the `Pivot table` type that can be downloaded as `Table layout` and `Plain data source`.
+Visualizations can be downloaded using the **Download** menu. All visualization types support `Graphics` and `Plain data source` downloads, except for the `Pivot table` type, which can be downloaded as `Table layout` and `Plain data source`.
 
 ### `Graphics` download
 
@@ -539,7 +539,7 @@ Downloads a Excel (.xls), CSV (.csv) or HTML (.html) file to your computer.
 
 ### `Plain data source` download
 
-You can download the data source behind a visualization in JSON, XML, Excel,
+You can download the data source of a visualization in JSON, XML, Excel,
 CSV, JXRML or Raw data SQL formats with different identification schemes
 (ID, Code, and Name). The data document uses identifiers of the
 dimension items and opens in a new browser window to display the URL of
@@ -580,7 +580,7 @@ into statistical packages.
 </tr>
 <tr class="even">
 <td><p>CSV</p></td>
-<td>Click <strong>CSV</strong></td>
+<td><p>Click <strong>CSV</strong></p></td>
 <td><p>Downloads CSV format based on the <strong>ID</strong>, <strong>Code</strong> or <strong>Name</strong> property.</p>
 </tr>
 <tr class="odd">
@@ -608,6 +608,6 @@ into statistical packages.
 
 ## See visualization as map
 
-To see how a visualization would look like on map, select the `Open as Map` Visualization type after you're finished building your visualization.
+To see how a visualization would look on map, select the `Open as Map` Visualization type after you're finished building your visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-open-as-map.png)
