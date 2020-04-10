@@ -14746,6 +14746,11 @@ In generic http gateway any number of parameters can be added.
 <td>Boolean</td>
 <td>If parameter is confidential. This parameter will not be exposed through API</td>
 </tr>
+<tr class="odd">
+<td>sendUrlParameters</td>
+<td>Boolean</td>
+<td>If this flag is checked then urlTemplate can be appended with query parameters. This is usefull if gateway API only support HTTP GET. Sample urlTemplate looks like this "urlTemplate":"https://samplegateway.com/messages?apiKey={apiKey}&to={recipients},content={text},deliveryreport={dp}"</td>
+</tr>
 </tbody>
 </table>
 
