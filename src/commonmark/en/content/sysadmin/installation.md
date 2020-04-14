@@ -948,7 +948,8 @@ On the local filesystem, the location is:
 ```
 
 Here, `DHIS2_HOME` refers to the location of the DHIS 2 configuration file
-as specifiec by the DHIS 2 environment variable.
+as specifiec by the DHIS 2 environment variable, and *files* is the file
+folder immediately below.
 
 There are two ways to achieve a shared location:
 
