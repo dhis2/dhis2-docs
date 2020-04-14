@@ -4796,7 +4796,7 @@ rectangular. This need not be the case. dataSets may contain
 dataElements with different categoryCombos, resulting in a
 *ragged-right* adx data message.
 
-### Importing data - HTTP POST
+### Importing data
 
 DHIS2 exposes an endpoint for POST adx data at */api/dataValueSets*
 using *application/xml+adx* as content type. So, for example, the
@@ -4812,7 +4812,7 @@ Note the query parameters are the same as are used with DXF data. The
 adx endpoint should interpret all the existing DXF parameters with the
 same semantics as DXF.
 
-### Exporting data - HTTP GET
+### Exporting data
 
 DHIS2 exposes an endpoint to GET adx data sets at */api/dataValueSets*
 using *application/xml+adx* as the accepted content type. So, for
