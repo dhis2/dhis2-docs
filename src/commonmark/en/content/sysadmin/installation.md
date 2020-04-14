@@ -948,7 +948,7 @@ On the local filesystem, the location is:
 ```
 
 Here, `DHIS2_HOME` refers to the location of the DHIS 2 configuration file
-as specifiec by the DHIS 2 environment variable, and *files* is the file
+as specifiec by the DHIS 2 environment variable, and `files` is the file
 folder immediately below.
 
 There are two ways to achieve a shared location:
@@ -957,7 +957,7 @@ There are two ways to achieve a shared location:
 S3 bucket which is automatically shared by all DHIS 2 instances in the cluster.
 See the *File store configuration* section for guidance.
 * Set up a shared folder which are shared among all DHIS 2 instances and
-servers in the cluster. On Linux this can be achieved with *NFS (Network File System)*
+servers in the cluster. On Linux this can be achieved with *NFS* (Network File System)
 which is a distributed file system protocol. Note that only the `files` 
 subfolder under `DHIS2_HOME` should be shared, not the parent folder. 
 
