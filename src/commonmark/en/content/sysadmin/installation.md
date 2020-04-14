@@ -788,25 +788,32 @@ can be added to improve performance. It also allows for *high
 availability* as the system can tolerate instances going down without
 making the system inaccessible to users.
 
+There are a few aspects to configure in order to run DHIS 2
+in a cluster.
+
+* Each DHIS 2 instance must specify the other DHIS 2 instance members of 
+the cluster in *dhis.conf*.
+
+* A Redis data store must be installed and connection information must 
+be provided for each DHIS 2 application instance in *dhis.conf*.
+
+* DHIS 2 instances and servers must share the same *files* folder used for 
+apps and file uploads, either through the *AWS S3 cloud filestorage* option 
+or a shared network drive.
+
+* A load balancer such as nginx must be configured to distribute Web requests
+across the cluster instances.
+
+### DHIS 2 instance cluster configuration
+
+<!--DHIS2-SECTION-ID:install_cluster_configuration-->
+
 When setting up multiple Tomcat instances there is a need for making the
 instances aware of each other. This awareness will enable DHIS 2 to keep
 the local data (Hibernate) caches in sync and in a consistent state.
 When an update is done on one instance, the caches on the other
 instances must be notified so that they can be invalidated and avoid
 becoming stale.
-
-There are two aspects to configure in *dhis.conf* in order to run DHIS 2
-in a cluster.
-
-  - Each instance must specify the other DHIS 2 application members of
-    the cluster.
-
-  - An instance of the Redis data store must be installed and connection
-    information must be configured for each DHIS 2 application instance.
-
-### Cluster instance configuration
-
-<!--DHIS2-SECTION-ID:install_cluster_configuration-->
 
 A DHIS 2 cluster setup is based on manual configuration of each
 instance. For each DHIS 2 instance one must specify the public
@@ -869,7 +876,7 @@ You must restart each Tomcat instance to make the changes take effect.
 The two instances have now been made aware of each other and DHIS 2 will
 ensure that their caches are kept in sync.
 
-### Cluster shared data store configuration
+### Redis shared data store cluster configuration
 
 <!--DHIS2-SECTION-ID:install_cluster_configuration_redis-->
 
@@ -929,7 +936,31 @@ redis.use.ssl = false
 leader.time.to.live.minutes=4 
 ```
 
-### Load balancing
+### Files folder configuration
+
+DHIS 2 will store several types of files outside the application itself,
+such as apps, files saved in data entry and user avatars. When deployed
+in a cluster, the location of these files must be shared across all instances.
+On the local filesystem, the location is:
+
+```
+{DHIS2_HOME}/files
+```
+
+Here, `DHIS2_HOME` refers to the location of the DHIS 2 configuration file
+as specifiec by the DHIS 2 environment variable.
+
+There are two ways to achieve a shared location:
+
+* Use the *AWS S3 cloud filestorage* option. Files will be stored in an
+S3 bucket which is automatically shared by all DHIS 2 instances in the cluster.
+See the *File store configuration* section for guidance.
+* Set up a shared folder which are shared among all DHIS 2 instances and
+servers in the cluster. On Linux this can be achieved with *NFS (Network File System)*
+which is a distributed file system protocol. Note that only the `files` 
+subfolder under `DHIS2_HOME` should be shared, not the parent folder. 
+
+### Load balancer configuration
 
 <!--DHIS2-SECTION-ID:install_load_balancing-->
 
@@ -975,8 +1006,7 @@ same server. The *ip\_hash* directive in the upstream element ensures
 this.
 
 Note that several instructions have been omitted for brevity in the
-above example. Consult the reverse proxy section for a detailed
-configuration guide.
+above example. Consult the reverse proxy section for a detailed guide.
 
 ## Analytics cache configuration
 
