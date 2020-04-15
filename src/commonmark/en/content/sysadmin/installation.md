@@ -1295,16 +1295,16 @@ http {
 }
 ```
 
-Note the last "https" header value which is required to inform the
+Note the last `https` header value which is required to inform the
 servlet container that the request is coming over HTTPS. In order for
-tomcat to properly produce Location URLs using https you also need to
-add two other parameters to the Connector in tomcat's server.xml file:
+Tomcat to properly produce `Location` URL headers using HTTPS you also need t
+o add two other parameters to the Connector in the Tomcat `server.xml` file:
 
 ```xml
 <Connector scheme="https" proxyPort="443" />
 ```
 
-### Enabling caching and SSL with nginx
+### Enabling caching with nginx
 
 <!--DHIS2-SECTION-ID:install_enabling_caching_ssl_nginx-->
 
@@ -1318,39 +1318,12 @@ will create this directory automatically.
 
 ```text
 http {
-  # ...
+  ..
   proxy_cache_path  /var/cache/nginx  levels=1:2  keys_zone=dhis:250m  inactive=1d;
 
-  gzip on; # Enables compression, incl Web API content-types
-  gzip_types
-	"application/json;charset=utf-8" application/json
-	"application/javascript;charset=utf-8" application/javascript text/javascript
-	"application/xml;charset=utf-8" application/xml text/xml
-	"text/css;charset=utf-8" text/css
-	"text/plain;charset=utf-8" text/plain;
-
-  # HTTP server - rewrite to force use of HTTPS
 
   server {
-	listen     80;
-	rewrite    ^ https://www.domain.com/$request_uri? permanent;
-  }
-
-  # HTTPS server
-
-  server {
-	listen               443 ssl;
-	client_max_body_size 10M;
-
-	ssl                  on;
-	ssl_certificate      server.crt;
-	ssl_certificate_key  server.key;
-
-	ssl_session_timeout  30m;
-
-	ssl_protocols              SSLv2 SSLv3 TLSv1;
-	ssl_ciphers                HIGH:!aNULL:!MD5;
-	ssl_prefer_server_ciphers  on;
+	..
 
 	# Proxy pass to servlet container and potentially cache response
 
@@ -1441,7 +1414,7 @@ website](https://www.ssllabs.com/ssltest/).
 
 In some scenarios it is desirable to make certain resources publicly
 available on the Web without requiring authentication. One example is
-when you want to make data analysis related resources in the Web API
+when you want to make data analysis related resources in the web API
 available in a Web portal. The following example will allow access to
 charts, maps, reports, report table and document resources through basic
 authentication by injecting an *Authorization* HTTP header into the
@@ -1463,24 +1436,28 @@ you can set a dedicated subdomain at api.somedomain.com, and point URLs
 from your portal to this subdomain.
 
 ```text
-server {
-  listen       80;
-  server_name  api.somedomain.com;
-	
-  location ~ ^/(api/(charts|chartValues|reports|reportTables|documents|maps|organisationUnits)|dhis-web-commons/javascripts|images|dhis-web-commons-ajax-json|dhis-web-mapping|dhis-web-visualizer) {
-	if ($request_method != GET) {
-	  return 405;
-	}
+http {
+  ..
+  
+  server {
+    listen       80;
+    server_name  api.somedomain.com;
 
-	proxy_pass         http://localhost:8080;
-	proxy_redirect     off;
-	proxy_set_header   Host               $host;
-	proxy_set_header   X-Real-IP          $remote_addr;
-	proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
-	proxy_set_header   X-Forwarded-Proto  http;
-	proxy_set_header   Authorization      "Basic YWRtaW46ZGlzdHJpY3Q=";
-	proxy_set_header   Cookie             "";
-	proxy_hide_header  Set-Cookie;
+    location ~ ^/(api/(charts|chartValues|reports|reportTables|documents|maps|organisationUnits)|dhis-web-commons/javascripts|images|dhis-web-commons-ajax-json|dhis-web-mapping|dhis-web-visualizer) {
+    if ($request_method != GET) {
+        return 405;
+      }
+
+      proxy_pass         http://localhost:8080;
+      proxy_redirect     off;
+      proxy_set_header   Host               $host;
+      proxy_set_header   X-Real-IP          $remote_addr;
+      proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Proto  http;
+      proxy_set_header   Authorization      "Basic YWRtaW46ZGlzdHJpY3Q=";
+      proxy_set_header   Cookie             "";
+      proxy_hide_header  Set-Cookie;
+    }
   }
 }
 ```
