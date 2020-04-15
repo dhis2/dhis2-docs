@@ -9748,7 +9748,7 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 </tr>
 <tr class="even">
 <td>code</td>
-<td>A custom code to identify the Visualiation.</td>
+<td>A custom code to identify the Visualization.</td>
 </tr>
 <tr class="odd">
 <td>name</td>
@@ -9756,7 +9756,7 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 </tr>
 <tr class="even">
 <td>type</td>
-<td>The type of the Visualiation. The valid types are: COLUMN, STACKED_COLUMN, BAR, STACKED_BAR, LINE, AREA, PIE, RADAR, GAUGE, YEAR_OVER_YEAR_LINE YEAR_OVER_YEAR_COLUMN, SINGLE_VALUE, PIVOT_TABLE.</td>
+<td>The type of the Visualization. The valid types are: COLUMN, STACKED_COLUMN, BAR, STACKED_BAR, LINE, AREA, PIE, RADAR, GAUGE, YEAR_OVER_YEAR_LINE YEAR_OVER_YEAR_COLUMN, SINGLE_VALUE, PIVOT_TABLE.</td>
 </tr>
 <tr class="odd">
 <td>title</td>
@@ -9776,11 +9776,11 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 </tr>
 <tr class="odd">
 <td>startDate</td>
-<td>The beginning date used for during the filtering.</td>
+<td>The beginning date used during the filtering.</td>
 </tr>
 <tr class="even">
 <td>endDate</td>
-<td>The ending date used for during the filtering.</td>
+<td>The ending date used during the filtering.</td>
 </tr>
 <tr class="odd">
 <td>sortOrder</td>
@@ -10391,7 +10391,7 @@ The analytics resource lets you specify a range of query parameters:
 <tr>
 <td>startDate</td>
 <td>No</td>
-<td>Start date for date range. Will be applied as a filter. Can not be used together with a period dimension or filter.</td>
+<td>Start date for a date range. Will be applied as a filter. Can not be used together with a period dimension or filter.</td>
 <td>Date</td>
 </tr>
 <tr>
@@ -10403,7 +10403,7 @@ The analytics resource lets you specify a range of query parameters:
 <tr class="even">
 <td>skipMeta</td>
 <td>No</td>
-<td>Exclude the meta data part of the response (improves performance).</td>
+<td>Exclude the metadata part of the response (improves performance).</td>
 <td>false | true</td>
 </tr>
 <tr class="odd">
@@ -10433,7 +10433,7 @@ The analytics resource lets you specify a range of query parameters:
 <tr class="odd">
 <td>tableLayout</td>
 <td>No</td>
-<td>Use plain data source or table layout for response.</td>
+<td>Use plain data source or table layout for the response.</td>
 <td>false | true</td>
 </tr>
 <tr class="even">
@@ -10475,13 +10475,13 @@ The analytics resource lets you specify a range of query parameters:
 <tr class="even">
 <td>outputIdScheme</td>
 <td>No</td>
-<td>Identifier scheme to use for metadata items the query response, can be identifier, code or attributes.</td>
+<td>Identifier scheme to use for metadata items the query response, can be an identifier, code or attributes.</td>
 <td>UID | CODE |NAME| ATTRIBUTE:&lt;ID&gt;</td>
 </tr>
 <tr class="odd">
 <td>inputIdScheme</td>
 <td>No</td>
-<td>Identifier scheme to use for metadata items in the query request, can be identifier, code or attributes.</td>
+<td>Identifier scheme to use for metadata items in the query request, can be an identifier, code or attributes.</td>
 <td>UID | CODE | ATTRIBUTE:&lt;ID&gt;</td>
 </tr>
 <tr class="even">
@@ -10499,7 +10499,7 @@ The analytics resource lets you specify a range of query parameters:
 <tr class="even">
 <td>userOrgUnit</td>
 <td>No</td>
-<td>Explicitly define the user org units to utilize, overrides organisation units associated with current user, multiple identifiers can be separated by semi-colon.</td>
+<td>Explicitly define the user org units to utilize, overrides organisation units associated with the current user, multiple identifiers can be separted by semicolon.</td>
 <td>Organisation unit identifiers.</td>
 </tr>
 <tr class="odd">
@@ -10517,7 +10517,7 @@ The analytics resource lets you specify a range of query parameters:
 <tr class="odd">
 <td>order</td>
 <td>No</td>
-<td>Specify ordering of rows based on value.</td>
+<td>Specify the ordering of rows based on value.</td>
 <td>ASC | DESC</td>
 </tr>
 <tr class="even">
@@ -10558,9 +10558,9 @@ organisation units you can use the following URL:
       &filter=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 The *aggregationType* query parameter lets you define which aggregation
-operator should be used for the query. By default the aggregation
+operator should be used for the query. By default, the aggregation
 operator defined for data elements included in the query will be used.
-If your query does not contain any data elements, but does include data
+If your query does not contain any data elements but does include data
 element groups, the aggregation operator of the first data element in
 the first group will be used. The order of groups and data elements is
 undefined. This query parameter allows you to override the default and
@@ -10574,7 +10574,7 @@ The *measureCriteria* query parameter lets you filter out ranges of data
 records to return. You can instruct the system to return only records
 where the aggregated data value is equal, greater than, greater or
 equal, less than or less or equal to certain values. You can specify any
-number of criteria on the following format, where *critieria* and
+number of criteria on the following format, where *criteria* and
 *value* should be substituted with real values:
 
     /api/33/analytics?measureCriteria=criteria:value;criteria:value
@@ -10603,8 +10603,8 @@ will filter the analytics response. You can use it like this:
 
 In order to have the analytics resource generate the data in the shape
 of a ready-made table, you can provide the *tableLayout* parameter with
-true as value. Instead of generating a plain, normalized data source,
-the analytics resource will now generate the data in table layout. You
+true as a value. Instead of generating a plain, normalized data source,
+the analytics resource will now generate the data in a table layout. You
 can use the *columns* and *rows* parameters with dimension identifiers
 separated by semi-colons as values to indicate which ones to use as
 table columns and rows. The column and rows dimensions must be present
@@ -10667,12 +10667,12 @@ identifier*, and each dimension can have a set of *dimension items*:
 <tr class="even">
 <td>Category option combinations</td>
 <td>co</td>
-<td>Category option combo identifers (omit to get all items)</td>
+<td>Category option combo identifiers  (omit to get all items)</td>
 </tr>
 <tr class="odd">
 <td>Attribute option combinations</td>
 <td>ao</td>
-<td>Category option combo identifers (omit to get all items)</td>
+<td>Category option combo identifiers (omit to get all items)</td>
 </tr>
 <tr class="even">
 <td>Categories</td>
@@ -10730,7 +10730,7 @@ group as items by using the DE_GROUP-<id> syntax:
     /api/33/analytics?dimension=dx:DE_GROUP-h9cuJOkOwY2
       &dimension=pe:201601&dimension=ou:O6uvpzGd5pu
 
-When selecting data set reporting rates, the syntax contains of a data
+When selecting data set reporting rates, the syntax contains a data
 set identifier followed by a reporting rate metric:
 
     /api/33/analytics?dimension=dx:BfMAe6Itzgt.REPORTING_RATE;BfMAe6Itzgt.ACTUAL_REPORTS
@@ -10752,13 +10752,13 @@ those by specifying the program for each attribute using the
 
 To query for organisation unit group sets and data elements you can use
 the following URL. Notice how the group set identifier is used as
-dimension identifier and the groups as dimension items:
+a dimension identifier and the groups as dimension items:
 
     /api/33/analytics?dimension=Bpx0589u8y0:oRVt7g429ZO;MAs88nJc9nL
       &dimension=pe:2016&dimension=ou:ImspTQPwCqd
 
 To query for data elements and categories you can use this URL. Use the
-category identifier as dimension identifier and the category options as
+category identifier as a dimension identifier and the category options as
 dimension items:
 
     /api/33/analytics?dimension=dx:s46m5MS0hxu;fClA2Erf6IO&dimension=pe:2016
@@ -10822,26 +10822,26 @@ below.
     above called "Date and period format" for the period format and
     available relative periods.
 
-  - For the organisation unit dimension you can specify the items to be
+  - For the organisation unit dimension, you can specify the items to be
     the organisation unit or sub-units of the organisation unit
     associated with the user currently authenticated for the request
-    using they keys `USER_ORGUNIT` or `USER_ORGUNIT_CHILDREN` as items,
+    using the keys `USER_ORGUNIT` or `USER_ORGUNIT_CHILDREN` as items,
     respectively. You can also specify organisation unit identifiers
     directly, or a combination of both.
 
-  - For the organisation unit dimension you can specify the organisation
+  - For the organisation unit dimension, you can specify the organisation
     hierarchy level and the boundary unit to use for the request on the
     format `LEVEL-<level>-<boundary-id>`; as an example
     `LEVEL-3-ImspTQPwCqd` implies all organisation units below the given
     boundary unit at level 3 in the hierarchy.
 
-  - For the organisation unit dimension the dimension items are the
+  - For the organisation unit dimension, the dimension items are the
     organisation units and their sub-hierarchy - data will be aggregated
     for all organisation units below the given organisation unit in the
     hierarchy.
 
   - You cannot specify dimension items for the category option
-    combination dimension. Instead the response will contain the items
+    combination dimension. Instead, the response will contain the items
     which are linked to the data values.
 
 ### The dx dimension
@@ -10877,7 +10877,7 @@ following data types.
 <tr class="even">
 <td>Indicator grop</td>
 <td>IN_GROUP-&lt;indicatorgroup-id&gt;</td>
-<td>Keyword followed by indicator group identifier. Will include all indicators in the group in the response.</td>
+<td>Keyword followed by an indicator group identifier. Will include all indicators in the group in the response.</td>
 <td>Aggregated data</td>
 </tr>
 <tr class="odd">
@@ -10889,13 +10889,13 @@ following data types.
 <tr class="even">
 <td>Data element group</td>
 <td>DE_GROUP-&lt;dataelementgroup-id&gt;</td>
-<td>Keyword followed by data element group identifier. Will include all data elements in the group in the response.</td>
+<td>Keyword followed by a data element group identifier. Will include all data elements in the group in the response.</td>
 <td>Aggregated data</td>
 </tr>
 <tr class="odd">
 <td>Data element operand</td>
 <td>&lt;dataelement-id&gt;.&lt;categoryoptcombo-id&gt;.&lt;attributeoptcombo-id&gt;</td>
-<td>Data element identifer followed by one or both of category option combination and attribute option combo identifier. Wildcard &quot;*&quot; symbol can be used to indicate any option combination value. The attribute option combination identifier can be completely left out.</td>
+<td>Data element identifier followed by one or both of category option combination and attribute option combo identifier. Wildcard &quot;*&quot; symbol can be used to indicate any option combination value. The attribute option combination identifier can be completely left out.</td>
 <td>Aggregate data</td>
 </tr>
 <tr class="even">
@@ -11072,7 +11072,7 @@ identifier, or if the column contains measures, the word "Value". The
 *false* if the column contains a measure (aggregated data values). The
 *name* property is similar to the column property, except it displays
 "value" in case the column contains a measure. The *type* property
-indicates the Java class type of the column values.
+indicates the Java class type of column values.
 
 The *height* and *width* properties indicate how many data columns and
 rows are contained in the response, respectively.
@@ -11111,7 +11111,7 @@ return a *409 Conflict* response and a response message looking similar to this:
 }
 ```
 
-The `httpStatus` and `httpStatusCode` field indicate the HTTP status and
+The `httpStatus` and `httpStatusCode` fields indicate the HTTP status and
 status code per the HTTP specification. The `messsage` field provides a
 human-readable description of the validation error. The `errorCode` field
 provides a machine-readable code which can be used by clients to handle
@@ -11154,7 +11154,7 @@ of finer granularity compared to what the destination system is storing.
 
 As an example, one can specify an indicator in the target system to
 summarize data for multiple data elements and import this data for a
-single data element in the destination system. As another example one
+single data element in the destination system. As another example, one
 can aggregate data collected at organisation unit level 4 in the target
 system to level 2 and import that data in the destination system.
 
@@ -11293,7 +11293,7 @@ parameters are listed in the table below.
 The *dimension* query parameter defines which dimensions (table columns)
 should be included in the response. It can optionally be constrained
 with items. The *filter* query parameter defines which items and
-dimensions (table columns) should be used as filter for the response.
+dimensions (table columns) should be used as a filter for the response.
 
 For the organisation unit dimension, the response will contain data
 associated with the organisation unit and all organisation units in the
@@ -11320,7 +11320,7 @@ periods explicitly in the
       &startDate=2015-01-01&endDate=2015-12-31
       &dimension=ou:O6uvpzGd5pu;fdc6uOvgoji
 
-The *filter* parameter can be used to filter a response without
+The *filter* parameter can be used to filter response without
 including that dimension as part of the response, this time in CSV
 format:
 
@@ -11339,7 +11339,7 @@ responses as it can be set to *NAME* like this:
       &outputIdScheme=NAME
 
 The response from the *rawData* resource will look identical to the
-regular analytics resource; the difference is that the response contain
+regular analytics resource; the difference is that the response contains
 raw, non-aggregated data, suitable for further aggregation by
 third-party systems.
 
@@ -11352,7 +11352,7 @@ value source of the aggregated analytics response. The
 *analytics/debug/sql* resource will provide an SQL statement that
 returns the relevant content of the datavalue table. You can produce
 this SQL by doing a GET request with content type "text/html" or
-"text/plain" like below. The dimension and filter syntax is identical to
+"text/plain" like below. The dimension and filter syntax are identical to
 regular analytics queries:
 
     /api/analytics/debug/sql?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
@@ -11434,7 +11434,7 @@ dimensions are listed in the table below.
 
 <!--DHIS2-SECTION-ID:webapi_event_analytics_request_query_parameters-->
 
-The analytics event API let you specify a range of query parameters.
+The analytics event API lets you specify a range of query parameters.
 
 <table>
 <caption>Query parameters for both event query and aggregate analytics</caption>
@@ -12030,7 +12030,7 @@ event date, the organisation unit name, the organisation unit code and
 the organisation unit identifier appear as the first six dimensions in
 the response and will always be present. Next comes the data elements,
 person attributes and person identifiers which were specified as
-dimensions in the request, in this case the "Gender" and "Age" data
+dimensions in the request, in this case, the "Gender" and "Age" data
 element dimensions. The header section contains the identifier of the
 dimension item in the "name" property and a readable dimension
 description in the "column" property.
@@ -12087,7 +12087,7 @@ dimension item is filtered on "18" and the "Gender" item is filtered on
       &dimension=ou:O6uvpzGd5pu&dimension=oZg33kd9taw:EQ:Female&dimension=qrur9Dvnyt5:GT:50
 
 To retrieve data for fixed and relative periods instead of start and end
-date, in this case May 2016 and last 12 months, and the organisation
+date, in this case, May 2016 and last 12 months, and the organisation
 unit associated with the current user, you can use the following query:
 
     /api/33/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:201605;LAST_12_MONTHS
@@ -12136,7 +12136,7 @@ of value type organisation unit you can use the `orgUnitField` parameter:
 
 #### Ranges / legend sets
 
-For aggregate queries you can specify a range / legend set for numeric
+For aggregate queries, you can specify a range / legend set for numeric
 data element and attribute dimensions. The purpose is to group the
 numeric values into ranges. As an example, instead of generating data
 for an "Age" data element for distinct years, you can group the
@@ -12260,7 +12260,7 @@ event data. A request looks like this:
       &dimension=ou:LEVEL-2&clusterSize=100000
       &bbox=-13.2682125,7.3721619,-10.4261178,9.904012&includeClusterPoints=false
 
-The cluster response provides the count of underlying points, the centre
+The cluster response provides the count of underlying points, the center
 point and extent of each cluster. If the `includeClusterPoints` query
 parameter is set to true, a comma-separated string with the identifiers
 of the underlying events is included. A sample response looks like this:
@@ -12391,7 +12391,7 @@ in the table below.
 
 <!--DHIS2-SECTION-ID:webapi_enrollment_analytics-->
 
-The enrollment analytics API lets you access aggregated event data and query *enrollments with their event data* captured in DHIS2. This resource lets you retrieve data for a program based on program stages and data elements - in addition to tracked entity attributes. When querying event data for a specific programstages within each enrollment, the data element values for each program stage will be returned as one row in the response from the api. If querying a data element in a program stage that is repeatable, the newest data element value will be used for that data element in the api reponse.
+The enrollment analytics API lets you access aggregated event data and query *enrollments with their event data* captured in DHIS2. This resource lets you retrieve data for a program based on program stages and data elements - in addition to tracked entity attributes. When querying event data for a specific programstages within each enrollment, the data element values for each program stage will be returned as one row in the response from the api. If querying a data element in a program stage that is repeatable, the newest data element value will be used for that data element in the api response.
 
 ### Dimensions and items
 
@@ -12449,19 +12449,19 @@ The *analytics/enrollments/query* resource lets you query for captured enrollmen
 
     /api/33/analytics/enrollments/query
 
-You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of data elements in program stages, tracked entity attributes, fixed and relative periods and organisation units. Dimensions can optionally have a query operator and a filter. Enrollment queries should be on the format described below.
+You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of the data elements in program stages, tracked entity attributes, fixed and relative periods and organisation units. Dimensions can optionally have a query operator and a filter. Enrollment queries should be on the format described below.
 
     /api/33/analytics/enrollments/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
       &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
-For example, to retrieve enrollments in the from the "Antenatal care" program from January 2019, where the "First name" is picked up from attributes, "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the following program stage, and only women that has "Cronic conditions" would be included, you can use the following query:
+For example, to retrieve enrollments in the from the "Antenatal care" program from January 2019, where the "First name" is picked up from attributes, "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the following program stage, and only women that have "Cronic conditions" would be included, you can use the following query:
 
     /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
       &dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.de0FEHSIoxh:eq:1&dimension=w75KJ2mc4zz
       &dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=edqlbukwRfQ.vANAXwtLwcT
       &startDate=2019-01-01&endDate=2019-01-31
 
-To retrieve enrollments in the from the "Antenatal care" program from last month (relative to the point in time the query is executed), where the "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the folloup program stage, only including smoking women with hemoglobin less than 20:
+To retrieve enrollments in the from the "Antenatal care" program from last month (relative to the point in time the query is executed), where the "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the followup program stage, only including smoking women with hemoglobin less than 20:
 
     /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
       &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz
@@ -12552,10 +12552,10 @@ The available operators are listed below.
 
 <!--DHIS2-SECTION-ID:webapi_enrollment_analytics_query_parameters-->
 
-The analytics enrollment query API let you specify a range of query parameters.
+The analytics enrollment query API lets you specify a range of query parameters.
 
 <table>
-<caption>Query parameters for enrollment query enpoint</caption>
+<caption>Query parameters for enrollment query endpoint</caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 11%" />
@@ -12888,7 +12888,7 @@ The default response JSON format will look similar to this:
 }
 ```
 
-The *headers* section of the response describes the content of the query result. The enrollment unique identifier, the tracked entity instance identifier, the enrollment date, the incident date, geometry, latitude, logitude, the organisation unit name and the organisation unit code appear as the first dimensions in the response and will always be present. Next comes the data elements,and tracked entity attributes which were specified as dimensions in the request, in this case the "WHOMCH Chronic conditions" and "WHOMCH smoking" data element dimensions. The header section contains the identifier of the dimension item in the "name" property and a readable dimension description in the "column" property.
+The *headers* section of the response describes the content of the query result. The enrollment unique identifier, the tracked entity instance identifier, the enrollment date, the incident date, geometry, latitude, longitude, the organisation unit name and the organisation unit code appear as the first dimensions in the response and will always be present. Next comes the data elements, and tracked entity attributes which were specified as dimensions in the request, in this case, the "WHOMCH Chronic conditions" and "WHOMCH smoking" data element dimensions. The header section contains the identifier of the dimension item in the "name" property and a readable dimension description in the "column" property.
 
 The *metaData* section, *ou* object contains the identifiers of all organisation units present in the response mapped to a string representing the hierarchy. This hierarchy string lists the identifiers of the ancestors (parents) of the organisation unit starting from the root. The *names* object contains the identifiers of all items in the response mapped to their names.
 
@@ -12905,7 +12905,7 @@ For the Program Indicator/Relationship Type link to work, the `/api/33/analytics
     /api/33/analytics/enrollments/query/<program-id>
       ?dimension=<relationshiptype-id>.<programindicator-id>
 
-For example, to retrive a list of enrollemnts from the "WHO RMNCH Tracker" program for January 2019 and display the count of Malaria Cases linked to that Enrollemnt by "Malaria case linked to person" type of relationship, you can use the following query
+For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" program for January 2019 and display the count of Malaria Cases linked to that Enrollment by "Malaria case linked to person" type of relationship, you can use the following query
 
     /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=mxZDvSZYxlw.nFICjJluo74
       &startDate=2019-01-01&endDate=2019-01-31    
@@ -12920,7 +12920,7 @@ The org unit analytics API provides statistics on org units classified by org un
 
     GET /api/orgUnitAnalytics?ou=<org-unit-id>&ougs=<org-unit-group-set-id>
 
-The API requires at least one organisation unit and at least one organisation unit group set. Multiple org units and group sets can be provided separated by semicolon.
+The API requires at least one organisation unit and at least one organisation unit group set. Multiple org units and group sets can be provided separated by a semicolon.
 
 ### Request query parameters
 
@@ -12943,17 +12943,17 @@ The org unit analytics resource lets you specify a range of query parameters:
 <tbody>
 <tr>
 <td>ou</td>
-<td>Org unit identifiers, potentially separated by semicolon.</td>
+<td>Org unit identifiers, potentially separated by a semicolon.</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>ougs</td>
-<td>Org unit group set identifiers, potentially separated by semicolon.</td>
+<td>Org unit group set identifiers, potentially separated by a semicolon.</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>columns</td>
-<td>Org unit group set identifiers, potentially separated by semicolon. Defines which group sets are rendered as columns in table layout.</td>
+<td>Org unit group set identifiers, potentially separated by a semicolon. Defines which group sets are rendered as columns in a table layout.</td>
 <td>No</td>
 </tr>
 </tbody>
@@ -12961,11 +12961,11 @@ The org unit analytics resource lets you specify a range of query parameters:
 
 The response will contain a column for the parent org unit, columns for each org unit group set part of the request and a column for the count. The statistics include the count of org units which are part of the sub-hierarchy of the org units specified in the request. The response contains a metadata section which specifies the name of each org unit and org unit group part of the response referenced by their identifiers.
 
-The default response is normalized with a single `count` column. The response can be rendered in table layout by specifying at least one org unit group set using the `columns` query parameter.
+The default response is normalized with a single `count` column. The response can be rendered in a table layout by specifying at least one org unit group set using the `columns` query parameter.
 
 ### Response formats
 
-The org unit analytics endpoint support the following representation formats:
+The org unit analytics endpoint supports the following representation formats:
 
 - json (application/json)
 - csv (application/csv)
@@ -12991,9 +12991,9 @@ To fetch org unit analytics data in table mode with one group set rendered as co
 
 <!--DHIS2-SECTION-ID:webapi_data_set_report-->
 
-Data set reports can be generated trough the web api using the
+Data set reports can be generated through the web api using the
 `/dataSetReport` resource. This resource generates reports on data set
-and returns the result in the form of a HTML table.
+and returns the result in the form of an HTML table.
 
     /api/33/dataSetReport
 
@@ -13057,7 +13057,7 @@ An example request to retrieve a report for a data set and org unit for 2018 loo
 
     GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
 
-To get a data set report with a filter you can use the `filter` parameter. In this case the filter is based on an org unit group set and two org unit groups:
+To get a data set report with a filter you can use the `filter` parameter. In this case, the filter is based on an org unit group set and two org unit groups:
 
     GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd
       &filter=J5jldMd8OHv:RXL3lPSK8oG;tDZVQ1WtwpA
@@ -13072,7 +13072,7 @@ The data set report endpoint supports output in the following formats. You can r
 
 ### Custom forms
 
-A dedicated endpoint is available for data sets with custom HTML forms. This endpoint returns the HTML form content with content type `text/html` with data inserted into it. Note that you can use the general data set report endpoint also for data sets with custom forms; however that will return the report in JSON format as a grid. This endpoint only works for data sets with custom HTML forms.
+A dedicated endpoint is available for data sets with custom HTML forms. This endpoint returns the HTML form content with content type `text/html` with data inserted into it. Note that you can use the general data set report endpoint also for data sets with custom forms; however, that will return the report in JSON format as a grid. This endpoint only works for data sets with custom HTML forms.
 
     GET /api/33/dataSetReport/custom
 
@@ -13094,7 +13094,7 @@ properties of the push analysis. When deleting or updating a
 push analysis to be disabled, the job will also be stopped from running
 in the future.
 
-To get a HTML preview of an existing push analysis, you can do a GET
+To get an HTML preview of an existing push analysis, you can do a GET
 request to the following endpoint:
 
     /api/33/pushAnalysis/<id>/render
@@ -13105,7 +13105,7 @@ this endpoint:
     /api/33/pushAnalysis/<id>/run
 
 A push analysis consists of the following properties, where some are
-required to automaticly run push analysis jobs:
+required to automatically run push analysis jobs:
 
 <table>
 <caption>Push analysis properties</caption>
@@ -13206,7 +13206,7 @@ URL that creates a new event view of
 
     POST /api/33/dataStatistics?eventType=CHART_VIEW&favorite=LW0O27b7TdD
 
-A successful save operation returns HTTP status code 201. The table
+A successful save operation returns an HTTP status code 201. The table
 below shows the supported types of events.
 
 <table>
@@ -13360,12 +13360,12 @@ DHIS2, and by user.
 </tbody>
 </table>
 
-The API query can be used without username, and will then find the top
+The API query can be used without a username, and will then find the top
 favorites of the system.
 
     /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC
 
-If username is specified, the response will only contain the top favorites of that user.
+If the username is specified, the response will only contain the top favorites of that user.
 
     /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC&username=admin
 
@@ -13383,7 +13383,7 @@ available formats and content types are:
 
   - html (text/html)
 
-API query that requests an usage analytics response in XML
+API query that requests a usage analytics response in XML
     format:
 
     /api/33/dataStatistics.xml?startDate=2014-01-01&endDate=2016-01-01&interval=WEEK
@@ -13490,7 +13490,7 @@ DHIS2. Geospatial features are stored together with organisation units.
 The syntax for retrieving features is identical to the syntax used for
 the organisation unit dimension for the analytics resource. It is
 recommended to read up on the analytics api resource before continuing
-reading this section. You must use the GET request type, and only JSON
+tp read this section. You must use the GET request type, and only JSON
 response format is supported.
 
 As an example, to retrieve geo features for all organisation units at
@@ -13499,7 +13499,7 @@ with the following URL:
 
     /api/33/geoFeatures.json?ou=ou:LEVEL-3
 
-To retrieve geo features for organisation units at level within the
+To retrieve geo features for organisation units at a level within the
 boundary of an organisation unit (e.g. at level 2) you can use this URL:
 
     /api/33/geoFeatures.json?ou=ou:LEVEL-4;O6uvpzGd5pu
@@ -13565,7 +13565,7 @@ table.
 
 ### GeoJSON
 
-To export GeoJSON, you can simple add *.geosjon* as an extension to the
+To export GeoJSON, you can simply add *.geosjon* as an extension to the
 endpoint */api/organisationUnits*, or you can use the *Accept* header
 *application/json+geojson*.
 
@@ -13586,7 +13586,7 @@ Get all features at level 3 with a boundary organisation unit:
 <!--DHIS2-SECTION-ID:webapi_generating_resource_analytics_tables-->
 
 DHIS2 features a set of generated database tables which are used as
-basis for various system functionality. These tables can be executed
+a basis for various system functionality. These tables can be executed
 immediately or scheduled to be executed at regular intervals through the
 user interface. They can also be generated through the Web API as
 explained in this section. This task is typically one for a system
@@ -13663,7 +13663,7 @@ process.
 
 <!--DHIS2-SECTION-ID:webapi_maintenance-->
 
-To perform maintenance you can interact with the *maintenance* resource. You should use *POST* or *PUT* as method for requests. The following methods are available.
+To perform maintenance you can interact with the *maintenance* resource. You should use *POST* or *PUT* as a method for requests. The following methods are available.
 
 Analytics tables clear will drop all analytics tables.
 
@@ -13768,7 +13768,7 @@ this resource:
 
 The *limit* query parameter is optional and indicates how many
 identifiers you want to be returned with the response. The default is to
-return one identifier. The response will contain a JSON object with a
+return one identifier. The response will contain a JSON object with an
 array named codes, similar to this:
 
 ```json
@@ -13851,7 +13851,7 @@ is correct you can make a *GET* request to the following resource using
     /api/33/system/ping
 
 You can detect the outcome of the authentication by inspecting the *HTTP
-status code* of the response header. The meaning of the possible status
+status code* of the response header. The meanings of the possible status
 codes are listed below. Note that this applies to Web API requests in
 general.
 
@@ -13878,7 +13878,7 @@ general.
 <tr class="even">
 <td>302</td>
 <td>Found</td>
-<td>No credentials was supplied with the request - no authentication took place</td>
+<td>No credentials were supplied with the request - no authentication took place</td>
 </tr>
 <tr class="odd">
 <td>401</td>
@@ -14132,7 +14132,7 @@ representations are supported.
 
 ### Database content locales
 
-You can retrieve and create locales for database content with GET and
+You can retrieve and create locales for the database content with GET and
 POST requests through the following resource. XML and JSON resource
 representations are supported.
 
@@ -14147,7 +14147,7 @@ translations through the Web API using the *translations* resource.
 
     /api/33/translations
 
-### Create translation
+### Create a translation
 
 You can create a translation with a POST request in JSON format:
 
@@ -14334,7 +14334,7 @@ messages.
 ### Outbound SMS service
 
 The Web API supports sending outgoing SMS using the POST method. SMS can
-be sent to a single or multiple destinations. One or more gateways need
+be sent to single or multiple destinations. One or more gateways need
 to be configured before using the service. An SMS will not be sent if
 there is no gateway configured. It needs a set of recipients and
 message text in JSON format as shown below.
@@ -14353,10 +14353,10 @@ message text in JSON format as shown below.
 
 > **Note**
 >
-> Recipients list will be partitioned if the size exceed `MAX_ALLOWED_RECIPIENTS` limit of 200.
+> Recipients list will be partitioned if the size exceeds `MAX_ALLOWED_RECIPIENTS` limit of 200.
 
 The Web API also supports a query parameter version, but the
-parametrised API can only be used for sending SMS to a single
+parameterized API can only be used for sending SMS to a single
 destination.
 
     /api/33/sms/outbound?message=text&recipient=004712341234
