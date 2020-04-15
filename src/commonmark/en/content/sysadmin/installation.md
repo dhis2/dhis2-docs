@@ -1110,15 +1110,7 @@ http {
 
   server {
 	listen               80;
-	root  /home/dhis/tomcat/webapps/ROOT; # Update path!
 	client_max_body_size 10M;
-
-	# Serve static files
-
-	location ~ (\.js|\.css|\.gif|\.woff|\.ttf|\.eot|\.ico|(/dhis-web-commons/|/images/|/icons/).*\.png)$ {
-	  add_header  Cache-Control public;
-	  expires     14d;
-	}
 
 	# Proxy pass to servlet container
 
@@ -1207,7 +1199,6 @@ http {
 
   server {
 	listen               443 ssl;
-	root  /home/dhis/tomcat/webapps/ROOT; # Update path!
 	client_max_body_size 10M;
 
 	ssl                  on;
@@ -1220,13 +1211,6 @@ http {
 	ssl_protocols              TLSv1 TLSv1.1 TLSv1.2;
 	ssl_ciphers                RC4:HIGH:!aNULL:!MD5;
 	ssl_prefer_server_ciphers  on;
-
-	# Serve static files
-
-	location ~ (\.js|\.css|\.gif|\.woff|\.ttf|\.eot|\.ico|(/dhis-web-commons/|/images/|/icons/).*\.png)$ {
-	  add_header  Cache-Control public;
-	  expires     14d;
-	}
 
 	# Proxy pass to servlet container
 
@@ -1270,7 +1254,6 @@ will create this directory automatically.
 ```text
 http {
   # ...
-  root              /home/dhis/tomcat/webapps/ROOT; # Update path!
   proxy_cache_path  /var/cache/nginx  levels=1:2  keys_zone=dhis:250m  inactive=1d;
 
   gzip on; # Enables compression, incl Web API content-types
@@ -1303,13 +1286,6 @@ http {
 	ssl_protocols              SSLv2 SSLv3 TLSv1;
 	ssl_ciphers                HIGH:!aNULL:!MD5;
 	ssl_prefer_server_ciphers  on;
-
-	# Serve static files
-
-	location ~ (\.js|\.css|\.gif|\.woff|\.ttf|\.eot|\.ico|(/dhis-web-commons/|/images/|/icons/).*\.png)$ {
-	  add_header  Cache-Control public;
-	  expires     14d;
-	}
 
 	# Proxy pass to servlet container and potentially cache response
 
