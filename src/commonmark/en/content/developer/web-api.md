@@ -14786,34 +14786,44 @@ One particular command can be deleted using DELETE.
 #### SMS command types
 
   - KEY_VALUE_PARSER
-
-  - J2ME_PARSER
+    For aggregate data collection.
 
   - ALERT_PARSER
-
+	To send alert messages.
+	
   - UNREGISTERED_PARSER
+    For disease surveillance case reporting.
 
   - TRACKED_ENTITY_REGISTRATION_PARSER
+    For tracker entity registration.
 
   - PROGRAM_STAGE_DATAENTRY_PARSER
+    Data collection for program stage. ( TEI is identified based on phoneNumner )
 
   - EVENT_REGISTRATION_PARSER
+    Registration of single event. This is used for event programs.
 
 #### SMS command types for Android
 
-These command types can be used by Android app for data submission through SMS when internet is unavailable.
+These command types can be used by Android app for data submission through SMS when internet is unavailable. SMS is composed by android app.
 
   - AGGREGATE_DATASET
-
+	For aggregate data collection.
+	
   - ENROLLMENT
-
+    For tracker entity registration.
+    
   - TRACKER_EVENT
+	Event registration for tracker programs.
 
   - SIMPLE_EVENT
+    Event registration for event programs.
 
   - RELATIONSHIP
+    To create relationships.
 
   - DELETE
+	To delete event.
 
 ## Program Messages
 
