@@ -95,7 +95,7 @@ After logging in, there are the list of functions:
 
 ![](resources/images/dhis2_mobile_web_based/mobile-browser-menu.PNG)
 
-****- Aggregate Reporting:**** Entries for aggregate data with
+**- Aggregate Reporting:** Entries for aggregate data with
 defined/assigned dataset by organisation-units
 
 \- **Tracking:**
@@ -110,10 +110,10 @@ defined/assigned dataset by organisation-units
 
   - Anonymous: Entries for anonymous person based on programs
 
-****- Messages:**** Manage the messages and discussions from the server.
+**- Messages:** Manage the messages and discussions from the server.
 Message reply is available. User can send feedback message in Messages.
 
-****- Reports:**** The output reports from the server.
+**- Reports:** The output reports from the server.
 
 \- **Settings:** User-information (e.g.: First-name, Surname, Phone
 number, E-mail) and the Interface language.
@@ -127,7 +127,7 @@ for the normal GPRS/3G/... phones.
 
 The list above will be explained in details:
 
-1.  ****Aggregate Reporting:**** Entries for aggregate data with
+1.  **Aggregate Reporting:** Entries for aggregate data with
     defined/assigned dataset by
     organisation-units.
 
@@ -164,7 +164,7 @@ The list above will be explained in details:
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-entry-complete-save.png)
 
-2.  ****Tracking:**** **Find/Add Person, Visit Schedule, Person
+2.  **Tracking:** **Find/Add Person, Visit Schedule, Person
     Registration,
     Anonymous**
 
@@ -268,7 +268,7 @@ The list above will be explained in details:
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-tracking-anonymous.png)
 
-3.  ****Messages:**** Manage the messages and discussions from the
+3.  **Messages:** Manage the messages and discussions from the
     server. Message reply is
     available.
 
@@ -290,14 +290,14 @@ The list above will be explained in details:
     After sending out the new feedback, the message (feedback) will be
     listed under "Messages" for further following up.
 
-4.  ****Reports:**** The output reports from the
+4.  **Reports:** The output reports from the
     server
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-reports.png)
 
     (will be updated)
 
-5.  ****Settings:**** User-information (e.g.: First-name, Surname, Phone
+5.  **Settings:** User-information (e.g.: First-name, Surname, Phone
     number, E-mail) and the Interface
     language.
 
@@ -383,7 +383,7 @@ The list above will be explained in details:
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-namebased-details-info.png)
 
-2.  ****Beneficiary Registration:**** Registry a new
+2.  **Beneficiary Registration:** Registry a new
     beneficiary
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-beneficiary-registration.png)
@@ -409,7 +409,7 @@ The list above will be explained in details:
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-beneficiary-registration-form-success.png)
 
-3.  ****Beneficiary Enrollment:**** Enrol a beneficiary to one or many
+3.  **Beneficiary Enrollment:** Enrol a beneficiary to one or many
     programs
 
 
@@ -438,7 +438,7 @@ The list above will be explained in details:
     enrolled will be listed under "Enrolled Programs for" + \<Name of
     the beneficiary\>, see the example:
 
-4.  ****Messages:**** Manage the messages and discussions from the
+4.  **Messages:** Manage the messages and discussions from the
     server. Message reply is
     available.
 
@@ -456,14 +456,14 @@ The list above will be explained in details:
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-messages-reply.png)
 
-5.  ****Reports:**** The output reports from the
+5.  **Reports:** The output reports from the
     server
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-reports.png)
 
     (will be updated)
 
-6.  ****Settings:**** User-information (e.g.: First-name, Surname, Phone
+6.  **Settings:** User-information (e.g.: First-name, Surname, Phone
     number, E-mail) and the Interface
     language.
 
@@ -476,7 +476,7 @@ The list above will be explained in details:
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-settings-update.png)
 
-7.  ****Feedback:**** the extra function for creating a new message to
+7.  **Feedback:** the extra function for creating a new message to
     send to the server. The new created feedback from this will be
     listed under
     "**Messages**"
@@ -1044,7 +1044,7 @@ should be:
 
 **report vo.2.vn.5.a.2.b.6.z.3.x.1**
 
-or ****report vo.2|vn.5|a.2|b.6|z.3|x.1****
+or **report vo.2|vn.5|a.2|b.6|z.3|x.1**
 
 Moreover in SMS text input, orgUnit can be specified like this **org
 orgUnitCode** If no orgUnit is specified in SMS then user is retrieved
@@ -1079,7 +1079,7 @@ provided ) for this parser would look like this. **childProgram
 fn=xmen|ln=xmen2|age=4**
 
 In case field separator is for example "," then text would look like
-this.****childProgram fn=xmen,ln=xmen2,age=4****
+this.**childProgram fn=xmen,ln=xmen2,age=4**
 
 Rest of the behavior is same as for other commands. If user does not
 provide those parameters then default ones will be used.
@@ -1100,7 +1100,7 @@ provided ) for this parser would look like this. **programstage
 bcgd=1|opvd=2|wght=34**
 
 In case field separator is for example "," then text would look like
-this.****programstage bcgd=1,opvd=2,wght=34****
+this.**programstage bcgd=1,opvd=2,wght=34**
 
 Rest of the behavior is same as for other commands. If user does not
 provide those parameters then default ones will be used.
