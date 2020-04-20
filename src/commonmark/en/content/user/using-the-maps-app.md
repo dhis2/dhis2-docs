@@ -8,9 +8,8 @@
 
 The Maps App is introduced in release 2.29 and serves as a replacement
 of the GIS App offering a more intuitive and user-friendly interface.
-The mapping engine in version 2.34 is brand new and based on WebGL
-technology, which is capable of showing thousands of features on a map
-simultaneously.
+The mapping engine from version 2.34 is based on WebGL technology,
+capable of showing thousands of features on a map simultaneously.
 
 With the Maps app you can overlay multiple layers and choose among
 different base maps. You can create thematic maps of areas and points,
