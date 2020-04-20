@@ -37,11 +37,10 @@ and groups, or downloaded as an image.
     basemap is OSM Light and is selected by default. OpenStreetMap
     Detailed contains more map features and place names. There are 4
     basemaps from Bing Maps, replacing Google Maps provided in previous
-    versions of the Maps app. Bing Road and Bing Dark shows roads,
-    borders and places. Use the dark version if the colors on your
-    map layers are bright. Bing Aerial and Bing Aerial Labels show
-    satellite and detailed aerial imagery. Switch between them by
-    selecting the desired image.
+    versions. Bing Road and Bing Dark shows roads, borders and places.
+    Use the dark version if the colors on your map layers are bright.
+    Bing Aerial and Bing Aerial Labels shos satellite and detailed aerial
+    imagery. Switch between them by selecting the desired image.
 
   - The small arrow button to the right of the layer panel, at the
     top, allows the panel to be hidden or shown.
@@ -111,8 +110,8 @@ and groups, or downloaded as an image.
 <!-- end list -->
 
 - The **+** and **-** buttons on the map allow you to zoom in and out
-  of the map respectively. The mouse scroll wheel can also be used for
-  altering the zoom.
+  of the map respectively. The mouse scroll wheel zoom is continuous,
+  allowing us to fit the map perfectly to your content.
 
 - The **rotate map** button (triangle arrows) allows you to
   rotate and tilt the map to enhance the view of your data. Press the button
@@ -607,8 +606,10 @@ layer** selection. This opens the Events layer configuration dialog.
       above.
 
     - Select a **Style by data element** to colorise the events
-      according to a data value. The options varies for different
-      data types:
+      according to a data value. If you also select to group events,
+      the culsters will be displayed as small donut charts showing
+      the distribution of the data values. The options varies for
+      different data types:
 
       - **Option sets**: Select a color for each option in an option
         set. You can set default colors for an option in the
