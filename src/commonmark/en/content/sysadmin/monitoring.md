@@ -136,7 +136,7 @@ Active: active (running)
 
 <!--DHIS2-SECTION-ID:prometheus_nginx-->
 
-Prometheus does not natively support authentication or TLS encryption. If Prometheus has to be exposed outside the boundaries of the local network, it is important to enable authentication and TLS encryption. The following steps shows how to use Nginx as reverse proxy.
+Prometheus does not natively support authentication or TLS encryption. If Prometheus has to be exposed outside the boundaries of the local network, it is important to enable authentication and TLS encryption. The following steps show how to use Nginx as a reverse proxy.
 
 - Install Nginx, if not already installed
 
@@ -198,7 +198,7 @@ systemctl restart nginx
 journalctl -f -u nginx.service
 ```
 
-- Configure Prometheus for reverse proxing, by editing `/lib/systemd/system/prometheus.service` and add the following argument
+- Configure Prometheus for reverse proxying, by editing `/lib/systemd/system/prometheus.service` and add the following argument
 to the list of arguments passed to the Prometheus executable
 
 ```
@@ -237,7 +237,7 @@ htpasswd -c .credentials admin
 
 Choose a strong password, and make sure that the pass file was correctly created.
 
-- Edit the previosuly created Nginx configuration file (`/etc/nginx/conf.d/prometheus.conf`), and add the authentication information.
+- Edit the previously created Nginx configuration file (`/etc/nginx/conf.d/prometheus.conf`), and add the authentication information.
 
 ```
 server {
@@ -408,5 +408,5 @@ Prometheus may or may not run on the same server as DHIS2: in the above configur
 
 The monitoring subsystem is disabled by default in DHIS2.
 
-Each metrics cluster has to be explicitely enabled in order for the metrics to be exported. To configure DHIS2 to export one or more metrics, check the this [document](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md#dhis2-monitoring-configuration).
+Each metrics cluster has to be explicitly enabled in order for the metrics to be exported. To configure DHIS2 to export one or more metrics, check this [document](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md#dhis2-monitoring-configuration).
 
