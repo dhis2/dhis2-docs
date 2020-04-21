@@ -52,7 +52,7 @@ CPU cores so the more you can afford, the better the application will perform.
 
   - *Disk:* Ideally use an SSD. Otherwise use a 7200 rpm disk. Minimum
     read speed is 150 Mb/s, 200 Mb/s is good, 350 Mb/s or better is
-    ideal. In terms of disk space, at least 60 GB is recomended, but
+    ideal. In terms of disk space, at least 60 GB is recommended, but
     will depend entirely on the amount of data which is contained in the
     data value tables. Analytics tables require a significant amount of
     disk space. Plan ahead and ensure that your server can be upgraded
