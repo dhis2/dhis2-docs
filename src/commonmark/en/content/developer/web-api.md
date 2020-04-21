@@ -15502,17 +15502,17 @@ You can retrieve all system settings with a GET request:
 
     /api/33/systemSettings
 
-To retrieve a specific translation for given translatable key you can specify 
+To retrieve a specific translation for a given translatable key you can specify 
 a locale as query param:
 
     /api/33/systemSettings/<my-key>?locale=<my-locale>
 
-If present, the translation for given locale is returned. Otherwise, a default 
-value is returned. If no locale is specified for translatable key, user default 
-UI locale is used to fetch the correct translation. If given translation is not 
+If present, the translation for the given locale is returned. Otherwise, a default 
+value is returned. If no locale is specified for the translatable key, the user default 
+UI locale is used to fetch the correct translation. If the given translation is not 
 present, again, the default value is returned.
 
-The priority for translatable keys is following:
+The priority for translatable keys is the following:
 
     specified locale > user's default UI locale > defaut value
 
@@ -16757,7 +16757,7 @@ The Web API provides a resource which can be used to convert SVG content
 into more widely used formats such as PNG and PDF. Ideally this
 conversion should happen on the client side, but not all client side
 technologies are capable of performing this task. Currently PNG and PDF
-output formats are supported. The SVG content itself should passed with
+output formats are supported. The SVG content itself should be passed with
 a *svg* query parameter, and an optional query parameter *filename* can
 be used to specify the filename of the response attachment file. Note
 that the file extension should be omitted. For PNG you can send a *POST*
@@ -16856,7 +16856,7 @@ or a polygon as a value.
 For getting the IDs for `relationship` and `attributes` you can have a look
 at the respective resources `relationshipTypes`, `trackedEntityAttributes`.
 To create a tracked entity instance you must use the HTTP *POST* method. 
-You can post the payload the the following URL:
+You can post the payload the following URL:
 
     /api/trackedEntityInstances
 
@@ -16926,14 +16926,14 @@ an outer array like this and POST to the same resource as above:[]()
 ```
 
 The system does not allow the creation of a tracked entity instance
-(as well as enrollment and event) with an UID that was already used in
+(as well as enrollment and event) with a UID that was already used in
 the system. That means that UIDs cannot be reused.
 
 #### Updating a tracked entity instance
 
 <!--DHIS2-SECTION-ID:webapi_updating_tei-->
 
-For updating a tracked entity instance, the payload is the equal to the
+For updating a tracked entity instance, the payload is equal to the
 previous section. The difference is that you must use the HTTP *PUT*
 method for the request when sending the payload. You will also need to
 append the person identifier to the *trackedEntityInstances* resource in
@@ -17096,8 +17096,8 @@ curl -X POST -d @tei.json -H "Content-Type: application/json"
 
 <!--DHIS2-SECTION-ID:webapi_generate_tei_attributes-->
 
-Tracked entity instance attributes that is using automatic generation of
-unique values has three endpoints that is used by apps. The endpoints
+Tracked entity instance attributes that are using automatic generation of
+unique values have three endpoints that are used by apps. The endpoints
 are all used for generating and reserving values.
 
 In 2.29 we introduced TextPattern for defining and generating these
@@ -17106,7 +17106,7 @@ when upgrading to 2.29.
 
 > **Note**
 >
-> As of 2.29, all these endpoint will require you to include any
+> As of 2.29, all these endpoints will require you to include any
 > variables reported by the `requiredValues` endpoint listed as
 > required. Existing patterns, consisting of only `#`, will be upgraded
 > to the new TextPattern syntax `RANDOM(<old-pattern>)`. The RANDOM
@@ -17142,7 +17142,7 @@ variables should only be supplied if you know what you are doing.
 
 <!--DHIS2-SECTION-ID:webapi_generate_values-->
 
-Online web apps and other clients that wants to generate a value that
+Online web apps and other clients that want to generate a value that
 will be used right away can use the simple generate endpoint. This
 endpoint will generate a value that is guaranteed to be unique at the
 time of generation. The value is also guaranteed not to be reserved. As
@@ -17171,7 +17171,7 @@ adding the `?expiration=<number-of-days>` to the request.
 
 <!--DHIS2-SECTION-ID:webapi_generate_reserve_values-->
 
-The generate and reserve endpoint is used by offline clients that needs
+The generate and reserve endpoint is used by offline clients that need
 to be able to register tracked entities with unique ids. They will
 reserve a number of unique ids that this device will then use when
 registering new tracked entity instances. The endpoint is called to
@@ -17219,7 +17219,7 @@ you can override the default 60 days.
 
 ##### Reserved values
 
-Reserved values is currently not accessible trough the api, however they
+Reserved values are currently not accessible through the api, however, they
 are returned by the `generate` and `generateAndReserve` endpoints. The
 following table explains the properties of the reserved value object:
 
@@ -17266,7 +17266,7 @@ following table explains the properties of the reserved value object:
 </table>
 
 Expired reservations are removed daily. If a pattern changes, values
-that was already reserved will be accepted when storing data, even if
+that were already reserved will be accepted when storing data, even if
 they don't match the new pattern, as long as the reservation has not
 expired.
 
@@ -17417,7 +17417,7 @@ following table.
 </tr>
 <tr class="odd">
 <td>DESCENDANTS</td>
-<td>The selected organisation units and and all children, i.e. all organisation units in the sub-hierarchy.</td>
+<td>The selected organisation units and all children, i.e. all organisation units in the sub-hierarchy.</td>
 </tr>
 <tr class="even">
 <td>ACCESSIBLE</td>
@@ -17466,7 +17466,7 @@ descendant organisation unit query mode:
       &filter=AMpUYgxuCaE&ou=DiszpKrYNg8;yMCshbaVExv
 
 A query for instances where one attribute is included in the response
-and one attribute us used as a filter:
+and one attribute is used as a filter:
 
     /api/33/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A
       &filter=AMpUYgxuCaE:LIKE:Road&ou=DiszpKrYNg8
@@ -17729,7 +17729,7 @@ and is an alternative to the query in the previous section.
 </tr>
 <tr class="even">
 <td>attribute</td>
-<td>Attributes to be included in the response. Can also be used a filter for the query. Param can be repeated any number of times. Filters can be applied to a dimension on the format &lt;attribute-id&gt;:&lt;operator&gt;:&lt;filter&gt;[:&lt;operator&gt;:&lt;filter&gt;]. Filter values are case-insensitive and can be repeated together with operator any number of times. Operators can be EQ | GT | GE | LT | LE | NE | LIKE | IN. Filters can be omitted in order to simply include the attribute in the response without any constraints.</td>
+<td>Attributes to be included in the response. Can also be used as a filter for the query. Param can be repeated any number of times. Filters can be applied to a dimension on the format &lt;attribute-id&gt;:&lt;operator&gt;:&lt;filter&gt;[:&lt;operator&gt;:&lt;filter&gt;]. Filter values are case-insensitive and can be repeated together with operator any number of times. Operators can be EQ | GT | GE | LT | LE | NE | LIKE | IN. Filters can be omitted in order to simply include the attribute in the response without any constraints.</td>
 </tr>
 <tr class="odd">
 <td>filter</td>
@@ -17904,7 +17904,7 @@ match:
 
     /api/33/trackedEntityInstances/query.json?query=LIKE:scott&ou=DiszpKrYNg8
 
-You can query on multiple words separated by the the URL character for
+You can query on multiple words separated by the URL character for
 space which is %20, will use a logical AND query for each
     word:
 
@@ -17923,7 +17923,7 @@ descendants organisation unit query mode:
       &attribute=AMpUYgxuCaE&ou=DiszpKrYNg8;yMCshbaVExv
 
 A query for instances where one attribute is included in the response
-and one attribute us used as a
+and one attribute is used as a
     filter:
 
     /api/33/trackedEntityInstances/query.json?attribute=zHXD5Ve1Efw:EQ:A
@@ -18105,11 +18105,11 @@ can interact with the */api/trackedEntityInstanceFilters* resource.
 
     /api/33/trackedEntityInstanceFilters
 
-##### Create and update a tracked entity instance filter definiton
+##### Create and update a tracked entity instance filter definition
 
 For creating and updating a tracked entity instance filter in the
 system, you will be working with the *trackedEntityInstanceFilters*
-resource. The tracked entity instance filter defintions are used in the
+resource. The tracked entity instance filter definitions are used in the
 Tracker Capture app to display relevant predefined "Working lists" in
 the tracker user interface.
 
@@ -18160,12 +18160,12 @@ the tracker user interface.
 </tr>
 <tr class="odd">
 <td>followup</td>
-<td>When this parameter is true, the filter only returns TEIs that has an enrollment with status followup.</td>
+<td>When this parameter is true, the filter only returns TEIs that have an enrollment with status followup.</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>enrollmentCreatedPeriod</td>
-<td>Period object containing a period which the enrollment must be created. See <em>Period</em> definition table below.</td>
+<td>Period object containing a period in which the enrollment must be created. See <em>Period</em> definition table below.</td>
 <td>{ &quot;periodFrom&quot;: -15, &quot;periodTo&quot;: 15}</td>
 </tr>
 <tr class="odd">
@@ -18201,7 +18201,7 @@ the tracker user interface.
 </tr>
 <tr class="even">
 <td>assignedUserMode</td>
-<td>To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)| PROVIDED (events assigned to users provided in "assignedUsers" list) | NONE (events assigned to noone) | ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.</td>
+<td>To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)| PROVIDED (events assigned to users provided in "assignedUsers" list) | NONE (events assigned to no one) | ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.</td>
 <td>"assignedUserMode": "PROVIDED"</td>
 </tr>
 <tr class="odd">
@@ -18299,12 +18299,12 @@ entity instance:
 
     /api/33/enrollments/<enrollment-id>/cancelled
 
-For completing a enrollment for a tracked entity instance you can make a
+For completing an enrollment for a tracked entity instance you can make a
 *PUT* request to the following URL:
 
     /api/33/enrollments/<enrollment-id>/completed
 
-For deleting a enrollment, you can make a *DELETE* request to the
+For deleting an enrollment, you can make a *DELETE* request to the
 following URL:
 
     /api/33/enrollments/<enrollment-id>
@@ -18341,7 +18341,7 @@ resource.
 </tr>
 <tr class="even">
 <td>ouMode</td>
-<td>The mode of selecting organisation units, can be SELECTED | CHILDREN | DESCENDANTS | ACCESSIBLE | CAPTURE | ALL. Default is SELECTED, which refers to the selected selected organisation units only. See table below for explanations.</td>
+<td>The mode of selecting organisation units, can be SELECTED | CHILDREN | DESCENDANTS | ACCESSIBLE | CAPTURE | ALL. Default is SELECTED, which refers to the selected organisation units only. See table below for explanations.</td>
 </tr>
 <tr class="odd">
 <td>program</td>
@@ -18797,7 +18797,7 @@ describes the meaning of each element.
 <td>string</td>
 <td>false</td>
 <td>Defaults to current user</td>
-<td>Who stored this event (can be username, system-name etc)</td>
+<td>Who stored this event (can be username, system-name, etc)</td>
 </tr>
 <tr class="odd">
 <td>coordinate</td>
@@ -18861,7 +18861,7 @@ curl -X PUT -d @updated_event.json "localhost/api/33/events/ID"
 <!--DHIS2-SECTION-ID:webapi_deleting_events-->
 
 To delete an existing event, all you need is to send a DELETE request
-with a identifier reference to the server you are using.
+with an identifier reference to the server you are using.
 
 ```bash
 curl -X DELETE "localhost/api/33/events/ID" -u admin:district
@@ -19254,7 +19254,7 @@ can interact with the `/api/eventFilters` resource.
 
     /api/33/eventFilters
 
-##### Create and update an event filter definiton
+##### Create and update an event filter definition
 
 For creating and updating an event filter in the
 system, you will be working with the *eventFilters*
@@ -20279,7 +20279,7 @@ DHIS2 allows for scheduling of jobs of various types. Each type of job has diffe
 </tr>
 <tr class="odd">
 <td>jobType</td>
-<td>The job type represent which task is run. In the next table, you can get an overview of existing job types. Each job type can have a a specific set of parameters for job configuration.</td>
+<td>The job type represent which task is run. In the next table, you can get an overview of existing job types. Each job type can have a specific set of parameters for job configuration.</td>
 <td>String (Enum)</td>
 </tr>
 <tr class="even">
@@ -21283,7 +21283,7 @@ curl -X POST -H "Content-Type: application/json" -u admin:district -d "['some va
 }
 ```
 
-If you require the value to be encrypted (For example user credetials
+If you require the value to be encrypted (For example user credentials
 and such) you can append a query to the url like this:
 
     GET /api/33/userDataStore/<namespace>/<key>?encrypt=true
@@ -21563,7 +21563,7 @@ unit. You can read lock exceptions from the following resource:
 
     /api/lockExceptions
 
-To create a new lock excecption you can use a POST request and specify
+To create a new lock exception you can use a POST request and specify
 the data set, period and organisation unit:
 
     POST /api/lockExceptions?ds=BfMAe6Itzgt&pe=201709&ou=DiszpKrYNg8
@@ -21629,7 +21629,7 @@ info.
 
 <!--DHIS2-SECTION-ID:webapi_analytics_table_hooks-->
 
-Analytics table hooks provides a mechanism for invoking SQL scripts
+Analytics table hooks provide a mechanism for invoking SQL scripts
 during different phases of the analytics table generation process. This
 is useful for customizing data in resource and analytics tables, e.g. in
 order to achieve specific logic for calculations and aggregation.
