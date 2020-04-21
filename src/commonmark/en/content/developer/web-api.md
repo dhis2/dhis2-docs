@@ -14796,7 +14796,7 @@ One particular command can be deleted using DELETE.
 
 #### SMS command types for Android
 
-These command types can be used by Android app for data submission through SMS when internet is unavailable. SMS is composed by android app.
+These command types can be used by the Android app for data submission via SMS when internet is unavailable. The SMS is composed by the Android app.
 
 | Type | Usage |
 |---|---|
