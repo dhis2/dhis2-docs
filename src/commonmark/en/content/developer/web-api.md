@@ -14744,6 +14744,11 @@ In generic http gateway any number of parameters can be added.
 <td>Boolean</td>
 <td>If parameter is confidential. This parameter will not be exposed through API</td>
 </tr>
+<tr class="odd">
+<td>sendUrlParameters</td>
+<td>Boolean</td>
+<td>If this flag is checked then urlTemplate can be appended with query parameters. This is usefull if gateway API only support HTTP GET. Sample urlTemplate looks like this "urlTemplate":"https://samplegateway.com/messages?apiKey={apiKey}&to={recipients},content={text},deliveryreport={dp}"</td>
+</tr>
 </tbody>
 </table>
 
@@ -14776,21 +14781,29 @@ One particular command can be deleted using DELETE.
 
     DELETE /api/smsCommands/uid
 
-#### SMS command parser types
+#### SMS command types
 
-  - KEY_VALUE_PARSER
+| Type | Usage |
+|---|---|
+|KEY_VALUE_PARSER | For aggregate data collection.|
+|ALERT_PARSER | To send alert messages.|
+|UNREGISTERED_PARSER | For disease surveillance case reporting.|
+|TRACKED_ENTITY_REGISTRATION_PARSER | For tracker entity registration.|
+|PROGRAM_STAGE_DATAENTRY_PARSER | Data collection for program stage. ( TEI is identified based on phoneNumner )|
+|EVENT_REGISTRATION_PARSER | Registration of single event. This is used for event programs.|
 
-  - J2ME_PARSER
+#### SMS command types for Android
 
-  - ALERT_PARSER
+These command types can be used by the Android app for data submission via SMS when internet is unavailable. The SMS is composed by the Android app.
 
-  - UNREGISTERED_PARSER
-
-  - TRACKED_ENTITY_REGISTRATION_PARSER
-
-  - PROGRAM_STAGE_DATAENTRY_PARSER
-
-  - EVENT_REGISTRATION_PARSER
+| Type | Usage |
+|---|---|
+|AGGREGATE_DATASET | For aggregate data collection.|
+|ENROLLMENT | For tracker entity registration.|
+|TRACKER_EVENT | Event registration for tracker programs.|
+|SIMPLE_EVENT | Event registration for event programs.|
+|RELATIONSHIP | To create relationships.|
+|DELETE | To delete event.|
 
 ## Program Messages
 
