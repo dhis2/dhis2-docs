@@ -10475,7 +10475,7 @@ The analytics resource lets you specify a range of query parameters:
 <tr class="even">
 <td>outputIdScheme</td>
 <td>No</td>
-<td>Identifier scheme to use for metadata items the query response, can be an identifier, code or attributes.</td>
+<td>Identifier scheme to use for metadata items the query response, can be identifier, code or attributes.</td>
 <td>UID | CODE |NAME| ATTRIBUTE:&lt;ID&gt;</td>
 </tr>
 <tr class="odd">
@@ -10499,7 +10499,7 @@ The analytics resource lets you specify a range of query parameters:
 <tr class="even">
 <td>userOrgUnit</td>
 <td>No</td>
-<td>Explicitly define the user org units to utilize, overrides organisation units associated with the current user, multiple identifiers can be separted by semicolon.</td>
+<td>Explicitly define the user org units to utilize, overrides organisation units associated with the current user, multiple identifiers can be separated by semicolon.</td>
 <td>Organisation unit identifiers.</td>
 </tr>
 <tr class="odd">
@@ -10603,7 +10603,7 @@ will filter the analytics response. You can use it like this:
 
 In order to have the analytics resource generate the data in the shape
 of a ready-made table, you can provide the *tableLayout* parameter with
-true as a value. Instead of generating a plain, normalized data source,
+true as value. Instead of generating a plain, normalized data source,
 the analytics resource will now generate the data in a table layout. You
 can use the *columns* and *rows* parameters with dimension identifiers
 separated by semi-colons as values to indicate which ones to use as
@@ -11320,7 +11320,7 @@ periods explicitly in the
       &startDate=2015-01-01&endDate=2015-12-31
       &dimension=ou:O6uvpzGd5pu;fdc6uOvgoji
 
-The *filter* parameter can be used to filter response without
+The *filter* parameter can be used to filter a response without
 including that dimension as part of the response, this time in CSV
 format:
 
@@ -13490,7 +13490,7 @@ DHIS2. Geospatial features are stored together with organisation units.
 The syntax for retrieving features is identical to the syntax used for
 the organisation unit dimension for the analytics resource. It is
 recommended to read up on the analytics api resource before continuing
-tp read this section. You must use the GET request type, and only JSON
+to read this section. You must use the GET request type, and only JSON
 response format is supported.
 
 As an example, to retrieve geo features for all organisation units at
