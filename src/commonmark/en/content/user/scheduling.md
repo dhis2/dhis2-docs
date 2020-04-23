@@ -100,6 +100,14 @@ Further configuring a job:
 
 The following section describes the various job types.
 
+### Resource table
+
+<!--DHIS2-SECTION-ID:scheduling_resource_table-->
+
+The resource table job is responsible for generating and updating the resource database tables. These tables are used by various components in DHIS 2 and is meant to simplify queries against the database.
+
+Note that when specifying any of the analytics table jobs, resource tables can be part of the process and it is not necessary to also specify a resource table job.
+
 ### Analytics table
 
 <!--DHIS2-SECTION-ID:scheduling_analytics_table-->
@@ -111,14 +119,6 @@ The analytics table job will by default populate data for all years and data ele
 - Last years: The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
 - Skip resource tables: Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
 - Skip table types: Skip one or more analytics table types. This reduces the time the process takes to complete, but leads to those data types not being updated in analytics data.
-
-### Resource table
-
-<!--DHIS2-SECTION-ID:scheduling_resource_table-->
-
-The resource table job is responsible for generating and updating the resource database tables. These tables are used by various components in DHIS 2 and is meant to simplify queries against the database.
-
-Note that when specifying any of the analytics table jobs, resource tables can be part of the process and it is not necessary to also specify a resource table job.
 
 ### Continuous analytics table
 
