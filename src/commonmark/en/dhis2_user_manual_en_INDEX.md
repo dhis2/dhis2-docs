@@ -19,6 +19,7 @@ title: 'DHIS 2 User guide'
 !INCLUDE "content/user/using-the-event-visualizer-app.md"
 !INCLUDE "content/user/control-data-quality.md"
 !INCLUDE "content/user/data-approval.md"
+!INCLUDE "content/user/scheduling.md"
 !INCLUDE "content/user/using-reporting-functionality.md"
 !INCLUDE "content/user/using-beta-reporting-functionality.md"
 !INCLUDE "content/user/set-user-account-preferences.md"
