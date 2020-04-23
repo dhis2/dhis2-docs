@@ -28,6 +28,7 @@ title: 'DHIS 2 User guide'
 !INCLUDE "content/user/configure-programs-in-the-maintenance-app.md"
 !INCLUDE "content/user/about-sharing-of-objects.md"
 !INCLUDE "content/user/data-administration.md"
+!INCLUDE "content/user/scheduling.md"
 !INCLUDE "content/user/datastore-manager.md"
 !INCLUDE "content/user/configure-the-gis-app.md"
 !INCLUDE "content/user/configure-report-functionality.md"
