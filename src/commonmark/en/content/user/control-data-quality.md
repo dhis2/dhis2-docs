@@ -99,9 +99,9 @@ internal DHIS 2 messaging system.
 
 3.  Run the validation rule analysis, either automatically or manually.
 
-      - In the **Data Administration** app, you schedule the validation
+      - In the **Scheduler** app, you schedule the validation
         rule analysis to run automatically for all validation rules
-        included in one or several validation notifications. After the
+        included in one or several validation rule groups. After the
         system has run the analysis, you'll see the validation
         violations (if any) in the validation notifications sent via the
         internal DHIS 2 messaging system.
@@ -131,13 +131,17 @@ internal DHIS 2 messaging system.
 1.  Verify that you have created all the validation rules, validation
     rule groups and validation notifications you need.
 
-2.  Open the **Data Administration** app and click **Scheduling**.
+2.  Open the **Scheduler** app and click the add button in the bottom right corner.
 
-3.  If scheduling is active, click **Stop**.
+3.  Choose a suitable Name for the new job.
 
-4.  In the **Data monitoring** section, select **All daily**.
+4. Select the **Monitoring** Job type using the drop-down menu. 
 
-5.  Click **Start**.
+5. Select a running frequency for the job, i.e. when and how often the job should run.
+
+6. Fill in the **Parameters** section, including the Validation rule groups.
+
+7. Press the **Add job** button to confirm the job creation. For more information on adding jobs, see [Scheduling](data-administration.html#scheduling).
 
 ### Run a validation rule analysis manually
 

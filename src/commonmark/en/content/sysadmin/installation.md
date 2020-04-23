@@ -442,7 +442,7 @@ export JAVA_OPTS='-Xmx7500m -Xms4000m'
 export DHIS2_HOME='/home/dhis/config'
 ```
 
-The Tomcat configiration file is located in
+The Tomcat configuration file is located in
 *tomcat-dhis/conf/server.xml*. The element which defines the connection
 to DHIS is the *Connector* element with port 8080. You can change the
 port number in the Connector element to a desired port if necessary. 
@@ -562,7 +562,7 @@ This configuration is an example reflecting the defaults and should be
 changed to fit your needs. In other words, you can omit it entirely if
 you plan to use the default values. If you want to use an external
 provider the last block of properties needs to be defined, as well as the
-*provider* property being set to a supported provider (currently only
+*provider* property is set to a supported provider (currently only
 AWS S3).
 
 > **Note**
@@ -956,7 +956,7 @@ There are two ways to achieve a shared location:
 * Use the *AWS S3 cloud filestorage* option. Files will be stored in an
 S3 bucket which is automatically shared by all DHIS 2 instances in the cluster.
 See the *File store configuration* section for guidance.
-* Set up a shared folder which are shared among all DHIS 2 instances and
+* Set up a shared folder which is shared among all DHIS 2 instances and
 servers in the cluster. On Linux this can be achieved with *NFS* (Network File System)
 which is a distributed file system protocol. Note that only the `files` 
 subfolder under `DHIS2_HOME` should be shared, not the parent folder. 
@@ -1043,7 +1043,7 @@ monitoring.uptime.enabled = true
 monitoring.cpu.enabled = true
 ```
 
-The recommended approach for collecting and visualization these metrics are through Prometheus and Grafana. For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
+The recommended approach for collecting and visualizing these metrics is through Prometheus and Grafana. For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
 
 ## Reverse proxy configuration
 
@@ -1071,7 +1071,7 @@ has many advantages:
 
 <!--DHIS2-SECTION-ID:install_basic_nginx_setup-->
 
-We recommend using [nginx](http://www.nginx.org) as reverse proxy due to
+We recommend using [nginx](http://www.nginx.org) as a reverse proxy due to
 its low memory footprint and ease of use. To install invoke the
 following:
 
@@ -1092,7 +1092,7 @@ configuration file by invoking:
     sudo nano /etc/nginx/nginx.conf
 
 nginx configuration is built around a hierarchy of blocks representing
-http, server and location, where each block inherit settings from parent
+http, server and location, where each block inherits settings from parent
 blocks. The following snippet will configure nginx to proxy pass
 (redirect) requests from port 80 (which is the port nginx will listen on
 by default) to our Tomcat instance. Include the following configuration
@@ -1522,7 +1522,7 @@ The DHIS2 application log output is directed to multiple files and locations. Fi
 
     <tomcat-dir>/logs/catalina.out
 
-Second, log output is written to a "logs" directory under the DHIS2 home directory as defined by the the DHIS2\_HOME environment variables. There is a main log file for all output, and separate log files for various
+Second, log output is written to a "logs" directory under the DHIS2 home directory as defined by the DHIS2\_HOME environment variables. There is a main log file for all output, and separate log files for various
 background processes. The main file includes the background process logs as well. The log files are capped at 50 Mb and log content is continuously appended.
 
     <DHIS2_HOME>/logs/dhis.log    
@@ -1572,7 +1572,7 @@ file copy immediately you can do:
 
 To restore this copy on another system, you first need to create an
 empty database as described in the installation section. You also need
-to gunzip the copy if you created a compressed version. You can the
+to gunzip the copy if you created a compressed version. You can
 invoke:
 
     psql -d dhis2 -U dhis -f dhis2.sql
