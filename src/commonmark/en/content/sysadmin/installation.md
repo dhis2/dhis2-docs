@@ -52,7 +52,7 @@ CPU cores so the more you can afford, the better the application will perform.
 
   - *Disk:* Ideally use an SSD. Otherwise use a 7200 rpm disk. Minimum
     read speed is 150 Mb/s, 200 Mb/s is good, 350 Mb/s or better is
-    ideal. In terms of disk space, at least 60 GB is reccomended, but
+    ideal. In terms of disk space, at least 60 GB is recommended, but
     will depend entirely on the amount of data which is contained in the
     data value tables. Analytics tables require a significant amount of
     disk space. Plan ahead and ensure that your server can be upgraded
@@ -252,7 +252,7 @@ maintenance_work_mem = 512MB
 
 Determines the amount of memory PostgreSQL can use for maintenance
 operations such as creating indexes, running vacuum, adding foreign
-keys. Incresing this value might improve performance of index creation
+keys. Increasing this value might improve performance of index creation
 during the analytics generation processes.
 
 ```properties
@@ -536,7 +536,7 @@ directory under the *DHIS2\_HOME* external directory location.
 
 You can also configure DHIS2 to store files on cloud-based storage
 providers. AWS S3 is the only supported provider currently. To enable
-cloud-based storage you must define the following addtional properties
+cloud-based storage you must define the following additional properties
 in your *dhis.conf* file:
 
 ```properties
@@ -561,7 +561,7 @@ filestore.secret = xxxx
 This configuration is an example reflecting the defaults and should be
 changed to fit your needs. In other words, you can omit it entirely if
 you plan to use the default values. If you want to use an external
-provider the last block of properties need to be defined, as well as the
+provider the last block of properties needs to be defined, as well as the
 *provider* property being set to a supported provider (currently only
 AWS S3).
 
@@ -679,12 +679,12 @@ the configured LDAP server URL and the manager DN and password. Once the
 binding is done, it will search for an entry in the directory using the
 configured LDAP search base and search filter.
 
-The {0} variable in the configured filter will be substituted beforing
+The {0} variable in the configured filter will be substituted before
 applying the filter. By default, it will be substituted by the supplied
 username. You can also set a custom LDAP identifier on the relevant
-DHIS2 user account. This can be done throught the DHIS2 user module user
+DHIS2 user account. This can be done through the DHIS2 user module user
 interface in the add or edit screen by setting the "LDAP identifier"
-property. When set, the LDAP identifier will be subsituted for the {0}
+property. When set, the LDAP identifier will be substituted for the {0}
 variable in the filter. This feature is useful when the LDAP common name
 is not suitable or cannot for some reason be used as a DHIS2 username.
 
@@ -948,7 +948,7 @@ On the local filesystem, the location is:
 ```
 
 Here, `DHIS2_HOME` refers to the location of the DHIS 2 configuration file
-as specifiec by the DHIS 2 environment variable, and `files` is the file
+as specified by the DHIS 2 environment variable, and `files` is the file
 folder immediately below.
 
 There are two ways to achieve a shared location:
@@ -1023,7 +1023,7 @@ analytics.cache.expiration = 3600
 
 DHIS 2 can export Prometheus compatible metrics for monitoring DHIS2 instances. The DHIS2 monitoring infrastructure is designed to expose metrics related to the application runtime and other application-related information.
 
-Infrastucture related metrics (such as host metrics, Tomcat or Postgres) are not directly exposed by the application monitoring engine and they have to be collected separately. The metrics currently exposed by the application are:
+Infrastructure related metrics (such as host metrics, Tomcat or Postgres) are not directly exposed by the application monitoring engine and they have to be collected separately. The metrics currently exposed by the application are:
 
 - DHIS 2 API (response time, number of calls, etc.)
 - JVM (Heap size, Garbage collection, etc.)
@@ -1147,7 +1147,7 @@ for HTTP 1.1 like this:
 In order to improve security it is recommended to configure the server
 running DHIS2 to communicate with clients over an encrypted connection
 and to identify itself to clients using a trusted certificate. This can
-be achieved through SSL which is an cryptographic communication protocol
+be achieved through SSL which is a cryptographic communication protocol
 running on top of TCP/IP. First, install the required *openssl* library:
 
     sudo apt-get install openssl
@@ -1230,16 +1230,16 @@ http {
 }
 ```
 
-Note the last "https" header value which is required to inform the
+Note the last `https` header value which is required to inform the
 servlet container that the request is coming over HTTPS. In order for
-tomcat to properly produce Location URLs using https you also need to
-add two other parameters to the Connector in tomcat's server.xml file:
+Tomcat to properly produce `Location` URL headers using HTTPS you also need
+to add two other parameters to the Connector in the Tomcat `server.xml` file:
 
 ```xml
 <Connector scheme="https" proxyPort="443" />
 ```
 
-### Enabling caching and SSL with nginx
+### Enabling caching with nginx
 
 <!--DHIS2-SECTION-ID:install_enabling_caching_ssl_nginx-->
 
@@ -1253,39 +1253,12 @@ will create this directory automatically.
 
 ```text
 http {
-  # ...
+  ..
   proxy_cache_path  /var/cache/nginx  levels=1:2  keys_zone=dhis:250m  inactive=1d;
 
-  gzip on; # Enables compression, incl Web API content-types
-  gzip_types
-	"application/json;charset=utf-8" application/json
-	"application/javascript;charset=utf-8" application/javascript text/javascript
-	"application/xml;charset=utf-8" application/xml text/xml
-	"text/css;charset=utf-8" text/css
-	"text/plain;charset=utf-8" text/plain;
-
-  # HTTP server - rewrite to force use of HTTPS
 
   server {
-	listen     80;
-	rewrite    ^ https://www.domain.com/$request_uri? permanent;
-  }
-
-  # HTTPS server
-
-  server {
-	listen               443 ssl;
-	client_max_body_size 10M;
-
-	ssl                  on;
-	ssl_certificate      server.crt;
-	ssl_certificate_key  server.key;
-
-	ssl_session_timeout  30m;
-
-	ssl_protocols              SSLv2 SSLv3 TLSv1;
-	ssl_ciphers                HIGH:!aNULL:!MD5;
-	ssl_prefer_server_ciphers  on;
+	..
 
 	# Proxy pass to servlet container and potentially cache response
 
@@ -1357,7 +1330,7 @@ For a full explanation please consult the [nginx documentation](https://www.ngin
 
 In some scenarios it is desirable to make certain resources publicly
 available on the Web without requiring authentication. One example is
-when you want to make data analysis related resources in the Web API
+when you want to make data analysis related resources in the web API
 available in a Web portal. The following example will allow access to
 charts, maps, reports, report table and document resources through basic
 authentication by injecting an *Authorization* HTTP header into the
@@ -1379,24 +1352,28 @@ you can set a dedicated subdomain at api.somedomain.com, and point URLs
 from your portal to this subdomain.
 
 ```text
-server {
-  listen       80;
-  server_name  api.somedomain.com;
-	
-  location ~ ^/(api/(charts|chartValues|reports|reportTables|documents|maps|organisationUnits)|dhis-web-commons/javascripts|images|dhis-web-commons-ajax-json|dhis-web-mapping|dhis-web-visualizer) {
-	if ($request_method != GET) {
-	  return 405;
-	}
+http {
+  ..
+  
+  server {
+    listen       80;
+    server_name  api.somedomain.com;
 
-	proxy_pass         http://localhost:8080;
-	proxy_redirect     off;
-	proxy_set_header   Host               $host;
-	proxy_set_header   X-Real-IP          $remote_addr;
-	proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
-	proxy_set_header   X-Forwarded-Proto  http;
-	proxy_set_header   Authorization      "Basic YWRtaW46ZGlzdHJpY3Q=";
-	proxy_set_header   Cookie             "";
-	proxy_hide_header  Set-Cookie;
+    location ~ ^/(api/(charts|chartValues|reports|reportTables|documents|maps|organisationUnits)|dhis-web-commons/javascripts|images|dhis-web-commons-ajax-json|dhis-web-mapping|dhis-web-visualizer) {
+    if ($request_method != GET) {
+        return 405;
+      }
+
+      proxy_pass         http://localhost:8080;
+      proxy_redirect     off;
+      proxy_set_header   Host               $host;
+      proxy_set_header   X-Real-IP          $remote_addr;
+      proxy_set_header   X-Forwarded-For    $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Proto  http;
+      proxy_set_header   Authorization      "Basic YWRtaW46ZGlzdHJpY3Q=";
+      proxy_set_header   Cookie             "";
+      proxy_hide_header  Set-Cookie;
+    }
   }
 }
 ```
