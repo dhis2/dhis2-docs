@@ -100,6 +100,45 @@ Further configuring a job:
 
 The following section describes the various job types.
 
+### Analytics table
+
+<!--DHIS2-SECTION-ID:scheduling_analytics_table-->
+
+The analytics tables job is responsible for generating and updating the analytics tables. The analytics tables are used as basis for data analytics queries in DHIS2. Apps such as dashboard, visualizer and maps retrieve data from these tables through the DHIS2 analytics API, and they must be updated in order for analytics data to become available. You can schedule this process to run regularly through an analytics table job type.
+
+The analytics table job will by default populate data for all years and data elements. The following parameters are available:
+
+- Last years: The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
+- Skip resource tables: Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
+- Skip table types: Skip one or more analytics table types. This reduces the time the process takes to complete, but leads to those data types not being updated in analytics data.
+
+### Resource table
+
+<!--DHIS2-SECTION-ID:scheduling_resource_table-->
+
+The resource table job is responsible for generating and updating the resource database tables. These tables are used by various components in DHIS 2 and is meant to simplify queries against the database.
+
+Note that when specifying any of the analytics table jobs, resource tables can be part of the process and it is not necessary to also specify a resource table job.
+
+### Continuous analytics table
+
+<!--DHIS2-SECTION-ID:scheduling_continuous_analytics_table-->
+
+The analytics tables job is responsible for generating and updating the analytics tables. The analytics tables are used as basis for data analytics queries in DHIS2. Apps such as dashboard, visualizer and maps retrieve data from these tables through the DHIS2 analytics API, and they must be updated in order for analytics data to become available. You can schedule this process to run regularly through an analytics table job type.
+
+The continuous analytics table job is based on two phases:
+
+- Latest update: Update of the latest data, where latest refers to the data which has been added, updated or removed since the last time the latest data or the full data was updated. This process will happen frequently.
+- Full update: Update of all data across all years. This process will happen once per day.
+
+The continous analytics table job will frequenly update the latest data. The latest data process utilizes a special database partition which is used to hold the latest data only. This partition can be quickly refreshed due to the relatively small amount of data. The partition will grow in size until a full update is performed. Once per day, all data for all years will be updated. This will clear out the latest partition.
+
+The analytics table job will by default populate data for all years and data elements. The following parameters are available:
+
+- Full update hour of day: The hour of the day at which the full update will be done. As an example, if you specify 1, the full update will be performed at 1 AM. 
+- Last years: The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
+- Skip resource tables: Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
+
 ### Data synchronization
 
 <!--DHIS2-SECTION-ID:scheduling_data_sync-->
