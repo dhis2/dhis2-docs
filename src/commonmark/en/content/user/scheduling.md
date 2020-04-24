@@ -33,19 +33,17 @@ labelled "Run now". This action is only available for enabled jobs.
 3.  Select a running frequency for the job, i.e. when and how often the
     job should run.
 
-    1.  You can either select a pre-defined frequency from the
-        drop-down menu, or ...
+    1.  You can either select a predefined frequency from the
+        drop-down menu, or
 
     2.  You can give the job a custom **Cron expression** if you want a
-        specific schedule, using the [Spring
-        scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
-        syntax.
-
+        specific schedule, using the [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html) syntax.
+        
     3.  Enabling the **Continuous execution** option will make the job
-        run constantly. In other words, as soon as the job finishes, it
+    run constantly. In other words, as soon as the job finishes, it
         will be scheduled to run again right away. Selecting this option
         will disable the other fields.
-
+    
 4.  Select the **Job type** you want to schedule using the
     drop-down menu.
 
@@ -116,9 +114,9 @@ The analytics tables job is responsible for generating and updating the analytic
 
 The analytics table job will by default populate data for all years and data elements. The following parameters are available:
 
-- Last years: The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
-- Skip resource tables: Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
-- Skip table types: Skip one or more analytics table types. This reduces the time the process takes to complete, but leads to those data types not being updated in analytics data.
+- **Last years:** The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
+- **Skip resource tables:** Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
+- **Skip table types:** Skip one or more analytics table types. This reduces the time the process takes to complete, but leads to those data types not being updated in analytics data.
 
 ### Continuous analytics table
 
@@ -128,16 +126,16 @@ The analytics tables job is responsible for generating and updating the analytic
 
 The continuous analytics table job is based on two phases:
 
-- Latest update: Update of the latest data, where latest refers to the data which has been added, updated or removed since the last time the latest data or the full data was updated. This process will happen frequently.
-- Full update: Update of all data across all years. This process will happen once per day.
+- _Latest update:_ Update of the latest data, where latest refers to the data which has been added, updated or removed since the last time the latest data or the full data was updated. This process will happen frequently.
+- _Full update:_ Update of all data across all years. This process will happen once per day.
 
-The continous analytics table job will frequenly update the latest data. The latest data process utilizes a special database partition which is used to hold the latest data only. This partition can be quickly refreshed due to the relatively small amount of data. The partition will grow in size until a full update is performed. Once per day, all data for all years will be updated. This will clear out the latest partition.
+The continuous analytics table job will frequently update the latest data. The latest data process utilizes a special database partition which is used to hold the latest data only. This partition can be quickly refreshed due to the relatively small amount of data. The partition will grow in size until a full update is performed. Once per day, all data for all years will be updated. This will clear out the latest partition.
 
 The analytics table job will by default populate data for all years and data elements. The following parameters are available:
 
-- Full update hour of day: The hour of the day at which the full update will be done. As an example, if you specify 1, the full update will be performed at 1 AM. 
-- Last years: The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
-- Skip resource tables: Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
+- **Full update hour of day:** The hour of the day at which the full update will be done. As an example, if you specify 1, the full update will be performed at 1 AM. 
+- **Last years:** The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
+- **Skip resource tables:** Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
 
 ### Data synchronization
 
@@ -147,7 +145,7 @@ DHIS2 provides synchronisation of data between remotely distributed
 instances and a central instance of DHIS2. This can be useful e.g. when
 you have deployed multiple stand-alone instances of DHIS2 which are
 required to submit data values to a central DHIS2 instance. Both tracker
-data and aggregate data synchronisation is supported.
+data and aggregate data synchronization is supported.
 
 These are the steps to enable data synchronization:
 
@@ -170,8 +168,8 @@ Some aspects of the data synchronization feature to be aware of:
 - The local DHIS2 instance will store the password of the user account
   on the remote instance encrypted in the local database. The remote
   account is used for authentication when transferring data. For
-  security purposes make sure you set the "encryption.password"
-  configuration parameter in hibernate.properties to a strong
+  security purposes make sure you set the _encryption.password_
+  configuration parameter in _hibernate.properties_ to a strong
   password.
 
 - Deploying the remote server on SSL/HTTPS is strongly recommended as
@@ -197,14 +195,14 @@ Some aspects of the data synchronization feature to be aware of:
   time, possibly slowing down your instance, depending on how much
   data is being synchronized. It could be a good idea to configure the
   job to run when there are few online users, then later change this
-  to your own preference. If you do not want or need to synchronise all 
+  to your own preference. If you do not want or need to synchronize all 
   the data, there is a possibility to <a href="#skip_changed_before">skip 
   some of the data being synchronised</a>.
 
-  When DHIS2 synchronises tracker data, it determines the set of data
-  to synchronise based on the last time it was synchronised. Each of
+  When DHIS2 synchronizes tracker data, it determines the set of data
+  to synchronize based on the last time it was synchronized. Each of
   the tracked entity instances and events have their own records of
-  when they where last successfully synchronised.
+  when they where last successfully synchronized.
 
 - The system will start a synchronization job based on the rules set
   in the configuration of the job. If the synchronization job starts
@@ -236,20 +234,20 @@ Some aspects of the data synchronization feature to be aware of:
   authority should be assigned to the user, on the central server,
   that will be used for synchronization job.
   
-- In specific cases, **the initial synchronisation of all the data can be undesirable**; 
+- In specific cases, **the initial synchronization of all the data can be undesirable**; 
   for example, when a database on the local instance is a fresh copy of the 
   database present on the central instance, or when it is preferred to not 
-  synchronise old data in favor of initial synchronisation taking less 
+  synchronize old data in favor of initial synchronization taking less 
   time. 
   
   The *syncSkipSyncForDataChangedBefore* SettingKey can be used to skip 
   the synchronisation of all the data (data values, Event and Tracker 
   program data, complete data set registrations) that were *last 
   changed before the specified date*. The SettingKey is used in the 
-  synchronisation job all the time. Therefore, if you need to synchronise 
+  synchronization job all the time. Therefore, if you need to synchronize 
   the old data, you should change the SettingKey.
   
-- Both Tracker Programs and Event Programs synchronisation job supports 
+- Both Tracker Programs and Event Programs synchronization job supports 
   paging in order to avoid timeouts and to deal with unstable network.
   Default page size for "Event Programs Data Sync" job is set to 60. 
   Default page size for "Tracker Programs Data Sync" job is set to 20.
@@ -281,8 +279,8 @@ Some aspects of the meta data synchronization feature to be aware of:
 - The local DHIS2 instance will store the password of the user account
   of the remote instance in its database. The remote user account is
   used for authentication when transferring/downloading data. For
-  security purposes make sure you set the "encryption.password"
-  configuration parameter in hibernate.properties to a strong
+  security purposes make sure you set the _encryption.password_
+  configuration parameter in _hibernate.properties_ to a strong
   password.
 
 - Deploying the remote server on SSL/HTTPS is strongly recommended as
@@ -304,7 +302,7 @@ Some aspects of the meta data synchronization feature to be aware of:
   proceed to further versions. In case of failures, appropriate
   changes must be made to meta data at central to ensure that the
   error gets resolved. Metadata configuration is critical and the
-  configurator should be careful while rolling out the updates to the
+  user should be careful while rolling out the updates to the
   production. It's always recommended to have staging environments in
   place to ensure the sanity of the meta data versions and their
   impact thereafter. The local instance will sync the meta data from
@@ -315,7 +313,7 @@ Some aspects of the meta data synchronization feature to be aware of:
   the local or remote server does not have a working Internet
   connection at the time, the synchronization will be aborted and
   re-attempted after as per the retry count as mentioned in the
-  dhis.conf file.
+  _dhis.conf_ file.
 
 - You can see the time of last successful synchronization with remote
   server in the scheduling screen next to the "Last success" label.
