@@ -102,7 +102,7 @@ The following section describes the various job types.
 
 <!--DHIS2-SECTION-ID:scheduling_resource_table-->
 
-The resource table job is responsible for generating and updating the resource database tables. These tables are used by various components in DHIS2 and is meant to simplify queries against the database.
+The resource table job is responsible for generating and updating the resource database tables. These tables are used by various components in DHIS 2 and is meant to simplify queries against the database.
 
 Note that when specifying any of the analytics table jobs, resource tables can be part of the process and it is not necessary to also specify a resource table job.
 
