@@ -102,7 +102,7 @@ The following section describes the various job types.
 
 <!--DHIS2-SECTION-ID:scheduling_resource_table-->
 
-The resource table job is responsible for generating and updating the resource database tables. These tables are used by various components in DHIS 2 and is meant to simplify queries against the database.
+The resource table job is responsible for generating and updating the resource database tables. These tables are used by various components in DHIS2 and is meant to simplify queries against the database.
 
 Note that when specifying any of the analytics table jobs, resource tables can be part of the process and it is not necessary to also specify a resource table job.
 
@@ -223,7 +223,7 @@ Some aspects of the data synchronization feature to be aware of:
   some sensitive or not relevant data and to keep them only locally.
 
 - The authority `Ignore validation of required fields in Tracker and Event Capture`
-  (F\_IGNORE\_TRACKER\_REQUIRED\_VALUE\_VALIDATION) should be used when
+  (`F\_IGNORE\_TRACKER\_REQUIRED\_VALUE\_VALIDATION`) should be used when
   there is a requirement that some mandatory attribute / data element
   has at the same time a "Skip synchronization" property turned on.
   Such a setting will lead to validation failure on the central server
@@ -243,9 +243,9 @@ Some aspects of the data synchronization feature to be aware of:
   The *syncSkipSyncForDataChangedBefore* SettingKey can be used to skip 
   the synchronisation of all the data (data values, Event and Tracker 
   program data, complete data set registrations) that were *last 
-  changed before the specified date*. The SettingKey is used in the 
+  changed before the specified date*. The `SettingKey` is used in the 
   synchronization job all the time. Therefore, if you need to synchronize 
-  the old data, you should change the SettingKey.
+  the old data, you should change the `SettingKey`.
   
 - Both Tracker Programs and Event Programs synchronization job supports 
   paging in order to avoid timeouts and to deal with unstable network.
