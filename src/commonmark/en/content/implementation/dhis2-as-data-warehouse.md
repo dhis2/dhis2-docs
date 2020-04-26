@@ -36,10 +36,10 @@ being:
 
   - *Reliability:* It is detached from the sources where the data
     originated from and is hence not affected if data in the operational
-    systems is purged or lost.
+    systems are purged or lost.
 
   - *Analysis performance:* It is designed for maximum performance for
-    data retrieval and analysis in contrast to operational system which
+    data retrieval and analysis in contrast to operational systems which
     are often optimized for data capture.
 
 There are however also significant challenges with a data warehouse
@@ -57,15 +57,15 @@ approach:
     irrelevant data not suitable for planning and informed decision
     making.
 
-Due to the mentioned challenges it has lately become increasingly
+Due to the mentioned challenges, it has lately become increasingly
 popular to merge the functions of the data warehouse and operational
 system, either into a single system which performs both tasks or with
-tightly integrated systems hosted together. With this approach the
+tightly integrated systems hosted together. With this approach, the
 system provides functionality for data capture and validation as well as
 data analysis and manages the process of converting low-level atomic
 data into aggregate data suitable for analysis. This sets high standards
 for the system and its design as it must provide appropriate performance
-for both of those functions; however advances in hardware and parallel
+for both of those functions; however, advances in hardware and parallel
 processing is increasingly making such an approach feasible.
 
 In this regard, the DHIS2 application is designed to serve as a tool for
@@ -77,9 +77,9 @@ charts, maps, pivot tables and dashboard.
 In addition, DHIS2 is a part of a suite of interoperable health
 information systems which covers a wide range of needs and are all
 open-source software. DHIS2 implements the standard for data and
-meta-data exhange in the health domain called SDMX-HD. There are many
+meta-data exchange in the health domain called SDMX-HD. There are many
 examples of operational systems which also implements this standard and
-potenitally can feed data into DHIS2:
+potentially can feed data into DHIS2:
 
   - iHRIS: System for management of human resource data. Examples of
     data which is relevant for a national data warehouse captured by
@@ -98,7 +98,7 @@ potenitally can feed data into DHIS2:
 
 ## Aggregation strategy in DHIS2
 
-The analysis tools in DHIS2 reads aggregated data from *data mart*
+The analysis tools in DHIS2 read aggregated data from *data mart*
 tables. A data mart is a data store optimized for meeting the most
 common user requests for data analysis. The DHIS2 data mart contains
 data aggregated in the*space dimension* (the organisation unit
@@ -124,16 +124,16 @@ also possible to execute arbitrary data mart tasks under "Data mart" in
 
 There are two leading approaches for storing data in a data warehouse,
 namely the *normalized* and *dimensional* approach. DHIS2 lends a bit
-from the former but mostly from the latter. In the dimensional approach
+from the former but mostly from the latter. In the dimensional approach,
 the data is partitioned into *dimensions* and *facts*. Facts generally
-refers to transactional numeric data while dimensions are the reference
+refer to transactional numeric data while dimensions are the reference
 data that gives context and meaning to the data. The strict rules of
-this approach makes it easy for users to understand the data warehouse
+this approach make it easy for users to understand the data warehouse
 structure and provides for good performance since few tables must be
-combined to produce meaningful analysis, while it on the other hand
+combined to produce meaningful analysis, while it, on the other hand,
 might make the system less flexible and harder to change.
 
-In DHIS2 the facts corresponds to the data value object in the data
+In DHIS2 the facts correspond to the data value object in the data
 model. The data value captures data as numbers, yes/no or text. The
 *compulsory dimensions* which give meaning to the facts are the *data
 element*, *organisation unit hierarchy* and *period* dimensions. These
