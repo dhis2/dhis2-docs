@@ -110,13 +110,13 @@ most other leaf nodes are at level 5).
 
 The Data Element is perhaps the most important building block of a DHIS2
 database. It represents the *what* dimension, it explains what is being
-collected or analysed. In some contexts this is referred to an
+collected or analysed. In some contexts, this is referred to an
 indicator, but in DHIS2 we call this unit of collection and analysis a
 data element. The data element often represents a count of something,
 and its name describes what is being counted, e.g. "BCG doses given" or
 "Malaria cases". When data is collected, validated, analysed, reported
 or presented it is the data elements or expressions built upon data
-elements that describes the WHAT of the data. As such the data elements
+elements that describe the WHAT of the data. As such the data elements
 become important for all aspects of the system and they decide not only
 how data is collected, but more importantly how the data values are
 represented in the database, which again decides how data can be
@@ -128,7 +128,7 @@ collection form. Each data element lives on its own in the database,
 completely detached from the collection form, and reports and other
 outputs are based on data elements and expressions/formulas composed of
 data elements and not the data collection forms. So the data analysis
-needs should drive the process, and not the look an feel of the data
+needs should drive the process, and not the look and feel of the data
 collection forms.
 
 ### Data sets and data entry forms
@@ -153,7 +153,7 @@ the data set together with a column for inputting the values. If your
 data set contains data elements with categories such as age groups or
 gender, then additional columns will be automatically generated in the
 default form based on the categories. In addition to the default
-list-based data entry form there are two more alternatives, the
+list-based data entry form, there are two more alternatives, the
 section-based form and the custom form. Section forms allow for a bit
 more flexibility when it comes to using tabular forms and are quick and
 simple to design. Often your data entry form will need multiple tables
@@ -162,7 +162,7 @@ fields in the table (e.g. some categories do not apply to all data
 elements), both of these functions are supported in section forms. When
 the form you want to design is too complicated for the default or
 section forms then your last option is to use a custom form. This takes
-more time, but gives you full flexibility in term of the design. In
+more time but gives you full flexibility in term of the design. In
 DHIS2 there is a built in HTML editor (FcK Editor) for the form designer
 and you can either design the form in the UI or paste in your html
 directly (using the Source window in the editor.
@@ -231,12 +231,12 @@ selected at the time of running the report.
 In the integrated GIS module you can easily display your data on maps,
 both on polygons (areas) and as points (health facilities), and either
 as data elements or indicators. By providing the coordinates of your
-organisational units to the system you can qucikly get up to speed with
+organisational units to the system you can quickly get up to speed with
 this module. See the GIS section for details on how to get started.
 
 ### Charts and dashboard
 
-On of the easiest way to display your indicator data is through charts.
+One of the easiest way to display your indicator data is through charts.
 An easy to use chart dialogue will guide you through the creation of
 various types of charts with data on indicators, organisational units
 and periods of your choice. These charts can easily be added to one of
