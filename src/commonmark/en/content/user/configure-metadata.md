@@ -622,7 +622,12 @@ objects:
     about how the data element is measured and what its purpose is.
 
 8. (Optional) In the **Field mask** field, you may type a template that's used to provide
-   hints for correct formatting of the data element in Capture and Tracker Capture apps.
+   hints for correct formatting of the data element. 
+   
+     > **NOTE**
+     >
+     > So far this is only implemented in the DHIS2 Android Capture app; not in the Capture and Tracker Capture web apps.
+     
    The following are special characters that can be used in the mask. The special characters match exactly one character of the given type.
 
    | Character     |    Match       |
@@ -748,7 +753,7 @@ objects:
     </tr>
     <tr class="even">
     <td><p>Username</p></td>
-    <td><p>DHIS2 user. Rendered as a dialog with a list of users and a search field.</p></td>
+    <td><p>DHIS2 user. Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type</p></td>
     </tr>
     <tr class="odd">
     <td><p>Yes/No</p></td>
