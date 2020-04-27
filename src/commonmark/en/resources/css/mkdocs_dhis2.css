@@ -280,6 +280,11 @@ article {
   color: var(--grey600);
 }
 
+.md-nav__link.md-nav__link--active {
+  color: var(--blue700);
+}
+
+
 .md-nav__title{
   margin-bottom:15px;
 }
