@@ -355,10 +355,10 @@ connection.password = xxxx
 # ----------------------------------------------------------------------
 
 # Enable secure settings if deployed on HTTPS, default 'off', can be 'on'
-server.https = on
+# server.https = on
 
 # Server base URL
-server.base.url = https://server.com/
+# server.base.url = https://server.com/
 ```
 
 It is strongly recommended to enable the *server.https* setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when this setting is enabled.
