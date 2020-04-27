@@ -217,7 +217,7 @@ article {
 }
 
 .md-main__inner {
-  padding-top: 0;
+  margin-top: 0;
 }
 .md-header[data-md-state="shadow"] {
   box-shadow: 0 2px 4px 0 rgba(3,27,78,0.10);
@@ -285,7 +285,7 @@ article {
 }
 
 .md-footer-nav {
-  margin:1rem 0 2rem;
+  padding:1rem 0 2rem;
   background-color: white;
   color: var(--grey900);
 }
