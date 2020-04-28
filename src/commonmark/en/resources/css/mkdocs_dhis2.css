@@ -282,6 +282,9 @@ article {
 
 .md-nav__link.md-nav__link--active {
   color: var(--blue700);
+  background: var(--blue100);
+  border-radius: 3px;
+  padding: 2px;
 }
 
 
