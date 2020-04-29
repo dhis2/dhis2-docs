@@ -82,7 +82,7 @@ implementation manual.
 
 <!--DHIS2-SECTION-ID:mod2_2-->
 
-Regardless of whether you have installed the server version of the
+Regardless of whether you have installed the server version or the
 desktop Live version, you will use a web-browser to log on to the
 application. DHIS2 should be compatible with most modern web-browsers,
 although you will need to ensure that Java Script is enabled.
