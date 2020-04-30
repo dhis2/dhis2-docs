@@ -198,8 +198,7 @@ systemctl restart nginx
 journalctl -f -u nginx.service
 ```
 
-- Configure Prometheus for reverse proxying, by editing `/lib/systemd/system/prometheus.service` and add the following argument
-to the list of arguments passed to the Prometheus executable
+- Configure Prometheus for reverse proxying, by editing `/lib/systemd/system/prometheus.service` and add the following argument to the list of arguments passed to the Prometheus executable.
 
 ```
 --web.external-url=https://localhost:1234

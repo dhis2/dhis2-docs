@@ -1043,7 +1043,9 @@ monitoring.uptime.enabled = on
 monitoring.cpu.enabled = on
 ```
 
-The recommended approach for collecting and visualizing these metrics is through Prometheus and Grafana. For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
+The recommended approach for collecting and visualizing these metrics is through Prometheus and Grafana. 
+
+For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
 
 ## Reverse proxy configuration
 
@@ -1490,6 +1492,28 @@ ldap.search.filter = (cn={0})
 node.id = 'node-1'
 
 # ----------------------------------------------------------------------
+# Monitoring [Optional]
+# ----------------------------------------------------------------------
+
+# API monitoring
+monitoring.api.enabled = on
+
+# JVM monitoring
+monitoring.jvm.enabled = on
+
+# Database connection pool monitoring
+monitoring.dbpool.enabled = on
+
+# Hibernate monitoring, do not use in production
+monitoring.hibernate.enabled = off
+
+# Uptime monitoring
+monitoring.uptime.enabled = on
+
+# CPU monitoring
+monitoring.cpu.enabled = on
+
+# ----------------------------------------------------------------------
 # Analytics [Optional]
 # ----------------------------------------------------------------------
 
@@ -1497,7 +1521,7 @@ node.id = 'node-1'
 analytics.cache.expiration = 3600
 
 # ----------------------------------------------------------------------
-# System monitoring [Optional]
+# System telemetry [Optional]
 # ----------------------------------------------------------------------
 
 # System monitoring URL
