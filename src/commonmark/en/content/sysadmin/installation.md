@@ -1032,15 +1032,15 @@ Infrastructure related metrics (such as host metrics, Tomcat or Postgres) are no
 - Application uptime
 - CPU
 
-Monitoring can be enabled in `dhis.conf` with the following properties (default is `false` for all properties):
+Monitoring can be enabled in `dhis.conf` with the following properties (default is `off` for all properties):
 
 ```properties
-monitoring.api.enabled = true
-monitoring.jvm.enabled = true
-monitoring.dbpool.enabled = ture
-monitoring.hibernate.enabled = true
-monitoring.uptime.enabled = true
-monitoring.cpu.enabled = true
+monitoring.api.enabled = on
+monitoring.jvm.enabled = on
+monitoring.dbpool.enabled = on
+monitoring.hibernate.enabled = on
+monitoring.uptime.enabled = on
+monitoring.cpu.enabled = on
 ```
 
 The recommended approach for collecting and visualizing these metrics is through Prometheus and Grafana. For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
