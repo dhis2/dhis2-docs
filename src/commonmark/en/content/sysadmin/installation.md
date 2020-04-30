@@ -1495,7 +1495,7 @@ node.id = 'node-1'
 # Monitoring [Optional]
 # ----------------------------------------------------------------------
 
-# API monitoring
+# DHIS2 API monitoring
 monitoring.api.enabled = on
 
 # JVM monitoring
