@@ -5948,17 +5948,17 @@ expressions are described in the following table.
 <td>Refers to the total value of an aggregate data element across all category option combinations.</td>
 </tr>
 <tr class="even">
-<td>D{&lt;program-id&gt;.&lt;dataelement-id&gt;</td>
+<td>D{&lt;program-id&gt;.&lt;dataelement-id&gt;}</td>
 <td>Program data element</td>
 <td>Refers to the value of a tracker data element within a program.</td>
 </tr>
 <tr class="odd">
-<td>A{&lt;program-id&gt;.&lt;attribute-id&gt;</td>
+<td>A{&lt;program-id&gt;.&lt;attribute-id&gt;}</td>
 <td>Program tracked entity attribute</td>
 <td>Refers to the value of a tracked entity attribute within a program.</td>
 </tr>
 <tr class="even">
-<td>I{program-indicator-id&gt;</td>
+<td>I{program-indicator-id&gt;}</td>
 <td>Program indicator</td>
 <td>Refers to the value of a program indicator.</td>
 </tr>
