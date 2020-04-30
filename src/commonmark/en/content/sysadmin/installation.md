@@ -1032,7 +1032,7 @@ Infrastructure related metrics (such as host metrics, Tomcat or Postgres) are no
 - Application uptime
 - CPU
 
-Monitoring can be enabled in `dhis.conf` with the following properties (default is `false` for all properties):
+Monitoring can be enabled in `dhis.conf` with the following properties (default is `off` for all properties):
 
 ```properties
 monitoring.api.enabled = on
