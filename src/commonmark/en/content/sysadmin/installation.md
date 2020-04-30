@@ -1038,7 +1038,7 @@ Monitoring can be enabled in `dhis.conf` with the following properties (default 
 monitoring.api.enabled = on
 monitoring.jvm.enabled = on
 monitoring.dbpool.enabled = on
-monitoring.hibernate.enabled = on
+monitoring.hibernate.enabled = off
 monitoring.uptime.enabled = on
 monitoring.cpu.enabled = on
 ```
