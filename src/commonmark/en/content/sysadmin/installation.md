@@ -66,7 +66,7 @@ Later DHIS2 versions require the following software versions to operate.
 
   - Java JDK or JRE version 8 or later.
 
-  - Any operating system for which a Java JDK or JRE version 8 exists.
+  - An operating system for which a Java JDK or JRE version 8 exists.
 
   - PostgreSQL database version 9.6 or later.
 
@@ -698,7 +698,7 @@ password in the *dhis.conf* configuration file through the
 *encryption.password* property:
 
 ```properties
-    encryption.password = xxxx
+encryption.password = xxxx
 ```
 
 The *encryption.password* property is the password used when encrypting
@@ -1495,7 +1495,7 @@ node.id = 'node-1'
 # Monitoring [Optional]
 # ----------------------------------------------------------------------
 
-# API monitoring
+# DHIS2 API monitoring
 monitoring.api.enabled = on
 
 # JVM monitoring
