@@ -66,7 +66,7 @@ Later DHIS2 versions require the following software versions to operate.
 
   - Java JDK or JRE version 8 or later.
 
-  - Any operating system for which a Java JDK or JRE version 8 exists.
+  - An operating system for which a Java JDK or JRE version 8 exists.
 
   - PostgreSQL database version 9.6 or later.
 
