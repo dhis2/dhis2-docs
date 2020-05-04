@@ -692,7 +692,7 @@ is not suitable or cannot for some reason be used as a DHIS2 username.
 
 <!--DHIS2-SECTION-ID:install_encryption_configuration-->
 
-DHIS2 allows for encryption of data. This however requires some extra
+DHIS2 allows for encryption of data. Enabling it requires some extra
 setup. To provide security to the encryption algorithm you will have to set a
 password in the *dhis.conf* configuration file through the
 *encryption.password* property:
@@ -701,22 +701,21 @@ password in the *dhis.conf* configuration file through the
 encryption.password = xxxx
 ```
 
-The *encryption.password* property is the password used when encrypting
+The *encryption.password* property is the password (key) used when encrypting
 and decrypting data in the database. Note that the password must not be
-changed once it has been set and data has been encrypted as the data can
+changed once it has been set and data has been encrypted, as the data can
 then no longer be decrypted. 
 
-The password must be at least **24 characters long**. A mix of numbers 
+The password must be at least **24 characters long** and mix of numbers 
 and lower- and uppercase letters are recommended. The encryption password 
 must be kept secret.
 
 > **Important**
 >
-> A word of caution: It is not possible to recover encrypted data if the
-> encryption password is lost or changed. If the password is lost, so is 
-> the encrypted data.Conversely, the encryption provides no security if 
-> the password is compromised. Hence, great consideration should be given 
-> to storing the password in a safe place.
+> It is not possible to recover encrypted data if the encryption password is lost or changed. If the password is lost, so is the encrypted data. Conversely, the encryption provides no security if 
+> the password is compromised. Hence, great consideration should be given to storing the password in a safe place.
+
+Note that encryption support depends on the *Java Cryptography Extension* (JCE) policy files to be available.  These are included in all versions of OpenJDK and Oracle JDK 8 Update 144 or later.
 
 ## Read replica database configuration
 
