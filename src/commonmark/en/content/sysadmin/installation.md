@@ -706,8 +706,8 @@ and decrypting data in the database. Note that the password must not be
 changed once it has been set and data has been encrypted, as the data can
 then no longer be decrypted. 
 
-The password must be at least **24 characters long** and mix of numbers 
-and lower- and uppercase letters are recommended. The encryption password 
+The password must be at least **24 characters long**. A mix of numbers 
+and lower- and uppercase letters is recommended. The encryption password 
 must be kept secret.
 
 > **Important**
