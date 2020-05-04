@@ -698,7 +698,7 @@ password in the *dhis.conf* configuration file through the
 *encryption.password* property:
 
 ```properties
-    encryption.password = xxxx
+encryption.password = xxxx
 ```
 
 The *encryption.password* property is the password used when encrypting
