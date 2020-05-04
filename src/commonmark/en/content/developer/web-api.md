@@ -4951,7 +4951,7 @@ with examples.
 <tr class="even">
 <td>Bi-monthly</td>
 <td>P2M</td>
-<td>2017-11-01/P1M</td>
+<td>2017-11-01/P2M</td>
 <td>Nov 01 2017-Dec 31 2017</td>
 </tr>
 <tr class="odd">

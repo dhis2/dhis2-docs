@@ -36,9 +36,9 @@ described in the following section.
     computers, other workstations and the system running the
     application. Keeping anti-virus software and operating system
     patches up to date in an offline environment are challenging and bad
-    practises in terms of security are often adopted by end users. The
+    practices in terms of security are often adopted by end users. The
     preferred way to overcome this issue is to run a dedicated server
-    for the application where no memory sticks are allowed and use an
+    for the application where no memory sticks are allowed and use a
     Linux based operating system which is not as prone to virus
     infections as MS Windows.
 
@@ -116,8 +116,8 @@ traditional offline standalone style:
 
 This approach might be problematic in cases where Internet connectivity
 is volatile or missing in long periods of time. DHIS2 however has
-certain features which requires Internet connectivity to be available
-only only part of the time for the system to work properly, such as the
+certain features which require Internet connectivity to be available
+only part of the time for the system to work properly, such as the
 MyDatamart tool presented in a separate chapter in this guide.
 
 ## Hybrid deployment
@@ -136,11 +136,11 @@ Defining decent Internet connectivity precisely is hard but as a rule of
 thumb the download speed should be minimum 10 Kbyte/second and
 accessibility should be minimum 70% of the time.
 
-In this regard mobile Internet modems which can be connected to a
+In this regard, mobile Internet modems which can be connected to a
 computer or laptop and access the mobile network are an extremely
 capable and feasible solution. Mobile Internet coverage is increasing
 rapidly all over the world, often provides excellent connectivity at low
-prices and is a great alternative to to local networks and poorly
+prices and is a great alternative to local networks and poorly
 maintained fixed Internet lines. Getting in contact with national mobile
 network companies regarding post-paid subscriptions and potential
 large-order benefits can be a worthwhile effort. The network coverage
@@ -173,13 +173,13 @@ accessibility of public data. Another reason is that a proliferation of
 internal server environments is very resource demanding and it is more
 effective to establish centralized infrastructure and capacity.
 
-Regarding external hosting there is lately a move towards outsourcing
+Regarding external hosting, there is lately a move towards outsourcing
 the operation and administration of computer resources to an external
 provider, where those resources are accessed over the network, popularly
 referred to as “cloud computing” or “software as a service”. Those
 resources are typically accessed over the Internet using a web browser.
 
-The primary goal for an online server deployment is provide long-term
+The primary goal for an online server deployment is to provide long-term
 stable and high-performance accessibility to the intended services. When
 deciding which option to choose for server environment there are many
 aspects to consider:
@@ -219,13 +219,13 @@ level. Reaching an acceptable level in all these aspects is challenging
 in terms of both human resources and money, especially when compared to
 the cost of option three. It has the benefit that it accommodates the
 mentioned political aspects and building local capacity for server
-administration, on the other hand can this be provided for in
+administration, on the other hand, can this be provided for in
 alternative ways.
 
 Option three - external hosting - has the benefit that it supports all
 of the mentioned hosting aspects at a very affordable price. Several
 hosting providers - of virtual servers or software as a service - offer
-reliable services for running most kinds of applications. Example of
+reliable services for running most kinds of applications. Examples of
 such providers are Linode and Amazon Web Services. Administration of
 such servers happens over a network connection, which most often anyway
 is the case with local server administration. The physical location of
@@ -238,7 +238,7 @@ maintaining the externally hosted server.
 
 An approach for combining the benefits of external hosting with the need
 for local hosting and physical ownership is to use an external hosting
-provider for the primary transactional system, while mirroring this
+provider for the primary transactional system while mirroring this
 server to a locally hosted non-critical server which is used for
 read-only purposes such as data analysis and accessed over the intranet.
 
