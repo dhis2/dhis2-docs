@@ -106,11 +106,12 @@ information as possible:
   - Problem description: Describe the problem clearly, why you think it
     is a problem and which behavior you would expect from the system.
 
-Your bug report will be investigated by the developer team and be given a status. 
-If valid it will also be assigned to a developer and approver and eventually be
-fixed. Note that bugfixes are incorporated into the trunk and latest
-release branch - so more testing and feedback to the developer teams
-leads to higher quality of your software.
+Your bug report will be investigated by the Testing/QA team and be given a status. 
+If valid its status will be set to "TO DO" and will be visible for the development 
+team in their planning of milestones and releases. It can then be assigned to a developer 
+and be fixed. Note that bugfixes are incorporated into the master branch and branches 
+of up to the three latest (supported) DHIS2 releases - so more testing and feedback to 
+the developer teams leads to higher quality of your software.
 
 If you want to suggest new functionality to be implemented in DHIS2 you
 should first start a discussion on the Community of Practice to get feedback on your 
@@ -118,11 +119,11 @@ idea and confirm that the functionality you are suggesting does not already exis
 Once you have completed these steps, you can submit a feature request on DHIS2 Jira 
 by clicking "Create" in the top menu and selecting "Feature" as the issue type. 
 Your feature request will be considered by the core development team and if accepted 
-it will be assigned a developer, approver and release version. DHIS2 users can vote 
-to show support for feature requests that have been submitted. Existing feature requests 
+it will be assigned a developer and release version. DHIS2 users can vote to show 
+support for feature requests that have been submitted. Existing feature requests 
 can be browsed by using the "filter" function on Jira.
 
 
 ## Source code: github.com/dhis2
-The various source code branches including trunk and release branches
+The various source code branches including master and release branches
 can be browsed at *https://github.com/dhis2*
