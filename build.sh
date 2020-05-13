@@ -21,6 +21,9 @@ fi
 echo "    - Implementer:" >> $myml
 generate "dhis2_tracker_implementation_guide" "implementer"
 
+echo "    - Packages:" >> $myml
+generate "dhis2_covid19_surveillance" "packages"
+
 make_mkdocs
 
 
