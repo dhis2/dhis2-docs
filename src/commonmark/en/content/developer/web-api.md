@@ -1062,7 +1062,7 @@ Example: Get all data elements where *ANC visit* is found in any of the *identif
 It is also possible to combine the identifiable filter with property-based filter and expect the *rootJunction* to be applied.
 
     /api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
-    
+
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
