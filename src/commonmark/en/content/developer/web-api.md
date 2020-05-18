@@ -84,7 +84,7 @@ the password, Base64-encoded, prefixed Basic and supplied as the value
 of the *Authorization* HTTP header. More formally that is:
 
     Authorization: Basic base64encode(username:password)
-    
+
 Most network-aware development environments provide support for Basic 
 authentication, such as *Apache HttpClient* and *Spring RestTemplate*. 
 An important note is that this authentication scheme provides no security 
@@ -1286,7 +1286,7 @@ All metadata entities in DHIS2 have their own API endpoint which supports
 follows this format:
 
     /api/<entityName>
-    
+
 The _entityName_ uses the camel-case notation. As an example, the endpoint
 for _data elements_ is:
 
@@ -1952,7 +1952,7 @@ ignored:
     "total": 3
   }
 }
-``` 
+```
 
 ## Metadata audit
 
@@ -7575,7 +7575,7 @@ The only difference between a ticket and a message is that you can give
 a status and a priority to a ticket. To set the status:
 
     POST /api/messageConversations/<uid>/status
-    
+
 To set the priority:
 
     POST /api/messageConversations/<uid>/priority
@@ -8103,15 +8103,15 @@ representations are listed below.
 
     /api/charts/R0DVGvXDUNP/data
     /api/charts/R0DVGvXDUNP/data?date=2013-06-01
-
+    
     /api/reportTables/jIISuEWxmoI/data.html
     /api/reportTables/jIISuEWxmoI/data.html?date=2013-01-01
     /api/reportTables/FPmvWs7bn2P/data.xls
     /api/reportTables/FPmvWs7bn2P/data.pdf
-
+    
     /api/maps/DHE98Gsynpr/data
     /api/maps/DHE98Gsynpr/data?date=2013-07-01
-
+    
     /api/reports/OeJsA6K1Otx/data.pdf
     /api/reports/OeJsA6K1Otx/data.pdf?date=2014-01-01
 
@@ -9354,10 +9354,10 @@ characters only.
 
 SQL Views of type *query* also support two system-defined variables that allow the query to access information about the user executing the view:
 
- | variable | means |
- | -------- | ----- |
- | ${_current_user_id} | the user's database id |
- | ${_current_username} | the user's username |
+| variable | means |
+| -------- | ----- |
+| ${_current_user_id} | the user's database id |
+| ${_current_username} | the user's username |
 
 Values for these variables cannot be supplied as part of the URL. They are always filled with information about the user.
 
@@ -12420,7 +12420,7 @@ Enrollment dimensions include data elements, attributes, organisation units and 
 <td>Data element identifiers must include the program stage when querying data for enrollments.
 
     dimension=edqlbukwRfQ.vANAXwtLwcT
-    
+
 </td>
 </tr>
 <tr>
@@ -14621,7 +14621,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
   "password": "abc123"
 }
 ```
-    
+
 #### SMPP Gateway
 
 ```json
@@ -15209,8 +15209,8 @@ use this on a SSL enabled server) and will be encrypted on the backend:
 ```bash
 curl -X POST -d @u.json "http://server/api/33/users" -u user:pass 
   -H "Content-Type: application/json" 
-```    
-    
+```
+
 In the user creation payload, user groups are only supported when importing 
 or *POSTing* a single user at a time. If you attempt to create more than one 
 user while specifiying user groups, you will not recieve an error and the 
@@ -16571,19 +16571,19 @@ You can send *GET* and *POST* requests to the following specific
 resources:
 
     GET /api/33/configuration/systemId
-
+    
     GET POST DELETE /api/33/configuration/feedbackRecipients
-
+    
     GET POST DELETE /api/33/configuration/offlineOrganisationUnitLevel
-
+    
     GET POST /api/33/configuration/infrastructuralDataElements
-
+    
     GET POST /api/33/configuration/infrastructuralIndicators
-
+    
     GET POST /api/33/configuration/infrastructuralPeriodType
-
+    
     GET POST DELETE /api/33/configuration/selfRegistrationRole
-
+    
     GET POST DELETE /api/33/configuration/selfRegistrationOrgUnit
 
 For the CORS whitelist configuration you can make a POST request with an
@@ -16686,7 +16686,7 @@ server configurations* You can get XML and JSON responses through the
 You can get filtered settings based on setting type:
 
     GET /api/33/configuration/settings/filter?type=USER_SETTING
-
+    
     GET /api/33/configuration/settings/filter?type=CONFIGURATION
 
 More than one type can be
@@ -17304,7 +17304,7 @@ and will be furnished upon request based on the value of the `dimension` paramet
 ```bash
 curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium"
 ```
-      
+
 #### Tracked entity instance query
 
 <!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_query-->
@@ -19193,7 +19193,7 @@ medium(512 x 512), large(1024 x 1024) or original*. Any value other than those m
 discarded and the original image will be returned.
 
     /api/33/events/files?eventUid=hcmcWlYkg9u&dataElementUid=C0W4aFuVm4P&dimension=small
-    
+
 Retrieve events with specified Organisation unit and Program, and use _Attribute:Gq0oWTf2DtN_ as 
 identifier scheme
     
@@ -19600,7 +19600,7 @@ A sample payload that can be used to create/update an eventFilter is shown below
 A specific event filter can be retrieved by using the following api
 
     GET /api/33/eventFilters/{uid}
-    
+
 All event filters can be retrieved by using the following api.
 
     GET /api/33/eventFilters?fields=*
@@ -19619,7 +19619,7 @@ Relationships are links between two entities in tracker. These entities can be t
 There are multiple endpoints that allow you to see, create, delete and update relationships. The most common is the /api/trackedEntityInstances endpoint, where you can include relationships in the payload to create, update or deleting them if you omit them - Similar to how you work with enrollments and events in the same endpoint. All the tracker endpoints, /api/trackedEntityInstances, /api/enrollments and /api/events also list their relationships if requested in the field filter.
 
 The standard endpoint for relationships is, however, /api/relationships. This endpoint provides all the normal CRUD operations for relationships.
- 
+
 List all relationships require you to provide the UID of the trackedEntityInstance, Enrollment or event that you want to list all the relationships for:  
 
     GET /api/relationships?tei=ABCDEF12345
@@ -20612,10 +20612,15 @@ To get JSON schema for a specific class:
 <!--DHIS2-SECTION-ID:webapi_ui_customization-->
 
 To customize the UI of the DHIS2 application you can insert custom
-JavaScript and CSS styles through the *files* resource. The JavaScript
-and CSS content inserted through this resource will be loaded by the
-DHIS2 web application. This can be particularly useful in certain
-situations:
+JavaScript and CSS styles through the *files* resource. 
+
+```
+POST GET DELETE /api/33/files/script
+POST GET DELETE /api/33/files/style
+```
+
+The JavaScript and CSS content inserted through this resource will be loaded by the
+DHIS2 web application. This can be particularly useful in certain situations:
 
   - Overriding the CSS styles of the DHIS2 application, such as the
     login page or main page.
@@ -20631,7 +20636,7 @@ situations:
 <!--DHIS2-SECTION-ID:webapi_customization_javascript-->
 
 To insert Javascript from a file called *script.js* you can interact
-with the *files/script* resource with a POST-request:
+with the *files/script* resource with a POST request:
 
 ```bash
 curl --data-binary @script.js "localhost/api/33/files/script"
@@ -20643,7 +20648,7 @@ file content. You can fetch the JavaScript content with a GET request:
 
     /api/33/files/script
 
-To remove the JavaScript content you can use a DELETE-request.
+To remove the JavaScript content you can use a DELETE request.
 
 ### CSS
 
@@ -20661,7 +20666,7 @@ You can fetch the CSS content with a GET-request:
 
     /api/33/files/style
 
-To remove the JavaScript content you can use a DELETE-e "request.
+To remove the JavaScript content you can use a DELETE request.
 
 ## Synchronization
 
@@ -21502,7 +21507,7 @@ resource:
 You can filter the response like this:
 
     GET /api/minMaxDataElements.json?filter=dataElement.id:eq:UOlfIjgN8X6
-
+    
     GET /api/minMaxDataElements.json?filter=dataElement.id:in:[UOlfIjgN8X6,xc8gmAKfO95]
 
 The filter parameter for min-max data elements supports two operators:
