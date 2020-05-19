@@ -232,14 +232,20 @@
 <tbody>
 <tr class="odd">
 <td><p><strong>Select language</strong></p></td>
-<td><p>Sets the language for which you can then enter translations of the following settings:</p>
-<ul>
-<li><p><strong>Application introduction</strong></p></li>
-<li><p><strong>Application title</strong></p></li>
-<li><p><strong>Application notification</strong></p></li>
-<li><p><strong>Application left-side footer</strong></p></li>
-<li><p><strong>Application right-side footer</strong></p></li>
-</ul></td>
+<td>
+    <p>Sets the language for which you can then enter translations of the following settings:</p>
+    <ul>
+        <li><p><strong>Application introduction</strong></p></li>
+        <li><p><strong>Application title</strong></p></li>
+        <li><p><strong>Application notification</strong></p></li>
+        <li><p><strong>Application left-side footer</strong></p></li>
+        <li><p><strong>Application right-side footer</strong></p></li>
+    </ul>
+    <blockquote>
+        <p><strong>Note</strong></p>
+        <p>Before each of these settings can accept a translated value, they first need to have a default/fallback value. This value can be set by selecting <em>System default (fallback)</em> in this dropdown.</p>
+    </blockquote>
+</td>
 </tr>
 <tr class="even">
 <td><p><strong>Application title</strong></p></td>
