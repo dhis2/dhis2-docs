@@ -36,8 +36,10 @@
 <tr class="odd">
 <td><p><strong>Cache strategy</strong></p></td>
 <td><p>Decides for how long reports analytics responses should be cached.</p>
-<p>If you use the scheduled, nightly analytics update, select <strong>Cache until 6 AM tomorrow</strong>. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tables are updated.</p>
-<p>If you are loading data continuously into the analytics tables, select <strong>No cache</strong>.</p></td>
+<p>If you use the scheduled, nightly analytics update, you may want to select <strong>Cache until 6 AM tomorrow</strong>. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tables are updated.</p>
+<p>If you are loading data continuously into the analytics tables, select <strong>No cache</strong>.</p>
+<p>For other cases select the amount of time you want the data to be cached.</p>
+</td>
 </tr>
 <tr class="even">
 <td><p><strong>Infrastructural indicators</strong></p></td>
@@ -144,11 +146,16 @@
 </tr>
 <tr class="even">
 <td><p><strong>Analytics cache mode</strong></p></td>
-<td><p>Set the analytics cache mode to <strong>progressive</strong> or <strong>fixed</strong>.</p></td>
+<td><p>Support two different modes:</p>
+<p><strong>Progressive</strong>: this relates to the new progressive caching feature for analytics. When enabled, it OVERRIDES the global caching strategy for analytics requests. This mode will trigger HTTP and data layer caching for all analytics requests. When enabling this mode, the <em>caching factor</em> is MANDATORY.</p>
+<p><strong>Fixed</strong>: the requests will be cached based on the period of time defined in <em>cache strategy.</em></p>
+</td>
 </tr>
 <tr class="odd">
 <td><p><strong>Caching factor</strong></p></td>
-<td><p>Select a value for the caching factor. This field is only available when the analytics cache mode has been set to <em>progressive</em>.</p></td>
+<td><p>Select a value for the caching factor. This field is only available when the analytics cache mode has been set to <em>progressive</em>.</p>
+<p>It shows a list of integers where each integer represents an absolute caching factor. This integer will be used internally to calculate the final expiration time for each analytics request. Higher the caching factor, for longer the request will be cached.</p>
+</td>
 </tr>
 <tr class="even">
 <td><p><strong>Max number of years to hide unapproved data in analytics</strong></p></td>
