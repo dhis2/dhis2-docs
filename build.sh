@@ -45,6 +45,9 @@ generate "dhis2_android_sdk_developer_guide" "android-sdk"
 echo "    - Sysadmin:" >> $myml
 generate "dhis2_system_administration_guide" "sysadmin"
 
+echo "    - Packages:" >> $myml
+generate "dhis2_covid19_surveillance" "packages"
+
 make_mkdocs
 
 generate "dhis2_draft_chapters" "draft"
