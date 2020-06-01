@@ -324,7 +324,7 @@ configuration file called *dhis.conf*. Create this file and save it in
 the *DHIS2\_HOME* directory. As an example this location could be:
 
 ```sh
-sudo -u dhis nano /home/dhis/config/dhis.conf
+/home/dhis/config/dhis.conf
 ```
 
 A configuration file for PostgreSQL corresponding to the above setup has
@@ -334,9 +334,6 @@ these properties:
 # ----------------------------------------------------------------------
 # Database connection
 # ----------------------------------------------------------------------
-
-# Hibernate SQL dialect
-connection.dialect = org.hibernate.dialect.PostgreSQLDialect
 
 # JDBC driver class
 connection.driver_class = org.postgresql.Driver
@@ -361,23 +358,22 @@ server.https = on
 server.base.url = https://server.com/
 ```
 
-It is strongly recommended to enable the *server.https* setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when this setting is enabled.
+It is strongly recommended to enable the `server.https` setting and deploying DHIS 2 over the encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when this setting is enabled.
 
-The *server.base.url* setting refers to the URL at which the system is accessed by end users over the network.
+The `server.base.url` setting refers to the URL at which the system is accessed by end users over the network.
 
 Note that the configuration file supports environment variables. This
 means that you can set certain properties as environment variables and
-have them resolved by DHIS 2, e.g. like this where *DB\_PASSWD* is the
+have them resolved, e.g. like this where `DB\_PASSWD` is the
 name of the environment variable:
 
 ```properties
 connection.password = ${DB_PASSWD}
 ```
 
-
 Note that this file contains the password for your DHIS2 database in clear
 text so it needs to be protected from unauthorized access. To do this, 
-invoke the following command which ensures that only the dhis user
+invoke the following command which ensures that only the *dhis* user
 which owns the file is allowed to read it:
 
 ```sh
@@ -396,7 +392,7 @@ following command:
 sudo apt-get install openjdk-8-jdk
 ```
 
-Verify that your installation is okay by invoking:
+Verify that your installation is correct by invoking:
 
 ```
 java -version
@@ -415,7 +411,7 @@ sudo apt-get install tomcat8-user
 
 This package lets us easily create a new Tomcat instance. The instance
 will be created in the current directory. An appropriate location is the
-home directory of the dhis user:
+home directory of the *dhis* user:
 
 ```sh
 cd /home/dhis/
