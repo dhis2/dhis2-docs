@@ -450,12 +450,9 @@ In the axis management dialog you can assign data items to the two axes.
 
 ## Data drilling
 
-This feature is enabled for the Pivot Table visualization type and allows to drill in the data by clicking on a value cell in the table.
-A contextual menu opens with various options.
+This feature is enabled for the `Pivot Table` visualization type and allows to drill in the data by clicking on a value cell in the table. A contextual menu opens with various options.
 
-It's possible to drill the data by organisation unit, basically navigating up and down the org unit tree.
-
-The data drill affects the current dimension selection in the layout area.
+You can drill the data by organisation unit, meaning navigating up and down the org unit tree. The data drill affects the current dimension selection in the layout area.
 
 ![](resources/images/data-visualizer/data-visualizer-pt-drill.png)
 
