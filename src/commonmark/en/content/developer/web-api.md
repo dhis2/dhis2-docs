@@ -11140,6 +11140,17 @@ API are described in the table below.
 | E7117      | A data dimension 'dx' must be specified when output format is DATA_VALUE_SET |
 | E7118      | A period dimension 'pe' must be specified when output format is DATA_VALUE_SET |
 | E7119      | An organisation unit dimension 'ou' must be specified when output format is DATA_VALUE_SET |
+| E7120      | User is not allowed to view org unit |
+| E7121      | User is not allowed to read data for object |
+| E7122      | Data approval level does not exist |
+| E7123      | Current user is constrained by a dimension but has access to no dimension items |
+| E7124      | Dimension is present in query without any valid dimension options |
+| E7125      | Dimension identifier does not reference any dimension |
+| E7126      | Column must be present as dimension in query |
+| E7127      | Row must be present as dimension in query |
+| E7128      | Query result set exceeded max limit |
+| E7129      | Program is specified but does not exist |
+| E7130      | Program stage is specified but does not exist |
 
 ### Data value set format
 
@@ -12386,6 +12397,17 @@ in the table below.
 | E7214      | Cluster field must be specified when bbox or cluster size are specified |
 | E7215      | Query item cannot specify both legend set and option set |
 | E7216      | Query item must be aggregateable when used in aggregate query |
+| E7217      | User is not allowed to view event analytics data |
+| E7218      | Spatial database support is not enabled |
+| E7219      | Data element must be of value type coordinate in order to be used as coordinate field |
+| E7220      | Attribute must be of value type coordinate to in order to be used as coordinate field |
+| E7221      | Coordinate field is invalid |
+| E7222      | Query item or filter is invalid |
+| E7223      | Value does not refer to a data element or attribute which are numeric and part of the program |
+| E7224      | Item identifier does not reference any data element, attribute or indicator part of the program |
+| E7225      | Program stage is mandatory for data element dimensions in enrollment analytics queries |
+| E7226      | Dimension is not a valid query item |
+| E7227      | Relationship entity type not supported |
 
 ## Enrollment analytics
 
@@ -12986,6 +13008,15 @@ To fetch org unit analytics data in table mode with one group set rendered as co
 
     GET /api/orgUnitAnalytics?ou=fdc6uOvgoji;jUb8gELQApl;lc3eMKXaEfw;PMa2VCrupOd
       &ougs=J5jldMd8OHv&columns=J5jldMd8OHv
+
+### Constraints and validation
+
+The possible validation errors specifically for the org unit analytics API are described in the table below. Some errors specified for the aggregate analytics API are also relevant.
+
+| Error code | Message |
+| ---------- | ------- |
+| E7300      | At least one organisation unit must be specified |
+| E7301      | At least one organisation unit group set must be specified |
 
 ## Data set report
 
