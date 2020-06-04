@@ -4819,20 +4819,20 @@ sampled. For example:
         <td><p>Sum of the sampled values of data element FTRrcoaog83 and category option combination (disaggregation) tMwM3ZBd7BN</p></td>
         </tr>
         <tr class="even">
-        <td><p>avg(#{FTRrcoaog83}) + 2 * stddevSamp(#{FTRrcoaog83})</p></td>
-        <td><p>Average of the sampled values of of data element FTRrcoaog83 (sum of all disaggregations) plus twice its sample standard deviation</p></td>
+        <td><p>avg(I{GSae40Fyppf}) + 2 * stddevSamp(I{GSae40Fyppf})</p></td>
+        <td><p>Average of the sampled values of of program indicator GSae40Fyppf plus twice its sample standard deviation</p></td>
         </tr>
         <tr class="odd">
-        <td><p>sum(#{FTRrcoaog83}) / sum([days])</p></td>
-        <td><p>Sum of all sampled values of data element FTRrcoaog83 (sum of all disaggregations) divided by the number of days in all sample periods (resulting in the overall average daily value)</p></td>
+        <td><p>sum(D{IpHINAT79UW.eMyVanycQSC}) / sum([days])</p></td>
+        <td><p>Sum of all sampled values of data element eMyVanycQSC from porgram IpHINAT79UW divided by the number of days in all sample periods (resulting in the overall average daily value)</p></td>
         </tr>
         <tr class="even">
         <td><p>sum(#{FTRrcoaog83}) + #{T7OyqQpUpNd}</p></td>
-        <td><p>Sum of all sampled values of data element FTRrcoaog83 plus the value of data element T7OyqQpUpNd in the period being predicted for</p></td>
+        <td><p>Sum of all sampled values of data element FTRrcoaog83 plus the value of data element T7OyqQpUpNd in the period being predicted for (includes all disaggregations)</p></td>
         </tr>
         <tr class="odd">
-        <td><p>1.2 * #{T7OyqQpUpNd}</p></td>
-        <td><p>1.2 times the value of data element T7OyqQpUpNd, in the period being predicted for</p></td>
+        <td><p>1.2 * A{IpHINAT79UW.RKLKz1H20EE}</p></td>
+        <td><p>1.2 times the value of attribute RKLKz1H20EE of program IpHINAT79UW, in the period being predicted for</p></td>
         </tr>
         <tr class="even">
         <td><p>if(isNull(#{T7OyqQpUpNd}), 0, 1)</p></td>
