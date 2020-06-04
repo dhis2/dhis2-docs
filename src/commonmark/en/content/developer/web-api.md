@@ -11151,6 +11151,7 @@ API are described in the table below.
 | E7128      | Query result set exceeded max limit |
 | E7129      | Program is specified but does not exist |
 | E7130      | Program stage is specified but does not exist |
+| E7131      | Query failed, likely because the query timed out |
 
 ### Data value set format
 
