@@ -5958,7 +5958,7 @@ expressions are described in the following table.
 <td>Refers to the value of a tracked entity attribute within a program.</td>
 </tr>
 <tr class="even">
-<td>I{program-indicator-id&gt;}</td>
+<td>I{&lt;program-indicator-id&gt;}</td>
 <td>Program indicator</td>
 <td>Refers to the value of a program indicator.</td>
 </tr>
@@ -11151,6 +11151,7 @@ API are described in the table below.
 | E7128      | Query result set exceeded max limit |
 | E7129      | Program is specified but does not exist |
 | E7130      | Program stage is specified but does not exist |
+| E7131      | Query failed, likely because the query timed out |
 
 ### Data value set format
 
@@ -21413,11 +21414,13 @@ curl -X DELETE -u admin:district "play.dhis2.org/api/33/userDataStore/foo"
 <!--DHIS2-SECTION-ID:webapi_predictors-->
 
 A predictor allows you to generate data values based on an expression.
-This can be used to generate targets, thresholds and estimated values.
-You can interact with predictors through the `/api/33/predictors`
-resource.
+This can be used for example to generate targets, thresholds,
+or estimated values.
 
-    /api/33/predictors
+To retrieve predictors you can make a GET request to the predictors
+resource like this:
+
+    /api/predictors
 
 ### Creating a predictor
 
@@ -21426,7 +21429,7 @@ resource.
 You can create a predictor with a POST request to the predictors
 resource:
 
-    POST /api/33/predictors
+    POST /api/predictors
 
 A sample payload looks like this:
 
@@ -21441,10 +21444,9 @@ A sample payload looks like this:
   },
   "generator": {
     "expression": "AVG(#{r6nrJANOqMw})+1.5*STDDEV(#{r6nrJANOqMw})",
-    "dataElements": [],
-    "sampleElements": [{
-      "id": "r6nrJANOqMw"
-    }]
+    "description": "Maximum normal malaria case count",
+    "missingValueStrategy": "NEVER_SKIP",
+    "slidingWindow": false
   },
   "periodType": "Monthly",
   "sequentialSampleCount": 4,
@@ -21458,6 +21460,31 @@ The output element refers to the identifier of the data element for
 which to saved predicted data values. The generator element refers to the
 expression to use when calculating the predicted values.
 
+### Predictor expressions
+
+<!--DHIS2-SECTION-ID:webapi_predictor_expressions-->
+
+A predictor always has a generator expression that describes how the
+predicted value is calculated. A predictor may also have a skip test
+expression returning a boolean value. When the skip test expression is
+present, it is evaluated in each of the sampled periods to tell whether
+values from that period should be skipped.
+
+The following variables may be used in either a generator expression
+or a skip test expression:
+
+| Variable    | Object     | Description |
+| ----------- | ---------- | ----------- |
+| <nobr>#{\<dataelement-id>}</nobr>    | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
+<nobr>#{\<dataelement-id>.</nobr><br><nobr>\<categoryoptcombo-id></nobr> | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
+| <nobr>D{\<program-id>.\<dataelement-id>}</nobr> | Program data element | Refers to the value of a tracker data element within a program. |
+| <nobr>A{\<program-id>.\<attribute-id>}</nobr> | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
+| I{\<program-indicator-id>} | Program indicator | Refers to the value of a program indicator. |
+| <nobr>R{\<dataset-id>.\<metric>}</nobr> | Reporting rate | Refers to a reporting rate metric.<br> The metric can be REPORTING_RATE,<br> REPORTING_RATE_ON_TIME,<br> ACTUAL_REPORTS,<br> ACTUAL_REPORTS_ON_TIME,<br> EXPECTED_REPORTS.
+| C{\<constant-id>} | Constant | Refers to a constant value. |
+| OUG{\<orgunitgroup-id>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
+| [days] | Number of days | The number of days in the current period. |
+
 ### Generating predicted values
 
 <!--DHIS2-SECTION-ID:webapi_generating_predicted_values-->
@@ -21465,12 +21492,12 @@ expression to use when calculating the predicted values.
 To run all predictors (generating predicted values) you can make a POST
 request to the run resource:
 
-    POST /api/33/predictors/run
+    POST /api/predictors/run
 
 To run a single predictor you can make a POST request to the run
 resource for a predictor:
 
-    POST /api/33/predictors/AG10KUJCrRk/run
+    POST /api/predictors/AG10KUJCrRk/run
 
 ## Min-max data elements
 
