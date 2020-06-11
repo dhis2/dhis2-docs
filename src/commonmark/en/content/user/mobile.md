@@ -674,7 +674,7 @@ from mobile is not available.
 ##### Installation
 
 Download the jar packages from the DHIS2 homepage:
-[www.dhis2.org/downloads](www.dhis2.org/downloads)
+[https://www.dhis2.org/downloads](www.dhis2.org/downloads)
 
 ##### Initialization
 
