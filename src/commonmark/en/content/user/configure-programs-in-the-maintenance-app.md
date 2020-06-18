@@ -3825,6 +3825,10 @@ the **Program** configuration.
 <!-- end list -->
 
   - Maximum number of tracked entity instances to return: This property defines how specific a search must be, by limiting the number of matching tracked entity instances a user is allowed to get for her search criteria. If the number of matching records is larger than this maximum, they will not be returned. The user must provide more specific search criteria, in order to reduce the number of matching records, before they are returned.
+  
+    > **NOTE**
+    > 
+    > This maximum is only applied to search results outside the users capture org unit. Within the capture scope, the user can see any number of results.
 
 ### Configure search for tracked entity type
 
@@ -3862,6 +3866,10 @@ There are two limits that can be set for a TET search
 <!-- end list -->
 
   - Maximum number of tracked entity types to return: This property defines how specific a search must be, by limiting the number of matching tracked entity types a user is allowed to get for her search criteria. If the number of matching records is larger than this maximum, they will not be returned. The user must provide more specific search criteria, in order to reduce the number of matching records, before they are returned.
+  
+    > **NOTE**
+    > 
+    > This maximum is only applied to search results outside the users capture org unit. Within the capture scope, the user can see any number of results.
 
 ### Configure search organisation units for a user
 
