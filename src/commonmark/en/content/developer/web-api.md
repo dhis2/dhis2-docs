@@ -1066,6 +1066,22 @@ It is also possible to combine the identifiable filter with property-based filte
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
+### Capture Scope filter
+
+In addition to the filtering mentioned above, we have a special filtering query parameter named *restrictToCaptureScope*. If *restrictToCaptureScope* is set to true, only those metadata objects that are either unassigned to any organisation units or those that are assigned explicitly to the logged in users capture scope org units will be returned in the response. 
+
+A special case exists for CategoryOptions api endpoint. In addition to the above filtering, the associated organisation units will also be filtered to only include the capture scoped organisation units instead of the full association. 
+
+Some examples
+
+    /api/categoryOptions.json?restrictToCaptureScope=true&fields=*
+
+    /api/dataElements.json?restrictToCaptureScope=true&fields=*
+
+All existing filters will work in addition to the capture scope filter.
+
+    /api/categoryOptions.json?restrictToCaptureScope=true&fields=*&filter=displayName:ilike:11
+
 ## Metadata field filter
 
 <!--DHIS2-SECTION-ID:webapi_metadata_field_filter-->
