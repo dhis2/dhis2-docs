@@ -1076,7 +1076,7 @@ Some examples
 
     /api/categoryOptions.json?restrictToCaptureScope=true&fields=*
 
-    /api/dataSets.json?restrictToCaptureScope=true&fields=*
+    /api/programs.json?restrictToCaptureScope=true&fields=*
 
 All existing filters will work in addition to the capture scope filter.
 
