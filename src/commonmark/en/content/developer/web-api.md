@@ -10324,6 +10324,425 @@ Finally, to delete an existing Visualization, you can make a `DELETE` request sp
 
     DELETE /api/visualizations/hQxZGXqnLS9
 
+## Data items
+
+<!--DHIS2-SECTION-ID:webapi_data_items-->
+
+This endpoint allows the user to query data related to a few different dimensional items. These items are: `INDICATOR`, `DATA_ELEMENT`, `DATA_SET`, `PROGRAM_INDICATOR`, `PROGRAM_DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`. The endpoint allows only `GET` requests, and as other endpoints, it also supports responses in JSON or XML format.
+
+The URL for this endpoint is `/api/dataItems` and as you can imagine, it is able to retrieve different objects through the same endpoint in the same `GET` request. For this reason, some queriable attributes available will differ depending on the dimensional item(s) being queried.
+
+To understand the statement above let's see the followings request examples:
+
+1) `GET /api/dataItems?filter=dimensionItemType:eq:DATA_ELEMENT&filter=valueType:eq:TEXT`
+In this example the item type `DATA_ELEMENT` has a `valueType` attribute which can be used in the query.
+
+2) `GET /api/dataItems?filter=dimensionItemType:in:[PROGRAM_INDICATOR]&filter=program.id:eq:IpHINAT79UW`
+Here, the `PROGRAM_INDICATOR` allows filtering by `program.id`.
+
+Based on the examples `1)` and `2)` if you try filtering a `DATA_ELEMENT` by `program.id` or filter a `PROGRAM_INDICATOR` by `valueType` you will get an error, as the respective attributes don't belong to those dimensional items.
+
+Another important aspect to be highlighted is that this endpoint follows the same querying standards as other existing endpoints, like `Metadata object  filter` for example. As a consequence, it supports the same operators. See <a href="#webapi_metadata_object_filter">Metadata object filter</a> for the list of available operators.
+
+### Possible endpoint responses
+
+<!--DHIS2-SECTION-ID:webapi_data_items_possible_responses-->
+
+Base on the `GET` request/query, a few different responses are possible. Below we are summarizing each possibility.
+
+#### Results found (HTTP status code 302)
+
+```
+{
+  "pager": {
+    "page": 1,
+    "pageCount": 1,
+    "total": 26,
+    "pageSize": 50
+  },
+  "nameableObjects": [
+    {
+      "code": "DE_399",
+      "lastUpdated": "2014-11-11T21:56:05.728",
+      "id": "A2VfEfPflHV",
+      "created": "2011-12-24T12:24:25.088",
+      "name": "All other new",
+      "shortName": "Others new",
+      "aggregationType": "SUM",
+      "displayName": "All other new",
+      "publicAccess": "rw------",
+      "displayShortName": "Others new",
+      "externalAccess": false,
+      "dimensionItem": "A2VfEfPflHV",
+      "displayFormName": "All other new",
+      "favorite": false,
+      "dimensionItemType": "DATA_ELEMENT",
+      "access": {
+        "read": true,
+        "update": true,
+        "externalize": false,
+        "delete": true,
+        "write": true,
+        "manage": true
+      },
+      "user": {
+        "id": "GOLswS44mh8"
+      },
+      "favorites": [],
+      "translations": [
+        {
+          "property": "SHORT_NAME",
+          "locale": "en_GB",
+          "value": "Others new"
+        },
+        {
+          "property": "NAME",
+          "locale": "en_GB",
+          "value": "All other new"
+        }
+      ],
+      "userGroupAccesses": [],
+      "attributeValues": [],
+      "userAccesses": [],
+      "legendSets": []
+    }, ...
+  ]
+}
+```
+
+#### Results not found (HTTP status code 404)
+```
+{
+  "pager": {
+    "page": 1,
+    "pageCount": 1,
+    "total": 0,
+    "pageSize": 50
+  },
+  "nameableObjects": []
+}
+```
+
+#### Invalid query (HTTP status code 409)
+```
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "Unable to parse element `INVALID_TYPE` on filter `dimensionItemType`. The values available are: [INDICATOR, DATA_ELEMENT, DATA_ELEMENT_OPERAND, DATA_SET, PROGRAM_INDICATOR, PROGRAM_DATA_ELEMENT, PROGRAM_ATTRIBUTE]",
+  "errorCode": "E2016"
+}
+```
+
+#### Unhandled error (HTTP status code 500)
+```
+{
+  "httpStatus": "Internal Server Error",
+  "httpStatusCode": 500,
+  "status": "ERROR"
+}
+```
+
+### Pagination
+
+<!--DHIS2-SECTION-ID:webapi_data_items_pagination-->
+
+This endpoint also supports pagination as a default option. If needed, you can disable pagination by adding `paging=false` to the `GET` request.
+ie.: `/api/dataItems?filter=dimensionItemType:in:[INDICATOR]&paging=false`.
+
+Here is an example of a payload when the pagination is enabled. Remember that pagination is the default option and does not need to be explicitly set.
+
+```
+{
+  "pager": {
+    "page": 1,
+    "pageCount": 20,
+    "total": 969,
+    "pageSize": 50,
+    "nextPage": "http://your-domain/dhis/api/dataItems?page=2&filter=dimensionItemType:in:[INDICATOR]"
+  },
+  "nameableObjects": [...]
+}
+```
+
+> **Note**
+>
+> The pagination of this endpoint needs to consolidate different dimensional items before building the response payload. Because of that, if some `order` is defined in the `GET` request, each page will bring an array of dimensional items respecting the ordering set.
+>
+> When paging is enabled the ordering is applied per page and not on the full result. In the other hand, if paging is disabled, the ordering will be applied to the full list of results. This will result in a difference in order. The first will order per page basis while the second will order the full list of items all at once.
+>
+> For better performance, we recommend leaving the pagination always enabled. It will optimize the performance by avoiding memory consumption and increasing the response time.
+
+### Response attributes
+
+<!--DHIS2-SECTION-ID:webapi_data_items_response_attributes-->
+
+Now that we have a good idea of the main features and usage of this endpoint let's have a look in the list of attributes returned in the response.
+
+<table>
+<caption>Data items attributes</caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>The unique identifier.</td>
+</tr>
+<tr class="even">
+<td>code</td>
+<td>A custom code to identify the Visualization.</td>
+</tr>
+<tr class="odd">
+<td>name</td>
+<td>The name of the Visualization</td>
+</tr>
+<tr class="even">
+<td>type</td>
+<td>The type of the Visualization. The valid types are: COLUMN, STACKED_COLUMN, BAR, STACKED_BAR, LINE, AREA, PIE, RADAR, GAUGE, YEAR_OVER_YEAR_LINE YEAR_OVER_YEAR_COLUMN, SINGLE_VALUE, PIVOT_TABLE.</td>
+</tr>
+<tr class="odd">
+<td>title</td>
+<td>A custom title.</td>
+</tr>
+<tr class="even">
+<td>subtitle</td>
+<td>A custom subtitle.</td>
+</tr>
+<tr class="odd">
+<td>description</td>
+<td>Defines a custom description for the Visualization.</td>
+</tr>
+<tr class="even">
+<td>created</td>
+<td>The date/time of the Visualization creation.</td>
+</tr>
+<tr class="odd">
+<td>startDate</td>
+<td>The beginning date used during the filtering.</td>
+</tr>
+<tr class="even">
+<td>endDate</td>
+<td>The ending date used during the filtering.</td>
+</tr>
+<tr class="odd">
+<td>sortOrder</td>
+<td>The sorting order of this Visualization. Integer value.</td>
+</tr>
+<tr class="even">
+<td>user</td>
+<td>An object representing the creator of the Visualization.</td>
+</tr>
+<tr class="odd">
+<td>publicAccess</td>
+<td>Sets the permissions for public access.</td>
+</tr>
+<tr class="even">
+<td>displayDensity</td>
+<td>The display density of the text.</td>
+</tr>
+<tr class="odd">
+<td>fontSize</td>
+<td>The font size of the text.</td>
+</tr>
+<tr class="even">
+<td>relativePeriods</td>
+<td>An object representing the relative periods used in the analytics query.</td>
+</tr>
+<tr class="odd">
+<td>legendSet</td>
+<td>An object representing the definitions for the legend.</td>
+</tr>
+<tr class="even">
+<td>legendDisplayStyle</td>
+<td>The legend's display style. It can be: FILL or TEXT.</td>
+</tr>
+<tr class="odd">
+<td>legendDisplayStrategy</td>
+<td>The legend's display style. It can be: FIXED or BY_DATA_ITEM.</td>
+</tr>
+<tr class="even">
+<td>aggregationType</td>
+<td>Determines how the values in the pivot table are aggregated. Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT.</td>
+</tr>
+<tr class="odd">
+<td>regressionType</td>
+<td>A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS.</td>
+</tr>
+<tr class="even">
+<td>targetLineValue</td>
+<td>The chart target line. Accepts a Double type.</td>
+</tr>
+<tr class="odd">
+<td>targetLineLabel</td>
+<td>The chart target line label.</td>
+</tr>
+<tr class="even">
+<td>rangeAxisLabel</td>
+<td>The chart vertical axis (y) label/title.</td>
+</tr>
+<tr class="odd">
+<td>domainAxisLabel</td>
+<td>The chart horizontal axis (x) label/title.</td>
+</tr>
+<tr class="even">
+<td>rangeAxisMaxValue</td>
+<td>The chart axis maximum value. Values outside of the range will not be displayed.</td>
+</tr>
+<tr class="odd">
+<td>rangeAxisMinValue</td>
+<td>The chart axis minimum value. Values outside of the range will not be displayed.</td>
+</tr>
+<tr class="even">
+<td>rangeAxisSteps</td>
+<td>The number of axis steps between the minimum and maximum values.</td>
+</tr>
+<tr class="odd">
+<td>rangeAxisDecimals</td>
+<td>The number of decimals for the axes values.</td>
+</tr>
+<tr class="even">
+<td>baseLineValue</td>
+<td>A chart baseline value.</td>
+</tr>
+<tr class="odd">
+<td>baseLineLabel</td>
+<td>A chart baseline label.</td>
+</tr>
+<tr class="even">
+<td>digitGroupSeparator</td>
+<td>The digit group separator. Valid values: COMMA, SPACE or NONE.</td>
+</tr>
+<tr class="odd">
+<td>topLimit</td>
+<td>The top limit set for the Pivot table.</td>
+</tr>
+<tr class="even">
+<td>measureCriteria</td>
+<td>Describes the criteria applied to this measure.</td>
+</tr>
+<tr class="odd">
+<td>percentStackedValues</td>
+<td>Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>noSpaceBetweenColumns</td>
+<td>Show/hide space between columns. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>regression</td>
+<td>Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>externalAccess</td>
+<td>Indicates whether the Visualization is available as external read-only. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>userOrganisationUnit</td>
+<td>Indicates if the user has an organisation unit. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>userOrganisationUnitChildren</td>
+<td>Indicates if the user has a children organisation unit. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>userOrganisationUnitGrandChildren</td>
+<td>Indicates if the user has a grand children organisation unit . Boolean value.</td>
+</tr>
+<tr class="even">
+<td>reportingParams</td>
+<td>Object used to define boolean attributes related to reporting.</td>
+</tr>
+<tr class="odd">
+<td>rowTotals</td>
+<td>Displays (or not) the row totals. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>colTotals</td>
+<td>Displays (or not) the columns totals. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>rowSubTotals</td>
+<td>Displays (or not) the row sub-totals. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>colSubTotals</td>
+<td>Displays (or not) the columns sub-totals. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>cumulativeValues</td>
+<td>Indicates whether the visualization is using cumulative values. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>hideEmptyColumns</td>
+<td>Indicates whether to hide columns with no data values. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>hideEmptyRows</td>
+<td>Indicates whether to hide rows with no data values. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>completedOnly</td>
+<td>Indicates whether to hide columns with no data values. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>skipRounding</td>
+<td>Apply or not rounding. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>showDimensionLabels</td>
+<td>Shows the dimension labels or not. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>hideTitle</td>
+<td>Hides the title or not. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>hideSubtitle</td>
+<td>Hides the subtitle or not. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>hideLegend</td>
+<td>Show/hide the legend. Very likely to be used by charts. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>showHierarchy</td>
+<td>Displays (or not) the organisation unit hierarchy names. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>showData</td>
+<td>Used by charts to hide or not data/values within the rendered model. Boolean value.</td>
+</tr>
+<tr class="even">
+<td>lastUpdatedBy</td>
+<td>Object that represents the user that applied the last changes to the Visualization.</td>
+</tr>
+<tr class="odd">
+<td>lastUpdated</td>
+<td>The date/time of the last time the Visualization was changed.</td>
+</tr>
+<tr class="even">
+<td>favorites</td>
+<td>List of user ids who have marked this object as a favorite.</td>
+</tr>
+<tr class="odd">
+<td>subscribers</td>
+<td>List of user ids who have subscribed to this Visualization.</td>
+</tr>
+<tr class="even">
+<td>translations</td>
+<td>Set of available object translation, normally filtered by locale.</td>
+</tr>
+</tbody>
+</table>
+
 ## Analytics
 
 <!--DHIS2-SECTION-ID:webapi_analytics-->
