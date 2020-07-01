@@ -10328,11 +10328,11 @@ Finally, to delete an existing Visualization, you can make a `DELETE` request sp
 
 <!--DHIS2-SECTION-ID:webapi_data_items-->
 
-This endpoint allows the user to query data related to a few different dimensional items. These items are: `INDICATOR`, `DATA_ELEMENT`, `DATA_SET`, `PROGRAM_INDICATOR`, `PROGRAM_DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`. The endpoint allows only `GET` requests, and as other endpoints, it also supports responses in JSON or XML format.
+This endpoint allows the user to query data related to a few different dimensional items. These items are: `INDICATOR`, `DATA_ELEMENT`, `DATA_SET`, `PROGRAM_INDICATOR`, `PROGRAM_DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`. The endpoint supports only `GET` requests and, as other endpoints, can return responses in JSON or XML format.
 
-The URL for this endpoint is `/api/dataItems` and as you can imagine, it is able to retrieve different objects through the same endpoint in the same `GET` request. For this reason, some queriable attributes available will differ depending on the dimensional item(s) being queried.
+The URL is `/api/dataItems` and as you can imagine, it is able to retrieve different objects through the same endpoint in the same `GET` request. For this reason, some queriable attributes available will differ depending on the dimensional item(s) being queried.
 
-To understand the statement above let's see the followings request examples:
+To understand the statement above let's have a look at the followings request examples:
 
 1) `GET /api/dataItems?filter=dimensionItemType:eq:DATA_ELEMENT&filter=valueType:eq:TEXT`
 In this example the item type `DATA_ELEMENT` has a `valueType` attribute which can be used in the query.
@@ -10340,7 +10340,7 @@ In this example the item type `DATA_ELEMENT` has a `valueType` attribute which c
 2) `GET /api/dataItems?filter=dimensionItemType:in:[PROGRAM_INDICATOR]&filter=program.id:eq:IpHINAT79UW`
 Here, the `PROGRAM_INDICATOR` allows filtering by `program.id`.
 
-Based on the examples `1)` and `2)` if you try filtering a `DATA_ELEMENT` by `program.id` or filter a `PROGRAM_INDICATOR` by `valueType` you will get an error, as the respective attributes don't belong to those dimensional items.
+So, based on the examples `1)` and `2)` if you try filtering a `DATA_ELEMENT` by `program.id` or filter a `PROGRAM_INDICATOR` by `valueType` you will get an error, as the respective attributes don't belong to those dimensional items.
 
 Another important aspect to be highlighted is that this endpoint follows the same querying standards as other existing endpoints, like `Metadata object  filter` for example. As a consequence, it supports the same operators. See <a href="#webapi_metadata_object_filter">Metadata object filter</a> for the list of available operators.
 
