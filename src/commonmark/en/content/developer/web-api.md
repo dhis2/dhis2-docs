@@ -3425,6 +3425,35 @@ response of the above example.
   - File resource objects are *immutable*, meaning modification is not
     allowed and requires creating a completely new resource instead.
 
+### File resource blocklist
+
+Certain types of files are blocked from being uploaded for security reasons.
+
+The following content types are blocked.
+
+| Content type | Content type |
+| ------------------------------------- | ---- |
+| text/html                             | application/x-ms-dos-executable |
+| text/css                              | application/vnd.microsoft.portable-executable |
+| text/javascript                       | application/vnd.apple.installer+xml |
+| font/otf                              | application/vnd.mozilla.xul+xml |
+| application/x-shockwave-flash         | application/x-httpd-php  |
+| application/vnd.debian.binary-package | application/x-sh |
+| application/x-rpm                     | application/x-csh |
+| application/java-archive              |  |
+
+The following file extensions are blocked.
+
+| File extension | File extension | File extension |
+| ---- | ---- | ---- |
+| html | deb  | xul  |
+| htm  | rpm  | php  |
+| css  | jar  | bin  |
+| js   | jsp  | sh   |
+| mjs  | exe  | csh  |
+| otf  | msi  | bat  |
+| swf  | mpkg |      |
+
 ## Metadata versioning
 
 <!--DHIS2-SECTION-ID:webapi_metadata_versioning-->
