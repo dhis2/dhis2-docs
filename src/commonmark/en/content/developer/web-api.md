@@ -1066,6 +1066,22 @@ It is also possible to combine the identifiable filter with property-based filte
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
+### Capture Scope filter
+
+In addition to the filtering mentioned above, we have a special filtering query parameter named *restrictToCaptureScope*. If *restrictToCaptureScope* is set to true, only those metadata objects that are either unassigned to any organisation units or those that are assigned explicitly to the logged in users capture scope org units will be returned in the response. This filtering parameter can be used for any metadata that has organisation units association with it.
+
+A special case exists for CategoryOptions api endpoint. In addition to filtering the metadata object lists, an additional filtering of the associated organisation units to only include the capture scoped organisation units will be done. Note that this second level of filtering only applies for CategoryOptions metadata.
+
+Some examples
+
+    /api/categoryOptions.json?restrictToCaptureScope=true&fields=*
+
+    /api/programs.json?restrictToCaptureScope=true&fields=*
+
+All existing filters will work in addition to the capture scope filter.
+
+    /api/categoryOptions.json?restrictToCaptureScope=true&fields=*&filter=displayName:ilike:11
+
 ## Metadata field filter
 
 <!--DHIS2-SECTION-ID:webapi_metadata_field_filter-->
@@ -3408,6 +3424,35 @@ response of the above example.
 
   - File resource objects are *immutable*, meaning modification is not
     allowed and requires creating a completely new resource instead.
+
+### File resource blocklist
+
+Certain types of files are blocked from being uploaded for security reasons.
+
+The following content types are blocked.
+
+| Content type | Content type |
+| ------------------------------------- | ---- |
+| text/html                             | application/x-ms-dos-executable |
+| text/css                              | application/vnd.microsoft.portable-executable |
+| text/javascript                       | application/vnd.apple.installer+xml |
+| font/otf                              | application/vnd.mozilla.xul+xml |
+| application/x-shockwave-flash         | application/x-httpd-php  |
+| application/vnd.debian.binary-package | application/x-sh |
+| application/x-rpm                     | application/x-csh |
+| application/java-archive              |  |
+
+The following file extensions are blocked.
+
+| File extension | File extension | File extension |
+| ---- | ---- | ---- |
+| html | deb  | xul  |
+| htm  | rpm  | php  |
+| css  | jar  | bin  |
+| js   | jsp  | sh   |
+| mjs  | exe  | csh  |
+| otf  | msi  | bat  |
+| swf  | mpkg |      |
 
 ## Metadata versioning
 
