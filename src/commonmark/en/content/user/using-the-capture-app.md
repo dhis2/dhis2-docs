@@ -10,6 +10,22 @@ The Capture app serves as a replacement for the Event Capture app. In the future
 
 In the Capture app you register events that occurred at a particular time and place. An event can happen at any given point in time. This stands in contrast to routine data, which can be captured for predefined, regular intervals. Events are sometimes called cases or records. In DHIS2, events are linked to a program. The Capture app lets you select the organisation unit and program and specify a date when a event happened, before entering information for the event.
 
+## Implementer / administrator info
+
+<!--DHIS2-SECTION-ID:implementer_info-->
+
+### Metadata caching
+
+<!--DHIS2-SECTION-ID:metadata_caching-->
+
+For performance reasons the Capture app caches metadata in the client browser. When metadata is updated on the server the changes needs to be propagated to the clients that have already cached the metadata. Depending on the change, this is done in one of three ways:
+
+1. If the change is bound to a program you will need to increase the program version for that particular program. For example, if you change the data elements in a program or a program rule, the version for the bound program needs be increased.
+
+2. If the change is NOT bound to a program you will need to increase ANY program version for the change to be propagated to the clients. Examples here are changes to constants, organisation unit levels or organisation unit groups.
+
+3. The exception to the two rules above is option sets. Option sets have their own version property, i.e. increasing the option set version should ensure the option set metadata are propagated to the clients.
+
 ## Register an event
 
 <!--DHIS2-SECTION-ID:capture_register_event-->
