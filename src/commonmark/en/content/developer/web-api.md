@@ -15152,6 +15152,94 @@ user:
 
     /api/33/users?query=konan&authSubset=true&pageSize=10
 
+### User lookup
+
+The user lookup endpoint provides a minimal user representation. It does
+not require a special authority and is suitable for allowing clients to
+look up information such as user first and surname, without exposing 
+potentially sensitive user information.
+
+```
+/api/userLookup
+```
+
+The user lookup endpoint has two methods.
+
+#### User lookup by identifier
+
+You can do a user lookup by identifier using the following API request:
+
+```
+GET /api/userLookup/{id}
+```
+
+The user `identifier` will be matched against the following user properties
+in the specified order:
+
+- UID
+- UUID
+- username
+
+An example request looks like this:
+
+```
+/api/userLookup/QqvaU7JjkUV
+```
+
+The response will contain minimal information about a user.
+
+```json
+{
+  "id": "QqvaU7JjkUV",
+  "firstName": "Thomas",
+  "surname": "Nkono",
+  "displayName": "Thomas Nkono"
+}
+```
+
+#### User lookup query
+
+You can make a query for users using the following API request:
+
+```
+GET /api/userLookup?query={string}
+```
+
+The `query` parameter is mandatory. The query `string` will be matched
+against the following user properties:
+
+- First name
+- Surname
+- Email
+- Usernme
+
+An example request looks like this:
+
+```
+/api/userLookup?query=John
+```
+
+The response will contain information about the users matching the request.
+
+```json
+{
+  "users": [
+    {
+      "id": "DXyJmlo9rge",
+      "firstName": "John",
+      "surname": "Barnes",
+      "displayName": "John Barnes"
+    },
+    {
+      "id": "N3PZBUlN8vq",
+      "firstName": "John",
+      "surname": "Kamara",
+      "displayName": "John Kamara"
+    }
+  ]
+}
+```
+
 ### User account create and update
 
 <!--DHIS2-SECTION-ID:webapi_users_create_update-->
