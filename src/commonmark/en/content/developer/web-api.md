@@ -1062,7 +1062,7 @@ Example: Get all data elements where *ANC visit* is found in any of the *identif
 It is also possible to combine the identifiable filter with property-based filter and expect the *rootJunction* to be applied.
 
     /api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
-
+    
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
@@ -1075,7 +1075,7 @@ A special case exists for CategoryOptions api endpoint. In addition to filtering
 Some examples
 
     /api/categoryOptions.json?restrictToCaptureScope=true&fields=*
-
+    
     /api/programs.json?restrictToCaptureScope=true&fields=*
 
 All existing filters will work in addition to the capture scope filter.
@@ -2276,7 +2276,7 @@ For data element and tracked entity attribute:
 }
 ```
 
-## Object Style (Experimental)
+## Object Style
 
 <!--DHIS2-SECTION-ID:webapi_object_style-->
 
@@ -9217,74 +9217,7 @@ document with the identifiers referred to in the plug-in JavaScript.
 To see a complete working example please visit
 <http://play.dhis2.org/portal/map.html>.
 
-### Creating a chart carousel with the carousel plug-in
 
-<!--DHIS2-SECTION-ID:webapi_carousel_plugin-->
-
-The chart plug-in also makes it possible to create a chart carousel
-which for instance can be used to create an attractive front page on a
-Web portal. To use the carousel we need to import a few files in the
-head section of our HTML
-    page:
-
-```html
-<link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v213/ext/resources/css/ext-plugin-gray.css" />
-<link rel="stylesheet" type="text/css" href="https://play.dhis2.org/demo/dhis-web-commons/javascripts/ext-ux/carousel/css/carousel.css" />
-<script type="text/javascript" src="https://extjs-public.googlecode.com/svn/tags/extjs-4.0.7/release/ext-all.js"></script>
-<script type="text/javascript" src="https://play.dhis2.org/demo/dhis-web-commons/javascripts/ext-ux/carousel/Carousel.js"></script>
-<script type="text/javascript" src="https://play.dhis2.org/demo/dhis-web-commons/javascripts/plugin/plugin.js"></script>
-```
-
-The first file is the CSS stylesheet for the chart plug-in. The second
-file is the CSS stylesheet for the carousel widget. The third file is
-the Ext JavaScript framework which this plug-in depends on. The fourth
-file is the carousel plug-in JavaScript file. The fifth file is the
-chart plug-in JavaScript file. The paths in this example points at the
-DHIS2 demo site, make sure you update them to point to your own DHIS2
-installation.
-
-Please refer to the section about the chart plug-in on how to do
-authentication.
-
-To create a chart carousel we will first render the charts we want to
-include in the carousel using the method described in the chart plug-in
-section. Then we create the chart carousel itself. The charts will be
-rendered into *div* elements which all have a CSS class called *chart*.
-In the carousel configuration we can then define a *selector* expression
-which refers to those div elements like this:
-
-```javascript
-DHIS.getChart({ uid: 'R0DVGvXDUNP', el: 'chartA1', url: base });
-DHIS.getChart({ uid: 'X0CPnV6uLjR', el: 'chartA2', url: base });
-DHIS.getChart({ uid: 'j1gNXBgwKVm', el: 'chartA3', url: base });
-DHIS.getChart({ uid: 'X7PqaXfevnL', el: 'chartA4', url: base });
-
-new Ext.ux.carousel.Carousel( 'chartCarousel', {
-  autoPlay: true,
-  itemSelector: 'div.chart',
-  interval: 5,
-  showPlayButton: true
-});
-```
-
-The first argument in the configuration is the id of the div element in
-which you want to render the carousel. The *autoPlay* configuration
-option refers to whether we want the carousel to start when the user
-loads the Web page. The *interval* option defines how many seconds each
-chart should be displayed. The *showPlayButton* defines whether we want
-to render a button for the user to start and stop the carousel. Finally
-we need to insert the div elements in the body of the HTML document:
-
-```html
-<div id="chartCarousel">
-<div id="chartA1"></div>
-<div id="chartA2"></div>
-<div id="chartA3"></div>
-<div id="chartA4"></div>
-```
-
-To see a complete working example please visit
-<http://play.dhis2.org/portal/carousel.html>.
 
 ## SQL views
 
@@ -21213,22 +21146,22 @@ with the following request:
 
 ```json
 {
-    "object": {
-        "publicAccess": "rw------",
-        "externalAccess": false,
-        "user": {},
-        "userAccesses": [],
-        "userGroupAccesses": [
-            {
-                "id": "hj0nnsVsPLU",
-                "access": "rw------"
-            },
-            {
-                "id": "qMjBflJMOfB",
-                "access": "r-------"
-            }
-        ]
-    }
+  "object": {
+    "publicAccess": "rw------",
+    "externalAccess": false,
+    "user": {},
+    "userAccesses": [],
+    "userGroupAccesses": [
+      {
+        "id": "hj0nnsVsPLU",
+        "access": "rw------"
+      },
+      {
+        "id": "qMjBflJMOfB",
+        "access": "r-------"
+      }
+    ]
+  }
 }
 ```
 
@@ -21524,12 +21457,12 @@ or a skip test expression:
 
 | Variable    | Object     | Description |
 | ----------- | ---------- | ----------- |
-| <nobr>#{\<dataelement-id>}</nobr>    | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
-<nobr>#{\<dataelement-id>.</nobr><br><nobr>\<categoryoptcombo-id></nobr> | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
-| <nobr>D{\<program-id>.\<dataelement-id>}</nobr> | Program data element | Refers to the value of a tracker data element within a program. |
-| <nobr>A{\<program-id>.\<attribute-id>}</nobr> | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
+| #{\<dataelement-id>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
+| #{\<dataelement-id>.\<categoryoptcombo-id> | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
+| D{\<program-id>.\<dataelement-id>} | Program data element | Refers to the value of a tracker data element within a program. |
+| A{\<program-id>.\<attribute-id>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
 | I{\<program-indicator-id>} | Program indicator | Refers to the value of a program indicator. |
-| <nobr>R{\<dataset-id>.\<metric>}</nobr> | Reporting rate | Refers to a reporting rate metric.<br> The metric can be REPORTING_RATE,<br> REPORTING_RATE_ON_TIME,<br> ACTUAL_REPORTS,<br> ACTUAL_REPORTS_ON_TIME,<br> EXPECTED_REPORTS.
+| R{\<dataset-id>.\<metric>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
 | C{\<constant-id>} | Constant | Refers to a constant value. |
 | OUG{\<orgunitgroup-id>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
 | [days] | Number of days | The number of days in the current period. |
@@ -21622,7 +21555,7 @@ eq and in. You can also use the `fields` query parameter.
 
     GET /api/minMaxDataElements.json?fields=:all,dataElement[id,name]
 
-### Add/Update min-max data element
+### Add/update min-max data element
 
 <!--DHIS2-SECTION-ID:webapi_add_update_min_max_data_element-->
 
