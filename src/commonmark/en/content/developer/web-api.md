@@ -15152,34 +15152,13 @@ user:
 
     /api/33/users?query=konan&authSubset=true&pageSize=10
 
-### User credentials query
-
-<!--DHIS2-SECTION-ID:webapi_users_credentials_query-->
-
-An alternative to the previous user query, is to directly query the user
-credentials (the part where username, etc., resides) using
-*/api/userCredentials* endpoint, it supports all regular field and
-object filters as the other endpoints.
-
-Get user credentials where username is admin:
-
-    /api/33/userCredentials?filter=username:eq:admin
-
-Get username and code from all user credentials where username starts
-with
-    *adm*:
-
-    /api/33/userCredentials?fields=username,code&filter=username:^like:adm
-
 ### User account create and update
 
 <!--DHIS2-SECTION-ID:webapi_users_create_update-->
 
-Both creating and updating a user is supported through the API. The
-payload itself is similar to other payloads in the API, so they
-support collection references etc. A simple example payload to create
-would be, the password should be sent in plain text (remember to only
-use this on a SSL enabled server) and will be encrypted on the backend:
+Creating and updating users are supported through the API. A basic 
+payload to create a user looks like the below example. Note that the password 
+will be sent in plain text so remember to enable SSL/HTTPS for network transport.
 
 ```json
 {
@@ -15229,17 +15208,16 @@ In the user creation payload, user groups are only supported when importing
 or *POSTing* a single user at a time. If you attempt to create more than one 
 user while specifiying user groups, you will not recieve an error and the 
 users will be created but no user groups will be assigned. This is by design 
-and is limited because of the many-to-many relationship between Users and 
-User Groups whereby User Groups is the owner of the relationship. To update 
+and is limited because of the many-to-many relationship between users and 
+user groups whereby user groups is the owner of the relationship. To update 
 or create mulitple users and their user groups, consider a program to *POST* 
-one at a time, or *POST* / import all users followed by another action to 
+one at a time, or *POST* all users followed by another action to 
 update their user groups while specifiying the new user's identifiers.
 
 After the user is created, a *Location* header is sent back with the
-newly generated ID (you can also provide your own using /api/system/id
+newly generated ID (you can also provide your own using the `/api/system/id`
 endpoint). The same payload can then be used to do updates, but remember
-to then use *PUT* instead of *POST* and the endpoint is now
-*/api/users/ID*.
+to then use *PUT* instead of *POST* and the endpoint is now `/api/users/ID`.
 
 ```bash
 curl -X PUT -d @u.json "http://server/api/33/users/ID" -u user:pass 
@@ -15261,7 +15239,9 @@ or JSON format to the invite resource. A specific username can be forced
 by defining the username in the posted entity. By omitting the username,
 the person will be able to specify it herself. The system will send out
 an invitation through email. This requires that email settings have been
-properly configured. The invite resource is useful in order to securely
+properly configured.
+
+The invite resource is useful in order to securely
 allow people to create accounts without anyone else knowing the password
 or by transferring the password in plain text. The payload to use for
 the invite is the same as for creating users. An example payload in JSON
@@ -15344,26 +15324,11 @@ out:
 
   - The user to be invited must have specified a valid email.
 
-  - The user to be invited must not be granted user roles with critical
-    authorities (see below).
-
   - If username is specified it must not be already taken by another
     existing user.
 
 If any of these requirements are not met the invite resource will return
 with a *409 Conflict* status code together with a descriptive message.
-
-The critical authorities which cannot be granted with invites include:
-
-  - ALL
-
-  - Scheduling administration
-
-  - Set system settings
-
-  - Add, update, delete and list user roles
-
-  - Add, update, delete and view SQL views
 
 ### User replication
 
@@ -15378,8 +15343,8 @@ can post a JSON payload looking like below:
 
 ```json
 {
-  "username": "replica",
-  "password": "Replica.1234"
+  "username": "user_replica",
+  "password": "SecretPassword"
 }
 ```
 
@@ -15395,7 +15360,7 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
   -H "Content-Type:application/json" -u admin:district
 ```
 
-## Current user information and associations
+## Current user information
 
 <!--DHIS2-SECTION-ID:webapi_current_user_information-->
 
@@ -15416,10 +15381,6 @@ Gives information about currently unread messages and interpretations:
 
     /api/me/dashboard
 
-Lists all messages and interpretations in the inbox (including replies):
-
-    /api/me/inbox
-
 In order to change password, this end point can be used to validate
 newly entered password. Password validation will be done based on
 PasswordValidationRules configured in the system. This end point support
@@ -15432,12 +15393,6 @@ verify old password. Password string should be sent in POST body.
 
     /api/me/verifyPassword
 
-Gives the full profile information for current user. This endpoint
-support both *GET* to retrieve profile and *POST* to update profile (the
-exact same format is used):
-
-    /api/me/user-account
-
 Returns the set of authorities granted to the current user:
 
     /api/me/authorization
@@ -15446,26 +15401,6 @@ Returns true or false, indicating whether the current user has been
 granted the given `<auth>` authorization:
 
     /api/me/authorization/<auth>
-
-Lists all organisation units directly assigned to the user:
-
-    /api/me/organisationUnits
-
-Gives all the datasets assigned to the users organisation units, and
-their direct children. This endpoint contains all required information
-to build a form based on one of our datasets. If you want all
-descendants of your assigned organisation units, you can use the query
-parameter *includeDescendants=true* :
-
-    /api/me/dataSets
-
-Gives all the programs assigned to the users organisation units, and
-their direct children. This endpoint contains all required information
-to build a form based on one of our datasets. If you want all
-descendants of your assigned organisation units, you can use the query
-parameter *includeDescendants=true* :
-
-    /api/me/programs
 
 Gives the data approval levels which are relevant to the current user:
 
