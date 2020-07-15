@@ -15154,10 +15154,11 @@ user:
 
 ### User lookup
 
-The user lookup endpoint provides a minimal user representation. It does
-not require a special authority and is suitable for allowing clients to
-look up information such as user first and surname, without exposing 
-potentially sensitive user information.
+The user lookup API provides an endpoint for retrieving users where the
+response contains a minimal set of information. It does not require a 
+specific authority and is suitable  for allowing clients to look up information 
+such as user first and surname,  without exposing potentially sensitive 
+user information.
 
 ```
 /api/userLookup
@@ -15167,13 +15168,13 @@ The user lookup endpoint has two methods.
 
 #### User lookup by identifier
 
-You can do a user lookup by identifier using the following API request:
+You can do a user lookup by identifier using the following API request.
 
 ```
 GET /api/userLookup/{id}
 ```
 
-The user `identifier` will be matched against the following user properties
+The user `id` will be matched against the following user properties
 in the specified order:
 
 - UID
@@ -15199,13 +15200,13 @@ The response will contain minimal information about a user.
 
 #### User lookup query
 
-You can make a query for users using the following API request:
+You can make a query for users using the following API request.
 
 ```
 GET /api/userLookup?query={string}
 ```
 
-The `query` parameter is mandatory. The query `string` will be matched
+The `query` request parameter is mandatory. The query `string` will be matched
 against the following user properties:
 
 - First name
