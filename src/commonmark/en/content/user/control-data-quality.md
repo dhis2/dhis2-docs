@@ -63,7 +63,7 @@ You can verify data quality in different ways, for example:
 
 ### About validation rule analysis
 
-A validation rule is based on an expression which defines a relationship
+A validation rule is based on an expression which defines a numeric relationship
 between data element values. The expression forms a condition which
 should assert that certain logical criteria are met.
 
@@ -77,6 +77,8 @@ The expression consist of:
 
 A validation rule could assert that "Suspected malaria cases tested" \>=
 "Confirmed malaria cases".
+
+The left and right sides must return numeric values.
 
 The validation rule analysis tests validation rules against the data
 registered in the system. Validation violations are reported when the
