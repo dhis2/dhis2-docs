@@ -26,8 +26,8 @@
 <tr class="even">
 <td></td>
 <td><p>Enter data for a program without registration (event program)</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/event_capture_app.html">Using the Event Capture app</a></p></td>
-<td><p><strong>Event Capture</strong></p></td>
+<td><p><a href="https://docs.dhis2.org/master/en/user/html/capture_app.html">Using the Capture app</a></p></td>
+<td><p><strong>Capture</strong></p></td>
 </tr>
 <tr class="odd">
 <td></td>
@@ -44,12 +44,12 @@
 <tr class="odd">
 <td></td>
 <td><p>Visualize data in a chart</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/data_vis.html">Using the Data Visualizer app</a></p></td>
+<td><p><a href="https://docs.dhis2.org/master/en/user/html/data_visualizer.html">Using the Data Visualizer app</a></p></td>
 <td><p><strong>Data Visualizer</strong></p></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><p>Visualize data in a better map</p></td>
+<td><p>Visualize data in a map</p></td>
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/using_maps.html">Using the Maps app</a></p></td>
 <td><p><strong>Maps</strong></p></td>
 </tr>
@@ -116,7 +116,7 @@
 <tr class="even">
 <td><p>Configure the system</p></td>
 <td><p>Look up all system settings</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/settings.html">Appendix B. System settings</a></p></td>
+<td><p><a href="https://docs.dhis2.org/master/en/user/html/settings.html">System settings</a></p></td>
 <td><p><strong>System Settings</strong></p></td>
 </tr>
 <tr class="odd">
@@ -169,7 +169,6 @@
 <td><p>Create a program</p></td>
 <td><a href="https://docs.dhis2.org/master/en/user/html/configure_programs_in_maintenance_app.html">Configure programs in the Maintenance app</a>
 <td><p><strong>Maintenance</strong></p>
-<p><strong>Program</strong></p></td>
 </tr>
 <tr class="odd">
 <td></td>
