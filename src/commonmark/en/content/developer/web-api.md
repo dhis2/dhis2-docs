@@ -84,7 +84,7 @@ the password, Base64-encoded, prefixed Basic and supplied as the value
 of the *Authorization* HTTP header. More formally that is:
 
     Authorization: Basic base64encode(username:password)
-    
+
 Most network-aware development environments provide support for Basic 
 authentication, such as *Apache HttpClient* and *Spring RestTemplate*. 
 An important note is that this authentication scheme provides no security 
@@ -1062,9 +1062,25 @@ Example: Get all data elements where *ANC visit* is found in any of the *identif
 It is also possible to combine the identifiable filter with property-based filter and expect the *rootJunction* to be applied.
 
     /api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
-
+    
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
+
+### Capture Scope filter
+
+In addition to the filtering mentioned above, we have a special filtering query parameter named *restrictToCaptureScope*. If *restrictToCaptureScope* is set to true, only those metadata objects that are either unassigned to any organisation units or those that are assigned explicitly to the logged in users capture scope org units will be returned in the response. This filtering parameter can be used for any metadata that has organisation units association with it.
+
+A special case exists for CategoryOptions api endpoint. In addition to filtering the metadata object lists, an additional filtering of the associated organisation units to only include the capture scoped organisation units will be done. Note that this second level of filtering only applies for CategoryOptions metadata.
+
+Some examples
+
+    /api/categoryOptions.json?restrictToCaptureScope=true&fields=*
+    
+    /api/programs.json?restrictToCaptureScope=true&fields=*
+
+All existing filters will work in addition to the capture scope filter.
+
+    /api/categoryOptions.json?restrictToCaptureScope=true&fields=*&filter=displayName:ilike:11
 
 ## Metadata field filter
 
@@ -1286,7 +1302,7 @@ All metadata entities in DHIS2 have their own API endpoint which supports
 follows this format:
 
     /api/<entityName>
-    
+
 The _entityName_ uses the camel-case notation. As an example, the endpoint
 for _data elements_ is:
 
@@ -1952,7 +1968,7 @@ ignored:
     "total": 3
   }
 }
-``` 
+```
 
 ## Metadata audit
 
@@ -2260,7 +2276,7 @@ For data element and tracked entity attribute:
 }
 ```
 
-## Object Style (Experimental)
+## Object Style
 
 <!--DHIS2-SECTION-ID:webapi_object_style-->
 
@@ -3408,6 +3424,35 @@ response of the above example.
 
   - File resource objects are *immutable*, meaning modification is not
     allowed and requires creating a completely new resource instead.
+
+### File resource blocklist
+
+Certain types of files are blocked from being uploaded for security reasons.
+
+The following content types are blocked.
+
+| Content type | Content type |
+| ------------------------------------- | ---- |
+| text/html                             | application/x-ms-dos-executable |
+| text/css                              | application/vnd.microsoft.portable-executable |
+| text/javascript                       | application/vnd.apple.installer+xml |
+| font/otf                              | application/vnd.mozilla.xul+xml |
+| application/x-shockwave-flash         | application/x-httpd-php  |
+| application/vnd.debian.binary-package | application/x-sh |
+| application/x-rpm                     | application/x-csh |
+| application/java-archive              |  |
+
+The following file extensions are blocked.
+
+| File extension | File extension | File extension |
+| ---- | ---- | ---- |
+| html | deb  | xul  |
+| htm  | rpm  | php  |
+| css  | jar  | bin  |
+| js   | jsp  | sh   |
+| mjs  | exe  | csh  |
+| otf  | msi  | bat  |
+| swf  | mpkg |      |
 
 ## Metadata versioning
 
@@ -5752,6 +5797,8 @@ Sample output:
 	"organisationUnitAncestorNames": "Sierra Leone / Bo / Badjia / ",
 	"periodId": "201901",
 	"periodDisplayName": "January 2019",
+	"attributeOptionComboId": "HllvX50cXC0",
+	"attributeOptionComboDisplayName": "default",
 	"importance": "MEDIUM",
 	"leftSideValue": 10.0,
 	"operator": ">",
@@ -5765,6 +5812,8 @@ Sample output:
 	"organisationUnitAncestorNames": "Sierra Leone / Bo / Badjia / ",
 	"periodId": "201901",
 	"periodDisplayName": "January 2019",
+	"attributeOptionComboId": "HllvX50cXC0",
+	"attributeOptionComboDisplayName": "default",
 	"importance": "MEDIUM",
 	"leftSideValue": 22.0,
 	"operator": "<=",
@@ -5958,7 +6007,7 @@ expressions are described in the following table.
 <td>Refers to the value of a tracked entity attribute within a program.</td>
 </tr>
 <tr class="even">
-<td>I{program-indicator-id&gt;}</td>
+<td>I{&lt;program-indicator-id&gt;}</td>
 <td>Program indicator</td>
 <td>Refers to the value of a program indicator.</td>
 </tr>
@@ -7575,7 +7624,7 @@ The only difference between a ticket and a message is that you can give
 a status and a priority to a ticket. To set the status:
 
     POST /api/messageConversations/<uid>/status
-    
+
 To set the priority:
 
     POST /api/messageConversations/<uid>/priority
@@ -8103,15 +8152,15 @@ representations are listed below.
 
     /api/charts/R0DVGvXDUNP/data
     /api/charts/R0DVGvXDUNP/data?date=2013-06-01
-
+    
     /api/reportTables/jIISuEWxmoI/data.html
     /api/reportTables/jIISuEWxmoI/data.html?date=2013-01-01
     /api/reportTables/FPmvWs7bn2P/data.xls
     /api/reportTables/FPmvWs7bn2P/data.pdf
-
+    
     /api/maps/DHE98Gsynpr/data
     /api/maps/DHE98Gsynpr/data?date=2013-07-01
-
+    
     /api/reports/OeJsA6K1Otx/data.pdf
     /api/reports/OeJsA6K1Otx/data.pdf?date=2014-01-01
 
@@ -9168,74 +9217,7 @@ document with the identifiers referred to in the plug-in JavaScript.
 To see a complete working example please visit
 <http://play.dhis2.org/portal/map.html>.
 
-### Creating a chart carousel with the carousel plug-in
 
-<!--DHIS2-SECTION-ID:webapi_carousel_plugin-->
-
-The chart plug-in also makes it possible to create a chart carousel
-which for instance can be used to create an attractive front page on a
-Web portal. To use the carousel we need to import a few files in the
-head section of our HTML
-    page:
-
-```html
-<link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v213/ext/resources/css/ext-plugin-gray.css" />
-<link rel="stylesheet" type="text/css" href="https://play.dhis2.org/demo/dhis-web-commons/javascripts/ext-ux/carousel/css/carousel.css" />
-<script type="text/javascript" src="https://extjs-public.googlecode.com/svn/tags/extjs-4.0.7/release/ext-all.js"></script>
-<script type="text/javascript" src="https://play.dhis2.org/demo/dhis-web-commons/javascripts/ext-ux/carousel/Carousel.js"></script>
-<script type="text/javascript" src="https://play.dhis2.org/demo/dhis-web-commons/javascripts/plugin/plugin.js"></script>
-```
-
-The first file is the CSS stylesheet for the chart plug-in. The second
-file is the CSS stylesheet for the carousel widget. The third file is
-the Ext JavaScript framework which this plug-in depends on. The fourth
-file is the carousel plug-in JavaScript file. The fifth file is the
-chart plug-in JavaScript file. The paths in this example points at the
-DHIS2 demo site, make sure you update them to point to your own DHIS2
-installation.
-
-Please refer to the section about the chart plug-in on how to do
-authentication.
-
-To create a chart carousel we will first render the charts we want to
-include in the carousel using the method described in the chart plug-in
-section. Then we create the chart carousel itself. The charts will be
-rendered into *div* elements which all have a CSS class called *chart*.
-In the carousel configuration we can then define a *selector* expression
-which refers to those div elements like this:
-
-```javascript
-DHIS.getChart({ uid: 'R0DVGvXDUNP', el: 'chartA1', url: base });
-DHIS.getChart({ uid: 'X0CPnV6uLjR', el: 'chartA2', url: base });
-DHIS.getChart({ uid: 'j1gNXBgwKVm', el: 'chartA3', url: base });
-DHIS.getChart({ uid: 'X7PqaXfevnL', el: 'chartA4', url: base });
-
-new Ext.ux.carousel.Carousel( 'chartCarousel', {
-  autoPlay: true,
-  itemSelector: 'div.chart',
-  interval: 5,
-  showPlayButton: true
-});
-```
-
-The first argument in the configuration is the id of the div element in
-which you want to render the carousel. The *autoPlay* configuration
-option refers to whether we want the carousel to start when the user
-loads the Web page. The *interval* option defines how many seconds each
-chart should be displayed. The *showPlayButton* defines whether we want
-to render a button for the user to start and stop the carousel. Finally
-we need to insert the div elements in the body of the HTML document:
-
-```html
-<div id="chartCarousel">
-<div id="chartA1"></div>
-<div id="chartA2"></div>
-<div id="chartA3"></div>
-<div id="chartA4"></div>
-```
-
-To see a complete working example please visit
-<http://play.dhis2.org/portal/carousel.html>.
 
 ## SQL views
 
@@ -9354,10 +9336,10 @@ characters only.
 
 SQL Views of type *query* also support two system-defined variables that allow the query to access information about the user executing the view:
 
- | variable | means |
- | -------- | ----- |
- | ${_current_user_id} | the user's database id |
- | ${_current_username} | the user's username |
+| variable | means |
+| -------- | ----- |
+| ${_current_user_id} | the user's database id |
+| ${_current_username} | the user's username |
 
 Values for these variables cannot be supplied as part of the URL. They are always filled with information about the user.
 
@@ -11140,6 +11122,18 @@ API are described in the table below.
 | E7117      | A data dimension 'dx' must be specified when output format is DATA_VALUE_SET |
 | E7118      | A period dimension 'pe' must be specified when output format is DATA_VALUE_SET |
 | E7119      | An organisation unit dimension 'ou' must be specified when output format is DATA_VALUE_SET |
+| E7120      | User is not allowed to view org unit |
+| E7121      | User is not allowed to read data for object |
+| E7122      | Data approval level does not exist |
+| E7123      | Current user is constrained by a dimension but has access to no dimension items |
+| E7124      | Dimension is present in query without any valid dimension options |
+| E7125      | Dimension identifier does not reference any dimension |
+| E7126      | Column must be present as dimension in query |
+| E7127      | Row must be present as dimension in query |
+| E7128      | Query result set exceeded max limit |
+| E7129      | Program is specified but does not exist |
+| E7130      | Program stage is specified but does not exist |
+| E7131      | Query failed, likely because the query timed out |
 
 ### Data value set format
 
@@ -12386,6 +12380,17 @@ in the table below.
 | E7214      | Cluster field must be specified when bbox or cluster size are specified |
 | E7215      | Query item cannot specify both legend set and option set |
 | E7216      | Query item must be aggregateable when used in aggregate query |
+| E7217      | User is not allowed to view event analytics data |
+| E7218      | Spatial database support is not enabled |
+| E7219      | Data element must be of value type coordinate in order to be used as coordinate field |
+| E7220      | Attribute must be of value type coordinate to in order to be used as coordinate field |
+| E7221      | Coordinate field is invalid |
+| E7222      | Query item or filter is invalid |
+| E7223      | Value does not refer to a data element or attribute which are numeric and part of the program |
+| E7224      | Item identifier does not reference any data element, attribute or indicator part of the program |
+| E7225      | Program stage is mandatory for data element dimensions in enrollment analytics queries |
+| E7226      | Dimension is not a valid query item |
+| E7227      | Relationship entity type not supported |
 
 ## Enrollment analytics
 
@@ -12420,7 +12425,7 @@ Enrollment dimensions include data elements, attributes, organisation units and 
 <td>Data element identifiers must include the program stage when querying data for enrollments.
 
     dimension=edqlbukwRfQ.vANAXwtLwcT
-    
+
 </td>
 </tr>
 <tr>
@@ -12986,6 +12991,15 @@ To fetch org unit analytics data in table mode with one group set rendered as co
 
     GET /api/orgUnitAnalytics?ou=fdc6uOvgoji;jUb8gELQApl;lc3eMKXaEfw;PMa2VCrupOd
       &ougs=J5jldMd8OHv&columns=J5jldMd8OHv
+
+### Constraints and validation
+
+The possible validation errors specifically for the org unit analytics API are described in the table below. Some errors specified for the aggregate analytics API are also relevant.
+
+| Error code | Message |
+| ---------- | ------- |
+| E7300      | At least one organisation unit must be specified |
+| E7301      | At least one organisation unit group set must be specified |
 
 ## Data set report
 
@@ -14621,7 +14635,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
   "password": "abc123"
 }
 ```
-    
+
 #### SMPP Gateway
 
 ```json
@@ -15138,34 +15152,102 @@ user:
 
     /api/33/users?query=konan&authSubset=true&pageSize=10
 
-### User credentials query
+### User lookup
 
-<!--DHIS2-SECTION-ID:webapi_users_credentials_query-->
+The user lookup API provides an endpoint for retrieving users where the
+response contains a minimal set of information. It does not require a 
+specific authority and is suitable  for allowing clients to look up information 
+such as user first and surname,  without exposing potentially sensitive 
+user information.
 
-An alternative to the previous user query, is to directly query the user
-credentials (the part where username, etc., resides) using
-*/api/userCredentials* endpoint, it supports all regular field and
-object filters as the other endpoints.
+```
+/api/userLookup
+```
 
-Get user credentials where username is admin:
+The user lookup endpoint has two methods.
 
-    /api/33/userCredentials?filter=username:eq:admin
+#### User lookup by identifier
 
-Get username and code from all user credentials where username starts
-with
-    *adm*:
+You can do a user lookup by identifier using the following API request.
 
-    /api/33/userCredentials?fields=username,code&filter=username:^like:adm
+```
+GET /api/userLookup/{id}
+```
+
+The user `id` will be matched against the following user properties
+in the specified order:
+
+- UID
+- UUID
+- username
+
+An example request looks like this:
+
+```
+/api/userLookup/QqvaU7JjkUV
+```
+
+The response will contain minimal information about a user.
+
+```json
+{
+  "id": "QqvaU7JjkUV",
+  "firstName": "Thomas",
+  "surname": "Nkono",
+  "displayName": "Thomas Nkono"
+}
+```
+
+#### User lookup query
+
+You can make a query for users using the following API request.
+
+```
+GET /api/userLookup?query={string}
+```
+
+The `query` request parameter is mandatory. The query `string` will be matched
+against the following user properties:
+
+- First name
+- Surname
+- Email
+- Usernme
+
+An example request looks like this:
+
+```
+/api/userLookup?query=John
+```
+
+The response will contain information about the users matching the request.
+
+```json
+{
+  "users": [
+    {
+      "id": "DXyJmlo9rge",
+      "firstName": "John",
+      "surname": "Barnes",
+      "displayName": "John Barnes"
+    },
+    {
+      "id": "N3PZBUlN8vq",
+      "firstName": "John",
+      "surname": "Kamara",
+      "displayName": "John Kamara"
+    }
+  ]
+}
+```
 
 ### User account create and update
 
 <!--DHIS2-SECTION-ID:webapi_users_create_update-->
 
-Both creating and updating a user is supported through the API. The
-payload itself is similar to other payloads in the API, so they
-support collection references etc. A simple example payload to create
-would be, the password should be sent in plain text (remember to only
-use this on a SSL enabled server) and will be encrypted on the backend:
+Creating and updating users are supported through the API. A basic 
+payload to create a user looks like the below example. Note that the password 
+will be sent in plain text so remember to enable SSL/HTTPS for network transport.
 
 ```json
 {
@@ -15209,23 +15291,22 @@ use this on a SSL enabled server) and will be encrypted on the backend:
 ```bash
 curl -X POST -d @u.json "http://server/api/33/users" -u user:pass 
   -H "Content-Type: application/json" 
-```    
-    
+```
+
 In the user creation payload, user groups are only supported when importing 
 or *POSTing* a single user at a time. If you attempt to create more than one 
 user while specifiying user groups, you will not recieve an error and the 
 users will be created but no user groups will be assigned. This is by design 
-and is limited because of the many-to-many relationship between Users and 
-User Groups whereby User Groups is the owner of the relationship. To update 
+and is limited because of the many-to-many relationship between users and 
+user groups whereby user groups is the owner of the relationship. To update 
 or create mulitple users and their user groups, consider a program to *POST* 
-one at a time, or *POST* / import all users followed by another action to 
+one at a time, or *POST* all users followed by another action to 
 update their user groups while specifiying the new user's identifiers.
 
 After the user is created, a *Location* header is sent back with the
-newly generated ID (you can also provide your own using /api/system/id
+newly generated ID (you can also provide your own using the `/api/system/id`
 endpoint). The same payload can then be used to do updates, but remember
-to then use *PUT* instead of *POST* and the endpoint is now
-*/api/users/ID*.
+to then use *PUT* instead of *POST* and the endpoint is now `/api/users/ID`.
 
 ```bash
 curl -X PUT -d @u.json "http://server/api/33/users/ID" -u user:pass 
@@ -15247,7 +15328,9 @@ or JSON format to the invite resource. A specific username can be forced
 by defining the username in the posted entity. By omitting the username,
 the person will be able to specify it herself. The system will send out
 an invitation through email. This requires that email settings have been
-properly configured. The invite resource is useful in order to securely
+properly configured.
+
+The invite resource is useful in order to securely
 allow people to create accounts without anyone else knowing the password
 or by transferring the password in plain text. The payload to use for
 the invite is the same as for creating users. An example payload in JSON
@@ -15330,26 +15413,11 @@ out:
 
   - The user to be invited must have specified a valid email.
 
-  - The user to be invited must not be granted user roles with critical
-    authorities (see below).
-
   - If username is specified it must not be already taken by another
     existing user.
 
 If any of these requirements are not met the invite resource will return
 with a *409 Conflict* status code together with a descriptive message.
-
-The critical authorities which cannot be granted with invites include:
-
-  - ALL
-
-  - Scheduling administration
-
-  - Set system settings
-
-  - Add, update, delete and list user roles
-
-  - Add, update, delete and view SQL views
 
 ### User replication
 
@@ -15364,8 +15432,8 @@ can post a JSON payload looking like below:
 
 ```json
 {
-  "username": "replica",
-  "password": "Replica.1234"
+  "username": "user_replica",
+  "password": "SecretPassword"
 }
 ```
 
@@ -15381,7 +15449,7 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
   -H "Content-Type:application/json" -u admin:district
 ```
 
-## Current user information and associations
+## Current user information
 
 <!--DHIS2-SECTION-ID:webapi_current_user_information-->
 
@@ -15402,10 +15470,6 @@ Gives information about currently unread messages and interpretations:
 
     /api/me/dashboard
 
-Lists all messages and interpretations in the inbox (including replies):
-
-    /api/me/inbox
-
 In order to change password, this end point can be used to validate
 newly entered password. Password validation will be done based on
 PasswordValidationRules configured in the system. This end point support
@@ -15418,12 +15482,6 @@ verify old password. Password string should be sent in POST body.
 
     /api/me/verifyPassword
 
-Gives the full profile information for current user. This endpoint
-support both *GET* to retrieve profile and *POST* to update profile (the
-exact same format is used):
-
-    /api/me/user-account
-
 Returns the set of authorities granted to the current user:
 
     /api/me/authorization
@@ -15432,26 +15490,6 @@ Returns true or false, indicating whether the current user has been
 granted the given `<auth>` authorization:
 
     /api/me/authorization/<auth>
-
-Lists all organisation units directly assigned to the user:
-
-    /api/me/organisationUnits
-
-Gives all the datasets assigned to the users organisation units, and
-their direct children. This endpoint contains all required information
-to build a form based on one of our datasets. If you want all
-descendants of your assigned organisation units, you can use the query
-parameter *includeDescendants=true* :
-
-    /api/me/dataSets
-
-Gives all the programs assigned to the users organisation units, and
-their direct children. This endpoint contains all required information
-to build a form based on one of our datasets. If you want all
-descendants of your assigned organisation units, you can use the query
-parameter *includeDescendants=true* :
-
-    /api/me/programs
 
 Gives the data approval levels which are relevant to the current user:
 
@@ -16571,19 +16609,19 @@ You can send *GET* and *POST* requests to the following specific
 resources:
 
     GET /api/33/configuration/systemId
-
+    
     GET POST DELETE /api/33/configuration/feedbackRecipients
-
+    
     GET POST DELETE /api/33/configuration/offlineOrganisationUnitLevel
-
+    
     GET POST /api/33/configuration/infrastructuralDataElements
-
+    
     GET POST /api/33/configuration/infrastructuralIndicators
-
+    
     GET POST /api/33/configuration/infrastructuralPeriodType
-
+    
     GET POST DELETE /api/33/configuration/selfRegistrationRole
-
+    
     GET POST DELETE /api/33/configuration/selfRegistrationOrgUnit
 
 For the CORS whitelist configuration you can make a POST request with an
@@ -16686,7 +16724,7 @@ server configurations* You can get XML and JSON responses through the
 You can get filtered settings based on setting type:
 
     GET /api/33/configuration/settings/filter?type=USER_SETTING
-
+    
     GET /api/33/configuration/settings/filter?type=CONFIGURATION
 
 More than one type can be
@@ -17304,7 +17342,7 @@ and will be furnished upon request based on the value of the `dimension` paramet
 ```bash
 curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium"
 ```
-      
+
 #### Tracked entity instance query
 
 <!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_query-->
@@ -19193,7 +19231,7 @@ medium(512 x 512), large(1024 x 1024) or original*. Any value other than those m
 discarded and the original image will be returned.
 
     /api/33/events/files?eventUid=hcmcWlYkg9u&dataElementUid=C0W4aFuVm4P&dimension=small
-    
+
 Retrieve events with specified Organisation unit and Program, and use _Attribute:Gq0oWTf2DtN_ as 
 identifier scheme
     
@@ -19600,7 +19638,7 @@ A sample payload that can be used to create/update an eventFilter is shown below
 A specific event filter can be retrieved by using the following api
 
     GET /api/33/eventFilters/{uid}
-    
+
 All event filters can be retrieved by using the following api.
 
     GET /api/33/eventFilters?fields=*
@@ -19619,7 +19657,7 @@ Relationships are links between two entities in tracker. These entities can be t
 There are multiple endpoints that allow you to see, create, delete and update relationships. The most common is the /api/trackedEntityInstances endpoint, where you can include relationships in the payload to create, update or deleting them if you omit them - Similar to how you work with enrollments and events in the same endpoint. All the tracker endpoints, /api/trackedEntityInstances, /api/enrollments and /api/events also list their relationships if requested in the field filter.
 
 The standard endpoint for relationships is, however, /api/relationships. This endpoint provides all the normal CRUD operations for relationships.
- 
+
 List all relationships require you to provide the UID of the trackedEntityInstance, Enrollment or event that you want to list all the relationships for:  
 
     GET /api/relationships?tei=ABCDEF12345
@@ -20612,10 +20650,15 @@ To get JSON schema for a specific class:
 <!--DHIS2-SECTION-ID:webapi_ui_customization-->
 
 To customize the UI of the DHIS2 application you can insert custom
-JavaScript and CSS styles through the *files* resource. The JavaScript
-and CSS content inserted through this resource will be loaded by the
-DHIS2 web application. This can be particularly useful in certain
-situations:
+JavaScript and CSS styles through the *files* resource. 
+
+```
+POST GET DELETE /api/33/files/script
+POST GET DELETE /api/33/files/style
+```
+
+The JavaScript and CSS content inserted through this resource will be loaded by the
+DHIS2 web application. This can be particularly useful in certain situations:
 
   - Overriding the CSS styles of the DHIS2 application, such as the
     login page or main page.
@@ -20631,7 +20674,7 @@ situations:
 <!--DHIS2-SECTION-ID:webapi_customization_javascript-->
 
 To insert Javascript from a file called *script.js* you can interact
-with the *files/script* resource with a POST-request:
+with the *files/script* resource with a POST request:
 
 ```bash
 curl --data-binary @script.js "localhost/api/33/files/script"
@@ -20643,7 +20686,7 @@ file content. You can fetch the JavaScript content with a GET request:
 
     /api/33/files/script
 
-To remove the JavaScript content you can use a DELETE-request.
+To remove the JavaScript content you can use a DELETE request.
 
 ### CSS
 
@@ -20661,7 +20704,7 @@ You can fetch the CSS content with a GET-request:
 
     /api/33/files/style
 
-To remove the JavaScript content you can use a DELETE-e "request.
+To remove the JavaScript content you can use a DELETE request.
 
 ## Synchronization
 
@@ -21127,22 +21170,22 @@ with the following request:
 
 ```json
 {
-    "object": {
-        "publicAccess": "rw------",
-        "externalAccess": false,
-        "user": {},
-        "userAccesses": [],
-        "userGroupAccesses": [
-            {
-                "id": "hj0nnsVsPLU",
-                "access": "rw------"
-            },
-            {
-                "id": "qMjBflJMOfB",
-                "access": "r-------"
-            }
-        ]
-    }
+  "object": {
+    "publicAccess": "rw------",
+    "externalAccess": false,
+    "user": {},
+    "userAccesses": [],
+    "userGroupAccesses": [
+      {
+        "id": "hj0nnsVsPLU",
+        "access": "rw------"
+      },
+      {
+        "id": "qMjBflJMOfB",
+        "access": "r-------"
+      }
+    ]
+  }
 }
 ```
 
@@ -21377,11 +21420,13 @@ curl -X DELETE -u admin:district "play.dhis2.org/api/33/userDataStore/foo"
 <!--DHIS2-SECTION-ID:webapi_predictors-->
 
 A predictor allows you to generate data values based on an expression.
-This can be used to generate targets, thresholds and estimated values.
-You can interact with predictors through the `/api/33/predictors`
-resource.
+This can be used for example to generate targets, thresholds,
+or estimated values.
 
-    /api/33/predictors
+To retrieve predictors you can make a GET request to the predictors
+resource like this:
+
+    /api/predictors
 
 ### Creating a predictor
 
@@ -21390,7 +21435,7 @@ resource.
 You can create a predictor with a POST request to the predictors
 resource:
 
-    POST /api/33/predictors
+    POST /api/predictors
 
 A sample payload looks like this:
 
@@ -21405,10 +21450,9 @@ A sample payload looks like this:
   },
   "generator": {
     "expression": "AVG(#{r6nrJANOqMw})+1.5*STDDEV(#{r6nrJANOqMw})",
-    "dataElements": [],
-    "sampleElements": [{
-      "id": "r6nrJANOqMw"
-    }]
+    "description": "Maximum normal malaria case count",
+    "missingValueStrategy": "NEVER_SKIP",
+    "slidingWindow": false
   },
   "periodType": "Monthly",
   "sequentialSampleCount": 4,
@@ -21422,6 +21466,31 @@ The output element refers to the identifier of the data element for
 which to saved predicted data values. The generator element refers to the
 expression to use when calculating the predicted values.
 
+### Predictor expressions
+
+<!--DHIS2-SECTION-ID:webapi_predictor_expressions-->
+
+A predictor always has a generator expression that describes how the
+predicted value is calculated. A predictor may also have a skip test
+expression returning a boolean value. When the skip test expression is
+present, it is evaluated in each of the sampled periods to tell whether
+values from that period should be skipped.
+
+The following variables may be used in either a generator expression
+or a skip test expression:
+
+| Variable    | Object     | Description |
+| ----------- | ---------- | ----------- |
+| #{\<dataelement-id>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
+| #{\<dataelement-id>.\<categoryoptcombo-id> | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
+| D{\<program-id>.\<dataelement-id>} | Program data element | Refers to the value of a tracker data element within a program. |
+| A{\<program-id>.\<attribute-id>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
+| I{\<program-indicator-id>} | Program indicator | Refers to the value of a program indicator. |
+| R{\<dataset-id>.\<metric>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
+| C{\<constant-id>} | Constant | Refers to a constant value. |
+| OUG{\<orgunitgroup-id>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
+| [days] | Number of days | The number of days in the current period. |
+
 ### Generating predicted values
 
 <!--DHIS2-SECTION-ID:webapi_generating_predicted_values-->
@@ -21429,12 +21498,12 @@ expression to use when calculating the predicted values.
 To run all predictors (generating predicted values) you can make a POST
 request to the run resource:
 
-    POST /api/33/predictors/run
+    POST /api/predictors/run
 
 To run a single predictor you can make a POST request to the run
 resource for a predictor:
 
-    POST /api/33/predictors/AG10KUJCrRk/run
+    POST /api/predictors/AG10KUJCrRk/run
 
 ## Min-max data elements
 
@@ -21502,7 +21571,7 @@ resource:
 You can filter the response like this:
 
     GET /api/minMaxDataElements.json?filter=dataElement.id:eq:UOlfIjgN8X6
-
+    
     GET /api/minMaxDataElements.json?filter=dataElement.id:in:[UOlfIjgN8X6,xc8gmAKfO95]
 
 The filter parameter for min-max data elements supports two operators:
@@ -21510,7 +21579,7 @@ eq and in. You can also use the `fields` query parameter.
 
     GET /api/minMaxDataElements.json?fields=:all,dataElement[id,name]
 
-### Add/Update min-max data element
+### Add/update min-max data element
 
 <!--DHIS2-SECTION-ID:webapi_add_update_min_max_data_element-->
 

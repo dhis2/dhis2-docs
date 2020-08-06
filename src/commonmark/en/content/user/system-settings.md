@@ -34,54 +34,61 @@
 <p>The default value is Unlimited.</p>
 </tr>
 <tr class="odd">
+<td><p><strong>Cache strategy</strong></p></td>
+<td><p>Decides for how long reports analytics responses should be cached.</p>
+<p>If you use the scheduled, nightly analytics update, you may want to select <strong>Cache until 6 AM tomorrow</strong>. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tables are updated.</p>
+<p>If you are loading data continuously into the analytics tables, select <strong>No cache</strong>.</p>
+<p>For other cases select the amount of time you want the data to be cached.</p></td>
+</tr>
+<tr class="even">
 <td><p><strong>Infrastructural indicators</strong></p></td>
 <td><p>Defines an indicator group where the member indicators should describe data about the organisation units' infrastructure.</p>
 <p>You can view the infrastructural data in the <strong>GIS</strong> app: right-click a facility and click <strong>Show information</strong>.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Infrastructural data elements</strong></p></td>
 <td><p>Defines a data element group where the member data elements should describe data about the organisation units' infrastructure.</p>
 <p>Infrastructural data elements can be population, doctors, beds, Internet connectivity and climate.</p>
 <p>You can view the infrastructural data in the <strong>GIS</strong> app: right-click a facility and click <strong>Show information</strong>.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Infrastructural period type</strong></p></td>
 <td><p>Sets the frequency for which the data elements in the infrastructural data elements group are captured.</p>
 <p>This will typically be yearly. When viewing the infrastructural data you will be able to select the time period of the data source.</p>
 <p>You can view the infrastructural data in the <strong>GIS</strong> app: right-click a facility and click <strong>Show information</strong>.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Default relative period for analysis</strong></p></td>
 <td><p>Setting this value will determine which relative period is selected as the default in the analytics apps.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Feedback recipients</strong></p></td>
 <td><p>Defines a user group where the members will receive all messages sent via the feedback function in the <strong>Dashboard</strong> app.</p>
 <p>This will typically be members of the super user team who are able to support and answer questions coming from end-users.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Max offline organisation unit levels</strong></p></td>
 <td><p>Defines how many levels in the organisation unit hierarchy will be available offline in the organisation unit tree widget.</p>
 <p>Under normal circumstances you can leave this on the lowest level, which is default is the default setting.</p>
 <p>It can be useful to set it to a higher level to reduce initial load time in cases where you have a large number of organisation units, typically more than 30 000.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Data analysis std dev factor</strong></p></td>
 <td><p>Sets the number of standard deviations used in the outlier analysis performed on the captured data in the <strong>Data Entry</strong> app.</p>
 <p>The default value is 2. A high value will catch less outlier values than a low value.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Phone number area code</strong></p></td>
 <td><p>The area code for the area in which your deployment is located.</p>
 <p>Used for sending and receiving SMS. Typically, this is a country code.</p>
 <p><em>+260</em> (country code for Zambia)</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Enable multi-organisation unit forms</strong></p></td>
 <td><p>Enables support to enter data forms for multiple organisation units at the same time in the <strong>Data Entry</strong> app.</p>
 <p>If you've enabled this setting, you can in the <strong>Data Entry</strong> app, click on the parent organisation unit for the children that you want to enter data for, and the data set list will include data sets that are assigned to the children of that parent.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Acceptance required before approval</strong></td>
 <td>When this setting is selected, acceptance of data will be required first before submission to the next approval level is possible.</td>
 </tr>
@@ -137,33 +144,38 @@
 <p><strong>Public</strong>: Any node or server between the DHIS2 server and the end user which has the ability to cache can cache the web page. This relives the traffic to the DHIS2 server and potentially speeds up the subsequent page loading speed.</p></td>
 </tr>
 <tr class="even">
-<td><p><strong>Cache strategy</strong></p></td>
-<td><p>Decides for how long reports analytics responses should be cached.</p>
-<p>If you use the scheduled, nightly analytics update, select <strong>Cache until 6 AM tomorrow</strong>. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tables are updated.</p>
-<p>If you are loading data continuously into the analytics tables, select <strong>No cache</strong>.</p></td>
+<td><p><strong>Analytics cache mode</strong></p></td>
+<td><p>Support two different modes:</p>
+<p><strong>Progressive</strong>: this relates to the new progressive caching feature for analytics. When enabled, it OVERRIDES the global caching strategy for analytics requests. This mode will trigger HTTP and data layer caching for all analytics requests. When enabling this mode, the <em>caching factor</em> is MANDATORY.</p>
+<p><strong>Fixed</strong>: the requests will be cached based on the period of time defined in <em>cache strategy.</em></p></td>
 </tr>
 <tr class="odd">
+<td><p><strong>Caching factor</strong></p></td>
+<td><p>Select a value for the caching factor. This field is only available when the analytics cache mode has been set to <em>progressive</em>.</p>
+<p>It shows a list of integers where each integer represents an absolute caching factor. This integer will be used internally to calculate the final expiration time for each analytics request. Higher the caching factor, for longer the request will be cached.</p></td>
+</tr>
+<tr class="even">
 <td><p><strong>Max number of years to hide unapproved data in analytics</strong></p></td>
 <td><p>Sets whether and for how long back in time analytics should respect the approval level of the data. Typically, data which is several years old would be considered to be approved by default. In order to speed up analytics requests, you can choose to ignore the actual approval level of historical data.</p>
 <p><strong>Never check approval</strong>: no data will be hidden, irrespective of its data approval status.</p>
 <p><strong>Check approval for all data</strong>: approval status will always be checked.</p>
 <p>Other options, for example <strong>Last 3 years</strong>: approval status will be checked for data which is newer than 3 years old; older data will not be checked.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Threshold for analytics data caching</strong></p></td>
 <td><p>Sets whether to enable caching data older than the specified number of years only.</p>
 <p>This allows for returning the most recent data directly with no caching, while serving cached version of older data for performance concerns.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Respect category option start and end date in analytics table export</strong></p></td>
 <td><p>This setting controls whether analytics should filter data which is associated with a category option with a start and end date, but which is not associated with a period within the category options interval of validity.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p><strong>Put analytics in maintenance mode</strong></p></td>
 <td>Places the analytics and web API of DHIS2 in maintenance mode. This means that &quot;503 Service Unavailable&quot; will be returned for all requests.
 <p>This is useful when you need to perform maintenance on the server, for example rebuilding indexes while the server is running in production, in order to reduce load and more efficiently carry out the maintenance.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><strong>Skip zero data values in analytics tables</strong></p></td>
 <td><p>Does not include in analytics tables any aggregate data values that are zero. This can reduce analytics tables sizes, and speed up the building and accessing of the analytics tables, if you have aggregate data values that are zero and stored (the data element is configured to store zero values).</p></td>
 </tr>
@@ -232,14 +244,20 @@
 <tbody>
 <tr class="odd">
 <td><p><strong>Select language</strong></p></td>
-<td><p>Sets the language for which you can then enter translations of the following settings:</p>
-<ul>
-<li><p><strong>Application introduction</strong></p></li>
-<li><p><strong>Application title</strong></p></li>
-<li><p><strong>Application notification</strong></p></li>
-<li><p><strong>Application left-side footer</strong></p></li>
-<li><p><strong>Application right-side footer</strong></p></li>
-</ul></td>
+<td>
+    <p>Sets the language for which you can then enter translations of the following settings:</p>
+    <ul>
+        <li><p><strong>Application introduction</strong></p></li>
+        <li><p><strong>Application title</strong></p></li>
+        <li><p><strong>Application notification</strong></p></li>
+        <li><p><strong>Application left-side footer</strong></p></li>
+        <li><p><strong>Application right-side footer</strong></p></li>
+    </ul>
+    <blockquote>
+        <p><strong>Note</strong></p>
+        <p>Before each of these settings can accept a translated value, they first need to have a default/fallback value. This value can be set by selecting <em>System default (fallback)</em> in this dropdown.</p>
+    </blockquote>
+</td>
 </tr>
 <tr class="even">
 <td><p><strong>Application title</strong></p></td>
