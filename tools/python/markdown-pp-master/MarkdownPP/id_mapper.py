@@ -57,8 +57,11 @@ def main():
 
     # update any modified links
     for l in soup.find_all(href=link_list):
-        original = l['href']
-        l['href']= link_remap[original]
+        try:
+            original = l['href']
+            l['href']= link_remap[original]
+        except KeyError:
+            pass
 
     # add class to the blockquotes/asides
     for b in soup.find_all('blockquote'):

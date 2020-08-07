@@ -188,11 +188,11 @@ make_html() {
     subdir=$2
     mkdir -p ${target}/${subdir}/html
     shared_resources ${target}/${subdir}/html
-    for res in `egrep -o '(resources/images[^)]*)' ${name}.md | uniq`; do
+    for res in `egrep -o '(resources/images[^) ]*)' ${name}.md | uniq`; do
         mkdir -p ${target}/${subdir}/html/`dirname $res`
         cp $res ${target}/${subdir}/html/$res
     done
-    for res in `egrep -o 'resources/images[^)]*' ${name}_custom_bookinfo.md | uniq`; do
+    for res in `egrep -o 'resources/images[^) ]*' ${name}_custom_bookinfo.md | uniq`; do
         mkdir -p ${target}/${subdir}/html/`dirname $res`
         cp $res ${target}/${subdir}/html/$res
     done
@@ -396,7 +396,12 @@ build_docs(){
     gitdate=`git show -s --format=%ci $githash`
     gityear=`date -d "${gitdate}" '+%Y'`
     gitmonth=`LC_TIME=${locale}.utf8 date -d "${gitdate}" '+%B'`
-    cp bookinfo.md ${name}_bookinfo.md
+    if [ "$lang" == "en" ]
+    then
+        cp bookinfo.md ${name}_bookinfo.md
+    else
+        awk '/^[^ ]*:|---/{if (x)print x;x="";}{x=(!x)?$0:x" "$0;}END{print x;}' bookinfo.md > ${name}_bookinfo.md
+    fi
     sed -i "s/<git-branch>/$gitbranch/" ${name}_bookinfo.md
     sed -i "s/<git-hash>/$githash/" ${name}_bookinfo.md
     sed -i "s/<git-date>/$gitdate/" ${name}_bookinfo.md
@@ -405,11 +410,11 @@ build_docs(){
 
     sed -i "s/<version>/$gitbranch/" $tmp/mkdocs.yml
     sed -i "s/<language>/$lang/" $tmp/mkdocs.yml
+    sed -i "s/<language-no-region>/${lang:0:2}/" $tmp/mkdocs.yml
 
     echo -e "$(head -100 ${tmp}/${name}.md | sed -n '/---$/,/---$/p')" > ${name}_custom_bookinfo.md
     touch ${name}_custom_bookinfo.md
     sed -i 's/\([^ :]*\)\/resources\/images\(.*\)/resources\/images\/\1\2/' ${name}_custom_bookinfo.md
-
 
     make_html $name $subdir
 
