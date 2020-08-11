@@ -23,25 +23,26 @@ importantly how the data is represented in the database and how data can
 be analysed and presented.
 
 An important principle behind designing data elements is to think of
-data elements as a self-contained description of an phenomenon or event
+data elements as a self-contained description of a phenomenon or event
 and not as a field in a data entry form. Each data element lives on its
 own in the database, completely detached and independent from the
 collection form. It is important to consider that data elements are used
 directly in reports, charts and other tools for data analysis, in which
 the context in any given data entry form is not accessible nor relevant.
 In other words, it must be possible to clearly identify what event a
-data element represents by only looking at its name. Based on this one
-can derive a rule of thumb saying that the name of the data element must
-be able to stand on its own and describe the data value also outside the
-context of its collection form.
+data element represents by only looking at its name. Based on this, 
+it is considered best practice to create the name of the data element
+such that it is able to stand on its own. Any user should be able to and 
+read the name and understand what event it represents, even outside
+of the context of the data entry form.
 
-For instance, a data element called “Malaria” might be concise when seen
-in a data entry form capturing immunization data, in a form capturing
-vaccination stocks as well as in a form for out-patient data. When
+As an example, a data element called “Malaria” might be concise when seen
+in a data entry form capturing mortality data, in a form capturing
+drug stocks as well as in a form for out-patient data. When
 viewed in a report, however, outside the context of the data entry form,
 it is impossible to decide what event this data element represents. If
-the data element had been called “Malaria cases”, “Malaria stock doses
-received” or “Malaria doses given” it would have been clear from a user
+the data element had been called “Malaria deaths”, “Malaria stock doses
+received” or “Malaria prophalaxis given” it would have been clear from a user
 perspective what the report is trying to express. In this case we are
 dealing with three different data elements with completely different
 semantics.
@@ -56,7 +57,7 @@ and “\> 5 years”. What characterizes this is that the breakdown is
 typically repeated for a number of “base” data elements: For instance
 one would like to reuse this break-down for other data elements such as
 “TB” and “HIV”. In order to make the meta-data more dynamic, reusable
-and suitable for analysis it makes sense to define the mentioned
+and suitable for analysis, it makes sense to define the mentioned
 diseases as data elements and create a separate model for the breakdown
 attributes. This can be achieved by using the category model, which is
 described in the following.
@@ -64,25 +65,39 @@ described in the following.
 The category model has three main elements which is best described using
 the above example:
 
-1.  The category option, which corresponds to “female”, “male” and “\< 5
-    years” and “\> 5 years”.
+1.  The category options, which corresponds to “Female”, “Male” and “\< 5
+    years” and “\> 5 years”. Category options are the fine grained
+    attributes which are related in some common way. 
 
-2.  The category, which corresponds to “gender” and “age group”.
+2.  The category, which corresponds to “Gender” and “Age group”. Categories
+are used to group related category options together. 
 
-3.  The category combination, which should in the above example be named
-    “gender and age group” and be assigned both categories mentioned
-    above.
+3.  The category combination, which is a combination of multiple categories
+together. In the example above, we might assign both the "Gender" and "Age
+Group" categories to a category combination called "Age/Gender". 
+
+4. Category option combinations result from the combination of 
+all category options within a category combination. In the example 
+above, the following category option combinations would be 
+created automatically by DHIS2: "Female/\<5 years", "Female/\>5
+years", "Male/\<5 years", "Male/\>5 years"
 
 This category model is in fact self-standing but is in DHIS2 loosely
 coupled to the data element. Loosely coupled in this regard means that
-there is an association between data element and category combination,
-but this association may be changed at any time without loosing any
-data. It is however not recommended to change this often since it makes
-the database less valuable in general since it reduces the continuity of
-the data. Note that there is no hard limit on the number of category
+there is an association between data elements and category combinations,
+but this association may be changed at any time without losing any
+data. It is however not recommended to change this this often because
+of potential incompatibility between data which has been collected
+using differing category combinations. Potential approaches to solve
+this problem using "category option group sets" will be discussed in 
+another section of this document.
+
+Note that there is no intrisic limit on the number of category
 options in a category or number of categories in a category combination,
 however there is a natural limit to where the structure becomes messy
-and unwieldy.
+and unwieldy. Very large category combinations with many options
+can quickly inflate to become many thousands of category option combinations
+which in turn can have a negative impact on performance. Thus
 
 A pair of data element and category combination can now be used to
 represent any level of breakdown. It is important to understand that
