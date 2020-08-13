@@ -47,7 +47,7 @@ perspective what the report is trying to express. In this case we are
 dealing with three different data elements with completely different
 semantics.
 
-## Categories and custom dimensions
+## Categories
 
 Certain requirements for data capture necessitate a fine-grained
 breakdown of the dimension describing the event being counted. For
@@ -62,31 +62,38 @@ diseases as data elements and create a separate model for the breakdown
 attributes. This can be achieved by using the category model, which is
 described in the following.
 
-The category model has three main elements which is best described using
+The category model has four main elements which is best described using
 the above example:
 
-1.  The category options, which corresponds to “Female”, “Male” and “\< 5
+1.  *Category options*, which correspond to “Female”, “Male” and “\< 5
     years” and “\> 5 years”. Category options are the fine grained
-    attributes which are related in some common way. 
+    attributes which are related in some common way.
 
-2.  The category, which corresponds to “Gender” and “Age group”. Categories
-are used to group related category options together. 
+2.  A *category*, which corresponds to “Gender” and “Age group”. Categories
+are used to group related category options according to a common theme.
 
-3.  The category combination, which is a combination of multiple categories
+3.  A *category combination*, which is a combination of multiple categories
 together. In the example above, we might assign both the "Gender" and "Age
 Group" categories to a category combination called "Age/Gender". 
 
-4. Category option combinations result from the combination of 
+4. *Category option combinations* result from all possible combinations of
 all category options within a category combination. In the example 
 above, the following category option combinations would be 
-created automatically by DHIS2: "Female/\<5 years", "Female/\>5
+created: "Female/\<5 years", "Female/\>5
 years", "Male/\<5 years", "Male/\>5 years"
 
-This category model is in fact self-standing but is in DHIS2 loosely
-coupled to the data element. Loosely coupled in this regard means that
-there is an association between data elements and category combinations,
-but this association may be changed at any time without losing any
-data. It is however not recommended to change this this often because
+It is worth noting that the category model is completely indepent of the data element model.  Data elements are loosely coupled to categories, in that the association between them can be changed as any time without losing any data. 
+ As a practical example from above, perhaps data needs to be collected 
+for malaria cases with more granular age bands. Instead of just "\<5" and
+"/>5", a new category could be created for "\<1", "1-5","\>5" to describe
+the finer age bands. This category could then in turn be associated 
+with the data element in a new data entry form to collect the data
+at a more granular level. The advantage with this approach would be that 
+the same data element is used, which simplifies analysis of data over time. 
+
+
+It is generally not recommended to change the association 
+between data elements and their category combinations trivially or often because
 of potential incompatibility between data which has been collected
 using differing category combinations. Potential approaches to solve
 this problem using "category option group sets" will be discussed in 
@@ -97,7 +104,7 @@ options in a category or number of categories in a category combination,
 however there is a natural limit to where the structure becomes messy
 and unwieldy. Very large category combinations with many options
 can quickly inflate to become many thousands of category option combinations
-which in turn can have a negative impact on performance. Thus
+which in turn can have a negative impact on performance. 
 
 A pair of data element and category combination can now be used to
 represent any level of breakdown. It is important to understand that
@@ -105,7 +112,7 @@ what is actually happening is that a number of custom dimensions are
 assigned to the data. Just like the data element represents a mandatory
 dimension to the data values, the categories add custom dimensions to
 it. In the above example we can now, through the DHIS2 output tools,
-perform analysis based on both “gender” and “age group” for those data
+perform analysis based on both “Gender” and “Age group” for those data
 elements, in the same way as one can perform analysis based on data
 elements, organisation units and periods.
 
@@ -115,8 +122,8 @@ automatically produce sub-totals and totals for each data element
 associated with a category combination. The rule for this calculation is
 that all category options should sum up to a meaningful total. The above
 example shows such a meaningful total since when summarizing “Malaria
-cases” captured for “female \< 5 years”, “male \< 5 years”, “female \> 5
-years” and “male \> 5 years” one will get the total number of “Malaria
+cases” captured for “Female \< 5 years”, “Male \< 5 years”, “Female \> 5
+years” and “Male \> 5 years” one will get the total number of “Malaria
 cases”.
 
 For data capture purposes, DHIS2 can automatically generate tabular data
@@ -137,12 +144,35 @@ renders these combinations invalid and a low-level database operation
 must be done to correct it. It is hence recommended to thoughtfully
 consider which breakdowns are required and to not change them too often.
 
+## Atrtibute combinations
+
+All aggregate data in DHIS2 is always associated with four primary dimensions: 
+
+* Data elements and category combinations represent the *what* dimension. 
+* Organisation units represent the *where* dimension. 
+* Periods represent the *when* dimension. 
+
+Additional categories may be required in order to support data entry and analysis however. An additional free form dimension is also available to implementers, known as the "attribute combination". Attribute combinations are very similar to category combinations in terms of how they are implemented in the system. The difference however, is that they are not directly associated with individual data elements, but rather groups of data elements. 
+
+Expanding on the example from above using the data element "Malaria cases", there may be a need to collect data at the same organisation unit and same time period for two different partners which work in that facility. In order to be able to attribute data to these partners, we could create a category called "Partner" which would contain the names of each partner as category options. This category could then be used as an attribute combination for the dataset which the "Malaria cases" is a part of. During data entry, an additional drop down option becomes available in the data entry screen, which would allow the user to choose which partner the data is associated with. 
+
+Thus, while attribute option combinations are structually equivalent to category option combinations, they are used to disaggregate data at the level of the data set. All data value which are part of a data set which is associated with an attribute combination, would be recorded and disaggregated with an additional fifth dimension, in addition to the four primary dimensions listed above. There are no restrictions on how an attribute combination can be constructed, which in turn allows for implementers to design arbitrary dimensions for specific data sets. 
+
+
+## Group sets and analytical dimensions
+
+
+
+
 ## Data element groups
 
-Common properties of data elements can be modelled through what is
-called data element groups. The groups are completely flexible in the
-sense that both their names and their memberships are defined by the
-user. Groups are useful both for browsing and presenting related data,
+Data elements which are related to one another can be grouped together
+with a *data element group*. Data element groups can. Data element 
+groups are completely flexible in the  sense that both their names and their memberships are completely flexible in how they are designed. 
+
+
+
+ Groups are useful both for browsing and presenting related data,
 and can also be used to aggregate values captured for data elements in
 the group. Groups are loosely coupled to data elements and not tied
 directly to the data values which means they can be modified and added
