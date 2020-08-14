@@ -1374,6 +1374,54 @@ http {
 }
 ```
 
+<<<<<<< HEAD
+=======
+### Blocking specific Android App versions with nginx
+
+<!--DHIS2-SECTION-ID:install_making_resources_available_with_nginx-->
+
+In some scenarios the system administrator might want to block certain Android clients based on its DHIS2 App version. For example, if the users on the field have not updated their Android App version to a specific one and the system administrator wants to block their access to force an update; or completely the opposite scenario when the system administrator wants to block new versions of the App as they have not been yet tested. This can be easily implemented by using specific *User-Agent* rules in the `nginx` configuration file.
+
+```text
+http {
+  ..
+  
+  server {
+    listen       80;
+    server_name  api.somedomain.com;
+    
+    ..     
+    
+    
+    # Block the latest Android App as it has not been tested (August 2020 - Last version is 2.2.1)
+    if ( $http_user_agent ~ 'com\.dhis2/1\.2\.1/2\.2\.1/' ) {
+        return 403;
+    }
+    
+    # Block Android 4.4 (API is 19) as all the users should have received the new tablets
+    if ( $http_user_agent ~ 'com\.dhis2/.*/.*/Android_19' ) {
+        return 403;
+    }
+    ..
+
+    }
+    
+    ..
+}
+```
+
+> Note
+> 
+> For the implementation of the method described above note the following: 
+> * Before version 1.1.0 the *User-Agent* string was not being sent
+> * From version 1.1.0 to 1.3.2 the *User-Agent* followed the pattern Dhis2/AppVersion/AppVersion/Android_XX
+> * From version 2.0.0 and above the *User-Agent* follows the pattern com.dhis2/SdkVersion/AppVersion/Android_XX
+>
+> Android_XX refers to the Android API level i.e. the Android version as listed [here](https://developer.android.com/studio/releases/platforms).
+>
+> nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching 
+
+>>>>>>> 78383b8... Add Android blocks with user-agent in nginx
 ## DHIS2 configuration reference
 
 <!--DHIS2-SECTION-ID:install_dhis2_configuration_reference-->
