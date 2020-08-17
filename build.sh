@@ -39,6 +39,7 @@ generate "dhis2_scorecard_manual" "scorecard-app"
 echo "    - Implementer:" >> $myml
 generate "dhis2_implementation_guide" "implementer"
 generate "dhis2_android_capture_app" "android-app"
+generate "dhis2_android_MDM" "mdm"
 generate "user_stories_book" "user-stories"
 
 echo "    - Developer:" >> $myml
