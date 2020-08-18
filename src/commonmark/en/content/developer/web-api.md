@@ -17859,22 +17859,26 @@ and is an alternative to the query in the previous section.
 <td>End date of event associated with the given program and event status.</td>
 </tr>
 <tr class="odd">
+<td>programStage</td>
+<td>The programStage for which the event related filters should be applied to. If not provided all stages will be considered.</td>
+</tr>
+<tr class="even">
 <td>skipMeta</td>
 <td>Indicates whether meta data for the response should be included.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>page</td>
 <td>The page number. Default page is 1.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>pageSize</td>
 <td>The page size. Default size is 50 rows per page.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>totalPages</td>
 <td>Indicates whether to include the total number of pages in the paging response (implies higher response time).</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>skipPaging</td>
 <td>Indicates whether paging should be ignored and all rows should be returned.</td>
 </tr>
