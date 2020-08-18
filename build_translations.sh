@@ -23,7 +23,7 @@ fi
 if [ ${LOCALISE} -eq 1  ]; then
 
     # for l in fr,fr_FR pt,pt_PT   # this is where you add new languages
-    for l in fr,fr_FR
+    for l in fr,fr_FR es_419,es_419 pt,pt_PT
     do
 
         lang=${l%,*};
@@ -38,7 +38,7 @@ if [ ${LOCALISE} -eq 1  ]; then
         # comment as you wish
         # format:
         #$> translate <doc name> <chapters subfolder> ["html","pdf","both"]
-        mkdir $tmp
+        # mkdir $tmp
         cp -a $src/resources/mkdocs/* $tmp/
         myml=$tmp/mkdocs.yml
 
@@ -64,7 +64,8 @@ if [ ${LOCALISE} -eq 1  ]; then
         echo "    - Sysadmin:" >> $myml
         translate "dhis2_system_administration_guide" "sysadmin" "both" $lang $locale
 
-        echo "    - Packages:" >> $myml
+        echo "    - Metadata:" >> $myml
+        translate "dhis2_who_digital_health_data_toolkit" "metadata" "both" $lang $locale
         translate "dhis2_covid19_surveillance" "packages" "both" $lang $locale
 
         make_mkdocs
