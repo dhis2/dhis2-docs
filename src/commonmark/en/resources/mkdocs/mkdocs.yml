@@ -34,8 +34,8 @@ theme:
     name: material
     logo: 'resources/images/logo.svg'
     favicon: 'resources/images/favicon.ico'
-    features:
-      - tabs
+    feature:
+      tabs: true
     custom_dir: 'theme'
     palette:
       primary: 'white'
