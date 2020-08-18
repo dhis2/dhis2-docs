@@ -26,8 +26,8 @@
 <tr class="even">
 <td></td>
 <td><p>Enter data for a program without registration (event program)</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/event_capture_app.html">Using the Event Capture app</a></p></td>
-<td><p><strong>Event Capture</strong></p></td>
+<td><p><a href="https://docs.dhis2.org/master/en/user/html/capture_app.html">Using the Capture app</a></p></td>
+<td><p><strong>Capture</strong></p></td>
 </tr>
 <tr class="odd">
 <td></td>
@@ -44,12 +44,12 @@
 <tr class="odd">
 <td></td>
 <td><p>Visualize data in a chart</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/data_vis.html">Using the Data Visualizer app</a></p></td>
+<td><p><a href="https://docs.dhis2.org/master/en/user/html/data_visualizer.html">Using the Data Visualizer app</a></p></td>
 <td><p><strong>Data Visualizer</strong></p></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><p>Visualize data in a better map</p></td>
+<td><p>Visualize data in a map</p></td>
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/using_maps.html">Using the Maps app</a></p></td>
 <td><p><strong>Maps</strong></p></td>
 </tr>
@@ -116,7 +116,7 @@
 <tr class="even">
 <td><p>Configure the system</p></td>
 <td><p>Look up all system settings</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/settings.html">Appendix B. System settings</a></p></td>
+<td><p><a href="https://docs.dhis2.org/master/en/user/html/settings.html">System settings</a></p></td>
 <td><p><strong>System Settings</strong></p></td>
 </tr>
 <tr class="odd">
@@ -165,43 +165,12 @@
 <td><p>-</p></td>
 </tr>
 <tr class="even">
-<td><p>Learn about event and tracker programs</p></td>
-<td><p>Create a program</p></td>
-<td><a href="https://docs.dhis2.org/master/en/user/html/configure_programs_in_maintenance_app.html">Configure programs in the Maintenance app</a>
-<td><p><strong>Maintenance</strong></p>
-<p><strong>Program</strong></p></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Enter data for a program with registration (tracker program)</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/tracker_capture_app.html">Using the Tracker Capture app</a></p></td>
-<td><p><strong>Tracker Capture</strong></p></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Enter data for a program without registration (event program)</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/event_capture_app.html">Using the Event Capture app</a></p></td>
-<td><p><strong>Event Capture</strong></p></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Visualize data from a program in a chart</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/event_visualizer_app.html">Using the Event Visualizer app</a></p></td>
-<td><p><strong>Event Visualizer</strong></p></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Analyze data from a program in two types of reports</p></td>
-<td><p><a href="https://docs.dhis2.org/master/en/user/html/event_reports_app.html">Using the Event Reports app</a></p></td>
-<td><p><strong>Event Report</strong></p></td>
-</tr>
-<tr class="odd">
 <td><p>Learn more about DHIS2</p></td>
 <td><p>What is DHIS2?</p></td>
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/what_is_dhis2.html">What is DHIS2?</a></p></td>
 <td><p>-</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td></td>
 <td><p>Learn about the DHIS2 data dimensions</p></td>
 <td><p><a href="https://docs.dhis2.org/master/en/user/html/data_dimensions.html">Data dimensions in DHIS2</a></p></td>
