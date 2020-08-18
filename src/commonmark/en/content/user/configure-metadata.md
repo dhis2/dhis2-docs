@@ -3157,6 +3157,8 @@ The expression consists of:
 A validation rule asserting that the total number of vaccines given to
 infants is less than or equal to the total number of infants.
 
+The left and right sides must return numeric values.
+
 In the **Maintenance** app, you manage the following validation rule
 objects:
 
