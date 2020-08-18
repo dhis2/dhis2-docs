@@ -1,0 +1,26 @@
+<div class="select">
+<select onChange="window.document.location.href=this.options[this.selectedIndex].value;">
+    <option value="/{{ config.extra.dhis2_version }}/{{ config.theme.language }}/{{ page.url }}">{{ config.extra.dhis2_version }}</option>
+    {% for ver_item in config.extra.dhis2_versions %}
+      {% if ver_item != config.extra.dhis2_version %}
+        <option value="/{{ ver_item }}/{{ config.extra.dhis2_language }}/{{ page.url }}"><p>{{ ver_item }}</option>
+      {% endif %}
+    {% endfor %}
+</select>
+</div>
+
+<div class="select">
+<select onChange="window.document.location.href=this.options[this.selectedIndex].value;">
+    {% for key, value in config.extra.dhis2_languages.items() %}
+      {% if key == config.extra.dhis2_language %}
+        <option value="/{{ config.extra.dhis2_version }}/{{ key }}/"><p>{{ value }}</option>
+      {% endif %}
+    {% endfor %}
+
+    {% for key, value in config.extra.dhis2_languages.items() %}
+      {% if key != config.extra.dhis2_language %}
+        <option value="/{{ config.extra.dhis2_version }}/{{ key }}/"><p>{{ value }}</option>
+      {% endif %}
+    {% endfor %}
+</select>
+</div>

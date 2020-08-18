@@ -241,7 +241,7 @@ data transfer between possibly several systems on either side (n:n).
 This could be the case if for example you wanted to collect stock level
 data through different LMIS applications, and then share it to a central
 warehouse LMIS, the HMIS and some vertical disease programs system. The
-openHIE reference software to assume this role is Jembi [](), but
+openHIE reference software to assume this role is the ["OpenHIM"](http://openhim.org), but
 systems like ["MOTECH"](https://motechproject.org/) have also been used
 for this purpose as will be discussed below.
 
