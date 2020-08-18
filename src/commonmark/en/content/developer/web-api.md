@@ -5413,7 +5413,31 @@ programRuleVariable model.
 
 <!--DHIS2-SECTION-ID:webapi_creating_program_rules-->
 
-- TODO Coming -
+- To perform crud operations, `programRules` resource is available in API.
+
+To retrieve list of programRules you can do a GET request like this:
+
+    /api/programRules
+    
+To retrieve single programRule you can do a GET request like this:
+
+    /api/programRules/<program_rule_uid>
+    
+To save/add single programRule you can do a POST request like this:
+
+    /api/programRules/<program_rule_uid>
+    
+To update single programRule you can do a PUT request like this:
+
+    /api/programRules/<program_rule_uid>
+    
+To delete single programRule you can do a DELETE request like this:
+
+    /api/programRules/<program_rule_uid>
+    
+To retrieve description of programRule condition you can use POST and provide condition string in the POST body.
+
+    /api/programRules/condition/description?<program_rule_uid>
 
 ## Forms
 
