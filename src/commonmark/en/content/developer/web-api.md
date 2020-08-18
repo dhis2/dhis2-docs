@@ -15192,6 +15192,7 @@ The response will contain minimal information about a user.
 ```json
 {
   "id": "QqvaU7JjkUV",
+  "username": "nkono",
   "firstName": "Thomas",
   "surname": "Nkono",
   "displayName": "Thomas Nkono"
@@ -15212,7 +15213,7 @@ against the following user properties:
 - First name
 - Surname
 - Email
-- Usernme
+- Username
 
 An example request looks like this:
 
@@ -15227,12 +15228,14 @@ The response will contain information about the users matching the request.
   "users": [
     {
       "id": "DXyJmlo9rge",
+      "username": "jbarnes",
       "firstName": "John",
       "surname": "Barnes",
       "displayName": "John Barnes"
     },
     {
       "id": "N3PZBUlN8vq",
+      "username": "jkamara",
       "firstName": "John",
       "surname": "Kamara",
       "displayName": "John Kamara"
