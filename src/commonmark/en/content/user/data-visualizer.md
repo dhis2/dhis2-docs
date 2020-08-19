@@ -12,7 +12,8 @@ When you open the data-visualizer app from the dhis2 menu, you are presented wit
 
 ### Select visualization type
 
-Select the desired visualization type from the selector in the upper left corner:
+Select the desired visualization type from the selector in the upper left corner.
+For each visualization type there is a brief description with suggestions about where to use the main dimensions in the layout.
 
 ![](resources/images/data-visualizer/data-visualizer-visualization-type.png)
 
@@ -69,6 +70,13 @@ Layout restrictions: same as <em>Column</em>.
 </p></td>
 </tr>
 <tr class="odd">
+<td><p>Stacked area</p></td>
+<td><p>Same as <em>Area</em>, but the areas of the various dimension items are stacked on top of each other.</p>
+<p>Example: comparing the trends of related indicators.</p><p>
+Layout restrictions: same as <em>Area</em>.
+</p></td>
+</tr>
+<tr class="even">
 <td><p>Pie</p></td>
 <td><p>Circle divided into sectors (or slices).</p>
 <p>Example: visualizing the proportion of data for individual data elements compared to the total sum of all data elements.</p><p>
