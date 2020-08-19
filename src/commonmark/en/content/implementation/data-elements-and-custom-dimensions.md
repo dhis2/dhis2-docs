@@ -82,7 +82,9 @@ above, the following category option combinations would be
 created: "Female/\<5 years", "Female/\>5
 years", "Male/\<5 years", "Male/\>5 years"
 
-It is worth noting that the category model is completely indepent of the data element model.  Data elements are loosely coupled to categories, in that the association between them can be changed as any time without losing any data. 
+It is worth noting that the category model is completely indepent of the data element model. 
+ Data elements are loosely coupled to categories, in that the association 
+ between them can be changed as any time without losing any data. 
  As a practical example from above, perhaps data needs to be collected 
 for malaria cases with more granular age bands. Instead of just "\<5" and
 "/>5", a new category could be created for "\<1", "1-5","\>5" to describe
@@ -152,7 +154,10 @@ All aggregate data in DHIS2 is always associated with four primary dimensions:
 * Organisation units represent the *where* dimension. 
 * Periods represent the *when* dimension. 
 
-Additional categories may be required in order to support data entry and analysis however. An additional free form dimension is also available to implementers, known as the "attribute combination". Attribute combinations are very similar to category combinations in terms of how they are implemented in the system. The difference however, is that they are not directly associated with individual data elements, but rather groups of data elements. 
+Additional categories may be required in order to support data entry and analysis however. 
+An additional free form dimension is also available to implementers, known as the "attribute combination". 
+Attribute combinations are very similar to category combinations in terms of how they are implemented in the system. 
+The difference however, is that they are not directly associated with individual data elements, but rather groups of data elements. 
 
 Expanding on the example from above using the data element "Malaria cases", there may be a need to collect data at the same organisation unit and same time period for two different partners which work in that facility. In order to be able to attribute data to these partners, we could create a category called "Partner" which would contain the names of each partner as category options. This category could then be used as an attribute combination for the dataset which the "Malaria cases" is a part of. During data entry, an additional drop down option becomes available in the data entry screen, which would allow the user to choose which partner the data is associated with. 
 
@@ -161,20 +166,61 @@ Thus, while attribute option combinations are structually equivalent to category
 
 ## Group sets and analytical dimensions
 
+Category and attribute combinations are used during data entry to disaggretgate data in certain ways, 
+for instance by age and sex breakdowns. When the data is later analyzed, there may be a need to 
+aggregate or group the data in different ways. Consider a category with the following age bands: 
 
+* \< 1
+* 1-4
+* 5-10
+* 10-15
+* 15-19
+* 20-29
+* 30-49
+* 49+
+
+Data may be entered with these age groups, but when analyzed in the analytics apps of DHIS2, 
+there may be a need to group the data according to more coarse age bands.
+Using a category option group set, we could create two category groups, such as \<15 and 15+. 
+Each of the original category options could then be placed into the corresponding
+category option group. Each of the groups can then be associated with a category option group 
+set, which becomes available as an additional dimension in the analytics apps. 
+
+
+Category option group sets are particularly useful for creating higher level groupings of common
+category options. This approach is often useful for combining data elements which may have been 
+collected according to related, but different category combinations. 
 
 
 ## Data element groups
 
 Data elements which are related to one another can be grouped together
 with a *data element group*. Data element groups can. Data element 
-groups are completely flexible in the  sense that both their names and their memberships are completely flexible in how they are designed. 
+groups are completely flexible in the  sense that both their names and their
+ memberships are completely flexible in how they are designed. 
 
 
 
- Groups are useful both for browsing and presenting related data,
+Groups are useful both for browsing and presenting related data,
 and can also be used to aggregate values captured for data elements in
 the group. Groups are loosely coupled to data elements and not tied
 directly to the data values which means they can be modified and added
 at any point in time without interfering with the low-level data.
+
+## Data element group sets
+
+Similar to category option group sets, data element group sets can be used 
+to aggregate related data elements together. We might be interested in 
+determining the total number of communicable and non-communicable 
+diseases from a morbidity data set. A data element group set could be 
+created with two groups: "Communicalble diseases" and "Non-communicable
+diseases". Data elements could be placed into each of these groups. 
+
+During a pivot table analysis, the data elemement group set could be 
+used to aggregate data by each of the data element groups within 
+the group set. 
+
+This approach allows for highly flexible types of analyses where the 
+exact defintion of the combination of data elements are not known
+or which may be difficult to define in the form of an indicator. 
 
