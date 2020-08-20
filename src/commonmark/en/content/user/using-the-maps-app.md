@@ -347,27 +347,46 @@ layer** selection. This opens the Events layer configuration dialog.
 
     ![](resources/images/maps/maps_thematic_layer_dialog_STYLE.png)
 
-    - Select either **Automatic** or **Predefined** legend.
+    - Select either **Choropleth** or **Bubble maps**.
 
-      - Automatic legend types means that the application will
-        create a legend set for you based on your what method,
-        number of classes, low color and high color you select.
-        Method alludes to the size of the legend classes. Set to
+      - Choropleth will assign a color to each org unit shape according to the
+        data value. This is the recommended technique if the data is normalised
+        (per capita).
+
+      - Bubble map will show data values as proportional circles. Use this
+        technique if the data is not normalised (absolute numbers). The circles are
+        placed in the center of each org unit.
+
+    - Set the **Low radius** and **High radius** for the proportional circles or the
+      point facilities. The circles will be scaled between low and high radius according
+      to the data value. The radius needs to be between 0 and 50 px.
+
+    - **Show labels**: Allows org unit names to be shown on the layer. Font size, weight,
+      style and color can be modified here.
+
+    - **Show no data**: By default org units with missing data values will not show on the map.
+      Check this box if you want to show them with a color. Click the color to change it.
+
+    - Select the legend type:
+
+      - **Automatic color legend**: the application will create a legend for you based on
+        what classification method, number of classes and the color scale you select. Set
+        **Classification** to either:
 
         - Equal intervals
 
-          the range of each interval will be **(highest data value - lowest data value / number of classes)**
+          the range of each interval will be (highest data value - lowest data value / number of classes)
 
         - Equal counts
 
           the legend creator will try to distribute the organisation units evenly.
 
-      - If you have facilities in your thematic layer, you can set
-        the radius for minimum and maximum values by changing the
-        values in the **Low size** and **High size** boxes
-        respectively.
+      - **Predefined color legend**: Select between the predefined legends.
 
-6.  Click **ADD LAYER**.
+      - **Single color legend**: Select the color of the bubbles or circles. Only available
+        for bubble maps.
+
+6)  Click **ADD LAYER**.
 
 ### Modify a thematic layer
 
