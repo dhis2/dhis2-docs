@@ -196,6 +196,16 @@ The organisation units dialog is flexible, offering essentially three ways of se
 
 ![](resources/images/data-visualizer/data-visualizer-organisation-unit-dimension-modal.png)
 
+### Two category charts
+
+Most chart visualization types can show two categories.
+Switching from Pivot Table to Column, Bar, Area (and their stacked versions) and Line is keeping the first two dimensions in Category, any additional dimension is moved to Filter.
+The labels for the first dimension in Category are shown at the top of the chart, and the ones for the second dimension at the bottom.
+The resulting visualization is composed of separate charts, one for each item in the first dimension.
+
+Example screenshot:
+![](resources/images/data-visualizer/data-visualizer-two-category.png)
+
 ## Change the display of your visualization
 
 The display of a visualization can be changed by enabling/disabling and configuring several options. Each visualization type can have a different set of available options. The options are organised in tabs in the **Options dialog** and in sections within each tab.
