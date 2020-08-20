@@ -740,7 +740,8 @@ configuration dialog.
 
     - Select a **Program** where the tracked entities belong.
 
-    - Set the **Program status** to be **Active** or **Completed**.
+    - Use the **Program status** field to select the enrollment status of tracked entities
+      to include: All, Active, Completed or Cancelled.
 
     - Set the **Follow up** status of the tracked entity for the given
       program.
