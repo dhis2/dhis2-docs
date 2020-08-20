@@ -530,7 +530,11 @@ layer** selection. This opens the Events layer configuration dialog.
       program, other coordinates such as "Household position" are
       available.
 
-2.  In the **PERIOD** tab
+    - By default all events with coordinates are shown on the map.
+      Use the **Event status** field to only show events having one
+      status: Active, Completed, Schedule, Overdue or Skipped.
+
+2)  In the **PERIOD** tab
 
     ![](resources/images/maps/maps_event_layer_dialog_PERIOD.png)
 
@@ -547,7 +551,7 @@ layer** selection. This opens the Events layer configuration dialog.
         In the **Period** field, select one of the relative periods,
         for example **This month** or **Last year**.
 
-3.  In the **ORG UNITS** tab:
+3)  In the **ORG UNITS** tab:
 
     ![](resources/images/maps/maps_event_layer_dialog_ORG_UNITS.png)
 
@@ -561,7 +565,7 @@ layer** selection. This opens the Events layer configuration dialog.
         unit** the map data will appear differently for users at
         different levels in the organisation unit hierarchy.
 
-4.  In the **FILTER** tab:
+4)  In the **FILTER** tab:
 
     ![](resources/images/maps/maps_event_layer_dialog_FILTER.png)
 
@@ -588,7 +592,7 @@ layer** selection. This opens the Events layer configuration dialog.
       Multiple filters may be added. Click the trash button on the right of
       the filter to remove it.
 
-5.  In the **STYLE** tab:
+5)  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_event_layer_dialog_STYLE.png)
 
@@ -621,7 +625,7 @@ layer** selection. This opens the Events layer configuration dialog.
       - **Booleans**: Select a color for true/yes and another for
         false/no.
 
-6.  Click **ADD LAYER**.
+6)  Click **ADD LAYER**.
 
 ### Modify an event layer
 
