@@ -505,6 +505,8 @@ Along the bottom of the event card from left to right are:
 
 - A more actions (three dots) button with additional options:
 
+  - A **data table** toggle button to show or hide the data table associated with the layer
+
   - **Download data** allows you to download the data for this layer in GeoJSON format for use in other mapping software
 
   - **Edit layer** is the same as edit button above
