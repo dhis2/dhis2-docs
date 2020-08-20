@@ -386,7 +386,7 @@ layer** selection. This opens the Events layer configuration dialog.
       - **Single color legend**: Select the color of the bubbles or circles. Only available
         for bubble maps.
 
-6)  Click **ADD LAYER**.
+6.  Click **ADD LAYER**.
 
 ### Modify a thematic layer
 
@@ -559,7 +559,7 @@ layer** selection. This opens the Events layer configuration dialog.
       Use the **Event status** field to only show events having one
       status: Active, Completed, Schedule, Overdue or Skipped.
 
-2)  In the **PERIOD** tab
+2.  In the **PERIOD** tab
 
     ![](resources/images/maps/maps_event_layer_dialog_PERIOD.png)
 
@@ -579,7 +579,7 @@ layer** selection. This opens the Events layer configuration dialog.
         In the **Period** field, select **Start/end dates** and fill
         in a start date and an end date.
 
-3)  In the **ORG UNITS** tab:
+3.  In the **ORG UNITS** tab:
 
     ![](resources/images/maps/maps_event_layer_dialog_ORG_UNITS.png)
 
@@ -593,7 +593,7 @@ layer** selection. This opens the Events layer configuration dialog.
         unit** the map data will appear differently for users at
         different levels in the organisation unit hierarchy.
 
-4)  In the **FILTER** tab:
+4.  In the **FILTER** tab:
 
     ![](resources/images/maps/maps_event_layer_dialog_FILTER.png)
 
@@ -620,7 +620,7 @@ layer** selection. This opens the Events layer configuration dialog.
       Multiple filters may be added. Click the trash button on the right of
       the filter to remove it.
 
-5)  In the **STYLE** tab:
+5.  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_event_layer_dialog_STYLE.png)
 
