@@ -203,7 +203,6 @@ Switching from Pivot Table to Column, Bar, Area (and their stacked versions) and
 The labels for the first dimension in Category are shown at the top of the chart, and the ones for the second dimension at the bottom.
 The resulting visualization is composed of separate charts, one for each item in the first dimension.
 
-Example screenshot:
 ![](resources/images/data-visualizer/data-visualizer-two-category.png)
 
 ## Change the display of your visualization
@@ -351,6 +350,14 @@ If you only select one dimension, sub-totals will be hidden for those rows. This
 </tr>
 
 <tr>
+<td colspan="2" align="center">Series tab</td>
+</tr>
+<tr>
+<td><p></p></td>
+<td><p>Options for adding more axes and changing how different series are displayed are set in this tab. Please see a detailed description of how this works in the corresponding sections below.</p></td>
+</tr>
+
+<tr>
 <td colspan="2" align="center">Style tab</td>
 </tr>
 <tr>
@@ -467,15 +474,19 @@ Assigned Categories is a composite dimension that represents associated category
 
 Another way of adding assigned categories is by accessing the **Add Assigned Categories** option from the `Data` dimension's context menu (not available for `Gauge`, `Year over year` or `Single value`).
 
-## Adding more axes and changing how different series are displayed
+## Adding more axes
 
-When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` `Area` (and their stacked versions) and `Line` you can do so by clicking **Series tab** in the `Options` dialog. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
-Four axis are available, two on the left side of the chart and two on the right side.
-Each axis has a different color and the chart is going to be colored accordingly.
+When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` `Area` and `Line` you can do so by clicking the **Series tab** in the `Options` dialog. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
+Four axes are available, two on the left side (axis 1 and 3) of the chart and two on the right side (axis 2 and 4).
+Each axis has a different color and the chart items are going to be colored accordingly.
+
+Note: When multiple axes are in use, some options like `Lines`, `Vertical (y) axis` and `Color set` in the other option tabs will be disabled.
 
 ![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis.png)
 
-If the selected visualization is of type `Column` or `Line`, it's also possible to choose to display the data of each data dimension as column or line chart.
+## Using multiple visualization types
+
+It's possible to combine a `Column` chart with `Line` items and vice versa. This is done by clicking the **Series tab** in the `Options` dialog and changing the `Visualization type`. This can also be combined with using multiple axes (as described in the section above).
 
 ![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis-multi-type.png)
 
