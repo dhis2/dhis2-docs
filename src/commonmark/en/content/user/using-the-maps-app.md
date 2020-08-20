@@ -545,15 +545,18 @@ layer** selection. This opens the Events layer configuration dialog.
     - select the time span for when the events took place. You can
       select either a fixed period or a relative period.
 
-      - Fixed period
-
-        In the **Period** field, select **Start/end dates** and fill
-        in a start date and an end date.
-
       - Relative period
 
         In the **Period** field, select one of the relative periods,
         for example **This month** or **Last year**.
+
+        A **default relative period for analysis** can be set in the
+        **Systems Settings** app.
+
+      - Fixed period
+
+        In the **Period** field, select **Start/end dates** and fill
+        in a start date and an end date.
 
 3)  In the **ORG UNITS** tab:
 
