@@ -404,6 +404,10 @@ The <em>Custom</em> option allows you to type a custom subtitle.</p></td>
 <em>None</em> removes the title.
 The <em>Custom</em> option allows you to type a custom title.</p></td>
 </tr>
+<tr>
+<td><p>Color set</p></td>
+<td><p>Controls the colors used in the chart. A list of available color sets is shown with a preview of the colors. There is also a "Mono patterns" option which uses colored patterns instead of solid colors.</p></td>
+</tr>
 
 <tr>
 <td colspan="2" align="center">Limit values tab</td>
