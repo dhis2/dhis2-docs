@@ -460,15 +460,17 @@ Assigned Categories is a composite dimension that represents associated category
 
 Another way of adding assigned categories is by accessing the **Add Assigned Categories** option from the `Data` dimension's context menu (not available for `Gauge`, `Year over year` or `Single value`).
 
-## Adding more axes
+## Adding more axes and changing how different series are displayed
 
-When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` and `Line` you can do so by clicking **Manage chart axes** in the `Data` dimension's context menu. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
+When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` `Area` (and their stacked versions) and `Line` you can do so by clicking **Series tab** in the `Options` dialog. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
+Four axis are available, two on the left side of the chart and two on the right side.
+Each axis has a different color and the chart is going to be colored accordingly.
 
-![](resources/images/data-visualizer/data-visualizer-axis-management-menu-option.png)
+![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis.png)
 
-In the axis management dialog you can assign data items to the two axes.
+If the selected visualization is of type `Column` or `Line`, it's also possible to choose to display the data of each data dimension as column or line chart.
 
-![](resources/images/data-visualizer/data-visualizer-axis-management-dialog.png)
+![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis-multi-type.png)
 
 ## Data drilling
 
