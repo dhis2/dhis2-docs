@@ -476,7 +476,8 @@ Another way of adding assigned categories is by accessing the **Add Assigned Cat
 
 ## Adding more axes
 
-When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` `Area` and `Line` you can do so by clicking the **Series tab** in the `Options` dialog. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
+When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar`, `Area` and `Line` you can do so by clicking the **Series tab** in the `Options` dialog. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
+
 Four axes are available, two on the left side (axis 1 and 3) of the chart and two on the right side (axis 2 and 4).
 Each axis has a different color and the chart items are going to be colored accordingly.
 
@@ -489,6 +490,10 @@ Note: When multiple axes are in use, some options like `Lines`, `Vertical (y) ax
 It's possible to combine a `Column` chart with `Line` items and vice versa. This is done by clicking the **Series tab** in the `Options` dialog and changing the `Visualization type`. This can also be combined with using multiple axes (as described in the section above).
 
 ![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis-multi-type.png)
+
+This results in a chart that combines the `Column` and `Line` types.
+
+![](resources/images/data-visualizer/data-visualizer-multi-type-chart.png)
 
 ## Data drilling
 
