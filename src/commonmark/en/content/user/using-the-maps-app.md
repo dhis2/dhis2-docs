@@ -637,7 +637,53 @@ layer** selection. This opens the Events layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
-### Modify information in event pop-up windows
+### Listing and filtering events
+
+Event layers have a **data table** option that can be toggled on or
+off from the event layer card.
+
+![](resources/images/maps/maps_event_layer_data_table.png)
+
+The data table displays the data forming the event layer.
+
+- clicking on a title will sort the table based on that column;
+  toggling between ascending and descending.
+
+- entering text or expressions into the filter fields below the titles
+  will apply those filters to the data, and the display will adjust
+  according to the filter. The filters are applied as follows:
+
+  - ID
+
+    filter by event IDs containing the given text
+
+  - ORG UNIT
+
+    filter by org unit name containing the given text
+
+  - EVENT TIME
+
+    filter by event time containing the given text
+
+  - TYPE
+
+    filter by GIS display types containing the given text
+
+  - **Style by data element**: If events are styled by a data element
+    (e.g. gender) both the data value and the color can be filtered.
+
+  - **Display in reports**: Data elements checked to display in reports will
+    be shown in separate columns (see below how to add them).
+
+  - Numeric data values can be filtered by given numbers, and/or ranges,
+    for example: 2,\>3&\<8
+
+> **Note**
+>
+> Data table filters are temporary and are not saved with the map layers
+> as part of the favourite.
+
+### Modify information in event data table and popups
 
 You can modify the information displayed in the event pop-up window.
 
