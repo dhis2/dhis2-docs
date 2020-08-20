@@ -275,8 +275,12 @@ layer** selection. This opens the Events layer configuration dialog.
 
         In the **Period type** field select **Relative**, then
         select one of the relative periods, for example **Last year** or
-        **Last 12 months**, in the **Period** field. If you select a
-        relative period covering multiple years/months/weeks/days
+        **Last 12 months**, in the **Period** field.
+
+        A **default relative period for analysis** can be set in the **Systems Settings**
+        app.
+
+        If you select a relative period covering multiple years/months/weeks/days
         the layer can be displayed as
 
         - Single (aggregate)
