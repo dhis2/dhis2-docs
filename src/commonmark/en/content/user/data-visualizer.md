@@ -386,7 +386,7 @@ The <em>Custom</em> option allows you to type a custom title.</p></td>
 The <em>Custom</em> option allows you to type a custom subtitle.</p></td>
 </tr>
 <tr>
-<td><p>Legend key</p></td>
+<td><p>Show legend key</p></td>
 <td><p>Toggles the legend on and off leaving more room for the visualization itself.</p></td>
 </tr>
 <tr>
