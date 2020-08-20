@@ -452,6 +452,13 @@ If both parts of the filter are used, it's possible to filter out a range of dat
 </tbody>
 </table>
 
+### Custom styling for text and legend in charts
+
+The following options can be customized using the text styling tool: `Chart title`, `Chart subtitle`, `Show legend key`, `Target line`, `Base line`, `Axis title` and `Labels` for both horizontal and vertical axes.
+The text styling tool allows to choose a font size, color and italic/bold variants. It's also possible to choose the position of the text.
+
+![](resources/images/data-visualizer/data-visualizer-text-styling-tool.png)
+
 ## Adding Assigned Categories
 
 Assigned Categories is a composite dimension that represents associated category option combinations to the selected data element's category combination. This can be added by dragging the **Assigned Categories** dimension from the left side dimensions menu and into the visualization layout:
