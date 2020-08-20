@@ -653,7 +653,7 @@ layer** selection. This opens the Events layer configuration dialog.
       - **Booleans**: Select a color for true/yes and another for
         false/no.
 
-6)  Click **ADD LAYER**.
+6.  Click **ADD LAYER**.
 
 ### Modify an event layer
 
