@@ -14398,6 +14398,17 @@ parameterized API can only be used for sending SMS to a single
 destination.
 
     /api/33/sms/outbound?message=text&recipient=004712341234
+    
+Outbound messages can be fetched using GET resource.
+
+    GET /api/33/sms/outbound
+    GET /api/33/sms/outbound?filter=status:eq:SENT
+    GET /api/33/sms/outbound?filter=status:eq:SENT&fields=*
+    
+Outbound messages can be deleted using DELETE resource.
+
+    DELETE /api/33/sms/outbound/{uid}
+    DELETE /api/33/sms/outbound?ids=uid1,uid2	
 
 #### Gateway response codes
 
@@ -14551,10 +14562,16 @@ parameters.
 }
 ```
 
-The Web API also supports a query parameter-based version.
+Inbound messages can be fetched using GET resource
 
-    /api/33/sms/inbound?message=text&originator=47XXXXXX&gateway=clickatel
+    GET /api/33/sms/inbound
+    GET /api/33/sms/inbound?fields=smsstatus=INCOMING
 
+Inbound messages can be deleted using DELETE resource
+
+    DELETE /api/33/sms/inbound/{uid}
+    DELETE /api/33/sms/inbound?ids=uid1,uid2
+    
 <table>
 <caption>User query parameters</caption>
 <colgroup>
