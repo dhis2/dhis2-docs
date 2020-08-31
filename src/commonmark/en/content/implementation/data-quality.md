@@ -92,7 +92,8 @@ than, equal to or greater than the latter. The expression forms a
 condition which should assert that certain logical criteria are met. For
 instance, a validation rule could assert that the total number of
 vaccines given to infants is less than or equal to the total number of
-infants.
+infants. The left and right sides must return numeric values.
+
 
 The validation rules can be defined through the user interface and later
 be run to check the existing data. When running validation rules the

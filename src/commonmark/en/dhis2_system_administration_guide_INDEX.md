@@ -7,3 +7,4 @@ title: 'DHIS 2 System Administration guide'
 !INCLUDE "content/sysadmin/installation.md"
 !INCLUDE "content/sysadmin/monitoring.md"
 !INCLUDE "content/sysadmin/audit.md"
+!INCLUDE "content/sysadmin/android-SMS-reporting.md"

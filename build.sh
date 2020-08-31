@@ -36,6 +36,7 @@ generate "dhis2_implementation_guide" "implementer"
 generate "dhis2_tracker_implementation_guide" "implementer"
 generate "dhis2_android_implementation_guideline" "implementer"
 generate "dhis2_android_capture_app" "android-app"
+generate "dhis2_android_MDM" "mdm"
 generate "user_stories_book" "user-stories"
 
 echo "    - Developer:" >> $myml
@@ -45,7 +46,8 @@ generate "dhis2_android_sdk_developer_guide" "android-sdk"
 echo "    - Sysadmin:" >> $myml
 generate "dhis2_system_administration_guide" "sysadmin"
 
-echo "    - Packages:" >> $myml
+echo "    - Metadata:" >> $myml
+generate "dhis2_who_digital_health_data_toolkit" "metadata"
 generate "dhis2_covid19_surveillance" "packages"
 
 make_mkdocs

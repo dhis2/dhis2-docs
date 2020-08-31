@@ -15216,6 +15216,7 @@ The response will contain minimal information about a user.
 ```json
 {
   "id": "QqvaU7JjkUV",
+  "username": "nkono",
   "firstName": "Thomas",
   "surname": "Nkono",
   "displayName": "Thomas Nkono"
@@ -15236,7 +15237,7 @@ against the following user properties:
 - First name
 - Surname
 - Email
-- Usernme
+- Username
 
 An example request looks like this:
 
@@ -15251,12 +15252,14 @@ The response will contain information about the users matching the request.
   "users": [
     {
       "id": "DXyJmlo9rge",
+      "username": "jbarnes",
       "firstName": "John",
       "surname": "Barnes",
       "displayName": "John Barnes"
     },
     {
       "id": "N3PZBUlN8vq",
+      "username": "jkamara",
       "firstName": "John",
       "surname": "Kamara",
       "displayName": "John Kamara"
@@ -17856,22 +17859,26 @@ and is an alternative to the query in the previous section.
 <td>End date of event associated with the given program and event status.</td>
 </tr>
 <tr class="odd">
+<td>programStage</td>
+<td>The programStage for which the event related filters should be applied to. If not provided all stages will be considered.</td>
+</tr>
+<tr class="even">
 <td>skipMeta</td>
 <td>Indicates whether meta data for the response should be included.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>page</td>
 <td>The page number. Default page is 1.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>pageSize</td>
 <td>The page size. Default size is 50 rows per page.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>totalPages</td>
 <td>Indicates whether to include the total number of pages in the paging response (implies higher response time).</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>skipPaging</td>
 <td>Indicates whether paging should be ignored and all rows should be returned.</td>
 </tr>
