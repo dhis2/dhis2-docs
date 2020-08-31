@@ -3428,6 +3428,13 @@ Its value varies between -3.5 to 3.5 depending upon the value of the weight.
 <td>(string)</td>
 <td>Contains the name of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty.</td>
 </tr>
+<tr class="even">
+<td>V{completed_date}</td>
+<td>(string)</td>
+<td>This variable contains completion date of event which triggered this rule. If event is not yet complete then &quot;completed_date&quot; contains nothing.</td>
+</tr>
+
+
 </tbody>
 </table>
 
