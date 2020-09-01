@@ -14562,7 +14562,7 @@ parameters.
 }
 ```
 
-Inbound messages can be fetched using GET resource
+Inbound messages can be fetched using GET resourcef
 
     GET /api/sms/inbound
     GET /api/sms/inbound?fields=*&filter=smsstatus=INCOMING
@@ -15036,6 +15036,11 @@ The list of messages can be retrieved using GET.
 
     GET /api/33/messages
 
+To get list of all scheduled message 
+
+	GET /api/33/messages/scheduled
+	GET /api/33/messages/scheduled?scheduledAt=2020-12-12 
+
 One particular message can also be retrieved using GET.
 
     GET /api/33/messages/{uid}
@@ -15043,6 +15048,7 @@ One particular message can also be retrieved using GET.
 Message can be deleted using DELETE.
 
     DELETE /api/33/messages/{uid}
+    
 
 ### Querying program messages
 
