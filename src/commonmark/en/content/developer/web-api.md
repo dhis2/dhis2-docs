@@ -14572,7 +14572,7 @@ Inbound messages can be deleted using DELETE resource
     DELETE /api/sms/inbound/{uid}
     DELETE /api/sms/inbound?ids=uid1,uid2
  
-To import all un pasrsed messages
+To import all un parsed messages
 	
 	POST /api/sms/inbound/import
     
