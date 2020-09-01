@@ -14377,7 +14377,7 @@ to be configured before using the service. An SMS will not be sent if
 there is no gateway configured. It needs a set of recipients and
 message text in JSON format as shown below.
 
-    /api/33/sms/outbound
+    /api/sms/outbound
 
 ```json
 {
@@ -14397,18 +14397,18 @@ The Web API also supports a query parameter version, but the
 parameterized API can only be used for sending SMS to a single
 destination.
 
-    /api/33/sms/outbound?message=text&recipient=004712341234
+    /api/sms/outbound?message=text&recipient=004712341234
     
 Outbound messages can be fetched using GET resource.
 
-    GET /api/33/sms/outbound
-    GET /api/33/sms/outbound?filter=status:eq:SENT
-    GET /api/33/sms/outbound?filter=status:eq:SENT&fields=*
+    GET /api/sms/outbound
+    GET /api/sms/outbound?filter=status:eq:SENT
+    GET /api/sms/outbound?filter=status:eq:SENT&fields=*
     
 Outbound messages can be deleted using DELETE resource.
 
-    DELETE /api/33/sms/outbound/{uid}
-    DELETE /api/33/sms/outbound?ids=uid1,uid2	
+    DELETE /api/sms/outbound/{uid}
+    DELETE /api/sms/outbound?ids=uid1,uid2	
 
 #### Gateway response codes
 
@@ -14548,7 +14548,7 @@ originator, received date and sent date are mandatory parameters. The
 rest are optional but the system will use the default value for these
 parameters.
 
-    /api/33/sms/inbound
+    /api/sms/inbound
 
 ```json
 {
@@ -14564,13 +14564,17 @@ parameters.
 
 Inbound messages can be fetched using GET resource
 
-    GET /api/33/sms/inbound
-    GET /api/33/sms/inbound?fields=smsstatus=INCOMING
+    GET /api/sms/inbound
+    GET /api/sms/inbound?fields=*&filter=smsstatus=INCOMING
 
 Inbound messages can be deleted using DELETE resource
 
-    DELETE /api/33/sms/inbound/{uid}
-    DELETE /api/33/sms/inbound?ids=uid1,uid2
+    DELETE /api/sms/inbound/{uid}
+    DELETE /api/sms/inbound?ids=uid1,uid2
+ 
+To import all un pasrsed messages
+	
+	POST /api/sms/inbound/import
     
 <table>
 <caption>User query parameters</caption>
