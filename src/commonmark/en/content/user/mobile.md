@@ -1318,5 +1318,13 @@ Below table shows the parameters required for configuring gateway.
 <td>N/A</td>
 <td>Gateway parameters will be appended with url for example https://samplegateway.com/messages?apiKey={apiKey}&to={recipients},content={text},deliveryreport={dp}</td>
 </tr>
+<tr class="odd">
+<td>contentType</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Optional</td>
+<td>N/A</td>
+<td>The type in which data will be sent to sms gateway. Default is application/x-www-form-urlencoded. Other supported types are application/json, application/xml and text/plain</td>
+</tr>
 </tbody>
 </table>
