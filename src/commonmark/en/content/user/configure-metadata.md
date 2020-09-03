@@ -2149,8 +2149,27 @@ You can use the following functions in an indicator formula:
 <td><p>(expression [, expression ...])</p></td>
 <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
 </tr>
+<tr class="odd">
+<td><p>.periodOffset</p></td>
+<td><p>(integer constant)</p></td>
+<td><p>Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below.</p></td>
+</tr>
 </tbody>
 </table>
+
+Examples of the .periodOffset() function in an indicator expression:
+
+| Indicator expression            | Means                                           |
+| ------------------------------- | ----------------------------------------------- |
+| #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from the period before |
+| #{FH8ab5Rog83}.periodOffset(+1) | data element FH8ab5Rog83 from the period after  |
+| #{FH8ab5Rog83}.periodOffset(1)  | data element FH8ab5Rog83 from the period after  |
+| #{FH8ab5Rog83} - 2 * D{IpHINAT79UW.uf3svrmp8Oj}.periodOffset(-1)  | data element FH8ab5Rog83 from the reported period minus twice program data element IpHINAT79UW.uf3svrmp8Oj from the period before |
+| ( #{FH8ab5Rog83} - <br /> #{QOlfIKgNJ3D2} ).periodOffset(-2) | data element FH8ab5Rog83 from 2 periods before minus data element QOlfIKgNJ3D2 from 2 periods before |
+| #{FH8ab5Rog83}.periodOffset(-2) + <br /> #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before |
+| ( #{FH8ab5Rog83}.periodOffset(-1) + <br /> #{FH8ab5Rog83} ).periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before (note that the functions are nested) |
+
+<br />
 
 In the **Maintenance** app, you manage the following indicator objects:
 
