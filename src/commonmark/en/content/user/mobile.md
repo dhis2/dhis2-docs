@@ -1247,22 +1247,6 @@ Below table shows the parameters required for configuring gateway.
 <td>Used for API authentication</td>
 </tr>
 <tr class="odd">
-<td>MessageParameter</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Required</td>
-<td>N/A</td>
-<td>Message query parameter. For example http://gateway.com?<em>message</em>=Hi</td>
-</tr>
-<tr class="even">
-<td>RecipientParameter</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Required</td>
-<td>N/A</td>
-<td>Recipient query parameter. For example http://gateway.com?<em>phoneNumber</em>=47XXXXX</td>
-</tr>
-<tr class="odd">
 <td>URL Template</td>
 <td>N/A</td>
 <td>N/A</td>
@@ -1325,6 +1309,14 @@ Below table shows the parameters required for configuring gateway.
 <td>N/A</td>
 <td>Optional</td>
 <td>Compressed parameter is optional for SMPP gateway. Default value is false</td>
+</tr>
+<tr class="even">
+<td>sendUrlParameters</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Optional</td>
+<td>N/A</td>
+<td>Gateway parameters will be appended with url for example https://samplegateway.com/messages?apiKey={apiKey}&to={recipients},content={text},deliveryreport={dp}</td>
 </tr>
 </tbody>
 </table>
