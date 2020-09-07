@@ -10709,6 +10709,12 @@ a complete list of dynamic dimensions by visiting this URL in the Web API:
 
     /api/33/dimensions
 
+If you want to retrieve only the dimensional items for a given dynamic dimension you can
+use the exemple below. The pagination is disabled by default. It can be enabled by adding
+the pagination parameter `paging=true` to the URL.
+
+    /api/33/dimensions/J5jldMd8OHv/items?paging=true
+
 The base URL to the analytics resource is `/api/analytics`. To request
 specific dimensions and dimension items you can use a query string on
 the following format, where `dim-id` and `dim-item` should be substituted with real values:
