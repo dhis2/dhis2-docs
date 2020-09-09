@@ -135,7 +135,7 @@ Click on the **Print preview** button to view how the dashboard would look in da
 
 Click on **Exit Print preview** to return to editing the dashboard.
 
-Note that some items may be moved down in order to avoid page breaks Items may also be shortened to fit on one page. Items that are shortened show an info icon in the upper right corner in preview. This icon is removed in the actual print.
+Note that some items may be moved down in order to avoid page breaks. Items may also be shortened to fit on one page. Items that are shortened show an info icon in the upper right corner in preview. This icon is removed in the actual print.
 
 ### Saving the dashboard
 
