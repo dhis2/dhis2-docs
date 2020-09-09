@@ -832,6 +832,8 @@ configuration dialog.
 
     - Once checked, you can select the type of relationship to display on the map from the dropdown list. Only relationships FROM the selected Tracked Entity type are available.
 
+    - If you select a program, only relationships between entities in the same program will show by default. You have an option to also show relationships to entities outside the program.
+
 3.  In the **PERIOD** tab
 
     ![](resources/images/maps/maps_tracked_entity_layer_dialog_PERIOD.png)
@@ -839,8 +841,8 @@ configuration dialog.
     - If no program is selected, you can set start and end dates when
       the tracked entities were last updated.
 
-    - If a program is selected, you can set start and end dates for
-      the program period.
+    - If a program is selected, you can set the period when tracked entities were last
+      updated or when they were registered or enrolled in the program.
 
 4.  In the **ORG UNITS** tab:
 
