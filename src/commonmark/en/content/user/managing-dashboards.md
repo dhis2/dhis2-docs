@@ -129,9 +129,13 @@ the removed item will "rise" upwards.
 
 ### Print preview
 
-Click on the **Print preview** button to view how the dashboard would look in dashboard layout print. Note that when printing dashboard layout, some items may be moved down in order to avoid page breaks.
+Click on the **Print preview** button to view how the dashboard would look in dashboard layout print.
 
-Items may also be shortened to fit on one page. Items that are shortened show an info icon in the upper right corner in preview. This icon is removed in the actual print.
+![](resources/images/dashboard/dashboard-edit-print-preview.png)
+
+Click on **Exit Print preview** to return to editing the dashboard.
+
+Note that some items may be moved down in order to avoid page breaks Items may also be shortened to fit on one page. Items that are shortened show an info icon in the upper right corner in preview. This icon is removed in the actual print.
 
 ### Saving the dashboard
 
@@ -177,6 +181,8 @@ delete the dashboard.
 ## Viewing a dashboard
 
 From view mode, you can toggle showing the description, star a dashboard, apply filters, print the dashboard, and share the dashboard with other users and groups.
+
+### Show description
 
 To toggle the description, click on the **...More** button and choose **Show description** (or **Hide description**). This setting will be remembered for all dashboards that you open. This setting applies to you, not other users.
 
@@ -232,6 +238,8 @@ scrolling the dashboard content.
 
 From the **...More** menu you can print the active dashboard. There are two styles of dashboard print: dashboard layout and one item per page. For both styles, a title page is added that shows the dashboard title, description (if the Show description setting is on), and any applied dashboard filters.
 
+![](resources/images/dashboard/dashboard-print-menu.png)
+
 For best print results:
 
 - use Chrome or Edge
@@ -244,11 +252,15 @@ Dashboard layout print will approximate the dashboard layout as it is shown in t
 
 Click on the **Print** button in the upper right to trigger the browser print functionality.
 
+![](resources/images/dashboard/dashboard-print-layout.png)
+
 #### Print one item per page
 
 This style of print will print each dashboard item on a separate page, maximizing the use of the paper.
 
 Click on the **Print** button in the upper right to trigger the browser print functionality.
+
+![](resources/images/dashboard/dashboard-print-oipp.png)
 
 ## Dashboard items with charts, pivot tables and maps
 
