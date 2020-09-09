@@ -57,7 +57,7 @@ on **Show less** will reset the height to your customized height.
 
 To create a new dashboard, click the green **+** button in the left
 corner of the control bar to go into create mode. Add a title in the
-title field, and optionally a description in the description field.
+title field, and optionally a description in the description field. If you do not add a title, the dashboard will automatically be titled "Untitled dashboard".
 
 ![](resources/images/dashboard/dashboard-add-new.png)
 
