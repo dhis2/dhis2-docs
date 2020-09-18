@@ -10368,6 +10368,273 @@ Finally, to delete an existing Visualization, you can make a `DELETE` request sp
 
     DELETE /api/visualizations/hQxZGXqnLS9
 
+## Data items
+
+<!--DHIS2-SECTION-ID:webapi_data_items-->
+
+This endpoint allows the user to query data related to a few different dimensional items. These items are: `INDICATOR`, `DATA_ELEMENT`, `DATA_SET`, `PROGRAM_INDICATOR`, `PROGRAM_DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`. The endpoint supports only `GET` requests and, as other endpoints, can return responses in JSON or XML format.
+
+The URL is `/api/dataItems` and as you can imagine, it is able to retrieve different objects through the same endpoint in the same `GET` request. For this reason, some queriable attributes available will differ depending on the dimensional item(s) being queried.
+
+To understand the statement above let's have a look at the followings request examples:
+
+1) `GET /api/dataItems?filter=dimensionItemType:eq:DATA_ELEMENT&filter=valueType:eq:TEXT`
+In this example the item type `DATA_ELEMENT` has a `valueType` attribute which can be used in the query.
+
+2) `GET /api/dataItems?filter=dimensionItemType:in:[PROGRAM_INDICATOR]&filter=program.id:eq:IpHINAT79UW`
+Here, the `PROGRAM_INDICATOR` allows filtering by `program.id`.
+
+So, based on the examples `1)` and `2)` if you try filtering a `DATA_ELEMENT` by `program.id` or filter a `PROGRAM_INDICATOR` by `valueType` you will get an error, as the respective attributes don't belong to those dimensional items.
+
+Another important aspect to be highlighted is that this endpoint follows the same querying standards as other existing endpoints, like `Metadata object  filter` for example. As a consequence, it supports the same operators. See <a href="#webapi_metadata_object_filter">Metadata object filter</a> for the list of available operators.
+
+### Possible endpoint responses
+
+<!--DHIS2-SECTION-ID:webapi_data_items_possible_responses-->
+
+Base on the `GET` request/query, a few different responses are possible. Below we are summarizing each possibility.
+
+#### Results found (HTTP status code 302)
+
+```
+{
+  "pager": {
+    "page": 1,
+    "pageCount": 1,
+    "total": 26,
+    "pageSize": 50
+  },
+  "nameableObjects": [
+    {
+      "code": "DE_399",
+      "lastUpdated": "2014-11-11T21:56:05.728",
+      "id": "A2VfEfPflHV",
+      "created": "2011-12-24T12:24:25.088",
+      "name": "All other new",
+      "shortName": "Others new",
+      "aggregationType": "SUM",
+      "displayName": "All other new",
+      "publicAccess": "rw------",
+      "displayShortName": "Others new",
+      "externalAccess": false,
+      "dimensionItem": "A2VfEfPflHV",
+      "displayFormName": "All other new",
+      "favorite": false,
+      "dimensionItemType": "DATA_ELEMENT",
+      "access": {
+        "read": true,
+        "update": true,
+        "externalize": false,
+        "delete": true,
+        "write": true,
+        "manage": true
+      },
+      "user": {
+        "id": "GOLswS44mh8"
+      },
+      "favorites": [],
+      "translations": [
+        {
+          "property": "SHORT_NAME",
+          "locale": "en_GB",
+          "value": "Others new"
+        },
+        {
+          "property": "NAME",
+          "locale": "en_GB",
+          "value": "All other new"
+        }
+      ],
+      "userGroupAccesses": [],
+      "attributeValues": [],
+      "userAccesses": [],
+      "legendSets": []
+    }, ...
+  ]
+}
+```
+
+#### Results not found (HTTP status code 404)
+
+```
+{
+  "pager": {
+    "page": 1,
+    "pageCount": 1,
+    "total": 0,
+    "pageSize": 50
+  },
+  "nameableObjects": []
+}
+```
+
+#### Invalid query (HTTP status code 409)
+
+```
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "Unable to parse element `INVALID_TYPE` on filter `dimensionItemType`. The values available are: [INDICATOR, DATA_ELEMENT, DATA_ELEMENT_OPERAND, DATA_SET, PROGRAM_INDICATOR, PROGRAM_DATA_ELEMENT, PROGRAM_ATTRIBUTE]",
+  "errorCode": "E2016"
+}
+```
+
+#### Unhandled error (HTTP status code 500)
+
+```
+{
+  "httpStatus": "Internal Server Error",
+  "httpStatusCode": 500,
+  "status": "ERROR"
+}
+```
+
+### Pagination
+
+<!--DHIS2-SECTION-ID:webapi_data_items_pagination-->
+
+This endpoint also supports pagination as a default option. If needed, you can disable pagination by adding `paging=false` to the `GET` request.
+ie.: `/api/dataItems?filter=dimensionItemType:in:[INDICATOR]&paging=false`.
+
+Here is an example of a payload when the pagination is enabled. Remember that pagination is the default option and does not need to be explicitly set.
+
+```
+{
+  "pager": {
+    "page": 1,
+    "pageCount": 20,
+    "total": 969,
+    "pageSize": 50,
+    "nextPage": "http://your-domain/dhis/api/dataItems?page=2&filter=dimensionItemType:in:[INDICATOR]"
+  },
+  "nameableObjects": [...]
+}
+```
+
+> **Note**
+>
+> The pagination of this endpoint needs to consolidate different dimensional items before building the response payload. Because of that, if some `order` is defined in the `GET` request, each page will bring an array of dimensional items respecting the ordering set.
+>
+> When paging is enabled the ordering is applied per page and not on the full result. In the other hand, if paging is disabled, the ordering will be applied to the full list of results. This will result in a difference in order. The first will order per page basis while the second will order the full list of items all at once.
+>
+> For better performance, we recommend leaving the pagination always enabled. It will optimize the performance by avoiding memory consumption and increasing the response time.
+
+### Response attributes
+
+<!--DHIS2-SECTION-ID:webapi_data_items_response_attributes-->
+
+Now that we have a good idea of the main features and usage of this endpoint let's have a look in the list of attributes returned in the response.
+
+<table>
+<caption>Data items attributes</caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>The unique identifier.</td>
+</tr>
+<tr class="even">
+<td>code</td>
+<td>A custom code to identify the dimensional item.</td>
+</tr>
+<tr class="odd">
+<td>created</td>
+<td>The date of creation.</td>
+</tr>
+<tr class="even">
+<td>lastUpdated</td>
+<td>The last date when this item was updated.</td>
+</tr>
+<tr class="odd">
+<td>name</td>
+<td>The name given for the item.</td>
+</tr>
+<tr class="even">
+<td>shortName</td>
+<td>A short name given for the item.</td>
+</tr>
+<tr class="odd">
+<td>displayName</td>
+<td>The display name defined.</td>
+</tr>
+<tr class="even">
+<td>displayShortName</td>
+<td>The display short name set.</td>
+</tr>
+<tr class="odd">
+<td>displayFormName</td>
+<td>The name of the associated form.</td>
+</tr>
+<tr class="even">
+<td>dimensionItem</td>
+<td>The unique identifier, same as id.</td>
+</tr>
+<tr class="odd">
+<td>dimensionItemType</td>
+<td>The dimension type. Possible types: INDICATOR, DATA_ELEMENT, REPORTING_RATE, PROGRAM_INDICATOR, PROGRAM_DATA_ELEMENT, PROGRAM_ATTRIBUTE.</td>
+</tr>
+<tr class="even">
+<td>aggregationType</td>
+<td>The aggregation type defined for this dimensional item. They can be: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST,
+LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM, DEFAULT.</td>
+</tr>
+<tr class="odd">
+<td>publicAccess</td>
+<td>The permissions set for public access.</td>
+</tr>
+<tr class="even">
+<td>externalAccess</td>
+<td>Indicates whether the item is available externaly as read-only. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>favorites</td>
+<td>List of user ids who have marked this object as a favorite.</td>
+</tr>
+<tr class="even">
+<td>favorite</td>
+<td>Indicates if the current istem is set as favorite for the current user. Boolean value.</td>
+</tr>
+<tr class="odd">
+<td>access</td>
+<td>Access information for this item, related to the current user.</td>
+</tr>
+<tr class="even">
+<td>user</td>
+<td>The owner of this object.</td>
+</tr>
+<tr class="odd">
+<td>translations</td>
+<td>Set of translatable objects available. Normally filtered by locale.</td>
+</tr>
+<tr class="even">
+<td>userGroupAccesses</td>
+<td>Groups access to the current dimensional item.</td>
+</tr>
+<tr class="odd">
+<td>attributeValues</td>
+<td>Set of the dynamic attributes values that belong to the current item.</td>
+</tr>
+<tr class="even">
+<td>userAccesses</td>
+<td>List of user accesses related to this object.</td>
+</tr>
+<tr class="odd">
+<td>legendSet</td>
+<td>Defines the legend set values. Will override the automatic legend set.</td>
+</tr>
+</tbody>
+</table>
+
 ## Analytics
 
 <!--DHIS2-SECTION-ID:webapi_analytics-->
