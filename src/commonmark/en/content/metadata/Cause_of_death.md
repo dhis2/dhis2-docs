@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CoD</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -82,8 +81,12 @@
 
 <h2 id="tracker-program-overview">Tracker Program Overview</h2>
 <p>Both the event and tracker version of the WHO cause of death module only consist of one program stage, as they are very similar in their design; with the key design change being the ability to register attributes in the tracker based program. The cause of death module uses a custom form in order to meet design requirements to closely reflect the paper form in a web browser, however sections have also been made in the event a mobile device is used. This structure can be seen in the diagram below.</p>
+
+![Program structure](resources/images/CoD_Program_overview.png)
+
 <p id="gdcalert2"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
 <p><img src="images/image2.png" alt="alt_text" title="image_tooltip"></p>
+
 <p>Descriptions of these programs are described in further detail in the sections below.</p>
 <h3 id="event-program---cause-of-death-anonymous">Event Program - Cause of death (anonymous)</h3>
 <table>
@@ -130,19 +133,23 @@ This is a <strong>non-repeatable</strong> stage; once the details of the death a
 <p>Program rules are a critical component of the cause of death module in both tracker and event programs. Program rules are not only being used to reduce data entry errors through the use of the hide field and show error/warning actions, but also **_assign and code _**the underlying cause of death using ICD-10 SMoL and ICD-10 full codes; considered a key feature to this module in order to obtain higher quality mortality data. For a full list and description of the program rules for this program, see the detailed meta-data list here</p>
 <h3 id="hide-field">Hide Field</h3>
 <p>The hide field action is being used to **_grey/disable _**fields (this is the hide rule action being applied to a custom form; while it can not hide the field due to the custom design it can grey out the field so it cannot be interacted with). You can see this in the below example</p>
-<p id="gdcalert3"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
-<p><img src="images/image3.png" alt="alt_text" title="image_tooltip"></p>
+
+![Screenshot of the date of birth field](resources/images/CoD_Date_of_birth_hidden.png)
+
 <p>Date of birth can not be interacted with as the birth date is unknown; however it is not hidden from view.</p>
 <p>Note that on a mobile device the field will be hidden, as the form will default to the section design discussed previously.</p>
 <h3 id="show-warningshow-error">Show Warning/Show Error</h3>
 <p>A number of error/warning messages are built into the form in order to point out likely data entry issues. These messages will be displayed immediately within the event program  when it detects a problem</p>
-<p id="gdcalert4"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
-<p><img src="images/image4.png" alt="alt_text" title="image_tooltip"></p>
-<p id="gdcalert5"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image5.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert6">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
-<p><img src="images/image5.png" alt="alt_text" title="image_tooltip"></p>
+
+![Screenshot of the date of birth field](resources/images/CoD_show_warning.png)
+
+![Screenshot of the date of birth field](resources/images/CoD_validation_error.png)
+
+
 <p>For the tracker program, they will display upon event completion only.</p>
-<p id="gdcalert6"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image6.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert7">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
-<p><img src="images/image6.png" alt="alt_text" title="image_tooltip"></p>
+
+![Screenshot of the date of birth field](resources/images/CoD_error_and_warning.png)
+
 <p>The differences in displaying these error/messages was discussed as a potential pro/con to each of these designs and should be considered prior to implementation.</p>
 <h3 id="assign">Assign</h3>
 <p>The assign rule action is used in order to determine the values for the following 4 data elements:</p>
@@ -154,8 +161,9 @@ This is a <strong>non-repeatable</strong> stage; once the details of the death a
 </ul>
 <p>The assignment of the value for the age in years is based upon the information on dates of birth and death or the estimated age, whilst the last 3 data elements are based upon the selection of the underlying cause of death. More information on selecting this cause is available through the WHO’s SMoL training resources: <a href="https://www.who.int/healthinfo/civil_registration/smol/en/.">https://www.who.int/healthinfo/civil_registration/smol/en/. </a></p>
 <p>In order to assign different values to 3 data elements an interaction of 2 option sets is used along with a code containing multiple parts. In this particular case, the data element that identifies the cause of death (for example, cause of death C on the form is identified as the underlying cause) is linked to the option set “<strong>ICD SMoL - local dictionary.</strong>” This option set contains plain English language terms for the different factors that could potentially be identified for cause of death A,B,C or D within the medical certificate of cause of death. This option set also contains option codes for each option that is separated into 3 parts; this is what is used to assign values to the separate data elements indicated previously.</p>
-<p id="gdcalert7"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image7.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
-<p><img src="images/image7.png" alt="alt_text" title="image_tooltip"></p>
+
+![Screenshot of the date of birth field](resources/images/CoD_ICD_SMOL.png)
+
 <p>Note that the code is separated by a delimiter “|” to indicate the separate parts of the code. The parts are separated as follows:</p>
 <ol>
 <li>Code 1: ICD-10 SMoL code</li>
@@ -164,24 +172,30 @@ This is a <strong>non-repeatable</strong> stage; once the details of the death a
 </ol>
 <p>The SMoL code used within the “<strong>ICD SMoL - local dictionary</strong>” identifies what will be used as the eventual underlying cause of death according to the shortened list in the ICD-10 SMoL. See in the above example that there can be multiple options using the same SMoL code in the “<strong>ICD-SMoL - local dictionary</strong>” option set, as these terms all correspond with the same cause of death that will be used for statistical purposes in the SMoL list.</p>
 <p>In this example, let us say that we have identified acute liver necrosis as our underlying cause of death (note this is to explain the design and not necessarily reflective of a real example), which corresponds to an ICD-10 SMoL code of 5-74 and an ICD-10 full code of K720.</p>
-<p id="gdcalert8"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image8.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert9">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
-<p><img src="images/image8.png" alt="alt_text" title="image_tooltip"></p>
-<p>One this has been entered:</p>
+
+![Screenshot of the date of birth field](resources/images/CoD_medical_data.png)
+
+
+<p>Once this has been entered:</p>
 <ol>
 <li>It will take the first part of the code in the option set “<strong>ICD SMoL - local dictionary</strong>” (5-74) and assign it to the “underlying cause of death” data element. This data element is also linked to an option set “<strong><em>ICD-SMoL.</em></strong>” This option set is the shortened list of causes of death that can be used for obtaining better quality cause of death data.</li>
 <li>The code 5-74 in the “<strong><em>ICD-SMoL</em></strong>”  option set corresponds to a value of “Other diseases of the digestive system.”</li>
 </ol>
-<p id="gdcalert9"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image9.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert10">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
-<p><img src="images/image9.png" alt="alt_text" title="image_tooltip"></p>
+
+![Screenshot of the date of birth field](resources/images/CoD_other_diseases.png)
+
 <p>We can see that this is what will appear in the data entry form assigned to this data element at the bottom of the screen</p>
-<p id="gdcalert10"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image10.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert11">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
-<p><img src="images/image10.png" alt="alt_text" title="image_tooltip"></p>
+
+![Screenshot of the date of birth field](resources/images/CoD_results_underlying.png)
+
+
 <ol>
 <li>It will take the first part of the code in the option set “<strong>ICD SMoL - local dictionary</strong>” (5-74) and assign it to the “<strong><em>ICD-10 SMoL</em></strong>” data element. This is just a plain text data element, so the code appears exactly as it is written in the option set.</li>
 <li>It will take the second part of the code in the option set “<strong>ICD SMoL - local dictionary</strong>” (K720) and assign it to the “ICD-10” data element. This is just a plain text data element, so the code appears exactly as it is written in the option set.</li>
 </ol>
-<p id="gdcalert11"><span>&gt;&gt;&gt;&gt;&gt;  gd2md-html alert: inline image link here (to images/image11.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert12">Next alert</a>)<br><span>&gt;&gt;&gt;&gt;&gt; </span></p>
-<p><img src="images/image11.png" alt="alt_text" title="image_tooltip"></p>
+
+![Screenshot of the date of birth field](resources/images/CoD_results_complete.png)
+
 <p>This is the general process that is used in order to automatically code the identified underlying causes of death in this form and facilitate one of the key requirements of this module. By using this methodology, the cause of death is coded correctly and can subsequently be aggregated as required.</p>
 <h2 id="program-indicators">Program Indicators</h2>
 <p>You can read more about program indicators here:</p>
