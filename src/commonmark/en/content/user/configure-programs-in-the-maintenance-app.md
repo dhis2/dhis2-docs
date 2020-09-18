@@ -3319,12 +3319,11 @@ Its value varies between -3.5 to 3.5 depending upon the value of height.
 <tr class="even">
 <td>d2:zScoreWFH</td>
 <td>Z-Score weight for height indicator</td>
-<td>Calculates z-score based on data derived by the WHO weight-for-height indicators. 
-The data used for the WHO weight-for-height indicator for girls can be found [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/zScoreWFH-girls-table.txt) and for boys [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/zScoreWFH-boys-table.txt).
+<td>Calculates z-score based on data derived from the WHO weight-for-length and weight-for-height indicators.
+The data used for girls can be found [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/zScoreWFH-girls-table.txt) and for boys [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/zScoreWFH-boys-table.txt).
 Its value varies between -3.5 to 3.5 depending upon the value of the weight.
 <p>Example expression:</p>
-<pre><code>d2:zScoreWFH( height, weight, gender )</code></pre>
-</td>
+<pre><code>d2:zScoreWFH( height, weight, gender )</code></pre></td>
 </tr>
 <tr class="odd">
 <td>d2:minValue</td>
