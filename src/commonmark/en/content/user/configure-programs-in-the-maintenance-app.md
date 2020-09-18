@@ -3303,7 +3303,6 @@ e varies between -3.5 to 3.5 depending upon the value of weight.
 <pre><code>d2:zScoreWFA( ageInMonths, weight, gender )</code></pre>
 
 > **Gender**
->
 > Gender is concidered female by default. Any of the following codes can
 > be used to denote male: 'Male', 'MALE', 'male', 'ma', 'm', 'M', 0, false
 
@@ -3320,10 +3319,12 @@ Its value varies between -3.5 to 3.5 depending upon the value of height.
 <tr class="even">
 <td>d2:zScoreWFH</td>
 <td>Z-Score weight for height indicator</td>
-<td>Calculates z-score based on data provided by WHO weight-for-height indicator.
+<td>Calculates z-score based on data derived by the WHO weight-for-height indicators. 
+The data used for the WHO weight-for-height indicator for girls can be found [here](link) and for boys [here](link).
 Its value varies between -3.5 to 3.5 depending upon the value of the weight.
 <p>Example expression:</p>
-<pre><code>d2:zScoreWFH( height, weight, gender )</code></pre></td>
+<pre><code>d2:zScoreWFH( height, weight, gender )</code></pre>
+</td>
 </tr>
 <tr class="odd">
 <td>d2:minValue</td>
