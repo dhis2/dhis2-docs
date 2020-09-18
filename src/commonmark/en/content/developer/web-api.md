@@ -9809,190 +9809,194 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 <td>The font size of the text.</td>
 </tr>
 <tr class="even">
+<td>fontStyle</td>
+<td>Custom font styles for: visualizationTitle, visualizationSubtitle, horizontalAxisTitle, verticalAxisTitle, targetLineLabel, baseLineLabel, seriesAxisLabel, categoryAxisLabel, legend.</td>
+</tr>
+<tr class="odd">
 <td>relativePeriods</td>
 <td>An object representing the relative periods used in the analytics query.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>legendSet</td>
 <td>An object representing the definitions for the legend.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>legendDisplayStyle</td>
 <td>The legend's display style. It can be: FILL or TEXT.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>legendDisplayStrategy</td>
 <td>The legend's display style. It can be: FIXED or BY_DATA_ITEM.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>aggregationType</td>
 <td>Determines how the values in the pivot table are aggregated. Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>regressionType</td>
 <td>A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>targetLineValue</td>
 <td>The chart target line. Accepts a Double type.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>targetLineLabel</td>
 <td>The chart target line label.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>rangeAxisLabel</td>
 <td>The chart vertical axis (y) label/title.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>domainAxisLabel</td>
 <td>The chart horizontal axis (x) label/title.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>rangeAxisMaxValue</td>
 <td>The chart axis maximum value. Values outside of the range will not be displayed.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>rangeAxisMinValue</td>
 <td>The chart axis minimum value. Values outside of the range will not be displayed.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>rangeAxisSteps</td>
 <td>The number of axis steps between the minimum and maximum values.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>rangeAxisDecimals</td>
 <td>The number of decimals for the axes values.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>baseLineValue</td>
 <td>A chart baseline value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>baseLineLabel</td>
 <td>A chart baseline label.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>digitGroupSeparator</td>
 <td>The digit group separator. Valid values: COMMA, SPACE or NONE.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>topLimit</td>
 <td>The top limit set for the Pivot table.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>measureCriteria</td>
 <td>Describes the criteria applied to this measure.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>percentStackedValues</td>
 <td>Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>noSpaceBetweenColumns</td>
 <td>Show/hide space between columns. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>regression</td>
 <td>Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>externalAccess</td>
 <td>Indicates whether the Visualization is available as external read-only. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>userOrganisationUnit</td>
 <td>Indicates if the user has an organisation unit. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>userOrganisationUnitChildren</td>
 <td>Indicates if the user has a children organisation unit. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>userOrganisationUnitGrandChildren</td>
 <td>Indicates if the user has a grand children organisation unit . Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>reportingParams</td>
 <td>Object used to define boolean attributes related to reporting.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>rowTotals</td>
 <td>Displays (or not) the row totals. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>colTotals</td>
 <td>Displays (or not) the columns totals. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>rowSubTotals</td>
 <td>Displays (or not) the row sub-totals. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>colSubTotals</td>
 <td>Displays (or not) the columns sub-totals. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>cumulativeValues</td>
 <td>Indicates whether the visualization is using cumulative values. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>hideEmptyColumns</td>
 <td>Indicates whether to hide columns with no data values. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>hideEmptyRows</td>
 <td>Indicates whether to hide rows with no data values. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>completedOnly</td>
 <td>Indicates whether to hide columns with no data values. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>skipRounding</td>
 <td>Apply or not rounding. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>showDimensionLabels</td>
 <td>Shows the dimension labels or not. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>hideTitle</td>
 <td>Hides the title or not. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>hideSubtitle</td>
 <td>Hides the subtitle or not. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>hideLegend</td>
 <td>Show/hide the legend. Very likely to be used by charts. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>showHierarchy</td>
 <td>Displays (or not) the organisation unit hierarchy names. Boolean value.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>showData</td>
 <td>Used by charts to hide or not data/values within the rendered model. Boolean value.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>lastUpdatedBy</td>
 <td>Object that represents the user that applied the last changes to the Visualization.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>lastUpdated</td>
 <td>The date/time of the last time the Visualization was changed.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>favorites</td>
 <td>List of user ids who have marked this object as a favorite.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>subscribers</td>
 <td>List of user ids who have subscribed to this Visualization.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>translations</td>
 <td>Set of available object translation, normally filtered by locale.</td>
 </tr>
@@ -10314,6 +10318,44 @@ These operations follow the standard *REST* semantics. A new Visualization can b
         "image": "other-image"
       }
     ]
+  },
+  "fontStyle": {
+    "visualizationTitle": {
+      "font": "VERDANA",
+      "fontSize": 16,
+      "bold": true,
+      "italic": false,
+      "underline": false,
+      "textColor": "#3a3a3a",
+      "textAlign": "LEFT"
+    },
+    "horizontalAxisTitle": {
+      "font": "ROBOTO",
+      "fontSize": 12,
+      "bold": false,
+      "italic": true,
+      "underline": false,
+      "textColor": "#2a2a2a",
+      "textAlign": "CENTER"
+    },
+    "categoryAxisLabel": {
+      "font": "ROBOTO",
+      "fontSize": 12,
+      "bold": false,
+      "italic": true,
+      "underline": false,
+      "textColor": "#dedede",
+      "textAlign": "CENTER"
+    },
+    "targetLineLabel": {
+      "font": "ARIAL",
+      "fontSize": 12,
+      "bold": false,
+      "italic": true,
+      "underline": false,
+      "textColor": "#dedede",
+      "textAlign": "CENTER"
+    }
   }
 }
 ```
