@@ -2,7 +2,7 @@ A combination of the two tables
 https://www.who.int/childgrowth/standards/wfl_boys_z_exp.txt and
 https://www.who.int/childgrowth/standards/wfh_boys_z_exp.txt
 
-Height SD3neg  SD2neg  SD1neg  SD0	   SD1	   SD2	   SD3
+Height SD3neg  SD2neg  SD1neg  SD0     SD1     SD2     SD3
 45.0,  1.877,  2.043,  2.230,  2.441,  2.680,  2.951,  3.261
 45.5,  1.942,  2.114,  2.307,  2.524,  2.771,  3.050,  3.37
 46.0,  2.008,  2.185,  2.384,  2.608,  2.861,  3.149,  3.477
