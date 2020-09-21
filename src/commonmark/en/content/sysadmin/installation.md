@@ -659,7 +659,7 @@ This topic provides information about configuring an identity provider (IdP) to 
 Before you can use OpenID Connect with DHIS2, you must have an account with a supported identity provider (IdP) and a project or application with the IdP. When you configure DHIS2, you will need to be able to provide the following information:
 
 * Provider client ID. This is the identifier that the IdP assigned to your application.
-* Provider client secret. This is a token that is used by Tableau to verify the authenticity of the response from the IdP. This value is a secret and should be kept securely.
+* Provider client secret. This is a token that is used by DHIS2 to verify the authenticity of the response from the IdP. This value is a secret and should be kept securely.
 
 #### Redirect URL
 Some IdPs will require a redirect URL for your DHIS2. You can manually construct your URL for the IdP using the following syntax:
