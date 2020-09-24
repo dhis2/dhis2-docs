@@ -33,24 +33,16 @@ which can be found below.
 
 <!--DHIS2-SECTION-ID:import_progress_logger-->
 
-No matter what you import ("Metadata", "Data", "Events" or "GML" data),
-you can always view the progress of the import by opening the logger at the
-bottom of the screen.
-
-* To open the logger, click on the "arrow up" icon on the right side:
-
-![](resources/images/import_export/logger-open.png)
-
-* To close the logger, click on the "arrow down" icon in the top-right corner:
-
-![](resources/images/import_export/logger-close.png)
+No matter what you import ("Data", "Events", "GML", "Metadata" or
+"Tracked Entity Instances" data), you can always view the progress of
+the import by looking at the "Job Summary" at the top of the page.
 
 ### Import Summaries
 
 <!--DHIS2-SECTION-ID:metadata_import_summaries-->
 
 On import request completion, we show import summaries above the import form.
-Any conflicts or errors are shown in a paginated table under totals.
+Any conflicts or errors are shown in a table.
 
 ![](resources/images/import_export/import_summary.png)
 
@@ -61,27 +53,23 @@ Any conflicts or errors are shown in a paginated table under totals.
 Metadata Import can be accessed from the sidebar by clicking on
 Metadata Import.
 
-
 ![](resources/images/import_export/metadata_import.png)
 
 1.  Choose a file to upload
 
-1.  Select from the available formats e.g. *JSON* , *XML* or *CSV*
+2.  Select from the available formats e.g. *JSON* , *XML* or *CSV*
 
-1.  Choose **Dry Run** . *Yes* will do a test import without importing
-    any data into the database.
+3.  Select the appropriate settings of:
 
-1.  Select the appropriate settings of:
-
-    * Idenfifier
+    * Identifier
     * Import report mode
     * Preheat mode
     * Import strategy
     * Atomic mode
     * Merge mode
 
-1.  Click **MORE OPTIONS** if you want to adjust one or more of the following
-    settings before importing:
+4.  Click **Advanced options** if you want to adjust one or more of
+    the following settings before importing:
 
     * Flush mode
     * Skip sharing
@@ -89,7 +77,7 @@ Metadata Import.
     * Async
     * Inclusive strategy
 
-1.  Click on the **Import** button which will upload the file and start the
+5.  Click on the **Import** button which will upload the file and start the
     importing process.
 
 > **Tip**
@@ -104,7 +92,7 @@ Metadata Import.
 > 
 > If an organisation unit e.g. `Nduvuibu MCHP` had a unknown reference to an object with ID `aaaU6Kr7Gtpidn`, it means that the object with ID `aaaU6Kr7Gtpidn` was not present in your imported file, and it was not found in the existing database. 
 >
-> You can control this using **Reference Mode** option available under **MORE OPTIONS**, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
+> You can control this using **Identifier** option, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
 
 #### Matching Identifiers in DXF2
 
@@ -133,26 +121,23 @@ Import.
 
 1.  Choose a file to upload
 
-1.  Select from the available formats: *JSON*, *XML*, *PDF*,
+2.  Select from the available formats: *JSON*, *XML*, *PDF*,
     *ADX* or *CSV*
 
-1.  Choose **Dry Run** . *Yes* will do a test import without importing
-    any data into the database.
-
-1.  Select the appropriate settings of:
+3.  Select the appropriate settings of:
 
     * Strategy
     * Preheat cache
 
-1.  Click **MORE OPTIONS** if you want to adjust one or more of the following
-    settings before importing:
+4.  Click **Advanced options** if you want to adjust one or more of
+    the following settings before importing:
 
     * Data element id scheme
     * Org unit id scheme
     * Id scheme
     * Skip existing check
 
-1.  Click on the **Import** button which will upload the file and start the
+5.  Click on the **Import** button which will upload the file and start the
     importing process.
 
 > **Tip**
@@ -185,14 +170,15 @@ import.
 
 1.  Select from the available formats e.g. *JSON* , *XML* or *CSV*
 
-2.  Choose **Dry Run** . *Yes* will do a test import without importing
-    any data into the database.
+2.  Click **Advanced options** if you want to adjust one or more of
+    the following settings before importing:
 
-3.  Choose **Event ID Scheme**.
+    * Event id scheme
+    * Data element id scheme
+    * Org unit id scheme
+    * Id scheme
 
-4.  Choose **Org Unit ID Scheme**.
-
-1.  Click on the **Import** button which will upload the file and start the
+3.  Click on the **Import** button which will upload the file and start the
     importing process.
 
 ### GML Import
@@ -206,11 +192,47 @@ Import.
 
 1.  Upload a file using the *GML* (Geographic Markup Language) format.
 
-2.  Choose **Dry Run** . *Yes* will do a test import without importing
-    any data into the database.
-
-1.  Click on the **Import** button which will upload the file and start the
+2.  Click on the **Import** button which will upload the file and start the
     importing process.
+
+### Tracked Entity Instances Import
+
+<!--DHIS2-SECTION-ID:tei_import-->
+
+Tracked Entity Instances Import can be accessed from the sidebar by
+clicking on TEI Import.
+
+![](resources/images/import_export/tei_import.png)
+
+1.  Choose a file to upload
+
+2.  Select from the available formats e.g. *JSON*  or *XML*
+
+3.  Select the appropriate settings of:
+
+    * Identifier
+    * Import report mode
+    * Preheat mode
+    * Import strategy
+    * Atomic mode
+    * Merge mode
+
+4.  Click **Advanced options** if you want to adjust one or more of
+    the following settings before importing:
+
+    * Flush mode
+    * Skip sharing
+    * Skip validation
+    * Inclusive strategy
+
+5.  Click on the **Import** button which will upload the file and start the
+    importing process.
+
+> **Tip**
+> 
+> **It is highly recommend to use the Dry run option** to test before
+> importing data; to make sure you keep control over any changes to
+> your Tracked Entity Instances.
 
 ## Exporting data
 
@@ -221,21 +243,18 @@ Import.
 Metadata export can be accessed from the sidebar by clicking on
 Metadata export.
 
-
 ![](resources/images/import_export/metadata_export.png)
 
 1.  Choose the list of objects you would like to export.
 
-2.  Choose export *format* *JSON* or *XML*
+2.  Choose export *format* *JSON*, *CSV* or *XML*
 
 3.  Choose *compression* type *zip* , *gzip* or *uncompressed*
 
 4.  Choose option *Sharing* with or without sharing.
 
-5.  Click **Export** which will bring up the **Logger** at the bottom of
-    the page to show the progress.
-
-6.  The exported file is downloaded to your local computer.
+5.  Click **Export metadata** which will open a new web-browser window
+    that will give you a file to download to your local computer.
 
 ### Metadata Export with Dependencies
 
@@ -332,7 +351,6 @@ belong together with the main object.
 </tbody>
 </table>
 
-
 ![](resources/images/import_export/metadata_dependency_export.png)
 
 ![](resources/images/import_export/metadata_dependency_export_object_types.png)
@@ -342,14 +360,13 @@ belong together with the main object.
 
 2.  Select an **Object**.
 
-3.  Select a format: **XML** or **JSON**.
+3.  Select a format: **JSON** or **XML**.
 
 4.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
 
-5.  Click **Export** which will bring up the **Logger** at the bottom of
-    the page to show the progress.
-
-6.  The exported file is downloaded to your local computer.
+5.  Click **Export metadata dependencies** which will open a new
+    web-browser window that will give you a file to download to your
+    local computer.
 
 ### Data export
 
@@ -358,28 +375,32 @@ belong together with the main object.
 Data export can be accessed from the sidebar by clicking on Data
 export.
 
-
 ![](resources/images/import_export/data_export.png)
 
 1.  Select the *Organisation Units* .
 
-2.  Select under Children if you want export to include descendants of organisation units selected in Step 1 or only the manually selected organisation units.
+2.  Select if you want export to include descendants of organisation
+    units selected in Step 1 or only the manually selected
+    organisation units.
 
-3.  Set the *Start* and *End Date* .
+3.  Choose the *Data Sets*.
 
-4.  Choose the *Data Sets*
+4.  Set the *Start* and *End Date* .
 
-5.  Select a format: **XML** or **JSON** .
+5.  Select a format: **XML**, **CSV** or **JSON** .
 
 6.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
 
-7.  Click *MORE OPTIONS* If you want to adjust Data Element ID Scheme,
-    Org. Unit ID Scheme or ID Scheme before export.
+7.  Click **Advanced options** if you want to adjust one or more of
+    the following settings before exporting:
 
-8.  Click **Export** which will bring up the **Logger** at the bottom of
-    the page to show the progress.
+    * Include deleted
+    * Data element ID scheme
+    * Organisation unit ID scheme
+    * ID scheme
 
-9.  The exported file is downloaded to your local computer.
+8.  Click **Export data** which will open a new web-browser window
+    that will give you a file to download to your local computer.
 
 ### Event export
 
@@ -388,7 +409,6 @@ export.
 Event export can be accessed from the sidebar by clicking on Event
 export.
 
-
 ![](resources/images/import_export/event_export.png)
 
 You can export event or tracker data in **XML** , **JSON** or **CSV**
@@ -396,35 +416,69 @@ formats.
 
 1.  Select an organisation unit.
 
-2.  Select a program and a program stage (if applicable).
-
-3.  Select the **ID scheme** to use for export: **UID** (default) or
-    **CODE** .
+2.  Select the **Inclusion**:
     
-    If you select **CODE** but the object's attribute does not have
-    code, it will not be included in the return payload.
+      - **Selected** : Export event data only for the selected
+        organisation unit
+    
+      - **Directly below** : Export event data including the first
+        level of the organisation units inside the selections as well
+        as the selected organisation unit itself.
+    
+      - **All below** : Export event data for all organisation units
+        inside the selections as well as the selected organisation
+        unit itself.
+
+3.  Select a program and a program stage (if applicable).
 
 4.  Select **Start date** and **End date** .
 
-5.  Select the **Inclusion**:
-    
-      - **Selected organisation unit** : Export event data only for the
-        selected organisation unit
-    
-      - **Include children of organisation unit** : Export event data
-        for the children of the organisation unit as well as the
-        selected organisation unit itself.
-    
-      - **Include descendants of organisation unit** : Export event data
-        for the descendants of the organisation unit as well as the
-        selected organisation unit itself.
+5.  Select a format: **XML** , **JSON** or **CSV**.
+
+6.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
+
+7.  Click **Advanced options** if you want to adjust one or more of
+    the following settings before exporting:
+
+    * Include deleted
+    * Data element ID scheme
+    * Organisation unit ID scheme
+    * ID scheme
+
+8.  Click **Export events** which will open a new web-browser window
+    that will give you a file to download to your local computer.
+
+### Tracked Entity Instances export
+
+<!--DHIS2-SECTION-ID:tei_export-->
+
+Tracked entity instances export can be accessed from the sidebar by
+clicking on TEI export.
+
+![](resources/images/import_export/tei_export.png)
+
+You can export event or tracker data in **XML** , **JSON** or **CSV**
+formats.
+
+1.  Select the *organisation units* that should be included.
+
+2.  Select whether you want to filter by *program* or *tracked entity
+    type*.
 
 6.  Select a format: **XML** , **JSON** or **CSV**.
 
-7.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
+7.  Click **Advanced options** if you want to adjust one or more of
+    the following settings before exporting:
 
-8.  Click **Export** which will bring up the **Logger** at the bottom of
-    the page to show the progress.
+    * Filter by last updated date
+    * Assigned user mode
+    * Include deleted
+    * Include all attributes
+    * Data element ID scheme
+    * Event ID scheme
+    * Organisation unit ID scheme
+    * ID scheme
 
-9.  The exported file is downloaded to your local computer.
-
+8.  Click **Export tracked entity instances** which will open a new
+    web-browser window that will give you a file to download to your
+    local computer.
