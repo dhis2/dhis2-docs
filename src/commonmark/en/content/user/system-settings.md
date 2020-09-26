@@ -462,14 +462,6 @@
 <p>You can select 8 (default), 10, 12 or 14.</p></td>
 </tr>
 <tr class="odd">
-<td><p><strong>OpenID provider</strong></p></td>
-<td><p>Defines the OpenID provider.</p></td>
-</tr>
-<tr class="even">
-<td><p><strong>OpenID provider label</strong></p></td>
-<td><p>Defines the label to display for the specified OpenID provider.</p></td>
-</tr>
-<tr class="odd">
 <td><p><strong>CORS whitelist</strong></p></td>
 <td><p>Whitelists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served.</p></td>
 </tr>

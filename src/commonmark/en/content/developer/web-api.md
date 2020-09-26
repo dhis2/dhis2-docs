@@ -16122,16 +16122,6 @@ The available system settings are listed below.
 <td>No</td>
 </tr>
 <tr class="even">
-<td>keyOpenIdProvider</td>
-<td>OpenID provider</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyOpenIdProviderLabel</td>
-<td>OpenID provider lable</td>
-<td>No</td>
-</tr>
-<tr class="even">
 <td>keyCanGrantOwnUserAuthorityGroups</td>
 <td>Allow users to grant own user roles. Default: &quot;false&quot;</td>
 <td>No</td>
