@@ -133,9 +133,9 @@ Import.
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    * Data element id scheme
-    * Org unit id scheme
-    * Id scheme
+    * Data element ID scheme
+    * Org unit ID scheme
+    * ID scheme
     * Skip existing check
 
 5.  Click on the **Import** button which will upload the file and start the
@@ -174,10 +174,10 @@ import.
 2.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    * Event id scheme
-    * Data element id scheme
-    * Org unit id scheme
-    * Id scheme
+    * Event ID scheme
+    * Data element ID scheme
+    * Org unit ID scheme
+    * ID scheme
 
 3.  Click on the **Import** button which will upload the file and start the
     importing process.
@@ -483,3 +483,45 @@ formats.
 8.  Click **Export tracked entity instances** which will open a new
     web-browser window that will give you a file to download to your
     local computer.
+
+## Schemes
+The various schemes used in many of the import and export pages are
+also known as identifier schemes and are used to map metadata objects
+to other metadata during import, and to render metadata as part of
+exports.
+
+<table>
+<caption>Available values</caption>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scheme</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ID, UID</td>
+<td>Match on DHIS2 stable Identifier, this is the default id scheme.</td>
+</tr>
+<tr class="even">
+<td>CODE</td>
+<td>Match on DHIS2 Code, mainly used to exchange data with an external system.</td>
+</tr>
+<tr class="odd">
+<td>NAME</td>
+<td>Match on DHIS2 Name, please note that this uses what is available as <em>object.name</em>, and not the translated name. Also note that names are not always unique, and in that case, they can not be used.</td>
+</tr>
+<tr class="even">
+<td>ATTRIBUTE:ID</td>
+<td>Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to <em>true</em>. The main usage of this is also to exchange data with external systems, it has some advantages over <em>CODE</em> since multiple attributes can be added, so it can be used to synchronize with more than one system.</td>
+</tr>
+</tbody>
+</table>
+
+### ID scheme
+The ID scheme applies to all types of objects, but can be overwritten
+by more specific object types.
