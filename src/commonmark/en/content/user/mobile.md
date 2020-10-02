@@ -1167,26 +1167,21 @@ load balancing. There are different parameters for different type of
 gateway. The Gateway can be configured in GUI in Mobile Configuration
 Module as shown in the figure. More information about parameters needed
 to configure gateway can be found in [Gateway
-Configurations](#gateway.configuration)
+Configurations] section of new SMS app.(#gateway.configuration)
 
 
-![](resources/images/dhis2_mobile_sms/gateway_configurations.png)
+![](resources/images/dhis2_mobile_sms/sms-app.png)
 
 #### Configure GenericHttp Gateway
 
 Many DHIS2 instances are using GenericHttpGateway to connect to their
 local gateways. These local gateways provides HTTP APIs for sending SMS.
-In new GenericHttpGateway it is now possible to configure url parameters
-provided in their APIs. For example
-<http://gateway.com/sendMessage?username=AA&password=xxxxx&message=testing&msisdn=9999>.
-In this url username, password, message, msisdn are parameters that are
-required by external gateways. Now in GenericHttp these parameters are
-configurable which was not possible in previous releases. Making is
-configurable will help DHIS2 to interact with other gateways which have
-different url formats.
+In new GenericHttpGateway it is now possible to configure generic configuration
+template for gateway configuration. This template along with other parameters will compose
+http request towards external gateway.
 
 
-![](resources/images/dhis2_mobile_sms/generichttp-configuration.png)
+![](resources/images/dhis2_mobile_sms/generic-gateway.png)
 
 ### Gateway Configurations
 
@@ -1325,6 +1320,14 @@ Below table shows the parameters required for configuring gateway.
 <td>Optional</td>
 <td>N/A</td>
 <td>The type in which data will be sent to sms gateway. Default is application/x-www-form-urlencoded. Other supported types are application/json, application/xml and text/plain</td>
+</tr>
+<tr class="even">
+<td>configurationTemplate</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Optional</td>
+<td>N/A</td>
+<td>Generic configuration template which can be used to provide the data in the form acceptable to external gateway. For example username=${username}&password=${password}&to=${recipients}&countrycode=880&message=${text$}&messageid=0. Json/xml template can also be provided.</td>
 </tr>
 </tbody>
 </table>
