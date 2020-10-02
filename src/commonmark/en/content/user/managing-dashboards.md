@@ -6,7 +6,7 @@
 
 Dashboards are intended to provide quick access to different analytical
 objects (maps, charts, reports, tables, etc) to an individual user.
-Dashboards can also be shared with user groups.
+Dashboards can be shared with user groups. Dashboards can also be printed.
 
 A user or administrator could create a dashboard called "Antenatal care"
 which might contain all relevant information on antenatal care. This
@@ -57,7 +57,7 @@ on **Show less** will reset the height to your customized height.
 
 To create a new dashboard, click the green **+** button in the left
 corner of the control bar to go into create mode. Add a title in the
-title field, and optionally a description in the description field.
+title field, and optionally a description in the description field. If you do not add a title, the dashboard will automatically be titled "Untitled dashboard".
 
 ![](resources/images/dashboard/dashboard-add-new.png)
 
@@ -103,7 +103,7 @@ down-clicking on the item and dragging it to the desired position. It
 can also be resized with the mouse by down-clicking on the drag handle
 in the lower right corner of the item and dragging to the desired size.
 
-### Spacer items
+#### Spacer items
 
 The dashboard is configured with the "anti-gravity" setting for
 positioning items. This means that items will "rise" upwards until they
@@ -112,22 +112,32 @@ items (like an empty row), you can add spacer items to the dashboard.
 They are only visible in edit/create mode. In view mode, they are not
 displayed, but take up the defined space.
 
-**Spacer in edit/create mode:**
+Spacer in **edit/create mode**:
 
 ![](resources/images/dashboard/dashboard-spacer-edit-mode.png)
 
-**Spacer in view mode:**
+Spacer in **view mode**:
 
 ![](resources/images/dashboard/dashboard-spacer-view-mode.png)
 
-## Removing items
+### Removing items
 
 Remove items by clicking on the red trash can at the upper right of the
 item. Be aware that because of the "anti-gravity" setting in the
 dashboard, when you remove an item, the items that are positioned below
 the removed item will "rise" upwards.
 
-## Saving the dashboard
+### Print preview
+
+Click on the **Print preview** button to view how the dashboard would look in dashboard layout print.
+
+![](resources/images/dashboard/dashboard-edit-print-preview.png)
+
+Click on **Exit Print preview** to return to editing the dashboard.
+
+Note that some items may be moved down in order to avoid page breaks. Items may also be shortened to fit on one page. Items that are shortened show an info icon in the upper right corner in preview. This icon is removed in the actual print.
+
+### Saving the dashboard
 
 When creating or editing a dashboard, changes are only saved when you
 click **Save changes** button in the dashboard edit bar at the top of
@@ -170,19 +180,18 @@ delete the dashboard.
 
 ## Viewing a dashboard
 
-When in view mode, you can toggle showing the description, star a
-dashboard, apply filters, and share the dashboard with other
-users and groups.
+From view mode, you can toggle showing the description, star a dashboard, apply filters, print the dashboard, and share the dashboard with other users and groups.
 
-To view the description, click on the **i** button to the right of the
-title
+### Show description
+
+To toggle the description, click on the **...More** button and choose **Show description** (or **Hide description**). This setting will be remembered for all dashboards that you open. This setting applies to you, not other users.
 
 ![](resources/images/dashboard/dashboard-title-bar.png)
 
 ### Starred dashboards
 
 Your starred dashboards are listed first in the list of dashboards. To
-star a dashboard, click on the star button to the right of the title.
+star a dashboard, click on the star button to the right of the title. You can also toggle the star from the **...More** menu.
 When the star is “filled”, that means the dashboard is starred. Starring
 a dashboard only applies to you, not other users.
 
@@ -224,6 +233,34 @@ Whenever a filter is added, edited or removed, the dashboard items
 reload to show the updated data.
 Filter badges are always visible at the top of the page when
 scrolling the dashboard content.
+
+### Printing a dashboard
+
+From the **...More** menu you can print the active dashboard. There are two styles of dashboard print: dashboard layout and one item per page. For both styles, a title page is added that shows the dashboard title, description (if the Show description setting is on), and any applied dashboard filters.
+
+![](resources/images/dashboard/dashboard-print-menu.png)
+
+For best print results:
+
+- use Chrome or Edge
+- wait until all dashboard items have loaded before printing
+- use A4 landscape setting with default margins set
+
+#### Print dashboard layout
+
+Dashboard layout print will approximate the dashboard layout as it is shown in the browser. Note that some adjustments may need to be made to the layout in order to avoid page breaks: the position of some items may be adjusted downwards, and items that are taller than one page are shortened.
+
+Click on the **Print** button in the upper right to trigger the browser print functionality.
+
+![](resources/images/dashboard/dashboard-print-layout.png)
+
+#### Print one item per page
+
+This style of print will print each dashboard item on a separate page, maximizing the use of the paper.
+
+Click on the **Print** button in the upper right to trigger the browser print functionality.
+
+![](resources/images/dashboard/dashboard-print-oipp.png)
 
 ## Dashboard items with charts, pivot tables and maps
 

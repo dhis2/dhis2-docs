@@ -12,7 +12,8 @@ When you open the data-visualizer app from the dhis2 menu, you are presented wit
 
 ### Select visualization type
 
-Select the desired visualization type from the selector in the upper left corner:
+Select the desired visualization type from the selector in the upper left corner.
+For each visualization type there is a brief description with suggestions about where to use the main dimensions in the layout.
 
 ![](resources/images/data-visualizer/data-visualizer-visualization-type.png)
 
@@ -69,6 +70,13 @@ Layout restrictions: same as <em>Column</em>.
 </p></td>
 </tr>
 <tr class="odd">
+<td><p>Stacked area</p></td>
+<td><p>Same as <em>Area</em>, but the areas of the various dimension items are stacked on top of each other.</p>
+<p>Example: comparing the trends of related indicators.</p><p>
+Layout restrictions: same as <em>Area</em>.
+</p></td>
+</tr>
+<tr class="even">
 <td><p>Pie</p></td>
 <td><p>Circle divided into sectors (or slices).</p>
 <p>Example: visualizing the proportion of data for individual data elements compared to the total sum of all data elements.</p><p>
@@ -187,6 +195,15 @@ The organisation units dialog is flexible, offering essentially three ways of se
   - User sub-x2-units: Selects the units two levels below the user organisation unit.
 
 ![](resources/images/data-visualizer/data-visualizer-organisation-unit-dimension-modal.png)
+
+### Two category charts
+
+Most chart visualization types can show two categories.
+Switching from Pivot Table to Column, Bar, Area (and their stacked versions) and Line is keeping the first two dimensions in Category, any additional dimension is moved to Filter.
+The labels for the first dimension in Category are shown at the top of the chart, and the ones for the second dimension at the bottom.
+The resulting visualization is composed of separate charts, one for each item in the first dimension.
+
+![](resources/images/data-visualizer/data-visualizer-two-category.png)
 
 ## Change the display of your visualization
 
@@ -333,6 +350,14 @@ If you only select one dimension, sub-totals will be hidden for those rows. This
 </tr>
 
 <tr>
+<td colspan="2" align="center">Series tab</td>
+</tr>
+<tr>
+<td><p></p></td>
+<td><p>Options for adding more axes and changing how different series are displayed are set in this tab. Please see a detailed description of how this works in the corresponding sections below.</p></td>
+</tr>
+
+<tr>
 <td colspan="2" align="center">Style tab</td>
 </tr>
 <tr>
@@ -368,7 +393,7 @@ The <em>Custom</em> option allows you to type a custom title.</p></td>
 The <em>Custom</em> option allows you to type a custom subtitle.</p></td>
 </tr>
 <tr>
-<td><p>Legend key</p></td>
+<td><p>Show legend key</p></td>
 <td><p>Toggles the legend on and off leaving more room for the visualization itself.</p></td>
 </tr>
 <tr>
@@ -385,6 +410,10 @@ The <em>Custom</em> option allows you to type a custom subtitle.</p></td>
 <em>Auto generated</em> uses the default title generated from the visualization's dimensions/filters.
 <em>None</em> removes the title.
 The <em>Custom</em> option allows you to type a custom title.</p></td>
+</tr>
+<tr>
+<td><p>Color set</p></td>
+<td><p>Controls the colors used in the chart. A list of available color sets is shown with a preview of the colors. There is also a "Mono patterns" option which uses colored patterns instead of solid colors.</p></td>
 </tr>
 
 <tr>
@@ -430,6 +459,13 @@ If both parts of the filter are used, it's possible to filter out a range of dat
 </tbody>
 </table>
 
+### Custom styling for text and legend in charts
+
+The following options can be customized using the text styling tool: `Chart title`, `Chart subtitle`, `Show legend key`, `Target line`, `Base line`, `Axis title` and `Labels` for both horizontal and vertical axes.
+The text styling tool allows to choose a font size, color and italic/bold variants. It's also possible to choose the position of the text.
+
+![](resources/images/data-visualizer/data-visualizer-text-styling-tool.png)
+
 ## Adding Assigned Categories
 
 Assigned Categories is a composite dimension that represents associated category option combinations to the selected data element's category combination. This can be added by dragging the **Assigned Categories** dimension from the left side dimensions menu and into the visualization layout:
@@ -440,13 +476,24 @@ Another way of adding assigned categories is by accessing the **Add Assigned Cat
 
 ## Adding more axes
 
-When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar` and `Line` you can do so by clicking **Manage chart axes** in the `Data` dimension's context menu. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
+When combining data with different measurement scales you will get a more meaningful visualization by having more than a single axis. For `Column`, `Bar`, `Area` and `Line` you can do so by clicking the **Series tab** in the `Options` dialog. If the option is disabled, make sure that the `Data` dimension is on the `Series` axis and that at least two items have been added.
 
-![](resources/images/data-visualizer/data-visualizer-axis-management-menu-option.png)
+Four axes are available, two on the left side (axis 1 and 3) of the chart and two on the right side (axis 2 and 4).
+Each axis has a different color and the chart items are going to be colored accordingly.
 
-In the axis management dialog you can assign data items to the two axes.
+Note: When multiple axes are in use, some options like `Lines`, `Vertical (y) axis` and `Color set` in the other option tabs will be disabled.
 
-![](resources/images/data-visualizer/data-visualizer-axis-management-dialog.png)
+![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis.png)
+
+## Using multiple visualization types
+
+It's possible to combine a `Column` chart with `Line` items and vice versa. This is done by clicking the **Series tab** in the `Options` dialog and changing the `Visualization type`. This can also be combined with using multiple axes (as described in the section above).
+
+![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis-multi-type.png)
+
+This results in a chart that combines the `Column` and `Line` types.
+
+![](resources/images/data-visualizer/data-visualizer-multi-type-chart.png)
 
 ## Data drilling
 

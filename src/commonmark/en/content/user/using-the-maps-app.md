@@ -275,8 +275,12 @@ layer** selection. This opens the Events layer configuration dialog.
 
         In the **Period type** field select **Relative**, then
         select one of the relative periods, for example **Last year** or
-        **Last 12 months**, in the **Period** field. If you select a
-        relative period covering multiple years/months/weeks/days
+        **Last 12 months**, in the **Period** field.
+
+        A **default relative period for analysis** can be set in the **Systems Settings**
+        app.
+
+        If you select a relative period covering multiple years/months/weeks/days
         the layer can be displayed as
 
         - Single (aggregate)
@@ -343,25 +347,44 @@ layer** selection. This opens the Events layer configuration dialog.
 
     ![](resources/images/maps/maps_thematic_layer_dialog_STYLE.png)
 
-    - Select either **Automatic** or **Predefined** legend.
+    - Select either **Choropleth** or **Bubble maps**.
 
-      - Automatic legend types means that the application will
-        create a legend set for you based on your what method,
-        number of classes, low color and high color you select.
-        Method alludes to the size of the legend classes. Set to
+      - Choropleth will assign a color to each org unit shape according to the
+        data value. This is the recommended technique if the data is normalised
+        (per capita).
+
+      - Bubble map will show data values as proportional circles. Use this
+        technique if the data is not normalised (absolute numbers). The circles are
+        placed in the center of each org unit.
+
+    - Set the **Low radius** and **High radius** for the proportional circles or the
+      point facilities. The circles will be scaled between low and high radius according
+      to the data value. The radius needs to be between 0 and 50 px.
+
+    - **Show labels**: Allows org unit names to be shown on the layer. Font size, weight,
+      style and color can be modified here.
+
+    - **Show no data**: By default org units with missing data values will not show on the map.
+      Check this box if you want to show them with a color. Click the color to change it.
+
+    - Select the legend type:
+
+      - **Automatic color legend**: the application will create a legend for you based on
+        what classification method, number of classes and the color scale you select. Set
+        **Classification** to either:
 
         - Equal intervals
 
-          the range of each interval will be **(highest data value - lowest data value / number of classes)**
+          the range of each interval will be (highest data value - lowest data value / number of classes)
 
         - Equal counts
 
           the legend creator will try to distribute the organisation units evenly.
 
-      - If you have facilities in your thematic layer, you can set
-        the radius for minimum and maximum values by changing the
-        values in the **Low size** and **High size** boxes
-        respectively.
+      - **Predefined color legend**: Select between the predefined legends.
+
+      - **Single color legend**: Select the color of the bubbles or circles. Only available
+        for bubble maps.
 
 6.  Click **ADD LAYER**.
 
@@ -501,6 +524,8 @@ Along the bottom of the event card from left to right are:
 
 - A more actions (three dots) button with additional options:
 
+  - A **data table** toggle button to show or hide the data table associated with the layer
+
   - **Download data** allows you to download the data for this layer in GeoJSON format for use in other mapping software
 
   - **Edit layer** is the same as edit button above
@@ -530,6 +555,10 @@ layer** selection. This opens the Events layer configuration dialog.
       program, other coordinates such as "Household position" are
       available.
 
+    - By default all events with coordinates are shown on the map.
+      Use the **Event status** field to only show events having one
+      status: Active, Completed, Schedule, Overdue or Skipped.
+
 2.  In the **PERIOD** tab
 
     ![](resources/images/maps/maps_event_layer_dialog_PERIOD.png)
@@ -537,15 +566,18 @@ layer** selection. This opens the Events layer configuration dialog.
     - select the time span for when the events took place. You can
       select either a fixed period or a relative period.
 
-      - Fixed period
-
-        In the **Period** field, select **Start/end dates** and fill
-        in a start date and an end date.
-
       - Relative period
 
         In the **Period** field, select one of the relative periods,
         for example **This month** or **Last year**.
+
+        A **default relative period for analysis** can be set in the
+        **Systems Settings** app.
+
+      - Fixed period
+
+        In the **Period** field, select **Start/end dates** and fill
+        in a start date and an end date.
 
 3.  In the **ORG UNITS** tab:
 
@@ -633,7 +665,53 @@ layer** selection. This opens the Events layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
-### Modify information in event pop-up windows
+### Listing and filtering events
+
+Event layers have a **data table** option that can be toggled on or
+off from the event layer card.
+
+![](resources/images/maps/maps_event_layer_data_table.png)
+
+The data table displays the data forming the event layer.
+
+- clicking on a title will sort the table based on that column;
+  toggling between ascending and descending.
+
+- entering text or expressions into the filter fields below the titles
+  will apply those filters to the data, and the display will adjust
+  according to the filter. The filters are applied as follows:
+
+  - ID
+
+    filter by event IDs containing the given text
+
+  - ORG UNIT
+
+    filter by org unit name containing the given text
+
+  - EVENT TIME
+
+    filter by event time containing the given text
+
+  - TYPE
+
+    filter by GIS display types containing the given text
+
+  - **Style by data element**: If events are styled by a data element
+    (e.g. gender) both the data value and the color can be filtered.
+
+  - **Display in reports**: Data elements checked to display in reports will
+    be shown in separate columns (see below how to add them).
+
+  - Numeric data values can be filtered by given numbers, and/or ranges,
+    for example: 2,\>3&\<8
+
+> **Note**
+>
+> Data table filters are temporary and are not saved with the map layers
+> as part of the favourite.
+
+### Modify information in event data table and popups
 
 You can modify the information displayed in the event pop-up window.
 
@@ -736,7 +814,8 @@ configuration dialog.
 
     - Select a **Program** where the tracked entities belong.
 
-    - Set the **Program status** to be **Active** or **Completed**.
+    - Use the **Program status** field to select the enrollment status of tracked entities
+      to include: All, Active, Completed or Cancelled.
 
     - Set the **Follow up** status of the tracked entity for the given
       program.
@@ -753,6 +832,8 @@ configuration dialog.
 
     - Once checked, you can select the type of relationship to display on the map from the dropdown list. Only relationships FROM the selected Tracked Entity type are available.
 
+    - If you select a program, only relationships between entities in the same program will show by default. You have an option to also show relationships to entities outside the program.
+
 3.  In the **PERIOD** tab
 
     ![](resources/images/maps/maps_tracked_entity_layer_dialog_PERIOD.png)
@@ -760,8 +841,8 @@ configuration dialog.
     - If no program is selected, you can set start and end dates when
       the tracked entities were last updated.
 
-    - If a program is selected, you can set start and end dates for
-      the program period.
+    - If a program is selected, you can set the period when tracked entities were last
+      updated or when they were registered or enrolled in the program.
 
 4.  In the **ORG UNITS** tab:
 

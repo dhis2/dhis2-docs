@@ -1316,24 +1316,30 @@ data entry forms.
     > missing. In the form that opens, create the category combinations
     > you need. When you're done, click **Refresh values**.
 
-12. In the **Complete notification recipients** list, select a user
+12. If you selected a category combination other than **None**,
+    you may enter zero or a positive number for **Open periods after
+    category option end date**. This lets you enter data in this data
+    set for a category option up to the specified number of periods
+    after that category option's end date.
+
+13. In the **Complete notification recipients** list, select a user
     group that should receive a message when the data set is marked as
     complete in the **Data Entry** app.
 
     The message is delivered through the DHIS2 messaging system.
 
-13. If you want the user who entered the data to receive a message when
+14. If you want the user who entered the data to receive a message when
     the data set is marked as complete in the **Data entry** app, select
     **Send notification to completing user**.
 
     The message is delivered through the DHIS2 messaging system.
 
-14. If applicable, select, a **Data approval workflow**.
+15. If applicable, select, a **Data approval workflow**.
 
-15. If you want it to be possible to use the data set within the Java
+16. If you want it to be possible to use the data set within the Java
     mobile DHIS2 application, select **Enable for Java mobile client**.
 
-16. If you want it to be mandatory to fill all values for a data element
+17. If you want it to be mandatory to fill all values for a data element
     in data entry if one or more values have been filled, select **All
     fields for data elements required**.
 
@@ -1342,20 +1348,20 @@ data entry forms.
     must enter data for all fields belonging to that data element (that
     is all category option combinations).
 
-17. If you want it to be possible to mark a data entry form as complete
+18. If you want it to be possible to mark a data entry form as complete
     only if the validation of that form is successful, select **Complete
     allowed only if validation passes**.
 
     If you select this option, you can't mark the form as complete if
     validation fails.
 
-18. If you want it to be mandatory that any missing values require a
+19. If you want it to be mandatory that any missing values require a
     comment to justify their absence, select **Missing values requires
     comment on complete**.
 
-19. (Optional) Assign one or multiple **Legends**.
+20. (Optional) Assign one or multiple **Legends**.
 
-20. If applicable, select **Skip offline**.
+21. If applicable, select **Skip offline**.
 
     This option controls whether this data entry form should be
     downloaded and saved in the user's web browser. Normally you
@@ -1363,24 +1369,24 @@ data entry forms.
     you have big forms which are rarely used you can consider selecting
     this option to speed up initial loading in the data entry module.
 
-21. If applicable, select **Data element decoration**
+22. If applicable, select **Data element decoration**
 
     If you select this option, descriptions of data elements render in
     call-outs in downloaded data sets in offline mode in the **Data
     entry** app.
 
-22. If applicable, select **Render sections as tabs**.
+23. If applicable, select **Render sections as tabs**.
 
     This option is only applicable for section forms. The option allows
     you to render each section as a tab horizontally above the data set.
     This is useful for long data sets as it allows appropriate sections
     to be selected quickly without going through the entire form.
 
-23. If applicable, select **Render vertically**.
+24. If applicable, select **Render vertically**.
 
     This option is only applicable for section forms.
 
-24. Select data elements and assign them.
+25. Select data elements and assign them.
 
     You can override the category combination for each selected data set
     by clicking on the gear icon above the list of selected data
@@ -1388,9 +1394,9 @@ data entry forms.
     (disaggregation) within the current data set instead of the category
     combination associated directly with the data element itself.
 
-25. Select indicators and assign them.
+26. Select indicators and assign them.
 
-26. In the organisation unit tree, select the organisation units you
+27. In the organisation unit tree, select the organisation units you
     want to assign the data set to.
 
     > **Tip**
@@ -1401,7 +1407,7 @@ data entry forms.
     >   - Click **Organisation unit group** to select all organisation
     >     units that belong to a certain organisation unit group.
 
-27. Click **Save**.
+28. Click **Save**.
 
 You can now use the data set in the **Data Entry** app for the
 organisation units that you have assigned to and for periods according
@@ -2149,8 +2155,27 @@ You can use the following functions in an indicator formula:
 <td><p>(expression [, expression ...])</p></td>
 <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
 </tr>
+<tr class="odd">
+<td><p>.periodOffset</p></td>
+<td><p>(integer constant)</p></td>
+<td><p>Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below.</p></td>
+</tr>
 </tbody>
 </table>
+
+Examples of the .periodOffset() function in an indicator expression:
+
+| Indicator expression            | Means                                           |
+| ------------------------------- | ----------------------------------------------- |
+| #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from the period before |
+| #{FH8ab5Rog83}.periodOffset(+1) | data element FH8ab5Rog83 from the period after  |
+| #{FH8ab5Rog83}.periodOffset(1)  | data element FH8ab5Rog83 from the period after  |
+| #{FH8ab5Rog83} - 2 * D{IpHINAT79UW.uf3svrmp8Oj}.periodOffset(-1)  | data element FH8ab5Rog83 from the reported period minus twice program data element IpHINAT79UW.uf3svrmp8Oj from the period before |
+| ( #{FH8ab5Rog83} - <br /> #{QOlfIKgNJ3D2} ).periodOffset(-2) | data element FH8ab5Rog83 from 2 periods before minus data element QOlfIKgNJ3D2 from 2 periods before |
+| #{FH8ab5Rog83}.periodOffset(-2) + <br /> #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before |
+| ( #{FH8ab5Rog83}.periodOffset(-1) + <br /> #{FH8ab5Rog83} ).periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before (note that the functions are nested) |
+
+<br />
 
 In the **Maintenance** app, you manage the following indicator objects:
 
