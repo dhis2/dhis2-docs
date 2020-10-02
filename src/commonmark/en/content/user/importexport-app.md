@@ -42,8 +42,8 @@ the import by looking at the "Job Summary" at the top of the page.
 <!--DHIS2-SECTION-ID:metadata_import_summaries-->
 
 On import request completion, we show import summaries above the
-import form. Any conflicts or errors are shown in a table under the
-overview summary for the import.
+import form. Any conflicts or errors are shown in the table under the
+main summary for the import.
 
 ![](resources/images/import_export/import_summary.png)
 
