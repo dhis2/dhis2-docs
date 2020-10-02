@@ -484,6 +484,37 @@ formats.
     web-browser window that will give you a file to download to your
     local computer.
 
+## Job Overview
+
+<!--DHIS2-SECTION-ID:job_overview-->
+
+The job overview page can be accessed from the sidebar by clicking on
+*Job Overview*.
+
+![](resources/images/import_export/job_overview.png)
+
+This page allows you to see the progress of all the imports you have
+started this session. You can see the list of all jobs on the left
+side and details about a specific selected job on the right.
+
+### Filtering by import job type
+
+![](resources/images/import_export/job_overview_filter.png)
+
+By default jobs of all import types are shown in the job list, but you
+can filter categories you are interested in by clicking on the job
+type filters above the job list.
+
+### Recreating a previous job
+
+![](resources/images/import_export/job_overview_recreate.png)
+
+You can recreate previously run import jobs by clicking on the
+*Recreate job* button at the bottom of the page, assuming you have
+selected a job from the list. This will take you to the correct import
+page and fill in all the form details exactly as the job you chose to
+recreate.
+
 ## Schemes
 The various schemes used in many of the import and export pages are
 also known as identifier schemes and are used to map metadata objects
