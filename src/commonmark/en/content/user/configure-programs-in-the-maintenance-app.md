@@ -2206,27 +2206,27 @@ functions. The functions can be applied to data elements and attributes:
 <tr class="even">
 <td><p>d2:minutesBetween</p></td>
 <td><p>(datetime, datetime)</p></td>
-<td><p>Produces the number of minutes between two data elements/attributes of type &quot;date and time&quot;. The static datetime format is 'yyyy-MM-dd hh:mm'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
+<td><p>Produces the number of minutes between two data elements/attributes of type &quot;date and time&quot;. When the first argument datetime comes before the second argument datetime, the number will be positive - in the opposite case, the number will be negative. The static datetime format is 'yyyy-MM-dd hh:mm'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="odd">
 <td><p>d2:daysBetween</p></td>
 <td><p>(date, date)</p></td>
-<td><p>Produces the number of days between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
+<td><p>Produces the number of days between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="even">
 <td><p>d2:weeksBetween</p></td>
 <td><p>(date, date)</p></td>
-<td><p>Produces the number of full weeks between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
+<td><p>Produces the number of full weeks between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="odd">
 <td><p>d2:monthsBetween</p></td>
 <td><p>(date, date)</p></td>
-<td><p>Produces the number of full months between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
+<td><p>Produces the number of full months between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="even">
 <td><p>d2:yearsBetween</p></td>
 <td><p>(date, date)</p></td>
-<td><p>Produces the number of full years between two data elements/attributes of type date. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
+<td><p>Produces the number of full years between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
 </tr>
 <tr class="odd">
 <td><p>d2:condition</p></td>
@@ -3168,24 +3168,24 @@ date".
 <tr class="even">
 <td>d2:daysBetween</td>
 <td>(date, date)</td>
-<td>Produces the number of days between the first and second argument. If the second argument date is before the first argument the return value will be the negative number of days between the two dates. The static date format is 'yyyy-MM-dd'.
+<td>Produces the number of days between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'.
 <p>Example, calculating the gestational age(in days) of a woman, based on the last menstrual period and the current event date:</p>
 <pre><code>d2:daysBetween(#{lastMenstrualDate},V{event_date})</code></pre></td>
 </tr>
 <tr class="odd">
 <td>d2:weeksBetween</td>
 <td>(date, date)</td>
-<td>Produces the number of full weeks between the first and second argument. If the second argument date is before the first argument the return value will be the negative number of weeks between the two dates. The static date format is 'yyyy-MM-dd'.</td>
+<td>Produces the number of full weeks between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'.</td>
 </tr>
 <tr class="even">
 <td>d2:monthsBetween</td>
 <td>(date, date)</td>
-<td>Produces the number of full months between the first and second argument. If the second argument date is before the first argument the return value will be the negative number of months between the two dates. The static date format is 'yyyy-MM-dd'.</td>
+<td>Produces the number of full months between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'.</td>
 </tr>
 <tr class="odd">
 <td>d2:yearsBetween</td>
 <td>(date, date)</td>
-<td>Produces the number of years between the first and second argument. If the second argument date is before the first argument the return value will be the negative number of years between the two dates. The static date format is 'yyyy-MM-dd'.</td>
+<td>Produces the number of years between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'.</td>
 </tr>
 <tr class="even">
 <td>d2:addDays</td>
