@@ -1177,8 +1177,8 @@ Configurations] section of new SMS app.(#gateway.configuration)
 Many DHIS2 instances are using GenericHttpGateway to connect to their
 local gateways. These local gateways provides HTTP APIs for sending SMS.
 In new GenericHttpGateway it is now possible to configure generic configuration
-template for gateway configuration. This template along with other parameters will compose
-http request towards external gateway.
+template for gateway configuration. This template is converted into request payload by replacing 
+place holders with actual values taken from gateway key value parameters.
 
 
 ![](resources/images/dhis2_mobile_sms/generic-gateway.png)
@@ -1327,7 +1327,7 @@ Below table shows the parameters required for configuring gateway.
 <td>N/A</td>
 <td>Optional</td>
 <td>N/A</td>
-<td>Generic configuration template which can be used to provide the data in the form acceptable to external gateway. For example username=${username}&password=${password}&to=${recipients}&countrycode=880&message=${text$}&messageid=0. Json/xml template can also be provided.</td>
+<td>Generic configuration template can be used to provide the data in the form acceptable to external gateway. For example username=${username}&password=${password}&to=${recipients}&countrycode=880&message=${text$}&messageid=0. Json/xml template can also be provided.</td>
 </tr>
 </tbody>
 </table>
