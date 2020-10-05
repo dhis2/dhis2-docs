@@ -14980,7 +14980,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
   "type" : "clickatell",
   "name" : "clickatell",
   "username": "clickatelluser",
-  "authtoken": "XXXXXXXXXXXXXXXXXXXX",
+  "authToken": "XXXXXXXXXXXXXXXXXXXX",
   "urlTemplate": "https://platform.clickatell.com/messages"
 }
 ```
