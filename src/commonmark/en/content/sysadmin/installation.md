@@ -706,7 +706,7 @@ oidc.oauth2.login.enabled = on
 oidc.provider.google.client_id = my_client_id
 oidc.provider.google.client_secret = my_client_secret
 # This must correspond to the server publicly hosted URL, (must NOT end with a slash!)
-oidc.provider.google.redir_baseurl = (protocol)://(host)/(optional app context) e.g. https://dhis2.org/demo
+oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app context) e.g. https://dhis2.org/demo
 # *Optional* Defaults to (email)
 oidc.provider.google.mapping_claim = email
 ```
