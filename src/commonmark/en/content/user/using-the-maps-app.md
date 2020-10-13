@@ -832,8 +832,6 @@ configuration dialog.
 
     - Once checked, you can select the type of relationship to display on the map from the dropdown list. Only relationships FROM the selected Tracked Entity type are available.
 
-    - If you select a program, only relationships between entities in the same program will show by default. You have an option to also show relationships to entities outside the program.
-
 3.  In the **PERIOD** tab
 
     ![](resources/images/maps/maps_tracked_entity_layer_dialog_PERIOD.png)

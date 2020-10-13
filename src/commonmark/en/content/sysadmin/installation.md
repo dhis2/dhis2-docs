@@ -718,7 +718,9 @@ oidc.provider.google.client_id = my_client_id
 oidc.provider.google.client_secret = my_client_secret
 # This must correspond to the server publicly hosted URL, (must NOT end with a slash!)
 oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app context) e.g. https://dhis2.org/demo
+
 # *Optional* defaults to: (email)
+
 oidc.provider.google.mapping_claim = email
 ```
 1. Open the dhis.conf file in a text editor:

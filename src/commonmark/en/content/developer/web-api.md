@@ -14692,7 +14692,7 @@ to be configured before using the service. An SMS will not be sent if
 there is no gateway configured. It needs a set of recipients and
 message text in JSON format as shown below.
 
-    /api/33/sms/outbound
+    /api/sms/outbound
 
 ```json
 {
@@ -14712,7 +14712,18 @@ The Web API also supports a query parameter version, but the
 parameterized API can only be used for sending SMS to a single
 destination.
 
-    /api/33/sms/outbound?message=text&recipient=004712341234
+    /api/sms/outbound?message=text&recipient=004712341234
+    
+Outbound messages can be fetched using GET resource.
+
+    GET /api/sms/outbound
+    GET /api/sms/outbound?filter=status:eq:SENT
+    GET /api/sms/outbound?filter=status:eq:SENT&fields=*
+    
+Outbound messages can be deleted using DELETE resource.
+
+    DELETE /api/sms/outbound/{uid}
+    DELETE /api/sms/outbound?ids=uid1,uid2	
 
 #### Gateway response codes
 
@@ -14852,7 +14863,7 @@ originator, received date and sent date are mandatory parameters. The
 rest are optional but the system will use the default value for these
 parameters.
 
-    /api/33/sms/inbound
+    /api/sms/inbound
 
 ```json
 {
@@ -14866,10 +14877,20 @@ parameters.
 }
 ```
 
-The Web API also supports a query parameter-based version.
+Inbound messages can be fetched using GET resourcef
 
-    /api/33/sms/inbound?message=text&originator=47XXXXXX&gateway=clickatel
+    GET /api/sms/inbound
+    GET /api/sms/inbound?fields=*&filter=smsstatus=INCOMING
 
+Inbound messages can be deleted using DELETE resource
+
+    DELETE /api/sms/inbound/{uid}
+    DELETE /api/sms/inbound?ids=uid1,uid2
+ 
+To import all un parsed messages
+	
+	POST /api/sms/inbound/import
+    
 <table>
 <caption>User query parameters</caption>
 <colgroup>
@@ -14923,7 +14944,7 @@ GET method.
 
     GET /api/33/gateways/{uid}
 
-New gateway configuraitons can be added using POST. POST api requires type request parameter and currently its value can have either one *http,bulksms,clickatell*. First added gateway will be set to default. Only one gateway is allowed to be default at one time. Default gateway can only be changed through its api. If default gateway is removed then the next one the list will automatically becomes default.
+New gateway configurations can be added using POST. POST api requires type request parameter and currently its value can have either one *http,bulksms,clickatell,smpp*. First added gateway will be set to default. Only one gateway is allowed to be default at one time. Default gateway can only be changed through its api. If default gateway is removed then the next one the list will automatically becomes default.
 
     POST /api/33/gateways
 
@@ -14959,7 +14980,7 @@ case of GenericHttpGateway to send one or more parameter as http header.
   "type" : "clickatell",
   "name" : "clickatell",
   "username": "clickatelluser",
-  "authtoken": "XXXXXXXXXXXXXXXXXXXX",
+  "authToken": "XXXXXXXXXXXXXXXXXXXX",
   "urlTemplate": "https://platform.clickatell.com/messages"
 }
 ```
@@ -15330,6 +15351,11 @@ The list of messages can be retrieved using GET.
 
     GET /api/33/messages
 
+To get list of all scheduled message 
+
+	GET /api/33/messages/scheduled
+	GET /api/33/messages/scheduled?scheduledAt=2020-12-12 
+
 One particular message can also be retrieved using GET.
 
     GET /api/33/messages/{uid}
@@ -15337,6 +15363,7 @@ One particular message can also be retrieved using GET.
 Message can be deleted using DELETE.
 
     DELETE /api/33/messages/{uid}
+    
 
 ### Querying program messages
 
