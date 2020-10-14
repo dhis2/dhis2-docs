@@ -725,7 +725,7 @@ objects:
     <td><p>Any whole number greater than (but not including) zero.</p></td>
     </tr>
     <tr class="even">
-    <td><p>Positive of zero integer</p></td>
+    <td><p>Positive or zero integer</p></td>
     <td><p>Any positive whole number, including zero.</p></td>
     </tr>
     <tr class="odd">
