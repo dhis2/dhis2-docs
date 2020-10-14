@@ -73,7 +73,9 @@ DELETE
 
 As an example, when a new Tracked Entity Instance gets created, and if configured like so, the CREATE action is used to insert a new Audit entry in the audit db table.
 
-``` Note: the READ Audit Type will generate a lot of data in database and may have an impact on the performance. ```
+> **Caution**
+>
+> The READ Audit Type will generate a lot of data in database and may have an impact on the performance.
 
 ## Setup
 
