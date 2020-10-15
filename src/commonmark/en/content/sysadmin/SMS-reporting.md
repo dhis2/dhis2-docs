@@ -1,4 +1,4 @@
-# Using SMS Gateways for reporting in DHIS2
+# Using Gateways for SMS reporting 
 
 <!--DHIS2-SECTION-ID:sms_report_sending-->
 
