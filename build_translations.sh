@@ -7,6 +7,13 @@
 #> sudo apt-get install language-pack-fr
 #
 
+# we use the build resources from the master branch
+git checkout master -- src/commonmark/en/resources
+git checkout master -- tools
+git checkout master -- lib
+git checkout master -- venv_setup
+git checkout master -- requirements.txt
+
 # perform all actions relative to the path of this script
 SCRIPT_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$SCRIPT_DIR" ]]; then
