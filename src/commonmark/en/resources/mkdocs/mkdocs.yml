@@ -17,6 +17,7 @@ extra:
     dhis2_version: '<version>'
     dhis2_versions:
         - 'master'
+        - '2.35'
         - '2.34'
         - '2.33'
         - '2.32'
