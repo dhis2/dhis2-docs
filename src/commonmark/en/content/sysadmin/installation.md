@@ -1374,8 +1374,7 @@ http {
 }
 ```
 
-<<<<<<< HEAD
-=======
+
 ### Blocking specific Android App versions with nginx
 
 <!--DHIS2-SECTION-ID:install_making_resources_available_with_nginx-->
@@ -1421,7 +1420,6 @@ http {
 >
 > nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching 
 
->>>>>>> 78383b8... Add Android blocks with user-agent in nginx
 ## DHIS2 configuration reference
 
 <!--DHIS2-SECTION-ID:install_dhis2_configuration_reference-->
