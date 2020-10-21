@@ -609,9 +609,9 @@ As an example this location could be:
 
 <!--DHIS2-SECTION-ID:install_oidc_configuration-->
 
-You can configure DHIS2 to support OpenID Connect (OIDC) for single sign-in (SSO). OIDC is a standard authentication protocol that lets users sign in to an identity provider (IdP) such as e.g. Google. After they've successfully signed in to their IdP, they are automatically signed in to DHIS2.
+DHIS2 supports the OpenID Connect (OIDC) identity layer for single sign-in (SSO). OIDC is a standard authentication protocol that lets users sign in to an identity provider (IdP) such as Google. After users have successfully signed in to their IdP, they will be automatically signed in to DHIS2.
 
-The topics in this section provide general information about using DHIS2 with OIDC, and provide a sequence for configuring the IdP and DHIS2.
+This section provides general information about using DHIS2 with OIDC, as well as configuration options for the IdP and DHIS2. The authentication flow will be like the following.
 
 1. A user attempts to log in to DHIS2 from a client computer.
 
@@ -632,7 +632,7 @@ The topics in this section provide general information about using DHIS2 with OI
 
 8. DHIS2 authorizes the user.
 
-### Requirements for Using OIDC
+### Requirements for OIDC
 
 #### IdP account
 You must have access to an identity provider (IdP) that are supported by DHIS2.
@@ -640,15 +640,16 @@ You must have access to an identity provider (IdP) that are supported by DHIS2.
 The following IdPs are currently supported:
 
 * Google 
-* Azure AD (2.35.1)
+* Azure AD
 
 
 #### Local user account
-You must explicitly create users on the DHIS2, rather than importing them from an external directory such as Active Directory. Managing users with an external identity store is not supported with OIDC.
+You must explicitly create users in the DHIS2 instance. Importing them from an external directory such as Active Directory is currently not supported. Managing users with an external identity store is not supported with OIDC.
 
-#### IdP claims: mapping users
-To sign in to DHIS2, a given user must be provisioned in the IdP and then mapped to a user account on DHIS2. OIDC uses a method that relies on claims to share user account attributes with other applications. Claims include user account attributes such as email, phone number, given name, etc. DHIS2 relies on the IdP claims to map user accounts from the IdP to those hosted on DHIS2. By default, DHIS2 expects the IdP to pass the email claim. Depending on your IdP, you may need to configure DHIS2 to use a different IdP claim.
-If you are using Google or Azure AD as an IdP, the default is to use email claim to map IdP identities to DHIS2 user accounts. 
+#### IdP claims and mapping of users
+To sign in to DHIS2, a given user must be provisioned in the IdP and then mapped to a user account in DHIS2. OIDC uses a method that relies on claims to share user account attributes with other applications. Claims include user account attributes such as email, phone number, name, etc. DHIS2 relies on the IdP claims to map user accounts from the IdP to those hosted on DHIS2. By default, DHIS2 expects the IdP to pass the _email_ claim. Depending on your IdP, you may need to configure DHIS2 to use a different IdP claim.
+
+If you are using Google or Azure AD as an IdP, the default behavior is to use the email claim to map IdP identities to DHIS2 user accounts. 
 
 > **Note**
 > 
@@ -658,35 +659,35 @@ If you are using Google or Azure AD as an IdP, the default is to use email claim
 
 
 ### Configure the Identity Provider for OIDC
-This topic provides information about configuring an identity provider (IdP) to use OIDC with DHIS2. This is one step in a multi-step process. The following topics provide information about configuring and using OpenID Connect with DHIS2.
+This topic provides information about configuring an identity provider (IdP) to use OIDC with DHIS2. This is one step in a multi-step process. The following topics provide information about configuring and using OIDC with DHIS2.
 
 #### Configure the IdP
-Before you can use OIDC with DHIS2, you must have an account with a supported identity provider (IdP) and a project or application with the IdP. When you configure DHIS2, you will need to be able to provide the following information:
+Before you can use OIDC with DHIS2, you must have an account at a supported identity provider (IdP) and a project or application with the IdP. When you configure DHIS2 you must provide the following information:
 
-* Provider client ID. This is the identifier that the IdP assigned to your application.
-* Provider client secret. This value is a secret and should be kept securely.
+* **Provider client ID:** This is the identifier that the IdP assigned to your application.
+* **Provider client secret:** This value is a secret and should be kept secure.
 
 #### Redirect URL
-Some IdPs will require a redirect URL for your DHIS2. You can construct your URL for the IdP using the following syntax:
+Some IdPs will require a redirect URL for your DHIS2 instance. You can construct your URL for the IdP using the following syntax:
 
-
+```
 (protocol):/(your DHIS2 host)/oauth2/code/(IdP code)
+```
 
-For example, https://dhis2.org/oauth2/code/google
+An example looks like this:
+
+```
+https://dhis2.org/oauth2/code/google
+```
 
 #### Example IdP process (Google)
-The following procedure provides an outline of the steps that you follow with the provider. As an example, the procedure discusses using Google as a provider. However, each provider has a somewhat different flow, so the specifics of the steps (and their order) might vary depending on your provider.
+The following procedure provides an outline of the steps that you follow with the provider. As an example, the procedure discusses using Google as an identity provider. However, each provider has a somewhat different flow, so the specifics of the steps (and their order) might vary depending on your provider.
 
-1. Register at the provider's developer site and sign in. For example, for Google, you can go to the Developers Console at this URL: https://console.developers.google.com(Link opens in a new window)
-
+1. Register at the provider's developer site and sign in. For example, for Google, you can go to the Developers Console at this URL: https://console.developers.google.com.
 2. Create a new project or application.
+3. In the developer dashboard, follow the steps for creating an OAuth 2.0 client ID and client secret. Record these values for later.
+4. Set your Authorized redirect URIs to: `(protocol):/(host)/oauth2/code/google`. Keep the client secret in a secure place.
 
-3. In the developer dashboard, follow the steps for getting an OAuth 2.0 client ID and client secret. Record these values for later.
-4. Set your Authorised redirect URIs to: (protocol):/(host)/oauth2/code/google
-
-    > **Note**
-    > 
-    > Keep the client secret in a secure place.
 
 
 Follow your IdP service instructions to configure your IdP:
@@ -696,7 +697,7 @@ Follow your IdP service instructions to configure your IdP:
 
 > **Note**
 >
-> Azure AD Authorised redirect URIs must have this form: (protocol):/(host)/oauth2/code/my_azure_ad_tenant_id
+> Azure AD Authorized redirect URIs must have this form: `(protocol):/(host)/oauth2/code/my_azure_ad_tenant_id`
 
 
 ### Configure DHIS2 for OIDC
@@ -705,29 +706,29 @@ Follow your IdP service instructions to configure your IdP:
 >
 > Before you perform the steps described here, you must configure the OIDC identity provider (IdP) as described in Configure the Identity Provider for OIDC.
 
-#### Google 
+This section describes the configuration options to set in `dhis.conf`. Remember to restart DHIS 2 for changes to take effect.
+
+#### Google
+
 ```properties
 # ----------------------------------------------------------------------
 # OIDC Configuration
 # ----------------------------------------------------------------------
-# Value must be "on" for OIDC to be enabled
+# Value must be 'on' for OIDC to be enabled
 oidc.oauth2.login.enabled = on
 
 # Google specific parameters
 oidc.provider.google.client_id = my_client_id
 oidc.provider.google.client_secret = my_client_secret
-# This must correspond to the server publicly hosted URL, (must NOT end with a slash!)
-oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app context) e.g. https://dhis2.org/demo
+# DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
+oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app context)
 
-# *Optional* defaults to: (email)
-
+# Optional, defaults to 'email'
 oidc.provider.google.mapping_claim = email
 ```
-1. Open the dhis.conf file in a text editor:
-2. Add/modify the variables above to your dhis.conf file and save it
-3. Start/restart the DHIS2 serve
-
 #### Azure AD
+
+Note that Azure AD supports having multiple tenants, hence the numbering scheme `oidc.provider.azure.NUMBER.VARIABLE` below. Make sure your Azure AD account is configured with a redirect URL like `(protocol):/(host)/oauth2/code/my_azure_ad_tenant_id`.
 
 ```properties
 # ----------------------------------------------------------------------
@@ -735,30 +736,27 @@ oidc.provider.google.mapping_claim = email
 # ----------------------------------------------------------------------
 # Value must be "on" for OIDC to be enabled
 oidc.oauth2.login.enabled = on
-# This must correspond to the DHIS2 server publicly hosted URL, (not all IdP providers support logout)
+# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout
 oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
 
-# Azure AD specific OIDC parameters. 
-# Note: It is possible to have multiple Azure AD tenants, hence the numbering scheme "oidc.provider.azure.NUMBER.VARIABLE"
+# Azure AD specific parameters
+# First provider (0)
 oidc.provider.azure.0.tenant = my_azure_ad_tenant_id
 oidc.provider.azure.0.client_id = my_azure_ad_client_id
 oidc.provider.azure.0.client_secret = my_azure_ad_client_secret
-oidc.provider.azure.0.redirect_baseurl = (protocol)://(host)/(optional app context) e.g. https://dhis2.org/demo
-# *Optional* defaults to: (email)
+# DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
+oidc.provider.azure.0.redirect_baseurl = (protocol)://(host)/(optional app context)
+# Optional, defaults to 'email'
 oidc.provider.azure.mapping_claim = email
-# *Optional* defaults to: (true)
+# Optional, defaults to 'true'
 oidc.provider.azure.support_logout = true
 
+# Second provider (1)
 oidc.provider.azure.1.tenant = my_other_azure_ad_tenant_id
 oidc.provider.azure.1.client_id = my_other_azure_ad_client_id
 oidc.provider.azure.1.client_secret = my_other_azure_ad_client_secret
-oidc.provider.azure.1.redirect_baseur l= (protocol)://(host)/(optional app context) e.g. https://dhis2.org
+oidc.provider.azure.1.redirect_baseur l= (protocol)://(host)/(optional app context)
 ```
-1. Open the dhis.conf file in an editor:
-2. Add/modify the variables above to your dhis.conf file and save it
-3. Make sure your Azure AD account is configured with a redirect URL like this: (protocol):/(host)/oauth2/code/my_azure_ad_tenant_id
-4. Start/restart the DHIS2 server
-
 ## LDAP configuration
 
 <!--DHIS2-SECTION-ID:install_ldap_configuration-->
