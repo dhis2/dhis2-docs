@@ -725,7 +725,7 @@ objects:
     <td><p>Any whole number greater than (but not including) zero.</p></td>
     </tr>
     <tr class="even">
-    <td><p>Positive of zero integer</p></td>
+    <td><p>Positive or zero integer</p></td>
     <td><p>Any positive whole number, including zero.</p></td>
     </tr>
     <tr class="odd">
@@ -1316,24 +1316,30 @@ data entry forms.
     > missing. In the form that opens, create the category combinations
     > you need. When you're done, click **Refresh values**.
 
-12. In the **Complete notification recipients** list, select a user
+12. If you selected a category combination other than **None**,
+    you may enter zero or a positive number for **Open periods after
+    category option end date**. This lets you enter data in this data
+    set for a category option up to the specified number of periods
+    after that category option's end date.
+
+13. In the **Complete notification recipients** list, select a user
     group that should receive a message when the data set is marked as
     complete in the **Data Entry** app.
 
     The message is delivered through the DHIS2 messaging system.
 
-13. If you want the user who entered the data to receive a message when
+14. If you want the user who entered the data to receive a message when
     the data set is marked as complete in the **Data entry** app, select
     **Send notification to completing user**.
 
     The message is delivered through the DHIS2 messaging system.
 
-14. If applicable, select, a **Data approval workflow**.
+15. If applicable, select, a **Data approval workflow**.
 
-15. If you want it to be possible to use the data set within the Java
+16. If you want it to be possible to use the data set within the Java
     mobile DHIS2 application, select **Enable for Java mobile client**.
 
-16. If you want it to be mandatory to fill all values for a data element
+17. If you want it to be mandatory to fill all values for a data element
     in data entry if one or more values have been filled, select **All
     fields for data elements required**.
 
@@ -1342,20 +1348,20 @@ data entry forms.
     must enter data for all fields belonging to that data element (that
     is all category option combinations).
 
-17. If you want it to be possible to mark a data entry form as complete
+18. If you want it to be possible to mark a data entry form as complete
     only if the validation of that form is successful, select **Complete
     allowed only if validation passes**.
 
     If you select this option, you can't mark the form as complete if
     validation fails.
 
-18. If you want it to be mandatory that any missing values require a
+19. If you want it to be mandatory that any missing values require a
     comment to justify their absence, select **Missing values requires
     comment on complete**.
 
-19. (Optional) Assign one or multiple **Legends**.
+20. (Optional) Assign one or multiple **Legends**.
 
-20. If applicable, select **Skip offline**.
+21. If applicable, select **Skip offline**.
 
     This option controls whether this data entry form should be
     downloaded and saved in the user's web browser. Normally you
@@ -1363,24 +1369,24 @@ data entry forms.
     you have big forms which are rarely used you can consider selecting
     this option to speed up initial loading in the data entry module.
 
-21. If applicable, select **Data element decoration**
+22. If applicable, select **Data element decoration**
 
     If you select this option, descriptions of data elements render in
     call-outs in downloaded data sets in offline mode in the **Data
     entry** app.
 
-22. If applicable, select **Render sections as tabs**.
+23. If applicable, select **Render sections as tabs**.
 
     This option is only applicable for section forms. The option allows
     you to render each section as a tab horizontally above the data set.
     This is useful for long data sets as it allows appropriate sections
     to be selected quickly without going through the entire form.
 
-23. If applicable, select **Render vertically**.
+24. If applicable, select **Render vertically**.
 
     This option is only applicable for section forms.
 
-24. Select data elements and assign them.
+25. Select data elements and assign them.
 
     You can override the category combination for each selected data set
     by clicking on the gear icon above the list of selected data
@@ -1388,9 +1394,9 @@ data entry forms.
     (disaggregation) within the current data set instead of the category
     combination associated directly with the data element itself.
 
-25. Select indicators and assign them.
+26. Select indicators and assign them.
 
-26. In the organisation unit tree, select the organisation units you
+27. In the organisation unit tree, select the organisation units you
     want to assign the data set to.
 
     > **Tip**
@@ -1401,7 +1407,7 @@ data entry forms.
     >   - Click **Organisation unit group** to select all organisation
     >     units that belong to a certain organisation unit group.
 
-27. Click **Save**.
+28. Click **Save**.
 
 You can now use the data set in the **Data Entry** app for the
 organisation units that you have assigned to and for periods according
@@ -2149,8 +2155,27 @@ You can use the following functions in an indicator formula:
 <td><p>(expression [, expression ...])</p></td>
 <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
 </tr>
+<tr class="odd">
+<td><p>.periodOffset</p></td>
+<td><p>(integer constant)</p></td>
+<td><p>Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below.</p></td>
+</tr>
 </tbody>
 </table>
+
+Examples of the .periodOffset() function in an indicator expression:
+
+| Indicator expression            | Means                                           |
+| ------------------------------- | ----------------------------------------------- |
+| #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from the period before |
+| #{FH8ab5Rog83}.periodOffset(+1) | data element FH8ab5Rog83 from the period after  |
+| #{FH8ab5Rog83}.periodOffset(1)  | data element FH8ab5Rog83 from the period after  |
+| #{FH8ab5Rog83} - 2 * D{IpHINAT79UW.uf3svrmp8Oj}.periodOffset(-1)  | data element FH8ab5Rog83 from the reported period minus twice program data element IpHINAT79UW.uf3svrmp8Oj from the period before |
+| ( #{FH8ab5Rog83} - <br /> #{QOlfIKgNJ3D2} ).periodOffset(-2) | data element FH8ab5Rog83 from 2 periods before minus data element QOlfIKgNJ3D2 from 2 periods before |
+| #{FH8ab5Rog83}.periodOffset(-2) + <br /> #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before |
+| ( #{FH8ab5Rog83}.periodOffset(-1) + <br /> #{FH8ab5Rog83} ).periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before (note that the functions are nested) |
+
+<br />
 
 In the **Maintenance** app, you manage the following indicator objects:
 
@@ -4444,34 +4469,123 @@ system automatically selects the assigned legend.
 
 ### About predictors
 
-A predictor tells DHIS2 how to generate a data value based on data
-values from past periods and/or the period of the data value. It defines
-which past periods to sample, and how to combine the data to produce a
-predicted value. A predictor always generates an aggregate data value,
-but the past data values used to calculate the predicted value may come
-from aggregate data, event data, or both.
+A predictor defines how to generate an aggregate data value from an expression
+containing aggregate and/or event data. The predicted value may be based on:
 
-A simple use of predictors would be to copy a past period data value
-into a new period, for example into the next month, or into the same
-quarter in the next year. A more complex use of predictors would be for
-disease surveillance, to predict what value would be expected in a given
-week or month of the year, based on previous data values. A validation
-rule could then be used to see how the actual value compares with the
-expected (predicted) value.
+- Data from the same period as the predicted value, and/or
 
-You can specify the organisation unit level(s) for which a predictor
-will generate values. For example in disease surveillance you can use
-one predictor to give the expected value at each local facility, given
-the amount of variation you would expect at a single facility, while
-using a different predictor to estimate the value you would expect
-summed over all facilities in a district, given the (smaller)
-proportional variation that you would expect when adding up the values
-for all facilities in the district. You could also define additional
-predictors at any higher levels of the organisation unit hierarchy,
-where you might expect different proportions of variation.
-Alternatively, you can define a single predictor for all these levels
-and use the standard deviation function to determine what amounts of
-deviation were measured at each level.
+- Data from periods previous to the predicted value
+
+#### Data from the same period
+
+<!--DHIS2-SECTION-ID:data_from_the_same_period-->
+
+A predictor can use data from the same period as the predicted value.
+For example, you can count the number of organisation units having
+a non-zero value of a data element by using a predictor expression such as:
+
+<pre><code>if( #{ji7o0ILHuU2} != 0, 1, 0 )</code></pre>
+
+When you run this predictor at the organisation unit level where the data is
+collected, it will store 1 as the predicted value if the data element has a
+nonzero value for that organisation unit, otherwise 0.
+(If the data element that you predict into does not store zeros, then
+zeors will not be stored in the database, to save space.)
+You can then sum this predicted value in analytics at a higher
+organisation unit level, to count the number of organisation units
+with a nonzero value that are under each organisation unit in the report.
+
+#### Data from previous periods
+
+<!--DHIS2-SECTION-ID:data_from_previous_periods-->
+
+A predictor will use data from previous periods when you specify an aggregation
+function such as sum() or avg(). For example, the following generator expression
+identifies a value that is the average plus twice the standard deviation of
+previous period data:
+
+<pre><code>avg( #{ji7o0ILHuU2} ) + 2 * stddev( #{ji7o0ILHuU2} )</code></pre>
+
+#### Data from the same and previous periods
+
+<!--DHIS2-SECTION-ID:data_from_the_same_and_previous_periods-->
+
+A predictor expression can access data both from same period as the
+prediction and previous periods by accessing data both within an
+agregate function (for previous periods), and outside any aggregate function
+(for the same period). For example, an expression like the following can be
+used to take a balance of something from the previous period (#{KOh02hHko7C}),
+add to that the net change in this period (#{ji7o0ILHuU2}),
+resulting in the balance for this period:
+
+<pre><code>sum( #{KOh02hHko7C} ) + #{ji7o0ILHuU2}</code></pre>
+
+The first data value is inside an aggregate expression (sum) to indicate that
+it is sampling previous period data (even if there is only one previous period),
+while the second data value is not in an aggreate function to indicate that it
+is referencing data from the same period.
+
+If you want to, a predictor's output data element can be referenced in the same
+predictor's expression. For instance, the expression in this example could
+be used to predict the balance in a period, and then combine that value with
+the change in the next period to compute the balance for the next period.
+When a predictor is run across multiple periods, the periods are processed in
+chronological order, and the result from an earlier period may be used
+as input for a later period.
+
+#### Predictor organisation unit levels
+
+<!--DHIS2-SECTION-ID:predictor_organisation_unit_levels-->
+
+You need to select one or more organisation unit levels for a predictor's output.
+All values generated by the predictor are stored for organisation units at the
+level(s) you select. Each item in the predictor expression is the sum of the value
+stored for that organisation unit (if any) plus any values stored in organisation
+units below that one (if any).
+
+> **Note**
+>
+> In configuring a predictor, you must choose one or more organisation unit levels
+> at which predicted data will be output. If no level is selected, no predicted
+> values will be generated.
+
+> **Warning**
+>
+> If you want to use the predicted values in analytics reporting, or to make
+> other predictions, *do not select more than one organisation unit level*.
+> When you select more than one level, predictions at the higher level(s) will
+> also include any data used in lower level(s) predictions. If the predictions
+> from multiple levels are subsequently used in analytics, or in the expressions
+> of other predictors, this can result in double counting because the predicted
+> values for a higher level include the predicted values from a lower level.
+
+You may select multiple organisation unit levels if you use the predicted
+values only in validation rules. For example in disease surveillance, you
+could have a validation rule alert if an actual value is higher than the
+range of expected values for that period based on previous period data.
+To do this, you could create a predictor to compute the average plus twice the
+standard deviation of previous period data. You could use a validation
+rule to compare this higest expected value with the actual value.
+You could run the predictor and validation rule at multiple levels
+to detect different outbreak scenarios. In one scenario, there might be
+a significant increase in one facility that exceeds its expected range, but
+the district containing that facility might not exceed its expected range
+because the district values are combined with many other facilities.
+Yet in another scenario, there may be a moderate increase in several
+facilities that does not exceed the expected range for each facility (because
+the standard deviation for each facility may be high), but it does exceed
+the expected range for the district (because the
+standard deviation for the district as a whole may be lower).
+
+If you want to generate predictions at multiple levels, you could also
+use different predictors at different levels. For example, you might want to
+be alerted if the value at one level exceeds the average plus twice the standard
+deviation, but alerted at another level if it exceeds the average plus 1.8 times
+the standard deviation. If you want, you could configure the different predictors
+to have the same output data element. If you use the same output data element,
+this will still work with validaiton rules at different organisaiton unit levels,
+but you also must be careful not to use the results in analytics or in other
+predictor calculations to avoid double counting.
 
 In the **Maintenance** app, you manage the following predictor objects:
 
@@ -4495,28 +4609,30 @@ In the **Maintenance** app, you manage the following predictor objects:
 </tbody>
 </table>
 
-### Sampling past periods
+### Sampling previous periods
 
 Predictors can generate data values for periods that are in the past,
-present, or future. These values are based on data from the predicted period, and/or sampled data from periods prior to the predicted period.
+present, or future. These values are based on data from the predicted period,
+and/or sampled data from periods previous to the predicted period.
 
-If you need data only from the same period in which the prediction is made, then you don't need to read this section. This section describes how to sample data from periods prior to the predicted period.
+If you need data only from the same period in which the prediction is made,
+then you don't need to read this section. This section describes how to
+sample data from periods previous to the predicted period.
 
 #### Sequential sample count
 
 <!--DHIS2-SECTION-ID:sequential_sample_count-->
 
 A predictor's *Sequential sample count* gives the number of immediate
-prior periods to sample. For example, if a predictor's period type is
+previous periods to sample. For example, if a predictor's period type is
 *Weekly* and the *Sequential sample count* is 4, this means to sample
-four prior weeks immediately preceding the predicted value week. So the
+four previous weeks immediately preceding the predicted value week. So the
 predicted value for week 9 would use samples from weeks 5, 6, 7, and 8:
-
 
 ![](resources/images/maintainence/predictor_sequential.png){.center width=50% }
 
 If a predictor's period type is *Monthly* and the *Sequential sample
-count* is 4, this means to sample four prior months immediately
+count* is 4, this means to sample four previous months immediately
 preceding the predicted value month. So the predicted value for May
 would use samples from weeks January, February, March, and April:
 
@@ -4534,7 +4650,7 @@ to 24:
 <!--DHIS2-SECTION-ID:sequential_skip_count-->
 
 A predictor's *Sequential skip count* tells how many periods should be
-skipped immediately prior to the predicted value period, within the
+skipped immediately previous to the predicted value period, within the
 *Sequential sample count*. This could be used, for instance, in outbreak
 detection to skip one or more immediately preceding samples that might
 in fact contain values from the beginning of an outbreak that you are
@@ -4552,7 +4668,7 @@ sampled:
 
 <!--DHIS2-SECTION-ID:annual_sample_count-->
 
-A predictor's *Annual sample count* gives the number of prior years for
+A predictor's *Annual sample count* gives the number of previous years for
 which samples should be collected at the same time of year. This could
 be used, for instance, for disease surveillance in cases where the
 expected incidence of the disease varies during the year and can best be
@@ -4570,7 +4686,7 @@ preceding two years, at the same time of year.
 
 You can use the sequential and annual sample counts together to collect
 samples from a number of sequential periods over a number of past years.
-When you do this, samples will be collected in prior years during the
+When you do this, samples will be collected in previous years during the
 period at the same time of year as the predicted value period, and also
 in previous years both before and after the same time of year, as
 determined by the *Sequential sample count* number.
@@ -4578,7 +4694,7 @@ determined by the *Sequential sample count* number.
 For example, if the *Sequential sample count* is 4 and the *Annual
 sample count* is 2, samples will be collected from the 4 periods
 immediately preceding the predicted value period. In addition samples
-will be collected in the prior 2 years for the corresponding period, as
+will be collected in the previous 2 years for the corresponding period, as
 well as 4 periods on either side:
 
 

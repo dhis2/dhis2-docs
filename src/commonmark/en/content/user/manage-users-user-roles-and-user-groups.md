@@ -265,7 +265,7 @@ to the system and activate their account by entering the rest of their
 user information. The user must finish setting up the account within 4
 days, after that the invitation becomes invalid.
 
-3. (Optional) Provide values for the fields **OpenID, LDAP identifier, Mobile phone number, WhatsApp, Facebook messenger, Skype, Telegram and Twitter**.
+3. (Optional) Provide values for the fields **OIDC mapping claim, LDAP identifier, Mobile phone number, WhatsApp, Facebook messenger, Skype, Telegram and Twitter**.
 
 4. Select an **Interface language**.<br/> 
 You can select a language into which fixed elements of the DHIS2 user interface have been translated. 
@@ -648,28 +648,6 @@ just a password.
  - **Can edit and view**: Everyone in the user group can view and edit the object
 
 6.  Click **Save**.
-
-## Enable support for OpenID
-
-<!--DHIS2-SECTION-ID:open_id-->
-
-DHIS2 supports the OpenID standard, which allows third party login using
-a OpenID provider, for more information see <http://openid.net>. To
-create a custom OpenID URL for a user name you can visit this URL and
-log in with your OpenID provider: <http://openid-provider.appspot.com>.
-
-To enable support for OpenID in DHIS2, you must:
-
-1.  **Set your OpenID provider**: This can be done inside system
-    settings, under "Access". Here you can set both the OpenID provider,
-    and also the label to display on the login page to login with this
-    provider (defaults to Login with OpenID).
-
-2.  **Set the OpenID identifier on the user**: For every user that
-    should be able to login with his OpenID identifier, you will need to
-    set this on the user itself. This can be done in user management,
-    under the email field, there is not a field called *OpenID* which
-    can be used to fill in the OpenID identifier.
 
 ## Decentralize user management
 
