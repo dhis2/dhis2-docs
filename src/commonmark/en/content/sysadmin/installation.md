@@ -747,15 +747,13 @@ oidc.provider.azure.0.client_secret = my_azure_ad_client_secret
 # DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
 oidc.provider.azure.0.redirect_baseurl = (protocol)://(host)/(optional app context)
 # Optional, defaults to 'email'
-oidc.provider.azure.mapping_claim = email
+oidc.provider.azure.0.mapping_claim = email
 # Optional, defaults to 'true'
-oidc.provider.azure.support_logout = true
+oidc.provider.azure.0.support_logout = true
 
 # Second provider (1)
 oidc.provider.azure.1.tenant = my_other_azure_ad_tenant_id
-oidc.provider.azure.1.client_id = my_other_azure_ad_client_id
-oidc.provider.azure.1.client_secret = my_other_azure_ad_client_secret
-oidc.provider.azure.1.redirect_baseur l= (protocol)://(host)/(optional app context)
+...
 ```
 ## LDAP configuration
 
