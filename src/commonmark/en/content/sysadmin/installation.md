@@ -651,7 +651,7 @@ If you are using Google as an IdP, the default behavior is to use the email clai
 
 > **Note**
 > 
-> In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox "**External authentication only (OpenID or LDAP)**" must be checked and "**OpenID**" field must match the claim (mapping claim) returned by the IdP. Email is used by default byGoogle.
+> In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox "**External authentication only (OpenID or LDAP)**" must be checked and "**OpenID**" field must match the claim (mapping claim) returned by the IdP. Email is used by default by Google.
 
 
 
