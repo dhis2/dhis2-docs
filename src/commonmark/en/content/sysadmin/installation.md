@@ -640,8 +640,6 @@ You must have access to an identity provider (IdP) that are supported by DHIS2.
 The following IdPs are currently supported:
 
 * Google 
-* Azure AD
-
 
 #### Local user account
 You must explicitly create users in the DHIS2 instance. Importing them from an external directory such as Active Directory is currently not supported. Managing users with an external identity store is not supported with OIDC.
@@ -649,11 +647,11 @@ You must explicitly create users in the DHIS2 instance. Importing them from an e
 #### IdP claims and mapping of users
 To sign in to DHIS2, a given user must be provisioned in the IdP and then mapped to a user account in DHIS2. OIDC uses a method that relies on claims to share user account attributes with other applications. Claims include user account attributes such as email, phone number, name, etc. DHIS2 relies on the IdP claims to map user accounts from the IdP to those hosted on DHIS2. By default, DHIS2 expects the IdP to pass the _email_ claim. Depending on your IdP, you may need to configure DHIS2 to use a different IdP claim.
 
-If you are using Google or Azure AD as an IdP, the default behavior is to use the email claim to map IdP identities to DHIS2 user accounts. 
+If you are using Google as an IdP, the default behavior is to use the email claim to map IdP identities to DHIS2 user accounts. 
 
 > **Note**
 > 
-> In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox "**External authentication only (OpenID or LDAP)**" must be checked and "**OpenID**" field must match the claim (mapping claim) returned by the IdP. Email is used by default by both Google and Azure AD.
+> In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox "**External authentication only (OpenID or LDAP)**" must be checked and "**OpenID**" field must match the claim (mapping claim) returned by the IdP. Email is used by default by Google.
 
 
 
@@ -693,12 +691,6 @@ The following procedure provides an outline of the steps that you follow with th
 Follow your IdP service instructions to configure your IdP:
 
 * Google: https://developers.google.com/identity/protocols/oauth2/openid-connect
-* Azure AD: https://medium.com/xebia-engineering/authentication-and-authorization-using-azure-active-directory-266980586ab8
-
-> **Note**
->
-> Azure AD Authorized redirect URIs must have this form: `(protocol):/(host)/oauth2/code/my_azure_ad_tenant_id`
-
 
 ### Configure DHIS2 for OIDC
 
@@ -726,37 +718,7 @@ oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app contex
 # Optional, defaults to 'email'
 oidc.provider.google.mapping_claim = email
 ```
-#### Azure AD
 
-Note that Azure AD supports having multiple tenants, hence the numbering scheme `oidc.provider.azure.NUMBER.VARIABLE` below. Make sure your Azure AD account is configured with a redirect URL like `(protocol):/(host)/oauth2/code/my_azure_ad_tenant_id`.
-
-```properties
-# ----------------------------------------------------------------------
-# OIDC Configuration
-# ----------------------------------------------------------------------
-# Value must be "on" for OIDC to be enabled
-oidc.oauth2.login.enabled = on
-# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout
-oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
-
-# Azure AD specific parameters
-# First provider (0)
-oidc.provider.azure.0.tenant = my_azure_ad_tenant_id
-oidc.provider.azure.0.client_id = my_azure_ad_client_id
-oidc.provider.azure.0.client_secret = my_azure_ad_client_secret
-# DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
-oidc.provider.azure.0.redirect_baseurl = (protocol)://(host)/(optional app context)
-# Optional, defaults to 'email'
-oidc.provider.azure.mapping_claim = email
-# Optional, defaults to 'true'
-oidc.provider.azure.support_logout = true
-
-# Second provider (1)
-oidc.provider.azure.1.tenant = my_other_azure_ad_tenant_id
-oidc.provider.azure.1.client_id = my_other_azure_ad_client_id
-oidc.provider.azure.1.client_secret = my_other_azure_ad_client_secret
-oidc.provider.azure.1.redirect_baseur l= (protocol)://(host)/(optional app context)
-```
 ## LDAP configuration
 
 <!--DHIS2-SECTION-ID:install_ldap_configuration-->
