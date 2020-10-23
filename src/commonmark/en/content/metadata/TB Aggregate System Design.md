@@ -1,5 +1,5 @@
-﻿# TB aggregate system design
-
+# TB aggregate package
+ 
 ## Introduction
 
 This document describes the system design for the TB configuration package for aggregate reporting, focusing on how the data collection part of the configuration has been designed in DHIS2 (i.e. data sets and data elements).
@@ -121,7 +121,7 @@ The treatment section/table is configured with individual data elements.
 
 #### Cases by sex and age (legacy)
 
-![Cases by sex and age (legacy)](resources/images/TB_AGG/TB_AGG_image10.png")  
+![Cases by sex and age (legacy)](resources/images/TB_AGG/TB_AGG_image10.png)  
 
 The [old records only] data sets are not discussed in detail, but the “cases by sex and age” section/table deserves a special comment. The previous TB reporting framework (2006 version) allowed some variations in how notifications where disaggregated by age. Consequently, different countries use a few different age disaggregations. Because the TB configuration package is designed to be used in different countries/contexts, the “cases by sex and age” section uses a sex category that includes “unknown sex”, and an age category that includes a few different, overlapping age options. For example, it includes both 0-4 years, 5-14 years _and_ 0-14 years. This is in general **not** a recommended approach as 1) the category total does not make sense, and 2) there is a risk for double counting if all age brackets are used. However, this was done here for the following reasons:
 
