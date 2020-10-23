@@ -45,6 +45,7 @@ generate "dhis2_android_sdk_developer_guide" "android-sdk"
 
 echo "    - Sysadmin:" >> $myml
 generate "dhis2_system_administration_guide" "sysadmin"
+generate "dhis2_software_release_info" "sysadmin"
 
 echo "    - Metadata:" >> $myml
 generate "dhis2_who_digital_health_data_toolkit" "metadata"
