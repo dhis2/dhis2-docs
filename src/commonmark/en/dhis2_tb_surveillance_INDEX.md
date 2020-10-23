@@ -1,5 +1,5 @@
 ---
-title: 'DHIS 2 Tuberculosis Surveillance'
+title: 'Tuberculosis'
 ---
 <!--DHIS2-SECTION-ID:index-->
 
