@@ -48,6 +48,7 @@ if [ ${LOCALISE} -eq 1  ]; then
         translate "dhis2_action_tracker_manual" "at-app" "both" $lang $locale
         translate "dhis2_bottleneck_analysis_manual" "bna-app" "both" $lang $locale
         translate "dhis2_scorecard_manual" "scorecard-app" "both" $lang $locale
+        translate "dhis2_who_data_quality_tool_guide" "dq-app" "both" $lang $locale
 
         echo "    - Implementer:" >> $myml
         translate "dhis2_implementation_guide" "implementer" "both" $lang $locale
