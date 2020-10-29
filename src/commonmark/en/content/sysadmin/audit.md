@@ -22,7 +22,7 @@ All audit entries will be saved into one single table named `audit`
 | auditscope | text                        | METADATA, AGGREGATE, TRACKER                                                                                                                        |   |
 | klass      | text                        | Audit Entity Java class name                                                                                                                      |   |
 | attributes | jsonb                       | Json string stores attributes of the audit entity, used for searching. Example: {"valueType":"TEXT", "categoryCombo":"SWQW313FQY", "domainType":"TRACKER"} |   |
-| data       | bytea                       | Compressed Json string of the Audit Entity. It is currently in byte array format and not human-readable, but a mechanism will be introduce in 2.34.1                                                                                                        |   |
+| data       | bytea                       | Compressed Json string of the Audit Entity. It is currently in byte array format and not human-readable.              |   |
 | createdat  | timestamp without time zone |                                                                                                                                                   |   |
 | createdby  | text                        |                                                                                                                                                   |   |
 | uid        | text                        |                                                                                                                                                   |   |
