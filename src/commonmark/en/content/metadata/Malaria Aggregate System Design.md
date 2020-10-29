@@ -1,4 +1,4 @@
-﻿# Malaria aggregate system design
+# Malaria Aggregate System Design
 
 ## Introduction
 
