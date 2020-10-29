@@ -139,7 +139,7 @@ include_submodules() {
       then
           submodule_name=${words[1]}
           submodule_branch=${words[2]}
-          submodule_file=${words[3]}
+          submodule_file=${words[@]:3}
           {
             mkdir -p $src/content/submodules
             pushd $src/content/submodules
