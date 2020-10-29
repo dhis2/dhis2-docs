@@ -58,7 +58,7 @@ class Include(Module):
                     CURRENT_BASE=parts[1]
                 else:
                     CURRENT_BASE=GITBASE+parts[1]
-                line='!INCLUDE "'+BASE+parts[1].split('/')[-1]+'/'+parts[3]+'"'
+                line='!INCLUDE "'+BASE+parts[1].split('/')[-1]+'/'+' '.join(parts[3:])+'"'
                 branch=parts[2]
 
             match = self.includere.search(line)
