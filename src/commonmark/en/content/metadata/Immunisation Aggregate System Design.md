@@ -1,4 +1,3 @@
-﻿
 # Immunisation aggregate system design
 
 ## Introduction
