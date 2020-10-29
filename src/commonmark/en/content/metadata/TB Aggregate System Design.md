@@ -1,4 +1,3 @@
-
 # TB Aggregate System Design
  
 ## Introduction
