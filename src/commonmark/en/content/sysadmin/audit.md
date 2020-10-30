@@ -116,10 +116,10 @@ audit.tracker = CREATE;DELETE
 
 In order to completely disable auditing, this is the configuration to use:
 ```
-audit.metadata = 
+audit.metadata = DISABLED
 
-audit.tracker = 
+audit.tracker = DISABLED
 
-audit.aggregate =
+audit.aggregate = DISABLED
 ```
 
