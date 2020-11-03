@@ -38,6 +38,7 @@ generate "dhis2_android_implementation_guideline" "implementer"
 generate "dhis2_android_capture_app" "android-app"
 generate "dhis2_android_MDM" "mdm"
 generate "user_stories_book" "user-stories"
+generate "dhis2_software_release_info" "implementer"
 
 echo "    - Developer:" >> $myml
 generate "dhis2_developer_manual" "developer"
