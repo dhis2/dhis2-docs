@@ -8,7 +8,7 @@ The reports app allows for canned, standard reports, data set reports, resources
 
 <!--DHIS2-SECTION-ID:standard_reports_in_the_beta_reports_app-->
 
-You access the available reports by navigating to Apps-\>Reports (Beta). In the
+You access the available reports by navigating to Apps-\>Reports. In the
 report menu in the left bar, click Standard Report. A list of all
 pre-defined reports will appear in the main window.
 
@@ -34,7 +34,7 @@ filled with either raw or aggregated data. These are only available for
 data sets that have custom data entry forms and not for default or
 section forms.
 
-You can access data set reports from Apps-\>Reports (Beta).
+You can access data set reports from Apps-\>Reports.
 
 A Criteria window will appear where you fill in the details for your
 report:
@@ -71,12 +71,12 @@ PDF formats.
 
 <!--DHIS2-SECTION-ID:reporting_rate_summary_in_the_beta_reports_app-->
 
-Access the reporting rate summary from the Apps-\>Reports (Beta) menu.
+Access the reporting rate summary from the Apps-\>Reports menu.
 Reporting rate summaries will show how many datasets (forms) that have
 been submitted by organisation unit and period.
 
-The reporting rate is calculation is based on complete data set registrations. 
-A complete data set registration refers to a user marking a data entry form as 
+The reporting rate is calculation is based on complete data set registrations.
+A complete data set registration refers to a user marking a data entry form as
 complete, typically by clicking the complete button in the data entry screen,
 hereby indicating to the system that she considers the form to be
 complete. This is i.e. a subjective approach to calculating
@@ -106,7 +106,7 @@ The reporting rate summary will for each row show a range of measures:
 To run the report you can follow these steps:
 
   - Select an orgunit from the tree.
-    
+
   - Select a data set.
 
   - Select a period type and a period from the list of available periods
@@ -129,7 +129,7 @@ resources will be saved there.
 
 To create a new resource:
 
-1.  Open the **Reports (Beta)** app and click **Resource**.
+1.  Open the **Reports** app and click **Resource**.
 
 2.  Click **Add new**.
 
@@ -144,7 +144,7 @@ To create a new resource:
 <!--DHIS2-SECTION-ID:orgunit_distribution_reports_in_the_beta_reports_app-->
 
 You can access the Orgunit Distribution reports from the left side menu
-in the Apps-\>Reports (Beta).
+in the Apps-\>Reports.
 
 Orgunit distribution reports are reports that show how the orgunits are
 distributed on various properties like type and ownership, and by
