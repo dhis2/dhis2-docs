@@ -9,7 +9,7 @@
   {% set temp__title =  nav_item.title.replace("DHIS 2 ","").replace("DHIS2 ","") %}
   {% set nav__title =  temp__title[0].upper()+temp__title[1:] %}
 {% else %}
-  {% set nav__title =  %}
+  {% set nav__title = nav_item.title %}
 {% endif %}
 {% if nav_item.children %}
   <li class="{{ class }} md-nav__item--nested">
