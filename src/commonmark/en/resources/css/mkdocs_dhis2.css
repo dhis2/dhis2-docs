@@ -2,13 +2,13 @@
 .md-typeset {
   font-size: .67rem;
 }
-​
+
 .md-typeset p {
   font-size: .67rem;
   padding-top: .1em;
   padding-bottom: .1em;
 }
-​
+
 .md-typeset code {
   font-size: 80%;
 }
@@ -52,6 +52,10 @@
   margin-top: 5px;
   padding: 5px;
   padding-top: 35px;
+}
+
+.md-tabs--active ~ .md-main .md-nav {
+    scroll-snap-align: start;
 }
 
 .md-nav {
@@ -217,6 +221,7 @@ article {
 }
 
 .md-main__inner {
+  margin-top: 0;
   padding-top: 0;
 }
 .md-header[data-md-state="shadow"] {
@@ -284,10 +289,19 @@ article {
   margin-bottom:15px;
 }
 
+.md-footer {
+  background-color:white;
+}
+
+.md-footer-meta{
+  background-color:#0e0707;
+}
+
 .md-footer-nav {
   margin:1rem 0 2rem;
   background-color: white;
   color: var(--grey900);
+  background: white;
 }
 
 .md-footer-nav__link {
@@ -399,6 +413,9 @@ caption {
 
 .md-nav__link--active, .md-nav__link:active {
   color: var(--blue700);
+  background: var(--blue100);
+  border-radius: 3px;
+  padding: 2px;
 }
 
 

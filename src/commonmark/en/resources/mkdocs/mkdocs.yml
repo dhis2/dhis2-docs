@@ -30,13 +30,30 @@ extra:
         fr: 'Français'
         es_419: 'Español (latinoamerica)'
         pt: 'Português'
+    social:
+      - icon: fontawesome/brands/github
+        link: https://www.github.com/dhis2
+        name: DHIS2 source code on GitHub
+      - icon: fontawesome/brands/docker
+        link: https://hub.docker.com/repository/docker/dhis2
+        name: DHIS2 on Docker
+      - icon: fontawesome/brands/twitter
+        link: https://twitter.com/dhis_2
+        name: DHIS2 on Twitter
+      - icon: fontawesome/brands/facebook
+        link: https://www.facebook.com/dhis2
+        name: DHIS2 on Facebook
+      - icon: fontawesome/brands/discourse
+        link: https://community.dhis2.org
+        name: DHIS2 Community
 
 theme:
     name: material
     logo: 'resources/images/logo.svg'
     favicon: 'resources/images/favicon.ico'
-    feature:
-      tabs: true
+    features:
+      - navigation.tabs
+      - navigation.instant
     custom_dir: 'theme'
     palette:
       primary: 'white'
@@ -57,9 +74,12 @@ markdown_extensions:
     - markdown_captions
     - toc:
         permalink: true
+        toc_depth: 3
     - attr_list
     - def_list
     - footnotes
+    - pymdownx.arithmatex:
+        generic: true
     - pymdownx.betterem:
         smart_enable: all
     - pymdownx.caret
