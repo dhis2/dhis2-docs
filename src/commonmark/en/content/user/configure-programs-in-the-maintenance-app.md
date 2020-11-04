@@ -2298,6 +2298,16 @@ functions. The functions can be applied to data elements and attributes:
 <td><p>(expression [, expression ...])</p></td>
 <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. Each expression must follow the rules of any program indicator expression (including functions).</p></td>
 </tr>
+<tr class="odd">
+<td><p>log</p></td>
+<td><p>(expression [, base ])</p></td>
+<td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returs the logarithm using that base.</p></td>
+</tr>
+<tr class="even">
+<td><p>log10</p></td>
+<td><p>(expression)</p></td>
+<td><p>Returns the common logarithm (base 10) of the numeric expression.</p></td>
+</tr>
 </tbody>
 </table>
 
