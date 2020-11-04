@@ -64,6 +64,11 @@ theme:
 extra_css:
     - resources/css/mkdocs_dhis2.css
 
+extra_javascript:
+    - resources/javascript/config.js
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 plugins:
     - search
     - edit_url
@@ -78,19 +83,29 @@ markdown_extensions:
     - attr_list
     - def_list
     - footnotes
-    - pymdownx.arithmatex:
-        generic: true
+    - pymdownx.arithmatex
     - pymdownx.betterem:
         smart_enable: all
     - pymdownx.caret
     - pymdownx.critic
-    - pymdownx.emoji
-    - pymdownx.inlinehilite
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+    - pymdownx.inlinehilite:
+        custom_inline:
+          - name: math
+            class: arithmatex
+            format: !!python/name:pymdownx.arithmatex.inline_mathjax_format
     - pymdownx.magiclink
     - pymdownx.mark
     - pymdownx.smartsymbols
     - pymdownx.superfences
     - pymdownx.tilde
+    - pymdownx.tabbed
+    - pymdownx.tasklist:
+        custom_checkbox: true
+
+
 
 # output when building
 site_dir: ../../target/commonmark/<language>/
