@@ -43,7 +43,7 @@ if [[ `id -un` == "jenkins" ]]; then
 fi
 
 # set up the python environment
-VENV_VERSION=1.2  # used to force a reset of the venv
+VENV_VERSION=1.3  # used to force a reset of the venv
 cd ${SCRIPT_DIR}
 if [ ! -f "venv/${VENV_VERSION}" ]; then
     rm -rf venv
