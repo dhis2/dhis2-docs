@@ -55,6 +55,7 @@ if [ ${LOCALISE} -eq 1  ]; then
         translate "dhis2_action_tracker_manual" "at-app" "both" $lang $locale
         translate "dhis2_bottleneck_analysis_manual" "bna-app" "both" $lang $locale
         translate "dhis2_scorecard_manual" "scorecard-app" "both" $lang $locale
+        translate "dhis2_who_data_quality_tool_guide" "dq-app" "both" $lang $locale
 
         echo "    - Implementer:" >> $myml
         translate "dhis2_implementation_guide" "implementer" "both" $lang $locale
@@ -71,6 +72,14 @@ if [ ${LOCALISE} -eq 1  ]; then
 
         echo "    - Sysadmin:" >> $myml
         translate "dhis2_system_administration_guide" "sysadmin" "both" $lang $locale
+
+        echo "    - Metadata:" >> $myml
+        translate "dhis2_who_digital_health_data_toolkit" "metadata" "both" $lang $locale
+        translate "dhis2_covid19_surveillance" "packages" "both" $lang $locale
+        translate "dhis2_immunisation" "packages" "both" $lang $locale
+        translate "dhis2_malaria" "packages" "both" $lang $locale
+        translate "dhis2_tb_surveillance" "packages" "both" $lang $locale
+
 
         make_mkdocs
 
