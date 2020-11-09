@@ -55,8 +55,9 @@ if [ ${LOCALISE} -eq 1  ]; then
         translate "dhis2_implementation_guide" "implementer" "both" $lang $locale
         translate "dhis2_android_implementation_guideline" "implementer" "both" $lang $locale
         translate "dhis2_android_capture_app" "android-app" "both" $lang $locale
-		translate "dhis2_android_MDM" "mdm" "both" $lang $locale
+		    translate "dhis2_android_MDM" "mdm" "both" $lang $locale
         translate "user_stories_book" "user-stories" "both" $lang $locale
+        translate "dhis2_software_release_info" "implementer" "both" $lang $locale
 
         echo "    - Developer:" >> $myml
         translate "dhis2_developer_manual" "developer" "both" $lang $locale
