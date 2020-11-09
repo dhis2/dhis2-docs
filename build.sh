@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# we use the build resources from the master branch
+# we use the build resources from the master branch (commented out for master itself)
 git checkout master -- src/commonmark/en/resources
 git checkout master -- tools
 git checkout master -- lib
@@ -39,6 +39,7 @@ generate "dhis2_android_implementation_guideline" "implementer"
 generate "dhis2_android_capture_app" "android-app"
 generate "dhis2_android_MDM" "mdm"
 generate "user_stories_book" "user-stories"
+generate "dhis2_software_release_info" "implementer"
 
 echo "    - Developer:" >> $myml
 generate "dhis2_developer_manual" "developer"
