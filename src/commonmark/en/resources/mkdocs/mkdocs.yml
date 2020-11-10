@@ -53,7 +53,6 @@ theme:
     favicon: 'resources/images/favicon.ico'
     features:
       - navigation.tabs
-      - navigation.instant
     custom_dir: 'theme'
     palette:
       primary: 'white'
