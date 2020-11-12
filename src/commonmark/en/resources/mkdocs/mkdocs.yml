@@ -31,13 +31,29 @@ extra:
         es_419: 'Español (latinoamerica)'
         pt: 'Português'
         cs: 'Czech'
+    social:
+      - icon: fontawesome/brands/github
+        link: https://www.github.com/dhis2
+        name: DHIS2 source code on GitHub
+      - icon: fontawesome/brands/docker
+        link: https://hub.docker.com/repository/docker/dhis2
+        name: DHIS2 on Docker
+      - icon: fontawesome/brands/twitter
+        link: https://twitter.com/dhis_2
+        name: DHIS2 on Twitter
+      - icon: fontawesome/brands/facebook
+        link: https://www.facebook.com/dhis2
+        name: DHIS2 on Facebook
+      - icon: fontawesome/brands/discourse
+        link: https://community.dhis2.org
+        name: DHIS2 Community
 
 theme:
     name: material
     logo: 'resources/images/logo.svg'
     favicon: 'resources/images/favicon.ico'
-    feature:
-      tabs: true
+    features:
+      - navigation.tabs
     custom_dir: 'theme'
     palette:
       primary: 'white'
@@ -63,19 +79,23 @@ markdown_extensions:
     - markdown_captions
     - toc:
         permalink: true
-
-    - abbr
+        toc_depth: 3
     - attr_list
     - def_list
     - footnotes
-    - pymdownx.arithmatex:
-        generic: true
+    - pymdownx.arithmatex
     - pymdownx.betterem:
         smart_enable: all
     - pymdownx.caret
     - pymdownx.critic
-    - pymdownx.emoji
-    - pymdownx.inlinehilite
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+    - pymdownx.inlinehilite:
+        custom_inline:
+          - name: math
+            class: arithmatex
+            format: !!python/name:pymdownx.arithmatex.inline_mathjax_format
     - pymdownx.magiclink
     - pymdownx.mark
     - pymdownx.smartsymbols
