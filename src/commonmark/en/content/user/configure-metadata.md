@@ -2158,7 +2158,7 @@ You can use the following functions in an indicator formula:
 <tr class="odd">
 <td><p>log</p></td>
 <td><p>(expression [, base ])</p></td>
-<td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returs the logarithm using that base.</p></td>
+<td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base.</p></td>
 </tr>
 <tr class="even">
 <td><p>log10</p></td>
