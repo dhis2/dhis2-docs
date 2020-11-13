@@ -4919,7 +4919,7 @@ sampled. For example:
         </tr>
         <tr class="odd">
         <td><p>log(expression [, base ])</p></td>
-        <td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returs the logarithm using that base.</p></td>
+        <td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base.</p></td>
         </tr>
         <tr class="even">
         <td><p>log10(expression)</p></td>
