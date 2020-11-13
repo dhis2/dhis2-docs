@@ -409,3 +409,68 @@ In the event list you will be able to view the assignee per event. Moreover, you
 The Capture app doesn't support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
 
 ![](resources/images/capture_app/tracker_program.png)
+
+
+## Search for tracked entity instances 
+
+### In Program scope
+
+1. Open the **Capture** app.
+
+2. Select a program.
+
+   You'll only see programs associated with the selected organisation unit and programs you've access to, and that is shared with your user group through data level sharing.
+
+3. If the program has a category combination set the category option will have to be selected.
+
+4. Click the Find button.
+
+5. From the dropdown menu click the first option.
+
+   ![](resources/images/capture_app/search-by-attributes-find-button.png)
+
+These steps will take you to the search page. There, given the configuration your organisation has in the maintenance app you will see the different attributes you can search with. An example of how this looks like is the following.
+
+![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-0.png)
+
+To execute a search now, 
+
+1. Fill in the attributes you want to search with.
+
+2. Clcik the Search by attributes button.
+
+   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-1.png)
+
+#### Fallback search
+
+Execute a full search as described above. Now if the search you have made has results you will be seeing your results.
+
+To execute a fallback search, press the button on the bottom saying "Search in all programs". 
+**Note: this is only possible in the scope of a Program.**
+
+![](resources/images/capture_app/search-by-attributes-fallback-overview-0.png)
+
+### In Tracked entity type scope
+
+1. Open the **Capture** app.
+
+2. Click the Find button to be navigated to the search page.
+
+3. Click on the drop down menu and select scope on which you wanna search into. 
+
+   ![](resources/images/capture_app/search-by-attributes-domain-selector-overview-0.png)
+
+4. Make a selection from the list.
+
+   ![](resources/images/capture_app/search-by-attributes-domain-selector-overview-1.png)
+
+Now, given the configuration your organisation has in the maintenance app you will see the different attributes you can search with. An example of how this looks like is the following.
+
+![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-0.png)
+
+To execute a search now, 
+
+1. Fill in the attributes you want to search with.
+2. Click the Search by attributes button.
+
+![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-1.png)
