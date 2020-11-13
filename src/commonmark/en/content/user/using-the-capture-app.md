@@ -441,7 +441,14 @@ To execute a search now,
 
    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-1.png)
 
+#### Fallback search
 
+Execute a full search as described above. Now if the search you have made has results you will be seeing your results.
+
+To execute a fallback search, press the button on the bottom saying "Search in all programs". 
+**Note: this is only possible in the scope of a Program.**
+
+![](resources/images/capture_app/search-by-attributes-fallback-overview-0.png)
 
 ### In Tracked entity type scope
 
@@ -467,12 +474,3 @@ To execute a search now,
 2. Click the Search by attributes button.
 
 ![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-1.png)
-
-### Fallback search
-
-Execute a full search with one of the two ways explained above. Now if the search you have made has results you will be seeing your results.
-
-To execute a fallback search, press the button on the bottom saying "Search in all programs". 
-**Note: this is only possible in the scope of a Program.**
-
-![](resources/images/capture_app/search-by-attributes-fallback-overview-0.png)
