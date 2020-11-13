@@ -733,9 +733,7 @@ oidc.provider.google.mapping_claim = email
 
 Note that Azure AD supports having multiple tenants, hence the numbering scheme `oidc.provider.azure.NUMBER.VARIABLE` below. 
 
-Make sure your Azure AD account in the Azure portal is configured with a redirect URL like `(protocol):/(host)/oauth2/code/my_azure_ad_tenant_id`.
-
-To register DHIS 2 as an "app" in the Azure portal, follow these steps:
+Make sure your Azure AD account in the Azure portal is configured with a redirect URL like `(protocol):/(host)/oauth2/code/my_azure_ad_tenant_id`. To register DHIS 2 as an "app" in the Azure portal, follow these steps:
 
 1. Search for and select *App registrations*.
 2. Click *New registration*.
