@@ -30,7 +30,7 @@ fi
 if [ ${LOCALISE} -eq 1  ]; then
 
     # for l in fr,fr_FR pt,pt_PT   # this is where you add new languages
-    for l in fr,fr_FR es_419,es_419 pt,pt_PT
+    for l in fr,fr_FR es_419,es_419 pt,pt_PT cs,cs_CZ
     do
 
         lang=${l%,*};
