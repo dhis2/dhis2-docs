@@ -332,6 +332,7 @@ or for those who require a plan data source, for instance for import
 into statistical packages.
 
 **Available formats**
+
 |Format|Action|Description|
 |--- |--- |------ |
 |JSON|Click JSON|Downloads JSON format based on the ID, Code or Name property.|
