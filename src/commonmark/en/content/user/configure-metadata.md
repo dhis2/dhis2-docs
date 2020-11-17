@@ -2156,6 +2156,16 @@ You can use the following functions in an indicator formula:
 <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
 </tr>
 <tr class="odd">
+<td><p>log</p></td>
+<td><p>(expression [, base ])</p></td>
+<td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base.</p></td>
+</tr>
+<tr class="even">
+<td><p>log10</p></td>
+<td><p>(expression)</p></td>
+<td><p>Returns the common logarithm (base 10) of the numeric expression.</p></td>
+</tr>
+<tr class="odd">
 <td><p>.periodOffset</p></td>
 <td><p>(integer constant)</p></td>
 <td><p>Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below.</p></td>
@@ -4906,6 +4916,14 @@ sampled. For example:
         <tr class="even">
         <td><p>least(expression [, expression ...])</p></td>
         <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>log(expression [, base ])</p></td>
+        <td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base.</p></td>
+        </tr>
+        <tr class="even">
+        <td><p>log10(expression)</p></td>
+        <td><p>Returns the common logarithm (base 10) of the numeric expression.</p></td>
         </tr>
         </tbody>
         </table>
