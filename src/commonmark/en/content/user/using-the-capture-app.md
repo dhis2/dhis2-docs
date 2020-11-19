@@ -437,10 +437,26 @@ To execute a search now,
 
 1. Fill in the attributes you want to search with.
 
-2. Clcik the Search by attributes button.
+2. Click the Search by attributes button.
 
    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-1.png)
+   
+3. Now you will be seeing a list of results with that would look the images like bellow.
 
+   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-2.png)
+    
+    In this list you given in you can see different entries. For each entry you can have a total of three options. 
+    
+    a. You can either choose to view the users dashboard which will take you to user's dashboard or
+    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-5.png)
+    
+    b. You can view the the active enrollment of a user by clicking the "View active enrollment" button or finally
+    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-3.png)
+    
+    c. You can re-enroll a user to the current program you have selected to search in.
+    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-4.png)
+
+    
 #### Fallback search
 
 Execute a full search as described above. Now if the search you have made has results you will be seeing your results.
@@ -474,3 +490,23 @@ To execute a search now,
 2. Click the Search by attributes button.
 
 ![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-1.png)
+
+3. Now you will be seeing a list of results with that would look the images like bellow.
+
+   ![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-2.png)
+    
+   In this list you given in you can see different entries. For each entry you can have one option.
+   You can click the "View Dashboard" button to navigate to the users dashboard. 
+
+       
+### Too many results functionality 
+
+Given the configuration of the program or tracked entity type you are searching into, there is the chance that you will have a limit in the search results you are allowed to request.
+This can be configured in the maintenance app. Now when your search results exceed this limit you will be shown a message same as bellow.
+![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-too-many-results-message.png)
+
+### Pagination
+
+Each view of the results returns five enties at a time. To see the next five items returned you can use the button in the end of the page.
+
+![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-pagination.png)
