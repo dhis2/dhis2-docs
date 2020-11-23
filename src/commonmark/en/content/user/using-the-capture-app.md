@@ -406,7 +406,7 @@ In the event list you will be able to view the assignee per event. Moreover, you
 
 <!--DHIS2-SECTION-ID:capture_tracker_programs-->
 
-The Capture app doesn't support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
+The Capture app does not support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
 
 ![](resources/images/capture_app/tracker_program.png)
 
@@ -419,7 +419,7 @@ The Capture app doesn't support tracker programs yet, but the tracker programs a
 
 2. Select a program.
 
-   You'll only see programs associated with the selected organisation unit and programs you've access to, and that is shared with your user group through data level sharing.
+   You will only see programs associated with the selected organisation unit and programs you have access to, and that are shared with your user group through data level sharing.
 
 3. If the program has a category combination set the category option will have to be selected.
 
@@ -429,40 +429,46 @@ The Capture app doesn't support tracker programs yet, but the tracker programs a
 
    ![](resources/images/capture_app/search-by-attributes-find-button.png)
 
-These steps will take you to the search page. There, given the configuration your organisation has in the maintenance app you will see the different attributes you can search with. An example of how this looks like is the following.
+    These steps will take you to the search page. There, based on the configuration of your organisation, will see the different attributes you can search with. An example of how this looks is the following.
 
-![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-0.png)
+    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-0.png)
 
-To execute a search now, 
+    To execute a search now: 
 
 1. Fill in the attributes you want to search with.
 
-2. Click the Search by attributes button.
+2. Click the **Search by attributes** button.
 
    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-1.png)
    
-3. Now you will be seeing a list of results with that would look the images like bellow.
+3. The results of the search will be displayed as follows.
 
    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-2.png)
     
-    In this list you given in you can see different entries. For each entry you can have a total of three options. 
+   In this list you can see the entries that match your search. For each entry you can have a total of three options. 
     
-    a. You can either choose to view the users dashboard which will take you to user's dashboard or
-    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-5.png)
+   a. You can choose to view the users dashboard by clicking the "View dashboard" button
+   
+   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-5.png)
     
-    b. You can view the the active enrollment of a user by clicking the "View active enrollment" button or finally
-    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-3.png)
+   b. You can view the the active enrollment of a user by clicking the "View active enrollment" button
+   
+   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-3.png)
     
-    c. You can re-enroll a user to the current program you have selected to search in.
-    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-4.png)
+   c. You can re-enroll a user to the current program you are searching within.
+   
+   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-4.png)
 
     
 #### Fallback search
 
-Execute a full search as described above. Now if the search you have made has results you will be seeing your results.
+Execute a full search as described above. If the search you have made has results they will be displayed. However, the actual user you are searching for may be within a different program. In that case, you may want to extend the search to other programs. This is known as a fallback search.
 
-To execute a fallback search, press the button on the bottom saying "Search in all programs". 
-**Note: this is only possible in the scope of a Program.**
+To execute a fallback search, simply press the button on the bottom saying "Search in all programs". 
+
+> **Note**
+>
+> The fallback search is only possible when searching within a Program.
 
 ![](resources/images/capture_app/search-by-attributes-fallback-overview-0.png)
 
@@ -470,9 +476,9 @@ To execute a fallback search, press the button on the bottom saying "Search in a
 
 1. Open the **Capture** app.
 
-2. Click the Find button to be navigated to the search page.
+2. Click the **Find** button to open the search page.
 
-3. Click on the drop down menu and select scope on which you wanna search into. 
+3. Click on the drop down menu and select the type of entity you want to search for. 
 
    ![](resources/images/capture_app/search-by-attributes-domain-selector-overview-0.png)
 
@@ -480,33 +486,33 @@ To execute a fallback search, press the button on the bottom saying "Search in a
 
    ![](resources/images/capture_app/search-by-attributes-domain-selector-overview-1.png)
 
-Now, given the configuration your organisation has in the maintenance app you will see the different attributes you can search with. An example of how this looks like is the following.
+    Based on the configuration of your organisation you will see the different attributes you can search with. An example of how this looks is the following.
 
-![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-0.png)
+    ![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-0.png)
 
-To execute a search now, 
+    To execute a search now:
 
 1. Fill in the attributes you want to search with.
+
 2. Click the Search by attributes button.
 
-![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-1.png)
+    ![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-1.png)
 
-3. Now you will be seeing a list of results with that would look the images like bellow.
+3. The results of the search will be displayed as follows.
 
    ![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-2.png)
     
-   In this list you given in you can see different entries. For each entry you can have one option.
-   You can click the "View Dashboard" button to navigate to the users dashboard. 
+   In this list you can see the entries that match your search. For each entry you have the option to click the "View Dashboard" button to view the users dashboard. 
 
        
 ### Too many results functionality 
 
-Given the configuration of the program or tracked entity type you are searching into, there is the chance that you will have a limit in the search results you are allowed to request.
-This can be configured in the maintenance app. Now when your search results exceed this limit you will be shown a message same as bellow.
+The program or tracked entitiy type you are searching within may be configured with a limit on the number of results that are retrurned from a search. If your search results exceed this limit you will be shown a warning message like the one below.
+
 ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-too-many-results-message.png)
 
 ### Pagination
 
-Each view of the results returns five enties at a time. To see the next five items returned you can use the button in the end of the page.
+The results page shows up to five results at a time. You should try to use specific search criteria so that there are not too many matches. However, if there are more than five results, you can see the next results by using the **>** button at the end of the page.
 
 ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-pagination.png)
