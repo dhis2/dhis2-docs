@@ -6,25 +6,11 @@
 
 <!--DHIS2-SECTION-ID:about_capture_app-->
 
-The Capture app serves as a replacement for the Event Capture app. In the future, the intention is to incorporate the Tracker Capture app and the Data Entry app into the Capture app.
+> **Note**
+>
+> The Capture app serves as a replacement for the Event Capture app. In the future, the Tracker Capture app and the Data Entry app will also be incorporated into the Capture app.
 
-In the Capture app you register events that occurred at a particular time and place. An event can happen at any given point in time. This stands in contrast to routine data, which can be captured for predefined, regular intervals. Events are sometimes called cases or records. In DHIS2, events are linked to a program. The Capture app lets you select the organisation unit and program and specify a date when a event happened, before entering information for the event.
-
-## Implementer / administrator info
-
-<!--DHIS2-SECTION-ID:implementer_info-->
-
-### Metadata caching
-
-<!--DHIS2-SECTION-ID:metadata_caching-->
-
-For performance reasons the Capture app caches metadata in the client browser. When metadata is updated on the server the changes needs to be propagated to the clients that have already cached the metadata. Depending on the change, this is done in one of three ways:
-
-1. If the change is bound to a program you will need to increase the program version for that particular program. For example, if you change the data elements in a program or a program rule, the version for the bound program needs be increased.
-
-2. If the change is NOT bound to a program you will need to increase ANY program version for the change to be propagated to the clients. Examples here are changes to constants, organisation unit levels or organisation unit groups.
-
-3. The exception to the two rules above is option sets. Option sets have their own version property, i.e. increasing the option set version should ensure the option set metadata are propagated to the clients.
+In the Capture app you register events that occurred at a particular time and place. An event can happen at any given point in time. This stands in contrast to routine data, which is captured for predefined, regular intervals. Events are sometimes called cases or records. In DHIS2, events are linked to a program. The Capture app lets you select the organisation unit and program and specify a date when an event happened, before entering information for the event.
 
 ## Register an event
 
@@ -36,17 +22,15 @@ For performance reasons the Capture app caches metadata in the client browser. W
 
 3. Select a program.
 
-    You'll only see programs associated with the selected organisation
-    unit and programs you've access to, and that is shared with your user group through data level sharing.
+    You will only see programs associated with the selected organisation unit and programs you have access to, and that are shared with your user group through data level sharing.
 
 4. If the program has a category combination set the category option will have to be selected.
 
 5. Click **New**.
 
-      ![create new event](resources/images/capture_app/create_new_event.png)
+    ![create new event](resources/images/capture_app/create_new_event.png)
 
-6. Fill in the required information.
-    If the programs program stage is configured to capture a location:
+6. Fill in the required information. If the programs program stage is configured to capture a location:
 
     - If the field is a coordinate field you can either enter the coordinates
     directly or you can click the **map** icon to the left of the coordinate field.
@@ -63,20 +47,25 @@ For performance reasons the Capture app caches metadata in the client browser. W
    See the section about **Adding a relationship** for more information.
 
 9. Click **Save and exit** or click the arrow next to the button to select **Save and add another**.
+
     - **Save and add another** will save the current event and clear the form.
     All the events that you have captured will be diplayed in a list at the bottom of the page.
     When you want to finish capturing events you can, if the form is blank,
     click the finish button or if your form contains data click the arrow
     next to **Save and add another** and select **Save and exit**.
 
-> Note 1: Some data elements in an event might be mandatory (marked with a red star next to the data element lable).
-> What this means is that all mandatory data elements must be filled in before the user is allowed to complete the event.
+> **Note**
+>
+> Some data elements in an event might be mandatory (marked with a red star next to the data element lable).
+> All mandatory data elements must be filled in before the user is allowed to complete the event.
 > The exception to this is if the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture".__
-> If the user has this authority, the mandatory data elements will not be required to be filled in before saving and
+> If the user has this authority, the mandatory data elements will not be required and
 > the red star will not be displayed next to the data element lable. Note that super user that have the __"ALL"__ authority automatically
 > have this authority.
 
-> Note 2: The data entry form can also be diaplayed in **row view**. In this mode the data elements are arranged horizontally. This can be
+> **Tip**
+>
+> The data entry form can also be displayed in **row view**. In this mode the data elements are arranged horizontally. This can be
 > achived by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
 > can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
 
@@ -85,21 +74,25 @@ For performance reasons the Capture app caches metadata in the client browser. W
 <!--DHIS2-SECTION-ID:capture_add_relationship-->
 
 Relationships can be added either during registration, editing or viewing of an event.
-Currently the **Capture App** only supports *Event to Tracked Entity Instance* relationships. 
+Currently the **Capture App** only supports *Event to Tracked Entity Instance* relationships.
 
 1. While in an event, click **Add relationship**.
 
 2. Select the relationship type you want to create.
 
-- You now have two options: **Link to an existing Tracked Entity Instance** or **Create new Tracked Entity Instance**.
+You now have two options: 
+
+- **Link to an existing Tracked Entity Instance** or 
+
+- **Create new Tracked Entity Instance**.
 
 ![relationship options](resources/images/capture_app/relationship_options.png)
 
 ### Link to an existing Tracked Entity Instance
 
-3. Click **Link to an existing Tracked Entity Instance**.
+1. Click **Link to an existing Tracked Entity Instance**.
 
-- You should now be presented with some options for searching for a **Tracked Entity Instance**.
+- You will be presented with some options for searching for a **Tracked Entity Instance**.
   You have the option to select a **program**. If a **program** is selected the attributes are derived from the selected **program**.
   If no **program** is selected, only the attributes that belong to the **Tracked Entity Instance** will be visible.
 
@@ -113,29 +106,31 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
     - If the **Tracked Entity Instance** or **program** has attibutes these can be used for searching by expanding the **Search by attributes** box.
       When all desired attribute fields have been filled out, click the **Search by attributes** button located at the bottom. You can also limit the search by setting the **Organisation unit scope**. If set to *All accessible* you will search for the **Tracked Entity Instance** in all organisation units you have access to. If you select *Selected*, you will be asked to select which organisation units to search within.
 
-4. After a successful search you will be presented with a list of **Tracked Entity Instances** matching the search criteria.
+2. After a successful search you will be presented with a list of **Tracked Entity Instances** matching the search criteria.
    To create a relationship click the **Link** button on the **Tracked Entity Instance** you would like to create a relationship to.
-   
+
 - If you did not find the **Tracked Entity Instance** you were looking for, you can either click the **New search** or **Edit search** buttons.
   **New search** will take you to new blank search while **Edit search** will take you back to the search you just performed keeping the search criteria.
 
 ### Create new Tracked Entity Instance
 
-3. Click **Create new Tracked Entity Instance**.
+1. Click **Create new Tracked Entity Instance**.
 
 - You are now presented with a form for registering a new **Tracked Entity Instance**. You can choose to either register with or without a program.
   If a program is selected, the new **Tracked Entity Instance** will be enrolled in said program. You can also change the **Organisation unit** by removing the one that is automatically set and selecting a new one.
 
   ![register new Tracked Entity Instance](resources/images/capture_app/register_tei.png)
 
-4. Fill in the desired (and possibly mandatory) attributes and enrollment details.
+2. Fill in the desired (and possibly mandatory) attributes and enrollment details.
 
-5. Click **Create Tracked Entity Instance and Link**.
+3. Click **Create Tracked Entity Instance and Link**.
 
-> Note: When filling in data you might face a warning telling you that a possible duplicate has been found. You can click the warning to see these 
+> **Note**
+>
+> When filling in data you might face a warning telling you that a possible duplicate has been found. You can click the warning to see these
 > duplicates and if the duplicate is a match you can choose to link that **Tracked Entity Instance** by clicking the **Link** button.
 > If the warning is still present when you are done filling in data, you will not see the **Create Tracked Entity Instance and Link** button.
-> Instead you will be pressented with a button called **Review duplicates**. When you click this button a list of possible duplicates will be displayed.
+> Instead you will be presented with a button called **Review duplicates**. When you click this button a list of possible duplicates will be displayed.
 > If any of these duplicates matches the **Tracked Entity Instance** you are trying to create you can click the **Link** button, if not you can click
 > the **Save as new person** button to register a new **Tracked Entity Instance**.
 
@@ -198,7 +193,9 @@ assigned to a program stage.
 
     ![modify event list](resources/images/capture_app/modify_event_list.png)
 
-> Note: You can reorganize the order of the data elements by draging and dropping them in the list.
+> **Tip**
+>
+> You can reorganize the order of the data elements by draging and dropping them in the list.
 
 ## Filter an event list
 
@@ -212,13 +209,15 @@ assigned to a program stage.
 
     All events registered to the selected program show up in a list.
 
-    Along the top of the event list are button with the same names as the column headers in the list.
+    Along the top of the event list are buttons with the same names as the column headers in the list.
 
 4. Use the buttons on the top of the list to filter based on a report date or a specific data element.
 
     ![filter event](resources/images/capture_app/filter_event.png)
 
-> Note: Data elements will have slightly diffrent way that they are filtered. A **Number** data element will for instance show a rang to filter on while a **Text** data element will ask you to enter a search query to filter on.
+> **Note**
+>
+> Different data element types are fitered in different ways. A **Number** data element will for instance show a rang to filter on while a **Text** data element will ask you to enter a search query to filter on.
 
 ## Sort an event list
 
@@ -237,7 +236,7 @@ assigned to a program stage.
 
 5. Click the column header again to sort the list on that data element in descending order.
 
-     A small downward arrow is displayed next to the column to show that the list is sorted in descending order.
+    A small downward arrow is displayed next to the column to show that the list is sorted in descending order.
 
     ![sort event](resources/images/capture_app/sort_event.png)
 
@@ -258,7 +257,9 @@ assigned to a program stage.
 
     ![download event list](resources/images/capture_app/download_event_list.png)
 
-> Note: You can download an event list in JSON, XML or CSV formats.
+> **Note**
+>
+> You can download an event list in JSON, XML or CSV formats.
 
 ## Predefined list views
 
@@ -274,23 +275,23 @@ You can set up your own views and save them for later use. The views can also be
 
 2. Set filters using the filter buttons above the event list (described in detail [here](#capture_filter_event_list)).
 
-![](resources/images/capture_app/view_save_filters.png)
+    ![](resources/images/capture_app/view_save_filters.png)
 
-3. Set the column order by clicking the cog icon and then, in the popover, specify the layout according to your preference (how to modify the layout is described in detail [here](#capture_modify_event_list_layout)).
+3. Set the column order by clicking the cog icon and then, in the pop-up, specify the layout according to your preference (how to modify the layout is described in detail [here](#capture_modify_event_list_layout)).
 
-![](resources/images/capture_app/view_save_column_order.png)
+    ![](resources/images/capture_app/view_save_column_order.png)
 
 4. Sort the events by clicking on one of the column headers (described in detail [here](#capture_sort_event_list)).
 
-![](resources/images/capture_app/view_save_sort_order.png)
+    ![](resources/images/capture_app/view_save_sort_order.png)
 
 5. Open the more menu (three dots icon) to the right and then select "Save current view..."
 
-![](resources/images/capture_app/view_save_menu.png)
+    ![](resources/images/capture_app/view_save_menu.png)
 
 6. Fill in a name for the view and click save.
-   
-![](resources/images/capture_app/view_save_name.png)
+
+    ![](resources/images/capture_app/view_save_name.png)
 
 ### Loading a view
 
@@ -300,11 +301,11 @@ You can set up your own views and save them for later use. The views can also be
 
 2. The views should be available above the event list itself. Click on a view to load it.
 
-![](resources/images/capture_app/view_load_unselected.png)
+    ![](resources/images/capture_app/view_load_unselected.png)
 
 3. An example of a loaded view.
 
-![](resources/images/capture_app/view_load_selected.png)
+    ![](resources/images/capture_app/view_load_selected.png)
 
 ### Updating a view
 
@@ -314,13 +315,13 @@ You can set up your own views and save them for later use. The views can also be
 
 2. Make your changes to filters, column order and/or event sort order.
 
-> **Note**
->
-> An asterisk(*) is appended to the view name when the view has unsaved changes.
+    > **Note**
+    >
+    > An asterisk(*) is appended to the view name when the view has unsaved changes.
 
 3. Open the more menu (three dots icon) to the right and then select "Update view".
 
-![](resources/images/capture_app/view_update.png)
+    ![](resources/images/capture_app/view_update.png)
 
 ### Sharing a view
 
@@ -329,12 +330,12 @@ You can set up your own views and save them for later use. The views can also be
 1. Load the view you would like to share (see [loading a view](#capture_view_load)).
 
 2. Open the more menu (three dot icon) to the right and then select "Share view..."
-   
-![](resources/images/capture_app/view_share.png)
+
+    ![](resources/images/capture_app/view_share.png)
 
 3. Make your changes. You would typically add users/groups (1) and/or change the access rights of users/groups added earlier (2).
 
-![](resources/images/capture_app/view_share_access.png)
+    ![](resources/images/capture_app/view_share_access.png)
 
 ### Deleting a view
 
@@ -343,8 +344,8 @@ You can set up your own views and save them for later use. The views can also be
 1. Load the view you would like to delete (see [loading a view](#capture_view_load)).
 
 2. Open the more menu (three dots icon) to the right and then select "Delete view".
-   
-![](resources/images/capture_app/view_delete.png)
+
+    ![](resources/images/capture_app/view_delete.png)
 
 ## User assignment
 
@@ -411,7 +412,7 @@ The Capture app does not support tracker programs yet, but the tracker programs 
 ![](resources/images/capture_app/tracker_program.png)
 
 
-## Search for tracked entity instances 
+## Search for tracked entity instances
 
 ### In Program scope
 
@@ -419,7 +420,7 @@ The Capture app does not support tracker programs yet, but the tracker programs 
 
 2. Select a program.
 
-   You will only see programs associated with the selected organisation unit and programs you have access to, and that are shared with your user group through data level sharing.
+    You will only see programs associated with the selected organisation unit and programs you have access to, and that are shared with your user group through data level sharing.
 
 3. If the program has a category combination set the category option will have to be selected.
 
@@ -427,44 +428,44 @@ The Capture app does not support tracker programs yet, but the tracker programs 
 
 5. From the dropdown menu click the first option.
 
-   ![](resources/images/capture_app/search-by-attributes-find-button.png)
+    ![](resources/images/capture_app/search-by-attributes-find-button.png)
 
     These steps will take you to the search page. There, based on the configuration of your organisation, will see the different attributes you can search with. An example of how this looks is the following.
 
     ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-0.png)
 
-    To execute a search now: 
+    To execute a search now:
 
 1. Fill in the attributes you want to search with.
 
 2. Click the **Search by attributes** button.
 
-   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-1.png)
-   
+    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-1.png)
+
 3. The results of the search will be displayed as follows.
 
-   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-2.png)
-    
-   In this list you can see the entries that match your search. For each entry you can have a total of three options. 
-    
-   a. You can choose to view the users dashboard by clicking the "View dashboard" button
-   
-   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-5.png)
-    
-   b. You can view the the active enrollment of a user by clicking the "View active enrollment" button
-   
-   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-3.png)
-    
-   c. You can re-enroll a user to the current program you are searching within.
-   
-   ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-4.png)
+    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-2.png)
 
-    
+    In this list you can see the entries that match your search. For each entry you can have a total of three options.
+
+    a. You can choose to view the dashboard for the **Tracked Entity Instance** by clicking the "View dashboard" button
+
+    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-5.png)
+
+    b. You can view the the active enrollment of a **Tracked Entity Instance** by clicking the "View active enrollment" button
+
+    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-3.png)
+
+    c. You can re-enroll a **Tracked Entity Instance** to the current program you are searching within.
+
+    ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-4.png)
+
+
 #### Fallback search
 
-Execute a full search as described above. If the search you have made has results they will be displayed. However, the actual user you are searching for may be within a different program. In that case, you may want to extend the search to other programs. This is known as a fallback search.
+Execute a full search as described above. If the search you have made has results they will be displayed. However, the actual **Tracked Entity Instance** you are searching for may be within a different program. In that case, you may want to extend the search to other programs. This is known as a fallback search.
 
-To execute a fallback search, simply press the button on the bottom saying "Search in all programs". 
+To execute a fallback search, simply press the button on the bottom saying "Search in all programs".
 
 > **Note**
 >
@@ -478,13 +479,13 @@ To execute a fallback search, simply press the button on the bottom saying "Sear
 
 2. Click the **Find** button to open the search page.
 
-3. Click on the drop down menu and select the type of entity you want to search for. 
+3. Click on the drop down menu and select the type of entity you want to search for.
 
-   ![](resources/images/capture_app/search-by-attributes-domain-selector-overview-0.png)
+    ![](resources/images/capture_app/search-by-attributes-domain-selector-overview-0.png)
 
 4. Make a selection from the list.
 
-   ![](resources/images/capture_app/search-by-attributes-domain-selector-overview-1.png)
+    ![](resources/images/capture_app/search-by-attributes-domain-selector-overview-1.png)
 
     Based on the configuration of your organisation you will see the different attributes you can search with. An example of how this looks is the following.
 
@@ -500,12 +501,12 @@ To execute a fallback search, simply press the button on the bottom saying "Sear
 
 3. The results of the search will be displayed as follows.
 
-   ![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-2.png)
-    
-   In this list you can see the entries that match your search. For each entry you have the option to click the "View Dashboard" button to view the users dashboard. 
+    ![](resources/images/capture_app/search-by-attributes-on-scope-tetype-overview-2.png)
 
-       
-### Too many results functionality 
+    In this list you can see the entries that match your search. For each entry you have the option to click the "View Dashboard" button to view the dashboard for the **Tracked Entity Instance**.
+
+
+### Too many results functionality
 
 The program or tracked entitiy type you are searching within may be configured with a limit on the number of results that are retrurned from a search. If your search results exceed this limit you will be shown a warning message like the one below.
 
@@ -516,3 +517,21 @@ The program or tracked entitiy type you are searching within may be configured w
 The results page shows up to five results at a time. You should try to use specific search criteria so that there are not too many matches. However, if there are more than five results, you can see the next results by using the **>** button at the end of the page.
 
 ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-pagination.png)
+
+
+
+## Implementer / administrator info
+
+<!--DHIS2-SECTION-ID:implementer_info-->
+
+### Metadata caching
+
+<!--DHIS2-SECTION-ID:metadata_caching-->
+
+For performance reasons the Capture app caches metadata in the client browser. When metadata is updated on the server the changes needs to be propagated to the clients that have already cached the metadata. Depending on the change, this is done in one of three ways:
+
+1. If the change is bound to a program you will need to increase the program version for that particular program. For example, if you change the data elements in a program or a program rule, the version for the bound program needs be increased.
+
+2. If the change is NOT bound to a program you will need to increase ANY program version for the change to be propagated to the clients. Examples here are changes to constants, organisation unit levels or organisation unit groups.
+
+3. The exception to the two rules above is option sets. Option sets have their own version property, i.e. increasing the option set version should ensure the option set metadata are propagated to the clients.
