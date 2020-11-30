@@ -71,6 +71,7 @@ if [ ${LOCALISE} -eq 1  ]; then
         translate "dhis2_covid19_surveillance" "packages" "both" $lang $locale
         translate "dhis2_immunisation" "packages" "both" $lang $locale
         translate "dhis2_malaria" "packages" "both" $lang $locale
+        translate "dhis2_RMNCAH" "packages" "both" $lang $locale
         translate "dhis2_tb_surveillance" "packages" "both" $lang $locale
 
 
