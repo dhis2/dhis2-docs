@@ -51,6 +51,7 @@ echo "    - Metadata:" >> $myml
 generate "dhis2_who_digital_health_data_toolkit" "metadata"
 generate "dhis2_covid19_surveillance" "packages"
 generate "dhis2_immunisation" "packages"
+generate "dhis2_RMNCAH" "packages"
 generate "dhis2_malaria" "packages"
 generate "dhis2_tb_surveillance" "packages"
 
