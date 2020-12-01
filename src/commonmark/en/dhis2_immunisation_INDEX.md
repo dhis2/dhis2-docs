@@ -3,4 +3,4 @@ title: 'Immunisation'
 ---
 <!--DHIS2-SECTION-ID:index-->
 
-!INCLUDE "content/metadata/Immunisation Aggregate System Design.md"
+!SUBMODULE "metadata-package-development" "master" "metadata/EPI/Immunisation Aggregate System Design.md"
