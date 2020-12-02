@@ -3,4 +3,4 @@ title: 'Malaria'
 ---
 <!--DHIS2-SECTION-ID:index-->
 
-!INCLUDE "content/metadata/Malaria Aggregate System Design.md"
+!SUBMODULE "metadata-package-development" "master" "metadata/MAL/Malaria Aggregate System Design.md"
