@@ -1068,9 +1068,10 @@ It is also possible to combine the identifiable filter with property-based filte
 
 ### Capture Scope filter
 
-In addition to the filtering mentioned above, we have a special filtering query parameter named *restrictToCaptureScope*. If *restrictToCaptureScope* is set to true, only those metadata objects that are either unassigned to any organisation units or those that are assigned explicitly to the logged in users capture scope org units will be returned in the response. This filtering parameter can be used for any metadata that has organisation units association with it.
+In addition to the filtering mentioned above, we have a special filtering query parameter named *restrictToCaptureScope*. If *restrictToCaptureScope* is set to true, only those metadata objects that are either unassigned to any organisation units or those that are assigned explicitly to the logged in users capture scope org units will be returned in the response. In addition to filtering the metadata object lists, an additional filtering of the associated organisation units to only include the capture scoped organisation units will be done. This filtering parameter can be used for Program and CategoryOption listing APIs.
 
-A special case exists for CategoryOptions api endpoint. In addition to filtering the metadata object lists, an additional filtering of the associated organisation units to only include the capture scoped organisation units will be done. Note that this second level of filtering only applies for CategoryOptions metadata.
+This feature is generally beneficial to reduce the payload size if there are large number of organisation units associated to various metadata objects. 
+
 
 Some examples
 
@@ -17799,6 +17800,11 @@ To query for tracked entity instances you can interact with the
 <tr class="even">
 <td>assignedUser</td>
 <td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
+</tr>
+<tr class="odd">
+<td>trackedEntityInstance</td>
+<td>Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using <em>trackedEntityInstance=id1;id2</em>. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. </td>
+</tr>
 </tbody>
 </table>
 
@@ -18213,6 +18219,18 @@ and is an alternative to the query in the previous section.
 <tr class="even">
 <td>skipPaging</td>
 <td>Indicates whether paging should be ignored and all rows should be returned.</td>
+</tr>
+<tr class="odd">
+<td>assignedUserMode</td>
+<td>Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
+</tr>
+<tr class="even">
+<td>assignedUser</td>
+<td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
+</tr>
+<tr class="odd">
+<td>trackedEntityInstance</td>
+<td>Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using <em>trackedEntityInstance=id1;id2</em>. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. </td>
 </tr>
 </tbody>
 </table>
