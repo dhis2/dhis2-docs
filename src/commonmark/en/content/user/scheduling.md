@@ -137,7 +137,9 @@ The analytics table job will by default populate data for all years and data ele
 - **Last years:** The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
 - **Skip resource tables:** Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
 
-After addition of new continuous analytics table jobs it can be necessary to restart Tomcat to initialize the scheduler job correctly.
+> **Important**
+>
+> After addition of new continuous analytics table jobs it can be necessary to restart Tomcat to initialize the scheduler job correctly.
 
 ### Data synchronization
 
