@@ -71,11 +71,11 @@ In the Capture app you register events that occurred at a particular time and pl
 
 ## Register a tracked entity type
 
-There are two different ways one can register a tracked entity type under an organisation unit.
-The first way is to register a tracked entity type without enrolling it to a tracker program.
-The second way is to register a tracked entity type wand and enroll it. 
+There are two different ways one can register a tracked entity instance under an organisation unit.
+The first way, is to register a tracked entity instance without enrolling it to a tracker program.
+The second option, is to register a tracked entity instance and enroll it. 
 
-### Register a tracked entity type without an enrolling it
+### Register a tracked entity instance without an enrolling it
 
 1. Open the **Capture** app.
 
@@ -86,8 +86,8 @@ The second way is to register a tracked entity type wand and enroll it.
     ![image](resources/images/capture_app/register-without-enrollment-new-button.png)
 
     You'll now see be navigated to the registration page. In that page you will see a drop down 
-    menu similar to the image bellow. From the dropdown menu you can select a tracked entity 
-    type, eg. Building or Person etc.
+    menu similar to the one in the image bellow. From the dropdown menu you can select a tracked entity 
+    type, eg. Building, Person etc.
     
     ![image](resources/images/capture_app/register-without-enrollment-dropdown-menu.png)
 
@@ -95,12 +95,14 @@ The second way is to register a tracked entity type wand and enroll it.
  
     ![image](resources/images/capture_app/register-without-enrollment-dropdown-menu-with-arrow.png)
     
-5. The moment you select a tracked entity type a form will be shown in the screen, similar to 
-the one in the image bellow.
+5. The moment you select a tracked entity type, a form will be shown on the screen. 
+    
+    The form will be similar to the image bellow.
 
-     ![image](resources/images/capture_app/register-without-enrollment-form.png)
+    ![image](resources/images/capture_app/register-without-enrollment-form.png)
 
 6. Fill in the required information.
+
     If the tracked entity type is configured to capture a location:
 
     - If the field is a coordinate field you can either enter the coordinates
@@ -112,11 +114,13 @@ the one in the image bellow.
     the field. This will open a map where you can search for a location and capture
     a polygon (button in the upper right corner of the map).
 
-7. Click **Save new** to register the tracked entity type.
+7. Click the **Save new** button to register the tracked entity instance.
     
-8. You will now get prompted to the dashboard of the newly created tracked entity type.
+8. You will now be prompted to the tracked entity instance dashboard. 
 
-### Register and enroll a tracked entity type 
+    The dashboard will show relevant information about the newly created tracked entity instance.
+
+### Register and enroll a tracked entity instance 
 
 1. Open the **Capture** app.
 
@@ -131,15 +135,15 @@ the one in the image bellow.
     The first option will look something similar to the image bellow. 
     The text in our example is "New person in Child programme". 
     Clicking this option will prompt you to the registration and enrollment 
-    page for the program you selected. 
+    page of the program you selected. 
     ![create new event](resources/images/capture_app/register-and-enroll-dropdown-button-new-person-in-program.png)
  
 5. Now, you will be able to see a form similar to the image bellow. 
 
-    The form will have two sections. The first section has the title "Enrollment", 
-    here you add all the data relevant to this program's enrollment. 
-    The second section has the title "Profile" here you add data that is about the 
-    tracked entity type.
+    The form will have two sections. The first section has the title "Enrollment".
+    There you will add all the information relevant to this program's enrollment. 
+    The second section has the title "Profile" there you will add data relevant to the 
+    tracked entity instance.
 
       ![create new event](resources/images/capture_app/register-and-enroll-form.png)
 
@@ -155,9 +159,11 @@ the one in the image bellow.
     the field. This will open a map where you can search for a location and capture
     a polygon (button in the upper right corner of the map).
 
-7. Click **Save new** to register the tracked entity type.
+7. Click **Save new** to register the tracked entity instance.
     
-8. You will now get prompted to the dashboard of the newly created tracked entity type.
+8. You will now be prompted to the tracked entity instance dashboard. 
+
+    The dashboard will show relevant information about the newly created tracked entity instance.
 
 > **Note**
 >
