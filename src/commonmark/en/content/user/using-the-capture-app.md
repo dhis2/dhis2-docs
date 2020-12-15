@@ -69,13 +69,13 @@ In the Capture app you register events that occurred at a particular time and pl
 > achieved by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
 > can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
 
-## Register a tracked entity type
+## Register a tracked entity instance
 
 There are two different ways one can register a tracked entity instance under an organisation unit.
 The first way, is to register a tracked entity instance without enrolling it to a tracker program.
 The second option, is to register a tracked entity instance and enroll it. 
 
-### Register a tracked entity instance without an enrolling it
+### Without a program enrollment 
 
 1. Open the **Capture** app.
 
@@ -97,7 +97,9 @@ The second option, is to register a tracked entity instance and enroll it.
     
 5. The moment you select a tracked entity type, a form will be shown on the screen. 
     
-    The form will be similar to the image bellow.
+    The "Profile" section will be shown. In this section you can add data relevant to the 
+    tracked entity instance. The profile section mainly contains all the tracked entity attributes
+    linked to the tracked entity type. 
 
     ![image](resources/images/capture_app/register-without-enrollment-form.png)
 
@@ -120,7 +122,7 @@ The second option, is to register a tracked entity instance and enroll it.
 
     The dashboard will show relevant information about the newly created tracked entity instance.
 
-### Register and enroll a tracked entity instance 
+### With a program enrollment
 
 1. Open the **Capture** app.
 
@@ -143,7 +145,8 @@ The second option, is to register a tracked entity instance and enroll it.
     The form will have two sections. The first section has the title "Enrollment".
     There you will add all the information relevant to this program's enrollment. 
     The second section has the title "Profile" there you will add data relevant to the 
-    tracked entity instance.
+    tracked entity instance. The profile section mainly contains all the tracked entity 
+    attributes linked to the program or tracked entity type. 
 
       ![create new event](resources/images/capture_app/register-and-enroll-form.png)
 
