@@ -15,7 +15,7 @@
 <p>There are two programs that comprise its design and can be used depending on the needs of country/organization that is collecting this data.</p>
 <ol>
 <li>
-<p>Cause of death (anonymous – event capture program without registration)</p>
+<p>Cause of death (anonymous -- event capture program without registration)</p>
 </li>
 <li>
 <p>Cause of death (tracker program with registration)</p>
