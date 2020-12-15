@@ -86,7 +86,7 @@ The second option, is to register a tracked entity instance and enroll it.
     ![image](resources/images/capture_app/register-without-enrollment-new-button.png)
 
     You'll now see be navigated to the registration page. In that page you will see a drop down 
-    menu similar to the one in the image bellow. From the dropdown menu you can select a tracked entity 
+    menu similar to the one in the image below. From the dropdown menu you can select a tracked entity 
     type, eg. Building, Person etc.
     
     ![image](resources/images/capture_app/register-without-enrollment-dropdown-menu.png)
@@ -128,19 +128,19 @@ The second option, is to register a tracked entity instance and enroll it.
 
 2. Select an organisation unit.
 
-3. Select a tracker program of your choice similar to the image bellow.
+3. Select a tracker program of your choice similar to the image below.
 
     ![create new event](resources/images/capture_app/register-and-enroll-program-selection.png)
 
 4. Click the "New" dropdown button and then click the first option. 
 
-    The first option will look something similar to the image bellow. 
+    The first option will look something similar to the image below. 
     The text in our example is "New person in Child programme". 
     Clicking this option will prompt you to the registration and enrollment 
     page of the program you selected. 
     ![create new event](resources/images/capture_app/register-and-enroll-dropdown-button-new-person-in-program.png)
  
-5. Now, you will be able to see a form similar to the image bellow. 
+5. Now, you will be able to see a form similar to the image below. 
 
     The form will have two sections. The first section has the title "Enrollment".
     There you will add all the information relevant to this program's enrollment. 
