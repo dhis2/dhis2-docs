@@ -73,7 +73,7 @@ In the Capture app you register events that occurred at a particular time and pl
 
 There are two different ways one can register a tracked entity instance under an organisation unit.
 The first way, is to register a tracked entity instance without enrolling it to a tracker program.
-The second option, is to register a tracked entity instance and enroll it. 
+The second option, is to register a tracked entity instance with program and enroll it. 
 
 ### Without a program enrollment 
 
@@ -85,7 +85,7 @@ The second option, is to register a tracked entity instance and enroll it.
 
     ![image](resources/images/capture_app/register-without-enrollment-new-button.png)
 
-    You'll now see be navigated to the registration page. In that page you will see a drop down 
+    You'll now be navigated to the registration page. In that page you will see a drop down 
     menu similar to the one in the image below. From the dropdown menu you can select a tracked entity 
     type, eg. Building, Person etc.
     
