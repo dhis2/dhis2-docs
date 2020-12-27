@@ -12440,7 +12440,7 @@ filtered on the "Male" item, you can use a query like this:
     /api/33/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
       &dimension=fWIAEtYVEGk&dimension=oZg33kd9taw:EQ:Male
 
-To create a "top 3 report" for "Mode of discharge" you can use the limit
+To create a "Top 3 report" for _Mode of discharge_ you can use the limit
 and sortOrder query parameters similar to this:
 
     /api/33/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
@@ -12452,20 +12452,23 @@ value dimension will make the analytics engine return aggregate values
 for the values of that dimension in the response as opposed to counts of
 events.
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk&dimension=ou:ImspTQPwCqd
-      &dimension=pe:LAST_12_MONTHS&dimension=fWIAEtYVEGk&value=qrur9Dvnyt5&aggregationType=AVERAGE
+    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
+      &dimension=ou:ImspTQPwCqd&dimension=pe:LAST_12_MONTHS&dimension=fWIAEtYVEGk
+      &value=qrur9Dvnyt5&aggregationType=AVERAGE
 
 To base event analytics aggregation on a specific data element or attribute
 of value type date or date time you can use the `timeField` parameter:
 
     /api/33/analytics/events/aggregate/IpHINAT79UW.json?dimension=ou:ImspTQPwCqd
-    &dimension=pe:LAST_12_MONTHS&dimension=cejWyOfXge6&stage=A03MvHHogjR&timeField=ENROLLMENT_DATE
+      &dimension=pe:LAST_12_MONTHS&dimension=cejWyOfXge6&stage=A03MvHHogjR
+      &timeField=ENROLLMENT_DATE
 
 To base event analytics aggregation on a specific data element or attribute
 of value type organisation unit you can use the `orgUnitField` parameter:
 
     /api/33/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
-    &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk&orgUnitField=S33cRBsnXPo
+      &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk
+      &orgUnitField=S33cRBsnXPo
 
 #### Ranges / legend sets
 
@@ -12479,8 +12482,7 @@ described below:
 
     ?dimension=<item-id>-<legend-set-id>
 
-An example looks like
-    this:
+An example looks like this:
 
     /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
       &dimension=qrur9Dvnyt5-Yf6UHoPkdS6&dimension=ou:ImspTQPwCqd&dimension=pe:LAST_MONTH
@@ -13720,7 +13722,8 @@ favorites of the system.
 
 If the username is specified, the response will only contain the top favorites of that user.
 
-    /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC&username=admin
+    /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25
+      &sortOrder=ASC&username=admin
 
 ### Response format
 
@@ -13746,13 +13749,9 @@ GET method. This allows you to link directly from Web pages and other
 HTTP-enabled clients to usage analytics responses. To do functional
 testing use the cURL library.
 
-Execute this command against the demo database to get an usage analytics
-response in JSON format:
+To get an usage analytics response in JSON format:
 
-```bash
-curl "play.dhis2.org/demo/api/33/dataStatistics?startDate=2016-02-01&endDate=2016-02-14
-  &interval=WEEK" -u admin:district
-```
+    /api/33/dataStatistics?startDate=2016-02-01&endDate=2016-02-14&interval=WEEK
 
 The JSON response looks like this:
 
@@ -13922,9 +13921,7 @@ To export GeoJSON, you can simply add *.geosjon* as an extension to the
 endpoint */api/organisationUnits*, or you can use the *Accept* header
 *application/json+geojson*.
 
-Two parameters are supported: `level` (defaults to 1) and `parent`
-(defaults to root organisation units). Both can be included multiple times. 
-Some examples follow.
+Two parameters are supported: `level` (default is 1) and `parent` (default is root organisation units). Both can be included multiple times. Some examples:
 
 Get all features at level 2 and 4:
 
@@ -14185,7 +14182,7 @@ currently includes the below properties.
 
 > **Note**
 >
-> If the user who is requesting this resource does not have full authority in the system then only the first seven properties will be included, as this information is security sensitive.
+> If the user requesting this resource does not have full authority then only the first seven properties will be included, as other properties are considered sensitive information.
 
 To get information about the system context only, i.e. `contextPath` and
 `userAgent`, you can make a GET request to the below URL. JSON and
