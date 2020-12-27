@@ -68,9 +68,12 @@ if [ ${LOCALISE} -eq 1  ]; then
 
         echo "    - Metadata:" >> $myml
         translate "dhis2_who_digital_health_data_toolkit" "metadata" "both" $lang $locale
+        translate "dhis2_COD" "packages" "both" $lang $locale
         translate "dhis2_covid19_surveillance" "packages" "both" $lang $locale
+        translate "dhis2_IDSR" "packages" "both" $lang $locale
         translate "dhis2_immunisation" "packages" "both" $lang $locale
         translate "dhis2_malaria" "packages" "both" $lang $locale
+        translate "dhis2_RMNCAH" "packages" "both" $lang $locale
         translate "dhis2_tb_surveillance" "packages" "both" $lang $locale
 
 
