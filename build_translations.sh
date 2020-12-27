@@ -30,7 +30,7 @@ fi
 if [ ${LOCALISE} -eq 1  ]; then
 
     # for l in fr,fr_FR pt,pt_PT   # this is where you add new languages
-    for l in fr,fr_FR es_419,es_419 pt,pt_PT
+    for l in fr,fr_FR es_419,es_419 pt,pt_PT cs,cs_CZ
     do
 
         lang=${l%,*};
@@ -55,6 +55,7 @@ if [ ${LOCALISE} -eq 1  ]; then
         translate "dhis2_action_tracker_manual" "at-app" "both" $lang $locale
         translate "dhis2_bottleneck_analysis_manual" "bna-app" "both" $lang $locale
         translate "dhis2_scorecard_manual" "scorecard-app" "both" $lang $locale
+        translate "dhis2_who_data_quality_tool_guide" "dq-app" "both" $lang $locale
 
         echo "    - Implementer:" >> $myml
         translate "dhis2_implementation_guide" "implementer" "both" $lang $locale
@@ -63,6 +64,7 @@ if [ ${LOCALISE} -eq 1  ]; then
         translate "dhis2_android_capture_app" "android-app" "both" $lang $locale
         translate "dhis2_android_MDM" "mdm" "both" $lang $locale
         translate "user_stories_book" "user-stories" "both" $lang $locale
+        translate "dhis2_software_release_info" "implementer" "both" $lang $locale
 
         echo "    - Developer:" >> $myml
         translate "dhis2_developer_manual" "developer" "both" $lang $locale
@@ -74,7 +76,14 @@ if [ ${LOCALISE} -eq 1  ]; then
 
         echo "    - Metadata:" >> $myml
         translate "dhis2_who_digital_health_data_toolkit" "metadata" "both" $lang $locale
+        translate "dhis2_COD" "packages" "both" $lang $locale
         translate "dhis2_covid19_surveillance" "packages" "both" $lang $locale
+        translate "dhis2_IDSR" "packages" "both" $lang $locale
+        translate "dhis2_immunisation" "packages" "both" $lang $locale
+        translate "dhis2_malaria" "packages" "both" $lang $locale
+        translate "dhis2_RMNCAH" "packages" "both" $lang $locale
+        translate "dhis2_tb_surveillance" "packages" "both" $lang $locale
+        
 
         make_mkdocs
 

@@ -30,6 +30,7 @@ generate "dhis2_end_user_manual" "end-user"
 generate "dhis2_action_tracker_manual" "at-app"
 generate "dhis2_bottleneck_analysis_manual" "bna-app"
 generate "dhis2_scorecard_manual" "scorecard-app"
+generate "dhis2_who_data_quality_tool_guide" "dq-app"
 
 echo "    - Implementer:" >> $myml
 generate "dhis2_implementation_guide" "implementer"
@@ -38,6 +39,7 @@ generate "dhis2_android_implementation_guideline" "implementer"
 generate "dhis2_android_capture_app" "android-app"
 generate "dhis2_android_MDM" "mdm"
 generate "user_stories_book" "user-stories"
+generate "dhis2_software_release_info" "implementer"
 
 echo "    - Developer:" >> $myml
 generate "dhis2_developer_manual" "developer"
@@ -48,7 +50,14 @@ generate "dhis2_system_administration_guide" "sysadmin"
 
 echo "    - Metadata:" >> $myml
 generate "dhis2_who_digital_health_data_toolkit" "metadata"
+generate "dhis2_COD" "packages"
 generate "dhis2_covid19_surveillance" "packages"
+generate "dhis2_IDSR" "packages"
+generate "dhis2_immunisation" "packages"
+generate "dhis2_malaria" "packages"
+generate "dhis2_RMNCAH" "packages"
+generate "dhis2_tb_surveillance" "packages"
+
 
 make_mkdocs
 
