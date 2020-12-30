@@ -46,7 +46,7 @@ organisation unit and period dimensions.
 ## Create or edit an attribute category and its options
 
 For the process of creating an attribute category as well as options and
-combinations, see **Chapter 21.2: Manage categories**. As discussed in that
+combinations, see **21.2: Manage categories**. As discussed in that
 chapter, disaggregation categories are configured by editing a data
 element and attribute categories are configured by editing a data set.
 
@@ -67,8 +67,7 @@ to medicines).  The disaggregation categories are gender
 
 In order to do analysis with disaggregation and attribute categories,
 check the “Data dimension” box in the category editing screen of the
-Maintenance app, as discussed in **Chapter 21.2.4: Create or edit a
-category**.
+Maintenance app, as discussed in **21.2.4: Create or edit a category**.
 
 ## Approvals with attribute categories
 
@@ -77,9 +76,9 @@ option group that contains the same category options as the attribute
 category.  Then create a category option group set and add that the
 category option group set as a data approval level.
 
-This is covered in more detail in **Chapter 16.6: Approving by category
-option group set** and **Chapter 16.7: Approving by multiple category
-option group sets**.
+This is covered in more detail in **16.6: Approving by category
+option group set** and **16.7: Approving by multiple category option
+group sets**.
 
 ## Attribute categories and the datavalue table
 
@@ -115,8 +114,8 @@ organisation unit, which are represented in this way:
 
 (Note these are numeric database ids, not DHIS2 uids.)
 
-And of course, each data value has a value, adding the value column to
-the database:
+And of course, each data value has a value, adding the **value** column
+to the database:
 
 <table>
 <colgroup>
@@ -147,7 +146,7 @@ the option “<15” for the disaggregation category **age**. The
 combination of these two options is represented in the database by a
 single **category option combination** meaning “Male, <15”. The data
 value references this disaggregation category option combination in the
-categoryoptioncomboid:
+**categoryoptioncomboid**:
 
 <table>
 <colgroup>
@@ -175,7 +174,7 @@ Consortium” for the category **Implementing Partner**, and the option
 “Improve access to medicines” for the category **Project**. There will
 also be a database **category option combination** meaning “Implementing
 Partner, Improve access to medicines”. The data value references this
-attribute category option combination in the attributeoptioncomboid:
+attribute category option combination in the **attributeoptioncomboid**:
 
 <table>
 <colgroup>
@@ -207,10 +206,10 @@ option combination, which is defined internally in DHIS2 as the category
 default with the option default (the only option in the default
 category). Likewise, if you have not defined an attribute category
 combination for the dataset in which you enter the data, the
-attributeoptioncomboid references the same default category option
+attributeoptioncomboid references the same “default” category option
 combination.
 
 We hope this investigation of how data values are stored in DHIS2’s
-database makes it clear how data values can be associated with various
+database makes it clearer how data values can be associated with various
 groups of category options, both from disaggregation categories and
 attribute categories.
