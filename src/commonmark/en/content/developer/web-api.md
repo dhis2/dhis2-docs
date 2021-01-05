@@ -2355,6 +2355,228 @@ following payload to change the style:
 }
 ```
 
+## Indicators
+
+<!--DHIS2-SECTION-ID:webapi_indicators-->
+
+This section describes indicators and indicator expressions.
+
+### Aggregate indicators
+
+<!--DHIS2-SECTION-ID:webapi_aggregate_indicators-->
+
+To retrieve indicators you can make a GET request to the indicators
+resource like this:
+
+    /api/indicators
+
+Indicators represent expressions which can be calculated and presented
+as a result. The indicator expressions are split into a numerator and
+denominator. The numerators and denominators are mathematical
+expressions which can contain references to data elements, other indicators, constants and
+organisation unit groups. The variables will be substituted with data
+values when used e.g. in reports. Variables which are allowed in
+expressions are described in the following table.
+
+<table>
+<caption>Indicator variables</caption>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 22%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Object</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#{&lt;dataelement-id&gt;.&lt;categoryoptcombo-id&gt;.&lt;attributeoptcombo-id&gt;}</td>
+<td>Data element operand</td>
+<td>Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard &quot;*&quot; symbol can be used to indicate any value.</td>
+</tr>
+<tr class="even">
+<td>#{&lt;dataelement-id&gt;.&lt;categoryoptiongroup-id&gt;.&lt;attributeoptcombo-id&gt;}</td>
+<td>Category Option Group</td>
+<td>Refers to an aggregate data element and a category option group, containing multiple category option combinations.</td>
+</tr>
+<tr class="odd">
+<td>#{&lt;dataelement-id&gt;}</td>
+<td>Aggregate data element</td>
+<td>Refers to the total value of an aggregate data element across all category option combinations.</td>
+</tr>
+<tr class="even">
+<td>D{&lt;program-id&gt;.&lt;dataelement-id&gt;}</td>
+<td>Program data element</td>
+<td>Refers to the value of a tracker data element within a program.</td>
+</tr>
+<tr class="odd">
+<td>A{&lt;program-id&gt;.&lt;attribute-id&gt;}</td>
+<td>Program tracked entity attribute</td>
+<td>Refers to the value of a tracked entity attribute within a program.</td>
+</tr>
+<tr class="even">
+<td>I{&lt;program-indicator-id&gt;}</td>
+<td>Program indicator</td>
+<td>Refers to the value of a program indicator.</td>
+</tr>
+<tr class="odd">
+<td>R{&lt;dataset-id&gt;.&lt;metric&gt;}</td>
+<td>Reporting rate</td>
+<td>Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS.</td>
+</tr>
+<tr class="even">
+<td>C{&lt;constant-id&gt;}</td>
+<td>Constant</td>
+<td>Refers to a constant value.</td>
+</tr>
+<tr class="odd">
+<td>N{&lt;indicator-id&gt;}</td>
+<td>Indicator</td>
+<td>Refers to an existing Indicator.</td>
+</tr>
+<tr class="even">
+<td>OUG{&lt;orgunitgroup-id&gt;}</td>
+<td>Organisation unit group</td>
+<td>Refers to the count of organisation units within an organisation unit group.</td>
+</tr>
+</tbody>
+</table>
+
+The syntax looks like
+    this:
+
+    #{<dataelement-id>.<catoptcombo-id>} + C{<constant-id>} + OUG{<orgunitgroup-id>}
+
+A corresponding example looks like this:
+
+    #{P3jJH5Tu5VC.S34ULMcHMca} + C{Gfd3ppDfq8E} + OUG{CXw2yu5fodb}
+
+Note that for data element variables the category option combo
+identifier can be omitted. The variable will then represent the total
+for the data element, e.g. across all category option combos. Example:
+
+    #{P3jJH5Tu5VC} + 2
+
+Data element operands can include any of category option combination and
+attribute option combination, and use wildcards to indicate any
+    value:
+
+    #{P3jJH5Tu5VC.S34ULMcHMca} + #{P3jJH5Tu5VC.*.j8vBiBqGf6O} + #{P3jJH5Tu5VC.S34ULMcHMca.*}
+
+An example which uses a program data element and a program
+    attribute:
+
+    ( D{eBAyeGv0exc.vV9UWAZohSf} * A{IpHINAT79UW.cejWyOfXge6} ) / D{eBAyeGv0exc.GieVkTxp4HH}
+
+An example which combines program indicators and aggregate indicators:
+
+    I{EMOt6Fwhs1n} * 1000 / #{WUg3MYWQ7pt}
+
+An example which uses a reporting rate looks like this:
+
+    R{BfMAe6Itzgt.REPORTING_RATE} * #{P3jJH5Tu5VC.S34ULMcHMca}
+
+Another example which uses actual data set reports:
+
+    R{BfMAe6Itzgt.ACTUAL_REPORTS} / R{BfMAe6Itzgt.EXPECTED_REPORTS}
+
+An example which uses an existing indicator would look like this:
+
+    N{Rigf2d2Zbjp} * #{P3jJH5Tu5VC.S34ULMcHMca}
+
+Expressions can be any kind of valid mathematical expression, as an
+example:
+
+    ( 2 * #{P3jJH5Tu5VC.S34ULMcHMca} ) / ( #{FQ2o8UBlcrS.S34ULMcHMca} - 200 ) * 25
+
+### Program indicators
+
+<!--DHIS2-SECTION-ID:webapi_program_indicators-->
+
+To retrieve program indicators you can make a GET request to the program
+indicators resource like this:
+
+    /api/programIndicators
+
+Program indicators can contain information collected in a program.
+Indicators have an expression which can contain references to data
+elements, attributes, constants and program variables. Variables which
+are allowed in expressions are described in the following table.
+
+<table>
+<caption>Program indicator variables</caption>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>#{&lt;programstage-id&gt;.&lt;dataelement-id&gt;}</td>
+<td>Refers to a combination of program stage and data element id.</td>
+</tr>
+<tr class="even">
+<td>A{&lt;attribute-id&gt;}</td>
+<td>Refers to a tracked entity attribute.</td>
+</tr>
+<tr class="odd">
+<td>V{&lt;variable-id&gt;}</td>
+<td>Refers to a program variable.</td>
+</tr>
+<tr class="even">
+<td>C{&lt;constant-id&gt;}</td>
+<td>Refers to a constant.</td>
+</tr>
+</tbody>
+</table>
+
+The syntax looks like
+    this:
+
+    #{<programstage-id>.<dataelement-id>} + #{<attribute-id>} + V{<varible-id>} + C{<constant-id>}
+
+A corresponding example looks like
+    this:
+
+    #{A03MvHHogjR.a3kGcGDCuk6} + A{OvY4VVhSDeJ} + V{incident_date} + C{bCqvfPR02Im}
+
+### Expressions
+
+<!--DHIS2-SECTION-ID:webapi_expressions-->
+
+Expressions are mathematical formulas which can contain references to
+data elements, constants and organisation unit groups. To validate and
+get the textual description of an expression, you can make a GET request
+to the expressions resource:
+
+    /api/expressions/description?expression=<expression-string>
+
+The response follows the standard JSON web message format. The *status*
+property indicates the outcome of the validation and will be "OK" if
+successful and "ERROR" if failed. The *message* property will be "Valid"
+if successful and provide a textual description of the reason why the
+validation failed if not. The *description* provides a textual
+description of the expression.
+
+```json
+{
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Valid",
+  "description": "Acute Flaccid Paralysis"
+}
+```
+
 ## Organisation units
 
 <!--DHIS2-SECTION-ID:webapi_organisation_units-->
@@ -6286,228 +6508,6 @@ listing the names of the relevant integrity violations. As stated in the
 leading paragraph for this section the details of the analysis (and the
 resulting data) can be found in the user manual chapter on Data
 Administration.
-
-## Indicators
-
-<!--DHIS2-SECTION-ID:webapi_indicators-->
-
-This section describes indicators and indicator expressions.
-
-### Aggregate indicators
-
-<!--DHIS2-SECTION-ID:webapi_aggregate_indicators-->
-
-To retrieve indicators you can make a GET request to the indicators
-resource like this:
-
-    /api/indicators
-
-Indicators represent expressions which can be calculated and presented
-as a result. The indicator expressions are split into a numerator and
-denominator. The numerators and denominators are mathematical
-expressions which can contain references to data elements, other indicators, constants and
-organisation unit groups. The variables will be substituted with data
-values when used e.g. in reports. Variables which are allowed in
-expressions are described in the following table.
-
-<table>
-<caption>Indicator variables</caption>
-<colgroup>
-<col style="width: 39%" />
-<col style="width: 22%" />
-<col style="width: 37%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Object</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>#{&lt;dataelement-id&gt;.&lt;categoryoptcombo-id&gt;.&lt;attributeoptcombo-id&gt;}</td>
-<td>Data element operand</td>
-<td>Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard &quot;*&quot; symbol can be used to indicate any value.</td>
-</tr>
-<tr class="even">
-<td>#{&lt;dataelement-id&gt;.&lt;categoryoptiongroup-id&gt;.&lt;attributeoptcombo-id&gt;}</td>
-<td>Category Option Group</td>
-<td>Refers to an aggregate data element and a category option group, containing multiple category option combinations.</td>
-</tr>
-<tr class="odd">
-<td>#{&lt;dataelement-id&gt;}</td>
-<td>Aggregate data element</td>
-<td>Refers to the total value of an aggregate data element across all category option combinations.</td>
-</tr>
-<tr class="even">
-<td>D{&lt;program-id&gt;.&lt;dataelement-id&gt;}</td>
-<td>Program data element</td>
-<td>Refers to the value of a tracker data element within a program.</td>
-</tr>
-<tr class="odd">
-<td>A{&lt;program-id&gt;.&lt;attribute-id&gt;}</td>
-<td>Program tracked entity attribute</td>
-<td>Refers to the value of a tracked entity attribute within a program.</td>
-</tr>
-<tr class="even">
-<td>I{&lt;program-indicator-id&gt;}</td>
-<td>Program indicator</td>
-<td>Refers to the value of a program indicator.</td>
-</tr>
-<tr class="odd">
-<td>R{&lt;dataset-id&gt;.&lt;metric&gt;}</td>
-<td>Reporting rate</td>
-<td>Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS.</td>
-</tr>
-<tr class="even">
-<td>C{&lt;constant-id&gt;}</td>
-<td>Constant</td>
-<td>Refers to a constant value.</td>
-</tr>
-<tr class="odd">
-<td>N{&lt;indicator-id&gt;}</td>
-<td>Indicator</td>
-<td>Refers to an existing Indicator.</td>
-</tr>
-<tr class="even">
-<td>OUG{&lt;orgunitgroup-id&gt;}</td>
-<td>Organisation unit group</td>
-<td>Refers to the count of organisation units within an organisation unit group.</td>
-</tr>
-</tbody>
-</table>
-
-The syntax looks like
-    this:
-
-    #{<dataelement-id>.<catoptcombo-id>} + C{<constant-id>} + OUG{<orgunitgroup-id>}
-
-A corresponding example looks like this:
-
-    #{P3jJH5Tu5VC.S34ULMcHMca} + C{Gfd3ppDfq8E} + OUG{CXw2yu5fodb}
-
-Note that for data element variables the category option combo
-identifier can be omitted. The variable will then represent the total
-for the data element, e.g. across all category option combos. Example:
-
-    #{P3jJH5Tu5VC} + 2
-
-Data element operands can include any of category option combination and
-attribute option combination, and use wildcards to indicate any
-    value:
-
-    #{P3jJH5Tu5VC.S34ULMcHMca} + #{P3jJH5Tu5VC.*.j8vBiBqGf6O} + #{P3jJH5Tu5VC.S34ULMcHMca.*}
-
-An example which uses a program data element and a program
-    attribute:
-
-    ( D{eBAyeGv0exc.vV9UWAZohSf} * A{IpHINAT79UW.cejWyOfXge6} ) / D{eBAyeGv0exc.GieVkTxp4HH}
-
-An example which combines program indicators and aggregate indicators:
-
-    I{EMOt6Fwhs1n} * 1000 / #{WUg3MYWQ7pt}
-
-An example which uses a reporting rate looks like this:
-
-    R{BfMAe6Itzgt.REPORTING_RATE} * #{P3jJH5Tu5VC.S34ULMcHMca}
-
-Another example which uses actual data set reports:
-
-    R{BfMAe6Itzgt.ACTUAL_REPORTS} / R{BfMAe6Itzgt.EXPECTED_REPORTS}
-
-An example which uses an existing indicator would look like this:
-
-    N{Rigf2d2Zbjp} * #{P3jJH5Tu5VC.S34ULMcHMca}
-
-Expressions can be any kind of valid mathematical expression, as an
-example:
-
-    ( 2 * #{P3jJH5Tu5VC.S34ULMcHMca} ) / ( #{FQ2o8UBlcrS.S34ULMcHMca} - 200 ) * 25
-
-### Program indicators
-
-<!--DHIS2-SECTION-ID:webapi_program_indicators-->
-
-To retrieve program indicators you can make a GET request to the program
-indicators resource like this:
-
-    /api/programIndicators
-
-Program indicators can contain information collected in a program.
-Indicators have an expression which can contain references to data
-elements, attributes, constants and program variables. Variables which
-are allowed in expressions are described in the following table.
-
-<table>
-<caption>Program indicator variables</caption>
-<colgroup>
-<col style="width: 31%" />
-<col style="width: 68%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>#{&lt;programstage-id&gt;.&lt;dataelement-id&gt;}</td>
-<td>Refers to a combination of program stage and data element id.</td>
-</tr>
-<tr class="even">
-<td>A{&lt;attribute-id&gt;}</td>
-<td>Refers to a tracked entity attribute.</td>
-</tr>
-<tr class="odd">
-<td>V{&lt;variable-id&gt;}</td>
-<td>Refers to a program variable.</td>
-</tr>
-<tr class="even">
-<td>C{&lt;constant-id&gt;}</td>
-<td>Refers to a constant.</td>
-</tr>
-</tbody>
-</table>
-
-The syntax looks like
-    this:
-
-    #{<programstage-id>.<dataelement-id>} + #{<attribute-id>} + V{<varible-id>} + C{<constant-id>}
-
-A corresponding example looks like
-    this:
-
-    #{A03MvHHogjR.a3kGcGDCuk6} + A{OvY4VVhSDeJ} + V{incident_date} + C{bCqvfPR02Im}
-
-### Expressions
-
-<!--DHIS2-SECTION-ID:webapi_expressions-->
-
-Expressions are mathematical formulas which can contain references to
-data elements, constants and organisation unit groups. To validate and
-get the textual description of an expression, you can make a GET request
-to the expressions resource:
-
-    /api/expressions/description?expression=<expression-string>
-
-The response follows the standard JSON web message format. The *status*
-property indicates the outcome of the validation and will be "OK" if
-successful and "ERROR" if failed. The *message* property will be "Valid"
-if successful and provide a textual description of the reason why the
-validation failed if not. The *description* provides a textual
-description of the expression.
-
-```json
-{
-  "httpStatus": "OK",
-  "httpStatusCode": 200,
-  "status": "OK",
-  "message": "Valid",
-  "description": "Acute Flaccid Paralysis"
-}
-```
 
 ## Complete data set registrations
 
@@ -13560,7 +13560,7 @@ The *metaData* section, *ou* object contains the identifiers of all organisation
 
 The *rows* section contains the enrollments produced by the query. Each row represents exactly one enrollment.
 
-### Support of analytics across tracked entity instance relationships with program indicators
+### Analytics across TEI relationships with program indicators
 
 The non-aggregation enrollment analytics API also supports linking Program Indicators to Relationship Types, in order to show the result of a calculation of a specific Program Indicator applied to the related entities of the listed Tracked Entity Instance.
 
@@ -14474,34 +14474,34 @@ currently includes the below properties.
 
 ```json
 {
-  contextPath: "http://yourdomain.com",
-  userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62",
-  calendar: "iso8601",
-  dateFormat: "yyyy-mm-dd",
-  serverDate: "2021-01-05T09:16:03.548",
-  serverTimeZoneId: "Etc/UTC",
-  serverTimeZoneDisplayName: "Coordinated Universal Time",
-  version: "2.13-SNAPSHOT",
-  revision: "11852",
-  buildTime: "2013-09-01T21:36:21.000+0000",
-  serverDate: "2013-09-02T12:35:54.311+0000",
-  environmentVariable: "DHIS2_HOME",
-  javaVersion: "1.7.0_06",
-  javaVendor: "Oracle Corporation",
-  javaIoTmpDir: "/tmp",
-  javaOpts: "-Xms600m -Xmx1500m -XX:PermSize=400m -XX:MaxPermSize=500m",
-  osName: "Linux",
-  osArchitecture: "amd64",
-  osVersion: "3.2.0-52-generic",
-  externalDirectory: "/home/dhis/config/dhis2",
-  databaseInfo: {
-    type: "PostgreSQL",
-    name: "dhis2",
-    user: "dhis",
-    spatialSupport: false
+  "contextPath": "http://yourdomain.com",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62",
+  "calendar": "iso8601",
+  "dateFormat": "yyyy-mm-dd",
+  "serverDate": "2021-01-05T09:16:03.548",
+  "serverTimeZoneId": "Etc/UTC",
+  "serverTimeZoneDisplayName": "Coordinated Universal Time",
+  "version": "2.13-SNAPSHOT",
+  "revision": "11852",
+  "buildTime": "2013-09-01T21:36:21.000+0000",
+  "serverDate": "2013-09-02T12:35:54.311+0000",
+  "environmentVariable": "DHIS2_HOME",
+  "javaVersion": "1.7.0_06",
+  "javaVendor": "Oracle Corporation",
+  "javaIoTmpDir": "/tmp",
+  "javaOpts": "-Xms600m -Xmx1500m -XX:PermSize=400m -XX:MaxPermSize=500m",
+  "osName": "Linux",
+  "osArchitecture": "amd64",
+  "osVersion": "3.2.0-52-generic",
+  "externalDirectory": "/home/dhis/config/dhis2",
+  "databaseInfo": {
+    "type": "PostgreSQL",
+    "name": "dhis2",
+    "user": "dhis",
+    "spatialSupport": false
   },
-  memoryInfo: "Mem Total in JVM: 848 Free in JVM: 581 Max Limit: 1333",
-  cpuCores: 8
+  "memoryInfo": "Mem Total in JVM: 848 Free in JVM: 581 Max Limit: 1333",
+  "cpuCores": 8
 }
 ```
 
