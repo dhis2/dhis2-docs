@@ -165,8 +165,8 @@ implementers manual. Here are the steps to follow:
 
 The organisational hierarchy defines the organisation using the DHIS2,
 the health facilities, administrative areas and other geographical areas
-used in data collection and data analysis. This dimension to the data is
-defined as a hierarchy with one root unit (e.g. Ministry of Health) and
+used in data collection and data analysis. This “where” dimension to the data is
+defined as a hierarchy with one root unit (e.g., Ministry of Health) and
 any number of levels and nodes below. Each node in this hierarchy is
 called an organisational unit in DHIS2.
 
@@ -217,7 +217,7 @@ build up the hierarchy.
 ### Data Elements
 
 The Data Element is perhaps the most important building block of a DHIS2
-database. It represents the "WHAT" dimension, it explains what is being
+database. It represents the “what” dimension, it explains what is being
 collected or analysed. In some contexts this is referred to an
 indicator, but in DHIS2 we call this unit of collection and analysis a
 *data element*. The data element often represents a count of something,
@@ -230,16 +230,16 @@ how data is collected, but more importantly how the data values are
 represented in the database, which again decides how data can be
 analysed and presented.
 
-It is possible to add more details to this "WHAT" dimension through the
+It is possible to add more details to this “what” dimension through the
 disaggregation dimension called data element categories. Some common
-categories are Age and Gender, but any category can be added by the user
+categories are age and gender, but any category can be added by the user
 and linked to specific data elements. The combination of a data
 element's name and its assigned category defines the smallest unit of
 collection and analysis available in the system, and hence describes the
 raw data in the database. Aggregations can be done when zooming out of
 this dimension, but no further drill-down is possible, so designing data
 elements and categories define the detail of the analysis available to
-the system (on the WHAT dimension). Changes to data elements and
+the system (on the “what” dimension). Changes to data elements and
 categories at a later stage in the process might be complicated as these
 will change the meaning of the data values already captured in the
 database (if any). So this step is one of the more decisive and careful
