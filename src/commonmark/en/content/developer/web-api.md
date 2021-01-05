@@ -14476,11 +14476,11 @@ currently includes the below properties.
 {
   contextPath: "http://yourdomain.com",
   userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62",
-  "calendar": "iso8601",
-  "dateFormat": "yyyy-mm-dd",
-  "serverDate": "2021-01-05T09:16:03.548",
-  "serverTimeZoneId": "Etc/UTC",
-  "serverTimeZoneDisplayName": "Coordinated Universal Time",
+  calendar: "iso8601",
+  dateFormat: "yyyy-mm-dd",
+  serverDate: "2021-01-05T09:16:03.548",
+  serverTimeZoneId: "Etc/UTC",
+  serverTimeZoneDisplayName: "Coordinated Universal Time",
   version: "2.13-SNAPSHOT",
   revision: "11852",
   buildTime: "2013-09-01T21:36:21.000+0000",
@@ -14507,7 +14507,7 @@ currently includes the below properties.
 
 > **Note**
 >
-> If the user requesting this resource does not have full authority then only the first seven properties will be included, as other properties are considered sensitive information.
+> If the user requesting this resource does not have full authority then only properties which are not considered sensitive will be included.
 
 To get information about the system context only, i.e. `contextPath` and
 `userAgent`, you can make a GET request to the below URL. JSON and
