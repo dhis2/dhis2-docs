@@ -1028,9 +1028,9 @@ or how many new clients there are.
     combination and assign this to all the data elements in your table
     (or sub dataset if you like).
 
-7.  7\. When you are done with all the tables (sub datasets), create a
+7.  When you are done with all the tables (sub datasets), create a
     new dataset and add all the data elements you have identified (in
     the whole paper form) to that dataset.
 
-8.  8\. Your dataset will then consist of a set of data elements that
+8.  Your dataset will then consist of a set of data elements that
     are linked to one or more category combinations.
