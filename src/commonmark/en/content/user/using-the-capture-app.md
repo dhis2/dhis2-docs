@@ -39,7 +39,7 @@ In the Capture app you register events that occurred at a particular time and pl
 
     - If the field is a polygon field you can click the **map** icon to the left of
     the field. This will open a map where you can search for a location and capture
-    a polygon (button in the upper rigth corner of the map).
+    a polygon (button in the upper right corner of the map).
 
 7. If desired you can add a comment by clicking the **Write comment** button at the bottom of the form.
 
@@ -49,24 +49,138 @@ In the Capture app you register events that occurred at a particular time and pl
 9. Click **Save and exit** or click the arrow next to the button to select **Save and add another**.
 
     - **Save and add another** will save the current event and clear the form.
-    All the events that you have captured will be diplayed in a list at the bottom of the page.
+    All the events that you have captured will be displayed in a list at the bottom of the page.
     When you want to finish capturing events you can, if the form is blank,
     click the finish button or if your form contains data click the arrow
     next to **Save and add another** and select **Save and exit**.
 
 > **Note**
 >
-> Some data elements in an event might be mandatory (marked with a red star next to the data element lable).
+> Some data elements in an event might be mandatory (marked with a red star next to the data element label).
 > All mandatory data elements must be filled in before the user is allowed to complete the event.
 > The exception to this is if the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture".__
 > If the user has this authority, the mandatory data elements will not be required and
-> the red star will not be displayed next to the data element lable. Note that super user that have the __"ALL"__ authority automatically
+> the red star will not be displayed next to the data element label. Note that super user that have the __"ALL"__ authority automatically
 > have this authority.
 
 > **Tip**
 >
 > The data entry form can also be displayed in **row view**. In this mode the data elements are arranged horizontally. This can be
-> achived by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
+> achieved by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
+> can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
+
+## Register a tracked entity instance
+
+There are two different ways one can register a tracked entity instance under an organisation unit.
+The first way, is to register a tracked entity instance without enrolling it to a tracker program.
+The second option, is to register a tracked entity instance with program and enroll it. 
+
+### Without a program enrollment 
+
+1. Open the **Capture** app.
+
+2. Select an organisation unit.
+
+3. Click the "New" button.
+
+    ![image](resources/images/capture_app/register-without-enrollment-new-button.png)
+
+    You'll now be navigated to the registration page. In that page you will see a drop down 
+    menu similar to the one in the image below. From the dropdown menu you can select a tracked entity 
+    type, eg. Building, Person etc.
+    
+    ![image](resources/images/capture_app/register-without-enrollment-dropdown-menu.png)
+
+4. Select the tracked entity type which you want to create a new instance for.
+ 
+    ![image](resources/images/capture_app/register-without-enrollment-dropdown-menu-with-arrow.png)
+    
+5. The moment you select a tracked entity type, a form will be shown on the screen. 
+    
+    The "Profile" section will be shown. In this section you can add data relevant to the 
+    tracked entity instance. The profile section mainly contains all the tracked entity attributes
+    linked to the tracked entity type. 
+
+    ![image](resources/images/capture_app/register-without-enrollment-form.png)
+
+6. Fill in the required information.
+
+    If the tracked entity type is configured to capture a location:
+
+    - If the field is a coordinate field you can either enter the coordinates
+    directly or you can click the **map** icon to the left of the coordinate field.
+    The latter one will open a map where you can search for a location or set on
+    directly by clicking on the map.
+
+    - If the field is a polygon field you can click the **map** icon to the left of
+    the field. This will open a map where you can search for a location and capture
+    a polygon (button in the upper right corner of the map).
+
+7. Click the **Save new** button to register the tracked entity instance.
+    
+8. You will now be prompted to the tracked entity instance dashboard. 
+
+    The dashboard will show relevant information about the newly created tracked entity instance.
+
+### With a program enrollment
+
+1. Open the **Capture** app.
+
+2. Select an organisation unit.
+
+3. Select a tracker program of your choice similar to the image below.
+
+    ![create new event](resources/images/capture_app/register-and-enroll-program-selection.png)
+
+4. Click the "New" dropdown button and then click the first option. 
+
+    The first option will look something similar to the image below. 
+    The text in our example is "New person in Child programme". 
+    Clicking this option will prompt you to the registration and enrollment 
+    page of the program you selected. 
+    ![create new event](resources/images/capture_app/register-and-enroll-dropdown-button-new-person-in-program.png)
+ 
+5. Now, you will be able to see a form similar to the image below. 
+
+    The form will have two sections. The first section has the title "Enrollment".
+    There you will add all the information relevant to this program's enrollment. 
+    The second section has the title "Profile" there you will add data relevant to the 
+    tracked entity instance. The profile section mainly contains all the tracked entity 
+    attributes linked to the program or tracked entity type. 
+
+      ![create new event](resources/images/capture_app/register-and-enroll-form.png)
+
+6. Fill in the required information for both sections.
+    If the tracked entity type is configured to capture a location:
+
+    - If the field is a coordinate field you can either enter the coordinates
+    directly or you can click the **map** icon to the left of the coordinate field.
+    The latter one will open a map where you can search for a location or set on
+    directly by clicking on the map.
+
+    - If the field is a polygon field you can click the **map** icon to the left of
+    the field. This will open a map where you can search for a location and capture
+    a polygon (button in the upper right corner of the map).
+
+7. Click **Save new** to register the tracked entity instance.
+    
+8. You will now be prompted to the tracked entity instance dashboard. 
+
+    The dashboard will show relevant information about the newly created tracked entity instance.
+
+> **Note**
+>
+> Some data elements in an event might be mandatory (marked with a red star next to the data element label).
+> All mandatory data elements must be filled in before the user is allowed to complete the event.
+> The exception to this is if the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture".__
+> If the user has this authority, the mandatory data elements will not be required and
+> the red star will not be displayed next to the data element label. Note that super user that have the __"ALL"__ authority automatically
+> have this authority.
+
+> **Tip**
+>
+> The data entry form can also be displayed in **row view**. In this mode the data elements are arranged horizontally. This can be
+> achieved by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
 > can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
 
 ## Adding a relationship
