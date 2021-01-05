@@ -14156,6 +14156,11 @@ currently includes the below properties.
 {
   contextPath: "http://yourdomain.com",
   userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/29.0.1547.62",
+  "calendar": "iso8601",
+  "dateFormat": "yyyy-mm-dd",
+  "serverDate": "2021-01-05T09:16:03.548",
+  "serverTimeZoneId": "Etc/UTC",
+  "serverTimeZoneDisplayName": "Coordinated Universal Time",
   version: "2.13-SNAPSHOT",
   revision: "11852",
   buildTime: "2013-09-01T21:36:21.000+0000",
