@@ -13,7 +13,7 @@ them from ACs.
 ACs and DCs are quite similar—they work in much the same way, are
 accessed through the same part of the maintenance interface, and exist
 in the same part of the database. The main difference between them is
-what they are connected to. A DC is attached to a data element; however, 
+what they are connected to. A DC is attached to a data element; however,
 an AC is attached to a data set. This means values for all DC options
 can be entered on the same data entry screen, whereas you must choose
 the AC option before you begin to enter data.
@@ -22,20 +22,21 @@ In setting up a system, you could just use DCs and ignore ACs
 altogether. However, ACs are a way to simplify data entry screens or
 reduce the size of the cross-product of category option combos.
 
-When you’re deciding which categories should be DCs and which should be
-ACs, here’s a good rubric:
-
-  - Use DCs when you want to use different combinations of categories on
-    different data elements within a data set
-
-  - Use DCs when you want to enter all the category option combinations
-    on one data entry screen
-
-  - Use ACs when you want to use the same combination of categories for
-    all the data in a data set
-
-  - Use ACs when you want to enter only one category option combination
-    on one data entry screen
+> **Tip**
+>
+> When you’re deciding which categories should be DCs and which should be ACs, here’s a good rubric:
+>
+>  - Use DCs when you want to use different combinations of categories on
+>    different data elements within a data set
+>
+>  - Use DCs when you want to enter all the category option combinations
+>    on one data entry screen
+>
+>  - Use ACs when you want to use the same combination of categories for
+>    all the data in a data set
+>
+>  - Use ACs when you want to enter only one category option combination
+>    on one data entry screen
 
 While we referred to DCs as part of the *what* dimension for simplicity
 in the former chapter, it’s actually more complex. Either DCs or ACs can
@@ -46,7 +47,7 @@ organisation unit and period dimensions.
 ## Create or edit an attribute category and its options
 
 For the process of creating an attribute category as well as options and
-combinations, see **21.2: Manage categories**. As discussed in that
+combinations, see [Manage categories](configure-metadata.html#manage-categories). As discussed in that
 chapter, disaggregation categories are configured by editing a data
 element and attribute categories are configured by editing a data set.
 
@@ -67,7 +68,7 @@ to medicines).  The disaggregation categories are gender
 
 In order to do analysis with disaggregation and attribute categories,
 check the “Data dimension” box in the category editing screen of the
-Maintenance app, as discussed in **21.2.4: Create or edit a category**.
+Maintenance app, as discussed in [Create or edit a category](configure-metadata.html#create-or-edit-a-category).
 
 ## Approvals with attribute categories
 
@@ -76,9 +77,9 @@ option group that contains the same category options as the attribute
 category.  Then create a category option group set and add that the
 category option group set as a data approval level.
 
-This is covered in more detail in **16.6: Approving by category
-option group set** and **16.7: Approving by multiple category option
-group sets**.
+This is covered in more detail in [Approving by category
+option group set](data-approval.html#approving-by-category-option-group-set) and [Approving by multiple category option
+group sets](data-approval.html#approving-by-multiple-category-option-group-sets).
 
 ## Attribute categories and the datavalue table
 
@@ -91,52 +92,17 @@ please feel free to ignore it.
 Each data value is associated with a data element, a period, and an
 organisation unit, which are represented in this way:
 
-<table>
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 7%" />
-<col style="width: 27%" />
-<col style="width: 28%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>dataelementid</p></td>
-<td><p>periodid</p></td>
-<td><p>sourceid</p></td>
-<td><p>&nbsp;</p></td>
-<td><p>&nbsp;</p></td>
-<td><p>&nbsp;</p></td>
-</tr>
-</tbody>
-</table>
+|dataelementid|periodid|sourceid||||
+|--- |--- |--- |--- |--- |--- |
 
 (Note these are numeric database ids, not DHIS2 uids.)
 
 And of course, each data value has a value, adding the **value** column
 to the database:
 
-<table>
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 7%" />
-<col style="width: 27%" />
-<col style="width: 28%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>dataelementid</p></td>
-<td><p>periodid</p></td>
-<td><p>sourceid</p></td>
-<td><p>value</p></td>
-<td><p>&nbsp;</p></td>
-<td><p>&nbsp;</p></td>
-</tr>
-</tbody>
-</table>
+|dataelementid|periodid|sourceid|value|||
+|--- |--- |--- |--- |--- |--- |
+
 
 Each data value also references the disaggregation category options
 and the attribute category options assigned to it. For instance, in
@@ -148,57 +114,25 @@ single **category option combination** meaning “Male, <15”. The data
 value references this disaggregation category option combination in the
 **categoryoptioncomboid**:
 
-<table>
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 7%" />
-<col style="width: 27%" />
-<col style="width: 28%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>dataelementid</p></td>
-<td><p>periodid</p></td>
-<td><p>sourceid</p></td>
-<td><p>value</p></td>
-<td><p>categoryoptioncomboid</p></td>
-<td><p>&nbsp;</p></td>
-</tr>
-</tbody>
-</table>
+|dataelementid|periodid|sourceid|value|categoryoptioncomboid||
+|--- |--- |--- |--- |--- |--- |
+
 
 Likewise, the same data value will have the option “AIDSRelief
 Consortium” for the category **Implementing Partner**, and the option
 “Improve access to medicines” for the category **Project**. There will
-also be a database **category option combination** meaning “Implementing
-Partner, Improve access to medicines”. The data value references this
+also be a database **category option combination** meaning “AIDSRelief
+Consortium, Improve access to medicines”. The data value references this
 attribute category option combination in the **attributeoptioncomboid**:
 
-<table>
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 7%" />
-<col style="width: 27%" />
-<col style="width: 28%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>dataelementid</p></td>
-<td><p>periodid</p></td>
-<td><p>sourceid</p></td>
-<td><p>value</p></td>
-<td><p>categoryoptioncomboid</p></td>
-<td><p>attributeoptioncomboid</p></td>
-</tr>
-</tbody>
-</table>
+|dataelementid|periodid|sourceid|value|categoryoptioncomboid|attributeoptioncomboid|
+|--- |--- |--- |--- |--- |--- |
 
-(The above column list does not include all of the columns in the
-datavalue table.)
+
+> **Note**
+>
+> The above column list does not include all of the columns in the
+datavalue table.
 
 If you have not defined a disaggregation category combination for a data
 element, the categoryoptioncomboid will reference a “default” category
