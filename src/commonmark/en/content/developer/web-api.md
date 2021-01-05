@@ -2059,7 +2059,7 @@ The endpoints supports the following query parameters:
 </tbody>
 </table>
 
-## Render type (Experimental)
+## Render type
 
 <!--DHIS2-SECTION-ID:webapi_render_type-->
 
@@ -2353,6 +2353,779 @@ following payload to change the style:
   }
 }
 ```
+
+## Organisation units
+
+<!--DHIS2-SECTION-ID:webapi_organisation_units-->
+
+The *organisationUnits* resource follows the standard conventions as
+other metadata resources in DHIS2. This resource supports some
+additional query parameters.
+
+### Get list of organisation units
+
+<!--DHIS2-SECTION-ID:webapi_list_of_organisation_units-->
+
+To get a list of organisation units you can use the following resource.
+
+    /api/33/organisationUnits
+
+<table>
+<caption>Organisation units query parameters</caption>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Query parameter</th>
+<th>Options</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>userOnly</td>
+<td>false | true</td>
+<td>Data capture organisation units associated with current user only.</td>
+</tr>
+<tr class="even">
+<td>userDataViewOnly</td>
+<td>false | true</td>
+<td>Data view organisation units associated with current user only.</td>
+</tr>
+<tr class="odd">
+<td>userDataViewFallback</td>
+<td>false | true</td>
+<td>Data view organisation units associated with current user only with fallback to data capture organisation units.</td>
+</tr>
+<tr class="even">
+<td>query</td>
+<td>string</td>
+<td>Query against the name, code and ID properties.</td>
+</tr>
+<tr class="odd">
+<td>level</td>
+<td>integer</td>
+<td>Organisation units at the given level in the hierarchy.</td>
+</tr>
+<tr class="even">
+<td>maxLevel</td>
+<td>integer</td>
+<td>Organisation units at the given max level or levels higher up in the hierarchy.</td>
+</tr>
+<tr class="odd">
+<td>withinUserHierarchy</td>
+<td>false | true</td>
+<td>Limits search and retrieval to organisation units that are within the users data capture scope.</td>
+</tr>
+<tr class="even">
+<td>withinUserSearchHierarchy</td>
+<td>false | true</td>
+<td>Limits search and retrieval to organisation units that are within the current users search scope. Note: "withinUserHierarchy", if true, takes higher precedence.</td>
+</tr>
+<tr class="odd">
+<td>memberCollection</td>
+<td>string</td>
+<td>For displaying count of members within a collection, refers to the name of the collection associated with organisation units.</td>
+</tr>
+<tr class="even">
+<td>memberObject</td>
+<td>UID</td>
+<td>For displaying count of members within a collection, refers to the identifier of the object member of the collection.</td>
+</tr>
+</tbody>
+</table>
+
+### Get organisation unit with relations
+
+<!--DHIS2-SECTION-ID:webapi_organisation_units_with_relations-->
+
+To get an organisation unit with related organisation units you can use
+the following resource.
+
+    /api/33/organisationUnits/{id}
+
+<table>
+<caption>Organisation unit parameters</caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Query parameter</th>
+<th>Options</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>includeChildren</td>
+<td>false | true</td>
+<td>Include immediate children of the specified organisation unit, i.e. the units at the immediate level below in the subhierarchy.</td>
+</tr>
+<tr class="even">
+<td>includeDescendants</td>
+<td>false | true</td>
+<td>Include all children of the specified organisation unit, i.e. all units in the sub-hierarchy.</td>
+</tr>
+<tr class="odd">
+<td>includeAncestors</td>
+<td>false | true</td>
+<td>Include all parents of the specified organisation unit.</td>
+</tr>
+<tr class="even">
+<td>level</td>
+<td>integer</td>
+<td>Include children of the specified organisation unit at the given level of the sub-hierarchy (relative to the organisation unit where the immediate level below is level 1).</td>
+</tr>
+</tbody>
+</table>
+
+## Data sets
+
+<!--DHIS2-SECTION-ID:webapi_data_sets-->
+
+The *dataSets* resource follows the standard conventions as other
+metadata resources in DHIS2. This resource supports some additional
+query parameters.
+
+    /api/33/dataSets
+
+To retrieve the version of a data set you can issue a GET request:
+
+    GET /api/33/dataSets/<uid>/version
+
+To bump (increase by one) the version of a data set you can issue a POST
+request:
+
+    POST /api/33/dataSets/<uid>/version
+
+### DataSet Notification Template
+
+<!--DHIS2-SECTION-ID:webapi_dataset_notifications-->
+
+The *dataset notification templates* resource follows the standard
+conventions as other metadata resources in DHIS2.
+
+    GET /api/33/dataSetNotficationTemplates
+
+To retrieve data set notification template you can issue a GET request:
+
+    GET /api/33/dataSetNotficationTemplates/<uid>
+
+To add data set notification template you can issue a POST request:
+
+    POST /api/33/dataSetNotficationTemplates
+
+To delete data set notification template you can issue a DELETE request:
+
+    DELETE /api/33/dataSetNotficationTemplates/<uid>
+
+JSON payload sample is given below:
+
+```json
+{
+  "name": "dataSetNotificationTemplate1",
+  "notificationTrigger": "COMPLETION",
+  "relativeScheduledDays": 0,
+  "notificationRecipient": "ORGANISATION_UNIT_CONTACT",
+  "dataSets": [{
+    "id": "eZDhcZi6FLP"
+  }],
+  "deliveryChannels": ["SMS"],
+  "subjectTemplate": "V{data_name}",
+  "messageTemplate": "V{data_name}V{complete_registration_period}",
+  "sendStrategy": "SINGLE_NOTIFICATION"
+}
+
+```
+
+## Filled organisation unit levels
+
+<!--DHIS2-SECTION-ID:webapi_filled_organisation_unit_levels-->
+
+The *filledOrganisationUnitLevels* resource provides an ordered list of
+organisation unit levels, where generated levels are injected into the
+list to fill positions for which it does not exist a persisted level.
+
+    GET /api/33/filledOrganisationUnitLevels
+
+To set the organisation unit levels you can issue a POST request with a
+JSON payload looking like this.
+
+```json
+{
+  "organisationUnitLevels": [{
+    "name": "National",
+    "level": 1,
+    "offlineLevels": 3
+  }, {
+    "name": "District",
+    "level": 2
+  }, {
+    "name": "Chiefdom",
+    "level": 3
+  }, {
+    "name": "Facility",
+    "level": 4
+  }]
+}
+```
+
+To do functional testing with curl you can issue the following command.
+
+```bash
+curl "http://localhost/api/33/filledOrganisationUnitLevels" -H "Content-Type:application/json"
+  -d @levels.json -u admin:district
+```
+
+## Predictors
+
+<!--DHIS2-SECTION-ID:webapi_predictors-->
+
+A predictor allows you to generate data values based on an expression.
+This can be used for example to generate targets, thresholds,
+or estimated values.
+
+To retrieve predictors you can make a GET request to the predictors
+resource like this:
+
+    /api/predictors
+
+### Creating a predictor
+
+<!--DHIS2-SECTION-ID:webapi_create_predictor-->
+
+You can create a predictor with a POST request to the predictors
+resource:
+
+    POST /api/predictors
+
+A sample payload looks like this:
+
+```json
+{
+  "id": "AG10KUJCrRk",
+  "name": "Malaria Outbreak Threshold Predictor",
+  "shortName": "Malaria Outbreak Predictor",
+  "description": "Computes the threshold for potential malaria outbreaks based on the mean plus 1.5x the std dev",
+  "output": {
+    "id": "nXJJZNVAy0Y"
+  },
+  "generator": {
+    "expression": "AVG(#{r6nrJANOqMw})+1.5*STDDEV(#{r6nrJANOqMw})",
+    "description": "Maximum normal malaria case count",
+    "missingValueStrategy": "NEVER_SKIP",
+    "slidingWindow": false
+  },
+  "periodType": "Monthly",
+  "sequentialSampleCount": 4,
+  "sequentialSkipCount": 1,
+  "annualSampleCount": 3,
+  "organisationUnitLevels": [4]
+}
+```
+
+The output element refers to the identifier of the data element for
+which to saved predicted data values. The generator element refers to the
+expression to use when calculating the predicted values.
+
+### Predictor expressions
+
+<!--DHIS2-SECTION-ID:webapi_predictor_expressions-->
+
+A predictor always has a generator expression that describes how the
+predicted value is calculated. A predictor may also have a skip test
+expression returning a boolean value. When the skip test expression is
+present, it is evaluated in each of the sampled periods to tell whether
+values from that period should be skipped.
+
+The following variables may be used in either a generator expression
+or a skip test expression:
+
+| Variable    | Object     | Description |
+| ----------- | ---------- | ----------- |
+| #{\<dataelement-id>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
+| #{\<dataelement-id>.\<categoryoptcombo-id> | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
+| D{\<program-id>.\<dataelement-id>} | Program data element | Refers to the value of a tracker data element within a program. |
+| A{\<program-id>.\<attribute-id>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
+| I{\<program-indicator-id>} | Program indicator | Refers to the value of a program indicator. |
+| R{\<dataset-id>.\<metric>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
+| C{\<constant-id>} | Constant | Refers to a constant value. |
+| OUG{\<orgunitgroup-id>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
+| [days] | Number of days | The number of days in the current period. |
+
+### Generating predicted values
+
+<!--DHIS2-SECTION-ID:webapi_generating_predicted_values-->
+
+To run all predictors (generating predicted values) you can make a POST
+request to the run resource:
+
+    POST /api/predictors/run
+
+To run a single predictor you can make a POST request to the run
+resource for a predictor:
+
+    POST /api/predictors/AG10KUJCrRk/run
+
+## Program rules
+
+<!--DHIS2-SECTION-ID:webapi_program_rules-->
+
+This section is about sending and reading program rules, and explains
+the program rules data model. The program rules give functionality to
+configure dynamic behaviour in the programs in DHIS2.
+
+### Program rule model
+
+<!--DHIS2-SECTION-ID:webapi_program_rule_model-->
+
+The program rules data model consists of programRuleVariables,
+programRules and programRuleActions. The programRule contains an
+expression - when this expression is true, the child programRuleActions
+is triggered. The programRuleVariables is used to address data elements,
+tracked entity data values and other data values needed to run the
+expressions. All programRules in a program share the same library of
+programRuleVariables, and one programRuleVariable can be used in several
+programRules' expressions.
+
+![](resources/images/program_rules/program-rule-model.jpg)
+
+#### Program rule model details
+
+The following table gives a detailed overview over the programRule
+model.
+
+<table style="width:100%;">
+<caption>programRule</caption>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+<th>Compulsory</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>program</td>
+<td>The program of which the programRule is executed in.</td>
+<td>Compulsory</td>
+</tr>
+<tr class="even">
+<td>name</td>
+<td>The name with which the program rule will be displayed to dhis2 configurators. Not visible to the end user of the program.</td>
+<td>Compulsory</td>
+</tr>
+<tr class="odd">
+<td>description</td>
+<td>The description of the program rule, can be used by configurators to describe the rule. Not visible to the end user of the program.</td>
+<td>Compulsory</td>
+</tr>
+<tr class="even">
+<td>programStage</td>
+<td>If a programStage is set for a program rule, the rule will only be evaluated inside the specified program stage.</td>
+<td>optional</td>
+</tr>
+<tr class="odd">
+<td>condition</td>
+<td>The expression that needs to be evaluated to true in order for the program rule to trigger its child actions. The expression is written using operators, function calls, hard coded values, constants and program rule variables.
+<pre><code>d2:hasValue(&#39;hemoglobin&#39;) &amp;&amp; #{hemoglobin} &lt;= 7</code></pre></td>
+<td>Compulsory</td>
+</tr>
+<tr class="even">
+<td>priority</td>
+<td>The priority to run the rule in cases where the order of the rules matters. In most cases the rules does not depend on being run before or after other rules, and in these cases the priority can be omitted. If no priority is set, the rule will be run after any rules that has a priority defined. If a priority(integer) is set, the rule with the lowest priority will be run before rules with higher priority.</td>
+<td>optional</td>
+</tr>
+</tbody>
+</table>
+
+#### Program rule action model details
+
+The following table gives a detailed overview over the programRuleAction
+model.
+
+<table style="width:100%;">
+<caption>programRuleAction</caption>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+<th>Compulsory</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>programRule</td>
+<td>The programRule that is the parent of this action.</td>
+<td>Compulsory</td>
+</tr>
+<tr class="even">
+<td>programRule- ActionType</td>
+<td>The type of action that is to be performed.
+<ul>
+<li><p>`DISPLAYTEXT` - Displays a text in a given widget.</p></li>
+<li><p>`DISPLAYKEYVALUEPAIR` - Displays a key and value pair(like a program indicator) in a given widget.</p></li>
+<li><p>`HIDEFIELD` - Hide a specified dataElement or trackedEntityAttribute.</p>
+<ul>
+<li><p><em>content</em> - if defined, the text in <em>content</em> will be displayed to the end user in the instance where a value is previously entered into a field that is now about to be hidden (and therefore blanked). If <em>content</em> is not defined, a standard message will be shown to the user in this instance.</p></li>
+<li><p><em>dataElement</em> - if defined, the HIDEFIELD action will hide this dataElement when the rule is effective.</p></li>
+<li><p><em>trackedEntityDataValue</em> - if defined, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.</p></li>
+</ul></li>
+<li><p>`HIDESECTION` - Hide a specified section.</p>
+<ul>
+<li><p><em>programStageSection</em> - must be defined. This is the programStageSection that will be hidden in case the parent rule is effective.</p></li>
+</ul></li>
+<li><p>`ASSIGN` - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)</p>
+<ul>
+<li><p><em>content</em> - if defined, the value in <em>data</em> is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a <em>programRule.priority</em> to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.</p></li>
+<li><p><em>data</em> - must be defined, data forms an expression that is evaluated and assigned to either a variable(#{myVariable}), a dataElement, or both.</p></li>
+<li><p><em>dataElement</em> - if defined, the value in <em>data</em> is assigned to this data element.</p></li>
+</ul>
+<p>Either the content or dataElement must be defined for the ASSIGN action to be effective.</p></li>
+<li><p>`SHOWWARNING` - Show a warning to the user, not blocking the user from completing the event or registration.</p>
+<ul>
+<li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
+<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
+<li><p><em>dataElement</em> - if defined, the warning message is displayed next to this data element.</p></li>
+<li><p><em>trackedEntityAttribute</em> - if defined, the warning message is displayed next to this tracked entity attribute.</p></li>
+</ul>
+<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
+<li><p>`SHOWERROR` - Show an error to the user, blocking the user from completing the event or registration.</p>
+<ul>
+<li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
+<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
+<li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
+<li><p><em>trackedEntityAttribute</em> - if defined, the error message is linked to this tracked entity attribute.</p></li>
+</ul>
+<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
+<li><p>`WARNINGONCOMPLETINON` - Show a warning to the user on the &quot;Complete form&quot; dialog, but allowing the user to complete the event.</p>
+<ul>
+<li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
+<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
+<li><p><em>dataElement</em> - if defined, the warning message prefixed with the name/formName of the data element.</p></li>
+</ul></li>
+<li><p>`ERRORONCOMPLETION` - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.</p>
+<ul>
+<li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
+<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
+<li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
+</ul></li>
+<li><p>`CREATEEVENT` - Create an event within the same enrollment.</p>
+<ul>
+<li><p><em>content</em></p></li>
+<li><p><em>data</em> - if defined, contains data values to assign the created event. The format is &lt;uid&gt;:&lt;data value&gt;. Where several values is specified, these are separated with comma.</p>
+<pre><code>AcMrnleqHqc:100,AqK1IHqCkEE:&#39;Polyhydramnios&#39;</code></pre></li>
+<li><p><em>programStage</em> - must be defined, and designates the program stage that the rule shall create an event of.</p></li>
+</ul></li>
+<li><p>`SETMANDATORYFIELD` - Set a field to be mandatory.</p>
+<ul>
+<li><p><em>dataElement</em> - if defined, this data element will be set to be mandatory in the data entry form.</p></li>
+<li><p><em>trackedEntityAttribute</em> - if defined, this tracked entity attribute will be set to mandatory in the registration form or profile.</p></li>
+</ul></li>
+<li><p>`SENDMESSAGE` - To send message at completion of event/enrollment or at data value update.</p>
+<ul>
+<li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
+</ul></li>
+<li><p>`SCHEDULEMESSAGE` - To schedule message at completion of event/enrollment or at data value update.</p>
+<ul>
+<li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
+<li><p><em>Date to send message</em> - Expression which is going to be used for evaluation of scheduled date. This expression should result in Date, any other resultant will be discarded and notification will not get scheduled.</p></li>
+</ul></li>
+</ul></td>
+<td>Compulsory</td>
+</tr>
+<tr class="odd">
+<td>location</td>
+<td>Used for actionType DISPLAYKEYVALUEPAIR and DISPLAYTEXT to designate which widget to display the text or keyvaluepair in. Compulsory for DISPLAYKEYVALUEPAIR and DISPLAYTEXT.</td>
+<td>See description</td>
+</tr>
+<tr class="even">
+<td>content</td>
+<td>Used for user messages in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, DISPLAYTEXT and DISPLAYKEYVALUEPAIR. Optional for HIDEFIELD and ASSIGN.</td>
+<td>See description</td>
+</tr>
+<tr class="odd">
+<td>data</td>
+<td>Used for expressions in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for ASSIGN. Optional for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, DISPLAYTEXT, CREATEEVENT and DISPLAYKEYVALUEPAIR</td>
+<td>See description</td>
+</tr>
+<tr class="even">
+<td>dataElement</td>
+<td>Used for linking rule actions to dataElements. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, ASSIGN and HIDEFIELD</td>
+<td>See description</td>
+</tr>
+<tr class="odd">
+<td>trackedEntity- Attribute</td>
+<td>Used for linking rule actions to trackedEntityAttributes. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for SHOWWARNING, SHOWERROR and HIDEFIELD.</td>
+<td>See description</td>
+</tr>
+<tr class="even">
+<td>option</td>
+<td>Used for linking rule actions to options. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for HIDEOPTION</td>
+<td>See description</td>
+</tr>
+<tr class="odd">
+<td>optionGroup</td>
+<td>Used for linking rule actions to optionGroups. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for SHOWOPTIONGROUP, HIDEOPTIONGROUP.</td>
+<td>See description</td>
+</tr>
+<tr class="even">
+<td>programStage</td>
+<td>Only used for CREATEEVENT rule actions. Compulsory for CREATEEEVENT.</td>
+<td>See description</td>
+</tr>
+<tr class="odd">
+<td>programStage- Section</td>
+<td>Only used for HIDESECTION rule actions. Compulsory for HIDESECTION</td>
+<td>See description</td>
+</tr>
+</tbody>
+</table>
+
+#### Program rule variable model details
+
+The following table gives a detailed overview over the
+programRuleVariable model.
+
+<table style="width:100%;">
+<caption>programRuleVariable</caption>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 66%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>description</th>
+<th>Compulsory</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>name</td>
+<td>the name for the programRuleVariable - this name is used in expressions.
+<pre><code>#{myVariable} &gt; 5</code></pre></td>
+<td>Compulsory</td>
+</tr>
+<tr class="even">
+<td>sourceType</td>
+<td>Defines how this variable is populated with data from the enrollment and events.
+<ul>
+<li><p>DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE - In tracker capture, gets the newest value that exists for a data element, within the events of a given program stage in the current enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.</p></li>
+<li><p>DATAELEMENT_NEWEST_EVENT_PROGRAM - In tracker capture, get the newest value that exists for a data element across the whole enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.</p></li>
+<li><p>DATAELEMENT_CURRENT_EVENT - Gets the value of the given data element in the current event only.</p></li>
+<li><p>DATAELEMENT_PREVIOUS_EVENT - In tracker capture, gets the newest value that exists among events in the program that precedes the current event. In event capture, gets the newvest value among the 10 preceeding events registered on the organisation unit.</p></li>
+<li><p>CALCULATED_VALUE - Used to reserve a variable name that will be assigned by a ASSIGN program rule action</p></li>
+<li><p>TEI_ATTRIBUTE - Gets the value of a given tracked entity attribute</p></li>
+</ul></td>
+<td>Compulsory</td>
+</tr>
+<tr class="odd">
+<td>dataElement</td>
+<td>Used for linking the programRuleVariable to a dataElement. Compulsory for all sourceTypes that starts with DATAELEMENT_.</td>
+<td>See description</td>
+</tr>
+<tr class="even">
+<td>trackedEntity- Attribute</td>
+<td>Used for linking the programRuleVariable to a trackedEntityAttribute. Compulsory for sourceType TEI_ATTRIBUTE.</td>
+<td>See description</td>
+</tr>
+<tr class="odd">
+<td>useCodeFor- OptionSet</td>
+<td>If checked, the variable will be populated with the code - not the name - from any linked option set. Default is unchecked, meaning that the name of the option is populated.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>programStage</td>
+<td>Used for specifying a specific program stage to retreive the programRuleVariable value from. Compulsory for DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE.</td>
+<td>See description</td>
+</tr>
+</tbody>
+</table>
+
+### Creating program rules
+
+<!--DHIS2-SECTION-ID:webapi_creating_program_rules-->
+
+- To perform crud operations, `programRules` resource is available in API.
+
+To retrieve list of programRules you can do a GET request like this:
+
+    /api/programRules
+    
+To retrieve single programRule you can do a GET request like this:
+
+    /api/programRules/<program_rule_uid>
+    
+To save/add single programRule you can do a POST request like this:
+
+    /api/programRules/<program_rule_uid>
+    
+To update single programRule you can do a PUT request like this:
+
+    /api/programRules/<program_rule_uid>
+    
+To delete single programRule you can do a DELETE request like this:
+
+    /api/programRules/<program_rule_uid>
+    
+To retrieve description of programRule condition you can use POST and provide condition string in the POST body.
+
+    /api/programRules/condition/description?<program_rule_uid>
+
+## Forms
+
+<!--DHIS2-SECTION-ID:webapi_forms-->
+
+To retrieve information about a form (which corresponds to a data set
+and its sections) you can interact with the `form` resource. The form
+response is accessible as XML and JSON and will provide information
+about each section (group) in the form as well as each field in the
+sections, including labels and identifiers. By supplying period and
+organisation unit identifiers the form response will be populated with
+data values.
+
+<table>
+<caption>Form query parameters</caption>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pe</td>
+<td>ISO period</td>
+<td>Period for which to populate form data values.</td>
+</tr>
+<tr class="even">
+<td>ou</td>
+<td>UID</td>
+<td>Organisation unit for which to populate form data values.</td>
+</tr>
+<tr class="odd">
+<td>metaData</td>
+<td>false | true</td>
+<td>Whether to include metadata about each data element of form sections.</td>
+</tr>
+</tbody>
+</table>
+
+To retrieve the form for a data set you can do a GET request like this:
+
+    /api/dataSets/<dataset-id>/form.json
+
+To retrieve the form for the data set with identifier "BfMAe6Itzgt" in
+XML:
+
+    /api/dataSets/BfMAe6Itzgt/form
+
+To retrieve the form including metadata in JSON:
+
+    /api/dataSets/BfMAe6Itzgt/form.json?metaData=true
+
+To retrieve the form filled with data values for a specific period and
+organisation unit in XML:
+
+    /api/dataSets/BfMAe6Itzgt/form.xml?ou=DiszpKrYNg8&pe=201401
+
+When it comes to custom data entry forms, this resource also allows for
+creating such forms directly for a data set. This can be done through a
+POST or PUT request with content type text/html where the payload is the
+custom form markup such as:
+
+```bash
+curl -d @form.html "localhost/api/dataSets/BfMAe6Itzgt/form"
+  -H "Content-Type:text/html" -u admin:district -X PUT
+```
+
+## Documents
+
+<!--DHIS2-SECTION-ID:webapi_documents-->
+
+References to files can be stored with the document resource.
+
+<table>
+<caption>Document fields</caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>name</td>
+<td>unique name of document</td>
+</tr>
+<tr class="even">
+<td>external</td>
+<td>flag identifying the location of the document. TRUE for external files, FALSE for internal ones</td>
+</tr>
+<tr class="odd">
+<td>url</td>
+<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">File resources</a>)</td>
+</tr>
+</tbody>
+</table>
+
+A GET request to the documents endpoint will return all documents:
+
+    /api/documents
+
+A POST request to the documents endpoint will create a new document:
+
+```bash
+curl -X POST -d @document.json -H "Content-type: application/json"
+  "http://dhis.domain/api/documents"
+```
+
+```json
+{
+  "name": "dhis home",
+  "external": true,
+  "url": "https://www.dhis2.org"
+}
+```
+
+A GET request with the id of a document appended will return information
+about the document. A PUT request to the same endpoint will update the
+fields of the document:
+
+    /api/documents/<documentId>
+
+Appending */data* to the GET request will return the actual file content
+of the document:
+
+    /api/documents/<documentId>/data
 
 ## ActiveMQ Artemis / AMQP 1.0 integration
 
@@ -5121,460 +5894,6 @@ curl -u admin:district -H "Accept: application/adx+xml"
 Note the query parameters are the same as are used with DXF data. An
 important difference is that the identifiers for dataSet and orgUnit are
 assumed to be codes rather than uids.
-
-## Program rules
-
-<!--DHIS2-SECTION-ID:webapi_program_rules-->
-
-This section is about sending and reading program rules, and explains
-the program rules data model. The program rules give functionality to
-configure dynamic behaviour in the programs in DHIS2.
-
-### Program rule model
-
-<!--DHIS2-SECTION-ID:webapi_program_rule_model-->
-
-The program rules data model consists of programRuleVariables,
-programRules and programRuleActions. The programRule contains an
-expression - when this expression is true, the child programRuleActions
-is triggered. The programRuleVariables is used to address data elements,
-tracked entity data values and other data values needed to run the
-expressions. All programRules in a program share the same library of
-programRuleVariables, and one programRuleVariable can be used in several
-programRules' expressions.
-
-![](resources/images/program_rules/program-rule-model.jpg)
-
-#### Program rule model details
-
-The following table gives a detailed overview over the programRule
-model.
-
-<table style="width:100%;">
-<caption>programRule</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 66%" />
-<col style="width: 16%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>name</th>
-<th>description</th>
-<th>Compulsory</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>program</td>
-<td>The program of which the programRule is executed in.</td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>name</td>
-<td>The name with which the program rule will be displayed to dhis2 configurators. Not visible to the end user of the program.</td>
-<td>Compulsory</td>
-</tr>
-<tr class="odd">
-<td>description</td>
-<td>The description of the program rule, can be used by configurators to describe the rule. Not visible to the end user of the program.</td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>programStage</td>
-<td>If a programStage is set for a program rule, the rule will only be evaluated inside the specified program stage.</td>
-<td>optional</td>
-</tr>
-<tr class="odd">
-<td>condition</td>
-<td>The expression that needs to be evaluated to true in order for the program rule to trigger its child actions. The expression is written using operators, function calls, hard coded values, constants and program rule variables.
-<pre><code>d2:hasValue(&#39;hemoglobin&#39;) &amp;&amp; #{hemoglobin} &lt;= 7</code></pre></td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>priority</td>
-<td>The priority to run the rule in cases where the order of the rules matters. In most cases the rules does not depend on being run before or after other rules, and in these cases the priority can be omitted. If no priority is set, the rule will be run after any rules that has a priority defined. If a priority(integer) is set, the rule with the lowest priority will be run before rules with higher priority.</td>
-<td>optional</td>
-</tr>
-</tbody>
-</table>
-
-#### Program rule action model details
-
-The following table gives a detailed overview over the programRuleAction
-model.
-
-<table style="width:100%;">
-<caption>programRuleAction</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 66%" />
-<col style="width: 16%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>name</th>
-<th>description</th>
-<th>Compulsory</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>programRule</td>
-<td>The programRule that is the parent of this action.</td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>programRule- ActionType</td>
-<td>The type of action that is to be performed.
-<ul>
-<li><p>`DISPLAYTEXT` - Displays a text in a given widget.</p></li>
-<li><p>`DISPLAYKEYVALUEPAIR` - Displays a key and value pair(like a program indicator) in a given widget.</p></li>
-<li><p>`HIDEFIELD` - Hide a specified dataElement or trackedEntityAttribute.</p>
-<ul>
-<li><p><em>content</em> - if defined, the text in <em>content</em> will be displayed to the end user in the instance where a value is previously entered into a field that is now about to be hidden (and therefore blanked). If <em>content</em> is not defined, a standard message will be shown to the user in this instance.</p></li>
-<li><p><em>dataElement</em> - if defined, the HIDEFIELD action will hide this dataElement when the rule is effective.</p></li>
-<li><p><em>trackedEntityDataValue</em> - if defined, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.</p></li>
-</ul></li>
-<li><p>`HIDESECTION` - Hide a specified section.</p>
-<ul>
-<li><p><em>programStageSection</em> - must be defined. This is the programStageSection that will be hidden in case the parent rule is effective.</p></li>
-</ul></li>
-<li><p>`ASSIGN` - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)</p>
-<ul>
-<li><p><em>content</em> - if defined, the value in <em>data</em> is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a <em>programRule.priority</em> to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.</p></li>
-<li><p><em>data</em> - must be defined, data forms an expression that is evaluated and assigned to either a variable(#{myVariable}), a dataElement, or both.</p></li>
-<li><p><em>dataElement</em> - if defined, the value in <em>data</em> is assigned to this data element.</p></li>
-</ul>
-<p>Either the content or dataElement must be defined for the ASSIGN action to be effective.</p></li>
-<li><p>`SHOWWARNING` - Show a warning to the user, not blocking the user from completing the event or registration.</p>
-<ul>
-<li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
-<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
-<li><p><em>dataElement</em> - if defined, the warning message is displayed next to this data element.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined, the warning message is displayed next to this tracked entity attribute.</p></li>
-</ul>
-<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
-<li><p>`SHOWERROR` - Show an error to the user, blocking the user from completing the event or registration.</p>
-<ul>
-<li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
-<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
-<li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined, the error message is linked to this tracked entity attribute.</p></li>
-</ul>
-<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
-<li><p>`WARNINGONCOMPLETINON` - Show a warning to the user on the &quot;Complete form&quot; dialog, but allowing the user to complete the event.</p>
-<ul>
-<li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
-<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
-<li><p><em>dataElement</em> - if defined, the warning message prefixed with the name/formName of the data element.</p></li>
-</ul></li>
-<li><p>`ERRORONCOMPLETION` - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.</p>
-<ul>
-<li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
-<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
-<li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
-</ul></li>
-<li><p>`CREATEEVENT` - Create an event within the same enrollment.</p>
-<ul>
-<li><p><em>content</em></p></li>
-<li><p><em>data</em> - if defined, contains data values to assign the created event. The format is &lt;uid&gt;:&lt;data value&gt;. Where several values is specified, these are separated with comma.</p>
-<pre><code>AcMrnleqHqc:100,AqK1IHqCkEE:&#39;Polyhydramnios&#39;</code></pre></li>
-<li><p><em>programStage</em> - must be defined, and designates the program stage that the rule shall create an event of.</p></li>
-</ul></li>
-<li><p>`SETMANDATORYFIELD` - Set a field to be mandatory.</p>
-<ul>
-<li><p><em>dataElement</em> - if defined, this data element will be set to be mandatory in the data entry form.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined, this tracked entity attribute will be set to mandatory in the registration form or profile.</p></li>
-</ul></li>
-<li><p>`SENDMESSAGE` - To send message at completion of event/enrollment or at data value update.</p>
-<ul>
-<li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
-</ul></li>
-<li><p>`SCHEDULEMESSAGE` - To schedule message at completion of event/enrollment or at data value update.</p>
-<ul>
-<li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
-<li><p><em>Date to send message</em> - Expression which is going to be used for evaluation of scheduled date. This expression should result in Date, any other resultant will be discarded and notification will not get scheduled.</p></li>
-</ul></li>
-</ul></td>
-<td>Compulsory</td>
-</tr>
-<tr class="odd">
-<td>location</td>
-<td>Used for actionType DISPLAYKEYVALUEPAIR and DISPLAYTEXT to designate which widget to display the text or keyvaluepair in. Compulsory for DISPLAYKEYVALUEPAIR and DISPLAYTEXT.</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>content</td>
-<td>Used for user messages in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, DISPLAYTEXT and DISPLAYKEYVALUEPAIR. Optional for HIDEFIELD and ASSIGN.</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>data</td>
-<td>Used for expressions in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for ASSIGN. Optional for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, DISPLAYTEXT, CREATEEVENT and DISPLAYKEYVALUEPAIR</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>dataElement</td>
-<td>Used for linking rule actions to dataElements. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, ASSIGN and HIDEFIELD</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>trackedEntity- Attribute</td>
-<td>Used for linking rule actions to trackedEntityAttributes. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for SHOWWARNING, SHOWERROR and HIDEFIELD.</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>option</td>
-<td>Used for linking rule actions to options. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for HIDEOPTION</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>optionGroup</td>
-<td>Used for linking rule actions to optionGroups. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for SHOWOPTIONGROUP, HIDEOPTIONGROUP.</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>programStage</td>
-<td>Only used for CREATEEVENT rule actions. Compulsory for CREATEEEVENT.</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>programStage- Section</td>
-<td>Only used for HIDESECTION rule actions. Compulsory for HIDESECTION</td>
-<td>See description</td>
-</tr>
-</tbody>
-</table>
-
-#### Program rule variable model details
-
-The following table gives a detailed overview over the
-programRuleVariable model.
-
-<table style="width:100%;">
-<caption>programRuleVariable</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 66%" />
-<col style="width: 16%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>name</th>
-<th>description</th>
-<th>Compulsory</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>name</td>
-<td>the name for the programRuleVariable - this name is used in expressions.
-<pre><code>#{myVariable} &gt; 5</code></pre></td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>sourceType</td>
-<td>Defines how this variable is populated with data from the enrollment and events.
-<ul>
-<li><p>DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE - In tracker capture, gets the newest value that exists for a data element, within the events of a given program stage in the current enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.</p></li>
-<li><p>DATAELEMENT_NEWEST_EVENT_PROGRAM - In tracker capture, get the newest value that exists for a data element across the whole enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.</p></li>
-<li><p>DATAELEMENT_CURRENT_EVENT - Gets the value of the given data element in the current event only.</p></li>
-<li><p>DATAELEMENT_PREVIOUS_EVENT - In tracker capture, gets the newest value that exists among events in the program that precedes the current event. In event capture, gets the newvest value among the 10 preceeding events registered on the organisation unit.</p></li>
-<li><p>CALCULATED_VALUE - Used to reserve a variable name that will be assigned by a ASSIGN program rule action</p></li>
-<li><p>TEI_ATTRIBUTE - Gets the value of a given tracked entity attribute</p></li>
-</ul></td>
-<td>Compulsory</td>
-</tr>
-<tr class="odd">
-<td>dataElement</td>
-<td>Used for linking the programRuleVariable to a dataElement. Compulsory for all sourceTypes that starts with DATAELEMENT_.</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>trackedEntity- Attribute</td>
-<td>Used for linking the programRuleVariable to a trackedEntityAttribute. Compulsory for sourceType TEI_ATTRIBUTE.</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>useCodeFor- OptionSet</td>
-<td>If checked, the variable will be populated with the code - not the name - from any linked option set. Default is unchecked, meaning that the name of the option is populated.</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>programStage</td>
-<td>Used for specifying a specific program stage to retreive the programRuleVariable value from. Compulsory for DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE.</td>
-<td>See description</td>
-</tr>
-</tbody>
-</table>
-
-### Creating program rules
-
-<!--DHIS2-SECTION-ID:webapi_creating_program_rules-->
-
-- To perform crud operations, `programRules` resource is available in API.
-
-To retrieve list of programRules you can do a GET request like this:
-
-    /api/programRules
-    
-To retrieve single programRule you can do a GET request like this:
-
-    /api/programRules/<program_rule_uid>
-    
-To save/add single programRule you can do a POST request like this:
-
-    /api/programRules/<program_rule_uid>
-    
-To update single programRule you can do a PUT request like this:
-
-    /api/programRules/<program_rule_uid>
-    
-To delete single programRule you can do a DELETE request like this:
-
-    /api/programRules/<program_rule_uid>
-    
-To retrieve description of programRule condition you can use POST and provide condition string in the POST body.
-
-    /api/programRules/condition/description?<program_rule_uid>
-
-## Forms
-
-<!--DHIS2-SECTION-ID:webapi_forms-->
-
-To retrieve information about a form (which corresponds to a data set
-and its sections) you can interact with the `form` resource. The form
-response is accessible as XML and JSON and will provide information
-about each section (group) in the form as well as each field in the
-sections, including labels and identifiers. By supplying period and
-organisation unit identifiers the form response will be populated with
-data values.
-
-<table>
-<caption>Form query parameters</caption>
-<colgroup>
-<col style="width: 12%" />
-<col style="width: 12%" />
-<col style="width: 74%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Option</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>pe</td>
-<td>ISO period</td>
-<td>Period for which to populate form data values.</td>
-</tr>
-<tr class="even">
-<td>ou</td>
-<td>UID</td>
-<td>Organisation unit for which to populate form data values.</td>
-</tr>
-<tr class="odd">
-<td>metaData</td>
-<td>false | true</td>
-<td>Whether to include metadata about each data element of form sections.</td>
-</tr>
-</tbody>
-</table>
-
-To retrieve the form for a data set you can do a GET request like this:
-
-    /api/dataSets/<dataset-id>/form.json
-
-To retrieve the form for the data set with identifier "BfMAe6Itzgt" in
-XML:
-
-    /api/dataSets/BfMAe6Itzgt/form
-
-To retrieve the form including metadata in JSON:
-
-    /api/dataSets/BfMAe6Itzgt/form.json?metaData=true
-
-To retrieve the form filled with data values for a specific period and
-organisation unit in XML:
-
-    /api/dataSets/BfMAe6Itzgt/form.xml?ou=DiszpKrYNg8&pe=201401
-
-When it comes to custom data entry forms, this resource also allows for
-creating such forms directly for a data set. This can be done through a
-POST or PUT request with content type text/html where the payload is the
-custom form markup such as:
-
-```bash
-curl -d @form.html "localhost/api/dataSets/BfMAe6Itzgt/form"
-  -H "Content-Type:text/html" -u admin:district -X PUT
-```
-
-## Documents
-
-<!--DHIS2-SECTION-ID:webapi_documents-->
-
-References to files can be stored with the document resource.
-
-<table>
-<caption>Document fields</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>name</td>
-<td>unique name of document</td>
-</tr>
-<tr class="even">
-<td>external</td>
-<td>flag identifying the location of the document. TRUE for external files, FALSE for internal ones</td>
-</tr>
-<tr class="odd">
-<td>url</td>
-<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">File resources</a>)</td>
-</tr>
-</tbody>
-</table>
-
-A GET request to the documents endpoint will return all documents:
-
-    /api/documents
-
-A POST request to the documents endpoint will create a new document:
-
-```bash
-curl -X POST -d @document.json -H "Content-type: application/json"
-  "http://dhis.domain/api/documents"
-```
-
-```json
-{
-  "name": "dhis home",
-  "external": true,
-  "url": "https://www.dhis2.org"
-}
-```
-
-A GET request with the id of a document appended will return information
-about the document. A PUT request to the same endpoint will update the
-fields of the document:
-
-    /api/documents/<documentId>
-
-Appending */data* to the GET request will return the actual file content
-of the document:
-
-    /api/documents/<documentId>/data
 
 ## Validation
 
@@ -16632,235 +16951,6 @@ The available system settings are listed below.
 </tbody>
 </table>
 
-## Organisation units
-
-<!--DHIS2-SECTION-ID:webapi_organisation_units-->
-
-The *organisationUnits* resource follows the standard conventions as
-other metadata resources in DHIS2. This resource supports some
-additional query parameters.
-
-### Get list of organisation units
-
-<!--DHIS2-SECTION-ID:webapi_list_of_organisation_units-->
-
-To get a list of organisation units you can use the following resource.
-
-    /api/33/organisationUnits
-
-<table>
-<caption>Organisation units query parameters</caption>
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 65%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>userOnly</td>
-<td>false | true</td>
-<td>Data capture organisation units associated with current user only.</td>
-</tr>
-<tr class="even">
-<td>userDataViewOnly</td>
-<td>false | true</td>
-<td>Data view organisation units associated with current user only.</td>
-</tr>
-<tr class="odd">
-<td>userDataViewFallback</td>
-<td>false | true</td>
-<td>Data view organisation units associated with current user only with fallback to data capture organisation units.</td>
-</tr>
-<tr class="even">
-<td>query</td>
-<td>string</td>
-<td>Query against the name, code and ID properties.</td>
-</tr>
-<tr class="odd">
-<td>level</td>
-<td>integer</td>
-<td>Organisation units at the given level in the hierarchy.</td>
-</tr>
-<tr class="even">
-<td>maxLevel</td>
-<td>integer</td>
-<td>Organisation units at the given max level or levels higher up in the hierarchy.</td>
-</tr>
-<tr class="odd">
-<td>withinUserHierarchy</td>
-<td>false | true</td>
-<td>Limits search and retrieval to organisation units that are within the users data capture scope.</td>
-</tr>
-<tr class="even">
-<td>withinUserSearchHierarchy</td>
-<td>false | true</td>
-<td>Limits search and retrieval to organisation units that are within the current users search scope. Note: "withinUserHierarchy", if true, takes higher precedence.</td>
-</tr>
-<tr class="odd">
-<td>memberCollection</td>
-<td>string</td>
-<td>For displaying count of members within a collection, refers to the name of the collection associated with organisation units.</td>
-</tr>
-<tr class="even">
-<td>memberObject</td>
-<td>UID</td>
-<td>For displaying count of members within a collection, refers to the identifier of the object member of the collection.</td>
-</tr>
-</tbody>
-</table>
-
-### Get organisation unit with relations
-
-<!--DHIS2-SECTION-ID:webapi_organisation_units_with_relations-->
-
-To get an organisation unit with related organisation units you can use
-the following resource.
-
-    /api/33/organisationUnits/{id}
-
-<table>
-<caption>Organisation unit parameters</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 58%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>includeChildren</td>
-<td>false | true</td>
-<td>Include immediate children of the specified organisation unit, i.e. the units at the immediate level below in the subhierarchy.</td>
-</tr>
-<tr class="even">
-<td>includeDescendants</td>
-<td>false | true</td>
-<td>Include all children of the specified organisation unit, i.e. all units in the sub-hierarchy.</td>
-</tr>
-<tr class="odd">
-<td>includeAncestors</td>
-<td>false | true</td>
-<td>Include all parents of the specified organisation unit.</td>
-</tr>
-<tr class="even">
-<td>level</td>
-<td>integer</td>
-<td>Include children of the specified organisation unit at the given level of the sub-hierarchy (relative to the organisation unit where the immediate level below is level 1).</td>
-</tr>
-</tbody>
-</table>
-
-## Data sets
-
-<!--DHIS2-SECTION-ID:webapi_data_sets-->
-
-The *dataSets* resource follows the standard conventions as other
-metadata resources in DHIS2. This resource supports some additional
-query parameters.
-
-    /api/33/dataSets
-
-To retrieve the version of a data set you can issue a GET request:
-
-    GET /api/33/dataSets/<uid>/version
-
-To bump (increase by one) the version of a data set you can issue a POST
-request:
-
-    POST /api/33/dataSets/<uid>/version
-
-### DataSet Notification Template
-
-<!--DHIS2-SECTION-ID:webapi_dataset_notifications-->
-
-The *dataset notification templates* resource follows the standard
-conventions as other metadata resources in DHIS2.
-
-    GET /api/33/dataSetNotficationTemplates
-
-To retrieve data set notification template you can issue a GET request:
-
-    GET /api/33/dataSetNotficationTemplates/<uid>
-
-To add data set notification template you can issue a POST request:
-
-    POST /api/33/dataSetNotficationTemplates
-
-To delete data set notification template you can issue a DELETE request:
-
-    DELETE /api/33/dataSetNotficationTemplates/<uid>
-
-JSON payload sample is given below:
-
-```json
-{
-  "name": "dataSetNotificationTemplate1",
-  "notificationTrigger": "COMPLETION",
-  "relativeScheduledDays": 0,
-  "notificationRecipient": "ORGANISATION_UNIT_CONTACT",
-  "dataSets": [{
-    "id": "eZDhcZi6FLP"
-  }],
-  "deliveryChannels": ["SMS"],
-  "subjectTemplate": "V{data_name}",
-  "messageTemplate": "V{data_name}V{complete_registration_period}",
-  "sendStrategy": "SINGLE_NOTIFICATION"
-}
-
-```
-
-## Filled organisation unit levels
-
-<!--DHIS2-SECTION-ID:webapi_filled_organisation_unit_levels-->
-
-The *filledOrganisationUnitLevels* resource provides an ordered list of
-organisation unit levels, where generated levels are injected into the
-list to fill positions for which it does not exist a persisted level.
-
-    GET /api/33/filledOrganisationUnitLevels
-
-To set the organisation unit levels you can issue a POST request with a
-JSON payload looking like this.
-
-```json
-{
-  "organisationUnitLevels": [{
-    "name": "National",
-    "level": 1,
-    "offlineLevels": 3
-  }, {
-    "name": "District",
-    "level": 2
-  }, {
-    "name": "Chiefdom",
-    "level": 3
-  }, {
-    "name": "Facility",
-    "level": 4
-  }]
-}
-```
-
-To do functional testing with curl you can issue the following command.
-
-```bash
-curl "http://localhost/api/33/filledOrganisationUnitLevels" -H "Content-Type:application/json"
-  -d @levels.json -u admin:district
-```
-
 ## Static content
 
 <!--DHIS2-SECTION-ID:webapi_static_content-->
@@ -21779,96 +21869,6 @@ curl -X DELETE -u admin:district "play.dhis2.org/api/33/userDataStore/foo"
   "message":"All keys from namespace 'foo' deleted."
 }
 ```
-
-## Predictors
-
-<!--DHIS2-SECTION-ID:webapi_predictors-->
-
-A predictor allows you to generate data values based on an expression.
-This can be used for example to generate targets, thresholds,
-or estimated values.
-
-To retrieve predictors you can make a GET request to the predictors
-resource like this:
-
-    /api/predictors
-
-### Creating a predictor
-
-<!--DHIS2-SECTION-ID:webapi_create_predictor-->
-
-You can create a predictor with a POST request to the predictors
-resource:
-
-    POST /api/predictors
-
-A sample payload looks like this:
-
-```json
-{
-  "id": "AG10KUJCrRk",
-  "name": "Malaria Outbreak Threshold Predictor",
-  "shortName": "Malaria Outbreak Predictor",
-  "description": "Computes the threshold for potential malaria outbreaks based on the mean plus 1.5x the std dev",
-  "output": {
-    "id": "nXJJZNVAy0Y"
-  },
-  "generator": {
-    "expression": "AVG(#{r6nrJANOqMw})+1.5*STDDEV(#{r6nrJANOqMw})",
-    "description": "Maximum normal malaria case count",
-    "missingValueStrategy": "NEVER_SKIP",
-    "slidingWindow": false
-  },
-  "periodType": "Monthly",
-  "sequentialSampleCount": 4,
-  "sequentialSkipCount": 1,
-  "annualSampleCount": 3,
-  "organisationUnitLevels": [4]
-}
-```
-
-The output element refers to the identifier of the data element for
-which to saved predicted data values. The generator element refers to the
-expression to use when calculating the predicted values.
-
-### Predictor expressions
-
-<!--DHIS2-SECTION-ID:webapi_predictor_expressions-->
-
-A predictor always has a generator expression that describes how the
-predicted value is calculated. A predictor may also have a skip test
-expression returning a boolean value. When the skip test expression is
-present, it is evaluated in each of the sampled periods to tell whether
-values from that period should be skipped.
-
-The following variables may be used in either a generator expression
-or a skip test expression:
-
-| Variable    | Object     | Description |
-| ----------- | ---------- | ----------- |
-| #{\<dataelement-id>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
-| #{\<dataelement-id>.\<categoryoptcombo-id> | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
-| D{\<program-id>.\<dataelement-id>} | Program data element | Refers to the value of a tracker data element within a program. |
-| A{\<program-id>.\<attribute-id>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
-| I{\<program-indicator-id>} | Program indicator | Refers to the value of a program indicator. |
-| R{\<dataset-id>.\<metric>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
-| C{\<constant-id>} | Constant | Refers to a constant value. |
-| OUG{\<orgunitgroup-id>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
-| [days] | Number of days | The number of days in the current period. |
-
-### Generating predicted values
-
-<!--DHIS2-SECTION-ID:webapi_generating_predicted_values-->
-
-To run all predictors (generating predicted values) you can make a POST
-request to the run resource:
-
-    POST /api/predictors/run
-
-To run a single predictor you can make a POST request to the run
-resource for a predictor:
-
-    POST /api/predictors/AG10KUJCrRk/run
 
 ## Min-max data elements
 
