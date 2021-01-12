@@ -8,17 +8,11 @@ To generate a data validation summary you can interact with the
 validation resource. The dataSet resource is optimized for data entry
 clients for validating a data set / form, and can be accessed like this:
 
-    /api/33/validation/dataSet/QX4ZTUbOt3a.json?pe=201501&ou=DiszpKrYNg8
+    GET /api/33/validation/dataSet/QX4ZTUbOt3a.json?pe=201501&ou=DiszpKrYNg8
 
 In addition to validate rules based on data set, there are two
 additional methods for performing validation: Custom validation and
 Scheduled validation.
-
-Custom validation can be initiated through the "Data Quality" app, where
-you can configure the periods, validation rule groups and organisation
-units to be included in the analysis and if you want to send out
-notifications for and/or persist the results found. The result of this
-analysis will be a list of violations found using your criteria.
 
 The first path variable is an identifier referring to the data set to
 validate. XML and JSON resource representations are supported. The
@@ -30,7 +24,7 @@ meaning validation rules with formulas where all data elements are part
 of the specific data set, you can make a GET request to to
 `validationRules` resource like this:
 
-    /api/validationRules?dataSet=<dataset-id>
+    GET /api/validationRules?dataSet=<dataset-id>
 
 The validation rules have a left side and a right side, which is
 compared for validity according to an operator. The valid operator
@@ -154,20 +148,184 @@ analysis might be slower.
 The validation results persisted can be viewed at the following
 endpoint:
 
-    /api/33/validationResults
+    GET /api/33/validationResults
 
 You can also inspect an individual result using the validation result id
 in this endpoint:
 
-    /api/33/validationResults/<id>
+    GET /api/33/validationResults/<id>
 
 Validation results are sent out to the appropriate users once every day,
 but can also be manually triggered to run on demand using the following
 api endpoint:
 
-    /api/33/validation/sendNotifications
+    POST /api/33/validation/sendNotifications
 
 Only unsent results are sent using this endpoint.
+
+## Outlier detection
+
+The outlier detection endpoint allows for for detecting outliers in aggregate data values.
+
+```
+GET /api/36/outlierDetection
+```
+
+This endpoint supports two algorithms for detecting outliers:
+
+* **Z-score:** The z-score is defined as the absolute deviation between the score and mean divided by the standard deviation. A threshold parameter referring to the number of standard deviations from the mean must be specified with the z-score algorithm to define the upper and lower boundaries for what is considered an outlier value.
+* **Min-max:** Min-max data element values refers to custom boundaries which can be inserted in DHIS 2 based on data element, org unit and category option combination.
+
+The outlier values will be *ordered according to significance*, by default by the absolute deviation from the mean, with the most significant value first. This is helpful to quickly identify the outlier values which have the biggest impact on data quality and data analytics.
+
+### Request query parameters
+
+The following query parameters are supported. 
+
+| Query parameter | Description                                                  | Options (default first)                   |
+| --------------- | ------------------------------------------------------------ | ----------------------------------------- |
+| ds              | Data set, can be specified multiple times.                   | Data set identifier.                      |
+| de              | Data element, can be specified multiple times.               | Data element identifier.                  |
+| startDate       | Start date for interval to check.                            | Date (yyyy-MM-dd).                        |
+| endDate         | End date for interval to check.                              | Date (yyyy-MM-dd).                        |
+| ou              | Organisation unit, can be specified multiple times.          | Organisation unit identifier.             |
+| algorithm       | Algorithm to use for outlier detection.                      | Z_SCORE \| MIN_MAX                        |
+| threshold       | Threshold for outlier values, applies to Z_SCORE algorithm only. | Numeric, greater than zero. Default: 3.0. |
+| orderBy         | Field to order by, applies to Z_SCORE algorithm only.        | MEAN_ABS_DEV \| Z_SCORE                   |
+| maxResults      | Max limit for the output.                                    | Integer, greater than zero. Default: 500. |
+
+At least one data set or data element, and at least one organisation unit must be defined.
+
+### Usage and examples
+
+Get outlier values using the default z-score algorithm:
+
+```
+GET /api/36/outlierDetection?ds=BfMAe6Itzgt&ds=QX4ZTUbOt3a
+  &ou=O6uvpzGd5pu&ou=fdc6uOvgoji&startDate=2020-01-01&endDate=2020-12-31
+```
+
+Get outlier values using a specific algorithm and a specific threshold:
+
+```
+GET /api/36/outlierDetection?ds=BfMAe6Itzgt&ds=QX4ZTUbOt3a
+  &ou=O6uvpzGd5pu&startDate=2020-01-01&endDate=2020-12-31
+  &algorithm=Z_SCORE&threshold=2.5
+```
+
+Get outlier values ordered by z-score:
+
+```
+GET /api/36/outlierDetection?ds=BfMAe6Itzgt
+  &ou=O6uvpzGd5pu&startDate=2020-01-01&endDate=2020-12-31
+  &orderBy=Z_SCORE
+```
+
+Get the top 10 outlier values:
+
+```
+GET /api/36/outlierDetection?ds=BfMAe6Itzgt
+  &ou=O6uvpzGd5pu&startDate=2020-01-01&endDate=2020-12-31
+  &maxResults=10
+```
+
+Get outlier values using the min-max algorithm:
+
+```
+GET /api/36/outlierDetection?ds=BfMAe6Itzgt&ds=QX4ZTUbOt3a
+  &ou=O6uvpzGd5pu&ou=fdc6uOvgoji&startDate=2020-01-01&endDate=2020-12-31
+  &algorithm=MIN_MAX
+```
+
+### Response format
+
+The response format contains the following fields:
+
+| Field      | Description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| de         | Data element identifier.                                     |
+| deName     | Data element name.                                           |
+| pe         | Period ISO identifier.                                       |
+| ou         | Organisation unit identifier.                                |
+| ouName     | Organisation unit name.                                      |
+| coc        | Category option combination identifier.                      |
+| cocName    | Category option combination name.                            |
+| aoc        | Attribute option combination identifier.                     |
+| aocName    | Attribute option combination name.                           |
+| value      | Data value.                                                  |
+| mean       | Mean of data values in the time dimension.                   |
+| stdDev     | Standard deviation.                                          |
+| absDev     | For z-score, absolute deviation from the mean. For min-max, absolute deviation from the min or max boundary. |
+| zScore     | The z-score. Z-score algorithm only.                         |
+| lowerBound | The lower boundary.                                          |
+| upperBound | The upper boundary.                                          |
+
+The response will look similar to this. The `metadata` section contains metadata for the request and response. The `outlierValues` section contains the outlier values.
+
+```json
+{
+  "metadata": {
+    "algorithm": "Z_SCORE",
+    "threshold": 2.5,
+    "orderBy": "MEAN_ABS_DEV",
+    "maxResults": 10,
+    "count": 10
+  },
+  "outlierValues": [
+    {
+      "de": "rbkr8PL0rwM",
+      "deName": "Iron Folate given at ANC 3rd",
+      "pe": "202011",
+      "ou": "Pae8DR7VmcL",
+      "ouName": "MCH (Kakua) Static",
+      "coc": "pq2XI5kz2BY",
+      "cocName": "Fixed",
+      "aoc": "HllvX50cXC0",
+      "aocName": "default",
+      "value": 9000.0,
+      "mean": 1524.5555555555557,
+      "stdDev": 2654.466136370137,
+      "absDev": 7475.444444444444,
+      "zScore": 2.816176232960643,
+      "lowerBound": -5111.6097853697875,
+      "upperBound": 8160.720896480899
+    },
+    {
+      "de": "rbkr8PL0rwM",
+      "deName": "Iron Folate given at ANC 3rd",
+      "pe": "202010",
+      "ou": "vELbGdEphPd",
+      "ouName": "Jimmi CHC",
+      "coc": "pq2XI5kz2BY",
+      "cocName": "Fixed",
+      "aoc": "HllvX50cXC0",
+      "aocName": "default",
+      "value": 8764.0,
+      "mean": 1448.0833333333333,
+      "stdDev": 2502.303154373764,
+      "absDev": 7315.916666666667,
+      "zScore": 2.923673198380944,
+      "lowerBound": -4807.674552601076,
+      "upperBound": 7703.841219267742
+    }
+  ]
+}
+```
+
+### Constraints and validation
+
+The following constraints apply during query validation. Each validation error has a corresponding error code.
+
+| Error code | Message                                                      |
+| ---------- | ------------------------------------------------------------ |
+| E2200      | At least one data element must be specified                  |
+| E2201      | Start date and end date must be specified                    |
+| E2202      | Start date must be before end date                           |
+| E2203      | At least one organisation unit must be specified             |
+| E2204      | Threshold must be a positive number                          |
+| E2205      | Max results must be a positive number                        |
+| E2206      | Max results exceeds the allowed max limit: {d}               |
+| E2207      | Non-numeric data values encountered during outlier value detection |
 
 ## Data analysis
 
@@ -176,13 +334,15 @@ Only unsent results are sent using this endpoint.
 Several resources for performing data analysis and finding data quality
 and validation issues are provided.
 
+**Note:** This endpoint is deprecated and will be removed in 2.38. Use the `outlierAnalysis` endpoint instead.
+
 ### Validation rule analysis
 
 <!--DHIS2-SECTION-ID:webapi_data_analysis_validation_rules-->
 
 To run validation rules and retrieve violations:
 
-    /api/dataAnalysis/validationRules
+    GET /api/dataAnalysis/validationRules
 
 The following query parameters are supported:
 
@@ -236,7 +396,7 @@ The following query parameters are supported:
 
 Sample output:
 ```json
-    [{
+[{
 	"validationRuleId": "kgh54Xb9LSE",
 	"validationRuleDescription": "Malaria outbreak",
 	"organisationUnitId": "DiszpKrYNg8",
@@ -276,7 +436,7 @@ Sample output:
 To identify data outliers based on standard deviations of the average
 value:
 
-    /api/dataAnalysis/stdDevOutlier
+    GET /api/dataAnalysis/stdDevOutlier
 
 The following query parameters are supported:
 
@@ -329,7 +489,7 @@ The following query parameters are supported:
 
 To identify data outliers based on min/max values:
 
-    /api/dataAnalysis/minMaxOutlier
+    GET /api/dataAnalysis/minMaxOutlier
 
 The supported query parameters are equal to the *std dev based outlier
 analysis* resource described above.
@@ -338,7 +498,7 @@ analysis* resource described above.
 
 To identify data marked for follow-up:
 
-    /api/dataAnalysis/followup
+    GET /api/dataAnalysis/followup
 
 The supported query parameters are equal to the *std dev based outlier
 analysis* resource described above.
@@ -363,7 +523,7 @@ empty POST request to the *dataIntegrity* endpoint like so (demonstrated
 in curl syntax):
 
 ```bash
-curl -X POST "https://localhost/api/33/dataIntegrity"
+GET /api/33/dataIntegrity
 ```
 
 If successful the request will return HTTP 202 immediately. The location
@@ -382,7 +542,7 @@ Once data integrity is finished running the result can be fetched from
 the `system/taskSummaries` resource like so:
 
 ```bash
-curl "https://dhis.domain/api/33/system/taskSummaries/DATAINTEGRITY"
+GET /api/33/system/taskSummaries/DATAINTEGRITY
 ```
 
 The returned object contains a summary for each point of analysis,
@@ -406,7 +566,7 @@ This section explains how to register data sets as complete. This is
 achieved by interacting with the *completeDataSetRegistrations*
 resource:
 
-    /api/33/completeDataSetRegistrations
+    GET /api/33/completeDataSetRegistrations
 
 The endpoint supports the *POST* method for registering data set
 completions. The endpoint is functionally very similar to the
@@ -575,38 +735,29 @@ resource. The query parameters to use are these:
 </tr>
 </tbody>
 </table>
+The `dataSet` and `orgUnit` parameters can be repeated in order to include multiple data sets and organisation units.
 
-The dataSet and orgUnit parameters can be repeated in order to include
-multiple data sets and organisation units.
-
-The period, start/end date, created and createdDuration parameters
-provide multiple ways to set the time dimension for the request, thus only
-one can be used. For example, it doesn't make sense to both set the
-start/end date and to set the periods.
+The `period`, `startDate`,  `endDate`, `created` and `createdDuration` parameters provide multiple ways to set the time dimension for the request, thus only
+one can be used. For example, it doesn't make sense to both set the start/end date and to set the periods.
 
 An example request looks like this:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX
-  &dataSet=pBOMPrpg1QX&startDate=2014-01-01&endDate=2014-01-31&orgUnit=YuQRtpLP10I
-  &orgUnit=vWbkYPRmKyS&children=true"
-  -H "Accept:application/xml" -u admin:district
+GET /api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX&dataSet=pBOMPrpg1QX
+  &startDate=2014-01-01&endDate=2014-01-31&orgUnit=YuQRtpLP10I
+  &orgUnit=vWbkYPRmKyS&children=true
 ```
 
-You can get the response in *xml* and *json* format. You can indicate
-which response format you prefer through the *Accept* HTTP header like
-in the example above. For xml you use *application/xml*; for json you
-use *application/json*.
+You can get the response in *xml* and *json* format. You can indicate which response format you prefer through the *Accept* HTTP header like
+in the example above. For xml you use *application/xml*; for json you use *application/json*.
 
 ### Un-completing data sets
 
 <!--DHIS2-SECTION-ID:webapi_uncompleting_data_sets-->
 
-This section explains how you can un-register the completeness of a data
-set. To un-complete a data set you will interact with the
-completeDataSetRegistrations resource:
+This section explains how you can un-register the completeness of a data set. To un-complete a data set you will interact with the completeDataSetRegistrations resource:
 
-    /api/33/completeDataSetRegistrations
+    GET /api/33/completeDataSetRegistrations
 
 This resource supports *DELETE* for un-registration. The following query
 parameters are supported:
