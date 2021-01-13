@@ -155,6 +155,22 @@ in this endpoint:
 
     GET /api/33/validationResults/<id>
 
+Validation results can also be filtered by following properties:
+
+* Organisation Unit: `ou=<UID>`
+* Validation Rule: `vr=<UID>`
+* Period: `pe=<ISO-expression>`
+
+Each filter property can occur multiple times, for example:
+
+    GET /api/36/validationResults?ou=jNb63DIHuwU&ou=RzgSFJ9E46G
+
+Multiple values for the same filter are combined with OR, results have to match one of the given values.
+
+If more then one filter properties is used these are combined with AND, results have to match one of the values for each of the properties.
+
+For the period filter matching results have to overlap with any of the specified periods.
+
 Validation results are sent out to the appropriate users once every day,
 but can also be manually triggered to run on demand using the following
 api endpoint:
