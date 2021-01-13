@@ -1068,9 +1068,9 @@ It is also possible to combine the identifiable filter with property-based filte
 
 ### Capture Scope filter
 
-In addition to the filtering mentioned above, we have a special filtering query parameter named *restrictToCaptureScope*. If *restrictToCaptureScope* is set to true, only those metadata objects that are either unassigned to any organisation units or those that are assigned explicitly to the logged in users capture scope org units will be returned in the response. This filtering parameter can be used for any metadata that has organisation units association with it.
+In addition to the filtering mentioned above, we have a special filtering query parameter named *restrictToCaptureScope*. If *restrictToCaptureScope* is set to true, only those metadata objects that are either unassigned to any organisation units or those that are assigned explicitly to the logged in users capture scope org units will be returned in the response. In addition to filtering the metadata object lists, an additional filtering of the associated organisation units to only include the capture scoped organisation units will be done. This filtering parameter can be used for Program and CategoryOption listing APIs.
 
-A special case exists for CategoryOptions api endpoint. In addition to filtering the metadata object lists, an additional filtering of the associated organisation units to only include the capture scoped organisation units will be done. Note that this second level of filtering only applies for CategoryOptions metadata.
+This feature is generally beneficial to reduce the payload size if there are large number of organisation units associated to various metadata objects. 
 
 Some examples
 
@@ -12440,7 +12440,7 @@ filtered on the "Male" item, you can use a query like this:
     /api/33/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
       &dimension=fWIAEtYVEGk&dimension=oZg33kd9taw:EQ:Male
 
-To create a "top 3 report" for "Mode of discharge" you can use the limit
+To create a "Top 3 report" for _Mode of discharge_ you can use the limit
 and sortOrder query parameters similar to this:
 
     /api/33/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
@@ -12452,20 +12452,23 @@ value dimension will make the analytics engine return aggregate values
 for the values of that dimension in the response as opposed to counts of
 events.
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk&dimension=ou:ImspTQPwCqd
-      &dimension=pe:LAST_12_MONTHS&dimension=fWIAEtYVEGk&value=qrur9Dvnyt5&aggregationType=AVERAGE
+    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
+      &dimension=ou:ImspTQPwCqd&dimension=pe:LAST_12_MONTHS&dimension=fWIAEtYVEGk
+      &value=qrur9Dvnyt5&aggregationType=AVERAGE
 
 To base event analytics aggregation on a specific data element or attribute
 of value type date or date time you can use the `timeField` parameter:
 
     /api/33/analytics/events/aggregate/IpHINAT79UW.json?dimension=ou:ImspTQPwCqd
-    &dimension=pe:LAST_12_MONTHS&dimension=cejWyOfXge6&stage=A03MvHHogjR&timeField=ENROLLMENT_DATE
+      &dimension=pe:LAST_12_MONTHS&dimension=cejWyOfXge6&stage=A03MvHHogjR
+      &timeField=ENROLLMENT_DATE
 
 To base event analytics aggregation on a specific data element or attribute
 of value type organisation unit you can use the `orgUnitField` parameter:
 
     /api/33/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
-    &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk&orgUnitField=S33cRBsnXPo
+      &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk
+      &orgUnitField=S33cRBsnXPo
 
 #### Ranges / legend sets
 
@@ -12479,8 +12482,7 @@ described below:
 
     ?dimension=<item-id>-<legend-set-id>
 
-An example looks like
-    this:
+An example looks like this:
 
     /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
       &dimension=qrur9Dvnyt5-Yf6UHoPkdS6&dimension=ou:ImspTQPwCqd&dimension=pe:LAST_MONTH
@@ -13720,7 +13722,8 @@ favorites of the system.
 
 If the username is specified, the response will only contain the top favorites of that user.
 
-    /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC&username=admin
+    /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25
+      &sortOrder=ASC&username=admin
 
 ### Response format
 
@@ -13746,13 +13749,9 @@ GET method. This allows you to link directly from Web pages and other
 HTTP-enabled clients to usage analytics responses. To do functional
 testing use the cURL library.
 
-Execute this command against the demo database to get an usage analytics
-response in JSON format:
+To get an usage analytics response in JSON format:
 
-```bash
-curl "play.dhis2.org/demo/api/33/dataStatistics?startDate=2016-02-01&endDate=2016-02-14
-  &interval=WEEK" -u admin:district
-```
+    /api/33/dataStatistics?startDate=2016-02-01&endDate=2016-02-14&interval=WEEK
 
 The JSON response looks like this:
 
@@ -13922,9 +13921,7 @@ To export GeoJSON, you can simply add *.geosjon* as an extension to the
 endpoint */api/organisationUnits*, or you can use the *Accept* header
 *application/json+geojson*.
 
-Two parameters are supported: `level` (defaults to 1) and `parent`
-(defaults to root organisation units). Both can be included multiple times. 
-Some examples follow.
+Two parameters are supported: `level` (default is 1) and `parent` (default is root organisation units). Both can be included multiple times. Some examples:
 
 Get all features at level 2 and 4:
 
@@ -14185,7 +14182,7 @@ currently includes the below properties.
 
 > **Note**
 >
-> If the user who is requesting this resource does not have full authority in the system then only the first seven properties will be included, as this information is security sensitive.
+> If the user requesting this resource does not have full authority then only the first seven properties will be included, as other properties are considered sensitive information.
 
 To get information about the system context only, i.e. `contextPath` and
 `userAgent`, you can make a GET request to the below URL. JSON and
@@ -17799,6 +17796,11 @@ To query for tracked entity instances you can interact with the
 <tr class="even">
 <td>assignedUser</td>
 <td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
+</tr>
+<tr class="odd">
+<td>trackedEntityInstance</td>
+<td>Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using <em>trackedEntityInstance=id1;id2</em>. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. </td>
+</tr>
 </tbody>
 </table>
 
@@ -18213,6 +18215,18 @@ and is an alternative to the query in the previous section.
 <tr class="even">
 <td>skipPaging</td>
 <td>Indicates whether paging should be ignored and all rows should be returned.</td>
+</tr>
+<tr class="odd">
+<td>assignedUserMode</td>
+<td>Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
+</tr>
+<tr class="even">
+<td>assignedUser</td>
+<td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
+</tr>
+<tr class="odd">
+<td>trackedEntityInstance</td>
+<td>Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using <em>trackedEntityInstance=id1;id2</em>. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. </td>
 </tr>
 </tbody>
 </table>
