@@ -239,7 +239,14 @@ GET /api/36/outlierDetection?ds=BfMAe6Itzgt&ds=QX4ZTUbOt3a
 
 ### Response format
 
-The response format contains the following fields:
+The following response formats are supported.
+
+| Format | API format                                                   |
+| ------ | ------------------------------------------------------------ |
+| JSON   | `/api/36/outlierDetection.json` or `Accept: application/json` (default format) |
+| CSV    | `/api/36/outlierDetection.csv` or `Accept: application/csv`  |
+
+The response contains the following fields:
 
 | Field      | Description                                                  |
 | ---------- | ------------------------------------------------------------ |
@@ -259,6 +266,8 @@ The response format contains the following fields:
 | zScore     | The z-score. Z-score algorithm only.                         |
 | lowerBound | The lower boundary.                                          |
 | upperBound | The upper boundary.                                          |
+
+The `mean`, `stdDev` and `zScore` fields are only present when `algorithm` is `Z_SCORE`.
 
 The response will look similar to this. The `metadata` section contains metadata for the request and response. The `outlierValues` section contains the outlier values.
 
