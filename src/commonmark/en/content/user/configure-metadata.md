@@ -2585,7 +2585,7 @@ In this section you will learn how to:
 The organisation unit hierarchy defines the organisation structure of
 DHIS2, for example how health facilities, administrative areas and other
 geographical areas are arranged with respect to each other. It is the
-"where" dimension of DHIS2, similar to how periods represent the "when"
+*where* dimension of DHIS2, similar to how periods represent the *when*
 dimension.
 
 The organisation unit hierarchy is built up by parent-child relations.

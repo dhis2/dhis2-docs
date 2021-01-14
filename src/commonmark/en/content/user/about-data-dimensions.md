@@ -64,7 +64,7 @@ practices which should generally be followed.
 Given the example of Measles vaccination, if you want to know whether
 these vaccines were given at the facility (fixed) or out in the
 community as part of the outreach services then you could add a
-dimension called e.g. "Place of service" with the two possible options
+dimension called—e.g., "Place of service", with the two possible options
 "Fixed" and "Outreach". Then all data collected on measles immunisation
 would have to be disaggregated along these to options. In addition to
 this you might be interested in knowing how many of these children who
@@ -871,7 +871,7 @@ dimension.
 
 Thus, all items on the first column from "1st ANC" visit to "2nd IPT
 dose given by TBA" are represented as individual data elements. The
-"where" dimension is represented as a data element category (from now on
+*where* dimension is represented as a data element category (from now on
 referred to as category) with the name "fixed/outreach" with the two
 data element category options (from now on catoptions) "fixed" and
 "outreach". There is no other dimension here so we add a new catcombo

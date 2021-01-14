@@ -192,7 +192,7 @@
     would be considered an organisational unit with in the orgunit level
     of "State". Organizational units can also be used to specify an
     administrative unit, such as a ward within a hospital. The
-    organisational unit dimension specifies essentially "where" a
+    organisational unit dimension specifies essentially *where* a
     particular data value occurs.
 
   - Organisational unit level
