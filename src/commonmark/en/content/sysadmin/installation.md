@@ -43,20 +43,17 @@ These recommendations should be considered as rules-of-thumb and not
 exact measures. DHIS2 scales linearly on the amount of RAM and number of
 CPU cores so the more you can afford, the better the application will perform.
 
-  - *RAM:* At least 1 GB memory per 1 million captured data records per
-    month or per 1000 concurrent users. At least 4 GB for a small
-    instance, 12 GB for a medium instance.
+  - *RAM:* At least 2 GB for a small instance, 12 GB for a medium instance, 64 GB or more for a large instance.
 
-  - *CPU cores:* 4 CPU cores for a small instance, 8 CPU cores for a
-    medium or large instance.
+  - *CPU cores:* 4 CPU cores for a small instance, 8 CPU cores or more for a medium or large instance.
 
-  - *Disk:* Ideally use an SSD. Otherwise use a 7200 rpm disk. Minimum
+  - *Disk:* SSD is recommeded as storage device. Minimum
     read speed is 150 Mb/s, 200 Mb/s is good, 350 Mb/s or better is
-    ideal. In terms of disk space, at least 60 GB is recommended, but
+    ideal. In terms of disk space, at least 100 GB is recommended, but
     will depend entirely on the amount of data which is contained in the
     data value tables. Analytics tables require a significant amount of
     disk space. Plan ahead and ensure that your server can be upgraded
-    with more disk space as it becomes needed.
+    with more disk space as needed.
 
 ## Software requirements
 
@@ -64,33 +61,31 @@ CPU cores so the more you can afford, the better the application will perform.
 
 Later DHIS2 versions require the following software versions to operate.
 
-  - Java JDK or JRE version 8 or later.
+  - Java JDK or JRE version 8 or later. OpenJDK is recommended.
 
-  - An operating system for which a Java JDK or JRE version 8 exists.
+  - An operating system for which a Java JDK or JRE version 8 exists. Linux is recommended.
 
-  - PostgreSQL database version 9.6 or later.
+  - PostgreSQL database version 9.6 or later. The latest PostgreSQL version is recommended.
 
   - PostGIS database extension version 2.2 or later.
 
   - Tomcat servlet container version 8.5.50 or later, or other Servlet API
     3.1 compliant servlet containers.
+    
+  - Cluster setup only (optional): Redis data store version 4 or later. 
 
 ## Server setup
 
 <!--DHIS2-SECTION-ID:install_server_setup-->
 
 This section describes how to set up a server instance of DHIS2 on
-Ubuntu 16.04 64 bit with PostgreSQL as database system and Tomcat as
+Ubuntu 18.04 64 bit with PostgreSQL as database system and Tomcat as
 Servlet container. This guide is not meant to be a step-by-step guide
 per se, but rather to serve as a reference to how DHIS2 can be deployed
 on a server. There are many possible deployment strategies, which will
 differ depending on the operating system and database you are using, and
 other factors. The term *invoke* refers to executing a given command in
 a terminal.
-
-For a national server the recommended configuration is a quad-core 2 Ghz
-processor or higher and 12 Gb RAM or higher. Note that a 64 bit
-operating system is required for utilizing more than 4 Gb of RAM.
 
 For this guide we assume that 8 Gb RAM is allocated for PostgreSQL and 8
 GB RAM is allocated for Tomcat/JVM, and that a 64-bit operating system
@@ -176,7 +171,7 @@ Install PostgreSQL by
     invoking:
 
 ```sh
-sudo apt-get install postgresql-10 postgresql-contrib-10 postgresql-10-postgis-2.4
+sudo apt-get install postgresql-12 postgresql-12-postgis-3
 ```
 
 Create a non-privileged user called *dhis* by invoking:
@@ -217,7 +212,7 @@ and tuned through the *postgresql.conf* file which can be edited like
 this:
 
 ```sh
-sudo nano /etc/postgresql/10/main/postgresql.conf
+sudo nano /etc/postgresql/12/main/postgresql.conf
 ```
 
 and set the following properties:
@@ -1166,16 +1161,6 @@ this.
 
 Note that several instructions have been omitted for brevity in the
 above example. Consult the reverse proxy section for a detailed guide.
-
-## Analytics cache configuration
-
-<!--DHIS2-SECTION-ID:install_analytics_cache_configuration-->
-
-DHIS 2 supports a server-side cache for analytics API responses, used by all of the analytics web apps. This cache sits within the DHIS 2 application and hence is protected by the DHIS 2 authentication and security layer. You can configure the expiration of cached entries in seconds. To enable the cache you can define the `analytics.cache.expiration` property in `dhis.conf`. The example below enabled the cache and sets expiration to one hour.
-
-```properties
-analytics.cache.expiration = 3600
-```
 
 ## Monitoring
 
