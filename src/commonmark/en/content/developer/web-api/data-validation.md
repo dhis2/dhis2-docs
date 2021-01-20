@@ -266,6 +266,9 @@ The response contains the following fields:
 | zScore     | The z-score. Z-score algorithm only.                         |
 | lowerBound | The lower boundary.                                          |
 | upperBound | The upper boundary.                                          |
+| followUp   | Whether data value is marked for follow-up.                  |
+
+The `mean`, `stdDev` and `zScore` fields are only present when `algorithm` is `Z_SCORE`.
 
 The `mean`, `stdDev` and `zScore` fields are only present when `algorithm` is `Z_SCORE`.
 
@@ -297,7 +300,8 @@ The response will look similar to this. The `metadata` section contains metadata
       "absDev": 7475.444444444444,
       "zScore": 2.816176232960643,
       "lowerBound": -5111.6097853697875,
-      "upperBound": 8160.720896480899
+      "upperBound": 8160.720896480899,
+      "followUp": false
     },
     {
       "de": "rbkr8PL0rwM",
@@ -315,7 +319,8 @@ The response will look similar to this. The `metadata` section contains metadata
       "absDev": 7315.916666666667,
       "zScore": 2.923673198380944,
       "lowerBound": -4807.674552601076,
-      "upperBound": 7703.841219267742
+      "upperBound": 7703.841219267742,
+      "followUp": false
     }
   ]
 }
