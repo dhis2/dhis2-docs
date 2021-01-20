@@ -145,6 +145,8 @@ generate analytics for validation results, if checked, results will
 generate notifications every time it's found and running validation
 analysis might be slower.
 
+### Query Validation Results
+
 The validation results persisted can be viewed at the following
 endpoint:
 
@@ -177,6 +179,8 @@ In addition the validation results can also be filtered on their creation date:
 
 This filter can be combined with any of the other filters.    
 
+### Manually Trigger Validation Result Notifications
+
 Validation results are sent out to the appropriate users once every day,
 but can also be manually triggered to run on demand using the following
 api endpoint:
@@ -184,6 +188,39 @@ api endpoint:
     POST /api/33/validation/sendNotifications
 
 Only unsent results are sent using this endpoint.
+
+### Manually Delete Validation Results
+
+Validation results can be manually deleted by ID,
+
+    DELETE /api/36/validationResults/<id>
+
+or using filters
+
+    DELETE /api/36/validationResults?<filters>
+
+Usable filter parameters include:
+
+* `ou=<UID>` to match all validation results of an organisation unit; multiple units combine OR when the parameter is provided more than once
+* `vr=<UID>` to match all validation results of a validation rule; multiple rules combine OR when the parameter is provided more than once
+* `pe=<ISO-expression>` to match all validation results related to a period that overlaps with the specified period
+* `created=<ISO-expression>` to match all validation results that were created within the provided period
+* `notificationSent=<boolean>` to match either only validation results for which a notification was or wasn't sent
+
+If filters are combined all conditions have to be true (AND logic).
+
+Examples:
+
+1. To delete all validation results related the organisation unit with UID `NqwvaQC1ni4` for Q1 of 2020 use: 
+
+    DELETE /api/36/validationResults?ou=NqwvaQC1ni4&pe=2020Q1
+
+2. To delete all validation results that were created in week 1 of 2019 and for which notification has been sent use:
+
+    DELETE /api/36/validationResults?created=2019W1&notificationSent=true
+
+Any delete operation will require the right to _Perform maintenance tasks_.
+
 
 ## Outlier detection
 
