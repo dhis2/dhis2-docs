@@ -182,19 +182,19 @@ The outlier values will be *ordered according to significance*, by default by th
 
 The following query parameters are supported. 
 
-| Query parameter | Description                                               | Mandatory          | Options (default first)                   |
-| --------------- | --------------------------------------------------------- | ------------------ | ----------------------------------------- |
-| ds              | Data set, can be specified multiple times.                | Yes (`ds` or `de`) | Data set identifier.                      |
-| de              | Data element, can be specified multiple times.            | Yes (`ds` or `de`) | Data element identifier.                  |
-| startDate       | Start date for interval to check for outliers.            | Yes                | Date (yyyy-MM-dd).                        |
-| endDate         | End date for interval to check for outliers.              | Yes                | Date (yyyy-MM-dd).                        |
-| ou              | Organisation unit, can be specified multiple times.       | Yes                | Organisation unit identifier.             |
-| algorithm       | Algorithm to use for outlier detection.                   | No                 | Z_SCORE \| MIN_MAX                        |
-| threshold       | Threshold for outlier values, applies to `Z_SCORE` only.  | No                 | Numeric, greater than zero. Default: 3.0. |
-| dataStartDate   | Start date for interval for mean and std dev calculation. | No                 | Date (yyyy-MM-dd).                        |
-| dataEndDate     | End date for interval for mean and std dev calculation.   | No                 | Date (yyyy-MM-dd).                        |
-| orderBy         | Field to order by, applies to `Z_SCORE` only.             | No                 | MEAN_ABS_DEV \| Z_SCORE                   |
-| maxResults      | Max limit for the output.                                 | No                 | Integer, greater than zero. Default: 500. |
+| Query parameter | Description                                               | Mandatory   | Options (default first)                   |
+| --------------- | --------------------------------------------------------- | ----------- | ----------------------------------------- |
+| ds              | Data set, can be specified multiple times.                | Yes or `de` | Data set identifier.                      |
+| de              | Data element, can be specified multiple times.            | Yes or `ds` | Data element identifier.                  |
+| startDate       | Start date for interval to check for outliers.            | Yes         | Date (yyyy-MM-dd).                        |
+| endDate         | End date for interval to check for outliers.              | Yes         | Date (yyyy-MM-dd).                        |
+| ou              | Organisation unit, can be specified multiple times.       | Yes         | Organisation unit identifier.             |
+| algorithm       | Algorithm to use for outlier detection.                   | No          | `Z_SCORE` \| `MIN_MAX`                    |
+| threshold       | Threshold for outlier values, applies to `Z_SCORE` only.  | No          | Numeric, greater than zero. Default: 3.0. |
+| dataStartDate   | Start date for interval for mean and std dev calculation. | No          | Date (yyyy-MM-dd).                        |
+| dataEndDate     | End date for interval for mean and std dev calculation.   | No          | Date (yyyy-MM-dd).                        |
+| orderBy         | Field to order by, applies to `Z_SCORE` only.             | No          | `MEAN_ABS_DEV` \| `Z_SCORE`               |
+| maxResults      | Max limit for the output.                                 | No          | Integer, greater than zero. Default: 500. |
 
 At least one data set or data element, start date and end date, and at least one organisation unit must be defined. You can specify data sets, which will include all data elements in the data sets, _or_ specify data elements directly.
 
@@ -279,8 +279,6 @@ The response contains the following fields:
 | lowerBound | The lower boundary.                                          |
 | upperBound | The upper boundary.                                          |
 | followUp   | Whether data value is marked for follow-up.                  |
-
-The `mean`, `stdDev` and `zScore` fields are only present when `algorithm` is `Z_SCORE`.
 
 The `mean`, `stdDev` and `zScore` fields are only present when `algorithm` is `Z_SCORE`.
 
