@@ -53,8 +53,8 @@ generate "dhis2_COD" "packages"
 generate "dhis2_covid19_surveillance" "packages"
 generate "dhis2_IDSR" "packages"
 generate "dhis2_immunisation" "packages"
-generate "dhis2_RMNCAH" "packages"
 generate "dhis2_malaria" "packages"
+generate "dhis2_RMNCAH" "packages"
 generate "dhis2_tb_surveillance" "packages"
 
 
