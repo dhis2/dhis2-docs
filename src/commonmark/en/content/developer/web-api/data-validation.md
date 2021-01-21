@@ -182,19 +182,23 @@ The outlier values will be *ordered according to significance*, by default by th
 
 The following query parameters are supported. 
 
-| Query parameter | Description                                                  | Options (default first)                   |
-| --------------- | ------------------------------------------------------------ | ----------------------------------------- |
-| ds              | Data set, can be specified multiple times.                   | Data set identifier.                      |
-| de              | Data element, can be specified multiple times.               | Data element identifier.                  |
-| startDate       | Start date for interval to check.                            | Date (yyyy-MM-dd).                        |
-| endDate         | End date for interval to check.                              | Date (yyyy-MM-dd).                        |
-| ou              | Organisation unit, can be specified multiple times.          | Organisation unit identifier.             |
-| algorithm       | Algorithm to use for outlier detection.                      | Z_SCORE \| MIN_MAX                        |
-| threshold       | Threshold for outlier values, applies to Z_SCORE algorithm only. | Numeric, greater than zero. Default: 3.0. |
-| orderBy         | Field to order by, applies to Z_SCORE algorithm only.        | MEAN_ABS_DEV \| Z_SCORE                   |
-| maxResults      | Max limit for the output.                                    | Integer, greater than zero. Default: 500. |
+| Query parameter | Description                                               | Mandatory          | Options (default first)                   |
+| --------------- | --------------------------------------------------------- | ------------------ | ----------------------------------------- |
+| ds              | Data set, can be specified multiple times.                | Yes (`ds` or `de`) | Data set identifier.                      |
+| de              | Data element, can be specified multiple times.            | Yes (`ds` or `de`) | Data element identifier.                  |
+| startDate       | Start date for interval to check for outliers.            | Yes                | Date (yyyy-MM-dd).                        |
+| endDate         | End date for interval to check for outliers.              | Yes                | Date (yyyy-MM-dd).                        |
+| ou              | Organisation unit, can be specified multiple times.       | Yes                | Organisation unit identifier.             |
+| algorithm       | Algorithm to use for outlier detection.                   | No                 | Z_SCORE \| MIN_MAX                        |
+| threshold       | Threshold for outlier values, applies to `Z_SCORE` only.  | No                 | Numeric, greater than zero. Default: 3.0. |
+| dataStartDate   | Start date for interval for mean and std dev calculation. | No                 | Date (yyyy-MM-dd).                        |
+| dataEndDate     | End date for interval for mean and std dev calculation.   | No                 | Date (yyyy-MM-dd).                        |
+| orderBy         | Field to order by, applies to `Z_SCORE` only.             | No                 | MEAN_ABS_DEV \| Z_SCORE                   |
+| maxResults      | Max limit for the output.                                 | No                 | Integer, greater than zero. Default: 500. |
 
-At least one data set or data element, and at least one organisation unit must be defined.
+At least one data set or data element, start date and end date, and at least one organisation unit must be defined. You can specify data sets, which will include all data elements in the data sets, _or_ specify data elements directly.
+
+The `startDate` and `endDate` parameters are mandatory and refer to the time interval for which you want to detect outliers. The `dataStartDate` and `dataEndDate` parameters are optional and refer to the time interval for the data to use when calculating the mean and std dev, which are used to eventually calculate the z-score.
 
 ### Usage and examples
 
@@ -227,6 +231,14 @@ Get the top 10 outlier values:
 GET /api/36/outlierDetection?ds=BfMAe6Itzgt
   &ou=O6uvpzGd5pu&startDate=2020-01-01&endDate=2020-12-31
   &maxResults=10
+```
+
+Get outlier values with a defined interval for data to use when calculating the mean and std dev: 
+
+```
+GET /api/36/outlierDetection?ds=BfMAe6Itzgt
+  &ou=O6uvpzGd5pu&startDate=2020-01-01&endDate=2020-12-31
+  &dataStartDate=2018-01-01&dataEndDate=2020-12-31
 ```
 
 Get outlier values using the min-max algorithm:
@@ -266,6 +278,9 @@ The response contains the following fields:
 | zScore     | The z-score. Z-score algorithm only.                         |
 | lowerBound | The lower boundary.                                          |
 | upperBound | The upper boundary.                                          |
+| followUp   | Whether data value is marked for follow-up.                  |
+
+The `mean`, `stdDev` and `zScore` fields are only present when `algorithm` is `Z_SCORE`.
 
 The `mean`, `stdDev` and `zScore` fields are only present when `algorithm` is `Z_SCORE`.
 
@@ -297,7 +312,8 @@ The response will look similar to this. The `metadata` section contains metadata
       "absDev": 7475.444444444444,
       "zScore": 2.816176232960643,
       "lowerBound": -5111.6097853697875,
-      "upperBound": 8160.720896480899
+      "upperBound": 8160.720896480899,
+      "followUp": false
     },
     {
       "de": "rbkr8PL0rwM",
@@ -315,7 +331,8 @@ The response will look similar to this. The `metadata` section contains metadata
       "absDev": 7315.916666666667,
       "zScore": 2.923673198380944,
       "lowerBound": -4807.674552601076,
-      "upperBound": 7703.841219267742
+      "upperBound": 7703.841219267742,
+      "followUp": false
     }
   ]
 }
@@ -334,7 +351,8 @@ The following constraints apply during query validation. Each validation error h
 | E2204      | Threshold must be a positive number                          |
 | E2205      | Max results must be a positive number                        |
 | E2206      | Max results exceeds the allowed max limit: {d}               |
-| E2207      | Non-numeric data values encountered during outlier value detection |
+| E2207      | Data start date must be before data end date                 |
+| E2208      | Non-numeric data values encountered during outlier value detection |
 
 ## Data analysis
 
