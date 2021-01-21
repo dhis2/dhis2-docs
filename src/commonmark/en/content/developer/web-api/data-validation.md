@@ -185,7 +185,7 @@ The following query parameters are supported.
 | Query parameter | Description                                               | Mandatory   | Options (default first)                   |
 | --------------- | --------------------------------------------------------- | ----------- | ----------------------------------------- |
 | ds              | Data set, can be specified multiple times.                | Yes or `de` | Data set identifier.                      |
-| de              | Data element, can be specified multiple times.            | Yes or`ds`  | Data element identifier.                  |
+| de              | Data element, can be specified multiple times.            | Yes or `ds` | Data element identifier.                  |
 | startDate       | Start date for interval to check for outliers.            | Yes         | Date (yyyy-MM-dd).                        |
 | endDate         | End date for interval to check for outliers.              | Yes         | Date (yyyy-MM-dd).                        |
 | ou              | Organisation unit, can be specified multiple times.       | Yes         | Organisation unit identifier.             |
@@ -279,6 +279,7 @@ The response contains the following fields:
 | lowerBound | The lower boundary.                                          |
 | upperBound | The upper boundary.                                          |
 | followUp   | Whether data value is marked for follow-up.                  |
+
 The `mean`, `stdDev` and `zScore` fields are only present when `algorithm` is `Z_SCORE`.
 
 The response will look similar to this. The `metadata` section contains metadata for the request and response. The `outlierValues` section contains the outlier values.
