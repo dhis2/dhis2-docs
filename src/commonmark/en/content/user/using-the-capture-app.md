@@ -632,7 +632,45 @@ The results page shows up to five results at a time. You should try to use speci
 
 ![](resources/images/capture_app/search-by-attributes-on-scope-program-overview-pagination.png)
 
+## List tracked entity instances enrolled in program
 
+1. Open the **Capture** app.
+
+2. Select an organisation unit.
+
+3. Select a tracker program.
+
+4. The program can have categories associated with it (implementing partner would be an example of such a category). If this is the case, fill them in.
+
+### Filter the list
+
+Use the buttons above the list itself to filter it.
+
+![](resources/images/capture_app/tei_list_filters.png)
+
+As an example, you could filter the list to show only tracked entity instances where you have been assigned an event: Click the "Assigned to" filter (1), select "Me" (2) and then "Apply" the changes (3).
+
+![](resources/images/capture_app/tei_list_filter_example.png)
+
+### Sort the list
+
+Click one of the column headers to sort the list by that column. A small arrow is displayed next to the column header to indicate the current sort order. Click again to change between ascending and descending order.
+
+![](resources/images/capture_app/tei_list_sort_order.png)
+
+### Modify the list layout
+
+You can select which columns to show in the list and also reorganize the order of the columns.
+
+Click the **gear** icon in the top right corner of the list. Tick the checkboxes for the the columns you would like to display (1) and reorgainze the columns by dragging and dropping (2).
+
+![](resources/images/capture_app/tei_list_column_layout.png)
+
+### Loading a predefined list view
+
+You will find the predefined list views above the filters for the list. Click to load a view. 
+
+![](resources/images/capture_app/tei_list_predefined_views.png)
 
 ## Implementer / administrator info
 
