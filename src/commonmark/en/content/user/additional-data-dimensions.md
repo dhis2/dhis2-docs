@@ -81,8 +81,8 @@ category.  Then create a category option group set and add that the
 category option group set as a data approval level.
 
 This is covered in more detail in the section
-[Approving by category option group set](data_approval.html#data_approvals_approving_by_cogs) and 
-[Approving by multiple category option group sets](data_approval.html#approving_by_multiple_category_option_group_sets).
+[Approving by category option group set](data_approvals_approving_by_cogs.html) and 
+[Approving by multiple category option group sets](approving_by_multiple_category_option_group_sets.html).
 
 ## Attribute categories and the datavalue table
 
