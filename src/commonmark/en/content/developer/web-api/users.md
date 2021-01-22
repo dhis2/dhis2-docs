@@ -410,6 +410,15 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
   -H "Content-Type:application/json" -u admin:district
 ```
 
+### User data approval workflows
+
+To see which data approval workflows and levels a user may access,
+you can use the *dataApprovalWorkflows* resource as follows:
+
+```
+GET /api/users/{id}/dataApprovalWorkflows
+```
+
 ## Current user information
 
 <!--DHIS2-SECTION-ID:webapi_current_user_information-->
@@ -456,4 +465,8 @@ Gives the data approval levels which are relevant to the current user:
 
     /api/me/dataApprovalLevels
 
+Gives the data approval workflows which are accessible to the current user.
+For each workflow, shows which data approval levels the user may see, and
+what permissions they have at each level:
 
+    /api/me/dataApprovalWorkflows
