@@ -410,6 +410,30 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
   -H "Content-Type:application/json" -u admin:district
 ```
 
+### User expiration
+
+<!--DHIS2-SECTION-ID:webapi_user_expiration-->
+
+An expiration date can be set for an user account.
+It marks the point in time from which the user account has expired 
+and can no longer be used.
+Expired user can no longer log in.
+
+To update the expiration date of user with UID `tH7WIiIJ0O3` 
+and set it to the date `2021-01-01` use:
+
+```bash
+curl -X POST "localhost/api/36/users/tH7WIiIJ0O3/expired?date=2021-01-01"
+```
+
+To unset the expiration date so that the account never expires 
+use accordingly:
+
+```bash
+curl -X POST "localhost/api/36/users/tH7WIiIJ0O3/unexpired"
+```
+
+
 ## Current user information
 
 <!--DHIS2-SECTION-ID:webapi_current_user_information-->
