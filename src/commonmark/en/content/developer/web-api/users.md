@@ -423,7 +423,8 @@ To update the expiration date of user with UID `tH7WIiIJ0O3`
 and set it to the date `2021-01-01` use:
 
 ```bash
-curl -X POST "localhost/api/36/users/tH7WIiIJ0O3/expired?date=2021-01-01"
+curl -X POST "localhost/api/36/users/tH7WIiIJ0O3/expired?date=2021-01-01" 
+  -u admin:district
 ```
 
 To unset the expiration date so that the account never expires 
@@ -431,6 +432,7 @@ use accordingly:
 
 ```bash
 curl -X POST "localhost/api/36/users/tH7WIiIJ0O3/unexpired"
+  -u admin:district
 ```
 
 
