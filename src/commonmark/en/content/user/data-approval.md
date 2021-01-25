@@ -335,6 +335,8 @@ or all of the following approval levels:
 
 ## Approving by multiple category option group sets
 
+<!--DHIS2-SECTION-ID:approving_by_multiple_category_option_group_sets-->
+
 You can also define approval levels for different category option group
 sets. To continue the example, suppose that you have various agencies
 that manage the funding to the different partners. For example, Agency A

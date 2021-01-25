@@ -49,7 +49,7 @@ organisation unit and period dimensions.
 
 The process of creating an attribute category as well as its options and
 combinations, is discussed in the section 
-[Manage categories](configure-metadata.html#manage-categories). As noted 
+[Manage categories](manage_category.html). As noted 
 there, disaggregation categories are configured by editing a data
 element and attribute categories are configured by editing a data set.
 
@@ -71,7 +71,7 @@ to medicines).  The disaggregation categories are gender
 In order to do analysis with disaggregation and attribute categories,
 check the “Data dimension” box in the category editing screen of the
 Maintenance app, as discussed in 
-[Create or edit a category](configure-metadata.html#create-or-edit-a-category).
+[Create or edit a category](manage_category.html#create_category).
 
 ## Approvals with attribute categories
 
@@ -81,8 +81,8 @@ category.  Then create a category option group set and add that the
 category option group set as a data approval level.
 
 This is covered in more detail in the section
-[Approving by category option group set](data-approval.html#approving-by-category-option-group-set) and 
-[Approving by multiple category option group sets](data-approval.html#approving-by-multiple-category-option-group-sets).
+[Approving by category option group set](data_approvals_approving_by_cogs.html) and 
+[Approving by multiple category option group sets](approving_by_multiple_category_option_group_sets.html).
 
 ## Attribute categories and the datavalue table
 

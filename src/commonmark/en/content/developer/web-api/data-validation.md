@@ -145,6 +145,8 @@ generate analytics for validation results, if checked, results will
 generate notifications every time it's found and running validation
 analysis might be slower.
 
+### Query Validation Results
+
 The validation results persisted can be viewed at the following
 endpoint:
 
@@ -177,6 +179,8 @@ In addition the validation results can also be filtered on their creation date:
 
 This filter can be combined with any of the other filters.    
 
+### Manually Trigger Validation Result Notifications
+
 Validation results are sent out to the appropriate users once every day,
 but can also be manually triggered to run on demand using the following
 api endpoint:
@@ -184,6 +188,39 @@ api endpoint:
     POST /api/33/validation/sendNotifications
 
 Only unsent results are sent using this endpoint.
+
+### Manually Delete Validation Results
+
+Validation results can be manually deleted by ID,
+
+    DELETE /api/36/validationResults/<id>
+
+or using filters
+
+    DELETE /api/36/validationResults?<filters>
+
+Usable filter parameters include:
+
+* `ou=<UID>` to match all validation results of an organisation unit; multiple units combine OR when the parameter is provided more than once
+* `vr=<UID>` to match all validation results of a validation rule; multiple rules combine OR when the parameter is provided more than once
+* `pe=<ISO-expression>` to match all validation results related to a period that overlaps with the specified period
+* `created=<ISO-expression>` to match all validation results that were created within the provided period
+* `notificationSent=<boolean>` to match either only validation results for which a notification was or wasn't sent
+
+If filters are combined all conditions have to be true (AND logic).
+
+Examples:
+
+1. To delete all validation results related the organisation unit with UID `NqwvaQC1ni4` for Q1 of 2020 use: 
+
+    DELETE /api/36/validationResults?ou=NqwvaQC1ni4&pe=2020Q1
+
+2. To delete all validation results that were created in week 1 of 2019 and for which notification has been sent use:
+
+    DELETE /api/36/validationResults?created=2019W1&notificationSent=true
+
+Any delete operation will require the right to _Perform maintenance tasks_.
+
 
 ## Outlier detection
 
@@ -204,19 +241,25 @@ The outlier values will be *ordered according to significance*, by default by th
 
 The following query parameters are supported. 
 
-| Query parameter | Description                                                  | Options (default first)                   |
-| --------------- | ------------------------------------------------------------ | ----------------------------------------- |
-| ds              | Data set, can be specified multiple times.                   | Data set identifier.                      |
-| de              | Data element, can be specified multiple times.               | Data element identifier.                  |
-| startDate       | Start date for interval to check.                            | Date (yyyy-MM-dd).                        |
-| endDate         | End date for interval to check.                              | Date (yyyy-MM-dd).                        |
-| ou              | Organisation unit, can be specified multiple times.          | Organisation unit identifier.             |
-| algorithm       | Algorithm to use for outlier detection.                      | Z_SCORE \| MIN_MAX                        |
-| threshold       | Threshold for outlier values, applies to Z_SCORE algorithm only. | Numeric, greater than zero. Default: 3.0. |
-| orderBy         | Field to order by, applies to Z_SCORE algorithm only.        | MEAN_ABS_DEV \| Z_SCORE                   |
-| maxResults      | Max limit for the output.                                    | Integer, greater than zero. Default: 500. |
+| Query parameter | Description                                                  | Mandatory | Options (default first)                   |
+| --------------- | ------------------------------------------------------------ | --------- | ----------------------------------------- |
+| ds              | Data set, can be specified multiple times.                   | No [*]    | Data set identifier.                      |
+| de              | Data element, can be specified multiple times.               | No [*]    | Data element identifier.                  |
+| startDate       | Start date for interval to check for outliers.               | Yes       | Date (yyyy-MM-dd).                        |
+| endDate         | End date for interval to check for outliers.                 | Yes       | Date (yyyy-MM-dd).                        |
+| ou              | Organisation unit, can be specified multiple times.          | Yes       | Organisation unit identifier.             |
+| algorithm       | Algorithm to use for outlier detection.                      | No        | `Z_SCORE`, `MIN_MAX`                      |
+| threshold       | Threshold for outlier values. `Z_SCORE` algorithm only.      | No        | Numeric, greater than zero. Default: 3.0. |
+| dataStartDate   | Start date for interval for mean and std dev calculation. `Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd).                        |
+| dataEndDate     | End date for interval for mean and std dev calculation. `Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd).                        |
+| orderBy         | Field to order by. `Z_SCORE` algorithm only.                 | No        | `MEAN_ABS_DEV`, `Z_SCORE`                 |
+| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero. Default: 500. |
 
-At least one data set or data element, and at least one organisation unit must be defined.
+[*]  You must specify either data sets with the `ds` parameter, which will include all data elements in the data sets, _or_ specify data elements with the `de` parameter.
+
+At least one data set or data element, start date and end date, and at least one organisation unit must be defined.
+
+The `startDate` and `endDate` parameters are mandatory and refer to the time interval for which you want to detect outliers. The `dataStartDate` and `dataEndDate` parameters are optional and refer to the time interval for the data to use when calculating the mean and std dev, which are used to eventually calculate the z-score.
 
 ### Usage and examples
 
@@ -249,6 +292,14 @@ Get the top 10 outlier values:
 GET /api/36/outlierDetection?ds=BfMAe6Itzgt
   &ou=O6uvpzGd5pu&startDate=2020-01-01&endDate=2020-12-31
   &maxResults=10
+```
+
+Get outlier values with a defined interval for data to use when calculating the mean and std dev: 
+
+```
+GET /api/36/outlierDetection?ds=BfMAe6Itzgt
+  &ou=O6uvpzGd5pu&startDate=2020-01-01&endDate=2020-12-31
+  &dataStartDate=2018-01-01&dataEndDate=2020-12-31
 ```
 
 Get outlier values using the min-max algorithm:
@@ -288,6 +339,7 @@ The response contains the following fields:
 | zScore     | The z-score. Z-score algorithm only.                         |
 | lowerBound | The lower boundary.                                          |
 | upperBound | The upper boundary.                                          |
+| followUp   | Whether data value is marked for follow-up.                  |
 
 The `mean`, `stdDev` and `zScore` fields are only present when `algorithm` is `Z_SCORE`.
 
@@ -319,7 +371,8 @@ The response will look similar to this. The `metadata` section contains metadata
       "absDev": 7475.444444444444,
       "zScore": 2.816176232960643,
       "lowerBound": -5111.6097853697875,
-      "upperBound": 8160.720896480899
+      "upperBound": 8160.720896480899,
+      "followUp": false
     },
     {
       "de": "rbkr8PL0rwM",
@@ -337,7 +390,8 @@ The response will look similar to this. The `metadata` section contains metadata
       "absDev": 7315.916666666667,
       "zScore": 2.923673198380944,
       "lowerBound": -4807.674552601076,
-      "upperBound": 7703.841219267742
+      "upperBound": 7703.841219267742,
+      "followUp": false
     }
   ]
 }
@@ -356,7 +410,8 @@ The following constraints apply during query validation. Each validation error h
 | E2204      | Threshold must be a positive number                          |
 | E2205      | Max results must be a positive number                        |
 | E2206      | Max results exceeds the allowed max limit: {d}               |
-| E2207      | Non-numeric data values encountered during outlier value detection |
+| E2207      | Data start date must be before data end date                 |
+| E2208      | Non-numeric data values encountered during outlier value detection |
 
 ## Data analysis
 
