@@ -2,11 +2,11 @@
 template: home.html
 ---
 
-# DHIS2 Documentation { #dhis2-documentation } 
+# DHIS2 Documentation { #home-dhis2-documentation } 
 
 DHIS2 documentation is organised into four broad categories. Choose the category that best represents your work to get started.
 
-### Browse by audience { #browse-by-audience } 
+### Browse by audience { #home-browse-by-audience } 
 
 !!!!!
 
@@ -14,30 +14,30 @@ DHIS2 documentation is organised into four broad categories. Choose the category
     
     Want to know about background and purpose of DHIS2? Or need instructions on how to use it? These guides explain how to perform tasks such as data entry, meta-data set-up, import and export of data, aggregation, reporting and other topics related to the usage of the software. 
 
-    [Explore User documentation](use/use.html)  
+    [Explore user documentation](use/use.html)  
 
 
 !!! Implement
 
     Setting up a DHIS2 instance in a new country? Or implementing a new health program? These guides cover everything you should know before you start using DHIS2 to manage your data.
 
-    [Explore Implementer documentation](implement/implement.html)
+    [Explore implementer documentation](implement/implement.html)
 
 !!! Develop
 
     The developer manuals provide a detailed description of the DHIS2 core API and functionality, as well as the Android DHIS2 Software Development Kit (SDK). They serve as essential resources for developers building upon the DHIS2 platform.
 
-    [Explore Developer documentation](develop/develop.html)
+    [Explore developer documentation](develop/develop.html)
 
 !!! Manage
     
     Are you a system administrator managing a DHIS2 instance? The system administration guide aims to provide support for the installation and maintenance of the DHIS2 platform.
 
-    [Explore Manager documentation](manage/manage.html)
+    [Explore manager documentation](manage/manage.html)
 
 !!!!
 
-### Browse by topic { #browse-by-topic } 
+### Browse by topic { #home-browse-by-topic } 
 
 !!!!!
 
@@ -45,7 +45,7 @@ DHIS2 documentation is organised into four broad categories. Choose the category
 
     WHO Health Data Toolkit consists of DHIS2 metadata and tools to support adoption of WHO health data standards into national routine health management information systems. This section contains documentation for the available packages.
 
-    [Explore Manager documentation](topics/metadata/dhis-2-who-digital-health-data-toolkit/about-the-who-digital-health-data-toolkit.html)
+    [Explore packages documentation](topics/metadata/dhis-2-who-digital-health-data-toolkit/about-the-who-digital-health-data-toolkit.html)
 
 !!! Tutorials
 
