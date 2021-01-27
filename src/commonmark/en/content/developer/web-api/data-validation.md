@@ -605,12 +605,11 @@ the analysis performed are described in the user manual.
 The operation of measuring data integrity is a fairly resource (and
 time) demanding task. It is therefore run as an asynchronous process and
 only when explicitly requested. Starting the task is done by forming an
-empty POST request to the *dataIntegrity* endpoint like so (demonstrated
-in curl syntax):
+empty POST request to the *dataIntegrity* endpoint:
 
-```bash
-GET /api/33/dataIntegrity
-```
+
+    GET https://play.dhis2.org/demo/api/dataIntegrity
+
 
 If successful the request will return HTTP 202 immediately. The location
 header of the response points to the resource used to check the status
@@ -627,9 +626,9 @@ can hence be used to wait for the task to finish.
 Once data integrity is finished running the result can be fetched from
 the `system/taskSummaries` resource like so:
 
-```bash
-GET /api/33/system/taskSummaries/DATAINTEGRITY
-```
+
+    GET /api/system/taskSummaries/DATA_INTEGRITY
+
 
 The returned object contains a summary for each point of analysis,
 listing the names of the relevant integrity violations. As stated in the
