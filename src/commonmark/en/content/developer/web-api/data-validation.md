@@ -607,7 +607,7 @@ time) demanding task. It is therefore run as an asynchronous process and
 only when explicitly requested. Starting the task is done by forming an
 empty POST request to the *dataIntegrity* endpoint:
 
-    GET https://play.dhis2.org/demo/api/dataIntegrity
+    POST /api/dataIntegrity
 
 If successful the request will return HTTP 202 immediately. The location
 header of the response points to the resource used to check the status
