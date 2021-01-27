@@ -915,11 +915,11 @@ The payload in `JSON` format looks like this:
 
 ```json
 {
-    "dataElement": "s46m5MS0hxu",
-    "period": "202005",
-    "orgUnit": "DiszpKrYNg8",
-    "categoryOptionCombo": "psbwp3CQEhs",
-    "attributeOptionCombo": "HllvX50cXC0"
+  "dataElement": "s46m5MS0hxu",
+  "period": "202005",
+  "orgUnit": "DiszpKrYNg8",
+  "categoryOptionCombo": "psbwp3CQEhs",
+  "attributeOptionCombo": "HllvX50cXC0"
 }
 ```
 
@@ -927,22 +927,22 @@ The `categoryOptionCombo` and `attributeOptionCombo` fields are optional. A mini
 
 ```json
 {
-    "dataElement": "s46m5MS0hxu",
-    "period": "202005",
-    "orgUnit": "DiszpKrYNg8"
+  "dataElement": "s46m5MS0hxu",
+  "period": "202005",
+  "orgUnit": "DiszpKrYNg8"
 }
 ```
 
-To mark a data value for follow-up, use a `POST` request. 
+To mark a data value for follow-up, use a `POST` request:
 
 ```
 POST /api/36/followup/dataValues
 ```
 
-To remove a follow-up mark, use a `DELETE` request.
+To remove a follow-up mark, use a `DELETE` request:
 
 ```
 DELETE /api/36/followup/dataValues
 ```
 
-Use a `Content-Type: application/json` HTTP header to indicate the payload format.
+The response status code will be `200 OK` if the operation was successful, or `409 Conflict` in case of an error with the request.
