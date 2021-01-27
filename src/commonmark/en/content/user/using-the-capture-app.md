@@ -229,7 +229,7 @@ duplicates that match the name Sarah as you see in the image below.
 
 > **Tip**
 >
-> You can configure duplicates detection for Tracked entity types the same way as we did for Programs. 
+> You can configure duplicates detection for tracked entity types the same way as we did for programs. 
 
 
 ### Program rules execution
@@ -237,7 +237,7 @@ duplicates that match the name Sarah as you see in the image below.
 In both cases of registering a tracked entity instance, (with enrollment or without enrollment) the system will run program rules you have configured.
 Note that, rules can be configured in the maintenance app.
 
-To see a rule being executed while enrolling you will have to take the following steps. 
+To see a rule being executed while enrolling a tracked entity instance you will have to take the following steps. 
 
 1. Configure a rule in the maintenance app. For the example bellow we configured a rule that throws a warning when the date of birth is less than a year.
 
