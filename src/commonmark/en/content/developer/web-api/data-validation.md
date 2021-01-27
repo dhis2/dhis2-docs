@@ -945,4 +945,4 @@ To remove a follow-up mark, use a `DELETE` request:
 DELETE /api/36/followup/dataValues
 ```
 
-The response status code will be `200 OK` if the operation was successful, or `409 Conflict` in case of an error with the request.
+The response status code will be `200 OK` if the operation was successful, and `409 Conflict` in case of an error with the request.
