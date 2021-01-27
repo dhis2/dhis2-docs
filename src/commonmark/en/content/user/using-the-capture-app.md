@@ -229,7 +229,7 @@ duplicates that match the name Sarah as you see in the image below.
 
 > **Tip**
 >
-> You can configure duplicate detection for a Tracked entity type the same way as we did for Programs. 
+> You can configure duplicates detection for Tracked entity types the same way as we did for Programs. 
 
 
 ### Program rules execution
