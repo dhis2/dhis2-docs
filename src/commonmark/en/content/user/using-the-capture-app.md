@@ -224,7 +224,7 @@ duplicates that match the name Sarah as you see in the image below.
 5. Click the link with text "Possible duplicates"
 ![](resources/images/capture_app/duplicates-on-creation-04.png)
 
-5. View the possible duplicates
+6. View the possible duplicates
 ![](resources/images/capture_app/duplicates-on-creation-05.png)
 
 > **Tip**
