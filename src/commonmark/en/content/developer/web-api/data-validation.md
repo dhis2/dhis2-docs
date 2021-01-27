@@ -896,3 +896,53 @@ parameters are supported:
 </tbody>
 </table>
 
+
+## Follow-up
+
+<!--DHIS2-SECTION-ID:webapi_follow_up-->
+
+This section covers marking data for follow-up.
+
+### Data value follow-up
+
+The data value follow-up endpoint allows for marking data values for follow-up.
+
+```
+POST DELETE /api/36/followup/dataValues
+```
+
+The payload in `JSON` format looks like this:
+
+```json
+{
+    "dataElement": "s46m5MS0hxu",
+    "period": "202005",
+    "orgUnit": "DiszpKrYNg8",
+    "categoryOptionCombo": "psbwp3CQEhs",
+    "attributeOptionCombo": "HllvX50cXC0"
+}
+```
+
+The `categoryOptionCombo` and `attributeOptionCombo` fields are optional. A minimal `JSON` payload looks like this:
+
+```json
+{
+    "dataElement": "s46m5MS0hxu",
+    "period": "202005",
+    "orgUnit": "DiszpKrYNg8"
+}
+```
+
+To mark a data value for follow-up, use a `POST` request. 
+
+```
+POST /api/36/followup/dataValues
+```
+
+To remove a follow-up mark, use a `DELETE` request.
+
+```
+DELETE /api/36/followup/dataValues
+```
+
+Use a `Content-Type: application/json` HTTP header to indicate the payload format.
