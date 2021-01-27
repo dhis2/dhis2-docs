@@ -607,9 +607,7 @@ time) demanding task. It is therefore run as an asynchronous process and
 only when explicitly requested. Starting the task is done by forming an
 empty POST request to the *dataIntegrity* endpoint:
 
-
     GET https://play.dhis2.org/demo/api/dataIntegrity
-
 
 If successful the request will return HTTP 202 immediately. The location
 header of the response points to the resource used to check the status
@@ -626,9 +624,7 @@ can hence be used to wait for the task to finish.
 Once data integrity is finished running the result can be fetched from
 the `system/taskSummaries` resource like so:
 
-
     GET /api/system/taskSummaries/DATA_INTEGRITY
-
 
 The returned object contains a summary for each point of analysis,
 listing the names of the relevant integrity violations. As stated in the
