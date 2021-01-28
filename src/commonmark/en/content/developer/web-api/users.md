@@ -484,8 +484,4 @@ Gives the data approval workflows which are accessible to the current user.
 For each workflow, shows which data approval levels the user may see, and
 what permissions they have at each level:
 
-<<<<<<< HEAD
-
-=======
     /api/me/dataApprovalWorkflows
->>>>>>> master
