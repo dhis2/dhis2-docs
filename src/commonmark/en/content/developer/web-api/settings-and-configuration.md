@@ -566,12 +566,12 @@ The available system settings are listed below.
 </tr>
 <tr class="even">
 <td>keyLastSuccessfulScheduledProgramNotifications</td>
-<td>Not in use</td>
+<td></td>
 <td>No</td>
 </tr>
 <tr class="odd">
 <td>keyLastSuccessfulScheduledDataSetNotifications</td>
-<td>Not in use</td>
+<td></td>
 <td>No</td>
 </tr>
 <tr class="even">
@@ -621,21 +621,22 @@ The available system settings are listed below.
 </tr>
 <tr class="odd">
 <td>keyHideWeeklyPeriods</td>
-<td>Not in use</td>
+<td></td>
 <td>No</td>
 </tr>
 <tr class="even">
 <td>keyHideMonthlyPeriods</td>
-<td>Not in use</td>
+<td></td>
 <td>No</td>
 </tr>
 <tr class="odd">
 <td>keyHideBiMonthlyPeriods</td>
-<td>Not in use</td>
+<td></td>
 <td>No</td>
 </tr>
 </tbody>
 </table>
+
 
 ## User settings
 
@@ -781,19 +782,19 @@ You can send *GET* and *POST* requests to the following specific
 resources:
 
     GET /api/33/configuration/systemId
-
+    
     GET POST DELETE /api/33/configuration/feedbackRecipients
-
+    
     GET POST DELETE /api/33/configuration/offlineOrganisationUnitLevel
-
+    
     GET POST /api/33/configuration/infrastructuralDataElements
-
+    
     GET POST /api/33/configuration/infrastructuralIndicators
-
+    
     GET POST /api/33/configuration/infrastructuralPeriodType
-
+    
     GET POST DELETE /api/33/configuration/selfRegistrationRole
-
+    
     GET POST DELETE /api/33/configuration/selfRegistrationOrgUnit
 
 For the CORS whitelist configuration you can make a POST request with an
@@ -882,25 +883,21 @@ curl "localhost/api/33/configuration/feedbackRecipients" -d "wl5cDMuUhmF"
   -H "Content-Type:text/plain"-u admin:district
 ```
 
-## Read-Only configuration service
+## Read-only configuration
 
 <!--DHIS2-SECTION-ID:webapi_readonly_configuration_interface-->
 
-To access configuration you can now use read-only service. This service
-will provide read-only access to *UserSettings, SystemSettings and DHIS2
-server configurations* You can get XML and JSON responses through the
-*Accept* header. You can *GET* all settings from:
+To access all configuration settings and properties you can use the read-only configuration endpoint. This will provide read-only access to *UserSettings, SystemSettings and DHIS2 server configurations* You can get XML and JSON responses through the *Accept* header. You can *GET* all settings from:
 
     /api/33/configuration/settings
 
 You can get filtered settings based on setting type:
 
     GET /api/33/configuration/settings/filter?type=USER_SETTING
-
+    
     GET /api/33/configuration/settings/filter?type=CONFIGURATION
 
-More than one type can be
-    provided
+More than one type can be provided:
 
     GET /api/33/configuration/settings/filter?type=USER_SETTING&type=SYSTEM_SETTING
 
@@ -984,9 +981,7 @@ response will contain the following properties in JSON format.
 </tbody>
 </table>
 
-This assumes that a Google service account has been set up and
-configured for DHIS2. Please consult the installation guide for more
-info.
+This assumes that a Google service account has been set up and configured for DHIS2. Please consult the installation guide for more info.
 
 ## Static content
 
