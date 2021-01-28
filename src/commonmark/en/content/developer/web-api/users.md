@@ -417,19 +417,14 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
 User accounts can be marked disabled.
 A disabled user can no longer log in.
 
-To mark a user with UID `tH7WIiIJ0O3` as disabled use:
+To mark a user with UID `tH7WIiIJ0O3` as disabled use (requires user with appropriate rights):
 
-```bash
-curl -X POST "localhost/api/36/users/tH7WIiIJ0O3/disabled" 
-  -u admin:district
-```
+    POST /api/36/users/tH7WIiIJ0O3/disabled
 
-To enable a disabled user again use accordingly:
+To enable a disabled user again use accordingly (requires user with appropriate rights):
 
-```bash
-curl -X POST "localhost/api/36/users/tH7WIiIJ0O3/enabled"
-  -u admin:district
-```
+    POST /api/36/users/tH7WIiIJ0O3/enabled
+
 
 ## Current user information
 
@@ -476,5 +471,6 @@ granted the given `<auth>` authorization:
 Gives the data approval levels which are relevant to the current user:
 
     /api/me/dataApprovalLevels
+
 
 
