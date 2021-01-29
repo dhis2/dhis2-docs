@@ -36,11 +36,10 @@
 
 |Document|Version|||
 |:---|---|---|---|
-|Developer Manual|2.28|[HTML](/archive/en/2.28/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.28/developer/dhis2_developer_manual.pdf)|
-|Developer Manual|2.28|[HTML](/archive/en/2.28/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.28/developer/dhis2_developer_manual.pdf)|
-|Developer Manual|2.28|[HTML](/archive/en/2.28/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.28/developer/dhis2_developer_manual.pdf)|
-|Developer Manual|2.28|[HTML](/archive/en/2.28/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.28/developer/dhis2_developer_manual.pdf)|
-
+|Developer Manual|2.32|[HTML](/archive/en/2.32/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.32/developer/dhis2_developer_manual.pdf)|
+|Developer Manual|2.31|[HTML](/archive/en/2.31/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.31/developer/dhis2_developer_manual.pdf)|
+|Developer Manual|2.30|[HTML](/archive/en/2.30/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.30/developer/dhis2_developer_manual.pdf)|
+|Developer Manual|2.29|[HTML](/archive/en/2.29/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.29/developer/dhis2_developer_manual.pdf)|
 |Developer Manual|2.28|[HTML](/archive/en/2.28/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.28/developer/dhis2_developer_manual.pdf)|
 |Developer Manual|2.27|[HTML](/archive/en/2.27/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.27/developer/dhis2_developer_manual.pdf)|
 |Developer Manual|2.26|[HTML](/archive/en/2.26/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.26/developer/dhis2_developer_manual.pdf)|
