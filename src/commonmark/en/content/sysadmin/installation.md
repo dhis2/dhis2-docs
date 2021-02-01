@@ -1524,7 +1524,7 @@ http {
 ```
 
 
-### Blocking specific Android App versions with nginx
+### Block specific Android App versions with nginx
 
 <!--DHIS2-SECTION-ID:install_making_resources_available_with_nginx-->
 
@@ -1532,42 +1532,30 @@ In some scenarios the system administrator might want to block certain Android c
 
 ```text
 http {
-  ..
   
   server {
     listen       80;
     server_name  api.somedomain.com;
     
-    ..     
-    
-    
-    # Block the latest Android App as it has not been tested (August 2020 - Last version is 2.2.1)
+    # Block the latest Android App as it has not been tested
     if ( $http_user_agent ~ 'com\.dhis2/1\.2\.1/2\.2\.1/' ) {
         return 403;
     }
     
-    # Block Android 4.4 (API is 19) as all the users should have received the new tablets
+    # Block Android 4.4 (API is 19) as all users should have received new tablets
     if ( $http_user_agent ~ 'com\.dhis2/.*/.*/Android_19' ) {
         return 403;
     }
-    ..
-
-    }
-    
-    ..
+  }
 }
 ```
 
-> Note
-> 
-> For the implementation of the method described above note the following: 
-> * Before version 1.1.0 the *User-Agent* string was not being sent
-> * From version 1.1.0 to 1.3.2 the *User-Agent* followed the pattern Dhis2/AppVersion/AppVersion/Android_XX
-> * From version 2.0.0 and above the *User-Agent* follows the pattern com.dhis2/SdkVersion/AppVersion/Android_XX
->
-> Android_XX refers to the Android API level i.e. the Android version as listed [here](https://developer.android.com/studio/releases/platforms).
->
-> nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching 
+For the implementation of the method described above note the following: 
+* Before version 1.1.0 the *User-Agent* string was not being sent.
+* From version 1.1.0 to 1.3.2 the *User-Agent* followed the pattern Dhis2/AppVersion/AppVersion/Android_XX
+* From version 2.0.0 and above the *User-Agent* follows the pattern com.dhis2/SdkVersion/AppVersion/Android_XX
+* Android_XX refers to the Android API level i.e. the Android version as listed [here](https://developer.android.com/studio/releases/platforms).
+* nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching .
 
 ## DHIS2 configuration reference
 
@@ -1627,6 +1615,9 @@ system.session.timeout = 3600
 
 # SQL view protected tables, can be 'on', 'off'
 system.sql_view_table_protection = on
+
+# Disable server-side program rule execution, can be 'on', 'off'
+system.program_rule.server_execution = on
 
 # ----------------------------------------------------------------------
 # Encryption [Optional]
