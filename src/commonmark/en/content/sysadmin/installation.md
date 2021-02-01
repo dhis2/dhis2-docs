@@ -1190,6 +1190,36 @@ The recommended approach for collecting and visualizing these metrics is through
 
 For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
 
+## System configuration
+
+<!--DHIS2-SECTION-ID:install_system_configuration-->
+
+This section covers various system configuration properties.
+
+```
+system.read_only_mode = on | off
+```
+
+Sets the system in read-only mode. This is useful when you run DHIS 2 on a read-only replica database, to avoid DHIS 2 performing write operations. Can be `on` or `off`. Default is `off`.
+
+```
+system.session.timeout = (seconds)
+```
+
+Sets the user session timeout in seconds. Default is 3600 seconds (1 hour).
+
+```
+system.sql_view_table_protection = on | off
+```
+
+Enables or disables the sensitive database table protection for SQL views. This will prohibit database tables with sensitive data to be queried through SQL views. Can be `on` or `off`. Default is `on`.
+
+```
+system.program_rule.server_execution = on | off
+```
+
+Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
+
 ## Reverse proxy configuration
 
 <!--DHIS2-SECTION-ID:install_reverse_proxy_configuration-->
@@ -1524,7 +1554,7 @@ http {
 ```
 
 
-### Blocking specific Android App versions with nginx
+### Block specific Android App versions with nginx
 
 <!--DHIS2-SECTION-ID:install_making_resources_available_with_nginx-->
 
@@ -1532,42 +1562,30 @@ In some scenarios the system administrator might want to block certain Android c
 
 ```text
 http {
-  ..
   
   server {
     listen       80;
     server_name  api.somedomain.com;
     
-    ..     
-    
-    
-    # Block the latest Android App as it has not been tested (August 2020 - Last version is 2.2.1)
+    # Block the latest Android App as it has not been tested
     if ( $http_user_agent ~ 'com\.dhis2/1\.2\.1/2\.2\.1/' ) {
         return 403;
     }
     
-    # Block Android 4.4 (API is 19) as all the users should have received the new tablets
+    # Block Android 4.4 (API is 19) as all users should have received new tablets
     if ( $http_user_agent ~ 'com\.dhis2/.*/.*/Android_19' ) {
         return 403;
     }
-    ..
-
-    }
-    
-    ..
+  }
 }
 ```
 
-> Note
-> 
-> For the implementation of the method described above note the following: 
-> * Before version 1.1.0 the *User-Agent* string was not being sent
-> * From version 1.1.0 to 1.3.2 the *User-Agent* followed the pattern Dhis2/AppVersion/AppVersion/Android_XX
-> * From version 2.0.0 and above the *User-Agent* follows the pattern com.dhis2/SdkVersion/AppVersion/Android_XX
->
-> Android_XX refers to the Android API level i.e. the Android version as listed [here](https://developer.android.com/studio/releases/platforms).
->
-> nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching 
+For the implementation of the method described above note the following: 
+* Before version 1.1.0 the *User-Agent* string was not being sent.
+* From version 1.1.0 to 1.3.2 the *User-Agent* followed the pattern Dhis2/AppVersion/AppVersion/Android_XX
+* From version 2.0.0 and above the *User-Agent* follows the pattern com.dhis2/SdkVersion/AppVersion/Android_XX
+* Android_XX refers to the Android API level i.e. the Android version as listed [here](https://developer.android.com/studio/releases/platforms).
+* nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching .
 
 ## DHIS2 configuration reference
 
@@ -1627,6 +1645,9 @@ system.session.timeout = 3600
 
 # SQL view protected tables, can be 'on', 'off'
 system.sql_view_table_protection = on
+
+# Disable server-side program rule execution, can be 'on', 'off'
+system.program_rule.server_execution = on
 
 # ----------------------------------------------------------------------
 # Encryption [Optional]

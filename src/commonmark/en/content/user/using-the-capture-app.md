@@ -183,6 +183,77 @@ The second option, is to register a tracked entity instance with program and enr
 > achieved by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
 > can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
 
+### Possible duplicates detection
+
+In both cases of registering a tracked entity instance, (with enrollment or without enrollment) the system will warn you for possible duplicates.
+Note that, programs need to be correctly configured through the maintenance app for the duplicates warning to appear. 
+
+To configure a program through the maintenance app you will have to: 
+
+
+1. Open the maintenance app.
+![](resources/images/capture_app/duplicates-maintenance-config-00.png)
+
+2. In the program section select your program. We select Child Programme for this example.
+![](resources/images/capture_app/duplicates-maintenance-config-01.png)
+
+3. Select the Atributes tab.
+![](resources/images/capture_app/duplicates-maintenance-config-02.png)
+
+4. Enable duplicates search by checking program attributes as searchable
+![](resources/images/capture_app/duplicates-maintenance-config-03.png)
+
+
+The attributes you have selected as "Searchable" will be the ones which the system will use to detect possible duplicates against.  
+Let us explain this with an example that demonstrates the detection of possible duplicates while enrolling a child in the Child Programme. 
+
+1. Open the **Capture** app.
+![](resources/images/capture_app/duplicates-on-creation-00.png)
+
+2. Select your organisation unit and program from the menu on the top.
+![](resources/images/capture_app/duplicates-on-creation-01.png)
+
+3. Click "New" -> "New person in Child Programme"
+![](resources/images/capture_app/duplicates-on-creation-02.png)
+
+4. Fill in the first name in the form. **Remember, the first name we have checked as "Searchable" in the maintenance app.** 
+It is because we have checked the first name as "Searchable" that the system will start looking for possible 
+duplicates that match the name Sarah as you see in the image below.
+![](resources/images/capture_app/duplicates-on-creation-03.png)
+
+5. Click the link with text "Possible duplicates"
+![](resources/images/capture_app/duplicates-on-creation-04.png)
+
+6. View the possible duplicates
+![](resources/images/capture_app/duplicates-on-creation-05.png)
+
+> **Tip**
+>
+> You can configure duplicates detection for tracked entity types the same way as we did for programs. 
+
+
+### Program rules execution
+
+In both cases of registering a tracked entity instance, (with enrollment or without enrollment) the system will run program rules you have configured.
+Note that, rules can be configured in the maintenance app.
+
+To see a rule being executed while enrolling a tracked entity instance you will have to take the following steps. 
+
+1. Configure a rule in the maintenance app. For the example bellow we configured a rule that throws a warning when the date of birth is less than a year.
+
+2. Open the **Capture** app.
+![](resources/images/capture_app/duplicates-on-creation-00.png)
+
+3. Select your organisation unit and program from the menu on the top.
+![](resources/images/capture_app/program-rules-on-creation-00.png)
+
+4. Fill in the date of birth with a value which is less than a year. In our case this is 27th of January 2021. 
+![](resources/images/capture_app/program-rules-on-creation-01.png)
+
+5. You will now be able to see the warning produced by the program rule underneath the birth date field. 
+![](resources/images/capture_app/program-rules-on-creation-02.png)
+
+
 ## Adding a relationship
 
 <!--DHIS2-SECTION-ID:capture_add_relationship-->

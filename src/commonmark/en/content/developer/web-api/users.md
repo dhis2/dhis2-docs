@@ -425,6 +425,24 @@ To enable a disabled user again use accordingly (requires user with appropriate 
 
     POST /api/36/users/tH7WIiIJ0O3/enabled
 
+### User expiration
+
+<!--DHIS2-SECTION-ID:webapi_user_expiration-->
+
+An expiration date can be set for an user account.
+It marks the point in time from which the user account has expired 
+and can no longer be used. Expired user can no longer log in.
+
+To update the expiration date of user with UID `tH7WIiIJ0O3` 
+and set it to the date `2021-01-01` use (requires user with appropriate rights):
+
+    POST /api/36/users/tH7WIiIJ0O3/expired?date=2021-01-01
+
+To unset the expiration date so that the account never expires 
+use accordingly (requires user with appropriate rights):
+
+    POST /api/36/users/tH7WIiIJ0O3/unexpired
+
 ### User data approval workflows
 
 To see which data approval workflows and levels a user may access,
