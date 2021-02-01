@@ -1190,6 +1190,34 @@ The recommended approach for collecting and visualizing these metrics is through
 
 For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
 
+## System configuration
+
+This section covers various system configuration properties.
+
+```
+system.read_only_mode = on | off
+```
+
+Sets the system in read-only mode. This is useful when you run DHIS 2 on a read-only replica database, to avoid DHIS 2 performing write operations. Can be `on` or `off`. Default is `off`.
+
+```
+system.session.timeout = (seconds)
+```
+
+Sets the user session timeout in seconds. Default is 3600 seconds (1 hour).
+
+``` 
+system.sql_view_table_protection = on | off
+```
+
+Enables or disables the sensitive database table protection for SQL views. This will prohibit database tables with sensitive data to be queried through SQL views. Can be `on` or `off`. Default is `on`.
+
+```
+system.program_rule.server_execution = on | off
+```
+
+Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
+
 ## Reverse proxy configuration
 
 <!--DHIS2-SECTION-ID:install_reverse_proxy_configuration-->
