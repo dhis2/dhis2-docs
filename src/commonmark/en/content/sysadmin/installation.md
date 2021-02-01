@@ -1192,6 +1192,8 @@ For more information, see the [monitoring infrastructure](https://github.com/dhi
 
 ## System configuration
 
+<!--DHIS2-SECTION-ID:install_system_configuration-->
+
 This section covers various system configuration properties.
 
 ```
@@ -1206,7 +1208,7 @@ system.session.timeout = (seconds)
 
 Sets the user session timeout in seconds. Default is 3600 seconds (1 hour).
 
-``` 
+```
 system.sql_view_table_protection = on | off
 ```
 
