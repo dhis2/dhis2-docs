@@ -903,7 +903,7 @@ This section covers marking data for follow-up.
 The data value follow-up endpoint allows for marking data values for follow-up.
 
 ```
-POST DELETE /api/36/followup/dataValues
+PUT /api/36/dataValues/followup
 ```
 
 The payload in `JSON` format looks like this:
@@ -914,7 +914,8 @@ The payload in `JSON` format looks like this:
   "period": "202005",
   "orgUnit": "DiszpKrYNg8",
   "categoryOptionCombo": "psbwp3CQEhs",
-  "attributeOptionCombo": "HllvX50cXC0"
+  "attributeOptionCombo": "HllvX50cXC0",
+  "followup": true
 }
 ```
 
@@ -924,20 +925,11 @@ The `categoryOptionCombo` and `attributeOptionCombo` fields are optional. A mini
 {
   "dataElement": "s46m5MS0hxu",
   "period": "202005",
-  "orgUnit": "DiszpKrYNg8"
+  "orgUnit": "DiszpKrYNg8",
+  "followup": true
 }
 ```
 
-To mark a data value for follow-up, use a `POST` request:
-
-```
-POST /api/36/followup/dataValues
-```
-
-To remove a follow-up mark, use a `DELETE` request:
-
-```
-DELETE /api/36/followup/dataValues
-```
+The `followup` should be set to `true` to mark a data value for follow-up, and `false` to remove the mark.
 
 The response status code will be `200 OK` if the operation was successful, and `409 Conflict` in case of an error with the request.
