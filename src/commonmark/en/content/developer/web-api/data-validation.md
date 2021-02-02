@@ -926,10 +926,10 @@ The `categoryOptionCombo` and `attributeOptionCombo` fields are optional. A mini
   "dataElement": "s46m5MS0hxu",
   "period": "202005",
   "orgUnit": "DiszpKrYNg8",
-  "followup": true
+  "followup": false
 }
 ```
 
-The `followup` should be set to `true` to mark a data value for follow-up, and `false` to remove the mark.
+The `followup` field should be set to `true` to mark a data value for follow-up, and `false` to remove the mark.
 
 The response status code will be `200 OK` if the operation was successful, and `409 Conflict` in case of an error with the request.
