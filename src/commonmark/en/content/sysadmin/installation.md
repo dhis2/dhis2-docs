@@ -1281,25 +1281,25 @@ For more information, see the [monitoring infrastructure](https://github.com/dhi
 
 This section covers various system configuration properties.
 
-```
+```properties
 system.read_only_mode = on | off
 ```
 
-Sets the system in read-only mode. This is useful when you run DHIS 2 on a read-only replica database, to avoid DHIS 2 performing write operations. Can be `on` or `off`. Default is `off`.
+Sets the system in read-only mode. This is useful when you run DHIS 2 on a read-only replica database, to avoid DHIS 2 performing database write operations. Can be `on` or `off`. Default is `off`.
 
-```
+```properties
 system.session.timeout = (seconds)
 ```
 
 Sets the user session timeout in seconds. Default is 3600 seconds (1 hour).
 
-```
+```properties
 system.sql_view_table_protection = on | off
 ```
 
-Enables or disables the sensitive database table protection for SQL views. This will prohibit database tables with sensitive data to be queried through SQL views. Can be `on` or `off`. Default is `on`.
+Enables or disables the sensitive database table protection for SQL views. This will prohibit database tables with sensitive data to be queried through SQL views. Disabling is not recommended. Can be `on` or `off`. Default is `on`.
 
-```
+```properties
 system.program_rule.server_execution = on | off
 ```
 
