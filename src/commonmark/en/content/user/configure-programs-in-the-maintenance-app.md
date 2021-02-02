@@ -671,6 +671,11 @@ time.
 <td><p>Program stage name</p></td>
 <td><pre><code>V{program_stage_name}</code></pre></td>
 </tr>
+<tr class="even">
+<td></td>
+<td><p>Event status</p></td>
+<td><pre><code>V{event_status}</code></pre></td>
+</tr>
 </tbody>
 </table>
 
@@ -2448,6 +2453,11 @@ variables:
 <tr>
 <td><p>analytics_period_end</p></td>
 <td><p>Can be used in filters or expressions for comparing any date to the last inclusive date in each reporting period.</p></td>
+</tr>
+<tr>
+<td><p>event_status</p></td>
+<td><p>Can be used in filters or expressions for comparing event status.</p>
+<pre><code>V{event_status} == &#39;COMPLETED&#39;</code></pre></td>
 </tr>
 </tbody>
 </table>
