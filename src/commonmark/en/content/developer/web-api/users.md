@@ -410,6 +410,21 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
   -H "Content-Type:application/json" -u admin:district
 ```
 
+### Disable and enable user accounts
+
+<!--DHIS2-SECTION-ID:webapi_user_disable-->
+
+User accounts can be marked disabled.
+A disabled user can no longer log in.
+
+To mark a user with UID `tH7WIiIJ0O3` as disabled use (requires user with appropriate rights):
+
+    POST /api/36/users/tH7WIiIJ0O3/disabled
+
+To enable a disabled user again use accordingly (requires user with appropriate rights):
+
+    POST /api/36/users/tH7WIiIJ0O3/enabled
+
 ### User expiration
 
 <!--DHIS2-SECTION-ID:webapi_user_expiration-->
