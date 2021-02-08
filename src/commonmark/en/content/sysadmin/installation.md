@@ -1079,6 +1079,8 @@ the ports configuration properties. If omitted, 4001 will be assigned as
 the listener port and a random free port will be assigned as the remote 
 object port.
 
+The *node.id* configuration property can be used to provide an explicit identification string for an instance. Note that it is upto the administrators to make sure the Node IDs are unique across its cluster. Dhis2 will not enforce uniqueness and will continue to startup even if there are multiple instances in the cluster using the same node ID. 
+
 An example setup for a cluster of two web servers is described below.
 For *server A* available at hostname *193.157.199.131* the following can
 be specified in *dhis.conf*:
@@ -1095,6 +1097,9 @@ cluster.cache.remote.object.port = 5001
 
 # List of Host:port participating in the cluster
 cluster.members = 193.157.199.132:4001
+
+#node identification (optional). 
+node.id = nodeA1
 ```
 
 For *server B* available at hostname *193.157.199.132* the following can
@@ -1108,11 +1113,32 @@ cluster.hostname = 193.157.199.132
 
 # List of servers participating in cluster
 cluster.members = 193.157.199.131:4001
+
+#node identification (optional). 
+node.id = nodeB1
 ```
 
 You must restart each Tomcat instance to make the changes take effect.
 The two instances have now been made aware of each other and DHIS 2 will
 ensure that their caches are kept in sync.
+
+In a Cluster configuration backed by redis, it is useful to know which node in the cluster acts as the leader of the cluster. 
+The following API can be used to get the details of the leader node instance. The   API supports both json and xml format type.
+
+    /api/36/cluster/leader
+
+A sample json response is
+
+```json
+{
+"leaderNodeId": "play-dhis2-org-dev",
+"leaderNodeUuid": "d386e46b-26d4-4937-915c-025eb99c8cad",
+"currentNodeId": "play-dhis2-org-dev",
+"currentNodeUuid": "d386e46b-26d4-4937-915c-025eb99c8cad",
+"leader": true
+}
+```
+
 
 ### Redis shared data store cluster configuration
 
