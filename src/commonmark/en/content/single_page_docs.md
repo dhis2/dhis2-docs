@@ -44,16 +44,16 @@
 
 |Document|Version|||
 |:---------|---|---|---|
-|Developer Manual|master|[HTML](/full/en/develop/developer-reference/dhis-core-version-master/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-master/web-api.pdf)|
-|Developer Manual|2.35|[HTML](/full/en/develop/developer-reference/dhis-core-version-235/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-235/web-api.pdf)|
-|Developer Manual|2.34|[HTML](/full/en/develop/developer-reference/dhis-core-version-234/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-234/web-api.pdf)|
-|Developer Manual|2.33|[HTML](/full/en/develop/developer-reference/dhis-core-version-233/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-233/web-api.pdf)|
+|Developer Manual|master|[HTML](/full/en/develop/dhis-core-version-master/developer-manual.html)|[PDF](/full/en/develop/dhis-core-version-master/developer-manual.pdf)|
+|Developer Manual|2.35|[HTML](/full/en/develop/dhis-core-version-235/developer-manual.html)|[PDF](/full/en/develop/dhis-core-version-235/developer-manual.pdf)|
+|Developer Manual|2.34|[HTML](/full/en/develop/dhis-core-version-234/developer-manual.html)|[PDF](/full/en/develop/dhis-core-version-234/developer-manual.pdf)|
+|Developer Manual|2.33|[HTML](/full/en/develop/dhis-core-version-233/developer-manual.html)|[PDF](/full/en/develop/dhis-core-version-233/developer-manual.pdf)|
 
 ## System Manager
 
 |Document|Version|||
 |:---------|---|---|---|
-|System Administration Guide|master|[HTML](/full/en/manage/dhis-core-version-master/performing-system-administration.html)|[PDF](/full/en/manage/dhis-core-version-master/performing-system-administration.pdf)|
-|System Administration Guide|2.35|[HTML](/full/en/manage/dhis-core-version-235/performing-system-administration.html)|[PDF](/full/en/manage/dhis-core-version-235/performing-system-administration.pdf)|
-|System Administration Guide|2.34|[HTML](/full/en/manage/dhis-core-version-234/performing-system-administration.html)|[PDF](/full/en/manage/dhis-core-version-234/performing-system-administration.pdf)|
-|System Administration Guide|2.33|[HTML](/full/en/manage/dhis-core-version-233/performing-system-administration.html)|[PDF](/full/en/manage/dhis-core-version-233/performing-system-administration.pdf)|
+|System Administration Guide|master|[HTML](/full/en/manage/dhis-core-version-master/system-administration-guide.html)|[PDF](/full/en/manage/dhis-core-version-master/system-administration-guide.pdf)|
+|System Administration Guide|2.35|[HTML](/full/en/manage/dhis-core-version-235/system-administration-guide.html)|[PDF](/full/en/manage/dhis-core-version-235/system-administration-guide.pdf)|
+|System Administration Guide|2.34|[HTML](/full/en/manage/dhis-core-version-234/system-administration-guide.html)|[PDF](/full/en/manage/dhis-core-version-234/system-administration-guide.pdf)|
+|System Administration Guide|2.33|[HTML](/full/en/manage/dhis-core-version-233/system-administration-guide.html)|[PDF](/full/en/manage/dhis-core-version-233/system-administration-guide.pdf)|
