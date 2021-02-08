@@ -45,9 +45,9 @@
 |Document|Version|||
 |:---------|---|---|---|
 |Developer Manual|master|[HTML](/full/en/develop/developer-reference/dhis-core-version-master/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-master/web-api.pdf)|
-|Developer Manual|2.35|[HTML](/full/en/develop/developer-reference/dhis-core-version-2.35/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-2.35/web-api.pdf)|
-|Developer Manual|2.34|[HTML](/full/en/develop/developer-reference/dhis-core-version-2.34/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-2.34/web-api.pdf)|
-|Developer Manual|2.33|[HTML](/full/en/develop/developer-reference/dhis-core-version-2.33/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-2.33/web-api.pdf)|
+|Developer Manual|2.35|[HTML](/full/en/develop/developer-reference/dhis-core-version-235/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-235/web-api.pdf)|
+|Developer Manual|2.34|[HTML](/full/en/develop/developer-reference/dhis-core-version-234/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-234/web-api.pdf)|
+|Developer Manual|2.33|[HTML](/full/en/develop/developer-reference/dhis-core-version-233/web-api.html)|[PDF](/full/en/develop/developer-reference/dhis-core-version-233/web-api.pdf)|
 
 ## System Manager
 
