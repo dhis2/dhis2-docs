@@ -53,7 +53,7 @@
 
 |Document|Version|||
 |:---------|---|---|---|
-|System Administration Guide|master|[HTML](/full/en/something.html)|[PDF](/full/en/something.pdf)|
-|System Administration Guide|2.35|[HTML](/full/en/something.html)|[PDF](/full/en/something.pdf)|
-|System Administration Guide|2.34|[HTML](/full/en/something.html)|[PDF](/full/en/something.pdf)|
-|System Administration Guide|2.33|[HTML](/full/en/something.html)|[PDF](/full/en/something.pdf)|
+|System Administration Guide|master|[HTML](/full/en/manage/dhis-core-version-master/performing-system-administration.html)|[PDF](/full/en/manage/dhis-core-version-master/performing-system-administration.pdf)|
+|System Administration Guide|2.35|[HTML](/full/en/manage/dhis-core-version-235/performing-system-administration.html)|[PDF](/full/en/manage/dhis-core-version-235/performing-system-administration.pdf)|
+|System Administration Guide|2.34|[HTML](/full/en/manage/dhis-core-version-234/performing-system-administration.html)|[PDF](/full/en/manage/dhis-core-version-234/performing-system-administration.pdf)|
+|System Administration Guide|2.33|[HTML](/full/en/manage/dhis-core-version-233/performing-system-administration.html)|[PDF](/full/en/manage/dhis-core-version-233/performing-system-administration.pdf)|
