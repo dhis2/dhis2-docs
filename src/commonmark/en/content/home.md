@@ -49,9 +49,9 @@ DHIS2 documentation is organised into four broad categories. Choose the category
 
 !!! Tutorials
 
-    Here you will find a few tips and trick to help you become a DHIS2 power user!
+    Here you will find a few tips and trick to help you become a DHIS2 power user.
     
-    [Explore tutorials](topics/tutorials/tutorials.html)
+    [Explore tutorials](topics/tutorials/tutorials.html)
 
 !!! User Stories
 
@@ -63,7 +63,7 @@ DHIS2 documentation is organised into four broad categories. Choose the category
 
     Here you will find links to our documentation as single-page html and pdf documents for easier sharing. You will also find documentation for previous versions of DHIS2.
     
-    [View Single Page index...](topics/single-page/current-documentation.html)
+    [View Single Page index](topics/single-page/current-documentation.html)
 
 !!!!
 
