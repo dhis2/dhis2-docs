@@ -19,21 +19,6 @@ The structure of the documentation site is defined in the build repository [dhis
 >
 > The best way to find the source of the document you wish to edit is to find the document on the docs.dhis2.org website and click the "Edit" icon at the top of the page.
 
-### INCLUDES
-
-`!INCLUDE` directives can be used to include the contents of another markdown file into the current one.
-
-```
-!INCLUDE "../other_directory/other_file.md"
-```
-
-Use relative links for `!INCLUDE` directives.
-
-> **NOTE**
->
-> the `!INCLUDE` directives are not part of pure commonmark format, but are used in pre-processing to build the master documents.
-
-
 
 ### Adding images
 
@@ -109,9 +94,25 @@ They are limited to single lines of text (i.e. each row must be on a single line
 > **Please try to use GFM tables** as they give much better support for translations.  
 > You can also continue to use HTML tables when you really need more complexity (but you can also consider whether there is a better way of presenting the data).
 
+
+### INCLUDES
+
+`!INCLUDE` directives can be used to include the contents of another markdown file into the current one.
+
+```
+!INCLUDE "../other_directory/other_file.md"
+```
+
+Use relative links for `!INCLUDE` directives.
+
+> **NOTE**
+>
+> the `!INCLUDE` directives are not part of pure commonmark format, but are used in pre-processing to build the master documents.
+
+
 ### "DHIS2" or "DHIS 2", that is the question
 
-In short, the correct form is "DHIS 2" when referring to the software system in normal written text. For convenience, some variables, paths, etc. use the compact form, and they should, of course, be respected in the documentation.
+Historically, the correct form is "DHIS 2" when referring to the software system in normal written text. For convenience, some variables, paths, etc. use the compact form, and they should, of course, be respected in the documentation. **Note that we are now moving towards applying the compact form "DHIS2" consistently across documentation**.
 
 
 # Building the documents
