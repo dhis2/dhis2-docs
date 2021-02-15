@@ -1888,6 +1888,36 @@ template.
 <td><p>Program stage name</p></td>
 <td><pre><code>V{program_stage_name}</code></pre></td>
 </tr>
+<tr class="even">
+<td></td>
+<td><p>Event organisation unit</p></td>
+<td><pre><code>V{event_org_unit_id}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Enrollment organisation unit</p></td>
+<td><pre><code>V{enrollment_org_unit_id}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Program stage id</p></td>
+<td><pre><code>V{program_stage_id}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Program id</p></td>
+<td><pre><code>V{program_id}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Program instance id/Enrollment id</p></td>
+<td><pre><code>V{enrollment_id}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Tracked entity id</p></td>
+<td><pre><code>V{tracked_entity_id}</code></pre></td>
+</tr>
 </tbody>
 </table>
 
