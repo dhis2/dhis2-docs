@@ -1641,7 +1641,7 @@ http {
 
 ### Block specific Android App versions with nginx
 
-<!--DHIS2-SECTION-ID:install_making_resources_available_with_nginx-->
+<!--DHIS2-SECTION-ID:install_block_android_versions-->
 
 In some scenarios the system administrator might want to block certain Android clients based on its DHIS2 App version. For example, if the users on the field have not updated their Android App version to a specific one and the system administrator wants to block their access to force an update; or completely the opposite scenario when the system administrator wants to block new versions of the App as they have not been yet tested. This can be easily implemented by using specific *User-Agent* rules in the `nginx` configuration file.
 
@@ -1665,12 +1665,13 @@ http {
 }
 ```
 
-For the implementation of the method described above note the following: 
-* Before version 1.1.0 the *User-Agent* string was not being sent.
-* From version 1.1.0 to 1.3.2 the *User-Agent* followed the pattern Dhis2/AppVersion/AppVersion/Android_XX
-* From version 2.0.0 and above the *User-Agent* follows the pattern com.dhis2/SdkVersion/AppVersion/Android_XX
-* Android_XX refers to the Android API level i.e. the Android version as listed [here](https://developer.android.com/studio/releases/platforms).
-* nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching .
+> **Note**
+> For the implementation of the method described above note the following: 
+> * Before version 1.1.0 the *User-Agent* string was not being sent.
+> * From version 1.1.0 to 1.3.2 the *User-Agent* followed the pattern Dhis2/AppVersion/AppVersion/Android_XX
+> * From version 2.0.0 and above the *User-Agent* follows the pattern com.dhis2/SdkVersion/AppVersion/Android_XX
+> * Android_XX refers to the Android API level i.e. the Android version as listed [here](https://developer.android.com/studio/releases/platforms).
+> * nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching .
 
 ## DHIS2 configuration reference
 
