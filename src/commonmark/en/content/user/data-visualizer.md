@@ -34,6 +34,7 @@ For each visualization type there is a brief description with suggestions about 
 |Year over year (column)|Same as Year over year (line), only with columns.|
 |Single value|Displays a single value in a dashboard friendly way.<br><br>Layout restrictions: same as Gauge.|
 |Pivot table|Summarizes the data of a more extensive table and might include sums, averages, or other statistics, which the pivot table groups together in a meaningful way.<br><br>Layout restrictions: none.|
+|Scatter|TEXT NEEDED.<br><br>Layout restrictions: exactly 1 item each as vertical and horizontal, data dimension is locked to vertical and horizontal, organisation unit is locked to points.|
 
 ### Select dimensions
 
