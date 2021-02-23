@@ -348,9 +348,7 @@ This insures that any data visible to the user through the analytics apps will b
 
 4.  Click **Save**.
 
-### Set account expiration date
-
-<!--DHIS2-SECTION-ID:user_account_expiration_date-->
+### Set account expiration date { #user_account_expiration_date }
 
 In case a user account should expire on a specific date, you can set an account
 expiration date for a user
