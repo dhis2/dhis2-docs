@@ -15,7 +15,7 @@ When you open the data-visualizer app from the dhis2 menu, you are presented wit
 Select the desired visualization type from the selector in the upper left corner.
 For each visualization type there is a brief description with suggestions about where to use the main dimensions in the layout.
 
-![](resources/images/data-visualizer/data-visualizer-visualization-type.png)  
+![](resources/images/data-visualizer/data-visualizer-visualization-type.png)
 
 
 |Visualization type|Description|
