@@ -25,6 +25,8 @@ reports.
   - You can assign each user to organisation units. Then the user can
     enter data for the assigned organisation units.
 
+  - You can set an expiration date to individual users
+
 <table>
 <caption>User management terms and definitions</caption>
 <colgroup>
@@ -345,6 +347,21 @@ This insures that any data visible to the user through the analytics apps will b
 3.  Modify the options you want.
 
 4.  Click **Save**.
+
+### Set account expiration date
+
+<!--DHIS2-SECTION-ID:user_account_expiration_date-->
+
+In case a user account should expire on a specific date, you can set an account
+expiration date for a user
+
+1.  Open the **Users** app and click **User**.
+
+2.  **Select the user** whose account should have an expiration date
+
+3.  Use the **"Account expiration date" input** to define the date
+
+4.  **Save the updates** by submitting the form
 
 ### Disable users
 
