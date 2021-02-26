@@ -10,33 +10,15 @@ This chapter will describe these in more detail.
 The DHIS2 home page is found at *https://www.dhis2.org/*. The *Downloads* page
 provides links to downloads of the DHIS2 WAR files, the Android Capture mobile
 application, the source code, sample databases, and links to additional resources 
-and guides. Please note that the current latest release will be maintained until 
-the next is released and both the actual release and the latest build from the
-release branch are provided. We recommend that you check back regularly
-on the download page and update your online server with the latest build
-from the release branch. The build revision can be found under *Help* -
-*About* inside DHIS2.
+and guides. Please note that we provide maintenance patch updates for the last
+three versions of DHIS2. We recommend that you check back regularly
+on the download page and update your online server with the latest stable patch
+for your DHIS2 version. The version information and build revision can be found
+under the *About DHIS2* page inside your DHIS2 instance.
 
-The *Documentation* page provides installation instructions, user
-documentation, this implementation guide, presentations, Javadocs,
-changelog, roadmap and a guide for contributing to the documentation.
-The user documentation is focused on the practical aspects of using
-DHIS2, such as how to create data elements and reports. This
-implementation guide is addressing the more high-level aspects of DHIS2
-implementation, database development and maintenance. The change log and
-roadmap sections provide links to the relevant pages in the Launchpad
-site described later.
+The navigation menu provides clear descriptions of the content of the site, and
+a search field in the top header allows you to easily search across the website.
 
-The *Overview* page gives a brief overview with screenshots of the main 
-functionalities and features of DHIS2, with subpages that give additional
-information on new features included on each DHIS2 version. Demo DHIS2 
-applications can be reached from the *Demos* menu link. These
-pages can be used when a quick introduction to the system must be given
-to various stakeholders.
-
-The *Contact* page has information about the license under which DHIS2 is 
-released, how to sign up for the mailing lists, get access to the source 
-code and more.
 
 ## Collaboration platform: community.dhis2.org
 
@@ -61,14 +43,14 @@ Bugs identified on the Community of Practice should be submitted to the DHIS2 co
 If you encounter a problem while using DHIS2, take these steps first:
 
   - Clear the web browser cache (also called history or browsing data)
-    completely (select all options before clearing).
+    completely (you can use the Browser Cache Cleaner app in DHIS2; select all options before clearing).
 
-  - Clear the DHIS2 application cache: Go to Data administration -\>
-    Cache statistics and click Clear cache.
+  - Clear the DHIS2 application cache: Go to Data administration -> Maintenance
+    check "Clear application cache" and click "PERFORM MAINTENANCE".
 
 If the problem persists, go to the Community of Practice and use key terms to search for 
 topics that other users have posted which describe similar issues to find out if your issue 
-has already been reported and resolved. If you are not able to find a threat with a similar 
+has already been reported and resolved. If you are not able to find a thread with a similar 
 issue, you should create a new topic in the *Support* category. Members of the community 
 and the DHIS2 team will respond to attempt to assist with resolving your issue.
 
@@ -81,7 +63,7 @@ a bug, you should post a bug report on the DHIS2 Jira.
 the DHIS2 software. The DHIS2 Jira site can be accessed at https://jira.dhis2.org/.
 
 If you find a bug in DHIS2 you can report it on Jira by navigating
-to the DHIS2 Jire homepage, clicking *create* in the top menu, selecting "bug" as the 
+to the DHIS2 Jira homepage, clicking *create* in the top menu, selecting "bug" as the 
 issue type, and filling out the required fields.
 
 For the developers to be able to help you need to provide as much useful
@@ -125,5 +107,6 @@ can be browsed by using the "filter" function on Jira.
 
 
 ## Source code: github.com/dhis2
+
 The various source code branches including master and release branches
 can be browsed at *https://github.com/dhis2*
