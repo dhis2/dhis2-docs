@@ -236,7 +236,7 @@ chance of course, but can potentially indicate a measurement or data entry error
 
 3.  Select **Organisation units**.
 
-    Multiple organisation units can be selected. The analysis is made on raw data “under” the organisation unit, not on aggregated data.
+    Multiple organisation units can be selected. The analysis is made on raw data for all organisation units in the sub-hierarchy of the selected units, not on aggregated data.
 
 4.  Select **From date** and **To date**.
 
@@ -402,9 +402,7 @@ data sets and organisation units in the **Data Administration** app.
 
 4.  Select **Parent organisation unit**.
 
-    All children of the organisation unit will be included. The analysis
-    is made on raw data "under" the parent organisation unit, not on
-    aggregated data.
+    Multiple organisation units can be selected. The analysis is made on raw data for all organisation units in the sub-hierarchy of the selected units, not on aggregated data.
 
 5.  Select **From date** and **To date**.
 
