@@ -1621,89 +1621,28 @@ Now that we have a good idea of the main features and usage of this endpoint let
 <td>A custom code to identify the dimensional item.</td>
 </tr>
 <tr class="odd">
-<td>created</td>
-<td>The date of creation.</td>
-</tr>
-<tr class="even">
-<td>lastUpdated</td>
-<td>The last date when this item was updated.</td>
-</tr>
-<tr class="odd">
 <td>name</td>
 <td>The name given for the item.</td>
 </tr>
 <tr class="even">
-<td>shortName</td>
-<td>A short name given for the item.</td>
-</tr>
-<tr class="odd">
 <td>displayName</td>
 <td>The display name defined.</td>
-</tr>
-<tr class="even">
-<td>displayShortName</td>
-<td>The display short name set.</td>
-</tr>
-<tr class="odd">
-<td>displayFormName</td>
-<td>The name of the associated form.</td>
-</tr>
-<tr class="even">
-<td>dimensionItem</td>
-<td>The unique identifier, same as id.</td>
 </tr>
 <tr class="odd">
 <td>dimensionItemType</td>
 <td>The dimension type. Possible types: INDICATOR, DATA_ELEMENT, REPORTING_RATE, PROGRAM_INDICATOR, PROGRAM_DATA_ELEMENT, PROGRAM_ATTRIBUTE.</td>
 </tr>
 <tr class="even">
-<td>aggregationType</td>
-<td>The aggregation type defined for this dimensional item. They can be: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST,
-LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM, DEFAULT.</td>
+<td>valueType</td>
+<td>The item value type (more specific definition). Possitble types: TEXT, LONG_TEXT, LETTER, BOOLEAN, TRUE_ONLY, UNIT_INTERVAL, PERCENTAGE, INTEGER, INTEGER_POSITIVE, INTEGER_NEGATIVE, INTEGER_ZERO_OR_POSITIVE, COORDINATE</td>
 </tr>
 <tr class="odd">
-<td>publicAccess</td>
-<td>The permissions set for public access.</td>
+<td>simplifiedValueType</td>
+<td>The genereal representation of a value type. Valid values: NUMBER, BOOLEAN, DATE, FILE_RESOURCE, COORDINATE, TEXT</td>
 </tr>
 <tr class="even">
-<td>externalAccess</td>
-<td>Indicates whether the item is available externaly as read-only. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>favorites</td>
-<td>List of user ids who have marked this object as a favorite.</td>
-</tr>
-<tr class="even">
-<td>favorite</td>
-<td>Indicates if the current istem is set as favorite for the current user. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>access</td>
-<td>Access information for this item, related to the current user.</td>
-</tr>
-<tr class="even">
-<td>user</td>
-<td>The owner of this object.</td>
-</tr>
-<tr class="odd">
-<td>translations</td>
-<td>Set of translatable objects available. Normally filtered by locale.</td>
-</tr>
-<tr class="even">
-<td>userGroupAccesses</td>
-<td>Groups access to the current dimensional item.</td>
-</tr>
-<tr class="odd">
-<td>attributeValues</td>
-<td>Set of the dynamic attributes values that belong to the current item.</td>
-</tr>
-<tr class="even">
-<td>userAccesses</td>
-<td>List of user accesses related to this object.</td>
-</tr>
-<tr class="odd">
-<td>legendSet</td>
-<td>Defines the legend set values. Will override the automatic legend set.</td>
+<td>programId</td>
+<td>The associated programId.</td>
 </tr>
 </tbody>
 </table>
