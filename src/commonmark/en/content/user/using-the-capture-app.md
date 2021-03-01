@@ -758,3 +758,78 @@ For performance reasons the Capture app caches metadata in the client browser. W
 2. If the change is NOT bound to a program you will need to increase ANY program version for the change to be propagated to the clients. Examples here are changes to constants, organisation unit levels or organisation unit groups.
 
 3. The exception to the two rules above is option sets. Option sets have their own version property, i.e. increasing the option set version should ensure the option set metadata are propagated to the clients.
+
+
+## Enrollment dashboard
+
+### Reaching the enrollment dashboard via url
+
+You reach the enrollment dashboard either by typing in the address bar of your browser or using the user interface of the capture app.
+In this section we are focusing on the first use-case, where you type or paste the url you want to access in the Address bar.
+
+![](resources/images/capture_app/enrollment-dash-01.png)
+
+One way to reach the enrollment dashboard and view a specific tracked entity instance's enrollment is by using _only_ the enrollment id. For example the link https://debug.dhis2.org/ca-2.36/dhis-web-capture/#/?enrollmentId=wBU0RAsYjKE will 
+take you the dashboard for the enrollment with id `wBU0RAsYjKE`. 
+
+The top of the dashboard defines your context. For example in the image bellow the context is as follows, the selected program is "Child Programme", the organisation unit is "Ngelehun CHC", the selected person is "Anna Jones" and the selected enrollment is "2017-11-16 11:38".
+
+![](resources/images/capture_app/enrollment-dash-02.png)
+
+You can change your context by clicking in the "x" button.
+
+![](resources/images/capture_app/enrollment-dash-03.png)
+
+#### Deselecting the program
+
+When you deselect the program you see the following
+
+![](resources/images/capture_app/enrollment-dash-05.png)
+
+##### Selecting a program with enrollments
+
+In other words your program _and_ your enrollment selection are empty. You now will have to first select another program. 
+If the tracked entity type (in this case "Anna Jones") has enrollments under the program you select you will be seeing the following message .
+
+![](resources/images/capture_app/enrollment-dash-09.png)
+
+##### Selecting a program with zero enrollments
+
+If the tracked entity type (in this case "Anna Jenkins") doesnt have enrollments under the program you select you will be seeing a message explaining that there are no enrollments for that program.
+You will also be given the option to enroll the "Anna Jenkins" in that program.
+
+![](resources/images/capture_app/enrollment-dash-10.png)
+
+##### Selecting an event program 
+
+When you select an event program you will be seeing the following. Remember event programs do not have enrollments in the system, only tracker programs do.
+
+![](resources/images/capture_app/enrollment-dash-11.png)
+
+You will also be given the option to either create a new event for the selected program or view the working lists for the selected program.
+
+##### Selecting an program with a different tracked entity type 
+
+When your selected tracked entity is a person, as in our case we have Anna Jenkins and then you select a program that is not of type person but for example of a type Malaria case you will be seeing the following.
+
+![](resources/images/capture_app/enrollment-dash-12.png)
+
+You also given the option to enroll a tracked entity instance in the program you selected.
+
+#### Deselecting the organisation unit
+
+When you deselect the organisation unit you see the following
+
+![](resources/images/capture_app/enrollment-dash-06.png)
+
+#### Deselecting the tracked entity type
+
+When you deselect the tracked entity type, in this case "Anna Jones" you are navigated to the working lists.
+
+![](resources/images/capture_app/enrollment-dash-07.png)
+
+#### Deselecting the enrollment
+
+When you deselect the enrollment you see the following
+
+![](resources/images/capture_app/enrollment-dash-08.png)
