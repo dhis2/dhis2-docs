@@ -234,11 +234,9 @@ chance of course, but can potentially indicate a measurement or data entry error
 
 2.  Select data set(s).
 
-3.  Select **Parent organisation unit**.
+3.  Select **Organisation units**.
 
-    All children of the organisation unit will be included. The analysis
-    is made on raw data "under" the parent organisation unit, not on
-    aggregated data.
+    Multiple organisation units can be selected. The analysis is made on raw data “under” the organisation unit, not on aggregated data.
 
 4.  Select **From date** and **To date**.
 
@@ -452,22 +450,15 @@ minimum maximum outlier analysis.
 
 2.  Select a data set or multiple data sets.
 
-3.  Select a parent **Organisation unit**.
+3.  Select **Organisation units**.
 
-    The analysis process duration depends on the amount of data that is
-    being analysed. If there are data values marked for follow-up, they
-    will be presented in a list.
+    Multiple organisation units can be selected. The analysis is made on raw data “under” the organisation unit, not on aggregated data.
 
-4. Select a **Start Date** and **End Date** which defines the 
-periods which you are interested in looking for values which have 
-been marked for follow up. 
+4. Select a **Start Date** and **End Date** which defines the periods which you are interested in looking for values which have been marked for follow up. 
 
-4. Press **Follow up** to generate a list of values which have been marked
-for follow up. 
+4. Press **Follow up** to generate a list of values which have been marked for follow up. 
 
-5.  (Optional) Click **Download as PDF**, **Download as Excel** or
-    **Download as CSV** to download the validation violations list in
-    PDF, Excel or CSV formats.
+5.  (Optional) Click **Download as PDF**, **Download as Excel** or **Download as CSV** to download the validation violations list in PDF, Excel or CSV formats.
 
 ![](resources/images/data_quality/follow_up_analysis_result.png)
 
