@@ -639,6 +639,11 @@ The available system settings are listed below.
 <td>Whether to gather analytical statistics on objects when they are viewed within a dashboard</td>
 <td>No</td>
 </tr>
+<tr class="odd">
+<td>keyCountPassiveDashboardViewsInUsageAnalytics</td>
+<td>Whether usage analytics counts passive dashboard views (such as when the user first logs in)</td>
+<td>No</td>
+</tr>
 </tbody>
 </table>
 
