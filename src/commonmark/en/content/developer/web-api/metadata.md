@@ -2346,7 +2346,7 @@ responses will have the following format:
             ...,
             ...
         ],
-        "<yetAnotherProgramUid>": []
+        "<programUid>": []
     }
 
 programs with no associated uids (hence accessible by all orgUnits) are returned with an empty array [] of orgUnits.
