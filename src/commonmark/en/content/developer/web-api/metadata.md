@@ -2331,10 +2331,10 @@ responses will have the following format:
 
     {
         "<programUid>": [
-            "<orgUnitUid_1>",
-            "<orgUnitUid_2>",
+            "<orgUnitUid>",
+            "<orgUnitUid>",
             ...,
-            "<orgUnitUid_n>"
+            "<orgUnitUid>"
         ],
         "<programUid>": [
             "<orgUnitUid>",
