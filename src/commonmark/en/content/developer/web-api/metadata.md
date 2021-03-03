@@ -2340,7 +2340,7 @@ responses will have the following format:
             "<orgUnitUid>",
             "<orgUnitUid_2>",
             ...,
-            "<orgUnitUid_n>"
+            "<orgUnitUid>"
         ],
         "...": [
             ...,
