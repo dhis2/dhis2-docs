@@ -636,7 +636,7 @@ The available system settings are listed below.
 </tr>
 <tr class="even">
 <td>keyGatherAnalyticalObjectStatisticsInDashboardViews</td>
-<td>Whether to gather analytical object statistics on objects viewed within a dashboard</td>
+<td>Whether to gather analytical statistics on objects when they are viewed within a dashboard</td>
 <td>No</td>
 </tr>
 </tbody>

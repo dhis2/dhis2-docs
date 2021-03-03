@@ -94,9 +94,9 @@
 </tr>
 <tr class="even">
 <td><strong>Gather analytical object statistics in dashboard views</strong></td>
-<td>Gather usage analytics data when an analytical object (e.g. map, chart, etc.)
-is viewed within a dashboard. Without this setting, analytics data is gathered only
-when the object is viewed individually outside of the dashboard.</td>
+<td>Gather usage analytics data when analytical objects (e.g., maps, charts, etc.)
+are viewed within a dashboard. Without this setting, analytics data on the objects 
+is gathered only when the objects are viewed outside of a dashboard.</td>
 </tr>
 </tbody>
 </table>
