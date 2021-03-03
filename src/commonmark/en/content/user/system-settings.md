@@ -92,6 +92,12 @@
 <td><strong>Acceptance required before approval</strong></td>
 <td>When this setting is selected, acceptance of data will be required first before submission to the next approval level is possible.</td>
 </tr>
+<tr class="even">
+<td><strong>Gather analytical object statistics in dashboard views</strong></td>
+<td>Gather usage analytics data when analytical objects (e.g., maps, charts, etc.)
+are viewed within a dashboard. Without this setting, analytics data on the objects 
+is gathered only when the objects are viewed outside of a dashboard.</td>
+</tr>
 </tbody>
 </table>
 
