@@ -2321,7 +2321,7 @@ the following resource.
 <!--DHIS2-SECTION-ID:webapi_organisation_units_by_programs-->
 
 Purpose-built endpoint to retrieve associations between Programs and Organisation Units. This endpoint is
-the preferred way to retrieve programs that are either:
+the preferred way to retrieve program org unit associations.
 
 - unassigned to any organisation units 
 - assigned explicitly to org units within the scope of logged in user capture scope.
