@@ -2337,7 +2337,7 @@ responses will have the following format:
             "<orgUnitUid_n>"
         ],
         "<programUid>": [
-            "<orgUnitUid_1>",
+            "<orgUnitUid>",
             "<orgUnitUid_2>",
             ...,
             "<orgUnitUid_n>"
