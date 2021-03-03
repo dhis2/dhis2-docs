@@ -2323,7 +2323,6 @@ the following resource.
 Purpose-built endpoint to retrieve associations between Programs and Organisation Units. This endpoint is
 the preferred way to retrieve program org unit associations.
 
-- assigned explicitly to org units within the scope of logged in user capture scope.
 
 
     /api/33/programs/orgUnits?programs=<programUid,anotherProgramUid,...>
