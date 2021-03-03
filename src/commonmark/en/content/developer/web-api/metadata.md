@@ -2320,7 +2320,7 @@ the following resource.
 
 <!--DHIS2-SECTION-ID:webapi_organisation_units_by_programs-->
 
-There's a special ad-hoc endpoint built to retrieve associations between Programs and Organisation Units. This should be
+Purpose-built endpoint to retrieve associations between Programs and Organisation Units. This endpoint is
 the preferred way to retrieve programs that are either:
 
 - unassigned to any organisation units 
