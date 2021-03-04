@@ -765,7 +765,7 @@ For performance reasons the Capture app caches metadata in the client browser. W
 ### Reaching the enrollment dashboard via url
 
 You reach the enrollment dashboard either by typing in the address bar of your browser or using the user interface of the capture app.
-In this section we are focusing on the first use-case, where you type or paste the url you want to access in the Address bar.
+In this section we are focusing on the first use-case, where you type or paste the url you want to access in the Address bar....
 
 ![](resources/images/capture_app/enrollment-dash-01.png)
 
