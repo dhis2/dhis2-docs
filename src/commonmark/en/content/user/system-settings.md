@@ -98,6 +98,10 @@
 are viewed within a dashboard. Without this setting, analytics data on the objects 
 is gathered only when the objects are viewed outside of a dashboard.</td>
 </tr>
+<tr class="odd">
+<td><strong>Include passive dashboard views in usage analytics statistics</strong></td>
+<td>(Reserved for future use)</td>
+</tr>
 </tbody>
 </table>
 
