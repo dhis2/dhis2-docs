@@ -986,8 +986,8 @@ There are two methods of storing FileResource data values.
 **The Easy Way:** Upload the file to the `/api/dataValues/file` endpoint as
 described in the file resource section.  This works on versions 2.36 and later.
 
-**The Hard Way:** If you are working with a version of DHIS2 before 2.36,
-then the process is:
+**The Hard Way:** If you are writing code that needs to be compatible
+with versions of DHIS2 before 2.36, then the process is:
 
 1.  Upload the file to the `/api/fileResources` endpoint as described
     in the file resource section.
