@@ -641,7 +641,7 @@ The available system settings are listed below.
 </tr>
 <tr class="odd">
 <td>keyCountPassiveDashboardViewsInUsageAnalytics</td>
-<td>Whether usage analytics counts passive dashboard views (such as when the user first logs in)</td>
+<td>(Reserved for future use)</td>
 <td>No</td>
 </tr>
 </tbody>

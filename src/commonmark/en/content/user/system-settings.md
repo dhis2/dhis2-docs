@@ -100,7 +100,7 @@ is gathered only when the objects are viewed outside of a dashboard.</td>
 </tr>
 <tr class="odd">
 <td><strong>Include passive dashboard views in usage analytics statistics</strong></td>
-<td>When this setting is selected, a passive dashboard view (such as happens when the user first logs in) will be counted as a view of that dashboard.</td>
+<td>(Reserved for future use)</td>
 </tr>
 </tbody>
 </table>
