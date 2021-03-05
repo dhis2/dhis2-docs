@@ -644,6 +644,26 @@ The available system settings are listed below.
 <td>(Reserved for future use)</td>
 <td>No</td>
 </tr>
+<tr class="even">
+<td>keyDashboardContextMenuItemSwitchViewType</td>
+<td>Allow users to switch a dashboard favorite view type</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>keyDashboardContextMenuItemOpenInRelevantApp</td>
+<td>Allow users to open a dashboard favorite in relevant app</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>keyDashboardContextMenuItemShowInterpretationsAndDetails</td>
+<td>Allow users to show dashboard favorite interpretations and details</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>keyDashboardContextMenuItemViewFullscreen</td>
+<td>Allow users to view dashboard favorite in fullscreen</td>
+<td>Yes</td>
+</tr>
 </tbody>
 </table>
 

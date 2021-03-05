@@ -338,6 +338,26 @@ is gathered only when the objects are viewed outside of a dashboard.</td>
 <td><p><strong>Custom top menu logo</strong></p></td>
 <td><p>Select this option and upload an image to add your logo to the left in the top menu.</p></td>
 </tr>
+<tr class="even">
+<td><p><strong>Allow users to switch dashboard favorite view type</strong></p></td>
+<td><p>Allows users to switch a dashboard favorite view between charts,
+pivot tables and maps, using the dashboard item menu.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Allow users to open dashboard favorite in relevant app</strong></p></td>
+<td><p>Allows users to open a dashboard item in the app for that type of item,
+using the dashboard item menu.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Allow users to show dashboard favorite interpretations and details</strong></p></td>
+<td><p>Allows users to see dashboard favorite interpretations and details,
+using the dashboard item menu.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Allow users to view dashboard favorite in fullscreen</strong></p></td>
+<td><p>Allows users to view dashboard favorite in fullscreen,
+using the dashboard item menu.</p></td>
+</tr>
 </tbody>
 </table>
 

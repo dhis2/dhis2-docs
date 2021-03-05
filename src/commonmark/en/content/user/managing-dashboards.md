@@ -267,14 +267,18 @@ Click on the **Print** button in the upper right to trigger the browser print fu
 ### Switching between visualizations
 
 Dashboard items showing charts, pivot tables and maps can be toggled
-between these visualizations. Click on the item menu button in the upper right corner of the item and choose the desired view:
+between these visualizations. Click on the item menu button in the upper right corner of the item and choose the desired view
+(note that this option may be disabled on your system if the system setting
+_Allow users to switch dashboard favorite view type_ is unchecked):
 
 ![](resources/images/dashboard/dashboard-item-menu.png)
 
 ## Interpretations
 
 You can write interpretations for the chart, pivot table, map, event
-report, and event chart items. From the dashboard item menu, click on **Show interpretations and details**:
+report, and event chart items. From the dashboard item menu, click on **Show interpretations and details**
+(note that this option may be disabled on your system if the system setting
+_Allow users to show dashboard favorite interpretations and details_ is unchecked):
 
 ![](resources/images/dashboard/dashboard-item-menu-interpretations.png)
 
