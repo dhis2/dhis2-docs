@@ -3947,15 +3947,16 @@ The contents of file resources are not directly accessible but are
 referenced from other objects (such as data values) to store binary
 content of virtually unlimited size.
 
-Creation of the file resource itself is done through either `/api/fileResources`
-or `/api/dataValues/file` as a multipart upload POST-request:
+To create a file resource without creating a corresponding data value,
+POST to the endpoint `/api/fileResources` with a multipart upload:
 
 ```bash
 curl "https://server/api/fileResources" -X POST
   -F "file=@/path/to/file/name-of-file.png"
 ```
 
-or
+To create both a file resource and a data value that references the file,
+POST to the `/api/dataValues/file` endpoint:
 
 ```bash
 curl "https://server/api/dataValues/file?de=xPTAT98T2Jd
