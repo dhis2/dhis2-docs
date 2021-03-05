@@ -340,22 +340,22 @@ is gathered only when the objects are viewed outside of a dashboard.</td>
 </tr>
 <tr class="even">
 <td><p><strong>Allow users to switch dashboard favorite view type</strong></p></td>
-<td><p>Allows users to switch a dashboard favorite view between charts,
+<td><p>Allows users to switch dashboard favorites' view between charts,
 pivot tables and maps, using the dashboard item menu.</p></td>
 </tr>
 <tr class="odd">
 <td><p><strong>Allow users to open dashboard favorite in relevant app</strong></p></td>
-<td><p>Allows users to open a dashboard item in the app for that type of item,
+<td><p>Allows users to open dashboard items in the app for that type of item,
 using the dashboard item menu.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Allow users to show dashboard favorite interpretations and details</strong></p></td>
-<td><p>Allows users to see dashboard favorite interpretations and details,
+<td><p>Allows users to see dashboard favorites' interpretations and details,
 using the dashboard item menu.</p></td>
 </tr>
 <tr class="odd">
 <td><p><strong>Allow users to view dashboard favorite in fullscreen</strong></p></td>
-<td><p>Allows users to view dashboard favorite in fullscreen,
+<td><p>Allows users to view dashboard favorites in fullscreen,
 using the dashboard item menu.</p></td>
 </tr>
 </tbody>
