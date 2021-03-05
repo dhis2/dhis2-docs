@@ -3947,7 +3947,7 @@ The contents of file resources are not directly accessible but are
 referenced from other objects (such as data values) to store binary
 content of virtually unlimited size.
 
-To create a file resource without creating a corresponding data value,
+To create a file resource that does not require a corresponding data value,
 POST to the endpoint `/api/fileResources` with a multipart upload:
 
 ```bash
@@ -3956,7 +3956,7 @@ curl "https://server/api/fileResources" -X POST
 ```
 
 To create both a file resource and a data value that references the file,
-POST to the `/api/dataValues/file` endpoint:
+POST to the `/api/dataValues/file` endpoint in DHIS 2.36 or later:
 
 ```bash
 curl "https://server/api/dataValues/file?de=xPTAT98T2Jd
