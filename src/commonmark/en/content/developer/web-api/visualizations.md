@@ -1513,8 +1513,10 @@ Base on the `GET` request/query, a few different responses are possible. Below w
     {
       "simplifiedValueType": "TEXT",
       "displayName": "TB program Gender",
+      "displayShortName": "TB prog. Gen.",
       "valueType": "TEXT",
       "name": "TB program Gender",
+      "shortName": ""TB prog. Gen.",
       "id": "ur1Edk5Oe2n.cejWyOfXge6",
       "programId": "ur1Edk5Oe2n",
       "dimensionItemType": "PROGRAM_ATTRIBUTE"
@@ -1627,6 +1629,14 @@ Now that we have a good idea of the main features and usage of this endpoint let
 <tr class="even">
 <td>displayName</td>
 <td>The display name defined.</td>
+</tr>
+<tr class="odd">
+<td>shortName</td>
+<td>The short name given for the item.</td>
+</tr>
+<tr class="even">
+<td>displayShortName</td>
+<td>The display short name defined.</td>
 </tr>
 <tr class="odd">
 <td>dimensionItemType</td>
