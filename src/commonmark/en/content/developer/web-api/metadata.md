@@ -627,6 +627,7 @@ Some examples
     /api/categoryOptions.json?restrictToCaptureScope=true&fields=*
 
     /api/programs.json?restrictToCaptureScope=true&fields=*
+(this is now deprecated on programs, see [get organisation units by programs](#get-organisation-units-by-programs))
 
 All existing filters will work in addition to the capture scope filter.
 
@@ -2314,6 +2315,41 @@ the following resource.
 </tr>
 </tbody>
 </table>
+
+### Get organisation units by programs
+
+<!--DHIS2-SECTION-ID:webapi_organisation_units_by_programs-->
+
+Purpose-built endpoint to retrieve associations between Programs and Organisation Units. This endpoint is
+the preferred way to retrieve program org unit associations.
+
+
+
+    /api/33/programs/orgUnits?programs=<programUid,anotherProgramUid,...>
+
+responses will have the following format:
+
+    {
+        "<programUid>": [
+            "<orgUnitUid>",
+            "<orgUnitUid>",
+            ...,
+            "<orgUnitUid>"
+        ],
+        "<programUid>": [
+            "<orgUnitUid>",
+            "<orgUnitUid>",
+            ...,
+            "<orgUnitUid>"
+        ],
+        "...": [
+            ...,
+            ...
+        ],
+        "<programUid>": []
+    }
+
+programs with no associated uids (hence accessible by all orgUnits) are returned with an empty array [] of orgUnits.
 
 ## Data sets
 
