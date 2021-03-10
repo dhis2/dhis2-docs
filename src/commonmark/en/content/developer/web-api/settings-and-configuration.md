@@ -634,6 +634,16 @@ The available system settings are listed below.
 <td></td>
 <td>No</td>
 </tr>
+<tr class="even">
+<td>keyGatherAnalyticalObjectStatisticsInDashboardViews</td>
+<td>Whether to gather analytical statistics on objects when they are viewed within a dashboard</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyCountPassiveDashboardViewsInUsageAnalytics</td>
+<td>(Reserved for future use)</td>
+<td>No</td>
+</tr>
 </tbody>
 </table>
 
