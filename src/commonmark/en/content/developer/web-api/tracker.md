@@ -3391,6 +3391,7 @@ Note that message resource accepts a wrapper object named
     "deliveryChannels": [
       "SMS", "EMAIL"
     ],
+    "notificationTemplate": "Zp268JB6Ne5",
     "subject": "Outbreak alert",
     "text": "An outbreak has been detected",
     "storeCopy": false
@@ -3494,6 +3495,11 @@ curl -d @message.json "https://play.dhis2.org/demo/api/33/messages"
 The list of messages can be retrieved using GET.
 
     GET /api/33/messages
+
+To get list of sent tracker messages, below endpoint can be used. ProgramInstance or ProgramStageInstance uid has to be provided.
+	
+	GET /api/33/messages/scheduled/sent?programInstance={uid}
+	GET /api/33/messages/scheduled/sent?programStageInstance={uid}
 
 To get list of all scheduled message
 
