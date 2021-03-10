@@ -11,14 +11,13 @@ Live.
 
 <!--DHIS2-SECTION-ID:install_introduction-->
 
-DHIS2 runs on all platforms for which there exists a Java Runtime
-Environment version 8 or higher, which includes most popular operating
+DHIS2 runs on all platforms for which there exists a Java JDK, which includes most popular operating
 systems such as Windows, Linux and Mac. DHIS2 runs on the PostgreSQL
 database system. DHIS2 is packaged as a standard Java Web Archive
 (WAR-file) and thus runs on any Servlet containers such as Tomcat and
 Jetty.
 
-The DHIS2 team recommends Ubuntu 16.04 LTS operating system, PostgreSQL
+The DHIS2 team recommends Ubuntu 18.04 LTS operating system, PostgreSQL
 database system and Tomcat Servlet container as the preferred
 environment for server installations.
 
@@ -28,7 +27,7 @@ as an exhaustive documentation for the mentioned environment. We refer
 to the official Ubuntu, PostgreSQL and Tomcat documentation for in-depth
 reading.
 
-The dhis2-tools Ubuntu package automates many of the tasks described in
+The `dhis2-tools` Ubuntu package automates many of the tasks described in
 the guide below and is recommended for most users, especially those who
 are not familiar with the command line or administration of servers. It
 is described in detail in a separate chapter in this guide.
@@ -64,14 +63,11 @@ CPU cores so the more you can afford, the better the application will perform.
 
 Later DHIS2 versions require the following software versions to operate.
 
-  - Java JDK or JRE version 8 or later.
-
-  - An operating system for which a Java JDK or JRE version 8 exists.
-
-  - PostgreSQL database version 9.6 or later.
+* An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
+* Java JDK. OpenJDK is recommended. For DHIS 2 version 2.35 version and later, JDK 11 is highly recommended, while JDK 8 is supported. For DHIS 2 versions older than 2.35, JDK 8 is recommended.
+* PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 13 is recommended.
 
   - PostGIS database extension version 2.2 or later.
-
   - Tomcat servlet container version 8.5.50 or later, or other Servlet API
     3.1 compliant servlet containers.
 
@@ -172,8 +168,7 @@ sudo locale-gen nb_NO.UTF-8
 
 <!--DHIS2-SECTION-ID:install_postgresql_installation-->
 
-Install PostgreSQL by
-    invoking:
+Install PostgreSQL by invoking:
 
 ```sh
 sudo apt-get install postgresql-10 postgresql-contrib-10 postgresql-10-postgis-2.4
@@ -319,9 +314,14 @@ sudo /etc/init.d/postgresql restart
 
 <!--DHIS2-SECTION-ID:install_java_installation-->
 
-The recommended Java JDK for DHIS 2 is OpenJDK 8. OpenJDK is licensed under 
-the GPL license and can be run free of charge. You can install it with the
+The recommended Java JDK for DHIS 2 is OpenJDK 11. OpenJDK is licensed under the GPL license and can be run free of charge. You can install it with the
 following command:
+
+```
+sudo apt-get install openjdk-11-jdk
+```
+
+If you prefer OpenJDK 8 (for versions older than 2.35) you can install it with this command:
 
 ```
 sudo apt-get install openjdk-8-jdk
@@ -432,7 +432,7 @@ might vary from system to system, e.g. on AMD systems you might see
 environment:
 
 ```sh
-export JAVA_HOME='/usr/lib/jvm/java-1.8.0-openjdk-amd64/'
+export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
 export JAVA_OPTS='-Xmx7500m -Xms4000m'
 export DHIS2_HOME='/home/dhis/config'
 ```
@@ -452,12 +452,10 @@ in URLs used by the DHIS2 front-end.
 ```
 
 The next step is to download the DHIS2 WAR file and place it into the
-webapps directory of Tomcat. You can download the DHIS2 version 2.31 WAR
-release like this (replace 2.31 with your preferred version if
-necessary):
+webapps directory of Tomcat.  You can download DHIS2 WAR files from the following location:
 
 ```sh
-wget https://releases.dhis2.org/2.33/dhis.war
+https://releases.dhis2.org/
 ```
 
 Alternatively, for patch releases, the folder structure is based on the patch
