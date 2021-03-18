@@ -769,7 +769,7 @@ In this section we are focusing on the first use-case, where you type or paste t
 
 ![](resources/images/capture_app/enrollment-dash-01.png)
 
-One way to reach the enrollment dashboard and view a specific tracked entity instance's enrollment is by using _only_ the enrollment id. For example the link https://debug.dhis2.org/ca-2.36/dhis-web-capture/#/?enrollmentId=wBU0RAsYjKE will 
+One way to reach the enrollment dashboard and view a specific tracked entity instance's enrollment is by using _only_ the enrollment id. For example the link .../dhis-web-capture/#/?enrollmentId=wBU0RAsYjKE will 
 take you the dashboard for the enrollment with id `wBU0RAsYjKE`. 
 
 The top of the dashboard defines your context. For example in the image below the context is as follows, the selected program is "Child Programme", the organisation unit is "Ngelehun CHC", the selected person is "Anna Jones" and the selected enrollment is "2017-11-16 11:38".
@@ -788,21 +788,21 @@ When you deselect the program you see the following
 
 ##### Selecting a program with enrollments
 
-In other words your program _and_ your enrollment selection are empty. You now will have to first select another program. 
-If the tracked entity instance (in this case "Anna Jones") has enrollments under the program you select you will be seeing the following message.
+When program _and_ enrollment selections are empty, you first have to select a program. 
+If the tracked entity instance (in this case "Anna Jones") has enrollments under the program you select you will see the following message.
 
 ![](resources/images/capture_app/enrollment-dash-09.png)
 
 ##### Selecting a program with zero enrollments
 
-If the tracked entity instance (in this case "Anna Jenkins") doesn't have enrollments under the program you select you will be seeing a message explaining that there are no enrollments for that program.
+If the tracked entity instance (in this case "Anna Jenkins") does not have enrollments under the program you select you will see a message explaining that there are no enrollments for that program.
 You will also be given the option to enroll "Anna Jenkins" in that program.
 
 ![](resources/images/capture_app/enrollment-dash-10.png)
 
 ##### Selecting an event program 
 
-When you select an event program you will be seeing the following. Remember event programs do not have enrollments in the system, only tracker programs do.
+When you select an event program you will see the following. (Remember event programs do not have enrollments in the system, only tracker programs do).
 
 ![](resources/images/capture_app/enrollment-dash-11.png)
 
@@ -810,7 +810,7 @@ You will also be given the option to either create a new event for the selected 
 
 ##### Selecting a program with a different tracked entity type 
 
-When your selected tracked entity type is a person, as in our example with Anna Jenkins, and you select a program that is not of type person but for example of a type Malaria case you will be seeing the following.
+When your selected tracked entity type is a person, as in our example with Anna Jenkins, and you select a program that is not of type person but for example of a type Malaria case you will see the following.
 
 ![](resources/images/capture_app/enrollment-dash-12.png)
 
@@ -824,7 +824,7 @@ When you deselect the organisation unit you see the following
 
 #### Deselecting the tracked entity instance
 
-When you deselect the tracked entity instance, in this case "Anna Jones" you are navigated to the working lists in that Tracker program.
+When you deselect the tracked entity instance, in this case "Anna Jones" you are taken to the working lists in that Tracker program.
 
 ![](resources/images/capture_app/enrollment-dash-07.png)
 
