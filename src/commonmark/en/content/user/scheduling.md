@@ -98,6 +98,15 @@ Further configuring a job:
 
 The following section describes the various job types.
 
+### Disable Inactive Users
+
+<!--DHIS2-SECTION-ID:scheduling_disable_inactive_users-->
+Users that have not been active - not logged in - for a number of months can automatically be disabled.
+Select the number of inactive months as the job parameter.
+All users that have not logged in for that number of months or longer will be disabled by the job.
+Disabled users will no longer be able to log into the system.
+
+
 ### Resource table
 
 <!--DHIS2-SECTION-ID:scheduling_resource_table-->
