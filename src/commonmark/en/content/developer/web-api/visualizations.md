@@ -1489,7 +1489,7 @@ Here, the `PROGRAM_INDICATOR` allows filtering by `programId`.
 So, based on the examples `1)` and `2)` if you try filtering a `DATA_ELEMENT` by `programId` or filter a `PROGRAM_INDICATOR` by `valueType`, you should get no results.
 In other words, the filter will be applied only when the attribute actually exists for the respective data item.
 
-Another important aspect to be highlighted is that this endpoint does NOT follows the same querying standards as other existing endpoints, like <a href="#webapi_metadata_object_filter">Metadata object filter</a> for example. As a consequence, it supports a smaller set of features and querying.
+Another important aspect to be highlighted is that this endpoint does NOT follow the same querying standards as other existing endpoints, like [Metadata object filter](#webapi_metadata_object_filter) for example. As a consequence, it supports a smaller set of features and querying.
 The main reason for that is the need for querying multiple different items that have different relationships, which is not possible using the existing filtering components (used by the others endpoints).
 
 ### Possible endpoint responses
@@ -1586,14 +1586,14 @@ Here is an example of a payload when the pagination is enabled. Remember that pa
 
 > **Note**
 >
-> For elements where there is an associated Program, the program name should also be returned as part of the element name (as a prefix). The only exception is `Program Indicators`. We will not prefix the element name in this case, in order to keep the same behavior of existing endpoints.
+> For elements where there is an associated Program, the program name should also be returned as part of the element name (as a prefix). The only exception is `Program Indicators`. We will not prefix the element name in this case, in order to keep the same behavior as existing endpoints.
 >
 > The /dataItems endpoint will bring only data items that are defined as aggregatable type. The current list of valid aggregatable types is:
 `TEXT, LONG_TEXT`, `LETTER`, `BOOLEAN`, `TRUE_ONLY`, `NUMBER`, `UNIT_INTERVAL`, `PERCENTAGE`, `INTEGER`, `INTEGER_POSITIVE`, `INTEGER_NEGATIVE`, `INTEGER_ZERO_OR_POSITIVE`, `COORDINATE`.
 >
-> Even though the response returns a few different attributes, the filtering can only be applied to specific ones: `displayName`, `name`, `valueType`, `id`, `dimensionItemType`, `programId`.
+> Even though the response returns several different attributes, the filtering can only be applied to specific ones: `displayName`, `name`, `valueType`, `id`, `dimensionItemType`, `programId`.
 >
-> The `order` will be considered invalid if it's set on top of `name` (ie.: order=*name:asc*) and a `filter` is set to `displayName` (ie.: filter=*displayName:ilike:aName*), and vice-versa.
+> The `order` will be considered invalid if it is set on top of `name` (ie.: order=*name:asc*) and a `filter` is set to `displayName` (ie.: filter=*displayName:ilike:aName*), and vice-versa.
 
 ### Response attributes
 
