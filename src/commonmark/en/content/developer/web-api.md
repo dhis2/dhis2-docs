@@ -10388,7 +10388,7 @@ Here, the `PROGRAM_INDICATOR` allows filtering by `programId`.
 So, based on the examples `1)` and `2)` if you try filtering a `DATA_ELEMENT` by `programId` or filter a `PROGRAM_INDICATOR` by `valueType`, you should get no results.
 In other words, the filter will be applied only when the attribute actually exists for the respective data item.
 
-Another important aspect to be highlighted is that this endpoint does NOT follows the same querying standards as other existing endpoints, like <a href="#webapi_metadata_object_filter">Metadata object filter</a> for example. As a consequence, it supports a smaller set of features and querying.
+Another important aspect to be highlighted is that this endpoint does NOT follows the same querying standards as other existing endpoints, like [Metadata object filter](#webapi_metadata_object_filter) for example. As a consequence, it supports a smaller set of features and querying.
 The main reason for that is the need for querying multiple different items that have different relationships, which is not possible using the existing filtering components (used by the others endpoints).
 
 ### Possible endpoint responses
@@ -10543,7 +10543,7 @@ Now that we have a good idea of the main features and usage of this endpoint let
 </tr>
 <tr class="even">
 <td>valueType</td>
-<td>The item value type (more specific definition). Possitble types: TEXT, LONG_TEXT, LETTER, BOOLEAN, TRUE_ONLY, UNIT_INTERVAL, PERCENTAGE, INTEGER, INTEGER_POSITIVE, INTEGER_NEGATIVE, INTEGER_ZERO_OR_POSITIVE, COORDINATE</td>
+<td>The item value type (more specific definition). Possible types: TEXT, LONG_TEXT, LETTER, BOOLEAN, TRUE_ONLY, UNIT_INTERVAL, PERCENTAGE, INTEGER, INTEGER_POSITIVE, INTEGER_NEGATIVE, INTEGER_ZERO_OR_POSITIVE, COORDINATE</td>
 </tr>
 <tr class="odd">
 <td>simplifiedValueType</td>
@@ -11354,7 +11354,7 @@ return a *409 Conflict* response and a response message looking similar to this:
 ```
 
 The `httpStatus` and `httpStatusCode` fields indicate the HTTP status and
-status code per the HTTP specification. The `messsage` field provides a
+status code per the HTTP specification. The `message` field provides a
 human-readable description of the validation error. The `errorCode` field
 provides a machine-readable code which can be used by clients to handle
 validation errors. The possible validation errors for the aggregate analytics
@@ -16543,7 +16543,7 @@ The available system settings are listed below.
 <tr class="odd">
 <td>keyTrackerDashboardLayout</td>
 <td>false | true</td>
-<td>Tracker dasboard layout.</td>
+<td>Tracker dashboard layout.</td>
 </tr>
 </tbody>
 </table>
