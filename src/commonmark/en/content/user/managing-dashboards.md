@@ -137,6 +137,20 @@ Click on **Exit Print preview** to return to editing the dashboard.
 
 Note that some items may be moved down in order to avoid page breaks. Items may also be shortened to fit on one page. Items that are shortened show an info icon in the upper right corner in preview. This icon is removed in the actual print.
 
+### Restricting dashboard filters
+
+<!--DHIS2-SECTION-ID:restricting-dashboard-filters-->
+
+By default, users will be able to filter dashboard items by any dimension defined in your system. Dashboard filter settings can be edited for a given dashboard by clicking on **Filter settings**.
+
+![](resources/images/dashboard/dashboard-filter-settings-button.png)
+
+To restrict available filters, you can click **Only allow filtering by selected dimensions** and select the filters which you wish to allow on the dashboard. When the dashboard is in view mode, users will only be able to choose from among the filters selected. Period and Organisation Unit will be selected by default but can be removed if desired.
+
+![](resources/images/dashboard/dashboard-filter-settings.png)
+
+In order to save updates to filter settings, you need to click **Confirm** to close the filter settings and then need to click **Save changes** to save the dashboard changes.
+
 ### Saving the dashboard
 
 When creating or editing a dashboard, changes are only saved when you
@@ -233,6 +247,8 @@ Whenever a filter is added, edited or removed, the dashboard items
 reload to show the updated data.
 Filter badges are always visible at the top of the page when
 scrolling the dashboard content.
+
+By default, users are able to filter dashboard items by any dimension defined in your system. To limit available filters, see [Restricting dashboard filters](#restricting-dashboard-filters).
 
 ### Printing a dashboard
 
