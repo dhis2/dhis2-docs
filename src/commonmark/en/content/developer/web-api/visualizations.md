@@ -47,6 +47,7 @@ brevity).
   "name": "Mother and Child Health",
   "href": "https://play.dhis2.org/demo/api/dashboards/vQFhmLJU5sK",
   "publicAccess": "--------",
+  "restrictFilters": false,
   "externalAccess": false,
   "itemCount": 17,
   "displayName": "Mother and Child Health",
