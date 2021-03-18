@@ -272,8 +272,9 @@ right corner of the item and choose the desired view:
 
 ![](resources/images/dashboard/dashboard-item-menu.png)
 
-(Note that this option may be disabled on your system if the system setting
-_Allow users to switch dashboard favorite view type_ is unchecked.)
+> **Note**
+> 
+>  This option may be disabled on your system if the system setting _Allow users to switch dashboard favorite view type_ is unchecked.)
 
 ## Interpretations
 
@@ -282,8 +283,9 @@ report, and event chart items. From the dashboard item menu, click on **Show int
 
 ![](resources/images/dashboard/dashboard-item-menu-interpretations.png)
 
-(Note that this option may be disabled on your system if the system setting
-_Allow users to show dashboard favorite interpretations and details_ is unchecked.)
+> **Note**
+> 
+>  This option may be disabled on your system if the system setting _Allow users to show dashboard favorite interpretations and details_ is unchecked.)
 
 The item will be expanded vertically underneath to show the description,
 interpretations and replies. You can like an interpretation, reply to an
