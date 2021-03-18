@@ -1,4 +1,3 @@
-
 # Scheduling
 
 <!--DHIS2-SECTION-ID:scheduling-->
@@ -11,88 +10,85 @@ application provides the ability to create, modify and delete such jobs.
 The Scheduler comes bundled with DHIS2 and is accessed through the App
 Menu.
 
-![](resources/images/scheduler/overview.png)
+![The start page of the Scheduler app](resources/images/scheduler/overview.png)
 
 The start page of the Scheduler app shows an overview of existing jobs.
-By default, pre-defined system jobs are hidden. To view these, toggle
-*Show system jobs* in the top right corner.
+By default, pre-defined system jobs are hidden. To view these, click
+*Include system jobs in list* in the top right corner.
 
-When you create or modify a job, it will be rescheduled according to
-selected preferences. To run a job on demand, press the green triangle
-labelled "Run now". This action is only available for enabled jobs.
+When you create or modify a job, it will be scheduled according to
+the selected schedule. To run a job on demand, go to the job list,
+click the "Actions" button of the job you want to run and click
+"Run manually". This action is only available for enabled jobs.
 
 ## Creating a job
 
 <!--DHIS2-SECTION-ID:scheduling_create_job-->
 
-1.  Open the **Scheduler** app and click the add button in the bottom
+1.  Open the **Scheduler** app and click the "New job" button in the top
     right corner.
 
-2.  Choose a suitable **Name** for the new job.
+1.  Choose a suitable **Name** for the new job.
 
-3.  Select a running frequency for the job, i.e. when and how often the
-    job should run.
-
-    1.  You can either select a predefined frequency from the
-        drop-down menu, or
-
-    2.  You can give the job a custom **Cron expression** if you want a
-        specific schedule, using the [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html) syntax.
-        
-    3.  Enabling the **Continuous execution** option will make the job
-    run constantly. In other words, as soon as the job finishes, it
-        will be scheduled to run again right away. Selecting this option
-        will disable the other fields.
-    
-4.  Select the **Job type** you want to schedule using the
+1.  Select the **Job type** you want to schedule using the
     drop-down menu.
 
-5.  If the job type is customizable, a **Parameters** section will
-    appear below. These additional options specify the details of the
-    scheduled job, and will vary greatly depending on the job type.
+1.  Select a schedule for the job. Each job type has its own scheduling type,
+    either **Cron** scheduling or **Delay** scheduling.
 
-6.  Press the **Add job** button to confirm the job creation. The newly
-    created job should now be listed in the job overview, given that the
-    **Show system jobs** setting is not enabled.
+    1.  For **Cron** scheduled job types you can set a schedule using the 
+        [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html) 
+        syntax. You can also select a predefined **Cron expression** by clicking
+        "Choose from preset times". This schedule will only start a new job run
+        if the previous job run has finished, to prevent the system from spawning
+        too many jobs.
 
-![](resources/images/scheduler/add_new_job.png)
+    1.  For **Delay** scheduled jobs you can set a delay in seconds. Unlike the
+        **Cron** scheduled jobs, these jobs aren't executed according to a set 
+        schedule, but with a specific delay in between job runs. The delay timer
+        starts when a job ends, starting a new job run when the delay timer reaches
+        zero. This will continue as long as the job is enabled.
 
-Jobs are enabled by default.
+1.  If the job type is customizable, a **Parameters** section will appear below
+    the scheduling settings. These additional options specify the details of the
+    scheduled job, and will vary depending on the job type.
 
-## Configuring a job
+1.  Press the **Save** button to confirm the job creation. On successful job
+    creation you will be redirected to the job overview, where the newly
+    created job will now be listed.
+
+![Creating a new scheduler job](resources/images/scheduler/add_new_job.png)
+
+Newly created jobs are enabled by default.
+
+## Editing a job
 
 <!--DHIS2-SECTION-ID:scheduling_configure_job-->
 
 With the proper permissions, you can modify the details of user-created
-jobs. Note that for system jobs, only the schedule (cron expression) can
-be changed.
+jobs. To quickly enable or disable a user created job from running, use the
+switches in the **On/off** column on the landing page of the Scheduler app.
+Note that system jobs are always enabled and cannot be disabled.
 
-To quickly enable or disable a user created job from running, use the
-**Enabled** column on the landing page of the Scheduler app. System jobs
-are always enabled.
+Further editing of user jobs:
 
-Further configuring a job:
+1.  Click the "Actions" button of the job you want to edit and click "Edit" (only
+    user jobs can be edited).
 
-1.  Select a job from the landing page to unveil the **Attributes** and
-    change them to accordingly. See the previous section for scheduling
-    details.
-
-2.  If the job type supports extra options, the **Parameters** section
-    will also be available.
-
-3.  When done, press the **Save changes** button to persist the changes.
+1.  When done editing, press the **Save** button to persist the changes.
 
 ## Deleting a job
 
 <!--DHIS2-SECTION-ID:dataAdmin_scheduler_delete-->
 
-1.  Select the job you want to delete.
+1.  Click the "Actions" button of the job you want to delete and click "Delete"
+    (only user jobs can be deleted).
 
-2.  Press the **Delete** button in the bottom right corner.
+1.  Confirm by pressing **Delete** again in the pop-up window.
 
-3.  Confirm by pressing **Delete** again in the pop-up window.
+User jobs can also be deleted from the editing screen.
 
-![](resources/images/scheduler/delete_job.png)
+![Deleting a scheduler job](resources/images/scheduler/delete_job.png)
 
 ## Job types
 
