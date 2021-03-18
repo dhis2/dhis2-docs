@@ -149,7 +149,7 @@ To restrict available filters, you can click **Only allow filtering by selected 
 
 ![](resources/images/dashboard/dashboard-filter-settings.png)
 
-In order to save updates to filter settings, you need to click **Confirm** to close the filter settings and then need to click **Save changes** to save the dashboard changes.
+In order to save updates to filter settings, you need to first click **Confirm** to close the filter settings and then click **Save changes** to save the dashboard changes.
 
 ### Saving the dashboard
 
