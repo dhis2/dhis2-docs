@@ -187,6 +187,9 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Parent organisation unit|Controls whether to ask user to enter a parent organisation unit when creating a standard report in Reports app.|
 |Reporting period|Controls whether to ask user to enter a report period when creating a standard report in Reports app.|
 |Top limit|Controls the maximum number of rows to include in a Pivot table.|
+||**Outliers tab**|
+|Outlier detection method|<br>**Interquartile Range (IQR)**: The IQR describes the middle 50% of values when ordered from lowest to highest.  <br>**After last**: hides missing values only after the last value<br>**Before first and after last**: hides missing values only before the first value and after the last value<br>**All**: hides all missing values<br>This is useful for example when you create Column and Bar visualizations.|
+|Threshold factor|The interquartile range is often used to find outliers in data. Outliers here are defined as observations that fall below Q1 − 1.5 IQR or above Q3 + 1.5 IQR. In a boxplot, the highest and lowest occurring value within this limit are indicated by whiskers of the box (frequently with an additional bar at the end of the whisker) and any outliers as individual points.|
 
 ### Custom styling for text and legend in charts
 
