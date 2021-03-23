@@ -282,7 +282,7 @@ between these visualizations. Click on the item context menu button and choose t
 
 ### View item in fullscreen
 
-To view the chart, table or map in fullscreen, click on the **View fullscreen** option.
+To view the chart, table or map in fullscreen, click on the **View fullscreen** option. To exit fullscreen, you can either press **esc** key or click the exit button in the upper right corner of the fullscreen view.
 
 ### Open in app
 
