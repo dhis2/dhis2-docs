@@ -15,7 +15,7 @@ When you open the data-visualizer app from the dhis2 menu, you are presented wit
 Select the desired visualization type from the selector in the upper left corner.
 For each visualization type there is a brief description with suggestions about where to use the main dimensions in the layout.
 
-![](resources/images/data-visualizer/data-visualizer-visualization-type.png)  
+![](resources/images/data-visualizer/data-visualizer-visualization-type.png)
 
 
 |Visualization type|Description|
@@ -34,6 +34,7 @@ For each visualization type there is a brief description with suggestions about 
 |Year over year (column)|Same as Year over year (line), only with columns.|
 |Single value|Displays a single value in a dashboard friendly way.<br><br>Layout restrictions: same as Gauge.|
 |Pivot table|Summarizes the data of a more extensive table and might include sums, averages, or other statistics, which the pivot table groups together in a meaningful way.<br><br>Layout restrictions: none.|
+|Scatter|Scatter plots enable users to chart organisational units as points against two variables for a single fixed or relative period.<br><br>Layout restrictions: exactly 1 item each as vertical and horizontal, data dimension is locked to vertical and horizontal, organisation unit is locked to points.|
 
 ### Select dimensions
 
@@ -81,6 +82,10 @@ A dimension refers to the elements that describe the data values in the system. 
 Data Visualizer is highly flexible in terms of allowing you to use these dimensions as series, categories and filter.
 
 To select items for a dimension, open the dimension modal window by clicking on a dimension. This window will also be opened automatically when adding a dimension without selected items to the layout. Select which items to add to the visualization by double-clicking an item or by selecting an item with a single click and using the arrows in the middle. The order of appearance will be the same as the order in which they are selected. Selected items can be reordered by dragging and dropping them in the Selected section.
+
+#### Select data items
+
+When selecting data items, there are different ways to filter the displayed items. By using the search field at the top, a global search by item name is performed across the currently selected **Data Type**. By selecting a **Data Type** from the dropdown, items can be filtered by type and subtype, where the subtype available depends on the selected data type. The name search and the type/subtype filtering can be combined as well for a more detailed filter. The type of each displayed item is indicated by a corresponding icon on the item. By hovering over an item, the name of the type can be viewed as well.
 
 ![](resources/images/data-visualizer/data-visualizer-dimension-modal.png)
 
@@ -186,6 +191,9 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Parent organisation unit|Controls whether to ask user to enter a parent organisation unit when creating a standard report in Reports app.|
 |Reporting period|Controls whether to ask user to enter a report period when creating a standard report in Reports app.|
 |Top limit|Controls the maximum number of rows to include in a Pivot table.|
+||**Outliers tab**|
+|Outlier detection method|Outlier analysis is a process that involves identifying anomalous observations in a dataset. In Data Visualizer outliers are detected by first normalizing the data into a linear regression line and then analysing each point's distance from regression line. Currently three methods are supported. **Interquartile Range (IQR)** is based on dividing a dataset into quartiles while **Modified z-score** is based on the Median Absolute Deviation (MAD). IQR and MAD are considered the two most common robust measures of scale. **Standard z-score** is based on standard deviation and is therefore considered less robust as it is greatly influenced by outliers.|
+|Threshold factor|The number that the outlier thresholds are multiplied by. Controls the sensitivity of the threshold range. Default factors are 1.5 for IQR and 3 for z-scores.|
 
 ### Custom styling for text and legend in charts
 
