@@ -83,6 +83,10 @@ Data Visualizer is highly flexible in terms of allowing you to use these dimensi
 
 To select items for a dimension, open the dimension modal window by clicking on a dimension. This window will also be opened automatically when adding a dimension without selected items to the layout. Select which items to add to the visualization by double-clicking an item or by selecting an item with a single click and using the arrows in the middle. The order of appearance will be the same as the order in which they are selected. Selected items can be reordered by dragging and dropping them in the Selected section.
 
+#### Select data items
+
+When selecting data items, there are different ways to filter the displayed items. By using the search field at the top, a global search by item name is performed across the currently selected **Data Type**. By selecting a **Data Type** from the dropdown, items can be filtered by type and subtype, where the subtype available depends on the selected data type. The name search and the type/subtype filtering can be combined as well for a more detailed filter. The type of each displayed item is indicated by a corresponding icon on the item. By hovering over an item, the name of the type can be viewed as well.
+
 ![](resources/images/data-visualizer/data-visualizer-dimension-modal.png)
 
 #### Select periods
