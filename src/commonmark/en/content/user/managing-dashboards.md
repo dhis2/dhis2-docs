@@ -42,7 +42,7 @@ has been populated with charts and maps.
 
 When viewing dashboards on small screens (for instance, mobile phone in portrait orientation), the dashboard will adapt to the screen and show all items in a single column. Some options, including editing, filtering and sharing, will not be available.
 
-!![](resources/images/dashboard/dashboard-small-screen.png)
+![](resources/images/dashboard/dashboard-small-screen.png)
 
 ### Searching in the list of dashboards
 
@@ -192,7 +192,7 @@ From view mode, you can toggle showing the description, star a dashboard, apply 
 
 To toggle the description, click on the **...More** button and choose **Show description** (or **Hide description**). This setting will be remembered for all dashboards that you open. This setting applies to you, not other users.
 
-!![](resources/images/dashboard/dashboard-title-bar-show-description.png)
+![](resources/images/dashboard/dashboard-title-bar-show-description.png)
 
 ### Starred dashboards
 
