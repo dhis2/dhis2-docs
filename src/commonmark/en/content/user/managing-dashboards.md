@@ -38,6 +38,12 @@ has been populated with charts and maps.
 
 ![](resources/images/dashboard/dashboard-view-mode.png)
 
+### Responsive view on small screens
+
+When viewing dashboards on small screens (for instance, mobile phone in portrait orientation), the dashboard will adapt to the screen and show all items in a single column. Some options, including editing, filtering and sharing, will not be available.
+
+![](resources/images/dashboard/dashboard-small-screen.png)
+
 ### Searching in the list of dashboards
 
 You can search for a specific dashboard using the search field in the
@@ -200,7 +206,7 @@ From view mode, you can toggle showing the description, star a dashboard, apply 
 
 To toggle the description, click on the **...More** button and choose **Show description** (or **Hide description**). This setting will be remembered for all dashboards that you open. This setting applies to you, not other users.
 
-![](resources/images/dashboard/dashboard-title-bar.png)
+![](resources/images/dashboard/dashboard-title-bar-show-description.png)
 
 ### Starred dashboards
 
@@ -278,24 +284,31 @@ Click on the **Print** button in the upper right to trigger the browser print fu
 
 ![](resources/images/dashboard/dashboard-print-oipp.png)
 
-## Dashboard items with charts, pivot tables and maps
+## Dashboard items with charts, pivot tables or maps
+
+Dashboard items with charts, pivot table or maps may have a context menu button in the upper right corner of the item with additional viewing options, depending on the system settings that have been configured for the instance. If all the relevant system settings have been disabled, then there will not be a context menu button. Here are the possible menu options: 
 
 ### Switching between visualizations
 
 Dashboard items showing charts, pivot tables and maps can be toggled
-between these visualizations. Click on the item menu button in the upper 
-right corner of the item and choose the desired view:
+between these visualizations. Click on the item context menu button and choose the desired view (e.g., **View as Table**, **View as Map**, **View as Chart**):
 
 ![](resources/images/dashboard/dashboard-item-menu.png)
 
-> **Note**
-> 
->  This option may be disabled on your system if the system setting _Allow users to switch dashboard favorite view type_ is unchecked.)
 
-## Interpretations
+### View item in fullscreen
+
+To view the chart, table or map in fullscreen, click on the **View fullscreen** option. To exit fullscreen, you can either press **esc** key or click the exit button in the upper right corner of the fullscreen view.
+
+### Open in app
+
+To open the visualization in its relevant app (e.g., Data Visualizer, Maps) click on the **Open in [app name] app** option.
+
+
+## Show interpretations and details
 
 You can write interpretations for the chart, pivot table, map, event
-report, and event chart items. From the dashboard item menu, click on **Show interpretations and details**:
+report, and event chart items by clicking on **Show interpretations and details**:
 
 ![](resources/images/dashboard/dashboard-item-menu-interpretations.png)
 
