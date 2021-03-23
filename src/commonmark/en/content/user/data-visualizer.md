@@ -192,8 +192,8 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Reporting period|Controls whether to ask user to enter a report period when creating a standard report in Reports app.|
 |Top limit|Controls the maximum number of rows to include in a Pivot table.|
 ||**Outliers tab**|
-|Outlier detection method|<br>**Interquartile Range (IQR)**: The IQR describes the middle 50% of values when ordered from lowest to highest.  <br>**After last**: hides missing values only after the last value<br>**Before first and after last**: hides missing values only before the first value and after the last value<br>**All**: hides all missing values<br>This is useful for example when you create Column and Bar visualizations.|
-|Threshold factor|The interquartile range is often used to find outliers in data. Outliers here are defined as observations that fall below Q1 − 1.5 IQR or above Q3 + 1.5 IQR. In a boxplot, the highest and lowest occurring value within this limit are indicated by whiskers of the box (frequently with an additional bar at the end of the whisker) and any outliers as individual points.|
+|Outlier detection method|Outlier analysis is a process that involves identifying anomalous observations in a dataset. In Data Visualizer outliers are detected by first normalizing the data into a linear regression line and then analysing each point's distance from regression line. Currently three methods are supported. **Interquartile Range (IQR)** is based on dividing a dataset into quartiles while **Modified z-score** is based on the Median Absolute Deviation (MAD). IQR and MAD are considered the two most common robust measures of scale. **Standard z-score** is based on standard deviation and thus less robust because it is greatly influenced by outliers.|
+|Threshold factor|The number that the outlier thresholds are multiplied by. Controls the sensitivity of the threshold range. Default factors are 1.5 for IQR and 3 for z-scores.|
 
 ### Custom styling for text and legend in charts
 
