@@ -404,6 +404,7 @@ re-process.
 > 
 > You can also generate the tables through the web API. This task is
 > typically performed by a system administrator.
+
 1.  Open the **Data Administration** app and click **Analytics Tables**.
 
 2.  Select the parts of the analytics process you want to skip:
