@@ -1,96 +1,95 @@
 # New Tracker
 
- Describe /tracker as a group of new tracker endpoints, where there are some new changes
- List changes we have made between 2.35->2.36
- Make a note that the old endpoints are marked as deprecated, but still work. Not all the functionality is ready in the new endpoint yet.
+  * Describe /tracker as a group of new tracker endpoints, where there are some new changes
+  * List changes we have made between 2.35->2.36
+  * Make a note that the old endpoints are marked as deprecated, but still work. Not all the functionality is ready in the new endpoint yet.
 
 ## Tracker Import
 
 <!--DHIS2-SECTION-ID:webapi_nti_import-->
 
-List all existing import endpoints (Just /tracker today)
-For each endpoint:
-Example payload
-Example response
-Example request
-Table of params
-Make a note about JSON is the only supported format
-Configuration that alters the import process (IE. turning off cache)
-Describe the difference between sync\async
-Flat\nested payload support
-Note about Side effects
-Link to side effects
-Note about validation
-Link to validation
-Note about program rules
-Link to program rules
+  * List all existing import endpoints (Just /tracker today)
+  * For each endpoint:
+    * Example payload
+    * Example response
+    * Example request
+    * Table of params
+  * Make a note about JSON is the only supported format
+  * Configuration that alters the import process (IE. turning off cache)
+  * Describe the difference between sync\async
+  * Flat\nested payload support
+  * Note about Side effects - Link to side effects
+  * Note about validation - Link to validation
+  * Note about program rules - Link to program rules
 
 ### Import Summary
 
 <!--DHIS2-SECTION-ID:webapi_nti_import_summary-->
 
-List the endpoints for retrieving log and importSummary
-For each endpoint:
-Example request
-Example response
-Table of params
-Make a note that these are temporal, meaning they will only exists for a limited time
-Explain the “job” / “log” / “notification” response
-Explain the structure of the importSummary
-Explain how to read errors from the importSummary
-Link to   errors
+  * List the endpoints for retrieving log and importSummary
+  * For each endpoint:
+    * Example request
+    * Example response
+    * Table of params
+  * Make a note that these are temporal, meaning they will only exists for a limited time
+  * Explain the “job” / “log” / “notification” response
+  * Explain the structure of the importSummary
+  * Explain how to read errors from the importSummary - Link to   errors
 
 ### Error Codes
 
 <!--DHIS2-SECTION-ID:webapi_nti_error_codes-->
 
 A table with a full reference of error codes, messages and description:
-Errorcode | errormessage | description
+
+| Error Code | Error Message | Description |
+|:--|:----|:----|
+||||
+
 
 ### Validation
 
 <!--DHIS2-SECTION-ID:webapi_nti_validation-->
 
-A full overview of validation that takes place during import
-What properties are required
-What is the validation for certain types of values
-Uniqueness
-Program rules - Link to program rules
-Access control - Link to Tracker access control
-Date restrictions
-Program and Program Stage configuration-based validation
+  * A full overview of validation that takes place during import
+  * What properties are required
+  * What is the validation for certain types of values
+  * Uniqueness
+  * Program rules - Link to program rules
+  * Access control - Link to Tracker access control
+  * Date restrictions
+  * Program and Program Stage configuration-based validation
 
-I am not sure about the best format here, but maybe we split it up into each model:
-Tracked Entity
-Enrollment
-Event
-DataValue -> Link
-TrackedEntityAttributeValue -> Link
-TrackedEntityAttributesValue -> Link
-TrackedEntityAttributeValue
-Value Types
+  * I am not sure about the best format here, but maybe we split it up into each model:
+  * Tracked Entity
+      * Enrollment
+        * Event
+            * DataValue -> Link
+            * TrackedEntityAttributeValue -> Link
+      * TrackedEntityAttributesValue -> Link
+      * TrackedEntityAttributeValue
+        * Value Types
 
 
 ### Program Rules
 
 <!--DHIS2-SECTION-ID:webapi_nti_program_rules-->
 
-Describe when\how rules are now run on the backend as well
-Describe what rules are being run, and which are not being run
-Describe any condition for when something is or is not run
-Describe the different results rules can have (warning, error, etc)
-Side effects(?)
-Link to side effects
+  * Describe when\how rules are now run on the backend as well
+  * Describe what rules are being run, and which are not being run
+  * Describe any condition for when something is or is not run
+  * Describe the different results rules can have (warning, error, etc)
+  * Side effects(?) - Link to side effects
 
 
 ### Side Effects
 
 <!--DHIS2-SECTION-ID:webapi_nti_side_effects-->
 
-Describe what side-effects are
-Note that side-effects can fail even if import succeeds. But not the other way around
-Describe what side-effects we have and what they do (Table?)
-Any configuration that affects side effects.
+  * Describe what side-effects are
+  * Note that side-effects can fail even if import succeeds. But not the other way around
+  * Describe what side-effects we have and what they do (Table?)
+  * Any configuration that affects side effects.
 
 
 ## Tracker Export
@@ -98,15 +97,17 @@ Any configuration that affects side effects.
 <!--DHIS2-SECTION-ID:webapi_nti_export-->
 
 This will be sort of a work-in-progress, but as far as we can, we will describe what we have today. Describe that this is endpoints that are incomplete and will be improved in the future
-Which endpoints are here today?
-For each endpoint:
-Important: What is the intention of the endpoint (exporting a lot of data? Searching? Etc)
-Example payload
-Example response
-Example request
-Table of params
-For endpoints with reduced functionality, make a note of it, and that the old, deprecated endpoint still supports this.
-Make a note that the intention of these endpoints is to support the new format when exporting.
+
+
+  * Which endpoints are here today?
+  * For each endpoint:
+    * Important: What is the intention of the endpoint (exporting a lot of data? Searching? Etc)
+    * Example payload
+    * Example response
+    * Example request
+    * Table of params
+  * For endpoints with reduced functionality, make a note of it, and that the old, deprecated endpoint still supports this.
+  * Make a note that the intention of these endpoints is to support the new format when exporting.
 
 
 ## Tracker Access Control
@@ -118,31 +119,29 @@ Make a note that the intention of these endpoints is to support the new format w
 <!--DHIS2-SECTION-ID:webapi_nti_metadata_sharing-->
 
 
-How sharing relates to how we import and export data
-Explain how the sharing is cascading in our model (if tei can’t be seen, you can’t see enrolment, etc)
+  * How sharing relates to how we import and export data
+  * Explain how the sharing is cascading in our model (if tei can’t be seen, you can’t see enrolment, etc)
 
 ### Organisation Unit Scopes
 
 <!--DHIS2-SECTION-ID:webapi_nti_ou_scope-->
 
-Explain the different scopes
-Explain how they relate to import and export
-Explain how they relate to searching
-Explain how they relate to ownership
-Link to Program Ownership
+  * Explain the different scopes
+  * Explain how they relate to import and export
+  * Explain how they relate to searching
+  * Explain how they relate to ownership - Link to Program Ownership
 
 ### Program Ownership
 
 <!--DHIS2-SECTION-ID:webapi_nti_ownership-->
 
-Describe the idea about Program Ownership
-Temporary ownership
-Program Ownership and Access Level
-Link to Access Level
+  * Describe the idea about Program Ownership
+  * Temporary ownership
+  * Program Ownership and Access Level - Link to Access Level
 
 ### Access Level
 
 <!--DHIS2-SECTION-ID:webapi_nti_access_level-->
 
-What is “access level”?
-How does access level affect import\export?
+  * What is “access level”?
+  * How does access level affect import\export?
