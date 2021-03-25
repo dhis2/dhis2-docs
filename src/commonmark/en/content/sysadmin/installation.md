@@ -413,7 +413,7 @@ sudo chown -R dhis:dhis tomcat-dhis/
 ```
 
 This will create an instance in a directory called `tomcat-dhis`. Note
-that the `tomcat7-user` package allows for creating any number of dhis
+that the `tomcat7-user` package allows for creating any number of DHIS2
 instances if that is desired.
 
 Next edit the file `tomcat-dhis/bin/setenv.sh` and add the lines below.
@@ -1108,22 +1108,7 @@ You must restart each Tomcat instance to make the changes take effect.
 The two instances have now been made aware of each other and DHIS 2 will
 ensure that their caches are kept in sync.
 
-In a Cluster configuration backed by redis, it is useful to know which node in the cluster acts as the leader of the cluster. 
-The following API can be used to get the details of the leader node instance. The API supports both json and xml format type.
-
-    /api/36/cluster/leader
-
-A sample json response is
-
-```json
-{
-"leaderNodeId": "play-dhis2-org-dev",
-"leaderNodeUuid": "d386e46b-26d4-4937-915c-025eb99c8cad",
-"currentNodeId": "play-dhis2-org-dev",
-"currentNodeUuid": "d386e46b-26d4-4937-915c-025eb99c8cad",
-"leader": true
-}
-```
+To understand which node acts as the cluster leader you can access the `/api/36/cluster/leader` web API endpoint. Read more in the web API documentation.
 
 
 ### Redis shared data store cluster configuration
