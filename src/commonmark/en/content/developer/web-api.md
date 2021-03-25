@@ -17,6 +17,7 @@
 !INCLUDE "web-api/users.md", 1
 !INCLUDE "web-api/settings-and-configuration.md", 1
 !INCLUDE "web-api/tracker.md", 1
+!INCLUDE "web-api/new-tracker.md", 1
 !INCLUDE "web-api/email.md", 1
 !INCLUDE "web-api/data-store.md", 1
 !INCLUDE "web-api/apps.md", 1
