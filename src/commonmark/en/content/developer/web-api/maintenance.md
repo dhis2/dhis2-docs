@@ -1,6 +1,6 @@
 # Maintenance
 
-## Generating resource and analytics tables
+## Resource and analytics tables
 
 <!--DHIS2-SECTION-ID:webapi_generating_resource_analytics_tables-->
 
@@ -169,7 +169,7 @@ Maintenance operations are supported in a batch style with a POST request to the
       &periodPruning=true&zeroDataValueRemoval=true&sqlViewsDrop=true&sqlViewsCreate=true
       &categoryOptionComboUpdate=true&cacheClear=true&ouPathsUpdate=true
 
-## System resource
+## System info
 
 <!--DHIS2-SECTION-ID:webapi_system_resource-->
 
@@ -539,6 +539,25 @@ request:
 
     /api/33/system/styles
 
+## Cluster info
+
+When DHIS 2 is set up in a cluster configuration, it is useful to know which node in the cluster acts as the leader of the cluster. The following API can be used to get the details of the leader node instance. The API supports both JSON and XML formats.
+
+```
+GET /api/36/cluster/leader
+```
+
+A sample JSON response looks like this:
+
+```json
+{
+  "leaderNodeId": "play-dhis2-org-dev",
+  "leaderNodeUuid": "d386e46b-26d4-4937-915c-025eb99c8cad",
+  "currentNodeId": "play-dhis2-org-dev",
+  "currentNodeUuid": "d386e46b-26d4-4937-915c-025eb99c8cad",
+  "leader": true
+}
+```
 
 ## Min-max data elements
 
@@ -606,7 +625,7 @@ resource:
 You can filter the response like this:
 
     GET /api/minMaxDataElements.json?filter=dataElement.id:eq:UOlfIjgN8X6
-
+    
     GET /api/minMaxDataElements.json?filter=dataElement.id:in:[UOlfIjgN8X6,xc8gmAKfO95]
 
 The filter parameter for min-max data elements supports two operators:
