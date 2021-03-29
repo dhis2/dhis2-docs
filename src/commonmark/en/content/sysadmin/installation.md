@@ -637,7 +637,7 @@ If you are using Google or Azure AD as an IdP, the default behavior is to use th
 
 > **Note**
 >
-> In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox **External authentication only (OpenID or LDAP)** must be checked and "**OpenID**" field must match the claim (mapping claim) returned by the IdP. Email is used by default by both Google and Azure AD.
+> In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox **External authentication only (OpenID or LDAP)** must be checked and **OpenID** field must match the claim (mapping claim) returned by the IdP. Email is used by default by both Google and Azure AD.
 
 ### Configure the Identity Provider for OIDC
 
@@ -656,7 +656,7 @@ Before you can use OIDC with DHIS2, you must have an account at a supported iden
 Some IdPs will require a redirect URL for your DHIS2 instance. You can construct your URL for the IdP using the following syntax:
 
 ```
-(protocol):/(your DHIS2 host)/oauth2/code/(IdP code)
+(protocol):/(your DHIS2 host)/oauth2/code/{IdP-code}
 ```
 
 An example looks like this:
