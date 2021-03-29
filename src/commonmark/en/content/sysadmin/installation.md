@@ -621,12 +621,9 @@ This section provides general information about using DHIS2 with OIDC, as well a
 
 5. DHIS2 presents the client's authorization code to the IdP along with its own client credentials.
 
-6. The IdP returns an access token and an ID token to DHIS2.
+6. The IdP returns an access token and an ID token to DHIS2. DHIS2 performs a validation of the IdP token (JWT). The ID token is a set of attribute key pairs for the user. The key pairs are called claims.
 
-* JSON Web Token (JWT) validation: DHIS2 performs a validation of the IdP JWT.
-* The ID token is a set of attribute key-pairs for the user. The key-pairs are called claims.
-
-7. DHIS2 identifies the user from the IdP claims and completes the authentication request from Step 1. DHIS2 searches for a user that matches the "email" claim from the IdP. DHIS2 can be configured to use different claims for this process.
+7. DHIS2 identifies the user from the IdP claims and completes the authentication request from Step 1. DHIS2 searches for a user that matches the `email` claim from the IdP. DHIS2 can be configured to use different claims for this process.
 
 8. DHIS2 authorizes the user.
 
@@ -639,7 +636,6 @@ You must have access to an identity provider (IdP) that are supported by DHIS2.
 The following IdPs are currently supported:
 
 * Google
-
 * Azure AD
 * WSO2
 * "Generic"
@@ -659,8 +655,6 @@ If you are using Google or Azure AD as an IdP, the default behavior is to use th
 >
 
 > In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox "**External authentication only (OpenID or LDAP)**" must be checked and "**OpenID**" field must match the claim (mapping claim) returned by the IdP. Email is used by default by both Google and Azure AD.
-
-
 
 ### Configure the Identity Provider for OIDC
 
@@ -700,8 +694,6 @@ The following procedure provides an outline of the steps that you follow with th
 
 4. Set your Authorized redirect URIs to: `(protocol):/(host)/oauth2/code/google` Keep the client secret in a secure place.
 
-
-
 Follow your IdP service instructions to configure your IdP:
 
 * Google: https://developers.google.com/identity/protocols/oauth2/openid-connect
@@ -719,6 +711,14 @@ Follow your IdP service instructions to configure your IdP:
 > Before you perform the steps described here, you must configure the OIDC identity provider (IdP) as described in Configure the Identity Provider for OIDC.
 
 This section describes the configuration options to set in `dhis.conf`. Remember to restart DHIS 2 for changes to take effect.
+
+To enable OIDC, start by setting the following property in `dhis.conf`.
+
+```properties
+oidc.oauth2.login.enabled = on
+```
+
+The following sections cover provider-specific configuration.
 
 #### Google
 
@@ -749,7 +749,6 @@ Note that Azure AD supports having multiple tenants, hence the numbering scheme 
 
 Make sure your Azure AD account in the Azure portal is configured with a redirect URL like `(protocol):/(host)/oauth2/code/my_azure_ad_tenant_id`. To register DHIS 2 as an "app" in the Azure portal, follow these steps:
 
-
 1. Search for and select *App registrations*.
 
 2. Click *New registration*.
@@ -760,13 +759,16 @@ Make sure your Azure AD account in the Azure portal is configured with a redirec
 
 5. Click *Register*.
 
-
 ```properties
 # ----------------------------------------------------------------------
 # Example of Azure OIDC Configuration
 # ----------------------------------------------------------------------
 
-# Generic config parameters (applied to all configured providers):
+# Generic config parameters
+
+# Enable OIDC
+oidc.oauth2.login.enabled = on
+
 # DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
 oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
 
@@ -789,8 +791,6 @@ oidc.provider.azure.0.support_logout = true
 # Second provider (1)
 oidc.provider.azure.1.tenant = my_other_azure_ad_tenant_id
 ...
-
-
 ```
 
 #### Generic Providers
@@ -801,25 +801,26 @@ In the example below we configure the Norwegian governmental health service OIDC
 
 The client name here is "helseid" and will automatically show up on the login page as a button with the same name or the name of the "display_alias" if defined.
 
-
 The DHIS2 generic providers uses the following hard coded defaults for:
 
 * Client Authentication: https://tools.ietf.org/html/rfc6749#section-2.3 > ClientAuthenticationMethod.BASIC
 
 * Authenticated Requests: https://tools.ietf.org/html/rfc6750#section-2 > AuthenticationMethod.HEADER
 
-
 > **Note**
 >
 > The following client names are reserved for non-generic provider use and can not be used here: "google","azure","wso2".
-
 
 ```properties
 # ----------------------------------------------------------------------
 # Example of Generic OIDC Configuration
 # ----------------------------------------------------------------------
 
-# Generic config parameters (applied to all configured providers):
+# Generic config parameters
+
+# Enable OIDC
+oidc.oauth2.login.enabled = on
+
 # DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
 oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
 
