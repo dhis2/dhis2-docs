@@ -38,6 +38,12 @@ has been populated with charts and maps.
 
 ![](resources/images/dashboard/dashboard-view-mode.png)
 
+### Responsive view on small screens
+
+When viewing dashboards on small screens (for instance, mobile phone in portrait orientation), the dashboard will adapt to the screen and show all items in a single column. Some options, including editing, filtering and sharing, will not be available.
+
+![](resources/images/dashboard/dashboard-small-screen.png)
+
 ### Searching in the list of dashboards
 
 You can search for a specific dashboard using the search field in the
@@ -137,6 +143,20 @@ Click on **Exit Print preview** to return to editing the dashboard.
 
 Note that some items may be moved down in order to avoid page breaks. Items may also be shortened to fit on one page. Items that are shortened show an info icon in the upper right corner in preview. This icon is removed in the actual print.
 
+### Restricting dashboard filters
+
+<!--DHIS2-SECTION-ID:restricting-dashboard-filters-->
+
+By default, users will be able to filter dashboard items by any dimension defined in your system. Dashboard filter settings can be edited for a given dashboard by clicking on **Filter settings**.
+
+![](resources/images/dashboard/dashboard-filter-settings-button.png)
+
+To restrict available filters, you can click **Only allow filtering by selected dimensions** and select the filters which you wish to allow on the dashboard. When the dashboard is in view mode, users will only be able to choose from among the filters selected. Period and Organisation Unit will be selected by default but can be removed if desired.
+
+![](resources/images/dashboard/dashboard-filter-settings.png)
+
+In order to save updates to filter settings, you need to first click **Confirm** to close the filter settings and then click **Save changes** to save the dashboard changes.
+
 ### Saving the dashboard
 
 When creating or editing a dashboard, changes are only saved when you
@@ -186,7 +206,7 @@ From view mode, you can toggle showing the description, star a dashboard, apply 
 
 To toggle the description, click on the **...More** button and choose **Show description** (or **Hide description**). This setting will be remembered for all dashboards that you open. This setting applies to you, not other users.
 
-![](resources/images/dashboard/dashboard-title-bar.png)
+![](resources/images/dashboard/dashboard-title-bar-show-description.png)
 
 ### Starred dashboards
 
@@ -234,6 +254,8 @@ reload to show the updated data.
 Filter badges are always visible at the top of the page when
 scrolling the dashboard content.
 
+By default, users are able to filter dashboard items by any dimension defined in your system. To limit available filters, see [Restricting dashboard filters](#restricting-dashboard-filters).
+
 ### Printing a dashboard
 
 From the **...More** menu you can print the active dashboard. There are two styles of dashboard print: dashboard layout and one item per page. For both styles, a title page is added that shows the dashboard title, description (if the Show description setting is on), and any applied dashboard filters.
@@ -262,23 +284,39 @@ Click on the **Print** button in the upper right to trigger the browser print fu
 
 ![](resources/images/dashboard/dashboard-print-oipp.png)
 
-## Dashboard items with charts, pivot tables and maps
+## Dashboard items with charts, pivot tables or maps
+
+Dashboard items with charts, pivot table or maps may have a context menu button in the upper right corner of the item with additional viewing options, depending on the system settings that have been configured for the instance. If all the relevant system settings have been disabled, then there will not be a context menu button. Here are the possible menu options: 
 
 ### Switching between visualizations
 
 Dashboard items showing charts, pivot tables and maps can be toggled
-between these visualizations. Click on the item menu button in the upper right corner of the item and choose the desired view:
+between these visualizations. Click on the item context menu button and choose the desired view (e.g., **View as Table**, **View as Map**, **View as Chart**):
 
 ![](resources/images/dashboard/dashboard-item-menu.png)
 
-## Interpretations
+
+### View item in fullscreen
+
+To view the chart, table or map in fullscreen, click on the **View fullscreen** option. To exit fullscreen, you can either press **esc** key or click the exit button in the upper right corner of the fullscreen view.
+
+### Open in app
+
+To open the visualization in its relevant app (e.g., Data Visualizer, Maps) click on the **Open in [app name] app** option.
+
+
+## Show interpretations and details
 
 You can write interpretations for the chart, pivot table, map, event
-report, and event chart items. From the dashboard item menu, click on **Show interpretations and details**:
+report, and event chart items by clicking on **Show interpretations and details**:
 
 ![](resources/images/dashboard/dashboard-item-menu-interpretations.png)
 
-and the item will be expanded vertically underneath to show the description,
+> **Note**
+> 
+>  This option may be disabled on your system if the system setting _Allow users to show dashboard favorite interpretations and details_ is unchecked.)
+
+The item will be expanded vertically underneath to show the description,
 interpretations and replies. You can like an interpretation, reply to an
 interpretation, and add your own interpretation. You can edit, share or delete
 your own interpretations and replies, and if you have moderator access,

@@ -546,7 +546,7 @@ The available system settings are listed below.
 </tr>
 <tr class="even">
 <td>keyLastMetaDataSyncSuccess</td>
-<td>Keeps timestamp of last successful metadata synchronization	</td>
+<td>Keeps timestamp of last successful metadata synchronization </td>
 <td>No</td>
 </tr>
 <tr class="odd">
@@ -633,6 +633,36 @@ The available system settings are listed below.
 <td>keyHideBiMonthlyPeriods</td>
 <td></td>
 <td>No</td>
+</tr>
+<tr class="even">
+<td>keyGatherAnalyticalObjectStatisticsInDashboardViews</td>
+<td>Whether to gather analytical statistics on objects when they are viewed within a dashboard</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>keyCountPassiveDashboardViewsInUsageAnalytics</td>
+<td>(Reserved for future use)</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>keyDashboardContextMenuItemSwitchViewType</td>
+<td>Allow users to switch dashboard favorites' view type</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>keyDashboardContextMenuItemOpenInRelevantApp</td>
+<td>Allow users to open dashboard favorites in relevant apps</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>keyDashboardContextMenuItemShowInterpretationsAndDetails</td>
+<td>Allow users to show dashboard favorites' interpretations and details</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>keyDashboardContextMenuItemViewFullscreen</td>
+<td>Allow users to view dashboard favorites in fullscreen</td>
+<td>Yes</td>
 </tr>
 </tbody>
 </table>

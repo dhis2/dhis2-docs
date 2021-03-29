@@ -102,9 +102,9 @@ installing the same apps on each individual instance.
 <!--DHIS2-SECTION-ID:webapi_app_store-->
 
 The Web API exposes the content of the DHIS2 App Store as a JSON
-representation which can found at the `/api/appStore` resource.
+representation which can found at the `/api/appHub` resource.
 
-    /api/33/appStore
+    /api/33/appHub
 
 ### Get apps
 
@@ -112,7 +112,7 @@ representation which can found at the `/api/appStore` resource.
 
 You can retrieve apps with a GET request:
 
-    GET /api/33/appStore
+    GET /api/33/appHub
 
 A sample JSON response is described below.
 
@@ -165,4 +165,4 @@ appropriate permissions. An app is referred to using the `id` property
 of the relevant version of the app. An app is installed with a POST
 request with the version id to the following resource:
 
-    POST /api/33/appStore/{app-version-id}
+    POST /api/33/appHub/{app-version-id}

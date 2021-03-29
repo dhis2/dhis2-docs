@@ -671,6 +671,11 @@ time.
 <td><p>Program stage name</p></td>
 <td><pre><code>V{program_stage_name}</code></pre></td>
 </tr>
+<tr class="even">
+<td></td>
+<td><p>Event status</p></td>
+<td><pre><code>V{event_status}</code></pre></td>
+</tr>
 </tbody>
 </table>
 
@@ -1888,6 +1893,36 @@ template.
 <td><p>Program stage name</p></td>
 <td><pre><code>V{program_stage_name}</code></pre></td>
 </tr>
+<tr class="even">
+<td></td>
+<td><p>Event organisation unit</p></td>
+<td><pre><code>V{event_org_unit_id}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Enrollment organisation unit</p></td>
+<td><pre><code>V{enrollment_org_unit_id}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Program stage id</p></td>
+<td><pre><code>V{program_stage_id}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Program id</p></td>
+<td><pre><code>V{program_id}</code></pre></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><p>Program instance id/Enrollment id</p></td>
+<td><pre><code>V{enrollment_id}</code></pre></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><p>Tracked entity id</p></td>
+<td><pre><code>V{tracked_entity_id}</code></pre></td>
+</tr>
 </tbody>
 </table>
 
@@ -2448,6 +2483,11 @@ variables:
 <tr>
 <td><p>analytics_period_end</p></td>
 <td><p>Can be used in filters or expressions for comparing any date to the last inclusive date in each reporting period.</p></td>
+</tr>
+<tr>
+<td><p>event_status</p></td>
+<td><p>Can be used in filters or expressions for comparing event status.</p>
+<pre><code>V{event_status} == &#39;COMPLETED&#39;</code></pre></td>
 </tr>
 </tbody>
 </table>

@@ -627,6 +627,7 @@ Some examples
     /api/categoryOptions.json?restrictToCaptureScope=true&fields=*
 
     /api/programs.json?restrictToCaptureScope=true&fields=*
+(this is now deprecated on programs, see [get organisation units by programs](#get-organisation-units-by-programs))
 
 All existing filters will work in addition to the capture scope filter.
 
@@ -1520,94 +1521,6 @@ ignored:
 }
 ```
 
-## Metadata audit
-
-<!--DHIS2-SECTION-ID:webapi_metadata_audit-->
-
-If you need information about who created, edited, or deleted DHIS2
-metadata objects you can enable metadata audit. There are two
-configuration options (dhis.conf) you can enable to support this:
-
-```properties
-metadata.audit.log = on
-```
-
-This enables additional log output in your servlet container (e.g.
-tomcat catalina.log) which contains full information about the object
-created, object edited, or object deleted including full JSON payload,
-date of audit event, and the user who did the action.
-
-```properties
-metadata.audit.persist = on
-```
-
-This enables persisted audits, i.e. audits saved to the database. The
-information stored is the same as with audit log; however this
-information is now placed into the *metadataaudit* table in the
-database.
-
-We do not recommended enabling these options on a empty database if you
-intend to bootstrap your system, as it slows down the import and the
-audit might not be that useful.
-
-### Metadata audit query
-
-<!--DHIS2-SECTION-ID:webapi_metadata_audit_query-->
-
-If you have enabled persisted metadata audits on your DHIS2 instance,
-you can access metadata audits at the following endpoint:
-
-    /api/33/metadataAudits
-
-The endpoints supports the following query parameters:
-
-<table>
-<caption>Metadata audit API query parameters</caption>
-<colgroup>
-<col style="width: 22%" />
-<col style="width: 27%" />
-<col style="width: 51%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Values</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>uid</td>
-<td></td>
-<td>Object uid to query by (can be more than one)</td>
-</tr>
-<tr class="even">
-<td>code</td>
-<td></td>
-<td>Object code to query by (can be more than one)</td>
-</tr>
-<tr class="odd">
-<td>klass</td>
-<td></td>
-<td>Object class to query by (can be more than one), please note that the full java package name is required here (to avoid name collisions)</td>
-</tr>
-<tr class="even">
-<td>createdAt</td>
-<td></td>
-<td>Query by creation date</td>
-</tr>
-<tr class="odd">
-<td>createdBy</td>
-<td></td>
-<td>Query by who made the change (username)</td>
-</tr>
-<tr class="even">
-<td>type</td>
-<td>CREATE, UPDATE, DELETE</td>
-<td>Query by audit type</td>
-</tr>
-</tbody>
-</table>
 
 ## Schema
 
@@ -2314,6 +2227,41 @@ the following resource.
 </tr>
 </tbody>
 </table>
+
+### Get organisation units by programs
+
+<!--DHIS2-SECTION-ID:webapi_organisation_units_by_programs-->
+
+Purpose-built endpoint to retrieve associations between Programs and Organisation Units. This endpoint is
+the preferred way to retrieve program org unit associations.
+
+
+
+    /api/33/programs/orgUnits?programs=<programUid,anotherProgramUid,...>
+
+responses will have the following format:
+
+    {
+        "<programUid>": [
+            "<orgUnitUid>",
+            "<orgUnitUid>",
+            ...,
+            "<orgUnitUid>"
+        ],
+        "<programUid>": [
+            "<orgUnitUid>",
+            "<orgUnitUid>",
+            ...,
+            "<orgUnitUid>"
+        ],
+        "...": [
+            ...,
+            ...
+        ],
+        "<programUid>": []
+    }
+
+programs with no associated uids (hence accessible by all orgUnits) are returned with an empty array [] of orgUnits.
 
 ## Data sets
 
@@ -3947,16 +3895,30 @@ The contents of file resources are not directly accessible but are
 referenced from other objects (such as data values) to store binary
 content of virtually unlimited size.
 
-Creation of the file resource itself is done through the `/api/fileResources` endpoint as a multipart upload POST-request:
+To create a file resource that does not require a corresponding data value,
+POST to the endpoint `/api/fileResources` with a multipart upload:
 
 ```bash
 curl "https://server/api/fileResources" -X POST
-  -F "file=@/Path/to/file;filename=name-of-file.png"
+  -F "file=@/path/to/file/name-of-file.png"
 ```
 
-The only form parameter required is the *file* which is the file to
-upload. The filename and content-type should also be included in the
-request but will be replaced with defaults when not supplied.
+To create both a file resource and a data value that references the file,
+POST to the `/api/dataValues/file` endpoint in DHIS 2.36 or later:
+
+```bash
+curl "https://server/api/dataValues/file?de=xPTAT98T2Jd
+  &pe=201301&ou=DiszpKrYNg8&co=Prlt0C1RF0s" -X POST
+  -F "file=@/path/to/file/name-of-file.png"
+```
+
+For the `api/fileResources` endpoint, the only form parameter required is
+*file*, which is the file to upload. For the `api/dataValues/file`
+endpoint, the parameters required are the same as for a post to
+`api/dataValues`, with the addition of *file*.
+
+The filename and content-type should also be included in the request but 
+will be replaced with defaults when not supplied.
 
 On successfully creating a file resource the returned data will contain
 a `response` field which in turn contains the `fileResource` like this:

@@ -11,14 +11,13 @@ Live.
 
 <!--DHIS2-SECTION-ID:install_introduction-->
 
-DHIS2 runs on all platforms for which there exists a Java Runtime
-Environment version 8 or higher, which includes most popular operating
+DHIS2 runs on all platforms for which there exists a Java JDK, which includes most popular operating
 systems such as Windows, Linux and Mac. DHIS2 runs on the PostgreSQL
 database system. DHIS2 is packaged as a standard Java Web Archive
 (WAR-file) and thus runs on any Servlet containers such as Tomcat and
 Jetty.
 
-The DHIS2 team recommends Ubuntu 16.04 LTS operating system, PostgreSQL
+The DHIS2 team recommends Ubuntu 18.04 LTS operating system, PostgreSQL
 database system and Tomcat Servlet container as the preferred
 environment for server installations.
 
@@ -28,7 +27,7 @@ as an exhaustive documentation for the mentioned environment. We refer
 to the official Ubuntu, PostgreSQL and Tomcat documentation for in-depth
 reading.
 
-The dhis2-tools Ubuntu package automates many of the tasks described in
+The `dhis2-tools` Ubuntu package automates many of the tasks described in
 the guide below and is recommended for most users, especially those who
 are not familiar with the command line or administration of servers. It
 is described in detail in a separate chapter in this guide.
@@ -61,17 +60,14 @@ CPU cores so the more you can afford, the better the application will perform.
 
 Later DHIS2 versions require the following software versions to operate.
 
-  - Java JDK or JRE version 8 or later. OpenJDK is recommended.
-
-  - An operating system for which a Java JDK or JRE version 8 exists. Linux is recommended.
-
-  - PostgreSQL database version 9.6 or later. The latest PostgreSQL version is recommended.
-
+  - An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
+  - Java JDK. OpenJDK is recommended. 
+      - For DHIS 2 version 2.35 version and later, JDK 11 is recommended and JDK 8 or later is required. 
+      - For DHIS 2 versions older than 2.35, JDK 8 is required.
+  - PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 13 is recommended.
   - PostGIS database extension version 2.2 or later.
-
   - Tomcat servlet container version 8.5.50 or later, or other Servlet API
     3.1 compliant servlet containers.
-    
   - Cluster setup only (optional): Redis data store version 4 or later. 
 
 ## Server setup
@@ -167,8 +163,7 @@ sudo locale-gen nb_NO.UTF-8
 
 <!--DHIS2-SECTION-ID:install_postgresql_installation-->
 
-Install PostgreSQL by
-    invoking:
+Install PostgreSQL by invoking:
 
 ```sh
 sudo apt-get install postgresql-12 postgresql-12-postgis-3
@@ -314,9 +309,13 @@ sudo /etc/init.d/postgresql restart
 
 <!--DHIS2-SECTION-ID:install_java_installation-->
 
-The recommended Java JDK for DHIS 2 is OpenJDK 8. OpenJDK is licensed under 
-the GPL license and can be run free of charge. You can install it with the
-following command:
+The recommended Java JDK for DHIS 2 is OpenJDK 11 (for version 2.35 and later). You can install it with the following command:
+
+```
+sudo apt-get install openjdk-11-jdk
+```
+
+If you prefer OpenJDK 8 (for versions older than 2.35) you can install it with this command:
 
 ```
 sudo apt-get install openjdk-8-jdk
@@ -405,7 +404,7 @@ sudo apt-get install tomcat8-user
 
 This package lets us easily create a new Tomcat instance. The instance
 will be created in the current directory. An appropriate location is the
-home directory of the *dhis* user:
+home directory of the `dhis` user:
 
 ```sh
 cd /home/dhis/
@@ -413,30 +412,30 @@ sudo tomcat8-instance-create tomcat-dhis
 sudo chown -R dhis:dhis tomcat-dhis/
 ```
 
-This will create an instance in a directory called *tomcat-dhis*. Note
-that the tomcat7-user package allows for creating any number of dhis
+This will create an instance in a directory called `tomcat-dhis`. Note
+that the `tomcat7-user` package allows for creating any number of DHIS2
 instances if that is desired.
 
-Next edit the file *tomcat-dhis/bin/setenv.sh* and add the lines below.
+Next edit the file `tomcat-dhis/bin/setenv.sh` and add the lines below.
 The first line will set the location of your Java Runtime Environment,
 the second will dedicate memory to Tomcat and the third will set the
-location for where DHIS2 will search for the *dhis.conf* configuration
+location for where DHIS2 will search for the `dhis.conf` configuration
 file. Please check that the path the Java binaries are correct as they
 might vary from system to system, e.g. on AMD systems you might see
-*/java-8-openjdk-amd64* Note that you should adjust this to your
+`/java-11-openjdk-amd64` Note that you should adjust this to your
 environment:
 
 ```sh
-export JAVA_HOME='/usr/lib/jvm/java-1.8.0-openjdk-amd64/'
+export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
 export JAVA_OPTS='-Xmx7500m -Xms4000m'
 export DHIS2_HOME='/home/dhis/config'
 ```
 
 The Tomcat configuration file is located in
-*tomcat-dhis/conf/server.xml*. The element which defines the connection
+`tomcat-dhis/conf/server.xml`. The element which defines the connection
 to DHIS is the *Connector* element with port 8080. You can change the
 port number in the Connector element to a desired port if necessary. 
-The *relaxedQueryChars* attribute is necessary to allow certain characters 
+The `relaxedQueryChars` attribute is necessary to allow certain characters 
 in URLs used by the DHIS2 front-end.
 
 ```xml
@@ -447,25 +446,14 @@ in URLs used by the DHIS2 front-end.
 ```
 
 The next step is to download the DHIS2 WAR file and place it into the
-webapps directory of Tomcat. You can download the DHIS2 version 2.31 WAR
-release like this (replace 2.31 with your preferred version if
-necessary):
+webapps directory of Tomcat. You can download DHIS2 WAR files from the following location: 
 
 ```sh
-wget https://releases.dhis2.org/2.33/dhis.war
+https://releases.dhis2.org/
 ```
 
-Alternatively, for patch releases, the folder structure is based on the patch
-release ID in a subfolder under the main release. E.g. you can download
-the DHIS2 version 2.31.1 WAR release like this (replace 2.31 with your
-preferred version, and 2.31.1 with you preferred patch, if necessary):
-
-```
-wget https://releases.dhis2.org/2.33/2.33.1/dhis.war
-```
-
-Move the WAR file into the Tomcat webapps directory. We want to call the
-WAR file ROOT.war in order to make it available at localhost directly
+Move the WAR file into the Tomcat `webapps` directory. We want to call the
+WAR file `ROOT.war` in order to make it available at `localhost` directly
 without a context path:
 
 ```sh
@@ -473,7 +461,7 @@ mv dhis.war tomcat-dhis/webapps/ROOT.war
 ```
 
 DHIS2 should never be run as a privileged user. After you have modified
-the setenv.sh file, modify the startup script to check and verify that the
+the `setenv.sh file`, modify the startup script to check and verify that the
 script has not been invoked as root.
 
 ```sh
@@ -639,7 +627,7 @@ The following IdPs are currently supported:
 
 * Azure AD
 * WSO2
-* "Generic"
+* Generic provider
 
 #### Local user account
 
@@ -652,10 +640,8 @@ To sign in to DHIS2, a given user must be provisioned in the IdP and then mapped
 If you are using Google or Azure AD as an IdP, the default behavior is to use the email claim to map IdP identities to DHIS2 user accounts.
 
 > **Note**
-
 >
-
-> In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox "**External authentication only (OpenID or LDAP)**" must be checked and "**OpenID**" field must match the claim (mapping claim) returned by the IdP. Email is used by default by both Google and Azure AD.
+> In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox **External authentication only (OpenID or LDAP)** must be checked and "**OpenID**" field must match the claim (mapping claim) returned by the IdP. Email is used by default by both Google and Azure AD.
 
 
 
@@ -1079,6 +1065,8 @@ the ports configuration properties. If omitted, 4001 will be assigned as
 the listener port and a random free port will be assigned as the remote 
 object port.
 
+The *node.id* configuration property can be used to provide an explicit identification string for an instance. Note that it is up to the administrators to make sure the Node IDs are unique across its cluster. DHIS2 will not enforce uniqueness and will continue to startup even if there are multiple instances in the cluster using the same node ID. 
+
 An example setup for a cluster of two web servers is described below.
 For *server A* available at hostname *193.157.199.131* the following can
 be specified in *dhis.conf*:
@@ -1095,6 +1083,9 @@ cluster.cache.remote.object.port = 5001
 
 # List of Host:port participating in the cluster
 cluster.members = 193.157.199.132:4001
+
+#node identification (optional). 
+node.id = nodeA1
 ```
 
 For *server B* available at hostname *193.157.199.132* the following can
@@ -1108,11 +1099,17 @@ cluster.hostname = 193.157.199.132
 
 # List of servers participating in cluster
 cluster.members = 193.157.199.131:4001
+
+#node identification (optional). 
+node.id = nodeB1
 ```
 
 You must restart each Tomcat instance to make the changes take effect.
 The two instances have now been made aware of each other and DHIS 2 will
 ensure that their caches are kept in sync.
+
+To understand which node acts as the cluster leader you can access the `/api/36/cluster/leader` web API endpoint. Read more in the web API documentation.
+
 
 ### Redis shared data store cluster configuration
 
@@ -1346,7 +1343,7 @@ commands:
 
 Now that we have installed nginx we will now continue to configure
 regular proxying of requests to our Tomcat instance, which we assume
-runs at *http://localhost:8080*. To configure nginx you can open the
+runs at `http://localhost:8080`. To configure nginx you can open the
 configuration file by invoking:
 
     sudo nano /etc/nginx/nginx.conf
@@ -1431,7 +1428,7 @@ the same directory as where your nginx.conf file is located.
 Below is an nginx server block where the certificate files are named
 server.crt and server.key. Since SSL connections usually occur on port
 443 (HTTPS) we pass requests on that port (443) on to the DHIS2 instance
-running on *http://localhost:8080* The first server block will rewrite
+running on `http://localhost:8080`. The first server block will rewrite
 all requests connecting to port 80 and force the use of HTTPS/SSL. This
 is also necessary because DHIS2 is using a lot of redirects internally
 which must be passed on to use HTTPS. Remember to replace
