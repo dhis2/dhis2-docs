@@ -1,8 +1,75 @@
 # New Tracker
 
-  * Describe /tracker as a group of new tracker endpoints, where there are some new changes
-  * List changes we have made between 2.35->2.36
-  * Make a note that the old endpoints are marked as deprecated, but still work. Not all the functionality is ready in the new endpoint yet.
+In version V2.36 DHIS2 introduced a set of brand new tracker endpoints dedicated to importing and querying tracker entities (tracked entity, enrollments, events, relationships, …).
+These endpoints set a discontinuity with earlier implementations given that re-engineering endpoints allowed developers to improve, redesign and use smarter solutions to overall improve tracker.
+
+Newly introduced endpoints:
+* `POST /api/tracker`
+* `GET /api/enrollments`
+* `GET /api/events`
+* `GET /api/trackedEntities`
+* `GET /api/relationships`
+
+Significant changes occurred in version 2.36 to make interface with clients homogeneous, and to allow more flexible ways to use the services.
+
+> ***NOTE:***<br>the old endpoints are marked as deprecated, but still work.<br>Not all the functionalities are ready in the new endpoints yet.
+
+## Changes in interface
+
+Most input/output entities have been adapted to use consistent naming across all services
+
+### Tracker Import (`POST`)
+
+This table highlights V2.36 differences in import payload compared to V2.35
+
+|Entity|V2.35|V2.36|
+|---|---|---|
+|**Attribute**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
+|**DataValue**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
+|**Enrollment**|`enrollment`<br>`enrollment`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`trackedEntityInstance`<br>`enrollmentDate`<br>`incidentDate`<br>`completedDate`|`uid`<br>`enrollment`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`trackedEntity`<br>`enrolledAt`<br>`occurredAt`<br>`completedAt`|
+|**Event**|`trackedEntityInstance`<br>`eventDate`<br>`dueDate`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`completedDate`|`trackedEntity`<br>`occurredAt`<br>`scheduledAt`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`completedAt`|
+|**Note**|`storedDate`<br>`lastUpdated`|`storedAt`<br>`updatedAt`|
+|**ProgramOwner**|`ownerOrgUnit`<br>`trackedEntityInstance`|`orgUnit`<br>`trackedEntity`|
+|**RelationshipItem**|`trackedEntityInstance.trackedEntityInstance`<br>`enrollment.enrollment`<br>`event.event`|`trackedEntity`<br>`enrollment`<br>`event`|
+|**Relationship**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
+|**TrackedEntity**|`trackedEntityInstance`<br>`trackedEntityInstance`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`|`uid`<br>`trackedEntity`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`|
+
+### Tracker Export (`GET`)
+
+`GET` endpoint responses format respect the naming convention reported in the previous paragraph, however, some changes were made regarding
+input parameter to respect the same naming conventions.
+
+These tables highlight V2.36 differences in input parameters for `GET` endpoints compared to V2.35
+
+#### input parameters changes for `GET /api/tracker/enrollments`
+|V2.35|v2.36|
+|---|---|
+|`ou`|`orgUnit`|
+|`lastUpdated`|`lastUpdateDuration`|
+|`updatedAfter`|`updatedWithin`|
+|`programStartDate`|`programEndDate`|
+|`enrolledAfter`|`enrolledBefore`|
+|`trackedEntityInstance`|`trackedEntity`|
+
+#### input parameters changes for `GET /api/tracker/events`
+|V2.35|v2.36|
+|---|---|
+|`trackedEntityInstance`|`trackedEntity`|
+|`startDate`<br>`endDate`|`occurredAfter`<br>`occurredBefore`|
+|`dueDateStart`<br>`dueDateEnd`|`scheduledAfter`<br>`scheduledBefore`|
+|`lastUpdated`|Removed - obsolete, see <br><ul><li>`updatedAfter`</li><li>`updatedBefore`</li></ul>|
+|`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
+
+#### input parameters changes for `GET /api/tracker/trackedEntities`
+|V2.35|v2.36|
+|---|---|
+|`trackedEntityInstance`|`trackedEntity`|
+|`ou`|`orgUnit`|
+|`programStartDate`<br>`programEndDate`|Removed - obsolete, see <br><ul><li>`enrollmentEnrolledAfter`</li><li>`enrollmentEnrolledBefore`</li></ul>|
+|`programEnrollmentStartDate`<br>`programEnrollmentEndDate`|`enrollmentEnrolledAfter`<br>`enrollmentEnrolledBefore`|
+|`programIncidentStartDate`<br>`programIncidentEndDate`|`enrollmentOccurredAfter`<br>`enrollmentOccurredBefore`|
+|`eventStartDate`<br>`eventEndDate`|`eventOccurredAfter`<br>`eventOccurredBefore`|
+|`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
 
 ## Tracker Import
 
