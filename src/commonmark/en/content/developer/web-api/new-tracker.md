@@ -1,6 +1,6 @@
 # New Tracker
 
-In version V2.36 DHIS2 introduced a set of brand new tracker endpoints dedicated to importing and querying tracker entities (tracked entity, enrollments, events, relationships, …).
+In version V2.36 DHIS2 introduced a set of brand new tracker endpoints dedicated to importing and querying tracker entities (tracked entity, enrollments, events, relationships).
 These endpoints set a discontinuity with earlier implementations given that re-engineering endpoints allowed developers to improve, redesign and use smarter solutions to overall improve tracker.
 
 Newly introduced endpoints:
@@ -53,10 +53,8 @@ These tables highlight V2.36 differences in input parameters for `GET` endpoints
 |V2.35|v2.36|
 |---|---|
 |`ou`|`orgUnit`|
-|`lastUpdated`|`lastUpdateDuration`|
-|`updatedAfter`|`updatedWithin`|
-|`programStartDate`|`programEndDate`|
-|`enrolledAfter`|`enrolledBefore`|
+|`lastUpdated`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedWithin`|
+|`programStartDate`<br>`programEndDate`|`enrolledAfter`<br>`enrolledBefore`|
 |`trackedEntityInstance`|`trackedEntity`|
 
 #### Input parameters changes for `GET /api/tracker/events`
