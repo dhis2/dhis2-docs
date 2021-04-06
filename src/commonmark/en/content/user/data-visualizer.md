@@ -166,7 +166,9 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Decimals|Defines the number of decimals that will be used for range axis values.|
 |Steps|Defines the number of ticks that will be visible on the range axis.|
 ||**Legend tab**|
-|Display legend|Applies a legend to the values. This means that you can apply a color to the values. You configure legends in the Maintenance app.<br>The Legend type section allows to control which color is applied. Select Use pre-defined legend per data item to color a data point individually according to each data element or indicator. Select Select a single legend for entire visualization to use a single legend, chosen in a drop-down list of available legends.<br>The Legend style section allows to control where the color is applied, the text or background based on the selected legend. You can use this option for scorecards to identify high and low values at a glance. Not applicable for Single Value visualizations.|
+|Display legend|Applies a legend to the values, which means that you can apply a color to the values. You configure legends in the `Maintenance app`.
+|Legend type| Controls which legend is applied.<br>`Use pre-defined legend per data item` applies a legend to each data element or indicator individually, based on the legend assigned to each one in the `Maintenance app`.<br>`Select a single legend for entire visualization` applies a single legend to all data items, chosen in a drop-down list of available legends.
+|Legend style| Controls where the color from the legend is applied, either to the text or the background. You can use this option for scorecards to identify high and low values at a glance. Not applicable for `Single Value`, `Column` or `Bar` visualizations.|
 ||**Series tab**|
 ||Options for adding more axes and changing how different series are displayed are set in this tab. Please see a detailed description of how this works in the corresponding sections below.|
 ||**Style tab**|
