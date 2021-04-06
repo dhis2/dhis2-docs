@@ -638,7 +638,7 @@ The following IdPs are currently supported:
 * Google
 * Azure AD
 * WSO2
-* "Generic"
+* Generic provider
 
 #### Local user account
 
@@ -650,11 +650,7 @@ To sign in to DHIS2, a given user must be provisioned in the IdP and then mapped
 
 If you are using Google or Azure AD as an IdP, the default behavior is to use the email claim to map IdP identities to DHIS2 user accounts.
 
-> **Note**
-
->
-
-> In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox "**External authentication only (OpenID or LDAP)**" must be checked and "**OpenID**" field must match the claim (mapping claim) returned by the IdP. Email is used by default by both Google and Azure AD.
+In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox *External authentication only (OpenID or LDAP)* must be checked and *OpenID* field must match the claim (mapping claim) returned by the IdP. Email is used by default by both Google and Azure AD.
 
 ### Configure the Identity Provider for OIDC
 
@@ -686,7 +682,7 @@ https://dhis2.org/oauth2/code/google
 
 The following procedure provides an outline of the steps that you follow with the provider. As an example, the procedure discusses using Google as an identity provider. However, each provider has a somewhat different flow, so the specifics of the steps (and their order) might vary depending on your provider.
 
-1. Register at the provider's developer site and sign in. For example, for Google, you can go to the Developers Console at this URL: https://console.developers.google.com.
+1. Register at the provider's developer site and sign in. For example, for Google, you can go to the Google [developer console](https://console.developers.google.com).
 
 2. Create a new project or application.
 
@@ -696,9 +692,9 @@ The following procedure provides an outline of the steps that you follow with th
 
 Follow your IdP service instructions to configure your IdP:
 
-* Google: https://developers.google.com/identity/protocols/oauth2/openid-connect
+* [Google](https://developers.google.com/identity/protocols/oauth2/openid-connect)
 
-* Azure AD: https://medium.com/xebia-engineering/authentication-and-authorization-using-azure-active-directory-266980586ab8
+* [Azure AD](https://medium.com/xebia-engineering/authentication-and-authorization-using-azure-active-directory-266980586ab8)
 
 > **Note**
 >
@@ -727,7 +723,11 @@ The following sections cover provider-specific configuration.
 # Example of Google OIDC Configuration
 # ----------------------------------------------------------------------
 
-# Generic config parameters (applied to all configured providers):
+# Generic config parameters
+
+# Enable OIDC
+oidc.oauth2.login.enabled = on
+
 # DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
 oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
 
@@ -799,7 +799,7 @@ The "generic" provider can be used to configure any OIDC provider that uses the 
 
 In the example below we configure the Norwegian governmental health service OIDC provider.
 
-The client name here is "helseid" and will automatically show up on the login page as a button with the same name or the name of the "display_alias" if defined.
+The client name here is *helseid* and will automatically show up on the login page as a button with the same name or the name of the *display_alias* if defined.
 
 The DHIS2 generic providers uses the following hard coded defaults for:
 
