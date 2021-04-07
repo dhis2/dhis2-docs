@@ -1272,35 +1272,35 @@ geospatial datasets from Google's vast catalog. These layers is useful
 in combination with thematic and event layers to enhance analysis. The
 following layers are supported:
 
-- Population density estimates with national totals adjusted to match
-  UN population division estimates. Population in 100 x 100 m grid
-  cells (from 2010).
+![](resources/images/maps/maps_earth_eng_layer_types.png)
 
-- Elevation above sea-level. You can adjust the min and max values so
-  it better represents the terrain in your region.
+- **Population**: Detailed population data from WorldPop showing the estimated
+  number of poeple living in an area. Available for yearly periods from 2000 and
+  onwards.
 
-- Temperature: Land surface temperatures collected from satellite.
+- **Population age groups**: Estimated number of people living in an area, grouped
+  by age and gender.
+
+- **Elevation**: Elevation above sea level.
+
+- **Precipitation**: The values are in millimeters within 5 days periods. Updated
+  monthly, during the 3rd week of the following month. Collected from satellite and weather stations on the ground.
+
+- **Temperature**: Land surface temperatures collected from satellite.
   Blank spots will appear in areas with a persistent cloud cover.
 
-- Precipitation collected from satellite and weather stations on the
-  ground. The values are in millimeters within 5 days periods. Updated
-  monthly, during the 3rd week of the following month.
-
-- Land cover: 17 distinct landcover types collected from satellites.
-
-- Nighttime lights: Lights from cities, towns, and other sites with
-  persistent lighting, including gas flares (from 2013).
+- **Land cover**: 17 distinct landcover types collected from satellites by NASA.
 
 ### Create an Earth Engine layer
 
 To create an Earth Engine layer, choose the desired layer from the **Add
-layer**selection. This opens the layer configuration dialog.
+layer** selection. This opens the layer configuration dialog.
 
 1.  In the **DATA** tab:
 
     ![](resources/images/maps/maps_ee_layer_dialog_DATA.png)
 
-    - For "population age groups" you can select the age/sex **groups**
+    - For "population age groups" you can select the age/gender **groups**
       you would like to include when aggregating the data.
 
     - Select the **aggregation methods** you would like to use when calculating
@@ -1370,6 +1370,45 @@ layer**selection. This opens the layer configuration dialog.
       values available within a 5 km distance from a facility.
 
 5.  Click **ADD LAYER**.
+
+### Listing of data values
+
+Earth Engine layers have a **data table** option that can be toggled on or
+off from the layer card.
+
+![](resources/images/maps/maps_ee_layer_data_table.png)
+
+The data table displays all the aggregated values for the organisation units selected.
+
+- clicking on a title will sort the table based on that column;
+  toggling between ascending and descending.
+
+- entering text or expressions into the filter fields below the titles
+  will apply those filters to the data, and the display will adjust
+  according to the filter. The filters are applied as follows:
+
+- NAME
+
+  filter by org unit name containing the given text
+
+- ID
+
+  filter by event IDs containing the given text
+
+- TYPE
+
+  filter by GIS display types containing the given text
+
+- AGGREGATION VALUES
+
+  there is one column for each of the aggregation types selected
+
+  numeric data values can be filtered by given numbers, and/or ranges,
+  for example: 2,\>3&\<8
+
+> **Note**
+>
+> Data table filters are temporary and are not saved with the map layers.
 
 ## Add external map layers
 
