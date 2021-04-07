@@ -1439,6 +1439,8 @@ Along the top of the overlay card from left to right are:
 
 - An arrow symbol to collapse and expand the overlay card
 
+In the middle of the card is a legend if the layer has one.
+
 Along the bottom of the overlay card from left to right are:
 
 - A slider for modifying the layer transparency
