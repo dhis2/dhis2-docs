@@ -1296,19 +1296,86 @@ following layers are supported:
 To create an Earth Engine layer, choose the desired layer from the **Add
 layer**selection. This opens the layer configuration dialog.
 
-1.  In the **STYLE** tab
+1.  In the **DATA** tab:
 
-    ![](resources/images/maps/maps_ee_layer_dialog_POPULATION.png)
+    ![](resources/images/maps/maps_ee_layer_dialog_DATA.png)
+
+    - For "population age groups" you can select the age/sex **groups**
+      you would like to include when aggregating the data.
+
+    - Select the **aggregation methods** you would like to use when calculating
+      values for the organisation units selected.
+
+      - **Sum**: Calculates the total number within the organisation units.
+        Recommended to use for the population layers.
+
+      - **Min**: Returns the minimum value in the layer unit displayed below the
+        selection. For population layers it will be the minimum _people per
+        hectar_. For elevation layer it will return the lowest elevation (meters
+        above sea level) for each organisation unit selected.
+
+      - **Max**: Returns the maximum value in the layer unit. For population
+        layers it will be the minimum _people per hectar_. For elevation layer it
+        will return the highest elevation for each organisation unit.
+
+      - **Mean**: Returns the mean value in the layer unit. For population layers
+        it will be the mean _people per hectar_. For precipitation layer it will
+        be the mean rainfall in millimeters across the organisation unit.
+
+      - **Median**: Returns the mean value in the layer unit. For population layers
+        it will be the median _people per hectar_. For temperature layer it will
+        be the median °C during daytime for the organisation unit.
+
+      - **Standard deviation**: Returns the standard deviation value in the layer
+        unit.
+
+      - **Variance**: Returns the variance value in the layer unit.
+
+2.  In the **PERIOD** tab
+
+    ![](resources/images/maps/maps_ee_layer_dialog_PERIOD.png)
+
+    - Select the period for the data source. The available periods are set by
+      data provider. There is only one period for the "population age groups" layer,
+      while the "population" layer has yearly data available from 2000 and onwards.
+      Precipitation data is available in 5 days periods, and temperature data for
+      8 days periods.
+
+3.  In the **ORG UNITS** tab:
+
+    ![](resources/images/maps/maps_ee_layer_dialog_ORG_UNITS.png)
+
+    - Select the organisation units you where you want to see aggregated data values.
+      It is possible to select either
+
+      - One or more specific organisation units, organisation unit levels in
+        the hierarchy, organisation unit groups, or
+
+      - A relative level in the organisation unit hierarchy, with
+        respect to the user. By selecting a **User organisation
+        unit** the map data will appear differently for users at
+        different levels in the organisation unit hierarchy.
+
+4.  In the **STYLE** tab
+
+    ![](resources/images/maps/maps_ee_layer_dialog_STYLE.png)
 
     - Modify the parameters specific to the layer type.
 
     - Adjust the legend range, steps and colors, as desired.
 
-2.  Click **ADD LAYER**.
+    - If you select organisation units having a single point coordinate
+      (facilities) you can set a radius buffer to calculate the
+      data value within. A radius of 5000 meters will aggregate all
+      values available within a 5 km distance from a facility.
+
+5.  Click **ADD LAYER**.
 
 ## Add external map layers
 
 <!--DHIS2-SECTION-ID:using_maps_external_map_layers-->
+
+![](resources/images/maps/maps_terrain_imagery.png)
 
 External map layers are represented as either:
 
@@ -1339,14 +1406,6 @@ Along the bottom of the overlay card from left to right are:
 
 - A delete (trash can) icon to remove the layer from the current
   thematic map.
-
-Here are some examples of external layers:
-
-![](resources/images/maps/maps_black_basemap_and_nighttime_lights.png)
-
-![](resources/images/maps/maps_terrain_imagery.png)
-
-![](resources/images/maps/maps_aerial_imagery.png)
 
 ## File menu
 
