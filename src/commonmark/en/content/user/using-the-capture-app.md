@@ -227,7 +227,7 @@ Choosing reporting date as either "Enrollment date" or "No value" indicates that
 
 #### Schedule type of event
 
-When the "Open data entry after enrollment" is not checked, it means that the event generated should be a SCHEDULE event. 
+When the "Open data entry after enrollment" is not checked, it means that the event generated will be a SCHEDULE event. 
 The scheduled event does not have an execution date, but only a due date. The due date for these future events are calculated based on either enrollment date or incident date. If the flag below is checked, the reference date is the enrollment date, if the flag is not checked, the incident date is used.
 ![](resources/images/capture_app/auto-generated-07.png)
 
