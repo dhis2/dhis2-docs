@@ -194,7 +194,7 @@ To configure the auto generation of an event you need to take the following step
 2. Select the Program tab
 ![](resources/images/capture_app/auto-generated-01.png)
 
-3. Select a Tracker program.
+3. Select a Tracker program
 ![](resources/images/capture_app/auto-generated-02.png)
 
 4. Select the Program stages tab
