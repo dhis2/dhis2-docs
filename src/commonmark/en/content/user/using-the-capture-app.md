@@ -237,7 +237,7 @@ On SCHEDULE type of events the user can also configure the "Scheduled days from 
 In the example below we increase the due date by 30 days.
 ![](resources/images/capture_app/auto-generated-08.png)
 
-When the standard interval does not contain a number or contains 0 the reference date is used without adding any days to it.
+When the "Scheduled days from start" does not contain a number or contains 0 the reference date is used without adding any days to it.
 
 
 ### Possible duplicates detection
