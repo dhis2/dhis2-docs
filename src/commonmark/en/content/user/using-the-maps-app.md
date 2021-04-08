@@ -1268,10 +1268,10 @@ To clear all data in a boundary layer:
 ![](resources/images/maps/maps_earth_eng_layer.png)
 
 The layers from Google Earth Engine lets you display and aggregate external
-data to your organisation units. Use the population layer from WorldPop to get the
-estimated number of people living in a district, or within a distance from a health
-facility. The elevation layer allows you to find the lowest, highest and mean
-elevation. Use the landcover layer to see the forest cover, croplands
+data to your organisation units. Use the population layer to calculate the
+number of people living in a district, or within a distance from a health
+facility. The elevation layer allows you to find the lowest, highest and
+mean elevation. Use the landcover layer to see the forest cover, croplands
 or urban areas, and calculate the percentage for each organisation unit.
 
 The following layers are supported:
@@ -1308,15 +1308,15 @@ layer** selection. This opens the layer configuration dialog.
       you would like to include when aggregating the data.
 
     - Select the **aggregation methods** you would like to use when calculating
-      values for the organisation units selected.
+      values for the selected organisation units.
 
-      - **Sum**: Calculates the total number within the organisation units.
+      - **Sum**: Calculates the total number within each organisation unit.
         Recommended to use for the population layers.
 
       - **Min**: Returns the minimum value in the layer unit displayed below the
         selection. For population layers it will be the minimum _people per
         hectar_. For elevation layer it will return the lowest elevation (meters
-        above sea level) for each organisation unit selected.
+        above sea level).
 
       - **Max**: Returns the maximum value in the layer unit. For population
         layers it will be the minimum _people per hectar_. For elevation layer it
