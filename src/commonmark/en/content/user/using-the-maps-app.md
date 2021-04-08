@@ -181,17 +181,17 @@ Along the bottom of the basemap card is:
     In addition, there are several layers provided by Google Earth
     Engine and other services:
 
-    - Population density
+    - Population
+
+    - Population age groups
 
     - Elevation
 
-    - Temperature
-
     - Precipitation
 
-    - Landcover
+    - Temperature
 
-    - Nighttime lights
+    - Landcover
 
     _Labels overlay_ is an [external
     layer](#using_maps_external_map_layers) defined in the Maintenance app.
@@ -1267,10 +1267,14 @@ To clear all data in a boundary layer:
 
 ![](resources/images/maps/maps_earth_eng_layer.png)
 
-The Google Earth Engine layer lets you display satellite imagery and
-geospatial datasets from Google's vast catalog. These layers is useful
-in combination with thematic and event layers to enhance analysis. The
-following layers are supported:
+The layers from Google Earth Engine lets you display and aggregate external
+data to your organisation units. Use the population layer from WorldPop to get the
+estimated number of people living in a district, or within a distance from a health
+facility. The elevation layer allows you to find the lowest, highest and mean
+elevation. Use the landcover layer to see the forest cover, croplands
+or urban areas, and calculate the percentage for each organisation unit.
+
+The following layers are supported:
 
 ![](resources/images/maps/maps_earth_eng_layer_types.png)
 
@@ -1371,6 +1375,9 @@ layer** selection. This opens the layer configuration dialog.
 
 5.  Click **ADD LAYER**.
 
+Click on the map regions or facilities to see the aggregation result for that
+organisation unit.
+
 ### Listing of data values
 
 Earth Engine layers have a **data table** option that can be toggled on or
@@ -1451,6 +1458,8 @@ Along the bottom of the overlay card from left to right are:
 ## File menu
 
 <!--DHIS2-SECTION-ID:using_maps_file_menu-->
+
+![](resources/images/maps/maps_file_menu.png)
 
 Use the **File menu** to manage your maps. Several menu items will be
 disabled until you open or save a map.
