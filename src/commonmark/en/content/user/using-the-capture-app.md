@@ -217,7 +217,7 @@ Based on configuration, the status of the auto generated event can either be ACT
 
 #### Active type of event
 
-If the stage has the "Open data entry form after enrollment" selected, then the event will be generated into the ACTIVE status, and an execution date will be calculated for the event, in addition to a due date.
+If the stage has the "Open data entry form after enrollment" selected, then the event will be generated into the ACTIVE status. Also its execution date will be calculated for the event, in addition to a due date.
 The generation happens based on either the enrollment date or the incident date. You can choose the reporting date from the dropdown menu "Report date to use".
 ![](resources/images/capture_app/auto-generated-06.png)
 
