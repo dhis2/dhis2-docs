@@ -209,7 +209,7 @@ To configure the auto generation of an event you need to take the following step
 Now, for every new enrollment in this program one event will be auto generated. One program can also have multiple stages marked as auto generated.
 For all the auto generated events 
 
- a) the organisation unit will be the same as the user is reporting for during the enrollment and 
+ a) the organisation unit will be the same as the user is reporting for, during the enrollment and 
  
  b) all these events will be part of the current enrollment. 
  
