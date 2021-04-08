@@ -211,7 +211,7 @@ For all the auto generated events
 
  a) the organisation unit will be the same as the user is reporting for, during the enrollment and 
  
- b) all these events will be part of the current enrollment. 
+ b) all the events will be part of the current enrollment. 
  
 Based on configuration, the status of the auto generated event can either be ACTIVE or SCHEDULE.
 
