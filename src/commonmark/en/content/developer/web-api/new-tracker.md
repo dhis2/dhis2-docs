@@ -143,5 +143,11 @@ This will be sort of a work-in-progress, but as far as we can, we will describe 
 
 <!--DHIS2-SECTION-ID:webapi_nti_access_level-->
 
-  * What is “access level”?
-  * How does access level affect import\export?
+DHIS2 treats Tracker data with extra level of protection. In addition to the standard feature of metadata and data protection through sharing settings, Tracker data are shielded with various access level protection mechanisms. Currently there are 4 access levels: Open, Audited, Protected and Closed.
+
+These access levels are triggered only when users try to interact with data outside their capture scope. If request to data is within the capture scope, DHIS2 applies standard metadata and data sharing protection. To access data outside capture scope, but within search scope, users need to pass through extra level of protection or what we call in DHIS2 concept of “breaking the glass”. The concept is, accessing outside data needs to be justified, has consequence and will be audited for others to see it.  The way to configure the level of consequence of breaking the glass is by setting Program’s access level to either Open, Audited, Protected or Closed.
+
+1. Open: as the name implies, accessing data outside capture scope is possible without any justification or consequence. It is as if the data is within the capture scope. However, it is not possible to modify data captured by another org unit irrespective of the access level.
+2.	Audited: this is the same as Open access level. The difference here is that the system will automatically put audit log entry on the data being accessed by the specific user.
+3.	Protected: this takes audited access protection one level up. This time users need to provide a justification why they are accessing the data at hand. The system will then put a log of both the justification and access audit.
+4. 	Closed: as the name implies, data recorded under programs configured with access level closed will not be accessed outside the capturing orgunit. Everything is closed for those outside the capture scope.
