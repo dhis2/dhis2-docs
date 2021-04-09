@@ -181,17 +181,17 @@ Along the bottom of the basemap card is:
     In addition, there are several layers provided by Google Earth
     Engine and other services:
 
-    - Population density
+    - Population
+
+    - Population age groups
 
     - Elevation
 
-    - Temperature
-
     - Precipitation
 
-    - Landcover
+    - Temperature
 
-    - Nighttime lights
+    - Landcover
 
     _Labels overlay_ is an [external
     layer](#using_maps_external_map_layers) defined in the Maintenance app.
@@ -1267,48 +1267,161 @@ To clear all data in a boundary layer:
 
 ![](resources/images/maps/maps_earth_eng_layer.png)
 
-The Google Earth Engine layer lets you display satellite imagery and
-geospatial datasets from Google's vast catalog. These layers is useful
-in combination with thematic and event layers to enhance analysis. The
-following layers are supported:
+The layers from Google Earth Engine lets you display and aggregate external
+data to your organisation units. Use the population layer to calculate the
+number of people living in a district, or within a distance from a health
+facility. The elevation layer allows you to find the lowest, highest and
+mean elevation. Use the landcover layer to see the forest cover, croplands
+or urban areas, and calculate the percentage for each organisation unit.
 
-- Population density estimates with national totals adjusted to match
-  UN population division estimates. Population in 100 x 100 m grid
-  cells (from 2010).
+The following layers are supported:
 
-- Elevation above sea-level. You can adjust the min and max values so
-  it better represents the terrain in your region.
+![](resources/images/maps/maps_earth_eng_layer_types.png)
 
-- Temperature: Land surface temperatures collected from satellite.
+- **Population**: Detailed population data from WorldPop showing the estimated
+  number of poeple living in an area. Available for yearly periods from 2000 and
+  onwards.
+
+- **Population age groups**: Estimated number of people living in an area, grouped
+  by age and gender.
+
+- **Elevation**: Elevation above sea level.
+
+- **Precipitation**: The values are in millimeters within 5 days periods. Updated
+  monthly, during the 3rd week of the following month. Collected from satellite and weather stations on the ground.
+
+- **Temperature**: Land surface temperatures collected from satellite.
   Blank spots will appear in areas with a persistent cloud cover.
 
-- Precipitation collected from satellite and weather stations on the
-  ground. The values are in millimeters within 5 days periods. Updated
-  monthly, during the 3rd week of the following month.
-
-- Land cover: 17 distinct landcover types collected from satellites.
-
-- Nighttime lights: Lights from cities, towns, and other sites with
-  persistent lighting, including gas flares (from 2013).
+- **Land cover**: 17 distinct landcover types collected from satellites by NASA.
 
 ### Create an Earth Engine layer
 
 To create an Earth Engine layer, choose the desired layer from the **Add
-layer**selection. This opens the layer configuration dialog.
+layer** selection. This opens the layer configuration dialog.
 
-1.  In the **STYLE** tab
+1.  In the **DATA** tab:
 
-    ![](resources/images/maps/maps_ee_layer_dialog_POPULATION.png)
+    ![](resources/images/maps/maps_ee_layer_dialog_DATA.png)
+
+    - For "population age groups" you can select the age/gender **groups**
+      you would like to include when aggregating the data.
+
+    - Select the **aggregation methods** you would like to use when calculating
+      values for the selected organisation units.
+
+      - **Sum**: Calculates the total number within each organisation unit.
+        Recommended to use for the population layers.
+
+      - **Min**: Returns the minimum value in the layer unit displayed below the
+        selection. For population layers it will be the minimum _people per
+        hectar_. For elevation layer it will return the lowest elevation (meters
+        above sea level).
+
+      - **Max**: Returns the maximum value in the layer unit. For population
+        layers it will be the minimum _people per hectar_. For elevation layer it
+        will return the highest elevation for each organisation unit.
+
+      - **Mean**: Returns the mean value in the layer unit. For population layers
+        it will be the mean _people per hectar_. For precipitation layer it will
+        be the mean rainfall in millimeters across the organisation unit.
+
+      - **Median**: Returns the mean value in the layer unit. For population layers
+        it will be the median _people per hectar_. For temperature layer it will
+        be the median °C during daytime for the organisation unit.
+
+      - **Standard deviation**: Returns the standard deviation value in the layer
+        unit.
+
+      - **Variance**: Returns the variance value in the layer unit.
+
+2.  In the **PERIOD** tab
+
+    ![](resources/images/maps/maps_ee_layer_dialog_PERIOD.png)
+
+    - Select the period for the data source. The available periods are set by
+      data provider. There is only one period for the "population age groups" layer,
+      while the "population" layer has yearly data available from 2000 and onwards.
+      Precipitation data is available in 5 days periods, and temperature data for
+      8 days periods.
+
+3.  In the **ORG UNITS** tab:
+
+    ![](resources/images/maps/maps_ee_layer_dialog_ORG_UNITS.png)
+
+    - Select the organisation units you where you want to see aggregated data values.
+      It is possible to select either
+
+      - One or more specific organisation units, organisation unit levels in
+        the hierarchy, organisation unit groups, or
+
+      - A relative level in the organisation unit hierarchy, with
+        respect to the user. By selecting a **User organisation
+        unit** the map data will appear differently for users at
+        different levels in the organisation unit hierarchy.
+
+4.  In the **STYLE** tab
+
+    ![](resources/images/maps/maps_ee_layer_dialog_STYLE.png)
 
     - Modify the parameters specific to the layer type.
 
     - Adjust the legend range, steps and colors, as desired.
 
-2.  Click **ADD LAYER**.
+    - If you select organisation units having a single point coordinate
+      (facilities) you can set a radius buffer to calculate the
+      data value within. A radius of 5000 meters will aggregate all
+      values available within a 5 km distance from a facility.
+
+5.  Click **ADD LAYER**.
+
+Click on the map regions or facilities to see the aggregation result for that
+organisation unit.
+
+### Listing of data values
+
+Earth Engine layers have a **data table** option that can be toggled on or
+off from the layer card.
+
+![](resources/images/maps/maps_ee_layer_data_table.png)
+
+The data table displays all the aggregated values for the organisation units selected.
+
+- clicking on a title will sort the table based on that column;
+  toggling between ascending and descending.
+
+- entering text or expressions into the filter fields below the titles
+  will apply those filters to the data, and the display will adjust
+  according to the filter. The filters are applied as follows:
+
+- NAME
+
+  filter by org unit name containing the given text
+
+- ID
+
+  filter by event IDs containing the given text
+
+- TYPE
+
+  filter by GIS display types containing the given text
+
+- AGGREGATION VALUES
+
+  there is one column for each of the aggregation types selected
+
+  numeric data values can be filtered by given numbers, and/or ranges,
+  for example: 2,\>3&\<8
+
+> **Note**
+>
+> Data table filters are temporary and are not saved with the map layers.
 
 ## Add external map layers
 
 <!--DHIS2-SECTION-ID:using_maps_external_map_layers-->
+
+![](resources/images/maps/maps_terrain_imagery.png)
 
 External map layers are represented as either:
 
@@ -1333,6 +1446,8 @@ Along the top of the overlay card from left to right are:
 
 - An arrow symbol to collapse and expand the overlay card
 
+In the middle of the card is a legend if the layer has one.
+
 Along the bottom of the overlay card from left to right are:
 
 - A slider for modifying the layer transparency
@@ -1340,17 +1455,11 @@ Along the bottom of the overlay card from left to right are:
 - A delete (trash can) icon to remove the layer from the current
   thematic map.
 
-Here are some examples of external layers:
-
-![](resources/images/maps/maps_black_basemap_and_nighttime_lights.png)
-
-![](resources/images/maps/maps_terrain_imagery.png)
-
-![](resources/images/maps/maps_aerial_imagery.png)
-
 ## File menu
 
 <!--DHIS2-SECTION-ID:using_maps_file_menu-->
+
+![](resources/images/maps/maps_file_menu.png)
 
 Use the **File menu** to manage your maps. Several menu items will be
 disabled until you open or save a map.
