@@ -3,7 +3,7 @@
 Version 2.36 of DHIS2 introduced a set of brand new tracker endpoints dedicated to importing and querying tracker objects (Including tracked entities, enrollments, events, and relationships).
 These new endpoints set a discontinuity with earlier implementations. Re-engineering the endpoints allowed developers to improve, redesign, and formalize the API's behavior to improve the Tracker services.
 
-The newly introduced endpoints consists of:
+The newly introduced endpoints consist of:
 * `POST /api/tracker`
 * `GET /api/enrollments`
 * `GET /api/events`
@@ -509,7 +509,7 @@ A table with a full reference of error codes, messages and description:
 
 Tracker export endpoints are a set of services which allow clients to query and retrieve objects stored using import endpoint.
 
-Beside differences highlighted in (TODO ADD REFERENCE TO INTERFACE CHANGELOG), request parameters for these endpoints match older ones.
+Beside differences highlighted in **[Changes in the API](#Changes-in-the-API)**, request parameters for these endpoints match older ones.
 
 Being currently under development, some internal implementation might change over time, however, 
 we expect that interfaces (`request`/`response`) will receive minor if not any changes at all.
@@ -543,14 +543,30 @@ The following endpoint supports common parameters for pagination
 - **Events** `GET /api/tracker/events`
 - **Enrollments** `GET /api/tracker/enrollments`
 
+#### Request parameters for pagination
+
 |request parameter|type|allowed values|description|
 |---|---|---|---|
 |`page`|`Integer`| |Page number to return. Defaults to 1 if missing|
-|`pageSize`|`Integer`|Page size. Defaults to 50 if missing |
+|`pageSize`|`Integer`| |Page size. Defaults to 50 if missing|
 |`totalPages`|`Boolean`| |Indicates whether to return the total number of pages in the response (implies higher response time)|
 |`skipPaging`|`Boolean`| |Indicates whether paging should be ignored and all rows should be returned TODO [VERIFY]|
 |`paging`|`Boolean`| |Indicates whether paging is enabled TODO [VERIFY]| 
 |`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
+
+#### Request parameters for Organisational Unit selection mode
+
+The available organisation unit selection modes are explained in the
+following table.
+
+|Mode|Description|
+|---|---|
+|`SELECTED`|	Organisation units defined in the request.|
+|`CHILDREN`|	The selected organisation units and the immediate children, i.e. the organisation units at the level below.|
+|`DESCENDANTS`|	The selected organisation units and all children, i.e. all organisation units in the sub-hierarchy.|
+|`ACCESSIBLE`|	The data view organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy. Will fall back to data capture organisation units associated with the current user if the former is not defined.|
+|`CAPTURE`|	The data capture organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy.|
+|`ALL`|	All organisation units in the system. Requires the ALL authority.|
 
 ### Tracked Entities
 
@@ -558,7 +574,7 @@ Two endpoints are dedicated to tracked entities:
 
 - `GET /api/tracker/trackedEntities`
   - retrieves tracked entities matching given criteria
-- `GET /api/tracker/{id}`
+- `GET /api/tracker/trackedEntities/{id}`
   - retrieves a tracked entity given the provided id
     
 #### Tracked Entities Collection endpoint `GET /api/tracker/trackedEntities`
@@ -575,7 +591,7 @@ It's intended to return a collection of tracked entities with pagination TODO [V
 |`attribute`|`String`|Comma separated values of attribute `UID` ??| ??|
 |`filter`|`String`|Comma separated values of ??|??|
 |`orgUnit`|`String`|semicolon-delimited list of organisational unit `UID`|Only return tracked entity instances belonging to provided organisational units|
-|`ouMode`|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected selected organisation units only. See table below for explanations.|
+|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected selected organisation units only. See table below for explanations.|
 |`program`|`String`|Program `UID`| a Program `UID` for which instances in the response must be enrolled in|
 |`programStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The ProgramStatus of the Tracked Entity Instance in the given program|
 |`programStage`|`String`|`UID`|a Program Stage `UID` for which instances in the response must have events on|
@@ -599,17 +615,6 @@ It's intended to return a collection of tracked entities with pagination TODO [V
 |`includeAllAttributes`|`Boolean`|`true`&#124;`false`|Indicates whether to include all TEI attributes|
 |`attachment`|`String`| |The file name in case of exporting as a file|
 
-The available organisation unit selection modes are explained in the
-following table.
-
-|Mode|Description|
-|---|---|
-|`SELECTED`|	Organisation units defined in the request.|
-|`CHILDREN`|	The selected organisation units and the immediate children, i.e. the organisation units at the level below.|
-|`DESCENDANTS`|	The selected organisation units and all children, i.e. all organisation units in the sub-hierarchy.|
-|`ACCESSIBLE`|	The data view organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy. Will fall back to data capture organisation units associated with the current user if the former is not defined.|
-|`CAPTURE`|	The data capture organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy.|
-|`ALL`|	All organisation units in the system. Requires the ALL authority.|
 
 The query is case insensitive. The following rules apply to the query
 parameters.
@@ -865,22 +870,469 @@ returning sub-objects when `fields` request parameter is passed.
 ```
 
 ### Events (`GET /api/tracker/events`)
+
+Two endpoints are dedicated to events:
+
+- `GET /api/tracker/events`
+    - retrieves events matching given criteria
+- `GET /api/tracker/events/{id}`
+    - retrieves an event given the provided id
+
+#### Events Collection endpoint `GET /api/tracker/trackedEntities`
+
+Purpose of this endpoint is to retrieve events matching client-provided criteria.
+
+It's intended to return a collection of events with pagination TODO [VERIFY USE CASES].
+
+|request parameter|type|allowed values|description|
+|---|---|---|---|
+|`program`|`String`|`uid`| Identifier of program|
+|`programStage`|`String`|`uid`| Identifier of program stage|
+|`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Status of event in program | 
+|`followUp`|`boolean`| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
+|`trackedEntityInstance`|`String`|`uid`| Identifier of tracked entity instance|
+|`orgUnit`|`String`|`uid`| Identifier of organisation unit|
+|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|	Org unit selection mode| 
+|`occurredAfter`|`DateTime`| |	Only events newer than this date|
+|`occurredBefore`|`DateTime`| | Only events older than this date|
+|`status`|`String`|`COMPLETED`&#124;`VISITED`&#124;`SCHEDULED`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
+|`occurredAfter`|`DateTime`| | Filter for events which were occurred after this date.|
+|`occurredBefore`|`DateTime`| | Filter for events which were occurred up until this date.|
+|`scheduledAfter`|`DateTime`| | Filter for events which were scheduled after this date.|
+|`scheduledBefore`|`DateTime`| | Filter for events which were scheduled up until this date.|
+|`updatedAfter`|`DateTime`| | Filter for events which were updated after this date. Cannot be used together with `updatedWithin`.|
+|`updatedBefore`|`DateTime`| | Filter for events which were updated up until this date. Cannot be used together with `updatedWithin`.|
+|`updatedWithin`|`Duration`| | Include only items which are updated within the given duration.<br><br> The format is [ISO-8601#Duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)|
+|`skipMeta`|`Boolean`| `true`&#124;`false` | Exclude the meta data part of response (improves performance)|
+| TODO (?) `dataElementIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`|	Data element ID scheme to use for export.|
+| TODO (?) `categoryOptionComboIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Category Option Combo ID scheme to use for export|
+| TODO (?) `orgUnitIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Organisation Unit ID scheme to use for export|
+| TODO (?) `programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
+| TODO (?) `programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
+|`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
+|`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
+|`event`|`String`|comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using event=id1;id2.|
+|`skipEventId`|`Boolean`| |	Skips event identifiers in the response|
+|`attributeCc` (see note)|`String`| Attribute category combo identifier (must be combined with attributeCos)|
+|`attributeCos` (see note)|`String`| Attribute category option identifiers, separated with ; (must be combined with attributeCc)|
+|`includeDeleted`|`Boolean`| |	When true, soft deleted events will be included in your query result.|
+|`assignedUserMode`|`String`| `CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`| Assigned user selection mode|
+|`assignedUser`|`String`|comma-delimited list od `uid`| Filter the result down to a limited set of events that are assigned to the given user IDs by using `assignedUser=id1;id2`.<br><br>This parameter will be considered only if assignedUserMode is either `PROVIDED` or `null`.<br><br>The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`|
+
+> **Note**
+>
+> If the query contains neither `attributeCC` nor `attributeCos`, the server returns events for all attribute option combos where the user has read access.
+
+##### Example requests
+
+Query for all events with children of a certain organisation unit:
+
+    GET /api/tracker/events?orgUnit=YuQRtpLP10I&ouMode=CHILDREN
+
+Query for all events with all descendants of a certain organisation
+unit, implying all organisation units in the sub-hierarchy:
+
+    GET /api/tracker/events?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS
+
+Query for all events with a certain program and organisation unit:
+
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
+
+Query for all events with a certain program and organisation unit,
+sorting by due date
+ascending:
+
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&order=dueDate
+
+Query for the 10 events with the newest event date in a certain program
+and organisation unit - by paging and ordering by due date descending:
+
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
+      &order=eventDate:desc&pageSize=10&page=1
+
+Query for all events with a certain program and organisation unit for a
+specific tracked entity instance:
+
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8
+      &program=eBAyeGv0exc&trackedEntityInstance=gfVxE3ALA9m
+
+Query for all events with a certain program and organisation unit older
+or equal to
+2014-02-03:
+
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&endDate=2014-02-03
+
+Query for all events with a certain program stage, organisation unit and
+tracked entity instance in the year 2014:
+
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
+      &trackedEntityInstance=gfVxE3ALA9m&occurredAfter=2014-01-01&occurredBefore=2014-12-31
+
+Retrieve events with specified Organisation unit and Program, and use `Attribute:Gq0oWTf2DtN` as
+identifier scheme
+
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
+
+Retrieve events with specified Organisation unit and Program, and use UID as identifier scheme for
+orgUnits, Code as identifier scheme for Program stages, and _Attribute:Gq0oWTf2DtN_ as identifier
+scheme for the rest of the metadata with assigned attribute.
+
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
+      &orgUnitIdScheme=UID&programStageIdScheme=Code
+
+##### Response format
+
+The `JSON` response can look like the following.
+
+Please note that field filtering (`fields=...`) support is planned but not yet implemented.
+
+```json
+{
+    "instances": [
+        {
+            "href": "https://play.dhis2.org/dev/api/tracker/events/rgWr86qs0sI",
+            "event": "rgWr86qs0sI",
+            "status": "ACTIVE",
+            "program": "kla3mAPgvCH",
+            "programStage": "aNLq9ZYoy9W",
+            "orgUnit": "DiszpKrYNg8",
+            "orgUnitName": "Ngelehun CHC",
+            "relationships": [],
+            "occurredAt": "2021-10-12T00:00:00.000",
+            "followup": false,
+            "deleted": false,
+            "createdAt": "2018-10-20T12:09:19.492",
+            "updatedAt": "2018-10-20T12:09:19.492",
+            "attributeOptionCombo": "amw2rQP6r6M",
+            "attributeCategoryOptions": "RkbOhHwiOgW",
+            "dataValues": [
+                {
+                    "createdAt": "2015-10-20T12:09:19.640",
+                    "updatedAt": "2015-10-20T12:09:19.640",
+                    "storedBy": "system",
+                    "providedElsewhere": false,
+                    "dataElement": "HyJL2Lt37jN",
+                    "value": "12"
+                },
+              ...
+            ],
+            "notes": []
+        }
+    ],
+    "page": 1,
+    "pageSize": 1
+}
+```
+#### Events single object endpoint `GET /api/tracker/events/{uid}`
+
+Purpose of this endpoint is to retrieve one event given its uid.
+
+##### Request syntax
+
+`GET /api/tracker/events/{uid}?fields={fields}`
+
+|request parameter|type|allowed values|description|
+|---|---|---|---|
+|`uid`|`String`|`uid`|Return the Event with specified `uid`|
+|`fields`|`String`| **Not implemented yet**|Include specified properties in the response| 
+
+##### Example requests
+
+A query for an Event:
+
+    GET /api/tracker/events/rgWr86qs0sI
+
+##### Response format
+
+```json
+{
+  "href": "https://play.dhis2.org/dev/api/tracker/events/rgWr86qs0sI",
+  "event": "rgWr86qs0sI",
+  "status": "ACTIVE",
+  "program": "kla3mAPgvCH",
+  "programStage": "aNLq9ZYoy9W",
+  "enrollment": "Lo3SHzCnMSm",
+  "enrollmentStatus": "ACTIVE",
+  "orgUnit": "DiszpKrYNg8",
+  "orgUnitName": "Ngelehun CHC",
+  "relationships": [],
+  "occurredAt": "2021-10-12T00:00:00.000",
+  "followup": false,
+  "deleted": false,
+  "createdAt": "2018-10-20T12:09:19.492",
+  "createdAtClient": "2017-10-20T12:09:19.492",
+  "updatedAt": "2018-10-20T12:09:19.492",
+  "attributeOptionCombo": "amw2rQP6r6M",
+  "attributeCategoryOptions": "RkbOhHwiOgW",
+  "dataValues": [
+    {
+      "createdAt": "2015-10-20T12:09:19.640",
+      "updatedAt": "2015-10-20T12:09:19.640",
+      "storedBy": "system",
+      "providedElsewhere": false,
+      "dataElement": "HyJL2Lt37jN",
+      "value": "12"
+    },
+    {
+      "createdAt": "2015-10-20T12:09:19.514",
+      "updatedAt": "2015-10-20T12:09:19.514",
+      "storedBy": "system",
+      "providedElsewhere": false,
+      "dataElement": "b6dOUjAarHD",
+      "value": "213"
+    },
+    {
+      "createdAt": "2015-10-20T12:09:19.626",
+      "updatedAt": "2015-10-20T12:09:19.626",
+      "storedBy": "system",
+      "providedElsewhere": false,
+      "dataElement": "UwCXONyUtGs",
+      "value": "3"
+    },
+    {
+      "createdAt": "2015-10-20T12:09:19.542",
+      "updatedAt": "2015-10-20T12:09:19.542",
+      "storedBy": "system",
+      "providedElsewhere": false,
+      "dataElement": "fqnXmRYo5Cz",
+      "value": "123"
+    },
+    {
+      "createdAt": "2015-10-20T12:09:19.614",
+      "updatedAt": "2015-10-20T12:09:19.614",
+      "storedBy": "system",
+      "providedElsewhere": false,
+      "dataElement": "Qz3kfeKgLgL",
+      "value": "23"
+    },
+    {
+      "createdAt": "2015-10-20T12:09:19.528",
+      "updatedAt": "2015-10-20T12:09:19.528",
+      "storedBy": "system",
+      "providedElsewhere": false,
+      "dataElement": "W7aC8jLASW8",
+      "value": "12"
+    },
+    {
+      "createdAt": "2015-10-20T12:09:19.599",
+      "updatedAt": "2015-10-20T12:09:19.599",
+      "storedBy": "system",
+      "providedElsewhere": false,
+      "dataElement": "HrJmqlBqTFG",
+      "value": "3"
+    }
+  ],
+  "notes": []
+}
+```
+
 ### Enrollments (`GET /api/tracker/enrollments`)
+
+Two endpoints are dedicated to enrollments:
+
+- `GET /api/tracker/enrollments`
+    - retrieves enrollments matching given criteria
+- `GET /api/tracker/enrollments/{id}`
+    - retrieves an enrollment given the provided id
+
+#### Enrollment Collection endpoint `GET /api/tracker/enrollments`
+
+Purpose of this endpoint is to retrieve enrollments matching client-provided criteria.
+
+It's intended to return a collection of enrollments with pagination TODO [VERIFY USE CASES].
+
+|request parameter|type|allowed values|description|
+|---|---|---|---|
+|`orgUnit`|`String`|`uid`| Identifier of organisation unit|
+|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL|	Org unit selection mode| 
+|`program`|`String`|`uid`| Identifier of program|
+|`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Program Status |
+|`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the instance for the given program. Can be `true`&#124;`false` or omitted.|
+|`updatedAfter`|`DateTime`| |	Only enrollments updated after this date|
+|`updatedWithin`|`Duration`| | Only enrollments updated since given duration |
+|`enrolledAfter`|`DateTime`| |	Only enrollments newer than this date|
+|`enrolledBefore`|`DateTime`| | Only enrollments older than this date|
+|`trackedEntityType`|`String`|`uid`| Identifier of tracked entity type|
+|`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
+|`enrollment`|`String`|comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using enrollment=id1;id2.|
+|`includeDeleted`|`Boolean`| |	When true, soft deleted events will be included in your query result.|
+
+The query is case-insensitive. The following rules apply to the query parameters.
+
+- At least one organisation unit must be specified using the *orgUnit*
+  parameter (one or many), or *ouMode=ALL* must be specified.
+
+- Only one of the *program* and *trackedEntity* parameters can be
+  specified (zero or one).
+
+- If *programStatus* is specified then *program* must also be
+  specified.
+
+- If *followUp* is specified then *program* must also be specified.
+
+- If *enrolledAfter* or *enrolledBefore* is specified then *program* must also be specified.
+
+##### Example requests
+
+A query for all enrollments associated with a specific organisation unit
+can look like this:
+
+    GET /api/tracker/enrollments?orgUnit=DiszpKrYNg8
+
+To constrain the response to enrollments which are part of a specific
+program you can include a program query
+parameter:
+
+    GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS&program=ur1Edk5Oe2n
+
+To specify program enrollment dates as part of the
+query:
+
+    GET /api/tracker/enrollments?&orgUnit=O6uvpzGd5pu&program=ur1Edk5Oe2n
+      &enrolledAfter=2013-01-01&enrolledBefore=2013-09-01
+
+To constrain the response to enrollments of a specific tracked entity
+you can include a tracked entity query
+parameter:
+
+    GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
+
+To constrain the response to enrollments of a specific tracked entity
+instance you can include a tracked entity instance query parameter, in
+this case we have restricted it to available enrollments viewable for
+current
+user:
+
+    GET /api/tracker/enrollments?ouMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
+
+##### Response format
+
+The `JSON` response can look like the following.
+
+Please note that field filtering (`fields=...`) support is planned but not yet implemented.
+
+```json
+{
+  "instances": [
+    {
+      "enrollment": "iKaBMOyq7QQ",
+      "createdAt": "2017-03-28T12:28:19.812",
+      "createdAtClient": "2016-03-28T12:28:19.812",
+      "updatedAt": "2017-03-28T12:28:19.817",
+      "trackedEntity": "PpqV8ytvW5i",
+      "trackedEntityType": "nEenWmSyUEp",
+      "program": "ur1Edk5Oe2n",
+      "status": "ACTIVE",
+      "orgUnit": "NnQpISrLYWZ",
+      "orgUnitName": "Govt. Hosp. Bonthe",
+      "enrolledAt": "2020-10-23T12:28:19.805",
+      "occurredAt": "2020-10-07T12:28:19.805",
+      "followUp": false,
+      "deleted": false,
+      "events": [],
+      "relationships": [],
+      "attributes": [],
+      "notes": []
+    }
+  ],
+  "page": 1,
+  "total": 1,
+  "pageSize": 5
+}
+```
+
+#### Enrollments single object endpoint `GET /api/tracker/enrollments/{uid}`
+
+Purpose of this endpoint is to retrieve one enrollment given its uid.
+
+##### Request syntax
+
+`GET /api/tracker/enrollment/{uid}?fields={fields}`
+
+|request parameter|type|allowed values|description|
+|---|---|---|---|
+|`uid`|`String`|`uid`|Return the Enrollment with specified `uid`|
+|`fields`|`String`| **Not implemented yet**|Include specified sub-objects in the response| 
+
+##### Example requests
+
+A query for a Enrollment:
+
+    GET /api/tracker/enrollments/iKaBMOyq7QQ
+
+##### Response format
+
+```json
+{
+  "enrollment": "iKaBMOyq7QQ",
+  "createdAt": "2017-03-28T12:28:19.812",
+  "createdAtClient": "2016-03-28T12:28:19.812",
+  "updatedAt": "2017-03-28T12:28:19.817",
+  "trackedEntity": "PpqV8ytvW5i",
+  "trackedEntityType": "nEenWmSyUEp",
+  "program": "ur1Edk5Oe2n",
+  "status": "ACTIVE",
+  "orgUnit": "NnQpISrLYWZ",
+  "orgUnitName": "Govt. Hosp. Bonthe",
+  "enrolledAt": "2020-10-23T12:28:19.805",
+  "occurredAt": "2020-10-07T12:28:19.805",
+  "followUp": false,
+  "deleted": false,
+  "events": [],
+  "relationships": [],
+  "attributes": [],
+  "notes": []
+}
+```
+
 ### Relationships (`GET /api/tracker/relationships`)
 
+Relationships are links between two entities in tracker.
+These entities can be tracked entity instances, enrollments and events.
 
+Purpose of this endpoint is to retrieve Relationships between objects.
 
-  * Which endpoints are here today?
-  * common parameters (paging)
-  * For each endpoint:
-    * Important: What is the intention of the endpoint (exporting a lot of data? Searching? Etc)
-    * Example payload
-    * Example response
-    * Example request
-    * Table of params
-  * For endpoints with reduced functionality, make a note of it, and that the old, deprecated endpoint still supports this.
-  * Make a note that the intention of these endpoints is to support the new format when exporting.
+Unlike other tracked objects endpoints, Relationship only expose one endpoint:
 
+- `GET /api/tracker/relationships?[tei={teiUid}|enrollment={enrollmentUid}|event={eventUid}]&fields=[fields]`
+
+#### Request parameters
+|request parameter|type|allowed values|description|
+|---|---|---|---|
+|`tei`|`String`|`uid`| Identifier of a Tracked Entity Instance|
+|`enrollment`|`String`|`uid`| Identifier of an Enrollment |
+|`event`|`String`|`uid`| Identifier of and Event|
+|`fields`|`String`| | **Not implemented yet:** Only includes specified properties in the response| 
+
+The following rules apply to the query parameters.
+
+- only one parameter among `tei`,`enrollment`,`event` can be passed
+
+#### Example response
+
+```json
+[
+  {
+    "relationshipType": "dDrh5UyCyvQ",
+    "relationshipName": "Mother-Child",
+    "relationship": "t0HIBrc65Rm",
+    "bidirectional": false,
+    "from": {
+      "trackedEntity": {
+        "trackedEntity": "vOxUH373fy5"
+      }
+    },
+    "to": {
+      "trackedEntity": {
+        "trackedEntity": "pybd813kIWx"
+      }
+    },
+    "created": "2019-04-26T09:30:56.267",
+    "lastUpdated": "2019-04-26T09:30:56.267"
+  },
+  ...,
+]
+```
 
 ## Tracker Access Control
 
