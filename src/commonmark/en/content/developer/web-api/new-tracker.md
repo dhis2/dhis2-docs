@@ -614,11 +614,107 @@ Examples of the ***SYNC*** and the ***ASYNC*** responses are listed below. Note 
 
 <!--DHIS2-SECTION-ID:webapi_nti_import_summary-->
 
-  * List the endpoints for retrieving log and importSummary
-  * For each endpoint:
-    * Example request
-    * Example response
-    * Table of params
+In memory data structure is currently available to get information about tracker import job process.
+After submitting a tracker import request, we can access following endpoints in order to monitor job summary :
+
+1) `GET /tracker/jobs/{uid}`
+
+| Parameter|Description
+|---|---|
+|path `/{uid}`| job uid of import request
+
+#### ***REQUEST*** example
+
+`GET /tracker/jobs/mEfEaFSCKCC`
+
+#### ***RESPONSE*** example
+
+```json
+[
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:06.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) finished in 6.00000 sec. Import:Done",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:05.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) commit completed in 1.00000 sec. Import:commit",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:04.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) programruleValidation completed in 1.00000 sec. Import:programruleValidation",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:03.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) programrule completed in 1.00000 sec. Import:programrule",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:02.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) validation completed in 1.00000 sec. Import:validation",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:01.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) preheat completed in 1.00000 sec. Import:preheat",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:00.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) started by admin ( xE7jOejl9FI ) Import:Start",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  }
+]
+```
+
+2) `GET /tracker/jobs/{uid}/report`
+
+| Parameter|Description
+|---|---|
+|path `/{uid}`| job uid of import request
+|`reportMode`|`FULL`&#124;`ERRORS`&#124;`WARNINGS`|
+
+#### ***REQUEST*** example
+
+`GET /tracker/jobs/mEfEaFSCKCC/report`
+
+#### ***RESPONSE*** example
+
+Same [response](#sample-responses) as from sync import request
+
+>***Note***
+> Both endpoints are mostly used for async import, however `GET /tracker/jobs/{uid}` would also work for sync request as it eventually uses same import method and log / notification strategy
+
   * Make a note that these are temporal, meaning they will only exists for a limited time
   * Explain the “job” / “log” / “notification” response
   * Explain the structure of the importSummary
