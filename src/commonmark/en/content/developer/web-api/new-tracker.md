@@ -614,11 +614,113 @@ Examples of the ***SYNC*** and the ***ASYNC*** responses are listed below. Note 
 
 <!--DHIS2-SECTION-ID:webapi_nti_import_summary-->
 
-  * List the endpoints for retrieving log and importSummary
-  * For each endpoint:
-    * Example request
-    * Example response
-    * Table of params
+The Tracker API has two primary endpoints for consumers to aquire feedback from their imports. These endpoints are most relevant for async import jobs, but are available for sync job as well. These endspoints will return either the log related to the import, or the import summary itself.
+
+>***Note****
+>These endpoints rely on information stored in the application memory. This means the information will be unavailable after certain cases, like a application restart or after a large number of import requests have started after this one.
+
+After submitting a tracker import request, we can access following endpoints in order to monitor the job progress based on logs:
+
+`GET /tracker/jobs/{uid}`
+
+| Parameter|Description|Example
+|---|---|---|
+|`{uid}`| The UID of an existing tracker import job | ABCDEF12345
+
+#### ***REQUEST*** example
+
+`GET /tracker/jobs/mEfEaFSCKCC`
+
+#### ***RESPONSE*** example
+
+```json
+[
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:06.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) finished in 6.00000 sec. Import:Done",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:05.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) commit completed in 1.00000 sec. Import:commit",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:04.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) programruleValidation completed in 1.00000 sec. Import:programruleValidation",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:03.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) programrule completed in 1.00000 sec. Import:programrule",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:02.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) validation completed in 1.00000 sec. Import:validation",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "DEBUG",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:01.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) preheat completed in 1.00000 sec. Import:preheat",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  },
+  {
+    "uid": "mEfEaFSCKCC",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2021-01-01T00:00:00.00",
+    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) started by admin ( xE7jOejl9FI ) Import:Start",
+    "completed": true,
+    "id": "mEfEaFSCKCC"
+  }
+]
+```
+
+Additionally, the following endpoint will return the import summary of the import job. This import summary will only be available after the import has completed:
+
+`GET /tracker/jobs/{uid}/report`
+
+| Parameter|Description|Example
+|---|---|---|
+|path `/{uid}`| The UID of an existing tracker import job | ABCDEF12345
+|`reportMode`| The level of report to return | `FULL`&#124;`ERRORS`&#124;`WARNINGS`|
+
+#### ***REQUEST*** example
+
+`GET /tracker/jobs/mEfEaFSCKCC/report`
+
+#### ***RESPONSE*** example
+
+Same [response](#sample-responses) as from sync import request
+
+>***Note***
+> Both endpoints are used primarily for async import, however `GET /tracker/jobs/{uid}` would also work for sync request as it eventually uses same import process and logging as async requests.
+
   * Make a note that these are temporal, meaning they will only exists for a limited time
   * Explain the “job” / “log” / “notification” response
   * Explain the structure of the importSummary
