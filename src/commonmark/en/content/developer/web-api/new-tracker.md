@@ -614,14 +614,18 @@ Examples of the ***SYNC*** and the ***ASYNC*** responses are listed below. Note 
 
 <!--DHIS2-SECTION-ID:webapi_nti_import_summary-->
 
-In memory data structure is currently available to get information about tracker import job process.
-After submitting a tracker import request, we can access following endpoints in order to monitor job summary :
+The Tracker API has two primary endpoints for consumers to aquire feedback from their imports. These endpoints are most relevant for async import jobs, but are available for sync job as well. These endspoints will return either the log related to the import, or the import summary itself.
 
-1) `GET /tracker/jobs/{uid}`
+>***Note****
+>These endpoints rely on information stored in the application memory. This means the information will be unavailable after certain cases, like a application restart or after a large number of import requests have started after this one.
 
-| Parameter|Description
-|---|---|
-|path `/{uid}`| job uid of import request
+After submitting a tracker import request, we can access following endpoints in order to monitor the job progress based on logs:
+
+`GET /tracker/jobs/{uid}`
+
+| Parameter|Description|Example
+|---|---|---|
+|`{uid}`| The UID of an existing tracker import job | ABCDEF12345
 
 #### ***REQUEST*** example
 
@@ -697,12 +701,14 @@ After submitting a tracker import request, we can access following endpoints in 
 ]
 ```
 
-2) `GET /tracker/jobs/{uid}/report`
+Additionally, the following endpoint will return the import summary of the import job. This import summary will only be available after the import has completed:
 
-| Parameter|Description
-|---|---|
-|path `/{uid}`| job uid of import request
-|`reportMode`|`FULL`&#124;`ERRORS`&#124;`WARNINGS`|
+`GET /tracker/jobs/{uid}/report`
+
+| Parameter|Description|Example
+|---|---|---|
+|path `/{uid}`| The UID of an existing tracker import job | ABCDEF12345
+|`reportMode`| The level of report to return | `FULL`&#124;`ERRORS`&#124;`WARNINGS`|
 
 #### ***REQUEST*** example
 
@@ -713,7 +719,7 @@ After submitting a tracker import request, we can access following endpoints in 
 Same [response](#sample-responses) as from sync import request
 
 >***Note***
-> Both endpoints are mostly used for async import, however `GET /tracker/jobs/{uid}` would also work for sync request as it eventually uses same import method and log / notification strategy
+> Both endpoints are used primarily for async import, however `GET /tracker/jobs/{uid}` would also work for sync request as it eventually uses same import process and logging as async requests.
 
   * Make a note that these are temporal, meaning they will only exists for a limited time
   * Explain the “job” / “log” / “notification” response
