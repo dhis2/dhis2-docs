@@ -12,7 +12,7 @@ The newly introduced endpoints consists of:
 Significant changes occurred in version 2.36 to make the interface with clients homogeneous and to allow more consistent and flexible ways to use the services.
 
 > ***NOTE***
-> 
+>
 > The old endpoints are marked as deprecated but still work as before.<br>
 > Some functionality is not yet ready in the new endpoints, but they support their primary use-cases.
 
@@ -765,10 +765,43 @@ A table with a full reference of error codes, messages and description:
 
 <!--DHIS2-SECTION-ID:webapi_nti_program_rules-->
 
-  * Describe when\how rules are now run on the backend as well
-  * Describe what rules are being run, and which are not being run
-  * Describe any condition for when something is or is not run
-  * Describe the different results rules can have (warning, error, etc)
+  * When importing tracker objects relevant program rules are going to be run and relevant program rule action are going to be applied.
+  Not all program rule action are supported because a lot of them deal with frontend presentation that has no effect when importing in the server through the API. A complete list of the supported program rule actions is present in the next section.
+  Program rules are used to add custom behaviour to the importer that will result in generated values in the incoming payload and extra validations.
+
+  * Supported program rule actions
+
+  |Program Rule Action|Supported|
+  |---|:---:|
+  |**DISPLAYTEXT**| |
+  |**DISPLAYKEYVALUEPAIR**| |
+  |**HIDEFIELD**||
+  |**HIDESECTION**||
+  |**ASSIGN**|**X**|
+  |**SHOWWARNING**|**X**|
+  |**SHOWERROR**|**X**|
+  |**WARNINGONCOMPLETION**|**X**|
+  |**ERRORONCOMPLETION**|**X**|
+  |**CREATEEVENT**||
+  |**SETMANDATORYFIELD**|**X**|
+  |**SENDMESSAGE**|**X**|
+  |**SCHEDULEMESSAGE**|**X**|
+
+
+  * Program rules are evaluated in the importer in the same way the are evaluated in the TrackerApp.
+  The conditions that make a program rule action to be applied can be summarised as follow:
+    * If the program rule is linked to a ProgramStage, the target tracker object must be linked to the same ProgramStage
+    * Program rule condition must be evaluated to true
+    * If the program rule action is linked to a data element, the target tracker object must be linked to the same ProgramStage that the data element belongs to
+  * Program rule actions application can generate 2 different result: Warnings or Errors. In general errors will make the validation fail while the warning will be just a message in the report.
+  SHOWWARNING and WARNINGONCOMPLETION actions can generate only Warnings.
+  SHOWERROR, ERRORONCOMPLETION and SETMANDATORYFIELD actions can generate only Errors.
+  ASSIGN action can generate both Warnings and Errors.
+    * When the action is assigning a value to an empty attribute/data element, a warning is generated.
+    * When the action is assigning a value to a an attribute/data element that has already the same value to be assigned, a warning is generated.
+    * When the action is assigning a value to a an attribute/data element that has already a value and the value to be assigned is different, an error is generated, unless `RULE_ENGINE_ASSIGN_OVERWRITE` system setting is set to true.
+
+    * Normal behaviour and assign behaviour
   * Side effects(?) - Link to side effects
 
 
