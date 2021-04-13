@@ -614,7 +614,7 @@ Examples of the ***SYNC*** and the ***ASYNC*** responses are listed below. Note 
 
 <!--DHIS2-SECTION-ID:webapi_nti_import_summary-->
 
-The Tracker API has two primary endpoints for consumers to aquire feedback from their imports. These endpoints are most relevant for async import jobs, but are available for sync job as well. These endspoints will return either the log related to the import, or the import summary itself.
+The Tracker API has two primary endpoints for consumers to acquire feedback from their imports. These endpoints are most relevant for async import jobs, but are available for sync job as well. These endpoints will return either the log related to the import, or the import summary itself.
 
 >***Note****
 >These endpoints rely on information stored in the application memory. This means the information will be unavailable after certain cases, like a application restart or after a large number of import requests have started after this one.
@@ -721,10 +721,120 @@ Same [response](#sample-responses) as from sync import request
 >***Note***
 > Both endpoints are used primarily for async import, however `GET /tracker/jobs/{uid}` would also work for sync request as it eventually uses same import process and logging as async requests.
 
-  * Make a note that these are temporal, meaning they will only exists for a limited time
-  * Explain the “job” / “log” / “notification” response
-  * Explain the structure of the importSummary
-  * Explain how to read errors from the importSummary - Link to   errors
+### Import Summary Structure
+
+Import summary has following structure :
+ ```json
+{
+  "status": "...",
+  "validationReport": { },
+  "stats": { },
+  "timingsStats": { },
+  "bundleReport": { },
+  "message" : { }
+  }
+```
+
+#### ***status*** will be one of `OK`&#124;`WARNING`&#124;`ERROR` and indicates condition of a completed tracker import
+
+#### ***validationReport***
+
+`validationReport` can include `errorReports` and/or `warningReports` detailed list in case of `WARNING` / `ERROR` final status
+
+example for `TRACKED_ENTITY`
+
+```json
+{
+  "validationReport": {
+    "errorReports": [
+      {
+        "message": "Could not find TrackedEntityType: `Q9GufDoplCL`.",
+        "errorCode": "E1005",
+        "trackerType": "TRACKED_ENTITY",
+        "uid": "Kj6vYde4LHh"
+      },
+      ...
+    ],
+    "warningReports" : [ ... ]
+  }
+}
+```
+
+see [error codes](#error-codes) section on how to read error message details
+
+#### ***stats*** reports summary collected by the persistence layer during COMMIT step
+
+```json
+{
+  "stats": {
+    "created": 2,
+    "updated": 2,
+    "deleted": 1,
+    "ignored": 5,
+    "total": 10
+  }
+}
+```
+`ignored` refers to objects not persisted (either excluded by validation or relationships)
+
+#### ***timingsStats*** reports time elapse for every import step occurred
+
+```json
+{
+  "timingsStats": {
+    "timers": {
+      "preheat": "0.234086 sec.",
+      "preprocess": "0.000058 sec.",
+      ...
+      "totalImport": "0.236810 sec.",
+      "validation": "0.001533 sec."
+    }
+  }
+}
+```
+
+#### ***bundleReport*** reports processed [tracked objects](#tracker-objects), example for `TRACKED_ENTITY`
+
+```json
+{
+  "bundleReport": {
+    "status": "OK",
+    "typeReportMap": {
+      "TRACKED_ENTITY": {
+        "trackerType": "TRACKED_ENTITY",
+        "stats": {
+          "created": 1,
+          "updated": 0,
+          "deleted": 0,
+          "ignored": 0,
+          "total": 1
+        },
+        "objectReports": [
+          {
+            "trackerType": "TRACKED_ENTITY",
+            "uid": "FkxTQC4EAKK",
+            "index": 0,
+            "errorReports": []
+          }
+        ]
+      },
+      ...
+    }
+  }
+}
+```
+
+#### ***message*** would eventually show a message in case of process had to stop abruptly
+
+### Import Summary Report Level
+
+As already stated we can use `GET /tracker/jobs/{uid}/report` with `FULL`&#124;`ERRORS`&#124;`WARNINGS` as `reportMode` parameter
+
+| Parameter|Description
+|---|---
+|`FULL`| complete `validationReport` plus `timingsStats`
+|`ERRORS` (default)| shows only `errorReports` in `validationReport` no `timingsStats`
+|`WARNINGS`| complete `validationReport` no `timingsStats`
 
 ### Error Codes
 
