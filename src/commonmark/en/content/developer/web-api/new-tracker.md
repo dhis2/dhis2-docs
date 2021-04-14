@@ -809,8 +809,17 @@ This will be sort of a work-in-progress, but as far as we can, we will describe 
 <!--DHIS2-SECTION-ID:webapi_nti_metadata_sharing-->
 
 
-  * How sharing relates to how we import and export data
-  * Explain how the sharing is cascading in our model (if tei can’t be seen, you can’t see enrolment, etc)
+Sharing setting is a standard DHIS2 functionality that applies to both Tracker and Aggregate metadata/data as well as dashboards and visualization items. At the core of sharing setting is the ability to define who can see/do what. In general there are 5 possible sharing configurations – no access, metadata read, metadata write, data read and data write. These access configurations can be granted at user and/or user group level (for more flexibility). With focus on Tracker, the following metadata and their sharing setting are of especial importance: Data Element, Category Option, Program, Program Stage, Tracked Entity Type, Tracked Entity Attribute as well as Tracker related Dashboards and Dashboard Items.
+
+How sharing setting works is straightforward – the settings are enforced during Tracker data import/export processes. To read value, one needs to have data read access. If a user is expected to modify data, he/she needs to have data write access. Similarly if a user is expected to modify metadata, it is important to grant metadata write access.
+
+One very important point with Tracker data is the need to have a holistic approach. For example a user won’t be able to see Data Element value by having read access to just the Data Element. The user needs to have data read access the parent Program Stage and Program where this Data Element belongs. It is the same with category option combination. In Tracker, Event is related to AttributeOptionCombo which is made up of combination of Category Options. Therefore, for a user to read data of an Event, he/she needs to have data read access to all Category Options, and corresponding Categories, that constitute the AttributeOptionCombo of the Event in question. If a user lacks access to just one Category Option or Category, then the user has no access to the entire Event.
+
+When it comes accessing Enrollment data, it is important to have access to the Tracked Entity first. Access to a Tracked Entity is controlled through sharing setting of Program, Tracked Entity Type and Tracked Entity Attribute. Once Enrollment is accessed it is possible to access Event data, again depending on Program Stage and Data element sharing setting.
+
+Another important point to consider is how to map out access to different Program Stages of a Program. Sometimes we could be in a situation where we need grant access to a specific stage – for example “Lab Result” – to specific group of users (Lab Technicians). In this situation, we can provide data write access to "Lab Result" stage, probably data read to one or more stages just in case we want Lab Technicians to read other medical results or no access if we think it not necessary for the Lab Technicians to see data other than lab related.
+
+In summary, DHIS2 has fine grained sharing setting that we can use to implement access control mechanisms both at data and metadata level. These sharing settings can be applied directly at user level or user group level. How exactly to apply a sharing setting depends on the usecase at hand.
 
 ### Organisation Unit Scopes
 
