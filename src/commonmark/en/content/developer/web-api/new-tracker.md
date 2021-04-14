@@ -926,6 +926,59 @@ A table with a full reference of error codes, messages and description:
   * Describe what side-effects we have and what they do (Table?)
   * Any configuration that affects side effects.
 
+### Assign user to events
+
+<!--DHIS2-SECTION-ID:webapi_nti_user_event_assignment-->
+
+User assignment it's a way for users to assign each other to events. The only functionality related, is filtering on events based on assigned user.
+
+In import payload we can assign a user to an `Event` by specifying the `uid` of the user in `assignedUser` field.
+
+Payload example with user assigned to an `Event` :
+```json
+{
+  ...
+  "events": [
+    {
+      "scheduledAt": "2019-08-19T13:59:13.688",
+      "program": "f1AyMswryyQ",
+      "event": "ZwwuwNp6gVd",
+      "programStage": "nlXNK4b7LVr",
+      "orgUnit": "O6uvpzGd5pu",
+      "trackedEntity": "Kj6vYde4LHh",
+      "enrollment": "MNWZ6hnuhSw",
+      "enrollmentStatus": "ACTIVE",
+      "status": "ACTIVE",
+      "occurredAt": "2019-08-01T00:00:00.000",
+      "attributeCategoryOptions": "xYerKDKCefk",
+      "deleted": false,
+      "attributeOptionCombo": "HllvX50cXC0",
+      "dataValues": [
+        {
+          "updatedAt": "2019-08-19T13:58:37.477",
+          "storedBy": "admin",
+          "dataElement": "BuZ5LGNfGEU",
+          "value": "20",
+          "providedElsewhere": false
+        }
+      ],
+      "notes": [],
+      "assignedUser" : "M0fCOxtkURr"
+    }
+  ],
+  ...
+}
+```
+
+In this particular case, event `ZwwuwNp6gVd` will be assigned to user `M0fCOxtkURr` which will be able to filter events list based on those assigned.
+
+***User Assignment Validation***
+
+Tracker import validation will check that :
+- the program stage, which the event belongs to, has user assignment enabled
+- the assigned user has a valid `uid` and is an existing user
+
+See the [error codes](#error-codes) section for more information about errors `E1118` and `E1120`
 
 ## Tracker Export
 
