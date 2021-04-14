@@ -716,15 +716,15 @@ Additionally, the following endpoint will return the import summary of the impor
 
 #### ***RESPONSE*** example
 
-Same [response](#sample-responses) as from sync import request
+The [response payload](#sample-responses) is the same as the one returned after a sync import request.
 
 >***Note***
 > Both endpoints are used primarily for async import, however `GET /tracker/jobs/{uid}` would also work for sync request as it eventually uses same import process and logging as async requests.
 
 ### Import Summary Structure
 
-Import summary has following structure :
- ```json
+Import summaries have the following overall structure, depending on the requested `reportMode`:
+```json
 {
   "status": "...",
   "validationReport": { },
@@ -732,17 +732,22 @@ Import summary has following structure :
   "timingsStats": { },
   "bundleReport": { },
   "message" : { }
-  }
+}
 ```
 
-#### ***status*** will be one of `OK`&#124;`WARNING`&#124;`ERROR` and indicates condition of a completed tracker import
+***status***
+The property, `status`, of the import summary indicates the overall status of the import. If no errors or warnings was raised during the import, the `status` is reported as `OK`. The precense of any error or warnings in the import will result in a status of type `ERROR` or `WARNING`.
 
-#### ***validationReport***
+`status` is based on the precense of the most significant `validationReport`. `ERROR` has the highest significance, followed by `WARNING` and finally `OK`. This implies `ERROR` is reported as long as a single error was found during the import, regardless of how many warnings occurred.
 
-`validationReport` can include `errorReports` and/or `warningReports` detailed list in case of `WARNING` / `ERROR` final status
+>***Note***
+>If the import is performed using the AtomicMode "OBJECT", where the import will import any data without validation errors, the overall status will still be `ERROR` if any errors was found.
 
-example for `TRACKED_ENTITY`
+***validationReport***
 
+The `validationReport` may include `errorReports` and `warningReports` if any errors or warnings were present during the import. When present, they provide a detailed list of any errors of warnings encountered.
+
+For example, a validation error while importing a `TRACKED_ENTITY`:
 ```json
 {
   "validationReport": {
@@ -760,10 +765,21 @@ example for `TRACKED_ENTITY`
 }
 ```
 
-see [error codes](#error-codes) section on how to read error message details
+The report contains a message and a code describing the actual error (See the [error codes](#error-codes) section for more information about errors). Additionally, the report includes the `trackerType` and `uid` which aims to describe where in the data the error was found. In this case, there was a `TRACKED_ENTITY` with the uid `Kj6vYde4LHh` which had a reference to a tracked entity type which was not found.
 
-#### ***stats*** reports summary collected by the persistence layer during COMMIT step
+>***Note 1***
+>When refering to the `uid` of tracker objects, they are labeled as their object names in the payload. For example, the `uid` of a tracked entity would in the payload have the name "trackedEntity". The same goes for "enrollment", "event" and "relationship" for enrollments, events and relationships respectively.
 
+>***Note 2***
+>If no uid is provided in the payload, the import process will generate new uids. This means the error report might refer to a uid that does not exist in your payload.
+
+>***Note 3***
+>Errors are represents issues with the payload which the importer can not circumvent. Any errors will block that data from being imported. Warnings on the other hand are issues where it's safe to circumvent them, but the user should be made aware that it happened. Warnings will not block data from being imported.
+
+***stats***
+The status provides a quick overview of the import. After an import is completed, this will be the actual counts representing how much data was created, updated, deleted or ignored.
+
+Example:
 ```json
 {
   "stats": {
@@ -775,10 +791,18 @@ see [error codes](#error-codes) section on how to read error message details
   }
 }
 ```
-`ignored` refers to objects not persisted (either excluded by validation or relationships)
+`created` refers to how many new objects which was created. In general, objects without an existing uid in the payload will be treated as a new object.
 
-#### ***timingsStats*** reports time elapse for every import step occurred
+`updated` refers to the number of objects updated. Objects with an existing uid in the payload will be treated as updating an existing object.
 
+`deleted` refers to the amount of objects deleted during the import. Deletion only happens when the import is configured to delete data, and only then when the objects in the payload have existing uids set.
+
+`ignored` refers to objects that was not persisted. Objects can be ignored for several reasons, for example trying to create something that already exists. Ignores should always be safe, so if something was ignored, it was either not neccesary or it was due to the configuration of the import.
+
+***timingsStats***
+`timingStats` represents the time elapsed in different steps of the import. These stats does not provide an accurate overall time for the import, but rather the time spent in the code for different steps.
+
+The `timingStats` are primarily useful for debugging imports that are causing issues, to see which part of the import is having issues.
 ```json
 {
   "timingsStats": {
@@ -793,8 +817,10 @@ see [error codes](#error-codes) section on how to read error message details
 }
 ```
 
-#### ***bundleReport*** reports processed [tracked objects](#tracker-objects), example for `TRACKED_ENTITY`
+***bundleReport***
+When the import is completed, the `bundleReport` contains all the [tracker objects](#tracker-objects) imported.
 
+For example, `TRACKED_ENTITY`:
 ```json
 {
   "bundleReport": {
@@ -823,18 +849,22 @@ see [error codes](#error-codes) section on how to read error message details
   }
 }
 ```
+As seen, each type of tracker object will be reported, and each has their own stats and `objectReports`. These `objectReports` will provide details about each imported object, like their type, their uid and any error or warning reports is applicable.
 
-#### ***message*** would eventually show a message in case of process had to stop abruptly
+***message***
+If the import ended abruptly, the `message` would contain further information relation to what happened.
 
 ### Import Summary Report Level
 
-As already stated we can use `GET /tracker/jobs/{uid}/report` with `FULL`&#124;`ERRORS`&#124;`WARNINGS` as `reportMode` parameter
+As previously stated, `GET /tracker/jobs/{uid}/report` can be retrieved using a specific `reportMode` parameter. By default the endpoint will return an `importSummary` with `reportMode` `ERROR`.
 
-| Parameter|Description
-|---|---
-|`FULL`| complete `validationReport` plus `timingsStats`
-|`ERRORS` (default)| shows only `errorReports` in `validationReport` no `timingsStats`
-|`WARNINGS`| complete `validationReport` no `timingsStats`
+| Parameter | Description |
+|---|---|
+| `FULL` | Returns everything from `WARNINGS`, plus `timingsStats` |
+| `WARNINGS` | Returns everything from `ERRORS`, plus `warningReports` in `validationReports` |
+| `ERRORS` (default) | Returns only `errorReports` in `validationReports` |
+
+In addition, all `reportModes` will return `status`, `stats`, `bundleReport` and `message` when applicable.
 
 ### Error Codes
 
