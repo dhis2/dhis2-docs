@@ -736,16 +736,17 @@ Import summaries have the following overall structure, depending on the requeste
 ```
 
 ***status***
-The property, `status`, of the import summary indicates the overall status of the import. If no errors or warnings was raised during the import, the `status` is reported as `OK`. The precense of any error or warnings in the import will result in a status of type `ERROR` or `WARNING`.
 
-`status` is based on the precense of the most significant `validationReport`. `ERROR` has the highest significance, followed by `WARNING` and finally `OK`. This implies `ERROR` is reported as long as a single error was found during the import, regardless of how many warnings occurred.
+The property, `status`, of the import summary indicates the overall status of the import. If no errors or warnings was raised during the import, the `status` is reported as `OK`. The presence of any error or warnings in the import will result in a status of type `ERROR` or `WARNING`.
+
+`status` is based on the presence of the most significant `validationReport`. `ERROR` has the highest significance, followed by `WARNING` and finally `OK`. This implies `ERROR` is reported as long as a single error was found during the import, regardless of how many warnings occurred.
 
 >***Note***
 >If the import is performed using the AtomicMode "OBJECT", where the import will import any data without validation errors, the overall status will still be `ERROR` if any errors was found.
 
 ***validationReport***
 
-The `validationReport` may include `errorReports` and `warningReports` if any errors or warnings were present during the import. When present, they provide a detailed list of any errors of warnings encountered.
+The `validationReport` may include `errorReports` and `warningReports` if any errors or warnings were present during the import. When present, they provide a detailed list of any errors or warnings encountered.
 
 For example, a validation error while importing a `TRACKED_ENTITY`:
 ```json
@@ -768,7 +769,7 @@ For example, a validation error while importing a `TRACKED_ENTITY`:
 The report contains a message and a code describing the actual error (See the [error codes](#error-codes) section for more information about errors). Additionally, the report includes the `trackerType` and `uid` which aims to describe where in the data the error was found. In this case, there was a `TRACKED_ENTITY` with the uid `Kj6vYde4LHh` which had a reference to a tracked entity type which was not found.
 
 >***Note 1***
->When refering to the `uid` of tracker objects, they are labeled as their object names in the payload. For example, the `uid` of a tracked entity would in the payload have the name "trackedEntity". The same goes for "enrollment", "event" and "relationship" for enrollments, events and relationships respectively.
+>When referring to the `uid` of tracker objects, they are labeled as their object names in the payload. For example, the `uid` of a tracked entity would in the payload have the name "trackedEntity". The same goes for "enrollment", "event" and "relationship" for enrollments, events and relationships respectively.
 
 >***Note 2***
 >If no uid is provided in the payload, the import process will generate new uids. This means the error report might refer to a uid that does not exist in your payload.
@@ -777,6 +778,7 @@ The report contains a message and a code describing the actual error (See the [e
 >Errors are represents issues with the payload which the importer can not circumvent. Any errors will block that data from being imported. Warnings on the other hand are issues where it's safe to circumvent them, but the user should be made aware that it happened. Warnings will not block data from being imported.
 
 ***stats***
+
 The status provides a quick overview of the import. After an import is completed, this will be the actual counts representing how much data was created, updated, deleted or ignored.
 
 Example:
@@ -800,6 +802,7 @@ Example:
 `ignored` refers to objects that was not persisted. Objects can be ignored for several reasons, for example trying to create something that already exists. Ignores should always be safe, so if something was ignored, it was either not neccesary or it was due to the configuration of the import.
 
 ***timingsStats***
+
 `timingStats` represents the time elapsed in different steps of the import. These stats does not provide an accurate overall time for the import, but rather the time spent in the code for different steps.
 
 The `timingStats` are primarily useful for debugging imports that are causing issues, to see which part of the import is having issues.
@@ -818,6 +821,7 @@ The `timingStats` are primarily useful for debugging imports that are causing is
 ```
 
 ***bundleReport***
+
 When the import is completed, the `bundleReport` contains all the [tracker objects](#tracker-objects) imported.
 
 For example, `TRACKED_ENTITY`:
@@ -852,7 +856,8 @@ For example, `TRACKED_ENTITY`:
 As seen, each type of tracker object will be reported, and each has their own stats and `objectReports`. These `objectReports` will provide details about each imported object, like their type, their uid and any error or warning reports is applicable.
 
 ***message***
-If the import ended abruptly, the `message` would contain further information relation to what happened.
+
+If the import ended abruptly, the `message` would contain further information in relation to what happened.
 
 ### Import Summary Report Level
 
