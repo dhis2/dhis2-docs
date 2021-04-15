@@ -930,39 +930,22 @@ A table with a full reference of error codes, messages and description:
 
 <!--DHIS2-SECTION-ID:webapi_nti_user_event_assignment-->
 
-User assignment it's a way for users to assign each other to events. The only functionality related, is filtering on events based on assigned user.
+Certain workflows benefits from treating events like tasks, and for this reason you can assign a user to an event.
 
-In import payload we can assign a user to an `Event` by specifying the `uid` of the user in `assignedUser` field.
+Assigning a user to an event, will not change the access or permissions for users, but will create a link between the event and the user.
+When an event have a user assign, you can query events from the API using the `assignedUser` field as a parameter.
 
-Payload example with user assigned to an `Event` :
+When you want to assign a user to an event, you simply provide the UID of the user you want to assign in the `assignedUser` field. See the following example:
+
 ```json
 {
   ...
   "events": [
     {
-      "scheduledAt": "2019-08-19T13:59:13.688",
-      "program": "f1AyMswryyQ",
       "event": "ZwwuwNp6gVd",
       "programStage": "nlXNK4b7LVr",
       "orgUnit": "O6uvpzGd5pu",
-      "trackedEntity": "Kj6vYde4LHh",
       "enrollment": "MNWZ6hnuhSw",
-      "enrollmentStatus": "ACTIVE",
-      "status": "ACTIVE",
-      "occurredAt": "2019-08-01T00:00:00.000",
-      "attributeCategoryOptions": "xYerKDKCefk",
-      "deleted": false,
-      "attributeOptionCombo": "HllvX50cXC0",
-      "dataValues": [
-        {
-          "updatedAt": "2019-08-19T13:58:37.477",
-          "storedBy": "admin",
-          "dataElement": "BuZ5LGNfGEU",
-          "value": "20",
-          "providedElsewhere": false
-        }
-      ],
-      "notes": [],
       "assignedUser" : "M0fCOxtkURr"
     }
   ],
@@ -970,15 +953,9 @@ Payload example with user assigned to an `Event` :
 }
 ```
 
-In this particular case, event `ZwwuwNp6gVd` will be assigned to user `M0fCOxtkURr` which will be able to filter events list based on those assigned.
+In this example, the user with uid `M0fCOxtkURr` will be assign to the event with uid `ZwwuwNp6gVd`. Only one user can be assigned to a single event.
 
-***User Assignment Validation***
-
-Tracker import validation will check that :
-- the program stage, which the event belongs to, has user assignment enabled
-- the assigned user has a valid `uid` and is an existing user
-
-See the [error codes](#error-codes) section for more information about errors `E1118` and `E1120`
+To use this feature, the relevant program stage needs to have user assignment enabled, and the uid provided for the user must refer to a valid, existing user.
 
 ## Tracker Export
 
