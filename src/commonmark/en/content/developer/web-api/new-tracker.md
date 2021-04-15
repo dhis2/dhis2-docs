@@ -926,6 +926,36 @@ A table with a full reference of error codes, messages and description:
   * Describe what side-effects we have and what they do (Table?)
   * Any configuration that affects side effects.
 
+### Assign user to events
+
+<!--DHIS2-SECTION-ID:webapi_nti_user_event_assignment-->
+
+Certain workflows benefits from treating events like tasks, and for this reason you can assign a user to an event.
+
+Assigning a user to an event, will not change the access or permissions for users, but will create a link between the event and the user.
+When an event have a user assign, you can query events from the API using the `assignedUser` field as a parameter.
+
+When you want to assign a user to an event, you simply provide the UID of the user you want to assign in the `assignedUser` field. See the following example:
+
+```json
+{
+  ...
+  "events": [
+    {
+      "event": "ZwwuwNp6gVd",
+      "programStage": "nlXNK4b7LVr",
+      "orgUnit": "O6uvpzGd5pu",
+      "enrollment": "MNWZ6hnuhSw",
+      "assignedUser" : "M0fCOxtkURr"
+    }
+  ],
+  ...
+}
+```
+
+In this example, the user with uid `M0fCOxtkURr` will be assign to the event with uid `ZwwuwNp6gVd`. Only one user can be assigned to a single event.
+
+To use this feature, the relevant program stage needs to have user assignment enabled, and the uid provided for the user must refer to a valid, existing user.
 
 ## Tracker Export
 
