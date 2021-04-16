@@ -98,6 +98,18 @@ Among the properties are:
         }
      }
 
+  - A *settings* property is optional, and can be used on a dashboard
+    widget app to suppress showing the widget title when the widget is
+    displayed on a dashboard:
+
+<!-- end list -->
+
+    "settings": {
+        "dashboardWidget": {
+            "hideTitle": true
+        }
+    }
+
 The namespace property can be added if your app is utilizing the
 dataStore or userDataStore api. When adding the namespace property, only
 users with access to your app are allowed to make changes to the
