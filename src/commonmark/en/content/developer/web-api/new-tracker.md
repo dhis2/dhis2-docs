@@ -1000,10 +1000,27 @@ In summary, DHIS2 has fine grained sharing setting that we can use to implement 
 
 <!--DHIS2-SECTION-ID:webapi_nti_ou_scope-->
 
-  * Explain the different scopes
-  * Explain how they relate to import and export
-  * Explain how they relate to searching
-  * Explain how they relate to ownership - Link to Program Ownership
+Organisation units are one of the most fundamental objects in DHIS2. They define a universe under which a user is allowed to record and/or read data. There are three types of organisation units that can be assigned to a user. These are data capture, data view and tracker search. As the name implies, these organisation units define a scope under which a user is allowed to conduct the respective operations.
+
+However, to further fine tune the scope, DHIS2 tracker introduces a concept that we call **OrganisationUnitSelectionMode**. Such a mode is often used at the time exporting tracker objects. For example, given a user has a particular tracker search scope does it mean that we have to use this scope every time a user tries to search for a tracker, enrollment or event object? Or is the user interested to limit the searching just to the selected org unit, or the entire capture org unit scope and so on. 
+
+Users can do the fine-tuning by passing a specific value of ouMode in their API request:
+
+*api/tracker?orgUnit=UID&ouMode=specific_organisation_unit_selection_mode*
+
+Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCENDANTS, CAPTURE, ACCESSIBLE and ALL*.
+
+1. **SELECTED**: as the name implies, all operations intended by the requesting API narrow down to the selected organisation unit.
+2. **CHILDREN**: under this mode, the organisation unit scope will be constructed using the selected organisation unit and its immediate children. 
+3. **DESCENDANTS**: here the selected organisation unit and everything underneath it, not just the immediate children, constitute the data operation universe.
+4. **CAPTURE**: as the name implies organisation units assigned as the user's data capture constitute the universe. Note that, of the three organisation units that can be assigned to a user data capture is the mandatory one. If a user does not have data vaiew and tracker search organisation units, the system will fall back to data capture. This way, we are always sure that a user has at least one universe.
+5. **ACCESSIBLE**: technically this is the same scope as the user's tracker search organisation units.
+6. **ALL**: the name ALL makes perfect sense if we are dealing with a super user. For super users, this scope means the entire organisation unit available in the system. However, for non-super users, ALL boils down to ACCESSIBLE organisation units.
+
+It makes little sense to pass these modes at the time of tracker import operations. Because when writing tracker data, each of the objects need to have a specific organisation unit attached to them. The system will then ensure if each of the mentioned organisation units fall under the CAPTURE scope. If not the system will simply reject the write operation.
+
+
+  * **Explain how they relate to ownership - Link to Program Ownership**
 
 ### Program Ownership
 
