@@ -511,8 +511,8 @@ Tracker export endpoints are a set of services which allow clients to query and 
 
 Beside differences highlighted in **[Changes in the API](#Changes-in-the-API)**, request parameters for these endpoints match older ones.
 
-Being currently under development, some internal implementation might change over time, however, 
-we expect that interfaces (`request`/`response`) will receive minor if not any changes at all.
+These endpoints are still being developed, and are subject to change. However, 
+the `request` and `response` interfaces will most likely not undergo significant changes.
 
 Tracker export endpoints deal with the following Tracker objects:
 
@@ -523,12 +523,12 @@ Tracker export endpoints deal with the following Tracker objects:
 
 > **_NOTE 1:_** 
 > 
-> These resource supports `JSON` and `CSV` resource representation (`CSV` planned but not implemented yet).
+> These endpoints currently only support `JSON`, but `CSV` will be supported in the near future.
 
 
 > **_NOTE 2:_**
 > 
-> These endpoints adopt new naming convention documented (TODO[add reference to changelog] here) 
+> These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)** 
 
 > **_NOTE 3:_**
 > 
@@ -545,15 +545,18 @@ The following endpoint supports common parameters for pagination
 
 #### Request parameters for pagination
 
-|request parameter|type|allowed values|description|
+|Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`page`|`Integer`| |Page number to return. Defaults to 1 if missing|
-|`pageSize`|`Integer`| |Page size. Defaults to 50 if missing|
-|`totalPages`|`Boolean`| |Indicates whether to return the total number of pages in the response (implies higher response time)|
-|`skipPaging`|`Boolean`| |Indicates whether paging should be ignored and all rows should be returned TODO [VERIFY]|
-|`paging`|`Boolean`| |Indicates whether paging is enabled TODO [VERIFY]| 
+|`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
+|`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
+|`totalPages`|`Boolean`| `true`&#124;`false` |Indicates whether to return the total number of pages in the response |
+|`skipPaging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned TODO [VERIFY]|
+|`paging`|`Boolean`| `true`&#124;`false`  | Indicates whether paging is enabled TODO [VERIFY]| 
 |`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
 
+> **_NOTE_**
+> 
+> Be aware that the performance is directly related to the amount of data requested. Bigger pages will take more time to return.
 #### Request parameters for Organisational Unit selection mode
 
 The available organisation unit selection modes are explained in the
@@ -579,37 +582,37 @@ Two endpoints are dedicated to tracked entities:
     
 #### Tracked Entities Collection endpoint `GET /api/tracker/trackedEntities`
 
-Purpose of this endpoint is to retrieve tracked entities matching client-provided criteria.
+The purpose of this endpoint is to retrieve tracked entities matching client-provided criteria.
 
-It's intended to return a collection of tracked entities with pagination TODO [VERIFY USE CASES].
+The endpoint returns a list of tracked entities that match the request parameters.
 
 ##### Request syntax
 
-|request parameter|type|allowed values|description|
+|Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`query`|`String`|`{operator}:{filter-value}`|Creates a QueryFilter from the given string. Only the filter-value is mandatory, `EQ` operator is used if `operator` is not specified.|
-|`attribute`|`String`|Comma separated values of attribute `UID` ??| ??|
+|`query`|`String`|`{operator}:{filter-value}`|Creates a filter over tracked entity attributes. Only the filter-value is mandatory, `EQ` operator is used if `operator` is not specified.|
+|`attribute`|`String`|Comma separated values of attribute `UID` ??| For each tracked entity in the response, only returns specified attributes |
 |`filter`|`String`|Comma separated values of ??|??|
 |`orgUnit`|`String`|semicolon-delimited list of organisational unit `UID`|Only return tracked entity instances belonging to provided organisational units|
-|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected selected organisation units only. See table below for explanations.|
+|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
 |`program`|`String`|Program `UID`| a Program `UID` for which instances in the response must be enrolled in|
 |`programStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The ProgramStatus of the Tracked Entity Instance in the given program|
 |`programStage`|`String`|`UID`|a Program Stage `UID` for which instances in the response must have events on|
 |`followUp`|`Boolean`|`true`&#124;`false`|Indicates whether the Tracked Entity Instance is marked for follow up for the specified Program|
-|`updatedAfter`|`DateTime`| ?? | Start date for last updated|
-|`updatedBefore`|`DateTime`| ?? | End date for last updated|
-|`updatedWithin`|`Duration`|?? | ??|
-|`enrollmentEnrolledAfter`|`DateTime`|??|Start date for incident in the given program|
-|`enrollmentEnrolledBefore`|`DateTime`|??|End date for incident in the given program|
-|`enrollmentOccurredAfter`|`DateTime`|??|Start date for incident in the given program|
-|`enrollmentOccurredBefore`|`DateTime`|??|End date for incident in the given program|
-|`trackedEntityType`|`String`|??|Only returns Tracked Entity Instances of given type|
+|`updatedAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Start date for last updated|
+|`updatedBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | End date for last updated|
+|`updatedWithin`|`Duration`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) | Returns TEIs not older than specified Duration|
+|`enrollmentEnrolledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for incident in the given program|
+|`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for incident in the given program|
+|`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for incident in the given program|
+|`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for incident in the given program|
+|`trackedEntityType`|`String`|UID of tracked entity type|Only returns Tracked Entity Instances of given type|
 |`trackedEntity`|`String`|semicolon-delimited list of tracked entity instance `UID`|Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using `trackedEntity=id1;id2`. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
 |`assignedUserMode`|`String`|`CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`|Restricts result to tei with events assigned based on the assigned user selection mode|
 |`assignedUser`|`String`|Semicolon-delimited list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using `assignedUser=id1;id2`.This parameter will be considered only if assignedUserMode is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`|
 |`eventStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED`|Status of any events in the specified program|
-|`eventOccurredAfter`|`DateTime`|???|Start date for Event for the given Program|
-|`eventOccurredBefore`|`DateTime`|???|End date for Event for the given Program|
+|`eventOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for Event for the given Program|
+|`eventOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for Event for the given Program|
 |`skipMeta`|`Boolean`|`true`&#124;`false`|Indicates whether not to include meta data in the response.|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`|Indicates whether to include soft-deleted elements|
 |`includeAllAttributes`|`Boolean`|`true`&#124;`false`|Indicates whether to include all TEI attributes|
@@ -647,9 +650,9 @@ attribute without a filter, with one organisation unit using the
 descendant organisation unit query mode:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &filter=AMpUYgxuCaE&orgUnit=DiszpKrYNg8;yMCshbaVExv
+        &attribure=AMpUYgxuCaE&orgUnit=DiszpKrYNg8;yMCshbaVExv
 
-A query for instances where one attribute is included in the response
+A query for instances where attributes are included in the response
 and one attribute is used as a filter:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
@@ -661,7 +664,8 @@ item:
 
     GET /api/tracker/trackedEntities?orgUnit=DiszpKrYNg8
         &program=ur1Edk5Oe2n
-        &filter=lw1SqmMlnfh:GT:150:LT:190
+        &filter=lw1SqmMlnfh:GT:150
+        &filter=lw1SqmMlnfh:LT:190
 
 To query on an attribute using multiple values in an *IN* filter:
 
@@ -677,7 +681,7 @@ program you can include a program query parameter:
 
 To specify program enrollment dates as part of the query:
 
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
+    GET /api/tracker/trackedEntities?
         &orgUnit=O6uvpzGd5pu&program=ur1Edk5Oe2n
         &enrollmentEnrolledAfter=2013-01-01
         &enrollmentEnrolledBefore=2013-09-01
@@ -770,10 +774,10 @@ Purpose of this endpoint is to retrieve one tracked entities given its uid.
 
 `GET /api/tracker/trackedEntities/{uid}?program={programUid}&fields={fields}`
 
-|request parameter|type|allowed values|description|
+|Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Tracked Entity Instance with specified `uid`|
-|`program`|`String`|`uid`| TODO - verify what exactly this param does |
+|`program`|`String`|`uid`| Include program attributes in the response (only the ones user has access to) |
 |`fields`|`String`| **Currently:** <br>`*`&#124;`relationships`&#124;`enrollments`&#124;`events`&#124;`programOwners`<br><br>**Planned:**<br> a `String` specifying which fields to include in the response|Include specified sub-objects in the response| 
 
 ##### Example requests
@@ -880,11 +884,9 @@ Two endpoints are dedicated to events:
 
 #### Events Collection endpoint `GET /api/tracker/trackedEntities`
 
-Purpose of this endpoint is to retrieve events matching client-provided criteria.
+Returns a list of events based on filters.
 
-It's intended to return a collection of events with pagination TODO [VERIFY USE CASES].
-
-|request parameter|type|allowed values|description|
+|Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`program`|`String`|`uid`| Identifier of program|
 |`programStage`|`String`|`uid`| Identifier of program stage|
@@ -893,22 +895,22 @@ It's intended to return a collection of events with pagination TODO [VERIFY USE 
 |`trackedEntityInstance`|`String`|`uid`| Identifier of tracked entity instance|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
 |`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|	Org unit selection mode| 
-|`occurredAfter`|`DateTime`| |	Only events newer than this date|
-|`occurredBefore`|`DateTime`| | Only events older than this date|
+|`occurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|	Only events newer than this date|
+|`occurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only events older than this date|
 |`status`|`String`|`COMPLETED`&#124;`VISITED`&#124;`SCHEDULED`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
-|`occurredAfter`|`DateTime`| | Filter for events which were occurred after this date.|
-|`occurredBefore`|`DateTime`| | Filter for events which were occurred up until this date.|
-|`scheduledAfter`|`DateTime`| | Filter for events which were scheduled after this date.|
-|`scheduledBefore`|`DateTime`| | Filter for events which were scheduled up until this date.|
-|`updatedAfter`|`DateTime`| | Filter for events which were updated after this date. Cannot be used together with `updatedWithin`.|
-|`updatedBefore`|`DateTime`| | Filter for events which were updated up until this date. Cannot be used together with `updatedWithin`.|
-|`updatedWithin`|`Duration`| | Include only items which are updated within the given duration.<br><br> The format is [ISO-8601#Duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)|
+|`occurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were occurred after this date.|
+|`occurredBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which were occurred up until this date.|
+|`scheduledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were scheduled after this date.|
+|`scheduledBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which were scheduled up until this date.|
+|`updatedAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which were updated after this date. Cannot be used together with `updatedWithin`.|
+|`updatedBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were updated up until this date. Cannot be used together with `updatedWithin`.|
+|`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations)| Include only items which are updated within the given duration.<br><br> The format is [ISO-8601#Duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)|
 |`skipMeta`|`Boolean`| `true`&#124;`false` | Exclude the meta data part of response (improves performance)|
-| TODO (?) `dataElementIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`|	Data element ID scheme to use for export.|
-| TODO (?) `categoryOptionComboIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Category Option Combo ID scheme to use for export|
-| TODO (?) `orgUnitIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Organisation Unit ID scheme to use for export|
-| TODO (?) `programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
-| TODO (?) `programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
+|`dataElementIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`|	Data element ID scheme to use for export.|
+|`categoryOptionComboIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Category Option Combo ID scheme to use for export|
+|`orgUnitIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Organisation Unit ID scheme to use for export|
+|`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
+|`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
 |`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
 |`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
 |`event`|`String`|comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using event=id1;id2.|
@@ -921,7 +923,8 @@ It's intended to return a collection of events with pagination TODO [VERIFY USE 
 
 > **Note**
 >
-> If the query contains neither `attributeCC` nor `attributeCos`, the server returns events for all attribute option combos where the user has read access.
+> If the query contains neither `attributeCC` nor `attributeCos`, 
+> the server returns events for all attribute option combos where the user has read access.
 
 ##### Example requests
 
@@ -1031,7 +1034,7 @@ Purpose of this endpoint is to retrieve one event given its uid.
 
 `GET /api/tracker/events/{uid}?fields={fields}`
 
-|request parameter|type|allowed values|description|
+|Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Event with specified `uid`|
 |`fields`|`String`| **Not implemented yet**|Include specified properties in the response| 
@@ -1137,29 +1140,27 @@ Two endpoints are dedicated to enrollments:
 
 #### Enrollment Collection endpoint `GET /api/tracker/enrollments`
 
-Purpose of this endpoint is to retrieve enrollments matching client-provided criteria.
+Returns a list of events based on filters.
 
-It's intended to return a collection of enrollments with pagination TODO [VERIFY USE CASES].
-
-|request parameter|type|allowed values|description|
+|Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
 |`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL|	Org unit selection mode| 
 |`program`|`String`|`uid`| Identifier of program|
 |`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Program Status |
 |`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the instance for the given program. Can be `true`&#124;`false` or omitted.|
-|`updatedAfter`|`DateTime`| |	Only enrollments updated after this date|
-|`updatedWithin`|`Duration`| | Only enrollments updated since given duration |
-|`enrolledAfter`|`DateTime`| |	Only enrollments newer than this date|
-|`enrolledBefore`|`DateTime`| | Only enrollments older than this date|
+|`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) |	Only enrollments updated after this date|
+|`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments updated since given duration |
+|`enrolledAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|	Only enrollments newer than this date|
+|`enrolledBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments older than this date|
 |`trackedEntityType`|`String`|`uid`| Identifier of tracked entity type|
 |`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
-|`enrollment`|`String`|comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using enrollment=id1;id2.|
+|`enrollment`|`String`|Comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using enrollment=id1;id2.|
 |`includeDeleted`|`Boolean`| |	When true, soft deleted events will be included in your query result.|
 
 The query is case-insensitive. The following rules apply to the query parameters.
 
-- At least one organisation unit must be specified using the *orgUnit*
+- At least one organisation unit must be specified using the `orgUnit`
   parameter (one or many), or *ouMode=ALL* must be specified.
 
 - Only one of the *program* and *trackedEntity* parameters can be
@@ -1249,7 +1250,7 @@ Purpose of this endpoint is to retrieve one enrollment given its uid.
 
 `GET /api/tracker/enrollment/{uid}?fields={fields}`
 
-|request parameter|type|allowed values|description|
+|Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Enrollment with specified `uid`|
 |`fields`|`String`| **Not implemented yet**|Include specified sub-objects in the response| 
@@ -1297,7 +1298,7 @@ Unlike other tracked objects endpoints, Relationship only expose one endpoint:
 - `GET /api/tracker/relationships?[tei={teiUid}|enrollment={enrollmentUid}|event={eventUid}]&fields=[fields]`
 
 #### Request parameters
-|request parameter|type|allowed values|description|
+|Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`tei`|`String`|`uid`| Identifier of a Tracked Entity Instance|
 |`enrollment`|`String`|`uid`| Identifier of an Enrollment |
@@ -1307,6 +1308,12 @@ Unlike other tracked objects endpoints, Relationship only expose one endpoint:
 The following rules apply to the query parameters.
 
 - only one parameter among `tei`,`enrollment`,`event` can be passed
+
+> **NOTE:**
+>
+> using tei, enrollment or event params, will return any relationship where the tei\enrollment or
+> event is part of the relationship (either from or to). As long as user has access that is.
+> 
 
 #### Example response
 
