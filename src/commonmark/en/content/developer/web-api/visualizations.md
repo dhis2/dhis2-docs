@@ -594,6 +594,10 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 <td>translations</td>
 <td>Set of available object translation, normally filtered by locale.</td>
 </tr>
+<tr class="even">
+<td>outlierAnalysis</td>
+<td>Object responsible to keep settings related to outlier analysis. The internal attribute 'outlierMethod' supports: IQR, STANDARD_Z_SCORE, MODIFIED_Z_SCORE. The 'normalizationMethod' accepts only Y_RESIDUALS_LINEAR for now.</td>
+</tr>
 </tbody>
 </table>
 
@@ -790,20 +794,10 @@ These operations follow the standard *REST* semantics. A new Visualization can b
   "hideSubtitle": true,
   "hideLegend": true,
   "showData": true,
-  "baseLineLabel": "A base label",
-  "targetLineLabel": "A target label",
-  "targetLineValue": 45.5,
-  "baseLineValue": 19.99,
   "percentStackedValues": true,
   "noSpaceBetweenColumns": true,
   "rowSubTotals": true,
   "colSubTotals": true,
-  "domainAxisLabel": "A domain axis label",
-  "rangeAxisLabel": "A range axis label",
-  "rangeAxisMaxValue": 123.65,
-  "rangeAxisMinValue": 33.89,
-  "rangeAxisSteps": 5,
-  "rangeAxisDecimals": 10,
   "userOrgUnitType": "TEI_SEARCH",
   "externalAccess": false,
   "publicAccess": "--------",
@@ -913,44 +907,140 @@ These operations follow the standard *REST* semantics. A new Visualization can b
       }
     ]
   },
-  "fontStyle": {
-    "visualizationTitle": {
-      "font": "VERDANA",
-      "fontSize": 16,
-      "bold": true,
-      "italic": false,
-      "underline": false,
-      "textColor": "#3a3a3a",
-      "textAlign": "LEFT"
-    },
-    "horizontalAxisTitle": {
-      "font": "ROBOTO",
-      "fontSize": 12,
-      "bold": false,
-      "italic": true,
-      "underline": false,
-      "textColor": "#2a2a2a",
-      "textAlign": "CENTER"
-    },
-    "categoryAxisLabel": {
-      "font": "ROBOTO",
-      "fontSize": 12,
-      "bold": false,
-      "italic": true,
-      "underline": false,
-      "textColor": "#dedede",
-      "textAlign": "CENTER"
-    },
-    "targetLineLabel": {
-      "font": "ARIAL",
-      "fontSize": 12,
-      "bold": false,
-      "italic": true,
-      "underline": false,
-      "textColor": "#dedede",
-      "textAlign": "CENTER"
+  "outlierAnalysis": {
+    "enabled": true,
+    "outlierMethod": "IQR",
+    "thresholdFactor": 1.5,
+    "normalizationMethod": "Y_RESIDUALS_LINEAR",
+    "extremeLines": {
+      "enabled": true,
+      "value": 3.5
     }
-  }
+  },
+  "legend": {
+    "label": {
+      "fontStyle": {
+        "textColor": "#dddddd"
+      }
+    },
+    "hidden": false
+  },
+  "axes": [
+    {
+      "index": 0,
+      "type": "RANGE",
+      "label": {
+        "fontStyle": {
+          "textColor": "#cccddd"
+        }
+      },
+      "title": {
+        "text": "Range axis title",
+        "fontStyle": {
+          "textColor": "#000000"
+        }
+      },
+      "decimals": 1,
+      "maxValue": 100,
+      "minValue": 20,
+      "steps": 5,
+      "baseLine": {
+        "value": 50,
+        "title": {
+          "text": "My baseline",
+          "fontStyle": {
+            "textColor": "#000000"
+          }
+        }
+      },
+      "targetLine": {
+        "value": 80,
+        "title": {
+          "text": "My targetline",
+          "fontStyle": {
+            "textColor": "#cccddd"
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "type": "DOMAIN",
+      "label": {
+        "fontStyle": {
+          "textColor": "#000000"
+        }
+      },
+      "title": {
+        "text": "Domain axis title",
+        "fontStyle": {
+          "textColor": "#cccddd"
+        }
+      }
+    }
+  ],
+  "legend": {
+    "label": {
+      "fontStyle": {
+        "textColor": "#dddddd"
+      }
+    },
+    "hidden": false
+  },
+  "axes": [
+    {
+      "index": 0,
+      "type": "RANGE",
+      "label": {
+        "fontStyle": {
+          "textColor": "#cccddd"
+        }
+      },
+      "title": {
+        "text": "Range axis title",
+        "fontStyle": {
+          "textColor": "#000000"
+        }
+      },
+      "decimals": 1,
+      "maxValue": 100,
+      "minValue": 20,
+      "steps": 5,
+      "baseLine": {
+        "value": 50,
+        "title": {
+          "text": "My baseline",
+          "fontStyle": {
+            "textColor": "#000000"
+          }
+        }
+      },
+      "targetLine": {
+        "value": 80,
+        "title": {
+          "text": "My targetline",
+          "fontStyle": {
+            "textColor": "#cccddd"
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "type": "DOMAIN",
+      "label": {
+        "fontStyle": {
+          "textColor": "#000000"
+        }
+      },
+      "title": {
+        "text": "Domain axis title",
+        "fontStyle": {
+          "textColor": "#cccddd"
+        }
+      }
+    }
+  ]
 }
 ```
 
