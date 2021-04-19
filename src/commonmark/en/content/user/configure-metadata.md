@@ -5653,6 +5653,19 @@ should contain the SQL view definition. Only SQL "SELECT" statements are
 allowed and certain sensitive tables (i.e. user information) are not
 accessible Press "Save" to store the SQL view definition.
 
+Keep in mind that the the columns returned by the used SELECT statement 
+become table columns, that means they must be of a valid table column
+type. When functions are used it might be necessary to explicitly cast 
+the result to a type by adding `::{TYPE}` after the function.
+
+For example, instead of `jsonb_each` (which would return a record type
+that cannot be a column type) use `jsonb_each_text` and cast the result 
+to `text`, like in the below sample:
+
+```sql
+select jsonb_each_text(eventdatavalues)::text from ...
+```
+
 ### SQL View management
 
 In order to utilize the SQL views, simply click the view and from the
