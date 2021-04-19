@@ -3496,12 +3496,12 @@ The list of messages can be retrieved using GET.
 
     GET /api/33/messages
 
-To get list of sent tracker messages, below endpoint can be used. ProgramInstance or ProgramStageInstance uid has to be provided.
+To get the list of sent tracker messages, the below endpoint can be used. ProgramInstance or ProgramStageInstance uid has to be provided.
 	
 	GET /api/33/messages/scheduled/sent?programInstance={uid}
 	GET /api/33/messages/scheduled/sent?programStageInstance={uid}
 
-To get list of all scheduled message
+To get the list of all scheduled message
 
 	GET /api/33/messages/scheduled
 	GET /api/33/messages/scheduled?scheduledAt=2020-12-12
