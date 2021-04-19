@@ -1,22 +1,64 @@
 # Metadata Gist API
 
-The metadata gist API is a RESTful read-only JSON API to browse metadata.
+The metadata gist API is a RESTful read-only JSON API to fetch and browse 
+metadata.
 
 It is specifically designed to avoid: 
-* large response payloads because of deeply nested object graphs
-* resource intensive in memory processing of requests (e.g. in memory filtering)
-
-It should be the "go to" API for metadata as long as the use case is supported.
-
-All shown items, size counts or boolean transformer result reflect
-the situation considering the items visible to you based on object sharing.
-
+* large response payloads because of the inclusion of partial nested object 
+  graphs
+* resource intensive in memory processing of requests 
+  (e.g. in memory filtering or object graph traversal)
+  
 
 ## Comparison with Metadata API
-TODO
+The standard Metadata API is a flexible and powerful API built to serve any and 
+every use case.
+The downside of this is that not all features and combinations can scale while 
+keeping good performance in the presence of huge numbers of items.
+In particular lists with items where each item itself has a property which is a 
+large collection of complex objects have proven problematic as they quickly
+reference a huge part of the entire object graph.
+
+The `/gist` API was added to provide a metadata API where scaling well is our 
+first priority. The downside of this is that there are more distinct limits to
+what features are technically reasonable, which means not all features of the 
+standard Metadata API exist for the Gist API.
+
+The Gist API uses a divide and conquer strategy to avoid responses with large
+partial object graphs. Instead of including nested objects or lists it provides
+a `/gist` endpoint URI where this object or list can be viewed in isolation.
+**The `/gist` API refers to nested data using URIs rather than including it.**
+This means if a client is interested in this nested information more request
+are required but each of them is kept reasonable small and will scale
+well in context of huge number of potential items.
+
+Known Differences:
+* items never include fields with identifiable objects or list of such objects
+* items by default do not include all available fields but a subset that depends 
+  on context and parameters
+* lists cannot be used without pager (therefore there is no `pager` parameter)
+* fields with collections are not paged using the `pager`-transformer but through
+  a paged API endpoint for the particular collection property
+* items in a list, a collection property size or boolean transformer result 
+  always considers object sharing (the set of considered items is always the set
+  visible to the user)
+* Gist offers `member(<id>)` and `not-member(<id>)` collection field transformers
+
+Known Limitations:
+* only persisted or synthetic fields (those based on persisted fields) can be included
+* filters can only be applied to persisted fields
+* orders can only be applied to persisted fields
+* like-filters are always case-insensitive
+* no token filter available
+* order is always case-sensitive
+* fields which hold collections of simple (non-identifiable) items cannot always
+  be included depending on how they are stored
+
+Where possible to use the `/gist` API should be considered the preferable way
+of fetching metadata information.
 
 ## Endpoints
-The `/gist` API has 3 endpoints:
+The `/gist` API has 3 kinds of endpoints:
 
 * `/api/<object-type>/gist`: paged list of all known and visible objects of the type (implicit `auto=S`)
 * `/api/<object-type>/<object-id>/gist`: view single object by ID (implicit `auto=L`)
@@ -26,12 +68,16 @@ These endpoints correspond to the endpoints of the standard metadata API without
 the `/gist` suffix and share the majority of parameters and their options with 
 that API.
 
+
 ## Browsing Data
 Since `/gist` API avoids deeply nested data structures in the response the
 details of referenced complex objects or list of objects is instead provided
 in form of a URI to the gist endpoint that only returns the complex object or
-list. These URIs are provided by the `apiEndpoints` field which is 
-automatically added to an item when such references exist.
+list of objects. These URIs are provided by the `apiEndpoints` field of an item
+which is automatically added to an item when such references exist.
+The item property itself might contain a transformation result on the object
+or collection such as its size, emptiness, non-emptiness, id(s) or plucked 
+property such as its name.
 
 ## Parameters
 All endpoints of the `/gist` API accept the same set of parameters.
@@ -112,10 +158,66 @@ Fields within the preset are ordered from simple to complex.
 If no `fields` parameter is provided `fields=*` is assumed.
 Note that the fields of the `*` preset also depend on the `auto` parameter
 
+TODO remove fields
+TODO respecify fields
+
 Further details in section [Fields](#gist-fields).
 
 ### The `filter` Parameter
+To filter the list of returned items add one or more `filter` parameters.
 
+Multiple filters can either be specified as comma seperated list of a single 
+`filter` parameter or as multiple `filter` parameters each with a single filter.
+
+There are two types of filters:
+
+* unary: `<field>:<operator>`
+* binary: `<field>:<operator>:<value>`
+
+A field must be a persisted field of the listed item type or field of a directly
+referenced object (1:1 relation).
+
+Available unary operators are:
+* `null`: field is _null_ (undefined)
+* `!null`: field is _not null_ (defined)
+* `empty`: field is a _empty_ collection
+* `!empty`: field is a _non-empty_ collection
+
+Available binary operators are:
+* `eq`: field _equals_ value
+* `!eq`, `neq`, `ne`: field is _not equal_ value
+* `lt`: field is _less than_ value
+* `le`, `lte`: field is _less than or equal to_ value
+* `gt`: field is _greater than_ value
+* `ge`, `gte`: field is _greater than or equal to_ value
+* `in`: field is a collection and value is an item _contained in_ the collection
+* `!in`: field is a collection and value is an item _not contained in_ the collection
+
+Any `>`, `>=`, `<` `<=`, `==` or `!=` comparison applied to a collection field 
+with a numeric value will compare the size of the collection to the value.
+
+Available binary pattern matching operators are:
+* `like`, `ilike`: field _matches_ pattern value
+* `!like`, `!ilike`: field does _not match_ pattern value
+* `$like`, `$ilike`, `startsWith`: field _starts with_ pattern value
+* `!$like`, `!$ilike`: field does _not start with_ pattern value
+* `like$`, `ilike$`, `endsWith`: field _ends with_ pattern value
+* `!like$`, `!ilike$`: field does _not end with_ pattern value
+
+Some operators have multiple aliases to be backwards compatible with the 
+standard metadata API. For the gist API any like is always case-insensitive. 
+
+For example, to only list organisations on 2nd level use
+
+    /api/organisationUnits/gist?filter=level:eq:2
+
+Similarly, when listing the `children` of a particular organisation unit the
+collection can be filtered. To only list those children that are connected to
+a program one would use:
+
+    /api/organisationUnits/rZxk3S0qN63/children/gist?filter=programs:gt:0
+
+More details on the individual filters are found in section [Filters](#gist-filters).
 
 ### The `headless` Parameter
 Endpoints returning a list by default wrap the items with an envelope containing 
@@ -290,7 +392,29 @@ endpoint and selector.
 * `:persisted`: literally all persisted fields
 
 ### Field Transformers
+A transformer or transformation can be applied to a field by appending 
+any of the indicators `::`, `~` or `@` followed by the transformer expression.
 
+Available transformer expressions are:
+* `rename(<name>)`: renames the field in the response to `<name>`
+* `size` => `number`: number of items in the collection field
+* `isEmpty` => `boolean`: emptiness of a collection field
+* `isNotEmpty` => `boolean`: non-emptiness of a collection field
+* `ids` => (array of) `string`: ID of an object or IDs of collection items
+* `id-objects` => array of `{ "id": <id> }`: IDs of collection items as object
+* `member(<id>)` => `boolean`: has member with `<id>` for collection field
+* `not-member(<id>)` => `boolean`: not has member with `<id>` for collection field
+* `pluck(<field>)` => (array of) `string`: extract single text property of the 
+  object or of each collection item
+
+A field can receive both the `rename` transformer and one of the other 
+transformers, for example:
+
+    /api/organisationUnits/gist?fields=*,children::size~rename(child-count)
+
+The returned items now no longer have a `chilren` member but a `child-count`
+member instead. Note that `rename` also affects the member name of the URI
+reference given in `apiEndpoints`.
 
 
 ## Synthetic Fields
@@ -378,6 +502,8 @@ returns items in the form:
 ## Filters
 
 
-## Response
+## Responses
 
 ### Pager
+
+## Examples
