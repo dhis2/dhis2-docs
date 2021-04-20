@@ -765,11 +765,9 @@ A table with a full reference of error codes, messages and description:
 
 <!--DHIS2-SECTION-ID:webapi_nti_program_rules-->
 
-  * When importing tracker objects relevant program rules are going to be run and relevant program rule action are going to be applied.
-  Not all program rule action are supported because a lot of them deal with frontend presentation that has no effect when importing in the server through the API. A complete list of the supported program rule actions is present in the next section.
-  Program rules are used to add custom behaviour to the importer that will result in generated values in the incoming payload and extra validations.
+Users can configure [Program Rules](#webapi_program_rules) which adds conditional behaviour to tracker forms. In addition to running these rules in the tracker apps, the tracker importer will also run a selection of these rules. Since the importer is also running these rules, we can ensure an additional level of validation.
 
-  * Supported program rule actions
+Not all program rule action are supported, since they are only suitable for a frontend presentation. A complete list of the supported program rule actions is presented below.
 
   |Program Rule Action|Supported|
   |---|:---:|
@@ -787,21 +785,21 @@ A table with a full reference of error codes, messages and description:
   |**SENDMESSAGE**|**X**|
   |**SCHEDULEMESSAGE**|**X**|
 
+Program rules are evaluated in the importer in the same way they are evaluated in the Tracker apps. To summarize, the following conditions are considered when enforcing the program rules:
+* The program rule must be linked to the data being imported. For example a program stage or a data element.
+* The Program rule's condition must be evaluated to true
 
-  * Program rules are evaluated in the importer in the same way the are evaluated in the TrackerApp.
-  The conditions that make a program rule action to be applied can be summarised as follow:
-    * If the program rule is linked to a ProgramStage, the target tracker object must be linked to the same ProgramStage
-    * Program rule condition must be evaluated to true
-    * If the program rule action is linked to a data element, the target tracker object must be linked to the same ProgramStage that the data element belongs to
-  * Program rule actions application can generate 2 different result: Warnings or Errors. In general errors will make the validation fail while the warning will be just a message in the report.
-  SHOWWARNING and WARNINGONCOMPLETION actions can generate only Warnings.
-  SHOWERROR, ERRORONCOMPLETION and SETMANDATORYFIELD actions can generate only Errors.
-  ASSIGN action can generate both Warnings and Errors.
-    * When the action is assigning a value to an empty attribute/data element, a warning is generated.
-    * When the action is assigning a value to a an attribute/data element that has already the same value to be assigned, a warning is generated.
-    * When the action is assigning a value to a an attribute/data element that has already a value and the value to be assigned is different, an error is generated, unless `RULE_ENGINE_ASSIGN_OVERWRITE` system setting is set to true.
-  * Side effects(?) - Link to side effects
+The results of the program rules depends on the actions defined in those rules:
+* Program rule actions may end in 2 different results: Warnings or Errors.
+  * Errors will make the validation fail, while the warnings will be reported as a message in the import summary.
+    * SHOWWARNING and WARNINGONCOMPLETION actions can generate only Warnings.
+    * SHOWERROR, ERRORONCOMPLETION and SETMANDATORYFIELD actions can generate only Errors.
+    * ASSIGN action can generate both Warnings and Errors.
+      * When the action is assigning a value to an empty attribute/data element, a warning is generated.
+      * When the action is assigning a value to a an attribute/data element that has already the same value to be assigned, a warning is generated.
+      * When the action is assigning a value to a an attribute/data element that has already a value and the value to be assigned is different, an error is generated, unless `RULE_ENGINE_ASSIGN_OVERWRITE` system setting is set to true.
 
+Additionally, program rules can also result in side-effects, like send and schedule message. More information about side-effects can be found in the following section.
 
 ### Side Effects
 
