@@ -1,23 +1,28 @@
 # Metadata Gist API
+<!--DHIS2-SECTION-ID:gist_api-->
 
 The Metadata Gist API is a RESTful read-only JSON API to fetch and browse 
-metadata. It in this API contain the gist of the same item in the Metadata API.
+metadata. Items in this API contain the gist of the same item in the Metadata API.
 
 The API is specifically designed to avoid: 
 * large response payloads because of the inclusion of partial nested object 
   graphs
 * resource intensive in memory processing of requests 
   (e.g. in memory filtering or object graph traversal)
+* _n + 1_ database queries as a result of object graph traversal while rendering
+  the response
   
 
 ## Comparison with Metadata API
+<!--DHIS2-SECTION-ID:gist_vs_metadata_api-->
+
 The standard Metadata API is a flexible and powerful API built to serve any and 
 every use case.
 The downside of this is that not all features and combinations can scale while 
 keeping good performance in the presence of huge numbers of items.
 In particular lists with items where each item itself has a property which is a 
 large collection of complex objects have proven problematic as they quickly
-reference a huge part of the entire object graph.
+reference a large part of the entire object graph.
 
 The `/gist` API was added to provide a metadata API where scaling well is our 
 first priority. The downside of this is that there are more distinct limits to
@@ -49,7 +54,7 @@ Known Limitations:
 * filters can only be applied to persisted fields
 * orders can only be applied to persisted fields
 * like-filters are always case-insensitive
-* no token filter available
+* token filters are not available
 * order is always case-sensitive
 * `pluck` transformer limited to text properties
 * fields which hold collections of simple (non-identifiable) items cannot always
@@ -58,7 +63,10 @@ Known Limitations:
 Where possible to use the `/gist` API should be considered the preferable way
 of fetching metadata information.
 
+
 ## Endpoints
+<!--DHIS2-SECTION-ID:gist_endpoints-->
+
 The `/gist` API has 3 kinds of endpoints:
 
 * `/api/<object-type>/gist`: paged list of all known and visible objects of the type (implicit `auto=S`)
@@ -71,6 +79,8 @@ that API.
 
 
 ## Browsing Data
+<!--DHIS2-SECTION-ID:gist_browse-->
+
 Since `/gist` API avoids deeply nested data structures in the response the
 details of referenced complex objects or list of objects is instead provided
 in form of a URI to the gist endpoint that only returns the complex object or
@@ -80,10 +90,18 @@ The item property itself might contain a transformation result on the object
 or collection such as its size, emptiness, non-emptiness, id(s) or plucked 
 property such as its name.
 
+To manually browse data it can be handy to use the `absoluteUrls=true` parameter.
+Linkage between parts of the gist can now be followed directly in browsers that
+render JSON responses.
+
+
 ## Parameters
+<!--DHIS2-SECTION-ID:gist_parameters-->
+
 All endpoints of the `/gist` API accept the same set of parameters.
 Parameters and their options that do not make sense in the endpoint context are 
 ignored.
+
 
 ### Overview
 Parameters in alphabetical order:
@@ -95,13 +113,16 @@ Parameters in alphabetical order:
 * `headless`: `true` skip wrapping result in a pager (ignores `total`), `false` (default) use a pager wrapper object around the result list
 * `inverse`: `true` return items **not** in the list, `false` (default) return items in the list
 * `order`: comma separated list of query order fields (can be used more than once)
-* `page`: `{1..n}`
-* `pageSize`: `{1..1000}`
+* `page`: `{1..n}` page number
+* `pageSize`: `{1..1000}` number of items on a page (default is 50)
 * `rootJunction`: `AND` (default) or `OR` combination of `filter`s
 * `total`: `true` add total number of matches to the pager, `false` (default) skip counting total number of matches
 * `translate`: `true` (default) translate all translatable properties, `false` skip translation of translatable properties (no effect on synthetic display names)
 
+
 ### The `absoluteUrls` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_absoluteUrls-->
+
 By default, URIs in `apiEndpoints`, `href` and the `pager`'s`prev` and `next` 
 members are relative, starting with `/<object-type>/` path.
 
@@ -109,16 +130,27 @@ The URIs can be changed to absolute URLs using the `absoluteUrls` parameter.
 
 For example, `/api/users/rWLrZL8rP3K/gist?fields=id,href` returns:
 
-    {"id":"rWLrZL8rP3K","href":"/users/rWLrZL8rP3K/gist"}
+```json
+    {
+      "id":"rWLrZL8rP3K",
+      "href":"/users/rWLrZL8rP3K/gist"
+    }
+```
 
 whereas `/api/users/rWLrZL8rP3K/gist?fields=id,href&absoluteUrls=true` 
 returns:
 
-    {"id":"rWLrZL8rP3K","href":"http://localhost:8080/api/users/rWLrZL8rP3K/gist?absoluteUrls=true"}
+```json
+    {
+      "id":"rWLrZL8rP3K",
+      "href":"http://localhost:8080/api/users/rWLrZL8rP3K/gist?absoluteUrls=true"
+    }
+```
 
 As the example shows the `absoluteUrls` parameter is also forwarded or carried
 over to the included URLs so allowing to browse the responses by following the 
 provided URLs.
+
 
 ### The `auto` Parameter
 Each endpoint implicitly sets a default for the extent of fields matched by the
@@ -148,7 +180,10 @@ include `organisationUnits`, `dataViewOrganisationUnits`,
 `teiSearchOrganisationUnits` and `userGroups` each with the list of IDs of the
 members in the lists/sets.
 
+
 ### The `fields` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_fields-->
+
 Specifies the list of fields to include for each list item.
 
 Fields are included in the result JSON objects for an item in the provided order.
@@ -185,6 +220,7 @@ there is a 1:1 relation. For example to add `userCredentials` with `id` and
 
 This creates items of the form:
 
+```json
     {
       ...
       "userCredentials": {
@@ -192,6 +228,7 @@ This creates items of the form:
         "username": "guest"
       }
     }
+```
 
 A way to partly overcome the 1:1 limitation and to include fields of nested 
 collection is the `pluck` transformer. It allows for example to include all
@@ -201,6 +238,7 @@ collection is the `pluck` transformer. It allows for example to include all
 
 This lists the `userGroups` as:
 
+```json
     {
       "userGroups": [
         "_PROGRAM_Inpatient program",
@@ -211,10 +249,14 @@ This lists the `userGroups` as:
         "_DATASET_M and E Officer"
       ]
     }
+```
 
-Further details in section [Fields](#gist-fields).
+Further details in section [Fields](#gist_fields).
+
 
 ### The `filter` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_filter-->
+
 To filter the list of returned items add one or more `filter` parameters.
 
 Multiple filters can either be specified as comma seperated list of a single 
@@ -277,12 +319,16 @@ a program one would use:
 
     /api/organisationUnits/rZxk3S0qN63/children/gist?filter=programs:gt:0
 
+
 ### The `headless` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_headless-->
+
 Endpoints returning a list by default wrap the items with an envelope containing 
 the `pager` and the list, which is named according to the type of object listed.
 
 For example `/api/organisationUnits/gist` returns:
 
+```json
     {
         "pager": {
             "page": 1,
@@ -291,9 +337,11 @@ For example `/api/organisationUnits/gist` returns:
         }
         "organisationUnits": [...]
     }
+```
 
 With `headless=true` the response to `/api/organisationUnits/gist?headless=true` 
 is just the `[...]` list part in above example.
+
 
 ### The `inverse` Parameter
 The `inverse` can be used in context of a collection field gist of the form 
@@ -313,7 +361,13 @@ would list all organisation units that are not children of `rZxk3S0qN63`.
 This would e.g. be used to compose a list of all units that can be made a child 
 of a particular unit.
 
+Filters and orders do apply normally, meaning they filter or order the items
+not contained in the member collection.
+
+
 ### The `order` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_order-->
+
 To sort the list of items one or more order expressions can be given.
 
 An order expression is either just a field name of a persisted field or a field
@@ -341,6 +395,8 @@ internal data organisation.
 
 
 ### The `page` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_page-->
+
 Refers to the viewed page in paged list starting with `1` for the first page.
 
 If no `page` parameter is present this is equal to `page=1`.
@@ -349,12 +405,18 @@ The `page` is always in relation to the `pageSize`.
 If a `page` is given beyond the number of existing matches an empty item list
 is returned.
 
+
 ### The `pageSize` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_pageSize-->
+
 Refers to the number of items on a `page`. Maximum is 1000 items.
 
 If no `pageSize` parameter is present this is equal to `pageSize=50`.
 
+
 ### The `rootJunction` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_rootJunction-->
+
 The `rootJunction` parameter can be used to explicitly set the logic junction
 used between filters. Possible are:
 
@@ -363,7 +425,10 @@ used between filters. Possible are:
 
 Default is `AND`.
 
+
 ### The `total` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_total-->
+
 By default, a gist query will **not** count the total number of matches should 
 those exceed the `pageSize` limit. Instead, we opt-in to the additional costs
 the total count implicates.
@@ -375,6 +440,7 @@ field stating the number of total matches is not included in the `pager`.
 
 For example, `/api/organisationUnits/gist` returns a `pager`:
 
+```json
     {
         "pager": {
             "page": 1,
@@ -382,6 +448,7 @@ For example, `/api/organisationUnits/gist` returns a `pager`:
             "nextPage": "/organisationUnits/gist?page=2"
         }
     }
+```
 
 When counting the total matches (`total=true`) the response `pager` will 
 contain the `total` field with the actual number of total matches at the cost
@@ -389,6 +456,7 @@ of an additional database operation.
 
 The response to `/api/organisationUnits/gist?total=true` now returns this `pager`:
 
+```json
     {
         "pager": {
             "page": 1,
@@ -398,8 +466,12 @@ The response to `/api/organisationUnits/gist?total=true` now returns this `pager
             "pageCount": 27
         }
     }
+```
+
 
 ### The `translate` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_translate-->
+
 Fields like `name` or `shortName` can be translated (internationalised).
 
 By default, any translatable field that has a translation is returned translated
@@ -409,23 +481,29 @@ To return the plain non-translated field use `translate=false`.
 
 For example, `/api/organisationUnits/gist` returns items like this:
 
+```json
     {
         "name": "A translated name",
         ...
     }
+```
 
 Whereas `/api/organisationUnits/gist?translate=false` would return items like:
 
+```json
     {
         "name" "Plain field name",
         ...
     }
+```
 
 Note that synthetic fields `displayName` and `displayShortName` are always
 returning the translated value independent of the `translate` parameter.
 
 
 ## Fields
+<!--DHIS2-SECTION-ID:gist_fields-->
+
 The fields included by default (without `fields` parameter) correspond to 
 `fields=*`. 
 This means the list of fields shown depends on object type, endpoint context as 
@@ -441,6 +519,7 @@ A preset can be used in the list of fields like a field name.
 It expands to zero, one or many fields depending on the object type, used 
 endpoint and selector.
 
+
 ### Field Presets
 
 * `*` / `:all`: default fields depend on the context and `auto` parameter
@@ -448,6 +527,7 @@ endpoint and selector.
 * `:owner`: all persisted fields where the listed type is the owner
 * `:nameable`: all persisted fields of the `NameableObject` interface
 * `:persisted`: literally all persisted fields
+
 
 ### Field Transformers
 A transformer or transformation can be applied to a field by appending 
@@ -476,6 +556,8 @@ reference given in `apiEndpoints`.
 
 
 ## Synthetic Fields
+<!--DHIS2-SECTION-ID:gist_syntheticFields-->
+
 The `/gist` API is tightly coupled to properties that exist the database.
 This means properties that aren't stored in the database usually aren't 
 available.
@@ -489,6 +571,7 @@ Except for the `apiEndpoints` property which is automatically added when needed
 all other synthetic properties are not included by default and have to be 
 requested explicitly in the list of `fields`.
 
+
 ### Overview
 Synthetic fields in alphabetical order:
 
@@ -497,7 +580,10 @@ Synthetic fields in alphabetical order:
 * `displayName`: translated `name` (always translated)
 * `displayShortName`: translated `displayName` (always translated)
 
+
 ### The `href` Field
+<!--DHIS2-SECTION-ID:gist_syntheticFields_href-->
+
 Each item in a `/gist` response can link to itself. This link is given in the 
 `href` property.
 
@@ -505,7 +591,10 @@ To add the `href` field use (for example):
 
 		/api/<object-type>/gist?fields=*,href
 
+
 ### The `displayName` and `displayShortName` Field
+<!--DHIS2-SECTION-ID:gist_syntheticFields_displayName-->
+
 By definition the `displayName` is the translated `name` and the 
 `displayShortName` is the translated `shortName`. 
 
@@ -518,7 +607,10 @@ Note that by default all translatable properties like `name` and `shortName`
 would also be translated. When `translate=false` is used to disable this 
 `displayName` and `displayShortName` stay translated.
 
+
 ### The `apiEndpoints` Field
+<!--DHIS2-SECTION-ID:gist_syntheticFields_apiEndpoints-->
+
 This property provides the links to further browse complex objects or list of 
 items that are included in the `/gist` response in form of a transformed simple 
 value like an item count.
@@ -529,6 +621,7 @@ in the item that was transformed to a simple value.
 For example, `/api/users/gist?fields=id,userGroups::size,organisationUnits::size` 
 returns items in the form:
 
+```json
 	{
 		"id": "rWLrZL8rP3K",
 		"userGroups": 0,
@@ -537,15 +630,19 @@ returns items in the form:
 			"organisationUnits": "/users/rWLrZL8rP3K/organisationUnits/gist",
 			"userGroups": "/users/rWLrZL8rP3K/userGroups/gist"
 	}
+```
 
 The list of `userGroups` and `organisationUnits` are included as their `size`. 
 Each has a corresponding member in `apiEndpoints` with the path to browse the 
 list.
 
 The paths can be changed to URLs by using the `absoluteUrls` parameter. 
-`/api/users/gist?fields=id,userGroups::size,organisationUnits::size&absoluteUrls=true` 
+
+    /api/users/gist?fields=id,userGroups::size,organisationUnits::size&absoluteUrls=true
+
 returns items in the form:
 
+```json
 	{
 		"id": "rWLrZL8rP3K",
 		"userGroups": 0,
@@ -555,5 +652,8 @@ returns items in the form:
 			"userGroups": "http://{host}/api/users/rWLrZL8rP3K/userGroups/gist?absoluteUrls=true"
 		}
 	}
+```
+
 
 ## Examples
+<!--DHIS2-SECTION-ID:gist_examples-->
