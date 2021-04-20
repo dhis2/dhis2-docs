@@ -13,7 +13,7 @@ The newly introduced endpoints consist of:
 Significant changes occurred in version 2.36 to make the interface with clients homogeneous and to allow more consistent and flexible ways to use the services.
 
 > ***NOTE***
-> 
+>
 > The old endpoints are marked as deprecated but still work as before.<br>
 > Some functionality is not yet ready in the new endpoints, but they support their primary use-cases.
 
@@ -1063,12 +1063,41 @@ There are various error codes for different error scenarios. The following table
 
 <!--DHIS2-SECTION-ID:webapi_nti_program_rules-->
 
-  * Describe when\how rules are now run on the backend as well
-  * Describe what rules are being run, and which are not being run
-  * Describe any condition for when something is or is not run
-  * Describe the different results rules can have (warning, error, etc)
-  * Side effects(?) - Link to side effects
+Users can configure [Program Rules](#webapi_program_rules) which adds conditional behaviour to tracker forms. In addition to running these rules in the tracker apps, the tracker importer will also run a selection of these rules. Since the importer is also running these rules, we can ensure an additional level of validation.
 
+Not all program rule action are supported, since they are only suitable for a frontend presentation. A complete list of the supported program rule actions is presented below.
+
+  |Program Rule Action|Supported|
+  |---|:---:|
+  |**DISPLAYTEXT**| |
+  |**DISPLAYKEYVALUEPAIR**| |
+  |**HIDEFIELD**||
+  |**HIDESECTION**||
+  |**ASSIGN**|**X**|
+  |**SHOWWARNING**|**X**|
+  |**SHOWERROR**|**X**|
+  |**WARNINGONCOMPLETION**|**X**|
+  |**ERRORONCOMPLETION**|**X**|
+  |**CREATEEVENT**||
+  |**SETMANDATORYFIELD**|**X**|
+  |**SENDMESSAGE**|**X**|
+  |**SCHEDULEMESSAGE**|**X**|
+
+Program rules are evaluated in the importer in the same way they are evaluated in the Tracker apps. To summarize, the following conditions are considered when enforcing the program rules:
+* The program rule must be linked to the data being imported. For example a program stage or a data element.
+* The Program rule's condition must be evaluated to true
+
+The results of the program rules depends on the actions defined in those rules:
+* Program rule actions may end in 2 different results: Warnings or Errors.
+  * Errors will make the validation fail, while the warnings will be reported as a message in the import summary.
+    * SHOWWARNING and WARNINGONCOMPLETION actions can generate only Warnings.
+    * SHOWERROR, ERRORONCOMPLETION and SETMANDATORYFIELD actions can generate only Errors.
+    * ASSIGN action can generate both Warnings and Errors.
+      * When the action is assigning a value to an empty attribute/data element, a warning is generated.
+      * When the action is assigning a value to a an attribute/data element that has already the same value to be assigned, a warning is generated.
+      * When the action is assigning a value to a an attribute/data element that has already a value and the value to be assigned is different, an error is generated, unless `RULE_ENGINE_ASSIGN_OVERWRITE` system setting is set to true.
+
+Additionally, program rules can also result in side-effects, like send and schedule message. More information about side-effects can be found in the following section.
 
 ### Side Effects
 
