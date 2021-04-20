@@ -251,8 +251,35 @@ This lists the `userGroups` as:
     }
 ```
 
-Further details in section [Fields](#gist_fields).
+When requesting a single field, like `/api/users/gist?fields=surname` the
+response is a (still paged) list of simple values:
 
+```json
+{
+	"pager": {
+		"page": 1,
+		"pageSize": 50
+	},
+	"users": [
+		"Kamara",
+		"Wakiki",
+		"Nana",
+		"Malai",
+        ...
+	]
+}
+```
+
+When requesting a single field of a specific owner object which has a simple
+(non collection) value, like for example 
+`/api/users/rWLrZL8rP3K/gist?fields=surname` the response only include the plain
+value:
+
+```json
+"Wakiki"
+```
+
+Further details on field presets can be found in section [Fields](#gist_fields).
 
 ### The `filter` Parameter
 <!--DHIS2-SECTION-ID:gist_parameters_filter-->
@@ -657,3 +684,49 @@ returns items in the form:
 
 ## Examples
 <!--DHIS2-SECTION-ID:gist_examples-->
+A few examples starting from simple listings moving to tips on very specific
+use cases. 
+
+It is preferable to always supply an explicit list of `fields` so this section 
+will do so. 
+
+List organisation units with id and name:
+
+    /api/organisationUnits/gist?fields=id,name
+
+List organisation units with id and name and total count:
+
+    /api/organisationUnits/gist?fields=id,name&total=true
+
+List users with id and username:
+
+    /api/users/gist?fields=id,userCredentials.username
+
+List users with id, username and last login date:
+
+    /api/users/gist?fields=id,userCredentials[username,lastLogin]
+
+List only organisation units on second level with id, name and level:
+
+    /api/organisationUnits/gist?fields=id,name,level&filter=level:eq:2
+
+List only organisation units that have more than 1 child with id, name and
+number of children:
+
+    /api/organisationUnits/gist?fields=id,name,children::size&filter=children:gt:1
+
+List only organisation units that are not yet a children of another unit
+`zFDYIgyGmXG`:
+
+    /api/organisationUnits/zFDYIgyGmXG/children/gist?fields=id,name&inverse=true
+
+List users and flag whether they are a member of a specific user group 
+`NTC8GjJ7p8P` and name that field `is-member` in the response:
+
+    /api/users/gist?fields=id,userCredentials.username,userGroups::member(NTC8GjJ7p8P)~rename(is-member)
+
+List links to all users in pages of 10 items:
+
+    /api/users/gist?fields=href&absoluteUrls&pageSize=10
+
+
