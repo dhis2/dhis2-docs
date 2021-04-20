@@ -131,20 +131,20 @@ The URIs can be changed to absolute URLs using the `absoluteUrls` parameter.
 For example, `/api/users/rWLrZL8rP3K/gist?fields=id,href` returns:
 
 ```json
-    {
-      "id":"rWLrZL8rP3K",
-      "href":"/users/rWLrZL8rP3K/gist"
-    }
+{
+  "id": "rWLrZL8rP3K",
+  "href": "/users/rWLrZL8rP3K/gist"
+}
 ```
 
 whereas `/api/users/rWLrZL8rP3K/gist?fields=id,href&absoluteUrls=true` 
 returns:
 
 ```json
-    {
-      "id":"rWLrZL8rP3K",
-      "href":"http://localhost:8080/api/users/rWLrZL8rP3K/gist?absoluteUrls=true"
-    }
+{
+  "id": "rWLrZL8rP3K",
+  "href": "http://localhost:8080/api/users/rWLrZL8rP3K/gist?absoluteUrls=true"
+}
 ```
 
 As the example shows the `absoluteUrls` parameter is also forwarded or carried
@@ -221,13 +221,13 @@ there is a 1:1 relation. For example to add `userCredentials` with `id` and
 This creates items of the form:
 
 ```json
-    {
-      ...
-      "userCredentials": {
-        "id": "Z9oOHPi3FHB",
-        "username": "guest"
-      }
-    }
+{
+  ...
+  "userCredentials": {
+    "id": "Z9oOHPi3FHB",
+    "username": "guest"
+  }
+}
 ```
 
 A way to partly overcome the 1:1 limitation and to include fields of nested 
@@ -239,16 +239,16 @@ collection is the `pluck` transformer. It allows for example to include all
 This lists the `userGroups` as:
 
 ```json
-    {
-      "userGroups": [
-        "_PROGRAM_Inpatient program",
-        "_PROGRAM_TB program",
-        "_DATASET_Superuser",
-        "_PROGRAM_Superuser",
-        "_DATASET_Data entry clerk",
-        "_DATASET_M and E Officer"
-      ]
-    }
+{
+  "userGroups": [
+    "_PROGRAM_Inpatient program",
+    "_PROGRAM_TB program",
+    "_DATASET_Superuser",
+    "_PROGRAM_Superuser",
+    "_DATASET_Data entry clerk",
+    "_DATASET_M and E Officer"
+  ]
+}
 ```
 
 When requesting a single field, like `/api/users/gist?fields=surname` the
@@ -256,24 +256,24 @@ response is a (still paged) list of simple values:
 
 ```json
 {
-	"pager": {
-		"page": 1,
-		"pageSize": 50
-	},
-	"users": [
-		"Kamara",
-		"Wakiki",
-		"Nana",
-		"Malai",
-        ...
-	]
+  "pager": {
+    "page": 1,
+    "pageSize": 50
+  },
+  "users": [
+    "Kamara",
+    "Wakiki",
+    "Nana",
+    "Malai",
+    ...
+  ]
 }
 ```
 
 When requesting a single field of a specific owner object which has a simple
 (non collection) value, like for example 
 `/api/users/rWLrZL8rP3K/gist?fields=surname` the response only include the plain
-value:
+JSON value:
 
 ```json
 "Wakiki"
@@ -356,14 +356,16 @@ the `pager` and the list, which is named according to the type of object listed.
 For example `/api/organisationUnits/gist` returns:
 
 ```json
-    {
-        "pager": {
-            "page": 1,
-            "pageSize": 50,
-            "nextPage": "/organisationUnits/gist?page=2"
-        }
-        "organisationUnits": [...]
-    }
+{
+  "pager": {
+    "page": 1,
+    "pageSize": 50,
+    "nextPage": "/organisationUnits/gist?page=2"
+  }
+  "organisationUnits": [
+    ...
+  ]
+}
 ```
 
 With `headless=true` the response to `/api/organisationUnits/gist?headless=true` 
@@ -468,13 +470,13 @@ field stating the number of total matches is not included in the `pager`.
 For example, `/api/organisationUnits/gist` returns a `pager`:
 
 ```json
-    {
-        "pager": {
-            "page": 1,
-            "pageSize": 50,
-            "nextPage": "/organisationUnits/gist?page=2"
-        }
-    }
+{
+  "pager": {
+    "page": 1,
+    "pageSize": 50,
+    "nextPage": "/organisationUnits/gist?page=2"
+  }
+}
 ```
 
 When counting the total matches (`total=true`) the response `pager` will 
@@ -484,15 +486,15 @@ of an additional database operation.
 The response to `/api/organisationUnits/gist?total=true` now returns this `pager`:
 
 ```json
-    {
-        "pager": {
-            "page": 1,
-            "pageSize": 50,
-            "total": 1332,
-            "nextPage": "/organisationUnits/gist?total=true&page=2",
-            "pageCount": 27
-        }
-    }
+{
+  "pager": {
+    "page": 1,
+    "pageSize": 50,
+    "total": 1332,
+    "nextPage": "/organisationUnits/gist?total=true&page=2",
+    "pageCount": 27
+  }
+}
 ```
 
 
@@ -509,19 +511,20 @@ To return the plain non-translated field use `translate=false`.
 For example, `/api/organisationUnits/gist` returns items like this:
 
 ```json
-    {
-        "name": "A translated name",
-        ...
-    }
+{
+  "name": "A translated name",
+  ...
+}
 ```
 
 Whereas `/api/organisationUnits/gist?translate=false` would return items like:
 
 ```json
-    {
-        "name" "Plain field name",
-        ...
-    }
+{
+  "name"
+  "Plain field name",
+  ...
+}
 ```
 
 Note that synthetic fields `displayName` and `displayShortName` are always
@@ -649,14 +652,15 @@ For example, `/api/users/gist?fields=id,userGroups::size,organisationUnits::size
 returns items in the form:
 
 ```json
-	{
-		"id": "rWLrZL8rP3K",
-		"userGroups": 0,
-		"organisationUnits": 1,
-		"apiEndpoints": {
-			"organisationUnits": "/users/rWLrZL8rP3K/organisationUnits/gist",
-			"userGroups": "/users/rWLrZL8rP3K/userGroups/gist"
-	}
+{
+  "id": "rWLrZL8rP3K",
+  "userGroups": 0,
+  "organisationUnits": 1,
+  "apiEndpoints": {
+    "organisationUnits": "/users/rWLrZL8rP3K/organisationUnits/gist",
+    "userGroups": "/users/rWLrZL8rP3K/userGroups/gist"
+  }
+}
 ```
 
 The list of `userGroups` and `organisationUnits` are included as their `size`. 
@@ -670,15 +674,15 @@ The paths can be changed to URLs by using the `absoluteUrls` parameter.
 returns items in the form:
 
 ```json
-	{
-		"id": "rWLrZL8rP3K",
-		"userGroups": 0,
-		"organisationUnits": 1,
-		"apiEndpoints": {
-			"organisationUnits": "http://{host}/api/users/rWLrZL8rP3K/organisationUnits/gist?absoluteUrls=true",
-			"userGroups": "http://{host}/api/users/rWLrZL8rP3K/userGroups/gist?absoluteUrls=true"
-		}
-	}
+{
+  "id": "rWLrZL8rP3K",
+  "userGroups": 0,
+  "organisationUnits": 1,
+  "apiEndpoints": {
+    "organisationUnits": "http://{host}/api/users/rWLrZL8rP3K/organisationUnits/gist?absoluteUrls=true",
+    "userGroups": "http://{host}/api/users/rWLrZL8rP3K/userGroups/gist?absoluteUrls=true"
+  }
+}
 ```
 
 
