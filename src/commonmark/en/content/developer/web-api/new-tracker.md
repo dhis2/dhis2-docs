@@ -592,7 +592,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |---|---|---|---|
 |`query`|`String`|`{operator}:{filter-value}`|Creates a filter over tracked entity attributes. Only the filter-value is mandatory, `EQ` operator is used if `operator` is not specified.|
 |`attribute`|`String`|Comma separated values of attribute `UID` ??| For each tracked entity in the response, only returns specified attributes |
-|`filter`|`String`|Comma separated values of ??|??|
+|`filter`|`String`|Comma separated values of filters|Filter are properties or attributes with operator and value.<br>Example: `filter=updatedAfter:lt:2000-01-01`<br>Multiple filters are allowed. User needs access to attribute to be able to have a filter on it|
 |`orgUnit`|`String`|semicolon-delimited list of organisational unit `UID`|Only return tracked entity instances belonging to provided organisational units|
 |`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
 |`program`|`String`|Program `UID`| a Program `UID` for which instances in the response must be enrolled in|
