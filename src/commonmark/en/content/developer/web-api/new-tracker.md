@@ -295,7 +295,6 @@ Tracker notes do not have their own dedicated endpoint, they are exchanged as pa
 }
 ```
 
-More about note properties:
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
