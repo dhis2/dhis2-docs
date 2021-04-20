@@ -1039,25 +1039,55 @@ There are various error codes for different error scenarios. The following table
 
 <!--DHIS2-SECTION-ID:webapi_nti_validation-->
 
-  * A full overview of validation that takes place during import
-  * What properties are required
-  * What is the validation for certain types of values
-  * Uniqueness
-  * Program rules - Link to program rules
-  * Access control - Link to Tracker access control
-  * Date restrictions
-  * Program and Program Stage configuration-based validation
+While importing data using the tracker importer, a series of validations are performed to ensure the validity of the data. This section will describe some of the different types of validation performed, to provide a better understanding if validation fails for your import.
 
-  * I am not sure about the best format here, but maybe we split it up into each model:
-  * Tracked Entity
-      * Enrollment
-        * Event
-            * DataValue -> Link
-            * TrackedEntityAttributeValue -> Link
-      * TrackedEntityAttributesValue -> Link
-      * TrackedEntityAttributeValue
-        * Value Types
+#### Required properties
+Each of the tracker objects has a few required properties that needs to be present when importing data. For an exhaustive list of required properties, have a look at the [Tracker Object section](#webapi_nti_tracker_objects).
 
+When validating required properties, we are usually talking about references to other data or metadata. In these cases there are 3 main criteria:
+1. The reference is present, and not null, in the payload.
+2. The reference points to the right type of data and exists in the database
+3. The user have access to see the reference
+
+If the first condition fails, the import will fail with a message about a missing reference. However, if the reference points to something that doesnt exists, or which the user dont have access to, both cases will result in a message about the reference not being found.
+
+#### Formats
+Some of the properties of tracker objects require a specific format. When importing data, each of these properties are validated against the expected format, and will return different errors depending on which property has a bad format. Some examples of properties that are validated this way:
+- UIDs (These cover all references to other data or metadata in DHIS2.)
+- Dates
+- Geometry (The coordinates must match the format as specified by it's type)
+
+#### User access
+All data imported will be validated based on the metadata of the data imported (Sharing) and the organisation unit of the data imported (Organisation Unit Scopes). More information about sharing and organisation unit scopes can be found in the following sections.
+
+Sharing is validated at the same time as references are looked up. That means a references the user cannot access, will be treated as if it doesn't exist. Sharing is checked for each metadata referenced in the data being imported.
+
+Organisation units on the other hand, serve a dual purpose. Primarily, it will make sure that data can only be imported when it's imported for an organisation unit the user have within their "capture scope". Secondly, organisation units are also used to restrict what programs are available. That means if you are trying to import data for an organisation unit which does not have access to the program you are importing, the import will be invalid.
+
+User's with the `ALL` authority transcends, in these cases, validations related to the user, but not programs.
+
+#### Attribute and Data values
+
+Attributes and data values are part of a tracked entity and an event respectively. However, attributes can be linked to a tracked entity either through it's type (TrackedEntityType) or it's program (Program). Additionally, attributes can also be unique.
+
+The initial validation done in the import, is to make sure the value provided for an attribute or data element conforms to the type of value expected. For example, if you import a value for a data element with a numeric type, the value is expected to be numeric. Any errors related to a mismatch between a type and a value will result in the same error code, but with a specific message related to the type of violation.
+
+Mandatory attributes and data values are also checked. Currently, removing mandatory attributes are not allowed. Since it is possible to send in a single value at the time, mandatory values are only fully validated when an enrollment or event is completed.
+
+Unique attributes will be validated at the time of import. That means as long as the provided value is unique for the attribute in the whole system, it will pass. However, if the unique value is found used by any other tracked entity than the one being imported, it will fail.
+
+#### Configuration
+
+The last part of validations in the importer, are validations based on the user's configuration of relevant metadata. For more information about each configuration, check out the relevant sections. Some examples of configurable validations:
+- Feature type (For geometry)
+- User-assignable events
+- Allow future dates
+- Enroll once
+- And more.
+
+These configurations will further change how validation is performed during import.
+
+Program Rules are from 2.36 being validated during the import in addition to the apps. For a brief overview of program rules in the import, have a look at the next section.
 
 ### Program Rules
 
