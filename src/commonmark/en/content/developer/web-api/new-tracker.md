@@ -246,7 +246,56 @@ While `Attributes` describes a `tracked entity` or an `enrollment`, `data values
 
 
 ### Note
-`Notes` are messages or comments attached to enrollment or event. They can only be created, not removed or changed.
+DHIS2 tracker allows for capturing of data using data elements and tracked entity attributes. However, sometimes there could be a situation where it is necessary to record additional information or comment about the issue at hand. Such additional information can be captured using tracker notes. Tracker notes are equivalent of data value comments from Aggregate DHIS2 side.
+
+There are two types of tracker notes - notes recorded at event level and those recorded at enrollment level. An enrollment can have one or more events. Comments about each of the events - for example why an event was missed, rescheduled or why only few data elements were filled and the like - can be documented using event notes. Each of the events within an enrollment can have their own story/notes. One can then record for example an overall observation of these events using the parent enrollment note. Enrollment notes are also useful to document for example why an enrollment is canceled. It is the user's imagination and usecase when and how to use notes.
+
+Both enrollment and event can have as many notes as needed - there is no limit. However, it is not possible to delete or update neither of these notes. They are like a logbook. If one wants to amend a note, can do so by creating another note. The only way to delete a note is by deleting the parent object - either event or enrollment. 
+
+Tracker notes do not have their own dedicated endpoint, they are exchanged as part of the parent event and/or enrollment payload. Below is a sample payload.
+
+```json
+{
+  "trackedEntityInstance": "oi3PMIGYJH8",
+  <entity_details>,
+  ],
+  "enrollments": [
+    {
+      "enrollment": "EbRsJr8LSSO",
+      <enrollment_details>
+      "notes": [
+        {
+          "note": "vxmCvYcPdaW",
+          "value": "Enrollment note 2.",
+        },
+        {
+          "value": "Enrollment note 1",
+        }
+      ],
+      
+      "events": [
+        {
+          "event": "zfzS9WeO0uM",
+          <event_details>,
+          "notes": [
+            {
+              "note": "MAQFb7fAggS",
+              "value": "Event Note 1.",
+            },
+            {
+              "value": "Event Note 2.",
+            }
+          ],
+        },
+        {
+          ...
+        }
+      ]
+    }
+  ]
+}
+```
+
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
