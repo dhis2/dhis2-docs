@@ -1247,6 +1247,22 @@ this.
 Note that several instructions have been omitted for brevity in the
 above example. Consult the reverse proxy section for a detailed guide.
 
+## ActiveMQ Artemis configuration
+
+<!--DHIS2-SECTION-ID:webapi_amqp_configuration-->
+
+By default DHIS2 will start an embedded instance of ActiveMQ Artemis when booting up. For most use-cases, you do not need to do anything. If you have an existing ActiveMQ Artemis service you want to use instead of the embedded instance you can change the default configuration in your `dhis.conf` file with the configuration properties in the following table.
+
+| Property                  | Value (default first) | Description                                                  |
+| ------------------------- | --------------------- | ------------------------------------------------------------ |
+| amqp.mode                 | EMBEDDED \| NATIVE    | The default `EMBEDDED` mode starts up an internal AMQP service when the DHIS2 instance is starting up. If you want to connect to an external AMQP service, set the mode to `NATIVE`. |
+| amqp.host                 | 127.0.0.1             | Host to bind to.                                             |
+| amqp.port                 | 15672                 | If mode is `EMBEDDED`, the embedded server will bind to this port. If mode is `NATIVE`, the client will use this port to connect. |
+| amqp.username             | guest                 | Username to connect to if using `NATIVE` mode.               |
+| amqp.password             | guest                 | Password to connect to if using `NATIVE` mode.               |
+| amqp.embedded.persistence | false \| true         | If mode is `EMBEDDED`, this property controls persistence of the internal queue. |
+
+
 ## Monitoring
 
 DHIS 2 can export Prometheus compatible metrics for monitoring DHIS2 instances. The DHIS2 monitoring infrastructure is designed to expose metrics related to the application runtime and other application-related information.

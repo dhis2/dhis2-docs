@@ -119,7 +119,7 @@ the table below.
 </tbody>
 </table>
 
-## Validation Results
+## Validation results
 
 <!--DHIS2-SECTION-ID:webapi_validation_results-->
 
@@ -145,7 +145,7 @@ generate analytics for validation results, if checked, results will
 generate notifications every time it's found and running validation
 analysis might be slower.
 
-### Query Validation Results
+### Query validation results
 
 The validation results persisted can be viewed at the following
 endpoint:
@@ -179,17 +179,17 @@ In addition the validation results can also be filtered on their creation date:
 
 This filter can be combined with any of the other filters.    
 
-### Manually Trigger Validation Result Notifications
+### Trigger validation result notifications
 
 Validation results are sent out to the appropriate users once every day,
 but can also be manually triggered to run on demand using the following
-api endpoint:
+API endpoint:
 
     POST /api/33/validation/sendNotifications
 
 Only unsent results are sent using this endpoint.
 
-### Manually Delete Validation Results
+### Delete validation results
 
 Validation results can be manually deleted by ID,
 
@@ -199,7 +199,7 @@ or using filters
 
     DELETE /api/36/validationResults?<filters>
 
-Usable filter parameters include:
+Supported filter parameters include:
 
 * `ou=<UID>` to match all validation results of an organisation unit; multiple units combine OR when the parameter is provided more than once
 * `vr=<UID>` to match all validation results of a validation rule; multiple rules combine OR when the parameter is provided more than once
@@ -209,17 +209,21 @@ Usable filter parameters include:
 
 If filters are combined all conditions have to be true (AND logic).
 
-Examples:
+Some examples:
 
-1. To delete all validation results related the organisation unit with UID `NqwvaQC1ni4` for Q1 of 2020 use: 
+To delete all validation results related the organisation unit with UID `NqwvaQC1ni4` for Q1 of 2020 use: 
 
-    DELETE /api/36/validationResults?ou=NqwvaQC1ni4&pe=2020Q1
+```
+DELETE /api/36/validationResults?ou=NqwvaQC1ni4&pe=2020Q1
+```
 
-2. To delete all validation results that were created in week 1 of 2019 and for which notification has been sent use:
+To delete all validation results that were created in week 1 of 2019 and for which notification has been sent use:
 
-    DELETE /api/36/validationResults?created=2019W1&notificationSent=true
+```
+DELETE /api/36/validationResults?created=2019W1&notificationSent=true
+```
 
-Any delete operation will require the right to _Perform maintenance tasks_.
+Any delete operation will require the authority _Perform maintenance tasks_.
 
 
 ## Outlier detection
@@ -366,12 +370,12 @@ The response will look similar to this. The `metadata` section contains metadata
       "aoc": "HllvX50cXC0",
       "aocName": "default",
       "value": 9000.0,
-      "mean": 1524.5555555555557,
-      "stdDev": 2654.466136370137,
-      "absDev": 7475.444444444444,
-      "zScore": 2.816176232960643,
-      "lowerBound": -5111.6097853697875,
-      "upperBound": 8160.720896480899,
+      "mean": 1524.5555,
+      "stdDev": 2654.4661,
+      "absDev": 7475.4444,
+      "zScore": 2.8161,
+      "lowerBound": -5111.6097,
+      "upperBound": 8160.7208,
       "followUp": false
     },
     {
@@ -385,12 +389,12 @@ The response will look similar to this. The `metadata` section contains metadata
       "aoc": "HllvX50cXC0",
       "aocName": "default",
       "value": 8764.0,
-      "mean": 1448.0833333333333,
-      "stdDev": 2502.303154373764,
-      "absDev": 7315.916666666667,
-      "zScore": 2.923673198380944,
-      "lowerBound": -4807.674552601076,
-      "upperBound": 7703.841219267742,
+      "mean": 1448.0833,
+      "stdDev": 2502.3031,
+      "absDev": 7315.9166,
+      "zScore": 2.9236,
+      "lowerBound": -4807.6745,
+      "upperBound": 7703.8412,
       "followUp": false
     }
   ]
@@ -617,7 +621,7 @@ JSON response if the task has not yet completed and a JSON taskSummary
 object when the task is done. Polling (conservatively) to this resource
 can hence be used to wait for the task to finish.
 
-### Fetching the result
+### Fetching integrity summary
 
 <!--DHIS2-SECTION-ID:webapi_data_integrity_fetch_results-->
 
