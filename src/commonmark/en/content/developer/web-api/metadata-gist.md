@@ -1,9 +1,9 @@
 # Metadata Gist API
 
-The metadata gist API is a RESTful read-only JSON API to fetch and browse 
-metadata.
+The Metadata Gist API is a RESTful read-only JSON API to fetch and browse 
+metadata. It in this API contain the gist of the same item in the Metadata API.
 
-It is specifically designed to avoid: 
+The API is specifically designed to avoid: 
 * large response payloads because of the inclusion of partial nested object 
   graphs
 * resource intensive in memory processing of requests 
@@ -51,6 +51,7 @@ Known Limitations:
 * like-filters are always case-insensitive
 * no token filter available
 * order is always case-sensitive
+* `pluck` transformer limited to text properties
 * fields which hold collections of simple (non-identifiable) items cannot always
   be included depending on how they are stored
 
@@ -110,7 +111,7 @@ For example, `/api/users/rWLrZL8rP3K/gist?fields=id,href` returns:
 
     {"id":"rWLrZL8rP3K","href":"/users/rWLrZL8rP3K/gist"}
 
-whereas <code>/api/users/rWLrZL8rP3K/gist?fields=id,href<b>&absoluteUrls=true</b></code> 
+whereas `/api/users/rWLrZL8rP3K/gist?fields=id,href&absoluteUrls=true` 
 returns:
 
     {"id":"rWLrZL8rP3K","href":"http://localhost:8080/api/users/rWLrZL8rP3K/gist?absoluteUrls=true"}
@@ -123,9 +124,9 @@ provided URLs.
 Each endpoint implicitly sets a default for the extent of fields matched by the
 `*`/`:all` fields selector:
 
-* `/api/<object-type>/gist`: `auto=S`
-* `/api/<object-type>/<object-id>/gist`: `auto=L`
-* `/api/<object-type>/<object-id>/<field-name>/gist`: `auto=M`
+* `/api/<object-type>/gist`: implies `auto=S`
+* `/api/<object-type>/<object-id>/gist`: implies  `auto=L`
+* `/api/<object-type>/<object-id>/<field-name>/gist`: implies `auto=M`
 
 The `auto` parameter is used to manually override the default to make list items
 include more or less fields. This setting again acts as a default which can be
@@ -158,8 +159,58 @@ Fields within the preset are ordered from simple to complex.
 If no `fields` parameter is provided `fields=*` is assumed.
 Note that the fields of the `*` preset also depend on the `auto` parameter
 
-TODO remove fields
-TODO respecify fields
+To remove a field use either `!<name>` or `-<name>` in the list of fields.
+For example to remove the userGroups from a user, use:
+
+    /api/users/gist?fields=*,!userGroups
+
+The same principle can also be used to specify the transformer to use for a 
+field. For example, to include the IDs of the user's user groups use:
+
+    /api/users/gist?fields=*,userGroups::ids
+
+When using field presets like this it is important to remember that the last
+declaration of each fields wins over prior ones. In the opposite order
+
+    /api/users/gist?fields=userGroups::ids,*
+
+the `userGroups` would not be shown with IDs since `*` expands among other 
+fields to `userGroups::none` which replaces the explicit `userGroups::ids`.
+
+The `fields` parameter does allow listing fields of nested objects as long as
+there is a 1:1 relation. For example to add `userCredentials` with `id` and 
+`name` of a user use:
+
+    /api/users/gist?fields=*,userCredentials[id,username]
+
+This creates items of the form:
+
+    {
+      ...
+      "userCredentials": {
+        "id": "Z9oOHPi3FHB",
+        "username": "guest"
+      }
+    }
+
+A way to partly overcome the 1:1 limitation and to include fields of nested 
+collection is the `pluck` transformer. It allows for example to include all
+`name`s of a user's `userGroups` by:
+
+    /api/users/gist?fields=*,userGroups::pluck(name)
+
+This lists the `userGroups` as:
+
+    {
+      "userGroups": [
+        "_PROGRAM_Inpatient program",
+        "_PROGRAM_TB program",
+        "_DATASET_Superuser",
+        "_PROGRAM_Superuser",
+        "_DATASET_Data entry clerk",
+        "_DATASET_M and E Officer"
+      ]
+    }
 
 Further details in section [Fields](#gist-fields).
 
@@ -193,16 +244,25 @@ Available binary operators are:
 * `in`: field is a collection and value is an item _contained in_ the collection
 * `!in`: field is a collection and value is an item _not contained in_ the collection
 
+If the `<value>` of an `in` or `!in` filter is a list it is given in the form
+`[value1,value2,...]`, for example: `userGroups:in:[fbfJHSPpUQD,cYeuwXTCPkU]`.
+
 Any `>`, `>=`, `<` `<=`, `==` or `!=` comparison applied to a collection field 
-with a numeric value will compare the size of the collection to the value.
+with a numeric value will compare the size of the collection to the value, for
+example: `userGroups:gt:0`.
 
 Available binary pattern matching operators are:
-* `like`, `ilike`: field _matches_ pattern value
-* `!like`, `!ilike`: field does _not match_ pattern value
-* `$like`, `$ilike`, `startsWith`: field _starts with_ pattern value
-* `!$like`, `!$ilike`: field does _not start with_ pattern value
-* `like$`, `ilike$`, `endsWith`: field _ends with_ pattern value
-* `!like$`, `!ilike$`: field does _not end with_ pattern value
+* `like`, `ilike`: field _contains_ `<value>` or field _matches_ pattern `<value>` (when wildcards `*` or `?` in value)
+* `!like`, `!ilike`: field does _not contain_ `<value>` or field does _not match_ pattern `<value>` (when wildcards `*` or `?` in value)
+* `$like`, `$ilike`, `startsWith`: field _starts with_ `<value>`
+* `!$like`, `!$ilike`: field does _not start with_ `<value>`
+* `like$`, `ilike$`, `endsWith`: field _ends with_ `<value>`
+* `!like$`, `!ilike$`: field does _not end with_ `<value>`
+
+The `like` and `!like` operators can be used by either providing a search term
+in which case a match is any value where the term occurs anywhere or they can
+be used by providing the search pattern using `*` as _any number of characters_
+and `?` any single character.
 
 Some operators have multiple aliases to be backwards compatible with the 
 standard metadata API. For the gist API any like is always case-insensitive. 
@@ -216,8 +276,6 @@ collection can be filtered. To only list those children that are connected to
 a program one would use:
 
     /api/organisationUnits/rZxk3S0qN63/children/gist?filter=programs:gt:0
-
-More details on the individual filters are found in section [Filters](#gist-filters).
 
 ### The `headless` Parameter
 Endpoints returning a list by default wrap the items with an envelope containing 
@@ -497,13 +555,5 @@ returns items in the form:
 			"userGroups": "http://{host}/api/users/rWLrZL8rP3K/userGroups/gist?absoluteUrls=true"
 		}
 	}
-
-
-## Filters
-
-
-## Responses
-
-### Pager
 
 ## Examples
