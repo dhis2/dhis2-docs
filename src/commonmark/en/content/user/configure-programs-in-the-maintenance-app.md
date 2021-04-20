@@ -1801,12 +1801,21 @@ template.
     <td><p>Data Element associated with ProgramStage can be selected as recipient.</p></td>
     <td><p>Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL.</p></td>
     </tr>
+    <tr class="even">
+    <td><p>Tracked Entity Attribute</p></td>
+    <td><p>Tracked Entity Attribute associated with ProgramInstance/Enrollment can be selected as recipient.</p></td>
+    <td><p>Attribute will only be effective if it has value type PHONE_NUMBER/EMAIL.</p></td>
+    </tr>
     </tbody>
     </table>
 
 
 
-9.  Click **Save**.
+9.  Flag **sendRepeatable**.
+
+    This flag can be used if notification is required to be sent multiple times. For example in case of repeatable program stage, same notification will be sent as many times as the stage is repeated.
+
+10.  Click **Save**.
 
 
 ### Reference information: Program notification parameters
