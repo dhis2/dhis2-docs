@@ -800,8 +800,6 @@ A table with a full reference of error codes, messages and description:
     * When the action is assigning a value to an empty attribute/data element, a warning is generated.
     * When the action is assigning a value to a an attribute/data element that has already the same value to be assigned, a warning is generated.
     * When the action is assigning a value to a an attribute/data element that has already a value and the value to be assigned is different, an error is generated, unless `RULE_ENGINE_ASSIGN_OVERWRITE` system setting is set to true.
-
-    * Normal behaviour and assign behaviour
   * Side effects(?) - Link to side effects
 
 
