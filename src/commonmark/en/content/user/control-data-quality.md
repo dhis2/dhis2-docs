@@ -230,40 +230,45 @@ chance of course, but can potentially indicate a measurement or data entry error
 
 ![](resources/images/data_quality/std_dev_analysis.png)
 
-1.  Open the **Data Quality** app and click **Std dev outlier analysis**.
+1.  Open the **Data Quality** app and click **Outlier Detection**.
 
-2.  Select **From date** and **To date**.
+2.  Select data set(s).
 
-3.  Select data set(s).
+3.  Select **Organisation units**.
 
-4.  Select **Parent organisation unit**.
+    Multiple organisation units can be selected. The analysis is made on raw data for all organisation units in the sub-hierarchy of the selected units, not on aggregated data.
 
-    All children of the organisation unit will be included. The analysis
-    is made on raw data "under" the parent organisation unit, not on
-    aggregated data.
+4.  Select **From date** and **To date**.
 
-5.  Select the number of standard deviations.
+5.  Set **Algorithm** to **Z-score**
+
+6.  Select a **Threshold**.
 
     This refers to the number of standard deviations the data is allowed
     to deviate from the mean before it is classified as an outlier.
 
-6.  Click **Start**.
+7.  Select **Max results**
 
-    The analysis process duration depends on the amount of data that is
-    being analysed. If there are standard deviations outliers, they will
-    be presented in a
-    list.
+    This refers to the maximum number of outliers listed in the results.
 
+8.  (Optional) Select a **Data start date** and **Data end date**
+
+    These fields can be used to perform outlier detection analysis on a subset of the data within the provided date range. When left blank, the natural start and end date of the dataset will be used _(In advanced section)_.
+
+9.  (Optional) Select a measure to **Sort by** 
+
+    The outliers can be sorted by **Z-score** or by **Absolute deviation from Mean** _(In advanced section)_.
+
+10.  Click **Start**
+    The analysis process duration depends on the amount of data that is    being analysed. If there are standard deviations outliers, they will be presented in a list.
     ![](resources/images/data_quality/std_dev_analysis_outlier_result.png)
+    For each outlier, you will see the data element, period, organisation unit, value, z-score, deviation, standard deviation, mean, min, and max. The minimum and maximum values refer to the border values derived from the number of standard deviations selected for the analysis.
 
-    For each outlier, you will see the data element, organisation unit,
-    period, minimum value, actual value and maximum value. The minimum
-    and maximum values refer to the border values derived from the
-    number of standard deviations selected for the analysis.
+11.  (Optional) Click **Download as CSV** to download the list in CSV format.
 
 > **Tip**
 >
-> Click the star icon to mark an outlier value for further follow-up.
+> Click the checkbox to mark an outlier value for further follow-up.
 
 ## Minimum maximum outlier analysis
 
@@ -391,34 +396,38 @@ data sets and organisation units in the **Data Administration** app.
 
 1.  Verify that you've created minimum maximum value ranges.
 
-2.  Open the **Data Quality** app and click **Min-max outlier
-    analysis**.
+2.  Open the **Data Quality** app and click **Outlier Detection**.
 
-3.  Select **From date** and **To date**.
+3.  Select data set(s).
 
-4.  Select which data set(s) you want to include in the analysis.
+4.  Select **Parent organisation unit**.
 
-5.  Select **Parent organisation unit**.
+    Multiple organisation units can be selected. The analysis is made on raw data for all organisation units in the sub-hierarchy of the selected units, not on aggregated data.
 
-    All children of the organisation unit will be included. The analysis
-    is made on raw data "under" the parent organisation unit, not on
-    aggregated data.
+5.  Select **From date** and **To date**.
 
-6.  Click **Start**.
+6.  Set **Algorithm** to **Min-max values**.
+
+7.  Select **Max results**
+
+    This refers to the maximum number of outliers listed in the results.
+
+8.  Click **Start**
 
     The analysis process duration depends on the amount of data that is
-    being analysed. If there are validation violations, they will be
-    presented in a list.
+    being analysed. If there are standard deviations outliers, they will
+    be presented in a list.
 
     ![](resources/images/data_quality/min_max_result.png)
 
-7.  (Optional) Click **Download as PDF**, **Download as Excel** or
-    **Download as CSV** to download the list in PDF, Excel or CSV
-    formats.
+    For each outlier, you will see the data element, period, organisation unit,
+    value, deviation, min, and max.
+
+9.  (Optional) Click **Download as CSV** to download the list in CSV format.
 
 > **Tip**
 >
-> Click the star icon to mark the value for further follow-up.
+> Click the checkbox to mark the value for further follow-up.
 
 ## Follow-up analysis
 
@@ -439,22 +448,15 @@ minimum maximum outlier analysis.
 
 2.  Select a data set or multiple data sets.
 
-3.  Select a parent **Organisation unit**.
+3.  Select **Organisation units**.
 
-    The analysis process duration depends on the amount of data that is
-    being analysed. If there are data values marked for follow-up, they
-    will be presented in a list.
+    Multiple organisation units can be selected. The analysis is made on raw data “under” the organisation unit, not on aggregated data.
 
-4. Select a **Start Date** and **End Date** which defines the 
-periods which you are interested in looking for values which have 
-been marked for follow up. 
+4. Select a **Start Date** and **End Date** which defines the periods which you are interested in looking for values which have been marked for follow up. 
 
-4. Press **Follow up** to generate a list of values which have been marked
-for follow up. 
+4. Press **Follow up** to generate a list of values which have been marked for follow up. 
 
-5.  (Optional) Click **Download as PDF**, **Download as Excel** or
-    **Download as CSV** to download the validation violations list in
-    PDF, Excel or CSV formats.
+5.  (Optional) Click **Download as PDF**, **Download as Excel** or **Download as CSV** to download the validation violations list in PDF, Excel or CSV formats.
 
 ![](resources/images/data_quality/follow_up_analysis_result.png)
 

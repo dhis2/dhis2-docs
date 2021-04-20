@@ -3300,6 +3300,69 @@ message summaries. This is useful, for example, if you want to send
 individual messages for high-priority disease outbreaks, and summaries
 for low-priority routine data validation errors.
 
+#### About validation rule functions
+
+You can use the following functions in a validation rule left side
+or right side:
+
+<table>
+<caption>Validation Rule functions</caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Validation Rule Function</p></th>
+<th><p>Arguments</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>if</p></td>
+<td><p>(boolean-expr, true-expr, false-expr)</p></td>
+<td><p>Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression.</p></td>
+</tr>
+<tr class="even">
+<td><p>isNull</p></td>
+<td><p>(element)</p></td>
+<td><p>Returns true if the element value is missing (null), otherwise false.</p></td>
+</tr>
+<tr class="odd">
+<td><p>isNotNull</p></td>
+<td><p>(element)</p></td>
+<td><p>Returns true if the element value is not missing (not null), otherwise false.</p></td>
+</tr>
+<tr class="even">
+<td><p>firstNonNull</p></td>
+<td><p>(element [, element ...])</p></td>
+<td><p>Returns the value of the first element that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values.</p></td>
+</tr>
+<tr class="odd">
+<td><p>greatest</p></td>
+<td><p>(expression [, expression ...])</p></td>
+<td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments.</p></td>
+</tr>
+<tr class="even">
+<td><p>least</p></td>
+<td><p>(expression [, expression ...])</p></td>
+<td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
+</tr>
+<tr class="odd">
+<td><p>log</p></td>
+<td><p>(expression [, base ])</p></td>
+<td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base.</p></td>
+</tr>
+<tr class="even">
+<td><p>log10</p></td>
+<td><p>(expression)</p></td>
+<td><p>Returns the common logarithm (base 10) of the numeric expression.</p></td>
+</tr>
+</tbody>
+</table>
+
 ### Create or edit a validation rule
 
 <!--DHIS2-SECTION-ID:create_validation_rule-->
@@ -5589,6 +5652,19 @@ text about what the SQL view actually does. Finally, the "SQL query"
 should contain the SQL view definition. Only SQL "SELECT" statements are
 allowed and certain sensitive tables (i.e. user information) are not
 accessible Press "Save" to store the SQL view definition.
+
+Keep in mind that the the columns returned by the used SELECT statement 
+become table columns, that means they must be of a valid table column
+type. When functions are used it might be necessary to explicitly cast 
+the result to a type by adding `::{TYPE}` after the function.
+
+For example, instead of `jsonb_each` (which would return a record type
+that cannot be a column type) use `jsonb_each_text` and cast the result 
+to `text`, like in the below sample:
+
+```sql
+select jsonb_each_text(eventdatavalues)::text from ...
+```
 
 ### SQL View management
 

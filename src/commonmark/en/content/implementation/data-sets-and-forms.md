@@ -54,7 +54,7 @@ section-based form and the custom form.
 
 ### Types of data entry forms
 
-DHIS2 currently features three differnet types of forms which are
+DHIS2 currently features three different types of forms which are
 described in the following.
 
 #### Default forms

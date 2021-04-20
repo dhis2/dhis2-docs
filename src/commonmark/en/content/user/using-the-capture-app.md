@@ -183,6 +183,63 @@ The second option, is to register a tracked entity instance with program and enr
 > achieved by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
 > can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
 
+### Enrollment with auto generated events 
+
+A program can be configured to have zero or more program stages which are automatically generated upon a new enrollment. 
+These stages will be auto generated based on the metadata configuration, as explained below.
+
+To configure the auto generation of an event you need to take the following steps. 
+1. Open the maintenance app
+
+2. Select the Program tab
+![](resources/images/capture_app/auto-generated-01.png)
+
+3. Select a Tracker program
+![](resources/images/capture_app/auto-generated-02.png)
+
+4. Select the Program stages tab
+![](resources/images/capture_app/auto-generated-03.png)
+
+5. Click on the stage you would like to configure
+![](resources/images/capture_app/auto-generated-04.png)
+
+6. Mark the stage as Auto-generated
+![](resources/images/capture_app/auto-generated-05.png)
+
+Now, for every new enrollment in this program one event will be auto generated. One program can also have multiple stages marked as auto generated.
+For all the auto generated events 
+
+ a) the organisation unit will be the same as the user is reporting for, during the enrollment and 
+ 
+ b) all the events will be part of the current enrollment. 
+ 
+Based on configuration, the status of the auto generated event can either be ACTIVE or SCHEDULE.
+
+#### Active type of event
+
+If the stage has the "Open data entry form after enrollment" selected, then the event will be generated into the ACTIVE status. Also its execution date will be calculated for the event, in addition to a due date.
+The generation happens based on either the enrollment date or the incident date. You can choose the reporting date from the dropdown menu "Report date to use".
+![](resources/images/capture_app/auto-generated-06.png)
+
+As shown in the image you have three options, a) Incident date b) Enrollment date or c) No value. 
+Choosing reporting date as "Incident date" indicates that both the event execution date and due date will be the same as the incident date.
+Choosing reporting date as either "Enrollment date" or "No value" indicates that both the event execution date and due date will be the same as the enrollment date.
+
+#### Schedule type of event
+
+When the "Open data entry after enrollment" is not checked, it means that the event generated will be a SCHEDULE event. 
+The scheduled event does not have an execution date, but only a due date. The due date for these future events are calculated based on either enrollment date or incident date. If the flag below is checked, the reference date is the enrollment date, if the flag is not checked, the incident date is used.
+![](resources/images/capture_app/auto-generated-07.png)
+
+When there is no incident date, the reference date will fall back on the enrollment date regardless of whether the flag above is checked.
+
+On SCHEDULE type of events the user can also configure the "Scheduled days from start". Which means if a stage has a number in "Scheduled days from start" the reference date will increased by that number. 
+In the example below we increase the due date by 30 days.
+![](resources/images/capture_app/auto-generated-08.png)
+
+When the "Scheduled days from start" does not contain a number or contains 0 the reference date is used without adding any days to it.
+
+
 ### Possible duplicates detection
 
 In both cases of registering a tracked entity instance, (with enrollment or without enrollment) the system will warn you for possible duplicates.
@@ -197,7 +254,7 @@ To configure a program through the maintenance app you will have to:
 2. In the program section select your program. We select Child Programme for this example.
 ![](resources/images/capture_app/duplicates-maintenance-config-01.png)
 
-3. Select the Atributes tab.
+3. Select the Attributes tab.
 ![](resources/images/capture_app/duplicates-maintenance-config-02.png)
 
 4. Enable duplicates search by checking program attributes as searchable

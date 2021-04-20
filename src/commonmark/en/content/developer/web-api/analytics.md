@@ -155,8 +155,20 @@ The analytics resource lets you specify a range of query parameters:
 <tr class="even">
 <td>outputIdScheme</td>
 <td>No</td>
-<td>Identifier scheme to use for metadata items the query response, can be identifier, code or attributes.</td>
-<td>UID | CODE |NAME| ATTRIBUTE:&lt;ID&gt;</td>
+<td>Identifier scheme used for metadata items in the query response. It accepts identifier, code or attributes.</td>
+<td>UID | UUID | CODE | NAME | ATTRIBUTE:&lt;ID&gt;</td>
+</tr>
+<tr class="odd">
+<td>outputOrgUnitIdScheme</td>
+<td>No</td>
+<td>Identifier scheme used for metadata items in the query response. This parameter overrides the &quot;outputIdScheme&quot; specifically for for Org Units. It accepts identifier, code or attributes.</td>
+<td>UUID | CODE | NAME | ATTRIBUTE:&lt;ID&gt;</td>
+</tr>
+<tr class="even">
+<td>outputDataElementIdScheme</td>
+<td>No</td>
+<td>Identifier scheme used for metadata items in the query response. This parameter overrides the &quot;outputIdScheme&quot; specifically for Data Elements. It accepts identifier, code or attributes.</td>
+<td>UUID | CODE | NAME | ATTRIBUTE:&lt;ID&gt;</td>
 </tr>
 <tr class="odd">
 <td>inputIdScheme</td>
@@ -975,6 +987,14 @@ parameters are listed in the table below.
 </tr>
 <tr class="odd">
 <td>outputIdScheme</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>outputOrgUnitIdScheme</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>outputDataElementIdScheme</td>
 <td>No</td>
 </tr>
 <tr class="even">
