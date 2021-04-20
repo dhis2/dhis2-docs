@@ -361,7 +361,7 @@ For example `/api/organisationUnits/gist` returns:
     "page": 1,
     "pageSize": 50,
     "nextPage": "/organisationUnits/gist?page=2"
-  }
+  },
   "organisationUnits": [
     ...
   ]
