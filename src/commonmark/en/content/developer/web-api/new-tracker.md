@@ -310,32 +310,55 @@ Tracker notes do not have their own dedicated endpoint, they are exchanged as pa
 
 The `POST /api/tracker` endpoint allows clients to import the following tracker objects into DHIS2:
 
-* **trackedEntities**
-* **enrollments**
-* **events**
-* **relationships**
-* data embedded in other objects like: **attributes**, **notes**, **data values**, etc. (TODO: Add a section about the model and link)
+* **Tracked entities**
+* **Enrollments**
+* **Events**
+* **Relationships**
+* Data embedded in other [tracker objects](#webapi_nti_tracker_objects)
 
 Main changes compared to version 2.35 are:
-1. import payload can be ***nested*** or ***flat***
-2. invocation can be ***synchronous*** or ***asynchronous***
+1. Import payload can be ***nested*** or ***flat***
+2. Invocation can be ***synchronous*** or ***asynchronous***
 
 ### Request parameters
 
 Currently tracker import endpoint support the following parameters:
 
-(TODO: Make a table with all parameters; reportMode is the only difference, and should be noted in the table, not as two paragraphs; TrackerImportParams.java; also use the format name|description|type|example/allowed values )
 #### ***SYNC*** endpoint
-|Parameter name|Allowed values|
-|---|---|
-|`reportMode`|`FULL`&#124;`ERRORS`&#124;`WARNINGS`|
-#### ***ASYNC*** endpoint
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| async | Indicates whether the import should happen asynchronously, or synchronously. | Boolean | `TRUE`, `FALSE` |
+| reportMode | Only when performing synchronous import. See importSummary for more info. | Enum | `FULL`, `ERRORS`, `WARNINGS` |
+| importMode | Indicates the mode of import. Can either be validation only, or commit (Default) | Enum | `VALIDATION`, `COMMIT` |
+| idScheme | Indicates the overall idScheme to use when importing. Default is AUTO (UID). Can be overridden for specific metadata (Listed below) | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
+| dataElementIdScheme | Indicates the idScheme to use for data elements when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
+| orgUnitIdScheme | Indicates the idScheme to use for organisation units when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
+| programIdScheme | Indicates the idScheme to use for programs when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
+| programStageIdScheme | Indicates the idScheme to use for program stages when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
+| categoryOptionComboIdScheme | Indicates the idScheme to use for category option combos when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
+| categoryOptionIdScheme | Indicates the idScheme to use for category options when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
+| importStrategy | Indicates the effect the import should have. Can either be `CREATE`, `UPDATE`, `CREATE_AND_UPDATE` and `DELETE`, which respectively only allows importing new data, importing changes to existing data, importing any new or updates to existing data and finally deleting data. | Enum | `CREATE`, `UPDATE`, `CREATE_AND_UPDATE`, `DELETE` |
+| atomicMode | Indicates how the import responds to validation errors. If `ALL`, all data imported must be valid for any data to be comitted. For `OBJECT`, only the data comitted needs to be valid, while other data can be invalid. | Enum | `ALL`, `OBJECT` |
+| flushMode | Indicates the frequency of flushing. This is related to how often data is pushed into the database during the import. Primarily used for debugging reasons, and should not be changed in a production setting | Enum | `AUTO`, `OBJECT` |
+| validationMode | Indicates the completeness of the validation step. It can be skipped, set to fail fast (Return on first error) or full(Default) which will return any errors found | Enum | `FULL`, `FAIL_FAST`, `SKIP` |
+| skipPatternValidation | If true, it will skip validating the pattern of generated attributes. | Boolean | `TRUE`, `FALSE` |
+| skipSideEffects | If true, it will skip running any side effects for the import | Boolean | `TRUE`, `FALSE` |
+| skipRuleEngine | If true, it will skip running any program rules for the import | Boolean | `TRUE`, `FALSE` |
 
-N.A.
+### Flat and nested payloads
 
-### Sample payloads
+The importer support both flat and nested payloads. The main difference is how the client require their data to be structured.
 
-Examples for the ***FLAT*** and the ***NESTED*** versions of the payload are listed below. Both cases use the same data.
+**Flat**
+The flat-structured payload is straight forward. It can contain collections for each of the main tracker objects we have. This works seemlessly with existing data, which already have UIDs assigned, but for new data, the client will have to provide new UIDs for any references between objects. For example, if you import a new tracked entity, with a new enrollment, the tracked entity requires the client to provide a UID, so the enrollment can be linked to that UID.
+
+**Nested**
+Nested payloads are the most commonly used structure. Here, tracker objects are embedded within their parent object; For example an enrollment within a tracked entity. The advantage of this structure, is that the client does not need to provide UIDs for these connections, since they will be given this connection during the import process, since they are nested together.
+
+> *** NOTE ***
+> While nested payloads might prove simpler for clients to deal with, the payload will always be flattened before the import. This means for large imports, providing a flat structured payload will provide both more control and lower overhead for the import process itself.
+
+Examples for the **FLAT** and the **NESTED** versions of the payload are listed below. Both cases use the same data.
 
 #### ***FLAT*** payload
 
@@ -533,9 +556,13 @@ Examples for the ***FLAT*** and the ***NESTED*** versions of the payload are lis
 }
 ```
 
-### Sample responses
+### SYNC and ASYNC
+For the user, the main difference between importing synchronously rather than asynchronously, is the immediate response from the API. For the synchronous import, the reponse will be returned as soon as the import finishes, with the importSummary. However, for asynchronous imports, the response will be immediate, and contain a reference where the client can poll for updates to the import.
 
-Examples of the ***SYNC*** and the ***ASYNC*** responses are listed below. Note that the ***SYNC*** example shows a `FULL` report.
+For big imports, it might be beneficial for the client to use the asynchronous import, to avoid waiting too long for a response.
+
+
+Examples of the **SYNC** and the **ASYNC** responses are listed below. Note that the **SYNC** example shows a `FULL` reportMode.
 
 #### ***SYNC*** response
 ```json
@@ -650,15 +677,6 @@ Examples of the ***SYNC*** and the ***ASYNC*** responses are listed below. Note 
     }
 }
 ```
-
-
-(TODO: Next items)
-  * Configuration that alters the import process (IE. turning off cache)
-  * Describe the difference between sync\async
-  * Flat\nested payload support
-  * Note about Side effects - Link to side effects
-  * Note about validation - Link to validation
-  * Note about program rules - Link to program rules
 
 ### Import Summary
 
@@ -1225,8 +1243,8 @@ The following endpoint supports common parameters for pagination
 |`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
 |`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
 |`totalPages`|`Boolean`| `true`&#124;`false` |Indicates whether to return the total number of pages in the response |
-|`skipPaging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned TODO [VERIFY]|
-|`paging`|`Boolean`| `true`&#124;`false`  | Indicates whether paging is enabled TODO [VERIFY]| 
+|`skipPaging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned|
+|`paging`|`Boolean`| `true`&#124;`false`  | Indicates whether paging is enabled| 
 |`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
 
 > **_NOTE_**
