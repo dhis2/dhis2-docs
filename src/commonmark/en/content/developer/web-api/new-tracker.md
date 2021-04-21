@@ -1112,7 +1112,7 @@ Additionally, program rules can also result in side-effects, like send and sched
   |**Tracker Notification**|**X**| Tracker updates can trigger notifications. Updates which trigger notifications are **enrollment**, **event update**, **event or enrollment completion**. |
   |**ProgramRule Notification**|**X**| Notifications can also be the result of certain program rule execution. Note that these notifications are part of rule effects which are created as a result of rule-engine exeuciton in pre-validation phase.|
   
-  * There are certain configurations which can control execution of side effects. `skipSideEffects` flag can be set in `TrackerImportParams` to entirely skip side-effects.
+  * There are certain configurations which can control execution of side effects. `skipSideEffects` flag can be set in `TrackerImportParams` to entirely skip side-effects. This can be used to slightly increase the performance of the overall import or to perform some system troubleshooting.
 
 ### Assign user to events
 
