@@ -10,8 +10,6 @@ The newly introduced endpoints consist of:
 * `GET /api/tracker/trackedEntities`
 * `GET /api/tracker/relationships`
 
-Significant changes occurred in version 2.36 to make the interface with clients homogeneous and to allow more consistent and flexible ways to use the services.
-
 > ***NOTE***
 >
 > The old endpoints are marked as deprecated but still work as before.<br>
@@ -29,9 +27,9 @@ Property names used in the API have changed to use consistent naming across all 
 
 ### Tracker Import changelog (`POST`)
 
-The following table highlights the differences between the previous tracker import endpoints (version 2.35) and the new endpoint (introduced in version 2.36). All endpoints are still currently available.
+The following table highlights the differences between the previous tracker import endpoints (/api/trackedEntityInstance, /api/enrollments, /api/events and /api/relatiosnhips) and the new endpoint (/api/tracker). All endpoints are still currently available.
 
-|Tracker Object|Previously|Currently|
+|Tracker Object|Previously|Now|
 |---|---|---|
 |**Attribute**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
 |**DataValue**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
@@ -47,10 +45,10 @@ The following table highlights the differences between the previous tracker impo
 
 The `GET` endpoints all conform to the same naming conventions reported in the previous paragraph. Additionally, we made some changes regarding the request parameters to respect the same naming conventions here as well.
 
-These tables highlight the version 2.36 differences in request parameters for `GET` endpoints compared to version 2.35.
+These tables highlight the old endpoint differences in request parameters for `GET` endpoints compared to the new
 
 #### Request parameter changes for `GET /api/tracker/enrollments`
-|V2.35|v2.36|
+|Previously|Now|
 |---|---|
 |`ou`|`orgUnit`|
 |`lastUpdated`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedWithin`|
@@ -58,7 +56,7 @@ These tables highlight the version 2.36 differences in request parameters for `G
 |`trackedEntityInstance`|`trackedEntity`|
 
 #### Request parameter changes for `GET /api/tracker/events`
-|V2.35|v2.36|
+|Previously|Now|
 |---|---|
 |`trackedEntityInstance`|`trackedEntity`|
 |`startDate`<br>`endDate`|`occurredAfter`<br>`occurredBefore`|
@@ -67,7 +65,7 @@ These tables highlight the version 2.36 differences in request parameters for `G
 |`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
 
 #### Request parameter changes for `GET /api/tracker/trackedEntities`
-|V2.35|v2.36|
+|Previously|Now|
 |---|---|
 |`trackedEntityInstance`|`trackedEntity`|
 |`ou`|`orgUnit`|
@@ -318,7 +316,7 @@ The `POST /api/tracker` endpoint allows clients to import the following tracker 
 * **Relationships**
 * Data embedded in other [tracker objects](#webapi_nti_tracker_objects)
 
-Main changes compared to version 2.35 are:
+Main changes compared to the other endpoints for tracker import are:
 1. Import payload can be ***nested*** or ***flat***
 2. Invocation can be ***synchronous*** or ***asynchronous***
 
