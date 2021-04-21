@@ -323,7 +323,6 @@ Main changes compared to version 2.35 are:
 
 Currently tracker import endpoint support the following parameters:
 
-#### ***SYNC*** endpoint
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
 | async | Indicates whether the import should happen asynchronously, or synchronously. | Boolean | `TRUE`, `FALSE` |
@@ -561,108 +560,8 @@ For the user, the main difference between importing synchronously rather than as
 For big imports, it might be beneficial for the client to use the asynchronous import, to avoid waiting too long for a response.
 
 
-Examples of the **SYNC** and the **ASYNC** responses are listed below. Note that the **SYNC** example shows a `FULL` reportMode.
+Examples of the **ASYNC** response is shown below. For **SYNC** response, look at the [importSummary section](#webapi_nti_import_summary).
 
-#### ***SYNC*** response
-```json
-{
-  "status": "OK",
-  "validationReport": {
-    "errorReports": [],
-    "warningReports": []
-  },
-  "stats": {
-    "created": 2,
-    "updated": 0,
-    "deleted": 0,
-    "ignored": 0,
-    "total": 2
-  },
-  "timingsStats": {
-    "timers": {
-      "preheat": "0,077242 sec.",
-      "preprocess": "0,000026 sec.",
-      "commit": "0,040080 sec.",
-      "programrule": "0,000455 sec.",
-      "programruleValidation": "0,000672 sec.",
-      "totalImport": "0,122770 sec.",
-      "validation": "0,003612 sec."
-    }
-  },
-  "bundleReport": {
-    "status": "OK",
-    "typeReportMap": {
-      "TRACKED_ENTITY": {
-        "trackerType": "TRACKED_ENTITY",
-        "stats": {
-          "created": 1,
-          "updated": 0,
-          "deleted": 0,
-          "ignored": 0,
-          "total": 1
-        },
-        "objectReports": [
-          {
-            "trackerType": "TRACKED_ENTITY",
-            "uid": "FkxTQC4EAKK",
-            "index": 0,
-            "errorReports": []
-          }
-        ]
-      },
-      "ENROLLMENT": {
-        "trackerType": "ENROLLMENT",
-        "stats": {
-          "created": 1,
-          "updated": 0,
-          "deleted": 0,
-          "ignored": 0,
-          "total": 1
-        },
-        "objectReports": [
-          {
-            "trackerType": "ENROLLMENT",
-            "uid": "hDUGDZo6xSE",
-            "index": 0,
-            "errorReports": []
-          }
-        ]
-      },
-      "RELATIONSHIP": {
-        "trackerType": "RELATIONSHIP",
-        "stats": {
-          "created": 0,
-          "updated": 0,
-          "deleted": 0,
-          "ignored": 0,
-          "total": 0
-        },
-        "objectReports": []
-      },
-      "EVENT": {
-        "trackerType": "EVENT",
-        "stats": {
-          "created": 0,
-          "updated": 0,
-          "deleted": 0,
-          "ignored": 0,
-          "total": 0
-        },
-        "objectReports": []
-      }
-    },
-    "stats": {
-      "created": 2,
-      "updated": 0,
-      "deleted": 0,
-      "ignored": 0,
-      "total": 2
-    }
-  }
-}
-```
-
-#### ***ASYNC*** response
 ```json
 {
     "httpStatus": "OK",
@@ -2055,6 +1954,8 @@ When it comes accessing Enrollment data, it is important to have access to the T
 Another important point to consider is how to map out access to different Program Stages of a Program. Sometimes we could be in a situation where we need grant access to a specific stage – for example “Lab Result” – to specific group of users (Lab Technicians). In this situation, we can provide data write access to "Lab Result" stage, probably data read to one or more stages just in case we want Lab Technicians to read other medical results or no access if we think it not necessary for the Lab Technicians to see data other than lab related.
 
 In summary, DHIS2 has fine grained sharing setting that we can use to implement access control mechanisms both at data and metadata level. These sharing settings can be applied directly at user level or user group level. How exactly to apply a sharing setting depends on the usecase at hand.
+
+For more detailed information about data sharing, check out [Data sharing](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/configuring-the-system/about-sharing-of-objects.html#data-sharing-for-event-based-programs).
 
 ### Organisation Unit Scopes
 
