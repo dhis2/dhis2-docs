@@ -857,10 +857,8 @@ The DHIS2 Android client is such a type of client and have to use JWT authentica
 ### Example DHIS2 config file with JWT authentication for an API only client
 ```properties
 # ----------------------------------------------------------------------
-# Generic OIDC Configuration with extra clients using JWT tokens 
+# Google OIDC Configuration with extra clients using JWT tokens 
 # ----------------------------------------------------------------------
-
-# Generic config parameters
 
 # Enable OIDC
 oidc.oauth2.login.enabled = on
@@ -868,20 +866,15 @@ oidc.oauth2.login.enabled = on
 # DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
 oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
 
-# This is the name displayed on the DHIS2 login page
-oidc.provider.helseid.display_alias = HelseID
+# Google specific parameters:
+oidc.provider.google.client_id = my_client_id
+oidc.provider.google.client_secret = my_client_secret
 
-oidc.provider.helseid.client_id = CLIENT_ID
-oidc.provider.helseid.client_secret = CLIENT_SECRET
-oidc.provider.helseid.mapping_claim = helseid://claims/identity/email
-oidc.provider.helseid.authorization_uri = https://helseid.no/connect/authorize
-oidc.provider.helseid.enable_logout = true
-oidc.provider.helseid.token_uri = https://helseid.no/connect/token
-oidc.provider.helseid.user_info_uri = https://helseid.no/connect/userinfo
-oidc.provider.helseid.jwk_uri = https://helseid.no/.well-known/openid-configuration/jwks
-oidc.provider.helseid.end_session_endpoint = https://helseid.no/connect/endsession
-oidc.provider.helseid.scopes = helseid://scopes/identity/email
-oidc.provider.helseid.redirect_url = {baseUrl}/oauth2/code/{registrationId}
+# DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
+oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app context)
+
+# Optional, defaults to 'email'
+oidc.provider.google.mapping_claim = email
 
 
 # Enable JWT support
@@ -889,11 +882,10 @@ oauth2.authorization.server.enabled = off
 oidc.jwt.token.authentication.enabled = on
 
 # Define client 1 using JWT tokens
-oidc.provider.helseid.ext_client.0.client_id = JWT_CLIENT_ID
+oidc.provider.google.ext_client.0.client_id = JWT_CLIENT_ID
 
 # Define client 2 using JWT tokens
-oidc.provider.helseid.ext_client.1.client_id = JWT_CLIENT_ID
-
+oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
 
 ```
 
