@@ -837,6 +837,58 @@ oidc.provider.helseid.enable_pkce = true
 
 ```
 
+## Setup JWT bearer token authentication for the DHIS2 Android client
+
+For clients that are API-only, setting up authentication with JWT bearer tokens is possible when you have configured an OIDC provider.
+The DHIS2 Android client is such a type of client and have to use JWT authentication if OIDC login is enabled.
+
+> **Note**
+>
+> DHIS2 currently only supports the OAuth2 authorization code grant flow for authentication with JWT, (also known as "three-legged OAuth")
+> DHIS2 currently only supports using Google as an OIDC provider when using JWT tokens
+
+
+### Requirements
+* Configure your Google OIDC provider as described above 
+* Disable the config parameter ```oauth2.authorization.server.enabled``` by setting it to 'off'
+* Enable the config parameter ```oidc.jwt.token.authentication.enabled``` by setting it to 'on'
+* Generate an Android OAuth2 client_id as described [here](https://developers.google.com/identity/protocols/oauth2/native-app#creatingcred)
+
+### Example DHIS2 config file with JWT authentication for an API only client
+```properties
+# ----------------------------------------------------------------------
+# Google OIDC Configuration with extra clients using JWT tokens 
+# ----------------------------------------------------------------------
+
+# Enable OIDC
+oidc.oauth2.login.enabled = on
+
+# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
+oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
+
+# Google specific parameters:
+oidc.provider.google.client_id = my_client_id
+oidc.provider.google.client_secret = my_client_secret
+
+# DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
+oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app context)
+
+# Optional, defaults to 'email'
+oidc.provider.google.mapping_claim = email
+
+
+# Enable JWT support
+oauth2.authorization.server.enabled = off
+oidc.jwt.token.authentication.enabled = on
+
+# Define client 1 using JWT tokens
+oidc.provider.google.ext_client.0.client_id = JWT_CLIENT_ID
+
+# Define client 2 using JWT tokens
+oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
+
+```
+
 
 ## LDAP configuration
 
