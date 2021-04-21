@@ -244,6 +244,9 @@ While `Attributes` describes a `tracked entity` or an `enrollment`, `data values
 | storedBy | Client reference for who stored/created the value. | No | No | String:Any | John Doe |
 
 
+>***Note***
+> For `data elements` only the "dataElement" and "value" properties are required when adding data. "value" can be null, which implies the user should remove the value.
+
 ### Note
 DHIS2 tracker allows for capturing of data using data elements and tracked entity attributes. However, sometimes there could be a situation where it is necessary to record additional information or comment about the issue at hand. Such additional information can be captured using tracker notes. Tracker notes are equivalent of data value comments from Aggregate DHIS2 side.
 
