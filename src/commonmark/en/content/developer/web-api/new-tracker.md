@@ -1983,26 +1983,64 @@ Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCEND
 
 It makes little sense to pass these modes at the time of tracker import operations. Because when writing tracker data, each of the objects need to have a specific organisation unit attached to them. The system will then ensure if each of the mentioned organisation units fall under the CAPTURE scope. If not the system will simply reject the write operation.
 
+Note that there are 4 type of organisation unit associations relevant for Tracker objects. A TrackedEntity has an organisation unit, commonly referred to as the Registration Organisation unit. Enrollments have an organisation unit associated with it. Events also have an organisation unit associated with it. There is also an Owner organisation unit for a TrackedEntity-Program combination. 
+
+When fetching Tracker objects, depending on the context, the organisation unit scope is applied to one of the above 4 organisation unit associations. 
+
+For example, when retrieving TrackedEntities without the context of a program, the organisation unit scope is applied to the registration organisation unit of the TrackedEntity. Whereas, when retrieving TrackedEntities including a specific program data, the organisation unit scope is applied to the Owner organisation unit. 
 
   * **Explain how they relate to ownership - Link to Program Ownership**
 
-### Program Ownership
+### Tracker Program Ownership
 
 <!--DHIS2-SECTION-ID:webapi_nti_ownership-->
 
-  * Describe the idea about Program Ownership
-  * Temporary ownership
-  * Program Ownership and Access Level - Link to Access Level
+A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation unit association for a TrackedEntity - Program combination.
+We call this the Owner (or Owning) Organisation unit of a TrackedEntity in
+the context of a Program. The Owner organisation unit is used to decide access privileges when reading and writing tracker data related to a program.
+This along with the Program's [Access Level](#webapi_nti_access_level) configuration decides the access behaviour for program related data (Enrollments and Events). 
+A user can access a TrackedEntity's Program data, if the corresponding Owner OrganisationUnit for that TrackedEntity-Program combination falls under the users organisation unit scope (Search/Capture). For Programs that are configured with access level  *OPEN* or *AUDITED* , the Owner OrganisationUnit has to be in the user's search scope.
+For Programs that are configured with access level  *PROTECTED* or *CLOSED* , the Owner OrganisationUnit has to be in the user's capture scope to be able to access the corresponding program data for the specific trackedEntity.
+
+#### Tracker Ownership Override : Break the Glass
+
+<!--DHIS2-SECTION-ID:webapi_nti_tracker_ownership_override-->
+
+It is possible to temporarily override this ownership privilege for a
+program that is configured with an access level of *PROTECTED*. Any user
+will be able to temporarily gain access to the program related data, if
+the user specifies a reason for accessing the TrackedEntity-Program
+data. This act of temporarily gaining access is termed as *breaking the
+glass*. Currently, the temporary access is granted for 3 hours. DHIS2
+audits breaking the glass along with the reason specified by the user.
+It is not possible to gain temporary access to a program that has been
+configured with an access level of *CLOSED*. To break the glass for a
+TrackedEntity-Program combination, the following POST request can be used:
+
+    /api/33/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
+      &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
+
+#### Tracker Ownership Transfer
+
+<!--DHIS2-SECTION-ID:webapi_nti_tracker_ownership_transfer-->
+
+It is possible to transfer the ownership of a TrackedEntity-Program
+from one organisation unit to another. This will be useful in case of patient
+referrals or migrations. Only a user who has Ownership access (or temporary access by breaking the glass) can transfer the ownership. To transfer ownership of a TrackedEntity-Program to another organisation unit, the following PUT request can be used:
+
+    /api/33/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8
+      &program=eBAyeGv0exc&ou=EJNxP3WreNP
+
 
 ### Access Level
 
 <!--DHIS2-SECTION-ID:webapi_nti_access_level-->
 
-DHIS2 treats Tracker data with extra level of protection. In addition to the standard feature of metadata and data protection through sharing settings, Tracker data are shielded with various access level protection mechanisms. Currently there are 4 access levels: Open, Audited, Protected and Closed.
+DHIS2 treats Tracker data with extra level of protection. In addition to the standard feature of metadata and data protection through sharing settings, Tracker data are shielded with additional access level protection mechanisms. Currently there are 4 access levels that can be configured for a Program: Open, Audited, Protected and Closed.
 
-These access levels are triggered only when users try to interact with data outside their capture scope. If request to data is within the capture scope, DHIS2 applies standard metadata and data sharing protection. To access data outside capture scope, but within search scope, users need to pass through extra level of protection or what we call in DHIS2 concept of “breaking the glass”. The concept is, accessing outside data needs to be justified, has consequence and will be audited for others to see it.  The way to configure the level of consequence of breaking the glass is by setting Program’s access level to either Open, Audited, Protected or Closed.
+These access levels are triggered only when users try to interact with program data, namely Enrollments and Events data. The different Access Level configuration for Program is a degree of openness (or closedness) of program data. Note that all other sharing settings are still respected and the access level is only an additional layer of access control. Here is a short description of the 4 access levels that can be configured for a Program. 
 
-1. Open: as the name implies, accessing data outside capture scope is possible without any justification or consequence. It is as if the data is within the capture scope. However, it is not possible to modify data captured by another org unit irrespective of the access level.
-2.	Audited: this is the same as Open access level. The difference here is that the system will automatically put audit log entry on the data being accessed by the specific user.
-3.	Protected: this takes audited access protection one level up. This time users need to provide a justification why they are accessing the data at hand. The system will then put a log of both the justification and access audit.
-4. 	Closed: as the name implies, data recorded under programs configured with access level closed will not be accessed outside the capturing orgunit. Everything is closed for those outside the capture scope.
+1. Open: This access level is the least restricted among the access levels. Data inside an OPEN program can be accessed and modified by users if the Owner organisation unit falls under the user's search scope.  With this access level, accessing and modifying data outside capture scope is possible without any justification or consequence. 
+2.	Audited: This is the same as Open access level. The difference here is that the system will automatically add an audit log entry on the data being accessed by the specific user.
+3.	Protected: This access level is slightly more restricted. Data inside a PROTECTED program can only be accessed by users if the Owner organisation unit falls under the user's capture scope. However, a user who only has the Owner organisation unit in the search scope can gain temporary ownership by [breaking the glass](#webapi_nti_tracker_ownership_override). The user has to provide a justification of why they are accessing the data at hand. The system will then put a log of both the justification and access audit and provide temporary access for 3 hours to the user. Note that when breaking the glass, the Owner Organisation Unit remains unchanged and only the User who has broken the glass gains temporary access. 
+4. 	Closed: This is the most restricted access level. Data recorded under programs configured with access level CLOSED will not be accessible if the Owner Organisation Unit does not fall within the user's capture scope. It is also not possible to break the glass or gain temporary ownership in this configuration. Note that it is still possible to transfer the ownership to another organisation unit. Only a user who has access to the data can transfer the ownership of a TrackedEntity-Program combination to another Organisation Unit. If Ownership is transferred, the Owner Organisation Unit is updated.
