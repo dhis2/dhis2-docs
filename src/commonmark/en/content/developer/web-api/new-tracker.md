@@ -2021,11 +2021,11 @@ Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCEND
 
 It makes little sense to pass these modes at the time of tracker import operations. Because when writing tracker data, each of the objects need to have a specific organisation unit attached to them. The system will then ensure if each of the mentioned organisation units fall under the CAPTURE scope. If not the system will simply reject the write operation.
 
-Note that there are 4 type of organisation unit associations relevant for Tracker objects. A trackedEntity has an organisation unit, commonly referred to as the Registration Organisation unit. Enrollments have an organisation unit associated with it. Events also have an organisation unit associated with it. There is also an Owner organisation unit for a trackedEntity-Program combination. 
+Note that there are 4 type of organisation unit associations relevant for Tracker objects. A TrackedEntity has an organisation unit, commonly referred to as the Registration Organisation unit. Enrollments have an organisation unit associated with it. Events also have an organisation unit associated with it. There is also an Owner organisation unit for a TrackedEntity-Program combination. 
 
-When fetching tracker objects, depending on the context, the organisation unit scope is applied to one of the above 4 organisation unit associations. 
+When fetching Tracker objects, depending on the context, the organisation unit scope is applied to one of the above 4 organisation unit associations. 
 
-For example, when retrieving trackedEntities without the context of a program, the organisation unit scope is applied to the registration organisation unit of the trackedEntity. Whereas, when retrieving trackedEntities inside the context of a program, the organisation unit scope is applied to the ownership organisation unit. 
+For example, when retrieving TrackedEntities without the context of a program, the organisation unit scope is applied to the registration organisation unit of the TrackedEntity. Whereas, when retrieving TrackedEntities including a specific program data, the organisation unit scope is applied to the Owner organisation unit. 
 
   * **Explain how they relate to ownership - Link to Program Ownership**
 
