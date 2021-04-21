@@ -837,6 +837,66 @@ oidc.provider.helseid.enable_pkce = true
 
 ```
 
+## Setup JWT bearer token authentication for the DHIS2 Android client
+
+For clients that are API-only, setting up authentication with JWT bearer tokens is possible when you have configured an OIDC provider.
+The DHIS2 Android client is such a type of client and have to use JWT authentication if OIDC login is enabled.
+
+> **Note**
+>
+> DHIS2 currently only supports the OAuth2 authorization code grant flow for authentication with JWT, (also known as "three-legged OAuth")
+> DHIS2 currently only supports using Google as an OIDC provider when using JWT tokens
+
+
+### Requirements
+* Configure your Google OIDC provider as described above 
+* Disable the config parameter ```oauth2.authorization.server.enabled``` by setting it to 'off'
+* Enable the config parameter ```oidc.jwt.token.authentication.enabled``` by setting it to 'on'
+* Generate an Android OAuth2 client_id as described [here](https://developers.google.com/identity/protocols/oauth2/native-app#creatingcred)
+
+### Example DHIS2 config file with JWT authentication for an API only client
+```properties
+# ----------------------------------------------------------------------
+# Generic OIDC Configuration with extra clients using JWT tokens 
+# ----------------------------------------------------------------------
+
+# Generic config parameters
+
+# Enable OIDC
+oidc.oauth2.login.enabled = on
+
+# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
+oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
+
+# This is the name displayed on the DHIS2 login page
+oidc.provider.helseid.display_alias = HelseID
+
+oidc.provider.helseid.client_id = CLIENT_ID
+oidc.provider.helseid.client_secret = CLIENT_SECRET
+oidc.provider.helseid.mapping_claim = helseid://claims/identity/email
+oidc.provider.helseid.authorization_uri = https://helseid.no/connect/authorize
+oidc.provider.helseid.enable_logout = true
+oidc.provider.helseid.token_uri = https://helseid.no/connect/token
+oidc.provider.helseid.user_info_uri = https://helseid.no/connect/userinfo
+oidc.provider.helseid.jwk_uri = https://helseid.no/.well-known/openid-configuration/jwks
+oidc.provider.helseid.end_session_endpoint = https://helseid.no/connect/endsession
+oidc.provider.helseid.scopes = helseid://scopes/identity/email
+oidc.provider.helseid.redirect_url = {baseUrl}/oauth2/code/{registrationId}
+
+
+# Enable JWT support
+oauth2.authorization.server.enabled = off
+oidc.jwt.token.authentication.enabled = on
+
+# Define client 1 using JWT tokens
+oidc.provider.helseid.ext_client.0.client_id = JWT_CLIENT_ID
+
+# Define client 2 using JWT tokens
+oidc.provider.helseid.ext_client.1.client_id = JWT_CLIENT_ID
+
+
+```
+
 
 ## LDAP configuration
 
