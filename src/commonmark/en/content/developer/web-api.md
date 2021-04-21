@@ -3,6 +3,7 @@
 
 !INCLUDE "web-api/overview.md", 1
 !INCLUDE "web-api/metadata.md", 1
+!INCLUDE "web-api/metadata-gist.md", 1
 !INCLUDE "web-api/data.md", 1
 !INCLUDE "web-api/data-validation.md", 1
 !INCLUDE "web-api/data-approval.md", 1

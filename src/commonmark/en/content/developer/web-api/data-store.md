@@ -134,6 +134,7 @@ Example response:
 
 ```json
 {
+  "id": "dsKeyUid001", 
   "created": "...",
   "user": {...},
   "namespace": "foo",
@@ -254,6 +255,10 @@ Sharing of datastore keys follows the same principle as for other metadata shari
 To get sharing settings for a specific datastore key:
 
     GET /api/33/sharing?type=dataStore&id=<uid>
+
+Where the id for the datastore key comes from the `/metaData` endpoint for that key:
+
+    /api/33/dataStore/<namespace>/<key>/metaData
 
 To modify sharing settings for a specific datastore key:
 
