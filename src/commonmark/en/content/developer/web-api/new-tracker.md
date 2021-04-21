@@ -5,10 +5,10 @@ These new endpoints set a discontinuity with earlier implementations. Re-enginee
 
 The newly introduced endpoints consist of:
 * `POST /api/tracker`
-* `GET /api/enrollments`
-* `GET /api/events`
-* `GET /api/trackedEntities`
-* `GET /api/relationships`
+* `GET /api/tracker/enrollments`
+* `GET /api/tracker/events`
+* `GET /api/tracker/trackedEntities`
+* `GET /api/tracker/relationships`
 
 Significant changes occurred in version 2.36 to make the interface with clients homogeneous and to allow more consistent and flexible ways to use the services.
 
@@ -45,8 +45,7 @@ The following table highlights the differences between the old tracker import en
 
 ### Tracker Export changelog (`GET`)
 
-The `GET` endpoints all conform to the same naming conventions reported in the previous paragraph. Additionally, we made some changes regarding
-the request parameters to respect the same naming conventions here as well.
+The `GET` endpoints all conform to the same naming conventions reported in the previous paragraph. Additionally, we made some changes in regards to the request parameters to respect the same naming conventions here as well.
 
 These tables highlight the version 2.36 differences in request parameters for `GET` endpoints compared to version 2.35.
 
@@ -114,7 +113,7 @@ Tracker consists of a few different types of objects that are nested together to
 
 
 ### Enrollment
-`Tracked Entities` can enroll into `Programs` for which they are eligible. We represent the enrollment with the `Enrollment` object, which we describe in this section.
+`Tracked Entities` can enroll into `Programs` for which they are eligible. Tracked entities are eligable as long as the program is configured with the same `Tracked Entity Type` as the tracked entity. We represent the enrollment with the `Enrollment` object, which we describe in this section.
 
 
 | Property | Description | Required | Immutable | Type | Example |
@@ -805,7 +804,7 @@ Import summaries have the following overall structure, depending on the requeste
 
 ***status***
 
-The property, `status`, of the import summary indicates the overall status of the import. If no errors or warnings was raised during the import, the `status` is reported as `OK`. The presence of any error or warnings in the import will result in a status of type `ERROR` or `WARNING`.
+The property, `status`, of the import summary indicates the overall status of the import. If no errors or warnings were raised during the import, the `status` is reported as `OK`. The presence of any error or warnings in the import will result in a status of type `ERROR` or `WARNING`.
 
 `status` is based on the presence of the most significant `validationReport`. `ERROR` has the highest significance, followed by `WARNING` and finally `OK`. This implies `ERROR` is reported as long as a single error was found during the import, regardless of how many warnings occurred.
 
@@ -843,11 +842,11 @@ The report contains a message and a code describing the actual error (See the [e
 >If no uid is provided in the payload, the import process will generate new uids. This means the error report might refer to a uid that does not exist in your payload.
 
 >***Note 3***
->Errors are represents issues with the payload which the importer can not circumvent. Any errors will block that data from being imported. Warnings on the other hand are issues where it's safe to circumvent them, but the user should be made aware that it happened. Warnings will not block data from being imported.
+>Errors represents issues with the payload which the importer can not circumvent. Any errors will block that data from being imported. Warnings on the other hand are issues where it's safe to circumvent them, but the user should be made aware that it happened. Warnings will not block data from being imported.
 
 ***stats***
 
-The status provides a quick overview of the import. After an import is completed, this will be the actual counts representing how much data was created, updated, deleted or ignored.
+The stats provides a quick overview of the import. After an import is completed, this will be the actual counts representing how much data was created, updated, deleted or ignored.
 
 Example:
 ```json
@@ -861,13 +860,13 @@ Example:
   }
 }
 ```
-`created` refers to how many new objects which was created. In general, objects without an existing uid in the payload will be treated as a new object.
+`created` refers to how many new objects were created. In general, objects without an existing uid in the payload will be treated as a new object.
 
-`updated` refers to the number of objects updated. Objects with an existing uid in the payload will be treated as updating an existing object.
+`updated` refers to the number of objects updated. If an object has a uid set in the payload, it will be treated as an update as long as that same uid exists in the database.
 
 `deleted` refers to the amount of objects deleted during the import. Deletion only happens when the import is configured to delete data, and only then when the objects in the payload have existing uids set.
 
-`ignored` refers to objects that was not persisted. Objects can be ignored for several reasons, for example trying to create something that already exists. Ignores should always be safe, so if something was ignored, it was either not neccesary or it was due to the configuration of the import.
+`ignored` refers to objects that were not persisted. Objects can be ignored for several reasons, for example trying to create something that already exists. Ignores should always be safe, so if something was ignored, it was either not neccesary or it was due to the configuration of the import.
 
 ***timingsStats***
 
@@ -1105,8 +1104,6 @@ The last part of validations in the importer are validations based on the user's
 
 These configurations will further change how validation is performed during import.
 
-Program Rules are from 2.36 being validated during the import in addition to the apps. For a brief overview of program rules in the import, have a look at the next section.
-
 ### Program Rules
 
 <!--DHIS2-SECTION-ID:webapi_nti_program_rules-->
@@ -1147,6 +1144,9 @@ The results of the program rules depends on the actions defined in those rules:
 
 Additionally, program rules can also result in side-effects, like send and schedule message. More information about side-effects can be found in the following section.
 
+> ***NOTE***
+> Program rules can be skipped during import using the `skipProgramRules` parameter.
+
 ### Side Effects
 
 <!--DHIS2-SECTION-ID:webapi_nti_side_effects-->
@@ -1172,7 +1172,7 @@ The following side effects are currently supported:
 Certain workflows benefits from treating events like tasks, and for this reason you can assign a user to an event.
 
 Assigning a user to an event, will not change the access or permissions for users, but will create a link between the event and the user.
-When an event have a user assign, you can query events from the API using the `assignedUser` field as a parameter.
+When an event have a user assigned, you can query events from the API using the `assignedUser` field as a parameter.
 
 When you want to assign a user to an event, you simply provide the UID of the user you want to assign in the `assignedUser` field. See the following example:
 
@@ -1575,7 +1575,7 @@ Two endpoints are dedicated to events:
 - `GET /api/tracker/events/{id}`
     - retrieves an event given the provided id
 
-#### Events Collection endpoint `GET /api/tracker/trackedEntities`
+#### Events Collection endpoint `GET /api/tracker/events`
 
 Returns a list of events based on filters.
 
@@ -1941,7 +1941,7 @@ Purpose of this endpoint is to retrieve one enrollment given its uid.
 
 ##### Request syntax
 
-`GET /api/tracker/enrollment/{uid}?fields={fields}`
+`GET /api/tracker/enrollment/{uid}`
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
@@ -2037,6 +2037,7 @@ The following rules apply to the query parameters.
 ## Tracker Access Control
 
 <!--DHIS2-SECTION-ID:webapi_nti_access_control-->
+Tracker has a few different concepts in regards to access control, like: sharing, organisation unit scopes, ownership and access levels. The following sections provide a short introduction to the different topics.
 
 ### Metadata Sharing
 
@@ -2065,7 +2066,7 @@ However, to further fine tune the scope, DHIS2 tracker introduces a concept that
 
 Users can do the fine-tuning by passing a specific value of ouMode in their API request:
 
-*api/tracker?orgUnit=UID&ouMode=specific_organisation_unit_selection_mode*
+*api/tracker/trackedEntities?orgUnit=UID&ouMode=specific_organisation_unit_selection_mode*
 
 Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCENDANTS, CAPTURE, ACCESSIBLE and ALL*.
 
