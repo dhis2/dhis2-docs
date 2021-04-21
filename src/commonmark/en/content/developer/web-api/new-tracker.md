@@ -29,9 +29,9 @@ Property names used in the API have changed to use consistent naming across all 
 
 ### Tracker Import changelog (`POST`)
 
-The following table highlights the differences between the old tracker import endpoints (version 2.35) and the new endpoint (introduced in version 2.36).
+The following table highlights the differences between the previous tracker import endpoints (version 2.35) and the new endpoint (introduced in version 2.36). All endpoints are still currently available.
 
-|Tracker Object|V2.35|V2.36|
+|Tracker Object|Previously|Currently|
 |---|---|---|
 |**Attribute**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
 |**DataValue**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
@@ -88,7 +88,7 @@ Tracker consists of a few different types of objects that are nested together to
 
 `Tracked Entities` are the root object for the Tracker model.
 
-| Property | Description | Required | Immutable | Type | Example |
+| Property | Description | Required | Updateable | Type | Example |
 |---|---|---|---|---|---|
 | trackedEntity | The identifier of the tracked entity. Generated if not supplied | No | Yes | String:Uid | ABCDEF12345 |
 | trackedEntityType | The type of tracked entity. | Yes | No | String:Uid | ABCDEF12345 |
@@ -1075,7 +1075,7 @@ Some of the properties of tracker objects require a specific format. When import
 - Geometry (The coordinates must match the format as specified by its type)
 
 #### User access
-All data imported will be validated based on the metadata  (Sharing) and the organisation units (Organisation Unit Scopes) referenced in the data. You can find more information about sharing and organisation unit scopes in the following sections.
+All data imported will be validated based on the metadata  ([Sharing](#webapi_nti_metadata_sharing)) and the organisation units ([Organisation Unit Scopes](#webapi_nti_ou_scope)) referenced in the data. You can find more information about sharing and organisation unit scopes in the following sections.
 
 Sharing is validated at the same time as references are looked up in the database. Metadata outside of the user's access will be treated as if it doesn't exist. The import will validate any metadata referenced in the data.
 
@@ -1461,7 +1461,7 @@ Please note that field filtering (`fields=...`) support is planned but not yet i
 
 #### Tracked Entities single object endpoint `GET /api/tracker/trackedEntities/{uid}`
 
-Purpose of this endpoint is to retrieve one tracked entities given its uid.
+The purpose of this endpoint is to retrieve one tracked entities given its uid.
 
 ##### Request syntax
 
