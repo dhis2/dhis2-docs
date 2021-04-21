@@ -1103,10 +1103,17 @@ Additionally, program rules can also result in side-effects, like send and sched
 
 <!--DHIS2-SECTION-ID:webapi_nti_side_effects-->
 
-  * Describe what side-effects are
-  * Note that side-effects can fail even if import succeeds. But not the other way around
-  * Describe what side-effects we have and what they do (Table?)
-  * Any configuration that affects side effects.
+  * Side effects define tasks which can be started in separate thread so that actuall import does not get affected by the outcome of the side-effects. As name suggest these are 
+  consequences of import but are not directly related to import. Note that side-effects can fail even if import succeeds. But not the other way around.
+  * For now these include
+  
+  |Side Effects|Supported|Description|
+  |---|:---:|---|
+  |**Tracker Notification**|**X**| Tracker updates can trigger notifications. Updates which trigger notifications are **enrollment**, **event update**, **event or enrollment completion**. |
+  |**ProgramRule Notification**|**X**| Notifications can also be the result of certain program rule execution. Note that these notifications are part of rule effects which are created as 
+  a result of rule-engine exeuciton in pre-validation phase.|
+  
+  * There are certain configurations which can control execution of side effects. `skipSideEffects` flag can be set in `TrackerImportParams` to entirely skip side-effects.
 
 ### Assign user to events
 
