@@ -2064,7 +2064,7 @@ TrackedEntity-Program combination, the following POST request can be used:
 
 It is possible to transfer the ownership of a TrackedEntity-Program
 from one organisation unit to another. This will be useful in case of patient
-referrals or migrations. Only a user who has Ownershio access (or temporary access by breaking the glass) can transfer the ownership. To transfer ownership of a TrackedEntity-Program to another organisation unit, the following PUT request can be used:
+referrals or migrations. Only a user who has Ownership access (or temporary access by breaking the glass) can transfer the ownership. To transfer ownership of a TrackedEntity-Program to another organisation unit, the following PUT request can be used:
 
     /api/33/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8
       &program=eBAyeGv0exc&ou=EJNxP3WreNP
