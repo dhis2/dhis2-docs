@@ -179,7 +179,8 @@ the *identifiableObjects* resource:
 DHIS2 supports translations of database content, such as data elements,
 indicators, and programs. All metadata objects in the Web API have
 properties meant to be used for display / UI purposes, which include
-*displayName*, *displayShortName* and *displayDescription*.
+*displayName*, *displayShortName*, *displayDescription* and
+*displayFormName* (for data elements and tracked entity attributes).
 
 <table>
 <caption>Translate options</caption>
@@ -199,7 +200,7 @@ properties meant to be used for display / UI purposes, which include
 <tr class="odd">
 <td>translate</td>
 <td>true | false</td>
-<td>Translate display* properties in metadata output (displayName, displayShortName, displayDescription, and displayFormName for data elements). Default value is true.</td>
+<td>Translate display* properties in metadata output (displayName, displayShortName, displayDescription, and displayFormName for data elements and tracked entity attributes). Default value is true.</td>
 </tr>
 <tr class="even">
 <td>locale</td>
@@ -293,7 +294,7 @@ endpoint for each object resource. These can be accessed by *GET* or
 As an example, for a data element with identifier `FTRrcoaog83`, you could use
 `/api/dataElements/FTRrcoaog83/translations` to get and update
 translations. The fields available are `property` with options *NAME*,
-*SHORT_NAME*, *DESCRIPTION*, `locale` which supports any valid
+*SHORT_NAME*, *FORM_NAME*, *DESCRIPTION*, `locale` which supports any valid
 locale ID and the translated property `value`.
 
 Example of NAME property for French locale:
