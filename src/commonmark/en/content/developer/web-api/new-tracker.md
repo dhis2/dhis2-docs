@@ -1135,6 +1135,7 @@ The following endpoint supports standard parameters for pagination.
 - **Tracked Entities** `GET /api/tracker/trackedEntities`
 - **Events** `GET /api/tracker/events`
 - **Enrollments** `GET /api/tracker/enrollments`
+- **Relationships** `GET /api/tracker/relationships`
 
 #### Request parameters for pagination
 
@@ -1911,27 +1912,40 @@ The following rules apply to the query parameters.
 #### Example response
 
 ```json
-[
-  {
-    "relationshipType": "dDrh5UyCyvQ",
-    "relationshipName": "Mother-Child",
-    "relationship": "t0HIBrc65Rm",
-    "bidirectional": false,
-    "from": {
-      "trackedEntity": {
-        "trackedEntity": "vOxUH373fy5"
+{
+  "instances": [
+    {
+      "relationship": "SSfIicJKbh5",
+      "relationshipName": "Focus to Case",
+      "relationshipType": "Mv8R4MPcNcX",
+      "createdAt": "2019-08-21T13:29:45.648",
+      "updatedAt": "2019-08-21T13:31:42.064",
+      "bidirectional": false,
+      "from": {
+        "trackedEntity": "neR4cmMY22o"
+      },
+      "to": {
+        "trackedEntity": "rEYUGH97Ssd"
       }
     },
-    "to": {
-      "trackedEntity": {
-        "trackedEntity": "pybd813kIWx"
+    {
+      "relationship": "S9kZGYPKk3x",
+      "relationshipName": "Focus to Case",
+      "relationshipType": "Mv8R4MPcNcX",
+      "createdAt": "2019-08-21T13:29:45.630",
+      "updatedAt": "2019-08-21T13:31:42.071",
+      "bidirectional": false,
+      "from": {
+        "trackedEntity": "neR4cmMY22o"
+      },
+      "to": {
+        "trackedEntity": "k8TU70vWtnP"
       }
-    },
-    "created": "2019-04-26T09:30:56.267",
-    "lastUpdated": "2019-04-26T09:30:56.267"
-  },
-  ...,
-]
+    }
+  ],
+  "page": 1,
+  "pageSize": 2
+}
 ```
 
 ## Tracker Access Control
