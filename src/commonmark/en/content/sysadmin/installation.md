@@ -413,22 +413,24 @@ sudo chown -R dhis:dhis tomcat-dhis/
 ```
 
 This will create an instance in a directory called `tomcat-dhis`. Note
-that the `tomcat7-user` package allows for creating any number of DHIS2
+that the `tomcat8-user` package allows for creating any number of DHIS2
 instances if that is desired.
 
 Next edit the file `tomcat-dhis/bin/setenv.sh` and add the lines below.
-The first line will set the location of your Java Runtime Environment,
-the second will dedicate memory to Tomcat and the third will set the
-location for where DHIS2 will search for the `dhis.conf` configuration
-file. Please check that the path the Java binaries are correct as they
-might vary from system to system, e.g. on AMD systems you might see
-`/java-11-openjdk-amd64` Note that you should adjust this to your
-environment:
+
+* `JAVA_HOME` sets the location of the JDK installation.
+* `JAVA_OPTS` passes parameters to the JVM.
+  * `-Xms` sets the initial allocation of memory to the Java heap memory space.
+  * `-Xmx` sets the maximum allocation of memory to the Java heap memory space. This should reflect how much memory you would like to allocate to the DHIS 2 software application on your server.
+* `DHIS2_HOME` sets the location of the `dhis.conf` configuration file for DHIS 2.
+
+Check that the path the Java binaries are correct as they might vary from system to system, e.g. on AMD systems you might see
+`/java-11-openjdk-amd64`. Note that you should adjust these values to your environment.
 
 ```sh
-export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
-export JAVA_OPTS='-Xmx7500m -Xms4000m'
-export DHIS2_HOME='/home/dhis/config'
+JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
+JAVA_OPTS='-Xms4000m -Xmx7000m'
+DHIS2_HOME='/home/dhis/config'
 ```
 
 The Tomcat configuration file is located in
@@ -446,7 +448,7 @@ in URLs used by the DHIS2 front-end.
 ```
 
 The next step is to download the DHIS2 WAR file and place it into the
-webapps directory of Tomcat. You can download DHIS2 WAR files from the following location: 
+_webapps_ directory of Tomcat. You can download DHIS2 WAR files from the following location: 
 
 ```sh
 https://releases.dhis2.org/
