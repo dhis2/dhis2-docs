@@ -413,22 +413,24 @@ sudo chown -R dhis:dhis tomcat-dhis/
 ```
 
 This will create an instance in a directory called `tomcat-dhis`. Note
-that the `tomcat7-user` package allows for creating any number of DHIS2
+that the `tomcat8-user` package allows for creating any number of DHIS2
 instances if that is desired.
 
 Next edit the file `tomcat-dhis/bin/setenv.sh` and add the lines below.
-The first line will set the location of your Java Runtime Environment,
-the second will dedicate memory to Tomcat and the third will set the
-location for where DHIS2 will search for the `dhis.conf` configuration
-file. Please check that the path the Java binaries are correct as they
-might vary from system to system, e.g. on AMD systems you might see
-`/java-11-openjdk-amd64` Note that you should adjust this to your
-environment:
+
+* `JAVA_HOME` sets the location of the JDK installation.
+* `JAVA_OPTS` passes parameters to the JVM.
+  * `-Xms` sets the initial allocation of memory to the Java heap memory space.
+  * `-Xmx` sets the maximum allocation of memory to the Java heap memory space. This should reflect how much memory you would like to allocate to the DHIS 2 software application on your server.
+* `DHIS2_HOME` sets the location of the `dhis.conf` configuration file for DHIS 2.
+
+Check that the path the Java binaries are correct as they might vary from system to system, e.g. on AMD systems you might see
+`/java-11-openjdk-amd64`. Note that you should adjust these values to your environment.
 
 ```sh
-export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
-export JAVA_OPTS='-Xmx7500m -Xms4000m'
-export DHIS2_HOME='/home/dhis/config'
+JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
+JAVA_OPTS='-Xms4000m -Xmx7000m'
+DHIS2_HOME='/home/dhis/config'
 ```
 
 The Tomcat configuration file is located in
@@ -446,7 +448,7 @@ in URLs used by the DHIS2 front-end.
 ```
 
 The next step is to download the DHIS2 WAR file and place it into the
-webapps directory of Tomcat. You can download DHIS2 WAR files from the following location: 
+_webapps_ directory of Tomcat. You can download DHIS2 WAR files from the following location: 
 
 ```sh
 https://releases.dhis2.org/
@@ -834,6 +836,58 @@ oidc.provider.helseid.extra_request_parameters = acr_values lvl4
 
 # (This is for optional PKCE support see: https://oauth.net/2/pkce/) Default value is: FALSE
 oidc.provider.helseid.enable_pkce = true
+
+```
+
+## Setup JWT bearer token authentication for the DHIS2 Android client
+
+For clients that are API-only, setting up authentication with JWT bearer tokens is possible when you have configured an OIDC provider.
+The DHIS2 Android client is such a type of client and have to use JWT authentication if OIDC login is enabled.
+
+> **Note**
+>
+> DHIS2 currently only supports the OAuth2 authorization code grant flow for authentication with JWT, (also known as "three-legged OAuth")
+> DHIS2 currently only supports using Google as an OIDC provider when using JWT tokens
+
+
+### Requirements
+* Configure your Google OIDC provider as described above 
+* Disable the config parameter ```oauth2.authorization.server.enabled``` by setting it to 'off'
+* Enable the config parameter ```oidc.jwt.token.authentication.enabled``` by setting it to 'on'
+* Generate an Android OAuth2 client_id as described [here](https://developers.google.com/identity/protocols/oauth2/native-app#creatingcred)
+
+### Example DHIS2 config file with JWT authentication for an API only client
+```properties
+# ----------------------------------------------------------------------
+# Google OIDC Configuration with extra clients using JWT tokens 
+# ----------------------------------------------------------------------
+
+# Enable OIDC
+oidc.oauth2.login.enabled = on
+
+# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
+oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
+
+# Google specific parameters:
+oidc.provider.google.client_id = my_client_id
+oidc.provider.google.client_secret = my_client_secret
+
+# DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
+oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app context)
+
+# Optional, defaults to 'email'
+oidc.provider.google.mapping_claim = email
+
+
+# Enable JWT support
+oauth2.authorization.server.enabled = off
+oidc.jwt.token.authentication.enabled = on
+
+# Define client 1 using JWT tokens
+oidc.provider.google.ext_client.0.client_id = JWT_CLIENT_ID
+
+# Define client 2 using JWT tokens
+oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
 
 ```
 
