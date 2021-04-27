@@ -69,9 +69,9 @@ of fetching metadata information.
 
 The `/gist` API has 3 kinds of endpoints:
 
-* `/api/<object-type>/gist`: paged list of all known and visible objects of the type (implicit `auto=S`)
-* `/api/<object-type>/<object-id>/gist`: view single object by ID (implicit `auto=L`)
-* `/api/<object-type>/<object-id>/<field-name>/gist`: paged list of all known and visible items in the collection of owner object's field (implicit `auto=M`; in case this is a simple field just the field value)
+* <code>/api/&lt;object-type><b>/gist</b></code>: paged list of all known and visible objects of the type (implicit `auto=S`)
+* <code>/api/&lt;object-type&gt;/&lt;object-id&gt;<b>/gist</b></code>: view single object by ID (implicit `auto=L`)
+* <code>/api/&lt;object-type&gt;/&lt;object-id&gt;/&lt;field-name&gt;<b>/gist</b></code>: paged list of all known and visible items in the collection of owner object's field (implicit `auto=M`; in case this is a simple field just the field value)
 
 These endpoints correspond to the endpoints of the standard metadata API without 
 the `/gist` suffix and share the majority of parameters and their options with 
