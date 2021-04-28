@@ -594,24 +594,24 @@ At least one data set or data element, start date and end date or period, and at
 
 The following query parameters are supported.
 
-| Query parameter | Description                                                  | Mandatory | Options (default first)                   |
-| --------------- | ------------------------------------------------------------ | --------- | ----------------------------------------- |
-| orgUnits        | Organisation unit, can be specified multiple times.          | Yes       | Organisation unit identifier.             |
-| dataSets        | Data set, can be specified multiple times.                   | No [*]    | Data set identifier.                      |
-| dataElements    | Data element, can be specified multiple times.               | No [*]    | Data element identifier.                  |
-| startDate       | Start date for interval to check for outliers.               | No [*]    | Date (yyyy-MM-dd).                        |
-| endDate         | End date for interval to check for outliers.                 | No [*]    | Date (yyyy-MM-dd).                        |
-| period          | ISO period.                                                  | No        | Period ISO string.                        |
-| optionCombos    | Category option combos, can be specified multiple times.     | No        | Category option combo identifier.         |
-| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero. Default: 50.  |
+| Parameter  | Description                                                  | Mandatory | Options (default first)                   |
+| ---------- | ------------------------------------------------------------ | --------- | ----------------------------------------- |
+| ou         | Organisation unit, can be specified multiple times.          | Yes       | Organisation unit identifier.             |
+| ds         | Data set, can be specified multiple times.                   | No [*]    | Data set identifier.                      |
+| de         | Data element, can be specified multiple times.               | No [*]    | Data element identifier.                  |
+| startDate  | Start date for interval to check for outliers.               | No [*]    | Date (yyyy-MM-dd).                        |
+| endDate    | End date for interval to check for outliers.                 | No [*]    | Date (yyyy-MM-dd).                        |
+| pe         | ISO period.                                                  | No [*]    | Period ISO string.                        |
+| coc        | Category option combos, can be specified multiple times.     | No        | Category option combo identifier.         |
+| maxResults | Max limit for the output.                                    | No        | Integer, greater than zero. Default: 50.  |
 
-[*]  You must specify either data sets with the `dataSets` parameter, which will include all data elements in the data sets, _or_ specify data elements with the `dataElements` parameter.
+[*]  You must specify either data sets with the `ds` parameter, which will include all data elements in the data sets, _or_ specify data elements with the `de` parameter.
      Equally, either `startDate` and `endDate` _or_ `period` must be specified.
 
 The `startDate` and `endDate` parameters refer to the time interval for which you want to detect outliers.
-If a `period` is provided instead the interval start and end is that of the period.
+If a period `pe` is provided instead the interval start and end is that of the period.
 
-If no `optionCombos` are provided all data elements of numeric value type are considered.
+If no option combos `coc` are provided all data elements of numeric value type are considered.
 
 
 ## Data integrity
