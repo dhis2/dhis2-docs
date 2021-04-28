@@ -852,7 +852,6 @@ There are various error codes for different error scenarios. The following table
 | E1005 | Could not find TrackedEntityType: `{0}`. | Error thrown when trying to fetch a non existing TrackedEntityType with uid `{0}` . This might also mean that the user does not have read access to the TrackedEntityType. |
 | E1006 | Attribute: `{0}`, does not exist. | Error thrown when the system was not able to find a matching TrackedEntityAttribute with uid `{0}`. This might also mean that the user does not have access to the TrackedEntityAttribute. |
 | E1007 | Error validating attribute value type: `{0}`; Error: `{1}`. | Mismatch between value type of a TrackedEntityAttribute and its provided attribute value. The actual validation error will be displayed in `{1}`. |
-| E1008 | Value: `{0}`, does not match the attribute pattern: `{1}`. | The attribute pattern validation fails. Ensure the attribute value follows the pattern defined for the attribute. |
 | E1009 | File resource: `{0}`, has already been assigned to a different object. | The File resource uid `{0}` is already assigned to another object in the system. |
 | E1010 | Could not find Program: `{0}`, linked to Event. | The system was unable to find a Program with the uid `{0}` specified inside the Event payload. This might also mean that the specific Program is not accessible by the logged in user. |
 | E1011 | Could not find OrganisationUnit: `{0}`, linked to Event. | The system was unable to find a OrganisationUnit with uid `{0}` specified inside the Event payload.  |
