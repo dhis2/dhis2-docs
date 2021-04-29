@@ -34,11 +34,12 @@ The Gist API uses a divide and conquer strategy to avoid responses with large
 partial object graphs. Instead of including nested objects or lists it provides
 a `/gist` endpoint URI where this object or list can be viewed in isolation.
 **The `/gist` API refers to nested data using URIs rather than including it.**
-This means if a client is interested in this nested information more request
+This means if a client is interested in this nested information more requests
 are required but each of them is kept reasonable small and will scale
 well in context of huge number of potential items.
 
 Known Differences:
+
 * items never include fields with identifiable objects or list of such objects
 * items by default do not include all available fields but a subset that depends 
   on context and parameters
@@ -51,6 +52,7 @@ Known Differences:
 * Gist offers `member(<id>)` and `not-member(<id>)` collection field transformers
 
 Known Limitations:
+
 * only persisted or synthetic fields (those based on persisted fields) can be included
 * filters can only be applied to persisted fields
 * orders can only be applied to persisted fields
