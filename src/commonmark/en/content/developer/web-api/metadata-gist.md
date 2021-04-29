@@ -41,7 +41,7 @@ well in context of huge number of potential items.
 Known Differences:
 
 * items never include fields with identifiable objects or list of such objects
-* items by default do not include all available fields but a subset that depends 
+* items by default do not include all available fields, but a subset that depends 
   on context and parameters
 * lists cannot be used without pager (therefore there is no `pager` parameter)
 * fields with collections are not paged using the `pager`-transformer but through
@@ -289,7 +289,7 @@ Further details on field presets can be found in section [Fields](#gist_fields).
 
 To filter the list of returned items add one or more `filter` parameters.
 
-Multiple filters can either be specified as comma seperated list of a single 
+Multiple filters can either be specified as comma-separated list of a single 
 `filter` parameter or as multiple `filter` parameters each with a single filter.
 
 There are two types of filters:
@@ -424,7 +424,7 @@ Examples:
 
 To sort the list of items one or more order expressions can be given.
 
-An order expression is either just a field name of a persisted field or a field
+An order expression is either just a field name of a persisted field, or a field
 name followed by `:asc` (ascending order - the default) or `:desc` 
 (descending order).
 
@@ -607,7 +607,7 @@ transformers, for example:
 
     /api/organisationUnits/gist?fields=*,children::size~rename(child-count)
 
-The returned items now no longer have a `chilren` member but a `child-count`
+The returned items now no longer have a `children` member but a `child-count`
 member instead. Note that `rename` also affects the member name of the URI
 reference given in `apiEndpoints`.
 
@@ -717,8 +717,7 @@ returns items in the form:
 
 ## Examples
 <!--DHIS2-SECTION-ID:gist_examples-->
-A few examples starting from simple listings moving to tips on very specific
-use cases. 
+A few examples starting from simple listings moving on to very specific use cases. 
 
 It is preferable to always supply an explicit list of `fields` so this section 
 will do so. 
