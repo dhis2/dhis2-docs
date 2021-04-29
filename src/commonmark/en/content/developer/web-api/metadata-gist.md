@@ -4,7 +4,8 @@
 The Metadata Gist API is a RESTful read-only JSON API to fetch and browse 
 metadata. Items in this API contain the gist of the same item in the Metadata API.
 
-The API is specifically designed to avoid: 
+The API is specifically designed to avoid:
+
 * large response payloads because of the inclusion of partial nested object 
   graphs
 * resource intensive in memory processing of requests 
@@ -109,13 +110,13 @@ Parameters in alphabetical order:
 | Parameter      | Options               |  Default     | Description          |
 | -------------- | --------------------- | ------------ | ---------------------|
 | `absoluteUrls` | `true` or `false`     | `true`       | `true` use relative paths in links, `false` use absolute URLs in links |
-| `auto`         | `XS`,`S`,`M`,`L`,`XL` | (context dependent) | extent of fields selected by `*` field selector |
+| `auto`         | `XS`, `S`, `M`, `L`, `XL` | (context dependent) | extent of fields selected by `*` field selector |
 | `fields`       | (depends on endpoint) | `*`          | comma separated list of fields or presets to include |
-| `filter`       | _field_ `:` _operator_ \[`:` _value_\] |   | comma separated list of query field filters (can be used more than once) |
-| `headless`     | `true` or `false`     | `false`      | true` skip wrapping result in a pager (ignores `total`), `false` use a pager wrapper object around the result list |
+| `filter`       | `<field>:<operator>` or `<field>:<operator>:<value>` |   | comma separated list of query field filters (can be used more than once) |
+| `headless`     | `true` or `false`     | `false`      | `true` skip wrapping result in a pager (ignores `total`), `false` use a pager wrapper object around the result list |
 | `inverse`      | `true` or `false`     | `false`      | `true` return items **not** in the list, `false` return items in the list |
 | `locale`       |                       | (user account configured language) | translation language override |
-| `order`        | _field_ \[`:asc` or `:desc`] | `:asc` | comma separated list of query order fields (can be used more than once) |
+| `order`        | `<field>` or  `<field>:asc` or `<field>:desc` | `:asc` | comma separated list of query order fields (can be used more than once) |
 | `page`         | 1-n                   | 1            | page number |
 | `pageSize`     | 1-1000                | 50           | number of items on a page |
 | `rootJunction` | `AND` or `OR`         | `AND`        | logical combination of `filter`s, `AND`= all must match, `OR`= at least one must match |
@@ -340,12 +341,12 @@ Available binary pattern matching operators are:
 The `like` and `!like` operators can be used by either providing a search term
 in which case a match is any value where the term occurs anywhere or they can
 be used by providing the search pattern using `*` as _any number of characters_
-and `?` any single character.
+and `?` as _any single character_.
 
-Some operators have multiple aliases to be backwards compatible with the 
+Operators have multiple aliases to be backwards compatible with the 
 standard metadata API. For the gist API any like is always case-insensitive. 
 
-For example, to only list organisations on 2nd level use
+For example, to only list organisations on second level use
 
     /api/organisationUnits/gist?filter=level:eq:2
 
