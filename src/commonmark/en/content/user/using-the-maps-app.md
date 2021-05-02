@@ -1267,7 +1267,7 @@ To clear all data in a boundary layer:
 
 ![](resources/images/maps/maps_earth_eng_layer.png)
 
-The layers from Google Earth Engine lets you display and aggregate external
+The layers from Google Earth Engine let you display and aggregate external
 data to your organisation units. Use the population layer to calculate the
 number of people living in a district, or within a distance from a health
 facility. The elevation layer allows you to find the lowest, highest and
