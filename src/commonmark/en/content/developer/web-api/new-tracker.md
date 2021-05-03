@@ -890,7 +890,7 @@ There are various error codes for different error scenarios. The following table
 | E1070 | Could not find OrganisationUnit: `{0}`, linked to Enrollment. | The system could not find the OrganisationUnit specified in the Enrollment payload. |
 | E1074 | FeatureType is missing. | |
 | E1075 | Attribute: `{0}`, is missing uid. | |
-| E1076 | `{0}` `{1}` is mandatory and can''t be null | |
+| E1076 | `{0}` `{1}` is mandatory and can't be null | |
 | E1077 | Attribute: `{0}`, text value exceed the maximum allowed length: `{0}`. | |
 | E1080 | Enrollment: `{0}`, already exists. | This error is thrown when trying to create a new Enrollmentt with an already existing uid. Make sure a new uid is used when adding a new Enrollment. |
 | E1081 | Enrollment: `{0}`, do not exist. | Error thrown when trying to fetch a non existing Enrollment with uid `{0}` . This might also mean that the user does not have read access to the Enrollment. |
