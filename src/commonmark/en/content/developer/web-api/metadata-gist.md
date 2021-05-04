@@ -4,7 +4,8 @@
 The Metadata Gist API is a RESTful read-only JSON API to fetch and browse 
 metadata. Items in this API contain the gist of the same item in the Metadata API.
 
-The API is specifically designed to avoid: 
+The API is specifically designed to avoid:
+
 * large response payloads because of the inclusion of partial nested object 
   graphs
 * resource intensive in memory processing of requests 
@@ -33,13 +34,14 @@ The Gist API uses a divide and conquer strategy to avoid responses with large
 partial object graphs. Instead of including nested objects or lists it provides
 a `/gist` endpoint URI where this object or list can be viewed in isolation.
 **The `/gist` API refers to nested data using URIs rather than including it.**
-This means if a client is interested in this nested information more request
+This means if a client is interested in this nested information more requests
 are required but each of them is kept reasonable small and will scale
 well in context of huge number of potential items.
 
 Known Differences:
+
 * items never include fields with identifiable objects or list of such objects
-* items by default do not include all available fields but a subset that depends 
+* items by default do not include all available fields, but a subset that depends 
   on context and parameters
 * lists cannot be used without pager (therefore there is no `pager` parameter)
 * fields with collections are not paged using the `pager`-transformer but through
@@ -50,6 +52,7 @@ Known Differences:
 * Gist offers `member(<id>)` and `not-member(<id>)` collection field transformers
 
 Known Limitations:
+
 * only persisted or synthetic fields (those based on persisted fields) can be included
 * filters can only be applied to persisted fields
 * orders can only be applied to persisted fields
@@ -109,13 +112,13 @@ Parameters in alphabetical order:
 | Parameter      | Options               |  Default     | Description          |
 | -------------- | --------------------- | ------------ | ---------------------|
 | `absoluteUrls` | `true` or `false`     | `true`       | `true` use relative paths in links, `false` use absolute URLs in links |
-| `auto`         | `XS`,`S`,`M`,`L`,`XL` | (context dependent) | extent of fields selected by `*` field selector |
+| `auto`         | `XS`, `S`, `M`, `L`, `XL` | (context dependent) | extent of fields selected by `*` field selector |
 | `fields`       | (depends on endpoint) | `*`          | comma separated list of fields or presets to include |
-| `filter`       | _field_ `:` _operator_ \[`:` _value_\] |   | comma separated list of query field filters (can be used more than once) |
-| `headless`     | `true` or `false`     | `false`      | true` skip wrapping result in a pager (ignores `total`), `false` use a pager wrapper object around the result list |
+| `filter`       | `<field>:<operator>` or `<field>:<operator>:<value>` |   | comma separated list of query field filters (can be used more than once) |
+| `headless`     | `true` or `false`     | `false`      | `true` skip wrapping result in a pager (ignores `total`), `false` use a pager wrapper object around the result list |
 | `inverse`      | `true` or `false`     | `false`      | `true` return items **not** in the list, `false` return items in the list |
 | `locale`       |                       | (user account configured language) | translation language override |
-| `order`        | _field_ \[`:asc` or `:desc`] | `:asc` | comma separated list of query order fields (can be used more than once) |
+| `order`        | `<field>` or  `<field>:asc` or `<field>:desc` | `:asc` | comma separated list of query order fields (can be used more than once) |
 | `page`         | 1-n                   | 1            | page number |
 | `pageSize`     | 1-1000                | 50           | number of items on a page |
 | `rootJunction` | `AND` or `OR`         | `AND`        | logical combination of `filter`s, `AND`= all must match, `OR`= at least one must match |
@@ -286,7 +289,7 @@ Further details on field presets can be found in section [Fields](#gist_fields).
 
 To filter the list of returned items add one or more `filter` parameters.
 
-Multiple filters can either be specified as comma seperated list of a single 
+Multiple filters can either be specified as comma-separated list of a single 
 `filter` parameter or as multiple `filter` parameters each with a single filter.
 
 There are two types of filters:
@@ -340,12 +343,12 @@ Available binary pattern matching operators are:
 The `like` and `!like` operators can be used by either providing a search term
 in which case a match is any value where the term occurs anywhere or they can
 be used by providing the search pattern using `*` as _any number of characters_
-and `?` any single character.
+and `?` as _any single character_.
 
-Some operators have multiple aliases to be backwards compatible with the 
+Operators have multiple aliases to be backwards compatible with the 
 standard metadata API. For the gist API any like is always case-insensitive. 
 
-For example, to only list organisations on 2nd level use
+For example, to only list organisations on second level use
 
     /api/organisationUnits/gist?filter=level:eq:2
 
@@ -421,7 +424,7 @@ Examples:
 
 To sort the list of items one or more order expressions can be given.
 
-An order expression is either just a field name of a persisted field or a field
+An order expression is either just a field name of a persisted field, or a field
 name followed by `:asc` (ascending order - the default) or `:desc` 
 (descending order).
 
@@ -604,7 +607,7 @@ transformers, for example:
 
     /api/organisationUnits/gist?fields=*,children::size~rename(child-count)
 
-The returned items now no longer have a `chilren` member but a `child-count`
+The returned items now no longer have a `children` member but a `child-count`
 member instead. Note that `rename` also affects the member name of the URI
 reference given in `apiEndpoints`.
 
@@ -714,8 +717,7 @@ returns items in the form:
 
 ## Examples
 <!--DHIS2-SECTION-ID:gist_examples-->
-A few examples starting from simple listings moving to tips on very specific
-use cases. 
+A few examples starting from simple listings moving on to very specific use cases. 
 
 It is preferable to always supply an explicit list of `fields` so this section 
 will do so. 
