@@ -42,17 +42,15 @@ These recommendations should be considered as rules-of-thumb and not
 exact measures. DHIS2 scales linearly on the amount of RAM and number of
 CPU cores so the more you can afford, the better the application will perform.
 
-  - *RAM:* At least 2 GB for a small instance, 12 GB for a medium instance, 64 GB or more for a large instance.
-
-  - *CPU cores:* 4 CPU cores for a small instance, 8 CPU cores or more for a medium or large instance.
-
-  - *Disk:* SSD is recommeded as storage device. Minimum
-    read speed is 150 Mb/s, 200 Mb/s is good, 350 Mb/s or better is
-    ideal. In terms of disk space, at least 100 GB is recommended, but
-    will depend entirely on the amount of data which is contained in the
-    data value tables. Analytics tables require a significant amount of
-    disk space. Plan ahead and ensure that your server can be upgraded
-    with more disk space as needed.
+- *RAM:* At least 2 GB for a small instance, 12 GB for a medium instance, 64 GB or more for a large instance.
+- *CPU cores:* 4 CPU cores for a small instance, 8 CPU cores or more for a medium or large instance.
+- *Disk:* SSD is recommeded as storage device. Minimum
+  read speed is 150 Mb/s, 200 Mb/s is good, 350 Mb/s or better is
+  ideal. In terms of disk space, at least 100 GB is recommended, but
+  will depend entirely on the amount of data which is contained in the
+  data value tables. Analytics tables require a significant amount of
+  disk space. Plan ahead and ensure that your server can be upgraded
+  with more disk space as needed.
 
 ## Software requirements
 
@@ -60,15 +58,15 @@ CPU cores so the more you can afford, the better the application will perform.
 
 Later DHIS2 versions require the following software versions to operate.
 
-  - An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
-  - Java JDK. OpenJDK is recommended. 
-      - For DHIS 2 version 2.35 version and later, JDK 11 is recommended and JDK 8 or later is required. 
-      - For DHIS 2 versions older than 2.35, JDK 8 is required.
-  - PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 13 is recommended.
-  - PostGIS database extension version 2.2 or later.
-  - Tomcat servlet container version 8.5.50 or later, or other Servlet API
-    3.1 compliant servlet containers.
-  - Cluster setup only (optional): Redis data store version 4 or later. 
+- An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
+- Java JDK. OpenJDK is recommended. 
+    - For DHIS 2 version 2.35 version and later, JDK 11 is recommended and JDK 8 or later is required. 
+    - For DHIS 2 versions older than 2.35, JDK 8 is required.
+- PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 13 is recommended.
+- PostGIS database extension version 2.2 or later.
+- Tomcat servlet container version 8.5.50 or later, or other Servlet API
+  3.1 compliant servlet containers.
+- Cluster setup only (optional): Redis data store version 4 or later. 
 
 ## Server setup
 
@@ -891,7 +889,6 @@ oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
 
 ```
 
-
 ## LDAP configuration
 
 <!--DHIS2-SECTION-ID:install_ldap_configuration-->
@@ -926,29 +923,25 @@ ldap.search.filter = (cn={0})
 
 The LDAP configuration properties are explained below:
 
-  - *ldap.url:* The URL of the LDAP server for which to authenticate
-    against. Using SSL/encryption is strongly recommended in order to
-    make authentication secure. As example URL is
-    *ldaps://domain.org:636*, where ldaps refers to the protocol,
-    *domain.org* refers to the domain name or IP address, and *636*
-    refers to the port (636 is default for LDAPS).
-
-  - *ldap.manager.dn:* An LDAP manager user is required for binding to
-    the LDAP server for the user authentication process. This property
-    refers to the DN of that entry. I.e. this is not the user which will
-    be authenticated when logging into DHIS2, rather the user which
-    binds to the LDAP server in order to do the authentication.
-
-  - *ldap.manager.password:* The password for the LDAP manager user.
-
-  - *ldap.search.base:* The search base, or the distinguished name of
-    the search base object, which defines the location in the directory
-    from which the LDAP search begins.
-
-  - *ldap.search.filter:* The filter for matching DNs of entries in the
-    LDAP directory. The {0} variable will be substituted by the DHIS2
-    username, or alternatively, the LDAP identifier defined for the user
-    with the supplied username.
+- *ldap.url:* The URL of the LDAP server for which to authenticate
+  against. Using SSL/encryption is strongly recommended in order to
+  make authentication secure. As example URL is
+  *ldaps://domain.org:636*, where ldaps refers to the protocol,
+  *domain.org* refers to the domain name or IP address, and *636*
+  refers to the port (636 is default for LDAPS).
+- *ldap.manager.dn:* An LDAP manager user is required for binding to
+  the LDAP server for the user authentication process. This property
+  refers to the DN of that entry. I.e. this is not the user which will
+  be authenticated when logging into DHIS2, rather the user which
+  binds to the LDAP server in order to do the authentication.
+- *ldap.manager.password:* The password for the LDAP manager user.
+- *ldap.search.base:* The search base, or the distinguished name of
+  the search base object, which defines the location in the directory
+  from which the LDAP search begins.
+- *ldap.search.filter:* The filter for matching DNs of entries in the
+  LDAP directory. The {0} variable will be substituted by the DHIS2
+  username, or alternatively, the LDAP identifier defined for the user
+  with the supplied username.
 
 DHIS2 will use the supplied username / password and try to authenticate
 against an LDAP server entry, then look up user roles / authorities from
