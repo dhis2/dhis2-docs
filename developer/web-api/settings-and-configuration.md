@@ -641,7 +641,8 @@ The available system settings are listed below.
 </tr>
 <tr class="odd">
 <td>keyCountPassiveDashboardViewsInUsageAnalytics</td>
-<td>(Reserved for future use)</td>
+<td>Counts "passive" dashboard views (not selecting a particular dashboard)
+in usage analytics</td>
 <td>No</td>
 </tr>
 <tr class="even">
