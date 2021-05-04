@@ -420,8 +420,8 @@ Next edit the file `tomcat-dhis/bin/setenv.sh` and add the lines below.
 
 * `JAVA_HOME` sets the location of the JDK installation.
 * `JAVA_OPTS` passes parameters to the JVM.
-  * `-Xms` sets the initial allocation of memory to the Java heap memory space.
-  * `-Xmx` sets the maximum allocation of memory to the Java heap memory space. This should reflect how much memory you would like to allocate to the DHIS 2 software application on your server.
+    * `-Xms` sets the initial allocation of memory to the Java heap memory space.
+    * `-Xmx` sets the maximum allocation of memory to the Java heap memory space. This should reflect how much memory you would like to allocate to the DHIS 2 software application on your server.
 * `DHIS2_HOME` sets the location of the `dhis.conf` configuration file for DHIS 2.
 
 Check that the path the Java binaries are correct as they might vary from system to system, e.g. on AMD systems you might see
