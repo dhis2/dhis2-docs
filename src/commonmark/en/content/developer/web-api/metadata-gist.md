@@ -4,7 +4,8 @@
 The Metadata Gist API is a RESTful read-only JSON API to fetch and browse 
 metadata. Items in this API contain the gist of the same item in the Metadata API.
 
-The API is specifically designed to avoid: 
+The API is specifically designed to avoid:
+
 * large response payloads because of the inclusion of partial nested object 
   graphs
 * resource intensive in memory processing of requests 
@@ -33,13 +34,14 @@ The Gist API uses a divide and conquer strategy to avoid responses with large
 partial object graphs. Instead of including nested objects or lists it provides
 a `/gist` endpoint URI where this object or list can be viewed in isolation.
 **The `/gist` API refers to nested data using URIs rather than including it.**
-This means if a client is interested in this nested information more request
+This means if a client is interested in this nested information more requests
 are required but each of them is kept reasonable small and will scale
 well in context of huge number of potential items.
 
 Known Differences:
+
 * items never include fields with identifiable objects or list of such objects
-* items by default do not include all available fields but a subset that depends 
+* items by default do not include all available fields, but a subset that depends 
   on context and parameters
 * lists cannot be used without pager (therefore there is no `pager` parameter)
 * fields with collections are not paged using the `pager`-transformer but through
@@ -50,6 +52,7 @@ Known Differences:
 * Gist offers `member(<id>)` and `not-member(<id>)` collection field transformers
 
 Known Limitations:
+
 * only persisted or synthetic fields (those based on persisted fields) can be included
 * filters can only be applied to persisted fields
 * orders can only be applied to persisted fields
@@ -69,9 +72,9 @@ of fetching metadata information.
 
 The `/gist` API has 3 kinds of endpoints:
 
-* `/api/<object-type>/gist`: paged list of all known and visible objects of the type (implicit `auto=S`)
-* `/api/<object-type>/<object-id>/gist`: view single object by ID (implicit `auto=L`)
-* `/api/<object-type>/<object-id>/<field-name>/gist`: paged list of all known and visible items in the collection of owner object's field (implicit `auto=M`; in case this is a simple field just the field value)
+* <code>/api/&lt;object-type><b>/gist</b></code>: paged list of all known and visible objects of the type (implicit `auto=S`)
+* <code>/api/&lt;object-type&gt;/&lt;object-id&gt;<b>/gist</b></code>: view single object by ID (implicit `auto=L`)
+* <code>/api/&lt;object-type&gt;/&lt;object-id&gt;/&lt;field-name&gt;<b>/gist</b></code>: paged list of all known and visible items in the collection of owner object's field (implicit `auto=M`; in case this is a simple field just the field value)
 
 These endpoints correspond to the endpoints of the standard metadata API without 
 the `/gist` suffix and share the majority of parameters and their options with 
@@ -106,18 +109,21 @@ ignored.
 ### Overview
 Parameters in alphabetical order:
 
-* `absoluteUrls`: `true` (default) use relative paths in links, `false` use absolute URLs in links
-* `auto`: `XS`,`S`,`M`,`L`,`XL` extent of fields selected by `*` field selector
-* `fields`: comma separated list of fields to include (default is `*`)
-* `filter`: comma separated list of query field filters (can be used more than once)
-* `headless`: `true` skip wrapping result in a pager (ignores `total`), `false` (default) use a pager wrapper object around the result list
-* `inverse`: `true` return items **not** in the list, `false` (default) return items in the list
-* `order`: comma separated list of query order fields (can be used more than once)
-* `page`: `{1..n}` page number
-* `pageSize`: `{1..1000}` number of items on a page (default is 50)
-* `rootJunction`: `AND` (default) or `OR` combination of `filter`s
-* `total`: `true` add total number of matches to the pager, `false` (default) skip counting total number of matches
-* `translate`: `true` (default) translate all translatable properties, `false` skip translation of translatable properties (no effect on synthetic display names)
+| Parameter      | Options               |  Default     | Description          |
+| -------------- | --------------------- | ------------ | ---------------------|
+| `absoluteUrls` | `true` or `false`     | `true`       | `true` use relative paths in links, `false` use absolute URLs in links |
+| `auto`         | `XS`, `S`, `M`, `L`, `XL` | (context dependent) | extent of fields selected by `*` field selector |
+| `fields`       | (depends on endpoint) | `*`          | comma separated list of fields or presets to include |
+| `filter`       | `<field>:<operator>` or `<field>:<operator>:<value>` |   | comma separated list of query field filters (can be used more than once) |
+| `headless`     | `true` or `false`     | `false`      | `true` skip wrapping result in a pager (ignores `total`), `false` use a pager wrapper object around the result list |
+| `inverse`      | `true` or `false`     | `false`      | `true` return items **not** in the list, `false` return items in the list |
+| `locale`       |                       | (user account configured language) | translation language override |
+| `order`        | `<field>` or  `<field>:asc` or `<field>:desc` | `:asc` | comma separated list of query order fields (can be used more than once) |
+| `page`         | 1-n                   | 1            | page number |
+| `pageSize`     | 1-1000                | 50           | number of items on a page |
+| `rootJunction` | `AND` or `OR`         | `AND`        | logical combination of `filter`s, `AND`= all must match, `OR`= at least one must match |
+| `total`        | `true` or `false`     | `false`      | `true` add total number of matches to the pager, `false` skip counting total number of matches |
+| `translate`    | `true` or `false`     | `true`       | `true` translate all translatable properties, `false` skip translation of translatable properties (no effect on synthetic display names) |
 
 
 ### The `absoluteUrls` Parameter
@@ -204,17 +210,8 @@ field. For example, to include the IDs of the user's user groups use:
 
     /api/users/gist?fields=*,userGroups::ids
 
-When using field presets like this it is important to remember that the last
-declaration of each fields wins over prior ones. In the opposite order
-
-    /api/users/gist?fields=userGroups::ids,*
-
-the `userGroups` would not be shown with IDs since `*` expands among other 
-fields to `userGroups::none` which replaces the explicit `userGroups::ids`.
-
-The `fields` parameter does allow listing fields of nested objects as long as
-there is a 1:1 relation. For example to add `userCredentials` with `id` and 
-`name` of a user use:
+The `fields` parameter does allow listing fields of nested objects. 
+For example to add `userCredentials` with `id` and `name` of a user use:
 
     /api/users/gist?fields=*,userCredentials[id,username]
 
@@ -230,26 +227,32 @@ This creates items of the form:
 }
 ```
 
-A way to partly overcome the 1:1 limitation and to include fields of nested 
-collection is the `pluck` transformer. It allows for example to include all
-`name`s of a user's `userGroups` by:
+When including nested fields of collections the nested field must be a text
+property. 
 
-    /api/users/gist?fields=*,userGroups::pluck(name)
+For example to include all `name`s of a user's `userGroups` by:
+
+    /api/users/gist?fields=*,userGroups[name]
 
 This lists the `userGroups` as:
 
 ```json
 {
-  "userGroups": [
-    "_PROGRAM_Inpatient program",
-    "_PROGRAM_TB program",
-    "_DATASET_Superuser",
-    "_PROGRAM_Superuser",
-    "_DATASET_Data entry clerk",
-    "_DATASET_M and E Officer"
-  ]
+  "userGroups": {
+    "name": [
+      "_PROGRAM_Inpatient program",
+      "_PROGRAM_TB program",
+      "_DATASET_Superuser",
+      "_PROGRAM_Superuser",
+      "_DATASET_Data entry clerk",
+      "_DATASET_M and E Officer"
+    ]
+  }
 }
 ```
+The above is functional identical to:
+
+    /api/users/gist?fields=*,userGroups::pluck(name)~rename(userGroups.name)
 
 When requesting a single field, like `/api/users/gist?fields=surname` the
 response is a (still paged) list of simple values:
@@ -286,7 +289,7 @@ Further details on field presets can be found in section [Fields](#gist_fields).
 
 To filter the list of returned items add one or more `filter` parameters.
 
-Multiple filters can either be specified as comma seperated list of a single 
+Multiple filters can either be specified as comma-separated list of a single 
 `filter` parameter or as multiple `filter` parameters each with a single filter.
 
 There are two types of filters:
@@ -298,20 +301,26 @@ A field must be a persisted field of the listed item type or field of a directly
 referenced object (1:1 relation).
 
 Available unary operators are:
-* `null`: field is _null_ (undefined)
-* `!null`: field is _not null_ (defined)
-* `empty`: field is a _empty_ collection
-* `!empty`: field is a _non-empty_ collection
+
+| Unary Operator | Description                                                 |
+| -------- | ----------------------------------------------------------------- |
+| `null`   | field is _null_ (undefined)                                       |
+| `!null`  | field is _not null_ (defined)                                     |
+| `empty`  | field is a _empty_ collection or string                           |
+| `!empty` | field is a _non-empty_ collection or string                       |
 
 Available binary operators are:
-* `eq`: field _equals_ value
-* `!eq`, `neq`, `ne`: field is _not equal_ value
-* `lt`: field is _less than_ value
-* `le`, `lte`: field is _less than or equal to_ value
-* `gt`: field is _greater than_ value
-* `ge`, `gte`: field is _greater than or equal to_ value
-* `in`: field is a collection and value is an item _contained in_ the collection
-* `!in`: field is a collection and value is an item _not contained in_ the collection
+
+| Binary Operator   | Description                                              |
+| ----------------- | -------------------------------------------------------- |
+| `eq`              | field _equals_ value                                     |
+| `!eq`, `neq`, `ne`| field is _not equal_ value                               |
+| `lt`              | field is _less than_ value                               |
+| `le`, `lte`       | field is _less than or equal to_ value                   |
+| `gt`              | field is _greater than_ value                            |
+| `ge`, `gte`       | field is _greater than or equal to_ value                |
+| `in`              | field is a collection and value is an item _contained in_ the collection |
+| `!in`             | field is a collection and value is an item _not contained in_ the collection |
 
 If the `<value>` of an `in` or `!in` filter is a list it is given in the form
 `[value1,value2,...]`, for example: `userGroups:in:[fbfJHSPpUQD,cYeuwXTCPkU]`.
@@ -321,22 +330,25 @@ with a numeric value will compare the size of the collection to the value, for
 example: `userGroups:gt:0`.
 
 Available binary pattern matching operators are:
-* `like`, `ilike`: field _contains_ `<value>` or field _matches_ pattern `<value>` (when wildcards `*` or `?` in value)
-* `!like`, `!ilike`: field does _not contain_ `<value>` or field does _not match_ pattern `<value>` (when wildcards `*` or `?` in value)
-* `$like`, `$ilike`, `startsWith`: field _starts with_ `<value>`
-* `!$like`, `!$ilike`: field does _not start with_ `<value>`
-* `like$`, `ilike$`, `endsWith`: field _ends with_ `<value>`
-* `!like$`, `!ilike$`: field does _not end with_ `<value>`
+
+| Binary Operator                   | Description                              |
+| --------------------------------- | ---------------------------------------- |
+| `like`, `ilike`                   | field _contains_ `<value>` or field _matches_ pattern `<value>` (when wildcards `*` or `?` in value) |
+| `!like`, `!ilike`                 | field does _not contain_ `<value>` or field does _not match_ pattern `<value>` (when wildcards `*` or `?` in value) |
+| `$like`, `$ilike`, `startsWith`   | field _starts with_ `<value>`            |
+| `!$like`, `!$ilike`, `!startsWith`| field does _not start with_ `<value>`    |
+| `like$`, `ilike$`, `endsWith`     | field _ends with_ `<value>`              |
+| `!like$`, `!ilike$`, `!endsWith`  | field does _not end with_ `<value>`      |
 
 The `like` and `!like` operators can be used by either providing a search term
 in which case a match is any value where the term occurs anywhere or they can
 be used by providing the search pattern using `*` as _any number of characters_
-and `?` any single character.
+and `?` as _any single character_.
 
-Some operators have multiple aliases to be backwards compatible with the 
+Operators have multiple aliases to be backwards compatible with the 
 standard metadata API. For the gist API any like is always case-insensitive. 
 
-For example, to only list organisations on 2nd level use
+For example, to only list organisations on second level use
 
     /api/organisationUnits/gist?filter=level:eq:2
 
@@ -394,12 +406,25 @@ Filters and orders do apply normally, meaning they filter or order the items
 not contained in the member collection.
 
 
+### The `locale` Parameter
+<!--DHIS2-SECTION-ID:gist_parameters_locale-->
+The `locale` parameter is usually used for testing purposes to ad-hoc switch 
+translation language of display names. 
+
+If not specified the translation language is the one configured in the users
+account settings.
+
+Examples:
+
+    /api/organisationUnits/gist?locale=en
+    /api/organisationUnits/gist?locale=en_GB
+
 ### The `order` Parameter
 <!--DHIS2-SECTION-ID:gist_parameters_order-->
 
 To sort the list of items one or more order expressions can be given.
 
-An order expression is either just a field name of a persisted field or a field
+An order expression is either just a field name of a persisted field, or a field
 name followed by `:asc` (ascending order - the default) or `:desc` 
 (descending order).
 
@@ -564,23 +589,25 @@ A transformer or transformation can be applied to a field by appending
 any of the indicators `::`, `~` or `@` followed by the transformer expression.
 
 Available transformer expressions are:
-* `rename(<name>)`: renames the field in the response to `<name>`
-* `size` => `number`: number of items in the collection field
-* `isEmpty` => `boolean`: emptiness of a collection field
-* `isNotEmpty` => `boolean`: non-emptiness of a collection field
-* `ids` => (array of) `string`: ID of an object or IDs of collection items
-* `id-objects` => array of `{ "id": <id> }`: IDs of collection items as object
-* `member(<id>)` => `boolean`: has member with `<id>` for collection field
-* `not-member(<id>)` => `boolean`: not has member with `<id>` for collection field
-* `pluck(<field>)` => (array of) `string`: extract single text property of the 
-  object or of each collection item
+
+| Transformer        | JSON Result Type    | Description                       |
+| ------------------ | ------------------- | --------------------------------- |
+| `rename(<name>)`   | -                   | renames the field in the response to `<name>` |
+| `size`             | `number`            | number of items in the collection field |
+| `isEmpty`          | `boolean`           | emptiness of a collection field   |
+| `isNotEmpty`       | `boolean`           | non-emptiness of a collection field |
+| `ids`              | `string` or `[string]` | ID of an object or IDs of collection items |
+| `id-objects`       | `[{ "id": <id> }]`  | IDs of collection items as object |
+| `member(<id>)`     | `boolean`           | has member with `<id>` for collection field |
+| `not-member(<id>)` | `boolean`           | not has member with `<id>` for collection field |
+| `pluck(<field>)`   | `string` or `[string]` | extract single text property of the object or of each collection item |
 
 A field can receive both the `rename` transformer and one of the other 
 transformers, for example:
 
     /api/organisationUnits/gist?fields=*,children::size~rename(child-count)
 
-The returned items now no longer have a `chilren` member but a `child-count`
+The returned items now no longer have a `children` member but a `child-count`
 member instead. Note that `rename` also affects the member name of the URI
 reference given in `apiEndpoints`.
 
@@ -605,10 +632,12 @@ requested explicitly in the list of `fields`.
 ### Overview
 Synthetic fields in alphabetical order:
 
-* `apiEndpoints`: contains links to browse nested complex objects or collections
-* `href`: link to the list item itself (single item view)
-* `displayName`: translated `name` (always translated)
-* `displayShortName`: translated `displayName` (always translated)
+| Field              | Description                                             |
+| ------------------ | ------------------------------------------------------- |
+| `apiEndpoints`     | contains links to browse nested complex objects or collections |
+| `href`             | link to the list item itself (single item view)         |
+| `displayName`      | translated `name` (always translated)                   |
+| `displayShortName` | translated `displayName` (always translated)            |
 
 
 ### The `href` Field
@@ -688,8 +717,7 @@ returns items in the form:
 
 ## Examples
 <!--DHIS2-SECTION-ID:gist_examples-->
-A few examples starting from simple listings moving to tips on very specific
-use cases. 
+A few examples starting from simple listings moving on to very specific use cases. 
 
 It is preferable to always supply an explicit list of `fields` so this section 
 will do so. 

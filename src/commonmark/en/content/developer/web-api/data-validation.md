@@ -228,7 +228,7 @@ Any delete operation will require the authority _Perform maintenance tasks_.
 
 ## Outlier detection
 
-The outlier detection endpoint allows for for detecting outliers in aggregate data values.
+The outlier detection endpoint allows for detecting outliers in aggregate data values.
 
 ```
 GET /api/36/outlierDetection
@@ -590,8 +590,29 @@ To identify data marked for follow-up:
 
     GET /api/dataAnalysis/followup
 
-The supported query parameters are equal to the *std dev based outlier
-analysis* resource described above.
+At least one data set or data element, start date and end date or period, and at least one organisation unit must be defined.
+
+The following query parameters are supported.
+
+| Parameter  | Description                                                  | Mandatory | Options (default first)                   |
+| ---------- | ------------------------------------------------------------ | --------- | ----------------------------------------- |
+| ou         | Organisation unit, can be specified multiple times.          | Yes       | Organisation unit identifier.             |
+| ds         | Data set, can be specified multiple times.                   | No [*]    | Data set identifier.                      |
+| de         | Data element, can be specified multiple times.               | No [*]    | Data element identifier.                  |
+| startDate  | Start date for interval to check for outliers.               | No [*]    | Date (yyyy-MM-dd).                        |
+| endDate    | End date for interval to check for outliers.                 | No [*]    | Date (yyyy-MM-dd).                        |
+| pe         | ISO period.                                                  | No [*]    | Period ISO string.                        |
+| coc        | Category option combos, can be specified multiple times.     | No        | Category option combo identifier.         |
+| maxResults | Max limit for the output.                                    | No        | Integer, greater than zero. Default: 50.  |
+
+[*]  You must specify either data sets with the `ds` parameter, which will include all data elements in the data sets, _or_ specify data elements with the `de` parameter.
+     Equally, either `startDate` and `endDate` _or_ `period` must be specified.
+
+The `startDate` and `endDate` parameters refer to the time interval for which you want to detect outliers.
+If a period `pe` is provided instead the interval start and end is that of the period.
+
+If no option combos `coc` are provided all data elements of numeric value type are considered.
+
 
 ## Data integrity
 

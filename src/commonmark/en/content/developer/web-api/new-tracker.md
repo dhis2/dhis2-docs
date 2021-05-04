@@ -852,7 +852,6 @@ There are various error codes for different error scenarios. The following table
 | E1005 | Could not find TrackedEntityType: `{0}`. | Error thrown when trying to fetch a non existing TrackedEntityType with uid `{0}` . This might also mean that the user does not have read access to the TrackedEntityType. |
 | E1006 | Attribute: `{0}`, does not exist. | Error thrown when the system was not able to find a matching TrackedEntityAttribute with uid `{0}`. This might also mean that the user does not have access to the TrackedEntityAttribute. |
 | E1007 | Error validating attribute value type: `{0}`; Error: `{1}`. | Mismatch between value type of a TrackedEntityAttribute and its provided attribute value. The actual validation error will be displayed in `{1}`. |
-| E1008 | Value: `{0}`, does not match the attribute pattern: `{1}`. | The attribute pattern validation fails. Ensure the attribute value follows the pattern defined for the attribute. |
 | E1009 | File resource: `{0}`, has already been assigned to a different object. | The File resource uid `{0}` is already assigned to another object in the system. |
 | E1010 | Could not find Program: `{0}`, linked to Event. | The system was unable to find a Program with the uid `{0}` specified inside the Event payload. This might also mean that the specific Program is not accessible by the logged in user. |
 | E1011 | Could not find OrganisationUnit: `{0}`, linked to Event. | The system was unable to find a OrganisationUnit with uid `{0}` specified inside the Event payload.  |
@@ -1135,6 +1134,7 @@ The following endpoint supports standard parameters for pagination.
 - **Tracked Entities** `GET /api/tracker/trackedEntities`
 - **Events** `GET /api/tracker/events`
 - **Enrollments** `GET /api/tracker/enrollments`
+- **Relationships** `GET /api/tracker/relationships`
 
 #### Request parameters for pagination
 
@@ -1911,27 +1911,40 @@ The following rules apply to the query parameters.
 #### Example response
 
 ```json
-[
-  {
-    "relationshipType": "dDrh5UyCyvQ",
-    "relationshipName": "Mother-Child",
-    "relationship": "t0HIBrc65Rm",
-    "bidirectional": false,
-    "from": {
-      "trackedEntity": {
-        "trackedEntity": "vOxUH373fy5"
+{
+  "instances": [
+    {
+      "relationship": "SSfIicJKbh5",
+      "relationshipName": "Focus to Case",
+      "relationshipType": "Mv8R4MPcNcX",
+      "createdAt": "2019-08-21T13:29:45.648",
+      "updatedAt": "2019-08-21T13:31:42.064",
+      "bidirectional": false,
+      "from": {
+        "trackedEntity": "neR4cmMY22o"
+      },
+      "to": {
+        "trackedEntity": "rEYUGH97Ssd"
       }
     },
-    "to": {
-      "trackedEntity": {
-        "trackedEntity": "pybd813kIWx"
+    {
+      "relationship": "S9kZGYPKk3x",
+      "relationshipName": "Focus to Case",
+      "relationshipType": "Mv8R4MPcNcX",
+      "createdAt": "2019-08-21T13:29:45.630",
+      "updatedAt": "2019-08-21T13:31:42.071",
+      "bidirectional": false,
+      "from": {
+        "trackedEntity": "neR4cmMY22o"
+      },
+      "to": {
+        "trackedEntity": "k8TU70vWtnP"
       }
-    },
-    "created": "2019-04-26T09:30:56.267",
-    "lastUpdated": "2019-04-26T09:30:56.267"
-  },
-  ...,
-]
+    }
+  ],
+  "page": 1,
+  "pageSize": 2
+}
 ```
 
 ## Tracker Access Control
