@@ -30,53 +30,20 @@ The validation rules have a left side and a right side, which is
 compared for validity according to an operator. The valid operator
 values are found in the table below.
 
-<table>
-<caption>Operators</caption>
-<colgroup>
-<col style="width: 28%" />
-<col style="width: 71%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>equal_to</td>
-<td>Equal to</td>
-</tr>
-<tr class="even">
-<td>not_equal_to</td>
-<td>Not equal to</td>
-</tr>
-<tr class="odd">
-<td>greater_than</td>
-<td>Greater than</td>
-</tr>
-<tr class="even">
-<td>greater_than_or_equal_to</td>
-<td>Greater than or equal to</td>
-</tr>
-<tr class="odd">
-<td>less_than</td>
-<td>Less than</td>
-</tr>
-<tr class="even">
-<td>less_than_or_equal_to</td>
-<td>Less than or equal to</td>
-</tr>
-<tr class="odd">
-<td>compulsory_pair</td>
-<td>If either side is present, the other must also be</td>
-</tr>
-<tr class="even">
-<td>exclusive_pair</td>
-<td>If either side is present, the other must not be</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Operators
+
+| Value | Description |
+|---|---|
+| equal_to | Equal to |
+| not_equal_to | Not equal to |
+| greater_than | Greater than |
+| greater_than_or_equal_to | Greater than or equal to |
+| less_than | Less than |
+| less_than_or_equal_to | Less than or equal to |
+| compulsory_pair | If either side is present, the other must also be |
+| exclusive_pair | If either side is present, the other must not be |
 
 The left side and right side expressions are mathematical expressions
 which can contain references to data elements and category option
@@ -91,33 +58,15 @@ in the formula in terms of whether the validation rule should be checked
 for validity or skipped. The valid missing value strategies are found in
 the table below.
 
-<table>
-<caption>Missing value strategies</caption>
-<colgroup>
-<col style="width: 28%" />
-<col style="width: 71%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>SKIP_IF_ANY_VALUE_MISSING</td>
-<td>Skip validation rule if any data value is missing</td>
-</tr>
-<tr class="even">
-<td>SKIP_IF_ALL_VALUES_MISSING</td>
-<td>Skip validation rule if all data values are missing</td>
-</tr>
-<tr class="odd">
-<td>NEVER_SKIP</td>
-<td>Never skip validation rule irrespective of missing data values</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Missing value strategies
+
+| Value | Description |
+|---|---|
+| SKIP_IF_ANY_VALUE_MISSING | Skip validation rule if any data value is missing |
+| SKIP_IF_ALL_VALUES_MISSING | Skip validation rule if all data values are missing |
+| NEVER_SKIP | Never skip validation rule irrespective of missing data values |
 
 ## Validation results
 
@@ -211,7 +160,7 @@ If filters are combined all conditions have to be true (AND logic).
 
 Some examples:
 
-To delete all validation results related the organisation unit with UID `NqwvaQC1ni4` for Q1 of 2020 use: 
+To delete all validation results related the organisation unit with UID `NqwvaQC1ni4` for Q1 of 2020 use:
 
 ```
 DELETE /api/36/validationResults?ou=NqwvaQC1ni4&pe=2020Q1
@@ -243,7 +192,7 @@ The outlier values will be *ordered according to significance*, by default by th
 
 ### Request query parameters
 
-The following query parameters are supported. 
+The following query parameters are supported.
 
 | Query parameter | Description                                                  | Mandatory | Options (default first)                   |
 | --------------- | ------------------------------------------------------------ | --------- | ----------------------------------------- |
@@ -298,7 +247,7 @@ GET /api/36/outlierDetection?ds=BfMAe6Itzgt
   &maxResults=10
 ```
 
-Get outlier values with a defined interval for data to use when calculating the mean and std dev: 
+Get outlier values with a defined interval for data to use when calculating the mean and std dev:
 
 ```
 GET /api/36/outlierDetection?ds=BfMAe6Itzgt
@@ -436,53 +385,18 @@ To run validation rules and retrieve violations:
 
 The following query parameters are supported:
 
-<table>
-<caption>Validation rule analysis query parameters</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-<th>Option</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>vrg</td>
-<td>Validation rule group</td>
-<td>ID</td>
-</tr>
-<tr class="even">
-<td>ou</td>
-<td>Organisation unit</td>
-<td>ID</td>
-</tr>
-<tr class="odd">
-<td>startDate</td>
-<td>Start date for the timespan</td>
-<td>Date</td>
-</tr>
-<tr class="even">
-<td>endDate</td>
-<td>End date for the timespan</td>
-<td>Date</td>
-</tr>
-<tr class="odd">
-<td>persist</td>
-<td>Whether to persist violations in the system</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>notification</td>
-<td>Whether to send notifications about violations</td>
-<td>false | true</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Validation rule analysis query parameters
+
+| Query parameter | Description | Option |
+|---|---|---|
+| vrg | Validation rule group | ID |
+| ou | Organisation unit | ID |
+| startDate | Start date for the timespan | Date |
+| endDate | End date for the timespan | Date |
+| persist | Whether to persist violations in the system | false &#124; true |
+| notification | Whether to send notifications about violations | false &#124; true |
 
 Sample output:
 ```json
@@ -530,48 +444,17 @@ value:
 
 The following query parameters are supported:
 
-<table>
-<caption>Standard deviation outlier analysis query parameters</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-<th>Option</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ou</td>
-<td>Organisation unit</td>
-<td>ID</td>
-</tr>
-<tr class="even">
-<td>startDate</td>
-<td>Start date for the timespan</td>
-<td>Date</td>
-</tr>
-<tr class="odd">
-<td>endDate</td>
-<td>End date for the timespan</td>
-<td>Date</td>
-</tr>
-<tr class="even">
-<td>ds</td>
-<td>Data sets, parameter can be repeated</td>
-<td>ID</td>
-</tr>
-<tr class="odd">
-<td>standardDeviation</td>
-<td>Number of standard deviations from the average</td>
-<td>Numeric value</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Standard deviation outlier analysis query parameters
+
+| Query parameter | Description | Option |
+|---|---|---|
+| ou | Organisation unit | ID |
+| startDate | Start date for the timespan | Date |
+| endDate | End date for the timespan | Date |
+| ds | Data sets, parameter can be repeated | ID |
+| standardDeviation | Number of standard deviations from the average | Numeric value |
 
 ### Min/max value based outlier analysis
 
@@ -699,68 +582,21 @@ not set, the current time will be used.
 
 The import process supports the following query parameters:
 
-<table>
-<caption>Complete data set registrations query parameters</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 18%" />
-<col style="width: 64%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Values</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dataSetIdScheme</td>
-<td>id | name | code | attribute:ID</td>
-<td>Property of the data set to use to map the complete registrations.</td>
-</tr>
-<tr class="even">
-<td>orgUnitIdScheme</td>
-<td>id | name | code | attribute:ID</td>
-<td>Property of the organisation unit to use to map the complete registrations.</td>
-</tr>
-<tr class="odd">
-<td>attributeOptionComboIdScheme</td>
-<td>id | name | code | attribute:ID</td>
-<td>Property of the attribute option combos to use to map the complete registrations.</td>
-</tr>
-<tr class="even">
-<td>idScheme</td>
-<td>id | name | code | attribute:ID</td>
-<td>Property of all objects including data sets, org units and attribute option combos, to use to map the complete registrations.</td>
-</tr>
-<tr class="odd">
-<td>preheatCache</td>
-<td>false | true</td>
-<td>Whether to save changes on the server or just return the import summary.</td>
-</tr>
-<tr class="even">
-<td>dryRun</td>
-<td>false | true</td>
-<td>Whether registration applies to sub units</td>
-</tr>
-<tr class="odd">
-<td>importStrategy</td>
-<td>CREATE | UPDATE | CREATE_AND_UPDATE | DELETE</td>
-<td>Save objects of all, new or update import status on the server.</td>
-</tr>
-<tr class="even">
-<td>skipExistingCheck</td>
-<td>false | true</td>
-<td>Skip checks for existing complete registrations. Improves performance. Only use for empty databases or when the registrations to import do not exist already.</td>
-</tr>
-<tr class="odd">
-<td>async</td>
-<td>false | true</td>
-<td>Indicates whether the import should be done asynchronous or synchronous. The former is suitable for very large imports as it ensures that the request does not time out, although it has a significant performance overhead. The latter is faster but requires the connection to persist until the process is finished.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Complete data set registrations query parameters
+
+| Parameter | Values | Description |
+|---|---|---|
+| dataSetIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the data set to use to map the complete registrations. |
+| orgUnitIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the organisation unit to use to map the complete registrations. |
+| attributeOptionComboIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the attribute option combos to use to map the complete registrations. |
+| idScheme | id &#124; name &#124; code &#124; attribute:ID | Property of all objects including data sets, org units and attribute option combos, to use to map the complete registrations. |
+| preheatCache | false &#124; true | Whether to save changes on the server or just return the import summary. |
+| dryRun | false &#124; true | Whether registration applies to sub units |
+| importStrategy | CREATE &#124; UPDATE &#124; CREATE_AND_UPDATE &#124; DELETE | Save objects of all, new or update import status on the server. |
+| skipExistingCheck | false &#124; true | Skip checks for existing complete registrations. Improves performance. Only use for empty databases or when the registrations to import do not exist already. |
+| async | false &#124; true | Indicates whether the import should be done asynchronous or synchronous. The former is suitable for very large imports as it ensures that the request does not time out, although it has a significant performance overhead. The latter is faster but requires the connection to persist until the process is finished. |
 
 ### Reading complete data set registrations
 
@@ -770,77 +606,26 @@ This section explains how to retrieve data set completeness
 registrations. We will be using the *completeDataSetRegistrations*
 resource. The query parameters to use are these:
 
-<table>
-<caption>Data value set query parameters</caption>
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 81%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dataSet</td>
-<td>Data set identifier, multiple data sets are allowed</td>
-</tr>
-<tr class="even">
-<td>period</td>
-<td>Period identifier in ISO format. Multiple periods are allowed.</td>
-</tr>
-<tr class="odd">
-<td>startDate</td>
-<td>Start date for the time span of the values to export</td>
-</tr>
-<tr class="even">
-<td>endDate</td>
-<td>End date for the time span of the values to export</td>
-</tr>
-<tr class="odd">
-<td>created</td>
-<td>Include only registrations which were created since the given timestamp</td>
-</tr>
-<tr class="even">
-<td>createdDuration</td>
-<td>Include only registrations which were created within the given duration. The format is &lt;value&gt;&lt;time-unit&gt;, where the supported time units are &quot;d&quot;, &quot;h&quot;, &quot;m&quot;, &quot;s&quot; <em>(days, hours, minutes, seconds).</em> The time unit is relative to the current time.</td>
-</tr>
-<tr class="odd">
-<td>orgUnit</td>
-<td>Organisation unit identifier, can be specified multiple times. Not applicable if orgUnitGroup is given.</td>
-</tr>
-<tr class="even">
-<td>orgUnitGroup</td>
-<td>Organisation unit group identifier, can be specified multiple times. Not applicable if orgUnit is given.</td>
-</tr>
-<tr class="odd">
-<td>children</td>
-<td>Whether to include the children in the hierarchy of the organisation units</td>
-</tr>
-<tr class="even">
-<td>limit</td>
-<td>The maximum number of registrations to include in the response.</td>
-</tr>
-<tr class="odd">
-<td>idScheme</td>
-<td>Identifier property used for meta data objects in the response.</td>
-</tr>
-<tr class="even">
-<td>dataSetIdScheme</td>
-<td>Identifier property used for data sets in the response. Overrides idScheme.</td>
-</tr>
-<tr class="odd">
-<td>orgUnitIdScheme</td>
-<td>Identifier property used for organisation units in the response. Overrides idScheme.</td>
-</tr>
-<tr class="even">
-<td>attributeOptionComboIdScheme</td>
-<td>Identifier property used for attribute option combos in the response. Overrides idScheme.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data value set query parameters
+
+| Parameter | Description |
+|---|---|
+| dataSet | Data set identifier, multiple data sets are allowed |
+| period | Period identifier in ISO format. Multiple periods are allowed. |
+| startDate | Start date for the time span of the values to export |
+| endDate | End date for the time span of the values to export |
+| created | Include only registrations which were created since the given timestamp |
+| createdDuration | Include only registrations which were created within the given duration. The format is <value\><time-unit\>, where the supported time units are "d", "h", "m", "s" *(days, hours, minutes, seconds).* The time unit is relative to the current time. |
+| orgUnit | Organisation unit identifier, can be specified multiple times. Not applicable if orgUnitGroup is given. |
+| orgUnitGroup | Organisation unit group identifier, can be specified multiple times. Not applicable if orgUnit is given. |
+| children | Whether to include the children in the hierarchy of the organisation units |
+| limit | The maximum number of registrations to include in the response. |
+| idScheme | Identifier property used for meta data objects in the response. |
+| dataSetIdScheme | Identifier property used for data sets in the response. Overrides idScheme. |
+| orgUnitIdScheme | Identifier property used for organisation units in the response. Overrides idScheme. |
+| attributeOptionComboIdScheme | Identifier property used for attribute option combos in the response. Overrides idScheme. |
 The `dataSet` and `orgUnit` parameters can be repeated in order to include multiple data sets and organisation units.
 
 The `period`, `startDate`,  `endDate`, `created` and `createdDuration` parameters provide multiple ways to set the time dimension for the request, thus only
@@ -868,50 +653,15 @@ This section explains how you can un-register the completeness of a data set. To
 This resource supports *DELETE* for un-registration. The following query
 parameters are supported:
 
-<table>
-<caption>Complete data set registrations query parameters</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 18%" />
-<col style="width: 64%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ds</td>
-<td>Yes</td>
-<td>Data set identifier</td>
-</tr>
-<tr class="even">
-<td>pe</td>
-<td>Yes</td>
-<td>Period identifier</td>
-</tr>
-<tr class="odd">
-<td>ou</td>
-<td>Yes</td>
-<td>Organisation unit identifier</td>
-</tr>
-<tr class="even">
-<td>cc</td>
-<td>No (must combine with cp)</td>
-<td>Attribute combo identifier (for locking check)</td>
-</tr>
-<tr class="odd">
-<td>cp</td>
-<td>No (must combine with cp)</td>
-<td>Attribute option identifiers, separated with ; for multiple values (for locking check)</td>
-</tr>
-<tr class="even">
-<td>multiOu</td>
-<td>No (default false)</td>
-<td>Whether registration applies to sub units</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Complete data set registrations query parameters
+
+| Query parameter | Required | Description |
+|---|---|---|
+| ds | Yes | Data set identifier |
+| pe | Yes | Period identifier |
+| ou | Yes | Organisation unit identifier |
+| cc | No (must combine with cp) | Attribute combo identifier (for locking check) |
+| cp | No (must combine with cp) | Attribute option identifiers, separated with ; for multiple values (for locking check) |
+| multiOu | No (default false) | Whether registration applies to sub units |

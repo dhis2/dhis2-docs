@@ -89,14 +89,11 @@ approaches can only resolve some of the fragmentation problems - and
 often interoperability approaches result in an additional layer of
 complexity.
 
-<table>
-<tbody>
-<tr class="odd">
-<td><p><strong>Example: Complexity of Logistics solutions in Ghana</strong></p>
-<p>In the area of Logistics or Supply Chain Management, often a multitude of parallel, overlapping or competing software solutions can be found in a single country. As identified in a <a href="http://docplayer.net/23773118-Ghana-landscape-analysis-of-supply-chain-management-software-tools-in-use.html">JSI study in 2012</a>, eighteen (18!) different software tools were documented as being used within the public health supply chain in Ghana alone.</p></td>
-</tr>
-</tbody>
-</table>
+
+> **Example**
+>
+> **Complexity of Logistics solutions in Ghana**  
+> In the area of Logistics or Supply Chain Management, often a multitude of parallel, overlapping or competing software solutions can be found in a single country. As identified in a [JSI study in 2012](http://docplayer.net/23773118-Ghana-landscape-analysis-of-supply-chain-management-software-tools-in-use.html), eighteen (18!) different software tools were documented as being used within the public health supply chain in Ghana alone.
 
 Systems interoperability therefore seems as one possibility to remove
 fragmentation and redundancies and give public health officers a concise
@@ -265,15 +262,12 @@ and tasks which didn't exist before and may not have been planned for
 (metadata governance, complex system administration, boundary
 negotiators, etc.).
 
-<table>
-<tbody>
-<tr class="odd">
-<td><p><strong>Example: Grameen DHIS2/CommCare middle layer in Senegal</strong></p>
-<p>In a <a href="#integration">Integration concepts</a>, <a href="https://motechproject.org/">MOTECH</a> serves as technical middle layer between an LMIS for mobile data collection at the health facility level (<a href="http://www.commcarehq.org">CommCare</a>) and DHIS2, allowing to define data mapping, transformation rules and data quality checks. The interface is set-up to transfers data from CommCare Supply to DHIS2 whenever data is saved into a CommCare form at facilities. For each commodity, data on consumption, available stock, losses and stock-out data is transferred from CommCare to DHIS2.</p>
-<p>The higher initial investment of the Senegal approach hints towards a more ambitious long-term system architecture, foreseeing that the MOTECH platform may in future serve to accommodate further interoperability task. However we do not see any of the country activities tightly embedded in a text-book eHealth architecture, which would clearly define areas of priority, leading systems for each priority and the relations and resulting APIs between these different components. One may argue that interoperability projects are built on a weak foundation if there is no previous consensus on an architectural master plan. On the other hand it is also valuable to allow system initiatives to organically develop, as long as they are rooted in well-founded country needs.</p></td>
-</tr>
-</tbody>
-</table>
+
+> **Example**
+>
+> **Grameen DHIS2/CommCare middle layer in Senegal**  
+> In [Integration concepts](#integration), [MOTECH](https://motechproject.org/) serves as technical middle layer between an LMIS for mobile data collection at the health facility level ([CommCare](http://www.commcarehq.org)) and DHIS2, allowing to define data mapping, transformation rules and data quality checks. The interface is set-up to transfers data from CommCare Supply to DHIS2 whenever data is saved into a CommCare form at facilities. For each commodity, data on consumption, available stock, losses and stock-out data is transferred from CommCare to DHIS2.  
+The higher initial investment of the Senegal approach hints towards a more ambitious long-term system architecture, foreseeing that the MOTECH platform may in future serve to accommodate further interoperability task. However we do not see any of the country activities tightly embedded in a text-book eHealth architecture, which would clearly define areas of priority, leading systems for each priority and the relations and resulting APIs between these different components. One may argue that interoperability projects are built on a weak foundation if there is no previous consensus on an architectural master plan. On the other hand it is also valuable to allow system initiatives to organically develop, as long as they are rooted in well-founded country needs.
 
 ### Architecture, standards and mapping
 
@@ -287,14 +281,11 @@ aligning national system initiatives to these standards can give
 countries access to proven solutions, benefitting from medical and
 technological innovation.
 
-<table>
-<tbody>
-<tr class="odd">
-<td><p><strong>Example: Ghana EPI</strong></p>
-<p>The Ghana case illustrates how the WHO EPI reporting requirements serves to define standard data in DHIS2. This standardization at the dataset and terminological level is the basis for the system integration. In the area of DHIS2, work is ongoing with WHO to develop standardized datasets, which could in the future open up new opportunities for interoperability and efficiency gains by offering some consistency of metadata across systems, and also encouraging countries to reuse existing solutions.</p></td>
-</tr>
-</tbody>
-</table>
+
+> **Example**
+>
+> **Ghana EPI**  
+> The Ghana case illustrates how the WHO EPI reporting requirements serves to define standard data in DHIS2. This standardization at the dataset and terminological level is the basis for the system integration. In the area of DHIS2, work is ongoing with WHO to develop standardized datasets, which could in the future open up new opportunities for interoperability and efficiency gains by offering some consistency of metadata across systems, and also encouraging countries to reuse existing solutions.
 
 At the **language** level, there is a need to be consistent about
 definitions. If you have two data sources for the same data, they need
@@ -381,7 +372,7 @@ are fully integrated into routine workflows and designed to make the
 users’ jobs easier or more efficient.
 
 > **Note**
-> 
+>
 > The expectation, that more detailed data leads to better logistics
 > management is not always fulfilled. Sometimes the ambitious attempt to
 > regularly collect logistics transaction data results in less data
@@ -409,42 +400,13 @@ system. This can serve as a rough orientation, but is not static since
 both the capabilities of DHIS2 and its interpretation by implementers
 are broadening with almost each release.
 
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 40%" />
-<col style="width: 40%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Area</th>
-<th>Aggregate DHIS2</th>
-<th>External specialized systems</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Logistics</td>
-<td>Aggregate data, e.g. end-of-month facility stock levels can be send through DHIS2. DHIS2 can produce simple stock level and consumption reports.</td>
-<td>Supply chain management support logistics system operations and can track detailed stock movements (Issuing, resupplying, allocating, wastage) and record details such as production batch numbers. SCM systems create forecasting, replenishment and elaborate control reports, allowing for real time monitoring of stock levels, notifications (low stock, workflow management, CCE failure, etc.), supported estimations, and emergency orders.</td>
-</tr>
-<tr class="even">
-<td>Finance</td>
-<td>Aggregate data, e.g. on total expenditure or cash level can be send through DHIS2. DHIS2 can produce simple finance overview reports, e.g. on remaining budgets.</td>
-<td>Finance management systems allow fully traceable recording of financial transactions according to legal requirements, including budgeting, transfers, cancellations, reimbursements etc. Multi-dimensional tagging of transactions allows for analytical reports.</td>
-</tr>
-<tr class="odd">
-<td>Patient tracking</td>
-<td>Disease or program related data are collected by DHIS2, DHIS2 Tracker also allows a simplified longitudinal view on medical records, including patient history and multi-stage clinical pathways.</td>
-<td>Specialized hospital management systems can cover and optimize complex workflows between different departments (e.g. reception, payment counter, wards, OPD, IPD, laboratory, imaging, storeroom, finance and HR administration, medical device maintenance, etc.).</td>
-</tr>
-<tr class="even">
-<td>Human Resources</td>
-<td>DHIS2 collects human resource related indicators, for example planned positions and vacancies per facility.</td>
-<td>A specialized HR management system can track detailed status information and changes for a Health Worker (accreditation, promotion, sabbatical, change of position, change of location, additional training, etc.). It comes with pre-designed reports for both operational oversight and planning.</td>
-</tr>
-</tbody>
-</table>
+
+| Area | Aggregate DHIS2 | External specialized systems |
+|---|---|---|
+| Logistics | Aggregate data, e.g. end-of-month facility stock levels can be send through DHIS2. DHIS2 can produce simple stock level and consumption reports. | Supply chain management support logistics system operations and can track detailed stock movements (Issuing, resupplying, allocating, wastage) and record details such as production batch numbers. SCM systems create forecasting, replenishment and elaborate control reports, allowing for real time monitoring of stock levels, notifications (low stock, workflow management, CCE failure, etc.), supported estimations, and emergency orders. |
+| Finance | Aggregate data, e.g. on total expenditure or cash level can be send through DHIS2. DHIS2 can produce simple finance overview reports, e.g. on remaining budgets. | Finance management systems allow fully traceable recording of financial transactions according to legal requirements, including budgeting, transfers, cancellations, reimbursements etc. Multi-dimensional tagging of transactions allows for analytical reports. |
+| Patient tracking | Disease or program related data are collected by DHIS2, DHIS2 Tracker also allows a simplified longitudinal view on medical records, including patient history and multi-stage clinical pathways. | Specialized hospital management systems can cover and optimize complex workflows between different departments (e.g. reception, payment counter, wards, OPD, IPD, laboratory, imaging, storeroom, finance and HR administration, medical device maintenance, etc.). |
+| Human Resources | DHIS2 collects human resource related indicators, for example planned positions and vacancies per facility. | A specialized HR management system can track detailed status information and changes for a Health Worker (accreditation, promotion, sabbatical, change of position, change of location, additional training, etc.). It comes with pre-designed reports for both operational oversight and planning. |
 
 ## Different DHIS2 integration scenarios
 
@@ -458,11 +420,11 @@ scenarios. DHIS2 can assume multiple **roles** in a system architecture:
     reports, GIS)
 
   - Data sharing to external tools (e.g. DVDMT), via web APIs, web apps
-    
+
     In the following paragraphs we discuss the data input and data
     sharing approaches, then we present the example of the vertical
     integration where DHIS2 often assumes all these roles.
-    
+
     The role of DHIS2 to store, visualise and analyse data is discussed
     seperpately in the [data warehouse
     section](https://docs.dhis2.org/master/en/implementer/html/ch05.html).
@@ -480,14 +442,10 @@ every time data needs to be made available. A detailed description of
 the import functions can be found in the [DHIS2 user
 guides](https://docs.dhis2.org/master/en/user/html/dhis2_user_manual_en_full.html#import).
 
-<table>
-<tbody>
-<tr class="odd">
-<td><p><strong>Practical note:</strong></p>
-<p>The manual data entry and import approach require relatively little technical effort. They may also be used temporarily to pilot a data integration approach. This allows user to test indicators and reports, without having to employ dedicated technical resources for the development of automated interoperability functions, either through a 1:1 or an n:n connection.</p></td>
-</tr>
-</tbody>
-</table>
+
+> **Tip**
+>
+> The manual data entry and import approach require relatively little technical effort. They may also be used temporarily to pilot a data integration approach. This allows user to test indicators and reports, without having to employ dedicated technical resources for the development of automated interoperability functions, either through a 1:1 or an n:n connection.
 
 ### Data sharing
 
@@ -797,29 +755,22 @@ short-term disturbance. Integration is thus often a stepwise process,
 where measures need to be taken for this to happen as smoothly as
 possible.
 
-<table>
-<tbody>
-<tr class="odd">
-<td><p><strong>Country example: Ghana CHIM</strong></p>
-<ul>
-<li><p><strong>Stakeholder cooperation</strong>: The Ghana <em>Centre for Health Information Management</em>(CHIM) has a clear position towards vertical programs and other partners with proper software initiatives. CHIM establishes DHIS2 as an attractive data collection option, supporting other GHS stakeholders to connect to DHIS2 and to work on a common interoperability strategy, evolving DHIS2 according to stakeholder needs. <strong>This also includes data sharing agreements</strong>.</p></li>
-<li><p><strong>Strong sense of system ownership</strong>: CHIM has a strong determination to build up the necessary know-how inside the CHIM team to configure and maintain the system. The CHIM team consists of Health Information Officers, that combine Public Health and Data Management skills.</p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+
+> **Example**
+>
+> **Ghana CHIM**  
+>
+> - **Stakeholder cooperation**: The Ghana *Centre for Health Information Management*(CHIM) has a clear position towards vertical programs and other partners with proper software initiatives. CHIM establishes DHIS2 as an attractive data collection option, supporting other GHS stakeholders to connect to DHIS2 and to work on a common interoperability strategy, evolving DHIS2 according to stakeholder needs. **This also includes data sharing agreements**.
+> - **Strong sense of system ownership**: CHIM has a strong determination to build up the necessary know-how inside the CHIM team to configure and maintain the system. The CHIM team consists of Health Information Officers, that combine Public Health and Data Management skills.
 
 Also, having clearly defined **system maintenance and update
 procedures** can certainly help to manage interoperability.
 
-<table>
-<tbody>
-<tr class="odd">
-<td><p><strong>Country example: Ghana CHIM</strong></p>
-<p>As an example, in the case of Ghana DHIS2, a clear yearly system update cycle is in place: Towards the end of each year, new indicators are created and the corresponding paper forms are issued. Staff will receive training and is prepared for data entry. The new form for EPI data was included in this update cycle and EPI staff was prepared for data entry as part of the process. This systematic procedure allows GHS to quickly respond to the needs of stakeholders such as the EPI Programme and accommodate their data and reporting needs with a limited and predictable investment. It puts CHIM in a position to contribute to the rationalization and simplification of the national Health System Architecture, gradually integrating the data management for more <strong>vertical programs</strong>, both on the side of data entry and analytics.</p></td>
-</tr>
-</tbody>
-</table>
+
+> **Example**
+>
+> **Ghana CHIM**  
+> As an example, in the case of Ghana DHIS2, a clear yearly system update cycle is in place: Towards the end of each year, new indicators are created and the corresponding paper forms are issued. Staff will receive training and is prepared for data entry. The new form for EPI data was included in this update cycle and EPI staff was prepared for data entry as part of the process. This systematic procedure allows GHS to quickly respond to the needs of stakeholders such as the EPI Programme and accommodate their data and reporting needs with a limited and predictable investment. It puts CHIM in a position to contribute to the rationalization and simplification of the national Health System Architecture, gradually integrating the data management for more **vertical programs**, both on the side of data entry and analytics.
 
 A key principle for HISP is to engage the local team in building the
 system from the very beginning, with guidance from external experts if
@@ -995,4 +946,3 @@ DHIS2 has integrated aggregate data from external systems such as
 openLMIS and CommCare through automated data interfaces. As a result,
 stock data is available in shared dashboards, displaying health service
 and stock data next to each other.
-

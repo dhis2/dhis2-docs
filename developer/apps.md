@@ -131,37 +131,16 @@ The *appType* property specifies how the app will be displayed by the
 DHIS2 instance. The possible values for appType and their effects are
 explained in the following table.
 
-<table>
-<caption>App types</caption>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 72%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>App type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>APP</td>
-<td>Will be listed in the &quot;apps&quot; menu</td>
-</tr>
-<tr class="even">
-<td>DASHBOARD_WIDGET</td>
-<td>Available from the search box on the dashboard, can be added as an item on any dashboard</td>
-</tr>
-<tr class="odd">
-<td>TRACKER_DASHBOARD_WIDGET</td>
-<td>Can be embedded in the tracker dashboard <em>(this type is not yet supported)</em></td>
-</tr>
-<tr class="even">
-<td>RESOURCE</td>
-<td>Resource apps are packages that can be shared by multiple other apps. These apps are not shown anywhere in the UI, except from in the app management app.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: App types
+
+| App type | Description |
+|---|---|
+| APP | Will be listed in the "apps" menu |
+| DASHBOARD_WIDGET | Available from the search box on the dashboard, can be added as an item on any dashboard |
+| TRACKER_DASHBOARD_WIDGET | Can be embedded in the tracker dashboard *(this type is not yet supported)* |
+| RESOURCE | Resource apps are packages that can be shared by multiple other apps. These apps are not shown anywhere in the UI, except from in the app management app. |
 
 If no *appType* is specified in the manifest, the system will use "APP"
 by default.

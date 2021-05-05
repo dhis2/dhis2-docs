@@ -197,8 +197,7 @@ The list above will be explained in details:
 
         ![](resources/images/dhis2_mobile_web_based/mobile-browser-tracking-findPersonStep3.1.png)
 
-    2.2: ***Visit Schedule**:*Choose An Organization
-    Unit
+    2.2: ***Visit Schedule***: Choose An Organization Unit
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-namebased-choose-org.png)
 
@@ -593,35 +592,14 @@ separate page on the phone. If a data element has more than one category
 option combo it will be displayed as a heading with the category
 combination options following.
 
-<table>
-<tbody>
-<tr class="odd">
-<td><strong>Form design element</strong></td>
-<td><strong>DHIS2 Metadata</strong></td>
-<td><strong>Metadata element</strong></td>
-</tr>
-<tr class="even">
-<td>Form title</td>
-<td>Data set</td>
-<td>Short Name if it exists, otherwise Name</td>
-</tr>
-<tr class="odd">
-<td>Page tile</td>
-<td>Section</td>
-<td>Section name (or form name if no sections)</td>
-</tr>
-<tr class="even">
-<td>Question</td>
-<td>Data element</td>
-<td>Alternative name if it exists, otherwise Name</td>
-</tr>
-<tr class="odd">
-<td>Question name if combos</td>
-<td>Category option combo</td>
-<td>name</td>
-</tr>
-</tbody>
-</table>
+
+||||
+|---|---|---|
+| **Form design element** | **DHIS2 Metadata** | **Metadata element** |
+| Form title | Data set | Short Name if it exists, otherwise Name |
+| Page tile | Section | Section name (or form name if no sections) |
+| Question | Data element | Alternative name if it exists, otherwise Name |
+| Question name if combos | Category option combo | name |
 
 #### Sorting of forms
 
@@ -965,58 +943,19 @@ These parameters have default values configured in the system, if user
 does provide any value to these parameters then those default ones will
 be used. Here is the list of those parameters
 
-<table>
-<caption>Common Parameters</caption>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Code Value Separator</td>
-<td>String</td>
-<td>To provide custom code value separator. Default is &quot;=&quot;</td>
-</tr>
-<tr class="even">
-<td>Field Separator</td>
-<td>String</td>
-<td>To provide custom field separator. Default is &quot;|&quot;</td>
-</tr>
-<tr class="odd">
-<td>Reply message if no codes are sent (only the command)</td>
-<td>String</td>
-<td>To provide message if no code is found in SMS text input. Default is &quot;Parameter missing&quot;</td>
-</tr>
-<tr class="even">
-<td>Wrong format message</td>
-<td>String</td>
-<td>To provide message if command is not formatted correctly. Command should be formatted as per code value separator. This message will also be sent back if any mandatory parameter is missing.</td>
-</tr>
-<tr class="odd">
-<td>No user message</td>
-<td>String</td>
-<td>To provide message if sending phone number is not registered in DHIS2.</td>
-</tr>
-<tr class="even">
-<td>User belong to more than one OrgUnit message</td>
-<td>String</td>
-<td>Certain SMS command types require user ( retrieved from sending phone number ) to be associated with only one organization unit. This message can be configured to be sent back in case that requirement is not fullfilled.</td>
-</tr>
-<tr class="odd">
-<td>Success Message</td>
-<td>String</td>
-<td>To provide message that will be sent upon successful completion of the process.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Common Parameters
+
+| Parameter | Type | Description |
+|---|---|---|
+| Code Value Separator | String | To provide custom code value separator. Default is "=" |
+| Field Separator | String | To provide custom field separator. Default is "&#124;" |
+| Reply message if no codes are sent (only the command) | String | To provide message if no code is found in SMS text input. Default is "Parameter missing" |
+| Wrong format message | String | To provide message if command is not formatted correctly. Command should be formatted as per code value separator. This message will also be sent back if any mandatory parameter is missing. |
+| No user message | String | To provide message if sending phone number is not registered in DHIS2. |
+| User belong to more than one OrgUnit message | String | Certain SMS command types require user ( retrieved from sending phone number ) to be associated with only one organization unit. This message can be configured to be sent back in case that requirement is not fullfilled. |
+| Success Message | String | To provide message that will be sent upon successful completion of the process. |
 
 ### SMS Command Type
 
@@ -1177,7 +1116,7 @@ Configurations] section of new SMS app.(#gateway.configuration)
 Many DHIS2 instances are using GenericHttpGateway to connect to their
 local gateways. These local gateways provides HTTP APIs for sending SMS.
 In new GenericHttpGateway it is now possible to configure generic configuration
-template for gateway configuration. This template is converted into request payload by replacing 
+template for gateway configuration. This template is converted into request payload by replacing
 place holders with actual values taken from gateway key value parameters.
 
 
@@ -1189,145 +1128,24 @@ place holders with actual values taken from gateway key value parameters.
 
 Below table shows the parameters required for configuring gateway.
 
-<table>
-<caption>Gateway Configuration Parameters</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>BulkSMS Gateway</th>
-<th>Clickatell Gateway</th>
-<th>Generic HTTP Gateway</th>
-<th>SMPP Gateway</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Gateway Name</td>
-<td>Optional</td>
-<td>Optional</td>
-<td>Optional</td>
-<td>Optional</td>
-<td>Used as gateway identity. Default name will be stored in case this parameter is not configured. Its use is recommended</td>
-</tr>
-<tr class="even">
-<td>User Name</td>
-<td>Required</td>
-<td>Optional (if token is used)</td>
-<td>Required</td>
-<td>Required</td>
-<td>Used for API authentication</td>
-</tr>
-<tr class="odd">
-<td>Password</td>
-<td>Required</td>
-<td>Optional (if token is used)</td>
-<td>Required</td>
-<td>Required</td>
-<td>Used for API authentication</td>
-</tr>
-<tr class="even">
-<td>Auth-Token</td>
-<td>N/A</td>
-<td>Optional (if password is used)</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Used for API authentication</td>
-</tr>
-<tr class="odd">
-<td>URL Template</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Required</td>
-<td>Required</td>
-<td>Url Tempalte is only required in case of GenericHttpGateway . For example &quot;http://smsgatewa1.com&quot;</td>
-</tr>
-<tr class="even">
-<td>Headers</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Optional</td>
-<td>N/A</td>
-<td>Header option can be checked to send selected parameter as http header. For example username/password/token can be sent in http header.</td>
-</tr>
-<tr class="odd">
-<td>useGet</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Optional</td>
-<td>N/A</td>
-<td>HTTP POST method is used by default for posting data toward gateway. But in certain cases if HTTP GET method is required for doing so then useGet parameter can be set to true. Default value for useGet is false.</td>
-</tr>
-<tr class="odd">
-<td>systemType</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Required</td>
-<td>SystemType parameter is required for SMPP gateway. Default value is 'cp'</td>
-</tr>
-<tr class="odd">
-<td>typeOfNumber</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Required</td>
-<td>TypeOfNumber parameter is required for SMPP gateway. Default value is 'UNKNOWN'. Other possible values are UNKNOWN, INTERNATIONAL, NATIONAL, NETWORK_SPECIFIC, SUBSCRIBER_NUMBER, ALPHANUMERIC and ABBREVIATED</td>
-</tr>
-<tr class="odd">
-<td>numberPlanIndicator</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Required</td>
-<td>NumberPlanIndicator parameter is required for SMPP gateway. Default value is UNKNOWN. Other possible values are UNKNOWN, ISDN, DATA, TELEX, LAND_MOBILE, NATIONAL, PRIVATE, ERMES, INTERNET and WAP</td>
-</tr>
-<tr class="odd">
-<td>bindType</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Required</td>
-<td>BindType parameter is required for SMPP gateway. Default value is TX. Other possible values are BIND_TX, BIND_RX and BIND_TRX</td>
-</tr>
-<tr class="odd">
-<td>compressed</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Optional</td>
-<td>Compressed parameter is optional for SMPP gateway. Default value is false</td>
-</tr>
-<tr class="even">
-<td>sendUrlParameters</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Optional</td>
-<td>N/A</td>
-<td>Gateway parameters will be appended with url for example https://samplegateway.com/messages?apiKey={apiKey}&to={recipients},content={text},deliveryreport={dp}</td>
-</tr>
-<tr class="odd">
-<td>contentType</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Optional</td>
-<td>N/A</td>
-<td>The type in which data will be sent to sms gateway. Default is application/x-www-form-urlencoded. Other supported types are application/json, application/xml and text/plain</td>
-</tr>
-<tr class="even">
-<td>configurationTemplate</td>
-<td>N/A</td>
-<td>N/A</td>
-<td>Optional</td>
-<td>N/A</td>
-<td>Generic configuration template can be used to provide the data in the form acceptable to external gateway. For example username=${username}&password=${password}&to=${recipients}&countrycode=880&message=${text$}&messageid=0. Json/xml template can also be provided.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Gateway Configuration Parameters
+
+| Parameter | BulkSMS Gateway | Clickatell Gateway | Generic HTTP Gateway | SMPP Gateway | Description |
+|---|---|---|---|---|---|
+| Gateway Name | Optional | Optional | Optional | Optional | Used as gateway identity. Default name will be stored in case this parameter is not configured. Its use is recommended |
+| User Name | Required | Optional (if token is used) | Required | Required | Used for API authentication |
+| Password | Required | Optional (if token is used) | Required | Required | Used for API authentication |
+| Auth-Token | N/A | Optional (if password is used) | N/A | N/A | Used for API authentication |
+| URL Template | N/A | N/A | Required | Required | Url Tempalte is only required in case of GenericHttpGateway . For example "http://smsgatewa1.com" |
+| Headers | N/A | N/A | Optional | N/A | Header option can be checked to send selected parameter as http header. For example username/password/token can be sent in http header. |
+| useGet | N/A | N/A | Optional | N/A | HTTP POST method is used by default for posting data toward gateway. But in certain cases if HTTP GET method is required for doing so then useGet parameter can be set to true. Default value for useGet is false. |
+| systemType | N/A | N/A | N/A | Required | SystemType parameter is required for SMPP gateway. Default value is 'cp' |
+| typeOfNumber | N/A | N/A | N/A | Required | TypeOfNumber parameter is required for SMPP gateway. Default value is 'UNKNOWN'. Other possible values are UNKNOWN, INTERNATIONAL, NATIONAL, NETWORK_SPECIFIC, SUBSCRIBER_NUMBER, ALPHANUMERIC and ABBREVIATED |
+| numberPlanIndicator | N/A | N/A | N/A | Required | NumberPlanIndicator parameter is required for SMPP gateway. Default value is UNKNOWN. Other possible values are UNKNOWN, ISDN, DATA, TELEX, LAND_MOBILE, NATIONAL, PRIVATE, ERMES, INTERNET and WAP |
+| bindType | N/A | N/A | N/A | Required | BindType parameter is required for SMPP gateway. Default value is TX. Other possible values are BIND_TX, BIND_RX and BIND_TRX |
+| compressed | N/A | N/A | N/A | Optional | Compressed parameter is optional for SMPP gateway. Default value is false |
+| sendUrlParameters | N/A | N/A | Optional | N/A | Gateway parameters will be appended with url for example `https://samplegateway.com/messages?apiKey={apiKey}&to={recipients},content={text},deliveryreport={dp}` |
+| contentType | N/A | N/A | Optional | N/A | The type in which data will be sent to sms gateway. Default is application/x-www-form-urlencoded. Other supported types are application/json, application/xml and text/plain |
+| configurationTemplate | N/A | N/A | Optional | N/A | Generic configuration template can be used to provide the data in the form acceptable to external gateway. For example `username=${username}&password=${password}&to=${recipients}&countrycode=880&message=${text$}&messageid=0`. Json/xml template can also be provided. |

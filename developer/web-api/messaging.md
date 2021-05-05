@@ -437,37 +437,16 @@ In 2.30, validation rules can be assigned to any user while tickets
 still need to be assigned to a user in the system's feedback recipient
 group.
 
-<table>
-<caption>A list of valid status and priority values</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Status</th>
-<th>Priority</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>OPEN</td>
-<td>LOW</td>
-</tr>
-<tr class="even">
-<td>PENDING</td>
-<td>MEDIUM</td>
-</tr>
-<tr class="odd">
-<td>INVALID</td>
-<td>HIGH</td>
-</tr>
-<tr class="even">
-<td>SOLVED</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: A list of valid status and priority values
+
+| Status | Priority |
+|---|---|
+| OPEN | LOW |
+| PENDING | MEDIUM |
+| INVALID | HIGH |
+| SOLVED ||
 
 You can also add an internal message to a ticket, which can only be seen
 by users who have "Manage tickets" permissions. To create an internal

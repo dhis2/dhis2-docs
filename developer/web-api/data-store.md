@@ -22,43 +22,16 @@ is not reserved, no specific access is required to use it.
 Data store entries consist of a namespace, key and value. The
 combination of namespace and key is unique. The value data type is JSON.
 
-<table>
-<caption>Data store structure</caption>
-<colgroup>
-<col style="width: 22%" />
-<col style="width: 40%" />
-<col style="width: 36%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-<th>Data type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Namespace</td>
-<td>Namespace for organization of entries.</td>
-<td>String</td>
-</tr>
-<tr class="even">
-<td>Key</td>
-<td>Key for identification of values.</td>
-<td>String</td>
-</tr>
-<tr class="odd">
-<td>Value</td>
-<td>Value holding the information for the entry.</td>
-<td>JSON</td>
-</tr>
-<tr class="even">
-<td>Encrypted</td>
-<td>Indicates whether the value of the given key should be encrypted</td>
-<td>Boolean</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data store structure
+
+| Item | Description | Data type |
+|---|---|---|
+| Namespace | Namespace for organization of entries. | String |
+| Key | Key for identification of values. | String |
+| Value | Value holding the information for the entry. | JSON |
+| Encrypted | Indicates whether the value of the given key should be encrypted | Boolean |
 
 ### Get keys and namespaces
 
@@ -308,48 +281,17 @@ associated with the currently logged in user.
 *userDataStore* consists of a user, a namespace, keys and associated
 values. The combination of user, namespace and key is unique.
 
-<table>
-<caption>User data store structure</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-<th>Data Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>User</td>
-<td>The user this data is associated with</td>
-<td>String</td>
-</tr>
-<tr class="even">
-<td>Namespace</td>
-<td>The namespace the key belongs to</td>
-<td>String</td>
-</tr>
-<tr class="odd">
-<td>Key</td>
-<td>The key a value is stored on</td>
-<td>String</td>
-</tr>
-<tr class="even">
-<td>Value</td>
-<td>The value stored</td>
-<td>JSON</td>
-</tr>
-<tr class="odd">
-<td>Encrypted</td>
-<td>Indicates whether the value should be encrypted</td>
-<td>Boolean</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: User data store structure
+
+| Item | Description | Data Type |
+|---|---|---|
+| User | The user this data is associated with | String |
+| Namespace | The namespace the key belongs to | String |
+| Key | The key a value is stored on | String |
+| Value | The value stored | JSON |
+| Encrypted | Indicates whether the value should be encrypted | Boolean |
 
 ### Get namespaces
 

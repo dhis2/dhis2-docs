@@ -109,45 +109,18 @@ elements listed above separately.
 In the **Maintenance** app, you manage the following and category
 objects:
 
-<table>
-<caption>Category objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Category option</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Category</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Category combination</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Category option combination</p></td>
-<td><p>Edit and show details</p></td>
-</tr>
-<tr class="odd">
-<td><p>Category option group</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Category option group set</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Category objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Category option | Create, edit, clone, share, delete, show details and translate |
+| Category | Create, edit, clone, share, delete, show details and translate |
+| Category combination | Create, edit, clone, share, delete, show details and translate |
+| Category option combination | Edit and show details |
+| Category option group | Create, edit, clone, share, delete, show details and translate |
+| Category option group set | Create, edit, clone, share, delete, show details and translate |
 
 ### Workflow
 
@@ -543,33 +516,15 @@ number of confirmed malaria cases of particular age groups.
 In the **Maintenance** app, you manage the following data elements
 objects:
 
-<table>
-<caption>Data element objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Data element</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Data element group</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Data element group set</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data element objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Data element | Create, edit, clone, share, delete, show details and translate |
+| Data element group | Create, edit, clone, share, delete, show details and translate |
+| Data element group set | Create, edit, clone, share, delete, show details and translate |
 
 ### Workflow
 
@@ -622,12 +577,12 @@ objects:
     about how the data element is measured and what its purpose is.
 
 8. (Optional) In the **Field mask** field, you may type a template that's used to provide
-   hints for correct formatting of the data element. 
-   
+   hints for correct formatting of the data element.
+
      > **NOTE**
      >
      > So far this is only implemented in the DHIS2 Android Capture app; not in the Capture and Tracker Capture web apps.
-     
+
    The following are special characters that can be used in the mask. The special characters match exactly one character of the given type.
 
    | Character     |    Match       |
@@ -637,7 +592,7 @@ objects:
    |      \\X      | capital letter |
    |      \\w      |any alphanumeric character|
 
-   For example, the pattern can be used to show hyphens as needed in the input field of the data element. E.g "\d\d\d-\d\d\d-\d\d\d, would 
+   For example, the pattern can be used to show hyphens as needed in the input field of the data element. E.g "\d\d\d-\d\d\d-\d\d\d, would
    show a hyphen for every third digit.
 
 9.  In the **Form name** field, type an alternative name of the data
@@ -650,121 +605,36 @@ objects:
 11. In the **Value type** field, select the type of data that the data
     element will record.
 
-    <table>
-    <caption>Value types</caption>
-    <colgroup>
-    <col style="width: 53%" />
-    <col style="width: 46%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Value type</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Age</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Coordinate</p></td>
-    <td><p>A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format &quot;-19.23 , 56.42&quot; with a comma separating the longitude and latitude.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Date</p></td>
-    <td><p>Dates rendered as calendar widget in data entry.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Date &amp; time</p></td>
-    <td><p>Is a combination of the <strong>DATE</strong> and <strong>TIME</strong> data elements.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Email</p></td>
-    <td><p>Email.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>File</p></td>
-    <td><p>A file resource where you can store external files, for example documents and photos.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Image</p></td>
-    <td><p>A file resource where you can store photos.</p>
-    <p>Unlike the <strong>FILE</strong> data element, the <strong>IMAGE</strong> data element can display the uploaded image directly in forms.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Integer</p></td>
-    <td><p>Any whole number (positive and negative), including zero.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Letter</p></td>
-    <td><p>A single letter.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Long text</p></td>
-    <td><p>Textual value. Renders as text area with no length constraint in forms.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Negative integer</p></td>
-    <td><p>Any whole number less than (but not including) zero.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Number</p></td>
-    <td><p>Any real numeric value with a single decimal point. Thousands separators and scientific notation is not supported.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Percentage</p></td>
-    <td><p>Whole numbers inclusive between 0 and 100.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Phone number</p></td>
-    <td><p>Phone number.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Positive integer</p></td>
-    <td><p>Any whole number greater than (but not including) zero.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Positive or zero integer</p></td>
-    <td><p>Any positive whole number, including zero.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Organisation unit</p></td>
-    <td><p>Organisation units rendered as a hierarchy tree widget.</p>
-    <p>If the user has assigned &quot;search organisation units&quot;, these will be displayed instead of the assigned organisation units.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Unit interval</p></td>
-    <td><p>Any real number greater than or equal to 0 and less than or equal to 1.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Text</p></td>
-    <td><p>Textual value. The maximum number of allowed characters per value is 50,000.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Time</p></td>
-    <td><p>Time is stored in HH:mm format.</p>
-    <p>HH is a number between 0 and 23</p>
-    <p>mm is a number between 00 and 59</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Tracker associate</p></td>
-    <td><p>Tracked entity instance. Rendered as dialog with a list of tracked entity instances and a search field.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Username</p></td>
-    <td><p>DHIS2 user. Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Yes/No</p></td>
-    <td><p>Boolean values, renders as drop-down lists in data entry.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Yes only</p></td>
-    <td><p>True values, renders as check-boxes in data entry.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+
+    Table: Value types
+
+    | Value type | Description |
+    |---|---|
+    | Age | - |
+    | Coordinate | A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format "-19.23 , 56.42" with a comma separating the longitude and latitude. |
+    | Date | Dates rendered as calendar widget in data entry. |
+    | Date & time | Is a combination of the **DATE** and **TIME** data elements. |
+    | Email | Email. |
+    | File | A file resource where you can store external files, for example documents and photos. |
+    | Image | A file resource where you can store photos.<br>     <br>Unlike the **FILE** data element, the **IMAGE** data element can display the uploaded image directly in forms. |
+    | Integer | Any whole number (positive and negative), including zero. |
+    | Letter | A single letter. |
+    | Long text | Textual value. Renders as text area with no length constraint in forms. |
+    | Negative integer | Any whole number less than (but not including) zero. |
+    | Number | Any real numeric value with a single decimal point. Thousands separators and scientific notation is not supported. |
+    | Percentage | Whole numbers inclusive between 0 and 100. |
+    | Phone number | Phone number. |
+    | Positive integer | Any whole number greater than (but not including) zero. |
+    | Positive or zero integer | Any positive whole number, including zero. |
+    | Organisation unit | Organisation units rendered as a hierarchy tree widget.<br>     <br>If the user has assigned "search organisation units", these will be displayed instead of the assigned organisation units. |
+    | Unit interval | Any real number greater than or equal to 0 and less than or equal to 1. |
+    | Text | Textual value. The maximum number of allowed characters per value is 50,000. |
+    | Time | Time is stored in HH:mm format.<br>     <br>HH is a number between 0 and 23<br>     <br>mm is a number between 00 and 59 |
+    | Tracker associate | Tracked entity instance. Rendered as dialog with a list of tracked entity instances and a search field. |
+    | Username | DHIS2 user. Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type |
+    | Yes/No | Boolean values, renders as drop-down lists in data entry. |
+    | Yes only | True values, renders as check-boxes in data entry. |
 
 12. In the **Aggregation type** field, select the default aggregation
     operation that will be used on the data element.
@@ -775,57 +645,21 @@ objects:
     **Average** operator, when values along the time dimension should
     not be added together, but rather averaged.
 
-    <table>
-    <caption>Aggregation operators</caption>
-    <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Aggregation operator</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Average</p></td>
-    <td><p>Average the values in both the period as and the organisation unit dimensions.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Average (sum in organisation unit hierarchy)</p></td>
-    <td><p>Average of data values in the period dimension, sum in the organisation unit dimensions.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Count</p></td>
-    <td><p>Count of data values.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Min</p></td>
-    <td><p>Minimum of data values.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Max</p></td>
-    <td><p>Maximum of data values.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>None</p></td>
-    <td><p>No aggregation is performed in any dimension.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Sum</p></td>
-    <td><p>Sum of data values in the period and organisation unit dimension.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Standard deviation</p></td>
-    <td><p>Standard deviation (population-based) of data values.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Variance</p></td>
-    <td><p>Variance (population-based) of data values.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+
+    Table: Aggregation operators
+
+    | Aggregation operator | Description |
+    |---|---|
+    | Average | Average the values in both the period as and the organisation unit dimensions. |
+    | Average (sum in organisation unit hierarchy) | Average of data values in the period dimension, sum in the organisation unit dimensions. |
+    | Count | Count of data values. |
+    | Min | Minimum of data values. |
+    | Max | Maximum of data values. |
+    | None | No aggregation is performed in any dimension. |
+    | Sum | Sum of data values in the period and organisation unit dimension. |
+    | Standard deviation | Standard deviation (population-based) of data values. |
+    | Variance | Variance (population-based) of data values. |
 
 13. If you want to save zeros for a particular reason, select **Store
     zero data values**. By default, DHIS2 does not store zeros entered
@@ -1138,39 +972,15 @@ You enter data in the **Data entry** app. The **Data entry** app uses
 data entry forms to display the data sets. There are three types of data
 entry forms:
 
-<table>
-<caption>Data entry form types</caption>
-<colgroup>
-<col style="width: 37%" />
-<col style="width: 62%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Data entry form type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Default form</p></td>
-<td><p>Once you have assigned a data set to an organisation unit, a default form is created automatically. The default form is then available in the <strong>Data entry</strong> app for the organisation units you have assigned it to.</p>
-<p>A default form consist of a list of the data elements belonging to the data set together with a column for inputting the values. If your data set contains data elements with a non-default category combination, for example age groups or gender, additional columns are automatically created in the default form based on the different categories.</p>
-<p>If you use more than one category combination you get multiple columns in the default form with different column headings for the options.</p></td>
-</tr>
-<tr class="even">
-<td><p>Section form</p></td>
-<td><p>If the default form doesn't meet your needs, you can modify it to create a section form. Section forms give you more flexibility when it comes to using tabular forms.</p>
-<p>In a section form you can, for example, create multiple tables with subheadings and disable (grey out) cells in a table.</p>
-<p>When you have added a section form to a data set, the section form is available in the <strong>Data entry</strong> app.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Custom form</p></td>
-<td><p>If the form you want to design is too complicated for default or section forms, you can create a custom form. A custom form takes more time to create than a section form, but you have full control over the design.</p>
-<p>You can, for example, mimic an existing paper aggregation form with a custom form. This makes data entry easier, and should reduce the number incorrectly entered data elements.</p>
-<p>When you have added a custom form to a data set, the custom form is available in the <strong>Data entry</strong> app.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data entry form types
+
+| Data entry form type | Description |
+|---|---|
+| Default form | Once you have assigned a data set to an organisation unit, a default form is created automatically. The default form is then available in the **Data entry** app for the organisation units you have assigned it to.<br> <br>A default form consist of a list of the data elements belonging to the data set together with a column for inputting the values. If your data set contains data elements with a non-default category combination, for example age groups or gender, additional columns are automatically created in the default form based on the different categories.<br> <br>If you use more than one category combination you get multiple columns in the default form with different column headings for the options. |
+| Section form | If the default form doesn't meet your needs, you can modify it to create a section form. Section forms give you more flexibility when it comes to using tabular forms.<br> <br>In a section form you can, for example, create multiple tables with subheadings and disable (grey out) cells in a table.<br> <br>When you have added a section form to a data set, the section form is available in the **Data entry** app. |
+| Custom form | If the form you want to design is too complicated for default or section forms, you can create a custom form. A custom form takes more time to create than a section form, but you have full control over the design.<br> <br>You can, for example, mimic an existing paper aggregation form with a custom form. This makes data entry easier, and should reduce the number incorrectly entered data elements.<br> <br>When you have added a custom form to a data set, the custom form is available in the **Data entry** app. |
 
 > **Note**
 >
@@ -1194,39 +1004,16 @@ entry forms:
 
 In the **Maintenance** app, you manage the following data set objects:
 
-<table>
-<caption>Data set objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Data set</p></td>
-<td><p>Create, assign to organisation units, edit, share, delete, show details and translate</p>
-<p>Edit compulsory data elements</p>
-<p>Add and remove multiple data sets to organisation units at once</p></td>
-</tr>
-<tr class="even">
-<td><p>Section form</p></td>
-<td><p>Create, edit and manage grey fields</p></td>
-</tr>
-<tr class="odd">
-<td><p>Section</p></td>
-<td><p>Change display order, delete and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Custom form</p></td>
-<td><p>Create, edit and script</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data set objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Data set | Create, assign to organisation units, edit, share, delete, show details and translate<br> <br>Edit compulsory data elements<br> <br>Add and remove multiple data sets to organisation units at once |
+| Section form | Create, edit and manage grey fields |
+| Section | Change display order, delete and translate |
+| Custom form | Create, edit and script |
 
 ### Workflow
 
@@ -1600,28 +1387,11 @@ section.
         >
         > You can only use one category combination per section.
 
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Option</p></th>
-        <th><p>Description</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p><strong>None</strong></p></td>
-        <td><p>Displays all data elements that don't have a category combination.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>&lt;No filter&gt;</strong></p></td>
-        <td><p>Displays all data elements.</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Option | Description |
+        |---|---|
+        | **None** | Displays all data elements that don't have a category combination. |
+        | **<No filter\>** | Displays all data elements. |
 
     2.  Select data elements and assign them.
 
@@ -1789,68 +1559,21 @@ set identifier are always the first two arguments provided to the
 callback functions. The table below provides an overview of the events
 and when they are triggered.
 
-<table>
-<caption>Data entry events</caption>
-<colgroup>
-<col style="width: 32%" />
-<col style="width: 39%" />
-<col style="width: 27%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Key</th>
-<th>Description</th>
-<th>Arguments</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>dhis2.de.event.formLoaded</p></td>
-<td><p>Triggered after the data entry form is rendered, but before data values are set in entry fields.</p></td>
-<td><p>Event | Data set ID</p></td>
-</tr>
-<tr class="even">
-<td><p>dhis2.de.event.dataValuesLoaded</p></td>
-<td><p>Triggered after data values are set in entry fields.</p></td>
-<td><p>Event | Data set ID</p></td>
-</tr>
-<tr class="odd">
-<td><p>dhis2.de.event.formReady</p></td>
-<td><p>Triggered when the data entry form is completely rendered and loaded with all elements.</p></td>
-<td><p>Event | Data set ID</p></td>
-</tr>
-<tr class="even">
-<td><p>dhis2.de.event.dataValueSaved</p></td>
-<td><p>Triggered when a data value is saved successfully.</p></td>
-<td><p>Event | Data set ID | Data value object</p></td>
-</tr>
-<tr class="odd">
-<td><p>dhis2.de.event.completed</p></td>
-<td><p>Triggered when a data set is successfully marked as complete.</p></td>
-<td><p>Event | Data set ID | Complete registration object</p></td>
-</tr>
-<tr class="even">
-<td><p>dhis2.de.event.uncompleted</p></td>
-<td><p>Triggered when a data set is successfully marked as incomplete.</p></td>
-<td><p>Event | Data set ID</p></td>
-</tr>
-<tr class="odd">
-<td><p>dhis2.de.event.validationSuccess</p></td>
-<td><p>Triggered when validation is done and there were no violations.</p></td>
-<td><p>Event | Data set ID</p></td>
-</tr>
-<tr class="even">
-<td><p>dhis2.de.event.validationError</p></td>
-<td><p>Triggered when validation is done and there were one or more violations.</p></td>
-<td><p>Event | Data set ID</p></td>
-</tr>
-<tr class="odd">
-<td><p>dhis2.ou.event.orgUnitSelected</p></td>
-<td><p>Triggered when one or more organisation units are selected in the org unit web tree.</p></td>
-<td><p>Event | Org unit IDs | Org unit names | Sub org unit IDs</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data entry events
+
+| Key | Description | Arguments |
+|---|---|---|
+| dhis2.de.event.formLoaded | Triggered after the data entry form is rendered, but before data values are set in entry fields. | Event &#124; Data set ID |
+| dhis2.de.event.dataValuesLoaded | Triggered after data values are set in entry fields. | Event &#124; Data set ID |
+| dhis2.de.event.formReady | Triggered when the data entry form is completely rendered and loaded with all elements. | Event &#124; Data set ID |
+| dhis2.de.event.dataValueSaved | Triggered when a data value is saved successfully. | Event &#124; Data set ID &#124; Data value object |
+| dhis2.de.event.completed | Triggered when a data set is successfully marked as complete. | Event &#124; Data set ID &#124; Complete registration object |
+| dhis2.de.event.uncompleted | Triggered when a data set is successfully marked as incomplete. | Event &#124; Data set ID |
+| dhis2.de.event.validationSuccess | Triggered when validation is done and there were no violations. | Event &#124; Data set ID |
+| dhis2.de.event.validationError | Triggered when validation is done and there were one or more violations. | Event &#124; Data set ID |
+| dhis2.ou.event.orgUnitSelected | Triggered when one or more organisation units are selected in the org unit web tree. | Event &#124; Org unit IDs &#124; Org unit names &#124; Sub org unit IDs |
 
 To register for an event:
 
@@ -2056,122 +1779,34 @@ system. Calculated totals do not have a denominator.
 An indicator formula can consist of mathematical operators, for example
 plus and minus; functions (see below); and of the following elements:
 
-<table>
-<caption>Indicator elements</caption>
-<colgroup>
-<col style="width: 36%" />
-<col style="width: 30%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Indicator element</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Constant</p></td>
-<td><p>Component</p></td>
-<td><p>Constants are numerical values which remain the same for all indicator calculations. This is useful in order to have a single place to change values that might change over time.</p>
-<p>Constants are applied AFTER data element values have been aggregated.</p></td>
-</tr>
-<tr class="even">
-<td><p>Data elements</p></td>
-<td><p>Component</p></td>
-<td><p>Data elements are substituted by the data value captured for the data element.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Days</p></td>
-<td><p>Operator</p></td>
-<td><p>&quot;Days&quot; is special operator that always provides the number of days for a given indicator calculation.</p>
-<p>For example: if you want to calculate the &quot;Percentage of time vaccine refrigerator was non-functional&quot;, you could define the numerator as:</p>
-<p>(&quot;Days-&quot;Number of days vaccine refrigerator was available&quot;&quot;)/&quot;Days&quot;</p>
-<p>If the fridge was available 25 days in June, the indicator would be calculated as:</p>
-<p>(30-25/25)*100 = 17 %</p>
-<p>If you want to calculate the total for Quarter 1, the number of days (&quot;Days&quot;) would be:</p>
-<p>31+28+31 = 90</p>
-<p>The &quot;Days&quot; parameter will always be the number of days in the period of interest.</p></td>
-</tr>
-<tr class="even">
-<td><p>Organisation unit counts</p></td>
-<td><p>Component</p></td>
-<td><p>You can use organisation unit groups in formulas. They will be replaced by the number of organisation units in the group. During aggregation, the organisation units in the group will be intersected with the part of the organisation unit hierarchy being requested.</p>
-<p>This lets you use the number of public facilities in a specific district in indicators. This is useful for example when you create facility infrastructure surveys and reports.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Programs</p></td>
-<td><p>Component</p></td>
-<td><p>Click <strong>Programs</strong> and select a program to view all data elements, attributes and indicators related to a specific program.</p>
-<p>The program components you include in your formula will have a program tag assigned to them.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Indicator elements
+
+| Indicator element | Type | Description |
+|---|---|---|
+| Constant | Component | Constants are numerical values which remain the same for all indicator calculations. This is useful in order to have a single place to change values that might change over time.<br> <br>Constants are applied AFTER data element values have been aggregated. |
+| Data elements | Component | Data elements are substituted by the data value captured for the data element. |
+| Days | Operator | "Days" is special operator that always provides the number of days for a given indicator calculation.<br> <br>For example: if you want to calculate the "Percentage of time vaccine refrigerator was non-functional", you could define the numerator as:<br> <br>("Days-"Number of days vaccine refrigerator was available"")/"Days"<br> <br>If the fridge was available 25 days in June, the indicator would be calculated as:<br> <br>(30-25/25)\*100 = 17 %<br> <br>If you want to calculate the total for Quarter 1, the number of days ("Days") would be:<br> <br>31+28+31 = 90<br> <br>The "Days" parameter will always be the number of days in the period of interest. |
+| Organisation unit counts | Component | You can use organisation unit groups in formulas. They will be replaced by the number of organisation units in the group. During aggregation, the organisation units in the group will be intersected with the part of the organisation unit hierarchy being requested.<br> <br>This lets you use the number of public facilities in a specific district in indicators. This is useful for example when you create facility infrastructure surveys and reports. |
+| Programs | Component | Click **Programs** and select a program to view all data elements, attributes and indicators related to a specific program.<br> <br>The program components you include in your formula will have a program tag assigned to them. |
 
 You can use the following functions in an indicator formula:
-<table>
-<caption>Indicator functions</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Indicator Function</p></th>
-<th><p>Arguments</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>if</p></td>
-<td><p>(boolean-expr, true-expr, false-expr)</p></td>
-<td><p>Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression.</p></td>
-</tr>
-<tr class="even">
-<td><p>isNull</p></td>
-<td><p>(element)</p></td>
-<td><p>Returns true if the element value is missing (null), otherwise false.</p></td>
-</tr>
-<tr class="odd">
-<td><p>isNotNull</p></td>
-<td><p>(element)</p></td>
-<td><p>Returns true if the element value is not missing (not null), otherwise false.</p></td>
-</tr>
-<tr class="even">
-<td><p>firstNonNull</p></td>
-<td><p>(element [, element ...])</p></td>
-<td><p>Returns the value of the first element that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values.</p></td>
-</tr>
-<tr class="odd">
-<td><p>greatest</p></td>
-<td><p>(expression [, expression ...])</p></td>
-<td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments.</p></td>
-</tr>
-<tr class="even">
-<td><p>least</p></td>
-<td><p>(expression [, expression ...])</p></td>
-<td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
-</tr>
-<tr class="odd">
-<td><p>log</p></td>
-<td><p>(expression [, base ])</p></td>
-<td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base.</p></td>
-</tr>
-<tr class="even">
-<td><p>log10</p></td>
-<td><p>(expression)</p></td>
-<td><p>Returns the common logarithm (base 10) of the numeric expression.</p></td>
-</tr>
-<tr class="odd">
-<td><p>.periodOffset</p></td>
-<td><p>(integer constant)</p></td>
-<td><p>Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Indicator functions
+
+| Indicator Function | Arguments | Description |
+|---|---|---|
+| if | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression. |
+| isNull | (element) | Returns true if the element value is missing (null), otherwise false. |
+| isNotNull | (element) | Returns true if the element value is not missing (not null), otherwise false. |
+| firstNonNull | (element [, element ...]) | Returns the value of the first element that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values. |
+| greatest | (expression [, expression ...]) | Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments. |
+| least | (expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
+| log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
+| log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
+| .periodOffset | (integer constant) | Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below. |
 
 Examples of the .periodOffset() function in an indicator expression:
 
@@ -2189,37 +1824,16 @@ Examples of the .periodOffset() function in an indicator expression:
 
 In the **Maintenance** app, you manage the following indicator objects:
 
-<table>
-<caption>Indicator objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Indicator</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Indicator type</p></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Indicator group</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Indicator group set</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Indicator objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Indicator | Create, edit, clone, share, delete, show details and translate |
+| Indicator type | Create, edit, clone, delete, show details and translate |
+| Indicator group | Create, edit, clone, share, delete, show details and translate |
+| Indicator group set | Create, edit, clone, share, delete, show details and translate |
 
 ### Workflow
 
@@ -2642,41 +2256,17 @@ hospitals. Therefore, you can create skewed organisation trees in DHIS2.
 In the **Maintenance** app, you manage the following organisation unit
 objects:
 
-<table>
-<caption>Organisation unit objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Organisation unit</p></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Organisation unit group</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Organisation unit group set</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Organisation unit level</p></td>
-<td><p>Edit and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Hierarchy operations</p></td>
-<td><p>Move organisation units</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Organisation unit objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Organisation unit | Create, edit, clone, delete, show details and translate |
+| Organisation unit group | Create, edit, clone, share, delete, show details and translate |
+| Organisation unit group set | Create, edit, clone, share, delete, show details and translate |
+| Organisation unit level | Edit and translate |
+| Hierarchy operations | Move organisation units |
 
 ### Workflow
 
@@ -3197,32 +2787,12 @@ The left and right sides must return numeric values.
 In the **Maintenance** app, you manage the following validation rule
 objects:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>What you can do</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Validation rule</p></td>
-<td><p>Create, edit, clone, delete, show details, and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Validation rule group</p></td>
-<td><p>Create, edit, clone, delete, share, show details, and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Validation notification</p></td>
-<td><p>Create, edit, clone, delete, show details, and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+| Object type | What you can do |
+|---|---|
+| Validation rule | Create, edit, clone, delete, show details, and translate |
+| Validation rule group | Create, edit, clone, delete, share, show details, and translate |
+| Validation notification | Create, edit, clone, delete, show details, and translate |
 
 #### About sliding windows
 
@@ -3246,33 +2816,15 @@ an end point. The example below shows disease surveillance data:.
 
 ![](resources/images/maintainence/validation_rules_sliding_window.gif)
 
-<table>
-<caption>Different behaviour of validation rules</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>With sliding windows</p></th>
-<th><p>Without sliding windows</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Used only for event data.</p></td>
-<td><p>Used for event data and aggregate data.</p></td>
-</tr>
-<tr class="even">
-<td><p>Data selection is based on a fixed number of days (periodType).</p></td>
-<td><p>Data selection is always based on a period.</p></td>
-</tr>
-<tr class="odd">
-<td><p>The position of the sliding window is always<em>relative to</em> the period being compared.</p></td>
-<td><p>Data is always selected for the <em>same period</em> as the period being compared.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Different behaviour of validation rules
+
+| With sliding windows | Without sliding windows |
+|---|---|
+| Used only for event data. | Used for event data and aggregate data. |
+| Data selection is based on a fixed number of days (periodType). | Data selection is always based on a period. |
+| The position of the sliding window is always *relative to* the period being compared. | Data is always selected for the *same period* as the period being compared. |
 
 See also: How to use sliding windows when you're [Creating or editing a
 validation
@@ -3305,63 +2857,20 @@ for low-priority routine data validation errors.
 You can use the following functions in a validation rule left side
 or right side:
 
-<table>
-<caption>Validation Rule functions</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Validation Rule Function</p></th>
-<th><p>Arguments</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>if</p></td>
-<td><p>(boolean-expr, true-expr, false-expr)</p></td>
-<td><p>Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression.</p></td>
-</tr>
-<tr class="even">
-<td><p>isNull</p></td>
-<td><p>(element)</p></td>
-<td><p>Returns true if the element value is missing (null), otherwise false.</p></td>
-</tr>
-<tr class="odd">
-<td><p>isNotNull</p></td>
-<td><p>(element)</p></td>
-<td><p>Returns true if the element value is not missing (not null), otherwise false.</p></td>
-</tr>
-<tr class="even">
-<td><p>firstNonNull</p></td>
-<td><p>(element [, element ...])</p></td>
-<td><p>Returns the value of the first element that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values.</p></td>
-</tr>
-<tr class="odd">
-<td><p>greatest</p></td>
-<td><p>(expression [, expression ...])</p></td>
-<td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments.</p></td>
-</tr>
-<tr class="even">
-<td><p>least</p></td>
-<td><p>(expression [, expression ...])</p></td>
-<td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
-</tr>
-<tr class="odd">
-<td><p>log</p></td>
-<td><p>(expression [, base ])</p></td>
-<td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base.</p></td>
-</tr>
-<tr class="even">
-<td><p>log10</p></td>
-<td><p>(expression)</p></td>
-<td><p>Returns the common logarithm (base 10) of the numeric expression.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Validation Rule functions
+
+| Validation Rule Function | Arguments | Description |
+|---|---|---|
+| if | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression. |
+| isNull | (element) | Returns true if the element value is missing (null), otherwise false. |
+| isNotNull | (element) | Returns true if the element value is not missing (not null), otherwise false. |
+| firstNonNull | (element [, element ...]) | Returns the value of the first element that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values. |
+| greatest | (expression [, expression ...]) | Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments. |
+| least | (expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
+| log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
+| log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
 
 ### Create or edit a validation rule
 
@@ -3411,33 +2920,12 @@ or right side:
     3.  Select a **Missing value strategy**. This selection sets how the
         system evaluates a validation rule if data is missing.
 
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Option</p></th>
-        <th><p>Description</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p>Skip if any value is missing</p></td>
-        <td><p>The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.</p>
-        <p>Always select this option you use the <strong>Exclusive pair</strong> or <strong>Compulsory pair</strong> operator.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>Skip if all values are missing</p></td>
-        <td><p>The validation rule will be skipped only if all of the operands which compose it are missing.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>Never skip</p></td>
-        <td><p>The validation rule will never be skipped in case of missing data, and all missing operands will be treated effectively as a zero.</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Option | Description |
+        |---|---|
+        | Skip if any value is missing | The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.<br>         <br>Always select this option you use the **Exclusive pair** or **Compulsory pair** operator. |
+        | Skip if all values are missing | The validation rule will be skipped only if all of the operands which compose it are missing. |
+        | Never skip | The validation rule will never be skipped in case of missing data, and all missing operands will be treated effectively as a zero. |
 
     4.  Type a **Description**.
 
@@ -3457,33 +2945,12 @@ or right side:
     2.  Select a **Missing value strategy**. This selection sets how the
         system evaluates a validation rule if data is missing.
 
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Option</p></th>
-        <th><p>Description</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p>Skip if any value is missing</p></td>
-        <td><p>The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.</p>
-        <p>Always select this option you use the <strong>Exclusive pair</strong> or <strong>Compulsory pair</strong> operator.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>Skip if all values are missing</p></td>
-        <td><p>The validation rule will be skipped only if all of the operands which compose it are missing.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>Never skip</p></td>
-        <td><p>The validation rule will never be skipped in case of missing data, and all missing operands will be treated effectively as a zero.</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Option | Description |
+        |---|---|
+        | Skip if any value is missing | The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.<br>         <br>Always select this option you use the **Exclusive pair** or **Compulsory pair** operator. |
+        | Skip if all values are missing | The validation rule will be skipped only if all of the operands which compose it are missing. |
+        | Never skip | The validation rule will never be skipped in case of missing data, and all missing operands will be treated effectively as a zero. |
 
     3.  Select **Sliding window** if you want to view data relative to
         the period you are comparing. See also [About validation
@@ -3713,25 +3180,13 @@ attributes, for example the collection method for a data element.
 
 In the **Maintenance** app, you manage the following attribute objects:
 
-<table>
-<caption>Attribute objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Attribute</p></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Attribute objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Attribute | Create, edit, clone, delete, show details and translate |
 
 ### Create or edit an attribute
 
@@ -3858,25 +3313,13 @@ time.
 
 In the **Maintenance** app, you manage the following constant objects:
 
-<table>
-<caption>Constant objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Constant</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Constant objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Constant | Create, edit, clone, share, delete, show details and translate |
 
 ### Create or edit a constant
 
@@ -4043,33 +3486,15 @@ An option set called "Delivery type" would have the options: "Normal",
 
 ![](resources/images/maintainence/option_set_create.png)
 
-<table>
-<caption>Option set objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Option set</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Option group</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Option group set</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Option set objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Option set | Create, edit, clone, share, delete, show details and translate |
+| Option group | Create, edit, clone, share, delete, show details and translate |
+| Option group set | Create, edit, clone, share, delete, show details and translate |
 
 ### Create or edit an option set
 
@@ -4361,42 +3786,13 @@ maps in the **Maps** app.
 
 8.  Click **Save**.
 
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Legend item</th>
-<th>Start value</th>
-<th>End value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Low bad</td>
-<td>0</td>
-<td>50</td>
-</tr>
-<tr class="even">
-<td>Medium</td>
-<td>50</td>
-<td>80</td>
-</tr>
-<tr class="odd">
-<td>High good</td>
-<td>80</td>
-<td>100</td>
-</tr>
-<tr class="even">
-<td>Too high</td>
-<td>100</td>
-<td>1000</td>
-</tr>
-</tbody>
-</table>
+
+| Legend item | Start value | End value |
+|---|---|---|
+| Low bad | 0 | 50 |
+| Medium | 50 | 80 |
+| High good | 80 | 100 |
+| Too high | 100 | 1000 |
 
 ### Clone metadata objects
 
@@ -4662,25 +4058,13 @@ predictor calculations to avoid double counting.
 
 In the **Maintenance** app, you manage the following predictor objects:
 
-<table>
-<caption>Predictor objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Predictor</p></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Predictor objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Predictor | Create, edit, clone, delete, show details and translate |
 
 ### Sampling previous periods
 
@@ -4872,60 +4256,19 @@ sampled. For example:
     3.  Enter the generator expression. You can build the expression by selecting data elements for aggregate data, or program data elements, attributes or indicators. Organisation unit counts are not yet supported.
 
         To use sampled, past period data, you should enclose any items you select in one of the following aggregate functions (note that these function names are case-sensitive):
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Aggregate function</p></th>
-        <th><p>Means</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p>avg(x)</p></td>
-        <td><p>Average (mean) value of x</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>count(x)</p></td>
-        <td><p>Count of the values of x</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>max(x)</p></td>
-        <td><p>Maximum value of x</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>median(x)</p></td>
-        <td><p>Median value of x</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>min(x)</p></td>
-        <td><p>Minimum value of x</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>percentileCont(p, x)</p></td>
-        <td><p>Continuous percentile of x, where p is the percentile as a floating point number between 0 and 1. For example, p = 0 will return the lowest value, p = 0.5 will return the median, p = 0.75 will return the 75th percentile, p = 1 will return the highest value, etc. Continuous means that the value will be interpolated if necessary. For example, percentileCont( 0.5, #{FTRrcoaog83} ) will return 2.5 if the sampled values of data element FTRrcoaog83 are 1, 2, 3, and 4.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>stddev(x)</p></td>
-        <td><p>Standard deviation of x. This function is eqivalent to stddevSamp. It's suggested that you use the function stddevSamp instead for greater clarity.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>stddevPop(x)</p></td>
-        <td><p>Population standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / n )</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>stddevSamp(x)</p></td>
-        <td><p>Sample standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / ( n - 1 ) ). Note that this value is not computed when there is only one sample.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>sum(x)</p></td>
-        <td><p>Sum of the values of x</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Aggregate function | Means |
+        |---|---|
+        | avg(x) | Average (mean) value of x |
+        | count(x) | Count of the values of x |
+        | max(x) | Maximum value of x |
+        | median(x) | Median value of x |
+        | min(x) | Minimum value of x |
+        | percentileCont(p, x) | Continuous percentile of x, where p is the percentile as a floating point number between 0 and 1. For example, p = 0 will return the lowest value, p = 0.5 will return the median, p = 0.75 will return the 75th percentile, p = 1 will return the highest value, etc. Continuous means that the value will be interpolated if necessary. For example, percentileCont( 0.5, #{FTRrcoaog83} ) will return 2.5 if the sampled values of data element FTRrcoaog83 are 1, 2, 3, and 4. |
+        | stddev(x) | Standard deviation of x. This function is eqivalent to stddevSamp. It's suggested that you use the function stddevSamp instead for greater clarity. |
+        | stddevPop(x) | Population standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / n ) |
+        | stddevSamp(x) | Sample standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / ( n - 1 ) ). Note that this value is not computed when there is only one sample. |
+        | sum(x) | Sum of the values of x |
 
         Any items inside an aggregate function will be evaluated for all
         sampled past periods, and then combined according to the formula
@@ -4944,52 +4287,17 @@ sampled. For example:
         expression, either inside aggregate functions, or containing
         aggregate functions, or independent of aggregate functions:
 
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Function</p></th>
-        <th><p>Means</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p>if(test, valueIfTrue, valueIfFalse)</p></td>
-        <td><p>Evaluates <strong>test</strong> which is an expression that evaluates to a boolean value -- see <strong>Boolean expression notes</strong> below. If the test is <strong>true</strong>, returns the <strong>valueIfTrue</strong> expression. If it is <strong>false</strong>, returns the <strong>valueIfFalse</strong> expression.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>isNull(item)</p></td>
-        <td><p>Returns the boolean value <strong>true</strong> if the <strong>item</strong> is null (missing), otherwise returns <strong>false</strong>. The <strong>item</strong> can be any selected item from the right (data element, program data element, etc.).</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>isNotNull(item)</p></td>
-        <td><p>Returns <strong>true</strong> if the <strong>item</strong> value is not missing (not null), otherwise <strong>false</strong>.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>firstNonNull(item [, item ...])</p></td>
-        <td><p>Returns the value of the first <strong>item</strong> that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous items have missing values.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>greatest(expression [, expression ...])</p></td>
-        <td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>least(expression [, expression ...])</p></td>
-        <td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>log(expression [, base ])</p></td>
-        <td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>log10(expression)</p></td>
-        <td><p>Returns the common logarithm (base 10) of the numeric expression.</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Function | Means |
+        |---|---|
+        | if(test, valueIfTrue, valueIfFalse) | Evaluates **test** which is an expression that evaluates to a boolean value -- see **Boolean expression notes** below. If the test is **true**, returns the **valueIfTrue** expression. If it is **false**, returns the **valueIfFalse** expression. |
+        | isNull(item) | Returns the boolean value **true** if the **item** is null (missing), otherwise returns **false**. The **item** can be any selected item from the right (data element, program data element, etc.). |
+        | isNotNull(item) | Returns **true** if the **item** value is not missing (not null), otherwise **false**. |
+        | firstNonNull(item [, item ...]) | Returns the value of the first **item** that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous items have missing values. |
+        | greatest(expression [, expression ...]) | Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments. |
+        | least(expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
+        | log(expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
+        | log10(expression) | Returns the common logarithm (base 10) of the numeric expression. |
 
         **Boolean expression notes:** A boolean expression must evaluate
         to **true** or **false**. The following operators may be used to
@@ -5001,52 +4309,17 @@ sampled. For example:
 
         Generator expression examples:
 
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Generator expression</p></th>
-        <th><p>Means</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p>sum(#{FTRrcoaog83.tMwM3ZBd7BN})</p></td>
-        <td><p>Sum of the sampled values of data element FTRrcoaog83 and category option combination (disaggregation) tMwM3ZBd7BN</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>avg(I{GSae40Fyppf}) + 2 * stddevSamp(I{GSae40Fyppf})</p></td>
-        <td><p>Average of the sampled values of of program indicator GSae40Fyppf plus twice its sample standard deviation</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>sum(D{IpHINAT79UW.eMyVanycQSC}) / sum([days])</p></td>
-        <td><p>Sum of all sampled values of data element eMyVanycQSC from porgram IpHINAT79UW divided by the number of days in all sample periods (resulting in the overall average daily value)</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>sum(#{FTRrcoaog83}) + #{T7OyqQpUpNd}</p></td>
-        <td><p>Sum of all sampled values of data element FTRrcoaog83 plus the value of data element T7OyqQpUpNd in the period being predicted for (includes all disaggregations)</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>1.2 * A{IpHINAT79UW.RKLKz1H20EE}</p></td>
-        <td><p>1.2 times the value of attribute RKLKz1H20EE of program IpHINAT79UW, in the period being predicted for</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>if(isNull(#{T7OyqQpUpNd}), 0, 1)</p></td>
-        <td><p>If the data element T7OyqQpUpNd is null in the period being predicted, then 0, otherwise 1.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>percentileCont(0.5, #{T7OyqQpUpNd})</p></td>
-        <td><p>Continuous 50th percentile of the sampled values for data element T7OyqQpUpNd. Note that this is the same as median(#{T7OyqQpUpNd})</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>if(count(#{T7OyqQpUpNd}) == 1, 0, stddevSamp(#{T7OyqQpUpNd}))</p></td>
-        <td><p>If there is one sample value present for data element T7OyqQpUpNd, then 0, otherwise the sample standard deviation of these sample values. (Note that if no samples are present then the stddevSamp returns no value, so no value is predicted.)</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Generator expression | Means |
+        |---|---|
+        | sum(#{FTRrcoaog83.tMwM3ZBd7BN}) | Sum of the sampled values of data element FTRrcoaog83 and category option combination (disaggregation) tMwM3ZBd7BN |
+        | avg(I{GSae40Fyppf}) + 2 \* stddevSamp(I{GSae40Fyppf}) | Average of the sampled values of of program indicator GSae40Fyppf plus twice its sample standard deviation |
+        | sum(D{IpHINAT79UW.eMyVanycQSC}) / sum([days]) | Sum of all sampled values of data element eMyVanycQSC from porgram IpHINAT79UW divided by the number of days in all sample periods (resulting in the overall average daily value) |
+        | sum(#{FTRrcoaog83}) + #{T7OyqQpUpNd} | Sum of all sampled values of data element FTRrcoaog83 plus the value of data element T7OyqQpUpNd in the period being predicted for (includes all disaggregations) |
+        | 1.2 \* A{IpHINAT79UW.RKLKz1H20EE} | 1.2 times the value of attribute RKLKz1H20EE of program IpHINAT79UW, in the period being predicted for |
+        | if(isNull(#{T7OyqQpUpNd}), 0, 1) | If the data element T7OyqQpUpNd is null in the period being predicted, then 0, otherwise 1. |
+        | percentileCont(0.5, #{T7OyqQpUpNd}) | Continuous 50th percentile of the sampled values for data element T7OyqQpUpNd. Note that this is the same as median(#{T7OyqQpUpNd}) |
+        | if(count(#{T7OyqQpUpNd}) == 1, 0, stddevSamp(#{T7OyqQpUpNd})) | If there is one sample value present for data element T7OyqQpUpNd, then 0, otherwise the sample standard deviation of these sample values. (Note that if no samples are present then the stddevSamp returns no value, so no value is predicted.) |
 
 11. (Optional) Create a **Sample skip test**. The sample skip test tells
     which previous periods if any to exclude from the sample.
@@ -5068,32 +4341,12 @@ sampled. For example:
 
         Skip test expression examples:
 
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Skip test expression</p></th>
-        <th><p>Means</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p>#{FTRrcoaog83} &gt; #{M62VHgYT2n0}</p></td>
-        <td><p>The value of data element FTRrcoaog83 (sum of all disaggregations) is greater than the value of data element M62VHgYT2n0 (sum of all disaggregations)</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>#{uF1DLnZNlWe} &gt; 0</p></td>
-        <td><p>The value of data element uF1DLnZNlWe (sum of all disaggregations) is greater than the zero</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>#{FTRrcoaog83} &gt; #{M62VHgYT2n0} || #{uF1DLnZNlWe} &gt; 0</p></td>
-        <td><p>The value of data element FTRrcoaog83 (sum of all disaggregations) is greater than the value of data element M62VHgYT2n0 (sum of all disaggregations) or the value of data element uF1DLnZNlWe (sum of all disaggregations) is greater than the zero</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Skip test expression | Means |
+        |---|---|
+        | #{FTRrcoaog83} \> #{M62VHgYT2n0} | The value of data element FTRrcoaog83 (sum of all disaggregations) is greater than the value of data element M62VHgYT2n0 (sum of all disaggregations) |
+        | #{uF1DLnZNlWe} \> 0 | The value of data element uF1DLnZNlWe (sum of all disaggregations) is greater than the zero |
+        | #{FTRrcoaog83} \> #{M62VHgYT2n0} &#124;&#124; #{uF1DLnZNlWe} \> 0 | The value of data element FTRrcoaog83 (sum of all disaggregations) is greater than the value of data element M62VHgYT2n0 (sum of all disaggregations) or the value of data element uF1DLnZNlWe (sum of all disaggregations) is greater than the zero |
 
 12. Enter a **Sequential sample count** value.
 
@@ -5262,25 +4515,13 @@ addresses.
 In the **Maintenance** app, you manage the following push reports
 objects:
 
-<table>
-<caption>Push reports objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Push analysis</p></td>
-<td><p>Create, edit, clone, delete, show details, translate, preview and run</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Push reports objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| Push analysis | Create, edit, clone, delete, show details, translate, preview and run |
 
 ### Create or edit a push report
 
@@ -5448,25 +4689,13 @@ and XYZ tiles.
 > ([EPSG:3857](https://epsg.io/3857)) so make sure that the external
 > service supports this projection.
 
-<table>
-<caption>External map layer objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>External map layer</p></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: External map layer objects in the Maintenance app
+
+| Object type | Available functions |
+|---|---|
+| External map layer | Create, edit, clone, delete, show details and translate |
 
 1.  Open the **Maintenance** app and click **Other** \> **External map
     layer**.
@@ -5653,13 +4882,13 @@ should contain the SQL view definition. Only SQL "SELECT" statements are
 allowed and certain sensitive tables (i.e. user information) are not
 accessible Press "Save" to store the SQL view definition.
 
-Keep in mind that the the columns returned by the used SELECT statement 
+Keep in mind that the the columns returned by the used SELECT statement
 become table columns, that means they must be of a valid table column
-type. When functions are used it might be necessary to explicitly cast 
+type. When functions are used it might be necessary to explicitly cast
 the result to a type by adding `::{TYPE}` after the function.
 
 For example, instead of `jsonb_each` (which would return a record type
-that cannot be a column type) use `jsonb_each_text` and cast the result 
+that cannot be a column type) use `jsonb_each_text` and cast the result
 to `text`, like in the below sample:
 
 ```sql
@@ -5713,49 +4942,18 @@ The **Metadata group editor** in the **Maintenance** app allows you to
 edit multiple object groups at the same time. You can edit the following
 objects types:
 
-<table>
-<caption>Object types in the Metadata group editor</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Category option</p></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><p>Category option group</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><p>Data element</p></td>
-<td><p>Add one data element to multiple data element groups</p>
-<p>Remove one data element from multiple data element groups</p></td>
-</tr>
-<tr class="even">
-<td><p>Data element group</p></td>
-<td><p>Add multiple data elements to one data element group</p>
-<p>Remove multiple data elements from one data element group</p></td>
-</tr>
-<tr class="odd">
-<td><p>Indicator</p></td>
-<td><p>Add one indicator to multiple indicator groups</p>
-<p>Remove one indicator from multiple indicator groups</p></td>
-</tr>
-<tr class="even">
-<td><p>Indicator group</p></td>
-<td><p>Add multiple indicators to one indicator group</p>
-<p>Remove multiple indicators from one indicator group</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Object types in the Metadata group editor
+
+| Object type | Available functions |
+|---|---|
+| Category option ||
+| Category option group ||
+| Data element | Add one data element to multiple data element groups<br> <br>Remove one data element from multiple data element groups |
+| Data element group | Add multiple data elements to one data element group<br> <br>Remove multiple data elements from one data element group |
+| Indicator | Add one indicator to multiple indicator groups<br> <br>Remove one indicator from multiple indicator groups |
+| Indicator group | Add multiple indicators to one indicator group<br> <br>Remove multiple indicators from one indicator group |
 
 ### Edit multiple objects in an object group
 

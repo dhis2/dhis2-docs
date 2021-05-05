@@ -169,106 +169,23 @@ data the user needs the "DATA:Can capture data" sharing level.
 > to report for an organisation unit to where the program has been
 > assigned.
 
-<table>
-<caption>Data sharing for tracker programs</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 30%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Object type</th>
-<th>Can view data</th>
-<th>Can capture data</th>
-<th>Comment</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><strong>Tracked entity type</strong></p></td>
-<td><ul>
-<li><p>Search for tracked entities with this tracked entity type.</p></li>
-<li><p>See tracked entity type attribute values for this tracked entity type.</p></li>
-</ul></td>
-<td><ul>
-<li><p>Edit visible tracked entity attributes for tracked entity instances of this type.</p></li>
-<li><p>Register/create new tracked entity instances of this type.</p></li>
-<li><p>Delete tracked entity instances of this type.</p></li>
-<li><p>Deactivate/reactivate tracked entity instances of this type.</p></li>
-</ul></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><p><strong>Program</strong></p></td>
-<td><ul>
-<li><p>Search for tracked entities within this program.</p></li>
-<li><p>See tracked entity attributes specific to this program.</p></li>
-<li><p>See enrollment details for the program.</p></li>
-<li><p>See notes for the enrollment.</p></li>
-</ul></td>
-<td><ul>
-<li><p>Enroll into the program.</p></li>
-<li><p>Edit enrollment details for the program.</p></li>
-<li><p>Complete/reopen enrollments into the program.</p></li>
-<li><p>Add notes for the program.</p></li>
-<li><p>Edit relationships for the program.</p></li>
-<li><p>Send message to tracked entity instance.</p></li>
-<li><p>Delete enrollments in the program.</p></li>
-</ul></td>
-<td><p>Both &quot;Can view data&quot; and &quot;Can capture data&quot; also requires the user to have &quot;Can view data&quot; for the tracked entity type.</p></td>
-</tr>
-<tr class="odd">
-<td><p><strong>Program stage</strong></p></td>
-<td><ul>
-<li><p>See the program stage and its events and data within an enrollment.</p></li>
-<li><p>See the program stage notes.</p></li>
-</ul></td>
-<td><ul>
-<li><p>Add/schedule/refer a new event within the program stage.</p></li>
-<li><p>Complete/reopen the events within the program stage.</p></li>
-<li><p>Edit tracked entity data values within events in the program stage.</p></li>
-<li><p>Add notes for events in the program stage.</p></li>
-<li><p>Delete events in the program stage.</p></li>
-</ul></td>
-<td><p>Both &quot;Can view data&quot; and &quot;Can capture data&quot; also requires the user to have &quot;Can view data&quot; for the program and the tracked entity type.</p></td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Data sharing for single event programs</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 30%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Object type</th>
-<th>Can view data</th>
-<th>Can capture data</th>
-<th>Comment</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><strong>Program</strong></p></td>
-<td><ul>
-<li><p>See list of events within the program.</p></li>
-<li><p>See tracked entity data values for events in the program.</p></li>
-</ul></td>
-<td><ul>
-<li><p>Add new events into the program.</p></li>
-<li><p>Edit data for events in the program.</p></li>
-<li><p>Delete events in the program.</p></li>
-</ul></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+
+Table: Data sharing for tracker programs
+
+| Object type | Can view data | Can capture data | Comment |
+|---|---|---|---|
+| **Tracked entity type** | * Search for tracked entities with this tracked entity type.<br> * See tracked entity type attribute values for this tracked entity type. | * Edit visible tracked entity attributes for tracked entity instances of this type.<br> * Register/create new tracked entity instances of this type.<br> * Delete tracked entity instances of this type.<br> * Deactivate/reactivate tracked entity instances of this type. ||
+| **Program** | * Search for tracked entities within this program.<br> * See tracked entity attributes specific to this program.<br> * See enrollment details for the program.<br> * See notes for the enrollment. | * Enroll into the program.<br> * Edit enrollment details for the program.<br> * Complete/reopen enrollments into the program.<br> * Add notes for the program.<br> * Edit relationships for the program.<br> * Send message to tracked entity instance.<br> * Delete enrollments in the program. | Both "Can view data" and "Can capture data" also requires the user to have "Can view data" for the tracked entity type. |
+| **Program stage** | * See the program stage and its events and data within an enrollment.<br> * See the program stage notes. | * Add/schedule/refer a new event within the program stage.<br> * Complete/reopen the events within the program stage.<br> * Edit tracked entity data values within events in the program stage.<br> * Add notes for events in the program stage.<br> * Delete events in the program stage. | Both "Can view data" and "Can capture data" also requires the user to have "Can view data" for the program and the tracked entity type. |
+
+
+
+Table: Data sharing for single event programs
+
+| Object type | Can view data | Can capture data | Comment |
+|---|---|---|---|
+| **Program** | * See list of events within the program.<br> * See tracked entity data values for events in the program. | * Add new events into the program.<br> * Edit data for events in the program.<br> * Delete events in the program. ||
 
 ### Data sharing for data sets
 
@@ -292,43 +209,11 @@ entry field in Data Set users need:
 > to report for an organisation unit to where the data set has been
 > assigned.
 
-<table>
-<caption>Data sharing for data sets</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 30%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Object type</th>
-<th>Can view data</th>
-<th>Can capture data</th>
-<th>Comment</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><strong>Data set</strong></p></td>
-<td><ul>
-<li><p>View Data Set's data in Analytics</p></li>
-</ul></td>
-<td><ul>
-<li><p>Can see DataSet in Data Entry app</p></li>
-<li><p>Can save data for Data Set using API</p></li>
-</ul></td>
-<td><p>For saving data value in Data Entry app, users also need &quot;Can capture data&quot; for Category Options within selected Data Set.</p></td>
-</tr>
-<tr class="even">
-<td><strong>CategoryOption</strong></td>
-<td><ul>
-<li><p>Can view data values belong to shared Category Option in analytics</p></li>
-</ul></td>
-<td><ul>
-<li><p>Can save data value for input fields in Data Entry app which belongs to shared Category Options.</p></li>
-</ul></td>
-<td>For CategoryOptionCombo and AttributeOptionCombo to be writeable, all belongs CategoryOptions must be shared with &quot;Can capture data&quot;.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data sharing for data sets
+
+| Object type | Can view data | Can capture data | Comment |
+|---|---|---|---|
+| **Data set** | * View Data Set's data in Analytics | * Can see DataSet in Data Entry app<br> * Can save data for Data Set using API | For saving data value in Data Entry app, users also need "Can capture data" for Category Options within selected Data Set. |
+| **CategoryOption** | * Can view data values belong to shared Category Option in analytics | * Can save data value for input fields in Data Entry app which belongs to shared Category Options. | For CategoryOptionCombo and AttributeOptionCombo to be writeable, all belongs CategoryOptions must be shared with "Can capture data". |

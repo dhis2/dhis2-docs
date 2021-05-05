@@ -14,145 +14,39 @@ a essential part of the "tracker" functionality which lets you track
 individual records. You can also track other ‘entities’ such as wells or
 insurances. You can create two types of programs:
 
-<table>
-<caption>Program types</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Program type</p></th>
-<th><p>Description</p></th>
-<th><p>Examples of use</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Event program</p></td>
-<td><p>Single event <em>without</em> registration program (anonymous program or SEWoR)</p>
-<p>Anonymous, individual events are tracked through the health system. No person or entity is attached to these individual transactions.</p>
-<p>Has only one program stage.</p></td>
-<td><p>To record health cases without registering any information into the system.</p>
-<p>To record survey data or surveillance line-listing.</p></td>
-</tr>
-<tr class="even">
-<td><p>Tracker program</p></td>
-<td><p>Single event <em>with</em> registration program (SEWR)</p>
-<p>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system</p>
-<p>Has only one program stage.</p>
-<p>A tracked entity instance (TEI) can only enroll in the program once.</p></td>
-<td><p>To record birth certificate and death certificate.</p></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Multi events <em>with</em> registration program (MEWR)</p>
-<p>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system</p>
-<p>Has multiple program stages.</p></td>
-<td><p>Mother Health Program with stages as ANC Visit (2-4+), Delivery, PNC Visit.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Program types
+
+| Program type | Description | Examples of use |
+|---|---|---|
+| Event program | Single event *without* registration program (anonymous program or SEWoR)<br> <br>Anonymous, individual events are tracked through the health system. No person or entity is attached to these individual transactions.<br> <br>Has only one program stage. | To record health cases without registering any information into the system.<br> <br>To record survey data or surveillance line-listing. |
+| Tracker program | Single event *with* registration program (SEWR)<br> <br>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system<br> <br>Has only one program stage.<br> <br>A tracked entity instance (TEI) can only enroll in the program once. | To record birth certificate and death certificate. |
+|| Multi events *with* registration program (MEWR)<br> <br>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system<br> <br>Has multiple program stages. | Mother Health Program with stages as ANC Visit (2-4+), Delivery, PNC Visit. |
 
 To create a program, you must first configure several types of metadata
 objects. You create these metadata objects in the **Maintenance** app.
 
-<table>
-<caption>Program metadata objects in the Maintenance app</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th>Description</th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Event program</p></td>
-<td><p>A program to record single event without registration</p></td>
-<td><p>Create, edit, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-+<td><p>Tracker program</p></td>
-+<td><p>A program to record single or multiple events with registration</p></td>
-+<td><p>Create, edit, share, delete, show details and translate</p></td>
-+</tr>
-<tr class="even">
-<td><p>Program indicator</p></td>
-<td><p>An expression based on data elements and attributes of tracked entities which you use to calculate values based on a formula.</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Program rule</p></td>
-<td><p>Allows you to create and control dynamic behaviour of the user interface in the <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps.</p></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Program rule variable</p></td>
-<td><p>Variables you use to create program rule expressions.</p></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Relationship type</p></td>
-<td><p>Defines the relationship between tracked entity A and tracked entity B, for example mother and child.</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Tracked entity type</p></td>
-<td><p>Types of entities which can be tracked through the system. Can be anything from persons to commodities, for example a medicine or a person.</p>
-<p>A program must have one tracked entity. To enrol a tracked entity instance into a program, the tracked entity of an entity and tracked entity of a program must be the same.</p>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>A program must be specified with only one tracked entity. Only tracked entity as same as the tracked entity of program can enroll into that program.</p>
-</blockquote></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Tracked entity attribute</p></td>
-<td><p>Used to register extra information for a tracked entity.</p>
-<p>Can be shared between programs.</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Program</p></td>
-<td><p>A program consist of program stages.</p></td>
-<td><p>Create, edit, share, delete, assign to organisation units, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Program stage</p></td>
-<td><p>A program stage defines which actions should be taken at each stage.</p></td>
-<td><p>Create, edit, share, change sort order, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Program indicator group</p></td>
-<td><p>A group of program indicators</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="odd">
-<td><p>Validation rule</p></td>
-<td><p>A validation rule is based on an expression which defines a relationship between data element values.</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Program notification</p></td>
-<td><p>Automated message reminder</p>
-<p>Set reminders to be automatically sent to enrolled tracked entity instances before scheduled appointments and after missed visits.</p></td>
-<td><p>Create, edit and delete</p></td>
-</tr>
-<tr class="odd">
-<td><p>Program stage notification</p></td>
-<td><p>Automated message reminder</p>
-<p>Set reminders to be automatically sent whenever a program stage is completed, or before or after the due date.</p></td>
-<td><p>Create, edit and delete</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Program metadata objects in the Maintenance app
+
+| Object type | Description | Available functions |
+|---|---|---|
+| Event program | A program to record single event without registration | Create, edit, share, delete, show details and translate |
+| Tracker program | A program to record single or multiple events with registration | Create, edit, share, delete, show details and translate |
+| Program indicator | An expression based on data elements and attributes of tracked entities which you use to calculate values based on a formula. | Create, edit, clone, share, delete, show details and translate |
+| Program rule | Allows you to create and control dynamic behaviour of the user interface in the **Tracker Capture** and **Event Capture** apps. | Create, edit, clone, delete, show details and translate |
+| Program rule variable | Variables you use to create program rule expressions. | Create, edit, clone, delete, show details and translate |
+| Relationship type | Defines the relationship between tracked entity A and tracked entity B, for example mother and child. | Create, edit, clone, share, delete, show details and translate |
+| Tracked entity type | Types of entities which can be tracked through the system. Can be anything from persons to commodities, for example a medicine or a person.<br> <br>A program must have one tracked entity. To enrol a tracked entity instance into a program, the tracked entity of an entity and tracked entity of a program must be the same.<br>      <br>    **Note**<br>     <br>    A program must be specified with only one tracked entity. Only tracked entity as same as the tracked entity of program can enroll into that program. | Create, edit, clone, share, delete, show details and translate |
+| Tracked entity attribute | Used to register extra information for a tracked entity.<br> <br>Can be shared between programs. | Create, edit, clone, share, delete, show details and translate |
+| Program | A program consist of program stages. | Create, edit, share, delete, assign to organisation units, show details and translate |
+| Program stage | A program stage defines which actions should be taken at each stage. | Create, edit, share, change sort order, delete, show details and translate |
+| Program indicator group | A group of program indicators | Create, edit, clone, share, delete, show details and translate |
+| Validation rule | A validation rule is based on an expression which defines a relationship between data element values. | Create, edit, clone, share, delete, show details and translate |
+| Program notification | Automated message reminder<br> <br>Set reminders to be automatically sent to enrolled tracked entity instances before scheduled appointments and after missed visits. | Create, edit and delete |
+| Program stage notification | Automated message reminder<br> <br>Set reminders to be automatically sent whenever a program stage is completed, or before or after the due date. | Create, edit and delete |
 
 ## Configure event programs in the Maintenance app
 
@@ -166,33 +60,15 @@ Single event *without* registration programs are called event programs.
 You configure them in the **Maintenance** app. Event programs can have
 three types of data entry forms:
 
-<table>
-<caption>Types of data entry forms for event programs</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Form type</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Basic</p></td>
-<td><p>Lists all data elements which belong to the program. You can change the order of the data elements.</p></td>
-</tr>
-<tr class="even">
-<td><p>Section</p></td>
-<td><p>A section groups data elements. You can then arrange the order of the sections to create the desired layout of the data entry form.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Custom</p></td>
-<td><p>Defines the data entry form as HTML page.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Types of data entry forms for event programs
+
+| Form type | Description |
+|---|---|
+| Basic | Lists all data elements which belong to the program. You can change the order of the data elements. |
+| Section | A section groups data elements. You can then arrange the order of the sections to create the desired layout of the data entry form. |
+| Custom | Defines the data entry form as HTML page. |
 
 > **Note**
 >
@@ -240,99 +116,24 @@ attributes and program parameters.
 
 3.  Enter program details, then click next.
 
-    <table>
-    <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Field</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p><strong>Name</strong></p></td>
-    <td><p>The name of the program.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Color</strong></p></td>
-    <td><p>Color used for this program in the data capture apps.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Icon</strong></p></td>
-    <td><p>Icon used for this program in the data capture apps.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Short name</strong></p></td>
-    <td><p>A short name of the program. The short name is used as the default chart or table title in the analytics apps.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Description</strong></p></td>
-    <td><p>A detailed description of the program.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Version</strong></p></td>
-    <td><p>The version of the program. This is used for example when people collect data offline in an Android implementation. When they go online and synchronize their metadata, they should get the latest version of the program.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Category combination</strong></p></td>
-    <td><p>The category combination you want to use. The default setting is <strong>None</strong>.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Data approval workflow</strong></p></td>
-    <td><p>The data approval workflow you want to use. The default setting is <strong>No value</strong>.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Completed events expiry date</strong></p></td>
-    <td><p>Defines the number of days for which you can edit a completed event. This means that when an event is completed and the specified number of expiry days has passed, the event is locked.</p>
-    <p>If you set &quot;Completed events expiry days&quot; to 10&quot;, an event is locked ten days after the completion date. After this date you can no longer edit the event.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Expiry period type</strong></p>
-    <p><strong>Expiry days</strong></p></td>
-    <td><p>The expiry days defines for how many days after the end of the previous period, an event can be edited. The period type is defined by the expiry period type. This means that when the specified number of expiry days has passed since the end date of the previous period, the events from that period are locked.</p>
-    <p>If you set the expiry type to &quot;Monthly&quot; and the expiry days to &quot;10&quot; and the month is October, then you can't add or edit an event to October after the 10th of November.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><strong>Block entry form after completed</strong></td>
-    <td><p>Select checkbox to block the entry form after completion of the event of this program.</p>
-    <p>This means that the data in the entry form can't be changed until you reset the status to incomplete.</p></td>
-    </tr>
-    <tr class="even">
-    <td><strong>Feature type</strong></td>
-    <td><p>Sets wether the program is going to capture a geographical feature type or not.
-- **None**
-  Nothing is captured.
-- **Polygon**
-  An area is captured. For single event programs the area will be the area representing the event being captured. For tracker programs, the area will represent the area of the enrollment.
-- **Point**
-  A point/coordinate is captured. For single event programs the point will be representing the event being captured. For tracker programs, the point will represent the enrollment.
-    </p></td>
-    </tr>
-    <tr class="odd">
-    <td><strong>Validation strategy</strong></td>
-    <td>Sets the server and client side validation requirement.
-> Data type validations is always performed regardless of the validation strategy. An integer field is never stored containing text, for example.
-- **On complete**
-  This option will enforce required field and error messages to be fixed when completing the event, but the event can be saved to the server without passing these validation requirements.
-  - For legacy reasons, this is always the validation strategy for tracker programs, where each data value in the event is stored to the server while entrering data.
-- **On update and insert**
-  This option will enforce required field validation when saving the event to the server regardless of the completion status. When using this option no events can be stored without passing validations.
-    </td>
-    </tr>
-    <tr class="even">
-    <td><strong>Pre-generate event UID</strong></td>
-    <td>Select checkbox to pre-generate unique event id numbers.</td>
-    </tr>
-    <tr class="odd">
-    <td><strong>Description of report date</strong></td>
-    <td><p>Type a description of the report date.</p>
-    <p>This description is displayed in the case entry form.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+    | Field | Description |
+    |---|---|
+    | **Name** | The name of the program. |
+    | **Color** | Color used for this program in the data capture apps. |
+    | **Icon** | Icon used for this program in the data capture apps. |
+    | **Short name** | A short name of the program. The short name is used as the default chart or table title in the analytics apps. |
+    | **Description** | A detailed description of the program. |
+    | **Version** | The version of the program. This is used for example when people collect data offline in an Android implementation. When they go online and synchronize their metadata, they should get the latest version of the program. |
+    | **Category combination** | The category combination you want to use. The default setting is **None**. |
+    | **Data approval workflow** | The data approval workflow you want to use. The default setting is **No value**. |
+    | **Completed events expiry date** | Defines the number of days for which you can edit a completed event. This means that when an event is completed and the specified number of expiry days has passed, the event is locked.<br>     <br>If you set "Completed events expiry days" to 10", an event is locked ten days after the completion date. After this date you can no longer edit the event. |
+    | **Expiry period type**<br>     <br>**Expiry days** | The expiry days defines for how many days after the end of the previous period, an event can be edited. The period type is defined by the expiry period type. This means that when the specified number of expiry days has passed since the end date of the previous period, the events from that period are locked.<br>     <br>If you set the expiry type to "Monthly" and the expiry days to "10" and the month is October, then you can't add or edit an event to October after the 10th of November. |
+    | **Block entry form after completed** | Select checkbox to block the entry form after completion of the event of this program.<br>     <br>This means that the data in the entry form can't be changed until you reset the status to incomplete. |
+    | **Feature type** | Sets whether the program is going to capture a geographical feature type or not. <br>- **None**   Nothing is captured. <br>- **Polygon**   An area is captured. For single event programs the area will be the area representing the event being captured. For tracker programs, the area will represent the area of the enrollment. <br>- **Point**   A point/coordinate is captured. For single event programs the point will be representing the event being captured. For tracker programs, the point will represent the enrollment.      |
+    | **Validation strategy** | Sets the server and client side validation requirement. <br><br>Data type validation is always performed regardless of the validation strategy. An integer field is never stored containing text, for example. <br>- **On complete**  This option will enforce required field and error messages to be fixed when completing the event, but the event can be saved to the server without passing these validation requirements. For legacy reasons, this is always the validation strategy for tracker programs, where each data value in the event is stored to the server while entering data. <br>- **On update and insert**   This option will enforce required field validation when saving the event to the server regardless of the completion status. When using this option no events can be stored without passing validations. |
+    | **Pre-generate event UID** | Select checkbox to pre-generate unique event id numbers. |
+    | **Description of report date** | Type a description of the report date.<br>     <br>This description is displayed in the case entry form. |
 
 1.  Click next.
 
@@ -347,45 +148,15 @@ attributes and program parameters.
 
 3.  (Optional) For each data element, add additional settings:
 
-    <table>
-    <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Setting</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p><strong>Compulsory</strong></p></td>
-    <td><p>The value of this data element must be filled into data entry form before you can complete the event.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Allow provided elsewhere</strong></p></td>
-    <td><p>Specify if the value of this data element comes from other facility, not in the facility where this data is entered.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Display in reports</strong></p></td>
-    <td><p>Displays the value of this data element into the single event without registration data entry function.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Date in future</strong></p></td>
-    <td><p>Will allow user to select a date in future for date data elements.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Mobile render type</strong></p></td>
-    <td><p>Can be used to select different render types for mobile devices. Available options vary depending on the data element's value type. For example, for a numerical value you may select &quot;Default&quot;, &quot;Value&quot;, &quot;Slider&quot;, &quot;Linear scale&quot;, and &quot;Spinner&quot;.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Desktop render type</strong></p></td>
-    <td><p>WARNING: NOT IMPLEMENTED YET.</p>
-    <p>Can be used to select different render types for desktop (i.e. the web interface). Available options vary depending on the data element's value type. For example, for a numerical value you may select &quot;Default&quot;, &quot;Value&quot;, &quot;Slider&quot;, &quot;Linear scale&quot;, and &quot;Spinner&quot;.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+    | Setting | Description |
+    |---|---|
+    | **Compulsory** | The value of this data element must be filled into data entry form before you can complete the event. |
+    | **Allow provided elsewhere** | Specify if the value of this data element comes from other facility, not in the facility where this data is entered. |
+    | **Display in reports** | Displays the value of this data element into the single event without registration data entry function. |
+    | **Date in future** | Will allow user to select a date in future for date data elements. |
+    | **Mobile render type** | Can be used to select different render types for mobile devices. Available options vary depending on the data element's value type. For example, for a numerical value you may select "Default", "Value", "Slider", "Linear scale", and "Spinner". |
+    | **Desktop render type** | WARNING: NOT IMPLEMENTED YET.<br>     <br>Can be used to select different render types for desktop (i.e. the web interface). Available options vary depending on the data element's value type. For example, for a numerical value you may select "Default", "Value", "Slider", "Linear scale", and "Spinner". |
 
 4.  Click next.
 
@@ -502,29 +273,11 @@ Change roles and access:
 
     2.  Select a **Notification trigger**.
 
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Notification trigger</p></th>
-        <th><p>Description</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p>Program stage completion</p></td>
-        <td><p>The program stage notification is sent when the program stage is completed</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>Days scheduled (due date)</p></td>
-        <td><p>The program stage notification is sent XX number of days before or after the due date</p>
-        <p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Notification trigger | Description |
+        |---|---|
+        | Program stage completion | The program stage notification is sent when the program stage is completed |
+        | Days scheduled (due date) | The program stage notification is sent XX number of days before or after the due date<br>         <br>You need to enter the number of days before or after the scheduled date that the notification will be sent. |
 
 3.  Define *who* you want to send the message to:
 
@@ -532,42 +285,14 @@ Change roles and access:
 
     2.  Select a **Notification recipient**.
 
-        <table>
-        <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Notification recipient</p></th>
-        <th><p>Description</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><p>Tracked entity instance</p></td>
-        <td><p>Receives program notifications via e-mail or text message.</p>
-        <p>To receive a program notification, the recipient must have an e-mail address or a phone number attribute.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>Organisation unit contact</p></td>
-        <td><p>Receives program notifications via e-mail or text message.</p>
-        <p>To receive a program notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>Users at organisation unit</p></td>
-        <td><p>All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p>User group</p></td>
-        <td><p>All members of the selected user group receive the program notifications via the internal DHIS2 messaging system</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p>Program</p></td>
-        <td><p>TBA</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Notification recipient | Description |
+        |---|---|
+        | Tracked entity instance | Receives program notifications via e-mail or text message.<br>         <br>To receive a program notification, the recipient must have an e-mail address or a phone number attribute. |
+        | Organisation unit contact | Receives program notifications via e-mail or text message.<br>         <br>To receive a program notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number. |
+        | Users at organisation unit | All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system. |
+        | User group | All members of the selected user group receive the program notifications via the internal DHIS2 messaging system |
+        | Program | TBA |
 
     3.  Click **Save**.
 
@@ -591,93 +316,26 @@ time.
 
 <!--DHIS2-SECTION-ID:reference_information_event_program_notification_parameters-->
 
-<table>
-<caption>Program notification parameters to use in program notifications</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Notification type</p></th>
-<th><p>Variable name</p></th>
-<th><p>Variable code</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Program</p></td>
-<td><p>Current date</p></td>
-<td><pre><code>V{current_date}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Days since enrollment date</p></td>
-<td><pre><code>V{days_since_enrollment_date}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Enrollment date</p></td>
-<td><pre><code>V{enrollment_date}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Incident date</p></td>
-<td><pre><code>V{incident_date}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Organisation unit name</p></td>
-<td><pre><code>V{org_unit_name}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Program name</p></td>
-<td><pre><code>V{program_name}</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Program stage</p></td>
-<td><p>Current date</p></td>
-<td><pre><code>V{current_date}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Days since due date</p></td>
-<td><pre><code>V{days_since_due_date}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Days until due date</p></td>
-<td><pre><code>V{days_until_due_date}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Due date</p></td>
-<td><pre><code>V{due_date}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Organisation unit name</p></td>
-<td><pre><code>V{org_unit_name}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Program name</p></td>
-<td><pre><code>V{program_name}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Program stage name</p></td>
-<td><pre><code>V{program_stage_name}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Event status</p></td>
-<td><pre><code>V{event_status}</code></pre></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Program notification parameters to use in program notifications
+
+| Notification type | Variable name | Variable code |
+|---|---|---|
+| Program | Current date | `V{current_date}` |
+|| Days since enrollment date | `V{days_since_enrollment_date}` |
+|| Enrollment date | `V{enrollment_date}` |
+|| Incident date | `V{incident_date}` |
+|| Organisation unit name | `V{org_unit_name}` |
+|| Program name | `V{program_name}` |
+| Program stage | Current date | `V{current_date}` |
+|| Days since due date | `V{days_since_due_date}` |
+|| Days until due date | `V{days_until_due_date}` |
+|| Due date | `V{due_date}` |
+|| Organisation unit name | `V{org_unit_name}` |
+|| Program name | `V{program_name}` |
+|| Program stage name | `V{program_stage_name}` |
+|| Event status | `V{event_status}` |
 
 ## Configure tracker programs in the Maintenance app
 
@@ -712,302 +370,40 @@ program. A program needs several types of metadata that you create in the **Main
 #### Enter program details
 
 <!--DHIS2-SECTION-ID:tracker_enter_programs_details-->
-<table>
-    <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-    </colgroup>
-    <thead>
-        <tr class="header">
-            <th><p>Field</p></th>
-            <th><p>Description</p></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="odd">
-            <td>
-                <p><strong>Name</strong></p>
-            </td>
-            <td><p>The name of the program.</p></td>
-        </tr>
-        <tr class="even">
-            <td>
-                <p><strong>Color</strong></p>
-            </td>
-            <td><p>Color used for this program in Tracker capture.</p></td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <p><strong>Icon</strong></p>
-            </td>
-            <td><p>Icon used for this program in Tracker capture</p></td>
-        </tr>
-        <tr class="even">
-            <td>
-                <p><strong>Short name</strong></p>
-            </td>
-            <td>
-                <p>
-                    A short name of the program. The short name is used as the
-                    default chart or table title in the analytics apps.
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <p><strong>Description</strong></p>
-            </td>
-            <td><p>A detailed description of the program.</p></td>
-        </tr>
-        <tr class="even">
-            <td>
-                <p><strong>Version</strong></p>
-            </td>
-            <td>
-                <p>
-                    The version of the program. This is used for example when
-                    people collect data offline in an Android implementation.
-                    When they go online and synchronize their metadata, they
-                    should get the latest version of the program.
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <p><strong>Tracked Entity Type</strong></p>
-            </td>
-            <td>
-                <p>
-                    The tracked entity type you want to use. A program can only
-                    have one type of tracked entity.
-                </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td>
-                <p><strong>Category combination</strong></p>
-            </td>
-            <td>
-                <p>
-                    The category combination you want to use. The default
-                    setting is <strong>None</strong>.
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <p><strong>Display front page list</strong></p>
-            </td>
-            <td>
-                <p>
-                    Select checkbox to display a list of Tracked Entity
-                    Instances in Tracker Capture. If not selected, the Search
-                    will be displayed.
-                </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td>
-                <p><strong>First stage appears on registration page</strong></p>
-            </td>
-            <td>
-                <p>
-                    Select checkbox to display the first program stage together
-                    with the registration (enrollment).
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <p><strong>Access level</strong></p>
-            </td>
-            <td><p>Choose the access level of the program.</p></td>
-        </tr>
-        <tr class="even">
-            <td>
-                <p><strong>Completed events expiry days</strong></p>
-            </td>
-            <td>
-                <p>
-                    Defines the number of days for which you can edit a
-                    completed event. This means that when an event is completed
-                    and the specified number of expiry days has passed, the
-                    event is locked.
-                </p>
-                <p>
-                    If you set &quot;Completed events expiry days&quot; to
-                    10&quot;, an event is locked ten days after the completion
-                    date. After this date you can no longer edit the event.
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <p><strong>Expiry period type</strong></p>
-                <p><strong>Expiry days</strong></p>
-            </td>
-            <td>
-                <p>
-                    The expiry days defines for how many days after the end of
-                    the previous period, an event can be edited. The period type
-                    is defined by the expiry period type. This means that when
-                    the specified number of expiry days has passed since the end
-                    date of the previous period, the events from that period are
-                    locked.
-                </p>
-                <p>
-                    If you set the expiry type to &quot;Monthly&quot; and the
-                    expiry days to &quot;10&quot; and the month is October, then
-                    you can't add or edit an event to October after the 10th of
-                    November.
-                </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td>
-                <strong>Minimum number of attributes required to search</strong>
-            </td>
-            <td>
-                <p>
-                    Specify the number of tracked entity attributes that needs
-                    to be filled in to search for Tracked Entities in the
-                    Program.
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <strong>Maximum number of tracked entity instances to return in
-                    search</strong>
-            </td>
-            <td>
-                <p>
-                    Specify the maximum number of tracked entity instances that
-                    should be returned in a search. Enter 0 for no limit.
-                </p>
-            </td>
-        </tr>
-    </tbody>
-</table>
+
+| Field | Description |
+|---|---|
+| **Name** | The name of the program. |
+| **Color** | Color used for this program in Tracker capture. |
+| **Icon** | Icon used for this program in Tracker capture |
+| **Short name** |  A short name of the program. The short name is used as the default chart or table title in the analytics apps.  |
+| **Description** | A detailed description of the program. |
+| **Version** |  The version of the program. This is used for example when people collect data offline in an Android implementation. When they go online and synchronize their metadata, they should get the latest version of the program.  |
+| **Tracked Entity Type** |  The tracked entity type you want to use. A program can only have one type of tracked entity.  |
+| **Category combination** |  The category combination you want to use. The default setting is **None**.  |
+| **Display front page list** |  Select checkbox to display a list of Tracked Entity Instances in Tracker Capture. If not selected, the Search will be displayed.  |
+| **First stage appears on registration page** |  Select checkbox to display the first program stage together with the registration (enrollment).  |
+| **Access level** | Choose the access level of the program. |
+| **Completed events expiry days** |  Defines the number of days for which you can edit a completed event. This means that when an event is completed and the specified number of expiry days has passed, the event is locked. <br> <br> If you set "Completed events expiry days" to 10", an event is locked ten days after the completion date. After this date you can no longer edit the event.  |
+| **Expiry period type**<br> <br>**Expiry days** |  The expiry days defines for how many days after the end of the previous period, an event can be edited. The period type is defined by the expiry period type. This means that when the specified number of expiry days has passed since the end date of the previous period, the events from that period are locked. <br> <br> If you set the expiry type to "Monthly" and the expiry days to "10" and the month is October, then you can't add or edit an event to October after the 10th of November.  |
+| **Minimum number of attributes required to search** |  Specify the number of tracked entity attributes that needs to be filled in to search for Tracked Entities in the Program.  |
+| **Maximum number of tracked entity instances to return in search** |  Specify the maximum number of tracked entity instances that should be returned in a search. Enter 0 for no limit.  |
 
 #### Enter enrollment details
 
 <!--DHIS2-SECTION-ID:enter_enrollment_details-->
-<table>
-    <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-    </colgroup>
-    <thead>
-        <tr class="header">
-            <th><p>Field</p></th>
-            <th><p>Description</p></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="odd">
-            <td><strong>Allow future enrollment dates</strong></td>
-            <td>
-                <p>
-                    Select checkbox if you want to allow tracked entity
-                    instances to be enrolled in the program on a future date.
-                </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td><strong>Allow future incident dates</strong></td>
-            <td>
-                <p>
-                    Select checkbox if you want to allow the incident date in
-                    the program to be on a future date.
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <strong>Only enroll once (per tracked entity instance lifetime)</strong>
-            </td>
-            <td>
-                <p>
-                    Select checkbox if you want a tracked entity to be able to
-                    enroll only once in a program. This setting is useful for
-                    example in child vaccination or post-mortem examination
-                    programs where it wouldn’t make sense to enroll a tracked
-                    entity more than once.
-                </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td><strong>Show incident date</strong></td>
-            <td>
-                <p>
-                    This setting allows you to show or hide the incident date
-                    field when a tracked entity enroll in the program.
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td><strong>Description of incident date</strong></td>
-            <td>
-                <p>Type a description of the incident date</p>
-                <p>For example:</p>
-                <p>In an immunization program for child under 1 year old, the
-                    incident date is the child's birthday. </p>
-                <p>In a maternal program, the incident date is the date of last
-                    menstrual period. </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td><strong>Type a description of the enrollment date</strong></td>
-            <td>
-                <p>
-                    The date when the tracked entity is enrolled into the
-                    program
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td><strong>Ignore overdue events</strong></td>
-            <td>
-                <p>
-                    When a tracked entity enrolls into the program, the events
-                    corresponding to the program stages are created. If you
-                    select this checkbox, the system will not generate overdue
-                    events.
-                </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td><strong>Feature type</strong></td>
-            <td>
-                <p>
-                    Sets wether the program is going to capture a geographical
-                    feature type or not.
-                </p>
-                <ul>
-                <li><strong>None:</strong>Nothing is captured.</li>
-                <li><strong>Polygon:</strong> An area is captured. For single
-                event programs the area will be the area representing the
-                event being captured. For tracker programs, the area will
-                represent the area of the enrollment. </li>
-                <li><strong>Point:</strong>: A point/coordinate is captured. For
-                single event programs the point will be representing the
-                event being captured. For tracker programs, the point will
-                represent the enrollment. </li>
-                </ul>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td><strong>Related program</strong></td>
-            <td>
-                <p>
-                    Choose a Tracker program which is related to the program you
-                    are creating, for example an ANC and a Child program.
-                </p>
-            </td>
-        </tr>
-    </tbody>
-</table>
+
+| Field | Description |
+|---|---|
+| **Allow future enrollment dates** |Select checkbox if you want to allow tracked entity instances to be enrolled in the program on a future date.|
+| **Allow future incident dates** |Select checkbox if you want to allow the incident date in the program to be on a future date.|
+| **Only enroll once (per tracked entity instance lifetime)** |Select checkbox if you want a tracked entity to be able to enroll only once in a program. This setting is useful for example in child vaccination or post-mortem examination programs where it wouldn’t make sense to enroll a tracked entity more than once.|
+| **Show incident date** |This setting allows you to show or hide the incident date field when a tracked entity enroll in the program.|
+| **Description of incident date** | Type a description of the incident date<br> <br>For example:<br> <br>In an immunization program for child under 1 year old, the incident date is the child's birthday. <br> <br>In a maternal program, the incident date is the date of last menstrual period.  |
+| **Type a description of the enrollment date** |The date when the tracked entity is enrolled into the program|
+| **Ignore overdue events** |When a tracked entity enrolls into the program, the events corresponding to the program stages are created. If you select this checkbox, the system will not generate overdue events.|
+| **Feature type** |Sets whether the program is going to capture a geographical feature type or not. <br> * **None:** Nothing is captured.<br> * **Polygon:** An area is captured. For single event programs the area will be the area representing the event being captured. For tracker programs, the area will represent the area of the enrollment. <br> * **Point:** A point/coordinate is captured. For single event programs the point will be representing the event being captured. For tracker programs, the point will represent the enrollment. |
+| **Related program** |Choose a Tracker program which is related to the program you are creating, for example an ANC and a Child program.|
 
 
 #### Assign tracked entity attributes.
@@ -1018,84 +414,14 @@ program. A program needs several types of metadata that you create in the **Main
         attributes you want to assign to the program.
 
   2. (Opptional) For each assigned attribute, add additional settings:
-<table>
-        <colgroup>
-            <col style="width: 50%" />
-            <col style="width: 50%" />
-        </colgroup>
-        <thead>
-            <tr class="header">
-                <th><p>Setting</p></th>
-                <th><p>Description</p></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="odd">
-                <td>
-                    <p><strong>Display in list</strong></p>
-                </td>
-                <td>
-                    <p>
-                        Displays the value of this attribute in the list of tracked
-                        entity instances in Tracker capture.
-                    </p>
-                </td>
-            </tr>
-            <tr class="even">
-                <td>
-                    <p><strong>Mandatory</strong></p>
-                </td>
-                <td>
-                    <p>
-                        The value of this attribute must be filled into data entry
-                        form before you can complete the event.
-                    </p>
-                </td>
-            </tr>
-            <tr class="odd">
-                <td>
-                    <p><strong>Date in future</strong></p>
-                </td>
-                <td>
-                    <p>
-                        Will allow user to select a date in future for date
-                        attributes.
-                    </p>
-                </td>
-            </tr>
-            <tr class="even">
-                <td>
-                    <p><strong>Mobile render type</strong></p>
-                </td>
-                <td>
-                    <p>
-                        Can be used to select different render types for mobile
-                        devices. Available options vary depending on the attribute's
-                        value type. For example, for a numerical value you may
-                        select &quot;Default&quot;, &quot;Value&quot;,
-                        &quot;Slider&quot;, &quot;Linear scale&quot;, and
-                        &quot;Spinner&quot;.
-                    </p>
-                </td>
-            </tr>
-            <tr class="odd">
-                <td>
-                    <p><strong>Desktop render type</strong></p>
-                </td>
-                <td>
-                    <p>WARNING: NOT IMPLEMENTED YET.</p>
-                    <p>
-                        Can be used to select different render types for desktop
-                        (i.e. the web interface). Available options vary depending
-                        on the attribute's value type. For example, for a numerical
-                        value you may select &quot;Default&quot;, &quot;Value&quot;,
-                        &quot;Slider&quot;, &quot;Linear scale&quot;, and
-                        &quot;Spinner&quot;.
-                    </p>
-                </td>
-            </tr>
-        </tbody>
-</table>
+
+| Setting | Description |
+|---|---|
+| **Display in list** |                          Displays the value of this attribute in the list of tracked                         entity instances in Tracker capture.                      |
+| **Mandatory** |                          The value of this attribute must be filled into data entry                         form before you can complete the event.                      |
+| **Date in future** |                          Will allow user to select a date in future for date                         attributes.                      |
+| **Mobile render type** |                          Can be used to select different render types for mobile                         devices. Available options vary depending on the attribute's                         value type. For example, for a numerical value you may                         select "Default", "Value",                         "Slider", "Linear scale", and                         "Spinner".                      |
+| **Desktop render type** | WARNING: NOT IMPLEMENTED YET.<br>                     <br>                         Can be used to select different render types for desktop                         (i.e. the web interface). Available options vary depending                         on the attribute's value type. For example, for a numerical                         value you may select "Default", "Value",                         "Slider", "Linear scale", and                         "Spinner".                      |
 
 3. Create registration form
 
@@ -1112,7 +438,7 @@ program. A program needs several types of metadata that you create in the **Main
         3. Add data elements by clicking the plus sign next to the name of the data elements you wish to add.
         4. Repeat above steps until you have all the sections you need.
             To change the section order: click the options menu, then drag the section to the place you want.  
-	
+
     4. To create a **Custom** registration form: Use the WYSIWYG editor to create a completely customized form. If you select Source, you can paste HTML code directly in the editing area. You can also insert images for example flags or logos.
 
     5. Click add stage.
@@ -1140,7 +466,7 @@ number of days to wait for starting the program stage.
 3. Enter repeatable program stage details.
     1. Specify if the program stage is **Repeatable** or not.
     2. Select a **Period type**.
-    3. Clear **Display generate event box after completed** if you 
+    3. Clear **Display generate event box after completed** if you
     don't want to display *Create new event box* to create new event
     for a repeatable stage after you click *Complete* for an event
     of the stage in data entry form. This field is selected by
@@ -1149,193 +475,22 @@ number of days to wait for starting the program stage.
     6. (Optional) Select a  **Default next scheduled date**. This will show a list of assigned data elements of type **date**. If an element is selected, the Tracker client will use this as the default starting date. The data element can be used by program rules to dynamically schedule intervals between events.
 4. Enter form details
 
-    <table>
-        <colgroup>
-            <col style="width: 50%" />
-            <col style="width: 50%" />
-        </colgroup>
-        <thead>
-            <tr class="header">
-                <th><p>Option</p></th>
-                <th><p>Action</p></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="odd">
-                <td>
-                    <p><strong>Auto-generate event</strong></p>
-                </td>
-                <td>
-                    <p>
-                        Clear check box to prevent creating an event of this program
-                        stage automatically when a entity is enrolled in the program.
-                    </p>
-                </td>
-            </tr>
-            <tr class="even">
-                <td>
-                    <p><strong>Open data entry form after enrollment</strong></p>
-                </td>
-                <td>
-                    <p>
-                        Select check box to automatically open the event of this
-                        stage as soon as the entity has enrolled into the program.
-                    </p>
-                </td>
-            </tr>
-            <tr class="odd">
-                <td>
-                    <p><strong>Report date to use</strong></p>
-                </td>
-                <td>
-                    If you have selected the
-                    <strong>Open data entry form after enrollment</strong> check
-                    box, also select a <strong>Report date to use</strong>:
-                    <strong>Date of incident</strong> or
-                    <strong>Date of enrollment</strong>.
-                    <p>
-                        This is the date used as report date for an event that has
-                        been opened automatically.
-                    </p>
-                    <p>
-                        If the <strong>Report date to use</strong> is selected as
-                        one of those two ('incident date'/'enrollment date'), in
-                        Dashboard, the 'Report date' of the event will be set as one
-                        of those two.
-                    </p>
-                </td>
-            </tr>
-            <tr class="even">
-                <td>
-                    <p><strong>User assignment of events</strong></p>
-                </td>
-                <td>
-                    <p>
-                        Select check box to enable user assignment of the program
-                        stage.
-                    </p>
-                    <p>
-                        This means that in Tracker capture there will be a list of
-                        users to which the event can be assigned.
-                    </p>
-                </td>
-            </tr>
-            <tr class="odd">
-                <td>
-                    <p><strong>Block entry form after completed</strong></p>
-                </td>
-                <td>
-                    <p>
-                        Select check box to block the entry form after completion of
-                        the event of this stage.
-                    </p>
-                    <p>
-                        This means that the data in the entry form can't be changed
-                        until you reset the status to incomplete.
-                    </p>
-                </td>
-            </tr>
-            <tr class="even">
-                <td>
-                    <p>
-                        <strong>Ask user to complete program when stage is
-                            completed</strong>
-                    </p>
-                </td>
-                <td>
-                    <p>
-                        Select check box to trigger a pop-up which asks the user if
-                        he/she wants to create the event of next stage.
-                    </p>
-                </td>
-            </tr>
-            <tr class="odd">
-                <td>
-                    <p>
-                        <strong>Ask user to create new event when stage is
-                            complete</strong>
-                    </p>
-                </td>
-                <td>
-                    <p>
-                        Select check box to trigger a pop-up which asks the users if
-                        he/she wants to create a new event of this stage when an
-                        event of this stage is completed.
-                    </p>
-                    <p>
-                        This property is active only if you have selected
-                        <strong>Repeatable</strong>.
-                    </p>
-                </td>
-            </tr>
-            <tr class="even">
-                <td>
-                    <p><strong>Generate events by enrollment date</strong></p>
-                </td>
-                <td>
-                    <p>
-                        Check on it for auto-generating due dates of events from
-                        program-stages of this program based on the enrollment date.
-                        If it is not checked, the due dates are generated based on
-                        incident date.
-                    </p>
-                </td>
-            </tr>
-            <tr class="odd">
-                <td>
-                    <p><strong>Hide due dates</strong></p>
-                </td>
-                <td><p>Select checkbox to hide due dates for events.</p></td>
-            </tr>
-            <tr class="even">
-                <td><strong>Feature type</strong></td>
-                <td>
-                    <p>
-                        Sets wether the program is going to capture a geographical
-                        feature type or not.
-                    </p>
-                    <ul>
-                    <li><strong>None:</strong>Nothing is captured.</li>
-                    <li>
-                        <strong>Polygon: </strong> An area is captured. For single
-                        event programs the area will be the area representing the
-                        event being captured. For tracker programs, the area will
-                        represent the area of the enrollment.
-                    </li>
-                    <li>
-                        <strong>Point:</strong>: A point/coordinate is captured. For
-                        single event programs the point will be representing the
-                        event being captured. For tracker programs, the point will
-                        represent the enrollment.
-                    </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr class="odd">
-                <td>
-                    <p><strong>Pre-generate event UID</strong></p>
-                </td>
-                <td>
-                    <p>Select check box to pre-generate unique event id numbers.</p>
-                </td>
-            </tr>
-            <tr class="even">
-                <td>
-                    <p><strong>Description of report date</strong></p>
-                </td>
-                <td>
-                    <p>Type a description of the report date.</p>
-                    <p>This description is displayed in the data entry form.</p>
-                </td>
-            </tr>
-            <tr class="odd">
-                <td>
-                    <p><strong>Description of due date</strong></p>
-                </td>
-                <td><p>Type a description of the due date.</p></td>
-            </tr>
-        </tbody>
-    </table>
+
+  | Option | Action |
+ |---|---|
+ | **Auto-generate event** |  Clear check box to prevent creating an event of this program  stage automatically when a entity is enrolled in the program.  |
+ | **Open data entry form after enrollment** |  Select check box to automatically open the event of this  stage as soon as the entity has enrolled into the program.  |
+ | **Report date to use** | If you have selected the  **Open data entry form after enrollment** check  box, also select a **Report date to use**:  **Date of incident** or  **Date of enrollment**.  <br>  This is the date used as report date for an event that has  been opened automatically.  <br>  <br>  If the **Report date to use** is selected as  one of those two ('incident date'/'enrollment date'), in  Dashboard, the 'Report date' of the event will be set as one  of those two.  |
+ | **User assignment of events** |  Select check box to enable user assignment of the program  stage.  <br>  <br>  This means that in Tracker capture there will be a list of  users to which the event can be assigned.  |
+ | **Block entry form after completed** |  Select check box to block the entry form after completion of  the event of this stage.  <br>  <br>  This means that the data in the entry form can't be changed  until you reset the status to incomplete.  |
+ | **Ask user to complete program when stage is   completed** |  Select check box to trigger a pop-up which asks the user if  he/she wants to create the event of next stage.  |
+ | **Ask user to create new event when stage is   complete** |  Select check box to trigger a pop-up which asks the users if  he/she wants to create a new event of this stage when an  event of this stage is completed.  <br>  <br>  This property is active only if you have selected  **Repeatable**.  |
+ | **Generate events by enrollment date** |  Check on it for auto-generating due dates of events from  program-stages of this program based on the enrollment date.  If it is not checked, the due dates are generated based on  incident date.  |
+ | **Hide due dates** | Select checkbox to hide due dates for events. |
+ | **Feature type** |  Sets whether the program is going to capture a geographical  feature type or not.  <br>  * **None:** Nothing is captured.<br> * **Polygon:** An area is captured. For single  event programs the area will be the area representing the  event being captured. For tracker programs, the area will  represent the area of the enrollment. <br> * **Point:** A point/coordinate is captured. For  single event programs the point will be representing the  event being captured. For tracker programs, the point will  represent the enrollment. |
+ | **Pre-generate event UID** | Select check box to pre-generate unique event id numbers. |
+ | **Description of report date** | Type a description of the report date.<br>  <br>This description is displayed in the data entry form. |
+ | **Description of due date** | Type a description of the due date. |
 
 5.  Assign data elements to program stage:
 
@@ -1345,103 +500,16 @@ number of days to wait for starting the program stage.
     2.  For each assigned data element, review the properties. You can
         select:
 
-<table>
-    <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
-    </colgroup>
-    <thead>
-        <tr class="header">
-            <th><p>Option</p></th>
-            <th><p>Action</p></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="odd">
-            <td>
-                <p><strong>Compulsory</strong></p>
-            </td>
-            <td>
-                <p>
-                    The value of this data element must be filled into data
-                    entry form before completing the event.
-                </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td>
-                <p><strong>Allow provided elsewhere</strong></p>
-            </td>
-            <td>
-                <p>
-                    Specify if the value of this data element comes from other
-                    facility, not in the facility where this data is entered.
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <p><strong>Display in reports</strong></p>
-            </td>
-            <td>
-                <p>
-                    Display the value of this data element into the single event
-                    without registration data entry function.
-                </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td>
-                <p><strong>Date in future</strong></p>
-            </td>
-            <td>
-                <p>Allow to select a date in future for date data elements.</p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <p><strong>Skip synchronization</strong></p>
-            </td>
-            <td>
-                <p>
-                    Allow data element to be skipped when running data
-                    synchronization jobs.
-                </p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td>
-                <p><strong>Mobile render type</strong></p>
-            </td>
-            <td>
-                <p>
-                    Can be used to select different render types for mobile
-                    devices. Available options vary depending on the attribute's
-                    value type. For example, for a numerical value you may
-                    select &quot;Default&quot;, &quot;Value&quot;,
-                    &quot;Slider&quot;, &quot;Linear scale&quot;, and
-                    &quot;Spinner&quot;.
-                </p>
-            </td>
-        </tr>
-        <tr class="odd">
-            <td>
-                <p><strong>Desktop render type</strong></p>
-            </td>
-            <td>
-                <p>WARNING: NOT IMPLEMENTED YET.</p>
-                <p>
-                    Can be used to select different render types for desktop
-                    (i.e. the web interface). Available options vary depending
-                    on the attribute's value type. For example, for a numerical
-                    value you may select &quot;Default&quot;, &quot;Value&quot;,
-                    &quot;Slider&quot;, &quot;Linear scale&quot;, and
-                    &quot;Spinner&quot;.
-                </p>
-            </td>
-        </tr>
-    </tbody>
-</table>
+
+| Option | Action |
+|---|---|
+| **Compulsory** |                      The value of this data element must be filled into data                     entry form before completing the event.                  |
+| **Allow provided elsewhere** |                      Specify if the value of this data element comes from other                     facility, not in the facility where this data is entered.                  |
+| **Display in reports** |                      Display the value of this data element into the single event                     without registration data entry function.                  |
+| **Date in future** | Allow to select a date in future for date data elements. |
+| **Skip synchronization** |                      Allow data element to be skipped when running data                     synchronization jobs.                  |
+| **Mobile render type** |                      Can be used to select different render types for mobile                     devices. Available options vary depending on the attribute's                     value type. For example, for a numerical value you may                     select "Default", "Value",                     "Slider", "Linear scale", and                     "Spinner".                  |
+| **Desktop render type** | WARNING: NOT IMPLEMENTED YET.<br>                 <br>                     Can be used to select different render types for desktop                     (i.e. the web interface). Available options vary depending                     on the attribute's value type. For example, for a numerical                     value you may select "Default", "Value",                     "Slider", "Linear scale", and                     "Spinner".                  |
 
 6. Create data entry forms for program stage
 
@@ -1551,7 +619,7 @@ template.
 
 	![](resources/images/program/what_to_send.png)
 ![](resources/images/program/where_to_send.png)
-	![](resources/images/program/who_to_send.png)	
+	![](resources/images/program/who_to_send.png)
 
 3.  Enter a **Name**.
 
@@ -1574,103 +642,29 @@ template.
 6.  In the **When-to-send it** field, select what should trigger the
     notification.
 
-    <table>
-    <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Trigger</p></th>
-    <th><p>Description</p></th>
-    <th><p>Note</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Program enrollment</p></td>
-    <td><p>The program notification is sent when the TEI enrols in the program.</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Program completion</p></td>
-    <td><p>The program notification is sent when the program of TEI is completed</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Days scheduled (incident date)</p></td>
-    <td><p>The program notification is sent XX number of days before or after the incident date</p></td>
-    <td><p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Days scheduled (enrollment date)</p></td>
-    <td><p>The program notification is sent XX number of days before or after the enrollment date</p></td>
-    <td><p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Program Rule</p></td>
-    <td><p>Notification will be triggered as a result of program rule exeuction.</p></td>
-    <td><p>Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+    | Trigger | Description | Note |
+    |---|---|---|
+    | Program enrollment | The program notification is sent when the TEI enrols in the program. | - |
+    | Program completion | The program notification is sent when the program of TEI is completed | - |
+    | Days scheduled (incident date) | The program notification is sent XX number of days before or after the incident date | You need to enter the number of days before or after the scheduled date that the notification will be send. |
+    | Days scheduled (enrollment date) | The program notification is sent XX number of days before or after the enrollment date | You need to enter the number of days before or after the scheduled date that the notification will be send. |
+    | Program Rule | Notification will be triggered as a result of program rule exeuction. | Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful. |
 
 
 7.  In the **Who-to-send-it** field, select who should receive the
     program notification.
 
-    <table>
-    <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Recipient type</p></th>
-    <th><p>Description</p></th>
-    <th><p>Note</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Tracked entity instance</p></td>
-    <td><p>Receives program notifications via e-mail or text message.</p></td>
-    <td><p>To receive a program notification, the recipient must have an e-mail address or a phone number attribute.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Organisation unit contact</p></td>
-    <td><p>Receives program notifications via e-mail or text message.</p></td>
-    <td><p>To receive a program notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number.</p></td>
-    </tr>
-    <tr class="odd">
-    <td>Users at organisation unit:</td>
-    <td><p>All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system.</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>User group</p></td>
-    <td><p>All members of the selected user group receive the program notifications via the internal DHIS2 messaging system</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Limit To Hierarchy</p></td>
-    <td><p>Send notification only to those users who belong to any of the organisation unit in the hierarchy.</p></td>
-    <td><p>This option is only available when User Group is selected as recipient.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Parent OrgUnit Only</p></td>
-    <td><p>Send notification only to those users who belong to parent organisation unit.</p></td>
-    <td><p>This option is only available when User Group is selected as recipient.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Program Attribute</p></td>
-    <td><p>TrackedEntityAttribute can also be selected as recipient.</p></td>
-    <td><p>This parameter will only be effective if TrackedEntityAttribute value type is PHONE_NUMBER/EMAIL.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+    | Recipient type | Description | Note |
+    |---|---|---|
+    | Tracked entity instance | Receives program notifications via e-mail or text message. | To receive a program notification, the recipient must have an e-mail address or a phone number attribute. |
+    | Organisation unit contact | Receives program notifications via e-mail or text message. | To receive a program notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number. |
+    | Users at organisation unit: | All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system. | - |
+    | User group | All members of the selected user group receive the program notifications via the internal DHIS2 messaging system | - |
+    | Limit To Hierarchy | Send notification only to those users who belong to any of the organisation unit in the hierarchy. | This option is only available when User Group is selected as recipient. |
+    | Parent OrgUnit Only | Send notification only to those users who belong to parent organisation unit. | This option is only available when User Group is selected as recipient. |
+    | Program Attribute | TrackedEntityAttribute can also be selected as recipient. | This parameter will only be effective if TrackedEntityAttribute value type is PHONE_NUMBER/EMAIL. |
 
 8.  Click **Save**.
 
@@ -1690,7 +684,7 @@ template.
     program stage opens. If the program stage doesn't have any program
     stage notifications, the list is empty.
 
-2.  Click on add button and select**Program stage notification**.
+2.  Click on add button and select **Program stage notification**.
 
 3.  Click **Add new**.
 
@@ -1716,98 +710,27 @@ template.
 7.  In the **When-to-send-it** field, select what should trigger the
     notification.
 
-    <table>
-    <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Trigger</p></th>
-    <th><p>Description</p></th>
-    <th><p>Note</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Program stage completion</p></td>
-    <td><p>The program stage notification is sent when the program stage is completed</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Days scheduled (due date)</p></td>
-    <td><p>The program stage notification is sent XX number of days before or after the due date</p></td>
-    <td><p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Program Rule</p></td>
-    <td><p>Notification will be triggered as a result of program rule execution.</p></td>
-    <td><p>Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+    | Trigger | Description | Note |
+    |---|---|---|
+    | Program stage completion | The program stage notification is sent when the program stage is completed | - |
+    | Days scheduled (due date) | The program stage notification is sent XX number of days before or after the due date | You need to enter the number of days before or after the scheduled date that the notification will be send. |
+    | Program Rule | Notification will be triggered as a result of program rule execution. | Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful. |
 
 8.  In the **Recipients** field, select who should receive the program
     stage notification. You can select:
 
-    <table>
-    <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Recipient type</p></th>
-    <th><p>Description</p></th>
-    <th><p>Note</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Tracked entity instance</p></td>
-    <td><p>Receives program notifications via e-mail or text message.</p></td>
-    <td><p>To receive a program stage notification, the recipient must have an e-mail address or a phone number attribute.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Organisation unit contact</p></td>
-    <td><p>Receives program notifications via e-mail or text message.</p></td>
-    <td><p>To receive a program stage notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number.</p>
-    <p>The system selects the same organisation unit as where the event took place.</p></td>
-    </tr>
-    <tr class="odd">
-    <td>Users at organisation unit:</td>
-    <td><p>All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system.</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>User group</p></td>
-    <td><p>All members of the selected user group receive the program notifications via the internal DHIS2 messaging system</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Limit To Hierarchy</p></td>
-    <td><p>Send notification only to those users who belong to any of the organisation unit in the hierarchy.</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Parent OrgUnit Only</p></td>
-    <td><p>Send notification only to those users who belong to parent organisation unit.</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Data Element</p></td>
-    <td><p>Data Element associated with ProgramStage can be selected as recipient.</p></td>
-    <td><p>Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Tracked Entity Attribute</p></td>
-    <td><p>Tracked Entity Attribute associated with ProgramInstance/Enrollment can be selected as recipient.</p></td>
-    <td><p>Attribute will only be effective if it has value type PHONE_NUMBER/EMAIL.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+    | Recipient type | Description | Note |
+    |---|---|---|
+    | Tracked entity instance | Receives program notifications via e-mail or text message. | To receive a program stage notification, the recipient must have an e-mail address or a phone number attribute. |
+    | Organisation unit contact | Receives program notifications via e-mail or text message. | To receive a program stage notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number.<br>     <br>The system selects the same organisation unit as where the event took place. |
+    | Users at organisation unit: | All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system. | - |
+    | User group | All members of the selected user group receive the program notifications via the internal DHIS2 messaging system | - |
+    | Limit To Hierarchy | Send notification only to those users who belong to any of the organisation unit in the hierarchy. | - |
+    | Parent OrgUnit Only | Send notification only to those users who belong to parent organisation unit. | - |
+    | Data Element | Data Element associated with ProgramStage can be selected as recipient. | Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL. |
+    | Tracked Entity Attribute | Tracked Entity Attribute associated with ProgramInstance/Enrollment can be selected as recipient. | Attribute will only be effective if it has value type PHONE_NUMBER/EMAIL. |
 
 
 
@@ -1822,118 +745,31 @@ template.
 
 <!--DHIS2-SECTION-ID:reference_information_event_program_notification_parameters-->
 
-<table>
-<caption>Program notification parameters to use in program notifications</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Notification type</p></th>
-<th><p>Variable name</p></th>
-<th><p>Variable code</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Program</p></td>
-<td><p>Current date</p></td>
-<td><pre><code>V{current_date}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Days since enrollment date</p></td>
-<td><pre><code>V{days_since_enrollment_date}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Enrollment date</p></td>
-<td><pre><code>V{enrollment_date}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Incident date</p></td>
-<td><pre><code>V{incident_date}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Organisation unit name</p></td>
-<td><pre><code>V{org_unit_name}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Program name</p></td>
-<td><pre><code>V{program_name}</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Program stage</p></td>
-<td><p>Current date</p></td>
-<td><pre><code>V{current_date}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Days since due date</p></td>
-<td><pre><code>V{days_since_due_date}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Days until due date</p></td>
-<td><pre><code>V{days_until_due_date}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Due date</p></td>
-<td><pre><code>V{due_date}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Organisation unit name</p></td>
-<td><pre><code>V{org_unit_name}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Program name</p></td>
-<td><pre><code>V{program_name}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Program stage name</p></td>
-<td><pre><code>V{program_stage_name}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Event organisation unit</p></td>
-<td><pre><code>V{event_org_unit_id}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Enrollment organisation unit</p></td>
-<td><pre><code>V{enrollment_org_unit_id}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Program stage id</p></td>
-<td><pre><code>V{program_stage_id}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Program id</p></td>
-<td><pre><code>V{program_id}</code></pre></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><p>Program instance id/Enrollment id</p></td>
-<td><pre><code>V{enrollment_id}</code></pre></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><p>Tracked entity id</p></td>
-<td><pre><code>V{tracked_entity_id}</code></pre></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Program notification parameters to use in program notifications
+
+| Notification type | Variable name | Variable code |
+|---|---|---|
+| Program | Current date | `V{current_date}` |
+|| Days since enrollment date | `V{days_since_enrollment_date}` |
+|| Enrollment date | `V{enrollment_date}` |
+|| Incident date | `V{incident_date}` |
+|| Organisation unit name | `V{org_unit_name}` |
+|| Program name | `V{program_name}` |
+| Program stage | Current date | `V{current_date}` |
+|| Days since due date | `V{days_since_due_date}` |
+|| Days until due date | `V{days_until_due_date}` |
+|| Due date | `V{due_date}` |
+|| Organisation unit name | `V{org_unit_name}` |
+|| Program name | `V{program_name}` |
+|| Program stage name | `V{program_stage_name}` |
+|| Event organisation unit | `V{event_org_unit_id}` |
+|| Enrollment organisation unit | `V{enrollment_org_unit_id}` |
+|| Program stage id | `V{program_stage_id}` |
+|| Program id | `V{program_id}` |
+|| Program instance id/Enrollment id | `V{enrollment_id}` |
+|| Tracked entity id | `V{tracked_entity_id}` |
 
 ## Configure program indicators
 
@@ -1959,127 +795,26 @@ expression and filter. The order of evaluation is:
 3.  All evaluated expression values will be *aggregated* according to
     the aggregation type of the program indicator.
 
-<table>
-<caption>Program indicator components</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Program rule component</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Aggregation type</p></td>
-<td><p>The aggregation type determines how the program indicator will be aggregated. The following aggregation types are available:</p>
-<ul>
-<li><p>Average</p></li>
-<li><p>Average (number)</p></li>
-<li><p>Average (number, disaggregation)</p></li>
-<li><p>Average (sum in organisation unit hierarchy)</p></li>
-<li><p>Average (sum of numbers)</p></li>
-<li><p>Average (sum of numbers, disaggregation)</p></li>
-<li><p>Average (Yes/No)</p></li>
-<li><p>Count</p></li>
-<li><p>Custom</p>
-<p>The &quot;custom&quot; aggregation type allows you to specify the aggregation type in-line in the expression. All other aggregation  types are applied to the entire expression.</p>
-<p>Using the &quot;custom&quot; aggregation type might lead to an exception of the order of evaluation described above where individual parts of the expression can be evaluated and aggregated, as opposed to the entire expression being evaluated prior to aggregation.</p></li>
-<li><p>Default</p></li>
-<li><p>Max</p></li>
-<li><p>Min</p></li>
-<li><p>None</p></li>
-<li><p>Standard deviation</p></li>
-<li><p>Sum</p></li>
-<li><p>Variance</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p>Analytics type</p></td>
-<td><p>The available analytics types are <em>event</em> and <em>enrollment</em>.</p>
-<p>The analytics type defines whether the program indicator is calculated based on events or program enrollments. This has an impact on what type of calculations can be made.</p>
-<ul>
-<li><p>Events implies a data source where each event exists as an independent row. This is suitable for performing aggregations such as counts and sums.</p></li>
-<li><p>Enrollments implies a data source where all events for a single enrollment is combined on the same row. This allows for calculations which can compare event data from various program stages within a program enrollment.</p></li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td><p>Analytics period boundaries</p></td>
-<td><p>Defines the boundaries for the program indicator calculation. The boundaries determine which events or enrollments gets included in aggregations, always relative to the aggregate reporting period start and end. When creating the program indicator, the default boundaries will get preselected based on analytics type.</p>
-<ul>
-<li><p>For analytics type <em>event</em>, the default boundaries will be configured to encapsulate any events with an event date after the reporting period starts and before the reporting period ends.</p></li>
-<li><p>For analytics type <em>enrollment</em>, the default boundaries will encapsulate all enrollments with an enrollment date after the reporting date starts and before the reporting period ends. In addition, the default enrollment program indicator evaluates the newest event for all program stages regardless of date.</p></li>
-</ul>
-<p>It is possible to change the upper and lower boundaries to include a longer or shorter period relative to the reporting period, or delete one of the boundaries - in effect returning all data before or after a certain period. It is also possible to add more constraints, for example to make an enrollment program indicator only include event data up to a given point in time.</p>
-<ul>
-<li><p>Boundary target: Can be <em>incident date</em>, <em>event date</em>, <em>enrollment date</em> or <em>custom</em>. Designates what is being constrained by the boundary.</p>
-<p><em>custom</em> is used make boundary that target either a date data element, tracked entity attribute or the presence of an event in a program stage. This is done with a custom expression on the form:</p>
-<ul>
-<li><p>Data element of type date: #{programStageUid.dataElementUid}.</p>
-<pre><code>#{A03MvHHogjR.a3kGcGDCuk6}</code></pre></li>
-<li><p>Tracked entity attribute of type date: #{attributeUid}.</p>
-<pre><code>A{GPkGfbmArby}</code></pre></li>
-<li><p>Presence of one event in a specific program stage: PS_EVENTDATE:programStageUid.</p>
-<pre><code>PS_EVENTDATE:A03MvHHogjR</code></pre>
-<blockquote>
-<p><strong>Note</strong></p>
-This boundary target is only applicable to
-Analytics type Enrollment
-</blockquote></li>
-</ul></li>
-<li><p>Analytics period boundary type: Defines whether the boundary is an end boundary - starting with &quot;before...&quot;, or a start boundary - &quot;after...&quot;. Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period.</p></li>
-<li><p>Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort program indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with &quot;-1&quot; and &quot;Years&quot;</p></li>
-<li><p>Period type: See above. Can be any period, e.g. <em>Weekly</em> or <em>Quarterly</em>.</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p>Expression</p></td>
-<td><p>The expression defines how the indicator is being calculated. The expression can contain references to various entities which will be substituted with a related values when the indicator is calculated:</p>
-<ul>
-<li><p>Data elements: Will be substituted with the value of the data element for the time period and organisation unit for which the calculation is done. Refers to both program stage and data element.</p></li>
-<li><p>Attributes: Will be substituted with the value of the attribute for the person / tracked entity for which the calculation is done.</p></li>
-<li><p>Variables: Will be substituted with special values linked to the program, including incident date and date of enrollment for the person, current date and count of values in the expression for the time period and organisation unit for which the calculation is done.</p></li>
-<li><p>Constants: Will be substituted with the value of the constant.</p></li>
-</ul>
-<p>The expression is a mathematical expression and can also contain operators.</p>
-<p>For single event programs and tracker programs with analytics type <em>event</em>, the expression will be evaluated <em>per event</em>, then aggregated according to its aggregation type.</p>
-<p>For tracker programs with analytics type <em>enrollment</em>, the expression will be evaluated <em>per enrollment</em>, then aggregated according to its aggregation type.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Filter</p></td>
-<td><p>The filter is applied to events and filters the data source used for the calculation of the indicator. I.e. the filter is applied to the set of events before the indicator expression is being evaluated. The filter must evaluate to either true or false. It filter is applied to each individual event. If the filter evaluates to true then the event is included later in the expression evaluation, if not it is ignored. The filter can, in a similar way as expressions, contain references to data elements, attributes and constants.</p>
-<p>The program indicator filter can in addition use logical operators. These operators can be used to form logical expressions which ultimately evaluate to either true or false. For example you can assert that multiple data elements must be a specific value, or that specific attributes must have numerical values less or greater than a constant.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Program indicator components
+
+| Program rule component | Description |
+|---|---|
+| Aggregation type | The aggregation type determines how the program indicator will be aggregated. The following aggregation types are available:<br> * Average<br> * Average (number)<br> * Average (number, disaggregation)<br> * Average (sum in organisation unit hierarchy)<br> * Average (sum of numbers)<br> * Average (sum of numbers, disaggregation)<br> * Average (Yes/No)<br> * Count<br> * Custom<br> The "custom" aggregation type allows you to specify the aggregation type in-line in the expression. All other aggregation types are applied to the entire expression.<br> Using the "custom" aggregation type might lead to an exception of the order of evaluation described above where individual parts of the expression can be evaluated and aggregated, as opposed to the entire expression being evaluated prior to aggregation.<br> * Default<br> * Max<br> * Min<br> * None<br> * Standard deviation<br> * Sum<br> * Variance |
+| Analytics type | The available analytics types are *event* and *enrollment*.<br> <br>The analytics type defines whether the program indicator is calculated based on events or program enrollments. This has an impact on what type of calculations can be made.<br> * Events implies a data source where each event exists as an independent row. This is suitable for performing aggregations such as counts and sums.<br> * Enrollments implies a data source where all events for a single enrollment is combined on the same row. This allows for calculations which can compare event data from various program stages within a program enrollment. |
+| Analytics period boundaries | Defines the boundaries for the program indicator calculation. The boundaries determine which events or enrollments gets included in aggregations, always relative to the aggregate reporting period start and end. When creating the program indicator, the default boundaries will get preselected based on analytics type.<br> * For analytics type *event*, the default boundaries will be configured to encapsulate any events with an event date after the reporting period starts and before the reporting period ends.<br> * For analytics type *enrollment*, the default boundaries will encapsulate all enrollments with an enrollment date after the reporting date starts and before the reporting period ends. In addition, the default enrollment program indicator evaluates the newest event for all program stages regardless of date.<br> <br>It is possible to change the upper and lower boundaries to include a longer or shorter period relative to the reporting period, or delete one of the boundaries - in effect returning all data before or after a certain period. It is also possible to add more constraints, for example to make an enrollment program indicator only include event data up to a given point in time.<br> * Boundary target: Can be *incident date*, *event date*, *enrollment date* or *custom*. Designates what is being constrained by the boundary.<br> <br> *custom* is used make boundary that target either a date data element, tracked entity attribute or the presence of an event in a program stage. This is done with a custom expression on the form:<br> - Data element of type date: #{programStageUid.dataElementUid}.<br> `#{A03MvHHogjR.a3kGcGDCuk6}` <br> - Tracked entity attribute of type date: #{attributeUid}.<br> `A{GPkGfbmArby}` <br> - Presence of one event in a specific program stage: PS_EVENTDATE:programStageUid.<br> `PS_EVENTDATE:A03MvHHogjR`  <br> **Note**  This boundary target is only applicable to  Analytics type Enrollment <br> * Analytics period boundary type: Defines whether the boundary is an end boundary - starting with "before...", or a start boundary - "after...". Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period.<br> * Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort program indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with "-1" and "Years"<br> * Period type: See above. Can be any period, e.g. *Weekly* or *Quarterly*. |
+| Expression | The expression defines how the indicator is being calculated. The expression can contain references to various entities which will be substituted with a related values when the indicator is calculated:<br> * Data elements: Will be substituted with the value of the data element for the time period and organisation unit for which the calculation is done. Refers to both program stage and data element.<br> * Attributes: Will be substituted with the value of the attribute for the person / tracked entity for which the calculation is done.<br> * Variables: Will be substituted with special values linked to the program, including incident date and date of enrollment for the person, current date and count of values in the expression for the time period and organisation unit for which the calculation is done.<br> * Constants: Will be substituted with the value of the constant.<br> <br>The expression is a mathematical expression and can also contain operators.<br> <br>For single event programs and tracker programs with analytics type *event*, the expression will be evaluated *per event*, then aggregated according to its aggregation type.<br> <br>For tracker programs with analytics type *enrollment*, the expression will be evaluated *per enrollment*, then aggregated according to its aggregation type. |
+| Filter | The filter is applied to events and filters the data source used for the calculation of the indicator. I.e. the filter is applied to the set of events before the indicator expression is being evaluated. The filter must evaluate to either true or false. It filter is applied to each individual event. If the filter evaluates to true then the event is included later in the expression evaluation, if not it is ignored. The filter can, in a similar way as expressions, contain references to data elements, attributes and constants.<br> <br>The program indicator filter can in addition use logical operators. These operators can be used to form logical expressions which ultimately evaluate to either true or false. For example you can assert that multiple data elements must be a specific value, or that specific attributes must have numerical values less or greater than a constant. |
 
 In the **Maintenance** app, you manage the following program indicator
 objects:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Program indicator</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Program indicator group</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+| Object type | Available functions |
+|---|---|
+| Program indicator | Create, edit, clone, share, delete, show details and translate |
+| Program indicator group | Create, edit, clone, share, delete, show details and translate |
 
 ### Create or edit a program indicator
 
@@ -2160,49 +895,16 @@ objects:
 The table below shows examples of how to write expressions and filters
 for different data element and attribute value types:
 
-<table>
-<caption>Expression and filter examples per value type</caption>
-<thead>
-<tr class="header">
-<th>Value types</th>
-<th>Example syntax</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Integer</p>
-<p>Negative integer</p>
-<p>Positive or zero integer</p>
-<p>Positive integer</p>
-<p>Number</p>
-<p>Percentage</p></td>
-<td><p>Numeric fields, can be used for aggregation as an expression, or in filters:</p>
-<pre><code>#{mCXR7u4kNBW.K0A4BauXJDl} &gt;= 3</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Yes/No</p>
-<p>Yes only</p></td>
-<td><p>Boolean fields. Yes is translated to numeric 1, No to numeric 0. Can be used for aggregation as an expression, or in filters:</p>
-<pre><code>#{mCXR7u4kNBW.Popa3BauXJss} == 1</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Text</p>
-<p>Long text</p>
-<p>Phone number</p>
-<p>Email</p></td>
-<td><p>Text fields. Can be checked for equality in filters:</p>
-<pre><code>#{mCXR7u4kNBW.L8K4BauIKsl} == &#39;LiteralValue&#39;</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Date</p>
-<p>Age</p></td>
-<td><p>Date fields. Most useful when combined with a d2:daysBetween function, which produces a number that can be aggregated as an expression or used in filters:</p>
-<pre><code>d2:daysBetween(#{mCXR7u4kNBW.JKJKBausssl},V{enrollment_date}) &gt; 100</code></pre>
-<p>Can also directly be checked for equality in filters:</p>
-<pre><code>#{mCXR7u4kNBW.JKJKBausssl} == &#39;2011-10-28&#39;</code></pre></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Expression and filter examples per value type
+
+| Value types | Example syntax |
+|---|---|
+| Integer<br> <br>Negative integer<br> <br>Positive or zero integer<br> <br>Positive integer<br> <br>Number<br> <br>Percentage | Numeric fields, can be used for aggregation as an expression, or in filters:<br> `#{mCXR7u4kNBW.K0A4BauXJDl} >= 3` |
+| Yes/No<br> <br>Yes only | Boolean fields. Yes is translated to numeric 1, No to numeric 0. Can be used for aggregation as an expression, or in filters:<br> `#{mCXR7u4kNBW.Popa3BauXJss} == 1` |
+| Text<br> <br>Long text<br> <br>Phone number<br> <br>Email | Text fields. Can be checked for equality in filters:<br> `#{mCXR7u4kNBW.L8K4BauIKsl} == 'LiteralValue'` |
+| Date<br> <br>Age | Date fields. Most useful when combined with a d2:daysBetween function, which produces a number that can be aggregated as an expression or used in filters:<br> `d2:daysBetween(#{mCXR7u4kNBW.JKJKBausssl},V{enrollment_date}) > 100` <br>Can also directly be checked for equality in filters:<br> `#{mCXR7u4kNBW.JKJKBausssl} == '2011-10-28'` |
 
 ### Reference information: Functions, variables and operators to use in program indicator expressions and filters
 
@@ -2227,133 +929,34 @@ itself.
 The program indicator expression and filter support a range of
 functions. The functions can be applied to data elements and attributes:
 
-<table>
-<caption>Functions to use in a program indicator expression or filter</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 54%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Function</p></th>
-<th><p>Arguments</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>d2:hasValue</p></td>
-<td><p>(object)</p></td>
-<td><p>Returns true if the data element/attribute has a value. Can be used in filters to distinguish between the number 0 and no value, and to distinguish between explicit &quot;No&quot; and no selection for a Yes/No field.</p></td>
-</tr>
-<tr class="even">
-<td><p>d2:minutesBetween</p></td>
-<td><p>(datetime, datetime)</p></td>
-<td><p>Produces the number of minutes between two data elements/attributes of type &quot;date and time&quot;. When the first argument datetime comes before the second argument datetime, the number will be positive - in the opposite case, the number will be negative. The static datetime format is 'yyyy-MM-dd hh:mm'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
-</tr>
-<tr class="odd">
-<td><p>d2:daysBetween</p></td>
-<td><p>(date, date)</p></td>
-<td><p>Produces the number of days between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
-</tr>
-<tr class="even">
-<td><p>d2:weeksBetween</p></td>
-<td><p>(date, date)</p></td>
-<td><p>Produces the number of full weeks between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
-</tr>
-<tr class="odd">
-<td><p>d2:monthsBetween</p></td>
-<td><p>(date, date)</p></td>
-<td><p>Produces the number of full months between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
-</tr>
-<tr class="even">
-<td><p>d2:yearsBetween</p></td>
-<td><p>(date, date)</p></td>
-<td><p>Produces the number of full years between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage.</p></td>
-</tr>
-<tr class="odd">
-<td><p>d2:condition</p></td>
-<td><p>(boolean-expr, true-expr, false-expr)</p></td>
-<td><p>Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The conditional expression must be quoted. The true-expr and false-expr arguments must follow the rules of any program indicator expression (including functions).</p></td>
-</tr>
-<tr class="even">
-<td><p>d2:zing</p></td>
-<td><p>(expression)</p></td>
-<td><p>Returns zero if the expression is negative, otherwise returns the expression value. The expression must follow the rules of any program indicator expression (including functions).</p></td>
-</tr>
-<tr class="odd">
-<td><p>d2:oizp</p></td>
-<td><p>(expression)</p></td>
-<td><p>Returns one if the expression is zero or positive, otherwise returns zero. The expression must follow the rules of any program indicator expression (including functions).</p></td>
-</tr>
-<tr class="even">
-<td><p>d2:zpvc</p></td>
-<td><p>(object, [,object ...])</p></td>
-<td><p>Returns the number of numeric zero and positive values among the given object arguments. Can be provided any number of arguments.</p></td>
-</tr>
-<tr class="odd">
-<td><p>d2:relationshipCount</p></td>
-<td><p>([relationshipTypeUid])</p></td>
-<td><p>Produces the number of relationships of the given type that is connected to the enrollment or event. When no type is given, all types are counted.</p></td>
-</tr>
-<tr class="even">
-<td><p>d2:count</p></td>
-<td><p>(dataElement)</p></td>
-<td><p>Useful only for enrollment program indicators. Counts the number of data values that has been collected for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax.</p></td>
-</tr>
-<tr class="odd">
-<td><p>d2:countIfValue</p></td>
-<td><p>(dataElement, value)</p></td>
-<td><p>Useful only for enrollment program indicators. Counts the number of data values that matches the given literal value for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The value can be a hard coded text or number, for example 'No_anemia' if only the values containing this text should be counted.</p></td>
-</tr>
-<tr class="even">
-<td><p>d2:countIfCondition</p></td>
-<td><p>(dataElement, condition)</p></td>
-<td><p>Useful only for enrollment program indicators. Counts the number of data values that matches the given condition criteria for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The condition is supplied as a expression in single quotes, for example '&lt;10' if only the values less than 10 should be counted.</p></td>
-</tr>
-<tr class="odd">
-<td><p>if</p></td>
-<td><p>(boolean-expr, true-expr, false-expr)</p></td>
-<td><p>Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. This is identical to the d2:condition function except that the boolean-expr is not quoted.</p></td>
-</tr>
-<tr class="even">
-<td><p>isNull</p></td>
-<td><p>(object)</p></td>
-<td><p>Returns true if the object value is missing (null), otherwise false.</p></td>
-</tr>
-<tr class="odd">
-<td><p>isNotNull</p></td>
-<td><p>(object)</p></td>
-<td><p>Returns true if the object value is not missing (not null), otherwise false.</p></td>
-</tr>
-<tr class="even">
-<td><p>firstNonNull</p></td>
-<td><p>(object [, object ...])</p></td>
-<td><p>Returns the value of the first object that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values.</p></td>
-</tr>
-<tr class="odd">
-<td><p>greatest</p></td>
-<td><p>(expression [, expression ...])</p></td>
-<td><p>Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments. Each expression must follow the rules of any program indicator expression (including functions).</p></td>
-</tr>
-<tr class="even">
-<td><p>least</p></td>
-<td><p>(expression [, expression ...])</p></td>
-<td><p>Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. Each expression must follow the rules of any program indicator expression (including functions).</p></td>
-</tr>
-<tr class="odd">
-<td><p>log</p></td>
-<td><p>(expression [, base ])</p></td>
-<td><p>Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base.</p></td>
-</tr>
-<tr class="even">
-<td><p>log10</p></td>
-<td><p>(expression)</p></td>
-<td><p>Returns the common logarithm (base 10) of the numeric expression.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Functions to use in a program indicator expression or filter
+
+| Function | Arguments | Description |
+|---|---|---|
+| d2:hasValue | (object) | Returns true if the data element/attribute has a value. Can be used in filters to distinguish between the number 0 and no value, and to distinguish between explicit "No" and no selection for a Yes/No field. |
+| d2:minutesBetween | (datetime, datetime) | Produces the number of minutes between two data elements/attributes of type "date and time". When the first argument datetime comes before the second argument datetime, the number will be positive - in the opposite case, the number will be negative. The static datetime format is 'yyyy-MM-dd hh:mm'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage. |
+| d2:daysBetween | (date, date) | Produces the number of days between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage. |
+| d2:weeksBetween | (date, date) | Produces the number of full weeks between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage. |
+| d2:monthsBetween | (date, date) | Produces the number of full months between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage. |
+| d2:yearsBetween | (date, date) | Produces the number of full years between two data elements/attributes of type date. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. Any of the arguments can be replaced with PS_EVENTDATE:(programStageUid) to compare the latest event date from a given program stage. |
+| d2:condition | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The conditional expression must be quoted. The true-expr and false-expr arguments must follow the rules of any program indicator expression (including functions). |
+| d2:zing | (expression) | Returns zero if the expression is negative, otherwise returns the expression value. The expression must follow the rules of any program indicator expression (including functions). |
+| d2:oizp | (expression) | Returns one if the expression is zero or positive, otherwise returns zero. The expression must follow the rules of any program indicator expression (including functions). |
+| d2:zpvc | (object, [,object ...]) | Returns the number of numeric zero and positive values among the given object arguments. Can be provided any number of arguments. |
+| d2:relationshipCount | ([relationshipTypeUid]) | Produces the number of relationships of the given type that is connected to the enrollment or event. When no type is given, all types are counted. |
+| d2:count | (dataElement) | Useful only for enrollment program indicators. Counts the number of data values that has been collected for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. |
+| d2:countIfValue | (dataElement, value) | Useful only for enrollment program indicators. Counts the number of data values that matches the given literal value for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The value can be a hard coded text or number, for example 'No_anemia' if only the values containing this text should be counted. |
+| d2:countIfCondition | (dataElement, condition) | Useful only for enrollment program indicators. Counts the number of data values that matches the given condition criteria for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The condition is supplied as a expression in single quotes, for example '<10' if only the values less than 10 should be counted. |
+| if | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. This is identical to the d2:condition function except that the boolean-expr is not quoted. |
+| isNull | (object) | Returns true if the object value is missing (null), otherwise false. |
+| isNotNull | (object) | Returns true if the object value is not missing (not null), otherwise false. |
+| firstNonNull | (object [, object ...]) | Returns the value of the first object that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values. |
+| greatest | (expression [, expression ...]) | Returns the greatest (highest) value of the expressions given. Can be provided any number of arguments. Each expression must follow the rules of any program indicator expression (including functions). |
+| least | (expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. Each expression must follow the rules of any program indicator expression (including functions). |
+| log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
+| log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
 
 A filter that uses the "hasValue" function looks like this:
 
@@ -2404,102 +1007,31 @@ An expression that uses the "greatest" function looks like this:
 The program indicator expression and filter support a range of
 variables:
 
-<table>
-<caption>Variables to use in a program indicator expression or filter</caption>
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Variable</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><p>event_date</p></td>
-<td><p>The date of when the event or the last event in the enrollment took place.</p></td>
-</tr>
-<tr>
-<td><p>creation_date</p></td>
-<td><p>The date of when an event or enrollment was created in the system.</p></td>
-</tr>
-<tr>
-<td><p>due_date</p></td>
-<td><p>The date of when an event is due.</p></td>
-</tr>
-<tr>
-<td><p>sync_date</p></td>
-<td><p>The date of when the event or enrollment was last syncronized with the Android app.</p></td>
-</tr>
-<tr>
-<td><p>incident_date</p></td>
-<td><p>The date of the incidence of the event.</p></td>
-</tr>
-<tr>
-<td><p>enrollment_date</p></td>
-<td><p>The date of when the tracked entity instance was enrolled in the program.</p></td>
-</tr>
-<tr>
-<td><p>enrollment_status</p></td>
-<td><p>Can be used to include or exclude enrollments in certain statuses.</p>
-<p>When calculating the haemoglobin improvement/deterioration throughout a pregnancy, it might make sense to only consider completed enrollments. If non-completed enrollments is not filtered out, these will represent half-finished ANC followups, where the final improvement/deterioration is not yet established.</p></td>
-</tr>
-<tr>
-<td><p>current_date</p></td>
-<td><p>The current date.</p></td>
-</tr>
-<tr>
-<td><p>value_count</p></td>
-<td><p>The number of non-null values in the expression part of the event.</p></td>
-</tr>
-<tr>
-<td><p>zero_pos_value_count</p></td>
-<td><p>The number of numeric positive values in the expression part of the event.</p></td>
-</tr>
-<tr>
-<td><p>event_count</p></td>
-<td><p>The count of events (useful in combination with filters).</p></td>
-</tr>
-<tr>
-<td><p>enrollment_count</p></td>
-<td><p>The count of enrollments (useful in combination with filters). Aggregation type for the program indicator must be COUNT. </p></td>
-</tr>
-<tr>
-<td><p>tei_count</p></td>
-<td><p>The count of tracked entity instances (useful in combination with filters). Aggregation type for the program indicator must be COUNT.</p></td>
-</tr>
-<tr>
-<td><p>org_unit_count</p></td>
-<td><p>The count of organisation units (useful in combination with filters). Aggregation type for the program indicator must be COUNT.</p></td>
-</tr>
-<tr>
-<td><p>program_stage_name</p></td>
-<td><p>Can be used in filters for including only certain program stages in a filter for tracker programs. Uses the name of the program stage:</p>
-<pre><code>V{program_stage_name} == &#39;ANC first visit&#39;</code></pre></td>
-</tr>
-<tr>
-<td><p>program_stage_id</p></td>
-<td><p>Can be used in filters for including only certain program stages in a filter for tracker programs. Uses the unique identifier of the program stage:</p>
-<pre><code>V{program_stage_id} == &#39;YPSSfbmAtt1&#39;</code></pre></td>
-</tr>
-<tr>
-<td><p>analytics_period_start</p></td>
-<td><p>Can be used in filters or expressions for comparing any date to the first date in each reporting period.</p>
-<pre><code>d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{analytics_period_start})</code></pre></td>
-</tr>
-<tr>
-<td><p>analytics_period_end</p></td>
-<td><p>Can be used in filters or expressions for comparing any date to the last inclusive date in each reporting period.</p></td>
-</tr>
-<tr>
-<td><p>event_status</p></td>
-<td><p>Can be used in filters or expressions for comparing event status.</p>
-<pre><code>V{event_status} == &#39;COMPLETED&#39;</code></pre></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Variables to use in a program indicator expression or filter
+
+| Variable | Description |
+|---|---|
+| event_date | The date of when the event or the last event in the enrollment took place. |
+| creation_date | The date of when an event or enrollment was created in the system. |
+| due_date | The date of when an event is due. |
+| sync_date | The date of when the event or enrollment was last synchronized with the Android app. |
+| incident_date | The date of the incidence of the event. |
+| enrollment_date | The date of when the tracked entity instance was enrolled in the program. |
+| enrollment_status | Can be used to include or exclude enrollments in certain statuses.<br> <br>When calculating the haemoglobin improvement/deterioration throughout a pregnancy, it might make sense to only consider completed enrollments. If non-completed enrollments is not filtered out, these will represent half-finished ANC followups, where the final improvement/deterioration is not yet established. |
+| current_date | The current date. |
+| value_count | The number of non-null values in the expression part of the event. |
+| zero_pos_value_count | The number of numeric positive values in the expression part of the event. |
+| event_count | The count of events (useful in combination with filters). |
+| enrollment_count | The count of enrollments (useful in combination with filters). Aggregation type for the program indicator must be COUNT.  |
+| tei_count | The count of tracked entity instances (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
+| org_unit_count | The count of organisation units (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
+| program_stage_name | Can be used in filters for including only certain program stages in a filter for tracker programs. Uses the name of the program stage:<br> `V{program_stage_name} == 'ANC first visit'` |
+| program_stage_id | Can be used in filters for including only certain program stages in a filter for tracker programs. Uses the unique identifier of the program stage:<br> `V{program_stage_id} == 'YPSSfbmAtt1'` |
+| analytics_period_start | Can be used in filters or expressions for comparing any date to the first date in each reporting period.<br> `d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{analytics_period_start})` |
+| analytics_period_end | Can be used in filters or expressions for comparing any date to the last inclusive date in each reporting period. |
+| event_status | Can be used in filters or expressions for comparing event status.<br> `V{event_status} == 'COMPLETED'` |
 
 A filter that uses the "Analytics period end" variable to only include
 women who has an LMP that would be in the first
@@ -2519,53 +1051,20 @@ looks like this:
 
 #### Operators to use in a program indicator filter
 
-<table>
-<caption>Operators to use in a program indicator filter</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 83%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Operator</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>and</p></td>
-<td><p>Logical AND</p></td>
-</tr>
-<tr class="even">
-<td><p>or</p></td>
-<td><p>Logical OR</p></td>
-</tr>
-<tr class="odd">
-<td><p>==</p></td>
-<td><p>Equal to</p></td>
-</tr>
-<tr class="even">
-<td><p>!=</p></td>
-<td><p>Not equal to</p></td>
-</tr>
-<tr class="odd">
-<td><p>&lt;</p></td>
-<td><p>Less than</p></td>
-</tr>
-<tr class="even">
-<td><p>&lt;=</p></td>
-<td><p>Less than or equal to</p></td>
-</tr>
-<tr class="odd">
-<td><p>&gt;</p></td>
-<td><p>Greater than</p></td>
-</tr>
-<tr class="even">
-<td><p>&gt;=</p></td>
-<td><p>Greater than or equal to</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Operators to use in a program indicator filter
+
+| Operator | Description |
+|---|---|
+| and | Logical AND |
+| or | Logical OR |
+| == | Equal to |
+| != | Not equal to |
+| < | Less than |
+| <= | Less than or equal to |
+| > | Greater than |
+| >= | Greater than or equal to |
 
 These operators can be used to form logical expressions which ultimately
 evaluate to either true or false. For example you can assert that
@@ -2600,61 +1099,24 @@ changed. Most types of actions will take effect immediately when the
 user enters values in the **Tracker Capture** and **Event Capture**
 apps.
 
-<table>
-<caption>Program rule components</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Program rule component</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Program rule action</p></td>
-<td><p>Each program rule contains one or multiple actions. These are the behaviours that are triggered in the user interface when the expression is true. Actions will be applied at once if the expression is true, and will be reverted if the expression is no longer true. There are several types of actions and you can have several actions in one program rule.</p></td>
-</tr>
-<tr class="even">
-<td><p>Program rule expression</p></td>
-<td><p>Each program rule has a single expression that determines whether the program rule actions should be triggered, if the expression evaluates to true. If the expression is true the program rule is in effect and the actions will be executed. If the expression is false, the program rule is no longer in effect and the actions will no longer be applied.</p>
-<p>You create the expression with standard mathematical operators, custom functions, user-defined static values and program rule variables. The program rule variables represent attribute and data element values which will be evaluated as part of the expression.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Program rule variable</p></td>
-<td><p>Program rule variables lets you include data values and attribute values in program rule expressions. Typically, you'll have to create one or several program rule variables before creating a program rule. This is because program rules expressions usually contain at least one data element or attribute value to be meaningful.</p>
-<p>The program rule variables are shared between all rules in your program. When you create multiple program rules for the same program, these rules will share the same library of program rule variables.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Program rule components
+
+| Program rule component | Description |
+|---|---|
+| Program rule action | Each program rule contains one or multiple actions. These are the behaviours that are triggered in the user interface when the expression is true. Actions will be applied at once if the expression is true, and will be reverted if the expression is no longer true. There are several types of actions and you can have several actions in one program rule. |
+| Program rule expression | Each program rule has a single expression that determines whether the program rule actions should be triggered, if the expression evaluates to true. If the expression is true the program rule is in effect and the actions will be executed. If the expression is false, the program rule is no longer in effect and the actions will no longer be applied.<br> <br>You create the expression with standard mathematical operators, custom functions, user-defined static values and program rule variables. The program rule variables represent attribute and data element values which will be evaluated as part of the expression. |
+| Program rule variable | Program rule variables lets you include data values and attribute values in program rule expressions. Typically, you'll have to create one or several program rule variables before creating a program rule. This is because program rules expressions usually contain at least one data element or attribute value to be meaningful.<br> <br>The program rule variables are shared between all rules in your program. When you create multiple program rules for the same program, these rules will share the same library of program rule variables. |
 
 In the **Maintenance** app, you manage the following program rule
 objects:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Program rule</p></td>
-<td><p>Create, edit, clone, delete, show details and translate</p></td>
-</tr>
-<tr class="even">
-<td><p>Program rule variable</p></td>
-<td><p>Create, edit, clone, share, delete, show details and translate</p></td>
-</tr>
-</tbody>
-</table>
+
+| Object type | Available functions |
+|---|---|
+| Program rule | Create, edit, clone, delete, show details and translate |
+| Program rule variable | Create, edit, clone, share, delete, show details and translate |
 
 ### Workflow
 
@@ -2701,62 +1163,15 @@ objects:
     The source types determine how the program rule variable is
     populated with a value.
 
-    <table>
-    <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Source type</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p><strong>Data element from the newest event for a program stage</strong></p></td>
-    <td><p>This source type works the same way as <strong>Data element from the newest event in the current program</strong>, except that it only evaluates values from one program stage.</p>
-    <p>This source type can be useful in program rules where the same data element is used in several program stages, and a rule needs to evaluate the newest data value from within one specific stage.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Data element from the newest event in the current program</strong></p></td>
-    <td><p>This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open.</p>
-    <p>This source type is populated slightly differently in <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps:</p>
-    <p><strong>Tracker Capture</strong>: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment.</p>
-    <p><strong>Event Capture</strong>: the program rule variable will be populated with the newest data value found within the 10 newest events in the same organisation unit.</p>
-    <p>The newest data value is determined with event date.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Data element in current event</strong></p></td>
-    <td><p>Program rule variables with this source type will contain the data value from the same event that the user currently has open.</p>
-    <p>This is the most commonly used source type, especially for skip logic (hide actions) and warning/error rules.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Data element from previous event</strong></p></td>
-    <td><p>Program rule variables with this source type will contain the value from a specified data element from a previous event. Only older events is evaluated, not including the event that the user currently has open.</p>
-    <p>This source type is commonly used when a data element only should be collected once during an enrollment, and should be hidden in subsequent events.</p>
-    <p>Another use case is making rules for validating input where there is an expected progression from one event to the next - a rule can evaluate whether the previous value is higher/lower and give a warning if an unexpected value is entered.</p>
-    <p>This source type is populated slightly differently in <strong>Tracker Capture</strong> and <strong>Event Capture</strong> apps:</p>
-    <p><strong>Tracker Capture</strong>: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment - but only evaluating the events that comes before the current event date.</p>
-    <p><strong>Event Capture</strong>: the program rule variable will be populated with the newest data value collected within the 10 events preceding the current event date - not including the current event.</p>
-    <p>The newest data value is determined with event date.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Calculated value</strong></p></td>
-    <td><p>Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules <strong>ASSIGN</strong> action.</p>
-    <p>This variable will be used for making preliminary calculations, having a <strong>ASSIGN</strong> program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintanable.</p>
-    <p>These variables will not be persisted and will stay in memory only during the exectution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a <strong>priority</strong> assigned - to make sure that the preliminary caculation is done before the rule that consumes the calculated value.</p>
-    </td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Tracked entity attribute</strong></p></td>
-    <td><p>Populates the program rule variable with a specified tracked entity attribute for the current enrollment.</p>
-    <p>Use this is the source type to create program rules that evaluate data values entered during registration.</p>
-    <p>This source type is also useful when you create program rules that compare data in events to data entered during registration.</p>
-    <p>This source type is only used for tracker programs (programs with registration).</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+    | Source type | Description |
+    |---|---|
+    | **Data element from the newest event for a program stage** | This source type works the same way as **Data element from the newest event in the current program**, except that it only evaluates values from one program stage.<br>     <br>This source type can be useful in program rules where the same data element is used in several program stages, and a rule needs to evaluate the newest data value from within one specific stage. |
+    | **Data element from the newest event in the current program** | This source type is used when a program rule variable needs to reflect the newest known value of a data element, regardless of what event the user currently has open.<br>     <br>This source type is populated slightly differently in **Tracker Capture** and **Event Capture** apps:<br>     <br>**Tracker Capture**: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment.<br>     <br>**Event Capture**: the program rule variable will be populated with the newest data value found within the 10 newest events in the same organisation unit.<br>     <br>The newest data value is determined with event date. |
+    | **Data element in current event** | Program rule variables with this source type will contain the data value from the same event that the user currently has open.<br>     <br>This is the most commonly used source type, especially for skip logic (hide actions) and warning/error rules. |
+    | **Data element from previous event** | Program rule variables with this source type will contain the value from a specified data element from a previous event. Only older events is evaluated, not including the event that the user currently has open.<br>     <br>This source type is commonly used when a data element only should be collected once during an enrollment, and should be hidden in subsequent events.<br>     <br>Another use case is making rules for validating input where there is an expected progression from one event to the next - a rule can evaluate whether the previous value is higher/lower and give a warning if an unexpected value is entered.<br>     <br>This source type is populated slightly differently in **Tracker Capture** and **Event Capture** apps:<br>     <br>**Tracker Capture**: the program rule variable will be populated with the newest data value collected for the given data element within the enrollment - but only evaluating the events that comes before the current event date.<br>     <br>**Event Capture**: the program rule variable will be populated with the newest data value collected within the 10 events preceding the current event date - not including the current event.<br>     <br>The newest data value is determined with event date. |
+    | **Calculated value** | Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules **ASSIGN** action.<br>     <br>This variable will be used for making preliminary calculations, having a **ASSIGN** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintanable.<br>     <br>These variables will not be persisted and will stay in memory only during the exectution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary caculation is done before the rule that consumes the calculated value. |
+    | **Tracked entity attribute** | Populates the program rule variable with a specified tracked entity attribute for the current enrollment.<br>     <br>Use this is the source type to create program rules that evaluate data values entered during registration.<br>     <br>This source type is also useful when you create program rules that compare data in events to data entered during registration.<br>     <br>This source type is only used for tracker programs (programs with registration). |
 
 6.  Click **Save**.
 
@@ -2822,158 +1237,26 @@ objects:
         types of settings. For some action types, you must also enter
         free text or create expressions.
 
-        <table>
-        <colgroup>
-        <col style="width: 33%" />
-        <col style="width: 33%" />
-        <col style="width: 33%" />
-        </colgroup>
-        <thead>
-        <tr class="header">
-        <th><p>Action type</p></th>
-        <th><p>Required settings</p></th>
-        <th><p>Description</p></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td></td>
-        <td></td>
-        <td></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Assign value</strong></p></td>
-        <td><p><strong>Data element to assign value to</strong></p>
-        <p><strong>Program rule variable to assign value to</strong></p>
-        <p><strong>Expression to evaluate and assign</strong></p></td>
-        <td><p>Used to help the user calculate and fill out fields in the data entry form. The idea is that the user shouldn’t have to fill in values that the system can calculate, for example BMI.</p>
-        <p>When a field is assigned a value, the user sees the value but the user can't edit it.</p>
-        <p>Example from Immunization stock card i Zambia: The data element for vaccine stock outgoing balance is calculated based on the data element for incoming stock balance minus the data elements for consumption and wastage.</p>
-        <p>Advanced use: configure an 'assign value' to do a part of a calculation and then assign the result of the calculation to a program rule variable. This is the purpose with the &quot;Calculated value&quot; program rule variable.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Display text</strong></p></td>
-        <td><p><strong>Display widget</strong></p>
-        <p><strong>Static text</strong></p>
-        <p><strong>Expression to evaluate and display after static text</strong></p></td>
-        <td><p>Used to display information that is not an error or a warning, for example feedback to the user. You can also use this action to display important information, for example the patient's allergies, to the user.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Display key/value pair</strong></p></td>
-        <td><p><strong>Display widget</strong></p>
-        <p><strong>Key label</strong></p>
-        <p><strong>Expression to evaluate and display as value</strong></p></td>
-        <td><p>Used to display information that is not an error or a warning.</p>
-        <p>Example: calculate number of weeks and days in a pregnancy and display it in the format the clinician is used to see it in. The calculation is based on previous recorded data.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Error on complete</strong></p></td>
-        <td><p><strong>Data element to display error next to</strong></p>
-        <p><strong>Tracked entity attribute to display error next to</strong></p>
-        <p><strong>Static text</strong></p>
-        <p><strong>Expression to evaluate and display after static text</strong></p></td>
-        <td><p>Used whenever you've cross-consistencies in the form that must be strictly adhered to. This action prevents the user from continuing until the error is resolved.</p>
-        <p>This action differs from the regular <strong>Show error</strong> since the error is not shown until the user tries to actually complete the form.</p>
-        <p>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Hide field</strong></p></td>
-        <td><p><strong>Data element to hide</strong></p>
-        <p><strong>Tracked entity attribute to hide</strong></p>
-        <p><strong>Custom message for blanked field</strong></p></td>
-        <td><p>Used when you want to hide a field from the user.</p>
-        <p><strong>Custom message for blanked field</strong> allows you to define a custom message displayed to the user in case the program rule hides and blanks out the field after the user typed in or selected a value.</p>
-        <p>If a hide field action hides a field that contains a value, the field will always removed. If no message is defined, a standard message will be displayed to alert the user.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Hide section</strong></p></td>
-        <td><p><strong>Program stage section to hide</strong></p></td>
-        <td><p>TBA</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Hide program stage</strong></p></td>
-        <td><p><strong>Program stage to hide</strong></p></td>
-        <td><p>Used when you want to hide a program stage section from the user.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Make field mandatory</strong></p></td>
-        <td><p><strong>Data element to make mandatory</strong></p>
-        <p><strong>Tracked entity attribute to make mandatory</strong></p></td>
-        <td><p>TBA</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Show error</strong></p></td>
-        <td><p><strong>Data element to display error next to</strong></p>
-        <p><strong>Tracked entity attribute to display error next to</strong></p>
-        <p><strong>Static text</strong></p>
-        <p><strong>Expression to evaluate and display after static text</strong></p></td>
-        <td><p>Used whenever there are rules which must strictly be adhered to. The show error action prevents the user from continuing until the error is resolved.</p>
-        <p>Such a strict validation should only be used when it's certain that the evaluated expression is never true unless the user has made a mistake in data entry.</p>
-        <p>It's mandatory to define a message that is shown to the user when the expression is true and the action is triggered.</p>
-        <p>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.</p>
-        <p>In case several data elements or attributes are involved, select the one that is most likely that the user would need to change.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Show warning</strong></p></td>
-        <td><p><strong>Data element to display warning next to</strong></p>
-        <p><strong>Tracked entity attribute to display warning next to</strong></p>
-        <p><strong>Static text</strong></p>
-        <p><strong>Expression to evaluate and display after static text</strong></p></td>
-        <td><p>Used to give the user a warning about the entered data, but at the same time to allow the user to save and continue.</p>
-        <p>You can use warnings to help the user avoid errors in the entered data, while at the same time allow the user to consciously disregard the warnings and save a value that is outside preset expectations.</p>
-        <p><strong>Static text</strong> defines the message shown to the user when the expression is true and the action is triggered.</p>
-        <p>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.</p>
-        <p>In case several data elements or attributes are involved, select the one that is most likely that the user would need to change.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Warning on complete</strong></p></td>
-        <td><p><strong>Data element to display warning next to</strong></p>
-        <p><strong>Tracked entity attribute to display warning next to</strong></p>
-        <p><strong>Static text</strong></p>
-        <p><strong>Expression to evaluate and display after static text</strong></p></td>
-        <td><p>Used to give the user a warning if he/she tries to complete inconsistent data, but at the same time to allow the user to continue. The warning is shown in a dialog when the user completes the form.</p>
-        <p><strong>Static text</strong> defines the message shown to the user when the expression is true and the action is triggered. This field is mandatory.</p>
-        <p>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.</p>
-        <p>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Send Message</strong></p></td>
-        <td><p><strong>Message template to send</strong></p></td>
-        <td><p>Send Message triggers a notification based on provided message template. This action will be taken immediately. The message template will be parsed and variables will be substituted with actual values.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Schedule Message</strong></p></td>
-        <td><p><strong>Message template to send</strong></p>
-        <p><strong>Data field which contains expression to evaluate the date which notification should be sent at. If this expression results in any value other than Date, then resultant will be discarded and notification will not get scheduled.</strong></p></td>
-        <td><p>Schedule Message will schedule notification at date provided by Expression in the data field. Sample expression is given below</p>
-        <pre><code>d2:addDays( &#39;2018-04-20&#39;, &#39;2&#39; )</code></pre>
-        <p>Message template will be parsed and variables will be substituted with actual values.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Hide option</strong></p></td>
-        <td><p><strong>Data element to hide option for</strong></p>
-        <p><strong>Tracked entity attribute to hide option for</strong></p>
-        <p><strong>Option that should be hidden</strong></p></td>
-        <td><p>Used to selectively hide a single option for an option set in a given data element/tracked entity attribute.</p>
-        <p>When combined with <strong>show option group</strong> the <strong>hide option</strong> takes presedence.</p></td>
-        </tr>
-        <tr class="even">
-        <td><p><strong>Hide option group</strong></p></td>
-        <td><p><strong>Data element to hide option group for</strong></p>
-        <p><strong>Tracked entity attribute to hide option group for</strong></p>
-        <p><strong>Option group that should be hidden</strong></p></td>
-        <td><p>Used to hide all options in a given option group and data element/tracked entity attribute.</p>
-        <p>When combined with <strong>show option group</strong> the <strong>hide option group</strong> takes precedence.</p></td>
-        </tr>
-        <tr class="odd">
-        <td><p><strong>Show option group</strong></p></td>
-        <td><p><strong>Data element to show option group for</strong></p>
-        <p><strong>Tracked entity attribute to show option group for</strong></p>
-        <p><strong>Option group that should be shown</strong></p></td>
-        <td><p>Used to show only options from a given option group in a given data element/tracked entity attribute. To show an option group implicitly hides all options that is not part of the group(s) that is shown.</p></td>
-        </tr>
-        </tbody>
-        </table>
+
+        | Action type | Required settings | Description |
+        |---|---|---|
+        ||||
+        | **Assign value** | **Data element to assign value to**<br>         <br>**Program rule variable to assign value to**<br>         <br>**Expression to evaluate and assign** | Used to help the user calculate and fill out fields in the data entry form. The idea is that the user shouldn’t have to fill in values that the system can calculate, for example BMI.<br>         <br>When a field is assigned a value, the user sees the value but the user can't edit it.<br>         <br>Example from Immunization stock card i Zambia: The data element for vaccine stock outgoing balance is calculated based on the data element for incoming stock balance minus the data elements for consumption and wastage.<br>         <br>Advanced use: configure an 'assign value' to do a part of a calculation and then assign the result of the calculation to a program rule variable. This is the purpose with the "Calculated value" program rule variable. |
+        | **Display text** | **Display widget**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used to display information that is not an error or a warning, for example feedback to the user. You can also use this action to display important information, for example the patient's allergies, to the user. |
+        | **Display key/value pair** | **Display widget**<br>         <br>**Key label**<br>         <br>**Expression to evaluate and display as value** | Used to display information that is not an error or a warning.<br>         <br>Example: calculate number of weeks and days in a pregnancy and display it in the format the clinician is used to see it in. The calculation is based on previous recorded data. |
+        | **Error on complete** | **Data element to display error next to**<br>         <br>**Tracked entity attribute to display error next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used whenever you've cross-consistencies in the form that must be strictly adhered to. This action prevents the user from continuing until the error is resolved.<br>         <br>This action differs from the regular **Show error** since the error is not shown until the user tries to actually complete the form.<br>         <br>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error. |
+        | **Hide field** | **Data element to hide**<br>         <br>**Tracked entity attribute to hide**<br>         <br>**Custom message for blanked field** | Used when you want to hide a field from the user.<br>         <br>**Custom message for blanked field** allows you to define a custom message displayed to the user in case the program rule hides and blanks out the field after the user typed in or selected a value.<br>         <br>If a hide field action hides a field that contains a value, the field will always removed. If no message is defined, a standard message will be displayed to alert the user. |
+        | **Hide section** | **Program stage section to hide** | TBA |
+        | **Hide program stage** | **Program stage to hide** | Used when you want to hide a program stage section from the user. |
+        | **Make field mandatory** | **Data element to make mandatory**<br>         <br>**Tracked entity attribute to make mandatory** | TBA |
+        | **Show error** | **Data element to display error next to**<br>         <br>**Tracked entity attribute to display error next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used whenever there are rules which must strictly be adhered to. The show error action prevents the user from continuing until the error is resolved.<br>         <br>Such a strict validation should only be used when it's certain that the evaluated expression is never true unless the user has made a mistake in data entry.<br>         <br>It's mandatory to define a message that is shown to the user when the expression is true and the action is triggered.<br>         <br>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.<br>         <br>In case several data elements or attributes are involved, select the one that is most likely that the user would need to change. |
+        | **Show warning** | **Data element to display warning next to**<br>         <br>**Tracked entity attribute to display warning next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used to give the user a warning about the entered data, but at the same time to allow the user to save and continue.<br>         <br>You can use warnings to help the user avoid errors in the entered data, while at the same time allow the user to consciously disregard the warnings and save a value that is outside preset expectations.<br>         <br>**Static text** defines the message shown to the user when the expression is true and the action is triggered.<br>         <br>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.<br>         <br>In case several data elements or attributes are involved, select the one that is most likely that the user would need to change. |
+        | **Warning on complete** | **Data element to display warning next to**<br>         <br>**Tracked entity attribute to display warning next to**<br>         <br>**Static text**<br>         <br>**Expression to evaluate and display after static text** | Used to give the user a warning if he/she tries to complete inconsistent data, but at the same time to allow the user to continue. The warning is shown in a dialog when the user completes the form.<br>         <br>**Static text** defines the message shown to the user when the expression is true and the action is triggered. This field is mandatory.<br>         <br>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.<br>         <br>If you don't select a data element or a tracked entity attribute to display the error next to, make sure you write a comprehensive error message that helps the user to fix the error. |
+        | **Send Message** | **Message template to send** | Send Message triggers a notification based on provided message template. This action will be taken immediately. The message template will be parsed and variables will be substituted with actual values. |
+        | **Schedule Message** | **Message template to send**<br>         <br>**Data field which contains expression to evaluate the date which notification should be sent at. If this expression results in any value other than Date, then resultant will be discarded and notification will not get scheduled.** | Schedule Message will schedule notification at date provided by Expression in the data field. Sample expression is given below<br>         d2:addDays( '2018-04-20', '2' )         <br>Message template will be parsed and variables will be substituted with actual values. |
+        | **Hide option** | **Data element to hide option for**<br>         <br>**Tracked entity attribute to hide option for**<br>         <br>**Option that should be hidden** | Used to selectively hide a single option for an option set in a given data element/tracked entity attribute.<br>         <br>When combined with **show option group** the **hide option** takes presedence. |
+        | **Hide option group** | **Data element to hide option group for**<br>         <br>**Tracked entity attribute to hide option group for**<br>         <br>**Option group that should be hidden** | Used to hide all options in a given option group and data element/tracked entity attribute.<br>         <br>When combined with **show option group** the **hide option group** takes precedence. |
+        | **Show option group** | **Data element to show option group for**<br>         <br>**Tracked entity attribute to show option group for**<br>         <br>**Option group that should be shown** | Used to show only options from a given option group in a given data element/tracked entity attribute. To show an option group implicitly hides all options that is not part of the group(s) that is shown. |
 
     2.  Click **Save**.
 
@@ -3092,410 +1375,85 @@ date".
 >
 >     d2:hasValue( 'hemoglobinPrevious' )
 
-<table>
-<caption>Possible operators to use in a program rule expression</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 83%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>+</p></td>
-<td><p>Add numbers together</p></td>
-</tr>
-<tr class="even">
-<td><p>-</p></td>
-<td><p>Subtract numbers from each other</p></td>
-</tr>
-<tr class="odd">
-<td><p>*</p></td>
-<td><p>Multiply two numbers</p></td>
-</tr>
-<tr class="even">
-<td><p>/</p></td>
-<td><p>Divide two numbers</p></td>
-</tr>
-<tr class="odd">
-<td><p>%</p></td>
-<td><p>The modulus of two numbers</p></td>
-</tr>
-<tr class="even">
-<td><p>&amp;&amp;</p></td>
-<td><p>Logical AND. True only when the expression on the left and right side is true. The left and right side can be yes/no, yes only or a sub-expression in parenthesis.</p></td>
-</tr>
-<tr class="odd">
-<td><p>||</p></td>
-<td><p>Logical OR. True when either the expression on the left or the expression on the right side is true. The left and right side can be yes/no, yes only or a sub-expression in parenthesis.</p></td>
-</tr>
-<tr class="even">
-<td><p>&gt;</p></td>
-<td><p>Left number greater than right number</p></td>
-</tr>
-<tr class="odd">
-<td><p>&gt;=</p></td>
-<td><p>Left number greater than or equal to right number</p></td>
-</tr>
-<tr class="even">
-<td><p>&lt;</p></td>
-<td><p>Left number less than right number</p></td>
-</tr>
-<tr class="odd">
-<td><p>&lt;=</p></td>
-<td><p>Left number less than or equal to right number.</p></td>
-</tr>
-<tr class="even">
-<td><p>==</p></td>
-<td><p>Left side equal to right side. Supports numbers, text, yes/no and yes only.</p></td>
-</tr>
-<tr class="odd">
-<td><p>!=</p></td>
-<td><p>Left side not equal to right side. Supports numbers, text, yes/no and yes only.</p></td>
-</tr>
-<tr class="even">
-<td><p>!</p></td>
-<td><p>Negates the following value. Can be used for yes/no, yes only or a sub-expression in parenthesis.</p></td>
-</tr>
-<tr class="odd">
-<td><p>()</p></td>
-<td><p>Parenthesis is used to group sub-expressions.</p></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption>Custom functions to use in a program rule expression</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 54%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Arguments</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>d2:ceil</td>
-<td>(number)</td>
-<td>Rounds the input argument <strong>up</strong> to the nearest whole number.
-<p>Example:</p>
-<pre><code>d2:ceil(#{hemoglobinValue})</code></pre></td>
-</tr>
-<tr class="even">
-<td>d2:floor</td>
-<td>(number)</td>
-<td>Rounds the input argument <strong>down</strong> to the nearest whole number.
-<p>An example producing the number of weeks the woman is pregnant. Notice that the sub-expression #{gestationalAgeDays}/7 is evaluated before the floor function is executed:</p>
-<pre><code>d2:floor(#{gestationalAgeDays}/7)</code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:round</td>
-<td>(number)</td>
-<td>Rounds the input argument to the nearest whole number.</td>
-</tr>
-<tr class="even">
-<td>d2:modulus</td>
-<td>(number,number)</td>
-<td>Produces the modulus when dividing the first with the second argument.
-<p>An example producing the number of days the woman is into her current pregnancy week:</p>
-<pre><code>d2:modulus(#{gestationalAgeDays},7)</code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:zing</td>
-<td>(number)</td>
-<td>Evaluates the argument of type number to zero if the value is negative, otherwise to the value itself.</td>
-</tr>
-<tr class="even">
-<td>d2:oizp</td>
-<td>(number)</td>
-<td>Evaluates the argument of type number to one if the value is zero or positive, otherwise to zero.</td>
-</tr>
-<tr class="odd">
-<td>d2:concatenate</td>
-<td>(object, [,object, object,...])</td>
-<td>Produces a string concatenated string from the input parameters. Supports any number of parameters. Will mainly be in use in future action types, for example to display gestational age with d2:concatenate('weeks','+','gestationalageDays').</td>
-</tr>
-<tr class="even">
-<td>d2:daysBetween</td>
-<td>(date, date)</td>
-<td>Produces the number of days between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'.
-<p>Example, calculating the gestational age(in days) of a woman, based on the last menstrual period and the current event date:</p>
-<pre><code>d2:daysBetween(#{lastMenstrualDate},V{event_date})</code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:weeksBetween</td>
-<td>(date, date)</td>
-<td>Produces the number of full weeks between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'.</td>
-</tr>
-<tr class="even">
-<td>d2:monthsBetween</td>
-<td>(date, date)</td>
-<td>Produces the number of full months between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'.</td>
-</tr>
-<tr class="odd">
-<td>d2:yearsBetween</td>
-<td>(date, date)</td>
-<td>Produces the number of years between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'.</td>
-</tr>
-<tr class="even">
-<td>d2:addDays</td>
-<td>(date, number)</td>
-<td>Produces a date based on the first argument date, adding the second argument number of days.
-<p>An example calculating the pregnancy due date based on the last menstrual period:</p>
-<pre><code>d2:addDays(#{lastMenstrualDate},283)</code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:count</td>
-<td>(sourcefield)</td>
-<td>Counts the number of values that is entered for the source field in the argument. The source field parameter is the name of one of the defined source fields in the program - see example
-<p>Example usage where #{previousPregnancyOutcome} is one of the source fields in a repeatable program stage &quot;previous pregnancy&quot;:</p>
-<pre><code>d2:count(&#39;previousPregnancyOutcome&#39;)</code></pre></td>
-</tr>
-<tr class="even">
-<td>d2:countIfValue</td>
-<td>(sourcefield,text)</td>
-<td>Counts the number of matching values that is entered for the source field in the first argument. Only occurrences that matches the second argument is counted. The source field parameter is the name of one of the defined source fields in the program - see example.
-<p>Example usage where #{previousPregnancyOutcome} is one of the source fields in a repeatable program stage &quot;previous pregnancy&quot;. The following function will produce the number of previous pregnancies that ended with abortion:</p>
-<pre><code>d2:countIfValue(&#39;previousPregnancyOutcome&#39;,&#39;Abortion&#39;)
-                                    </code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:countIfZeroPos</td>
-<td>(sourcefield)</td>
-<td>Counts the number of values that is zero or positive entered for the source field in the argument. The source field parameter is the name of one of the defined source fields in the program - see example.
-<p>Example usage where #{fundalHeightDiscrepancy} is one of the source fields in program, and it can be either positive or negative. The following function will produce the number of positive occurrences:</p>
-<pre><code>d2:countIfZeroPos(&#39;fundalHeightDiscrepancy&#39;)
-                                    </code></pre></td>
-</tr>
-<tr class="even">
-<td>d2:hasValue</td>
-<td>(sourcefield)</td>
-<td>Evaluates to true of the argument source field contains a value, false if no value is entered.
-<p>Example usage, to find if the source field #{currentPregnancyOutcome} is yet filled in:</p>
-<pre><code>d2:hasValue(&#39;currentPregnancyOutcome&#39;)
-                                    </code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:zpvc</td>
-<td>(object, [,object, object,...])</td>
-<td>Returns the number of numeric zero and positive values among the given object arguments. Can be provided with any number of arguments.</td>
-</tr>
-<tr class="even">
-<td>d2:validatePattern</td>
-<td>(text, regex-pattern)</td>
-<td>Evaluates to true if the input text is an exact match with the supplied regular expression pattern. The regular expression needs to be escaped.
-<p>Example expression, triggering actions if a number is not on the pattern 9999/99/9:</p>
-<pre><code>!d2:validatePattern(A{nrc},&#39;\\d{6}\/\\d{2}\/\\d&#39;)</code></pre>
-<p>Example expression, triggering actions that if the address is not consisting of letters or white spaces, then a white space, then a number:</p>
-<pre><code>!d2:validatePattern(A{registrationAddress},&#39;[\\w ]+ \\d+&#39;)</code></pre>
-<p>Example, triggering actions if a name contains any numbers:</p>
-<pre><code>!d2:validatePattern(A{name},&#39;[^\\d]*&#39;)</code></pre>
-<p>Example expression, triggering actions if a mobile number contains the illegal number sequence 555:</p>
-<pre><code>d2:validatePattern(A{mobile} ,&#39;.*555.*&#39;)</code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:left</td>
-<td>(text, num-chars)</td>
-<td>Evaluates to the left part of a text, num-chars from the first character.
-<p>The text can be quoted or evaluated from a variable:</p>
-<pre><code>d2:left(#{variableWithText}, 3)</code></pre></td>
-</tr>
-<tr class="even">
-<td>d2:right</td>
-<td>(text, num-chars)</td>
-<td>Evaluates to the right part of a text, num-chars from the last character.
-<p>The text can be quoted or evaluated from a variable:</p>
-<pre><code>d2:right(#{variableWithText}, 2)</code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:substring</td>
-<td>(text, start-char-num, end-char-num)</td>
-<td>Evaluates to the part of a string specified by the start and end character number.
-<p>Example expression:</p>
-<pre><code>d2:substring(#{variableWithText}, 1, 3)</code></pre>
-If the #{variableWithText} in the above example was 'ABCD', then the result of the evaluation would be 'BC'</td>
-</tr>
-<tr class="even">
-<td>d2:split</td>
-<td>(text, delimiter, element-num)</td>
-<td>Split the text by delimiter, and keep the nth element(0 is the first).
-<p>The text can be quoted or evaluated from a variable, the delimiter must be quoted:</p>
-<pre><code>d2:split(#{variableWithText}, &#39;-&#39;, 1)</code></pre>
-<p>Note: comma delimiter(,) is not supported.</p></td>
-</tr>
-<tr class="odd">
-<td>d2:length</td>
-<td>(text)</td>
-<td>Find the length of a string.
-<p>Example:</p>
-<pre><code>d2:length(#{variableWithText})</code></pre></td>
-</tr>
-<tr class="even">
-<td>d2:inOrgUnitGroup</td>
-<td>(text)</td>
-<td>Evaluates whether the current organisation unit is in the argument group. The argument can be defined with either ID or organisation unit group code. The current organisation unit will be the event organisation unit when the rules is triggered in the context of an event, and the enrolling organisation unit when the rules is triggered in the event of a TEI registration form.
-<p>Example expression:</p>
-<pre><code>d2:inOrgUnitGroup(&#39;HIGH_RISK_FACILITY&#39;)</code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:hasUserRole</td>
-<td>(user role)</td>
-<td>Returns true if current user has this role otherwise false
-<p>Example expression:</p>
-<pre><code>d2:hasUserRole(&#39;UYXOT4A3ASA&#39;)</code></pre></td>
-</tr>
-<tr class="even">
-<td>d2:zScoreWFA</td>
-<td>Z-Score weight for age indicator</td>
-<td>Calculates z-score based on data provided by WHO weight-for-age indicator.
-e varies between -3.5 to 3.5 depending upon the value of weight.
-<p>Example expression:</p>
-<pre><code>d2:zScoreWFA( ageInMonths, weight, gender )</code></pre>
-
-> **Gender**
-> Gender is concidered female by default. Any of the following codes can
-> be used to denote male: 'Male', 'MALE', 'male', 'ma', 'm', 'M', 0, false
-
-</td>
-</tr>
-<tr class="odd">
-<td>d2:zScoreHFA</td>
-<td>Z-Score height for age indicator</td>
-<td>Calculates z-score based on data provided by WHO height-for-age indicator.
-Its value varies between -3.5 to 3.5 depending upon the value of height.
-<p>Example expression:</p>
-<pre><code>d2:zScoreHFA( ageInMonths, height, gender )</code></pre></td>
-</tr>
-<tr class="even">
-<td>d2:zScoreWFH</td>
-<td>Z-Score weight for height indicator</td>
-<td>Calculates z-score based on data derived from the WHO weight-for-length and weight-for-height indicators.
-The data used for girls can be found [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-girls-table.txt) and for boys [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-boys-table.txt).
-Its value varies between -3.5 to 3.5 depending upon the value of the weight.
-<p>Example expression:</p>
-<pre><code>d2:zScoreWFH( height, weight, gender )</code></pre></td>
-</tr>
-<tr class="odd">
-<td>d2:minValue</td>
-<td>Get minimum value for provided item</td>
-<td>Function gets minimum value of provided data element across entire enrollment.
-<p>Example expression:</p>
-<pre><code>d2:minValue( 'blood-pressure' )</code></pre></td>
-</tr>
-<tr class="even">
-<td>d2:maxValue</td>
-<td>Get maximum value for provided item</td>
-<td>Function gets maximum value of provided data element across entire enrollment.
-<p>Example expression:</p>
-<pre><code>d2:maxValue( 'blood-pressure' )</code></pre></td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<caption>Standard variables to use in program rule expressions</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 30%" />
-<col style="width: 54%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>V{current_date}</td>
-<td>(date)</td>
-<td>Contains the current date whenever the rule is executed.
-<p>Example expression:</p>
-<pre><code>d2:daysBetween(#{symptomDate},V{current_date}) &lt; 0 </code></pre></td>
-</tr>
-<tr class="even">
-<td>V{event_date}</td>
-<td>(date)</td>
-<td>Contains the event date of the current event execution. Will not have a value at the moment the rule is executed as part of the registration form.</td>
-</tr>
-<tr class="odd">
-<td>V{event_status}</td>
-<td>(string)</td>
-<td>Contains status of the current event or enrollment.
-<p>Example expression to check status is:</p>
-<pre><code>V{event_status} == &#39;COMPLETED&#39;</code></pre></td>
-</tr>
-<tr class="even">
-<td>V{due_date}</td>
-<td>(date)</td>
-<td>This variable will contain the current date when the rule is executed. Note: This means that the rule might produce different results at different times, even if nothing else has changed.</td>
-</tr>
-<tr class="odd">
-<td>V{event_count}</td>
-<td>(number)</td>
-<td>Contains the total number of events in the enrollment.</td>
-</tr>
-<tr class="even">
-<td>V{enrollment_date}</td>
-<td>(date)</td>
-<td>Contains the enrollment date of the current enrollment. Will not have a value for single event programs.</td>
-</tr>
-<tr class="odd">
-<td>V{incident_date}</td>
-<td>(date)</td>
-<td>Contains the incident date of the current enrollment. Will not have a value for single event programs.</td>
-</tr>
-<tr class="even">
-<td>V{enrollment_id}</td>
-<td>(string)</td>
-<td>Universial identifier string(UID) of the current enrollment. Will not have a value for single event programs.</td>
-</tr>
-<tr class="odd">
-<td>V{event_id}</td>
-<td>(string)</td>
-<td>Universial identifier string(UID) of the current event context. Will not have a value at the moment the rule is executed as part of the registration form.</td>
-</tr>
-<tr class="even">
-<td>V{orgunit_code}</td>
-<td>(string)</td>
-<td>Contains the code of the orgunit that is linked to the current enrollment. For single event programs the code from the current event orgunit will be used instead.
-<p>Example expression to check whether orgunit code starts with WB_:</p>
-<pre><code>d2:left(V{orgunit_code},3) == &#39;WB_&#39;</code></pre></td>
-</tr>
-<tr class="odd">
-<td>V{environment}</td>
-<td>(string)</td>
-<td>Contains a code representing the current runtime environment for the rules. The possible values is &quot;WebClient&quot;, &quot;AndroidClient&quot; and &quot;Server&quot;. Can be used when a program rule is only supposed to run in one or more of the client types.</td>
-</tr>
-<tr class="even">
-<td>V{program_stage_id}</td>
-<td>(string)</td>
-<td>Contains the ID of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty.</td>
-</tr>
-<tr class="odd">
-<td>V{program_stage_name}</td>
-<td>(string)</td>
-<td>Contains the name of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty.</td>
-</tr>
-<tr class="even">
-<td>V{completed_date}</td>
-<td>(string)</td>
-<td>This variable contains completion date of event which triggered this rule. If event is not yet complete then &quot;completed_date&quot; contains nothing.</td>
-</tr>
 
 
-</tbody>
-</table>
+Table: Possible operators to use in a program rule expression
+
+| Operator | Description |
+|---|---|
+| + | Add numbers together |
+| - | Subtract numbers from each other |
+| \* | Multiply two numbers |
+| / | Divide two numbers |
+| % | The modulus of two numbers |
+| && | Logical AND. True only when the expression on the left and right side is true. The left and right side can be yes/no, yes only or a sub-expression in parenthesis. |
+| &#124;&#124; | Logical OR. True when either the expression on the left or the expression on the right side is true. The left and right side can be yes/no, yes only or a sub-expression in parenthesis. |
+| > | Left number greater than right number |
+| >= | Left number greater than or equal to right number |
+| < | Left number less than right number |
+| <= | Left number less than or equal to right number. |
+| == | Left side equal to right side. Supports numbers, text, yes/no and yes only. |
+| != | Left side not equal to right side. Supports numbers, text, yes/no and yes only. |
+| ! | Negates the following value. Can be used for yes/no, yes only or a sub-expression in parenthesis. |
+| () | Parenthesis is used to group sub-expressions. |
+
+
+
+Table: Custom functions to use in a program rule expression
+
+| Function | Arguments | Description |
+|---|---|---|
+| d2:ceil | (number) | Rounds the input argument **up** to the nearest whole number. <br>Example:<br> `d2:ceil(#{hemoglobinValue})` |
+| d2:floor | (number) | Rounds the input argument **down** to the nearest whole number. <br>An example producing the number of weeks the woman is pregnant. Notice that the sub-expression #{gestationalAgeDays}/7 is evaluated before the floor function is executed:<br> `d2:floor(#{gestationalAgeDays}/7)` |
+| d2:round | (number) | Rounds the input argument to the nearest whole number. |
+| d2:modulus | (number,number) | Produces the modulus when dividing the first with the second argument. <br>An example producing the number of days the woman is into her current pregnancy week:<br> `d2:modulus(#{gestationalAgeDays},7)` |
+| d2:zing | (number) | Evaluates the argument of type number to zero if the value is negative, otherwise to the value itself. |
+| d2:oizp | (number) | Evaluates the argument of type number to one if the value is zero or positive, otherwise to zero. |
+| d2:concatenate | (object, [,object, object,...]) | Produces a string concatenated string from the input parameters. Supports any number of parameters. Will mainly be in use in future action types, for example to display gestational age with d2:concatenate('weeks','+','gestationalageDays'). |
+| d2:daysBetween | (date, date) | Produces the number of days between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. <br>Example, calculating the gestational age(in days) of a woman, based on the last menstrual period and the current event date:<br> `d2:daysBetween(#{lastMenstrualDate},V{event_date})` |
+| d2:weeksBetween | (date, date) | Produces the number of full weeks between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. |
+| d2:monthsBetween | (date, date) | Produces the number of full months between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. |
+| d2:yearsBetween | (date, date) | Produces the number of years between the first and second argument. When the first argument date comes before the second argument date, the number will be positive - in the opposite case, the number will be negative. The static date format is 'yyyy-MM-dd'. |
+| d2:addDays | (date, number) | Produces a date based on the first argument date, adding the second argument number of days. <br>An example calculating the pregnancy due date based on the last menstrual period:<br> `d2:addDays(#{lastMenstrualDate},283)` |
+| d2:count | (sourcefield) | Counts the number of values that is entered for the source field in the argument. The source field parameter is the name of one of the defined source fields in the program - see example <br>Example usage where #{previousPregnancyOutcome} is one of the source fields in a repeatable program stage "previous pregnancy":<br> `d2:count('previousPregnancyOutcome')` |
+| d2:countIfValue | (sourcefield,text) | Counts the number of matching values that is entered for the source field in the first argument. Only occurrences that matches the second argument is counted. The source field parameter is the name of one of the defined source fields in the program - see example. <br>Example usage where #{previousPregnancyOutcome} is one of the source fields in a repeatable program stage "previous pregnancy". The following function will produce the number of previous pregnancies that ended with abortion:<br> `d2:countIfValue('previousPregnancyOutcome','Abortion')` |
+| d2:countIfZeroPos | (sourcefield) | Counts the number of values that is zero or positive entered for the source field in the argument. The source field parameter is the name of one of the defined source fields in the program - see example. <br>Example usage where #{fundalHeightDiscrepancy} is one of the source fields in program, and it can be either positive or negative. The following function will produce the number of positive occurrences:<br> `d2:countIfZeroPos('fundalHeightDiscrepancy')` |
+| d2:hasValue | (sourcefield) | Evaluates to true of the argument source field contains a value, false if no value is entered. <br>Example usage, to find if the source field #{currentPregnancyOutcome} is yet filled in:<br> `d2:hasValue('currentPregnancyOutcome')` |
+| d2:zpvc | (object, [,object, object,...]) | Returns the number of numeric zero and positive values among the given object arguments. Can be provided with any number of arguments. |
+| d2:validatePattern | (text, regex-pattern) | Evaluates to true if the input text is an exact match with the supplied regular expression pattern. The regular expression needs to be escaped. <br>Example expression, triggering actions if a number is not on the pattern 9999/99/9:<br> `!d2:validatePattern(A{nrc},'\\d{6}\/\\d{2}\/\\d')` <br>Example expression, triggering actions that if the address is not consisting of letters or white spaces, then a white space, then a number:<br> `!d2:validatePattern(A{registrationAddress},'[\\w ]+ \\d+')` <br>Example, triggering actions if a name contains any numbers:<br> `!d2:validatePattern(A{name},'[^\\d]*')` <br>Example expression, triggering actions if a mobile number contains the illegal number sequence 555:<br> `d2:validatePattern(A{mobile} ,'.*555.*')` |
+| d2:left | (text, num-chars) | Evaluates to the left part of a text, num-chars from the first character. <br>The text can be quoted or evaluated from a variable:<br> `d2:left(#{variableWithText}, 3)` |
+| d2:right | (text, num-chars) | Evaluates to the right part of a text, num-chars from the last character. <br>The text can be quoted or evaluated from a variable:<br> `d2:right(#{variableWithText}, 2)` |
+| d2:substring | (text, start-char-num, end-char-num) | Evaluates to the part of a string specified by the start and end character number. <br>Example expression:<br> `d2:substring(#{variableWithText}, 1, 3)` If the #{variableWithText} in the above example was 'ABCD', then the result of the evaluation would be 'BC' |
+| d2:split | (text, delimiter, element-num) | Split the text by delimiter, and keep the nth element(0 is the first). <br>The text can be quoted or evaluated from a variable, the delimiter must be quoted:<br> `d2:split(#{variableWithText}, '-', 1)` <br>Note: comma delimiter(,) is not supported. |
+| d2:length | (text) | Find the length of a string. <br>Example:<br> `d2:length(#{variableWithText})` |
+| d2:inOrgUnitGroup | (text) | Evaluates whether the current organisation unit is in the argument group. The argument can be defined with either ID or organisation unit group code. The current organisation unit will be the event organisation unit when the rules is triggered in the context of an event, and the enrolling organisation unit when the rules is triggered in the event of a TEI registration form. <br>Example expression:<br> `d2:inOrgUnitGroup('HIGH_RISK_FACILITY')` |
+| d2:hasUserRole | (user role) | Returns true if current user has this role otherwise false <br>Example expression:<br> d2:hasUserRole('UYXOT4A3ASA') |
+| d2:zScoreWFA | Z-Score weight for age indicator | Calculates z-score based on data provided by WHO weight-for-age indicator. e varies between -3.5 to 3.5 depending upon the value of weight. <br>Example expression:<br> `d2:zScoreWFA( ageInMonths, weight, gender )`  <br> **Gender** > Gender is considered female by default. Any of the following codes can > be used to denote male: 'Male', 'MALE', 'male', 'ma', 'm', 'M', 0, false |
+| d2:zScoreHFA | Z-Score height for age indicator | Calculates z-score based on data provided by WHO height-for-age indicator. Its value varies between -3.5 to 3.5 depending upon the value of height. <br>Example expression:<br> `d2:zScoreHFA( ageInMonths, height, gender )` |
+| d2:zScoreWFH | Z-Score weight for height indicator | Calculates z-score based on data derived from the WHO weight-for-length and weight-for-height indicators. The data used for girls can be found [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-girls-table.txt) and for boys [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-boys-table.txt). Its value varies between -3.5 to 3.5 depending upon the value of the weight. <br>Example expression:<br> `d2:zScoreWFH( height, weight, gender )` |
+| d2:minValue | Get minimum value for provided item | Function gets minimum value of provided data element across entire enrollment. <br>Example expression:<br> `d2:minValue( 'blood-pressure' )` |
+| d2:maxValue | Get maximum value for provided item | Function gets maximum value of provided data element across entire enrollment. <br>Example expression:<br> `d2:maxValue( 'blood-pressure' )` |
+
+
+
+Table: Standard variables to use in program rule expressions
+
+| Variable | Type | Description |
+|---|---|---|
+| V{current_date} | (date) | Contains the current date whenever the rule is executed. <br>Example expression:<br> `d2:daysBetween(#{symptomDate},V{current_date}) < 0 `|
+| V{event_date} | (date) | Contains the event date of the current event execution. Will not have a value at the moment the rule is executed as part of the registration form. |
+| V{event_status} | (string) | Contains status of the current event or enrollment. <br>Example expression to check status is:<br> `V{event_status} == 'COMPLETED'` |
+| V{due_date} | (date) | This variable will contain the current date when the rule is executed. Note: This means that the rule might produce different results at different times, even if nothing else has changed. |
+| V{event_count} | (number) | Contains the total number of events in the enrollment. |
+| V{enrollment_date} | (date) | Contains the enrollment date of the current enrollment. Will not have a value for single event programs. |
+| V{incident_date} | (date) | Contains the incident date of the current enrollment. Will not have a value for single event programs. |
+| V{enrollment_id} | (string) | Universial identifier string(UID) of the current enrollment. Will not have a value for single event programs. |
+| V{event_id} | (string) | Universial identifier string(UID) of the current event context. Will not have a value at the moment the rule is executed as part of the registration form. |
+| V{orgunit_code} | (string) | Contains the code of the orgunit that is linked to the current enrollment. For single event programs the code from the current event orgunit will be used instead. <br>Example expression to check whether orgunit code starts with WB_:<br> `d2:left(V{orgunit_code},3) == 'WB_'` |
+| V{environment} | (string) | Contains a code representing the current runtime environment for the rules. The possible values is "WebClient", "AndroidClient" and "Server". Can be used when a program rule is only supposed to run in one or more of the client types. |
+| V{program_stage_id} | (string) | Contains the ID of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty. |
+| V{program_stage_name} | (string) | Contains the name of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty. |
+| V{completed_date} | (string) | This variable contains completion date of event which triggered this rule. If event is not yet complete then "completed_date" contains nothing. |
 
 ## Configure relationship types
 
@@ -3590,7 +1548,7 @@ programs.
    |      \\X      | capital letter |
    |      \\w      |any alphanumeric character|
 
-  For example, the pattern can be used to show hyphens as needed in the input field of the data element. E.g "\d\d\d-\d\d\d-\d\d\d, would 
+  For example, the pattern can be used to show hyphens as needed in the input field of the data element. E.g "\d\d\d-\d\d\d-\d\d\d, would
   show an hyphen for every third digit.
 
 8.  Select an **Option set**.
@@ -3598,173 +1556,54 @@ programs.
 9.  In the **Value type** field, select the type of data that the
     tracked entity attribute will record.
 
-    <table>
-    <caption>Value types</caption>
-    <colgroup>
-    <col style="width: 53%" />
-    <col style="width: 46%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Value type</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Age</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Coordinate</p></td>
-    <td><p>A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format &quot;-19.23 , 56.42&quot; with a comma separating the longitude and latitude.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Date</p></td>
-    <td><p>Dates render as calendar widget in data entry.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Date &amp; time</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>E-mail</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>File</p></td>
-    <td><p>A file resource where you can store external files, for example documents and photos.</p></td>
-    </tr>
-    <tr class="odd">
-    <td>Image</td>
-    <td>Similar to File, but restricted to images.</td>
-    </tr>
-    <tr class="even">
-    <td><p>Integer</p></td>
-    <td><p>Any whole number (positive and negative), including zero.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Letter</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Long text</p></td>
-    <td><p>Textual value. Renders as text area in forms.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Negative integer</p></td>
-    <td><p>Any whole number less than (but not including) zero.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Number</p></td>
-    <td><p>Any real numeric value with a single decimal point. Thousands separators and scientific notation is not supported.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Percentage</p></td>
-    <td><p>Whole numbers inclusive between 0 and 100.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Phone number</p></td>
-    <td></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Positive integer</p></td>
-    <td><p>Any whole number greater than (but not including) zero.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Positive of zero integer</p></td>
-    <td><p>Any positive whole number, including zero.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Organisation unit</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Unit interval</p></td>
-    <td><p>Any real number greater than or equal to 0 and less than or equal to 1.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Text</p></td>
-    <td><p>Textual value. The maximum number of allowed characters per value is 50,000.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Time</p></td>
-    <td><p>Time is stored in HH:mm format.</p>
-    <p>HH is a number between 0 and 23</p>
-    <p>mm is a number between 00 and 59</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Tracker associate</p></td>
-    <td><p>-</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Username</p></td>
-    <td><p> Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Yes/No</p></td>
-    <td><p>Boolean values, renders as drop-down lists in data entry.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Yes only</p></td>
-    <td><p>True values, renders as check-boxes in data entry.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+
+    Table: Value types
+
+    | Value type | Description |
+    |---|---|
+    | Age | - |
+    | Coordinate | A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format "-19.23 , 56.42" with a comma separating the longitude and latitude. |
+    | Date | Dates render as calendar widget in data entry. |
+    | Date & time | - |
+    | E-mail | - |
+    | File | A file resource where you can store external files, for example documents and photos. |
+    | Image | Similar to File, but restricted to images. |
+    | Integer | Any whole number (positive and negative), including zero. |
+    | Letter | - |
+    | Long text | Textual value. Renders as text area in forms. |
+    | Negative integer | Any whole number less than (but not including) zero. |
+    | Number | Any real numeric value with a single decimal point. Thousands separators and scientific notation is not supported. |
+    | Percentage | Whole numbers inclusive between 0 and 100. |
+    | Phone number ||
+    | Positive integer | Any whole number greater than (but not including) zero. |
+    | Positive of zero integer | Any positive whole number, including zero. |
+    | Organisation unit | - |
+    | Unit interval | Any real number greater than or equal to 0 and less than or equal to 1. |
+    | Text | Textual value. The maximum number of allowed characters per value is 50,000. |
+    | Time | Time is stored in HH:mm format.<br>     <br>HH is a number between 0 and 23<br>     <br>mm is a number between 00 and 59 |
+    | Tracker associate | - |
+    | Username |  Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type |
+    | Yes/No | Boolean values, renders as drop-down lists in data entry. |
+    | Yes only | True values, renders as check-boxes in data entry. |
 
 9.  Select an **Aggregation type**.
 
-    <table>
-    <caption>Aggregation operators</caption>
-    <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Aggregation operator</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Average</p></td>
-    <td><p>Average the values in both the period as and the organisation unit dimensions.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Average (sum in organisation unit hierarchy)</p></td>
-    <td><p>Average of data values in the period dimension, sum in the organisation unit dimensions.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Count</p></td>
-    <td><p>Count of data values.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Min</p></td>
-    <td><p>Minimum of data values.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Max</p></td>
-    <td><p>Maximum of data values.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>None</p></td>
-    <td><p>No aggregation is performed in any dimension.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Sum</p></td>
-    <td><p>Sum of data values in the period and organisation unit dimension.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Standard deviation</p></td>
-    <td><p>Standard deviation (population-based) of data values.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Variance</p></td>
-    <td><p>Variance (population-based) of data values.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+
+    Table: Aggregation operators
+
+    | Aggregation operator | Description |
+    |---|---|
+    | Average | Average the values in both the period as and the organisation unit dimensions. |
+    | Average (sum in organisation unit hierarchy) | Average of data values in the period dimension, sum in the organisation unit dimensions. |
+    | Count | Count of data values. |
+    | Min | Minimum of data values. |
+    | Max | Maximum of data values. |
+    | None | No aggregation is performed in any dimension. |
+    | Sum | Sum of data values in the period and organisation unit dimension. |
+    | Standard deviation | Standard deviation (population-based) of data values. |
+    | Variance | Variance (population-based) of data values. |
 
 10. Select **Unique** to specify that the values of the tracked entity
     attribute is unique.
@@ -3891,9 +1730,9 @@ the **Program** configuration.
 <!-- end list -->
 
   - Maximum number of tracked entity instances to return: This property defines how specific a search must be, by limiting the number of matching tracked entity instances a user is allowed to get for her search criteria. If the number of matching records is larger than this maximum, they will not be returned. The user must provide more specific search criteria, in order to reduce the number of matching records, before they are returned.
-  
+
     > **NOTE**
-    > 
+    >
     > This maximum is only applied to search results outside the users capture org unit. Within the capture scope, the user can see any number of results.
 
 ### Configure search for tracked entity type
@@ -3932,9 +1771,9 @@ There are two limits that can be set for a TET search
 <!-- end list -->
 
   - Maximum number of tracked entity types to return: This property defines how specific a search must be, by limiting the number of matching tracked entity types a user is allowed to get for her search criteria. If the number of matching records is larger than this maximum, they will not be returned. The user must provide more specific search criteria, in order to reduce the number of matching records, before they are returned.
-  
+
     > **NOTE**
-    > 
+    >
     > This maximum is only applied to search results outside the users capture org unit. Within the capture scope, the user can see any number of results.
 
 ### Configure search organisation units for a user

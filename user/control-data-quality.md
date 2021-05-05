@@ -10,36 +10,13 @@ The **Data Quality** app contains tools to validate the accuracy and
 reliability of the data in the system. You can assess different dimensions of 
 data quality as outlined in the table below: 
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Dimension</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Correctness</p></td>
-<td><p>Data should be within the normal range for data collected at that facility. There should be no gross discrepancies when compared with data from related data elements.</p></td>
-</tr>
-<tr class="even">
-<td><p>Completeness</p></td>
-<td><p>Data for all data elements for all reporting organisation units should have been submitted.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Consistency</p></td>
-<td><p>Data should be consistent with data entered during earlier months and years while allowing for changes with reorganization, increased work load, etc. and consistent with other similar facilities.</p></td>
-</tr>
-<tr class="even">
-<td><p>Timeliness</p></td>
-<td><p>All data from all reporting organisation units should be submitted at the appointed time.</p></td>
-</tr>
-</tbody>
-</table>
+
+| Dimension | Description |
+|---|---|
+| Correctness | Data should be within the normal range for data collected at that facility. There should be no gross discrepancies when compared with data from related data elements. |
+| Completeness | Data for all data elements for all reporting organisation units should have been submitted. |
+| Consistency | Data should be consistent with data entered during earlier months and years while allowing for changes with reorganization, increased work load, etc. and consistent with other similar facilities. |
+| Timeliness | All data from all reporting organisation units should be submitted at the appointed time. |
 
 You can verify data quality in different ways, for example:
 

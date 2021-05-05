@@ -27,48 +27,22 @@ Indicators are thus made up of formulas of data elements and other
 components and are always multiplied by a factor (e.g. 1, 100, 100, 100
 000). The factor is essentially a number which is multiplied by the
 result of the numerator divided by denominator. As a concrete example,
-the indicator "BCG coverage \<1 year" is defined by a formula with a
+the indicator "BCG coverage <1 year" is defined by a formula with a
 factor 100 (in order to obtain a percentage), a numerator ("BCG doses
 given to children under 1 year") and a denominator ("Target population
 under 1 year"). The indicator "DPT1 to DPT3 drop out rate" is a formula
 of 100 % x ("DPT1 doses given"- "DPT3 doses given") / ("DPT1 doses
 given").
 
-<table>
-<caption>Indicator examples</caption>
-<thead>
-<tr class="header">
-<th><p>Indicator</p></th>
-<th><p>Formula</p></th>
-<th><p>Numerator</p></th>
-<th><p>Denominator</p></th>
-<th><p>Factor</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Fully immunized &lt;1 year coverage</p></td>
-<td><p>Fully immunized/Population &lt; 1 year x 100</p></td>
-<td><p>Fully immunized</p></td>
-<td><p>Population &lt; 1</p></td>
-<td><p>100 (Percentage)</p></td>
-</tr>
-<tr class="even">
-<td><p>Maternal Mortality Rate</p></td>
-<td><p>Maternal deaths/Live births x 100 000</p></td>
-<td><p>Maternal deaths</p></td>
-<td><p>Live births</p></td>
-<td><p>100 000 (MMR is measured per 100 000)</p></td>
-</tr>
-<tr class="odd">
-<td><p>Cumulative number of people Enrolled in Care</p></td>
-<td><p>Cumulative number of people Enrolled in Care x 1</p></td>
-<td><p>Cumulative number Enrolled in Care (Male, Age&lt;18) +Cumulative number Enrolled in Care (Male, Age18+) +Cumulative number Enrolled in Care (Female, Age&lt;18) +Cumulative number Enrolled in Care (Female, Age18+)</p></td>
-<td><p>None</p></td>
-<td><p>1</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Indicator examples
+
+| Indicator | Formula | Numerator | Denominator | Factor |
+|---|---|---|---|---|
+| Fully immunized <1 year coverage | Fully immunized/Population < 1 year x 100 | Fully immunized | Population < 1 | 100 (Percentage) |
+| Maternal Mortality Rate | Maternal deaths/Live births x 100 000 | Maternal deaths | Live births | 100 000 (MMR is measured per 100 000) |
+| Cumulative number of people Enrolled in Care | Cumulative number of people Enrolled in Care x 1 | Cumulative number Enrolled in Care (Male, Age<18) +Cumulative number Enrolled in Care (Male, Age18+) +Cumulative number Enrolled in Care (Female, Age<18) +Cumulative number Enrolled in Care (Female, Age18+) | None | 1 |
 
 ## Purpose of indicators
 
@@ -113,4 +87,3 @@ elements being called for when using the indicator for analysis, without
 any changes to the underlying data values taking place. For information
 how to manage indicators, please refer to the chapter on indicators in
 the DHIS2 user documentation.
-

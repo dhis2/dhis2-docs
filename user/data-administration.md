@@ -245,70 +245,23 @@ Reports all the violations in program indicator filter expression caused by inva
 
 <!--DHIS2-SECTION-ID:data_admin_maintenance-->
 
-<table>
-<caption>Data maintenance functions in the Data Administration app</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Function</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Clear analytics tables</p></td>
-<td><p>Completely empties the analytics tables. These tables are used to generate aggregate data for the pivot tables, GIS and reports.</p></td>
-</tr>
-<tr class="even">
-<td><p>Remove zero data values</p></td>
-<td><p>Removes zero data values from the database. Values registered for data elements with aggregation operator average is not removed, as such values will be significant when aggregating the data, contrary to values registered for data elements with aggregation operator sum.</p>
-<p>Reducing the number of data values will improve system performance.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Permanently remove soft deleted data values</p></td>
-<td><p>When a data value is deleted in DHIS2, the system will mark the corresponding database row as deleted, and not actually delete the row.</p>
-<p>Running this maintenance function will physically remove these data value rows from the database.</p></td>
-</tr>
-<tr class="even">
-<td><p>Prune periods</p></td>
-<td><p>Removes all periods which have no registered data values. Reducing the number of periods will improve system performance.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Remove expired invitations</p></td>
-<td><p>Will delete users which represent user account invitations that now have gone past their expiry date.</p></td>
-</tr>
-<tr class="even">
-<td><p>Drop SQL views</p></td>
-<td><p>DHIS2 lets you set up and manage SQL views as system objects with corresponding database SQL views.</p>
-<p>Running this maintenance function will drop underlying SQL views for all system views. Use the <strong>Create SQL views</strong> function to recreate these SQL views.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Create SQL views</p></td>
-<td><p>Recreates all SQL views in the database.</p></td>
-</tr>
-<tr class="even">
-<td><p>Update category option combinations</p></td>
-<td><p>Rebuilds the category option combinations. This may be required after altering the category options which belong to a given category.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Update organisation unit paths</p></td>
-<td><p>The organisation unit table in the DHIS2 database has a column &quot;path&quot; which contains a concatenated string of all ancestors in the hierarchy for each organisation unit.</p>
-<p>Running this maintenance function will update and ensure that these values are in sync with the current organisation unit hierarchy. This column is managed by DHIS2, but a manual update might be useful when doing data loading directly in the database.</p></td>
-</tr>
-<tr class="even">
-<td><p>Clear application cache</p></td>
-<td><p>Clears the system cache.</p></td>
-</tr>
-<tr class="odd">
-<td><p>Reload apps</p></td>
-<td><p>Manually reloads and detects installed DHIS2 apps.</p>
-<p>The installed apps are also detected when the system starts and when installing or uninstall apps.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data maintenance functions in the Data Administration app
+
+| Function | Description |
+|---|---|
+| Clear analytics tables | Completely empties the analytics tables. These tables are used to generate aggregate data for the pivot tables, GIS and reports. |
+| Remove zero data values | Removes zero data values from the database. Values registered for data elements with aggregation operator average is not removed, as such values will be significant when aggregating the data, contrary to values registered for data elements with aggregation operator sum.<br> <br>Reducing the number of data values will improve system performance. |
+| Permanently remove soft deleted data values | When a data value is deleted in DHIS2, the system will mark the corresponding database row as deleted, and not actually delete the row.<br> <br>Running this maintenance function will physically remove these data value rows from the database. |
+| Prune periods | Removes all periods which have no registered data values. Reducing the number of periods will improve system performance. |
+| Remove expired invitations | Will delete users which represent user account invitations that now have gone past their expiry date. |
+| Drop SQL views | DHIS2 lets you set up and manage SQL views as system objects with corresponding database SQL views.<br> <br>Running this maintenance function will drop underlying SQL views for all system views. Use the **Create SQL views** function to recreate these SQL views. |
+| Create SQL views | Recreates all SQL views in the database. |
+| Update category option combinations | Rebuilds the category option combinations. This may be required after altering the category options which belong to a given category. |
+| Update organisation unit paths | The organisation unit table in the DHIS2 database has a column "path" which contains a concatenated string of all ancestors in the hierarchy for each organisation unit.<br> <br>Running this maintenance function will update and ensure that these values are in sync with the current organisation unit hierarchy. This column is managed by DHIS2, but a manual update might be useful when doing data loading directly in the database. |
+| Clear application cache | Clears the system cache. |
+| Reload apps | Manually reloads and detects installed DHIS2 apps.<br> <br>The installed apps are also detected when the system starts and when installing or uninstall apps. |
 
 ## Resource tables
 

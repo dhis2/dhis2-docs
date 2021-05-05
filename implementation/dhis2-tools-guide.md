@@ -104,21 +104,21 @@ The simplified set of steps to get a dhis2 instance up and running from
 here are:
 
 1.  turn your user (eg bobj) into a dhis2-admin user by running:
-    
+
     sudo dhis2-create-admin bobj
 
 2.  create an instance named eg dhis with:
-    
+
     dhis2-instance-create dhis
 
 3.  deploy the latest stable war file with:
-    
+
     dhis2-deploy-war dhis
 
 4.  setup a basic nginx template with:
-    
+
     dhis2-nginx
-    
+
     Note that nginx configuration is not done automatically. Though
     running the command dhis2-nginx will create a simple site
     configuration file under /etc/nginx/sites-enabled/dhis2. You may
@@ -126,7 +126,7 @@ here are:
     numbers are correct.
 
 5.  start your dhis instance with:
-    
+
     dhis2-startup dhis
 
 A full description of these commands and others used for managing your
@@ -474,38 +474,12 @@ Deletes a dhis2 instance named 'dhis' and its database named 'dhisdb'
 The following table shows some common problems which occur and likely
 remedies:
 
-<table>
-<caption>Troubleshooting guide</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Problem</th>
-<th>Solution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>When you attempt to access the site with your browser it does not connect.</p></td>
-<td><p>Either there is a network problem or nginx is not running. Check first to see if you can ping the host. If not you have a network problem. If you can ping the site, the most likely problem is that nginx is not installed or is not running. Verify that nginx is up and running and listening on ports 443 and 80 by typing:</p>
-<p><code>sudo netstat -ntlp</code></p>
-<p>You should see the nginx process listening on those 2 ports</p></td>
-</tr>
-<tr class="even">
-<td><p>You can access the site but you see a 502 gateway error in your browser.</p></td>
-<td><p>This means that nginx is unable to connect to your backend dhis2 instance. Either the instance is not running or your nginx location configuration has an error. Running the same netstat command above should show your instance listening on 127.0.0.1 with a port number typically 8080 or whatever you have configured it as.</p>
-<p>If its not running, try to start it with <code>dhis2-startup [instance
-                  name]</code></p>
-<p>If it is still not running, check the log file with <code>dhis2-logview
-                  [instance name]</code> to see if there is any information indicating why it has failed to start.</p>
-<p>If it is running and you can see it with netstat then you need to check your nginx configuration file to ensure that the location is correctly mapped.</p></td>
-</tr>
-<tr class="odd">
-<td><p>You can access the site but you see a blank page in your browser.</p></td>
-<td><p>This usually means that the dhis2 instance is running, but you have forgotten to deploy a war file to it. You need to run dhis2-deploy-war on that instance. See the reference section above for details of options.</p></td>
-</tr>
-</tbody>
-</table>
 
+
+Table: Troubleshooting guide
+
+| Problem | Solution |
+|---|---|
+| When you attempt to access the site with your browser it does not connect. | Either there is a network problem or nginx is not running. Check first to see if you can ping the host. If not you have a network problem. If you can ping the site, the most likely problem is that nginx is not installed or is not running. Verify that nginx is up and running and listening on ports 443 and 80 by typing:<br> <br>`sudo netstat -ntlp`<br> <br>You should see the nginx process listening on those 2 ports |
+| You can access the site but you see a 502 gateway error in your browser. | This means that nginx is unable to connect to your backend dhis2 instance. Either the instance is not running or your nginx location configuration has an error. Running the same netstat command above should show your instance listening on 127.0.0.1 with a port number typically 8080 or whatever you have configured it as.<br> <br>If its not running, try to start it with `dhis2-startup [instance name]`<br> <br>If it is still not running, check the log file with `dhis2-logview [instance name]` to see if there is any information indicating why it has failed to start.<br> <br>If it is running and you can see it with netstat then you need to check your nginx configuration file to ensure that the location is correctly mapped. |
+| You can access the site but you see a blank page in your browser. | This usually means that the dhis2 instance is running, but you have forgotten to deploy a war file to it. You need to run dhis2-deploy-war on that instance. See the reference section above for details of options. |
