@@ -2987,6 +2987,10 @@ below shows the supported types of events.
 <td>Dashboard view</td>
 </tr>
 <tr class="odd">
+<td>PASSIVE_DASHBOARD_VIEW</td>
+<td>Dashboard view (when not explicitly selecting the dashboard)</td>
+</tr>
+<tr class="even">
 <td>DATA_SET_REPORT_VIEW</td>
 <td>Data set report view</td>
 </tr>
@@ -3151,6 +3155,7 @@ The JSON response looks like this:
     "eventReportViews": 6757,
     "eventChartViews": 9860,
     "dashboardViews": 10082,
+    "passiveDashboardViews": 0,
     "totalViews": 46346,
     "averageViews": 468,
     "averageMapViews": 22,
@@ -3159,6 +3164,7 @@ The JSON response looks like this:
     "averageEventReportViews": 68,
     "averageEventChartViews": 99,
     "averageDashboardViews": 101,
+    "averagePassiveDashboardViews": 0,
     "savedMaps": 1805,
     "savedCharts": 2205,
     "savedReportTables": 1995,
@@ -3178,6 +3184,7 @@ The JSON response looks like this:
     "eventReportViews": 6697,
     "eventChartViews": 9511,
     "dashboardViews": 12181,
+    "passiveDashboardViews": 0,
     "totalViews": 47746,
     "averageViews": 497,
     "averageMapViews": 21,
@@ -3186,6 +3193,7 @@ The JSON response looks like this:
     "averageEventReportViews": 69,
     "averageEventChartViews": 99,
     "averageDashboardViews": 126,
+    "averagePassiveDashboardViews": 0,
     "savedMaps": 1643,
     "savedCharts": 1935,
     "savedReportTables": 1867,
