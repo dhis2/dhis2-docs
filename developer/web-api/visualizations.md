@@ -946,7 +946,7 @@ These operations follow the standard *REST* semantics. A new Visualization can b
       },
       "title": {
         "text": "Range axis title",
-        "textMode": "CUSTOM"
+        "textMode": "CUSTOM",
         "fontStyle": {
           "textColor": "#000000"
         }
@@ -984,7 +984,7 @@ These operations follow the standard *REST* semantics. A new Visualization can b
       },
       "title": {
         "text": "Domain axis title",
-        "textMode": "CUSTOM"
+        "textMode": "CUSTOM",
         "fontStyle": {
           "textColor": "#cccddd"
         }
