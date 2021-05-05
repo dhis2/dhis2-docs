@@ -363,8 +363,11 @@ Binary operators for access (sharing) based filtering:
 
 | Binary Operator   | Description                                              |
 | ----------------- | -------------------------------------------------------- |
-| `canRead`         | Can the user `<value>` read the owner object of the property |
-| `canWrite`        | Can the user `<value>` write the owner object of the property |
+| `canRead`         | Has user `<value>` metadata read permission to the object |
+| `canWrite`        | Has user `<value>` metadata write permission to the object |
+| `canDataRead`     | Has user `<value>` data read permission to the object    |
+| `canDataWrite`    | Has user `<value>` data write permission to the object   |
+| `canAccess`       | Has user `<value0>` permission `<value1>` to the object  |
 
 When applied to a simple value property, here `code`, the filter restricts to
 those data elements (owner object) the user can read/write:
@@ -382,6 +385,10 @@ collection property and which the user can read/write:
 
     /api/dataElements/gist?filter=dataElementGroups:canWrite:OYLGMiazHtW
 
+The `canAccess` expects two arguments, 1st is user ID, 2nd the access pattern,
+for example to check metadata read and write access the pattern is `rw%`:
+
+    /api/dataElements/gist?filter=code:canAccess:[OYLGMiazHtW,rw%]
 
 ### The `headless` Parameter
 <!--DHIS2-SECTION-ID:gist_parameters_headless-->
