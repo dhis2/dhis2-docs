@@ -635,6 +635,16 @@ The following representation is an example of a response in JSON format (for bre
   "dataElementGroupSetDimensions": [],
   "attributeDimensions": [],
   "yearlySeries": [],
+  "axes": [
+    {
+      "index": 0,
+      "type": "RANGE",
+      "title": {
+        "textMode": "CUSTOM",
+        "text": "Any Title"
+      }
+    }
+  ],
   "filterDimensions": [
     "dx"
   ],
@@ -936,6 +946,7 @@ These operations follow the standard *REST* semantics. A new Visualization can b
       },
       "title": {
         "text": "Range axis title",
+        "textMode": "CUSTOM"
         "fontStyle": {
           "textColor": "#000000"
         }
@@ -973,6 +984,7 @@ These operations follow the standard *REST* semantics. A new Visualization can b
       },
       "title": {
         "text": "Domain axis title",
+        "textMode": "CUSTOM"
         "fontStyle": {
           "textColor": "#cccddd"
         }
