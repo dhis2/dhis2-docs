@@ -16,93 +16,26 @@ The *users* resource offers additional query parameters beyond the
 standard parameters (e.g. paging). To query for users at the users
 resource you can use the following parameters.
 
-<table>
-<caption>User query parameters</caption>
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 17%" />
-<col style="width: 63%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>query</td>
-<td>Text</td>
-<td>Query value for first name, surname, username and email, case in-sensitive.</td>
-</tr>
-<tr class="even">
-<td>phoneNumber</td>
-<td>Text</td>
-<td>Query for phone number.</td>
-</tr>
-<tr class="odd">
-<td>canManage</td>
-<td>false | true</td>
-<td>Filter on whether the current user can manage the returned users through the managed user group relationships.</td>
-</tr>
-<tr class="even">
-<td>authSubset</td>
-<td>false | true</td>
-<td>Filter on whether the returned users have a subset of the authorities of the current user.</td>
-</tr>
-<tr class="odd">
-<td>lastLogin</td>
-<td>Date</td>
-<td>Filter on users who have logged in later than the given date.</td>
-</tr>
-<tr class="even">
-<td>inactiveMonths</td>
-<td>Number</td>
-<td>Filter on users who have not logged in for the given number of months.</td>
-</tr>
-<tr class="odd">
-<td>inactiveSince</td>
-<td>Date</td>
-<td>Filter on users who have not logged in later than the given date.</td>
-</tr>
-<tr class="even">
-<td>selfRegistered</td>
-<td>false | true</td>
-<td>Filter on users who have self-registered their user account.</td>
-</tr>
-<tr class="odd">
-<td>invitationStatus</td>
-<td>none | all | expired</td>
-<td>Filter on user invitations, including all or expired invitations.</td>
-</tr>
-<tr class="even">
-<td>ou</td>
-<td>Identifier</td>
-<td>Filter on users who are associated with the organisation unit with the given identifier.</td>
-</tr>
-<tr class="odd">
-<td>userOrgUnits</td>
-<td>false | true</td>
-<td>Filter on users who are associated with the organisation units linked to the currently logged in user.</td>
-</tr>
-<tr class="even">
-<td>includeChildren</td>
-<td>false | true</td>
-<td>Includes users from all children organisation units of the ou parameter.</td>
-</tr>
-<tr class="odd">
-<td>page</td>
-<td>Number</td>
-<td>The page number.</td>
-</tr>
-<tr class="even">
-<td>pageSize</td>
-<td>Number</td>
-<td>The page size.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: User query parameters
+
+| Parameter | Type | Description |
+|---|---|---|
+| query | Text | Query value for first name, surname, username and email, case in-sensitive. |
+| phoneNumber | Text | Query for phone number. |
+| canManage | false &#124; true | Filter on whether the current user can manage the returned users through the managed user group relationships. |
+| authSubset | false &#124; true | Filter on whether the returned users have a subset of the authorities of the current user. |
+| lastLogin | Date | Filter on users who have logged in later than the given date. |
+| inactiveMonths | Number | Filter on users who have not logged in for the given number of months. |
+| inactiveSince | Date | Filter on users who have not logged in later than the given date. |
+| selfRegistered | false &#124; true | Filter on users who have self-registered their user account. |
+| invitationStatus | none &#124; all &#124; expired | Filter on user invitations, including all or expired invitations. |
+| ou | Identifier | Filter on users who are associated with the organisation unit with the given identifier. |
+| userOrgUnits | false &#124; true | Filter on users who are associated with the organisation units linked to the currently logged in user. |
+| includeChildren | false &#124; true | Includes users from all children organisation units of the ou parameter. |
+| page | Number | The page number. |
+| pageSize | Number | The page size. |
 
 A query for max 10 users with "konan" as first name or surname (case
 in-sensitive) who have a subset of authorities compared to the current

@@ -148,37 +148,15 @@ in a text editor to rename these elements to a name DHIS2 will recognize
 when using the name as the identifier (the source shapefile or even GML
 will usually contain the name for each area it defines).
 
-<table>
-<caption>Organisation unit identifiers supported for GML import</caption>
-<thead>
-<tr class="header">
-<th>Matching priority</th>
-<th>Identifier</th>
-<th>Valid spellings</th>
-<th>Guaranteed unique</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Uid</td>
-<td>uid, Uid, UID</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>Code</td>
-<td>code, Code, CODE</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Name</td>
-<td>name, Name, NAME</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Organisation unit identifiers supported for GML import
+
+| Matching priority | Identifier | Valid spellings | Guaranteed unique |
+|---|---|---|---|
+| 1 | Uid | uid, Uid, UID | Yes |
+| 2 | Code | code, Code, CODE | No |
+| 3 | Name | name, Name, NAME | No |
 
 In the case of renaming properties one would usually find a tag named
 something like "ogr:DISTRICT\_NAME", "ogr:NAME\_1" and rename it to

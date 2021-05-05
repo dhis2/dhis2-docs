@@ -293,73 +293,23 @@ supplied.
 
 The import process can be customized using a set of import parameters:
 
-<table>
-<caption>Import parameters</caption>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Values (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dataElementIdScheme</td>
-<td>id | name | code | attribute:ID</td>
-<td>Property of the data element object to use to map the data values.</td>
-</tr>
-<tr class="even">
-<td>orgUnitIdScheme</td>
-<td>id | name | code | attribute:ID</td>
-<td>Property of the org unit object to use to map the data values.</td>
-</tr>
-<tr class="odd">
-<td>categoryOptionComboIdScheme</td>
-<td>id | name | code | attribute:ID</td>
-<td>Property of the category option combo and attribute option combo objects to use to map the data values.</td>
-</tr>
-<tr class="even">
-<td>idScheme</td>
-<td>id | name | code| attribute:ID</td>
-<td>Property of all objects including data elements, org units and category option combos, to use to map the data values.</td>
-</tr>
-<tr class="odd">
-<td>preheatCache</td>
-<td>false | true</td>
-<td>Indicates whether to preload metadata caches before starting to import data values, will speed up large import payloads with high metadata cardinality.</td>
-</tr>
-<tr class="even">
-<td>dryRun</td>
-<td>false | true</td>
-<td>Whether to save changes on the server or just return the import summary.</td>
-</tr>
-<tr class="odd">
-<td>importStrategy</td>
-<td>CREATE | UPDATE | CREATE_AND_UPDATE | DELETE</td>
-<td>Save objects of all, new or update import status on the server.</td>
-</tr>
-<tr class="even">
-<td>skipExistingCheck</td>
-<td>false | true</td>
-<td>Skip checks for existing data values. Improves performance. Only use for empty databases or when the data values to import do not exist already.</td>
-</tr>
-<tr class="even">
-<td>skipAudit</td>
-<td>false | true</td>
-<td>Skip audit, meaning audit values will not be generated. Improves performance at the cost of ability to audit changes. Requires authority "F_SKIP_DATA_IMPORT_AUDIT".</td>
-</tr>
-<tr class="odd">
-<td>async</td>
-<td>false | true</td>
-<td>Indicates whether the import should be done asynchronous or synchronous. The former is suitable for very large imports as it ensures that the request does not time out, although it has a significant performance overhead. The latter is faster but requires the connection to persist until the process is finished.</td>
-</tr>
-<tr class="even">
-<td>force</td>
-<td>false | true</td>
-<td>Indicates whether the import should be forced. Data import could be rejected for various reasons of data set locking for example due to approval, data input period, expiry days, etc. In order to override such locks and force data input one can use data import with force=true. However, one needs to be a *superuser* for this parameter to work.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Import parameters
+
+| Parameter | Values (default first) | Description |
+|---|---|---|
+| dataElementIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the data element object to use to map the data values. |
+| orgUnitIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the org unit object to use to map the data values. |
+| categoryOptionComboIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the category option combo and attribute option combo objects to use to map the data values. |
+| idScheme | id &#124; name &#124; code&#124; attribute:ID | Property of all objects including data elements, org units and category option combos, to use to map the data values. |
+| preheatCache | false &#124; true | Indicates whether to preload metadata caches before starting to import data values, will speed up large import payloads with high metadata cardinality. |
+| dryRun | false &#124; true | Whether to save changes on the server or just return the import summary. |
+| importStrategy | CREATE &#124; UPDATE &#124; CREATE_AND_UPDATE &#124; DELETE | Save objects of all, new or update import status on the server. |
+| skipExistingCheck | false &#124; true | Skip checks for existing data values. Improves performance. Only use for empty databases or when the data values to import do not exist already. |
+| skipAudit | false &#124; true | Skip audit, meaning audit values will not be generated. Improves performance at the cost of ability to audit changes. Requires authority "F_SKIP_DATA_IMPORT_AUDIT". |
+| async | false &#124; true | Indicates whether the import should be done asynchronous or synchronous. The former is suitable for very large imports as it ensures that the request does not time out, although it has a significant performance overhead. The latter is faster but requires the connection to persist until the process is finished. |
+| force | false &#124; true | Indicates whether the import should be forced. Data import could be rejected for various reasons of data set locking for example due to approval, data input period, expiry days, etc. In order to override such locks and force data input one can use data import with force=true. However, one needs to be a \*superuser\* for this parameter to work. |
 
 All parameters are optional and can be supplied as query parameters in
 the request URL like this:
@@ -391,23 +341,13 @@ Data value import supports a set of value types. For each value type,
 there is a special requirement. The following table lists the edge cases
 for value types.
 
-<table>
-<caption>Value type requirements</caption>
-<thead>
-<tr class="header">
-<th>Value type</th>
-<th>Requirements</th>
-<th>Comment</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>BOOLEAN</td>
-<td>true | True | TRUE | false | False | FALSE | 1 | 0 | t | f |</td>
-<td>Used when the value is a boolean, true or false value. The import service does not care if the input begins with an uppercase or lowercase letter, or if it's all uppercase.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Value type requirements
+
+| Value type | Requirements | Comment |
+|---|---|---|
+| BOOLEAN | true &#124; True &#124; TRUE &#124; false &#124; False &#124; FALSE &#124; 1 &#124; 0 &#124; t &#124; f &#124; | Used when the value is a boolean, true or false value. The import service does not care if the input begins with an uppercase or lowercase letter, or if it's all uppercase. |
 
 #### Identifier schemes
 
@@ -498,66 +438,23 @@ information.
 The following section describes the CSV format used in DHIS2. The first
 row is assumed to be a header row and will be ignored during import.
 
-<table>
-<caption>CSV format of DHIS2</caption>
-<tbody>
-<tr class="odd">
-<td>Column</td>
-<td>Required</td>
-<td>Description</td>
-</tr>
-<tr class="even">
-<td>Data element</td>
-<td>Yes</td>
-<td>Refers to ID by default, can also be name and code based on selected id scheme</td>
-</tr>
-<tr class="odd">
-<td>Period</td>
-<td>Yes</td>
-<td>In ISO format</td>
-</tr>
-<tr class="even">
-<td>Org unit</td>
-<td>Yes</td>
-<td>Refers to ID by default, can also be name and code based on selected id scheme</td>
-</tr>
-<tr class="odd">
-<td>Category option combo</td>
-<td>No</td>
-<td>Refers to ID</td>
-</tr>
-<tr class="even">
-<td>Attribute option combo</td>
-<td>No</td>
-<td>Refers to ID (from version 2.16)</td>
-</tr>
-<tr class="odd">
-<td>Value</td>
-<td>No</td>
-<td>Data value</td>
-</tr>
-<tr class="even">
-<td>Stored by</td>
-<td>No</td>
-<td>Refers to username of user who entered the value</td>
-</tr>
-<tr class="odd">
-<td>Last updated</td>
-<td>No</td>
-<td>Date in ISO format</td>
-</tr>
-<tr class="even">
-<td>Comment</td>
-<td>No</td>
-<td>Free text comment</td>
-</tr>
-<tr class="odd">
-<td>Follow up</td>
-<td>No</td>
-<td>true or false</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: CSV format of DHIS2
+
+||||
+|---|---|---|
+| Column | Required | Description |
+| Data element | Yes | Refers to ID by default, can also be name and code based on selected id scheme |
+| Period | Yes | In ISO format |
+| Org unit | Yes | Refers to ID by default, can also be name and code based on selected id scheme |
+| Category option combo | No | Refers to ID |
+| Attribute option combo | No | Refers to ID (from version 2.16) |
+| Value | No | Data value |
+| Stored by | No | Refers to username of user who entered the value |
+| Last updated | No | Date in ISO format |
+| Comment | No | Free text comment |
+| Follow up | No | true or false |
 
 An example of a CSV file which can be imported into DHIS2 is seen below.
 
@@ -581,48 +478,17 @@ formats are supported. Example:
 The parameters you can use to further adjust the output are described
 below:
 
-<table style="width:100%;">
-<caption>Data values query parameters</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 19%" />
-<col style="width: 64%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>period</td>
-<td>No</td>
-<td>Period to use, will be included without any checks.</td>
-</tr>
-<tr class="even">
-<td>orgUnit</td>
-<td>No</td>
-<td>Organisation unit to use, supports multiple orgUnits, both id and code can be used.</td>
-</tr>
-<tr class="odd">
-<td>comment</td>
-<td>No</td>
-<td>Should comments be include, default: Yes.</td>
-</tr>
-<tr class="even">
-<td>orgUnitIdScheme</td>
-<td>No</td>
-<td>Organisation unit scheme to use, supports id | code.</td>
-</tr>
-<tr class="odd">
-<td>dataElementIdScheme</td>
-<td>No</td>
-<td>Data-element scheme to use, supports id | code.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data values query parameters
+
+| Query parameter | Required | Description |
+|---|---|---|
+| period | No | Period to use, will be included without any checks. |
+| orgUnit | No | Organisation unit to use, supports multiple orgUnits, both id and code can be used. |
+| comment | No | Should comments be include, default: Yes. |
+| orgUnitIdScheme | No | Organisation unit scheme to use, supports id &#124; code. |
+| dataElementIdScheme | No | Data-element scheme to use, supports id &#124; code. |
 
 ### Reading data values
 
@@ -636,93 +502,30 @@ interested in the XML resource representation by including an `Accept`
 HTTP header with our request. The following query parameters are
 required:
 
-<table>
-<caption>Data value set query parameters</caption>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 72%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dataSet</td>
-<td>Data set identifier. Can be repeated any number of times.</td>
-</tr>
-<tr class="even">
-<td>dataElementGroup</td>
-<td>Data element group identifier. Can be repeated any number of times.</td>
-</tr>
-<tr class="odd">
-<td>period</td>
-<td>Period identifier in ISO format. Can be repeated any number of times.</td>
-</tr>
-<tr class="even">
-<td>startDate</td>
-<td>Start date for the time span of the values to export.</td>
-</tr>
-<tr class="odd">
-<td>endDate</td>
-<td>End date for the time span of the values to export.</td>
-</tr>
-<tr class="even">
-<td>orgUnit</td>
-<td>Organisation unit identifier. Can be repeated any number of times.</td>
-</tr>
-<tr class="odd">
-<td>children</td>
-<td>Whether to include the children in the hierarchy of the organisation units.</td>
-</tr>
-<tr class="even">
-<td>orgUnitGroup</td>
-<td>Organisation unit group identifier. Can be repeated any number of times.</td>
-</tr>
-<tr class="odd">
-<td>attributeOptionCombo</td>
-<td>Attribute option combo identifier. Can be repeated any number of times.</td>
-</tr>
-<tr class="even">
-<td>includeDeleted</td>
-<td>Whether to include deleted data values.</td>
-</tr>
-<tr class="odd">
-<td>lastUpdated</td>
-<td>Include only data values which are updated since the given time stamp.</td>
-</tr>
-<tr class="even">
-<td>lastUpdatedDuration</td>
-<td>Include only data values which are updated within the given duration. The format is &lt;value&gt;&lt;time-unit&gt;, where the supported time units are &quot;d&quot; (days), &quot;h&quot; (hours), &quot;m&quot; (minutes) and &quot;s&quot; (seconds).</td>
-</tr>
-<tr class="odd">
-<td>limit</td>
-<td>The max number of results in the response.</td>
-</tr>
-<tr class="even">
-<td>idScheme</td>
-<td>Property of meta data objects to use for data values in response.</td>
-</tr>
-<tr class="odd">
-<td>dataElementIdScheme</td>
-<td>Property of the data element object to use for data values in response.</td>
-</tr>
-<tr class="even">
-<td>orgUnitIdScheme</td>
-<td>Property of the org unit object to use for data values in response.</td>
-</tr>
-<tr class="odd">
-<td>categoryOptionComboIdScheme</td>
-<td>Property of the category option combo and attribute option combo objects to use for data values in response.</td>
-</tr>
-<tr class="even">
-<td>dataSetIdScheme</td>
-<td>Property of the data set object to use in the response.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data value set query parameters
+
+| Parameter | Description |
+|---|---|
+| dataSet | Data set identifier. Can be repeated any number of times. |
+| dataElementGroup | Data element group identifier. Can be repeated any number of times. |
+| period | Period identifier in ISO format. Can be repeated any number of times. |
+| startDate | Start date for the time span of the values to export. |
+| endDate | End date for the time span of the values to export. |
+| orgUnit | Organisation unit identifier. Can be repeated any number of times. |
+| children | Whether to include the children in the hierarchy of the organisation units. |
+| orgUnitGroup | Organisation unit group identifier. Can be repeated any number of times. |
+| attributeOptionCombo | Attribute option combo identifier. Can be repeated any number of times. |
+| includeDeleted | Whether to include deleted data values. |
+| lastUpdated | Include only data values which are updated since the given time stamp. |
+| lastUpdatedDuration | Include only data values which are updated within the given duration. The format is <value\><time-unit\>, where the supported time units are "d" (days), "h" (hours), "m" (minutes) and "s" (seconds). |
+| limit | The max number of results in the response. |
+| idScheme | Property of meta data objects to use for data values in response. |
+| dataElementIdScheme | Property of the data element object to use for data values in response. |
+| orgUnitIdScheme | Property of the org unit object to use for data values in response. |
+| categoryOptionComboIdScheme | Property of the category option combo and attribute option combo objects to use for data values in response. |
+| dataSetIdScheme | Property of the data set object to use in the response. |
 
 The following response formats are supported:
 
@@ -863,73 +666,22 @@ a request. This can be achieved by sending a *POST* request to the
 
 The following query parameters are supported for this resource:
 
-<table style="width:100%;">
-<caption>Data values query parameters</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 19%" />
-<col style="width: 64%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>de</td>
-<td>Yes</td>
-<td>Data element identifier</td>
-</tr>
-<tr class="even">
-<td>pe</td>
-<td>Yes</td>
-<td>Period identifier</td>
-</tr>
-<tr class="odd">
-<td>ou</td>
-<td>Yes</td>
-<td>Organisation unit identifier</td>
-</tr>
-<tr class="even">
-<td>co</td>
-<td>No</td>
-<td>Category option combo identifier, default will be used if omitted</td>
-</tr>
-<tr class="odd">
-<td>cc</td>
-<td>No (must be combined with cp)</td>
-<td>Attribute category combo identifier</td>
-</tr>
-<tr class="even">
-<td>cp</td>
-<td>No (must be combined with cc)</td>
-<td>Attribute category option identifiers, separated with ; for multiple values</td>
-</tr>
-<tr class="odd">
-<td>ds</td>
-<td>No</td>
-<td>Data set, to check if POST or DELETE is allowed for period and organisation unit. If specified, the data element must be assigned to this data set. If not specified, a data set containing the data element will be chosen to check if the operation is allowed.</td>
-</tr>
-<tr class="even">
-<td>value</td>
-<td>No</td>
-<td>Data value. For boolean values, the following will be accepted: true | True | TRUE | false | False | FALSE | 1 | 0 | t | f |</td>
-</tr>
-<tr class="odd">
-<td>comment</td>
-<td>No</td>
-<td>Data comment</td>
-</tr>
-<tr class="even">
-<td>followUp</td>
-<td>No</td>
-<td>Follow up on data value, will toggle the current boolean value</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data values query parameters
+
+| Query parameter | Required | Description |
+|---|---|---|
+| de | Yes | Data element identifier |
+| pe | Yes | Period identifier |
+| ou | Yes | Organisation unit identifier |
+| co | No | Category option combo identifier, default will be used if omitted |
+| cc | No (must be combined with cp) | Attribute category combo identifier |
+| cp | No (must be combined with cc) | Attribute category option identifiers, separated with ; for multiple values |
+| ds | No | Data set, to check if POST or DELETE is allowed for period and organisation unit. If specified, the data element must be assigned to this data set. If not specified, a data set containing the data element will be chosen to check if the operation is allowed. |
+| value | No | Data value. For boolean values, the following will be accepted: true &#124; True &#124; TRUE &#124; false &#124; False &#124; FALSE &#124; 1 &#124; 0 &#124; t &#124; f &#124; |
+| comment | No | Data comment |
+| followUp | No | Follow up on data value, will toggle the current boolean value |
 
 If any of the identifiers given are invalid, if the data value or
 comment is invalid or if the data is locked, the response will contain
@@ -1110,85 +862,22 @@ a "/" and then the duration notation as noted in the table. The
 following table details all of the ADX supported period types, along
 with examples.
 
-<table>
-<caption>ADX Periods</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Period type</th>
-<th>Duration notation</th>
-<th>Example</th>
-<th>Duration</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Daily</td>
-<td>P1D</td>
-<td>2017-10-01/P1M</td>
-<td>Oct 01 2017</td>
-</tr>
-<tr class="even">
-<td>Weekly</td>
-<td>P7D</td>
-<td>2017-10-01/P7D</td>
-<td>Oct 01 2017-Oct 07-2017</td>
-</tr>
-<tr class="odd">
-<td>Monthly</td>
-<td>P1M</td>
-<td>2017-10-01/P1M</td>
-<td>Oct 01 2017-Oct 31 2017</td>
-</tr>
-<tr class="even">
-<td>Bi-monthly</td>
-<td>P2M</td>
-<td>2017-11-01/P2M</td>
-<td>Nov 01 2017-Dec 31 2017</td>
-</tr>
-<tr class="odd">
-<td>Quarterly</td>
-<td>P3M</td>
-<td>2017-09-01/P3M</td>
-<td>Sep 01 2017-Dec 31 2017</td>
-</tr>
-<tr class="even">
-<td>Six-monthly</td>
-<td>P6M</td>
-<td>2017-01-01/P6M</td>
-<td>Jan 01 2017-Jun 30 2017</td>
-</tr>
-<tr class="odd">
-<td>Yearly</td>
-<td>P1Ý</td>
-<td>2017-01-01/P1Y</td>
-<td>Jan 01 2017-Dec 31 2017</td>
-</tr>
-<tr class="even">
-<td>Financial October</td>
-<td>P1Y</td>
-<td>2017-10-01/P1Y</td>
-<td>Oct 01 2017-Sep 30 2018</td>
-</tr>
-<tr class="odd">
-<td>Financial April</td>
-<td>P1Y</td>
-<td>2017-04-01/P1Y</td>
-<td>April 1 2017-Mar 31 2018</td>
-</tr>
-<tr class="even">
-<td>Financial July</td>
-<td>P1Y</td>
-<td>2017-07-01/P1Y</td>
-<td>July 1 2017-June 30 2018</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: ADX Periods
+
+| Period type | Duration notation | Example | Duration |
+|---|---|---|---|
+| Daily | P1D | 2017-10-01/P1M | Oct 01 2017 |
+| Weekly | P7D | 2017-10-01/P7D | Oct 01 2017-Oct 07-2017 |
+| Monthly | P1M | 2017-10-01/P1M | Oct 01 2017-Oct 31 2017 |
+| Bi-monthly | P2M | 2017-11-01/P2M | Nov 01 2017-Dec 31 2017 |
+| Quarterly | P3M | 2017-09-01/P3M | Sep 01 2017-Dec 31 2017 |
+| Six-monthly | P6M | 2017-01-01/P6M | Jan 01 2017-Jun 30 2017 |
+| Yearly | P1Ý | 2017-01-01/P1Y | Jan 01 2017-Dec 31 2017 |
+| Financial October | P1Y | 2017-10-01/P1Y | Oct 01 2017-Sep 30 2018 |
+| Financial April | P1Y | 2017-04-01/P1Y | April 1 2017-Mar 31 2018 |
+| Financial July | P1Y | 2017-07-01/P1Y | July 1 2017-June 30 2018 |
 
 ### Data values
 

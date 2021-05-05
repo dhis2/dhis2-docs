@@ -425,45 +425,18 @@ following table explains the properties of the reserved value object:
 
 #####
 
-<table style="width:100%;">
-<caption>Reserved values</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ownerObject</td>
-<td>The metadata type referenced when generating and reserving the value. Currently only TRACKEDENTITYATTRIBUTE is supported.</td>
-</tr>
-<tr class="even">
-<td>ownerUid</td>
-<td>The uid of the metadata object referenced when generating and reserving the value.</td>
-</tr>
-<tr class="odd">
-<td>key</td>
-<td>A partially generated value where generated segments are not yet added.</td>
-</tr>
-<tr class="even">
-<td>value</td>
-<td>The fully resolved value reserved. This is the value you send to the server when storing data.</td>
-</tr>
-<tr class="odd">
-<td>created</td>
-<td>The timestamp when the reservation was made</td>
-</tr>
-<tr class="even">
-<td>expiryDate</td>
-<td>The timestamp when the reservation will no longer be reserved</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Reserved values
+
+| Property | Description |
+|---|---|
+| ownerObject | The metadata type referenced when generating and reserving the value. Currently only TRACKEDENTITYATTRIBUTE is supported. |
+| ownerUid | The uid of the metadata object referenced when generating and reserving the value. |
+| key | A partially generated value where generated segments are not yet added. |
+| value | The fully resolved value reserved. This is the value you send to the server when storing data. |
+| created | The timestamp when the reservation was made |
+| expiryDate | The timestamp when the reservation will no longer be reserved |
 
 Expired reservations are removed daily. If a pattern changes, values
 that were already reserved will be accepted when storing data, even if
@@ -504,140 +477,47 @@ To query for tracked entity instances you can interact with the
 
 <!--DHIS2-SECTION-ID:webapi_tei_query_request_syntax-->
 
-<table style="width:100%;">
-<caption>Tracked entity instances query parameters</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filter</td>
-<td>Attributes to use as a filter for the query. Param can be repeated any number of times. Filters can be applied to a dimension on the format &lt;attribute-id&gt;:&lt;operator&gt;:&lt;filter&gt;[:&lt;operator&gt;:&lt;filter&gt;]. Filter values are case-insensitive and can be repeated together with operator any number of times. Operators can be EQ | GT | GE | LT | LE | NE | LIKE | IN.</td>
-</tr>
-<tr class="even">
-<td>ou</td>
-<td>Organisation unit identifiers, separated by &quot;;&quot;.</td>
-</tr>
-<tr class="odd">
-<td>ouMode</td>
-<td>The mode of selecting organisation units, can be SELECTED | CHILDREN | DESCENDANTS | ACCESSIBLE | CAPTURE | ALL. Default is SELECTED, which refers to the selected selected organisation units only. See table below for explanations.</td>
-</tr>
-<tr class="even">
-<td>program</td>
-<td>Program identifier. Restricts instances to being enrolled in the given program.</td>
-</tr>
-<tr class="odd">
-<td>programStatus</td>
-<td>Status of the instance for the given program. Can be ACTIVE | COMPLETED | CANCELLED.</td>
-</tr>
-<tr class="even">
-<td>followUp</td>
-<td>Follow up status of the instance for the given program. Can be true | false or omitted.</td>
-</tr>
-<tr class="odd">
-<td>programStartDate</td>
-<td>Start date of enrollment in the given program for the tracked entity instance.</td>
-</tr>
-<tr class="even">
-<td>programEndDate</td>
-<td>End date of enrollment in the given program for the tracked entity instance.</td>
-</tr>
-<tr class="odd">
-<td>trackedEntity</td>
-<td>Tracked entity identifier. Restricts instances to the given tracked instance type.</td>
-</tr>
-<tr class="even">
-<td>page</td>
-<td>The page number. Default page is 1.</td>
-</tr>
-<tr class="odd">
-<td>pageSize</td>
-<td>The page size. Default size is 50 rows per page.</td>
-</tr>
-<tr class="even">
-<td>totalPages</td>
-<td>Indicates whether to include the total number of pages in the paging response (implies higher response time).</td>
-</tr>
-<tr class="odd">
-<td>skipPaging</td>
-<td>Indicates whether paging should be ignored and all rows should be returned.</td>
-</tr>
-<tr class="even">
-<td>lastUpdatedStartDate</td>
-<td>Filter for events which were updated after this date. Cannot be used together with <em>lastUpdatedDuration</em>.</td>
-</tr>
-<tr class="odd">
-<td>lastUpdatedEndDate</td>
-<td>Filter for events which were updated up until this date. Cannot be used together with <em>lastUpdatedDuration</em>.</td>
-</tr>
-<tr class="even">
-<td>lastUpdatedDuration</td>
-<td>Include only items which are updated within the given duration. The format is <value><time-unit>, where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with <em>lastUpdatedStartDate</em> and/or <em>lastUpdatedEndDate</em>.</td>
-</tr>
-<tr class="odd">
-<td>assignedUserMode</td>
-<td>Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
-</tr>
-<tr class="even">
-<td>assignedUser</td>
-<td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
-</tr>
-<tr class="odd">
-<td>trackedEntityInstance</td>
-<td>Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using <em>trackedEntityInstance=id1;id2</em>. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. </td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Tracked entity instances query parameters
+
+| Query parameter | Description |
+|---|---|
+| filter | Attributes to use as a filter for the query. Param can be repeated any number of times. Filters can be applied to a dimension on the format <attribute-id\>:<operator\>:<filter\>[:<operator\>:<filter\>]. Filter values are case-insensitive and can be repeated together with operator any number of times. Operators can be EQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; IN. |
+| ou | Organisation unit identifiers, separated by ";". |
+| ouMode | The mode of selecting organisation units, can be SELECTED &#124; CHILDREN &#124; DESCENDANTS &#124; ACCESSIBLE &#124; CAPTURE &#124; ALL. Default is SELECTED, which refers to the selected selected organisation units only. See table below for explanations. |
+| program | Program identifier. Restricts instances to being enrolled in the given program. |
+| programStatus | Status of the instance for the given program. Can be ACTIVE &#124; COMPLETED &#124; CANCELLED. |
+| followUp | Follow up status of the instance for the given program. Can be true &#124; false or omitted. |
+| programStartDate | Start date of enrollment in the given program for the tracked entity instance. |
+| programEndDate | End date of enrollment in the given program for the tracked entity instance. |
+| trackedEntity | Tracked entity identifier. Restricts instances to the given tracked instance type. |
+| page | The page number. Default page is 1. |
+| pageSize | The page size. Default size is 50 rows per page. |
+| totalPages | Indicates whether to include the total number of pages in the paging response (implies higher response time). |
+| skipPaging | Indicates whether paging should be ignored and all rows should be returned. |
+| lastUpdatedStartDate | Filter for events which were updated after this date. Cannot be used together with *lastUpdatedDuration*. |
+| lastUpdatedEndDate | Filter for events which were updated up until this date. Cannot be used together with *lastUpdatedDuration*. |
+| lastUpdatedDuration | Include only items which are updated within the given duration. The format is , where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with *lastUpdatedStartDate* and/or *lastUpdatedEndDate*. |
+| assignedUserMode | Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT &#124; PROVIDED &#124; NONE &#124; ANY. |
+| assignedUser | Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using *assignedUser=id1;id2*.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId |
+| trackedEntityInstance | Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using *trackedEntityInstance=id1;id2*. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. |
 
 The available organisation unit selection modes are explained in the
 following table.
 
-<table>
-<caption>Organisation unit selection modes</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 79%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Mode</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>SELECTED</td>
-<td>Organisation units defined in the request.</td>
-</tr>
-<tr class="even">
-<td>CHILDREN</td>
-<td>The selected organisation units and the immediate children, i.e. the organisation units at the level below.</td>
-</tr>
-<tr class="odd">
-<td>DESCENDANTS</td>
-<td>The selected organisation units and all children, i.e. all organisation units in the sub-hierarchy.</td>
-</tr>
-<tr class="even">
-<td>ACCESSIBLE</td>
-<td>The data view organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy. Will fall back to data capture organisation units associated with the current user if the former is not defined.</td>
-</tr>
-<tr class="odd">
-<td>CAPTURE</td>
-<td>The data capture organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy.</td>
-</tr>
-<tr class="even">
-<td>ALL</td>
-<td>All organisation units in the system. Requires the ALL authority.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Organisation unit selection modes
+
+| Mode | Description |
+|---|---|
+| SELECTED | Organisation units defined in the request. |
+| CHILDREN | The selected organisation units and the immediate children, i.e. the organisation units at the level below. |
+| DESCENDANTS | The selected organisation units and all children, i.e. all organisation units in the sub-hierarchy. |
+| ACCESSIBLE | The data view organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy. Will fall back to data capture organisation units associated with the current user if the former is not defined. |
+| CAPTURE | The data capture organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy. |
+| ALL | All organisation units in the system. Requires the ALL authority. |
 
 The query is case insensitive. The following rules apply to the query
 parameters.
@@ -712,53 +592,20 @@ this you can use the page and pageSize query parameters:
 
 You can use a range of operators for the filtering:
 
-<table>
-<caption>Filter operators</caption>
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>EQ</td>
-<td>Equal to</td>
-</tr>
-<tr class="even">
-<td>GT</td>
-<td>Greater than</td>
-</tr>
-<tr class="odd">
-<td>GE</td>
-<td>Greater than or equal to</td>
-</tr>
-<tr class="even">
-<td>LT</td>
-<td>Less than</td>
-</tr>
-<tr class="odd">
-<td>LE</td>
-<td>Less than or equal to</td>
-</tr>
-<tr class="even">
-<td>NE</td>
-<td>Not equal to</td>
-</tr>
-<tr class="odd">
-<td>LIKE</td>
-<td>Like (free text match)</td>
-</tr>
-<tr class="even">
-<td>IN</td>
-<td>Equal to one of multiple values separated by &quot;;&quot;</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Filter operators
+
+| Operator | Description |
+|---|---|
+| EQ | Equal to |
+| GT | Greater than |
+| GE | Greater than or equal to |
+| LT | Less than |
+| LE | Less than or equal to |
+| NE | Not equal to |
+| LIKE | Like (free text match) |
+| IN | Equal to one of multiple values separated by ";" |
 
 ##### Response format
 
@@ -915,156 +762,51 @@ and is an alternative to the query in the previous section.
 
 <!--DHIS2-SECTION-ID:webapi_tei_grid_query_request_syntax-->
 
-<table style="width:100%;">
-<caption>Tracked entity instances query parameters</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>query</td>
-<td>Query string. Attribute query parameter can be used to define which attributes to include in the response. If no attributes but a program is defined, the attributes from the program will be used. If no program is defined, all attributes will be used. There are two formats. The first is a plan query string. The second is on the format &lt;operator&gt;:&lt;query&gt;. Operators can be EQ | LIKE. EQ implies exact matches on words, LIKE implies partial matches on words. The query will be split on space, where each word will form a logical AND query.</td>
-</tr>
-<tr class="even">
-<td>attribute</td>
-<td>Attributes to be included in the response. Can also be used as a filter for the query. Param can be repeated any number of times. Filters can be applied to a dimension on the format &lt;attribute-id&gt;:&lt;operator&gt;:&lt;filter&gt;[:&lt;operator&gt;:&lt;filter&gt;]. Filter values are case-insensitive and can be repeated together with operator any number of times. Operators can be EQ | GT | GE | LT | LE | NE | LIKE | IN. Filters can be omitted in order to simply include the attribute in the response without any constraints.</td>
-</tr>
-<tr class="odd">
-<td>filter</td>
-<td>Attributes to use as a filter for the query. Param can be repeated any number of times. Filters can be applied to a dimension on the format &lt;attribute-id&gt;:&lt;operator&gt;:&lt;filter&gt;[:&lt;operator&gt;:&lt;filter&gt;]. Filter values are case-insensitive and can be repeated together with operator any number of times. Operators can be EQ | GT | GE | LT | LE | NE | LIKE | IN.</td>
-</tr>
-<tr class="even">
-<td>ou</td>
-<td>Organisation unit identifiers, separated by &quot;;&quot;.</td>
-</tr>
-<tr class="odd">
-<td>ouMode</td>
-<td>The mode of selecting organisation units, can be SELECTED | CHILDREN | DESCENDANTS | ACCESSIBLE | ALL. Default is SELECTED, which refers to the selected organisation units only. See table below for explanations.</td>
-</tr>
-<tr class="even">
-<td>program</td>
-<td>Program identifier. Restricts instances to being enrolled in the given program.</td>
-</tr>
-<tr class="odd">
-<td>programStatus</td>
-<td>Status of the instance for the given program. Can be ACTIVE | COMPLETED | CANCELLED.</td>
-</tr>
-<tr class="even">
-<td>followUp</td>
-<td>Follow up status of the instance for the given program. Can be true | false or omitted.</td>
-</tr>
-<tr class="odd">
-<td>programStartDate</td>
-<td>Start date of enrollment in the given program for the tracked entity instance.</td>
-</tr>
-<tr class="even">
-<td>programEndDate</td>
-<td>End date of enrollment in the given program for the tracked entity instance.</td>
-</tr>
-<tr class="odd">
-<td>trackedEntity</td>
-<td>Tracked entity identifier. Restricts instances to the given tracked instance type.</td>
-</tr>
-<tr class="even">
-<td>eventStatus</td>
-<td>Status of any event associated with the given program and the tracked entity instance. Can be ACTIVE | COMPLETED | VISITED | SCHEDULED | OVERDUE | SKIPPED.</td>
-</tr>
-<tr class="odd">
-<td>eventStartDate</td>
-<td>Start date of event associated with the given program and event status.</td>
-</tr>
-<tr class="even">
-<td>eventEndDate</td>
-<td>End date of event associated with the given program and event status.</td>
-</tr>
-<tr class="odd">
-<td>programStage</td>
-<td>The programStage for which the event related filters should be applied to. If not provided all stages will be considered.</td>
-</tr>
-<tr class="even">
-<td>skipMeta</td>
-<td>Indicates whether meta data for the response should be included.</td>
-</tr>
-<tr class="odd">
-<td>page</td>
-<td>The page number. Default page is 1.</td>
-</tr>
-<tr class="even">
-<td>pageSize</td>
-<td>The page size. Default size is 50 rows per page.</td>
-</tr>
-<tr class="odd">
-<td>totalPages</td>
-<td>Indicates whether to include the total number of pages in the paging response (implies higher response time).</td>
-</tr>
-<tr class="even">
-<td>skipPaging</td>
-<td>Indicates whether paging should be ignored and all rows should be returned.</td>
-</tr>
-<tr class="odd">
-<td>assignedUserMode</td>
-<td>Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
-</tr>
-<tr class="even">
-<td>assignedUser</td>
-<td>Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
-</tr>
-<tr class="odd">
-<td>trackedEntityInstance</td>
-<td>Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using <em>trackedEntityInstance=id1;id2</em>. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. </td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Tracked entity instances query parameters
+
+| Query parameter | Description |
+|---|---|
+| query | Query string. Attribute query parameter can be used to define which attributes to include in the response. If no attributes but a program is defined, the attributes from the program will be used. If no program is defined, all attributes will be used. There are two formats. The first is a plan query string. The second is on the format <operator\>:<query\>. Operators can be EQ &#124; LIKE. EQ implies exact matches on words, LIKE implies partial matches on words. The query will be split on space, where each word will form a logical AND query. |
+| attribute | Attributes to be included in the response. Can also be used as a filter for the query. Param can be repeated any number of times. Filters can be applied to a dimension on the format <attribute-id\>:<operator\>:<filter\>[:<operator\>:<filter\>]. Filter values are case-insensitive and can be repeated together with operator any number of times. Operators can be EQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; IN. Filters can be omitted in order to simply include the attribute in the response without any constraints. |
+| filter | Attributes to use as a filter for the query. Param can be repeated any number of times. Filters can be applied to a dimension on the format <attribute-id\>:<operator\>:<filter\>[:<operator\>:<filter\>]. Filter values are case-insensitive and can be repeated together with operator any number of times. Operators can be EQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; IN. |
+| ou | Organisation unit identifiers, separated by ";". |
+| ouMode | The mode of selecting organisation units, can be SELECTED &#124; CHILDREN &#124; DESCENDANTS &#124; ACCESSIBLE &#124; ALL. Default is SELECTED, which refers to the selected organisation units only. See table below for explanations. |
+| program | Program identifier. Restricts instances to being enrolled in the given program. |
+| programStatus | Status of the instance for the given program. Can be ACTIVE &#124; COMPLETED &#124; CANCELLED. |
+| followUp | Follow up status of the instance for the given program. Can be true &#124; false or omitted. |
+| programStartDate | Start date of enrollment in the given program for the tracked entity instance. |
+| programEndDate | End date of enrollment in the given program for the tracked entity instance. |
+| trackedEntity | Tracked entity identifier. Restricts instances to the given tracked instance type. |
+| eventStatus | Status of any event associated with the given program and the tracked entity instance. Can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULED &#124; OVERDUE &#124; SKIPPED. |
+| eventStartDate | Start date of event associated with the given program and event status. |
+| eventEndDate | End date of event associated with the given program and event status. |
+| programStage | The programStage for which the event related filters should be applied to. If not provided all stages will be considered. |
+| skipMeta | Indicates whether meta data for the response should be included. |
+| page | The page number. Default page is 1. |
+| pageSize | The page size. Default size is 50 rows per page. |
+| totalPages | Indicates whether to include the total number of pages in the paging response (implies higher response time). |
+| skipPaging | Indicates whether paging should be ignored and all rows should be returned. |
+| assignedUserMode | Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT &#124; PROVIDED &#124; NONE &#124; ANY. |
+| assignedUser | Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using *assignedUser=id1;id2*.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId |
+| trackedEntityInstance | Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using *trackedEntityInstance=id1;id2*. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. |
 
 The available organisation unit selection modes are explained in the
 following table.
 
-<table>
-<caption>Organisation unit selection modes</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 79%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Mode</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>SELECTED</td>
-<td>Organisation units defined in the request.</td>
-</tr>
-<tr class="even">
-<td>CHILDREN</td>
-<td>Immediate children, i.e. only the first level below, of the organisation units defined in the request.</td>
-</tr>
-<tr class="odd">
-<td>DESCENDANTS</td>
-<td>All children, i.e. at only levels below, e.g. including children of children, of the organisation units defined in the request.</td>
-</tr>
-<tr class="even">
-<td>ACCESSIBLE</td>
-<td>All descendants of the data view organisation units associated with the current user. Will fall back to data capture organisation units associated with the current user if the former is not defined.</td>
-</tr>
-<tr class="odd">
-<td>CAPTURE</td>
-<td>The data capture organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy.</td>
-</tr>
-<tr class="even">
-<td>ALL</td>
-<td>All organisation units in the system. Requires authority.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Organisation unit selection modes
+
+| Mode | Description |
+|---|---|
+| SELECTED | Organisation units defined in the request. |
+| CHILDREN | Immediate children, i.e. only the first level below, of the organisation units defined in the request. |
+| DESCENDANTS | All children, i.e. at only levels below, e.g. including children of children, of the organisation units defined in the request. |
+| ACCESSIBLE | All descendants of the data view organisation units associated with the current user. Will fall back to data capture organisation units associated with the current user if the former is not defined. |
+| CAPTURE | The data capture organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy. |
+| ALL | All organisation units in the system. Requires authority. |
 
 Note that you can specify "attribute" with filters or directly using the "filter" params for constraining the
 instances to return.
@@ -1195,53 +937,20 @@ given time span:
 
 You can use a range of operators for the filtering:
 
-<table>
-<caption>Filter operators</caption>
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>EQ</td>
-<td>Equal to</td>
-</tr>
-<tr class="even">
-<td>GT</td>
-<td>Greater than</td>
-</tr>
-<tr class="odd">
-<td>GE</td>
-<td>Greater than or equal to</td>
-</tr>
-<tr class="even">
-<td>LT</td>
-<td>Less than</td>
-</tr>
-<tr class="odd">
-<td>LE</td>
-<td>Less than or equal to</td>
-</tr>
-<tr class="even">
-<td>NE</td>
-<td>Not equal to</td>
-</tr>
-<tr class="odd">
-<td>LIKE</td>
-<td>Like (free text match)</td>
-</tr>
-<tr class="even">
-<td>IN</td>
-<td>Equal to one of multiple values separated by &quot;;&quot;</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Filter operators
+
+| Operator | Description |
+|---|---|
+| EQ | Equal to |
+| GT | Greater than |
+| GE | Greater than or equal to |
+| LT | Less than |
+| LE | Less than or equal to |
+| NE | Not equal to |
+| LIKE | Like (free text match) |
+| IN | Equal to one of multiple values separated by ";" |
 
 ##### Response format
 
@@ -1334,150 +1043,55 @@ resource. The tracked entity instance filter definitions are used in the
 Tracker Capture app to display relevant predefined "Working lists" in
 the tracker user interface.
 
-<table>
-<caption>Payload</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Payload values</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>name</td>
-<td>Name of the filter. Required.</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>description</td>
-<td>A description of the filter.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>sortOrder</td>
-<td>The sort order of the filter. Used in Tracker Capture to order the filters in the program dashboard.</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>style</td>
-<td>Object containing css style.</td>
-<td>( &quot;color&quot;: &quot;blue&quot;, &quot;icon&quot;: &quot;fa fa-calendar&quot;}</td>
-</tr>
-<tr class="odd">
-<td>program</td>
-<td>Object containing the id of the program. Required.</td>
-<td>{ &quot;id&quot; : &quot;uy2gU8kTjF&quot;}</td>
-</tr>
-<tr class="even">
-<td>enrollmentStatus</td>
-<td>The TEIs enrollment status. Can be none(any enrollmentstatus) or ACTIVE|COMPLETED|CANCELED</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>followup</td>
-<td>When this parameter is true, the filter only returns TEIs that have an enrollment with status followup.</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>enrollmentCreatedPeriod</td>
-<td>Period object containing a period in which the enrollment must be created. See <em>Period</em> definition table below.</td>
-<td>{ &quot;periodFrom&quot;: -15, &quot;periodTo&quot;: 15}</td>
-</tr>
-<tr class="odd">
-<td>eventFilters</td>
-<td>A list of eventFilters. See <em>Event filters</em> definition table below.</td>
-<td>[{&quot;programStage&quot;: &quot;eaDH9089uMp&quot;, &quot;eventStatus&quot;: &quot;OVERDUE&quot;, &quot;eventCreatedPeriod&quot;: {&quot;periodFrom&quot;: -15, &quot;periodTo&quot;: 15}}]</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Event filters definition</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>programStage</td>
-<td>Which programStage the TEI needs an event in to be returned.</td>
-<td>&quot;eaDH9089uMp&quot;</td>
-</tr>
-<tr class="even">
-<td>eventStatus</td>
-<td>The events status. Can be none(any event status) or ACTIVE|COMPLETED|SCHEDULED|OVERDUE</td>
-<td>ACTIVE</td>
-</tr>
-<tr class="odd">
-<td>eventCreatedPeriod</td>
-<td>Period object containing a period in which the event must be created. See <em>Period</em> definition below.</td>
-<td>{ &quot;periodFrom&quot;: -15, &quot;periodTo&quot;: 15}</td>
-</tr>
-<tr class="even">
-<td>assignedUserMode</td>
-<td>To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)| PROVIDED (events assigned to users provided in "assignedUsers" list) | NONE (events assigned to no one) | ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.</td>
-<td>"assignedUserMode": "PROVIDED"</td>
-</tr>
-<tr class="odd">
-<td>assignedUsers</td>
-<td>To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.</td>
-<td>"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Period definition</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>periodFrom</td>
-<td>Number of days from current day. Can be positive or negative integer.</td>
-<td>-15</td>
-</tr>
-<tr class="even">
-<td>periodTo</td>
-<td>Number of days from current day. Must be bigger than periodFrom. Can be positive or negative integer.</td>
-<td>15</td>
-</tr>
-</tbody>
-</table>
+Table: Payload
+
+| Payload values | Description | Example |
+|---|---|---|
+| name | Name of the filter. Required. ||
+| description | A description of the filter. ||
+| sortOrder | The sort order of the filter. Used in Tracker Capture to order the filters in the program dashboard. ||
+| style | Object containing css style. | ( "color": "blue", "icon": "fa fa-calendar"} |
+| program | Object containing the id of the program. Required. | { "id" : "uy2gU8kTjF"} |
+| enrollmentStatus | The TEIs enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELED ||
+| followup | When this parameter is true, the filter only returns TEIs that have an enrollment with status followup. ||
+| enrollmentCreatedPeriod | Period object containing a period in which the enrollment must be created. See *Period* definition table below. | { "periodFrom": -15, "periodTo": 15} |
+| eventFilters | A list of eventFilters. See *Event filters* definition table below. | [{"programStage": "eaDH9089uMp", "eventStatus": "OVERDUE", "eventCreatedPeriod": {"periodFrom": -15, "periodTo": 15}}] |
+
+
+
+Table: Event filters definition
+
+||||
+|---|---|---|
+| programStage | Which programStage the TEI needs an event in to be returned. | "eaDH9089uMp" |
+| eventStatus | The events status. Can be none(any event status) or ACTIVE&#124;COMPLETED&#124;SCHEDULED&#124;OVERDUE | ACTIVE |
+| eventCreatedPeriod | Period object containing a period in which the event must be created. See *Period* definition below. | { "periodFrom": -15, "periodTo": 15} |
+| assignedUserMode | To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)&#124; PROVIDED (events assigned to users provided in "assignedUsers" list) &#124; NONE (events assigned to no one) &#124; ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered. | "assignedUserMode": "PROVIDED" |
+| assignedUsers | To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"] |
+
+
+
+Table: Period definition
+
+||||
+|---|---|---|
+| periodFrom | Number of days from current day. Can be positive or negative integer. | -15 |
+| periodTo | Number of days from current day. Must be bigger than periodFrom. Can be positive or negative integer. | 15 |
 
 ##### Tracked entity instance filters query
 
 To query for tracked entity instance filters in the system, you can
 interact with the */api/trackedEntityInstanceFilters* resource.
 
-<table>
-<caption>Tracked entity instance filters query parameters</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>program</td>
-<td>Program identifier. Restricts filters to the given program.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Tracked entity instance filters query parameters
+
+| Query parameter | Description |
+|---|---|
+| program | Program identifier. Restricts filters to the given program. |
 
 ### Enrollment management
 
@@ -1543,120 +1157,42 @@ resource.
 
 <!--DHIS2-SECTION-ID:webapi_enrollment_query_request_syntax-->
 
-<table style="width:100%;">
-<caption>Enrollment query parameters</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ou</td>
-<td>Organisation unit identifiers, separated by &quot;;&quot;.</td>
-</tr>
-<tr class="even">
-<td>ouMode</td>
-<td>The mode of selecting organisation units, can be SELECTED | CHILDREN | DESCENDANTS | ACCESSIBLE | CAPTURE | ALL. Default is SELECTED, which refers to the selected organisation units only. See table below for explanations.</td>
-</tr>
-<tr class="odd">
-<td>program</td>
-<td>Program identifier. Restricts instances to being enrolled in the given program.</td>
-</tr>
-<tr class="even">
-<td>programStatus</td>
-<td>Status of the instance for the given program. Can be ACTIVE | COMPLETED | CANCELLED.</td>
-</tr>
-<tr class="odd">
-<td>followUp</td>
-<td>Follow up status of the instance for the given program. Can be true | false or omitted.</td>
-</tr>
-<tr class="even">
-<td>programStartDate</td>
-<td>Start date of enrollment in the given program for the tracked entity instance.</td>
-</tr>
-<tr class="odd">
-<td>programEndDate</td>
-<td>End date of enrollment in the given program for the tracked entity instance.</td>
-</tr>
-<tr class="even">
-<td>lastUpdatedDuration</td>
-<td>Include only items which are updated within the given duration. The format is <value><time-unit>, where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds).</td>
-</tr>
-<tr class="odd">
-<td>trackedEntity</td>
-<td>Tracked entity identifier. Restricts instances to the given tracked instance type.</td>
-</tr>
-<tr class="even">
-<td>trackedEntityInstance</td>
-<td>Tracked entity instance identifier. Should not be used together with trackedEntity.</td>
-</tr>
-<tr class="odd">
-<td>page</td>
-<td>The page number. Default page is 1.</td>
-</tr>
-<tr class="even">
-<td>pageSize</td>
-<td>The page size. Default size is 50 rows per page.</td>
-</tr>
-<tr class="odd">
-<td>totalPages</td>
-<td>Indicates whether to include the total number of pages in the paging response (implies higher response time).</td>
-</tr>
-<tr class="even">
-<td>skipPaging</td>
-<td>Indicates whether paging should be ignored and all rows should be returned.</td>
-</tr>
-<tr class="odd">
-<td>includeDeleted</td>
-<td>Indicates whether to include soft deleted enrollments or not. It is false by default.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Enrollment query parameters
+
+| Query parameter | Description |
+|---|---|
+| ou | Organisation unit identifiers, separated by ";". |
+| ouMode | The mode of selecting organisation units, can be SELECTED &#124; CHILDREN &#124; DESCENDANTS &#124; ACCESSIBLE &#124; CAPTURE &#124; ALL. Default is SELECTED, which refers to the selected organisation units only. See table below for explanations. |
+| program | Program identifier. Restricts instances to being enrolled in the given program. |
+| programStatus | Status of the instance for the given program. Can be ACTIVE &#124; COMPLETED &#124; CANCELLED. |
+| followUp | Follow up status of the instance for the given program. Can be true &#124; false or omitted. |
+| programStartDate | Start date of enrollment in the given program for the tracked entity instance. |
+| programEndDate | End date of enrollment in the given program for the tracked entity instance. |
+| lastUpdatedDuration | Include only items which are updated within the given duration. The format is , where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). |
+| trackedEntity | Tracked entity identifier. Restricts instances to the given tracked instance type. |
+| trackedEntityInstance | Tracked entity instance identifier. Should not be used together with trackedEntity. |
+| page | The page number. Default page is 1. |
+| pageSize | The page size. Default size is 50 rows per page. |
+| totalPages | Indicates whether to include the total number of pages in the paging response (implies higher response time). |
+| skipPaging | Indicates whether paging should be ignored and all rows should be returned. |
+| includeDeleted | Indicates whether to include soft deleted enrollments or not. It is false by default. |
 
 The available organisation unit selection modes are explained in the
 following table.
 
-<table>
-<caption>Organisation unit selection modes</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 79%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Mode</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>SELECTED</td>
-<td>Organisation units defined in the request (default).</td>
-</tr>
-<tr class="even">
-<td>CHILDREN</td>
-<td>Immediate children, i.e. only the first level below, of the organisation units defined in the request.</td>
-</tr>
-<tr class="odd">
-<td>DESCENDANTS</td>
-<td>All children, i.e. at only levels below, e.g. including children of children, of the organisation units defined in the request.</td>
-</tr>
-<tr class="even">
-<td>ACCESSIBLE</td>
-<td>All descendants of the data view organisation units associated with the current user. Will fall back to data capture organisation units associated with the current user if the former is not defined.</td>
-</tr>
-<tr class="odd">
-<td>ALL</td>
-<td>All organisation units in the system. Requires authority.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Organisation unit selection modes
+
+| Mode | Description |
+|---|---|
+| SELECTED | Organisation units defined in the request (default). |
+| CHILDREN | Immediate children, i.e. only the first level below, of the organisation units defined in the request. |
+| DESCENDANTS | All children, i.e. at only levels below, e.g. including children of children, of the organisation units defined in the request. |
+| ACCESSIBLE | All descendants of the data view organisation units associated with the current user. Will fall back to data capture organisation units associated with the current user if the former is not defined. |
+| ALL | All organisation units in the system. Requires authority. |
 
 The query is case insensitive. The following rules apply to the query
 parameters.
@@ -1959,90 +1495,21 @@ As part of the import summary you will also get the identifier
 which points to the server location of this event. The table below
 describes the meaning of each element.
 
-<table>
-<caption>Events resource format</caption>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 30%" />
-<col style="width: 38%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Options (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>program</td>
-<td>string</td>
-<td>true</td>
-<td></td>
-<td>Identifier of the single event with no registration program</td>
-</tr>
-<tr class="even">
-<td>orgUnit</td>
-<td>string</td>
-<td>true</td>
-<td></td>
-<td>Identifier of the organisation unit where the event took place</td>
-</tr>
-<tr class="odd">
-<td>eventDate</td>
-<td>date</td>
-<td>true</td>
-<td></td>
-<td>The date of when the event occurred</td>
-</tr>
-<tr class="even">
-<td>completedDate</td>
-<td>date</td>
-<td>false</td>
-<td></td>
-<td>The date of when the event is completed. If not provided, the current date is selected as the event completed date</td>
-</tr>
-<tr class="odd">
-<td>status</td>
-<td>enum</td>
-<td>false</td>
-<td>ACTIVE | COMPLETED | VISITED | SCHEDULE | OVERDUE | SKIPPED</td>
-<td>Whether the event is complete or not</td>
-</tr>
-<tr class="even">
-<td>storedBy</td>
-<td>string</td>
-<td>false</td>
-<td>Defaults to current user</td>
-<td>Who stored this event (can be username, system-name, etc)</td>
-</tr>
-<tr class="odd">
-<td>coordinate</td>
-<td>double</td>
-<td>false</td>
-<td></td>
-<td>Refers to where the event took place geographically (latitude and longitude)</td>
-</tr>
-<tr class="even">
-<td>dataElement</td>
-<td>string</td>
-<td>true</td>
-<td></td>
-<td>Identifier of data element</td>
-</tr>
-<tr class="odd">
-<td>value</td>
-<td>string</td>
-<td>true</td>
-<td></td>
-<td>Data value or measure for this event</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Events resource format
+
+| Parameter | Type | Required | Options (default first) | Description |
+|---|---|---|---|---|
+| program | string | true || Identifier of the single event with no registration program |
+| orgUnit | string | true || Identifier of the organisation unit where the event took place |
+| eventDate | date | true || The date of when the event occurred |
+| completedDate | date | false || The date of when the event is completed. If not provided, the current date is selected as the event completed date |
+| status | enum | false | ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED | Whether the event is complete or not |
+| storedBy | string | false | Defaults to current user | Who stored this event (can be username, system-name, etc) |
+| coordinate | double | false || Refers to where the event took place geographically (latitude and longitude) |
+| dataElement | string | true || Identifier of data element |
+| value | string | true || Data value or measure for this event |
 
 ##### OrgUnit matching
 
@@ -2125,223 +1592,45 @@ default page size is 50 events, *field* filtering works as it does for
 metadata, add the *fields* parameter and include your wanted properties,
 i.e. *?fields=program,status*.
 
-<table>
-<caption>Events resource query parameters</caption>
-<thead>
-<tr class="header">
-<th>Key</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>program</td>
-<td>identifier</td>
-<td>true (if not programStage is provided)</td>
-<td>Identifier of program</td>
-</tr>
-<tr class="even">
-<td>programStage</td>
-<td>identifier</td>
-<td>false</td>
-<td>Identifier of program stage</td>
-</tr>
-<tr class="odd">
-<td>programStatus</td>
-<td>enum</td>
-<td>false</td>
-<td>Status of event in program, ca be ACTIVE | COMPLETED | CANCELLED</td>
-</tr>
-<tr class="even">
-<td>followUp</td>
-<td>boolean</td>
-<td>false</td>
-<td>Whether event is considered for follow up in program, can be true | false or omitted.</td>
-</tr>
-<tr class="odd">
-<td>trackedEntityInstance</td>
-<td>identifier</td>
-<td>false</td>
-<td>Identifier of tracked entity instance</td>
-</tr>
-<tr class="even">
-<td>orgUnit</td>
-<td>identifier</td>
-<td>true</td>
-<td>Identifier of organisation unit</td>
-</tr>
-<tr class="odd">
-<td>ouMode</td>
-<td>enum</td>
-<td>false</td>
-<td>Org unit selection mode, can be SELECTED | CHILDREN | DESCENDANTS</td>
-</tr>
-<tr class="even">
-<td>startDate</td>
-<td>date</td>
-<td>false</td>
-<td>Only events newer than this date</td>
-</tr>
-<tr class="odd">
-<td>endDate</td>
-<td>date</td>
-<td>false</td>
-<td>Only events older than this date</td>
-</tr>
-<tr class="even">
-<td>status</td>
-<td>enum</td>
-<td>false</td>
-<td>Status of event, can be ACTIVE | COMPLETED | VISITED | SCHEDULED | OVERDUE | SKIPPED</td>
-</tr>
-<tr class="odd">
-<td>lastUpdatedStartDate</td>
-<td>date</td>
-<td>false</td>
-<td>Filter for events which were updated after this date. Cannot be used together with <em>lastUpdatedDuration</em>.</td>
-</tr>
-<tr class="even">
-<td>lastUpdatedEndDate</td>
-<td>date</td>
-<td>false</td>
-<td>Filter for events which were updated up until this date. Cannot be used together with <em>lastUpdatedDuration</em>.</td>
-</tr>
-<tr class="odd">
-<td>lastUpdatedDuration</td>
-<td>string</td>
-<td>false</td>
-<td>Include only items which are updated within the given duration. The format is <value><time-unit>, where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with <em>lastUpdatedStartDate</em> and/or <em>lastUpdatedEndDate</em>.</td>
-</tr>
-<tr class="even">
-<td>skipMeta</td>
-<td>boolean</td>
-<td>false</td>
-<td>Exclude the meta data part of response (improves performance)</td>
-</tr>
-<tr class="odd">
-<td>page</td>
-<td>integer</td>
-<td>false</td>
-<td>Page number</td>
-</tr>
-<tr class="even">
-<td>pageSize</td>
-<td>integer</td>
-<td>false</td>
-<td>Number of items in each page</td>
-</tr>
-<tr class="odd">
-<td>totalPages</td>
-<td>boolean</td>
-<td>false</td>
-<td>Indicates whether to include the total number of pages in the paging response.</td>
-</tr>
-<tr class="even">
-<td>skipPaging</td>
-<td>boolean</td>
-<td>false</td>
-<td>Indicates whether to skip paging in the query and return all events.</td>
-</tr>
-<tr class="odd">
-<td>dataElementIdScheme</td>
-<td>string</td>
-<td>false</td>
-<td>Data element ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID}</td>
-</tr>
-<tr class="even">
-<td>categoryOptionComboIdScheme</td>
-<td>string</td>
-<td>false</td>
-<td>Category Option Combo ID scheme to use for export, valid options are UID, CODE and
-ATTRIBUTE:{ID}</td>
-</tr>
-<tr class="odd">
-<td>orgUnitIdScheme</td>
-<td>string</td>
-<td>false</td>
-<td>Organisation Unit ID scheme to use for export, valid options are UID, CODE and
-ATTRIBUTE:{ID}</td>
-</tr>
-<tr class="even">
-<td>programIdScheme</td>
-<td>string</td>
-<td>false</td>
-<td>Program ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID}</td>
-</tr>
-<tr class="odd">
-<td>programStageIdScheme</td>
-<td>string</td>
-<td>false</td>
-<td>Program Stage ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID}</td>
-</tr>
-<tr class="even">
-<td>idScheme</td>
-<td>string</td>
-<td>false</td>
-<td>Allows to set id scheme for data element, category option combo, orgUnit, program and program
-stage at once.</td>
-</tr>
-<tr class="odd">
-<td>order</td>
-<td>string</td>
-<td>false</td>
-<td>The order of which to retrieve the events from the API. Usage: order=&lt;property&gt;:asc/desc - Ascending order is default.
-<p>Properties: event | program | programStage | enrollment | enrollmentStatus | orgUnit | orgUnitName | trackedEntityInstance | eventDate | followup | status | dueDate | storedBy | created | lastUpdated | completedBy | completedDate</p>
-<pre><code>order=orgUnitName:DESC</code></pre>
-<pre><code>order=lastUpdated:ASC</code></pre></td>
-</tr>
-<tr class="even">
-<td>event</td>
-<td>comma delimited string</td>
-<td>false</td>
-<td>Filter the result down to a limited set of IDs by using <em>event=id1;id2</em>.</td>
-</tr>
-<tr class="odd">
-<td>skipEventId</td>
-<td>boolean</td>
-<td>false</td>
-<td>Skips event identifiers in the response</td>
-</tr>
-<tr class="even">
-<td>attributeCc (**)</td>
-<td>string</td>
-<td>false</td>
-<td>Attribute category combo identifier (must be combined with <em>attributeCos</em>)</td>
-</tr>
-<tr class="odd">
-<td>attributeCos (**)</td>
-<td>string</td>
-<td>false</td>
-<td>Attribute category option identifiers, separated with ; (must be combined with <em>attributeCc</em>)</td>
-</tr>
-<tr class="even">
-<td>async</td>
-<td>false | true</td>
-<td>false</td>
-<td>Indicates whether the import should be done asynchronous or synchronous.</td>
-</tr>
-<tr class="odd">
-<td>includeDeleted</td>
-<td>boolean</td>
-<td>false</td>
-<td>When true, soft deleted events will be included in your query result.</td>
-</tr>
-<tr class="even">
-<td>assignedUserMode</td>
-<td>enum</td>
-<td>false</td>
-<td>Assigned user selection mode, can be CURRENT | PROVIDED | NONE | ANY.</td>
-</tr>
-<tr class="odd">
-<td>assignedUser</td>
-<td>comma delimited strings</td>
-<td>false</td>
-<td>Filter the result down to a limited set of events that are assigned to the given user IDs by using <em>assignedUser=id1;id2</em>. This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Events resource query parameters
+
+| Key | Type | Required | Description |
+|---|---|---|---|
+| program | identifier | true (if not programStage is provided) | Identifier of program |
+| programStage | identifier | false | Identifier of program stage |
+| programStatus | enum | false | Status of event in program, ca be ACTIVE &#124; COMPLETED &#124; CANCELLED |
+| followUp | boolean | false | Whether event is considered for follow up in program, can be true &#124; false or omitted. |
+| trackedEntityInstance | identifier | false | Identifier of tracked entity instance |
+| orgUnit | identifier | true | Identifier of organisation unit |
+| ouMode | enum | false | Org unit selection mode, can be SELECTED &#124; CHILDREN &#124; DESCENDANTS |
+| startDate | date | false | Only events newer than this date |
+| endDate | date | false | Only events older than this date |
+| status | enum | false | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULED &#124; OVERDUE &#124; SKIPPED |
+| lastUpdatedStartDate | date | false | Filter for events which were updated after this date. Cannot be used together with *lastUpdatedDuration*. |
+| lastUpdatedEndDate | date | false | Filter for events which were updated up until this date. Cannot be used together with *lastUpdatedDuration*. |
+| lastUpdatedDuration | string | false | Include only items which are updated within the given duration. The format is , where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with *lastUpdatedStartDate* and/or *lastUpdatedEndDate*. |
+| skipMeta | boolean | false | Exclude the meta data part of response (improves performance) |
+| page | integer | false | Page number |
+| pageSize | integer | false | Number of items in each page |
+| totalPages | boolean | false | Indicates whether to include the total number of pages in the paging response. |
+| skipPaging | boolean | false | Indicates whether to skip paging in the query and return all events. |
+| dataElementIdScheme | string | false | Data element ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID} |
+| categoryOptionComboIdScheme | string | false | Category Option Combo ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID} |
+| orgUnitIdScheme | string | false | Organisation Unit ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID} |
+| programIdScheme | string | false | Program ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID} |
+| programStageIdScheme | string | false | Program Stage ID scheme to use for export, valid options are UID, CODE and ATTRIBUTE:{ID} |
+| idScheme | string | false | Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once. |
+| order | string | false | The order of which to retrieve the events from the API. Usage: order=<property\>:asc/desc - Ascending order is default. <br>Properties: event &#124; program &#124; programStage &#124; enrollment &#124; enrollmentStatus &#124; orgUnit &#124; orgUnitName &#124; trackedEntityInstance &#124; eventDate &#124; followup &#124; status &#124; dueDate &#124; storedBy &#124; created &#124; lastUpdated &#124; completedBy &#124; completedDate<br> order=orgUnitName:DESC order=lastUpdated:ASC |
+| event | comma delimited string | false | Filter the result down to a limited set of IDs by using *event=id1;id2*. |
+| skipEventId | boolean | false | Skips event identifiers in the response |
+| attributeCc (\*\*) | string | false | Attribute category combo identifier (must be combined with *attributeCos*) |
+| attributeCos (\*\*) | string | false | Attribute category option identifiers, separated with ; (must be combined with *attributeCc*) |
+| async | false &#124; true | false | Indicates whether the import should be done asynchronous or synchronous. |
+| includeDeleted | boolean | false | When true, soft deleted events will be included in your query result. |
+| assignedUserMode | enum | false | Assigned user selection mode, can be CURRENT &#124; PROVIDED &#124; NONE &#124; ANY. |
+| assignedUser | comma delimited strings | false | Filter the result down to a limited set of events that are assigned to the given user IDs by using *assignedUser=id1;id2*. This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId |
 
 > **Note**
 >
@@ -2483,268 +1772,65 @@ resource. *POST* is used to create and *PUT* method is used to update. The event
 Tracker Capture app to display relevant predefined "Working lists" in
 the tracker user interface.
 
-<table>
-<caption>Request Payload</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Request Property</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>name</td>
-<td>Name of the filter.</td>
-<td>"name":"My working list"</td>
-</tr>
-<tr class="even">
-<td>description</td>
-<td>A description of the filter.</td>
-<td>"description":"for listing all events assigned to me".</td>
-</tr>
-<tr class="odd">
-<td>program</td>
-<td>The uid of the program.</td>
-<td>"program" : "a3kGcGDCuk6"</td>
-</tr>
-<tr class="even">
-<td>programStage</td>
-<td>The uid of the program stage.</td>
-<td>"programStage" : "a3kGcGDCuk6"</td>
-</tr>
-<tr class="even">
-<td>eventQueryCriteria</td>
-<td>Object containing parameters for querying, sorting and filtering events.</td>
-<td>  
-  "eventQueryCriteria": {
-    "organisationUnit":"a3kGcGDCuk6",
-    "status": "COMPLETED",
-    "createdDate": {
-      "from": "2014-05-01",
-      "to": "2019-03-20"
-    },
-    "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],
-    "filters": ["a3kGcGDCuk6:EQ:1"],
-    "programStatus": "ACTIVE",
-    "ouMode": "SELECTED",
-    "assignedUserMode": "PROVIDED",
-    "assignedUsers" : ["a3kGcGDCuk7", "a3kGcGDCuk8"],
-    "followUp": false,
-    "trackedEntityInstance": "a3kGcGDCuk6",
-    "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],
-    "fields": "eventDate,dueDate",
-    "order": "dueDate:asc,createdDate:desc"
-  }
-</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Event Query Criteria definition</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>followUp</td>
-<td>Used to filter events based on enrollment followUp flag. Possible values are true|false.</td>
-<td>"followUp": true</td>
-</tr>
-<tr class="even">
-<td>organisationUnit</td>
-<td>To specify the uid of the organisation unit</td>
-<td>"organisationUnit": "a3kGcGDCuk7"</td>
-</tr>
-<tr class="odd">
-<td>ouMode</td>
-<td>To specify the OU selection mode. Possible values are SELECTED| CHILDREN|DESCENDANTS|ACCESSIBLE|CAPTURE|ALL</td>
-<td>"ouMode": "SELECTED"</td>
-</tr>
-<tr class="even">
-<td>assignedUserMode</td>
-<td>To specify the assigned user selection mode for events. Possible values are CURRENT| PROVIDED| NONE | ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.</td>
-<td>"assignedUserMode": "PROVIDED"</td>
-</tr>
-<tr class="odd">
-<td>assignedUsers</td>
-<td>To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.</td>
-<td>"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]</td>
-</tr>
-<tr class="even">
-<td>displayOrderColumns</td>
-<td>To specify the output ordering of columns</td>
-<td>"displayOrderColumns": ["eventDate", "dueDate", "program"]</td>
-</tr>
-<tr class="odd">
-<td>order</td>
-<td>To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "dataItem:direction".</td>
-<td>"order"="a3kGcGDCuk6:desc,eventDate:asc"</td>
-</tr>
-<tr class="even">
-<td>dataFilters</td>
-<td>To specify filters to be applied when listing events</td>
-<td>"dataFilters"=[{
-      "dataItem": "abcDataElementUid",
-      "le": "20",
-      "ge": "10",
-      "lt": "20",
-      "gt": "10",
-      "in": ["India", "Norway"],
-      "like": "abc",
-      "dateFilter": {
-        "startDate": "2014-05-01",
-        "endDate": "2019-03-20",
-        "startBuffer": -5,
-        "endBuffer": 5,
-        "period": "LAST_WEEK",
-        "type": "RELATIVE"
-      }
-    }]</td>
-</tr>
-<tr class="odd">
-<td>status</td>
-<td> Any valid EventStatus</td>
-<td>  "eventStatus": "COMPLETED"</td>
-</tr>
-<tr class="even">
-<td>events</td>
-<td>To specify list of events</td>
-<td>"events"=["a3kGcGDCuk6"]</td>
-</tr>
-<tr class="odd">
-<td>completedDate</td>
-<td>DateFilterPeriod object date filtering based on completed date.</td>
-<td>
-  "completedDate": {
-    "startDate": "2014-05-01",
-    "endDate": "2019-03-20",
-    "startBuffer": -5,
-    "endBuffer": 5,
-    "period": "LAST_WEEK",
-    "type": "RELATIVE"
-  }
-</td>
-</tr>
-<tr class="even">
-<td>eventDate</td>
-<td>DateFilterPeriod object date filtering based on event date.</td>
-<td>
-  "eventDate": {
-    "startBuffer": -5,
-    "endBuffer": 5,
-    "type": "RELATIVE"
-  }
-</td>
-</tr>
-<tr class="odd">
-<td>dueDate</td>
-<td>DateFilterPeriod object date filtering based on due date.</td>
-<td>
-  "dueDate": {
-    "period": "LAST_WEEK",
-    "type": "RELATIVE"
-  }
-</td>
-</tr>
-<tr class="even">
-<td>lastUpdatedDate</td>
-<td>DateFilterPeriod object date filtering based on last updated date.</td>
-<td>
-  "lastUpdatedDate": {
-    "startDate": "2014-05-01",
-    "endDate": "2019-03-20",
-    "type": "ABSOLUTE"
-  }
-</td>
-</tr>
 
-</tbody>
-</table>
+Table: Request Payload
 
-<table>
-<caption>DateFilterPeriod object definition</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>type</td>
-<td>Specify whether the date period type is ABSOLUTE | RELATIVE</td>
-<td>"type" : "RELATIVE"</td>
-</tr>
-<tr class="even">
-<td>period</td>
-<td>Specify if a relative system defined period is to be used. Applicable only when "type" is RELATIVE. (see <a href="#webapi_date_relative_period_values">Relative Periods</a> for supported relative periods)</td>
-<td>"period" : "THIS_WEEK"</td>
-</tr>
-<tr class="odd">
-<td>startDate</td>
-<td>Absolute start date. Applicable only when "type" is ABSOLUTE</td>
-<td>"startDate":"2014-05-01"</td>
-</tr>
-<tr class="even">
-<td>endDate</td>
-<td>Absolute end date. Applicable only when "type" is ABSOLUTE</td>
-<td>"startDate":"2014-05-01"</td>
-</tr>
-<tr class="odd">
-<td>startBuffer</td>
-<td>Relative custom start date. Applicable only when "type" is RELATIVE</td>
-<td>"startBuffer":-10</td>
-</tr>
-<tr class="even">
-<td>endBuffer</td>
-<td>Relative custom end date. Applicable only when "type" is RELATIVE</td>
-<td>"startDate":+10</td>
-</tr>
-</tbody>
-</table>
+| Request Property | Description | Example |
+|---|---|---|
+| name | Name of the filter. | "name":"My working list" |
+| description | A description of the filter. | "description":"for listing all events assigned to me". |
+| program | The uid of the program. | "program" : "a3kGcGDCuk6" |
+| programStage | The uid of the program stage. | "programStage" : "a3kGcGDCuk6" |
+| eventQueryCriteria | Object containing parameters for querying, sorting and filtering events. | "eventQueryCriteria": {     "organisationUnit":"a3kGcGDCuk6",     "status": "COMPLETED",     "createdDate": {       "from": "2014-05-01",       "to": "2019-03-20"     },     "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],     "filters": ["a3kGcGDCuk6:EQ:1"],     "programStatus": "ACTIVE",     "ouMode": "SELECTED",     "assignedUserMode": "PROVIDED",     "assignedUsers" : ["a3kGcGDCuk7", "a3kGcGDCuk8"],     "followUp": false,     "trackedEntityInstance": "a3kGcGDCuk6",     "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],     "fields": "eventDate,dueDate",     "order": "dueDate:asc,createdDate:desc"   } |
+
+
+
+Table: Event Query Criteria definition
+
+||||
+|---|---|---|
+| followUp | Used to filter events based on enrollment followUp flag. Possible values are true&#124;false. | "followUp": true |
+| organisationUnit | To specify the uid of the organisation unit | "organisationUnit": "a3kGcGDCuk7" |
+| ouMode | To specify the OU selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL | "ouMode": "SELECTED" |
+| assignedUserMode | To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered. | "assignedUserMode": "PROVIDED" |
+| assignedUsers | To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"] |
+| displayOrderColumns | To specify the output ordering of columns | "displayOrderColumns": ["eventDate", "dueDate", "program"] |
+| order | To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "dataItem:direction". | "order"="a3kGcGDCuk6:desc,eventDate:asc" |
+| dataFilters | To specify filters to be applied when listing events | "dataFilters"=[{       "dataItem": "abcDataElementUid",       "le": "20",       "ge": "10",       "lt": "20",       "gt": "10",       "in": ["India", "Norway"],       "like": "abc",       "dateFilter": {         "startDate": "2014-05-01",         "endDate": "2019-03-20",         "startBuffer": -5,         "endBuffer": 5,         "period": "LAST_WEEK",         "type": "RELATIVE"       }     }] |
+| status | Any valid EventStatus | "eventStatus": "COMPLETED" |
+| events | To specify list of events | "events"=["a3kGcGDCuk6"] |
+| completedDate | DateFilterPeriod object date filtering based on completed date. | "completedDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "startBuffer": -5,     "endBuffer": 5,     "period": "LAST_WEEK",     "type": "RELATIVE"   } |
+| eventDate | DateFilterPeriod object date filtering based on event date. | "eventDate": {     "startBuffer": -5,     "endBuffer": 5,     "type": "RELATIVE"   } |
+| dueDate | DateFilterPeriod object date filtering based on due date. | "dueDate": {     "period": "LAST_WEEK",     "type": "RELATIVE"   } |
+| lastUpdatedDate | DateFilterPeriod object date filtering based on last updated date. | "lastUpdatedDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "type": "ABSOLUTE"   } |
+
+
+
+Table: DateFilterPeriod object definition
+
+||||
+|---|---|---|
+| type | Specify whether the date period type is ABSOLUTE &#124; RELATIVE | "type" : "RELATIVE" |
+| period | Specify if a relative system defined period is to be used. Applicable only when "type" is RELATIVE. (see [Relative Periods](#webapi_date_relative_period_values) for supported relative periods) | "period" : "THIS_WEEK" |
+| startDate | Absolute start date. Applicable only when "type" is ABSOLUTE | "startDate":"2014-05-01" |
+| endDate | Absolute end date. Applicable only when "type" is ABSOLUTE | "startDate":"2014-05-01" |
+| startBuffer | Relative custom start date. Applicable only when "type" is RELATIVE | "startBuffer":-10 |
+| endBuffer | Relative custom end date. Applicable only when "type" is RELATIVE | "startDate":+10 |
 
 The available assigned user selection modes are explained in the
 following table.
 
-<table>
-<caption>Assigned user selection modes (event assignment)</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 79%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Mode</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>CURRENT</td>
-<td>Assigned to the current logged in user</td>
-</tr>
-<tr class="even">
-<td>PROVIDED</td>
-<td>Assigned to the users provided in the "assignedUser" parameter</td>
-</tr>
-<tr class="odd">
-<td>NONE</td>
-<td>Assigned to no users.</td>
-</tr>
-<tr class="even">
-<td>ANY</td>
-<td>Assigned to any users.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Assigned user selection modes (event assignment)
+
+| Mode | Description |
+|---|---|
+| CURRENT | Assigned to the current logged in user |
+| PROVIDED | Assigned to the users provided in the "assignedUser" parameter |
+| NONE | Assigned to no users. |
+| ANY | Assigned to any users. |
 
 A sample payload that can be used to create/update an eventFilter is shown below.
 
@@ -2914,29 +2000,14 @@ enrollment and event creation. This is useful when you have generated an
 identifier on the client side and are not sure if it was created or not
 on the server.
 
-<table>
-<caption>Available tracker strategies</caption>
-<colgroup>
-<col style="width: 24%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>CREATE</td>
-<td>Create only, this is the default behavior.</td>
-</tr>
-<tr class="even">
-<td>CREATE_AND_UPDATE</td>
-<td>Try and match the ID, if it exist then update, if not create.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Available tracker strategies
+
+| Parameter | Description |
+|---|---|
+| CREATE | Create only, this is the default behavior. |
+| CREATE_AND_UPDATE | Try and match the ID, if it exist then update, if not create. |
 
 To change the parameter, please use the strategy parameter:
 
@@ -3035,58 +2106,20 @@ to *false*.
 
 The import process can be customized using a set of import parameters:
 
-<table>
-<caption>Import parameters</caption>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Values (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dataElementIdScheme</td>
-<td>id | name | code | attribute:ID</td>
-<td>Property of the data element object to use to map the data values.</td>
-</tr>
-<tr class="even">
-<td>orgUnitIdScheme</td>
-<td>id | name | code | attribute:ID</td>
-<td>Property of the org unit object to use to map the data values.</td>
-</tr>
-<tr class="odd">
-<td>idScheme</td>
-<td>id | name | code| attribute:ID</td>
-<td>Property of all objects including data elements, org units and category option combos, to use to map the data values.</td>
-</tr>
-<tr class="even">
-<td>dryRun</td>
-<td>false | true</td>
-<td>Whether to save changes on the server or just return the import summary.</td>
-</tr>
-<tr class="odd">
-<td>strategy</td>
-<td>CREATE | UPDATE | CREATE_AND_UPDATE | DELETE</td>
-<td>Save objects of all, new or update import status on the server.</td>
-</tr>
-<tr class="even">
-<td>skipNotifications</td>
-<td>true | false</td>
-<td>Indicates whether to send notifications for completed events.</td>
-</tr>
-<tr class="odd">
-<td>skipFirst</td>
-<td>true | false</td>
-<td>Relevant for CSV import only. Indicates whether CSV file contains a header row which should be skipped.</td>
-</tr>
-<tr class="even">
-<td>importReportMode</td>
-<td>FULL, ERRORS, DEBUG</td>
-<td>Sets the `ImportReport` mode, controls how much is reported back after the import is done. `ERRORS` only includes <em>ObjectReports</em> for object which has errors. `FULL` returns an <em>ObjectReport</em> for all objects imported, and `DEBUG` returns the same plus a name for the object (if available).</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Import parameters
+
+| Parameter | Values (default first) | Description |
+|---|---|---|
+| dataElementIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the data element object to use to map the data values. |
+| orgUnitIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the org unit object to use to map the data values. |
+| idScheme | id &#124; name &#124; code&#124; attribute:ID | Property of all objects including data elements, org units and category option combos, to use to map the data values. |
+| dryRun | false &#124; true | Whether to save changes on the server or just return the import summary. |
+| strategy | CREATE &#124; UPDATE &#124; CREATE_AND_UPDATE &#124; DELETE | Save objects of all, new or update import status on the server. |
+| skipNotifications | true &#124; false | Indicates whether to send notifications for completed events. |
+| skipFirst | true &#124; false | Relevant for CSV import only. Indicates whether CSV file contains a header row which should be skipped. |
+| importReportMode | FULL, ERRORS, DEBUG | Sets the `ImportReport` mode, controls how much is reported back after the import is done. `ERRORS` only includes *ObjectReports* for object which has errors. `FULL` returns an *ObjectReport* for all objects imported, and `DEBUG` returns the same plus a name for the object (if available). |
 
 #### CSV Import / Export
 
@@ -3104,115 +2137,28 @@ text/csv* for export when using the `/api/events` endpoint.
 The order of column in the CSV which are used for both export and import
 is as follows:
 
-<table>
-<caption>CSV column</caption>
-<thead>
-<tr class="header">
-<th>Index</th>
-<th>Key</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>event</td>
-<td>identifier</td>
-<td>Identifier of event</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>status</td>
-<td>enum</td>
-<td>Status of event, can be ACTIVE | COMPLETED | VISITED | SCHEDULED | OVERDUE | SKIPPED</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>program</td>
-<td>identifier</td>
-<td>Identifier of program</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>programStage</td>
-<td>identifier</td>
-<td>Identifier of program stage</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>enrollment</td>
-<td>identifier</td>
-<td>Identifier of enrollment (program instance)</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>orgUnit</td>
-<td>identifier</td>
-<td>Identifier of organisation unit</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>eventDate</td>
-<td>date</td>
-<td>Event date</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>dueDate</td>
-<td>date</td>
-<td>Due Date</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>latitude</td>
-<td>double</td>
-<td>Latitude where event happened</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>longitude</td>
-<td>double</td>
-<td>Longitude where event happened</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>dataElement</td>
-<td>identifier</td>
-<td>Identifier of data element</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>value</td>
-<td>string</td>
-<td>Value / measure of event</td>
-</tr>
-<tr class="odd">
-<td>13</td>
-<td>storedBy</td>
-<td>string</td>
-<td>Event was stored by (defaults to current user)</td>
-</tr>
-<tr class="even">
-<td>14</td>
-<td>providedElsewhere</td>
-<td>boolean</td>
-<td>Was this value collected somewhere else</td>
-</tr>
-<tr class="odd">
-<td>14</td>
-<td>completedDate</td>
-<td>date</td>
-<td>Completed date of event</td>
-</tr>
-<tr class="even">
-<td>14</td>
-<td>completedBy</td>
-<td>string</td>
-<td>Username of user who completed event</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: CSV column
+
+| Index | Key | Type | Description |
+|---|---|---|---|
+| 1 | event | identifier | Identifier of event |
+| 2 | status | enum | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULED &#124; OVERDUE &#124; SKIPPED |
+| 3 | program | identifier | Identifier of program |
+| 4 | programStage | identifier | Identifier of program stage |
+| 5 | enrollment | identifier | Identifier of enrollment (program instance) |
+| 6 | orgUnit | identifier | Identifier of organisation unit |
+| 7 | eventDate | date | Event date |
+| 8 | dueDate | date | Due Date |
+| 9 | latitude | double | Latitude where event happened |
+| 10 | longitude | double | Longitude where event happened |
+| 11 | dataElement | identifier | Identifier of data element |
+| 12 | value | string | Value / measure of event |
+| 13 | storedBy | string | Event was stored by (defaults to current user) |
+| 14 | providedElsewhere | boolean | Was this value collected somewhere else |
+| 14 | completedDate | date | Completed date of event |
+| 14 | completedBy | string | Username of user who completed event |
 
 *Example of 2 events with 2 different data value
     each:*
@@ -3401,67 +2347,19 @@ Note that message resource accepts a wrapper object named
 
 The fields are explained in the following table.
 
-<table>
-<caption>Program message payload</caption>
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 21%" />
-<col style="width: 31%" />
-<col style="width: 26%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field</th>
-<th>Required</th>
-<th>Description</th>
-<th>Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>recipients</td>
-<td>Yes</td>
-<td>Recipients of the program message. At least one recipient must be specified. Any number of recipients / types can be specified for a message.</td>
-<td>Can be trackedEntityInstance, organisationUnit, an array of phoneNumbers or an array of emailAddresses.</td>
-</tr>
-<tr class="even">
-<td>programInstance</td>
-<td>Either this or programStageInstance required</td>
-<td>The program instance / enrollment.</td>
-<td>Enrollment ID.</td>
-</tr>
-<tr class="odd">
-<td>programStageInstance</td>
-<td>Either this or programInstance required</td>
-<td>The program stage instance / event.</td>
-<td>Event ID.</td>
-</tr>
-<tr class="even">
-<td>deliveryChannels</td>
-<td>Yes</td>
-<td>Array of delivery channels.</td>
-<td>SMS | EMAIL</td>
-</tr>
-<tr class="odd">
-<td>subject</td>
-<td>No</td>
-<td>The message subject. Not applicable for SMS delivery channel.</td>
-<td>Text.</td>
-</tr>
-<tr class="even">
-<td>text</td>
-<td>Yes</td>
-<td>The message text.</td>
-<td>Text.</td>
-</tr>
-<tr class="odd">
-<td>storeCopy</td>
-<td>No</td>
-<td>Whether to store a copy of the program message in DHIS2.</td>
-<td>false (default) | true</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Program message payload
+
+| Field | Required | Description | Values |
+|---|---|---|---|
+| recipients | Yes | Recipients of the program message. At least one recipient must be specified. Any number of recipients / types can be specified for a message. | Can be trackedEntityInstance, organisationUnit, an array of phoneNumbers or an array of emailAddresses. |
+| programInstance | Either this or programStageInstance required | The program instance / enrollment. | Enrollment ID. |
+| programStageInstance | Either this or programInstance required | The program stage instance / event. | Event ID. |
+| deliveryChannels | Yes | Array of delivery channels. | SMS &#124; EMAIL |
+| subject | No | The message subject. Not applicable for SMS delivery channel. | Text. |
+| text | Yes | The message text. | Text. |
+| storeCopy | No | Whether to store a copy of the program message in DHIS2. | false (default) &#124; true |
 
 A minimalistic example for sending a message over SMS to a tracked
 entity instance looks like this:
@@ -3497,7 +2395,7 @@ The list of messages can be retrieved using GET.
     GET /api/33/messages
 
 To get the list of sent tracker messages, the below endpoint can be used. ProgramInstance or ProgramStageInstance uid has to be provided.
-	
+
 	GET /api/33/messages/scheduled/sent?programInstance={uid}
 	GET /api/33/messages/scheduled/sent?programStageInstance={uid}
 
@@ -3522,44 +2420,14 @@ request parameters. Messages can be filtered based on below mentioned
 query parameters. All requests should use the GET HTTP verb for
 retrieving information.
 
-<table>
-<caption>Query program messages API</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>programInstance</td>
-<td>/api/33/messages?programInstance=6yWDMa0LP7</td>
-</tr>
-<tr class="even">
-<td>programStageInstance</td>
-<td>/api/33/messages?programStageInstance=SllsjpfLH2</td>
-</tr>
-<tr class="odd">
-<td>trackedEntityInstance</td>
-<td>/api/33/messages?trackedEntityInstance=xdfejpfLH2</td>
-</tr>
-<tr class="even">
-<td>organisationUnit</td>
-<td>/api/33/messages?ou=Sllsjdhoe3</td>
-</tr>
-<tr class="odd">
-<td>processedDate</td>
-<td>/api/33/messages?processedDate=2016-02-01</td>
-</tr>
-</tbody>
-</table>
 
 
+Table: Query program messages API
 
-
-
-
+| Parameter | URL |
+|---|---|
+| programInstance | /api/33/messages?programInstance=6yWDMa0LP7 |
+| programStageInstance | /api/33/messages?programStageInstance=SllsjpfLH2 |
+| trackedEntityInstance | /api/33/messages?trackedEntityInstance=xdfejpfLH2 |
+| organisationUnit | /api/33/messages?ou=Sllsjdhoe3 |
+| processedDate | /api/33/messages?processedDate=2016-02-01 |

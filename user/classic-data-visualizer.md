@@ -62,62 +62,21 @@ different characteristics. To select a chart type:
 
 1.  In **Chart type**, click the chart type you need.
 
-    <table>
-    <caption>Chart types</caption>
-    <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 66%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Chart type</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Column chart</p></td>
-    <td><p>Displays information as vertical rectangular columns with lengths proportional to the values they represent.</p>
-    <p>Useful when you want to, for example, compare performance of different districts.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Stacked column chart</p></td>
-    <td><p>Displays information as vertical rectangular columns, where bars representing multiple categories are stacked on top of each other.</p>
-    <p>Useful when you want to, for example, display trends or sums of related data elements.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Bar chart</p></td>
-    <td><p>Same as column chart, only with horizontal bars.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Stacked bar chart</p></td>
-    <td><p>Same as stacked column chart, only with horizontal bars.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Line chart</p></td>
-    <td><p>Displays information as a series of points connected by straight lines. Also referred to as time series.</p>
-    <p>Useful when you want to, for example, visualize trends in indicator data over multiple time periods.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Area chart</p></td>
-    <td><p>Is based on line chart, with the space between the axis and the line filled with colors and the lines stacked on top of each other.</p>
-    <p>Useful when you want to compare the trends of related indicators.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Pie chart</p></td>
-    <td><p>Circular chart divided into sectors (or slices).</p>
-    <p>Useful when you want to, for example, visualize the proportion of data for individual data elements compared to the total sum of all data elements in the chart.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Radar chart</p></td>
-    <td><p>Displays data on axes starting from the same point. Also known as spider chart.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Speedometer chart</p></td>
-    <td><p>Semi-circle chart which displays values out of 100 %. Also referred to as a gauge chart.</p></td>
-    </tr>
-    </tbody>
-    </table>
+    
+
+    Table: Chart types
+
+    | Chart type | Description |
+    |---|---|
+    | Column chart | Displays information as vertical rectangular columns with lengths proportional to the values they represent.<br>     <br>Useful when you want to, for example, compare performance of different districts. |
+    | Stacked column chart | Displays information as vertical rectangular columns, where bars representing multiple categories are stacked on top of each other.<br>     <br>Useful when you want to, for example, display trends or sums of related data elements. |
+    | Bar chart | Same as column chart, only with horizontal bars. |
+    | Stacked bar chart | Same as stacked column chart, only with horizontal bars. |
+    | Line chart | Displays information as a series of points connected by straight lines. Also referred to as time series.<br>     <br>Useful when you want to, for example, visualize trends in indicator data over multiple time periods. |
+    | Area chart | Is based on line chart, with the space between the axis and the line filled with colors and the lines stacked on top of each other.<br>     <br>Useful when you want to compare the trends of related indicators. |
+    | Pie chart | Circular chart divided into sectors (or slices).<br>     <br>Useful when you want to, for example, visualize the proportion of data for individual data elements compared to the total sum of all data elements in the chart. |
+    | Radar chart | Displays data on axes starting from the same point. Also known as spider chart. |
+    | Speedometer chart | Semi-circle chart which displays values out of 100 %. Also referred to as a gauge chart. |
 
 2.  Click **Update**.
 
@@ -238,38 +197,15 @@ are defined by data sets.
 
     There are three different selection modes:
 
-    <table>
-    <caption>Selection modes</caption>
-    <colgroup>
-    <col style="width: 38%" />
-    <col style="width: 61%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Selection mode</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p><strong>Select organisation units</strong></p></td>
-    <td><p>Lets you select the organisation units you want to appear in the chart from the organization tree.</p>
-    <p>Select <strong>User org unit</strong> to disable the organisation unit tree and only select the organisation unit that is related to your profile.</p>
-    <p>Select <strong>User sub-units</strong> to disable the organisation unit tree and only select the sub-units of the organisation unit that is related to your profile.</p>
-    <p>Select <strong>User sub-x2-units</strong> to disable the organisation unit tree and only select organisation units two levels down from the organisation unit that is related to your profile.</p>
-    <p>This functionality is useful for administrators to create a meaningful &quot;system&quot; favorite. With this option checked all users find their respective organisation unit when they open the favorite.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Select levels</strong></p></td>
-    <td><p>Lets you select all organisation units at one or more levels, for example national or district level.</p>
-    <p>You can also select the parent organisation unit in the tree, which makes it easy to select for example, all facilities inside one or more districts.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Select groups</strong></p></td>
-    <td><p>Lets you select all organisation units inside one or several groups and parent organisation units at the same time, for example hospitals or chiefdoms.</p></td>
-    </tr>
-    </tbody>
-    </table>
+    
+
+    Table: Selection modes
+
+    | Selection mode | Description |
+    |---|---|
+    | **Select organisation units** | Lets you select the organisation units you want to appear in the chart from the organization tree.<br>     <br>Select **User org unit** to disable the organisation unit tree and only select the organisation unit that is related to your profile.<br>     <br>Select **User sub-units** to disable the organisation unit tree and only select the sub-units of the organisation unit that is related to your profile.<br>     <br>Select **User sub-x2-units** to disable the organisation unit tree and only select organisation units two levels down from the organisation unit that is related to your profile.<br>     <br>This functionality is useful for administrators to create a meaningful "system" favorite. With this option checked all users find their respective organisation unit when they open the favorite. |
+    | **Select levels** | Lets you select all organisation units at one or more levels, for example national or district level.<br>     <br>You can also select the parent organisation unit in the tree, which makes it easy to select for example, all facilities inside one or more districts. |
+    | **Select groups** | Lets you select all organisation units inside one or several groups and parent organisation units at the same time, for example hospitals or chiefdoms. |
 
 4.  Click **Update**.
 
@@ -326,133 +262,33 @@ category and filter.
 
 2.  Set the options as required.
 
-    <table style="width:100%;">
-    <caption>Chart options</caption>
-    <colgroup>
-    <col style="width: 23%" />
-    <col style="width: 33%" />
-    <col style="width: 42%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Option</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p><strong>Data</strong></p></td>
-    <td><p><strong>Show values</strong></p></td>
-    <td><p>Shows the values above the series in the chart.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Use 100% stacked values</strong></p></td>
-    <td><p>Displays 100 % stacked values in column charts.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Use cumulative values</strong></p></td>
-    <td><p>Displays cumulative values in line charts.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Hide empty categories</strong></p></td>
-    <td><p>Hides the category items with no data from the chart.</p>
-    <p><strong>None</strong>: doesn't hide any of the empty categories</p>
-    <p><strong>Before first</strong>: hides missing values only before the first value</p>
-    <p><strong>After last</strong>: hides missing values only after the last value</p>
-    <p><strong>Before first and after last</strong>: hides missing values only before the first value and after the last value</p>
-    <p><strong>All</strong>: hides all missing values</p>
-    <p>This is useful for example when you create column and bar charts.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Trend line</strong></p></td>
-    <td><p>Displays the trend line which visualizes how your data evolves over time. For example if performance is improving or deteriorating. Useful when periods are selected as category.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Target line value/title</strong></p></td>
-    <td><p>Displays a horizontal line at the given domain value. Useful for example when you want to compare your performance to the current target.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Base line value/title</strong></p></td>
-    <td><p>Displays a horizontal line at the given domain value. Useful for example when you want to visualize how your performance has evolved since the beginning of a process.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Sort order</strong></p></td>
-    <td><p>Allows you to sort the values on your chart from either low to high or high to low.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Aggregation type</strong></p></td>
-    <td><p>Defines how the data elements or indicators will be aggregated within the chart. Some of the aggregation types are <strong>By data element</strong>, <strong>Count</strong>, <strong>Min</strong> and <strong>Max</strong>.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Events</strong></p></td>
-    <td><p><strong>Include only completed events</strong></p></td>
-    <td><p>Includes only completed events in the aggregation process. This is useful when you want for example to exclude partial events in indicator calculations.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Axes</strong></p></td>
-    <td><p><strong>Range axis min/max</strong></p></td>
-    <td><p>Defines the maximum and minimum value which will be visible on the range axis.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Range axis tick steps</strong></p></td>
-    <td><p>Defines the number of ticks which will be visible on the range axis.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Range axis decimals</strong></p></td>
-    <td><p>Defines the number of decimals which will be used for range axis values.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Range axis title</strong></p></td>
-    <td><p>Type a title here to display a label next to the range axis (also referred to as the Y axis). Useful when you want to give context information to the chart, for example about the unit of measure.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Domain axis title</strong></p></td>
-    <td><p>Type a title here to display a label below the domain axis (also referred to as the X axis). Useful when you want to give context information to the chart, for example about the period type.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Style</strong></p></td>
-    <td><p><strong>No space between columns/bars</strong></p></td>
-    <td><p>Removes the space between the columns or bars in the chart. Useful for displaying the chart as an EPI curve.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>General</strong></p></td>
-    <td><p><strong>Hide chart legend</strong></p></td>
-    <td><p>Hides the legend and leaves more room for the chart itself.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Hide chart title</strong></p></td>
-    <td><p>Hides the title (default or custom) of your chart.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Chart title</strong></p></td>
-    <td><p>Type a title here to display a custom title above the chart. If you don't enter a title, the default title is displayed.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Hide chart subtitle</strong></p></td>
-    <td><p>Hides the subtitle of your chart.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Chart subtitle</strong></p></td>
-    <td><p>Type a subtitle here to display a custom subtitle above the chart but below the title. If you don't enter a subtitle, no subtitle is displayed in the chart.</p></td>
-    </tr>
-    </tbody>
-    </table>
+    
+
+    Table: Chart options
+
+    | Option | Description ||
+    |---|---|---|
+    | **Data** | **Show values** | Shows the values above the series in the chart. |
+    || **Use 100% stacked values** | Displays 100 % stacked values in column charts. |
+    || **Use cumulative values** | Displays cumulative values in line charts. |
+    || **Hide empty categories** | Hides the category items with no data from the chart.<br>     <br>**None**: doesn't hide any of the empty categories<br>     <br>**Before first**: hides missing values only before the first value<br>     <br>**After last**: hides missing values only after the last value<br>     <br>**Before first and after last**: hides missing values only before the first value and after the last value<br>     <br>**All**: hides all missing values<br>     <br>This is useful for example when you create column and bar charts. |
+    || **Trend line** | Displays the trend line which visualizes how your data evolves over time. For example if performance is improving or deteriorating. Useful when periods are selected as category. |
+    || **Target line value/title** | Displays a horizontal line at the given domain value. Useful for example when you want to compare your performance to the current target. |
+    || **Base line value/title** | Displays a horizontal line at the given domain value. Useful for example when you want to visualize how your performance has evolved since the beginning of a process. |
+    || **Sort order** | Allows you to sort the values on your chart from either low to high or high to low. |
+    || **Aggregation type** | Defines how the data elements or indicators will be aggregated within the chart. Some of the aggregation types are **By data element**, **Count**, **Min** and **Max**. |
+    | **Events** | **Include only completed events** | Includes only completed events in the aggregation process. This is useful when you want for example to exclude partial events in indicator calculations. |
+    | **Axes** | **Range axis min/max** | Defines the maximum and minimum value which will be visible on the range axis. |
+    || **Range axis tick steps** | Defines the number of ticks which will be visible on the range axis. |
+    || **Range axis decimals** | Defines the number of decimals which will be used for range axis values. |
+    || **Range axis title** | Type a title here to display a label next to the range axis (also referred to as the Y axis). Useful when you want to give context information to the chart, for example about the unit of measure. |
+    || **Domain axis title** | Type a title here to display a label below the domain axis (also referred to as the X axis). Useful when you want to give context information to the chart, for example about the period type. |
+    | **Style** | **No space between columns/bars** | Removes the space between the columns or bars in the chart. Useful for displaying the chart as an EPI curve. |
+    | **General** | **Hide chart legend** | Hides the legend and leaves more room for the chart itself. |
+    || **Hide chart title** | Hides the title (default or custom) of your chart. |
+    || **Chart title** | Type a title here to display a custom title above the chart. If you don't enter a title, the default title is displayed. |
+    || **Hide chart subtitle** | Hides the subtitle of your chart. |
+    || **Chart subtitle** | Type a subtitle here to display a custom subtitle above the chart but below the title. If you don't enter a subtitle, no subtitle is displayed in the chart. |
 
 3.  Click **Update**.
 
@@ -606,57 +442,18 @@ To download plain data source formats:
 
 2.  Under **Plain data source**, click the format you want to download.
 
-    <table>
-    <caption>Available formats</caption>
-    <colgroup>
-    <col style="width: 18%" />
-    <col style="width: 33%" />
-    <col style="width: 47%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Format</p></th>
-    <th><p>Action</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>JSON</p></td>
-    <td><p>Click <strong>JSON</strong></p></td>
-    <td><p>Downloads JSON format based on ID property.</p>
-    <p>You can also download JSON format based on <strong>Code</strong> or <strong>Name</strong> property.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>XML</p></td>
-    <td><p>Click <strong>XML</strong></p></td>
-    <td><p>Downloads XML format based on ID property.</p>
-    <p>You can also download XML format based on <strong>Code</strong> or <strong>Name</strong> property.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Microsoft Excel</p></td>
-    <td><p>Click <strong>Microsoft Excel</strong></p></td>
-    <td><p>Downloads Microsoft Excel format based on ID property.</p>
-    <p>You can also download Microsoft Excel format based on <strong>Code</strong> or <strong>Name</strong> property.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>CSV</p></td>
-    <td>Click <strong>CSV</strong></td>
-    <td><p>Downloads CSV format based on ID property.</p>
-    <p>You can also download CSV format based on <strong>Code</strong> or <strong>Name</strong> property.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>JRXML</p></td>
-    <td><p>Put the cursor on <strong>Advanced</strong> and click <strong>JRXML</strong></p></td>
-    <td><p>Produces a template of a Jasper Report which can be further customized based on your exact needs and used as the basis for a standard report in DHIS 2.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Raw data SQL</p></td>
-    <td><p>Put the cursor on <strong>Advanced</strong> and click <strong>Raw data SQL</strong></p></td>
-    <td><p>Provides the actual SQL statement used to generate the data visualization. You can use it as a data source in a Jasper report, or as the basis for a SQL view.</p></td>
-    </tr>
-    </tbody>
-    </table>
+    
+
+    Table: Available formats
+
+    | Format | Action | Description |
+    |---|---|---|
+    | JSON | Click **JSON** | Downloads JSON format based on ID property.<br>     <br>You can also download JSON format based on **Code** or **Name** property. |
+    | XML | Click **XML** | Downloads XML format based on ID property.<br>     <br>You can also download XML format based on **Code** or **Name** property. |
+    | Microsoft Excel | Click **Microsoft Excel** | Downloads Microsoft Excel format based on ID property.<br>     <br>You can also download Microsoft Excel format based on **Code** or **Name** property. |
+    | CSV | Click **CSV** | Downloads CSV format based on ID property.<br>     <br>You can also download CSV format based on **Code** or **Name** property. |
+    | JRXML | Put the cursor on **Advanced** and click **JRXML** | Produces a template of a Jasper Report which can be further customized based on your exact needs and used as the basis for a standard report in DHIS 2. |
+    | Raw data SQL | Put the cursor on **Advanced** and click **Raw data SQL** | Provides the actual SQL statement used to generate the data visualization. You can use it as a data source in a Jasper report, or as the basis for a SQL view. |
 
 ## Embed charts in any web page
 

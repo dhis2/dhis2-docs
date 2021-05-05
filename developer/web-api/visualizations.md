@@ -109,42 +109,15 @@ Will search for the following:
 * Return up to 6 of each type
 * For CHART and MAP types, return up to 20 items
 
-<table>
-<caption>dashboards/q query parameters</caption>
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 44%" />
-<col style="width: 35%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>count</td>
-<td>The number of items of each type to return</td>
-<td>Positive integer</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>maxCount</td>
-<td>The number of items of max types to return</td>
-<td>Positive integer</td>
-<td>25</td>
-</tr>
-<tr class="even">
-<td>max</td>
-<td>The type to return the maxCount for</td>
-<td>String [CHART|MAP|REPORT_TABLE|USER|REPORT|RESOURCE|VISUALIZATION]</td>
-<td>N/A</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: dashboards/q query parameters
+
+| Query parameter | Description | Type | Default |
+|---|---|---|---|
+| count | The number of items of each type to return | Positive integer | 6 |
+| maxCount | The number of items of max types to return | Positive integer | 25 |
+| max | The type to return the maxCount for | String [CHART&#124;MAP&#124;REPORT_TABLE&#124;USER&#124;REPORT&#124;RESOURCE&#124;VISUALIZATION] | N/A |
 
 JSON and XML response formats are supported. The response in JSON format
 will contain references to matching resources and counts of how many
@@ -231,37 +204,18 @@ dashboard resource similar to this:
 
 In order to add dashboard items a consumer can use the
 `/api/dashboards/<dashboard-id>/items/content` resource, where
-\<dashboard-id\> should be replaced by the relevant dashboard
+<dashboard-id\> should be replaced by the relevant dashboard
 identifier. The request must use the *POST* method. The URL syntax and
 parameters are described in detail in the following table.
 
-<table>
-<caption>Items content parameters</caption>
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 44%" />
-<col style="width: 35%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-<th>Options</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>type</td>
-<td>Type of the resource to be represented by the dashboard item</td>
-<td>chart | visualization | map | reportTable | users | reports | reportTables | resources | patientTabularReports | app</td>
-</tr>
-<tr class="even">
-<td>id</td>
-<td>Identifier of the resource to be represented by the dashboard item</td>
-<td>Resource identifier</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Items content parameters
+
+| Query parameter | Description | Options |
+|---|---|---|
+| type | Type of the resource to be represented by the dashboard item | chart &#124; visualization &#124; map &#124; reportTable &#124; users &#124; reports &#124; reportTables &#124; resources &#124; patientTabularReports &#124; app |
+| id | Identifier of the resource to be represented by the dashboard item | Resource identifier |
 
 A *POST* request URL for adding a chart to a specific dashboard could
 look like this, where the last id query parameter value is the chart
@@ -329,277 +283,76 @@ A Visualization object is composed of many attributes (some of them related to c
 
 The root endpoint of the API is `/api/visualizations`, and the list of current attributes and elements are described in the table below.
 
-<table>
-<caption>Visualization attributes</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td>The unique identifier.</td>
-</tr>
-<tr class="even">
-<td>code</td>
-<td>A custom code to identify the Visualization.</td>
-</tr>
-<tr class="odd">
-<td>name</td>
-<td>The name of the Visualization</td>
-</tr>
-<tr class="even">
-<td>type</td>
-<td>The type of the Visualization. The valid types are: COLUMN, STACKED_COLUMN, BAR, STACKED_BAR, LINE, AREA, PIE, RADAR, GAUGE, YEAR_OVER_YEAR_LINE YEAR_OVER_YEAR_COLUMN, SINGLE_VALUE, PIVOT_TABLE.</td>
-</tr>
-<tr class="odd">
-<td>title</td>
-<td>A custom title.</td>
-</tr>
-<tr class="even">
-<td>subtitle</td>
-<td>A custom subtitle.</td>
-</tr>
-<tr class="odd">
-<td>description</td>
-<td>Defines a custom description for the Visualization.</td>
-</tr>
-<tr class="even">
-<td>created</td>
-<td>The date/time of the Visualization creation.</td>
-</tr>
-<tr class="odd">
-<td>startDate</td>
-<td>The beginning date used during the filtering.</td>
-</tr>
-<tr class="even">
-<td>endDate</td>
-<td>The ending date used during the filtering.</td>
-</tr>
-<tr class="odd">
-<td>sortOrder</td>
-<td>The sorting order of this Visualization. Integer value.</td>
-</tr>
-<tr class="even">
-<td>user</td>
-<td>An object representing the creator of the Visualization.</td>
-</tr>
-<tr class="odd">
-<td>publicAccess</td>
-<td>Sets the permissions for public access.</td>
-</tr>
-<tr class="even">
-<td>displayDensity</td>
-<td>The display density of the text.</td>
-</tr>
-<tr class="odd">
-<td>fontSize</td>
-<td>The font size of the text.</td>
-</tr>
-<tr class="even">
-<td>fontStyle</td>
-<td>Custom font styles for: visualizationTitle, visualizationSubtitle, horizontalAxisTitle, verticalAxisTitle, targetLineLabel, baseLineLabel, seriesAxisLabel, categoryAxisLabel, legend.</td>
-</tr>
-<tr class="odd">
-<td>relativePeriods</td>
-<td>An object representing the relative periods used in the analytics query.</td>
-</tr>
-<tr class="even">
-<td>legendSet</td>
-<td>An object representing the definitions for the legend.</td>
-</tr>
-<tr class="odd">
-<td>legendDisplayStyle</td>
-<td>The legend's display style. It can be: FILL or TEXT.</td>
-</tr>
-<tr class="even">
-<td>legendDisplayStrategy</td>
-<td>The legend's display style. It can be: FIXED or BY_DATA_ITEM.</td>
-</tr>
-<tr class="odd">
-<td>aggregationType</td>
-<td>Determines how the values in the pivot table are aggregated. Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT.</td>
-</tr>
-<tr class="even">
-<td>regressionType</td>
-<td>A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS.</td>
-</tr>
-<tr class="odd">
-<td>targetLineValue</td>
-<td>The chart target line. Accepts a Double type.</td>
-</tr>
-<tr class="even">
-<td>targetLineLabel</td>
-<td>The chart target line label.</td>
-</tr>
-<tr class="odd">
-<td>rangeAxisLabel</td>
-<td>The chart vertical axis (y) label/title.</td>
-</tr>
-<tr class="even">
-<td>domainAxisLabel</td>
-<td>The chart horizontal axis (x) label/title.</td>
-</tr>
-<tr class="odd">
-<td>rangeAxisMaxValue</td>
-<td>The chart axis maximum value. Values outside of the range will not be displayed.</td>
-</tr>
-<tr class="even">
-<td>rangeAxisMinValue</td>
-<td>The chart axis minimum value. Values outside of the range will not be displayed.</td>
-</tr>
-<tr class="odd">
-<td>rangeAxisSteps</td>
-<td>The number of axis steps between the minimum and maximum values.</td>
-</tr>
-<tr class="even">
-<td>rangeAxisDecimals</td>
-<td>The number of decimals for the axes values.</td>
-</tr>
-<tr class="odd">
-<td>baseLineValue</td>
-<td>A chart baseline value.</td>
-</tr>
-<tr class="even">
-<td>baseLineLabel</td>
-<td>A chart baseline label.</td>
-</tr>
-<tr class="odd">
-<td>digitGroupSeparator</td>
-<td>The digit group separator. Valid values: COMMA, SPACE or NONE.</td>
-</tr>
-<tr class="even">
-<td>topLimit</td>
-<td>The top limit set for the Pivot table.</td>
-</tr>
-<tr class="odd">
-<td>measureCriteria</td>
-<td>Describes the criteria applied to this measure.</td>
-</tr>
-<tr class="even">
-<td>percentStackedValues</td>
-<td>Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>noSpaceBetweenColumns</td>
-<td>Show/hide space between columns. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>regression</td>
-<td>Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>externalAccess</td>
-<td>Indicates whether the Visualization is available as external read-only. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>userOrganisationUnit</td>
-<td>Indicates if the user has an organisation unit. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>userOrganisationUnitChildren</td>
-<td>Indicates if the user has a children organisation unit. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>userOrganisationUnitGrandChildren</td>
-<td>Indicates if the user has a grand children organisation unit . Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>reportingParams</td>
-<td>Object used to define boolean attributes related to reporting.</td>
-</tr>
-<tr class="even">
-<td>rowTotals</td>
-<td>Displays (or not) the row totals. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>colTotals</td>
-<td>Displays (or not) the columns totals. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>rowSubTotals</td>
-<td>Displays (or not) the row sub-totals. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>colSubTotals</td>
-<td>Displays (or not) the columns sub-totals. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>cumulativeValues</td>
-<td>Indicates whether the visualization is using cumulative values. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>hideEmptyColumns</td>
-<td>Indicates whether to hide columns with no data values. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>hideEmptyRows</td>
-<td>Indicates whether to hide rows with no data values. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>completedOnly</td>
-<td>Indicates whether to hide columns with no data values. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>skipRounding</td>
-<td>Apply or not rounding. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>showDimensionLabels</td>
-<td>Shows the dimension labels or not. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>hideTitle</td>
-<td>Hides the title or not. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>hideSubtitle</td>
-<td>Hides the subtitle or not. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>hideLegend</td>
-<td>Show/hide the legend. Very likely to be used by charts. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>showHierarchy</td>
-<td>Displays (or not) the organisation unit hierarchy names. Boolean value.</td>
-</tr>
-<tr class="even">
-<td>showData</td>
-<td>Used by charts to hide or not data/values within the rendered model. Boolean value.</td>
-</tr>
-<tr class="odd">
-<td>lastUpdatedBy</td>
-<td>Object that represents the user that applied the last changes to the Visualization.</td>
-</tr>
-<tr class="even">
-<td>lastUpdated</td>
-<td>The date/time of the last time the Visualization was changed.</td>
-</tr>
-<tr class="odd">
-<td>favorites</td>
-<td>List of user ids who have marked this object as a favorite.</td>
-</tr>
-<tr class="even">
-<td>subscribers</td>
-<td>List of user ids who have subscribed to this Visualization.</td>
-</tr>
-<tr class="odd">
-<td>translations</td>
-<td>Set of available object translation, normally filtered by locale.</td>
-</tr>
-<tr class="even">
-<td>outlierAnalysis</td>
-<td>Object responsible to keep settings related to outlier analysis. The internal attribute 'outlierMethod' supports: IQR, STANDARD_Z_SCORE, MODIFIED_Z_SCORE. The 'normalizationMethod' accepts only Y_RESIDUALS_LINEAR for now.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Visualization attributes
+
+| Field | Description |
+|---|---|
+| id | The unique identifier. |
+| code | A custom code to identify the Visualization. |
+| name | The name of the Visualization |
+| type | The type of the Visualization. The valid types are: COLUMN, STACKED_COLUMN, BAR, STACKED_BAR, LINE, AREA, PIE, RADAR, GAUGE, YEAR_OVER_YEAR_LINE YEAR_OVER_YEAR_COLUMN, SINGLE_VALUE, PIVOT_TABLE. |
+| title | A custom title. |
+| subtitle | A custom subtitle. |
+| description | Defines a custom description for the Visualization. |
+| created | The date/time of the Visualization creation. |
+| startDate | The beginning date used during the filtering. |
+| endDate | The ending date used during the filtering. |
+| sortOrder | The sorting order of this Visualization. Integer value. |
+| user | An object representing the creator of the Visualization. |
+| publicAccess | Sets the permissions for public access. |
+| displayDensity | The display density of the text. |
+| fontSize | The font size of the text. |
+| fontStyle | Custom font styles for: visualizationTitle, visualizationSubtitle, horizontalAxisTitle, verticalAxisTitle, targetLineLabel, baseLineLabel, seriesAxisLabel, categoryAxisLabel, legend. |
+| relativePeriods | An object representing the relative periods used in the analytics query. |
+| legendSet | An object representing the definitions for the legend. |
+| legendDisplayStyle | The legend's display style. It can be: FILL or TEXT. |
+| legendDisplayStrategy | The legend's display style. It can be: FIXED or BY_DATA_ITEM. |
+| aggregationType | Determines how the values in the pivot table are aggregated. Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT. |
+| regressionType | A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS. |
+| targetLineValue | The chart target line. Accepts a Double type. |
+| targetLineLabel | The chart target line label. |
+| rangeAxisLabel | The chart vertical axis (y) label/title. |
+| domainAxisLabel | The chart horizontal axis (x) label/title. |
+| rangeAxisMaxValue | The chart axis maximum value. Values outside of the range will not be displayed. |
+| rangeAxisMinValue | The chart axis minimum value. Values outside of the range will not be displayed. |
+| rangeAxisSteps | The number of axis steps between the minimum and maximum values. |
+| rangeAxisDecimals | The number of decimals for the axes values. |
+| baseLineValue | A chart baseline value. |
+| baseLineLabel | A chart baseline label. |
+| digitGroupSeparator | The digit group separator. Valid values: COMMA, SPACE or NONE. |
+| topLimit | The top limit set for the Pivot table. |
+| measureCriteria | Describes the criteria applied to this measure. |
+| percentStackedValues | Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value. |
+| noSpaceBetweenColumns | Show/hide space between columns. Boolean value. |
+| regression | Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value. |
+| externalAccess | Indicates whether the Visualization is available as external read-only. Boolean value. |
+| userOrganisationUnit | Indicates if the user has an organisation unit. Boolean value. |
+| userOrganisationUnitChildren | Indicates if the user has a children organisation unit. Boolean value. |
+| userOrganisationUnitGrandChildren | Indicates if the user has a grand children organisation unit . Boolean value. |
+| reportingParams | Object used to define boolean attributes related to reporting. |
+| rowTotals | Displays (or not) the row totals. Boolean value. |
+| colTotals | Displays (or not) the columns totals. Boolean value. |
+| rowSubTotals | Displays (or not) the row sub-totals. Boolean value. |
+| colSubTotals | Displays (or not) the columns sub-totals. Boolean value. |
+| cumulativeValues | Indicates whether the visualization is using cumulative values. Boolean value. |
+| hideEmptyColumns | Indicates whether to hide columns with no data values. Boolean value. |
+| hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
+| completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
+| skipRounding | Apply or not rounding. Boolean value. |
+| showDimensionLabels | Shows the dimension labels or not. Boolean value. |
+| hideTitle | Hides the title or not. Boolean value. |
+| hideSubtitle | Hides the subtitle or not. Boolean value. |
+| hideLegend | Show/hide the legend. Very likely to be used by charts. Boolean value. |
+| showHierarchy | Displays (or not) the organisation unit hierarchy names. Boolean value. |
+| showData | Used by charts to hide or not data/values within the rendered model. Boolean value. |
+| lastUpdatedBy | Object that represents the user that applied the last changes to the Visualization. |
+| lastUpdated | The date/time of the last time the Visualization was changed. |
+| favorites | List of user ids who have marked this object as a favorite. |
+| subscribers | List of user ids who have subscribed to this Visualization. |
+| translations | Set of available object translation, normally filtered by locale. |
+| outlierAnalysis | Object responsible to keep settings related to outlier analysis. The internal attribute 'outlierMethod' supports: IQR, STANDARD_Z_SCORE, MODIFIED_Z_SCORE. The 'normalizationMethod' accepts only Y_RESIDUALS_LINEAR for now. |
 
 ### Retrieving visualizations
 
@@ -1149,73 +902,25 @@ fields omitted for brevity):
 }
 ```
 
-<table>
-<caption>Interpretation fields</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td>The interpretation identifier.</td>
-</tr>
-<tr class="even">
-<td>created</td>
-<td>The time of when the interpretation was created.</td>
-</tr>
-<tr class="odd">
-<td>type</td>
-<td>The type of analytical object being interpreted. Valid options: REPORT_TABLE, CHART, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT.
-</tr>
-<tr class="even">
-<td>user</td>
-<td>Association to the user who created the interpretation.</td>
-</tr>
-<tr class="odd">
-<td>reportTable</td>
-<td>Association to the report table if type is REPORT_TABLE.</td>
-</tr>
-<tr class="even">
-<td>chart</td>
-<td>Association to the chart if type is CHART.</td>
-</tr>
-<tr class="odd">
-<td>visualization</td>
-<td>Association to the visualization if type is CHART or REPORT_TABLE (**both types are in deprecation process in favour of VISUALIZATION**).</td>
-</tr>
-<tr class="even">
-<td>map</td>
-<td>Association to the map if type is MAP.</td>
-</tr>
-<tr class="odd">
-<td>eventReport</td>
-<td>Association to the event report is type is EVENT_REPORT.</td>
-</tr>
-<tr class="even">
-<td>eventChart</td>
-<td>Association to the event chart if type is EVENT_CHART.</td>
-</tr>
-<tr class="odd">
-<td>dataSet</td>
-<td>Association to the data set if type is DATASET_REPORT.</td>
-</tr>
-<tr class="even">
-<td>comments</td>
-<td>Array of comments for the interpretation. The text field holds the actual comment.</td>
-</tr>
-<tr class="odd">
-<td>mentions</td>
-<td>Array of mentions for the interpretation. A list of users identifiers.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Interpretation fields
+
+| Field | Description |
+|---|---|
+| id | The interpretation identifier. |
+| created | The time of when the interpretation was created. |
+| type | The type of analytical object being interpreted. Valid options: REPORT_TABLE, CHART, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT. |
+| user | Association to the user who created the interpretation. |
+| reportTable | Association to the report table if type is REPORT_TABLE. |
+| chart | Association to the chart if type is CHART. |
+| visualization | Association to the visualization if type is CHART or REPORT_TABLE (**both types are in deprecation process in favour of VISUALIZATION**). |
+| map | Association to the map if type is MAP. |
+| eventReport | Association to the event report is type is EVENT_REPORT. |
+| eventChart | Association to the event chart if type is EVENT_CHART. |
+| dataSet | Association to the data set if type is DATASET_REPORT. |
+| comments | Array of comments for the interpretation. The text field holds the actual comment. |
+| mentions | Array of mentions for the interpretation. A list of users identifiers. |
 
 For all analytical objects you can append */data* to the URL to retrieve
 the data associated with the resource (as opposed to the metadata). As
@@ -1692,61 +1397,23 @@ Here is an example of a payload when the pagination is enabled. Remember that pa
 
 Now that we have a good idea of the main features and usage of this endpoint let's have a look in the list of attributes returned in the response.
 
-<table>
-<caption>Data items attributes</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td>The unique identifier.</td>
-</tr>
-<tr class="even">
-<td>code</td>
-<td>A custom code to identify the dimensional item.</td>
-</tr>
-<tr class="odd">
-<td>name</td>
-<td>The name given for the item.</td>
-</tr>
-<tr class="even">
-<td>displayName</td>
-<td>The display name defined.</td>
-</tr>
-<tr class="odd">
-<td>shortName</td>
-<td>The short name given for the item.</td>
-</tr>
-<tr class="even">
-<td>displayShortName</td>
-<td>The display short name defined.</td>
-</tr>
-<tr class="odd">
-<td>dimensionItemType</td>
-<td>The dimension type. Possible types: INDICATOR, DATA_ELEMENT, REPORTING_RATE, PROGRAM_INDICATOR, PROGRAM_DATA_ELEMENT, PROGRAM_ATTRIBUTE.</td>
-</tr>
-<tr class="even">
-<td>valueType</td>
-<td>The item value type (more specific definition). Possitble types: TEXT, LONG_TEXT, LETTER, BOOLEAN, TRUE_ONLY, UNIT_INTERVAL, PERCENTAGE, INTEGER, INTEGER_POSITIVE, INTEGER_NEGATIVE, INTEGER_ZERO_OR_POSITIVE, COORDINATE</td>
-</tr>
-<tr class="odd">
-<td>simplifiedValueType</td>
-<td>The genereal representation of a value type. Valid values: NUMBER, BOOLEAN, DATE, FILE_RESOURCE, COORDINATE, TEXT</td>
-</tr>
-<tr class="even">
-<td>programId</td>
-<td>The associated programId.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data items attributes
+
+| Field | Description |
+|---|---|
+| id | The unique identifier. |
+| code | A custom code to identify the dimensional item. |
+| name | The name given for the item. |
+| displayName | The display name defined. |
+| shortName | The short name given for the item. |
+| displayShortName | The display short name defined. |
+| dimensionItemType | The dimension type. Possible types: INDICATOR, DATA_ELEMENT, REPORTING_RATE, PROGRAM_INDICATOR, PROGRAM_DATA_ELEMENT, PROGRAM_ATTRIBUTE. |
+| valueType | The item value type (more specific definition). Possitble types: TEXT, LONG_TEXT, LETTER, BOOLEAN, TRUE_ONLY, UNIT_INTERVAL, PERCENTAGE, INTEGER, INTEGER_POSITIVE, INTEGER_NEGATIVE, INTEGER_ZERO_OR_POSITIVE, COORDINATE |
+| simplifiedValueType | The genereal representation of a value type. Valid values: NUMBER, BOOLEAN, DATE, FILE_RESOURCE, COORDINATE, TEXT |
+| programId | The associated programId. |
+
 ## Viewing analytical resource representations
 
 <!--DHIS2-SECTION-ID:webapi_viewing_analytical_resource_representations-->
@@ -1761,112 +1428,39 @@ representation of the chart, you can append */data* to all these
 resources. For instance, by visiting `/api/charts/R0DVGvXDUNP/data` the
 system will return a PNG image of the chart.
 
-<table>
-<caption>Analytical resources</caption>
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 32%" />
-<col style="width: 32%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Resource</th>
-<th>Description</th>
-<th>Data URL</th>
-<th>Resource representations</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>charts</td>
-<td>Charts</td>
-<td>/api/charts/&lt;identifier&gt;/data</td>
-<td>png</td>
-</tr>
-<tr class="even">
-<td>eventCharts</td>
-<td>Event charts</td>
-<td>/api/eventCharts/&lt;identifier&gt;/data</td>
-<td>png</td>
-</tr>
-<tr class="odd">
-<td>maps</td>
-<td>Maps</td>
-<td>/api/maps/&lt;identifier&gt;/data</td>
-<td>png</td>
-</tr>
-<tr class="even">
-<td>reportTables</td>
-<td>Pivot tables</td>
-<td>/api/reportTables/&lt;identifier&gt;/data</td>
-<td>json | jsonp | html | xml | pdf | xls | csv</td>
-</tr>
-<tr class="odd">
-<td>reports</td>
-<td>Standard reports</td>
-<td>/api/reports/&lt;identifier&gt;/data</td>
-<td>pdf | xls | html</td>
-</tr>
-<tr class="even">
-<td>documents</td>
-<td>Resources</td>
-<td>/api/documents/&lt;identifier&gt;/data</td>
-<td>&lt;follows document&gt;</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Analytical resources
+
+| Resource | Description | Data URL | Resource representations |
+|---|---|---|---|
+| charts | Charts | /api/charts/<identifier\>/data | png |
+| eventCharts | Event charts | /api/eventCharts/<identifier\>/data | png |
+| maps | Maps | /api/maps/<identifier\>/data | png |
+| reportTables | Pivot tables | /api/reportTables/<identifier\>/data | json &#124; jsonp &#124; html &#124; xml &#124; pdf &#124; xls &#124; csv |
+| reports | Standard reports | /api/reports/<identifier\>/data | pdf &#124; xls &#124; html |
+| documents | Resources | /api/documents/<identifier\>/data | <follows document\> |
 
 The data content of the analytical representations can be modified by
 providing a *date* query parameter. This requires that the analytical
 resource is set up for relative periods for the period dimension.
 
-<table>
-<caption>Data query parameters</caption>
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 28%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>date</td>
-<td>Date in yyyy-MM-dd format</td>
-<td>Basis for relative periods in report (requires relative periods)</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Query parameters for png / image types (charts, maps)</caption>
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>width</td>
-<td>Width of image in pixels</td>
-</tr>
-<tr class="even">
-<td>height</td>
-<td>Height of image in pixels</td>
-</tr>
-</tbody>
-</table>
+
+Table: Data query parameters
+
+| Query parameter | Value | Description |
+|---|---|---|
+| date | Date in yyyy-MM-dd format | Basis for relative periods in report (requires relative periods) |
+
+
+
+Table: Query parameters for png / image types (charts, maps)
+
+| Query parameter | Description |
+|---|---|
+| width | Width of image in pixels |
+| height | Height of image in pixels |
 
 Some examples of valid URLs for retrieving various analytical
 representations are listed below.
@@ -2023,217 +1617,45 @@ columns: [{
 }]
 ```
 
-<table>
-<caption>Pivot table plug-in configuration</caption>
-<thead>
-<tr class="header">
-<th>Param</th>
-<th>Type</th>
-<th>Required</th>
-<th>Options (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>url</td>
-<td>string</td>
-<td>Yes</td>
-<td></td>
-<td>Base URL of the DHIS2 server</td>
-</tr>
-<tr class="even">
-<td>username</td>
-<td>string</td>
-<td>Yes (if cross-domain)</td>
-<td></td>
-<td>Used for authentication if the server is running on a different domain</td>
-</tr>
-<tr class="odd">
-<td>password</td>
-<td>string</td>
-<td>Yes (if cross-domain)</td>
-<td></td>
-<td>Used for authentication if the server is running on a different domain</td>
-</tr>
-<tr class="even">
-<td>loadingIndicator</td>
-<td>boolean</td>
-<td>No</td>
-<td></td>
-<td>Whether to show a loading indicator before the table appears</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Pivot table configuration</caption>
-<thead>
-<tr class="header">
-<th>Param</th>
-<th>Type</th>
-<th>Required</th>
-<th>Options (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>el</td>
-<td>string</td>
-<td>Yes</td>
-<td></td>
-<td>Identifier of the HTML element to render the table in your web page</td>
-</tr>
-<tr class="even">
-<td>id</td>
-<td>string</td>
-<td>No</td>
-<td></td>
-<td>Identifier of a pre-defined table (favorite) in DHIS2</td>
-</tr>
-<tr class="odd">
-<td>columns</td>
-<td>array</td>
-<td>Yes (if no id provided)</td>
-<td></td>
-<td>Data dimensions to include in table as columns</td>
-</tr>
-<tr class="even">
-<td>rows</td>
-<td>array</td>
-<td>Yes (if no id provided)</td>
-<td></td>
-<td>Data dimensions to include in table as rows</td>
-</tr>
-<tr class="odd">
-<td>filter</td>
-<td>array</td>
-<td>No</td>
-<td></td>
-<td>Data dimensions to include in table as filters</td>
-</tr>
-<tr class="even">
-<td>title</td>
-<td>string</td>
-<td>No</td>
-<td></td>
-<td>Show a custom title above the table</td>
-</tr>
-<tr class="odd">
-<td>showColTotals</td>
-<td>boolean</td>
-<td>No</td>
-<td>true | false</td>
-<td>Whether to display totals for columns</td>
-</tr>
-<tr class="even">
-<td>showRowTotals</td>
-<td>boolean</td>
-<td>No</td>
-<td>true | false</td>
-<td>Whether to display totals for rows</td>
-</tr>
-<tr class="odd">
-<td>showColSubTotals</td>
-<td>boolean</td>
-<td>No</td>
-<td>true | false</td>
-<td>Whether to display sub-totals for columns</td>
-</tr>
-<tr class="even">
-<td>showRowSubTotals</td>
-<td>boolean</td>
-<td>No</td>
-<td>true | false</td>
-<td>Whether to display sub-totals for rows</td>
-</tr>
-<tr class="odd">
-<td>showDimensionLabels</td>
-<td>boolean</td>
-<td>No</td>
-<td>true | false</td>
-<td>Whether to display the name of the dimension top-left in the table</td>
-</tr>
-<tr class="even">
-<td>hideEmptyRows</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Whether to hide rows with no data</td>
-</tr>
-<tr class="odd">
-<td>skipRounding</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Whether to skip rounding of data values</td>
-</tr>
-<tr class="even">
-<td>completedOnly</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Whether to only show completed events</td>
-</tr>
-<tr class="odd">
-<td>showHierarchy</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Whether to extend orgunit names with the name of all anchestors</td>
-</tr>
-<tr class="even">
-<td>aggregationType</td>
-<td>string</td>
-<td>No</td>
-<td>&quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
-<td>Override the data element's default aggregation type</td>
-</tr>
-<tr class="odd">
-<td>displayDensity</td>
-<td>string</td>
-<td>No</td>
-<td>&quot;NORMAL&quot; | &quot;COMFORTABLE&quot; | &quot;COMPACT&quot;</td>
-<td>The amount of space inside table cells</td>
-</tr>
-<tr class="even">
-<td>fontSize</td>
-<td>string</td>
-<td>No</td>
-<td>&quot;NORMAL&quot; | &quot;LARGE&quot; | &quot;SMALL&quot;</td>
-<td>Table font size</td>
-</tr>
-<tr class="odd">
-<td>digitGroupSeparator</td>
-<td>string</td>
-<td>No</td>
-<td>&quot;SPACE&quot; | &quot;COMMA&quot; | &quot;NONE&quot;</td>
-<td>How values are formatted: 1 000 | 1,000 | 1000</td>
-</tr>
-<tr class="even">
-<td>legendSet</td>
-<td>object</td>
-<td>No</td>
-<td></td>
-<td>Color the values in the table according to the legend set</td>
-</tr>
-<tr class="odd">
-<td>userOrgUnit</td>
-<td>string / array</td>
-<td>No</td>
-<td></td>
-<td>Organisation unit identifiers, overrides organisation units associated with curretn user, single or array</td>
-</tr>
-<tr class="even">
-<td>relativePeriodDate</td>
-<td>string</td>
-<td>No</td>
-<td></td>
-<td>Date identifier e.g: &quot;2016-01-01&quot;. Overrides the start date of the relative period</td>
-</tr>
-</tbody>
-</table>
+
+Table: Pivot table plug-in configuration
+
+| Param | Type | Required | Options (default first) | Description |
+|---|---|---|---|---|
+| url | string | Yes || Base URL of the DHIS2 server |
+| username | string | Yes (if cross-domain) || Used for authentication if the server is running on a different domain |
+| password | string | Yes (if cross-domain) || Used for authentication if the server is running on a different domain |
+| loadingIndicator | boolean | No || Whether to show a loading indicator before the table appears |
+
+
+
+Table: Pivot table configuration
+
+| Param | Type | Required | Options (default first) | Description |
+|---|---|---|---|---|
+| el | string | Yes || Identifier of the HTML element to render the table in your web page |
+| id | string | No || Identifier of a pre-defined table (favorite) in DHIS2 |
+| columns | array | Yes (if no id provided) || Data dimensions to include in table as columns |
+| rows | array | Yes (if no id provided) || Data dimensions to include in table as rows |
+| filter | array | No || Data dimensions to include in table as filters |
+| title | string | No || Show a custom title above the table |
+| showColTotals | boolean | No | true &#124; false | Whether to display totals for columns |
+| showRowTotals | boolean | No | true &#124; false | Whether to display totals for rows |
+| showColSubTotals | boolean | No | true &#124; false | Whether to display sub-totals for columns |
+| showRowSubTotals | boolean | No | true &#124; false | Whether to display sub-totals for rows |
+| showDimensionLabels | boolean | No | true &#124; false | Whether to display the name of the dimension top-left in the table |
+| hideEmptyRows | boolean | No | false &#124; true | Whether to hide rows with no data |
+| skipRounding | boolean | No | false &#124; true | Whether to skip rounding of data values |
+| completedOnly | boolean | No | false &#124; true | Whether to only show completed events |
+| showHierarchy | boolean | No | false &#124; true | Whether to extend orgunit names with the name of all anchestors |
+| aggregationType | string | No | "SUM" &#124;"AVERAGE" &#124; "AVERAGE_SUM_ORG_UNIT"&#124;"LAST"&#124;"LAST_AVERAGE_ORG_UNIT"&#124; "COUNT" &#124; "STDDEV" &#124; "VARIANCE" &#124; "MIN" &#124; "MAX" | Override the data element's default aggregation type |
+| displayDensity | string | No | "NORMAL" &#124; "COMFORTABLE" &#124; "COMPACT" | The amount of space inside table cells |
+| fontSize | string | No | "NORMAL" &#124; "LARGE" &#124; "SMALL" | Table font size |
+| digitGroupSeparator | string | No | "SPACE" &#124; "COMMA" &#124; "NONE" | How values are formatted: 1 000 &#124; 1,000 &#124; 1000 |
+| legendSet | object | No || Color the values in the table according to the legend set |
+| userOrgUnit | string / array | No || Organisation unit identifiers, overrides organisation units associated with curretn user, single or array |
+| relativePeriodDate | string | No || Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
 
 ### Embedding charts with the Visualizer chart plug-in
 
@@ -2353,245 +1775,49 @@ columns: [{
 }]
 ```
 
-<table>
-<caption>Chart plug-in configuration</caption>
-<thead>
-<tr class="header">
-<th>Param</th>
-<th>Type</th>
-<th>Required</th>
-<th>Options (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>url</td>
-<td>string</td>
-<td>Yes</td>
-<td></td>
-<td>Base URL of the DHIS2 server</td>
-</tr>
-<tr class="even">
-<td>username</td>
-<td>string</td>
-<td>Yes (if cross-domain)</td>
-<td></td>
-<td>Used for authentication if the server is running on a different domain</td>
-</tr>
-<tr class="odd">
-<td>password</td>
-<td>string</td>
-<td>Yes (if cross-domain)</td>
-<td></td>
-<td>Used for authentication if the server is running on a different domain</td>
-</tr>
-<tr class="even">
-<td>loadingIndicator</td>
-<td>boolean</td>
-<td>No</td>
-<td></td>
-<td>Whether to show a loading indicator before the chart appears</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Chart configuration</caption>
-<thead>
-<tr class="header">
-<th>Param</th>
-<th>Type</th>
-<th>Required</th>
-<th>Options (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>el</td>
-<td>string</td>
-<td>Yes</td>
-<td></td>
-<td>Identifier of the HTML element to render the chart in your web page</td>
-</tr>
-<tr class="even">
-<td>id</td>
-<td>string</td>
-<td>No</td>
-<td></td>
-<td>Identifier of a pre-defined chart (favorite) in DHIS</td>
-</tr>
-<tr class="odd">
-<td>type</td>
-<td>string</td>
-<td>No</td>
-<td>column | stackedcolumn | bar | stackedbar | line | area | pie | radar | gauge</td>
-<td>Chart type</td>
-</tr>
-<tr class="even">
-<td>columns</td>
-<td>array</td>
-<td>Yes (if no id provided)</td>
-<td></td>
-<td>Data dimensions to include in chart as series</td>
-</tr>
-<tr class="odd">
-<td>rows</td>
-<td>array</td>
-<td>Yes (if no id provided)</td>
-<td></td>
-<td>Data dimensions to include in chart as category</td>
-</tr>
-<tr class="even">
-<td>filter</td>
-<td>array</td>
-<td>No</td>
-<td></td>
-<td>Data dimensions to include in chart as filters</td>
-</tr>
-<tr class="odd">
-<td>title</td>
-<td>string</td>
-<td>No</td>
-<td></td>
-<td>Show a custom title above the chart</td>
-</tr>
-<tr class="even">
-<td>showValues</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Whether to display data values on the chart</td>
-</tr>
-<tr class="odd">
-<td>hideEmptyRows</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Whether to hide empty categories</td>
-</tr>
-<tr class="even">
-<td>completedOnly</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Whether to only show completed events</td>
-</tr>
-<tr class="odd">
-<td>regressionType</td>
-<td>string</td>
-<td>No</td>
-<td>&quot;NONE&quot; | &quot;LINEAR&quot;</td>
-<td>Show trend lines</td>
-</tr>
-<tr class="even">
-<td>targetLineValue</td>
-<td>number</td>
-<td>No</td>
-<td></td>
-<td>Display a target line with this value</td>
-</tr>
-<tr class="odd">
-<td>targetLineTitle</td>
-<td>string</td>
-<td>No</td>
-<td></td>
-<td>Display a title on the target line (does not apply without a target line value)</td>
-</tr>
-<tr class="even">
-<td>baseLineValue</td>
-<td>number</td>
-<td>No</td>
-<td></td>
-<td>Display a base line with this value</td>
-</tr>
-<tr class="odd">
-<td>baseLineTitle</td>
-<td>string</td>
-<td>No</td>
-<td></td>
-<td>Display a title on the base line (does not apply without a base line value)</td>
-</tr>
-<tr class="even">
-<td>rangeAxisTitle</td>
-<td>number</td>
-<td>No</td>
-<td></td>
-<td>Title to be displayed along the range axis</td>
-</tr>
-<tr class="odd">
-<td>rangeAxisMaxValue</td>
-<td>number</td>
-<td>No</td>
-<td></td>
-<td>Max value for the range axis to display</td>
-</tr>
-<tr class="even">
-<td>rangeAxisMinValue</td>
-<td>number</td>
-<td>No</td>
-<td></td>
-<td>Min value for the range axis to display</td>
-</tr>
-<tr class="odd">
-<td>rangeAxisSteps</td>
-<td>number</td>
-<td>No</td>
-<td></td>
-<td>Number of steps for the range axis to display</td>
-</tr>
-<tr class="even">
-<td>rangeAxisDecimals</td>
-<td>number</td>
-<td>No</td>
-<td></td>
-<td>Bumber of decimals for the range axis to display</td>
-</tr>
-<tr class="odd">
-<td>domainAxisTitle</td>
-<td>number</td>
-<td>No</td>
-<td></td>
-<td>Title to be displayed along the domain axis</td>
-</tr>
-<tr class="even">
-<td>aggregationType</td>
-<td>string</td>
-<td>No</td>
-<td>&quot;SUM&quot; |&quot;AVERAGE&quot; | &quot;AVERAGE_SUM_ORG_UNIT&quot;|&quot;LAST&quot;|&quot;LAST_AVERAGE_ORG_UNIT&quot;| &quot;COUNT&quot; | &quot;STDDEV&quot; | &quot;VARIANCE&quot; | &quot;MIN&quot; | &quot;MAX&quot;</td>
-<td>Override the data element's default aggregation type</td>
-</tr>
-<tr class="odd">
-<td>hideLegend</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Whether to hide the series legend</td>
-</tr>
-<tr class="even">
-<td>hideTitle</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Whether to hide the chart title</td>
-</tr>
-<tr class="odd">
-<td>userOrgUnit</td>
-<td>string / array</td>
-<td>No</td>
-<td></td>
-<td>Organisation unit identifiers, overrides organisation units associated with curretn user, single or array</td>
-</tr>
-<tr class="even">
-<td>relativePeriodDate</td>
-<td>string</td>
-<td>No</td>
-<td></td>
-<td>Date identifier e.g: &quot;2016-01-01&quot;. Overrides the start date of the relative period</td>
-</tr>
-</tbody>
-</table>
+
+Table: Chart plug-in configuration
+
+| Param | Type | Required | Options (default first) | Description |
+|---|---|---|---|---|
+| url | string | Yes || Base URL of the DHIS2 server |
+| username | string | Yes (if cross-domain) || Used for authentication if the server is running on a different domain |
+| password | string | Yes (if cross-domain) || Used for authentication if the server is running on a different domain |
+| loadingIndicator | boolean | No || Whether to show a loading indicator before the chart appears |
+
+
+
+Table: Chart configuration
+
+| Param | Type | Required | Options (default first) | Description |
+|---|---|---|---|---|
+| el | string | Yes || Identifier of the HTML element to render the chart in your web page |
+| id | string | No || Identifier of a pre-defined chart (favorite) in DHIS |
+| type | string | No | column &#124; stackedcolumn &#124; bar &#124; stackedbar &#124; line &#124; area &#124; pie &#124; radar &#124; gauge | Chart type |
+| columns | array | Yes (if no id provided) || Data dimensions to include in chart as series |
+| rows | array | Yes (if no id provided) || Data dimensions to include in chart as category |
+| filter | array | No || Data dimensions to include in chart as filters |
+| title | string | No || Show a custom title above the chart |
+| showValues | boolean | No | false &#124; true | Whether to display data values on the chart |
+| hideEmptyRows | boolean | No | false &#124; true | Whether to hide empty categories |
+| completedOnly | boolean | No | false &#124; true | Whether to only show completed events |
+| regressionType | string | No | "NONE" &#124; "LINEAR" | Show trend lines |
+| targetLineValue | number | No || Display a target line with this value |
+| targetLineTitle | string | No || Display a title on the target line (does not apply without a target line value) |
+| baseLineValue | number | No || Display a base line with this value |
+| baseLineTitle | string | No || Display a title on the base line (does not apply without a base line value) |
+| rangeAxisTitle | number | No || Title to be displayed along the range axis |
+| rangeAxisMaxValue | number | No || Max value for the range axis to display |
+| rangeAxisMinValue | number | No || Min value for the range axis to display |
+| rangeAxisSteps | number | No || Number of steps for the range axis to display |
+| rangeAxisDecimals | number | No || Bumber of decimals for the range axis to display |
+| domainAxisTitle | number | No || Title to be displayed along the domain axis |
+| aggregationType | string | No | "SUM" &#124;"AVERAGE" &#124; "AVERAGE_SUM_ORG_UNIT"&#124;"LAST"&#124;"LAST_AVERAGE_ORG_UNIT"&#124; "COUNT" &#124; "STDDEV" &#124; "VARIANCE" &#124; "MIN" &#124; "MAX" | Override the data element's default aggregation type |
+| hideLegend | boolean | No | false &#124; true | Whether to hide the series legend |
+| hideTitle | boolean | No | false &#124; true | Whether to hide the chart title |
+| userOrgUnit | string / array | No || Organisation unit identifiers, overrides organisation units associated with curretn user, single or array |
+| relativePeriodDate | string | No || Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
 
 ### Embedding maps with the GIS map plug-in
 
@@ -2717,183 +1943,44 @@ columns: [{
 }]
 ```
 
-<table>
-<caption>GIS map plug-in configuration</caption>
-<thead>
-<tr class="header">
-<th>Param</th>
-<th>Type</th>
-<th>Required</th>
-<th>Options (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>el</td>
-<td>string</td>
-<td>Yes</td>
-<td></td>
-<td>Identifier of the HTML element to render the map in your web page</td>
-</tr>
-<tr class="even">
-<td>url</td>
-<td>string</td>
-<td>Yes</td>
-<td></td>
-<td>Base URL of the DHIS2 server</td>
-</tr>
-<tr class="odd">
-<td>id</td>
-<td>string</td>
-<td>No</td>
-<td></td>
-<td>Identifier of a pre-defined map (favorite) in DHIS</td>
-</tr>
-<tr class="even">
-<td>baseLayer</td>
-<td>string/boolean</td>
-<td>No</td>
-<td>'gs', 'googlestreets' | 'gh', 'googlehybrid' | 'osm', 'openstreetmap' | false, null, 'none', 'off'</td>
-<td>Show background map</td>
-</tr>
-<tr class="odd">
-<td>hideLegend</td>
-<td>boolean</td>
-<td>No</td>
-<td>false | true</td>
-<td>Hide legend panel</td>
-</tr>
-<tr class="even">
-<td>mapViews</td>
-<td>array</td>
-<td>Yes (if no id provided)</td>
-<td></td>
-<td>Array of layers</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: GIS map plug-in configuration
+
+| Param | Type | Required | Options (default first) | Description |
+|---|---|---|---|---|
+| el | string | Yes || Identifier of the HTML element to render the map in your web page |
+| url | string | Yes || Base URL of the DHIS2 server |
+| id | string | No || Identifier of a pre-defined map (favorite) in DHIS |
+| baseLayer | string/boolean | No | 'gs', 'googlestreets' &#124; 'gh', 'googlehybrid' &#124; 'osm', 'openstreetmap' &#124; false, null, 'none', 'off' | Show background map |
+| hideLegend | boolean | No | false &#124; true | Hide legend panel |
+| mapViews | array | Yes (if no id provided) || Array of layers |
 
 If no id is provided you must add map view objects with the following
 config options:
 
-<table>
-<caption>Map plug-in configuration</caption>
-<tbody>
-<tr class="odd">
-<td>layer</td>
-<td>string</td>
-<td>No</td>
-<td>&quot;thematic1&quot; | &quot;thematic2&quot; | &quot;thematic3&quot; | &quot;thematic4&quot; | &quot;boundary&quot; | &quot;facility&quot; |</td>
-<td>The layer to which the map view content should be added</td>
-</tr>
-<tr class="even">
-<td>columns</td>
-<td>array</td>
-<td>Yes</td>
-<td></td>
-<td>Indicator, data element, data operand or data set (only one will be used)</td>
-</tr>
-<tr class="odd">
-<td>rows</td>
-<td>array</td>
-<td>Yes</td>
-<td></td>
-<td>Organisation units (multiple allowed)</td>
-</tr>
-<tr class="even">
-<td>filter</td>
-<td>array</td>
-<td>Yes</td>
-<td></td>
-<td>Period (only one will be used)</td>
-</tr>
-<tr class="odd">
-<td>classes</td>
-<td>integer</td>
-<td>No</td>
-<td>5 | 1-7</td>
-<td>The number of automatic legend classes</td>
-</tr>
-<tr class="even">
-<td>method</td>
-<td>integer</td>
-<td>No</td>
-<td>2 | 3</td>
-<td>Legend calculation method where 2 = equal intervals and 3 = equal counts</td>
-</tr>
-<tr class="odd">
-<td>colorLow</td>
-<td>string</td>
-<td>No</td>
-<td>&quot;ff0000&quot; (red) | Any hex color</td>
-<td>The color representing the first automatic legend class</td>
-</tr>
-<tr class="even">
-<td>colorHigh</td>
-<td>string</td>
-<td>No</td>
-<td>&quot;00ff00&quot; (green) | Any hex color</td>
-<td>The color representing the last automatic legend class</td>
-</tr>
-<tr class="odd">
-<td>radiusLow</td>
-<td>integer</td>
-<td>No</td>
-<td>5 | Any integer</td>
-<td>Only applies for facilities (points) - radius of the point with lowest value</td>
-</tr>
-<tr class="even">
-<td>radiusHigh</td>
-<td>integer</td>
-<td>No</td>
-<td>15 | Any integer</td>
-<td>Only applies for facilities (points) - radius of the point with highest value</td>
-</tr>
-<tr class="odd">
-<td>opacity</td>
-<td>double</td>
-<td>No</td>
-<td>0.8 | 0 - 1</td>
-<td>Opacity/transparency of the layer content</td>
-</tr>
-<tr class="even">
-<td>legendSet</td>
-<td>object</td>
-<td>No</td>
-<td></td>
-<td>Pre-defined legend set. Will override the automatic legend set.</td>
-</tr>
-<tr class="odd">
-<td>labels</td>
-<td>boolean/object</td>
-<td>No</td>
-<td>false | true | object properties: fontSize (integer), color (hex string), strong (boolean), italic (boolean)</td>
-<td>Show labels on the map</td>
-</tr>
-<tr class="even">
-<td>width</td>
-<td>integer</td>
-<td>No</td>
-<td></td>
-<td>Width of map</td>
-</tr>
-<tr class="odd">
-<td>height</td>
-<td>integer</td>
-<td>No</td>
-<td></td>
-<td>Height of map</td>
-</tr>
-<tr class="even">
-<td>userOrgUnit</td>
-<td>string / array</td>
-<td>No</td>
-<td></td>
-<td>Organisation unit identifiers, overrides organisation units associated with current user, single or array</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Map plug-in configuration
+
+||||||
+|---|---|---|---|---|
+| layer | string | No | "thematic1" &#124; "thematic2" &#124; "thematic3" &#124; "thematic4" &#124; "boundary" &#124; "facility" &#124; | The layer to which the map view content should be added |
+| columns | array | Yes || Indicator, data element, data operand or data set (only one will be used) |
+| rows | array | Yes || Organisation units (multiple allowed) |
+| filter | array | Yes || Period (only one will be used) |
+| classes | integer | No | 5 &#124; 1-7 | The number of automatic legend classes |
+| method | integer | No | 2 &#124; 3 | Legend calculation method where 2 = equal intervals and 3 = equal counts |
+| colorLow | string | No | "ff0000" (red) &#124; Any hex color | The color representing the first automatic legend class |
+| colorHigh | string | No | "00ff00" (green) &#124; Any hex color | The color representing the last automatic legend class |
+| radiusLow | integer | No | 5 &#124; Any integer | Only applies for facilities (points) - radius of the point with lowest value |
+| radiusHigh | integer | No | 15 &#124; Any integer | Only applies for facilities (points) - radius of the point with highest value |
+| opacity | double | No | 0.8 &#124; 0 - 1 | Opacity/transparency of the layer content |
+| legendSet | object | No || Pre-defined legend set. Will override the automatic legend set. |
+| labels | boolean/object | No | false &#124; true &#124; object properties: fontSize (integer), color (hex string), strong (boolean), italic (boolean) | Show labels on the map |
+| width | integer | No || Width of map |
+| height | integer | No || Height of map |
+| userOrgUnit | string / array | No || Organisation unit identifiers, overrides organisation units associated with current user, single or array |
 
 We continue by adding one pre-defined and one dynamically configured map
 to our HTML document. You can browse the list of available maps using
@@ -2937,8 +2024,3 @@ document with the identifiers referred to in the plug-in JavaScript.
 
 To see a complete working example please visit
 <http://play.dhis2.org/portal/map.html>.
-
-
-
-
-

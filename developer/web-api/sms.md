@@ -52,128 +52,33 @@ Outbound messages can be deleted using DELETE resource.
 
 Gateway may response with following response codes.
 
-<table>
-<caption>Gateway response codes</caption>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Response code</th>
-<th>Response Message</th>
-<th>Detail Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>RESULT_CODE_0</td>
-<td>success</td>
-<td>Message has been sent successfully</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_1</td>
-<td>scheduled</td>
-<td>Message has been scheduled successfully</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_22</td>
-<td>internal fatal error</td>
-<td>Internal fatal error</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_23</td>
-<td>authentication failure</td>
-<td>Authentication credentials are incorrect</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_24</td>
-<td>data validation failed</td>
-<td>Parameters provided in request are incorrect</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_25</td>
-<td>insufficient credits</td>
-<td>Credit is not enough to send message</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_26</td>
-<td>upstream credits not available</td>
-<td>Upstream credits not available</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_27</td>
-<td>exceeded your daily quota</td>
-<td>You have exceeded your daily quota</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_40</td>
-<td>temporarily unavailable</td>
-<td>Service is temporarily down</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_201</td>
-<td>maximum batch size exceeded</td>
-<td>Maximum batch size exceeded</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_200</td>
-<td>success</td>
-<td>The request was successfully completed</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_202</td>
-<td>accepted</td>
-<td>The message(s) will be processed</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_207</td>
-<td>multi-status</td>
-<td>More than one message was submitted to the API; however, not all messages have the same status</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_400</td>
-<td>bad request</td>
-<td>Validation failure (such as missing/invalid parameters or headers)</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_401</td>
-<td>unauthorized</td>
-<td>Authentication failure. This can also be caused by IP lockdown settings</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_402</td>
-<td>payment required</td>
-<td>Not enough credit to send message</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_404</td>
-<td>not found</td>
-<td>Resource does not exist</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_405</td>
-<td>method not allowed</td>
-<td>Http method is not support on the resource</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_410</td>
-<td>gone</td>
-<td>Mobile number is blocked</td>
-</tr>
-<tr class="even">
-<td>RESULT_CODE_429</td>
-<td>too many requests</td>
-<td>Generic rate limiting error</td>
-</tr>
-<tr class="odd">
-<td>RESULT_CODE_503</td>
-<td>service unavailable</td>
-<td>A temporary error has occurred on our platform - please retry</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Gateway response codes
+
+| Response code | Response Message | Detail Description |
+|---|---|---|
+| RESULT_CODE_0 | success | Message has been sent successfully |
+| RESULT_CODE_1 | scheduled | Message has been scheduled successfully |
+| RESULT_CODE_22 | internal fatal error | Internal fatal error |
+| RESULT_CODE_23 | authentication failure | Authentication credentials are incorrect |
+| RESULT_CODE_24 | data validation failed | Parameters provided in request are incorrect |
+| RESULT_CODE_25 | insufficient credits | Credit is not enough to send message |
+| RESULT_CODE_26 | upstream credits not available | Upstream credits not available |
+| RESULT_CODE_27 | exceeded your daily quota | You have exceeded your daily quota |
+| RESULT_CODE_40 | temporarily unavailable | Service is temporarily down |
+| RESULT_CODE_201 | maximum batch size exceeded | Maximum batch size exceeded |
+| RESULT_CODE_200 | success | The request was successfully completed |
+| RESULT_CODE_202 | accepted | The message(s) will be processed |
+| RESULT_CODE_207 | multi-status | More than one message was submitted to the API; however, not all messages have the same status |
+| RESULT_CODE_400 | bad request | Validation failure (such as missing/invalid parameters or headers) |
+| RESULT_CODE_401 | unauthorized | Authentication failure. This can also be caused by IP lockdown settings |
+| RESULT_CODE_402 | payment required | Not enough credit to send message |
+| RESULT_CODE_404 | not found | Resource does not exist |
+| RESULT_CODE_405 | method not allowed | Http method is not support on the resource |
+| RESULT_CODE_410 | gone | Mobile number is blocked |
+| RESULT_CODE_429 | too many requests | Generic rate limiting error |
+| RESULT_CODE_503 | service unavailable | A temporary error has occurred on our platform - please retry |
 
 ### Inbound SMS service
 
@@ -214,43 +119,16 @@ To import all un parsed messages
 
 	POST /api/sms/inbound/import
 
-<table>
-<caption>User query parameters</caption>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>message</td>
-<td>String</td>
-<td>This is mandatory parameter which carries the actual text message.</td>
-</tr>
-<tr class="even">
-<td>originator</td>
-<td>String</td>
-<td>This is mandatory parameter which shows by whom this message was actually sent from.</td>
-</tr>
-<tr class="odd">
-<td>gateway</td>
-<td>String</td>
-<td>This is an optional parameter which gives gateway id. If not present default text &quot;UNKNOWN&quot; will be stored</td>
-</tr>
-<tr class="even">
-<td>receiveTime</td>
-<td>Date</td>
-<td>This is an optional parameter. It is timestamp at which message was received at the gateway.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: User query parameters
+
+| Parameter | Type | Description |
+|---|---|---|
+| message | String | This is mandatory parameter which carries the actual text message. |
+| originator | String | This is mandatory parameter which shows by whom this message was actually sent from. |
+| gateway | String | This is an optional parameter which gives gateway id. If not present default text "UNKNOWN" will be stored |
+| receiveTime | Date | This is an optional parameter. It is timestamp at which message was received at the gateway. |
 
 ### Gateway service administration
 
@@ -377,78 +255,23 @@ case of GenericHttpGateway to send one or more parameter as http header.
 
 In generic http gateway any number of parameters can be added.
 
-<table>
-<caption>Generic SMS gateway parameters</caption>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>name</td>
-<td>String</td>
-<td>name of the gateway</td>
-</tr>
-<tr class="even">
-<td>configurationTemplate</td>
-<td>String</td>
-<td>Configuration template which get populated with parameter values. For example configuration template given above will be populated like this { "to": "+27001234567", "body": "Hello World!"}</td>
-</tr>
-<tr class="odd">
-<td>useGet</td>
-<td>Boolean</td>
-<td>Http POST nethod will be used by default. In order to change it and Http GET, user can set useGet flag to true.</td>
-</tr>
-<tr class="even">
-<td>contentType</td>
-<td>String</td>
-<td>Content type specify what type of data is being sent. Supported types are APPLICATION_JSON, APPLICATION_XML, FORM_URL_ENCODED, TEXT_PLAIN</td>
-</tr>
-<tr class="odd">
-<td>urlTemplate</td>
-<td>String</td>
-<td>Url template</td>
-</tr>
-<tr class="even">
-<td>header</td>
-<td>Boolean</td>
-<td>If parameter needs to be sent in Http headers</td>
-</tr>
-<tr class="odd">
-<td>encode</td>
-<td>Boolean</td>
-<td>If parameter needs to be encoded</td>
-</tr>
-<tr class="even">
-<td>key</td>
-<td>String</td>
-<td>parameter key</td>
-</tr>
-<tr class="odd">
-<td>value</td>
-<td>String</td>
-<td>parameter value</td>
-</tr>
-<tr class="even">
-<td>confidential</td>
-<td>Boolean</td>
-<td>If parameter is confidential. This parameter will not be exposed through API</td>
-</tr>
-<tr class="odd">
-<td>sendUrlParameters</td>
-<td>Boolean</td>
-<td>If this flag is checked then urlTemplate can be appended with query parameters. This is usefull if gateway API only support HTTP GET. Sample urlTemplate looks like this "urlTemplate":"https://samplegateway.com/messages?apiKey={apiKey}&to={recipients},content={text},deliveryreport={dp}"</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Generic SMS gateway parameters
+
+| Parameter | Type | Description |
+|---|---|---|
+| name | String | name of the gateway |
+| configurationTemplate | String | Configuration template which get populated with parameter values. For example configuration template given above will be populated like this { "to": "+27001234567", "body": "Hello World!"} |
+| useGet | Boolean | Http POST nethod will be used by default. In order to change it and Http GET, user can set useGet flag to true. |
+| contentType | String | Content type specify what type of data is being sent. Supported types are APPLICATION_JSON, APPLICATION_XML, FORM_URL_ENCODED, TEXT_PLAIN |
+| urlTemplate | String | Url template |
+| header | Boolean | If parameter needs to be sent in Http headers |
+| encode | Boolean | If parameter needs to be encoded |
+| key | String | parameter key |
+| value | String | parameter value |
+| confidential | Boolean | If parameter is confidential. This parameter will not be exposed through API |
+| sendUrlParameters | Boolean | If this flag is checked then urlTemplate can be appended with query parameters. This is usefull if gateway API only support HTTP GET. Sample urlTemplate looks like this `"urlTemplate":"https://samplegateway.com/messages?apiKey={apiKey}&to={recipients},content={text},deliveryreport={dp}"` |
 
 HTTP.OK will be returned if configurations are saved successfully otherwise *Error*
 
@@ -502,5 +325,3 @@ These command types can be used by the Android app for data submission via SMS w
 |SIMPLE_EVENT | Event registration for event programs.|
 |RELATIONSHIP | To create relationships.|
 |DELETE | To delete event.|
-
-

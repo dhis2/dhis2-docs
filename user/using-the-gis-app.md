@@ -14,7 +14,7 @@ and filter using various criteria. You can move points and set locations
 on the fly. Maps can be saved as favorites and shared with other people.
 
 > **Note**
-> 
+>
 > To use predefined legends in the **GIS** app, you need to create them
 > first in the **Maintenance** app.
 
@@ -25,16 +25,16 @@ on the fly. Maps can be saved as favorites and shared with other people.
 
   - The panel on the right side of the workspace shows an overview of
     the layers:
-    
+
       - The default base map is OSM Light. It's selected by default. If
         you're online you'll also see OpenStreetMap, Google Streets and
         Google Hybrid. You can use these maps as background maps and
         layers. Switch between them by selecting or clearing the
         checkbox.
-    
+
       - If you want to increase or reduce the opacity of a layer, use
         the up and down arrows for the selected layer.
-    
+
       - Use the map legends when you create a thematic map. A legend
         explains the link between values and colors on your map.
 
@@ -55,17 +55,17 @@ You use four vector layers to create a thematic map. The workflow for
 creating a new thematic map is:
 
 1.  In the **Apps** menu, click **GIS**.
-    
+
     The **DHIS2 GIS** window opens.
 
 2.  In the top menu, click a layer you want to add to the map.
-    
+
       - Event layer
-    
+
       - Facility layer
-    
+
       - Boundary layer
-    
+
       - Thematic layer 1 - 4
 
 3.  Click **Edit layer** and select the parameters you need..
@@ -99,26 +99,26 @@ Unit under which the events are recorded.
 2.  Click **Edit layer**.
 
 3.  Select a program and then select a program stage.
-    
+
     If there is only one stage available for the selected program, the
     stage is automatically selected. A list of data elements and
     attributes will appear in the **Available data items** panel.
 
 4.  Select any data element or attribute from this list as part of your
     query.
-    
+
       - To select you can either double-click a data element or (multi)
         select and use the single-arrow downward button. The
         double-arrow button will select all data elements in the list.
         All selected data elements will get their own row in the
         **Selected data items**.
-    
+
       - For data elements of type text you will get two choices:
         **Contains** implies that the query will match all values which
         contains your search value, and **Is exact** implies that only
         values which is completely identical to your search query will
         be returned.
-    
+
       - For data elements of type option set, you can select any of the
         options from the drop down box by using the down-wards arrow or
         by start typing directly in the box to filter for options.
@@ -126,10 +126,10 @@ Unit under which the events are recorded.
 5.  In the **Periods** section, select the time span for when the events
     took place. You can select either a fixed period or a relative
     period.
-    
+
       - Fixed period: In the **Period** field, select **Start/end
         dates** and fill in a start date and an end date.
-    
+
       - Relative period: In the **Period** field, select one of the
         relative periods, for example **This month** or **Last year**.
 
@@ -137,20 +137,20 @@ Unit under which the events are recorded.
     you want to include in the query.
 
 7.  In the **Options** section, you can:
-    
+
       - Select a value from the **Coordinate field** for the positions
         shown on the map. By default, "Event location" is selected.
         Depending on the data elements or attributes that belong to a
         program, other coordinates such as "Household position" are
         available.
-        
+
         ![](resources/images/gis/gis_coordinates.png)
-    
+
       - Select or clear **Clustering** to group nearby events.
-    
+
       - Go to **Style** to select a color for the cluster points or
         change the radius of clusters (between 1 and 20).
-    
+
     **Clustering** if you want to group nearby events and change the
     style of the cluster points.
 
@@ -257,12 +257,12 @@ To locate an organisation unit in the map:
 1.  In the top menu, click the facility layer icon.
 
 2.  Click **Search**.
-    
+
     The **Organisation unit search** dialog box opens.
 
 3.  In the text field, type the name of the organisation unit you are
     looking for or click a name in the list.
-    
+
     The organisation unit is highlighted in the map.
 
 ### Clear facility layer
@@ -283,13 +283,13 @@ layers.
 1.  Right-click a facility and click **Relocate**.
 
 2.  Put the cursor in the new location.
-    
+
     The new coordinate is stored permanently. This cannot be undone.
 
 ### Swap longitude and latitude of a facility
 
 1.  Right-click a facility and click **Swap long/lat**.
-    
+
     This is useful if a user inverted latitude and longitude coordinates
     when creating the organisation unit.
 
@@ -298,38 +298,14 @@ layers.
 You can view organisation unit information set by the administrator as
 follows:
 
-<table>
-<caption>View organisation unit information</caption>
-<colgroup>
-<col style="width: 40%" />
-<col style="width: 59%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>View information for the current period</p></td>
-<td><ol type="1">
-<li><p>Click a facility.</p></li>
-</ol></td>
-</tr>
-<tr class="even">
-<td><p>View information for a selected period</p></td>
-<td><ol type="1">
-<li><p>Right-click a facility and click <strong>Show information</strong>.</p></li>
-<li><p>In the <strong>Infrastructural data</strong> section, select a period.</p></li>
-</ol>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>You configure the displayed infrastructural data in the <strong>System Settings</strong> app.</p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: View organisation unit information
+
+| Function | Action |
+|---|---|
+| View information for the current period | 1. Click a facility. |
+| View information for a selected period | 1. Right-click a facility and click **Show information**.<br> 2. In the **Infrastructural data** section, select a period.<br>      <br>    **Note**<br>     <br>    You configure the displayed infrastructural data in the **System Settings** app. |
 
 ## Manage thematic layers 1- 4
 
@@ -342,7 +318,7 @@ unit level. If your database has coordinates and aggregated data values
 for these organisation units, they will appear on the map.
 
 > **Note**
-> 
+>
 > You must refresh the DHIS2 analytics tables to have aggregated data
 > values available.
 
@@ -364,21 +340,21 @@ for these organisation units, they will appear on the map.
 
 5.  In the **Options** section, go to **Legend type** and select
     Automatic or Predefined.
-    
+
       - Automatic legend types means that the application will create a
         legend set for you based on your what method, number of classes,
         low color and high color you select. Method alludes to the size
         of the legend classes.
-        
+
         Set to Equal intervals they will be “highest map value – lowest
         map value / number of classes”.
-        
+
         Set to Equal counts the legend creator will try to distribute
         the organisation units evenly.
-        
+
         The legend appears as an even gradation from the start color to
         the end color.
-    
+
       - If you have facilities in your thematic layer, you can set the
         radius for maximum and minimum values by changing the values in
         the **Low color / size** and **High color size** boxes.
@@ -417,12 +393,12 @@ To locate an organisation unit in a thematic layer:
 1.  In the top menu, click the relevant thematic layer icon.
 
 2.  Click **Search**.
-    
+
     The **Organisation unit search** dialog box opens.
 
 3.  In the text field, type the name of the organisation unit you are
     looking for or click a name in the list.
-    
+
     The organisation unit is highlighted in the map.
 
 ### Navigate between organisation hierarchies
@@ -434,7 +410,7 @@ user interface.
 1.  Right-click one of the organisation units.
 
 2.  Select **Drill up** or **Drill down**.
-    
+
     The drill down option is disabled if you are on the lowest level or
     if there are no coordinates available on the level below. Vice versa
     goes for drilling up.
@@ -464,7 +440,7 @@ have access to background maps.
 
 3.  In the **Organisation units** section, select one or several
     organisation units.
-    
+
     You can select the organisation units you want to show on the map by
     selecting a level and a parent. That means "show all organisations
     units at this level that are children of this parent".
@@ -481,12 +457,12 @@ To locate an organisation unit on the map:
 1.  In the top menu, click the boundary layer icon.
 
 2.  Click **Search**.
-    
+
     The **Organisation unit search** dialog box opens.
 
 3.  In the text field, type the name of the organisation unit you are
     looking for or click a name in the list.
-    
+
     The organisation unit is highlighted in the map.
 
 ### Navigate between organisation hierarchies
@@ -498,7 +474,7 @@ user interface.
 1.  Right-click one of the organisation units.
 
 2.  Select **Drill up** or **Drill down**.
-    
+
     The drill down option is disabled if you are on the lowest level or
     if there are no coordinates available on the level below. The same
     applies when you are drilling up.
@@ -531,7 +507,7 @@ following layers are supported:
   - Population density: Population in 100 x 100 m grid cells (from 2010)
 
   - Temperature, population and land cover at any location.
-    
+
     Right-click on the layers to view more information, for example
     temperature and elevation.
 
@@ -544,14 +520,14 @@ following layers are supported:
 2.  Select a data set, for example "Elevation".
 
 3.  Select **Min / max value**.
-    
+
     The meaning of these values depend on which data set you've
     selected.
 
 4.  Select a **Color scale**.
 
 5.  Select the number of **Steps**.
-    
+
     The number of steps means the number of distinct colors in the color
     scale.
 
@@ -566,14 +542,14 @@ following layers are supported:
 2.  Click **Edit** to add a new layer.
 
 3.  Select a layer from the list.
-    
-    
+
+
     ![](resources/images/gis/gis_external_layers1.png)
 
 4.  Click **Update**.
-    
+
     To remove a layer, click **Clear**.
-    
+
     To hide a layer, go to the **Layer stack/opacity** menu pane and
     clear the **External layer** checkbox.
 
@@ -589,7 +565,7 @@ Here are some examples of external layers:
 ![](resources/images/gis/gis_world_time_zones.png)
 
 > **Note**
-> 
+>
 > To define external map layers, see the [Maintenance app
 > documentation](https://dhis2.github.io/dhis2-docs/master/en/user/html/manage_ext_maplayer.html).
 
@@ -611,23 +587,23 @@ background map.
 When you have created a map it is convenient to save it as a favorite:
 
 1.  Click **Favorites**.
-    
+
     The **Manage favorites** dialog box opens.
 
 2.  Click **Add new**.
-    
+
     The **Create new favorite** dialog box opens.
 
 3.  In the text field, type the name you want to give your pivot table.
 
 4.  Click **Create**.
-    
+
     Your favorite is added to the list.
 
 ### Open a favorite
 
 1.  Click **Favorites**.
-    
+
     The **Manage favorites** dialog box opens.
 
 2.  Find the favorite you want to open. You can either use **Prev** and
@@ -639,16 +615,16 @@ When you have created a map it is convenient to save it as a favorite:
 ### Rename a favorite
 
 1.  Click **Favorites**.
-    
+
     The **Manage favorites** dialog box opens.
 
 2.  Find the favorite you want to rename.
-    
+
     You can either use **Prev** and **Next** or the search field to find
     a saved favorite.
 
 3.  Click the grey rename icon next to the favorite's name.
-    
+
     The **Rename favorite** dialog box favorite opens.
 
 4.  Type the new name and click **Update**.
@@ -658,11 +634,11 @@ When you have created a map it is convenient to save it as a favorite:
 To save the current map to an existing favorite (overwrite):
 
 1.  Click **Favorites**.
-    
+
     The **Manage favorites** dialog box opens.
 
 2.  Find the favorite you want to overwrite.
-    
+
     You can either use **Prev** and **Next** or the search field to find
     a saved favorite.
 
@@ -684,13 +660,13 @@ system:
 1.  Open or create a favorite map.
 
 2.  Click **Share** \> **Write interpretation**.
-    
+
     The **Write interpretation** dialog box opens.
 
 3.  In the text field, type a comment, question or interpretation.
 
 4.  Click **Share**.
-    
+
     The dialog box closes automatically. You can see the interpretation
     on the **Dashboard**.
 
@@ -703,7 +679,7 @@ settings:
 1.  Click **Favorites**.
 
 2.  Find the favorite you want to share.
-    
+
     You can either use **Prev** and **Next** or the search field to find
     a saved favorite.
 
@@ -711,19 +687,19 @@ settings:
 
 4.  In the text box, enter the name of the user group you want to share
     your favorite with and click the **+** icon.
-    
+
     The chosen user group is added to the list of recipients.
-    
+
     Repeat the step to add more user groups.
 
 5.  If you want to allow external access, select the corresponding box.
 
 6.  For each user group, choose an access setting. The options are:
-    
+
       - None
-    
+
       - Can view
-    
+
       - Can edit and view
 
 7.  Click **Save**.
@@ -731,11 +707,11 @@ settings:
 ### Delete a favorite
 
 1.  Click **Favorites**.
-    
+
     The **Manage favorites** dialog box opens.
 
 2.  Find the favorite you want to delete.
-    
+
     You can either use **Prev** and **Next** or the search field to find
     a saved favorite.
 
@@ -764,7 +740,7 @@ To generate a HTML fragment that you can use to display the map in an
 external web page:
 
 1.  Click **Share** \> **Embed in web page**.
-    
+
     The **Embed in web page** window opens.
 
 2.  Click **Select** to highlight the HTML fragment.
@@ -784,7 +760,7 @@ facilities, villages or towns on the map.
 1.  On the left side of the GIS window, click the magnifier icon.
 
 2.  Type the location you're looking.
-    
+
     A list of matching locations appear as you type.
 
 3.  From the list, select a location. A pin indicates the location on
@@ -822,17 +798,16 @@ map is based on cannot render as a chart or table.
 ### Open a map as a chart
 
 1.  Click **Chart** \> **Open this map as chart**.
-    
+
     Your current map opens as a chart.
 
 ### Open a map as a pivot table
 
 1.  Click **Chart** \> **Open this map as table**.
-    
+
     Your current map opens as a pivot table.
 
 ## See also
 
   - [Manage
     legends](https://docs.dhis2.org/master/en/user/html/manage_legend.html)
-

@@ -94,55 +94,17 @@ the dimension is ignored.
 You must choose at least one data dimension type to create a pivot
 table. The available types are described in this table:
 
-<table>
-<caption>Data dimension types</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Data dimension type</th>
-<th>Definition</th>
-<th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Indicators</td>
-<td>An indicator is a calculated formula based on data elements.</td>
-<td>Coverage of immunization across a specific district.</td>
-</tr>
-<tr class="even">
-<td>Data elements</td>
-<td>Represents the phenomenon for which data has been captured.</td>
-<td>Number of malaria cases; number of BCG doses given.</td>
-</tr>
-<tr class="odd">
-<td>Data sets</td>
-<td>A collection of data elements grouped for data collection. You can select :
-<ul>
-<li><p><strong>Reporting rates</strong>: the percentage of actual reports compared to the expected number of reports</p></li>
-<li><p><strong>Reporting rates on time</strong>: the reporting rates based on timely form submissions. A timely submission must happen within a number of days after the reporting period.</p></li>
-<li><p><strong>Actual reports</strong>: the actual number of reports</p></li>
-<li><p><strong>Actual reports on time</strong>: the actual number of reports based on timely form submissions. A timely submission must happen within a number of days after the reporting period.</p></li>
-<li><p><strong>Expected reports</strong>: the number of expected reports based on organisation units where the data set and the reporting frequency has been assigned.</p></li>
-</ul></td>
-<td>Reporting rates for immunization and morbidity forms.</td>
-</tr>
-<tr class="even">
-<td>Event data items</td>
-<td>A data element that is part of a program representing events that have been captured.</td>
-<td>Average weight and height for children in a nutrition program.</td>
-</tr>
-<tr class="odd">
-<td>Program indicators</td>
-<td>A calculated formula based on data elements in a program representing events.</td>
-<td>Average BMI score for children in a nutrition program.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data dimension types
+
+| Data dimension type | Definition | Examples |
+|---|---|---|
+| Indicators | An indicator is a calculated formula based on data elements. | Coverage of immunization across a specific district. |
+| Data elements | Represents the phenomenon for which data has been captured. | Number of malaria cases; number of BCG doses given. |
+| Data sets | A collection of data elements grouped for data collection. You can select : <br> * **Reporting rates**: the percentage of actual reports compared to the expected number of reports<br> * **Reporting rates on time**: the reporting rates based on timely form submissions. A timely submission must happen within a number of days after the reporting period.<br> * **Actual reports**: the actual number of reports<br> * **Actual reports on time**: the actual number of reports based on timely form submissions. A timely submission must happen within a number of days after the reporting period.<br> * **Expected reports**: the number of expected reports based on organisation units where the data set and the reporting frequency has been assigned. | Reporting rates for immunization and morbidity forms. |
+| Event data items | A data element that is part of a program representing events that have been captured. | Average weight and height for children in a nutrition program. |
+| Program indicators | A calculated formula based on data elements in a program representing events. | Average BMI score for children in a nutrition program. |
 
 You can combine these dimensions to display for example aggregate data
 with reporting rates, or event data items together with program
@@ -236,162 +198,37 @@ table like this:
 
 4.  Set the options as required.
 
-    <table>
-    <caption>Pivot table options</caption>
-    <colgroup>
-    <col style="width: 21%" />
-    <col style="width: 35%" />
-    <col style="width: 42%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Option</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p><strong>Data</strong></p></td>
-    <td><p><strong>Show column totals</strong></p>
-    <p><strong>Show row totals</strong></p></td>
-    <td><p>Displays total values in the table for each row and column, as well as a total for all values in the table.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Show column sub-totals</strong></p>
-    <p><strong>Show row sub-totals</strong></p></td>
-    <td><p>Displays subtotals in the table for each dimension.</p>
-    <p>If you only select one dimension, subtotals will be hidden for those columns or rows. This is because the values will be equal to the subtotals.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Show dimension labels</strong></p></td>
-    <td><p>Shows the dimension names as part of the pivot tables.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Hide empty rows</strong></p></td>
-    <td><p>Hides empty rows from the table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Hide empty columns</strong></p></td>
-    <td><p>Hides empty columns from the table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Skip rounding</strong></p></td>
-    <td><p>Skips the rounding of data values, offering the full precision of data values. Can be useful for finance data where the full dollar amount is required.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Aggregation type</strong></p></td>
-    <td><p>The default aggregation operator can be over-ridden here, by selecting a different aggregation operator. Some of the aggregation types are <strong>Count</strong>, <strong>Min</strong> and <strong>Max</strong>.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Number type</strong></p></td>
-    <td><p>Sets the type of value you want to display in the pivot table: <strong>Value</strong>, <strong>Percentage of row</strong> or <strong>Percentage of column</strong>.</p>
-    <p>The options <strong>Percentage of row</strong> and<strong>Percentage of column</strong> mean that you'll display values as percentages of row total or percentage of column total instead of the aggregated value. This is useful when you want to see the contribution of data elements, categories or organisation units to the total value.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Measure criteria</strong></p></td>
-    <td><p>Allows for the data to be filtered on the server side.</p>
-    <p>You can instruct the system to return only records where the aggregated data value is equal, greater than, greater or equal, less than or less or equal to certain values.</p>
-    <p>If both parts of the filter are used, it's possible to filter out a range of data records.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Events</strong></p></td>
-    <td><p><strong>Include only completed events</strong></p></td>
-    <td><p>Includes only completed events in the aggregation process. This is useful for example to exclude partial events in indicator calculations.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>Organisation units</strong></p></td>
-    <td><p><strong>Show hierarchy</strong></p></td>
-    <td><p>Shows the name of all ancestors for organisation units, for example &quot;Sierra Leone / Bombali / Tamabaka / Sanya CHP&quot; for Sanya CHP.</p>
-    <p>The organisation units are then sorted alphabetically which will order the organisation units according to the hierarchy.</p>
-    <p>When you download a pivot table with organisation units as rows and you've selected <strong>Show hierarchy</strong>, each organisation unit level is rendered as a separate column. This is useful for example when you create Excel pivot tables on a local computer.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Legend</strong></p></td>
-    <td><p><strong>Apply legend</strong></p></td>
-    <td><p>Applies a legend to the values. This mean that you can apply a colour to the values.</p>
-    <p>Select <strong>By data item</strong> to color the table cells individually according to each data element or indicator.</p>
-    <p>You configure legends in the <strong>Maintenance</strong> app.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Style</strong></p></td>
-    <td><p>Colors the text or background of cells in pivot tables based on the selected legend.</p>
-    <p>You can use this option for scorecards to identify high and low values at a glance.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Style</strong></p></td>
-    <td><p><strong>Display density</strong></p></td>
-    <td><p>Controls the size of the cells in the table. You can set it to <strong>Comfortable</strong>, <strong>Normal</strong> or <strong>Compact</strong>.</p>
-    <p><strong>Compact</strong> is useful when you want to fit large tables into the browser screen.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Font size</strong></p></td>
-    <td><p>Controls the size of the table text font. You can set it to <strong>Large</strong>, <strong>Normal</strong> or <strong>Small</strong>.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Digit group separator</strong></p></td>
-    <td><p>Controls which character to separate groups of digits or &quot;thousands&quot;. You can set it to <strong>Comma</strong>, <strong>Space</strong> or <strong>None</strong>.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p><strong>General</strong></p></td>
-    <td><p><strong>Table title</strong></p></td>
-    <td><p>Type a title here to display it above the table.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p><strong>Parameters (for standard reports only)</strong></p></td>
-    <td><blockquote>
-    <p><strong>Note</strong></p>
-    <p>You create standard reports in the <strong>Reports</strong> app.</p>
-    <p>In the <strong>Pivot Table</strong> app you set which parameters the system should prompt the user for.</p>
-    </blockquote></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Reporting period</strong></p></td>
-    <td><p>Controls whether to ask user to enter a report period.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Organisation unit</strong></p></td>
-    <td><p>Controls whether to ask user to enter an organisation unit.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Parent organisation unit</strong></p></td>
-    <td><p>Controls whether to ask user to enter a parent organisation unit.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Include regression</strong></p></td>
-    <td><p>Includes a column with regression values to the pivot table.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Include cumulative</strong></p></td>
-    <td><p>Includes a column with cumulative values to the pivot table.</p></td>
-    </tr>
-    <tr class="even">
-    <td></td>
-    <td><p><strong>Sort order</strong></p></td>
-    <td><p>Controls the sort order of the values.</p></td>
-    </tr>
-    <tr class="odd">
-    <td></td>
-    <td><p><strong>Top limit</strong></p></td>
-    <td><p>Controls the maximum number of rows to include in the pivot table.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+
+    Table: Pivot table options
+
+    || Option | Description |
+    |---|---|---|
+    | **Data** | **Show column totals**<br>     <br>**Show row totals** | Displays total values in the table for each row and column, as well as a total for all values in the table. |
+    || **Show column sub-totals**<br>     <br>**Show row sub-totals** | Displays subtotals in the table for each dimension.<br>     <br>If you only select one dimension, subtotals will be hidden for those columns or rows. This is because the values will be equal to the subtotals. |
+    || **Show dimension labels** | Shows the dimension names as part of the pivot tables. |
+    || **Hide empty rows** | Hides empty rows from the table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable. |
+    || **Hide empty columns** | Hides empty columns from the table. This is useful when you look at large tables where a big part of the dimension items don't have data in order to keep the table more readable. |
+    || **Skip rounding** | Skips the rounding of data values, offering the full precision of data values. Can be useful for finance data where the full dollar amount is required. |
+    || **Aggregation type** | The default aggregation operator can be over-ridden here, by selecting a different aggregation operator. Some of the aggregation types are **Count**, **Min** and **Max**. |
+    || **Number type** | Sets the type of value you want to display in the pivot table: **Value**, **Percentage of row** or **Percentage of column**.<br>     <br>The options **Percentage of row** and**Percentage of column** mean that you'll display values as percentages of row total or percentage of column total instead of the aggregated value. This is useful when you want to see the contribution of data elements, categories or organisation units to the total value. |
+    || **Measure criteria** | Allows for the data to be filtered on the server side.<br>     <br>You can instruct the system to return only records where the aggregated data value is equal, greater than, greater or equal, less than or less or equal to certain values.<br>     <br>If both parts of the filter are used, it's possible to filter out a range of data records. |
+    | **Events** | **Include only completed events** | Includes only completed events in the aggregation process. This is useful for example to exclude partial events in indicator calculations. |
+    | **Organisation units** | **Show hierarchy** | Shows the name of all ancestors for organisation units, for example "Sierra Leone / Bombali / Tamabaka / Sanya CHP" for Sanya CHP.<br>     <br>The organisation units are then sorted alphabetically which will order the organisation units according to the hierarchy.<br>     <br>When you download a pivot table with organisation units as rows and you've selected **Show hierarchy**, each organisation unit level is rendered as a separate column. This is useful for example when you create Excel pivot tables on a local computer. |
+    | **Legend** | **Apply legend** | Applies a legend to the values. This mean that you can apply a colour to the values.<br>     <br>Select **By data item** to color the table cells individually according to each data element or indicator.<br>     <br>You configure legends in the **Maintenance** app. |
+    || **Style** | Colors the text or background of cells in pivot tables based on the selected legend.<br>     <br>You can use this option for scorecards to identify high and low values at a glance. |
+    | **Style** | **Display density** | Controls the size of the cells in the table. You can set it to **Comfortable**, **Normal** or **Compact**.<br>     <br>**Compact** is useful when you want to fit large tables into the browser screen. |
+    || **Font size** | Controls the size of the table text font. You can set it to **Large**, **Normal** or **Small**. |
+    || **Digit group separator** | Controls which character to separate groups of digits or "thousands". You can set it to **Comma**, **Space** or **None**. |
+    | **General** | **Table title** | Type a title here to display it above the table. |
+    | **Parameters (for standard reports only)** |     **Note** <br>    You create standard reports in the **Reports** app. <br>    In the **Pivot Table** app you set which parameters the system should prompt the user for. ||
+    || **Reporting period** | Controls whether to ask user to enter a report period. |
+    || **Organisation unit** | Controls whether to ask user to enter an organisation unit. |
+    || **Parent organisation unit** | Controls whether to ask user to enter a parent organisation unit. |
+    || **Include regression** | Includes a column with regression values to the pivot table. |
+    || **Include cumulative** | Includes a column with cumulative values to the pivot table. |
+    || **Sort order** | Controls the sort order of the values. |
+    || **Top limit** | Controls the maximum number of rows to include in the pivot table. |
 
 5.  Click **Update**.
 
@@ -557,57 +394,18 @@ To download plain data source formats:
 
 2.  Under **Plain data source**, click the format you want to download.
 
-    <table>
-    <caption>Available formats</caption>
-    <colgroup>
-    <col style="width: 18%" />
-    <col style="width: 33%" />
-    <col style="width: 47%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Format</p></th>
-    <th><p>Action</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>JSON</p></td>
-    <td><p>Click <strong>JSON</strong></p></td>
-    <td><p>Downloads JSON format based on ID property.</p>
-    <p>You can also download JSON format based on <strong>Code</strong> or <strong>Name</strong> property.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>XML</p></td>
-    <td><p>Click <strong>XML</strong></p></td>
-    <td><p>Downloads XML format based on ID property.</p>
-    <p>You can also download XML format based on <strong>Code</strong> or <strong>Name</strong> property.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Microsoft Excel</p></td>
-    <td><p>Click <strong>Microsoft Excel</strong></p></td>
-    <td><p>Downloads XML format based on ID property.</p>
-    <p>You can also download Microsoft Excel format based on <strong>Code</strong> or <strong>Name</strong> property.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>CSV</p></td>
-    <td>Click <strong>CSV</strong></td>
-    <td><p>Downloads CSV format based on ID property.</p>
-    <p>You can also download CSV format based on <strong>Code</strong> or <strong>Name</strong> property.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>JRXML</p></td>
-    <td><p>Put the cursor on <strong>Advanced</strong> and click <strong>JRXML</strong></p></td>
-    <td><p>Produces a template of a Jasper Report which can be further customized based on your exact needs and used as the basis for a standard report in DHIS2.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Raw data SQL</p></td>
-    <td><p>Put the cursor on <strong>Advanced</strong> and click <strong>Raw data SQL</strong></p></td>
-    <td><p>Provides the actual SQL statement used to generate the pivot table. You can use it as a data source in a Jasper report, or as the basis for an SQL view.</p></td>
-    </tr>
-    </tbody>
-    </table>
+
+
+    Table: Available formats
+
+    | Format | Action | Description |
+    |---|---|---|
+    | JSON | Click **JSON** | Downloads JSON format based on ID property.<br>     <br>You can also download JSON format based on **Code** or **Name** property. |
+    | XML | Click **XML** | Downloads XML format based on ID property.<br>     <br>You can also download XML format based on **Code** or **Name** property. |
+    | Microsoft Excel | Click **Microsoft Excel** | Downloads XML format based on ID property.<br>     <br>You can also download Microsoft Excel format based on **Code** or **Name** property. |
+    | CSV | Click **CSV** | Downloads CSV format based on ID property.<br>     <br>You can also download CSV format based on **Code** or **Name** property. |
+    | JRXML | Put the cursor on **Advanced** and click **JRXML** | Produces a template of a Jasper Report which can be further customized based on your exact needs and used as the basis for a standard report in DHIS2. |
+    | Raw data SQL | Put the cursor on **Advanced** and click **Raw data SQL** | Provides the actual SQL statement used to generate the pivot table. You can use it as a data source in a Jasper report, or as the basis for an SQL view. |
 
 ### Download a CSV format without rendering data in the web browser
 

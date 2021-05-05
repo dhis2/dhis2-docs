@@ -184,66 +184,17 @@ We're very keen to give feedback about the progress we're making with
 our KRG-DHIS2 project. If you’d like to ask us questions about our work,
 please reach out to us as follows:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Title</th>
-<th>Contact details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mr. Leonardo Emberti Gialloreti
-<p>Project leader and medical supervisor</p></td>
-<td><a href="mailto:leonardo.emberti.gialloreti@uniroma2.it">leonardo.emberti.gialloreti@uniroma2.it</a>
-<p>University of Tor Vergata, Rome, Italy</p></td>
-</tr>
-<tr class="even">
-<td>Mr. Dario Corsini
-<p>Project management and team coordinator</p></td>
-<td><a href="mailto:dario.corsini@informa.pro">dario.corsini@informa.pro</a>
-<p>IPRO – Informapro, Rome, Italy</p></td>
-</tr>
-<tr class="odd">
-<td>Ms. Antonia Bezenchek
-<p>IT management, DHIS2 implementation, translation, IT support</p></td>
-<td><a href="mailto:antonia.bezenchek@informa.pro">antonia.bezenchek@informa.pro</a>
-<p>IPRO – Informapro, Rome, Italy</p></td>
-</tr>
-<tr class="even">
-<td>Mr. Iuri Fanti
-<p>DHIS2 implementation and statistics</p></td>
-<td><a href="mailto:iuri.fanti@informa.pro">iuri.fanti@informa.pro</a>
-<p>IPRO - Informapro, Rome, Italy</p></td>
-</tr>
-<tr class="odd">
-<td>Mr. Faiq Basa
-<p>Kurdish local management and medical supervision</p></td>
-<td><a href="mailto:faiqbasa@yahoo.com">faiqbasa@yahoo.com</a></td>
-</tr>
-<tr class="even">
-<td>Mr. Revan Khorany
-<p>Kurdish local management, DHIS2 implementation and translation</p></td>
-<td><a href="mailto:revan.khorany@informa.pro">revan.khorany@informa.pro</a></td>
-</tr>
-<tr class="odd">
-<td>Ms. Francesca Incadona
-<p>International relations and documentation</p></td>
-<td><a href="mailto:francesca.incardona@informa.pro">francesca.incardona@informa.pro</a>
-<p>Euresist Network GEIE, Rome, Italy</p></td>
-</tr>
-<tr class="even">
-<td>Mr. Vincenzo Jorio
-<p>International and government relations</p></td>
-<td><a href="mailto:marco.jorio@informa.pro">marco.jorio@informa.pro</a>
-<p>Ital Consult, Rome, Italy</p></td>
-</tr>
-</tbody>
-</table>
+
+| Title | Contact details |
+|---|---|
+| Mr. Leonardo Emberti Gialloreti <br>Project leader and medical supervisor | [leonardo.emberti.gialloreti@uniroma2.it](mailto:leonardo.emberti.gialloreti@uniroma2.it) <br>University of Tor Vergata, Rome, Italy |
+| Mr. Dario Corsini <br>Project management and team coordinator | [dario.corsini@informa.pro](mailto:dario.corsini@informa.pro) <br>IPRO – Informapro, Rome, Italy |
+| Ms. Antonia Bezenchek <br>IT management, DHIS2 implementation, translation, IT support | [antonia.bezenchek@informa.pro](mailto:antonia.bezenchek@informa.pro) <br>IPRO – Informapro, Rome, Italy |
+| Mr. Iuri Fanti <br>DHIS2 implementation and statistics | [iuri.fanti@informa.pro](mailto:iuri.fanti@informa.pro) <br>IPRO - Informapro, Rome, Italy |
+| Mr. Faiq Basa <br>Kurdish local management and medical supervision | [faiqbasa@yahoo.com](mailto:faiqbasa@yahoo.com) |
+| Mr. Revan Khorany <br>Kurdish local management, DHIS2 implementation and translation | [revan.khorany@informa.pro](mailto:revan.khorany@informa.pro) |
+| Ms. Francesca Incadona <br>International relations and documentation | [francesca.incardona@informa.pro](mailto:francesca.incardona@informa.pro) <br>Euresist Network GEIE, Rome, Italy |
+| Mr. Vincenzo Jorio <br>International and government relations | [marco.jorio@informa.pro](mailto:marco.jorio@informa.pro) <br>Ital Consult, Rome, Italy |
 
 
 ![](resources/images/use_cases/kurdistan_opening_training_center.png)

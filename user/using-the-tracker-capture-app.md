@@ -403,33 +403,14 @@ instance.
 In a TEI dashboard, you enter event data in the **Timeline Data entry**
 or **Tabular data entry** widgets.
 
-<table>
-<caption>Data entry widgets in the Tracker Capture app</caption>
-<colgroup>
-<col style="width: 31%" />
-<col style="width: 68%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Widget name</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><strong>Timeline Data entry</strong></p></td>
-<td><p>For data entry using either default or custom forms.</p>
-<p>Depending on program definition, in particular program stages, events will be displayed in a timely fashion. Clicking on any of them displays the corresponding data entry. If a stage needs new event, a plus icon is displayed for new event creation. To proceed with data entry, it is mandatory to have event date. Once an event date is specified it is not possible to change due date. The assumption is that by specifying event date, the event has already taken place. If the event hasn't occurred yet, it is possible to change due date - this is effectively doing nothing but rescheduling. The buttons at the bottom help to change the status of a selected event.</p>
-<p>Another key feature from this widget is addition of multiple notes for an event. Normally data recording is through data elements, however there are cases where it is necessary to record additional information or comments. This is where the notes section comes handy. However it is not possible to delete a note. The idea is notes are more like log books. Both skip-logic and validation error/warning messages are supported during data entry.</p>
-<p>Also included in the Timeline Data entry is the option to compare your data entry to previous entries. This can be enabled by clicking the &quot;Switch to compare form&quot; button (Two sheets of paper) in the top right corner of the Timeline Data entry widget.</p></td>
-</tr>
-<tr class="even">
-<td><p><strong>Tabular data entry</strong></p></td>
-<td><p>For tabular-style data entry.</p>
-<p>The widget displays the list of program stages as left-hand side labels. Events will be listed in table for repeatable program stage, and allows for in-line edits of event data values.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data entry widgets in the Tracker Capture app
+
+| Widget name | Description |
+|---|---|
+| **Timeline Data entry** | For data entry using either default or custom forms.<br> <br>Depending on program definition, in particular program stages, events will be displayed in a timely fashion. Clicking on any of them displays the corresponding data entry. If a stage needs new event, a plus icon is displayed for new event creation. To proceed with data entry, it is mandatory to have event date. Once an event date is specified it is not possible to change due date. The assumption is that by specifying event date, the event has already taken place. If the event hasn't occurred yet, it is possible to change due date - this is effectively doing nothing but rescheduling. The buttons at the bottom help to change the status of a selected event.<br> <br>Another key feature from this widget is addition of multiple notes for an event. Normally data recording is through data elements, however there are cases where it is necessary to record additional information or comments. This is where the notes section comes handy. However it is not possible to delete a note. The idea is notes are more like log books. Both skip-logic and validation error/warning messages are supported during data entry.<br> <br>Also included in the Timeline Data entry is the option to compare your data entry to previous entries. This can be enabled by clicking the "Switch to compare form" button (Two sheets of paper) in the top right corner of the Timeline Data entry widget. |
+| **Tabular data entry** | For tabular-style data entry.<br> <br>The widget displays the list of program stages as left-hand side labels. Events will be listed in table for repeatable program stage, and allows for in-line edits of event data values. |
 
 ### Creating an event
 
@@ -893,37 +874,16 @@ Once an option is selected the selection is stored for that spesific program sta
 
 3.  Select a report type.
     
-    <table>
-    <caption>Report types in the Tracker Capture app</caption>
-    <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th>Report type</th>
-    <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>Program summary</p></td>
-    <td><p>A summary report for a particular program, organisation unit and time frame. The report consist of a list of TEIs and their records organised based on program stages.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Program statistics</p></td>
-    <td><p>A statistics report for a particular program. The report provides for example an overview of drop-outs or completion rates in a given time frame at a particular organisation unit.</p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>Upcoming events</p></td>
-    <td><p>A tabular report showing tracked entity instances and their upcoming events for a selected program and time. You can sort the columns and search the values. Show/hide operations are possible on the columns. You can also export the table to Microsoft Excel.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>Overdue events</p></td>
-    <td><p>A list of events for a selected program. The report displays a list of TEIs and their events that are not completed on time. You can sort the columns and search the values You can also export the table to Microsoft Excel.</p></td>
-    </tr>
-    </tbody>
-    </table>
+    
+
+    Table: Report types in the Tracker Capture app
+
+    | Report type | Description |
+    |---|---|
+    | Program summary | A summary report for a particular program, organisation unit and time frame. The report consist of a list of TEIs and their records organised based on program stages. |
+    | Program statistics | A statistics report for a particular program. The report provides for example an overview of drop-outs or completion rates in a given time frame at a particular organisation unit. |
+    | Upcoming events | A tabular report showing tracked entity instances and their upcoming events for a selected program and time. You can sort the columns and search the values. Show/hide operations are possible on the columns. You can also export the table to Microsoft Excel. |
+    | Overdue events | A list of events for a selected program. The report displays a list of TEIs and their events that are not completed on time. You can sort the columns and search the values You can also export the table to Microsoft Excel. |
 
 ![](resources/images/tracker_capture/program_summary_report.png)
 

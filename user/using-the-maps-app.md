@@ -1070,38 +1070,14 @@ layers.
 You can view organisation unit information set by the administrator as
 follows:
 
-<table>
-<caption>View organisation unit information</caption>
-<colgroup>
-<col style="width: 40%" />
-<col style="width: 59%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Function</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>View information for the current period</p></td>
-<td><ol type="1">
-<li><p>Click a facility.</p></li>
-</ol></td>
-</tr>
-<tr class="even">
-<td><p>View information for a selected period</p></td>
-<td><ol type="1">
-<li><p>Right-click a facility and click <strong>Show information</strong>.</p></li>
-<li><p>In the <strong>Infrastructural data</strong> section, select a period.</p></li>
-</ol>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>You configure the displayed infrastructural data in the <strong>System Settings</strong> app.</p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: View organisation unit information
+
+| Function | Action |
+|---|---|
+| View information for the current period | 1. Click a facility. |
+| View information for a selected period | 1. Right-click a facility and click **Show information**.<br> 2. In the **Infrastructural data** section, select a period.<br>      <br>    **Note**<br>     <br>    You configure the displayed infrastructural data in the **System Settings** app. |
 
 ## Manage boundary layers
 

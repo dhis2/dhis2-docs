@@ -27,81 +27,28 @@ reports.
 
   - You can set an expiration date to individual users
 
-<table>
-<caption>User management terms and definitions</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 40%" />
-<col style="width: 40%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Term</p></th>
-<th><p>Definition</p></th>
-<th><p>Example</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Authority</p></td>
-<td><p>A permission to perform one or several specific tasks</p></td>
-<td><p>Create a new data element</p>
-<p>Update an organisation unit</p>
-<p>View a report</p></td>
-</tr>
-<tr class="even">
-<td><p>User</p></td>
-<td><p>A person's DHIS2 user account</p></td>
-<td><p>admin</p>
-<p>traore</p>
-<p>guest</p></td>
-</tr>
-<tr class="odd">
-<td><p>User role</p></td>
-<td><p>A group of authorities</p></td>
-<td><p>Data entry clerk</p>
-<p>System administrator</p>
-<p>Antenatal care program access</p></td>
-</tr>
-<tr class="even">
-<td><p>User group</p></td>
-<td><p>A group of users</p></td>
-<td><p>Kenya staff</p>
-<p>Feedback message recipients</p>
-<p>HIV program coordinators</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: User management terms and definitions
+
+| Term | Definition | Example |
+|---|---|---|
+| Authority | A permission to perform one or several specific tasks | Create a new data element<br> <br>Update an organisation unit<br> <br>View a report |
+| User | A person's DHIS2 user account | admin<br> <br>traore<br> <br>guest |
+| User role | A group of authorities | Data entry clerk<br> <br>System administrator<br> <br>Antenatal care program access |
+| User group | A group of users | Kenya staff<br> <br>Feedback message recipients<br> <br>HIV program coordinators |
 
 You manager users, user roles and user groups in the **Users** app.
 
-<table>
-<caption>Objects in the Users app</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Available functions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>User</p></td>
-<td><p>Create, edit, invite, clone, disable, display by organisation unit, delete and show details</p></td>
-</tr>
-<tr class="even">
-<td><p>User role</p></td>
-<td><p>Create, edit, share, delete and show details</p></td>
-</tr>
-<tr class="odd">
-<td><p>User group</p></td>
-<td><p>Create, edit, join, leave, share, delete and show details</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Objects in the Users app
+
+| Object type | Available functions |
+|---|---|
+| User | Create, edit, invite, clone, disable, display by organisation unit, delete and show details |
+| User role | Create, edit, share, delete and show details |
+| User group | Create, edit, join, leave, share, delete and show details |
 
 ### About users
 
@@ -716,52 +663,10 @@ they perform and the position they occupy.
 
 Examples of common positions are:
 
-<table>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 21%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Position</p></th>
-<th><p>Typical tasks</p></th>
-<th><p>Recommended authorities</p></th>
-<th><p>Comment</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>System administrators</p></td>
-<td><p>Set up the basic structure (metadata) of the system.</p></td>
-<td><p>Add, update and delete the core elements of the system, for example data elements, indicators and data sets.</p></td>
-<td>Only system administrators should modify metadata.
-<p>If you allow users outside the system administrators team to modify the metadata, it might lead to problems with coordination.</p>
-<p>Updates to the system should only be performed by the administrators of the system.</p></td>
-</tr>
-<tr class="even">
-<td><p>National health managers</p>
-<p>Province health managers</p></td>
-<td><p>Monitor and analyse data</p></td>
-<td><p>Access to the reports module, the <strong>GIS</strong>, <strong>Data Quality</strong> apps and the dashboard.</p></td>
-<td><p>Don't need access to enter data, modify data elements or data sets.</p></td>
-</tr>
-<tr class="odd">
-<td><p>National health information system division officers (HISO)</p>
-<p>District health records and information officers (DHRIO)</p>
-<p>Facility health records and information officers (HRIO)</p></td>
-<td><p>Enter data that comes from facilities which are not able to do so directly</p>
-<p>Monitor, evaluate and analyse data</p></td>
-<td><p>Access to all the analysis and validation apps</p>
-<p>Access to the <strong>Data Entry</strong> app.</p></td>
-<td><p>-</p></td>
-</tr>
-<tr class="even">
-<td><p>Data entry clerks</p></td>
-<td><p>-</p></td>
-<td><p>-</p></td>
-<td><p>-</p></td>
-</tr>
-</tbody>
-</table>
+
+| Position | Typical tasks | Recommended authorities | Comment |
+|---|---|---|---|
+| System administrators | Set up the basic structure (metadata) of the system. | Add, update and delete the core elements of the system, for example data elements, indicators and data sets. | Only system administrators should modify metadata. <br>If you allow users outside the system administrators team to modify the metadata, it might lead to problems with coordination.<br> <br>Updates to the system should only be performed by the administrators of the system. |
+| National health managers<br> <br>Province health managers | Monitor and analyse data | Access to the reports module, the **GIS**, **Data Quality** apps and the dashboard. | Don't need access to enter data, modify data elements or data sets. |
+| National health information system division officers (HISO)<br> <br>District health records and information officers (DHRIO)<br> <br>Facility health records and information officers (HRIO) | Enter data that comes from facilities which are not able to do so directly<br> <br>Monitor, evaluate and analyse data | Access to all the analysis and validation apps<br> <br>Access to the **Data Entry** app. | - |
+| Data entry clerks | - | - | - |

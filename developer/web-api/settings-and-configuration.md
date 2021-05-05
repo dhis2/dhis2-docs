@@ -85,588 +85,125 @@ provided:
 
 The available system settings are listed below.
 
-<table>
-<caption>System settings</caption>
-<colgroup>
-<col style="width: 43%" />
-<col style="width: 43%" />
-<col style="width: 14%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Key</th>
-<th>Description</th>
-<th>Translatable</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>keyUiLocale</td>
-<td>Locale for the user interface</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyDbLocale</td>
-<td>Locale for the database</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyAnalysisDisplayProperty</td>
-<td>The property to display in analysis. Default: &quot;name&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyAnalysisDigitGroupSeparator</td>
-<td>The separator used to separate digit groups</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyCurrentDomainType</td>
-<td>Not yet in use</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyTrackerDashboardLayout</td>
-<td>Used by tracker capture</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>applicationTitle</td>
-<td>The application title. Default: &quot;DHIS2&quot;</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>keyApplicationIntro</td>
-<td>The application introduction</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>keyApplicationNotification</td>
-<td>Application notification</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>keyApplicationFooter</td>
-<td>Application left footer</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>keyApplicationRightFooter</td>
-<td>Application right footer</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>keyFlag</td>
-<td>Application flag</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyFlagImage</td>
-<td>Flag used in dashboard menu</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>startModule</td>
-<td>The startpage of the application. Default: &quot;dhis-web-dashboard-integration&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>factorDeviation</td>
-<td>Data analysis standard deviation factor. Default: &quot;2d&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyEmailHostName</td>
-<td>Email server hostname</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyEmailPort</td>
-<td>Email server port</td>
-<td>No</td>
-<tr class="even">
-<td>keyEmailTls</td>
-<td>Use TLS. Default: &quot;true&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyEmailSender</td>
-<td>Email sender</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyEmailUsername</td>
-<td>Email server username</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyEmailPassword</td>
-<td>Email server password</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>minPasswordLength</td>
-<td>Minimum length of password</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>maxPasswordLength</td>
-<td>Maximum length of password</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keySmsSetting</td>
-<td>SMS configuration</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyCacheStrategy</td>
-<td>Cache strategy. Default: &quot;CACHE_6AM_TOMORROW&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyCacheability</td>
-<td>PUBLIC or PRIVATE. Determines if proxy servers are allowed to cache data or not.</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>phoneNumberAreaCode</td>
-<td>Phonenumber area code</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>multiOrganisationUnitForms</td>
-<td>Enable multi-organisation unit forms. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyConfig</td>
-<td></td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyAccountRecovery</td>
-<td>Enable user account recovery. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyLockMultipleFailedLogins</td>
-<td>Enable locking access after multiple failed logins</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>googleAnalyticsUA</td>
-<td>Google Analytic UA key for tracking site-usage</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>credentialsExpires</td>
-<td>Require user account password change. Default: &quot;0&quot; (Never)</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>credentialsExpiryAlert</td>
-<td>Enable alert when credentials are close to expiration date</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keySelfRegistrationNoRecaptcha</td>
-<td>Do not require recaptcha for self registration. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>recaptchaSecret</td>
-<td>Google API recaptcha secret. Default: dhis2 play instance API secret, but this will only works on you local instance and not in production.</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>recaptchaSite</td>
-<td>Google API recaptcha site. Default: dhis2 play instance API site, but this will only works on you local instance and not in production.</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyCanGrantOwnUserAuthorityGroups</td>
-<td>Allow users to grant own user roles. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keySqlViewMaxLimit</td>
-<td>Max limit for SQL view</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyRespectMetaDataStartEndDatesInAnalyticsTableExport</td>
-<td>When &quot;true&quot;, analytics will skip data not within category option's start and end dates. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keySkipDataTypeValidationInAnalyticsTableExport</td>
-<td>Skips data type validation in analytics table export</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyCustomLoginPageLogo</td>
-<td>Logo for custom login page</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyCustomTopMenuLogo</td>
-<td>Logo for custom top menu</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyCacheAnalyticsDataYearThreshold</td>
-<td>Analytics data older than this value (in years) will always be cached. &quot;0&quot; disabled this setting. Default: 0</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyCacheAnalyticsDataYearThreshold</td>
-<td>Analytics data older than this value (in years) will always be cached. &quot;0&quot; disabled this setting. Default: 0</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>analyticsFinancialYearStart</td>
-<td>Set financial year start. Default: October</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyIgnoreAnalyticsApprovalYearThreshold</td>
-<td>&quot;0&quot; check approval for all data. &quot;-1&quot; disable approval checking. &quot;1&quot; or higher checks approval for all data that is newer than &quot;1&quot; year.</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyAnalyticsMaxLimit</td>
-<td>Maximum number of analytics recors. Default: &quot;50000&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyAnalyticsMaintenanceMode</td>
-<td>Put analytics in maintenance mode. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyDatabaseServerCpus</td>
-<td>Number of database server CPUs. Default: &quot;0&quot; (Automatic)</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyLastSuccessfulAnalyticsTablesRuntime</td>
-<td>Keeps timestamp of last successful analytics tables run</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyLastSuccessfulLatestAnalyticsPartitionRuntime</td>
-<td>Keeps timestamp of last successful latest analytics partition run</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyLastMonitoringRun</td>
-<td>Keeps timestamp of last monitoring run</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyLastSuccessfulDataSynch</td>
-<td>Keeps timestamp of last successful data values synchronization</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyLastSuccessfulEventsDataSynch</td>
-<td>Keeps timestamp of last successful Event programs data synchronization</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyLastCompleteDataSetRegistrationSyncSuccess</td>
-<td>Keeps timestamp of last successful completeness synchronization</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>syncSkipSyncForDataChangedBefore</td>
-<td>Specifies timestamp used to skip synchronization of all the data changed before this point in time</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyLastSuccessfulAnalyticsTablesUpdate</td>
-<td>Keeps timestamp of last successful analytics tables update</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyLastSuccessfulLatestAnalyticsPartitionUpdate</td>
-<td>Keeps timestamp of last successful latest analytics partition update</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyLastSuccessfulResourceTablesUpdate</td>
-<td>Keeps timestamp of last successful resource tables update</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyLastSuccessfulSystemMonitoringPush</td>
-<td>Keeps timestamp of last successful system monitoring push</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyLastSuccessfulMonitoring</td>
-<td>Keeps timestamp of last successful monitoring</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyNextAnalyticsTableUpdate</td>
-<td>Keeps timestamp of next analytics table update</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>helpPageLink</td>
-<td>Link to help page. Default: &quot;<a href="http://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html">https://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html</a></td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyAcceptanceRequiredForApproval</td>
-<td>Acceptance required before approval. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keySystemNotificationsEmail</td>
-<td>Where to email system notifications</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyAnalysisRelativePeriod</td>
-<td>Default relative period for analysis. Default: &quot;LAST_12_MONTHS&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyRequireAddToView</td>
-<td>Require authority to add to view object lists. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyAllowObjectAssignment</td>
-<td>Allow assigning object to related objects during add or update. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyUseCustomLogoFront</td>
-<td>Enables the usage of a custom logo on the front page. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyUseCustomLogoBanner</td>
-<td>Enables the usage of a custom banner on the website. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyDataImportStrictPeriods</td>
-<td></td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyDataImportStrictPeriods</td>
-<td>Require periods to match period type of data set. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyDataImportStrictDataElements</td>
-<td>Require data elements to be part of data set. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyDataImportStrictCategoryOptionCombos</td>
-<td>Require category option combos to match category combo of data element. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyDataImportStrictOrganisationUnits</td>
-<td>Require organisation units to match assignment of data set. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyDataImportStrictAttributeOptionsCombos</td>
-<td>Require attribute option combis to match category combo of data set. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyDataImportRequireCategoryOptionCombo</td>
-<td>Require category option combo to be specified. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyDataImportRequireAttributeOptionCombo</td>
-<td>Require attribute option combo to be specified. Default: &quot;false&quot;</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyCustomJs</td>
-<td>Custom JavaScript to be used on the website</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyCustomCss</td>
-<td>Custom CSS to be used on the website</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyCalendar</td>
-<td>The calendar type. Default: &quot;iso8601&quot;.</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyDateFormat</td>
-<td>The format in which dates should be displayed. Default: &quot;yyyy-MM-dd&quot;.</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyStyle</td>
-<td>The style used on the DHIS2 webpages. Default: &quot;light_blue/light_blue.css&quot;.</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyRemoteInstanceUrl</td>
-<td>Url used to connect to remote instance</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyRemoteInstanceUsername</td>
-<td>Username used to connect to remote DHIS2 instance</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyRemoteInstancePassword</td>
-<td>Password used to connect to remote DHIS2 instance</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyGoogleMapsApiKey</td>
-<td>Google Maps API key</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyGoogleCloudApiKey</td>
-<td>Google Cloud API key</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyLastMetaDataSyncSuccess</td>
-<td>Keeps timestamp of last successful metadata synchronization </td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyVersionEnabled</td>
-<td>Enables metadata versioning</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyMetadataFailedVersion</td>
-<td>Keeps details about failed metadata version sync</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyMetadataLastFailedTime</td>
-<td>Keeps timestamp of last metadata synchronization failure</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyLastSuccessfulScheduledProgramNotifications</td>
-<td></td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyLastSuccessfulScheduledDataSetNotifications</td>
-<td></td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyRemoteMetadataVersion</td>
-<td>Details about metadata version of remote instance</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keySystemMetadataVersion</td>
-<td>Details about metadata version of the system</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyStopMetadataSync</td>
-<td>Flag to stop metadata synchronization</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyFileResourceRetentionStrategy</td>
-<td>Determines how long file resources associated with deleted or updated values are kept. NONE, THREE_MONTHS, ONE_YEAR, or FOREVER.</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>syncMaxRemoteServerAvailabilityCheckAttempts</td>
-<td>Specifies how many times the availability of remote server will be checked before synchronization jobs fail.</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>syncMaxAttempts</td>
-<td>Specifies max attempts for synchronization jobs</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>syncDelayBetweenRemoteServerAvailabilityCheckAttempts</td>
-<td>Delay between remote server availability checks</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>lastSuccessfulDataStatistics</td>
-<td>Keeps timestamp of last successful data analytics</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyHideDailyPeriods</td>
-<td>Not in use</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyHideWeeklyPeriods</td>
-<td></td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyHideMonthlyPeriods</td>
-<td></td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyHideBiMonthlyPeriods</td>
-<td></td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyGatherAnalyticalObjectStatisticsInDashboardViews</td>
-<td>Whether to gather analytical statistics on objects when they are viewed within a dashboard</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>keyCountPassiveDashboardViewsInUsageAnalytics</td>
-<td>Counts "passive" dashboard views (not selecting a particular dashboard)
-in usage analytics</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>keyDashboardContextMenuItemSwitchViewType</td>
-<td>Allow users to switch dashboard favorites' view type</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>keyDashboardContextMenuItemOpenInRelevantApp</td>
-<td>Allow users to open dashboard favorites in relevant apps</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>keyDashboardContextMenuItemShowInterpretationsAndDetails</td>
-<td>Allow users to show dashboard favorites' interpretations and details</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>keyDashboardContextMenuItemViewFullscreen</td>
-<td>Allow users to view dashboard favorites in fullscreen</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: System settings
+
+| Key | Description | Translatable |
+|---|---|---|
+| keyUiLocale | Locale for the user interface | No |
+| keyDbLocale | Locale for the database | No |
+| keyAnalysisDisplayProperty | The property to display in analysis. Default: "name" | No |
+| keyAnalysisDigitGroupSeparator | The separator used to separate digit groups | No |
+| keyCurrentDomainType | Not yet in use | No |
+| keyTrackerDashboardLayout | Used by tracker capture | No |
+| applicationTitle | The application title. Default: "DHIS2" | Yes |
+| keyApplicationIntro | The application introduction | Yes |
+| keyApplicationNotification | Application notification | Yes |
+| keyApplicationFooter | Application left footer | Yes |
+| keyApplicationRightFooter | Application right footer | Yes |
+| keyFlag | Application flag | No |
+| keyFlagImage | Flag used in dashboard menu | No |
+| startModule | The startpage of the application. Default: "dhis-web-dashboard-integration" | No |
+| factorDeviation | Data analysis standard deviation factor. Default: "2d" | No |
+| keyEmailHostName | Email server hostname | No |
+| keyEmailPort | Email server port | No |
+| keyEmailTls | Use TLS. Default: "true" | No |
+| keyEmailSender | Email sender | No |
+| keyEmailUsername | Email server username | No |
+| keyEmailPassword | Email server password | No |
+| minPasswordLength | Minimum length of password | No |
+| maxPasswordLength | Maximum length of password | No |
+| keySmsSetting | SMS configuration | No |
+| keyCacheStrategy | Cache strategy. Default: "CACHE_6AM_TOMORROW" | No |
+| keyCacheability | PUBLIC or PRIVATE. Determines if proxy servers are allowed to cache data or not. | No |
+| phoneNumberAreaCode | Phonenumber area code | No |
+| multiOrganisationUnitForms | Enable multi-organisation unit forms. Default: "false" | No |
+| keyConfig || No |
+| keyAccountRecovery | Enable user account recovery. Default: "false" | No |
+| keyLockMultipleFailedLogins | Enable locking access after multiple failed logins | No |
+| googleAnalyticsUA | Google Analytic UA key for tracking site-usage | No |
+| credentialsExpires | Require user account password change. Default: "0" (Never) | No |
+| credentialsExpiryAlert | Enable alert when credentials are close to expiration date | No |
+| keySelfRegistrationNoRecaptcha | Do not require recaptcha for self registration. Default: "false" | No |
+| recaptchaSecret | Google API recaptcha secret. Default: dhis2 play instance API secret, but this will only works on you local instance and not in production. | No |
+| recaptchaSite | Google API recaptcha site. Default: dhis2 play instance API site, but this will only works on you local instance and not in production. | No |
+| keyCanGrantOwnUserAuthorityGroups | Allow users to grant own user roles. Default: "false" | No |
+| keySqlViewMaxLimit | Max limit for SQL view | No |
+| keyRespectMetaDataStartEndDatesInAnalyticsTableExport | When "true", analytics will skip data not within category option's start and end dates. Default: "false" | No |
+| keySkipDataTypeValidationInAnalyticsTableExport | Skips data type validation in analytics table export | No |
+| keyCustomLoginPageLogo | Logo for custom login page | No |
+| keyCustomTopMenuLogo | Logo for custom top menu | No |
+| keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
+| keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
+| analyticsFinancialYearStart | Set financial year start. Default: October | No |
+| keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
+| keyAnalyticsMaxLimit | Maximum number of analytics recors. Default: "50000" | No |
+| keyAnalyticsMaintenanceMode | Put analytics in maintenance mode. Default: "false" | No |
+| keyDatabaseServerCpus | Number of database server CPUs. Default: "0" (Automatic) | No |
+| keyLastSuccessfulAnalyticsTablesRuntime | Keeps timestamp of last successful analytics tables run | No |
+| keyLastSuccessfulLatestAnalyticsPartitionRuntime | Keeps timestamp of last successful latest analytics partition run | No |
+| keyLastMonitoringRun | Keeps timestamp of last monitoring run | No |
+| keyLastSuccessfulDataSynch | Keeps timestamp of last successful data values synchronization | No |
+| keyLastSuccessfulEventsDataSynch | Keeps timestamp of last successful Event programs data synchronization | No |
+| keyLastCompleteDataSetRegistrationSyncSuccess | Keeps timestamp of last successful completeness synchronization | No |
+| syncSkipSyncForDataChangedBefore | Specifies timestamp used to skip synchronization of all the data changed before this point in time | No |
+| keyLastSuccessfulAnalyticsTablesUpdate | Keeps timestamp of last successful analytics tables update | No |
+| keyLastSuccessfulLatestAnalyticsPartitionUpdate | Keeps timestamp of last successful latest analytics partition update | No |
+| keyLastSuccessfulResourceTablesUpdate | Keeps timestamp of last successful resource tables update | No |
+| keyLastSuccessfulSystemMonitoringPush | Keeps timestamp of last successful system monitoring push | No |
+| keyLastSuccessfulMonitoring | Keeps timestamp of last successful monitoring | No |
+| keyNextAnalyticsTableUpdate | Keeps timestamp of next analytics table update | No |
+| helpPageLink | Link to help page. Default: "[https://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html](http://dhis2.github.io/dhis2-docs/master/en/user/html/dhis2_user_manual_en.html) | No |
+| keyAcceptanceRequiredForApproval | Acceptance required before approval. Default: "false" | No |
+| keySystemNotificationsEmail | Where to email system notifications | No |
+| keyAnalysisRelativePeriod | Default relative period for analysis. Default: "LAST_12_MONTHS" | No |
+| keyRequireAddToView | Require authority to add to view object lists. Default: "false" | No |
+| keyAllowObjectAssignment | Allow assigning object to related objects during add or update. Default: "false" | No |
+| keyUseCustomLogoFront | Enables the usage of a custom logo on the front page. Default: "false" | No |
+| keyUseCustomLogoBanner | Enables the usage of a custom banner on the website. Default: "false" | No |
+| keyDataImportStrictPeriods || No |
+| keyDataImportStrictPeriods | Require periods to match period type of data set. Default: "false" | No |
+| keyDataImportStrictDataElements | Require data elements to be part of data set. Default: "false" | No |
+| keyDataImportStrictCategoryOptionCombos | Require category option combos to match category combo of data element. Default: "false" | No |
+| keyDataImportStrictOrganisationUnits | Require organisation units to match assignment of data set. Default: "false" | No |
+| keyDataImportStrictAttributeOptionsCombos | Require attribute option combis to match category combo of data set. Default: "false" | No |
+| keyDataImportRequireCategoryOptionCombo | Require category option combo to be specified. Default: "false" | No |
+| keyDataImportRequireAttributeOptionCombo | Require attribute option combo to be specified. Default: "false" | No |
+| keyCustomJs | Custom JavaScript to be used on the website | No |
+| keyCustomCss | Custom CSS to be used on the website | No |
+| keyCalendar | The calendar type. Default: "iso8601". | No |
+| keyDateFormat | The format in which dates should be displayed. Default: "yyyy-MM-dd". | No |
+| keyStyle | The style used on the DHIS2 webpages. Default: "light_blue/light_blue.css". | No |
+| keyRemoteInstanceUrl | Url used to connect to remote instance | No |
+| keyRemoteInstanceUsername | Username used to connect to remote DHIS2 instance | No |
+| keyRemoteInstancePassword | Password used to connect to remote DHIS2 instance | No |
+| keyGoogleMapsApiKey | Google Maps API key | No |
+| keyGoogleCloudApiKey | Google Cloud API key | No |
+| keyLastMetaDataSyncSuccess | Keeps timestamp of last successful metadata synchronization | No |
+| keyVersionEnabled | Enables metadata versioning | No |
+| keyMetadataFailedVersion | Keeps details about failed metadata version sync | No |
+| keyMetadataLastFailedTime | Keeps timestamp of last metadata synchronization failure | No |
+| keyLastSuccessfulScheduledProgramNotifications || No |
+| keyLastSuccessfulScheduledDataSetNotifications || No |
+| keyRemoteMetadataVersion | Details about metadata version of remote instance | No |
+| keySystemMetadataVersion | Details about metadata version of the system | No |
+| keyStopMetadataSync | Flag to stop metadata synchronization | No |
+| keyFileResourceRetentionStrategy | Determines how long file resources associated with deleted or updated values are kept. NONE, THREE_MONTHS, ONE_YEAR, or FOREVER. | No |
+| syncMaxRemoteServerAvailabilityCheckAttempts | Specifies how many times the availability of remote server will be checked before synchronization jobs fail. | No |
+| syncMaxAttempts | Specifies max attempts for synchronization jobs | No |
+| syncDelayBetweenRemoteServerAvailabilityCheckAttempts | Delay between remote server availability checks | No |
+| lastSuccessfulDataStatistics | Keeps timestamp of last successful data analytics | No |
+| keyHideDailyPeriods | Not in use | No |
+| keyHideWeeklyPeriods || No |
+| keyHideMonthlyPeriods || No |
+| keyHideBiMonthlyPeriods || No |
+| keyGatherAnalyticalObjectStatisticsInDashboardViews | Whether to gather analytical statistics on objects when they are viewed within a dashboard | No |
+| keyCountPassiveDashboardViewsInUsageAnalytics | Counts "passive" dashboard views (not selecting a particular dashboard) in usage analytics | No |
+| keyDashboardContextMenuItemSwitchViewType | Allow users to switch dashboard favorites' view type | Yes |
+| keyDashboardContextMenuItemOpenInRelevantApp | Allow users to open dashboard favorites in relevant apps | Yes |
+| keyDashboardContextMenuItemShowInterpretationsAndDetails | Allow users to show dashboard favorites' interpretations and details | Yes |
+| keyDashboardContextMenuItemViewFullscreen | Allow users to view dashboard favorites in fullscreen | Yes |
 
 
 ## User settings
@@ -725,78 +262,23 @@ similar to the one used above for retrieval.
 
 The available system settings are listed below.
 
-<table style="width:100%;">
-<caption>User settings</caption>
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 28%" />
-<col style="width: 49%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Key</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>keyStyle</td>
-<td>light_blue/light_blue.css | green/green.css | vietnam/vietnam.css</td>
-<td>User interface stylesheet.</td>
-</tr>
-<tr class="even">
-<td>keyMessageEmailNotification</td>
-<td>false | true</td>
-<td>Whether to send email notifications.</td>
-</tr>
-<tr class="odd">
-<td>keyMessageSmsNotification</td>
-<td>false | true</td>
-<td>Whether to send SMS notifications.</td>
-</tr>
-<tr class="even">
-<td>keyUiLocale</td>
-<td>Locale value</td>
-<td>User interface locale.</td>
-</tr>
-<tr class="odd">
-<td>keyDbLocale</td>
-<td>Locale value</td>
-<td>Database content locale.</td>
-</tr>
-<tr class="even">
-<td>keyAnalysisDisplayProperty</td>
-<td>name | shortName</td>
-<td>Property to display for metadata in analysis apps.</td>
-</tr>
-<tr class="odd">
-<td>keyCurrentDomainType</td>
-<td>all | aggregate | tracker</td>
-<td>Data element domain type to display in lists.</td>
-</tr>
-<tr class="even">
-<td>keyAutoSaveCaseEntryForm</td>
-<td>false | true</td>
-<td>Save case entry forms periodically.</td>
-</tr>
-<tr class="odd">
-<td>keyAutoSaveTrackedEntityForm</td>
-<td>false | true</td>
-<td>Save person registration forms periodically.</td>
-</tr>
-<tr class="even">
-<td>keyAutoSaveDataEntryForm</td>
-<td>false | true</td>
-<td>Save aggregate data entry forms periodically.</td>
-</tr>
-<tr class="odd">
-<td>keyTrackerDashboardLayout</td>
-<td>false | true</td>
-<td>Tracker dasboard layout.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: User settings
+
+| Key | Options | Description |
+|---|---|---|
+| keyStyle | light_blue/light_blue.css &#124; green/green.css &#124; vietnam/vietnam.css | User interface stylesheet. |
+| keyMessageEmailNotification | false &#124; true | Whether to send email notifications. |
+| keyMessageSmsNotification | false &#124; true | Whether to send SMS notifications. |
+| keyUiLocale | Locale value | User interface locale. |
+| keyDbLocale | Locale value | Database content locale. |
+| keyAnalysisDisplayProperty | name &#124; shortName | Property to display for metadata in analysis apps. |
+| keyCurrentDomainType | all &#124; aggregate &#124; tracker | Data element domain type to display in lists. |
+| keyAutoSaveCaseEntryForm | false &#124; true | Save case entry forms periodically. |
+| keyAutoSaveTrackedEntityForm | false &#124; true | Save person registration forms periodically. |
+| keyAutoSaveDataEntryForm | false &#124; true | Save aggregate data entry forms periodically. |
+| keyTrackerDashboardLayout | false &#124; true | Tracker dasboard layout. |
 
 ## Configuration
 
@@ -813,19 +295,19 @@ You can send *GET* and *POST* requests to the following specific
 resources:
 
     GET /api/33/configuration/systemId
-    
+
     GET POST DELETE /api/33/configuration/feedbackRecipients
-    
+
     GET POST DELETE /api/33/configuration/offlineOrganisationUnitLevel
-    
+
     GET POST /api/33/configuration/infrastructuralDataElements
-    
+
     GET POST /api/33/configuration/infrastructuralIndicators
-    
+
     GET POST /api/33/configuration/infrastructuralPeriodType
-    
+
     GET POST DELETE /api/33/configuration/selfRegistrationRole
-    
+
     GET POST DELETE /api/33/configuration/selfRegistrationOrgUnit
 
 For the CORS whitelist configuration you can make a POST request with an
@@ -842,69 +324,24 @@ For POST requests, the configuration value should be sent as the request
 payload as text. The following table shows appropriate configuration
 values for each property.
 
-<table>
-<caption>Configuration values</caption>
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 69%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Configuration property</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>feedbackRecipients</td>
-<td>User group ID</td>
-</tr>
-<tr class="even">
-<td>offlineOrganisationUnitLevel</td>
-<td>Organisation unit level ID</td>
-</tr>
-<tr class="odd">
-<td>infrastructuralDataElements</td>
-<td>Data element group ID</td>
-</tr>
-<tr class="even">
-<td>infrastructuralIndicators</td>
-<td>Indicator group ID</td>
-</tr>
-<tr class="odd">
-<td>infrastructuralPeriodType</td>
-<td>Period type name (e.g. &quot;Monthly&quot;)</td>
-</tr>
-<tr class="even">
-<td>selfRegistrationRole</td>
-<td>User role ID</td>
-</tr>
-<tr class="odd">
-<td>selfRegistrationOrgUnit</td>
-<td>Organisation unit ID</td>
-</tr>
-<tr class="even">
-<td>smtpPassword</td>
-<td>SMTP email server password</td>
-</tr>
-<tr class="odd">
-<td>remoteServerUrl</td>
-<td>URL to remote server</td>
-</tr>
-<tr class="even">
-<td>remoteServerUsername</td>
-<td>Username for remote server authentication</td>
-</tr>
-<tr class="odd">
-<td>remoteServerPassword</td>
-<td>Password for remote server authentication</td>
-</tr>
-<tr class="even">
-<td>corsWhitelist</td>
-<td>JSON list of URLs</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Configuration values
+
+| Configuration property | Value |
+|---|---|
+| feedbackRecipients | User group ID |
+| offlineOrganisationUnitLevel | Organisation unit level ID |
+| infrastructuralDataElements | Data element group ID |
+| infrastructuralIndicators | Indicator group ID |
+| infrastructuralPeriodType | Period type name (e.g. "Monthly") |
+| selfRegistrationRole | User role ID |
+| selfRegistrationOrgUnit | Organisation unit ID |
+| smtpPassword | SMTP email server password |
+| remoteServerUrl | URL to remote server |
+| remoteServerUsername | Username for remote server authentication |
+| remoteServerPassword | Password for remote server authentication |
+| corsWhitelist | JSON list of URLs |
 
 As an example, to set the feedback recipients user group you can invoke
 the following curl command:
@@ -925,40 +362,22 @@ To access all configuration settings and properties you can use the read-only co
 You can get filtered settings based on setting type:
 
     GET /api/33/configuration/settings/filter?type=USER_SETTING
-    
+
     GET /api/33/configuration/settings/filter?type=CONFIGURATION
 
 More than one type can be provided:
 
     GET /api/33/configuration/settings/filter?type=USER_SETTING&type=SYSTEM_SETTING
 
-<table>
-<caption>SettingType values</caption>
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 69%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>USER_SETTING</td>
-<td>To get user settings</td>
-</tr>
-<tr class="even">
-<td>SYSTEM_SETTING</td>
-<td>To get system settings</td>
-</tr>
-<tr class="odd">
-<td>CONFIGURATION</td>
-<td>To get DHIS server settings</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: SettingType values
+
+| Value | Description |
+|---|---|
+| USER_SETTING | To get user settings |
+| SYSTEM_SETTING | To get system settings |
+| CONFIGURATION | To get DHIS server settings |
 
 > **Note**
 >
@@ -984,33 +403,15 @@ another token must be requested from this resource. The response
 contains a cache control header which matches the token expiration. The
 response will contain the following properties in JSON format.
 
-<table>
-<caption>Token response</caption>
-<colgroup>
-<col style="width: 40%" />
-<col style="width: 59%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>access_token</td>
-<td>The OAuth 2.0 access token to be used when authentication against Google services.</td>
-</tr>
-<tr class="even">
-<td>expires_in</td>
-<td>The number of seconds until the access token expires, typically 3600 seconds (1 hour).</td>
-</tr>
-<tr class="odd">
-<td>client_id</td>
-<td>The Google service account client id.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Token response
+
+| Property | Description |
+|---|---|
+| access_token | The OAuth 2.0 access token to be used when authentication against Google services. |
+| expires_in | The number of seconds until the access token expires, typically 3600 seconds (1 hour). |
+| client_id | The Google service account client id. |
 
 This assumes that a Google service account has been set up and configured for DHIS2. Please consult the installation guide for more info.
 
@@ -1026,29 +427,14 @@ files are supported and can only be uploaded to the `logo_banner` and
 
     /api/33/staticContent
 
-<table>
-<caption>Static content keys</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>logo_banner</td>
-<td>Logo in the application top menu on the left side.</td>
-</tr>
-<tr class="even">
-<td>logo_front</td>
-<td>Logo on the login-page above the login form.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Static content keys
+
+| Key | Description |
+|---|---|
+| logo_banner | Logo in the application top menu on the left side. |
+| logo_front | Logo on the login-page above the login form. |
 
 To upload a file, send the file with a *POST* request to:
 
@@ -1168,6 +554,3 @@ You can fetch the CSS content with a GET-request:
     /api/33/files/style
 
 To remove the JavaScript content you can use a DELETE request.
-
-
-

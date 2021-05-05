@@ -10,7 +10,7 @@ hence they work off-line. At some point (normally at the district
 level), the data needs to be synchronised in order to have a
 consolidated database for the a particular geographical region. For
 this, it is important to be able to export data from one location (which
-is working offline, say at the health facility level) and import into 
+is working offline, say at the health facility level) and import into
 another one (say at the district level).
 This feature of exporting and importing is thus a crucial function of a HMIS.
 This feature also helps us overcome the dependency on the Internet to some
@@ -82,7 +82,7 @@ Metadata Import.
     importing process.
 
 > **Tip**
-> 
+>
 > **It is highly recommend to use the Dry run option** to test before
 > importing data; to make sure you keep control over any changes to your
 > Metadata, and to check for problems with out-of-sync data elements or
@@ -90,8 +90,8 @@ Metadata Import.
 
 
 > **Note**
-> 
-> If an organisation unit e.g. `Nduvuibu MCHP` had a unknown reference to an object with ID `aaaU6Kr7Gtpidn`, it means that the object with ID `aaaU6Kr7Gtpidn` was not present in your imported file, and it was not found in the existing database. 
+>
+> If an organisation unit e.g. `Nduvuibu MCHP` had a unknown reference to an object with ID `aaaU6Kr7Gtpidn`, it means that the object with ID `aaaU6Kr7Gtpidn` was not present in your imported file, and it was not found in the existing database.
 >
 > You can control this using **Identifier** option, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
 
@@ -142,7 +142,7 @@ Import.
     importing process.
 
 > **Tip**
-> 
+>
 > **It is highly recommend to use the Dry run option** to test before
 > importing data; to make sure you keep control over any changes to your
 > Metadata, and to check for problems with out-of-sync data elements or
@@ -230,7 +230,7 @@ clicking on TEI Import.
     importing process.
 
 > **Tip**
-> 
+>
 > **It is highly recommend to use the Dry run option** to test before
 > importing data; to make sure you keep control over any changes to
 > your Tracked Entity Instances.
@@ -266,91 +266,18 @@ metadata objects. This type of export will include the metadata objects
 and the metadata object's related objects; that is, the metadata which
 belong together with the main object.
 
-<table>
-<caption>Object types and their dependencies</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Object type</p></th>
-<th><p>Dependencies included in export</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><strong>Data sets</strong></p>
-<!--DHIS2_SECTION_ID:docs-internal-guid-4a3662ce-63b9-1efd-e640-8ba874d1bcde--></td>
-<td><p>Data elements</p>
-<p>Sections</p>
-<p>Indicators</p>
-<p>Indicator types</p>
-<p>Attributes</p>
-<p>Data entry forms</p>
-<p>Legend sets</p>
-<p>Legends</p>
-<p>Category combinations</p>
-<p>Categories</p>
-<p>Category options</p>
-<p>Category option combinations</p>
-<p>Option sets</p></td>
-</tr>
-<tr class="even">
-<td><p>Programs</p></td>
-<td><p>Data entry form</p>
-<p>Tracked entity</p>
-<p>Program stages</p>
-<p>Program attributes</p>
-<p>Program indicators</p>
-<p>Program rules</p>
-<p>Program rule actions</p>
-<p>Program rule variables</p>
-<p>Program attributes</p>
-<p>Data elements</p>
-<p>Category combinations</p>
-<p>Categories</p>
-<p>Category options</p>
-<p>Category option combinations</p>
-<p>Option sets</p></td>
-</tr>
-<tr class="odd">
-<td><p>Category combination</p></td>
-<td><p>Category combinations</p>
-<p>Categories</p>
-<p>Category options</p>
-<p>Category option combinations</p>
-<p>Attributes</p></td>
-</tr>
-<tr class="even">
-<td><p>Dashboard</p></td>
-<td><p>Dashboard items</p>
-<p>Charts</p>
-<p>Event charts</p>
-<p>Pivot tables</p>
-<p>Event reports</p>
-<p>Maps</p>
-<p>Reports</p>
-<p>Resources</p></td>
-</tr>
-<tr class="odd">
-<td><p>Data element groups</p></td>
-<td><p>Data elements</p>
-<p>Category combinations</p>
-<p>Categories</p>
-<p>Category options</p>
-<p>Category option combinations</p>
-<p>Option sets</p>
-<p>Attributes</p>
-<p>Legend sets</p>
-<p>Legends</p></td>
-</tr>
-<tr class="even">
-<td><p>OptionSets</p></td>
-<td><p>Option</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Object types and their dependencies
+
+| Object type | Dependencies included in export |
+|---|---|
+| **Data sets** | Data elements<br> <br>Sections<br> <br>Indicators<br> <br>Indicator types<br> <br>Attributes<br> <br>Data entry forms<br> <br>Legend sets<br> <br>Legends<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets |
+| Programs | Data entry form<br> <br>Tracked entity<br> <br>Program stages<br> <br>Program attributes<br> <br>Program indicators<br> <br>Program rules<br> <br>Program rule actions<br> <br>Program rule variables<br> <br>Program attributes<br> <br>Data elements<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets |
+| Category combination | Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Attributes |
+| Dashboard | Dashboard items<br> <br>Charts<br> <br>Event charts<br> <br>Pivot tables<br> <br>Event reports<br> <br>Maps<br> <br>Reports<br> <br>Resources |
+| Data element groups | Data elements<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets<br> <br>Attributes<br> <br>Legend sets<br> <br>Legends |
+| OptionSets | Option |
 
 ![](resources/images/import_export/metadata_dependency_export.png)
 
@@ -418,14 +345,14 @@ formats.
 1.  Select an organisation unit.
 
 2.  Select the **Inclusion**:
-    
+
       - **Selected** : Export event data only for the selected
         organisation unit
-    
+
       - **Directly below** : Export event data including the first
         level of the organisation units inside the selections as well
         as the selected organisation unit itself.
-    
+
       - **All below** : Export event data for all organisation units
         inside the selections as well as the selected organisation
         unit itself.
@@ -521,37 +448,16 @@ also known as identifier schemes and are used to map metadata objects
 to other metadata during import, and to render metadata as part of
 exports.
 
-<table>
-<caption>Available values</caption>
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 85%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Scheme</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ID, UID</td>
-<td>Match on DHIS2 stable Identifier, this is the default id scheme.</td>
-</tr>
-<tr class="even">
-<td>CODE</td>
-<td>Match on DHIS2 Code, mainly used to exchange data with an external system.</td>
-</tr>
-<tr class="odd">
-<td>NAME</td>
-<td>Match on DHIS2 Name, please note that this uses what is available as <em>object.name</em>, and not the translated name. Also note that names are not always unique, and in that case, they can not be used.</td>
-</tr>
-<tr class="even">
-<td>ATTRIBUTE:ID</td>
-<td>Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to <em>true</em>. The main usage of this is also to exchange data with external systems, it has some advantages over <em>CODE</em> since multiple attributes can be added, so it can be used to synchronize with more than one system.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Available values
+
+| Scheme | Description |
+|---|---|
+| ID, UID | Match on DHIS2 stable Identifier, this is the default id scheme. |
+| CODE | Match on DHIS2 Code, mainly used to exchange data with an external system. |
+| NAME | Match on DHIS2 Name, please note that this uses what is available as *object.name*, and not the translated name. Also note that names are not always unique, and in that case, they can not be used. |
+| ATTRIBUTE:ID | Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to *true*. The main usage of this is also to exchange data with external systems, it has some advantages over *CODE* since multiple attributes can be added, so it can be used to synchronize with more than one system. |
 
 ### ID scheme
 The ID scheme applies to all types of objects, but can be overwritten

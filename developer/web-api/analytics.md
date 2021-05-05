@@ -21,211 +21,43 @@ organisation unit group sets.
 
 The analytics resource lets you specify a range of query parameters:
 
-<table>
-<caption>Query parameters</caption>
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 10%" />
-<col style="width: 45%" />
-<col style="width: 27%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Options (default first)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dimension</td>
-<td>Yes</td>
-<td>Dimensions and dimension items to be retrieved, repeated for each.</td>
-<td>Any dimension</td>
-</tr>
-<tr class="even">
-<td>filter</td>
-<td>No</td>
-<td>Filters and filter items to apply to the query, repeated for each.</td>
-<td>Any dimension</td>
-</tr>
-<tr class="odd">
-<td>aggregationType</td>
-<td>No</td>
-<td>Aggregation type to use in the aggregation process.</td>
-<td>SUM | AVERAGE | AVERAGE_SUM_ORG_UNIT | LAST | LAST_AVERAGE_ORG_UNIT | COUNT | STDDEV | VARIANCE | MIN | MAX</td>
-</tr>
-<tr class="even">
-<td>measureCriteria</td>
-<td>No</td>
-<td>Filters for the data/measures.</td>
-<td>EQ | GT | GE | LT | LE</td>
-</tr>
-<tr class="odd">
-<td>preAggregationMeasureCriteria</td>
-<td>No</td>
-<td>Filters for the data/measure, applied before aggregation is performed.</td>
-<td>EQ | GT | GE | LT | LE</td>
-</tr>
-<tr>
-<td>startDate</td>
-<td>No</td>
-<td>Start date for a date range. Will be applied as a filter. Can not be used together with a period dimension or filter.</td>
-<td>Date</td>
-</tr>
-<tr>
-<td>endDate</td>
-<td>No</td>
-<td>End date for date range. Will be applied as a filter. Can not be used together with a period dimension or filter.</td>
-<td>Date</td>
-</tr>
-<tr class="even">
-<td>skipMeta</td>
-<td>No</td>
-<td>Exclude the metadata part of the response (improves performance).</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>skipData</td>
-<td>No</td>
-<td>Exclude the data part of the response.</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>skipRounding</td>
-<td>No</td>
-<td>Skip rounding of data values, i.e. provide full precision.</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>hierarchyMeta</td>
-<td>No</td>
-<td>Include names of organisation unit ancestors and hierarchy paths of organisation units in the metadata.</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>ignoreLimit</td>
-<td>No</td>
-<td>Ignore limit on max 50 000 records in response - use with care.</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>tableLayout</td>
-<td>No</td>
-<td>Use plain data source or table layout for the response.</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>hideEmptyRows</td>
-<td>No</td>
-<td>Hides empty rows in response, applicable when table layout is true.</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>hideEmptyColumns</td>
-<td>No</td>
-<td>Hides empty columns in response, applicable when table layout is true.</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>showHierarchy</td>
-<td>No</td>
-<td>Display full org unit hierarchy path together with org unit name.</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>includeNumDen</td>
-<td>No</td>
-<td>Include the numerator and denominator used to calculate the value in the response.</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>includeMetadataDetails</td>
-<td>No</td>
-<td>Include metadata details to raw data response.</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>displayProperty</td>
-<td>No</td>
-<td>Property to display for metadata.</td>
-<td>NAME | SHORTNAME</td>
-</tr>
-<tr class="even">
-<td>outputIdScheme</td>
-<td>No</td>
-<td>Identifier scheme used for metadata items in the query response. It accepts identifier, code or attributes.</td>
-<td>UID | UUID | CODE | NAME | ATTRIBUTE:&lt;ID&gt;</td>
-</tr>
-<tr class="odd">
-<td>outputOrgUnitIdScheme</td>
-<td>No</td>
-<td>Identifier scheme used for metadata items in the query response. This parameter overrides the &quot;outputIdScheme&quot; specifically for for Org Units. It accepts identifier, code or attributes.</td>
-<td>UUID | CODE | NAME | ATTRIBUTE:&lt;ID&gt;</td>
-</tr>
-<tr class="even">
-<td>outputDataElementIdScheme</td>
-<td>No</td>
-<td>Identifier scheme used for metadata items in the query response. This parameter overrides the &quot;outputIdScheme&quot; specifically for Data Elements. It accepts identifier, code or attributes.</td>
-<td>UUID | CODE | NAME | ATTRIBUTE:&lt;ID&gt;</td>
-</tr>
-<tr class="odd">
-<td>inputIdScheme</td>
-<td>No</td>
-<td>Identifier scheme to use for metadata items in the query request, can be an identifier, code or attributes.</td>
-<td>UID | CODE | ATTRIBUTE:&lt;ID&gt;</td>
-</tr>
-<tr class="even">
-<td>approvalLevel</td>
-<td>No</td>
-<td>Include data which has been approved at least up to the given approval level, refers to identifier of approval level.</td>
-<td>Identifier of approval level</td>
-</tr>
-<tr class="odd">
-<td>relativePeriodDate</td>
-<td>No</td>
-<td>Date used as basis for relative periods.</td>
-<td>Date.</td>
-</tr>
-<tr class="even">
-<td>userOrgUnit</td>
-<td>No</td>
-<td>Explicitly define the user org units to utilize, overrides organisation units associated with the current user, multiple identifiers can be separated by semicolon.</td>
-<td>Organisation unit identifiers.</td>
-</tr>
-<tr class="odd">
-<td>columns</td>
-<td>No</td>
-<td>Dimensions to use as columns for table layout.</td>
-<td>Any dimension (must be query dimension)</td>
-</tr>
-<tr class="even">
-<td>rows</td>
-<td>No</td>
-<td>Dimensions to use as rows for table layout.</td>
-<td>Any dimension (must be query dimension)</td>
-</tr>
-<tr class="odd">
-<td>order</td>
-<td>No</td>
-<td>Specify the ordering of rows based on value.</td>
-<td>ASC | DESC</td>
-</tr>
-<tr class="even">
-<td>timeField</td>
-<td>No</td>
-<td>The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element with a time-based value type.</td>
-<td>EVENT_DATE | ENROLLMENT_DATE | INCIDENT_DATE | DUE_DATE | COMPLETED_DATE | CREATED | LAST_UPDATED | &lt;Attribute ID&gt; | &lt;Data element ID&gt;</td>
-</tr>
-<tr>
-<td>orgUnitField</td>
-<td>No</td>
-<td>The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter.
-<td>&lt;Attribute ID&gt; | &lt;Data element ID&gt;</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query parameters
+
+| Query parameter | Required | Description | Options (default first) |
+|---|---|---|---|
+| dimension | Yes | Dimensions and dimension items to be retrieved, repeated for each. | Any dimension |
+| filter | No | Filters and filter items to apply to the query, repeated for each. | Any dimension |
+| aggregationType | No | Aggregation type to use in the aggregation process. | SUM &#124; AVERAGE &#124; AVERAGE_SUM_ORG_UNIT &#124; LAST &#124; LAST_AVERAGE_ORG_UNIT &#124; COUNT &#124; STDDEV &#124; VARIANCE &#124; MIN &#124; MAX |
+| measureCriteria | No | Filters for the data/measures. | EQ &#124; GT &#124; GE &#124; LT &#124; LE |
+| preAggregationMeasureCriteria | No | Filters for the data/measure, applied before aggregation is performed. | EQ &#124; GT &#124; GE &#124; LT &#124; LE |
+| startDate | No | Start date for a date range. Will be applied as a filter. Can not be used together with a period dimension or filter. | Date |
+| endDate | No | End date for date range. Will be applied as a filter. Can not be used together with a period dimension or filter. | Date |
+| skipMeta | No | Exclude the metadata part of the response (improves performance). | false &#124; true |
+| skipData | No | Exclude the data part of the response. | false &#124; true |
+| skipRounding | No | Skip rounding of data values, i.e. provide full precision. | false &#124; true |
+| hierarchyMeta | No | Include names of organisation unit ancestors and hierarchy paths of organisation units in the metadata. | false &#124; true |
+| ignoreLimit | No | Ignore limit on max 50 000 records in response - use with care. | false &#124; true |
+| tableLayout | No | Use plain data source or table layout for the response. | false &#124; true |
+| hideEmptyRows | No | Hides empty rows in response, applicable when table layout is true. | false &#124; true |
+| hideEmptyColumns | No | Hides empty columns in response, applicable when table layout is true. | false &#124; true |
+| showHierarchy | No | Display full org unit hierarchy path together with org unit name. | false &#124; true |
+| includeNumDen | No | Include the numerator and denominator used to calculate the value in the response. | false &#124; true |
+| includeMetadataDetails | No | Include metadata details to raw data response. | false &#124; true |
+| displayProperty | No | Property to display for metadata. | NAME &#124; SHORTNAME |
+| outputIdScheme | No | Identifier scheme used for metadata items in the query response. It accepts identifier, code or attributes. | UID &#124; UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
+| outputOrgUnitIdScheme | No | Identifier scheme used for metadata items in the query response. This parameter overrides the "outputIdScheme" specifically for for Org Units. It accepts identifier, code or attributes. | UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
+| outputDataElementIdScheme | No | Identifier scheme used for metadata items in the query response. This parameter overrides the "outputIdScheme" specifically for Data Elements. It accepts identifier, code or attributes. | UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
+| inputIdScheme | No | Identifier scheme to use for metadata items in the query request, can be an identifier, code or attributes. | UID &#124; CODE &#124; ATTRIBUTE:<ID\> |
+| approvalLevel | No | Include data which has been approved at least up to the given approval level, refers to identifier of approval level. | Identifier of approval level |
+| relativePeriodDate | No | Date used as basis for relative periods. | Date. |
+| userOrgUnit | No | Explicitly define the user org units to utilize, overrides organisation units associated with the current user, multiple identifiers can be separated by semicolon. | Organisation unit identifiers. |
+| columns | No | Dimensions to use as columns for table layout. | Any dimension (must be query dimension) |
+| rows | No | Dimensions to use as rows for table layout. | Any dimension (must be query dimension) |
+| order | No | Specify the ordering of rows based on value. | ASC &#124; DESC |
+| timeField | No | The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element with a time-based value type. | EVENT_DATE &#124; ENROLLMENT_DATE &#124; INCIDENT_DATE &#124; DUE_DATE &#124; COMPLETED_DATE &#124; CREATED &#124; LAST_UPDATED &#124; <Attribute ID\> &#124; <Data element ID\> |
+| orgUnitField | No | The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter. <Attribute ID\> &#124; <Data element ID\> | <Attribute ID\> &#124; <Data element ID\> |
 
 The *dimension* query parameter defines which dimensions should be
 included in the analytics query. Any number of dimensions can be
@@ -326,68 +158,21 @@ unit group sets. The table below displays the available data dimensions
 in DHIS2. Each data dimension has a corresponding *dimension
 identifier*, and each dimension can have a set of *dimension items*:
 
-<table>
-<caption>Dimensions and dimension items</caption>
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 12%" />
-<col style="width: 49%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Dimension</th>
-<th>Dimension id</th>
-<th>Dimension items</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Data elements, indicators, data set reporting rate metrics, data element operands, program indicators, program data elements, program attributes, validation rules</td>
-<td>dx</td>
-<td>Data element, indicator, data set reporting rate metrics, data element operand, program indicator, program attribute identifiers, keyword DE_GROUP-&lt;group-id&gt;, IN_GROUP-&lt;group-id&gt;, use &lt;dataelement-id&gt;.&lt;optioncombo-id&gt; for data element operands, &lt;program-id&gt;.&lt;dataelement-id&gt; for program data elements, &lt;program-id&gt;.&lt;attribute-id&gt; for program attributes, &lt;validationrule-id&gt; for validation results.</td>
-</tr>
-<tr class="even">
-<td>Periods (time)</td>
-<td>pe</td>
-<td>ISO periods and relative periods, see &quot;date and period format&quot;</td>
-</tr>
-<tr class="odd">
-<td>Organisation unit hierarchy</td>
-<td>ou</td>
-<td>Organisation unit identifiers, and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-&lt;level&gt; and OU_GROUP-&lt;group-id&gt;</td>
-</tr>
-<tr class="even">
-<td>Category option combinations</td>
-<td>co</td>
-<td>Category option combo identifiers  (omit to get all items)</td>
-</tr>
-<tr class="odd">
-<td>Attribute option combinations</td>
-<td>ao</td>
-<td>Category option combo identifiers (omit to get all items)</td>
-</tr>
-<tr class="even">
-<td>Categories</td>
-<td>&lt;category id&gt;</td>
-<td>Category option identifiers (omit to get all items)</td>
-</tr>
-<tr class="odd">
-<td>Data element group sets</td>
-<td>&lt;group set id&gt;</td>
-<td>Data element group identifiers (omit to get all items)</td>
-</tr>
-<tr class="even">
-<td>Organisation unit group sets</td>
-<td>&lt;group set id&gt;</td>
-<td>Organisation unit group identifiers (omit to get all items)</td>
-</tr>
-<tr class="odd">
-<td>Category option group sets</td>
-<td>&lt;group set id&gt;</td>
-<td>Category option group identifiers (omit to get all items)</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Dimensions and dimension items
+
+| Dimension | Dimension id | Dimension items |
+|---|---|---|
+| Data elements, indicators, data set reporting rate metrics, data element operands, program indicators, program data elements, program attributes, validation rules | dx | Data element, indicator, data set reporting rate metrics, data element operand, program indicator, program attribute identifiers, keyword DE_GROUP-<group-id\>, IN_GROUP-<group-id\>, use <dataelement-id\>.<optioncombo-id\> for data element operands, <program-id\>.<dataelement-id\> for program data elements, <program-id\>.<attribute-id\> for program attributes, <validationrule-id\> for validation results. |
+| Periods (time) | pe | ISO periods and relative periods, see "date and period format" |
+| Organisation unit hierarchy | ou | Organisation unit identifiers, and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\> |
+| Category option combinations | co | Category option combo identifiers  (omit to get all items) |
+| Attribute option combinations | ao | Category option combo identifiers (omit to get all items) |
+| Categories | <category id\> | Category option identifiers (omit to get all items) |
+| Data element group sets | <group set id\> | Data element group identifiers (omit to get all items) |
+| Organisation unit group sets | <group set id\> | Organisation unit group identifiers (omit to get all items) |
+| Category option group sets | <group set id\> | Category option group identifiers (omit to get all items) |
 
 It is not necessary to be aware of which objects are used for the
 various dynamic dimensions when designing analytics queries. You can get
@@ -549,79 +334,21 @@ below.
 The `dx` dimension is a special dimension which can contain all of the
 following data types.
 
-<table>
-<caption>Data dx dimension types</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 23%" />
-<col style="width: 27%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Syntax</th>
-<th>Description</th>
-<th>Data source</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Indicator</td>
-<td>&lt;indicator-id&gt;</td>
-<td>Indicator identifier.</td>
-<td>Aggregated data</td>
-</tr>
-<tr class="even">
-<td>Indicator grop</td>
-<td>IN_GROUP-&lt;indicatorgroup-id&gt;</td>
-<td>Keyword followed by an indicator group identifier. Will include all indicators in the group in the response.</td>
-<td>Aggregated data</td>
-</tr>
-<tr class="odd">
-<td>Data element</td>
-<td>&lt;dataelement-id&gt;</td>
-<td>Data element identifier.</td>
-<td>Aggregated data</td>
-</tr>
-<tr class="even">
-<td>Data element group</td>
-<td>DE_GROUP-&lt;dataelementgroup-id&gt;</td>
-<td>Keyword followed by a data element group identifier. Will include all data elements in the group in the response.</td>
-<td>Aggregated data</td>
-</tr>
-<tr class="odd">
-<td>Data element operand</td>
-<td>&lt;dataelement-id&gt;.&lt;categoryoptcombo-id&gt;.&lt;attributeoptcombo-id&gt;</td>
-<td>Data element identifier followed by one or both of category option combination and attribute option combo identifier. Wildcard &quot;*&quot; symbol can be used to indicate any option combination value. The attribute option combination identifier can be completely left out.</td>
-<td>Aggregate data</td>
-</tr>
-<tr class="even">
-<td>Data set</td>
-<td>&lt;dataset-id&gt;.&lt;reporting-rate-metric&gt;</td>
-<td>Data set identifier followed by reporting rate metric. Can be REPORTING_RATE | REPORTING_RATE_ON_TIME | ACTUAL_REPORTS | ACTUAL_REPORTS_ON_TIME | EXPECTED_REPORTS.</td>
-<td>Data set completeness registrations</td>
-</tr>
-<tr class="odd">
-<td>Program data element</td>
-<td>&lt;program-id&gt;.&lt;dataelement-id&gt;</td>
-<td>Program identifier followed by data element identifier. Reads from events within the specified program.</td>
-<td>Events from the given program</td>
-</tr>
-<tr class="even">
-<td>Program indicator</td>
-<td>&lt;programindicator-id&gt;</td>
-<td>Program indicator identifier. Reads from events from within the program associated with the program identifier.</td>
-<td>Events from the program of the program indicator</td>
-</tr>
-<tr class="odd">
-<td>Validation result</td>
-<td>&lt;validationrule-id&gt;</td>
-<td>Validation rule identifier. Will include validation rule violations for the validation rule, requires that validation results are generated and persisted.</td>
-<td>Validation results</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data dx dimension types
+
+| Type | Syntax | Description | Data source |
+|---|---|---|---|
+| Indicator | <indicator-id\> | Indicator identifier. | Aggregated data |
+| Indicator grop | IN_GROUP-<indicatorgroup-id\> | Keyword followed by an indicator group identifier. Will include all indicators in the group in the response. | Aggregated data |
+| Data element | <dataelement-id\> | Data element identifier. | Aggregated data |
+| Data element group | DE_GROUP-<dataelementgroup-id\> | Keyword followed by a data element group identifier. Will include all data elements in the group in the response. | Aggregated data |
+| Data element operand | <dataelement-id\>.<categoryoptcombo-id\>.<attributeoptcombo-id\> | Data element identifier followed by one or both of category option combination and attribute option combo identifier. Wildcard "\*" symbol can be used to indicate any option combination value. The attribute option combination identifier can be completely left out. | Aggregate data |
+| Data set | <dataset-id\>.<reporting-rate-metric\> | Data set identifier followed by reporting rate metric. Can be REPORTING_RATE &#124; REPORTING_RATE_ON_TIME &#124; ACTUAL_REPORTS &#124; ACTUAL_REPORTS_ON_TIME &#124; EXPECTED_REPORTS. | Data set completeness registrations |
+| Program data element | <program-id\>.<dataelement-id\> | Program identifier followed by data element identifier. Reads from events within the specified program. | Events from the given program |
+| Program indicator | <programindicator-id\> | Program indicator identifier. Reads from events from within the program associated with the program identifier. | Events from the program of the program indicator |
+| Validation result | <validationrule-id\> | Validation rule identifier. Will include validation rule violations for the validation rule, requires that validation results are generated and persisted. | Validation results |
 
 Items from all of the various `dx` types can be combined in an analytics
 request. An example looks like this:
@@ -940,73 +667,25 @@ a subset of the query parameters are supported. Additionally, a
 *startDate* and *endDate* parameter are available. The supported
 parameters are listed in the table below.
 
-<table>
-<caption>Query parameters</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required / Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dimension</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>startDate</td>
-<td>No / yyyy-MM-dd</td>
-</tr>
-<tr class="odd">
-<td>endDate</td>
-<td>No / yyyy-MM-dd</td>
-</tr>
-<tr class="even">
-<td>skipMeta</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>skipData</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>hierarchyMeta</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>showHierarchy</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>displayProperty</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>outputIdScheme</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>outputOrgUnitIdScheme</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>outputDataElementIdScheme</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>inputIdScheme</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>userOrgUnit</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query parameters
+
+| Query parameter | Required / Notes |
+|---|---|
+| dimension | Yes |
+| startDate | No / yyyy-MM-dd |
+| endDate | No / yyyy-MM-dd |
+| skipMeta | No |
+| skipData | No |
+| hierarchyMeta | No |
+| showHierarchy | No |
+| displayProperty | No |
+| outputIdScheme | No |
+| outputOrgUnitIdScheme | No |
+| outputDataElementIdScheme | No |
+| inputIdScheme | No |
+| userOrgUnit | No |
 
 The *dimension* query parameter defines which dimensions (table columns)
 should be included in the response. It can optionally be constrained
@@ -1100,53 +779,18 @@ of options from option sets and legends from legend sets for data
 elements and attributes which are associated with such. The event
 dimensions are listed in the table below.
 
-<table>
-<caption>Event dimensions</caption>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 11%" />
-<col style="width: 60%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Dimension</th>
-<th>Dimension id</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Data elements</td>
-<td>&lt;id&gt;</td>
-<td>Data element identifiers</td>
-</tr>
-<tr class="even">
-<td>Attributes</td>
-<td>&lt;id&gt;</td>
-<td>Attribute identifiers</td>
-</tr>
-<tr class="odd">
-<td>Periods</td>
-<td>pe</td>
-<td>ISO periods and relative periods, see &quot;date and period format&quot;</td>
-</tr>
-<tr class="even">
-<td>Organisation units</td>
-<td>ou</td>
-<td>Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-&lt;level&gt; and OU_GROUP-&lt;group-id&gt;</td>
-</tr>
-<tr class="odd">
-<td>Organisation unit group sets</td>
-<td>&lt;org unit group set id&gt;</td>
-<td>Organisation unit group set identifiers</td>
-</tr>
-<tr class="even">
-<td>Categories</td>
-<td>&lt;category id&gt;</td>
-<td>Category identifiers (program attribute categories only)</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Event dimensions
+
+| Dimension | Dimension id | Description |
+|---|---|---|
+| Data elements | <id\> | Data element identifiers |
+| Attributes | <id\> | Attribute identifiers |
+| Periods | pe | ISO periods and relative periods, see "date and period format" |
+| Organisation units | ou | Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\> |
+| Organisation unit group sets | <org unit group set id\> | Organisation unit group set identifiers |
+| Categories | <category id\> | Category identifiers (program attribute categories only) |
 
 ### Request query parameters
 
@@ -1154,307 +798,70 @@ dimensions are listed in the table below.
 
 The analytics event API lets you specify a range of query parameters.
 
-<table>
-<caption>Query parameters for both event query and aggregate analytics</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 11%" />
-<col style="width: 48%" />
-<col style="width: 19%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Options (default first)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>program</td>
-<td>Yes</td>
-<td>Program identifier.</td>
-<td>Any program identifier</td>
-</tr>
-<tr class="even">
-<td>stage</td>
-<td>No</td>
-<td>Program stage identifier.</td>
-<td>Any program stage identifier</td>
-</tr>
-<tr class="odd">
-<td>startDate</td>
-<td>Yes</td>
-<td>Start date for events.</td>
-<td>Date in yyyy-MM-dd format</td>
-</tr>
-<tr class="even">
-<td>endDate</td>
-<td>Yes</td>
-<td>End date for events.</td>
-<td>Date in yyyy-MM-dd format</td>
-</tr>
-<tr class="odd">
-<td>dimension</td>
-<td>Yes</td>
-<td>Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format &lt;item-id&gt;:&lt;operator&gt;:&lt;filter&gt;. Filter values are case-insensitive.</td>
-<td>Operators can be EQ | GT | GE | LT | LE | NE | LIKE | IN</td>
-</tr>
-<tr class="even">
-<td>filter</td>
-<td>No</td>
-<td>Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format &lt;item-id&gt;:&lt;operator&gt;:&lt;filter&gt;. Filter values are case-insensitive.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>hierarchyMeta</td>
-<td>No</td>
-<td>Include names of organisation unit ancestors and hierarchy paths of organisation units in the metadata.</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>eventStatus</td>
-<td>No</td>
-<td>Specify status of events to include.</td>
-<td>ACTIVE | COMPLETED | SCHEDULE | OVERDUE | SKIPPED</td>
-</tr>
-<tr class="odd">
-<td>programStatus</td>
-<td>No</td>
-<td>Specify enrollment status of events to include.</td>
-<td>ACTIVE | COMPLETED | CANCELLED</td>
-</tr>
-<tr class="even">
-<td>relativePeriodDate</td>
-<td>string</td>
-<td>No</td>
-<td>Date identifier e.g: &quot;2016-01-01&quot;. Overrides the start date of the relative period</td>
-</tr>
-<tr class="odd">
-<td>columns</td>
-<td>No</td>
-<td>Dimensions to use as columns for table layout.</td>
-<td>Any dimension (must be query dimension)</td>
-</tr>
-<tr class="even">
-<td>rows</td>
-<td>No</td>
-<td>Dimensions to use as rows for table layout.</td>
-<td>Any dimension (must be query dimension)</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Query parameters for event query analytics only</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 11%" />
-<col style="width: 48%" />
-<col style="width: 19%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Options</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ouMode</td>
-<td>No</td>
-<td>The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only.</td>
-<td>DESCENDANTS, CHILDREN, SELECTED</td>
-</tr>
-<tr class="even">
-<td>asc</td>
-<td>No</td>
-<td>Dimensions to be sorted ascending, can reference event date, org unit name and code and any item identifiers.</td>
-<td>EVENTDATE | OUNAME | OUCODE | item identifier</td>
-</tr>
-<tr class="odd">
-<td>desc</td>
-<td>No</td>
-<td>Dimensions to be sorted descending, can reference event date, org unit name and code and any item identifiers.</td>
-<td>EVENTDATE | OUNAME | OUCODE | item identifier</td>
-</tr>
-<tr class="even">
-<td>coordinatesOnly</td>
-<td>No</td>
-<td>Whether to only return events which have coordinates.</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>dataIdScheme</td>
-<td>No</td>
-<td>Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response.</td>
-<td>NAME | CODE | UID</td>
-</tr>
-<tr class="even">
-<td>page</td>
-<td>No</td>
-<td>The page number. Default page is 1.</td>
-<td>Numeric positive value</td>
-</tr>
-<tr class="odd">
-<td>pageSize</td>
-<td>No</td>
-<td>The page size. Default size is 50 items per page.</td>
-<td>Numeric zero or positive value</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Query parameters for aggregate event analytics only</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 11%" />
-<col style="width: 48%" />
-<col style="width: 19%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Options</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>value</td>
-<td>No</td>
-<td>Value dimension identifier. Can be a data element or an attribute which must be of numeric value type.</td>
-<td>Data element or attribute identifier</td>
-</tr>
-<tr class="even">
-<td>aggregationType</td>
-<td>No</td>
-<td>Aggregation type for the value dimension. Default is AVERAGE.</td>
-<td>SUM | AVERAGE | AVERAGE_SUM_ORG_UNIT | LAST | LAST_AVERAGE_ORG_UNIT | COUNT | STDDEV | VARIANCE | MIN | MAX</td>
-</tr>
-<tr class="odd">
-<td>showHierarchy</td>
-<td>No</td>
-<td>Display full org unit hierarchy path together with org unit name.</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>displayProperty</td>
-<td>No</td>
-<td>Property to display for metadata.</td>
-<td>NAME | SHORTNAME</td>
-</tr>
-<tr class="odd">
-<td>sortOrder</td>
-<td>No</td>
-<td>Sort the records on the value column in ascending or descending order.</td>
-<td>ASC | DESC</td>
-</tr>
-<tr class="even">
-<td>limit</td>
-<td>No</td>
-<td>The maximum number of records to return. Cannot be larger than 10 000.</td>
-<td>Numeric positive value</td>
-</tr>
-<tr class="odd">
-<td>outputType</td>
-<td>No</td>
-<td>Specify output type for analytical data which can be events, enrollments or tracked entity instances. The two last options apply to programs with registration only.</td>
-<td>EVENT | ENROLLMENT | TRACKED_ENTITY_INSTANCE</td>
-</tr>
-<tr class="even">
-<td>collapseDataDimensions</td>
-<td>No</td>
-<td>Collapse all data dimensions (data elements and attributes) into a single dimension in the response.</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>skipMeta</td>
-<td>No</td>
-<td>Exclude the meta data part of the response (improves performance).</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>skipData</td>
-<td>No</td>
-<td>Exclude the data part of the response.</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>skipRounding</td>
-<td>No</td>
-<td>Skip rounding of aggregate data values.</td>
-<td>false | true</td>
-</tr>
-<tr class="even">
-<td>aggregateData</td>
-<td>No</td>
-<td>Produce aggregate values for the data dimensions (as opposed to dimension items).</td>
-<td>false | true</td>
-</tr>
-<tr class="odd">
-<td>timeField</td>
-<td>No</td>
-<td>The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element having a time-based value type.</td>
-<td>EVENT_DATE | ENROLLMENT_DATE | INCIDENT_DATE | DUE_DATE | COMPLETED_DATE | &lt;Attribute ID&gt; | &lt;Data element ID&gt;</td>
-</tr>
-<tr>
-<td>orgUnitField</td>
-<td>No</td>
-<td>The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter.
-<td>&lt;Attribute ID&gt; | &lt;Data element ID&gt;</td>
-</tr>
-</tbody>
-</table>
+Table: Query parameters for both event query and aggregate analytics
 
-<table>
-<caption>Query parameters for cluster event analytics only</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 11%" />
-<col style="width: 49%" />
-<col style="width: 19%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Options</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>clusterSize</td>
-<td>Yes</td>
-<td>Size of clusters in meters.</td>
-<td>Numeric positive value</td>
-</tr>
-<tr class="even">
-<td>coordinateField</td>
-<td>No</td>
-<td>Field to base geospatial event analytics on. Default is event. Can be set to identifiers of attributes and data elements of value type coordinate.</td>
-<td>EVENT | &lt;attribute-id&gt; | &lt;dataelement-id&gt;</td>
-</tr>
-<tr class="odd">
-<td>bbox</td>
-<td>Yes</td>
-<td>Bounding box / area of events to include in the response on the format &quot;min longitude, min latitude, max longitude , max latitude&quot;.</td>
-<td>String</td>
-</tr>
-<tr class="even">
-<td>includeClusterPoints</td>
-<td>No</td>
-<td>Include information about underlying points for each cluster, be careful if cluster represent a very high number of points.</td>
-<td>false | true</td>
-</tr>
-</tbody>
-</table>
+| Query parameter | Required | Description | Options (default first) |
+|---|---|---|---|
+| program | Yes | Program identifier. | Any program identifier |
+| stage | No | Program stage identifier. | Any program stage identifier |
+| startDate | Yes | Start date for events. | Date in yyyy-MM-dd format |
+| endDate | Yes | End date for events. | Date in yyyy-MM-dd format |
+| dimension | Yes | Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. | Operators can be EQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; IN |
+| filter | No | Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. ||
+| hierarchyMeta | No | Include names of organisation unit ancestors and hierarchy paths of organisation units in the metadata. | false &#124; true |
+| eventStatus | No | Specify status of events to include. | ACTIVE &#124; COMPLETED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED |
+| programStatus | No | Specify enrollment status of events to include. | ACTIVE &#124; COMPLETED &#124; CANCELLED |
+| relativePeriodDate | string | No | Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
+| columns | No | Dimensions to use as columns for table layout. | Any dimension (must be query dimension) |
+| rows | No | Dimensions to use as rows for table layout. | Any dimension (must be query dimension) |
+
+
+
+Table: Query parameters for event query analytics only
+
+| Query parameter | Required | Description | Options |
+|---|---|---|---|
+| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. | DESCENDANTS, CHILDREN, SELECTED |
+| asc | No | Dimensions to be sorted ascending, can reference event date, org unit name and code and any item identifiers. | EVENTDATE &#124; OUNAME &#124; OUCODE &#124; item identifier |
+| desc | No | Dimensions to be sorted descending, can reference event date, org unit name and code and any item identifiers. | EVENTDATE &#124; OUNAME &#124; OUCODE &#124; item identifier |
+| coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
+| dataIdScheme | No | Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response. | NAME &#124; CODE &#124; UID |
+| page | No | The page number. Default page is 1. | Numeric positive value |
+| pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
+
+
+
+Table: Query parameters for aggregate event analytics only
+
+| Query parameter | Required | Description | Options |
+|---|---|---|---|
+| value | No | Value dimension identifier. Can be a data element or an attribute which must be of numeric value type. | Data element or attribute identifier |
+| aggregationType | No | Aggregation type for the value dimension. Default is AVERAGE. | SUM &#124; AVERAGE &#124; AVERAGE_SUM_ORG_UNIT &#124; LAST &#124; LAST_AVERAGE_ORG_UNIT &#124; COUNT &#124; STDDEV &#124; VARIANCE &#124; MIN &#124; MAX |
+| showHierarchy | No | Display full org unit hierarchy path together with org unit name. | false &#124; true |
+| displayProperty | No | Property to display for metadata. | NAME &#124; SHORTNAME |
+| sortOrder | No | Sort the records on the value column in ascending or descending order. | ASC &#124; DESC |
+| limit | No | The maximum number of records to return. Cannot be larger than 10 000. | Numeric positive value |
+| outputType | No | Specify output type for analytical data which can be events, enrollments or tracked entity instances. The two last options apply to programs with registration only. | EVENT &#124; ENROLLMENT &#124; TRACKED_ENTITY_INSTANCE |
+| collapseDataDimensions | No | Collapse all data dimensions (data elements and attributes) into a single dimension in the response. | false &#124; true |
+| skipMeta | No | Exclude the meta data part of the response (improves performance). | false &#124; true |
+| skipData | No | Exclude the data part of the response. | false &#124; true |
+| skipRounding | No | Skip rounding of aggregate data values. | false &#124; true |
+| aggregateData | No | Produce aggregate values for the data dimensions (as opposed to dimension items). | false &#124; true |
+| timeField | No | The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element having a time-based value type. | EVENT_DATE &#124; ENROLLMENT_DATE &#124; INCIDENT_DATE &#124; DUE_DATE &#124; COMPLETED_DATE &#124; <Attribute ID\> &#124; <Data element ID\> |
+| orgUnitField | No | The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter. <Attribute ID\> &#124; <Data element ID\> | <Attribute ID\> &#124; <Data element ID\> |
+
+
+
+Table: Query parameters for cluster event analytics only
+
+| Query parameter | Required | Description | Options |
+|---|---|---|---|
+| clusterSize | Yes | Size of clusters in meters. | Numeric positive value |
+| coordinateField | No | Field to base geospatial event analytics on. Default is event. Can be set to identifiers of attributes and data elements of value type coordinate. | EVENT &#124; <attribute-id\> &#124; <dataelement-id\> |
+| bbox | Yes | Bounding box / area of events to include in the response on the format "min longitude, min latitude, max longitude , max latitude". | String |
+| includeClusterPoints | No | Include information about underlying points for each cluster, be careful if cluster represent a very high number of points. | false &#124; true |
 
 ### Event query analytics
 
@@ -1536,53 +943,20 @@ operator and filter components, all separated with semi-colons:
 
 The available operators are listed below.
 
-<table>
-<caption>Filter operators</caption>
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>EQ</td>
-<td>Equal to</td>
-</tr>
-<tr class="even">
-<td>GT</td>
-<td>Greater than</td>
-</tr>
-<tr class="odd">
-<td>GE</td>
-<td>Greater than or equal to</td>
-</tr>
-<tr class="even">
-<td>LT</td>
-<td>Less than</td>
-</tr>
-<tr class="odd">
-<td>LE</td>
-<td>Less than or equal to</td>
-</tr>
-<tr class="even">
-<td>NE</td>
-<td>Not equal to</td>
-</tr>
-<tr class="odd">
-<td>LIKE</td>
-<td>Like (free text match)</td>
-</tr>
-<tr class="even">
-<td>IN</td>
-<td>Equal to one of multiple values separated by &quot;;&quot;</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Filter operators
+
+| Operator | Description |
+|---|---|
+| EQ | Equal to |
+| GT | Greater than |
+| GE | Greater than or equal to |
+| LT | Less than |
+| LE | Less than or equal to |
+| NE | Not equal to |
+| LIKE | Like (free text match) |
+| IN | Equal to one of multiple values separated by ";" |
 
 #### Response formats
 
@@ -2130,47 +1504,16 @@ The enrollment analytics API lets you access aggregated event data and query *en
 
 Enrollment dimensions include data elements, attributes, organisation units and periods. The query analytics resource will simply return enrollments matching a set of criteria and does not perform any aggregation.
 
-<table>
-<caption>Enrollment dimensions</caption>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 11%" />
-<col style="width: 60%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Dimension</th>
-<th>Dimension id</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Data elements in program stages</td>
-<td>&lt;program stage id&gt;.&lt;data element id&gt;</td>
-<td>Data element identifiers must include the program stage when querying data for enrollments.
 
-    dimension=edqlbukwRfQ.vANAXwtLwcT
 
-</td>
-</tr>
-<tr>
-<td>Attributes</td>
-<td>&lt;id&gt;</td>
-<td>Attribute identifiers</td>
-</tr>
-<tr>
-<td>Periods</td>
-<td>pe</td>
-<td>ISO periods and relative periods, see &quot;date and period format&quot;</td>
-</tr>
-<tr>
-<td>Organisation units</td>
-<td>ou</td>
-<td>Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-&lt;level&gt; and OU_GROUP-&lt;group-id&gt;</td>
-</tr>
-</tbody>
-</table>
+Table: Enrollment dimensions
+
+| Dimension | Dimension id | Description |
+|---|---|---|
+| Data elements in program stages | <program stage id\>.<data element id\> | Data element identifiers must include the program stage when querying data for enrollments.      dimension=edqlbukwRfQ.vANAXwtLwcT |
+| Attributes | <id\> | Attribute identifiers |
+| Periods | pe | ISO periods and relative periods, see "date and period format" |
+| Organisation units | ou | Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\> |
 
 ### Enrollment query analytics
 
@@ -2231,53 +1574,20 @@ You can specify multiple filters for a given item by repeating the operator and 
 
 The available operators are listed below.
 
-<table>
-<caption>Filter operators</caption>
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>EQ</td>
-<td>Equal to</td>
-</tr>
-<tr>
-<td>GT</td>
-<td>Greater than</td>
-</tr>
-<tr>
-<td>GE</td>
-<td>Greater than or equal to</td>
-</tr>
-<tr>
-<td>LT</td>
-<td>Less than</td>
-</tr>
-<tr>
-<td>LE</td>
-<td>Less than or equal to</td>
-</tr>
-<tr>
-<td>NE</td>
-<td>Not equal to</td>
-</tr>
-<tr>
-<td>LIKE</td>
-<td>Like (free text match)</td>
-</tr>
-<tr>
-<td>IN</td>
-<td>Equal to one of multiple values separated by &quot;;&quot;</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Filter operators
+
+| Operator | Description |
+|---|---|
+| EQ | Equal to |
+| GT | Greater than |
+| GE | Greater than or equal to |
+| LT | Less than |
+| LE | Less than or equal to |
+| NE | Not equal to |
+| LIKE | Like (free text match) |
+| IN | Equal to one of multiple values separated by ";" |
 
 ### Request query parameters
 
@@ -2285,108 +1595,25 @@ The available operators are listed below.
 
 The analytics enrollment query API lets you specify a range of query parameters.
 
-<table>
-<caption>Query parameters for enrollment query endpoint</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 11%" />
-<col style="width: 48%" />
-<col style="width: 19%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Options (default first)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>program</td>
-<td>Yes</td>
-<td>Program identifier.</td>
-<td>Any program identifier</td>
-</tr>
-<tr>
-<td>startDate</td>
-<td>No</td>
-<td>Start date for enrollments.</td>
-<td>Date in yyyy-MM-dd format</td>
-</tr>
-<tr>
-<td>endDate</td>
-<td>No</td>
-<td>End date for enrollments.</td>
-<td>Date in yyyy-MM-dd format</td>
-</tr>
-<tr>
-<td>dimension</td>
-<td>Yes</td>
-<td>Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format &lt;item-id&gt;:&lt;operator&gt;:&lt;filter&gt;. Filter values are case-insensitive.</td>
-<td>Operators can be EQ | GT | GE | LT | LE | NE | LIKE | IN</td>
-</tr>
-<tr>
-<td>filter</td>
-<td>No</td>
-<td>Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format &lt;item-id&gt;:&lt;operator&gt;:&lt;filter&gt;. Filter values are case-insensitive.</td>
-<td></td>
-</tr>
-<tr>
-<td>programStatus</td>
-<td>No</td>
-<td>Specify enrollment status of enrollments to include.</td>
-<td>ACTIVE | COMPLETED | CANCELLED</td>
-</tr>
-<tr>
-<td>relativePeriodDate</td>
-<td>string</td>
-<td>No</td>
-<td>Date identifier e.g: &quot;2016-01-01&quot;. Overrides the start date of the relative period</td>
-</tr>
-<tr>
-<td>ouMode</td>
-<td>No</td>
-<td>The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only.</td>
-<td>DESCENDANTS, CHILDREN, SELECTED</td>
-</tr>
-<tr>
-<td>asc</td>
-<td>No</td>
-<td>Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code.</td>
-<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
-</tr>
-<tr>
-<td>desc</td>
-<td>No</td>
-<td>Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code.</td>
-<td> ENROLLMENTDATE | INCIDENTDATE| OUNAME | OUCODE </td>
-</tr>
-<td>hierarchyMeta</td>
-<td>No</td>
-<td>Include names of organisation unit ancestors and hierarchy paths of organisation units in the metadata.</td>
-<td>false | true</td>
-</tr>
-<tr>
-<td>coordinatesOnly</td>
-<td>No</td>
-<td>Whether to only return enrollments which have coordinates.</td>
-<td>false | true</td>
-</tr>
-<tr>
-<td>page</td>
-<td>No</td>
-<td>The page number. Default page is 1.</td>
-<td>Numeric positive value</td>
-</tr>
-<tr>
-<td>pageSize</td>
-<td>No</td>
-<td>The page size. Default size is 50 items per page.</td>
-<td>Numeric zero or positive value</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query parameters for enrollment query endpoint
+
+| Query parameter | Required | Description | Options (default first) |
+|---|---|---|---|
+| program | Yes | Program identifier. | Any program identifier |
+| startDate | No | Start date for enrollments. | Date in yyyy-MM-dd format |
+| endDate | No | End date for enrollments. | Date in yyyy-MM-dd format |
+| dimension | Yes | Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. | Operators can be EQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; IN |
+| filter | No | Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. ||
+| programStatus | No | Specify enrollment status of enrollments to include. | ACTIVE &#124; COMPLETED &#124; CANCELLED |
+| relativePeriodDate | string | No | Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
+| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. | DESCENDANTS, CHILDREN, SELECTED |
+| asc | No | Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code. | ENROLLMENTDATE &#124; INCIDENTDATE&#124; OUNAME &#124; OUCODE |
+| desc | No | Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code. | ENROLLMENTDATE &#124; INCIDENTDATE&#124; OUNAME &#124; OUCODE |
+| coordinatesOnly | No | Whether to only return enrollments which have coordinates. | false &#124; true |
+| page | No | The page number. Default page is 1. | Numeric positive value |
+| pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
 
 #### Response formats
 
@@ -2657,38 +1884,15 @@ The API requires at least one organisation unit and at least one organisation un
 
 The org unit analytics resource lets you specify a range of query parameters:
 
-<table>
-<caption>Org unit analytics query parameters</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 60%" />
-<col style="width: 20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ou</td>
-<td>Org unit identifiers, potentially separated by a semicolon.</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>ougs</td>
-<td>Org unit group set identifiers, potentially separated by a semicolon.</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>columns</td>
-<td>Org unit group set identifiers, potentially separated by a semicolon. Defines which group sets are rendered as columns in a table layout.</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Org unit analytics query parameters
+
+| Property | Description | Required |
+|---|---|---|
+| ou | Org unit identifiers, potentially separated by a semicolon. | Yes |
+| ougs | Org unit group set identifiers, potentially separated by a semicolon. | Yes |
+| columns | Org unit group set identifiers, potentially separated by a semicolon. Defines which group sets are rendered as columns in a table layout. | No |
 
 The response will contain a column for the parent org unit, columns for each org unit group set part of the request and a column for the count. The statistics include the count of org units which are part of the sub-hierarchy of the org units specified in the request. The response contains a metadata section which specifies the name of each org unit and org unit group part of the response referenced by their identifiers.
 
@@ -2741,55 +1945,17 @@ and returns the result in the form of an HTML table.
 
 The request supports the following parameters:
 
-<table>
-<caption>Data set report query parameters</caption>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 50%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Description</th>
-<th>Type</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ds</td>
-<td>Data set to create the report from.</td>
-<td>Data set UID</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>pe</td>
-<td>Period to create the report from.</td>
-<td>ISO String</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>ou</td>
-<td>Organisation unit to create the report from.</td>
-<td>Organisation unit UID</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>filter</td>
-<td>Filters to be used as filters for the report. Can be repeated any number of times. Follows the analytics API syntax.</td>
-<td>One or more UIDs</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>selectedUnitOnly</td>
-<td>Whether to use captured data only or aggregated data.</td>
-<td>Boolean</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data set report query parameters
+
+| Parameter | Description | Type | Required |
+|---|---|---|---|
+| ds | Data set to create the report from. | Data set UID | Yes |
+| pe | Period to create the report from. | ISO String | Yes |
+| ou | Organisation unit to create the report from. | Organisation unit UID | Yes |
+| filter | Filters to be used as filters for the report. Can be repeated any number of times. Follows the analytics API syntax. | One or more UIDs | No |
+| selectedUnitOnly | Whether to use captured data only or aggregated data. | Boolean | No |
 
 The data set report resource accepts `GET` requests only. The response content type is `application/json` and returns data in a grid. This endpoint works for all types of data sets, including default, section and custom forms.
 
@@ -2847,61 +2013,18 @@ this endpoint:
 A push analysis consists of the following properties, where some are
 required to automatically run push analysis jobs:
 
-<table>
-<caption>Push analysis properties</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Description</th>
-<th>Type</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>dashboard</td>
-<td>Dashboard on which reports are based</td>
-<td>Dashboard UID</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td>message</td>
-<td>Appears after title in reports</td>
-<td>String</td>
-<td>No</td>
-</tr>
-<tr class="odd">
-<td>recipientUserGroups</td>
-<td>A set of user groups who should receive the reports</td>
-<td>One or more user Group UID</td>
-<td>No. Scheduled jobs without any recipient will be skipped.</td>
-</tr>
-<tr class="even">
-<td>enabled</td>
-<td>Indicated whether this push analysis should be scheduled or not. False by default.</td>
-<td>Boolean</td>
-<td>Yes. Must be true to be scheduled.</td>
-</tr>
-<tr class="odd">
-<td>schedulingFrequency</td>
-<td>The frequency of which reports should be scheduled.</td>
-<td>&quot;DAILY&quot;, &quot;WEEKLY&quot;, &quot;MONTHLY&quot;</td>
-<td>No. Push analysis without a frequency will not be scheduled</td>
-</tr>
-<tr class="even">
-<td>schedulingDayOfFrequency</td>
-<td>The day in the frequency the job should be scheduled.</td>
-<td>Integer. Any value when frequency is &quot;DAILY&quot;. 0-7 when frequency is &quot;WEEKLY&quot;. 1-31 when frequency is &quot;MONTHLY&quot;</td>
-<td>No. Push analysis without a valid day of frequency for the frequency set will not be scheduled.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Push analysis properties
+
+| Property | Description | Type | Required |
+|---|---|---|---|
+| dashboard | Dashboard on which reports are based | Dashboard UID | Yes |
+| message | Appears after title in reports | String | No |
+| recipientUserGroups | A set of user groups who should receive the reports | One or more user Group UID | No. Scheduled jobs without any recipient will be skipped. |
+| enabled | Indicated whether this push analysis should be scheduled or not. False by default. | Boolean | Yes. Must be true to be scheduled. |
+| schedulingFrequency | The frequency of which reports should be scheduled. | "DAILY", "WEEKLY", "MONTHLY" | No. Push analysis without a frequency will not be scheduled |
+| schedulingDayOfFrequency | The day in the frequency the job should be scheduled. | Integer. Any value when frequency is "DAILY". 0-7 when frequency is "WEEKLY". 1-31 when frequency is "MONTHLY" | No. Push analysis without a valid day of frequency for the frequency set will not be scheduled. |
 
 ## Data usage analytics
 
@@ -2949,53 +2072,20 @@ URL that creates a new event view of
 A successful save operation returns an HTTP status code 201. The table
 below shows the supported types of events.
 
-<table>
-<caption>Supported event types</caption>
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 61%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Key</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>REPORT_TABLE_VIEW</td>
-<td>Report table (pivot table) view</td>
-</tr>
-<tr class="even">
-<td>CHART_VIEW</td>
-<td>Chart view</td>
-</tr>
-<tr class="odd">
-<td>MAP_VIEW</td>
-<td>Map view (GIS)</td>
-</tr>
-<tr class="even">
-<td>EVENT_REPORT_VIEW</td>
-<td>Event report view</td>
-</tr>
-<tr class="odd">
-<td>EVENT_CHART_VIEW</td>
-<td>Event chart view</td>
-</tr>
-<tr class="even">
-<td>DASHBOARD_VIEW</td>
-<td>Dashboard view</td>
-</tr>
-<tr class="odd">
-<td>PASSIVE_DASHBOARD_VIEW</td>
-<td>Dashboard view (when not explicitly selecting the dashboard)</td>
-</tr>
-<tr class="even">
-<td>DATA_SET_REPORT_VIEW</td>
-<td>Data set report view</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Supported event types
+
+| Key | Description |
+|---|---|
+| REPORT_TABLE_VIEW | Report table (pivot table) view |
+| CHART_VIEW | Chart view |
+| MAP_VIEW | Map view (GIS) |
+| EVENT_REPORT_VIEW | Event report view |
+| EVENT_CHART_VIEW | Event chart view |
+| DASHBOARD_VIEW | Dashboard view |
+| PASSIVE_DASHBOARD_VIEW | Dashboard view (when not explicitly selecting the dashboard) |
+| DATA_SET_REPORT_VIEW | Data set report view |
 
 ### Retrieve aggregated usage analytics report (GET)
 
@@ -3004,43 +2094,15 @@ below shows the supported types of events.
 The usage analytics (data statistics) API lets you specify certain query
 parameters when asking for an aggregated report.
 
-<table>
-<caption>Query parameters for aggregated usage analytics (data statistics)</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Options</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>startDate</td>
-<td>Yes</td>
-<td>Start date for period</td>
-<td>Date in yyyy-MM-dd format</td>
-</tr>
-<tr class="even">
-<td>endDate</td>
-<td>Yes</td>
-<td>End date for period</td>
-<td>Date in yyyy-MM-dd format</td>
-</tr>
-<tr class="odd">
-<td>interval</td>
-<td>Yes</td>
-<td>Type of interval to be aggregated</td>
-<td>DAY, WEEK, MONTH, YEAR</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query parameters for aggregated usage analytics (data statistics)
+
+| Query parameter | Required | Description | Options |
+|---|---|---|---|
+| startDate | Yes | Start date for period | Date in yyyy-MM-dd format |
+| endDate | Yes | End date for period | Date in yyyy-MM-dd format |
+| interval | Yes | Type of interval to be aggregated | DAY, WEEK, MONTH, YEAR |
 
 The startDate and endDate parameters specify the period for which
 snapshots are to be used in the aggregation. You must format the dates
@@ -3060,49 +2122,16 @@ API query that creates a query for a monthly
 The usage analytics API lets you retrieve the top favorites used in
 DHIS2, and by user.
 
-<table>
-<caption>Query parameters for top favorites</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Options</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>eventType</td>
-<td>Yes</td>
-<td>The data statistics event type</td>
-<td>See above table</td>
-</tr>
-<tr class="even">
-<td>pageSize</td>
-<td>No</td>
-<td>Size of the list returned</td>
-<td>For example 5, 10, 25. Default is 25</td>
-</tr>
-<tr class="odd">
-<td>sortOrder</td>
-<td>No</td>
-<td>Descending or ascending</td>
-<td>ASC or DESC. Default is DESC.</td>
-</tr>
-<tr class="even">
-<td>username</td>
-<td>No</td>
-<td>If specified, the response will only contain favorites by this user.</td>
-<td>For example 'admin'</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query parameters for top favorites
+
+| Query parameter | Required | Description | Options |
+|---|---|---|---|
+| eventType | Yes | The data statistics event type | See above table |
+| pageSize | No | Size of the list returned | For example 5, 10, 25. Default is 25 |
+| sortOrder | No | Descending or ascending | ASC or DESC. Default is DESC. |
+| username | No | If specified, the response will only contain favorites by this user. | For example 'admin' |
 
 The API query can be used without a username, and will then find the top
 favorites of the system.
@@ -3252,61 +2281,22 @@ boundary of an organisation unit (e.g. at level 2) you can use this URL:
 The semantics of the response properties are described in the following
 table.
 
-<table>
-<caption>Geo features response</caption>
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 85%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>id</td>
-<td>Organisation unit / geo feature identifier</td>
-</tr>
-<tr class="even">
-<td>na</td>
-<td>Organisation unit / geo feature name</td>
-</tr>
-<tr class="odd">
-<td>hcd</td>
-<td>Has coordinates down, indicating whether one or more children organisation units exist with coordinates (below in the hierarchy)</td>
-</tr>
-<tr class="even">
-<td>hcu</td>
-<td>Has coordinates up, indicating whether the parent organisation unit has coordinates (above in the hierarchy)</td>
-</tr>
-<tr class="odd">
-<td>le</td>
-<td>Level of this organisation unit / geo feature.</td>
-</tr>
-<tr class="even">
-<td>pg</td>
-<td>Parent graph, the graph of parent organisation unit identifiers up to the root in the hierarchy</td>
-</tr>
-<tr class="odd">
-<td>pi</td>
-<td>Parent identifier, the identifier of the parent of this organisation unit</td>
-</tr>
-<tr class="even">
-<td>pn</td>
-<td>Parent name, the name of the parent of this organisation unit</td>
-</tr>
-<tr class="odd">
-<td>ty</td>
-<td>Geo feature type, 1 = point and 2 = polygon or multi-polygon</td>
-</tr>
-<tr class="even">
-<td>co</td>
-<td>Coordinates of this geo feature</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Geo features response
+
+| Property | Description |
+|---|---|
+| id | Organisation unit / geo feature identifier |
+| na | Organisation unit / geo feature name |
+| hcd | Has coordinates down, indicating whether one or more children organisation units exist with coordinates (below in the hierarchy) |
+| hcu | Has coordinates up, indicating whether the parent organisation unit has coordinates (above in the hierarchy) |
+| le | Level of this organisation unit / geo feature. |
+| pg | Parent graph, the graph of parent organisation unit identifiers up to the root in the hierarchy |
+| pi | Parent identifier, the identifier of the parent of this organisation unit |
+| pn | Parent name, the name of the parent of this organisation unit |
+| ty | Geo feature type, 1 = point and 2 = polygon or multi-polygon |
+| co | Coordinates of this geo feature |
 
 ### GeoJSON
 
@@ -3346,48 +2336,17 @@ for creating (POST), updating (PUT), retrieving (GET) and deleting
 
 Analytics table hooks have the following fields:
 
-<table style="width:100%;">
-<caption>Analytics table hook fields</caption>
-<colgroup>
-<col style="width: 22%" />
-<col style="width: 30%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>name</td>
-<td>Text</td>
-<td>Name of the hook.</td>
-</tr>
-<tr class="even">
-<td>phase</td>
-<td>RESOURCE_TABLE_POPULATED, ANALYTICS_TABLE_POPULATED</td>
-<td>The phase for when the SQL script should be invoked.</td>
-</tr>
-<tr class="odd">
-<td>resourceTableType</td>
-<td><p>See column &quot;Table type&quot; in table &quot;Phases, table types and temporary tables&quot; below</p></td>
-<td>The type of resource table for which to invoke the SQL script. Applies only for hooks defined with the RESOURCE_TABLE_POPULATED phase.</td>
-</tr>
-<tr class="even">
-<td>analyticsTableType</td>
-<td>See column &quot;Table type&quot; in table &quot;Phases, table types and temporary tables&quot; below</td>
-<td>The type of analytics table for which to invoke the SQL script. Applies only for hooks defined with the ANALYTICS_TABLE_POPULATED phase.</td>
-</tr>
-<tr class="odd">
-<td>sql</td>
-<td>Text</td>
-<td>The SQL script to invoke.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Analytics table hook fields
+
+| Field | Options | Description |
+|---|---|---|
+| name | Text | Name of the hook. |
+| phase | RESOURCE_TABLE_POPULATED, ANALYTICS_TABLE_POPULATED | The phase for when the SQL script should be invoked. |
+| resourceTableType | See column "Table type" in table "Phases, table types and temporary tables" below | The type of resource table for which to invoke the SQL script. Applies only for hooks defined with the RESOURCE_TABLE_POPULATED phase. |
+| analyticsTableType | See column "Table type" in table "Phases, table types and temporary tables" below | The type of analytics table for which to invoke the SQL script. Applies only for hooks defined with the ANALYTICS_TABLE_POPULATED phase. |
+| sql | Text | The SQL script to invoke. |
 
 The *ANALYTICS_TABLE_POPULATED* phase takes place after the analytics
 table has been populated, but before indexes have been created and the
@@ -3413,101 +2372,31 @@ temporary database table only.
 The following table shows the valid combinations of phases, table types
 and temporary tables.
 
-<table>
-<caption>Phases, table types and temporary tables</caption>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 39%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Phase</th>
-<th>Table type</th>
-<th>Temporary table</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td rowspan="12">RESOURCE_TABLE_POPULATED</td>
-<td>ORG_UNIT_STRUCTURE</td>
-<td>_orgunitstructure_temp</td>
-</tr>
-<tr class="even">
-<td>DATA_SET_ORG_UNIT_CATEGORY</td>
-<td>_datasetorgunitcategory_temp</td>
-</tr>
-<tr class="odd">
-<td>CATEGORY_OPTION_COMBO_NAME</td>
-<td>_categoryoptioncomboname_temp</td>
-</tr>
-<tr class="even">
-<td>DATA_ELEMENT_GROUP_SET_STRUCTURE</td>
-<td>_dataelementgroupsetstructure_temp</td>
-</tr>
-<tr class="odd">
-<td>INDICATOR_GROUP_SET_STRUCTURE</td>
-<td>_indicatorgroupsetstructure_temp</td>
-</tr>
-<tr class="even">
-<td>ORG_UNIT_GROUP_SET_STRUCTURE</td>
-<td>_organisationunitgroupsetstructure_temp</td>
-</tr>
-<tr class="odd">
-<td>CATEGORY_STRUCTURE</td>
-<td>_categorystructure_temp</td>
-</tr>
-<tr class="even">
-<td>DATA_ELEMENT_STRUCTURE</td>
-<td>_dataelementstructure_temp</td>
-</tr>
-<tr class="odd">
-<td>PERIOD_STRUCTURE</td>
-<td>_periodstructure_temp</td>
-</tr>
-<tr class="even">
-<td>DATE_PERIOD_STRUCTURE</td>
-<td>_dateperiodstructure_temp</td>
-</tr>
-<tr class="odd">
-<td>DATA_ELEMENT_CATEGORY_OPTION_COMBO</td>
-<td>_dataelementcategoryoptioncombo_temp</td>
-</tr>
-<tr class="even">
-<td>DATA_APPROVAL_MIN_LEVEL</td>
-<td>_dataapprovalminlevel_temp</td>
-</tr>
-<tr class="odd">
-<td rowspan="7">ANALYTICS_TABLE_POPULATED</td>
-<td>DATA_VALUE</td>
-<td>analytics_temp</td>
-</tr>
-<tr class="even">
-<td>COMPLETENESS</td>
-<td>analytics_completeness_temp</td>
-</tr>
-<tr class="odd">
-<td>COMPLETENESS_TARGET</td>
-<td>analytics_completenesstarget_temp</td>
-</tr>
-<tr class="even">
-<td>ORG_UNIT_TARGET</td>
-<td>analytics_orgunittarget_temp</td>
-</tr>
-<tr class="odd">
-<td>EVENT</td>
-<td>analytics_event_temp_&lt;program-uid&gt;</td>
-</tr>
-<tr class="even">
-<td>ENROLLMENT</td>
-<td>analytics_enrollment_temp_&lt;program-uid&gt;</td>
-</tr>
-<tr class="odd">
-<td>VALIDATION_RESULT</td>
-<td>analytics_validationresult_temp</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Phases, table types and temporary tables
+
+| Phase | Table type | Temporary table |
+|---|---|---|
+| RESOURCE_TABLE_POPULATED | ORG_UNIT_STRUCTURE | _orgunitstructure_temp |
+|| DATA_SET_ORG_UNIT_CATEGORY | _datasetorgunitcategory_temp |
+|| CATEGORY_OPTION_COMBO_NAME | _categoryoptioncomboname_temp |
+|| DATA_ELEMENT_GROUP_SET_STRUCTURE | _dataelementgroupsetstructure_temp |
+|| INDICATOR_GROUP_SET_STRUCTURE | _indicatorgroupsetstructure_temp |
+|| ORG_UNIT_GROUP_SET_STRUCTURE | _organisationunitgroupsetstructure_temp |
+|| CATEGORY_STRUCTURE | _categorystructure_temp |
+|| DATA_ELEMENT_STRUCTURE | _dataelementstructure_temp |
+|| PERIOD_STRUCTURE | _periodstructure_temp |
+|| DATE_PERIOD_STRUCTURE | _dateperiodstructure_temp |
+|| DATA_ELEMENT_CATEGORY_OPTION_COMBO | _dataelementcategoryoptioncombo_temp |
+|| DATA_APPROVAL_MIN_LEVEL | _dataapprovalminlevel_temp |
+| ANALYTICS_TABLE_POPULATED | DATA_VALUE | analytics_temp |
+|| COMPLETENESS | analytics_completeness_temp |
+|| COMPLETENESS_TARGET | analytics_completenesstarget_temp |
+|| ORG_UNIT_TARGET | analytics_orgunittarget_temp |
+|| EVENT | analytics_event_temp_<program-uid\> |
+|| ENROLLMENT | analytics_enrollment_temp_<program-uid\> |
+|| VALIDATION_RESULT | analytics_validationresult_temp |
 
 ### Creating hooks
 
@@ -3565,32 +2454,11 @@ content-type `application/x-www-form-urlencoded`.
 
     api/svg.pdf
 
-<table>
-<caption>Query parameters</caption>
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 11%" />
-<col style="width: 67%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>svg</td>
-<td>Yes</td>
-<td>The SVG content</td>
-</tr>
-<tr class="even">
-<td>filename</td>
-<td>No</td>
-<td>The file name for the returned attachment without file extension</td>
-</tr>
-</tbody>
-</table>
 
 
+Table: Query parameters
+
+| Query parameter | Required | Description |
+|---|---|---|
+| svg | Yes | The SVG content |
+| filename | No | The file name for the returned attachment without file extension |

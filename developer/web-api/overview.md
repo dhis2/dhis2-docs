@@ -264,45 +264,18 @@ Here we can see from the message that the user tried to access a
 resource I did not have access to. It uses the http status code 403, the
 http status message *forbidden* and a descriptive message.
 
-<table>
-<caption>WebMessage properties</caption>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 86%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>httpStatus</td>
-<td>HTTP Status message for this response, see RFC 2616 (Section 10) for more information.</td>
-</tr>
-<tr class="even">
-<td>httpStatusCode</td>
-<td>HTTP Status code for this response, see RFC 2616 (Section 10) for more information.</td>
-</tr>
-<tr class="odd">
-<td>status</td>
-<td>DHIS2 status, possible values are <em>OK</em> | <em>WARNING</em> | <em>ERROR</em>, where `OK` means everything was successful, `ERROR` means that operation did not complete and `WARNING` means the operation was partially successful, if the message contains a `response` property, please look there for more information.</td>
-</tr>
-<tr class="even">
-<td>message</td>
-<td>A user-friendly message telling whether the operation was a success or not.</td>
-</tr>
-<tr class="odd">
-<td>devMessage</td>
-<td>A more technical, developer-friendly message (not currently in use).</td>
-</tr>
-<tr class="even">
-<td>response</td>
-<td>Extension point for future extension to the WebMessage format. This will be documented when it starts being used.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: WebMessage properties
+
+| Name | Description |
+|---|---|
+| httpStatus | HTTP Status message for this response, see RFC 2616 (Section 10) for more information. |
+| httpStatusCode | HTTP Status code for this response, see RFC 2616 (Section 10) for more information. |
+| status | DHIS2 status, possible values are *OK* &#124; *WARNING* &#124; *ERROR*, where `OK` means everything was successful, `ERROR` means that operation did not complete and `WARNING` means the operation was partially successful, if the message contains a `response` property, please look there for more information. |
+| message | A user-friendly message telling whether the operation was a success or not. |
+| devMessage | A more technical, developer-friendly message (not currently in use). |
+| response | Extension point for future extension to the WebMessage format. This will be documented when it starts being used. |
 
 ## Date and period format
 
@@ -319,121 +292,28 @@ For instance, if you want to express March 20, 2014, you must use
 The period format is described in the following table (also available on
 the API endpoint `/api/periodTypes`)
 
-<table style="width:100%;">
-<caption>Period format</caption>
-<colgroup>
-<col style="width: 24%" />
-<col style="width: 21%" />
-<col style="width: 18%" />
-<col style="width: 35%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Interval</th>
-<th>Format</th>
-<th>Example</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Day</td>
-<td><em>yyyyMMdd</em></td>
-<td>20040315</td>
-<td>March 15, 2004</td>
-</tr>
-<tr class="even">
-<td>Week</td>
-<td><em>yyyy</em>W<em>n</em></td>
-<td>2004W10</td>
-<td>Week 10 2004</td>
-</tr>
-<tr class="odd">
-<td>Week Wednesday</td>
-<td><em>yyyy</em>WedW<em>n</em></td>
-<td>2015WedW5</td>
-<td>Week 5 with start Wednesday</td>
-</tr>
-<tr class="even">
-<td>Week Thursday</td>
-<td><em>yyyy</em>ThuW<em>n</em></td>
-<td>2015ThuW6</td>
-<td>Week 6 with start Thursday</td>
-</tr>
-<tr class="odd">
-<td>Week Saturday</td>
-<td><em>yyyy</em>SatW<em>n</em></td>
-<td>2015SatW7</td>
-<td>Week 7 with start Saturday</td>
-</tr>
-<tr class="even">
-<td>Week Sunday</td>
-<td><em>yyyy</em>SunW<em>n</em></td>
-<td>2015SunW8</td>
-<td>Week 8 with start Sunday</td>
-</tr>
-<tr class="odd">
-<td>Bi-week</td>
-<td><em>yyyy</em>BiW<em>n</em></td>
-<td>2015BiW1</td>
-<td>Week 1-2 20015</td>
-</tr>
-<tr class="even">
-<td>Month</td>
-<td><em>yyyyMM</em></td>
-<td>200403</td>
-<td>March 2004</td>
-</tr>
-<tr class="odd">
-<td>Bi-month</td>
-<td><em>yyyyMM</em>B</td>
-<td>200401B</td>
-<td>January-February 2004</td>
-</tr>
-<tr class="even">
-<td>Quarter</td>
-<td><em>yyyy</em>Q<em>n</em></td>
-<td>2004Q1</td>
-<td>January-March 2004</td>
-</tr>
-<tr class="odd">
-<td>Six-month</td>
-<td><em>yyyy</em>S<em>n</em></td>
-<td>2004S1</td>
-<td>January-June 2004</td>
-</tr>
-<tr class="even">
-<td>Six-month April</td>
-<td><em>yyyy</em>AprilSn</td>
-<td>2004AprilS1</td>
-<td>April-September 2004</td>
-</tr>
-<tr class="odd">
-<td>Year</td>
-<td>yyyy</td>
-<td>2004</td>
-<td>2004</td>
-</tr>
-<tr class="even">
-<td>Financial Year April</td>
-<td>yyyyApril</td>
-<td>2004April</td>
-<td>Apr 2004-Mar 2005</td>
-</tr>
-<tr class="odd">
-<td>Financial Year July</td>
-<td>yyyyJuly</td>
-<td>2004July</td>
-<td>July 2004-June 2005</td>
-</tr>
-<tr class="even">
-<td>Financial Year Oct</td>
-<td>yyyyOct</td>
-<td>2004Oct</td>
-<td>Oct 2004-Sep 2005</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Period format
+
+| Interval | Format | Example | Description |
+|---|---|---|---|
+| Day | yyyyMMdd | 20040315 | March 15, 2004 |
+| Week | yyyyWn | 2004W10 | Week 10 2004 |
+| Week Wednesday | yyyyWedWn | 2015WedW5 | Week 5 with start Wednesday |
+| Week Thursday | yyyyThuWn | 2015ThuW6 | Week 6 with start Thursday |
+| Week Saturday | yyyySatWn | 2015SatW7 | Week 7 with start Saturday |
+| Week Sunday | yyyySunWn | 2015SunW8 | Week 8 with start Sunday |
+| Bi-week | yyyyBiWn | 2015BiW1 | Week 1-2 20015 |
+| Month | yyyyMM | 200403 | March 2004 |
+| Bi-month | yyyyMMB | 200401B | January-February 2004 |
+| Quarter | yyyyQn | 2004Q1 | January-March 2004 |
+| Six-month | yyyySn | 2004S1 | January-June 2004 |
+| Six-month April | yyyyAprilSn | 2004AprilS1 | April-September 2004 |
+| Year | yyyy | 2004 | 2004 |
+| Financial Year April | yyyyApril | 2004April | Apr 2004-Mar 2005 |
+| Financial Year July | yyyyJuly | 2004July | July 2004-June 2005 |
+| Financial Year Oct | yyyyOct | 2004Oct | Oct 2004-Sep 2005 |
 
 
 ### Relative Periods
@@ -452,5 +332,3 @@ for creating dynamic reports. The available relative period values are:
     THIS_YEAR, MONTHS_LAST_YEAR, QUARTERS_LAST_YEAR, LAST_YEAR, LAST_5_YEARS, LAST_12_MONTHS,
     LAST_3_MONTHS, LAST_6_BIMONTHS, LAST_4_QUARTERS, LAST_2_SIXMONTHS, THIS_FINANCIAL_YEAR,
     LAST_FINANCIAL_YEAR, LAST_5_FINANCIAL_YEARS
-
-

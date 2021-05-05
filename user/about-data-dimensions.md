@@ -26,30 +26,11 @@ same data element and time period. In principle, it can be used as a
 phenomena at the same place and time. For more information about this,
 see Chapter 34: Additional data dimensions.
 
-<table>
-<thead>
-<tr class="header">
-<th>Organisation Unit</th>
-<th>Data Element</th>
-<th>Period</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Gerehun CHC</td>
-<td>Measles doses given</td>
-<td>Dec-09</td>
-<td>22</td>
-</tr>
-<tr class="even">
-<td>Tugbebu CHP</td>
-<td>Measles doses given</td>
-<td>Dec-09</td>
-<td>18</td>
-</tr>
-</tbody>
-</table>
+
+| Organisation Unit | Data Element | Period | Value |
+|---|---|---|---|
+| Gerehun CHC | Measles doses given | Dec-09 | 22 |
+| Tugbebu CHP | Measles doses given | Dec-09 | 18 |
 
 ## Data elements: the *what* dimension
 
@@ -81,85 +62,20 @@ complexity to how data is collected by the health facilities, but at the
 same time opens up for new possibilities of detailed data analysis of
 Measles immunisation.
 
-<table>
-<caption>Example of detailed storage of data values when using data element categories &quot;Place of Service&quot; and &quot;Age&quot; (simplified for readability compared to the actual database table)</caption>
-<thead>
-<tr class="header">
-<th>Organisation Unit</th>
-<th>Data Element</th>
-<th>Place of service</th>
-<th>Age</th>
-<th>Period</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Gerehun CHC</td>
-<td>Measles doses given</td>
-<td>Fixed</td>
-<td>&lt;1 y</td>
-<td>Dec-09</td>
-<td>12</td>
-</tr>
-<tr class="even">
-<td>Gerehun CHC</td>
-<td>Measles doses given</td>
-<td>Outreach</td>
-<td>&lt;1 y</td>
-<td>Dec-09</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>Gerehun CHC</td>
-<td>Measles doses given</td>
-<td>Fixed</td>
-<td>&gt;1 y</td>
-<td>Dec-09</td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td>Gerehun CHC</td>
-<td>Measles doses given</td>
-<td>Outreach</td>
-<td>&gt;1 y</td>
-<td>Dec-09</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>Tugbebu CHP</td>
-<td>Measles doses given</td>
-<td>Fixed</td>
-<td>&lt;1 y</td>
-<td>Dec-09</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>Tugbebu CHP</td>
-<td>Measles doses given</td>
-<td>Outreach</td>
-<td>&lt;1 y</td>
-<td>Dec-09</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>Tugbebu CHP</td>
-<td>Measles doses given</td>
-<td>Fixed</td>
-<td>&gt;1 y</td>
-<td>Dec-09</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>Tugbebu CHP</td>
-<td>Measles doses given</td>
-<td>Outreach</td>
-<td>&gt;1 y</td>
-<td>Dec-09</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Example of detailed storage of data values when using data element categories "Place of Service" and "Age" (simplified for readability compared to the actual database table)
+
+| Organisation Unit | Data Element | Place of service | Age | Period | Value |
+|---|---|---|---|---|---|
+| Gerehun CHC | Measles doses given | Fixed | \<1 y | Dec-09 | 12 |
+| Gerehun CHC | Measles doses given | Outreach | \<1 y | Dec-09 | 4 |
+| Gerehun CHC | Measles doses given | Fixed | \>1 y | Dec-09 | 4 |
+| Gerehun CHC | Measles doses given | Outreach | \>1 y | Dec-09 | 2 |
+| Tugbebu CHP | Measles doses given | Fixed | \<1 y | Dec-09 | 10 |
+| Tugbebu CHP | Measles doses given | Outreach | \<1 y | Dec-09 | 4 |
+| Tugbebu CHP | Measles doses given | Fixed | \>1 y | Dec-09 | 3 |
+| Tugbebu CHP | Measles doses given | Outreach | \>1 y | Dec-09 | 1 |
 
 ### Data element group sets
 
@@ -194,61 +110,15 @@ Indicators can be grouped into indicator groups and further into
 indicator group sets (dimensions) in exactly the same way as data
 elements.
 
-<table>
-<thead>
-<tr class="header">
-<th>Organisation Unit</th>
-<th>Data Element</th>
-<th>Programme</th>
-<th>Period</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Gerehun CHC</td>
-<td>Measles doses given</td>
-<td>EPI</td>
-<td>Dec-09</td>
-<td>22</td>
-</tr>
-<tr class="even">
-<td>Gerehun CHC</td>
-<td>Vitamin A given</td>
-<td>Nutrition</td>
-<td>Dec-09</td>
-<td>16</td>
-</tr>
-<tr class="odd">
-<td>Tugbebu CHP</td>
-<td>Measles doses given</td>
-<td>EPI</td>
-<td>Dec-09</td>
-<td>18</td>
-</tr>
-<tr class="even">
-<td>Tugbebu CHP</td>
-<td>Vitamin A given</td>
-<td>Nutrition</td>
-<td>Dec-09</td>
-<td>12</td>
-</tr>
-<tr class="odd">
-<td>Gerehun CHC</td>
-<td>Malaria new cases</td>
-<td>Malaria</td>
-<td>Dec-09</td>
-<td>32</td>
-</tr>
-<tr class="even">
-<td>Tugbebu CHP</td>
-<td>Malaria new cases</td>
-<td>Malaria</td>
-<td>Dec-09</td>
-<td>23</td>
-</tr>
-</tbody>
-</table>
+
+| Organisation Unit | Data Element | Programme | Period | Value |
+|---|---|---|---|---|
+| Gerehun CHC | Measles doses given | EPI | Dec-09 | 22 |
+| Gerehun CHC | Vitamin A given | Nutrition | Dec-09 | 16 |
+| Tugbebu CHP | Measles doses given | EPI | Dec-09 | 18 |
+| Tugbebu CHP | Vitamin A given | Nutrition | Dec-09 | 12 |
+| Gerehun CHC | Malaria new cases | Malaria | Dec-09 | 32 |
+| Tugbebu CHP | Malaria new cases | Malaria | Dec-09 | 23 |
 
 ## Organisation units: the *where* dimension
 
@@ -312,61 +182,15 @@ need to create a group set called "Local council" and then create one
 organisation unit group for every local council, and finally link all
 PHUs to their corresponding local council group.
 
-<table>
-<thead>
-<tr class="header">
-<th>District</th>
-<th>OrgUnit Type</th>
-<th>Data Element</th>
-<th>Period</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Bo</td>
-<td>CHC</td>
-<td>Measles doses given</td>
-<td>Dec-09</td>
-<td>121</td>
-</tr>
-<tr class="even">
-<td>Bo</td>
-<td>CHP</td>
-<td>Measles doses given</td>
-<td>Dec-09</td>
-<td>98</td>
-</tr>
-<tr class="odd">
-<td>Bo</td>
-<td>MCHP</td>
-<td>Measles doses given</td>
-<td>Dec-09</td>
-<td>87</td>
-</tr>
-<tr class="even">
-<td>Bombali</td>
-<td>CHC</td>
-<td>Measles doses given</td>
-<td>Dec-09</td>
-<td>110</td>
-</tr>
-<tr class="odd">
-<td>Bombali</td>
-<td>CHP</td>
-<td>Measles doses given</td>
-<td>Dec-09</td>
-<td>67</td>
-</tr>
-<tr class="even">
-<td>Bombali</td>
-<td>MCHP</td>
-<td>Measles doses given</td>
-<td>Dec-09</td>
-<td>59</td>
-</tr>
-</tbody>
-</table>
+
+| District | OrgUnit Type | Data Element | Period | Value |
+|---|---|---|---|---|
+| Bo | CHC | Measles doses given | Dec-09 | 121 |
+| Bo | CHP | Measles doses given | Dec-09 | 98 |
+| Bo | MCHP | Measles doses given | Dec-09 | 87 |
+| Bombali | CHC | Measles doses given | Dec-09 | 110 |
+| Bombali | CHP | Measles doses given | Dec-09 | 67 |
+| Bombali | MCHP | Measles doses given | Dec-09 | 59 |
 
 ### Best practice on the use of group sets and groups
 
@@ -471,33 +295,11 @@ quarters (the ones that have passed so far in the year) you can select
 "Last four quarters". Other relative periods are described under the
 reporting table section of the manual.
 
-<table>
-<thead>
-<tr class="header">
-<th>Organisation Unit</th>
-<th>Data Element</th>
-<th>Reporting month</th>
-<th>So far this year</th>
-<th>Reporting month name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Gerehun CHC</td>
-<td>Measles doses given</td>
-<td>15</td>
-<td>167</td>
-<td>Oct-09</td>
-</tr>
-<tr class="even">
-<td>Tugbebu CHP</td>
-<td>Measles doses given</td>
-<td>17</td>
-<td>155</td>
-<td>Oct-09</td>
-</tr>
-</tbody>
-</table>
+
+| Organisation Unit | Data Element | Reporting month | So far this year | Reporting month name |
+|---|---|---|---|---|
+| Gerehun CHC | Measles doses given | 15 | 167 | Oct-09 |
+| Tugbebu CHP | Measles doses given | 17 | 155 | Oct-09 |
 
 ### Aggregation of periods
 

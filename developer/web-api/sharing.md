@@ -90,147 +90,34 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 
 DHIS2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
 
-<table>
-<caption>Main properties</caption>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>name</td>
-<td>Name of the job.</td>
-<td>String</td>
-</tr>
-<tr class="even">
-<td>cronExpression</td>
-<td>The cron expression which defines the interval for when the job should run.</td>
-<td>String (Cron expression)</td>
-</tr>
-<tr class="odd">
-<td>jobType</td>
-<td>The job type represent which task is run. In the next table, you can get an overview of existing job types. Each job type can have a specific set of parameters for job configuration.</td>
-<td>String (Enum)</td>
-</tr>
-<tr class="even">
-<td>jobParameters</td>
-<td>Job parameters, if applicable for job type.</td>
-<td>(See list of job types)</td>
-</tr>
-<tr class="odd">
-<td>enabled</td>
-<td>A job can be added to the system without it being scheduled by setting `enabled` to false in the JSON payload. Use this if you want to temporarily stop scheduling for a job, or if a job configuration is not complete yet.</td>
-<td>Boolean</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Available job types</caption>
-<thead>
-<tr class="header">
-<th>Job type</th>
-<th>Parameters</th>
-<th>Param(Type:Default)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DATA_INTEGRITY</td>
-<td>NONE</td>
-<td></td>
-</tr>
-<tr>
-<td>ANALYTICS_TABLE</td>
-<td><ul>
-<li><p>lastYears: Number of years back to include</p></li>
-<li><p>skipTableTypes: Skip generation of tables</p><p>Possible values: DATA_VALUE, COMPLETENESS, COMPLETENESS_TARGET, ORG_UNIT_TARGET, EVENT, ENROLLMENT, VALIDATION_RESULT</p></li>
-<li><p>skipResourceTables: Skip generation of resource tables</p></li>
-</ul></td>
-<td><ul>
-<li><p>lastYears (int:0)</p></li>
-<li><p>skipTableTypes (Array of String (Enum):None )</p></li>
-<li><p>skipResourceTables (Boolean)</p></li>
-</ul></td>
-</tr>
-<tr>
-<td>CONTINUOUS_ANALYTICS_TABLE</td>
-<td><ul>
-<li><p>fullUpdateHourOfDay: Hour of day for full update of analytics tables (0-23)</p></li>
-<li><p>lastYears: Number of years back to include</p></li>
-<li><p>skipTableTypes: Skip generation of tables</p><p>Possible values: DATA_VALUE, COMPLETENESS, COMPLETENESS_TARGET, ORG_UNIT_TARGET, EVENT, ENROLLMENT, VALIDATION_RESULT</p></li>
-<li><p>skipResourceTables: Skip generation of resource tables</p></li>
-</ul></td>
-<td><ul>
-<li><p>lastYears (int:0)</p></li>
-<li><p>skipTableTypes (Array of String (Enum):None )</p></li>
-<li><p>skipResourceTables (Boolean)</p></li>
-</ul></td>
-</tr>
-<tr>
-<td>DATA_SYNC</td>
-<td>NONE</td>
-<td></td>
-</tr>
-<tr >
-<td>META_DATA_SYNC</td>
-<td>NONE</td>
-<td></td>
-</tr>
-<tr>
-<td>SEND_SCHEDULED_MESSAGE</td>
-<td>NONE</td>
-<td></td>
-</tr>
-<tr>
-<td>PROGRAM_NOTIFICATIONS</td>
-<td>NONE</td>
-<td></td>
-</tr>
-<tr>
-<td>MONITORING (Validation rule analysis)</td>
-<td><ul>
-<li><p>relativeStart: A number related to date of execution which resembles the start of the period to monitor</p></li>
-<li><p>relativeEnd: A number related to date of execution which resembles the end of the period to monitor</p></li>
-<li><p>validationRuleGroups: Validation rule groups(UIDs) to include in job</p></li>
-<li><p>sendNotification: Set &quot;true&quot; if job should send notifications based on validation rule groups</p></li>
-<li><p>persistsResults: Set &quot;true&quot; if job should persist validation results</p></li>
-</ul></td>
-<td><ul>
-<li><p>relativeStart (int:0)</p></li>
-<li><p>relativeEnd (int:0)</p></li>
-<li><p>validationRuleGroups (Array of String (UIDs):None )</p></li>
-<li><p>sendNotification (Boolean:false)</p></li>
-<li><p>persistsResults (Boolean:false)</p></li>
-</ul></td>
-</tr>
-<tr>
-<td>PUSH_ANALYSIS</td>
-<td><ul>
-<li><p>pushAnalysis: The uid of the push analysis you want to run</p></li>
-</ul></td>
-<td><ul>
-<li><p>pushAnalysis (String:None)</p></li>
-</ul></td>
-</tr>
-<tr>
-<td>PREDICTOR</td>
-<td><ul>
-<li><p>relativeStart: A number related to date of execution which resembles the start of the period to monitor</p></li>
-<li><p>relativeEnd: A number related to date of execution which resembles the start of the period to monitor</p></li>
-<li><p>predictors: Predictors(UIDs) to include in job</p></li>
-</ul></td>
-<td><ul>
-<li><p>relativeStart (int:0)</p></li>
-<li><p>relativeEnd (int:0)</p></li>
-<li><p>predictors (Array of String (UIDs):None )</p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+
+Table: Main properties
+
+| Property | Description | Type |
+|---|---|---|
+| name | Name of the job. | String |
+| cronExpression | The cron expression which defines the interval for when the job should run. | String (Cron expression) |
+| jobType | The job type represent which task is run. In the next table, you can get an overview of existing job types. Each job type can have a specific set of parameters for job configuration. | String (Enum) |
+| jobParameters | Job parameters, if applicable for job type. | (See list of job types) |
+| enabled | A job can be added to the system without it being scheduled by setting `enabled` to false in the JSON payload. Use this if you want to temporarily stop scheduling for a job, or if a job configuration is not complete yet. | Boolean |
+
+
+
+Table: Available job types
+
+| Job type | Parameters | Param(Type:Default) |
+|---|---|---|
+| DATA_INTEGRITY | NONE ||
+| ANALYTICS_TABLE | * lastYears: Number of years back to include<br> * skipTableTypes: Skip generation of tables<br>Possible values: DATA_VALUE, COMPLETENESS, COMPLETENESS_TARGET, ORG_UNIT_TARGET, EVENT, ENROLLMENT, VALIDATION_RESULT<br> * skipResourceTables: Skip generation of resource tables | * lastYears (int:0)<br> * skipTableTypes (Array of String (Enum):None )<br> * skipResourceTables (Boolean) |
+| CONTINUOUS_ANALYTICS_TABLE | * fullUpdateHourOfDay: Hour of day for full update of analytics tables (0-23)<br> * lastYears: Number of years back to include<br> * skipTableTypes: Skip generation of tables<br>Possible values: DATA_VALUE, COMPLETENESS, COMPLETENESS_TARGET, ORG_UNIT_TARGET, EVENT, ENROLLMENT, VALIDATION_RESULT<br> * skipResourceTables: Skip generation of resource tables | * lastYears (int:0)<br> * skipTableTypes (Array of String (Enum):None )<br> * skipResourceTables (Boolean) |
+| DATA_SYNC | NONE ||
+| META_DATA_SYNC | NONE ||
+| SEND_SCHEDULED_MESSAGE | NONE ||
+| PROGRAM_NOTIFICATIONS | NONE ||
+| MONITORING (Validation rule analysis) | * relativeStart: A number related to date of execution which resembles the start of the period to monitor<br> * relativeEnd: A number related to date of execution which resembles the end of the period to monitor<br> * validationRuleGroups: Validation rule groups(UIDs) to include in job<br> * sendNotification: Set "true" if job should send notifications based on validation rule groups<br> * persistsResults: Set "true" if job should persist validation results | * relativeStart (int:0)<br> * relativeEnd (int:0)<br> * validationRuleGroups (Array of String (UIDs):None )<br> * sendNotification (Boolean:false)<br> * persistsResults (Boolean:false) |
+| PUSH_ANALYSIS | * pushAnalysis: The uid of the push analysis you want to run | * pushAnalysis (String:None) |
+| PREDICTOR | * relativeStart: A number related to date of execution which resembles the start of the period to monitor<br> * relativeEnd: A number related to date of execution which resembles the start of the period to monitor<br> * predictors: Predictors(UIDs) to include in job | * relativeStart (int:0)<br> * relativeEnd (int:0)<br> * predictors (Array of String (UIDs):None ) |
 
 ### Get available job types
 
@@ -439,5 +326,3 @@ To check the availability of the remote data server and verify user
 credentials you can make a GET request to the following resource:
 
     /api/33/synchronization/availability
-
-

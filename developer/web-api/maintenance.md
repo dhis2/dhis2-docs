@@ -24,48 +24,17 @@ be generated with a POST or PUT request to:
 
     /api/33/resourceTables/analytics
 
-<table>
-<caption>Analytics tables optional query parameters</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 14%" />
-<col style="width: 52%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>skipResourceTables</td>
-<td>false | true</td>
-<td>Skip generation of resource tables</td>
-</tr>
-<tr class="even">
-<td>skipAggregate</td>
-<td>false | true</td>
-<td>Skip generation of aggregate data and completeness data</td>
-</tr>
-<tr class="odd">
-<td>skipEvents</td>
-<td>false | true</td>
-<td>Skip generation of event data</td>
-</tr>
-<tr class="even">
-<td>skipEnrollment</td>
-<td>false | true</td>
-<td>Skip generation of enrollment data</td>
-</tr>
-<tr class="odd">
-<td>lastYears</td>
-<td>integer</td>
-<td>Number of last years of data to include</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Analytics tables optional query parameters
+
+| Query parameter | Options | Description |
+|---|---|---|
+| skipResourceTables | false &#124; true | Skip generation of resource tables |
+| skipAggregate | false &#124; true | Skip generation of aggregate data and completeness data |
+| skipEvents | false &#124; true | Skip generation of event data |
+| skipEnrollment | false &#124; true | Skip generation of enrollment data |
+| lastYears | integer | Number of last years of data to include |
 
 "Data Quality" and "Data Surveillance" can be run through the monitoring
 task, triggered with the following endpoint:
@@ -279,38 +248,15 @@ status code* of the response header. The meanings of the possible status
 codes are listed below. Note that this applies to Web API requests in
 general.
 
-<table>
-<caption>HTTP Status codes</caption>
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 12%" />
-<col style="width: 74%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>HTTP Status code</th>
-<th>Description</th>
-<th>Outcome</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>200</td>
-<td>OK</td>
-<td>Authentication was successful</td>
-</tr>
-<tr class="even">
-<td>302</td>
-<td>Found</td>
-<td>No credentials were supplied with the request - no authentication took place</td>
-</tr>
-<tr class="odd">
-<td>401</td>
-<td>Unauthorized</td>
-<td>The username and password combination was incorrect - authentication failed</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: HTTP Status codes
+
+| HTTP Status code | Description | Outcome |
+|---|---|---|
+| 200 | OK | Authentication was successful |
+| 302 | Found | No credentials were supplied with the request - no authentication took place |
+| 401 | Unauthorized | The username and password combination was incorrect - authentication failed |
 
 ### View asynchronous task status
 
@@ -325,57 +271,21 @@ When polling for the task status you need to authenticate as the same
 user which initiated the task. The following task categories are
 supported:
 
-<table>
-<caption>Task categories</caption>
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Identifier</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ANALYTICS_TABLE</td>
-<td>Generation of the analytics tables.</td>
-</tr>
-<tr class="even">
-<td>RESOURCE_TABLE</td>
-<td>Generation of the resource tables.</td>
-</tr>
-<tr class="odd">
-<td>MONITORING</td>
-<td>Processing of data surveillance/monitoring validation rules.</td>
-</tr>
-<tr class="even">
-<td>DATAVALUE_IMPORT</td>
-<td>Import of data values.</td>
-</tr>
-<tr class="odd">
-<td>EVENT_IMPORT</td>
-<td>Import of events.</td>
-</tr>
-<tr class="even">
-<td>ENROLLMENT_IMPORT</td>
-<td>Import of enrollments.</td>
-</tr>
-<tr class="odd">
-<td>TEI_IMPORT</td>
-<td>Import of tracked entity instances.</td>
-</tr>
-<tr class="even">
-<td>METADATA_IMPORT</td>
-<td>Import of metadata.</td>
-</tr>
-<tr class="odd">
-<td>DATA_INTEGRITY</td>
-<td>Processing of data integrity checks.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Task categories
+
+| Identifier | Description |
+|---|---|
+| ANALYTICS_TABLE | Generation of the analytics tables. |
+| RESOURCE_TABLE | Generation of the resource tables. |
+| MONITORING | Processing of data surveillance/monitoring validation rules. |
+| DATAVALUE_IMPORT | Import of data values. |
+| EVENT_IMPORT | Import of events. |
+| ENROLLMENT_IMPORT | Import of enrollments. |
+| TEI_IMPORT | Import of tracked entity instances. |
+| METADATA_IMPORT | Import of metadata. |
+| DATA_INTEGRITY | Processing of data integrity checks. |
 
 Each asynchronous task is automatically assigned an identifier which can
 be used to monitor the status of the task. This task identifier is
@@ -569,53 +479,18 @@ organisation unit, data element and category option combo.
 
     /api/minMaxDataElements
 
-<table>
-<caption>Min-max data element data structure</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-<th>Data type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>source</td>
-<td>Organisation unit identifier</td>
-<td>String</td>
-</tr>
-<tr class="even">
-<td>dataElement</td>
-<td>Data element identifier</td>
-<td>String</td>
-</tr>
-<tr class="odd">
-<td>optionCombo</td>
-<td>Data element category option combo identifier</td>
-<td>String</td>
-</tr>
-<tr class="even">
-<td>min</td>
-<td>Minimum value</td>
-<td>Integer</td>
-</tr>
-<tr class="odd">
-<td>max</td>
-<td>Maximum value</td>
-<td>Integer</td>
-</tr>
-<tr class="even">
-<td>generated</td>
-<td>Indicates whether this object is generated by the system (and not set manually).</td>
-<td>Boolean</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Min-max data element data structure
+
+| Item | Description | Data type |
+|---|---|---|
+| source | Organisation unit identifier | String |
+| dataElement | Data element identifier | String |
+| optionCombo | Data element category option combo identifier | String |
+| min | Minimum value | Integer |
+| max | Maximum value | Integer |
+| generated | Indicates whether this object is generated by the system (and not set manually). | Boolean |
 
 You can retrieve a list of all min-max data elements from the following
 resource:

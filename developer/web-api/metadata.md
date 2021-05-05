@@ -37,37 +37,16 @@ The default scheme for all parameters is UID (stable DHIS2
 identifiers). The supported identifier schemes are described in the
 table below.
 
-<table>
-<caption>Scheme Values</caption>
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 85%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Scheme</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ID, UID</td>
-<td>Match on DHIS2 stable Identifier, this is the default id scheme.</td>
-</tr>
-<tr class="even">
-<td>CODE</td>
-<td>Match on DHIS2 Code, mainly used to exchange data with an external system.</td>
-</tr>
-<tr class="odd">
-<td>NAME</td>
-<td>Match on DHIS2 Name, please note that this uses what is available as <em>object.name</em>, and not the translated name. Also note that names are not always unique, and in that case, they can not be used.</td>
-</tr>
-<tr class="even">
-<td>ATTRIBUTE:ID</td>
-<td>Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to <em>true</em>. The main usage of this is also to exchange data with external systems, it has some advantages over <em>CODE</em> since multiple attributes can be added, so it can be used to synchronize with more than one system.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Scheme Values
+
+| Scheme | Description |
+|---|---|
+| ID, UID | Match on DHIS2 stable Identifier, this is the default id scheme. |
+| CODE | Match on DHIS2 Code, mainly used to exchange data with an external system. |
+| NAME | Match on DHIS2 Name, please note that this uses what is available as *object.name*, and not the translated name. Also note that names are not always unique, and in that case, they can not be used. |
+| ATTRIBUTE:ID | Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to *true*. The main usage of this is also to exchange data with external systems, it has some advantages over *CODE* since multiple attributes can be added, so it can be used to synchronize with more than one system. |
 
 Note that identifier schemes is not an independent feature but needs to
 be used in combination with resources such as data value import and metadata import.
@@ -100,49 +79,16 @@ resource, for instance `/api/dataElements`. For all resources which
 return a list of elements certain query parameters can be used to modify
 the response:
 
-<table style="width:100%;">
-<caption>Query parameters</caption>
-<colgroup>
-<col style="width: 11%" />
-<col style="width: 20%" />
-<col style="width: 12%" />
-<col style="width: 54%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Param</th>
-<th>Option values</th>
-<th>Default option</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>paging</td>
-<td>true | false</td>
-<td>true</td>
-<td>Indicates whether to return lists of elements in pages.</td>
-</tr>
-<tr class="even">
-<td>page</td>
-<td>number</td>
-<td>1</td>
-<td>Defines which page number to return.</td>
-</tr>
-<tr class="odd">
-<td>pageSize</td>
-<td>number</td>
-<td>50</td>
-<td>Defines the number of elements to return for each page.</td>
-</tr>
-<tr class="even">
-<td>order</td>
-<td>property:asc/iasc/desc/idesc</td>
-<td></td>
-<td>Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query parameters
+
+| Param | Option values | Default option | Description |
+|---|---|---|---|
+| paging | true &#124; false | true | Indicates whether to return lists of elements in pages. |
+| page | number | 1 | Defines which page number to return. |
+| pageSize | number | 50 | Defines the number of elements to return for each page. |
+| order | property:asc/iasc/desc/idesc || Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting. |
 
 An example of how these parameters can be used to get a full list of
 data element groups in XML response format is:
@@ -182,33 +128,14 @@ properties meant to be used for display / UI purposes, which include
 *displayName*, *displayShortName*, *displayDescription* and
 *displayFormName* (for data elements and tracked entity attributes).
 
-<table>
-<caption>Translate options</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 16%" />
-<col style="width: 62%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Values</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>translate</td>
-<td>true | false</td>
-<td>Translate display* properties in metadata output (displayName, displayShortName, displayDescription, and displayFormName for data elements and tracked entity attributes). Default value is true.</td>
-</tr>
-<tr class="even">
-<td>locale</td>
-<td>Locale to use</td>
-<td>Translate metadata output using a specified locale (requires translate=true).</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Translate options
+
+| Parameter | Values | Description |
+|---|---|---|
+| translate | true &#124; false | Translate display\* properties in metadata output (displayName, displayShortName, displayDescription, and displayFormName for data elements and tracked entity attributes). Default value is true. |
+| locale | Locale to use | Translate metadata output using a specified locale (requires translate=true). |
 
 ### Translation API
 
@@ -368,175 +295,38 @@ operators require value). Please see the *schema* section to discover
 which properties are available. Recursive filtering, ie. filtering on
 associated objects or collection of objects, is supported as well.
 
-<table>
-<caption>Available Operators</caption>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Types</th>
-<th>Value required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>eq</td>
-<td>string | boolean | integer | float | enum | collection (checks for size) | date</td>
-<td>true</td>
-<td>Equality</td>
-</tr>
-<tr class="even">
-<td>!eq</td>
-<td>string | boolean | integer | float | enum | collection (checks for size) | date</td>
-<td>true</td>
-<td>Inequality</td>
-</tr>
-<tr class="odd">
-<td>ne</td>
-<td>string | boolean | integer | float | enum | collection (checks for size) | date</td>
-<td>true</td>
-<td>Inequality</td>
-</tr>
-<tr class="even">
-<td>like</td>
-<td>string</td>
-<td>true</td>
-<td>Case sensitive string, match anywhere</td>
-</tr>
-<tr class="odd">
-<td>!like</td>
-<td>string</td>
-<td>true</td>
-<td>Case sensitive string, not match anywhere</td>
-</tr>
-<tr class="even">
-<td>\$like</td>
-<td>string</td>
-<td>true</td>
-<td>Case sensitive string, match start</td>
-</tr>
-<tr class="odd">
-<td>!\$like</td>
-<td>string</td>
-<td>true</td>
-<td>Case sensitive string, not match start</td>
-</tr>
-<tr class="even">
-<td>like\$</td>
-<td>string</td>
-<td>true</td>
-<td>Case sensitive string, match end</td>
-</tr>
-<tr class="odd">
-<td>!like\$</td>
-<td>string</td>
-<td>true</td>
-<td>Case sensitive string, not match end</td>
-</tr>
-<tr class="even">
-<td>ilike</td>
-<td>string</td>
-<td>true</td>
-<td>Case insensitive string, match anywhere</td>
-</tr>
-<tr class="odd">
-<td>!ilike</td>
-<td>string</td>
-<td>true</td>
-<td>Case insensitive string, not match anywhere</td>
-</tr>
-<tr class="even">
-<td>\$ilike</td>
-<td>string</td>
-<td>true</td>
-<td>Case insensitive string, match start</td>
-</tr>
-<tr class="odd">
-<td>!\$ilike</td>
-<td>string</td>
-<td>true</td>
-<td>Case insensitive string, not match start</td>
-</tr>
-<tr class="even">
-<td>ilike\$</td>
-<td>string</td>
-<td>true</td>
-<td>Case insensitive string, match end</td>
-</tr>
-<tr class="odd">
-<td>!ilike\$</td>
-<td>string</td>
-<td>true</td>
-<td>Case insensitive string, not match end</td>
-</tr>
-<tr class="even">
-<td>gt</td>
-<td>string | boolean | integer | float | collection (checks for size) | date</td>
-<td>true</td>
-<td>Greater than</td>
-</tr>
-<tr class="odd">
-<td>ge</td>
-<td>string | boolean | integer | float | collection (checks for size) | date</td>
-<td>true</td>
-<td>Greater than or equal</td>
-</tr>
-<tr class="even">
-<td>lt</td>
-<td>string | boolean | integer | float | collection (checks for size) | date</td>
-<td>true</td>
-<td>Less than</td>
-</tr>
-<tr class="odd">
-<td>le</td>
-<td>string | boolean | integer | float | collection (checks for size) | date</td>
-<td>true</td>
-<td>Less than or equal</td>
-</tr>
-<tr class="even">
-<td>null</td>
-<td>all</td>
-<td>false</td>
-<td>Property is null</td>
-</tr>
-<tr class="odd">
-<td>!null</td>
-<td>all</td>
-<td>false</td>
-<td>Property is not null</td>
-</tr>
-<tr class="even">
-<td>empty</td>
-<td>collection</td>
-<td>false</td>
-<td>Collection is empty</td>
-</tr>
-<tr class="odd">
-<td>token</td>
-<td>string</td>
-<td>true</td>
-<td>Match on multiple tokens in search property</td>
-</tr>
-<tr class="even">
-<td>!token</td>
-<td>string</td>
-<td>true</td>
-<td>Not match on multiple tokens in search property</td>
-</tr>
-<tr class="odd">
-<td>in</td>
-<td>string | boolean | integer | float | date</td>
-<td>true</td>
-<td>Find objects matching 1 or more values</td>
-</tr>
-<tr class="even">
-<td>!in</td>
-<td>string | boolean | integer | float | date</td>
-<td>true</td>
-<td>Find objects not matching 1 or more values</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Available Operators
+
+| Operator | Types | Value required | Description |
+|---|---|---|---|
+| eq | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true | Equality |
+| !eq | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true | Inequality |
+| ne | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true | Inequality |
+| like | string | true | Case sensitive string, match anywhere |
+| !like | string | true | Case sensitive string, not match anywhere |
+| $like | string | true | Case sensitive string, match start |
+| !$like | string | true | Case sensitive string, not match start |
+| like$ | string | true | Case sensitive string, match end |
+| !like$ | string | true | Case sensitive string, not match end |
+| ilike | string | true | Case insensitive string, match anywhere |
+| !ilike | string | true | Case insensitive string, not match anywhere |
+| $ilike | string | true | Case insensitive string, match start |
+| !$ilike | string | true | Case insensitive string, not match start |
+| ilike$ | string | true | Case insensitive string, match end |
+| !ilike$ | string | true | Case insensitive string, not match end |
+| gt | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date | true | Greater than |
+| ge | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date | true | Greater than or equal |
+| lt | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date | true | Less than |
+| le | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date | true | Less than or equal |
+| null | all | false | Property is null |
+| !null | all | false | Property is not null |
+| empty | collection | false | Collection is empty |
+| token | string | true | Match on multiple tokens in search property |
+| !token | string | true | Not match on multiple tokens in search property |
+| in | string &#124; boolean &#124; integer &#124; float &#124; date | true | Find objects matching 1 or more values |
+| !in | string &#124; boolean &#124; integer &#124; float &#124; date | true | Find objects not matching 1 or more values |
 
 Operators will be applied as logical *and* query, if you need a *or*
 query, you can have a look at our *in* filter (also have a look at the
@@ -652,81 +442,30 @@ presets.
 A few presets (selected fields groups) are available and can be applied
 using the `:` operator.
 
-<table>
-<caption>Property operators</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 74%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>&lt;field-name&gt;</td>
-<td>Include property with name, if it exists.</td>
-</tr>
-<tr class="even">
-<td>&lt;object&gt;[&lt;field-name&gt;, ...]</td>
-<td>Includes a field within either a collection (will be applied to every object in that collection), or just on a single object.</td>
-</tr>
-<tr class="odd">
-<td>!&lt;field-name&gt;, &lt;object&gt;[!&lt;field-name&gt;</td>
-<td>Do not include this field name, it also works inside objects/collections. Useful when you use a preset to include fields.</td>
-</tr>
-<tr class="even">
-<td>*, &lt;object&gt;[*]</td>
-<td>Include all fields on a certain object, if applied to a collection, it will include all fields on all objects on that collection.</td>
-</tr>
-<tr class="odd">
-<td>:&lt;preset&gt;</td>
-<td>Alias to select multiple fields. Three presets are currently available, see the table below for descriptions.</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Field presets</caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 74%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Preset</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>all</td>
-<td>All fields of the object</td>
-</tr>
-<tr class="even">
-<td>*</td>
-<td>Alias for all</td>
-</tr>
-<tr class="odd">
-<td>identifiable</td>
-<td>Includes id, name, code, created and lastUpdated fields</td>
-</tr>
-<tr class="even">
-<td>nameable</td>
-<td>Includes id, name, shortName, code, description, created and lastUpdated fields</td>
-</tr>
-<tr class="odd">
-<td>persisted</td>
-<td>Returns all persisted property on an object, does not take into consideration if the object is the owner of the relation.</td>
-</tr>
-<tr class="even">
-<td>owner</td>
-<td>Returns all persisted property on an object where the object is the owner of all properties, this payload can be used to update through the API.</td>
-</tr>
-</tbody>
-</table>
+
+Table: Property operators
+
+| Operator | Description |
+|---|---|
+| <field-name\> | Include property with name, if it exists. |
+| <object\>[<field-name\>, ...] | Includes a field within either a collection (will be applied to every object in that collection), or just on a single object. |
+| !<field-name\>, <object\>[!<field-name\> | Do not include this field name, it also works inside objects/collections. Useful when you use a preset to include fields. |
+| \*, <object\>[\*] | Include all fields on a certain object, if applied to a collection, it will include all fields on all objects on that collection. |
+| :<preset\> | Alias to select multiple fields. Three presets are currently available, see the table below for descriptions. |
+
+
+
+Table: Field presets
+
+| Preset | Description |
+|---|---|
+| all | All fields of the object |
+| \* | Alias for all |
+| identifiable | Includes id, name, code, created and lastUpdated fields |
+| nameable | Includes id, name, shortName, code, description, created and lastUpdated fields |
+| persisted | Returns all persisted property on an object, does not take into consideration if the object is the owner of the relation. |
+| owner | Returns all persisted property on an object where the object is the owner of all properties, this payload can be used to update through the API. |
 
 **Example**: Include all fields from dataSets except organisationUnits:
 
@@ -755,53 +494,18 @@ Multiple transformers can be used by repeating the transformer syntax:
 
     /api/dataElementGroups.json?fields=id,displayName,dataElements~isNotEmpty~rename(haveDataElements)
 
-<table>
-<caption>Available Transformers</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 21%" />
-<col style="width: 44%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Arguments</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>size</td>
-<td></td>
-<td>Gives sizes of strings (length) and collections</td>
-</tr>
-<tr class="even">
-<td>isEmpty</td>
-<td></td>
-<td>Is string or collection empty</td>
-</tr>
-<tr class="odd">
-<td>isNotEmpty</td>
-<td></td>
-<td>Is string or collection not empty</td>
-</tr>
-<tr class="even">
-<td>rename</td>
-<td>Arg1: name</td>
-<td>Renames the property name</td>
-</tr>
-<tr class="odd">
-<td>paging</td>
-<td>Arg1: page,Arg2: pageSize</td>
-<td>Pages a collection, default pageSize is 50.</td>
-</tr>
-<tr class="even">
-<td>pluck</td>
-<td>Optional Arg1: fieldName</td>
-<td>Converts an array of objects to an array of a selected field of that object. By default, the first field that is returned by the collection is used (normally the ID).</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Available Transformers
+
+| Name | Arguments | Description |
+|---|---|---|
+| size || Gives sizes of strings (length) and collections |
+| isEmpty || Is string or collection empty |
+| isNotEmpty || Is string or collection not empty |
+| rename | Arg1: name | Renames the property name |
+| paging | Arg1: page,Arg2: pageSize | Pages a collection, default pageSize is 50. |
+| pluck | Optional Arg1: fieldName | Converts an array of objects to an array of a selected field of that object. By default, the first field that is returned by the collection is used (normally the ID). |
 
 #### Examples
 
@@ -848,41 +552,15 @@ for _data elements_ is:
 
 The following request query parameters are available across all metadata endpoints.
 
-<table>
-<caption>Available Query Filters</caption>
-<thead>
-<tr class="header">
-<th>Param</th>
-<th>Type</th>
-<th>Required</th>
-<th>Options (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>preheatCache</td>
-<td>boolean</td>
-<td>false</td>
-<td>true | false</td>
-<td>Turn cache-map preheating on/off. This is on by default, turning this off will make initial load time for importer much shorter (but will make the import itself slower). This is mostly used for cases where you have a small XML/JSON file you want to import, and don't want to wait for cache-map preheating.</td>
-</tr>
-<tr class="even">
-<td>strategy</td>
-<td>enum</td>
-<td>false</td>
-<td>CREATE_AND_UPDATE | CREATE | UPDATE | DELETE</td>
-<td>Import strategy to use, see below for more information.</td>
-</tr>
-<tr class="odd">
-<td>mergeMode</td>
-<td>enum</td>
-<td>false</td>
-<td>REPLACE, MERGE</td>
-<td>Strategy for merging of objects when doing updates. REPLACE will just overwrite the property with the new value provided, MERGE will only set the property if it is not null (only if the property was provided).</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Available Query Filters
+
+| Param | Type | Required | Options (default first) | Description |
+|---|---|---|---|---|
+| preheatCache | boolean | false | true &#124; false | Turn cache-map preheating on/off. This is on by default, turning this off will make initial load time for importer much shorter (but will make the import itself slower). This is mostly used for cases where you have a small XML/JSON file you want to import, and don't want to wait for cache-map preheating. |
+| strategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
+| mergeMode | enum | false | REPLACE, MERGE | Strategy for merging of objects when doing updates. REPLACE will just overwrite the property with the new value provided, MERGE will only set the property if it is not null (only if the property was provided). |
 
 ### Creating and updating objects
 
@@ -1174,63 +852,20 @@ table. You can also apply this to all available types by using
 `type:fields=<filter>` and `type:filter=<filter>`. You can also
 enable/disable the export of certain types by setting `type=true|false`.
 
-<table>
-<caption>Export Parameter</caption>
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 21%" />
-<col style="width: 61%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>fields</td>
-<td>Same as metadata field filter</td>
-<td>Default field filter to apply for all types, default is `:owner`.</td>
-</tr>
-<tr class="even">
-<td>filter</td>
-<td>Same as metadata object filter</td>
-<td>Default object filter to apply for all types, default is `none`.</td>
-</tr>
-<tr class="odd">
-<td>order</td>
-<td>Same as metadata order</td>
-<td>Default order to apply to all types, default is `name` if available, or `created` if not.</td>
-</tr>
-<tr class="even">
-<td>translate</td>
-<td>false/true</td>
-<td>Enable translations. Be aware that this is turned off by default (in other endpoints this is on by default).</td>
-</tr>
-<tr class="odd">
-<td>locale</td>
-<td>&lt;locale&gt;</td>
-<td>Change from user locale, to your own custom locale.</td>
-</tr>
-<tr class="even">
-<td>defaults</td>
-<td>INCLUDE/EXCLUDE</td>
-<td>Should auto-generated category object be included or not in the payload. If you are moving metadata between 2 non-synced instances, it might make sense to set this to EXCLUDE to ease the handling of these generated objects.</td>
-</tr>
-<tr class="odd">
-<td>skipSharing</td>
-<td>false/true</td>
-<td>Enabling this will strip the sharing properties from the exported objects. This includes <em>user</em>, <em>publicAccess</em>, <em>userGroupAccesses</em>, <em>userAccesses</em>, and <em>externalAccess</em>.</td>
-</tr>
-<tr class="odd">
-<td>download</td>
-<td>false/true</td>
-<td>Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Export Parameter
+
+| Name | Options | Description |
+|---|---|---|
+| fields | Same as metadata field filter | Default field filter to apply for all types, default is `:owner`. |
+| filter | Same as metadata object filter | Default object filter to apply for all types, default is `none`. |
+| order | Same as metadata order | Default order to apply to all types, default is `name` if available, or `created` if not. |
+| translate | false/true | Enable translations. Be aware that this is turned off by default (in other endpoints this is on by default). |
+| locale | <locale\> | Change from user locale, to your own custom locale. |
+| defaults | INCLUDE/EXCLUDE | Should auto-generated category object be included or not in the payload. If you are moving metadata between 2 non-synced instances, it might make sense to set this to EXCLUDE to ease the handling of these generated objects. |
+| skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
+| download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
 
 ### Metadata export examples
 
@@ -1278,33 +913,14 @@ These exports can then be imported using `/api/metadata`.
 
 These endpoints also support the following parameters:
 
-<table>
-<caption>Export Parameter</caption>
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 21%" />
-<col style="width: 61%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>skipSharing</td>
-<td>false/true</td>
-<td>Enabling this will strip the sharing properties from the exported objects. This includes <em>user</em>, <em>publicAccess</em>, <em>userGroupAccesses</em>, <em>userAccesses</em>, and <em>externalAccess</em>.</td>
-</tr>
-<tr class="odd">
-<td>download</td>
-<td>false/true</td>
-<td>Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Export Parameter
+
+| Name | Options | Description |
+|---|---|---|
+| skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
+| download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
 
 ## Metadata import
 
@@ -1322,93 +938,26 @@ generated by the metadata export API can be imported directly.
 The metadata import endpoint support a variety of parameters, which are
 listed below.
 
-<table>
-<caption>Import Parameter</caption>
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 21%" />
-<col style="width: 61%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Options (first is default)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>importMode</td>
-<td>COMMIT, VALIDATE</td>
-<td>Sets overall import mode, decides whether or not to only `VALIDATE` or also `COMMIT` the metadata, this has similar functionality as our old dryRun flag.</td>
-</tr>
-<tr class="even">
-<td>identifier</td>
-<td>UID, CODE, AUTO</td>
-<td>Sets the identifier scheme to use for reference matching. `AUTO` means try `UID` first, then `CODE`.</td>
-</tr>
-<tr class="odd">
-<td>importReportMode</td>
-<td>ERRORS, FULL, DEBUG</td>
-<td>Sets the `ImportReport` mode, controls how much is reported back after the import is done. `ERRORS` only includes <em>ObjectReports</em> for object which has errors. `FULL` returns an <em>ObjectReport</em> for all objects imported, and `DEBUG` returns the same plus a name for the object (if available).</td>
-</tr>
-<tr class="even">
-<td>preheatMode</td>
-<td>REFERENCE, ALL, NONE</td>
-<td>Sets the preheater mode, used to signal if preheating should be done for `ALL` (as it was before with <em>preheatCache=true</em>) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to `NONE` is not recommended.</td>
-</tr>
-<tr class="odd">
-<td>importStrategy</td>
-<td>CREATE_AND_UPDATE, CREATE, UPDATE, DELETE</td>
-<td>Sets import strategy, `CREATE_AND_UPDATE` will try and match on identifier, if it doesn't exist, it will create the object.</td>
-</tr>
-<tr class="even">
-<td>atomicMode</td>
-<td>ALL, NONE</td>
-<td>Sets atomic mode, in the old importer we always did a <em>best effort</em> import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the `NONE` mode emulated the old behavior.</td>
-</tr>
-<tr class="odd">
-<td>mergeMode</td>
-<td>REPLACE, MERGE</td>
-<td>Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not.</td>
-</tr>
-<tr class="even">
-<td>flushMode</td>
-<td>AUTO, OBJECT</td>
-<td>Sets the flush mode, which controls when to flush the internal cache. It is <em>strongly</em> recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues).</td>
-</tr>
-<tr class="odd">
-<td>skipSharing</td>
-<td>false, true</td>
-<td>Skip sharing properties, does not merge sharing when doing updates, and does not add user group access when creating new objects.</td>
-</tr>
-<tr class="even">
-<td>skipValidation</td>
-<td>false, true</td>
-<td>Skip validation for import. `NOT RECOMMENDED`.</td>
-</tr>
-<tr class="odd">
-<td>async</td>
-<td>false, true</td>
-<td>Asynchronous import, returns immediately with a <em>Location</em> header pointing to the location of the <em>importReport</em>. The payload also contains a json object of the job created.</td>
-</tr>
-<tr class="even">
-<td>inclusionStrategy</td>
-<td>NON_NULL, ALWAYS, NON_EMPTY</td>
-<td><em>NON_NULL</em> includes properties which are not null, <em>ALWAYS</em> include all properties, <em>NON_EMPTY</em> includes non empty properties (will not include strings of 0 length, collections of size 0, etc.)</td>
-</tr>
-<tr class="odd">
-<td>userOverrideMode</td>
-<td>NONE, CURRENT, SELECTED</td>
-<td>Allows you to override the user property of every object you are importing, the options are NONE (do nothing), CURRENT (use import user), SELECTED (select a specific user using overrideUser=X)</td>
-</tr>
-<tr class="even">
-<td>overrideUser</td>
-<td>User ID</td>
-<td>If userOverrideMode is SELECTED, use this parameter to select the user you want override with.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Import Parameter
+
+| Name | Options (first is default) | Description |
+|---|---|---|
+| importMode | COMMIT, VALIDATE | Sets overall import mode, decides whether or not to only `VALIDATE` or also `COMMIT` the metadata, this has similar functionality as our old dryRun flag. |
+| identifier | UID, CODE, AUTO | Sets the identifier scheme to use for reference matching. `AUTO` means try `UID` first, then `CODE`. |
+| importReportMode | ERRORS, FULL, DEBUG | Sets the `ImportReport` mode, controls how much is reported back after the import is done. `ERRORS` only includes *ObjectReports* for object which has errors. `FULL` returns an *ObjectReport* for all objects imported, and `DEBUG` returns the same plus a name for the object (if available). |
+| preheatMode | REFERENCE, ALL, NONE | Sets the preheater mode, used to signal if preheating should be done for `ALL` (as it was before with *preheatCache=true*) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to `NONE` is not recommended. |
+| importStrategy | CREATE_AND_UPDATE, CREATE, UPDATE, DELETE | Sets import strategy, `CREATE_AND_UPDATE` will try and match on identifier, if it doesn't exist, it will create the object. |
+| atomicMode | ALL, NONE | Sets atomic mode, in the old importer we always did a *best effort* import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the `NONE` mode emulated the old behavior. |
+| mergeMode | REPLACE, MERGE | Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not. |
+| flushMode | AUTO, OBJECT | Sets the flush mode, which controls when to flush the internal cache. It is *strongly* recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues). |
+| skipSharing | false, true | Skip sharing properties, does not merge sharing when doing updates, and does not add user group access when creating new objects. |
+| skipValidation | false, true | Skip validation for import. `NOT RECOMMENDED`. |
+| async | false, true | Asynchronous import, returns immediately with a *Location* header pointing to the location of the *importReport*. The payload also contains a json object of the job created. |
+| inclusionStrategy | NON_NULL, ALWAYS, NON_EMPTY | *NON_NULL* includes properties which are not null, *ALWAYS* include all properties, *NON_EMPTY* includes non empty properties (will not include strings of 0 length, collections of size 0, etc.) |
+| userOverrideMode | NONE, CURRENT, SELECTED | Allows you to override the user property of every object you are importing, the options are NONE (do nothing), CURRENT (use import user), SELECTED (select a specific user using overrideUser=X) |
+| overrideUser | User ID | If userOverrideMode is SELECTED, use this parameter to select the user you want override with. |
 
 An example of a metadata payload to be imported looks like this. Note how
 each entity type have their own property with an array of objects:
@@ -1589,121 +1138,36 @@ The following table lists the metadata and rendering types available.
 The value type rendering has addition constraints based on the metadata
 configuration, which will be shown in a second table.
 
-<table>
-<caption>Metadata and RenderingType overview</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Metadata type</th>
-<th>Available RenderingTypes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Program Stage Section</td>
-<td><ul>
-<li><p>LISTING (default)</p></li>
-<li><p>SEQUENTIAL</p></li>
-<li><p>MATRIX</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>Data element</td>
-<td><ul>
-<li><p>DEFAULT</p></li>
-<li><p>DROPDOWN</p></li>
-<li><p>VERTICAL_RADIOBUTTONS</p></li>
-<li><p>HORIZONTAL_RADIOBUTTONS</p></li>
-<li><p>VERTICAL_CHECKBOXES</p></li>
-<li><p>HORIZONTAL_CHECKBOXES</p></li>
-<li><p>SHARED_HEADER_RADIOBUTTONS</p></li>
-<li><p>ICONS_AS_BUTTONS</p></li>
-<li><p>SPINNER</p></li>
-<li><p>ICON</p></li>
-<li><p>TOGGLE</p></li>
-<li><p>VALUE</p></li>
-<li><p>SLIDER</p></li>
-<li><p>LINEAR_SCALE</p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Metadata and RenderingType overview
+
+| Metadata type | Available RenderingTypes |
+|---|---|
+| Program Stage Section | * LISTING (default)<br> * SEQUENTIAL<br> * MATRIX |
+| Data element | * DEFAULT<br> * DROPDOWN<br> * VERTICAL_RADIOBUTTONS<br> * HORIZONTAL_RADIOBUTTONS<br> * VERTICAL_CHECKBOXES<br> * HORIZONTAL_CHECKBOXES<br> * SHARED_HEADER_RADIOBUTTONS<br> * ICONS_AS_BUTTONS<br> * SPINNER<br> * ICON<br> * TOGGLE<br> * VALUE<br> * SLIDER<br> * LINEAR_SCALE |
 
 Since handling the default rendering of data elements and tracked entity
 attributes are depending on the value type of the object, there is also
 a DEFAULT type to tell the client it should be handled as normal.
 Program Stage Section is LISTING as default.
 
-<table>
-<caption>RenderingTypes allowed based on value types</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Value type</th>
-<th>Is object an optionset?</th>
-<th>RenderingTypes allowed</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>TRUE_ONLY</td>
-<td>No</td>
-<td>DEFAULT, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, TOGGLE</td>
-</tr>
-<tr class="even">
-<td>BOOLEAN</td>
-<td>No</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>-</td>
-<td>Yes</td>
-<td>DEFAULT, DROPDOWN, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, SHARED_HEADER_RADIOBUTTONS, ICONS_AS_BUTTONS, SPINNER, ICON</td>
-</tr>
-<tr class="even">
-<td>INTEGER</td>
-<td>No</td>
-<td>DEFAULT, VALUE, SLIDER, LINEAR_SCALE, SPINNER</td>
-</tr>
-<tr class="odd">
-<td>INTEGER_POSITIVE</td>
-<td>No</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>INTEGER_NEGATIVE</td>
-<td>No</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>INTEGER_ZERO_OR_POSITIVE</td>
-<td>No</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>NUMBER</td>
-<td>No</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>UNIT_INTERVAL</td>
-<td>No</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>PERCENTAGE</td>
-<td>No</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: RenderingTypes allowed based on value types
+
+| Value type | Is object an optionset? | RenderingTypes allowed |
+|---|---|---|
+| TRUE_ONLY | No | DEFAULT, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, TOGGLE |
+| BOOLEAN | No ||
+| - | Yes | DEFAULT, DROPDOWN, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, SHARED_HEADER_RADIOBUTTONS, ICONS_AS_BUTTONS, SPINNER, ICON |
+| INTEGER | No | DEFAULT, VALUE, SLIDER, LINEAR_SCALE, SPINNER |
+| INTEGER_POSITIVE | No ||
+| INTEGER_NEGATIVE | No ||
+| INTEGER_ZERO_OR_POSITIVE | No ||
+| NUMBER | No ||
+| UNIT_INTERVAL | No ||
+| PERCENTAGE | No ||
 
 A complete reference of the previous table can also be retrieved using
 the following endpoint:
@@ -1713,48 +1177,17 @@ the following endpoint:
 Value type rendering also has some additional properties that can be
 set, which is usually needed when rendering some of the specific types:
 
-<table>
-<caption>renderType object properties</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>type</td>
-<td>The RenderingType of the object, as seen in the first table. This property is the same for both value type and program stage section, but is the only property available for program stage section.</td>
-<td>Enum (See list in the Metadata and Rendering Type table)</td>
-</tr>
-<tr class="even">
-<td>min</td>
-<td>Only for value type rendering. Represents the minimum value this field can have.</td>
-<td>Integer</td>
-</tr>
-<tr class="odd">
-<td>max</td>
-<td>Only for value type rendering. Represents the maximum value this field can have.</td>
-<td>Integer</td>
-</tr>
-<tr class="even">
-<td>step</td>
-<td>Only for value type rendering. Represents the size of the steps the value should increase, for example for SLIDER og LINEAR_SCALE</td>
-<td>Integer</td>
-</tr>
-<tr class="odd">
-<td>decimalPoints</td>
-<td>Only for value type rendering. Represents the number of decimal points the value should use.</td>
-<td>Integer</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: renderType object properties
+
+| Property | Description | Type |
+|---|---|---|
+| type | The RenderingType of the object, as seen in the first table. This property is the same for both value type and program stage section, but is the only property available for program stage section. | Enum (See list in the Metadata and Rendering Type table) |
+| min | Only for value type rendering. Represents the minimum value this field can have. | Integer |
+| max | Only for value type rendering. Represents the maximum value this field can have. | Integer |
+| step | Only for value type rendering. Represents the size of the steps the value should increase, for example for SLIDER og LINEAR_SCALE | Integer |
+| decimalPoints | Only for value type rendering. Represents the number of decimal points the value should use. | Integer |
 
 The *renderingType* can be set when creating or updating the metadata listed in the first table. An example payload for the rendering type for program stage section looks like this:
 
@@ -1788,33 +1221,14 @@ Most metadata have a property names "style". This property can be used
 by clients to represent the object in a certain way. The properties
 currently supported by style is as follows:
 
-<table>
-<caption>Style properties</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>color</td>
-<td>A color, represented by a hexadecimal.</td>
-<td>String (#000000)</td>
-</tr>
-<tr class="even">
-<td>icon</td>
-<td>An icon, represented by a icon-name.</td>
-<td>String</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Style properties
+
+| Property | Description | Type |
+|---|---|---|
+| color | A color, represented by a hexadecimal. | String (#000000) |
+| icon | An icon, represented by a icon-name. | String |
 
 Currently, there is no official list or support for icon-libraries, so
 this is currently up to the client to provide. The following list shows
@@ -1881,73 +1295,22 @@ organisation unit groups. The variables will be substituted with data
 values when used e.g. in reports. Variables which are allowed in
 expressions are described in the following table.
 
-<table>
-<caption>Indicator variables</caption>
-<colgroup>
-<col style="width: 39%" />
-<col style="width: 22%" />
-<col style="width: 37%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Object</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>#{&lt;dataelement-id&gt;.&lt;categoryoptcombo-id&gt;.&lt;attributeoptcombo-id&gt;}</td>
-<td>Data element operand</td>
-<td>Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard &quot;*&quot; symbol can be used to indicate any value.</td>
-</tr>
-<tr class="even">
-<td>#{&lt;dataelement-id&gt;.&lt;categoryoptiongroup-id&gt;.&lt;attributeoptcombo-id&gt;}</td>
-<td>Category Option Group</td>
-<td>Refers to an aggregate data element and a category option group, containing multiple category option combinations.</td>
-</tr>
-<tr class="odd">
-<td>#{&lt;dataelement-id&gt;}</td>
-<td>Aggregate data element</td>
-<td>Refers to the total value of an aggregate data element across all category option combinations.</td>
-</tr>
-<tr class="even">
-<td>D{&lt;program-id&gt;.&lt;dataelement-id&gt;}</td>
-<td>Program data element</td>
-<td>Refers to the value of a tracker data element within a program.</td>
-</tr>
-<tr class="odd">
-<td>A{&lt;program-id&gt;.&lt;attribute-id&gt;}</td>
-<td>Program tracked entity attribute</td>
-<td>Refers to the value of a tracked entity attribute within a program.</td>
-</tr>
-<tr class="even">
-<td>I{&lt;program-indicator-id&gt;}</td>
-<td>Program indicator</td>
-<td>Refers to the value of a program indicator.</td>
-</tr>
-<tr class="odd">
-<td>R{&lt;dataset-id&gt;.&lt;metric&gt;}</td>
-<td>Reporting rate</td>
-<td>Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS.</td>
-</tr>
-<tr class="even">
-<td>C{&lt;constant-id&gt;}</td>
-<td>Constant</td>
-<td>Refers to a constant value.</td>
-</tr>
-<tr class="odd">
-<td>N{&lt;indicator-id&gt;}</td>
-<td>Indicator</td>
-<td>Refers to an existing Indicator.</td>
-</tr>
-<tr class="even">
-<td>OUG{&lt;orgunitgroup-id&gt;}</td>
-<td>Organisation unit group</td>
-<td>Refers to the count of organisation units within an organisation unit group.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Indicator variables
+
+| Variable | Object | Description |
+|---|---|---|
+| #{<dataelement-id\>.<categoryoptcombo-id\>.<attributeoptcombo-id\>} | Data element operand | Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard "\*" symbol can be used to indicate any value. |
+| #{<dataelement-id\>.<categoryoptiongroup-id\>.<attributeoptcombo-id\>} | Category Option Group | Refers to an aggregate data element and a category option group, containing multiple category option combinations. |
+| #{<dataelement-id\>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
+| D{<program-id\>.<dataelement-id\>} | Program data element | Refers to the value of a tracker data element within a program. |
+| A{<program-id\>.<attribute-id\>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
+| I{<program-indicator-id\>} | Program indicator | Refers to the value of a program indicator. |
+| R{<dataset-id\>.<metric\>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
+| C{<constant-id\>} | Constant | Refers to a constant value. |
+| N{<indicator-id\>} | Indicator | Refers to an existing Indicator. |
+| OUG{<orgunitgroup-id\>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
 
 The syntax looks like
     this:
@@ -2010,37 +1373,16 @@ Indicators have an expression which can contain references to data
 elements, attributes, constants and program variables. Variables which
 are allowed in expressions are described in the following table.
 
-<table>
-<caption>Program indicator variables</caption>
-<colgroup>
-<col style="width: 31%" />
-<col style="width: 68%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>#{&lt;programstage-id&gt;.&lt;dataelement-id&gt;}</td>
-<td>Refers to a combination of program stage and data element id.</td>
-</tr>
-<tr class="even">
-<td>A{&lt;attribute-id&gt;}</td>
-<td>Refers to a tracked entity attribute.</td>
-</tr>
-<tr class="odd">
-<td>V{&lt;variable-id&gt;}</td>
-<td>Refers to a program variable.</td>
-</tr>
-<tr class="even">
-<td>C{&lt;constant-id&gt;}</td>
-<td>Refers to a constant.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Program indicator variables
+
+| Variable | Description |
+|---|---|
+| #{<programstage-id\>.<dataelement-id\>} | Refers to a combination of program stage and data element id. |
+| A{<attribute-id\>} | Refers to a tracked entity attribute. |
+| V{<variable-id\>} | Refers to a program variable. |
+| C{<constant-id\>} | Refers to a constant. |
 
 The syntax looks like
     this:
@@ -2096,73 +1438,22 @@ To get a list of organisation units you can use the following resource.
 
     /api/33/organisationUnits
 
-<table>
-<caption>Organisation units query parameters</caption>
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 65%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>userOnly</td>
-<td>false | true</td>
-<td>Data capture organisation units associated with current user only.</td>
-</tr>
-<tr class="even">
-<td>userDataViewOnly</td>
-<td>false | true</td>
-<td>Data view organisation units associated with current user only.</td>
-</tr>
-<tr class="odd">
-<td>userDataViewFallback</td>
-<td>false | true</td>
-<td>Data view organisation units associated with current user only with fallback to data capture organisation units.</td>
-</tr>
-<tr class="even">
-<td>query</td>
-<td>string</td>
-<td>Query against the name, code and ID properties.</td>
-</tr>
-<tr class="odd">
-<td>level</td>
-<td>integer</td>
-<td>Organisation units at the given level in the hierarchy.</td>
-</tr>
-<tr class="even">
-<td>maxLevel</td>
-<td>integer</td>
-<td>Organisation units at the given max level or levels higher up in the hierarchy.</td>
-</tr>
-<tr class="odd">
-<td>withinUserHierarchy</td>
-<td>false | true</td>
-<td>Limits search and retrieval to organisation units that are within the users data capture scope.</td>
-</tr>
-<tr class="even">
-<td>withinUserSearchHierarchy</td>
-<td>false | true</td>
-<td>Limits search and retrieval to organisation units that are within the current users search scope. Note: "withinUserHierarchy", if true, takes higher precedence.</td>
-</tr>
-<tr class="odd">
-<td>memberCollection</td>
-<td>string</td>
-<td>For displaying count of members within a collection, refers to the name of the collection associated with organisation units.</td>
-</tr>
-<tr class="even">
-<td>memberObject</td>
-<td>UID</td>
-<td>For displaying count of members within a collection, refers to the identifier of the object member of the collection.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Organisation units query parameters
+
+| Query parameter | Options | Description |
+|---|---|---|
+| userOnly | false &#124; true | Data capture organisation units associated with current user only. |
+| userDataViewOnly | false &#124; true | Data view organisation units associated with current user only. |
+| userDataViewFallback | false &#124; true | Data view organisation units associated with current user only with fallback to data capture organisation units. |
+| query | string | Query against the name, code and ID properties. |
+| level | integer | Organisation units at the given level in the hierarchy. |
+| maxLevel | integer | Organisation units at the given max level or levels higher up in the hierarchy. |
+| withinUserHierarchy | false &#124; true | Limits search and retrieval to organisation units that are within the users data capture scope. |
+| withinUserSearchHierarchy | false &#124; true | Limits search and retrieval to organisation units that are within the current users search scope. Note: "withinUserHierarchy", if true, takes higher precedence. |
+| memberCollection | string | For displaying count of members within a collection, refers to the name of the collection associated with organisation units. |
+| memberObject | UID | For displaying count of members within a collection, refers to the identifier of the object member of the collection. |
 
 ### Get organisation unit with relations
 
@@ -2173,43 +1464,16 @@ the following resource.
 
     /api/33/organisationUnits/{id}
 
-<table>
-<caption>Organisation unit parameters</caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 58%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Query parameter</th>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>includeChildren</td>
-<td>false | true</td>
-<td>Include immediate children of the specified organisation unit, i.e. the units at the immediate level below in the subhierarchy.</td>
-</tr>
-<tr class="even">
-<td>includeDescendants</td>
-<td>false | true</td>
-<td>Include all children of the specified organisation unit, i.e. all units in the sub-hierarchy.</td>
-</tr>
-<tr class="odd">
-<td>includeAncestors</td>
-<td>false | true</td>
-<td>Include all parents of the specified organisation unit.</td>
-</tr>
-<tr class="even">
-<td>level</td>
-<td>integer</td>
-<td>Include children of the specified organisation unit at the given level of the sub-hierarchy (relative to the organisation unit where the immediate level below is level 1).</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Organisation unit parameters
+
+| Query parameter | Options | Description |
+|---|---|---|
+| includeChildren | false &#124; true | Include immediate children of the specified organisation unit, i.e. the units at the immediate level below in the subhierarchy. |
+| includeDescendants | false &#124; true | Include all children of the specified organisation unit, i.e. all units in the sub-hierarchy. |
+| includeAncestors | false &#124; true | Include all parents of the specified organisation unit. |
+| level | integer | Include children of the specified organisation unit at the given level of the sub-hierarchy (relative to the organisation unit where the immediate level below is level 1). |
 
 ### Get organisation units by programs
 
@@ -2410,14 +1674,14 @@ or a skip test expression:
 
 | Variable    | Object     | Description |
 | ----------- | ---------- | ----------- |
-| #{\<dataelement-id>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
-| #{\<dataelement-id>.\<categoryoptcombo-id> | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
-| D{\<program-id>.\<dataelement-id>} | Program data element | Refers to the value of a tracker data element within a program. |
-| A{\<program-id>.\<attribute-id>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
-| I{\<program-indicator-id>} | Program indicator | Refers to the value of a program indicator. |
-| R{\<dataset-id>.\<metric>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
-| C{\<constant-id>} | Constant | Refers to a constant value. |
-| OUG{\<orgunitgroup-id>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
+| #{<dataelement-id>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
+| #{<dataelement-id>.<categoryoptcombo-id> | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
+| D{<program-id>.<dataelement-id>} | Program data element | Refers to the value of a tracker data element within a program. |
+| A{<program-id>.<attribute-id>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
+| I{<program-indicator-id>} | Program indicator | Refers to the value of a program indicator. |
+| R{<dataset-id>.<metric>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
+| C{<constant-id>} | Constant | Refers to a constant value. |
+| OUG{<orgunitgroup-id>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
 | [days] | Number of days | The number of days in the current period. |
 
 ### Generating predicted values
@@ -2462,264 +1726,59 @@ programRules' expressions.
 The following table gives a detailed overview over the programRule
 model.
 
-<table style="width:100%;">
-<caption>programRule</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 66%" />
-<col style="width: 16%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>name</th>
-<th>description</th>
-<th>Compulsory</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>program</td>
-<td>The program of which the programRule is executed in.</td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>name</td>
-<td>The name with which the program rule will be displayed to dhis2 configurators. Not visible to the end user of the program.</td>
-<td>Compulsory</td>
-</tr>
-<tr class="odd">
-<td>description</td>
-<td>The description of the program rule, can be used by configurators to describe the rule. Not visible to the end user of the program.</td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>programStage</td>
-<td>If a programStage is set for a program rule, the rule will only be evaluated inside the specified program stage.</td>
-<td>optional</td>
-</tr>
-<tr class="odd">
-<td>condition</td>
-<td>The expression that needs to be evaluated to true in order for the program rule to trigger its child actions. The expression is written using operators, function calls, hard coded values, constants and program rule variables.
-<pre><code>d2:hasValue(&#39;hemoglobin&#39;) &amp;&amp; #{hemoglobin} &lt;= 7</code></pre></td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>priority</td>
-<td>The priority to run the rule in cases where the order of the rules matters. In most cases the rules does not depend on being run before or after other rules, and in these cases the priority can be omitted. If no priority is set, the rule will be run after any rules that has a priority defined. If a priority(integer) is set, the rule with the lowest priority will be run before rules with higher priority.</td>
-<td>optional</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: programRule
+
+| name | description | Compulsory |
+|---|---|---|
+| program | The program of which the programRule is executed in. | Compulsory |
+| name | The name with which the program rule will be displayed to dhis2 configurators. Not visible to the end user of the program. | Compulsory |
+| description | The description of the program rule, can be used by configurators to describe the rule. Not visible to the end user of the program. | Compulsory |
+| programStage | If a programStage is set for a program rule, the rule will only be evaluated inside the specified program stage. | optional |
+| condition | The expression that needs to be evaluated to true in order for the program rule to trigger its child actions. The expression is written using operators, function calls, hard coded values, constants and program rule variables. `d2:hasValue('hemoglobin') && #{hemoglobin} <= 7 `| Compulsory |
+| priority | The priority to run the rule in cases where the order of the rules matters. In most cases the rules does not depend on being run before or after other rules, and in these cases the priority can be omitted. If no priority is set, the rule will be run after any rules that has a priority defined. If a priority(integer) is set, the rule with the lowest priority will be run before rules with higher priority. | optional |
 
 #### Program rule action model details
 
 The following table gives a detailed overview over the programRuleAction
 model.
 
-<table style="width:100%;">
-<caption>programRuleAction</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 66%" />
-<col style="width: 16%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>name</th>
-<th>description</th>
-<th>Compulsory</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>programRule</td>
-<td>The programRule that is the parent of this action.</td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>programRule- ActionType</td>
-<td>The type of action that is to be performed.
-<ul>
-<li><p>`DISPLAYTEXT` - Displays a text in a given widget.</p></li>
-<li><p>`DISPLAYKEYVALUEPAIR` - Displays a key and value pair(like a program indicator) in a given widget.</p></li>
-<li><p>`HIDEFIELD` - Hide a specified dataElement or trackedEntityAttribute.</p>
-<ul>
-<li><p><em>content</em> - if defined, the text in <em>content</em> will be displayed to the end user in the instance where a value is previously entered into a field that is now about to be hidden (and therefore blanked). If <em>content</em> is not defined, a standard message will be shown to the user in this instance.</p></li>
-<li><p><em>dataElement</em> - if defined, the HIDEFIELD action will hide this dataElement when the rule is effective.</p></li>
-<li><p><em>trackedEntityDataValue</em> - if defined, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.</p></li>
-</ul></li>
-<li><p>`HIDESECTION` - Hide a specified section.</p>
-<ul>
-<li><p><em>programStageSection</em> - must be defined. This is the programStageSection that will be hidden in case the parent rule is effective.</p></li>
-</ul></li>
-<li><p>`ASSIGN` - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)</p>
-<ul>
-<li><p><em>content</em> - if defined, the value in <em>data</em> is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a <em>programRule.priority</em> to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.</p></li>
-<li><p><em>data</em> - must be defined, data forms an expression that is evaluated and assigned to either a variable(#{myVariable}), a dataElement, or both.</p></li>
-<li><p><em>dataElement</em> - if defined, the value in <em>data</em> is assigned to this data element.</p></li>
-</ul>
-<p>Either the content or dataElement must be defined for the ASSIGN action to be effective.</p></li>
-<li><p>`SHOWWARNING` - Show a warning to the user, not blocking the user from completing the event or registration.</p>
-<ul>
-<li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
-<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
-<li><p><em>dataElement</em> - if defined, the warning message is displayed next to this data element.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined, the warning message is displayed next to this tracked entity attribute.</p></li>
-</ul>
-<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
-<li><p>`SHOWERROR` - Show an error to the user, blocking the user from completing the event or registration.</p>
-<ul>
-<li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
-<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
-<li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined, the error message is linked to this tracked entity attribute.</p></li>
-</ul>
-<p>Either dataElement or trackedEntityAttribute must be specified.</p></li>
-<li><p>`WARNINGONCOMPLETINON` - Show a warning to the user on the &quot;Complete form&quot; dialog, but allowing the user to complete the event.</p>
-<ul>
-<li><p><em>content</em> - if defined, content is a static part that is displayed at the end of the error message.</p></li>
-<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the warning message.</p></li>
-<li><p><em>dataElement</em> - if defined, the warning message prefixed with the name/formName of the data element.</p></li>
-</ul></li>
-<li><p>`ERRORONCOMPLETION` - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.</p>
-<ul>
-<li><p><em>content</em> - if defined, content is a static part that is displayed in the start of the error message.</p></li>
-<li><p><em>data</em> - if defined, data forms an expression that is evaluated and added to the end of the error message.</p></li>
-<li><p><em>dataElement</em> - if defined, the error message is linked to this data element.</p></li>
-</ul></li>
-<li><p>`CREATEEVENT` - Create an event within the same enrollment.</p>
-<ul>
-<li><p><em>content</em></p></li>
-<li><p><em>data</em> - if defined, contains data values to assign the created event. The format is &lt;uid&gt;:&lt;data value&gt;. Where several values is specified, these are separated with comma.</p>
-<pre><code>AcMrnleqHqc:100,AqK1IHqCkEE:&#39;Polyhydramnios&#39;</code></pre></li>
-<li><p><em>programStage</em> - must be defined, and designates the program stage that the rule shall create an event of.</p></li>
-</ul></li>
-<li><p>`SETMANDATORYFIELD` - Set a field to be mandatory.</p>
-<ul>
-<li><p><em>dataElement</em> - if defined, this data element will be set to be mandatory in the data entry form.</p></li>
-<li><p><em>trackedEntityAttribute</em> - if defined, this tracked entity attribute will be set to mandatory in the registration form or profile.</p></li>
-</ul></li>
-<li><p>`SENDMESSAGE` - To send message at completion of event/enrollment or at data value update.</p>
-<ul>
-<li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
-</ul></li>
-<li><p>`SCHEDULEMESSAGE` - To schedule message at completion of event/enrollment or at data value update.</p>
-<ul>
-<li><p><em>messageTemplate</em> - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.</p></li>
-<li><p><em>Date to send message</em> - Expression which is going to be used for evaluation of scheduled date. This expression should result in Date, any other resultant will be discarded and notification will not get scheduled.</p></li>
-</ul></li>
-</ul></td>
-<td>Compulsory</td>
-</tr>
-<tr class="odd">
-<td>location</td>
-<td>Used for actionType DISPLAYKEYVALUEPAIR and DISPLAYTEXT to designate which widget to display the text or keyvaluepair in. Compulsory for DISPLAYKEYVALUEPAIR and DISPLAYTEXT.</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>content</td>
-<td>Used for user messages in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, DISPLAYTEXT and DISPLAYKEYVALUEPAIR. Optional for HIDEFIELD and ASSIGN.</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>data</td>
-<td>Used for expressions in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for ASSIGN. Optional for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, DISPLAYTEXT, CREATEEVENT and DISPLAYKEYVALUEPAIR</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>dataElement</td>
-<td>Used for linking rule actions to dataElements. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, ASSIGN and HIDEFIELD</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>trackedEntity- Attribute</td>
-<td>Used for linking rule actions to trackedEntityAttributes. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for SHOWWARNING, SHOWERROR and HIDEFIELD.</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>option</td>
-<td>Used for linking rule actions to options. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for HIDEOPTION</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>optionGroup</td>
-<td>Used for linking rule actions to optionGroups. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for SHOWOPTIONGROUP, HIDEOPTIONGROUP.</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>programStage</td>
-<td>Only used for CREATEEVENT rule actions. Compulsory for CREATEEEVENT.</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>programStage- Section</td>
-<td>Only used for HIDESECTION rule actions. Compulsory for HIDESECTION</td>
-<td>See description</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: programRuleAction
+
+| name | description | Compulsory |
+|---|---|---|
+| programRule | The programRule that is the parent of this action. | Compulsory |
+| programRule- ActionType | The type of action that is to be performed.  * `DISPLAYTEXT` - Displays a text in a given widget.<br> * `DISPLAYKEYVALUEPAIR` - Displays a key and value pair(like a program indicator) in a given widget.<br> * `HIDEFIELD` - Hide a specified dataElement or trackedEntityAttribute.<br>    -         *content* - if defined, the text in *content* will be displayed to the end user in the instance where a value is previously entered into a field that is now about to be hidden (and therefore blanked). If *content* is not defined, a standard message will be shown to the user in this instance.<br>   -         *dataElement* - if defined, the HIDEFIELD action will hide this dataElement when the rule is effective.<br>   -         *trackedEntityDataValue* - if defined, the HIDEFIELD action will hide this trackedEntityDataValue when the rule is effective.<br>  * `HIDESECTION` - Hide a specified section.<br>    -         *programStageSection* - must be defined. This is the programStageSection that will be hidden in case the parent rule is effective.<br>  * `ASSIGN` - Assign a dataElement a value(help the user calculate something or fill in an obvious value somewhere)<br>    -         *content* - if defined, the value in *data* is assigned to this variable. If content id defined, and thus a variable is assigned for use in other rules, it is important to also assign a *programRule.priority* to make sure the rule with an ASSIGN action runs before the rule that will in turn evaluate the assigned variable.<br>   -         *data* - must be defined, data forms an expression that is evaluated and assigned to either a variable(#{myVariable}), a dataElement, or both.<br>   -         *dataElement* - if defined, the value in *data* is assigned to this data element.<br>  Either the content or dataElement must be defined for the ASSIGN action to be effective.<br> * `SHOWWARNING` - Show a warning to the user, not blocking the user from completing the event or registration.<br>    -         *content* - if defined, content is a static part that is displayed at the end of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the warning message.<br>   -         *dataElement* - if defined, the warning message is displayed next to this data element.<br>   -         *trackedEntityAttribute* - if defined, the warning message is displayed next to this tracked entity attribute.<br>  Either dataElement or trackedEntityAttribute must be specified.<br> * `SHOWERROR` - Show an error to the user, blocking the user from completing the event or registration.<br>    -         *content* - if defined, content is a static part that is displayed in the start of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the error message.<br>   -         *dataElement* - if defined, the error message is linked to this data element.<br>   -         *trackedEntityAttribute* - if defined, the error message is linked to this tracked entity attribute.<br>  Either dataElement or trackedEntityAttribute must be specified.<br> * `WARNINGONCOMPLETINON` - Show a warning to the user on the "Complete form" dialog, but allowing the user to complete the event.<br>    -         *content* - if defined, content is a static part that is displayed at the end of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the warning message.<br>   -         *dataElement* - if defined, the warning message prefixed with the name/formName of the data element.<br>  * `ERRORONCOMPLETION` - Show an error to the user on in a modal window when the user tries to complete the event. The user is prevented from completing the event.<br>    -         *content* - if defined, content is a static part that is displayed in the start of the error message.<br>   -         *data* - if defined, data forms an expression that is evaluated and added to the end of the error message.<br>   -         *dataElement* - if defined, the error message is linked to this data element.<br>  * `CREATEEVENT` - Create an event within the same enrollment.<br>    -         *content*<br>   -         *data* - if defined, contains data values to assign the created event. The format is <uid\>:<data value\>. Where several values is specified, these are separated with comma.<br> AcMrnleqHqc:100,AqK1IHqCkEE:'Polyhydramnios'   -         *programStage* - must be defined, and designates the program stage that the rule shall create an event of.<br>  * `SETMANDATORYFIELD` - Set a field to be mandatory.<br>    -         *dataElement* - if defined, this data element will be set to be mandatory in the data entry form.<br>   -         *trackedEntityAttribute* - if defined, this tracked entity attribute will be set to mandatory in the registration form or profile.<br>  * `SENDMESSAGE` - To send message at completion of event/enrollment or at data value update.<br>    -         *messageTemplate* - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.<br>  * `SCHEDULEMESSAGE` - To schedule message at completion of event/enrollment or at data value update.<br>    -         *messageTemplate* - if defined, this template will be delivered either as SMS or EMAIL depending upon DeliveryChannel value in message template.<br>   -         *Date to send message* - Expression which is going to be used for evaluation of scheduled date. This expression should result in Date, any other resultant will be discarded and notification will not get scheduled. | Compulsory |
+| location | Used for actionType DISPLAYKEYVALUEPAIR and DISPLAYTEXT to designate which widget to display the text or keyvaluepair in. Compulsory for DISPLAYKEYVALUEPAIR and DISPLAYTEXT. | See description |
+| content | Used for user messages in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, DISPLAYTEXT and DISPLAYKEYVALUEPAIR. Optional for HIDEFIELD and ASSIGN. | See description |
+| data | Used for expressions in the different actions. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for ASSIGN. Optional for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, DISPLAYTEXT, CREATEEVENT and DISPLAYKEYVALUEPAIR | See description |
+| dataElement | Used for linking rule actions to dataElements. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for SHOWWARNING, SHOWERROR, WARNINGONCOMPLETION, ERRORONCOMPLETION, ASSIGN and HIDEFIELD | See description |
+| trackedEntity- Attribute | Used for linking rule actions to trackedEntityAttributes. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for SHOWWARNING, SHOWERROR and HIDEFIELD. | See description |
+| option | Used for linking rule actions to options. See the actionType overview for a detailed explanation for how it is used in each of the action types. Optional for HIDEOPTION | See description |
+| optionGroup | Used for linking rule actions to optionGroups. See the actionType overview for a detailed explanation for how it is used in each of the action types. Compulsory for SHOWOPTIONGROUP, HIDEOPTIONGROUP. | See description |
+| programStage | Only used for CREATEEVENT rule actions. Compulsory for CREATEEEVENT. | See description |
+| programStage- Section | Only used for HIDESECTION rule actions. Compulsory for HIDESECTION | See description |
 
 #### Program rule variable model details
 
 The following table gives a detailed overview over the
 programRuleVariable model.
 
-<table style="width:100%;">
-<caption>programRuleVariable</caption>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 66%" />
-<col style="width: 16%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>name</th>
-<th>description</th>
-<th>Compulsory</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>name</td>
-<td>the name for the programRuleVariable - this name is used in expressions.
-<pre><code>#{myVariable} &gt; 5</code></pre></td>
-<td>Compulsory</td>
-</tr>
-<tr class="even">
-<td>sourceType</td>
-<td>Defines how this variable is populated with data from the enrollment and events.
-<ul>
-<li><p>DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE - In tracker capture, gets the newest value that exists for a data element, within the events of a given program stage in the current enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.</p></li>
-<li><p>DATAELEMENT_NEWEST_EVENT_PROGRAM - In tracker capture, get the newest value that exists for a data element across the whole enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.</p></li>
-<li><p>DATAELEMENT_CURRENT_EVENT - Gets the value of the given data element in the current event only.</p></li>
-<li><p>DATAELEMENT_PREVIOUS_EVENT - In tracker capture, gets the newest value that exists among events in the program that precedes the current event. In event capture, gets the newvest value among the 10 preceeding events registered on the organisation unit.</p></li>
-<li><p>CALCULATED_VALUE - Used to reserve a variable name that will be assigned by a ASSIGN program rule action</p></li>
-<li><p>TEI_ATTRIBUTE - Gets the value of a given tracked entity attribute</p></li>
-</ul></td>
-<td>Compulsory</td>
-</tr>
-<tr class="odd">
-<td>dataElement</td>
-<td>Used for linking the programRuleVariable to a dataElement. Compulsory for all sourceTypes that starts with DATAELEMENT_.</td>
-<td>See description</td>
-</tr>
-<tr class="even">
-<td>trackedEntity- Attribute</td>
-<td>Used for linking the programRuleVariable to a trackedEntityAttribute. Compulsory for sourceType TEI_ATTRIBUTE.</td>
-<td>See description</td>
-</tr>
-<tr class="odd">
-<td>useCodeFor- OptionSet</td>
-<td>If checked, the variable will be populated with the code - not the name - from any linked option set. Default is unchecked, meaning that the name of the option is populated.</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>programStage</td>
-<td>Used for specifying a specific program stage to retreive the programRuleVariable value from. Compulsory for DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE.</td>
-<td>See description</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: programRuleVariable
+
+| name | description | Compulsory |
+|---|---|---|
+| name | the name for the programRuleVariable - this name is used in expressions. #{myVariable} \> 5 | Compulsory |
+| sourceType | Defines how this variable is populated with data from the enrollment and events. <br> * DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE - In tracker capture, gets the newest value that exists for a data element, within the events of a given program stage in the current enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.<br> * DATAELEMENT_NEWEST_EVENT_PROGRAM - In tracker capture, get the newest value that exists for a data element across the whole enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.<br> * DATAELEMENT_CURRENT_EVENT - Gets the value of the given data element in the current event only.<br> * DATAELEMENT_PREVIOUS_EVENT - In tracker capture, gets the newest value that exists among events in the program that precedes the current event. In event capture, gets the newvest value among the 10 preceeding events registered on the organisation unit.<br> * CALCULATED_VALUE - Used to reserve a variable name that will be assigned by a ASSIGN program rule action<br> * TEI_ATTRIBUTE - Gets the value of a given tracked entity attribute | Compulsory |
+| dataElement | Used for linking the programRuleVariable to a dataElement. Compulsory for all sourceTypes that starts with DATAELEMENT_. | See description |
+| trackedEntity- Attribute | Used for linking the programRuleVariable to a trackedEntityAttribute. Compulsory for sourceType TEI_ATTRIBUTE. | See description |
+| useCodeFor- OptionSet | If checked, the variable will be populated with the code - not the name - from any linked option set. Default is unchecked, meaning that the name of the option is populated. ||
+| programStage | Used for specifying a specific program stage to retreive the programRuleVariable value from. Compulsory for DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE. | See description |
 
 ### Creating program rules
 
@@ -2763,38 +1822,15 @@ sections, including labels and identifiers. By supplying period and
 organisation unit identifiers the form response will be populated with
 data values.
 
-<table>
-<caption>Form query parameters</caption>
-<colgroup>
-<col style="width: 12%" />
-<col style="width: 12%" />
-<col style="width: 74%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Option</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>pe</td>
-<td>ISO period</td>
-<td>Period for which to populate form data values.</td>
-</tr>
-<tr class="even">
-<td>ou</td>
-<td>UID</td>
-<td>Organisation unit for which to populate form data values.</td>
-</tr>
-<tr class="odd">
-<td>metaData</td>
-<td>false | true</td>
-<td>Whether to include metadata about each data element of form sections.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Form query parameters
+
+| Parameter | Option | Description |
+|---|---|---|
+| pe | ISO period | Period for which to populate form data values. |
+| ou | UID | Organisation unit for which to populate form data values. |
+| metaData | false &#124; true | Whether to include metadata about each data element of form sections. |
 
 To retrieve the form for a data set you can do a GET request like this:
 
@@ -2830,33 +1866,15 @@ curl -d @form.html "localhost/api/dataSets/BfMAe6Itzgt/form"
 
 References to files can be stored with the document resource.
 
-<table>
-<caption>Document fields</caption>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Field name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>name</td>
-<td>unique name of document</td>
-</tr>
-<tr class="even">
-<td>external</td>
-<td>flag identifying the location of the document. TRUE for external files, FALSE for internal ones</td>
-</tr>
-<tr class="odd">
-<td>url</td>
-<td>the location of the file. URL for external files. File resource id for internal ones (see <a href="#webapi_file_resources">File resources</a>)</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Document fields
+
+| Field name | Description |
+|---|---|
+| name | unique name of document |
+| external | flag identifying the location of the document. TRUE for external files, FALSE for internal ones |
+| url | the location of the file. URL for external files. File resource id for internal ones (see [File resources](#webapi_file_resources)) |
 
 A GET request to the documents endpoint will return all documents:
 
@@ -2902,49 +1920,21 @@ To upload metadata in CSV format you can make a POST request to the metadata end
 
 The following object types are supported. The `classKey` query parameter is mandatory and can be found next to each object type in the table below.
 
-<table>
-<caption>Object types and keys</caption>
-<tr>
-<th>Object type</th>
-<th>Class key</th>
-</tr>
-<tr>
-<td>Data elements</td>
-<td>DATA_ELEMENT</td>
-</tr>
-<tr>
-<td>Data element groups</td>
-<td>DATA_ELEMENT_GROUP
-</tr>
-<tr>
-<td>Category options</td>
-<td>CATEGORY_OPTION</td>
-</tr>
-<tr>
-<td>Category option groups</td>
-<td>CATEGORY_OPTION_GROUP</td>
-</tr>
-<tr>
-<td>Organisation units</td>
-<td>ORGANISATION_UNIT</td>
-</tr>
-<tr>
-<td>Organisation unit groups</td>
-<td>ORGANISATION_UNIT_GROUP</td>
-</tr>
-<tr>
-<td>Validation rules</td>
-<td>VALIDATION_RULE</td>
-</tr>
-<tr>
-<td>Option sets</td>
-<td>OPTION_SET</td>
-</tr>
-<tr>
-<td>Translations</td>
-<td>TRANSLATION</td>
-</tr>
-</table>
+
+
+Table: Object types and keys
+
+| Object type | Class key |
+|---|---|
+| Data elements | DATA_ELEMENT |
+| Data element groups | DATA_ELEMENT_GROUP |
+| Category options | CATEGORY_OPTION |
+| Category option groups | CATEGORY_OPTION_GROUP |
+| Organisation units | ORGANISATION_UNIT |
+| Organisation unit groups | ORGANISATION_UNIT_GROUP |
+| Validation rules | VALIDATION_RULE |
+| Option sets | OPTION_SET |
+| Translations | TRANSLATION |
 
 > **Tip**
 >
@@ -2963,125 +1953,26 @@ The formats for the currently supported object types for CSV import are listed i
 
 <!--DHIS2-SECTION-ID:webapi_csv_data_elements-->
 
-<table>
-<caption>Data Element CSV Format</caption>
-<colgroup>
-<col />
-<col style="width: 13%" />
-<col style="width: 7%" />
-<col style="width: 27%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Index</th>
-<th>Column</th>
-<th>Required</th>
-<th>Value (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Name</td>
-<td>Yes</td>
-<td></td>
-<td>Name. Max 230 char. Unique.</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>UID</td>
-<td>No</td>
-<td>UID</td>
-<td>Stable identifier. Exactly 11 alpha-numeric characters, beginning with a character. Will be generated by system if not specified.</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Code</td>
-<td>No</td>
-<td></td>
-<td>Stable code. Max 50 char.</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Short name</td>
-<td>No</td>
-<td>50 first char of name</td>
-<td>Will fall back to first 50 characters of name if unspecified. Max 50 char. Unique.</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Description</td>
-<td>No</td>
-<td></td>
-<td>Free text description.</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>Form name</td>
-<td>No</td>
-<td></td>
-<td>Max 230 char.</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Domain type</td>
-<td>No</td>
-<td>AGGREGATE | TRACKER</td>
-<td>Domain type for data element, can be aggregate or tracker. Max 16 char.</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>Value type</td>
-<td>No</td>
-<td>INTEGER | NUMBER | UNIT_INTERVAL | PERCENTAGE | INTEGER_POSITIVE | INTEGER_NEGATIVE | INTEGER_ZERO_OR_POSITIVE | FILE_RESOURCE | COORDINATE |TEXT | LONG_TEXT | LETTER | PHONE_NUMBER | EMAIL | BOOLEAN | TRUE_ONLY | DATE | DATETIME</td>
-<td>Value type. Max 16 char.</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>Aggregation type</td>
-<td>No</td>
-<td>SUM | AVERAGE | AVERAGE_SUM_ORG_UNIT | COUNT | STDDEV | VARIANCE | MIN | MAX | NONE</td>
-<td>Aggregation type indicating how to aggregate data in various dimensions. Max 16 char.</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>Category combination</td>
-<td>No</td>
-<td>UID</td>
-<td>UID of category combination. Will default to default category combination if not specified.</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>Url</td>
-<td>No</td>
-<td></td>
-<td>URL to data element resource. Max 255 char.</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>Zero is significant</td>
-<td>No</td>
-<td>false | true</td>
-<td>Indicates whether zero values will be stored for this data element.</td>
-</tr>
-<tr class="odd">
-<td>13</td>
-<td>Option set</td>
-<td>No</td>
-<td>UID</td>
-<td>UID of option set to use for data.</td>
-</tr>
-<tr class="even">
-<td>14</td>
-<td>Comment option set</td>
-<td>No</td>
-<td>UID</td>
-<td>UID of option set to use for comments.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data Element CSV Format
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | Name | Yes || Name. Max 230 char. Unique. |
+| 2 | UID | No | UID | Stable identifier. Exactly 11 alpha-numeric characters, beginning with a character. Will be generated by system if not specified. |
+| 3 | Code | No || Stable code. Max 50 char. |
+| 4 | Short name | No | 50 first char of name | Will fall back to first 50 characters of name if unspecified. Max 50 char. Unique. |
+| 5 | Description | No || Free text description. |
+| 6 | Form name | No || Max 230 char. |
+| 7 | Domain type | No | AGGREGATE &#124; TRACKER | Domain type for data element, can be aggregate or tracker. Max 16 char. |
+| 8 | Value type | No | INTEGER &#124; NUMBER &#124; UNIT_INTERVAL &#124; PERCENTAGE &#124; INTEGER_POSITIVE &#124; INTEGER_NEGATIVE &#124; INTEGER_ZERO_OR_POSITIVE &#124; FILE_RESOURCE &#124; COORDINATE &#124;TEXT &#124; LONG_TEXT &#124; LETTER &#124; PHONE_NUMBER &#124; EMAIL &#124; BOOLEAN &#124; TRUE_ONLY &#124; DATE &#124; DATETIME | Value type. Max 16 char. |
+| 9 | Aggregation type | No | SUM &#124; AVERAGE &#124; AVERAGE_SUM_ORG_UNIT &#124; COUNT &#124; STDDEV &#124; VARIANCE &#124; MIN &#124; MAX &#124; NONE | Aggregation type indicating how to aggregate data in various dimensions. Max 16 char. |
+| 10 | Category combination | No | UID | UID of category combination. Will default to default category combination if not specified. |
+| 11 | Url | No || URL to data element resource. Max 255 char. |
+| 12 | Zero is significant | No | false &#124; true | Indicates whether zero values will be stored for this data element. |
+| 13 | Option set | No | UID | UID of option set to use for data. |
+| 14 | Comment option set | No | UID | UID of option set to use for comments. |
 
 An example of a CSV file for data elements can be seen below. The first
 row will always be ignored. Note how you can skip columns and rely on
@@ -3098,139 +1989,28 @@ name,uid,code,shortname,description
 
 <!--DHIS2-SECTION-ID:webapi_csv_org_units-->
 
-<table>
-<caption>Organisation Unit CSV Format</caption>
-<colgroup>
-<col />
-<col style="width: 14%" />
-<col style="width: 10%" />
-<col style="width: 21%" />
-<col style="width: 53%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Index</th>
-<th>Column</th>
-<th>Required</th>
-<th>Value (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Name</td>
-<td>Yes</td>
-<td></td>
-<td>Name. Max 230 characters. Unique.</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>UID</td>
-<td>No</td>
-<td>UID</td>
-<td>Stable identifier. Max 11 char. Will be generated by system if not specified.</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Code</td>
-<td>No</td>
-<td></td>
-<td>Stable code. Max 50 char.</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Parent</td>
-<td>No</td>
-<td>UID</td>
-<td>UID of parent organisation unit.</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Short name</td>
-<td>No</td>
-<td>50 first char of name</td>
-<td>Will fall back to first 50 characters of name if unspecified. Max 50 characters. Unique.</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>Description</td>
-<td>No</td>
-<td></td>
-<td>Free text description.</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Opening date</td>
-<td>No</td>
-<td>1970-01-01</td>
-<td>Opening date of organisation unit in YYYY-MM-DD format.</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>Closed date</td>
-<td>No</td>
-<td></td>
-<td>Closed date of organisation unit in YYYY-MM-DD format, skip if currently open.</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>Comment</td>
-<td>No</td>
-<td></td>
-<td>Free text comment for organisation unit.</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>Feature type</td>
-<td>No</td>
-<td>NONE | MULTI_POLYGON | POLYGON | POINT | SYMBOL</td>
-<td>Geospatial feature type.</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>Coordinates</td>
-<td>No</td>
-<td></td>
-<td>Coordinates used for geospatial analysis in Geo JSON format.</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>URL</td>
-<td>No</td>
-<td></td>
-<td>URL to organisation unit resource. Max 255 char.</td>
-</tr>
-<tr class="odd">
-<td>13</td>
-<td>Contact person</td>
-<td>No</td>
-<td></td>
-<td>Contact person for organisation unit. Max 255 char.</td>
-</tr>
-<tr class="even">
-<td>14</td>
-<td>Address</td>
-<td>No</td>
-<td></td>
-<td>Address for organisation unit. Max 255 char.</td>
-</tr>
-<tr class="odd">
-<td>15</td>
-<td>Email</td>
-<td>No</td>
-<td></td>
-<td>Email for organisation unit. Max 150 char.</td>
-</tr>
-<tr class="even">
-<td>16</td>
-<td>Phone number</td>
-<td>No</td>
-<td></td>
-<td>Phone number for organisation unit. Max 150 char.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Organisation Unit CSV Format
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | Name | Yes || Name. Max 230 characters. Unique. |
+| 2 | UID | No | UID | Stable identifier. Max 11 char. Will be generated by system if not specified. |
+| 3 | Code | No || Stable code. Max 50 char. |
+| 4 | Parent | No | UID | UID of parent organisation unit. |
+| 5 | Short name | No | 50 first char of name | Will fall back to first 50 characters of name if unspecified. Max 50 characters. Unique. |
+| 6 | Description | No || Free text description. |
+| 7 | Opening date | No | 1970-01-01 | Opening date of organisation unit in YYYY-MM-DD format. |
+| 8 | Closed date | No || Closed date of organisation unit in YYYY-MM-DD format, skip if currently open. |
+| 9 | Comment | No || Free text comment for organisation unit. |
+| 10 | Feature type | No | NONE &#124; MULTI_POLYGON &#124; POLYGON &#124; POINT &#124; SYMBOL | Geospatial feature type. |
+| 11 | Coordinates | No || Coordinates used for geospatial analysis in Geo JSON format. |
+| 12 | URL | No || URL to organisation unit resource. Max 255 char. |
+| 13 | Contact person | No || Contact person for organisation unit. Max 255 char. |
+| 14 | Address | No || Address for organisation unit. Max 255 char. |
+| 15 | Email | No || Email for organisation unit. Max 150 char. |
+| 16 | Phone number | No || Phone number for organisation unit. Max 150 char. |
 
 A minimal example for importing organisation units with a parent unit
 looks like this:
@@ -3245,200 +2025,44 @@ name,uid,code,parent
 
 <!--DHIS2-SECTION-ID:webapi_csv_validation_rules-->
 
-<table>
-<caption>Validation Rule CSV Format</caption>
-<colgroup>
-<col />
-<col style="width: 17%" />
-<col style="width: 7%" />
-<col style="width: 28%" />
-<col style="width: 46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Index</th>
-<th>Column</th>
-<th>Required</th>
-<th>Value (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Name</td>
-<td>Yes</td>
-<td></td>
-<td>Name. Max 230 characters. Unique.</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>UID</td>
-<td>No</td>
-<td>UID</td>
-<td>Stable identifier. Max 11 char. Will be generated by system if not specified.</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Code</td>
-<td>No</td>
-<td></td>
-<td>Stable code. Max 50</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Description</td>
-<td>No</td>
-<td></td>
-<td>Free text description.</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Instruction</td>
-<td>No</td>
-<td></td>
-<td>Free text instruction.</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>Importance</td>
-<td>No</td>
-<td>MEDIUM | HIGH | LOW</td>
-<td>Importance of validation rule.</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Rule type (ignored)</td>
-<td>No</td>
-<td>VALIDATION | SURVEILLANCE</td>
-<td>Type of validation rule.</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>Operator</td>
-<td>No</td>
-<td>equal_to | not_equal_to | greater_than | greater_than_or_equal_to | less_than | less_than_or_equal_to | compulsory_pair | exclusive_pair</td>
-<td>Expression operator.</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>Period type</td>
-<td>No</td>
-<td>Monthly | Daily | Weekly | Quarterly | SixMontly | Yearly</td>
-<td>Period type.</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>Left side expression</td>
-<td>Yes</td>
-<td></td>
-<td>Mathematical formula based on data element and option combo UIDs.</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>Left side expression description</td>
-<td>Yes</td>
-<td></td>
-<td>Free text.</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>Left side missing value strategy</td>
-<td>No</td>
-<td>SKIP_IF_ANY_VALUE_MISSING | SKIP_IF_ALL_VALUES_MISSING | NEVER_SKIP</td>
-<td>Behavior in case of missing values in left side expression.</td>
-</tr>
-<tr class="odd">
-<td>13</td>
-<td>Right side expression</td>
-<td>Yes</td>
-<td></td>
-<td>Mathematical formula based on data element and option combo UIDs.</td>
-</tr>
-<tr class="even">
-<td>14</td>
-<td>Right side expression description</td>
-<td>Yes</td>
-<td></td>
-<td>Free text.</td>
-</tr>
-<tr class="odd">
-<td>15</td>
-<td>Right side missing value strategy</td>
-<td>No</td>
-<td>SKIP_IF_ANY_VALUE_MISSING | SKIP_IF_ALL_VALUES_MISSING | NEVER_SKIP</td>
-<td>Behavior in case of missing values in right side expression.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Validation Rule CSV Format
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | Name | Yes || Name. Max 230 characters. Unique. |
+| 2 | UID | No | UID | Stable identifier. Max 11 char. Will be generated by system if not specified. |
+| 3 | Code | No || Stable code. Max 50 |
+| 4 | Description | No || Free text description. |
+| 5 | Instruction | No || Free text instruction. |
+| 6 | Importance | No | MEDIUM &#124; HIGH &#124; LOW | Importance of validation rule. |
+| 7 | Rule type (ignored) | No | VALIDATION &#124; SURVEILLANCE | Type of validation rule. |
+| 8 | Operator | No | equal_to &#124; not_equal_to &#124; greater_than &#124; greater_than_or_equal_to &#124; less_than &#124; less_than_or_equal_to &#124; compulsory_pair &#124; exclusive_pair | Expression operator. |
+| 9 | Period type | No | Monthly &#124; Daily &#124; Weekly &#124; Quarterly &#124; SixMontly &#124; Yearly | Period type. |
+| 10 | Left side expression | Yes || Mathematical formula based on data element and option combo UIDs. |
+| 11 | Left side expression description | Yes || Free text. |
+| 12 | Left side missing value strategy | No | SKIP_IF_ANY_VALUE_MISSING &#124; SKIP_IF_ALL_VALUES_MISSING &#124; NEVER_SKIP | Behavior in case of missing values in left side expression. |
+| 13 | Right side expression | Yes || Mathematical formula based on data element and option combo UIDs. |
+| 14 | Right side expression description | Yes || Free text. |
+| 15 | Right side missing value strategy | No | SKIP_IF_ANY_VALUE_MISSING &#124; SKIP_IF_ALL_VALUES_MISSING &#124; NEVER_SKIP | Behavior in case of missing values in right side expression. |
 
 ### Option sets
 
 <!--DHIS2-SECTION-ID:webapi_csv_option_sets-->
 
-<table style="width:100%;">
-<caption>Option Set CSV Format</caption>
-<colgroup>
-<col />
-<col style="width: 14%" />
-<col style="width: 11%" />
-<col style="width: 15%" />
-<col style="width: 59%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Index</th>
-<th>Column</th>
-<th>Required</th>
-<th>Value (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>OptionSetName</td>
-<td>Yes</td>
-<td></td>
-<td>Name. Max 230 characters. Unique. Should be repeated for each option.</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>OptionSetUID</td>
-<td>No</td>
-<td>UID</td>
-<td>Stable identifier. Max 11 char. Will be generated by system if not specified. Should be repeated for each option.</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>OptionSetCode</td>
-<td>No</td>
-<td></td>
-<td>Stable code. Max 50 char. Should be repeated for each option.</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>OptionName</td>
-<td>Yes</td>
-<td></td>
-<td>Option name. Max 230 characters.</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>OptionUID</td>
-<td>No</td>
-<td>UID</td>
-<td>Stable identifier. Max 11 char. Will be generated by system if not specified.</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>OptionCode</td>
-<td>Yes</td>
-<td></td>
-<td>Stable code. Max 50 char.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Option Set CSV Format
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | OptionSetName | Yes || Name. Max 230 characters. Unique. Should be repeated for each option. |
+| 2 | OptionSetUID | No | UID | Stable identifier. Max 11 char. Will be generated by system if not specified. Should be repeated for each option. |
+| 3 | OptionSetCode | No || Stable code. Max 50 char. Should be repeated for each option. |
+| 4 | OptionName | Yes || Option name. Max 230 characters. |
+| 5 | OptionUID | No | UID | Stable identifier. Max 11 char. Will be generated by system if not specified. |
+| 6 | OptionCode | Yes || Stable code. Max 50 char. |
 
 The format for option sets is special. The three first values represent
 an option set. The three last values represent an option. The first
@@ -3463,69 +2087,19 @@ optionsetname,optionsetuid,optionsetcode,optionname,optionuid,optioncode
 
 ### Option group
 
-<table style="width:100%;">
-<caption>Option Group CSV Format</caption>
-<colgroup>
-<col />
-<col style="width: 14%" />
-<col style="width: 11%" />
-<col style="width: 15%" />
-<col style="width: 59%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Index</th>
-<th>Column</th>
-<th>Required</th>
-<th>Value (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>OptionGroupName</td>
-<td>Yes</td>
-<td>Name. Max 230 characters. Unique. Should be repeated for each option.</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>OptionGroupUid</td>
-<td>No</td>
-<td>Stable identifier. Max 11 char. Will be generated by system if not specified. Should be repeated for each option.</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>OptionGroupCode</td>
-<td>No</td>
-<td>Stable code. Max 50 char. Should be repeated for each option.</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>OptionGroupShortName</td>
-<td>Yes</td>
-<td>Short Name. Max 50 characters. Unique. Should be repeated for each option.</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>OptionSetUid</td>
-<td>Yes</td>
-<td>Stable identifier. Max 11 char. Should be repeated for each option.</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>OptionUid</td>
-<td>No</td>
-<td>Stable identifier. Max 11 char.</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>OptionCode</td>
-<td>No</td>
-<td>Stable code. Max 50 char.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Option Group CSV Format
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | OptionGroupName | Yes || Name. Max 230 characters. Unique. Should be repeated for each option. |
+| 2 | OptionGroupUid | No || Stable identifier. Max 11 char. Will be generated by system if not specified. Should be repeated for each option. |
+| 3 | OptionGroupCode | No || Stable code. Max 50 char. Should be repeated for each option. |
+| 4 | OptionGroupShortName | Yes || Short Name. Max 50 characters. Unique. Should be repeated for each option. |
+| 5 | OptionSetUid | Yes || Stable identifier. Max 11 char. Should be repeated for each option. |
+| 6 | OptionUid | No || Stable identifier. Max 11 char. |
+| 7 | OptionCode | No || Stable code. Max 50 char. |
 
 Sample OptionGroup CSV payload
 
@@ -3537,63 +2111,18 @@ optionGroupB,,,groupB,QYDAByFgTr1,,OptionC
 ```
 ### Option Group Set
 
-<table style="width:100%;">
-<caption>Option Group Set CSV Format</caption>
-<colgroup>
-<col />
-<col style="width: 14%" />
-<col style="width: 11%" />
-<col style="width: 15%" />
-<col style="width: 59%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Index</th>
-<th>Column</th>
-<th>Required</th>
-<th>Value (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>OptionGroupSetName</td>
-<td>Yes</td>
-<td>Name. Max 230 characters. Unique. Should be repeated for each option.</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>OptionGroupSetUid</td>
-<td>No</td>
-<td>Stable identifier. Max 11 char. Will be generated by system if not specified. Should be repeated for each option.</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>OptionGroupSetCode</td>
-<td>No</td>
-<td>Stable code. Max 50 char. Should be repeated for each option.</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>OptionGroupSetDescription</td>
-<td>No</td>
-<td>Description. Should be repeated for each option.</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>DataDimension</td>
-<td>No</td>
-<td>TRUE, FALSE</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>OptionSetUid</td>
-<td>No</td>
-<td>OptionSet UID. Stable identifier. Max 11 char.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Option Group Set CSV Format
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | OptionGroupSetName | Yes || Name. Max 230 characters. Unique. Should be repeated for each option. |
+| 2 | OptionGroupSetUid | No || Stable identifier. Max 11 char. Will be generated by system if not specified. Should be repeated for each option. |
+| 3 | OptionGroupSetCode | No || Stable code. Max 50 char. Should be repeated for each option. |
+| 4 | OptionGroupSetDescription | No || Description. Should be repeated for each option. |
+| 5 | DataDimension | No || TRUE, FALSE |
+| 6 | OptionSetUid | No || OptionSet UID. Stable identifier. Max 11 char. |
 
 Sample OptionGroupSet CSV payload
 
@@ -3620,95 +2149,29 @@ following group and object pairs are supported
 
 The CSV format for these imports are the same
 
-<table>
-<caption>Collection membership CSV Format</caption>
-<colgroup>
-<col />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Index</th>
-<th>Column</th>
-<th>Required</th>
-<th>Value (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>UID</td>
-<td>Yes</td>
-<td>UID</td>
-<td>The UID of the collection to add an object to</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>UID</td>
-<td>Yes</td>
-<td>UID</td>
-<td>The UID of the object to add to the collection</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Collection membership CSV Format
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | UID | Yes | UID | The UID of the collection to add an object to |
+| 2 | UID | Yes | UID | The UID of the object to add to the collection |
 
 ### Other objects
 
 <!--DHIS2-SECTION-ID:webapi_csv_other_objects-->
 
-<table>
-<caption>Data Element Group, Category Option, Category Option Group, Organisation Unit Group CSV Format</caption>
-<colgroup>
-<col />
-<col style="width: 17%" />
-<col style="width: 12%" />
-<col style="width: 14%" />
-<col style="width: 55%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Index</th>
-<th>Column</th>
-<th>Required</th>
-<th>Value (default first)</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Name</td>
-<td>Yes</td>
-<td></td>
-<td>Name. Max 230 characters. Unique.</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>UID</td>
-<td>No</td>
-<td>UID</td>
-<td>Stable identifier. Max 11 chars. Will be generated by system if not specified.</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Code</td>
-<td>No</td>
-<td></td>
-<td>Stable code. Max 50 char.</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Short name</td>
-<td>No</td>
-<td></td>
-<td>Short name. Max 50 characters.</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Data Element Group, Category Option, Category Option Group, Organisation Unit Group CSV Format
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | Name | Yes || Name. Max 230 characters. Unique. |
+| 2 | UID | No | UID | Stable identifier. Max 11 chars. Will be generated by system if not specified. |
+| 3 | Code | No || Stable code. Max 50 char. |
+| 4 | Short name | No || Short name. Max 50 characters. |
 
 An example of category options looks like this:
 
@@ -3836,7 +2299,7 @@ For the `api/fileResources` endpoint, the only form parameter required is
 endpoint, the parameters required are the same as for a post to
 `api/dataValues`, with the addition of *file*.
 
-The filename and content-type should also be included in the request but 
+The filename and content-type should also be included in the request but
 will be replaced with defaults when not supplied.
 
 On successfully creating a file resource the returned data will contain
@@ -3948,28 +2411,13 @@ This section explains the Metadata Versioning APIs available starting
   - `/api/metadata/version`: This endpoint will return the current metadata
     version of the system on which it is invoked.
 
-<table>
-<caption>Query Parameters</caption>
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 23%" />
-<col style="width: 57%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>versionName</td>
-<td>false</td>
-<td>If this parameter is not specified, it will return the current version of the system or otherwise it will return the details of the versionName passed as parameter. (versionName is of the syntax &quot;Version_&lt;id&gt;&quot;</td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query Parameters
+
+| Name | Required | Description |
+|---|---|---|
+| versionName | false | If this parameter is not specified, it will return the current version of the system or otherwise it will return the details of the versionName passed as parameter. (versionName is of the syntax "Version_<id\>" |
 
 ### Get metadata version examples
 
@@ -4024,28 +2472,13 @@ Response:
   - `/api/metadata/version/history`: This endpoint will return the list of all
     metadata versions of the system on which it is invoked.
 
-<table>
-<caption>Query Parameters</caption>
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 23%" />
-<col style="width: 57%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Name</p></th>
-<th><p>Required</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>baseline</p></td>
-<td><p>false</p></td>
-<td><p>If this parameter is not specified, it will return list of all metadata versions. Otherwise we need to pass a versionName parameter of the form &quot;Version_&lt;id&gt;&quot;. It will then return the list of versions present in the system which were created after the version name supplied as the query parameter.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query Parameters
+
+| Name | Required | Description |
+|---|---|---|
+| baseline | false | If this parameter is not specified, it will return list of all metadata versions. Otherwise we need to pass a versionName parameter of the form "Version_<id\>". It will then return the list of versions present in the system which were created after the version name supplied as the query parameter. |
 
 ### Get the list of all metadata versions
 
@@ -4116,32 +2549,13 @@ Response:
   - `/api/metadata/version/create`: This endpoint will create the metadata
     version for the version type as specified in the parameter.
 
-<table>
-<caption>Query Parameters</caption>
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 23%" />
-<col style="width: 57%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Name</p></th>
-<th><p>Required</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>type</p></td>
-<td><p>true</p></td>
-<td><p>The type of metadata version which needs to be created.</p>
-<ul>
-<li><p>BEST_EFFORT</p></li>
-<li><p>ATOMIC</p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query Parameters
+
+| Name | Required | Description |
+|---|---|---|
+| type | true | The type of metadata version which needs to be created.<br>  * BEST_EFFORT<br> * ATOMIC |
 
 Users can select the type of metadata which needs to be created.
 Metadata Version type governs how the importer should treat the given
@@ -4207,28 +2621,13 @@ Response:
     the actual metadata specific to the version name passed as path
     parameter in a compressed format (gzipped).
 
-<table>
-<caption>Path parameters</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Name</p></th>
-<th><p>Required</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>versionName</p></td>
-<td><p>true</p></td>
-<td><p>Path parameter of the form &quot;Version_&lt;id&gt;&quot; so that the API downloads the specific version</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Path parameters
+
+| Name | Required | Description |
+|---|---|---|
+| versionName | true | Path parameter of the form "Version_<id\>" so that the API downloads the specific version |
 
 ### Download version metadata
 
@@ -4282,28 +2681,13 @@ starting 2.24
     importing the specified version from the remote server as defined in
     the settings app.
 
-<table>
-<caption>Query parameters</caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Name</p></th>
-<th><p>Required</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>versionName</p></td>
-<td><p>true</p></td>
-<td><p>versionName query parameter of the form &quot;Version_&lt;id&gt;&quot; . The api downloads this version from the remote server and imports it in the local system.</p></td>
-</tr>
-</tbody>
-</table>
+
+
+Table: Query parameters
+
+| Name | Required | Description |
+|---|---|---|
+| versionName | true | versionName query parameter of the form "Version_<id\>" . The api downloads this version from the remote server and imports it in the local system. |
 
   - This API should be used with utmost care. Please note that there is
     an alternate way to achieve sync in a completely automated manner by
