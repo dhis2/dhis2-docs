@@ -336,6 +336,13 @@ Table: Program notification parameters to use in program notifications
 || Program name | `V{program_name}` |
 || Program stage name | `V{program_stage_name}` |
 || Event status | `V{event_status}` |
+|| Event/Execution date | `V{event_date}` |
+|| TrackedEntity id | `V{tracked_entity_id}` |
+|| Enrollment id | `V{enrollment_id}` |
+|| Program id | `V{program_id}` |
+|| Program stage id | `V{program_stage_id}` |
+|| Enrollmemt orgUnit id | `V{enrollment_org_unit_id}` |
+|| Event orgUnit id | `V{event_org_unit_id}` |
 
 ## Configure tracker programs in the Maintenance app
 
