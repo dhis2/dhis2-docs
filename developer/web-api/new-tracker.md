@@ -1377,7 +1377,7 @@ Since version 2.37 responses can be filtered on desired fields, see [Request par
 
 #### Tracked Entities single object endpoint `GET /api/tracker/trackedEntities/{uid}`
 
-The purpose of this endpoint is to retrieve one tracked entity given its uid.
+The purpose of this endpoint is to retrieve one tracked entity given its uid. 
 
 ##### Request syntax
 
