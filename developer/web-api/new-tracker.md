@@ -1328,7 +1328,7 @@ You can use a range of operators for the filtering:
 
 The `JSON` response can look like the following.
 
-Since version 2.37 responses can be filtered on desired fields, see [Request parameter to filter responses](#Request-parameter-to-filter-responses)
+Responses can be filtered on desired fields, see [Request parameter to filter responses](#Request-parameter-to-filter-responses)
 
 ```json
 {
