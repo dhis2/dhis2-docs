@@ -112,7 +112,7 @@ Parameters in alphabetical order:
 
 | Parameter      | Options               |  Default     | Description          |
 | -------------- | --------------------- | ------------ | ---------------------|
-| `absoluteUrls` | `true` or `false`     | `true`       | `true` use relative paths in links, `false` use absolute URLs in links |
+| `absoluteUrls` | `true` or `false`     | `false`      | `true` use relative paths in links, `false` use absolute URLs in links |
 | `auto`         | `XS`, `S`, `M`, `L`, `XL` | (context dependent) | extent of fields selected by `*` field selector |
 | `fields`       | (depends on endpoint) | `*`          | comma separated list of fields or presets to include |
 | `filter`       | `<field>:<operator>` or `<field>:<operator>:<value>` |   | comma separated list of query field filters (can be used more than once) |
