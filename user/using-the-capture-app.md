@@ -829,6 +829,10 @@ In this section we are focusing on the first use-case, where you type or paste t
 One way to reach the enrollment dashboard and view a specific tracked entity instance's enrollment is by using _only_ the enrollment id. For example the link .../dhis-web-capture/#/?enrollmentId=wBU0RAsYjKE will 
 take you the dashboard for the enrollment with id `wBU0RAsYjKE`. 
 
+On the enrollment page you can see the enrollment widget.
+
+![](resources/images/capture_app/enrollment-dash-13.png)
+
 The top of the dashboard defines your context. For example in the image below the context is as follows, the selected program is "Child Programme", the organisation unit is "Ngelehun CHC", the selected person is "Anna Jones" and the selected enrollment is "2017-11-16 11:38".
 
 ![](resources/images/capture_app/enrollment-dash-02.png)
