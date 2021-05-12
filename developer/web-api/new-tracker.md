@@ -1164,6 +1164,22 @@ following table.
 |`CAPTURE`| The data capture organisation units associated with the current user and all children, i.e., all organisation units in the sub-hierarchy.|
 |`ALL`| All organisation units in the system. Requires the ALL authority.|
 
+#### Request parameter to filter responses
+
+All new export endpoints support a `fields` parameter which allows to filter the response based on a simple grammar.
+
+`fields` parameter accepts a comma separated list of field names or patterns and responses are filtered based on it
+
+##### Examples
+
+|Parameter example|Meaning|
+|:---|:---|
+|`fields=createdAt,uid`| only returns `createdAt` and `uid` fields for the requested object|
+|`fields=enrollments.uid`| only returns `uid` field for nested `enrollments`|
+|`fields=enrollments[uid]`| same as above with a different syntax|
+|`fields=enrollments[uid,enrolledAt]`| only returns `uid` and `enrolledAt` fields for nested `enrollments`|
+|`fields=**`| don't filter (same behaviour as not passing the `field` parameter at all)|
+
 ### Tracked Entities
 
 Two endpoints are dedicated to tracked entities:
@@ -1312,7 +1328,7 @@ You can use a range of operators for the filtering:
 
 The `JSON` response can look like the following.
 
-Please note that field filtering (`fields=...`) support is planned but not yet implemented.
+Responses can be filtered on desired fields, see [Request parameter to filter responses](#Request-parameter-to-filter-responses)
 
 ```json
 {
@@ -1361,7 +1377,7 @@ Please note that field filtering (`fields=...`) support is planned but not yet i
 
 #### Tracked Entities single object endpoint `GET /api/tracker/trackedEntities/{uid}`
 
-The purpose of this endpoint is to retrieve one tracked entity given its uid.
+The purpose of this endpoint is to retrieve one tracked entity given its uid. 
 
 ##### Request syntax
 
@@ -1381,8 +1397,7 @@ A query for a Tracked Entity Instance:
 
 ##### Response format
 
-Please note that even though field filtering (`fields=...`) support is not yet implemented, this endpoint still supports
-returning sub-objects when the `fields` request parameter is passed.
+This endpoint supports returning sub-objects when the `fields` request parameter is passed.
 
 ```json
 {
