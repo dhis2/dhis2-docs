@@ -896,8 +896,9 @@ Export data elements and indicators where name starts with "ANC":
 
 <!--DHIS2-SECTION-ID:webapi_dataset_program_export_dependencies-->
 
-When you want to exchange metadata for a data set, program or category combo
-from one DHIS2 instance to another instance there are three dedicated endpoints available:
+When you want to exchange metadata for a data set, program, category combo,
+dashboard, option set or data element group
+from one DHIS2 instance to another instance there are six dedicated endpoints available:
 
 ```
 /api/dataSets/{id}/metadata.json
@@ -907,6 +908,11 @@ from one DHIS2 instance to another instance there are three dedicated endpoints 
 /api/categoryCombos/{id}/metadata.json
 
 /api/dashboards/{id}/metadata.json
+
+/api/optionSets/{id}/metadata.json
+
+/api/dataElementGroups/{id}/metadata.json
+
 ```
 
 These exports can then be imported using `/api/metadata`.
