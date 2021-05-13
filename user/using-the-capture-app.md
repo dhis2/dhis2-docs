@@ -837,6 +837,8 @@ You can change your context by clicking the "x" button.
 
 ![](resources/images/capture_app/enrollment-dash-03.png)
 
+On the enrollment dashboard, user can view the Person Profile widget.
+![](resource/images/capture_app/enrollment-dash-tei-profile-widget.png)
 #### Deselecting the program
 
 When you deselect the program you see the following
@@ -890,3 +892,6 @@ When you deselect the tracked entity instance, in this case "Anna Jones" you are
 When you deselect the enrollment you see the following
 
 ![](resources/images/capture_app/enrollment-dash-08.png)
+
+#### Person profile widget
+The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, user can select `Edit` button which will open a focus modal. 
