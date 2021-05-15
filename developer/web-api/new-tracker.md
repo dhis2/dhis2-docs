@@ -4,6 +4,7 @@ Version 2.36 of DHIS2 introduced a set of new tracker endpoints dedicated to imp
 These new endpoints set a discontinuity with earlier implementations. Re-engineering the endpoints allowed developers to improve, redesign, and formalize the API's behavior to improve the Tracker services.
 
 The newly introduced endpoints consist of:
+
 * `POST /api/tracker`
 * `GET /api/tracker/enrollments`
 * `GET /api/tracker/events`
@@ -354,7 +355,7 @@ The flat-structured payload is straightforward. It can contain collections for e
 **Nested**
 Nested payloads are the most commonly used structure. Here, tracker objects are embedded within their parent object; For example, an enrollment within a tracked entity. The advantage of this structure is that the client does not need to provide UIDs for these connections since they will be given this connection during the import process since they are nested together.
 
-> *** NOTE ***
+> ***Note***
 > While nested payloads might prove simpler for clients to deal with, the payload will always be flattened before the import. This means that for large imports, providing a flat structured payload will provide both more control and lower overhead for the import process itself.
 
 Examples for the **FLAT** and the **NESTED** versions of the payload are listed below. Both cases use the same data.
@@ -583,7 +584,7 @@ Examples of the **ASYNC** response is shown below. For **SYNC** response, look a
 
 The Tracker API has two primary endpoints for consumers to acquire feedback from their imports. These endpoints are most relevant for async import jobs but are available for sync jobs as well. These endpoints will return either the log related to the import or the import summary itself.
 
->***Note****
+>***Note***
 >These endpoints rely on information stored in the application memory. This means the information will be unavailable after certain cases, as an application restart or after a large number of import requests have started after this one.
 
 After submitting a tracker import request, we can access the following endpoints in order to monitor the job progress based on logs:
@@ -1028,10 +1029,12 @@ Not all program rule actions are supported since they are only suitable for a fr
   |**SCHEDULEMESSAGE**|**X**|
 
 Program rules are evaluated in the importer in the same way they are evaluated in the Tracker apps. To summarize, the following conditions are considered when enforcing the program rules:
+
 * The program rule must be linked to the data being imported. For example, a program stage or a data element.
 * The Program rule's condition must be evaluated to true
 
 The results of the program rules depend on the actions defined in those rules:
+
 * Program rule actions may end in 2 different results: Warnings or Errors.
   * Errors will make the validation fail, while the warnings will be reported as a message in the import summary.
     * SHOWWARNING and WARNINGONCOMPLETION actions can generate only Warnings.
