@@ -65,6 +65,13 @@ These commands can have short codes for their associated program stage.
 Only programs of type "Event program" can be chosen for this command.
 Therefore only one program stage exists, which will be selected automatically.
 
+#### Program stage data entry parser
+
+These commands can have short codes for their associated program stage.
+Only programs of type "Tracker program" can be chosen for this command.
+Unlike "Event registration" parsers, a program stage has to be chosen for this
+parser type.
+
 ### Editing commands
 <!--DHIS2-SECTION-ID:sms-configuration-commands-edit-->
 
@@ -112,6 +119,45 @@ that was selected when adding the command:
 #### Editing J2ME parser commands
 <!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
 
+Commands of this parser type have all the shared fields.  Additionally short
+codes can be defined.  Each command is connected to a dataset. The dataset has
+data elements, which have category combos, which have at least one category
+option combo. For every existing "data element - category option combo"
+combination, a short code can be provided.
+
+Required values notice Make sure at least one SMS short code is provided when
+completeness method "Receive at least one data value" is chosen, otherwise
+received messages will not be processed.
+
+##### Short code fomulas
+
+Each short code can have an optional formula. By providing a formula, the value
+of a different data element can be either added or subtracted.
+
+This can be done by clicking the "Add formula" / "Edit formula" button below
+the short code's input field:
+
+![SMS Commands - J2Me parser short codes - Add/Edit formula button](resources/images/sms-configuration/commands-edit-j2meparser-shortcodes-formulabutton.png)
+
+When clicking the button, a modal will appear which offers a dropdown to select
+a data element, and the formula operator, which can be either "+" or "-":
+
+![SMS Commands - J2Me parser short codes - Add/Edit formula modal](resources/images/sms-configuration/commands-edit-j2meparser-shortcodes-formulamodal.png)
+
+By clicking "Save", the formula will be added to the main edit form, it does
+not get saved to the command automatically! In order to save a changed formula,
+you need to submit the whole form.
+
+###### Removing a short code
+
+If a short code has a formula, it can be removed by clicking the "Edit formula"
+button. The modal that will appear, has a button "Remove". By clicking that
+button, the formula will be removed from the short code in the main form and
+the modal will close. It does not get saved to the command automatically! In
+order to save the removal of the formula, you need to submit the whole form.
+
+![SMS Commands - J2Me parser short codes - Add/Edit formula modal](resources/images/sms-configuration/commands-edit-j2meparser-shortcodes-formulamodalremove.png)
+
 #### Editing key value parser commands
 <!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
 
@@ -121,11 +167,26 @@ the documentation above.
 #### Editing program stage data entry parser commands
 <!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
 
+Commands of this parser type have all the shared fields.  Additionally short
+codes can be defined. A short code can be added for every data element
+connected to the program stage that was selected when adding the command:
+
+![SMS Commands - Program stage data entry parser short codes](resources/images/sms-configuration/commands-edit-programstagedataentryparser-shortcodes.png)
+
 #### Editing tracked entity registration parser commands
 <!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
 
+Commands of this parser type have all the shared fields.  Additionally short
+codes can be defined. A short code can be added for every tracked entity
+attribute connected to the program that was selected when adding the command:
+
+![SMS Commands - Program stage data entry parser short codes](resources/images/sms-configuration/commands-edit-trackedentityregistrationparser-shortcodes.png)
+
 #### Editing unregistered parser commands
 <!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
+
+This command type works identically to alert parser commands work. Please check
+the documentation above.
 
 ## SMS Gateways
 <!--DHIS2-SECTION-ID:sms-configuration-gateways-->
