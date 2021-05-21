@@ -60,12 +60,14 @@ be displayed:
 | Unregistered parser | &#10003; | &#10005; | &#10005; | &#10005; |
 
 #### Event registration parser
+<!--DHIS2-SECTION-ID:sms-configuration-commands-add-eventregistration-->
 
 These commands can have short codes for their associated program stage.
 Only programs of type "Event program" can be chosen for this command.
 Therefore only one program stage exists, which will be selected automatically.
 
 #### Program stage data entry parser
+<!--DHIS2-SECTION-ID:sms-configuration-commands-add-programstagedataentry-->
 
 These commands can have short codes for their associated program stage.
 Only programs of type "Tracker program" can be chosen for this command.
@@ -107,7 +109,7 @@ that are shared between most parser types are not present:
 Both are text fields.
 
 #### Editing event registration parser commands
-<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
+<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-eventregistration-->
 
 Commands of this parser type have all the shared fields.
 Additionally short codes can be defined.
@@ -117,7 +119,7 @@ that was selected when adding the command:
 ![SMS Commands - Event registration parser short codes](resources/images/sms-configuration/commands-edit-eventregistrationparse-shortcodes.png)
 
 #### Editing J2ME parser commands
-<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
+<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-j2me-->
 
 Commands of this parser type have all the shared fields.  Additionally short
 codes can be defined.  Each command is connected to a dataset. The dataset has
@@ -130,6 +132,7 @@ completeness method "Receive at least one data value" is chosen, otherwise
 received messages will not be processed.
 
 ##### Short code fomulas
+<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-j2me-shortcodeformulas-->
 
 Each short code can have an optional formula. By providing a formula, the value
 of a different data element can be either added or subtracted.
@@ -148,7 +151,8 @@ By clicking "Save", the formula will be added to the main edit form, it does
 not get saved to the command automatically! In order to save a changed formula,
 you need to submit the whole form.
 
-###### Removing a short code
+###### Removing a short code formula
+<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-j2me-removingshortcodeformula-->
 
 If a short code has a formula, it can be removed by clicking the "Edit formula"
 button. The modal that will appear, has a button "Remove". By clicking that
@@ -159,13 +163,13 @@ order to save the removal of the formula, you need to submit the whole form.
 ![SMS Commands - J2Me parser short codes - Add/Edit formula modal](resources/images/sms-configuration/commands-edit-j2meparser-shortcodes-formulamodalremove.png)
 
 #### Editing key value parser commands
-<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
+<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-keyvalue-->
 
 This command type works identically to J2ME parser commands work. Please check
 the documentation above.
 
 #### Editing program stage data entry parser commands
-<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
+<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-programstagedataentry-->
 
 Commands of this parser type have all the shared fields.  Additionally short
 codes can be defined. A short code can be added for every data element
@@ -174,7 +178,7 @@ connected to the program stage that was selected when adding the command:
 ![SMS Commands - Program stage data entry parser short codes](resources/images/sms-configuration/commands-edit-programstagedataentryparser-shortcodes.png)
 
 #### Editing tracked entity registration parser commands
-<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
+<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-trackedentityregistration-->
 
 Commands of this parser type have all the shared fields.  Additionally short
 codes can be defined. A short code can be added for every tracked entity
@@ -183,7 +187,7 @@ attribute connected to the program that was selected when adding the command:
 ![SMS Commands - Program stage data entry parser short codes](resources/images/sms-configuration/commands-edit-trackedentityregistrationparser-shortcodes.png)
 
 #### Editing unregistered parser commands
-<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-parser-->
+<!--DHIS2-SECTION-ID:sms-configuration-commands-edit-unregistered-->
 
 This command type works identically to alert parser commands work. Please check
 the documentation above.
@@ -203,7 +207,7 @@ There are four types of Gateways supported by the SMS Service:
 * SMPP gateways
 
 ### Listing gateways
-<!--DHIS2-SECTION-ID:sms-configuration-gateways-manage-->
+<!--DHIS2-SECTION-ID:sms-configuration-gateways-listing-->
 
 To see all available gateways, navigate to the "Gateway configurations" page.
 All gateways will be listed in a table. On this page the following actions are
@@ -243,5 +247,52 @@ added again. For more information how to edit gateways, please refer to the
 ## View inbound SMS
 <!--DHIS2-SECTION-ID:sms-configuration-inbound-->
 
+To see all inbound sms, navigate to the "Received" page.  All received sms will
+be listed in a paginated table. On this page the following actions are
+available:
+
+* Filtering the inbound SMSes (1)
+* Deleting SMSes (2)
+* Batch-deleting SMSes (3)
+
+![SMS Inbound SMSes - Listing inbound SMSes](resources/images/sms-configuration/inboundsms-list.png)
+
+### Filtering 
+<!--DHIS2-SECTION-ID:sms-configuration-inbound-filtering-->
+
+#### Resetting filters
+<!--DHIS2-SECTION-ID:sms-configuration-inbound-filtering-resetting-->
+
+All set filters can be reset by clicking on the "Reset filter" button.
+
+![SMS Inbound SMSes - Filter inbound SMSes by status](resources/images/sms-configuration/inboundsms-resetfilters.png)
+
+#### Filtering by status
+<!--DHIS2-SECTION-ID:sms-configuration-inbound-filtering-status-->
+
+The list of inbound SMSes can be filtered by the following statuses:
+
+* All
+* Failed
+* Incoming
+* Processed
+* Processing
+* Sent
+* Unhandled
+
+![SMS Inbound SMSes - Filter inbound SMSes by status](resources/images/sms-configuration/inboundsms-filterbystatus.png)
+
+#### Filtering by phone number
+<!--DHIS2-SECTION-ID:sms-configuration-inbound-filtering-phonenumber-->
+
+By entering a phone number in the input field above the table with the SMSes,
+the table can be filtered by that phone number.
+
+![SMS Inbound SMSes - Filter inbound SMSes by status](resources/images/sms-configuration/inboundsms-filterbyphonenumber.png)
+
 ## View outbound SMS
 <!--DHIS2-SECTION-ID:sms-configuration-outbound-->
+
+This section is identical to the "Inbound"/"Received" SMSes section, with only
+one difference: The list cannot be filtered by a phone number. Please refer to
+the ["View inbound SMS"](#sms-configuration-inbound) section.
