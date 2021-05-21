@@ -829,10 +829,6 @@ In this section we are focusing on the first use-case, where you type or paste t
 One way to reach the enrollment dashboard and view a specific tracked entity instance's enrollment is by using _only_ the enrollment id. For example the link .../dhis-web-capture/#/?enrollmentId=wBU0RAsYjKE will 
 take you the dashboard for the enrollment with id `wBU0RAsYjKE`. 
 
-On the enrollment page you can see the enrollment widget.
-
-![](resources/images/capture_app/enrollment-dash-13.png)
-
 The top of the dashboard defines your context. For example in the image below the context is as follows, the selected program is "Child Programme", the organisation unit is "Ngelehun CHC", the selected person is "Anna Jones" and the selected enrollment is "2017-11-16 11:38".
 
 ![](resources/images/capture_app/enrollment-dash-02.png)
@@ -894,3 +890,21 @@ When you deselect the tracked entity instance, in this case "Anna Jones" you are
 When you deselect the enrollment you see the following
 
 ![](resources/images/capture_app/enrollment-dash-08.png)
+
+### Enrollment widget
+
+On the enrollment page you can see the enrollment widget
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-1.png)
+
+#### Enrollment actions
+
+When you click on the enrollment actions button, a menu with all the available actions will open. You can change the enrollment status to Active, Canceled or Completed using the buttons in the menu. You can mark or remove the enrollment for a follow-up.
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-2.png)
+
+#### Delete the enrollment
+
+You can delete the enrollment by clicking the delete button and confirming the action in the modal. 
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-3.png)
