@@ -919,7 +919,7 @@ Note that this feature may be extremely useful, for example when
 producing disaggregated data from an EMR system, but there may be cases
 where a *categoryOptionCombo* mapping is easier or more desirable. The
 DHIS2 implementation of adx will check for the existence of a
-*categoryOptionCombo* attribute and, if it exists, it will use that it
+*categoryOptionCombo* attribute and, if it exists, it will use that in
 preference to exploded dimension attributes. Similarly, an
 *attributeOptionCombo* attribute on the *group* element will be
 processed in the legacy way. Otherwise, the attributeOptionCombo can be
