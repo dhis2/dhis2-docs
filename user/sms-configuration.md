@@ -13,7 +13,7 @@ phones or j2me apps, alerting users, registering patient or user, etc.
 ### Listing available commands
 <!--DHIS2-SECTION-ID:sms-configuration-commands-list-->
 
-To see all available commands, navigate to the "SMS Commands" page.
+To see all available commands, navigate to the "Commands" page.
 All commands will be listed in a paginated table. On this page the following
 actions are available:
 
@@ -45,9 +45,9 @@ To prevent accidental deletions, a confirmation dialog will show up.
 Commands are not working after they've been added!
 Most of the configurable fields are only displayed when editing the command!
 
-After clicking on the "Add command" in the command overview page, a dynamic
-form will appear. Depending on the parser type, different inputs will be
-displayed:
+After clicking on the "Add command" button in the command overview page, a
+dynamic form will appear. Depending on the parser type, different inputs will
+be displayed:
 
 | Parser type | User group | Program | Program Stage | Data set |
 |-|-|-|-|-|
@@ -196,16 +196,49 @@ gateway types can be added and configured below. At least one gateway is needed
 to send and receive SMS messages. Load balancing will use all gateways if there
 are multiple available.
 
-There are four types of Gateways supported by the SMS Service.
+There are four types of Gateways supported by the SMS Service:
+* Generic gateways
+* BulkSMS gateways
+* Clickatell gateways
+* SMPP gateways
 
-### Managing gateways
+### Listing gateways
 <!--DHIS2-SECTION-ID:sms-configuration-gateways-manage-->
+
+To see all available gateways, navigate to the "Gateway configurations" page.
+All gateways will be listed in a table. On this page the following actions are
+available:
+
+* Add gateways (1)
+* Edit gateways (2)
+* Delete gateways (3)
+* Batch-delete gateways (4)
+* Set the default gateway (5)
+
+![SMS Gateways - List](resources/images/sms-configuration/gateways-list.png)
 
 ### Adding gateways
 <!--DHIS2-SECTION-ID:sms-configuration-gateways-add-->
 
+After clicking on the "Add gateway" button in the gateway configurations
+overview page, a dynamic form will appear. It's devided into two sections:
+
+1. The gateway type (1)
+1. The gateway's configuration, depends on the gateway type (2)
+
+![SMS Gateways - Adding gateways](resources/images/sms-configuration/gateways-addinggateways.png)
+
+For more details about configuring gateways, please refer to the [Gateway
+Configurations](#gateway.configuration) section of the "Mobile" maintenance
+documentation.
+
 ### Editing gateways
 <!--DHIS2-SECTION-ID:sms-configuration-gateways-edit-->
+
+Editing is similar to adding gateways with the exception that the gateway type
+cannot be altered. If a gateway has the wrong type, it needs to be deleted and
+added again. For more information how to edit gateways, please refer to the
+"Adding gateways" section above.
 
 ## View inbound SMS
 <!--DHIS2-SECTION-ID:sms-configuration-inbound-->
