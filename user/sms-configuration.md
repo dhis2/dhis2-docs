@@ -1,6 +1,10 @@
 # Configuring SMS
 <!--DHIS2-SECTION-ID:sms-configuration-intro-->
 
+This document covers the functionality of the SMS Configuration App. For
+additional information about SMS service integration, please refer to the
+[Mobile](#mobile_intro) document.
+
 ## SMS Commands
 <!--DHIS2-SECTION-ID:sms-configuration-commands-->
 
