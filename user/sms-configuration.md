@@ -81,18 +81,21 @@ When editing commands, changing the parser type as well as the additional data
 supplied when adding the command is not possible. The only way this is
 currently possible is by creating a new command and deleting the old one.
 
-Most commands share the same input fields, with a few exceptions that will be
-explained a bit below.
+There are certain parameters which are common to all SMS Command types.
+These parameters have default values configured in the system, if user
+does provide any value to these parameters then those default ones will
+be used. Here is the list of those parameters
 
 These common fields are:
 
-* Name (required)
-* Field separator
-* Reply message
-* Wrong format message
-* No user message
-* More than one org unit message
-* Success message
+| Parameter | Type | Description |
+|---|---|---|
+| Field Separator | String | To provide custom field separator. Default is "&#124;" |
+| Reply message if no codes are sent (only the command) | String | To provide message if no code is found in SMS text input. Default is "Parameter missing" |
+| Wrong format message | String | To provide message if command is not formatted correctly. Command should be formatted as per code value separator. This message will also be sent back if any mandatory parameter is missing. |
+| No user message | String | To provide message if sending phone number is not registered in DHIS2. |
+| User belong to more than one OrgUnit message | String | Certain SMS command types require user ( retrieved from sending phone number ) to be associated with only one organization unit. This message can be configured to be sent back in case that requirement is not fullfilled. |
+| Success Message | String | To provide message that will be sent upon successful completion of the process. |
 
 Some commands have the option to add short codes, which are explained in the
 individual sections for each parser type down below.
@@ -121,8 +124,11 @@ that was selected when adding the command:
 #### Editing J2ME parser commands
 <!--DHIS2-SECTION-ID:sms-configuration-commands-edit-j2me-->
 
-Commands of this parser type have all the shared fields.  Additionally short
-codes can be defined.  Each command is connected to a dataset. The dataset has
+Commands of this parser type have all the shared fields. The SMS command will
+have a dataset because those are used for reporting data. If data is reported
+for a Period which is already approved then SMS response will be sent back
+containing information about approval status of the period. Additionally short
+codes can be defined. Each command is connected to a dataset. The dataset has
 data elements, which have category combos, which have at least one category
 option combo. For every existing "data element - category option combo"
 combination, a short code can be provided.
