@@ -369,18 +369,18 @@ Binary operators for access (sharing) based filtering:
 | `canDataWrite`    | Has user `<value>` data write permission to the object   |
 | `canAccess`       | Has user `<value0>` permission `<value1>` to the object  |
 
-When applied to a simple value property, here `code`, the filter restricts to
+When applied to a simple value property, here `code`, the filter restricts the response to
 those data elements (owner object) the user can read/write:
 
     /api/dataElements/gist?filter=code:canWrite:OYLGMiazHtW
 
-When applied to a reference property, here `categoryCombo`, the filter restricts
-zo those data elements having a category combo that the user can read/write:
+When applied to a reference property, here `categoryCombo`, the filter restricts the response 
+to those data elements having a category combo that the user can read/write:
 
     /api/dataElements/gist?filter=categoryCombo:canWrite:OYLGMiazHtW
 
 When applied to a reference collection property, here `dataElementGroups`, the
-filter restricts to those data element where a data element group exists in the
+filter restricts the response to those data elements where a data element group exists in the
 collection property and which the user can read/write:
 
     /api/dataElements/gist?filter=dataElementGroups:canWrite:OYLGMiazHtW
