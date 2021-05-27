@@ -1799,7 +1799,7 @@ below:
 ```
 
 To perform some testing we can save the XML payload as a file
-called*event.xml* and send it as a POST request to the events resource
+called *event.xml* and send it as a POST request to the events resource
 in the API using curl with the following command:
 
 ```bash
