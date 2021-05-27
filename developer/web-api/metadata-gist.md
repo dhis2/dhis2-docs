@@ -50,6 +50,7 @@ Known Differences:
   always considers object sharing (the set of considered items is always the set
   visible to the user)
 * Gist offers `member(<id>)` and `not-member(<id>)` collection field transformers
+* Gist offers `canRead` and `canWrite` access check filter
 
 Known Limitations:
 
@@ -111,7 +112,7 @@ Parameters in alphabetical order:
 
 | Parameter      | Options               |  Default     | Description          |
 | -------------- | --------------------- | ------------ | ---------------------|
-| `absoluteUrls` | `true` or `false`     | `true`       | `true` use relative paths in links, `false` use absolute URLs in links |
+| `absoluteUrls` | `true` or `false`     | `false`      | `true` use relative paths in links, `false` use absolute URLs in links |
 | `auto`         | `XS`, `S`, `M`, `L`, `XL` | (context dependent) | extent of fields selected by `*` field selector |
 | `fields`       | (depends on endpoint) | `*`          | comma separated list of fields or presets to include |
 | `filter`       | `<field>:<operator>` or `<field>:<operator>:<value>` |   | comma separated list of query field filters (can be used more than once) |
@@ -358,6 +359,36 @@ a program one would use:
 
     /api/organisationUnits/rZxk3S0qN63/children/gist?filter=programs:gt:0
 
+Binary operators for access (sharing) based filtering:
+
+| Binary Operator   | Description                                              |
+| ----------------- | -------------------------------------------------------- |
+| `canRead`         | Has user `<value>` metadata read permission to the object |
+| `canWrite`        | Has user `<value>` metadata write permission to the object |
+| `canDataRead`     | Has user `<value>` data read permission to the object    |
+| `canDataWrite`    | Has user `<value>` data write permission to the object   |
+| `canAccess`       | Has user `<value0>` permission `<value1>` to the object  |
+
+When applied to a simple value property, here `code`, the filter restricts the response to
+those data elements (owner object) the user can read/write:
+
+    /api/dataElements/gist?filter=code:canWrite:OYLGMiazHtW
+
+When applied to a reference property, here `categoryCombo`, the filter restricts the response 
+to those data elements having a category combo that the user can read/write:
+
+    /api/dataElements/gist?filter=categoryCombo:canWrite:OYLGMiazHtW
+
+When applied to a reference collection property, here `dataElementGroups`, the
+filter restricts the response to those data elements where a data element group exists in the
+collection property and which the user can read/write:
+
+    /api/dataElements/gist?filter=dataElementGroups:canWrite:OYLGMiazHtW
+
+The `canAccess` expects two arguments, 1st is user ID, 2nd the access pattern,
+for example to check metadata read and write access the pattern is `rw%`:
+
+    /api/dataElements/gist?filter=code:canAccess:[OYLGMiazHtW,rw%]
 
 ### The `headless` Parameter
 <!--DHIS2-SECTION-ID:gist_parameters_headless-->
@@ -638,6 +669,7 @@ Synthetic fields in alphabetical order:
 | `href`             | link to the list item itself (single item view)         |
 | `displayName`      | translated `name` (always translated)                   |
 | `displayShortName` | translated `displayName` (always translated)            |
+| `access`           | summary on ability of current user to read/write/modify the entry |
 
 
 ### The `href` Field
@@ -648,8 +680,7 @@ Each item in a `/gist` response can link to itself. This link is given in the
 
 To add the `href` field use (for example):
 
-		/api/<object-type>/gist?fields=*,href
-
+    /api/<object-type>/gist?fields=*,href
 
 ### The `displayName` and `displayShortName` Field
 <!--DHIS2-SECTION-ID:gist_syntheticFields_displayName-->
@@ -659,8 +690,8 @@ By definition the `displayName` is the translated `name` and the
 
 To add `displayName` or `displayShortName` add it to the list use (for example):
 
-		/api/<object-type>/gist?fields=*,displayName
-		/api/<object-type>/gist?fields=*,displayShortName
+    /api/<object-type>/gist?fields=*,displayName
+    /api/<object-type>/gist?fields=*,displayShortName
 
 Note that by default all translatable properties like `name` and `shortName` 
 would also be translated. When `translate=false` is used to disable this 
@@ -677,7 +708,10 @@ value like an item count.
 The `apiEndpoints` object will have a member of the same name for every member 
 in the item that was transformed to a simple value.
 
-For example, `/api/users/gist?fields=id,userGroups::size,organisationUnits::size` 
+For example, 
+
+    /api/users/gist?fields=id,userGroups::size,organisationUnits::size 
+
 returns items in the form:
 
 ```json
@@ -714,6 +748,26 @@ returns items in the form:
 }
 ```
 
+### The `access` Field
+The `access` summary is based on the `sharing` and the current user.
+This means it is only applicable for objects that have a `sharing` property.
+
+For example, when listing data elements with `access` field
+
+    /api/dataElements/gist?fields=*,access
+
+the returned data element items contain a `"access"` member like the one below:
+
+```json
+"access": {
+  "manage": false,
+  "externalize": false,
+  "write": false,
+  "read": true,
+  "update": false,
+  "delete": false
+}
+```
 
 ## Examples
 <!--DHIS2-SECTION-ID:gist_examples-->
