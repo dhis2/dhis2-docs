@@ -496,8 +496,8 @@ Table: Tracked entity instances query parameters
 | pageSize | The page size. Default size is 50 rows per page. |
 | totalPages | Indicates whether to include the total number of pages in the paging response (implies higher response time). |
 | skipPaging | Indicates whether paging should be ignored and all rows should be returned. |
-| lastUpdatedStartDate | Filter for events which were updated after this date. Cannot be used together with *lastUpdatedDuration*. |
-| lastUpdatedEndDate | Filter for events which were updated up until this date. Cannot be used together with *lastUpdatedDuration*. |
+| lastUpdatedStartDate | Filter for teis which were updated after this date. Cannot be used together with *lastUpdatedDuration*. |
+| lastUpdatedEndDate | Filter for teis which were updated up until this date. Cannot be used together with *lastUpdatedDuration*. |
 | lastUpdatedDuration | Include only items which are updated within the given duration. The format is , where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with *lastUpdatedStartDate* and/or *lastUpdatedEndDate*. |
 | assignedUserMode | Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT &#124; PROVIDED &#124; NONE &#124; ANY. |
 | assignedUser | Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using *assignedUser=id1;id2*.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId |
