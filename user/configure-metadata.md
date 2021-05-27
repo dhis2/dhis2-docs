@@ -222,7 +222,7 @@ you can create that category.
         For disaggregation of data elements, you select
         **Disaggregation**. The data dimension type "Attribute" allows
         the category to be used to assign a combination of categories to
-        data recorded through a data set.
+        data recorded through a data set or a program (event or tracker).
 
     4.  **Data dimension**
 
