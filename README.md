@@ -66,7 +66,7 @@ Will set the section id of the level 2 heading **Validation** to "webapi_validat
 > **Note**
 >
 > In order to support linking by anchor reference from other documents, please try to keep the section ids unique. For example, if "#webapi_validation" is unique across the documentation, then you can refer to it from any other part of the documentation simply with `[link name](#webapi_validation)`.  
-> If the section id being referenced is not unique, the document processor will attempt to resolve to the "closest" anchor with that name.
+> If the section id being referenced is not unique, the document processor will attempt to resolve to the "closest" anchor with that name. *When the linking file belongs to a specific version, the processor will ignore anchors belonging to different versions*.
 
 > **Caution**
 >
