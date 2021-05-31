@@ -1,6 +1,4 @@
-# Getting started - help to navigate the user guide
-
-<!--DHIS2-SECTION-ID:getting_started-->
+# Getting started - help to navigate the user guide { #getting_started } 
 
 <table>
 <colgroup>

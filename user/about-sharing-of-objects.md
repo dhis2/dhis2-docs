@@ -1,6 +1,4 @@
-# About sharing of objects
-
-<!--DHIS2-SECTION-ID:sharing-->
+# About sharing of objects { #sharing } 
 
 This chapter discusses the sharing of entities feature in DHIS2.
 

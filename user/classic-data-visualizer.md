@@ -1,14 +1,10 @@
-# Classic Data Visualizer (deprecated)
-
-<!--DHIS2-SECTION-ID:data_vis-->
+# Classic Data Visualizer (deprecated) { #data_vis } 
 
 This chapter refers to the legacy version of the data visualizer. For
 the current version, please refer to the [new data visualizer](./data_visualizer.html)
 chapter.
 
-## About the Classic Data Visualizer app
-
-<!--DHIS2-SECTION-ID:data_vis_intro-->
+## About the Classic Data Visualizer app { #data_vis_intro } 
 
 ![](resources/images/visualizer/column_chart.png)
 
@@ -27,9 +23,7 @@ generates charts in the web browser.
 >     collapses the left side menu and gives more space for the chart.
 >     You can get the menu back by clicking on the same button again.
 
-## Create a chart
-
-<!--DHIS2-SECTION-ID:datavis_create_chart-->
+## Create a chart { #datavis_create_chart } 
 
 1.  Open the **Classic Data Visualizer** app and select a chart type.
 
@@ -53,9 +47,7 @@ generates charts in the web browser.
 
 4.  Click **Update**.
 
-## Select a chart type
-
-<!--DHIS2-SECTION-ID:datavis_chart_types-->
+## Select a chart type { #datavis_chart_types } 
 
 The **Classic Data Visualizer** app has nine different chart types, each with
 different characteristics. To select a chart type:
@@ -121,9 +113,7 @@ different characteristics. To select a chart type:
 
 2.  Click **Update**.
 
-## Select dimension items
-
-<!--DHIS2-SECTION-ID:data_vis_select_dim_items-->
+## Select dimension items { #data_vis_select_dim_items } 
 
 A dimension refers to the elements which describe the data values in the
 system. There are three main dimensions in the system:
@@ -286,9 +276,7 @@ want to separate these categories in your analysis.
 The additional dimension items you select are available in **Chart
 layout** as dimensions.
 
-## Select series, category and filter
-
-<!--DHIS2-SECTION-ID:data_vis_series_category_filter-->
+## Select series, category and filter { #data_vis_series_category_filter } 
 
 ![](resources/images/visualizer/chart_layout.png)
 
@@ -318,9 +306,7 @@ category and filter.
 
 \</example\>
 
-## Change the display of your chart
-
-<!--DHIS2-SECTION-ID:datavis_change_display-->
+## Change the display of your chart { #datavis_change_display } 
 
 1.  Click **Options**.
 
@@ -572,9 +558,7 @@ To view interpretations for relative periods, such as a year ago:
     based on when the interpretation was created.To view other
     interpretations, click them.
 
-## Download a chart as an image or a PDF
-
-<!--DHIS2-SECTION-ID:data_vis_save_chart-->
+## Download a chart as an image or a PDF { #data_vis_save_chart } 
 
 After you have created a chart you can download it to your local
 computer as an image or PDF file.
@@ -587,9 +571,7 @@ computer as an image or PDF file.
     for example embed the image file into a text document as part of a
     report.
 
-## Download chart data source
-
-<!--DHIS2-SECTION-ID:data_vis_download_chart_data-->
+## Download chart data source { #data_vis_download_chart_data } 
 
 You can download the data source behind a chart in JSON, XML, Excel,
 CSV, JXRML or Raw data SQL formats with different identification schemes
@@ -658,9 +640,7 @@ To download plain data source formats:
     </tbody>
     </table>
 
-## Embed charts in any web page
-
-<!--DHIS2-SECTION-ID:data_vis_embedding-->
+## Embed charts in any web page { #data_vis_embedding } 
 
 Certain analysis-related resources in DHIS2, like pivot tables, charts
 and maps, can be embedded in any web page by using a plug-in. You will

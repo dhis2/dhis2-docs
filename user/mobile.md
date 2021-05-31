@@ -3,9 +3,7 @@
 This chapter covers various mobile technologies including Web, J2ME, SMS
 Service and SMS Command.
 
-## DHIS2 Mobile Introduction
-
-<!--DHIS2-SECTION-ID:mobile_intro-->
+## DHIS2 Mobile Introduction { #mobile_intro } 
 
 DHIS2 provides a range of options to allow data entry from mobile
 devices, including a dedicated GPRS/3G J2ME client and two versions of
@@ -74,9 +72,7 @@ discussed in separate sections in detail:
     GPRS/3G Client"
 
 
-## Mobile browser based data entry
-
-<!--DHIS2-SECTION-ID:mobile_web_based-->
+## Mobile browser based data entry { #mobile_web_based } 
 
 ### Getting started with mobile browser data entry
 
@@ -512,9 +508,7 @@ The list above will be explained in details:
 
     ![](resources/images/dhis2_mobile_web_based/mobile-browser-desktop-version-GUI.png)
 
-## J2ME GPRS/3G Client
-
-<!--DHIS2-SECTION-ID:mobile_j2me_gprs_3g-->
+## J2ME GPRS/3G Client { #mobile_j2me_gprs_3g } 
 
 The DHIS2 GPRS/3G mobile module provides a mechanism for remote clients
 using mobile phones to enter data directly into the DHIS2 system. There
@@ -548,9 +542,7 @@ and when sending reports to the server. The phone stores all entered
 data locally, so it can work fine with only temporary access to a data
 connection on a regular basis.
 
-### J2ME GPRS 3G facility reporting client
-
-<!--DHIS2-SECTION-ID:mobile_j2me_gprs_3g_facility_reporting-->
+### J2ME GPRS 3G facility reporting client { #mobile_j2me_gprs_3g_facility_reporting } 
 
 The server side component of the web based solution is included in the
 general build of DHIS2.
@@ -920,9 +912,7 @@ of available time periods is automatically generated.
     Users should be informed that if they see this error, then it means
     that their data has not been transmitted.
 
-## SMS Command
-
-<!--DHIS2-SECTION-ID:mobile_sms_command-->
+## SMS Command { #mobile_sms_command } 
 
 SMS command feature helps DHIS2 system receiving SMS from users,
 patients, or even anonymous. A SMS command is an object containing the
@@ -1141,9 +1131,7 @@ received from DHIS2 users only. Once command is successfully received
 then data received in SMS will be parsed and event will be registered in
 DHIS2.
 
-## SMS Service
-
-<!--DHIS2-SECTION-ID:mobile_sms_service-->
+## SMS Service { #mobile_sms_service } 
 
 SMS Service is a generic service used for sending/receiving SMS. Any
 other DHIS2 module can include this service and utilize it to send and
@@ -1188,9 +1176,7 @@ different url formats.
 
 ![](resources/images/dhis2_mobile_sms/generichttp-configuration.png)
 
-### Gateway Configurations
-
-<!--DHIS2-SECTION-ID:gateway.configuration-->
+### Gateway Configurations { #gateway.configuration } 
 
 Below table shows the parameters required for configuring gateway.
 
