@@ -1,6 +1,4 @@
-# Managing dashboards
-
-<!--DHIS2-SECTION-ID:dashboard-->
+# Managing dashboards { #dashboard } 
 
 ## About dashboards
 
@@ -14,9 +12,7 @@ dashboard could then be shared with the user group called "ANC control",
 which might consist of all users of the ANC control program. All users
 within this group would then be able to view the same dashboard.
 
-## Dashboard and control bar
-
-<!--DHIS2-SECTION-ID:dashboards_setup-->
+## Dashboard and control bar { #dashboards_setup } 
 
 Dashboards have a title, description, and any number of dashboard items.
 The dashboard items can be of many different types, including charts,
@@ -261,9 +257,7 @@ Interpretation replies are sorted in ascending order by date, with the oldest sh
 
 ![](resources/images/dashboard/dashboard-interpretations.png)
 
-## Sharing a dashboard
-
-<!--DHIS2-SECTION-ID:dashboard_sharing-->
+## Sharing a dashboard { #dashboard_sharing } 
 
 In order to share a dashboard with user groups, click on the **SHARE**
 button to the right of the dashboard title to display the dashboard

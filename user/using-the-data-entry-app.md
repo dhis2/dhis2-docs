@@ -1,10 +1,6 @@
-# Using the Data Entry app
+# Using the Data Entry app { #data_entry_app } 
 
-<!--DHIS2-SECTION-ID:data_entry_app-->
-
-## About the Data Entry app
-
-<!--DHIS2-SECTION-ID:about_data_entry_app-->
+## About the Data Entry app { #about_data_entry_app } 
 
 The **Data Entry** app is where you manually enter aggregated data in
 DHIS2. You register data for an organisation unit, a period, and a set
@@ -35,9 +31,7 @@ paper-based data collection tool. You configure the data sets in the
 When you close an organisation unit, you can't register or edit data to
 this organisation unit in the **Data Entry** app.
 
-## Enter data in a data entry form
-
-<!--DHIS2-SECTION-ID:enter_data_in_data_entry_form-->
+## Enter data in a data entry form { #enter_data_in_data_entry_form } 
 
 ![](resources/images/data_entry/data_entry_overview.png)
 
@@ -111,9 +105,7 @@ this organisation unit in the **Data Entry** app.
     The system uses this information when generating completeness
     reports for district, county, province or the national level.
 
-## Mark a data value for follow-up
-
-<!--DHIS2-SECTION-ID:mark_data_for_followup_in_data_entry_form-->
+## Mark a data value for follow-up { #mark_data_for_followup_in_data_entry_form } 
 
 ![](resources/images/data_entry/data_entry_section_history.png)
 
@@ -131,9 +123,7 @@ correct all marked values.
 
 4.  Click the star icon.
 
-## Edit data values in a completed data entry form
-
-<!--DHIS2-SECTION-ID:edit_data_value_in_completed_form-->
+## Edit data values in a completed data entry form { #edit_data_value_in_completed_form } 
 
 1.  Open the **Data Entry** app.
 
@@ -150,9 +140,7 @@ correct all marked values.
 
 5.  Click **Complete**.
 
-## Display a data value's history
-
-<!--DHIS2-SECTION-ID:display_data_value_history-->
+## Display a data value's history { #display_data_value_history } 
 
 ![](resources/images/data_entry/data_entry_section_history.png)
 
@@ -167,9 +155,7 @@ You can display the last 12 values registered for a field.
 
 4.  Click **Data element history**.
 
-## Display a data value's audit trail
-
-<!--DHIS2-SECTION-ID:display_data_value_audit_trail-->
+## Display a data value's audit trail { #display_data_value_audit_trail } 
 
 ![](resources/images/data_entry/data_entry_audit_trail.png)
 
@@ -186,9 +172,7 @@ data value was altered and which user who made the changes.
 
 4.  Click **Audit trail**.
 
-## Create minimum maximum value range manually
-
-<!--DHIS2-SECTION-ID:change_min_max_range_manually-->
+## Create minimum maximum value range manually { #change_min_max_range_manually } 
 
 ![](resources/images/data_quality/set_min_max_manually.png)
 
@@ -215,9 +199,7 @@ data value was altered and which user who made the changes.
 > 
 > Click the star icon to mark the value for further follow-up.
 
-## Enter data offline
-
-<!--DHIS2-SECTION-ID:enter_data_offline-->
+## Enter data offline { #enter_data_offline } 
 
 The **Data Entry** app works even if you don't have a stable Internet
 connection during data entry. When you don't have an internet
@@ -257,9 +239,7 @@ are retrieved from the server for each rendering.
     
     ![](resources/images/data_entry/data_entry_offline_upload_success1.png)
 
-## Enable multi-organisation unit data entry
-
-<!--DHIS2-SECTION-ID:data_entry_multiple_organisation_units-->
+## Enable multi-organisation unit data entry { #data_entry_multiple_organisation_units } 
 
 ![](resources/images/data_entry/data_entry_multiple_org_unit.png)
 
@@ -289,9 +269,7 @@ case, you can enable multi-organisation unit data entry.
     > that you actually enter data for, that is the organisation units
     > now appearing in the form.
 
-## See also
-
-<!--DHIS2-SECTION-ID:data_entry_app_see_also-->
+## See also { #data_entry_app_see_also } 
 
   - [Control data
     quality](https://docs.dhis2.org/master/en/user/html/control_data_quality.html)

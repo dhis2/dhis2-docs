@@ -1,6 +1,4 @@
-# DHIS2 Tracker improving surveillance of Visceral Leishmaniasis (VL) in Somalia - DRAFT
-
-<!--DHIS2-SECTION-ID:user_story_vl_who-->
+# DHIS2 Tracker improving surveillance of Visceral Leishmaniasis (VL) in Somalia - DRAFT { #user_story_vl_who } 
 
 ## Leishmaniasis – what is it?
 

@@ -1,6 +1,4 @@
-# Zambia WASH: Mobile surveillance using DHIS2
-
-<!--DHIS2-SECTION-ID:user_story_akros-->
+# Zambia WASH: Mobile surveillance using DHIS2 { #user_story_akros } 
 
 **The government of Zambia is actively working towards an end to open
 defecation—a huge challenge for many governments. Akros is supporting

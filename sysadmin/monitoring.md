@@ -1,8 +1,6 @@
 # Monitoring
 
-## Introduction
-
-<!--DHIS2-SECTION-ID:monitoring-->
+## Introduction { #monitoring } 
 
 DHIS2 can export [Prometheus](https://prometheus.io/) compatible metrics for monitoring DHIS2 nodes.
 
@@ -10,15 +8,11 @@ This section describes the steps required to install Prometheus and [Grafana](ht
 
 For a list of the metrics exposed by a DHIS2 instance, please refer to the monitoring guide on [GitHub](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md).
 
-## Setup
-
-<!--DHIS2-SECTION-ID:monitoring_setup-->
+## Setup { #monitoring_setup } 
 
 The next sections describe how to set up Prometheus and Grafana and how to set up Prometheus to pull data from one or more DHIS2 instances.
 
-### Installing Prometheus + Grafana on Ubuntu and Debian
-
-<!--DHIS2-SECTION-ID:prometheus-->
+### Installing Prometheus + Grafana on Ubuntu and Debian { #prometheus } 
 
 - Download Prometheus from the official [download](https://prometheus.io/download/) page.
 
@@ -44,9 +38,7 @@ The archive contains many important files, but here is the main ones you need to
 - `prometheus`: the binary for your Prometheus server. This is the command that you are going to execute to launch a Prometheus instance on your Linux box;
 - `promtool`: this is a command that you can run to verify your Prometheus configuration.
 
-### Configuring Prometheus as a service
-
-<!--DHIS2-SECTION-ID:prometheus_service-->
+### Configuring Prometheus as a service { #prometheus_service } 
 
 - Create a `Prometheus` user with a `Prometheus` group.
 
@@ -76,9 +68,7 @@ mkdir -p data/prometheus
 chown -R prometheus:prometheus /data/prometheus /etc/prometheus/*
 ```
 
-### Create a Prometheus service
-
-<!--DHIS2-SECTION-ID:prometheus_create_service-->
+### Create a Prometheus service { #prometheus_create_service } 
 
 To create a Prometheus _systemd_ service, head over to the `/lib/systemd/system` folder and create a new systemd file named `prometheus.service`.
 
@@ -132,9 +122,7 @@ Active: active (running)
 - It should be now possible to access the Prometheus UI by accessing `http://localhost:9090`.
 
 
-### Set-up Nginx reverse proxy
-
-<!--DHIS2-SECTION-ID:prometheus_nginx-->
+### Set-up Nginx reverse proxy { #prometheus_nginx } 
 
 Prometheus does not natively support authentication or TLS encryption. If Prometheus has to be exposed outside the boundaries of the local network, it is important to enable authentication and TLS encryption. The following steps show how to use Nginx as a reverse proxy.
 
@@ -216,9 +204,7 @@ systemctl restart prometheus
 journalctl -f -u prometheus.service
 ```
 
-### Enable reverse proxy authentication
-
-<!--DHIS2-SECTION-ID:prometheus_auth-->
+### Enable reverse proxy authentication { #prometheus_auth } 
 
 This section shows how to configure basic authentication via the reverse proxy. If you need a different authentication mechanism (SSO, etc.) please check the relevant documentation.
 
@@ -262,9 +248,7 @@ journalctl -f -u nginx.service
 
 - `http://localhost:1234` should now prompt for username and password.
 
-### Installing Grafana on Ubuntu and Debian
-
-<!--DHIS2-SECTION-ID:grafana-->
+### Installing Grafana on Ubuntu and Debian { #grafana } 
 
 - Add a `gpg` key and install the OSS Grafana package from APT repo
 
@@ -317,9 +301,7 @@ Select a Prometheus data source on the next window.
 
 Configure the datasource according to the Prometheus setup (use authentication, TSL, etc.)
 
-### Installing Prometheus + Grafana using Docker
-
-<!--DHIS2-SECTION-ID:prometheus_grafana_docker-->
+### Installing Prometheus + Grafana using Docker { #prometheus_grafana_docker } 
 
 This section describes how to start-up a Prometheus stack containing Prometheus and Grafana.
 
@@ -360,9 +342,7 @@ The Prometheus configuration (`prometheus.yml`) file is located in the `promethe
 
 - Access Grafana web console at: http://localhost:3000 with username: `admin` and password: `foobar`
 
-### Configure Prometheus to pull metrics from one or more DHIS2 instances
-
-<!--DHIS2-SECTION-ID:prometheus_dhis2-->
+### Configure Prometheus to pull metrics from one or more DHIS2 instances { #prometheus_dhis2 } 
 
 Prior to using Prometheus, it needs basic configuring. Thus, we need to create a configuration file named `prometheus.yml`
 
@@ -402,9 +382,7 @@ The `basic_auth` blocks contains the credentials required to access the `metrics
 
 Prometheus may or may not run on the same server as DHIS2: in the above configuration, it is assumed that Prometheus monitors only one DHIS2 instance, running on the same server as Prometheus, so we use `localhost`.
 
-### Configure the DHIS2 exporter
-
-<!--DHIS2-SECTION-ID:dhis2_metrics_conf-->
+### Configure the DHIS2 exporter { #dhis2_metrics_conf } 
 
 The monitoring subsystem is disabled by default in DHIS2.
 

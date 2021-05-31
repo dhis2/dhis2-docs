@@ -1,6 +1,4 @@
-# Additional data dimensions
-
-<!--DHIS2-SECTION-ID:additional_data_dimensions-->
+# Additional data dimensions { #additional_data_dimensions } 
 
 ## About additional data dimensions
 

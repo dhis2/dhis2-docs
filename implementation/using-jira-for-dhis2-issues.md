@@ -1,6 +1,4 @@
-# Using JIRA for DHIS2 issues
-
-<!--DHIS2-SECTION-ID:jira-gettingstarted-->
+# Using JIRA for DHIS2 issues { #jira-gettingstarted } 
 
 ## Sign up to JIRA - it's open to everyone\!
 

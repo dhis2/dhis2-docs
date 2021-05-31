@@ -1,6 +1,4 @@
-# Integration concepts
-
-<!--DHIS2-SECTION-ID:integration-->
+# Integration concepts { #integration } 
 
 DHIS2 is an open platform and its implementers are active contributors
 to interoperability initiatives, such as openHIE. The DHIS2 application
@@ -14,9 +12,7 @@ scenarios and as a basic data collection and management system in
 domains such as [logistics, laboratory management and
 finance](#Integration_and_interoperability).
 
-## Integration and interoperability
-
-<!--DHIS2-SECTION-ID:Integration_and_interoperability-->
+## Integration and interoperability { #Integration_and_interoperability } 
 
 Based on its platform approach, DHIS2 is able to receive and host data
 from different data sources and share it to other systems and reporting
@@ -63,9 +59,7 @@ creating consistent indicator definitions and can already greatly reduce
 fragmentation and enhance data analysis through an integrated data
 repository.
 
-## Objectives of integration
-
-<!--DHIS2-SECTION-ID:Objectives_of_integration-->
+## Objectives of integration { #Objectives_of_integration } 
 
 In most countries we find many different, **isolated** health
 information systems, causing many information management challenges.
@@ -166,9 +160,7 @@ appropriate? More practical information on defining these objectives can
 be found in [*STEP 1 of the 6-Step implementation
 guideline*](https://www.dhis2.org/downloads).
 
-## Health information exchange
-
-<!--DHIS2-SECTION-ID:Health_information-->
+## Health information exchange { #Health_information } 
 
 Since there are different use-cases for health information, there are
 different types of software applications functioning within the health
@@ -209,9 +201,7 @@ context of this DHIS2 guideline, we distinguish between approaches based
 on a 1:1 connection versus approaches based on an n:n connection
 (many-to-many).
 
-### *1:1* integration
-
-<!--DHIS2-SECTION-ID:integrationSection-->
+### *1:1* integration { #integrationSection } 
 
 In many countries a national HMIS is often the first system to be rolled
 out to a large number of facilities and to manage a large number of data
@@ -231,9 +221,7 @@ program), a second script would have to be written, to perform this
 task. These two scripts would then run independently from another,
 resulting in two separate 1:1 connections.
 
-### *n:n* integration
-
-<!--DHIS2-SECTION-ID:nn-->
+### *n:n* integration { #nn } 
 
 A different approach is based on placing a purpose-built software to
 serve as an **interoperability layer** or BUS approach, managing the
@@ -857,9 +845,7 @@ and owning every step of this process.
 
   - Critical integrations
 
-### Step 6: Ongoing Support
-
-<!--DHIS2-SECTION-ID:title_nxr_lxp_41b-->
+### Step 6: Ongoing Support { #title_nxr_lxp_41b } 
 
 While during the implementation phase a temporary support structure
 should be available, afterwards a permanent support structure needs to
@@ -932,9 +918,7 @@ solutions. However, there are also limits to where leveraging DHIS2
 seems useful. In the following sections, special systems will be
 described.
 
-### Logistics Management
-
-<!--DHIS2-SECTION-ID:lm-->
+### Logistics Management { #lm } 
 
 **a) Introduction**
 

@@ -1,6 +1,4 @@
-# DHIS2 tracker e-Registry in Palestine
-
-<!--DHIS2-SECTION-ID:user_story_palestine_tracker-->
+# DHIS2 tracker e-Registry in Palestine { #user_story_palestine_tracker } 
 
 **Developed from WHO’s guidelines for Reproductive, Maternal, Newborn
 and Child Health (RMNCH), the DHIS2 Tracker e-Registry collects,
