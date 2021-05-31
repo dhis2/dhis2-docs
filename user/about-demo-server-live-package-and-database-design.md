@@ -1,6 +1,4 @@
-# About demo server, live package and database design
-
-<!--DHIS2-SECTION-ID:moare_about_dhis2_server_database-->
+# About demo server, live package and database design { #moare_about_dhis2_server_database } 
 
 ## Using the DHIS2 demo server
 
@@ -15,9 +13,7 @@ DHIS2. Simply open the link in your web browser and login with username
 > important work on this server. It is strictly for demonstration
 > purposes on only\!
 
-## Using the DHIS2 live package
-
-<!--DHIS2-SECTION-ID:mod2_1-->
+## Using the DHIS2 live package { #mod2_1 } 
 
 ### Starting the DHIS2 Live package
 
@@ -78,9 +74,7 @@ The latest stable server version can be downloaded from this
 install it please refer to the installation chapter in the
 implementation manual.
 
-## Logging on to DHIS2
-
-<!--DHIS2-SECTION-ID:mod2_2-->
+## Logging on to DHIS2 { #mod2_2 } 
 
 Regardless of whether you have installed the server version or the
 desktop Live version, you will use a web-browser to log on to the
@@ -115,16 +109,12 @@ provided.
 Once you have logged into DHIS2, refer to the specific sections in this
 manual for the different functionality which is available.
 
-## Logging out of DHIS2
-
-<!--DHIS2-SECTION-ID:mod2_4-->
+## Logging out of DHIS2 { #mod2_4 } 
 
 Just click on the Profile and the click "Log out" the top-right corner
 of the DHIS2 menu.
 
-## Quick intro to designing a DHIS2 database
-
-<!--DHIS2-SECTION-ID:database_design-->
+## Quick intro to designing a DHIS2 database { #database_design } 
 
 DHIS2 provides a powerful set of tools for data collection, validation,
 reporting and analysis, but the contents of the database, e.g., what to

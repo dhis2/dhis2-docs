@@ -1,8 +1,6 @@
 # Data validation
 
-## Validation
-
-<!--DHIS2-SECTION-ID:webapi_validation-->
+## Validation { #webapi_validation } 
 
 To generate a data validation summary you can interact with the
 validation resource. The dataSet resource is optimized for data entry
@@ -119,9 +117,7 @@ the table below.
 </tbody>
 </table>
 
-## Validation results
-
-<!--DHIS2-SECTION-ID:webapi_validation_results-->
+## Validation results { #webapi_validation_results } 
 
 Validation results are persisted results of violations found during a
 validation analysis. If you choose "persist results" when starting or
@@ -417,18 +413,14 @@ The following constraints apply during query validation. Each validation error h
 | E2207      | Data start date must be before data end date                 |
 | E2208      | Non-numeric data values encountered during outlier value detection |
 
-## Data analysis
-
-<!--DHIS2-SECTION-ID:webapi_data_analysis-->
+## Data analysis { #webapi_data_analysis } 
 
 Several resources for performing data analysis and finding data quality
 and validation issues are provided.
 
 **Note:** This endpoint is deprecated and will be removed in 2.38. Use the `outlierAnalysis` endpoint instead.
 
-### Validation rule analysis
-
-<!--DHIS2-SECTION-ID:webapi_data_analysis_validation_rules-->
+### Validation rule analysis { #webapi_data_analysis_validation_rules } 
 
 To run validation rules and retrieve violations:
 
@@ -519,9 +511,7 @@ Sample output:
 }]
 ```
 
-### Standard deviation based outlier analysis
-
-<!--DHIS2-SECTION-ID:webapi_data_analysis_std_dev_outlier-->
+### Standard deviation based outlier analysis { #webapi_data_analysis_std_dev_outlier } 
 
 To identify data outliers based on standard deviations of the average
 value:
@@ -573,9 +563,7 @@ The following query parameters are supported:
 </tbody>
 </table>
 
-### Min/max value based outlier analysis
-
-<!--DHIS2-SECTION-ID:webapi_data_analysis_min_max_outlier-->
+### Min/max value based outlier analysis { #webapi_data_analysis_min_max_outlier } 
 
 To identify data outliers based on min/max values:
 
@@ -593,18 +581,14 @@ To identify data marked for follow-up:
 The supported query parameters are equal to the *std dev based outlier
 analysis* resource described above.
 
-## Data integrity
-
-<!--DHIS2-SECTION-ID:webapi_data_integrity-->
+## Data integrity { #webapi_data_integrity } 
 
 The data integrity capabilities of the data administration module are
 available through the web API. This section describes how to run the
 data integrity process as well as retrieving the result. The details of
 the analysis performed are described in the user manual.
 
-### Running data integrity
-
-<!--DHIS2-SECTION-ID:webapi_data_integrity_run-->
+### Running data integrity { #webapi_data_integrity_run } 
 
 The operation of measuring data integrity is a fairly resource (and
 time) demanding task. It is therefore run as an asynchronous process and
@@ -621,9 +605,7 @@ JSON response if the task has not yet completed and a JSON taskSummary
 object when the task is done. Polling (conservatively) to this resource
 can hence be used to wait for the task to finish.
 
-### Fetching integrity summary
-
-<!--DHIS2-SECTION-ID:webapi_data_integrity_fetch_results-->
+### Fetching integrity summary { #webapi_data_integrity_fetch_results } 
 
 Once data integrity is finished running the result can be fetched from
 the `system/taskSummaries` resource like so:
@@ -636,16 +618,12 @@ leading paragraph for this section the details of the analysis (and the
 resulting data) can be found in the user manual chapter on Data
 Administration.
 
-## Complete data set registrations
-
-<!--DHIS2-SECTION-ID:webapi_complete_data_set_registrations-->
+## Complete data set registrations { #webapi_complete_data_set_registrations } 
 
 This section is about complete data set registrations for data sets. A
 registration marks as a data set as completely captured.
 
-### Completing data sets
-
-<!--DHIS2-SECTION-ID:webapi_completing_data_sets-->
+### Completing data sets { #webapi_completing_data_sets } 
 
 This section explains how to register data sets as complete. This is
 achieved by interacting with the *completeDataSetRegistrations*
@@ -741,9 +719,7 @@ The import process supports the following query parameters:
 </tbody>
 </table>
 
-### Reading complete data set registrations
-
-<!--DHIS2-SECTION-ID:webapi_reading_complete_data_sets-->
+### Reading complete data set registrations { #webapi_reading_complete_data_sets } 
 
 This section explains how to retrieve data set completeness
 registrations. We will be using the *completeDataSetRegistrations*
@@ -836,9 +812,7 @@ GET /api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX&dataSet=pBOMPrpg1QX
 You can get the response in *xml* and *json* format. You can indicate which response format you prefer through the *Accept* HTTP header like
 in the example above. For xml you use *application/xml*; for json you use *application/json*.
 
-### Un-completing data sets
-
-<!--DHIS2-SECTION-ID:webapi_uncompleting_data_sets-->
+### Un-completing data sets { #webapi_uncompleting_data_sets } 
 
 This section explains how you can un-register the completeness of a data set. To un-complete a data set you will interact with the completeDataSetRegistrations resource:
 

@@ -1,8 +1,6 @@
 # Users and user roles
 
-## About user management
-
-<!--DHIS2-SECTION-ID:about_user_userrole-->
+## About user management { #about_user_userrole } 
 
 Multiple users can access DHIS2 simultaneously and each user can have
 different authorities. You can fine-tune these authorities so that
@@ -191,9 +189,7 @@ notifications](https://docs.dhis2.org/master/en/user/html/manage_program_notific
 [Mange push
 reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
-## Workflow
-
-<!--DHIS2-SECTION-ID:user_mgt_workflow-->
+## Workflow { #user_mgt_workflow } 
 
 1.  Define the positions you need for your project and identify which
     tasks the different positions will perform.
@@ -216,9 +212,7 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 > For users to be able to enter data, you must add them to an
 > organisational unit level and share a dataset with them.
 
-## Example: user management in a health system
-
-<!--DHIS2-SECTION-ID:user_mgt_example-->
+## Example: user management in a health system { #user_mgt_example } 
 
 In a health system, users are logically grouped with respect to the task
 they perform and the position they occupy.

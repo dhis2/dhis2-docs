@@ -1,6 +1,4 @@
-# DHIS2: a Management Information System at PSI
-
-<!--DHIS2-SECTION-ID:user_story_psi-->
+# DHIS2: a Management Information System at PSI { #user_story_psi } 
 
 **This interview was conducted in May 2016, with Sarah Romorini, senior
 program manager at PSI. The aim was to learn how DHIS2 was rolled out

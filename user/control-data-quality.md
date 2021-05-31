@@ -1,10 +1,6 @@
-# Control data quality
+# Control data quality { #control_data_quality } 
 
-<!--DHIS2-SECTION-ID:control_data_quality-->
-
-## About data quality checks
-
-<!--DHIS2-SECTION-ID:about_data_quality-->
+## About data quality checks { #about_data_quality } 
 
 The **Data Quality** app contains tools to validate the accuracy and
 reliability of the data in the system. You can assess different dimensions of 
@@ -57,9 +53,7 @@ You can verify data quality in different ways, for example:
   - By data triangulation, that is, comparing the same data or indicator
     from different sources.
 
-## Validation rule analysis
-
-<!--DHIS2-SECTION-ID:validation_rule_analysis-->
+## Validation rule analysis { #validation_rule_analysis } 
 
 ### About validation rule analysis
 
@@ -204,9 +198,7 @@ internal DHIS 2 messaging system.
   - [Data Administration
     app](https://docs.dhis2.org/master/en/user/html/data_admin.html)
 
-## Standard deviation outlier analysis
-
-<!--DHIS2-SECTION-ID:standard_deviation_analysis-->
+## Standard deviation outlier analysis { #standard_deviation_analysis } 
 
 ### About standard deviation outlier analysis
 
@@ -270,9 +262,7 @@ chance of course, but can potentially indicate a measurement or data entry error
 >
 > Click the checkbox to mark an outlier value for further follow-up.
 
-## Minimum maximum outlier analysis
-
-<!--DHIS2-SECTION-ID:min_max_analysis-->
+## Minimum maximum outlier analysis { #min_max_analysis } 
 
 ### About minimum maximum value based outlier analysis
 
@@ -429,9 +419,7 @@ data sets and organisation units in the **Data Administration** app.
 >
 > Click the checkbox to mark the value for further follow-up.
 
-## Follow-up analysis
-
-<!--DHIS2-SECTION-ID:follow_up_analysis-->
+## Follow-up analysis { #follow_up_analysis } 
 
 ### About follow-up analysis
 

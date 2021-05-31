@@ -1,10 +1,6 @@
-# DHIS2 and R integration
+# DHIS2 and R integration { #rsetup } 
 
-<!--DHIS2-SECTION-ID:rsetup-->
-
-## Introduction
-
-<!--DHIS2-SECTION-ID:rsetup_intro-->
+## Introduction { #rsetup_intro } 
 
 R is freely available, open source statistical computing environment. R
 refers to both the computer programming language, as well as the
@@ -18,9 +14,7 @@ chapter will describe how to setup R and DHIS2 on the same server, and
 will provide a simple example of how to retrieve data from the DHIS2
 database into an R data frame and perform some basic calculations.
 
-## Installing R
-
-<!--DHIS2-SECTION-ID:rsetup_install-->
+## Installing R { #rsetup_install } 
 
 If you are installing R on the same server as DHIS, you should consider
 using the Comprehensive R Archive Network (CRAN) to get the latest
@@ -69,9 +63,7 @@ Type 'q()' to quit R.
 >
 ```
 
-## Using ODBC to retrieve data from DHIS2 into R
-
-<!--DHIS2-SECTION-ID:rsetup_odbc-->
+## Using ODBC to retrieve data from DHIS2 into R { #rsetup_odbc } 
 
 In this example, we will use a system-wide ODBC connector which will be
 used to retrieve data from the DHIS2 database. There are some
@@ -233,9 +225,7 @@ database with an SQL query into an R data frame, followed by whatever
 routines (statistical analysis, plotting, etc) which may be required.
 
 
-## Mapping with R and PostgreSQL
-
-<!--DHIS2-SECTION-ID:rsetup_maps-->
+## Mapping with R and PostgreSQL { #rsetup_maps } 
 
 A somewhat more extended example, will use the RPostgreSQL library and
 several other libraries to produce a map from the coordinates stored in
@@ -373,9 +363,7 @@ In this example, we showed how to use the RPostgreSQL library and other
 helper libraries(Maptools, ColorBrewer) to create a simple map from the
 DHIS2 data mart.
 
-## Using R, DHIS2 and the Google Visualization API
-
-<!--DHIS2-SECTION-ID:rsetup_google_visualization_api-->
+## Using R, DHIS2 and the Google Visualization API { #rsetup_google_visualization_api } 
 
 Google's Visualization API provides a very rich set of tools for the
 visualization of multi-dimensional data. In this simple example, we will
@@ -446,9 +434,7 @@ integrated into external web sites. A fully functional version of the
 chart shown above can be accessed
 [here.](http://dhis2.net/R/google-motion-chart.html)
 
-## Using PL/R with DHIS2
-
-<!--DHIS2-SECTION-ID:rsetup_plr-->
+## Using PL/R with DHIS2 { #rsetup_plr } 
 
 The procedural language for R is an extension to the core of PostgreSQL
 which allows data to be passed from the database to R, where
@@ -521,9 +507,7 @@ In this simple example, we have shown how to use PL/R with the DHIS2
 database and web interface to display some summary statistics using R to
 perform the calculations.
 
-## Using this DHIS2 Web API with R
-
-<!--DHIS2-SECTION-ID:rsetup_web_api-->
+## Using this DHIS2 Web API with R { #rsetup_web_api } 
 
 DHIS2 has a powerful Web API which can be used to integrate applications
 together. In this section, we will illustrate a few trivial examples of

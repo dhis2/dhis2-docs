@@ -1,10 +1,6 @@
-# Using the Event Reports app
+# Using the Event Reports app { #event_reports_app } 
 
-<!--DHIS2-SECTION-ID:event_reports_app-->
-
-## About the Event Reports app
-
-<!--DHIS2-SECTION-ID:event_reports_about-->
+## About the Event Reports app { #event_reports_about } 
 
 
 ![](resources/images/event_report/event_report.png)
@@ -37,9 +33,7 @@ reports:
     compared to filter values using greater than, equal or less than
     operators.
 
-## Create an event report
-
-<!--DHIS2-SECTION-ID:event_reports_create-->
+## Create an event report { #event_reports_create } 
 
 1.  Open the **Event Reports** app.
 
@@ -53,9 +47,7 @@ reports:
 
 5.  Click **Update**.
 
-## Select dimension items
-
-<!--DHIS2-SECTION-ID:event_reports_select_dimensions-->
+## Select dimension items { #event_reports_select_dimensions } 
 
 An event report is always based on a program and you can do analysis
 based on a range of dimensions. For programs with category combinations,
@@ -161,9 +153,7 @@ corresponding filter.
 
 4.  Click **Update**.
 
-## Select series, category and filter
-
-<!--DHIS2-SECTION-ID:event_reports_select_series_category_filter-->
+## Select series, category and filter { #event_reports_select_series_category_filter } 
 
 You can define which data dimension you want to appear as columns, rows
 and filters in the pivot table. Each data element appears as individual
@@ -183,9 +173,7 @@ dimensions and can be placed on any of the axes.
 
 3.  Click **Update**.
 
-## Change the display of your table
-
-<!--DHIS2-SECTION-ID:event_reports_change_display-->
+## Change the display of your table { #event_reports_change_display } 
 
 You can customize the display of an event report.
 
@@ -316,9 +304,7 @@ You can customize the display of an event report.
 
 3.  Click **Update**.
 
-## Download chart data source
-
-<!--DHIS2-SECTION-ID:event_reports_download_report-->
+## Download chart data source { #event_reports_download_report } 
 
 You can download the data source behind an event report in HTML, JSON,
 XML, Microsoft Excel or CSV formats.
@@ -479,9 +465,7 @@ To view interpretations for relative periods, such as a year ago:
     based on when the interpretation was created.To view other
     interpretations, click them.
 
-## Visualize an event report as a chart
-
-<!--DHIS2-SECTION-ID:event_reports_open_as_chart-->
+## Visualize an event report as a chart { #event_reports_open_as_chart } 
 
 When you have made an event report you can open it as a chart:
 
