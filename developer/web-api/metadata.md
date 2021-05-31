@@ -1768,6 +1768,32 @@ Table: programRuleAction
 | programStage | Only used for CREATEEVENT rule actions. Compulsory for CREATEEEVENT. | See description |
 | programStage- Section | Only used for HIDESECTION rule actions. Compulsory for HIDESECTION | See description |
 
+##### ProgramRuleAction Validation
+There are certain validations added to ProgramRuleAction model in 2.37. Main purpose was to keep user from creating erroneous ProgramRules in order to keep the database consistent. These validations depends on program rule action type. Each action type has its own respective validation. 
+
+Table: ProgramRuleAction Validations
+
+| name | validation check for id existence |
+|---|---|
+|SENDMESSAGE| Notification template id |
+|SCHEDULEMESSAGE| Notification template id |
+|HIDESECTION| ProgramStage section id |
+|HIDEPROGRAMSTAGE| ProgramStage id |
+|HIDEFIELD| DataElement or TrackedEntityAttribute id |
+|HIDEOPTION| Option id |
+|HIDEOPTIONGROUP| Option group id |
+|SHOWOPTIONGROUP| Option group id |
+|SETMANDATORYFIELD| DataElement or TrackedEntityAttribute id |
+|SHOWERROR| DataElement or TrackedEntityAttribute id |
+|SHOWWARNING| DataElement or TrackedEntityAttribute id |
+|DISPLAYTEXT| DataElement or TrackedEntityAttribute id |
+|DISPLAYKEYVALUEPAIR||
+|ASSIGN| DataElement or TrackedEntityAttribute id |
+|WARNINGONCOMPLETE| DataElement or TrackedEntityAttribute id |
+|ERRORONCOMPLETE| DataElement or TrackedEntityAttribute id |
+
+
+
 #### Program rule variable model details
 
 The following table gives a detailed overview over the
