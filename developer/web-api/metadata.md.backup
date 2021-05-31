@@ -1763,11 +1763,11 @@ Table: programRuleAction
 | programStage- Section | Only used for HIDESECTION rule actions. Compulsory for HIDESECTION | See description |
 
 ##### ProgramRuleAction Validation
-There are certain validations added to ProgramRuleAction model in 2.37. Main purpose was to keep user from creating erroneous ProgramRules in order to keep the database consistent. These validations depends on program rule action type. Each action type has its own respective validation. 
+There are certain validations added to ProgramRuleAction model in 2.37. Main purpose was to keep user from creating erroneous ProgramRules in order to keep the database consistent. These validations depends on program rule action type. Each action type has its own respective validation.
 
 Table: ProgramRuleAction Validations
 
-| name | validation check for id existence |
+| name | validation check |
 |---|---|
 |SENDMESSAGE| Notification template id |
 |SCHEDULEMESSAGE| Notification template id |
