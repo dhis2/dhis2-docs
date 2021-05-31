@@ -890,3 +890,21 @@ When you deselect the tracked entity instance, in this case "Anna Jones" you are
 When you deselect the enrollment you see the following
 
 ![](resources/images/capture_app/enrollment-dash-08.png)
+
+### Enrollment widget
+
+On the enrollment page you can see the enrollment widget
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-1.png)
+
+#### Enrollment actions
+
+When you click on the enrollment actions button, a menu with all the available actions will open. You can change the enrollment status to Active, Canceled or Completed using the buttons in the menu. You can mark or remove the enrollment for a follow-up.
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-2.png)
+
+#### Delete the enrollment
+
+You can delete the enrollment by clicking the delete button and confirming the action in the modal. 
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-3.png)
