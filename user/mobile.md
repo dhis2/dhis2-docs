@@ -898,7 +898,7 @@ of available time periods is automatically generated.
     Users should be informed that if they see this error, then it means
     that their data has not been transmitted.
 
-## SMS Command
+## SMS Command <!-- @TODO: DHIS2-10850 -->
 
 <!--DHIS2-SECTION-ID:mobile_sms_command-->
 
