@@ -1,6 +1,4 @@
-# What is DHIS2?
-
-<!--DHIS2-SECTION-ID:what_is_dhis2-->
+# What is DHIS2? { #what_is_dhis2 } 
 
 After reading this chapter you will be able to understand:
 
@@ -16,9 +14,7 @@ After reading this chapter you will be able to understand:
   - What are some of the benefits and challenges with using Free and
     Open Source Software (FOSS) for HIS?
 
-## DHIS2 Background
-
-<!--DHIS2-SECTION-ID:mod1_1-->
+## DHIS2 Background { #mod1_1 } 
 
 DHIS2 is a tool for collection, validation, analysis, and presentation
 of aggregate and patient-based statistical data, tailored (but not

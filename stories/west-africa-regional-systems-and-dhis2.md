@@ -1,6 +1,4 @@
-# West Africa Regional Systems and DHIS2
-
-<!--DHIS2-SECTION-ID:user_story_waho-->
+# West Africa Regional Systems and DHIS2 { #user_story_waho } 
 
 **The West African Health Organization (WAHO) uses a regional data
 warehouse powered by DHIS2 to consolidate aggregate health data from the

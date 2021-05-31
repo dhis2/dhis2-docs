@@ -1,8 +1,6 @@
 # Settings and configuration
 
-## System settings
-
-<!--DHIS2-SECTION-ID:webapi_system_settings-->
+## System settings { #webapi_system_settings } 
 
 You can manipulate system settings by interacting with the
 *systemSettings* resource. A system setting is a simple key-value pair,
@@ -206,9 +204,7 @@ Table: System settings
 | keyDashboardContextMenuItemViewFullscreen | Allow users to view dashboard favorites in fullscreen | Yes |
 
 
-## User settings
-
-<!--DHIS2-SECTION-ID:webapi_user_settings-->
+## User settings { #webapi_user_settings } 
 
 You can manipulate user settings by interacting with the *userSettings*
 resource. A user setting is a simple key-value pair, where both the key
@@ -280,9 +276,7 @@ Table: User settings
 | keyAutoSaveDataEntryForm | false &#124; true | Save aggregate data entry forms periodically. |
 | keyTrackerDashboardLayout | false &#124; true | Tracker dasboard layout. |
 
-## Configuration
-
-<!--DHIS2-SECTION-ID:webapi_configuration-->
+## Configuration { #webapi_configuration } 
 
 To access configuration you can interact with the *configuration*
 resource. You can get XML and JSON responses through the *Accept* header
@@ -351,9 +345,7 @@ curl "localhost/api/33/configuration/feedbackRecipients" -d "wl5cDMuUhmF"
   -H "Content-Type:text/plain"-u admin:district
 ```
 
-## Read-only configuration
-
-<!--DHIS2-SECTION-ID:webapi_readonly_configuration_interface-->
+## Read-only configuration { #webapi_readonly_configuration_interface } 
 
 To access all configuration settings and properties you can use the read-only configuration endpoint. This will provide read-only access to *UserSettings, SystemSettings and DHIS2 server configurations* You can get XML and JSON responses through the *Accept* header. You can *GET* all settings from:
 
@@ -383,15 +375,11 @@ Table: SettingType values
 >
 > Fields which are confidential will be provided in the output but without values.
 
-## Tokens
-
-<!--DHIS2-SECTION-ID:webapi_tokens-->
+## Tokens { #webapi_tokens } 
 
 The *tokens* resource provides access tokens to various services.
 
-### Google Service Account
-
-<!--DHIS2-SECTION-ID:webapi_tokens_google_service_account-->
+### Google Service Account { #webapi_tokens_google_service_account } 
 
 You can retrieve a Google service account OAuth 2.0 access token with a
 GET request to the following resource.
@@ -415,9 +403,7 @@ Table: Token response
 
 This assumes that a Google service account has been set up and configured for DHIS2. Please consult the installation guide for more info.
 
-## Static content
-
-<!--DHIS2-SECTION-ID:webapi_static_content-->
+## Static content { #webapi_static_content } 
 
 The *staticContent* resource allows you to upload and retrieve custom
 logos used in DHIS2. The resource lets the user upload a file with an
@@ -494,9 +480,7 @@ To use custom logos, you need to enable the corresponding system
 settings by setting it to *true*. If the corresponding setting is false,
 the default logo will be served.
 
-## UI customization
-
-<!--DHIS2-SECTION-ID:webapi_ui_customization-->
+## UI customization { #webapi_ui_customization } 
 
 To customize the UI of the DHIS2 application you can insert custom
 JavaScript and CSS styles through the *files* resource.
@@ -518,9 +502,7 @@ DHIS2 web application. This can be particularly useful in certain situations:
   - Including CSS styles which are used in custom data entry forms and
     HTML-based reports.
 
-### Javascript
-
-<!--DHIS2-SECTION-ID:webapi_customization_javascript-->
+### Javascript { #webapi_customization_javascript } 
 
 To insert Javascript from a file called *script.js* you can interact
 with the *files/script* resource with a POST request:
@@ -537,9 +519,7 @@ file content. You can fetch the JavaScript content with a GET request:
 
 To remove the JavaScript content you can use a DELETE request.
 
-### CSS
-
-<!--DHIS2-SECTION-ID:webapi_customization_css-->
+### CSS { #webapi_customization_css } 
 
 To insert CSS from a file called *style.css* you can interact with the
 *files/style* resource with a POST-request:

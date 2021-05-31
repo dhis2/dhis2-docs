@@ -1,6 +1,4 @@
-# Apps
-
-<!--DHIS2-SECTION-ID:apps-->
+# Apps { #apps } 
 
 A packaged app is an [Open Web
 App](https://developer.mozilla.org/en-US/docs/Open_Web_apps_and_Web_standards)
@@ -13,9 +11,7 @@ directory. The manifest must be named `manifest.webapp`. A throrough
 description of apps can be obtained
 [here](https://developer.mozilla.org/en-US/Apps/Quickstart).
 
-## Purpose of packaged Apps
-
-<!--DHIS2-SECTION-ID:apps_purpose_packaged_apps-->
+## Purpose of packaged Apps { #apps_purpose_packaged_apps } 
 
 The purpose of packaged apps is to extend the web interface of DHIS2,
 without the need to modify the source code of DHIS2 itself. A system
@@ -28,9 +24,7 @@ Apps do not have permissions to interact directly with DHIS2 Java API.
 Instead, apps are expected to use functionality and interact with the
 DHIS2 services and data by utilizing the DHIS2 Web API.
 
-## Creating Apps
-
-<!--DHIS2-SECTION-ID:apps_creating_apps-->
+## Creating Apps { #apps_creating_apps } 
 
 DHIS2 apps are constructed with HTML, JavaScript and CSS files, similar
 to any other web application. Apps also need a special file called
@@ -175,9 +169,7 @@ of the zip archive (do not include a parent directory in the archive).
 The zip archive can then be installed into DHIS2 as you will see in the
 next section.
 
-## Installing Apps into DHIS2
-
-<!--DHIS2-SECTION-ID:apps_installing_apps-->
+## Installing Apps into DHIS2 { #apps_installing_apps } 
 
 Apps can be installed by uploading zip file into the App Manager. In,
 Services → Apps, click on the *App Store* menu item.
@@ -189,9 +181,7 @@ and download apps from there. The DHIS2 app store allows for app
 searching, reviewing, commenting, requesting features, rating on the
 apps by the community.
 
-## Launching Apps
-
-<!--DHIS2-SECTION-ID:apps_launching_apps-->
+## Launching Apps { #apps_launching_apps } 
 
 After installation, your apps will be integrated with the menu system
 and can be accessed under services and from the module overview page. It

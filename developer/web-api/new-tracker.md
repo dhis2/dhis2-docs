@@ -77,9 +77,7 @@ These tables highlight the old endpoint differences in request parameters for `G
 |`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
 
 
-## Tracker Objects
-
-<!--DHIS2-SECTION-ID:webapi_nti_tracker_objects-->
+## Tracker Objects { #webapi_nti_tracker_objects } 
 
 Tracker consists of a few different types of objects that are nested together to represent the data. In this section, we will show and describe each of the objects used in the Tracker API.
 
@@ -306,7 +304,7 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 | updatedAt | Timestamp when the note was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | storedBy | Client reference for who stored/created the note. | No | No | String:Any | John Doe |
 
-## Tracker Import (`POST /api/tracker`)
+## Tracker Import (`POST /api/tracker`) { #webapi_nti_import } 
 <!--DHIS2-SECTION-ID:webapi_nti_import-->
 
 The `POST /api/tracker` endpoint allows clients to import the following tracker objects into DHIS2:
@@ -578,9 +576,7 @@ Examples of the **ASYNC** response is shown below. For **SYNC** response, look a
 }
 ```
 
-### Import Summary
-
-<!--DHIS2-SECTION-ID:webapi_nti_import_summary-->
+### Import Summary { #webapi_nti_import_summary } 
 
 The Tracker API has two primary endpoints for consumers to acquire feedback from their imports. These endpoints are most relevant for async import jobs but are available for sync jobs as well. These endpoints will return either the log related to the import or the import summary itself.
 
@@ -839,9 +835,7 @@ As previously stated, `GET /tracker/jobs/{uid}/report` can be retrieved using a 
 
 In addition, all `reportModes` will return `status`, `stats`, `bundleReport` and `message` when applicable.
 
-### Error Codes
-
-<!--DHIS2-SECTION-ID:webapi_nti_error_codes-->
+### Error Codes { #webapi_nti_error_codes } 
 
 There are various error codes for different error scenarios. The following table has the list of error codes thrown from the new Tracker API, along with the error messages and some additional descriptions. The placeholders in the error messages (`{0}`,`{1}`,`{2}`..) are usually uids unless otherwise specified.
 
@@ -952,9 +946,7 @@ There are various error codes for different error scenarios. The following table
 | E4014 | Relationship Type `{0}` constraint requires a Tracked Entity having type `{1}` but `{2}` was found. | |
 | E9999 | N/A | Undefined error message. |
 
-### Validation
-
-<!--DHIS2-SECTION-ID:webapi_nti_validation-->
+### Validation { #webapi_nti_validation } 
 
 While importing data using the tracker importer, a series of validations are performed to ensure the validity of the data. This section will describe some of the different types of validation performed to provide a better understanding if validation fails for your import.
 
@@ -1004,9 +996,7 @@ The last part of validations in the importer are validations based on the user's
 
 These configurations will further change how validation is performed during import.
 
-### Program Rules
-
-<!--DHIS2-SECTION-ID:webapi_nti_program_rules-->
+### Program Rules { #webapi_nti_program_rules } 
 
 Users can configure [Program Rules](#webapi_program_rules), which adds conditional behavior to tracker forms. In addition to running these rules in the tracker apps, the tracker importer will also run a selection of these rules. Since the importer is also running these rules, we can ensure an additional level of validation.
 
@@ -1049,9 +1039,7 @@ Additionally, program rules can also result in side-effects, like send and sched
 > ***NOTE***
 > Program rules can be skipped during import using the `skipProgramRules` parameter.
 
-### Side Effects
-
-<!--DHIS2-SECTION-ID:webapi_nti_side_effects-->
+### Side Effects { #webapi_nti_side_effects } 
 
 After an import has been completed, specific tasks might be triggered as a result of the import. These tasks are what we refer to as "Side effects". These tasks perform operations that do not affect the import itself.
 
@@ -1067,9 +1055,7 @@ The following side effects are currently supported:
   > ***NOTE*** 
   > Certain configurations can control the execution of side effects. `skipSideEffects` flag can be set during the import to skip side effects entirely. This parameter can be useful if you import something you don't want to trigger notifications for, as an example.
 
-### Assign user to events
-
-<!--DHIS2-SECTION-ID:webapi_nti_user_event_assignment-->
+### Assign user to events { #webapi_nti_user_event_assignment } 
 
 Specific workflows benefit from treating events like tasks, and for this reason, you can assign a user to an event.
 
@@ -1098,9 +1084,7 @@ In this example, the user with uid `M0fCOxtkURr` will be assigned to the Event w
 
 To use this feature, the relevant program stage needs to have user assignment enabled, and the uid provided for the user must refer to a valid, existing user.
 
-## Tracker Export
-
-<!--DHIS2-SECTION-ID:webapi_nti_export-->
+## Tracker Export { #webapi_nti_export } 
 
 Tracker export endpoints are a set of services that allow clients to query and retrieve objects stored using the import endpoint.
 
@@ -1959,14 +1943,10 @@ The following rules apply to the query parameters.
 }
 ```
 
-## Tracker Access Control
-
-<!--DHIS2-SECTION-ID:webapi_nti_access_control-->
+## Tracker Access Control { #webapi_nti_access_control } 
 Tracker has a few different concepts in regards to access control, like sharing, organisation unit scopes, ownership, and access levels. The following sections provide a short introduction to the different topics.
 
-### Metadata Sharing
-
-<!--DHIS2-SECTION-ID:webapi_nti_metadata_sharing-->
+### Metadata Sharing { #webapi_nti_metadata_sharing } 
 
 
 Sharing setting is standard DHIS2 functionality that applies to both Tracker and Aggregate metadata/data as well as dashboards and visualization items. At the core of sharing is the ability to define who can see/do what. In general, there are five possible sharing configurations – no access, metadata read, metadata write, data read, and data write. These access configurations can be granted at user and/or user group level (for more flexibility). With a focus on Tracker, the following metadata and their sharing setting is of particular importance: Data Element, Category Option, Program, Program Stage, Tracked Entity Type, Tracked Entity Attribute as well as Tracker related Dashboards and Dashboard Items.
@@ -1983,9 +1963,7 @@ In summary, DHIS2 has a fine-grained sharing setting that we can use to implemen
 
 For more detailed information about data sharing, check out [Data sharing](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/configuring-the-system/about-sharing-of-objects.html#data-sharing-for-event-based-programs).
 
-### Organisation Unit Scopes
-
-<!--DHIS2-SECTION-ID:webapi_nti_ou_scope-->
+### Organisation Unit Scopes { #webapi_nti_ou_scope } 
 
 Organisation units are one of the most fundamental objects in DHIS2. They define a universe under which a user is allowed to record and/or read data. There are three types of organisation units that can be assigned to a user. These are data capture, data view, and tracker search. As the name implies, these organisation units define a scope under which a user is allowed to conduct the respective operations.
 
@@ -2014,9 +1992,7 @@ For example, when retrieving TrackedEntities without the context of a program, t
 
   * **Explain how they relate to ownership - Link to Program Ownership**
 
-### Tracker Program Ownership
-
-<!--DHIS2-SECTION-ID:webapi_nti_ownership-->
+### Tracker Program Ownership { #webapi_nti_ownership } 
 
 A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation unit association for a TrackedEntity - Program combination.
 We call this the Owner (or Owning) Organisation unit of a TrackedEntity in
@@ -2025,9 +2001,7 @@ This, along with the Program's [Access Level](#webapi_nti_access_level) configur
 A user can access a TrackedEntity's Program data if the corresponding Owner OrganisationUnit for that TrackedEntity-Program combination falls under the user's organisation unit scope (Search/Capture). For Programs that are configured with access level  *OPEN* or *AUDITED* , the Owner OrganisationUnit has to be in the user's search scope.
 For Programs that are configured with access level  *PROTECTED* or *CLOSED* , the Owner OrganisationUnit has to be in the user's capture scope to be able to access the corresponding program data for the specific tracked entity.
 
-#### Tracker Ownership Override: Break the Glass
-
-<!--DHIS2-SECTION-ID:webapi_nti_tracker_ownership_override-->
+#### Tracker Ownership Override: Break the Glass { #webapi_nti_tracker_ownership_override } 
 
 It is possible to temporarily override this ownership privilege for a
 program that is configured with an access level of *PROTECTED*. Any user
@@ -2043,9 +2017,7 @@ TrackedEntity-Program combination, the following POST request can be used:
     /API/33/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
       &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
-#### Tracker Ownership Transfer
-
-<!--DHIS2-SECTION-ID:webapi_nti_tracker_ownership_transfer-->
+#### Tracker Ownership Transfer { #webapi_nti_tracker_ownership_transfer } 
 
 It is possible to transfer the ownership of a TrackedEntity-Program
 from one organisation unit to another. This will be useful in case of patient
@@ -2055,9 +2027,7 @@ referrals or migrations. Only a user who has Ownership access (or temporary acce
       &program=eBAyeGv0exc&ou=EJNxP3WreNP
 
 
-### Access Level
-
-<!--DHIS2-SECTION-ID:webapi_nti_access_level-->
+### Access Level { #webapi_nti_access_level } 
 
 DHIS2 treats Tracker data with an extra level of protection. In addition to the standard feature of metadata and data protection through sharing settings, Tracker data are shielded with additional access level protection mechanisms.  Currently, there are four access levels that can be configured for a Program: Open, Audited, Protected, and Closed.
 

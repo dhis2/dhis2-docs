@@ -1,6 +1,4 @@
-# Rwanda HMIS powered by DHIS2
-
-<!--DHIS2-SECTION-ID:user_story_rwandaHMIS-->
+# Rwanda HMIS powered by DHIS2 { #user_story_rwandaHMIS } 
 
 **Recognized as a trailblazer in its category, the web-based R-HMIS has
 been operational countrywide since February 2012 and collects data from

@@ -1,10 +1,6 @@
-# Android Event Capture App
+# Android Event Capture App { #android_event_capture } 
 
-<!--DHIS2-SECTION-ID:android_event_capture-->
-
-## Overview
-
-<!--DHIS2-SECTION-ID:android_event_capture_overview-->
+## Overview { #android_event_capture_overview } 
 
 The event capture Android app allows you capture, modify and list
 events. The event capture app works with event-based programs in DHIS2,
@@ -20,9 +16,7 @@ with the online DHIS2 server automatically when connectivity is present.
 This makes the app suitable for environments where Internet connectivity
 is scarce or unstable.
 
-## Installing and logging in
-
-<!--DHIS2-SECTION-ID:android_event_capture_installing-->
+## Installing and logging in { #android_event_capture_installing } 
 
 The event capture add can be found on Google Play under the name "Event
 Capture for DHIS 2".
@@ -51,9 +45,7 @@ you will use when logging into DHIS2 using a Web browser. After logging
 in the first time, the app will download meta-data from the online
 instance. This could take a few minutes so please be patient.
 
-## Viewing events
-
-<!--DHIS2-SECTION-ID:android_event_capture_viewing-->
+## Viewing events { #android_event_capture_viewing } 
 
 The main screen will show an overview of events, as well as links to
 creating new ones. Start by selecting organisation unit and program from
@@ -73,9 +65,7 @@ Events will be synchronized automatically once an Internet connection is
 present. You can swipe down on the screen in order to trigger a
 synchronization attempt.
 
-## Creating events
-
-<!--DHIS2-SECTION-ID:android_event_capture_creating-->
+## Creating events { #android_event_capture_creating } 
 
 Click on the *+* button to go to the new event form. The new event will
 be associated with the organisation unit and program you selected
@@ -116,9 +106,7 @@ option (useful if there is a high number of options).
 
 ![](resources/images/android/ec/android-ec-option-set-selector.png)
 
-## Modifying events
-
-<!--DHIS2-SECTION-ID:android_event_capture_modifying-->
+## Modifying events { #android_event_capture_modifying } 
 
 After an event has been created you can go back to or modify the event
 by simply clicking on it in the event list. This will open the event
@@ -127,9 +115,7 @@ form pre-populated with information that has been captured so far.
 
 ![](resources/images/android/ec/android-ec-event-form.png)
 
-## Settings
-
-<!--DHIS2-SECTION-ID:android_event_capture_settings-->
+## Settings { #android_event_capture_settings } 
 
 The settings screen lets you do configure synchronization frequency and
 log out.

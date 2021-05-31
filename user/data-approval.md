@@ -1,6 +1,4 @@
-# Data approval
-
-<!--DHIS2-SECTION-ID:data_approval-->
+# Data approval { #data_approval } 
 
 DHIS2 has an optional feature that allows authorized users to approve
 data that has been entered. It allows data to be reviewed and approved
@@ -35,9 +33,7 @@ that period and workflow.
 ![Approving at organisation
 units](resources/images/data_approval/approval_hierarchy.png){.center width=50% }
 
-## Approving and accepting
-
-<!--DHIS2-SECTION-ID:data_approvals_approving_accepting-->
+## Approving and accepting { #data_approvals_approving_accepting } 
 
 DHIS2 supports two different types of approval processes: either a
 one-step process where the data is approved at each level, or a two-step
@@ -73,9 +69,7 @@ before approval** in SystemSettings app under General section.
 
 
 
-## Authorities for approving data
-
-<!--DHIS2-SECTION-ID:data_approvals_authorities-->
+## Authorities for approving data { #data_approvals_authorities } 
 
 To approve data, you must be assigned a role containing one of these
 authorities:
@@ -103,9 +97,7 @@ authorities:
     accept data from the level below, and a different set of users who
     approve data to go up to the next level above.
 
-## Configuring data approval
-
-<!--DHIS2-SECTION-ID:data_approvals_configuration-->
+## Configuring data approval { #data_approvals_configuration } 
 
 In the *Maintenance app* section under *Data approval level* you can
 specify the levels at which you want to approve data in the system.
@@ -135,9 +127,7 @@ each data set to its own workflow.
 
 Under *System Settings* -> *Analytics*, you can control what unapproved data (if any) will appear in analytics. See the "Analytics settings" section of this user guide. Note that users who are assigned to organisation units where data is ready for approval can alwyas view this data in analytics, as can users assigned to higher-level organisation units if they have the *Approve data at lower levels* authority or the *View unapproved data* authority.
 
-## Data visibility
-
-<!--DHIS2-SECTION-ID:data_approvals_data_visibility-->
+## Data visibility { #data_approvals_data_visibility } 
 
 If the option *Hide unapproved data in analytics* is enabled, data will
 be hidden from viewing by users associated with higher levels. When
@@ -185,9 +175,7 @@ Using this example, lets consider some scenarios:
 
 
 
-## Approving data
-
-<!--DHIS2-SECTION-ID:data_approvals_approving_data-->
+## Approving data { #data_approvals_approving_data } 
 
 To approve data, go to *Reports* and choose *Data Approval*. When this
 report shows data that is configured for approval, it shows the approval
@@ -234,9 +222,7 @@ data at the lower level. This allows the data to be reviewed again at
 the lower level, corrected if necessary, and re-approved up through the
 organisation unit levels according to the hierarchy.
 
-## Approving by category option group set
-
-<!--DHIS2-SECTION-ID:data_approvals_approving_by_cogs-->
+## Approving by category option group set { #data_approvals_approving_by_cogs } 
 
 When defining an approval level, you specify the organisation unit level
 at which data will be approved. You may also optionally specify a
@@ -333,9 +319,7 @@ or all of the following approval levels:
 
 
 
-## Approving by multiple category option group sets
-
-<!--DHIS2-SECTION-ID:approving_by_multiple_category_option_group_sets-->
+## Approving by multiple category option group sets { #approving_by_multiple_category_option_group_sets } 
 
 You can also define approval levels for different category option group
 sets. To continue the example, suppose that you have various agencies

@@ -1,8 +1,6 @@
 # Metadata
 
-## Identifier schemes
-
-<!--DHIS2-SECTION-ID:webapi_identifier_schemes-->
+## Identifier schemes { #webapi_identifier_schemes } 
 
 This section provides an explanation of the identifier scheme concept.
 Identifier schemes are used to map metadata objects to other metadata
@@ -65,9 +63,7 @@ scheme for all other objects you can use these parameters:
 
 
 
-## Browsing the Web API
-
-<!--DHIS2-SECTION-ID:webapi_browsing_the_web_api-->
+## Browsing the Web API { #webapi_browsing_the_web_api } 
 
 The entry point for browsing the Web API is `/api`. This resource
 provides links to all available resources. Four resource representation
@@ -118,9 +114,7 @@ the *identifiableObjects* resource:
 
     /api/identifiableObjects/<id>
 
-### Translation
-
-<!--DHIS2-SECTION-ID:webapi_translation-->
+### Translation { #webapi_translation } 
 
 DHIS2 supports translations of database content, such as data elements,
 indicators, and programs. All metadata objects in the Web API have
@@ -137,9 +131,7 @@ Table: Translate options
 | translate | true &#124; false | Translate display\* properties in metadata output (displayName, displayShortName, displayDescription, and displayFormName for data elements and tracked entity attributes). Default value is true. |
 | locale | Locale to use | Translate metadata output using a specified locale (requires translate=true). |
 
-### Translation API
-
-<!--DHIS2-SECTION-ID:webapi_translation_api-->
+### Translation API { #webapi_translation_api } 
 
 The translations for an object is rendered as part of the object itself
 in the *translations* array. Note that the *translations* array in the
@@ -255,9 +247,7 @@ translations for the specific object and not just for a single locale
 (if not you will potentially overwrite existing locales for other
 locales).
 
-### Web API versions
-
-<!--DHIS2-SECTION-ID:webapi_api_versions-->
+### Web API versions { #webapi_api_versions } 
 
 The Web API is versioned starting from DHIS 2.25. The API versioning
 follows the DHIS2 major version numbering. As an example, the API
@@ -281,9 +271,7 @@ Note that the metadata model is not versioned and that you might
 experience changes e.g. in associations between objects. These changes
 will be documented in the DHIS2 major version release notes.
 
-## Metadata object filter
-
-<!--DHIS2-SECTION-ID:webapi_metadata_object_filter-->
+## Metadata object filter { #webapi_metadata_object_filter } 
 
 To filter the metadata there are several filter operations that can be
 applied to the returned list of metadata. The format of the filter
@@ -358,9 +346,7 @@ operator.
 
     /api/dataElements.json?filter=id:in:[fbfJHSPpUQD,cYeuwXTCPkU]
 
-### Logical operators
-
-<!--DHIS2-SECTION-ID:webapi_metadata_logical_operator-->
+### Logical operators { #webapi_metadata_logical_operator } 
 
 As mentioned in the section before, the default logical operator applied
 to the filters is *AND* which means that all object filters must be
@@ -406,9 +392,7 @@ It is also possible to combine the identifiable filter with property-based filte
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
-## Metadata field filter
-
-<!--DHIS2-SECTION-ID:webapi_metadata_field_filter-->
+## Metadata field filter { #webapi_metadata_field_filter } 
 
 In many situations, the default views of the metadata can be too
 verbose. A client might only need a few fields from each object and want
@@ -479,9 +463,7 @@ Table: Field presets
 
     /api/indicators.json?fields=:nameable
 
-### Field transformers
-
-<!--DHIS2-SECTION-ID:webapi_field_transformers-->
+### Field transformers { #webapi_field_transformers } 
 
 In DHIS2.17 we introduced field transformers, the idea is to allow
 further customization of the properties on the server-side.
@@ -507,9 +489,7 @@ Table: Available Transformers
 | paging | Arg1: page,Arg2: pageSize | Pages a collection, default pageSize is 50. |
 | pluck | Optional Arg1: fieldName | Converts an array of objects to an array of a selected field of that object. By default, the first field that is returned by the collection is used (normally the ID). |
 
-#### Examples
-
-<!--DHIS2-SECTION-ID:webapi_field_transformers_examples-->
+#### Examples { #webapi_field_transformers_examples } 
 
 Examples of transformer usage.
 
@@ -531,9 +511,7 @@ Examples of transformer usage.
 /api/categoryOptions.json?fields=id,organisationUnits~pluck[name]
 ```
 
-## Metadata create, read, update, delete, validate
-
-<!--DHIS2-SECTION-ID:webapi_metadata_crud-->
+## Metadata create, read, update, delete, validate { #webapi_metadata_crud } 
 
 All metadata entities in DHIS2 have their own API endpoint which supports
 *CRUD* operations (create, read, update and delete). The endpoint URLs
@@ -546,9 +524,7 @@ for _data elements_ is:
 
     /api/dataElements
 
-### Create / update parameters
-
-<!--DHIS2-SECTION-ID:webapi_metadata_create_update-->
+### Create / update parameters { #webapi_metadata_create_update } 
 
 The following request query parameters are available across all metadata endpoints.
 
@@ -562,9 +538,7 @@ Table: Available Query Filters
 | strategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
 | mergeMode | enum | false | REPLACE, MERGE | Strategy for merging of objects when doing updates. REPLACE will just overwrite the property with the new value provided, MERGE will only set the property if it is not null (only if the property was provided). |
 
-### Creating and updating objects
-
-<!--DHIS2-SECTION-ID:webapi_creating_updating_objects-->
+### Creating and updating objects { #webapi_creating_updating_objects } 
 
 For creating new objects you will need to know the endpoint, the type
 format, and make sure that you have the required authorities. As an
@@ -634,9 +608,7 @@ curl -X PUT -d @pi.json -H "Content-Type: application/json"
   -u user:password "http://server/api/constants/ID"
 ```
 
-### Deleting objects
-
-<!--DHIS2-SECTION-ID:webapi_deleting_objects-->
+### Deleting objects { #webapi_deleting_objects } 
 
 Deleting objects is very straight forward, you will need to know the
 *ID* and the endpoint of the type you want to delete, let's continue our
@@ -650,16 +622,12 @@ curl -X DELETE -u user:password "http://server/api/constants/ID"
 
 A successful delete should return HTTP status 204 (no content).
 
-### Adding and removing objects in collections
-
-<!--DHIS2-SECTION-ID:webapi_adding_removing_objects_collections-->
+### Adding and removing objects in collections { #webapi_adding_removing_objects_collections } 
 
 The collections resource lets you modify collections of
 objects.
 
-#### Adding or removing single objects
-
-<!--DHIS2-SECTION-ID:webapi_collections_adding_removing_single_objects-->
+#### Adding or removing single objects { #webapi_collections_adding_removing_single_objects } 
 
 In order to add or remove objects to or from a collection of objects you
 can use the following
@@ -697,9 +665,7 @@ request:
 
     POST /api/categories/IDA/categoryOptions/IDB
 
-#### Adding or removing multiple objects
-
-<!--DHIS2-SECTION-ID:webapi_collections_adding_removing_multiple_objects-->
+#### Adding or removing multiple objects { #webapi_collections_adding_removing_multiple_objects } 
 
 You can add or remove multiple objects from a collection in one request
 with a payload like this:
@@ -732,9 +698,7 @@ Items:*
 
     DELETE /api/categories/IDA/categoryOptions
 
-#### Adding and removing objects in a single request
-
-<!--DHIS2-SECTION-ID:webapi_collections_adding_removing_objects_single_request-->
+#### Adding and removing objects in a single request { #webapi_collections_adding_removing_objects_single_request } 
 
 You can both add and remove objects from a collection in a single POST
 request to the following URL:
@@ -764,9 +728,7 @@ The payload format is:
 }
 ```
 
-### Validating payloads
-
-<!--DHIS2-SECTION-ID:webapi_validating_payloads-->
+### Validating payloads { #webapi_validating_payloads } 
 
 DHIS 2 supports system wide validation of metadata payloads, which means
 that create and update operations on the API endpoints will be checked for
@@ -811,9 +773,7 @@ Which would yield the result:
 ]
 ```
 
-### Partial updates
-
-<!--DHIS2-SECTION-ID:webapi_partial_updates-->
+### Partial updates { #webapi_partial_updates } 
 
 For cases where you don't want or need to update all properties on a
 object (which means downloading a potentially huge payload, change one
@@ -838,9 +798,7 @@ curl -X PATCH -d @file.json -H "Content-Type: application/json"
   -u admin:district "https://play.dhis2.org/dev/api/dataElements/fbfJHSPpUQD"
 ```
 
-## Metadata export
-
-<!--DHIS2-SECTION-ID:webapi_metadata_export-->
+## Metadata export { #webapi_metadata_export } 
 
 This section explains the metatada API which is available at
 `/api/metadata`. XML and JSON resource representations are supported.
@@ -867,9 +825,7 @@ Table: Export Parameter
 | skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
 | download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
 
-### Metadata export examples
-
-<!--DHIS2-SECTION-ID:webapi_metadata_export_examples-->
+### Metadata export examples { #webapi_metadata_export_examples } 
 
 Export all metadata. Be careful as the response might be very large depending
 on your metadata configuration:
@@ -892,9 +848,7 @@ Export data elements and indicators where name starts with "ANC":
 
     /api/metadata?filter=name:^like:ANC&dataElements=true&indicators=true
 
-### Metadata export with dependencies
-
-<!--DHIS2-SECTION-ID:webapi_dataset_program_export_dependencies-->
+### Metadata export with dependencies { #webapi_dataset_program_export_dependencies } 
 
 When you want to exchange metadata for a data set, program, category combo,
 dashboard, option set or data element group
@@ -928,9 +882,7 @@ Table: Export Parameter
 | skipSharing | false/true | Enabling this will strip the sharing properties from the exported objects. This includes *user*, *publicAccess*, *userGroupAccesses*, *userAccesses*, and *externalAccess*. |
 | download | false/true | Enabling this will add HTTP header Content-Disposition that specifies that the data should be handled as an attachment and will be offered by web browsers as a download. |
 
-## Metadata import
-
-<!--DHIS2-SECTION-ID:webapi_metadata_import-->
+## Metadata import { #webapi_metadata_import } 
 
 This section explains the metadata import API. XML and JSON resource
 representations are supported. Metadata can be imported using a *POST* request.
@@ -1060,9 +1012,7 @@ ignored:
 ```
 
 
-## Schema
-
-<!--DHIS2-SECTION-ID:webapi_schema-->
+## Schema { #webapi_schema } 
 
 A resource which can be used to introspect all available DXF 2 objects
 can be found on `/api/schemas`. For specific resources you can have a
@@ -1081,9 +1031,7 @@ To get JSON schema for a specific class:
     GET /api/schemas/dataElement.json
 
 
-## Icons
-
-<!--DHIS2-SECTION-ID:webapi_icons-->
+## Icons { #webapi_icons } 
 
 DHIS2 includes a collection of icons that can be used to give visual
 context to metadata. These icons can be accessed through the icons
@@ -1118,9 +1066,7 @@ A list of all unique keywords can be found at the keywords resource:
 
     GET /api/icons/keywords
 
-## Render type
-
-<!--DHIS2-SECTION-ID:webapi_render_type-->
+## Render type { #webapi_render_type } 
 
 Some metadata types have a property named *renderType*. The render type
 property is a map between a *device* and a *renderingType*. Applications
@@ -1219,9 +1165,7 @@ For data element and tracked entity attribute:
 }
 ```
 
-## Object Style
-
-<!--DHIS2-SECTION-ID:webapi_object_style-->
+## Object Style { #webapi_object_style } 
 
 Most metadata have a property names "style". This property can be used
 by clients to represent the object in a certain way. The properties
@@ -1278,15 +1222,11 @@ following payload to change the style:
 }
 ```
 
-## Indicators
-
-<!--DHIS2-SECTION-ID:webapi_indicators-->
+## Indicators { #webapi_indicators } 
 
 This section describes indicators and indicator expressions.
 
-### Aggregate indicators
-
-<!--DHIS2-SECTION-ID:webapi_aggregate_indicators-->
+### Aggregate indicators { #webapi_aggregate_indicators } 
 
 To retrieve indicators you can make a GET request to the indicators
 resource like this:
@@ -1365,9 +1305,7 @@ example:
 
     ( 2 * #{P3jJH5Tu5VC.S34ULMcHMca} ) / ( #{FQ2o8UBlcrS.S34ULMcHMca} - 200 ) * 25
 
-### Program indicators
-
-<!--DHIS2-SECTION-ID:webapi_program_indicators-->
+### Program indicators { #webapi_program_indicators } 
 
 To retrieve program indicators you can make a GET request to the program
 indicators resource like this:
@@ -1400,9 +1338,7 @@ A corresponding example looks like
 
     #{A03MvHHogjR.a3kGcGDCuk6} + A{OvY4VVhSDeJ} + V{incident_date} + C{bCqvfPR02Im}
 
-### Expressions
-
-<!--DHIS2-SECTION-ID:webapi_expressions-->
+### Expressions { #webapi_expressions } 
 
 Expressions are mathematical formulas which can contain references to
 data elements, constants and organisation unit groups. To validate and
@@ -1428,17 +1364,13 @@ description of the expression.
 }
 ```
 
-## Organisation units
-
-<!--DHIS2-SECTION-ID:webapi_organisation_units-->
+## Organisation units { #webapi_organisation_units } 
 
 The *organisationUnits* resource follows the standard conventions as
 other metadata resources in DHIS2. This resource supports some
 additional query parameters.
 
-### Get list of organisation units
-
-<!--DHIS2-SECTION-ID:webapi_list_of_organisation_units-->
+### Get list of organisation units { #webapi_list_of_organisation_units } 
 
 To get a list of organisation units you can use the following resource.
 
@@ -1461,9 +1393,7 @@ Table: Organisation units query parameters
 | memberCollection | string | For displaying count of members within a collection, refers to the name of the collection associated with organisation units. |
 | memberObject | UID | For displaying count of members within a collection, refers to the identifier of the object member of the collection. |
 
-### Get organisation unit with relations
-
-<!--DHIS2-SECTION-ID:webapi_organisation_units_with_relations-->
+### Get organisation unit with relations { #webapi_organisation_units_with_relations } 
 
 To get an organisation unit with related organisation units you can use
 the following resource.
@@ -1481,9 +1411,7 @@ Table: Organisation unit parameters
 | includeAncestors | false &#124; true | Include all parents of the specified organisation unit. |
 | level | integer | Include children of the specified organisation unit at the given level of the sub-hierarchy (relative to the organisation unit where the immediate level below is level 1). |
 
-### Get organisation units by programs
-
-<!--DHIS2-SECTION-ID:webapi_organisation_units_by_programs-->
+### Get organisation units by programs { #webapi_organisation_units_by_programs } 
 
 Purpose-built endpoint to retrieve associations between Programs and Organisation Units. This endpoint is
 the preferred way to retrieve program org unit associations.
@@ -1516,9 +1444,7 @@ responses will have the following format:
 
 programs with no associated uids (hence accessible by all orgUnits) are returned with an empty array [] of orgUnits.
 
-## Data sets
-
-<!--DHIS2-SECTION-ID:webapi_data_sets-->
+## Data sets { #webapi_data_sets } 
 
 The *dataSets* resource follows the standard conventions as other
 metadata resources in DHIS2. This resource supports some additional
@@ -1535,9 +1461,7 @@ request:
 
     POST /api/33/dataSets/<uid>/version
 
-### DataSet Notification Template
-
-<!--DHIS2-SECTION-ID:webapi_dataset_notifications-->
+### DataSet Notification Template { #webapi_dataset_notifications } 
 
 The *dataset notification templates* resource follows the standard
 conventions as other metadata resources in DHIS2.
@@ -1575,9 +1499,7 @@ JSON payload sample is given below:
 
 ```
 
-## Filled organisation unit levels
-
-<!--DHIS2-SECTION-ID:webapi_filled_organisation_unit_levels-->
+## Filled organisation unit levels { #webapi_filled_organisation_unit_levels } 
 
 The *filledOrganisationUnitLevels* resource provides an ordered list of
 organisation unit levels, where generated levels are injected into the
@@ -1614,9 +1536,7 @@ curl "http://localhost/api/33/filledOrganisationUnitLevels" -H "Content-Type:app
   -d @levels.json -u admin:district
 ```
 
-## Predictors
-
-<!--DHIS2-SECTION-ID:webapi_predictors-->
+## Predictors { #webapi_predictors } 
 
 A predictor allows you to generate data values based on an expression.
 This can be used for example to generate targets, thresholds,
@@ -1627,9 +1547,7 @@ resource like this:
 
     /api/predictors
 
-### Creating a predictor
-
-<!--DHIS2-SECTION-ID:webapi_create_predictor-->
+### Creating a predictor { #webapi_create_predictor } 
 
 You can create a predictor with a POST request to the predictors
 resource:
@@ -1665,9 +1583,7 @@ The output element refers to the identifier of the data element for
 which to saved predicted data values. The generator element refers to the
 expression to use when calculating the predicted values.
 
-### Predictor expressions
-
-<!--DHIS2-SECTION-ID:webapi_predictor_expressions-->
+### Predictor expressions { #webapi_predictor_expressions } 
 
 A predictor always has a generator expression that describes how the
 predicted value is calculated. A predictor may also have a skip test
@@ -1690,9 +1606,7 @@ or a skip test expression:
 | OUG{<orgunitgroup-id>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
 | [days] | Number of days | The number of days in the current period. |
 
-### Generating predicted values
-
-<!--DHIS2-SECTION-ID:webapi_generating_predicted_values-->
+### Generating predicted values { #webapi_generating_predicted_values } 
 
 To run all predictors (generating predicted values) you can make a POST
 request to the run resource:
@@ -1704,17 +1618,13 @@ resource for a predictor:
 
     POST /api/predictors/AG10KUJCrRk/run
 
-## Program rules
-
-<!--DHIS2-SECTION-ID:webapi_program_rules-->
+## Program rules { #webapi_program_rules } 
 
 This section is about sending and reading program rules, and explains
 the program rules data model. The program rules give functionality to
 configure dynamic behaviour in the programs in DHIS2.
 
-### Program rule model
-
-<!--DHIS2-SECTION-ID:webapi_program_rule_model-->
+### Program rule model { #webapi_program_rule_model } 
 
 The program rules data model consists of programRuleVariables,
 programRules and programRuleActions. The programRule contains an
@@ -1812,9 +1722,7 @@ Table: programRuleVariable
 | useCodeFor- OptionSet | If checked, the variable will be populated with the code - not the name - from any linked option set. Default is unchecked, meaning that the name of the option is populated. ||
 | programStage | Used for specifying a specific program stage to retreive the programRuleVariable value from. Compulsory for DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE. | See description |
 
-### Creating program rules
-
-<!--DHIS2-SECTION-ID:webapi_creating_program_rules-->
+### Creating program rules { #webapi_creating_program_rules } 
 
 - To perform crud operations, `programRules` resource is available in API.
 
@@ -1842,9 +1750,7 @@ To retrieve description of programRule condition you can use POST and provide co
 
     /api/programRules/condition/description?<program_rule_uid>
 
-## Forms
-
-<!--DHIS2-SECTION-ID:webapi_forms-->
+## Forms { #webapi_forms } 
 
 To retrieve information about a form (which corresponds to a data set
 and its sections) you can interact with the `form` resource. The form
@@ -1892,9 +1798,7 @@ curl -d @form.html "localhost/api/dataSets/BfMAe6Itzgt/form"
   -H "Content-Type:text/html" -u admin:district -X PUT
 ```
 
-## Documents
-
-<!--DHIS2-SECTION-ID:webapi_documents-->
+## Documents { #webapi_documents } 
 
 References to files can be stored with the document resource.
 
@@ -1938,9 +1842,7 @@ of the document:
 
     /api/documents/<documentId>/data
 
-## CSV metadata import
-
-<!--DHIS2-SECTION-ID:webapi_csv_metadata_import-->
+## CSV metadata import { #webapi_csv_metadata_import } 
 
 DHIS2 supports import of metadata in the CSV format, such as data elements, organisation units and validation rules. Properties for the various metadata objects are identified based on the column order/column index (see below for details). You can omit non-required object properties/columns, but since the column order is significant, an empty column must be included. In other words, if you would like to specify properties/columns which appear late in the column order but not specify certain columns which appear early in the order you can include empty/blank columns for them.
 
@@ -1981,9 +1883,7 @@ curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DA
 
 The formats for the currently supported object types for CSV import are listed in the following sections.
 
-### Data elements
-
-<!--DHIS2-SECTION-ID:webapi_csv_data_elements-->
+### Data elements { #webapi_csv_data_elements } 
 
 
 
@@ -2017,9 +1917,7 @@ name,uid,code,shortname,description
 "Women participated community organizations",,"D0002","Women participated in organizations"
 ```
 
-### Organisation units
-
-<!--DHIS2-SECTION-ID:webapi_csv_org_units-->
+### Organisation units { #webapi_csv_org_units } 
 
 
 
@@ -2053,9 +1951,7 @@ name,uid,code,parent
 "East province",,"EASTP","ImspTQPwCqd"
 ```
 
-### Validation rules
-
-<!--DHIS2-SECTION-ID:webapi_csv_validation_rules-->
+### Validation rules { #webapi_csv_validation_rules } 
 
 
 
@@ -2079,9 +1975,7 @@ Table: Validation Rule CSV Format
 | 14 | Right side expression description | Yes || Free text. |
 | 15 | Right side missing value strategy | No | SKIP_IF_ANY_VALUE_MISSING &#124; SKIP_IF_ALL_VALUES_MISSING &#124; NEVER_SKIP | Behavior in case of missing values in right side expression. |
 
-### Option sets
-
-<!--DHIS2-SECTION-ID:webapi_csv_option_sets-->
+### Option sets { #webapi_csv_option_sets } 
 
 
 
@@ -2190,9 +2084,7 @@ Table: Collection membership CSV Format
 | 1 | UID | Yes | UID | The UID of the collection to add an object to |
 | 2 | UID | Yes | UID | The UID of the object to add to the collection |
 
-### Other objects
-
-<!--DHIS2-SECTION-ID:webapi_csv_other_objects-->
+### Other objects { #webapi_csv_other_objects } 
 
 
 
@@ -2213,9 +2105,7 @@ name,uid,code,shortname
 "Female",,"FEMALE"
 ```
 
-## Deleted objects
-
-<!--DHIS2-SECTION-ID:webapi_deleted_objects-->
+## Deleted objects { #webapi_deleted_objects } 
 
 The deleted objects resource provides a log of metadata objects being
 deleted.
@@ -2236,9 +2126,7 @@ forward:
 
     GET /api/deletedObjects.json?klass=Indicator&deletedAt=2015-01-01
 
-## Favorites
-
-<!--DHIS2-SECTION-ID:webapi_favorites-->
+## Favorites { #webapi_favorites } 
 
 Certain types of metadata objects can be marked as favorites for the
 currently logged in user. This applies currently for dashboards.
@@ -2256,9 +2144,7 @@ using the same URL as above.
 The favorite status will appear as a boolean *favorite* field on the
 object (e.g. the dashboard) in the metadata response.
 
-## Subscriptions
-
-<!--DHIS2-SECTION-ID:webapi_subscription-->
+## Subscriptions { #webapi_subscription } 
 
 A logged user can subscribe to certain types of objects. Currently
 subscribable objects are those of type Chart, EventChart, EventReport,
@@ -2291,9 +2177,7 @@ request (no content type required):
 
     /api/<object-type>/<object-id>/subscriber
 
-## File resources
-
-<!--DHIS2-SECTION-ID:webapi_file_resources-->
+## File resources { #webapi_file_resources } 
 
 *File resources* are objects used to represent and store binary content.
 The *FileResource* object itself contains the file meta-data (name,
@@ -2383,9 +2267,7 @@ curl "https://server/api/fileResources/xm4JwRwke0i" -H "Accept: application/json
 This request will return the `FileResource` object as seen in the
 response of the above example.
 
-### File resource constraints
-
-<!--DHIS2-SECTION-ID:webapi_file_resources_constraints-->
+### File resource constraints { #webapi_file_resources_constraints } 
 
   - File resources *must* be referenced (assigned) from another object
     in order to be persisted in the long term. A file resource which is
@@ -2433,9 +2315,7 @@ The following file extensions are blocked.
 | otf  | msi  | bat  |
 | swf  | mpkg |      |
 
-## Metadata versioning
-
-<!--DHIS2-SECTION-ID:webapi_metadata_versioning-->
+## Metadata versioning { #webapi_metadata_versioning } 
 
 This section explains the Metadata Versioning APIs available starting
 2.24
@@ -2451,9 +2331,7 @@ Table: Query Parameters
 |---|---|---|
 | versionName | false | If this parameter is not specified, it will return the current version of the system or otherwise it will return the details of the versionName passed as parameter. (versionName is of the syntax "Version_<id\>" |
 
-### Get metadata version examples
-
-<!--DHIS2-SECTION-ID:webapi_metadata_versioning_examples-->
+### Get metadata version examples { #webapi_metadata_versioning_examples } 
 
 **Example:** Get the current metadata version of this system
 
@@ -2512,9 +2390,7 @@ Table: Query Parameters
 |---|---|---|
 | baseline | false | If this parameter is not specified, it will return list of all metadata versions. Otherwise we need to pass a versionName parameter of the form "Version_<id\>". It will then return the list of versions present in the system which were created after the version name supplied as the query parameter. |
 
-### Get the list of all metadata versions
-
-<!--DHIS2-SECTION-ID:webapi_get_list_of_metadata_versions-->
+### Get the list of all metadata versions { #webapi_get_list_of_metadata_versions } 
 
 **Example:** Get the list of all versions in this system
 
@@ -2609,9 +2485,7 @@ two types of metadata.
 > reference is caught in the validation phase itself. Please see the
 > importer details for a full explanation.
 
-### Create metadata version
-
-<!--DHIS2-SECTION-ID:webapi_create_metadata_version-->
+### Create metadata version { #webapi_create_metadata_version } 
 
 **Example:** Create metadata version of type `BEST_EFFORT`
 
@@ -2661,9 +2535,7 @@ Table: Path parameters
 |---|---|---|
 | versionName | true | Path parameter of the form "Version_<id\>" so that the API downloads the specific version |
 
-### Download version metadata
-
-<!--DHIS2-SECTION-ID:webapi_download_version_metadata-->
+### Download version metadata { #webapi_download_version_metadata } 
 
 **Example:** Get the actual metadata for "Version 5"
 
@@ -2701,9 +2573,7 @@ Response:
 }
 ```
 
-## Metadata Synchronization
-
-<!--DHIS2-SECTION-ID:webapi_metadata_synchronization-->
+## Metadata Synchronization { #webapi_metadata_synchronization } 
 
 This section explains the Metadata Synchronization API available
 starting 2.24
@@ -2742,9 +2612,7 @@ Table: Query parameters
     versions between `Version_12` and `Version_15`. You need to manually
     sync the missing versions using these endpoints only.
 
-### Sync metadata version
-
-<!--DHIS2-SECTION-ID:webapi_metadata_synchronization_version-->
+### Sync metadata version { #webapi_metadata_synchronization_version } 
 
 **Example:** Sync Version_6 from central system to this system
 
@@ -2754,9 +2622,7 @@ Request:
 curl -u admin:district "https://play.dhis2.org/dev/api/metadata/sync?versionName=Version_6"
 ```
 
-## Metadata repository
-
-<!--DHIS2-SECTION-ID:webapi_metadata_repository-->
+## Metadata repository { #webapi_metadata_repository } 
 
 DHIS2 provides a metadata repository containing metadata packages with
 various content. A metadata package is a DHIS2-compliant JSON document

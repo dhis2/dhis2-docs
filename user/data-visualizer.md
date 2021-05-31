@@ -1,6 +1,4 @@
-# Using the Data Visualizer app
-
-<!--DHIS2-SECTION-ID:data_visualizer-->
+# Using the Data Visualizer app { #data_visualizer } 
 
 ![](resources/images/data-visualizer/data-visualizer-overview.png)
 
@@ -62,9 +60,7 @@ Just like in the dimensions menu, in the layout area you can also change the sel
   only specify a single indicator or data set as filter item, whereas
   with other dimension types you can select any number of items.
 
-### Select dimension items
-
-<!--DHIS2-SECTION-ID:data_vis_select_dim_items-->
+### Select dimension items { #data_vis_select_dim_items } 
 
 A dimension refers to the elements that describe the data values in the system. There are three main dimensions in the system:
 

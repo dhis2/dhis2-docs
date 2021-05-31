@@ -1,8 +1,6 @@
 # Sharing
 
-## Sharing
-
-<!--DHIS2-SECTION-ID:webapi_sharing-->
+## Sharing { #webapi_sharing } 
 
 The sharing solution allows you to share most objects in the system with
 specific user groups and to define whether objects should be publicly
@@ -11,9 +9,7 @@ interact with the *sharing* resource.
 
     /api/33/sharing
 
-### Get sharing status
-
-<!--DHIS2-SECTION-ID:webapi_get_sharing_status-->
+### Get sharing status { #webapi_get_sharing_status } 
 
 To request the sharing status for an object use a GET request to:
 
@@ -47,9 +43,7 @@ The response looks like the below.
 }
 ```
 
-### Set sharing status
-
-<!--DHIS2-SECTION-ID:webapi_set_sharing_status-->
+### Set sharing status { #webapi_set_sharing_status } 
 
 You can define the sharing status for an object using the same URL with
 a POST request, where the payload in JSON format looks like this:
@@ -84,9 +78,7 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
   -H "Content-Type:application/json" -u admin:district
 ```
 
-## Scheduling
-
-<!--DHIS2-SECTION-ID:webapi_scheduling-->
+## Scheduling { #webapi_scheduling } 
 
 DHIS2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
 
@@ -293,15 +285,11 @@ Note that some jobs with custom configuration parameters may not be added if the
 required system settings are not configured. An example of this is data
 synchronization, which requires remote server configuration.
 
-## Synchronization
-
-<!--DHIS2-SECTION-ID:webapi_synchronization-->
+## Synchronization { #webapi_synchronization } 
 
 This section covers pull and push of data and metadata.
 
-### Data value push
-
-<!--DHIS2-SECTION-ID:webapi_sync_data_push-->
+### Data value push { #webapi_sync_data_push } 
 
 To initiate a data value push to a remote server one must first configure the
 URL and credentials for the relevant server from System settings >
@@ -309,18 +297,14 @@ Synchronization, then make a POST request to the following resource:
 
     /api/33/synchronization/dataPush
 
-### Metadata pull
-
-<!--DHIS2-SECTION-ID:webapi_sync_metadata_pull-->
+### Metadata pull { #webapi_sync_metadata_pull } 
 
 To initiate a metadata pull from a remote JSON document you can make a
 POST request with a *url* as request payload to the following resource:
 
     /api/33/synchronization/metadataPull
 
-### Availability check
-
-<!--DHIS2-SECTION-ID:webapi_sync_availability_check-->
+### Availability check { #webapi_sync_availability_check } 
 
 To check the availability of the remote data server and verify user
 credentials you can make a GET request to the following resource:

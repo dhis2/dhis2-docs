@@ -1,17 +1,13 @@
 # Audit
 
-## Auditing
-
-<!--DHIS2-SECTION-ID:webapi_auditing-->
+## Auditing { #webapi_auditing } 
 
 DHIS2 does automatic auditing on all updates and deletions of aggregate
 data values, tracked entity data values, tracked entity attribute
 values, and data approvals. This section explains how to fetch this
 data.
 
-### Aggregate data value audits
-
-<!--DHIS2-SECTION-ID:webapi_auditing_aggregate_audits-->
+### Aggregate data value audits { #webapi_auditing_aggregate_audits } 
 
 The endpoint for aggregate data value audits is located at
 `/api/audits/dataValue`, and the available parameters are displayed in
@@ -35,9 +31,7 @@ Get all audits for data set with ID *lyLU2wR22tC*:
 
     /api/33/audits/dataValue?ds=lyLU2wR22tC
 
-### Tracked entity data value audits
-
-<!--DHIS2-SECTION-ID:webapi_tracked_entity_data_value_audits-->
+### Tracked entity data value audits { #webapi_tracked_entity_data_value_audits } 
 
 The endpoint for tracked entity data value audits is located at
 `/api/audits/trackedEntityDataValue`, and the available parameters are
@@ -59,9 +53,7 @@ Get all audits which have data element ID eMyVanycQSC or qrur9Dvnyt5:
 
     /api/33/audits/trackedEntityDataValue?de=eMyVanycQSC&de=qrur9Dvnyt5
 
-### Tracked entity attribute value audits
-
-<!--DHIS2-SECTION-ID:webapi_tracked_entity_attribute_value_audits-->
+### Tracked entity attribute value audits { #webapi_tracked_entity_attribute_value_audits } 
 
 The endpoint for tracked entity attribute value audits is located at
 `/api/audits/trackedEntityAttributeValue`, and the available parameters
@@ -83,9 +75,7 @@ Get all audits which have attribute with ID VqEFza8wbwA:
 
     /api/33/audits/trackedEntityAttributeValue?tea=VqEFza8wbwA
 
-### Tracked entity instance audits
-
-<!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_audits-->
+### Tracked entity instance audits { #webapi_tracked_entity_instance_audits } 
 
 Once auditing is enabled for tracked entity instances (by setting
 allowAuditLog of tracked entity types to true), all read and search
@@ -114,9 +104,7 @@ startDate=2018-03-01 and endDate=2018-04-24 in a page size of 5:
     /api/33/audits/trackedEntityInstance.json?startDate=2018-03-01
       &endDate=2018-04-24&auditType=READ&pageSize=5
 
-### Enrollment audits
-
-<!--DHIS2-SECTION-ID:webapi_enrollment_audits-->
+### Enrollment audits { #webapi_enrollment_audits } 
 
 Once auditing is enabled for enrollments (by setting allowAuditLog of
 tracker programs to true), all read operations are logged. The

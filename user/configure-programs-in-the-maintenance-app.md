@@ -1,10 +1,6 @@
-# Configure programs in the Maintenance app
+# Configure programs in the Maintenance app { #configure_programs_in_maintenance_app } 
 
-<!--DHIS2-SECTION-ID:configure_programs_in_maintenance_app-->
-
-## About programs
-
-<!--DHIS2-SECTION-ID:about_program_maintenance_app-->
+## About programs { #about_program_maintenance_app } 
 
 Traditionally, public health information systems have been reporting
 aggregated data of service provision across its health programs. This
@@ -48,13 +44,9 @@ Table: Program metadata objects in the Maintenance app
 | Program notification | Automated message reminder<br> <br>Set reminders to be automatically sent to enrolled tracked entity instances before scheduled appointments and after missed visits. | Create, edit and delete |
 | Program stage notification | Automated message reminder<br> <br>Set reminders to be automatically sent whenever a program stage is completed, or before or after the due date. | Create, edit and delete |
 
-## Configure event programs in the Maintenance app
+## Configure event programs in the Maintenance app { #configure_event_program_in_maintenance_app } 
 
-<!--DHIS2-SECTION-ID:configure_event_program_in_maintenance_app-->
-
-### About event programs
-
-<!--DHIS2-SECTION-ID:about_event_program-->
+### About event programs { #about_event_program } 
 
 Single event *without* registration programs are called event programs.
 You configure them in the **Maintenance** app. Event programs can have
@@ -90,9 +82,7 @@ enrollment date) to create a notification template. In the
 **Parameters** field, you'll find a list of available tracked entity
 attributes and program parameters.
 
-### Workflow: Create an event program
-
-<!--DHIS2-SECTION-ID:workflow_event_program-->
+### Workflow: Create an event program { #workflow_event_program } 
 
 1.  Enter the event program details.
 
@@ -104,9 +94,7 @@ attributes and program parameters.
 
 5.  Create program notification(s).
 
-### Create or edit an event program
-
-<!--DHIS2-SECTION-ID:create_event_program-->
+### Create or edit an event program { #create_event_program } 
 
 #### Enter event program details
 
@@ -137,9 +125,7 @@ attributes and program parameters.
 
 1.  Click next.
 
-#### Assign data elements
-
-<!--DHIS2-SECTION-ID:assign_data_elements-->
+#### Assign data elements { #assign_data_elements } 
 
 1.  Click **Assign data elements**.
 
@@ -160,9 +146,7 @@ attributes and program parameters.
 
 4.  Click next.
 
-#### Create data entry forms
-
-<!--DHIS2-SECTION-ID:create_data_entry_forms-->
+#### Create data entry forms { #create_data_entry_forms } 
 
 The data entry forms decide how the data elements will be displayed to
 the user in the **Event Capture** app.
@@ -196,9 +180,7 @@ the user in the **Event Capture** app.
 
 6.  Click next.
 
-#### Access
-
-<!--DHIS2-SECTION-ID:access-->
+#### Access { #access } 
 
 Access options decide who can capture data for the program or view/edit
 the program's metadata. A program can be shared to organisation units,
@@ -244,9 +226,7 @@ Change roles and access:
 
     2.  Click **Apply to selected stages**
 
-#### Create program notifications
-
-<!--DHIS2-SECTION-ID:create_program_notifications-->
+#### Create program notifications { #create_program_notifications } 
 
 1.  Create the message you want to send:
 
@@ -312,9 +292,7 @@ Change roles and access:
 >     notifications to be send at a specific
 time.
 
-### Reference information: Program notification parameters
-
-<!--DHIS2-SECTION-ID:reference_information_event_program_notification_parameters-->
+### Reference information: Program notification parameters { #reference_information_event_program_notification_parameters } 
 
 
 
@@ -338,17 +316,13 @@ Table: Program notification parameters to use in program notifications
 || Event status | `V{event_status}` |
 
 
-## Configure tracker programs in the Maintenance app
-
-<!--DHIS2-SECTION-ID:configure_tracker_program_in_Maintenance_app-->
+## Configure tracker programs in the Maintenance app { #configure_tracker_program_in_Maintenance_app } 
 
 ### About Tracker programs
 Single or multiple event programs *with* registration are called Tracker programs. A program must be specified with only one tracked entity. Only tracked entities that are the same as the tracked entity of program can enroll into that
 program. A program needs several types of metadata that you create in the **Maintenance** apps.
 
-### Workflow: Create a tracker program
-
-<!--DHIS2-SECTION-ID:workflow_tracker_program-->
+### Workflow: Create a tracker program { #workflow_tracker_program } 
 
 1.  Enter the tracker program details.
 
@@ -368,9 +342,7 @@ program. A program needs several types of metadata that you create in the **Main
 
 2. Click the add button and select **Tracker Program** in the popup menu.
 
-#### Enter program details
-
-<!--DHIS2-SECTION-ID:tracker_enter_programs_details-->
+#### Enter program details { #tracker_enter_programs_details } 
 
 | Field | Description |
 |---|---|
@@ -390,9 +362,7 @@ program. A program needs several types of metadata that you create in the **Main
 | **Minimum number of attributes required to search** |  Specify the number of tracked entity attributes that needs to be filled in to search for Tracked Entities in the Program.  |
 | **Maximum number of tracked entity instances to return in search** |  Specify the maximum number of tracked entity instances that should be returned in a search. Enter 0 for no limit.  |
 
-#### Enter enrollment details
-
-<!--DHIS2-SECTION-ID:enter_enrollment_details-->
+#### Enter enrollment details { #enter_enrollment_details } 
 
 | Field | Description |
 |---|---|
@@ -407,9 +377,7 @@ program. A program needs several types of metadata that you create in the **Main
 | **Related program** |Choose a Tracker program which is related to the program you are creating, for example an ANC and a Child program.|
 
 
-#### Assign tracked entity attributes.
-
-<!--DHIS2-SECTION-ID:assign_tracked_entity_attributes-->
+#### Assign tracked entity attributes. { #assign_tracked_entity_attributes } 
 
   1. In the list of **Available program tracked entity attributes**, double-click the
         attributes you want to assign to the program.
@@ -445,9 +413,7 @@ program. A program needs several types of metadata that you create in the **Main
     5. Click add stage.
 
 
-#### Create program stages
-
-<!--DHIS2-SECTION-ID:create_program_stages-->
+#### Create program stages { #create_program_stages } 
 
 A program consist of program stages. A program stage defines which
 actions should be taken at each stage.
@@ -547,9 +513,7 @@ number of days to wait for starting the program stage.
    6.  Click add stage.
 
 
-#### Access
-
-<!--DHIS2-SECTION-ID:tracker_program_access-->
+#### Access { #tracker_program_access } 
 
 Access options decide who can capture data for the program or view/edit
 the program's metadata. A program can be shared to organisation units,
@@ -595,9 +559,7 @@ Change roles and access:
 
     2.  Click **Apply to selected stages**
 
-#### Create program notifications
-
-<!--DHIS2-SECTION-ID:create_tracker_program_notifications-->
+#### Create program notifications { #create_tracker_program_notifications } 
 
 You can create program notifications for programs with registration and
 their program stages. The notifications are sent either via the internal
@@ -742,9 +704,7 @@ template.
 10.  Click **Save**.
 
 
-### Reference information: Program notification parameters
-
-<!--DHIS2-SECTION-ID:reference_information_event_program_notification_parameters-->
+### Reference information: Program notification parameters { #reference_information_event_program_notification_parameters } 
 
 
 
@@ -773,13 +733,9 @@ Table: Program notification parameters to use in program notifications
 || Tracked entity id | `V{tracked_entity_id}` |
 || Event/Execution date | `V{event_date}` |
 
-## Configure program indicators
+## Configure program indicators { #configure_program_indicator } 
 
-<!--DHIS2-SECTION-ID:configure_program_indicator-->
-
-### About program indicators
-
-<!--DHIS2-SECTION-ID:about_program_indicators-->
+### About program indicators { #about_program_indicators } 
 
 Program indicators are expressions based on data elements and attributes
 of tracked entities which can be used to calculate values based on a
@@ -818,9 +774,7 @@ objects:
 | Program indicator | Create, edit, clone, share, delete, show details and translate |
 | Program indicator group | Create, edit, clone, share, delete, show details and translate |
 
-### Create or edit a program indicator
-
-<!--DHIS2-SECTION-ID:create_program_indicator-->
+### Create or edit a program indicator { #create_program_indicator } 
 
 > **Note**
 >
@@ -874,9 +828,7 @@ objects:
 
 12. Click **Save**.
 
-### Create or edit a program indicator group
-
-<!--DHIS2-SECTION-ID:create_program_indicator_group-->
+### Create or edit a program indicator group { #create_program_indicator_group } 
 
 1.  Open the **Maintenance** app and click **Indicator** \> **Program
     indicator group**.
@@ -890,9 +842,7 @@ objects:
 
 5.  Click **Save**.
 
-### Reference information: Expression and filter examples per value type
-
-<!--DHIS2-SECTION-ID:reference_information_program_indicator-->
+### Reference information: Expression and filter examples per value type { #reference_information_program_indicator } 
 
 The table below shows examples of how to write expressions and filters
 for different data element and attribute value types:
@@ -908,9 +858,7 @@ Table: Expression and filter examples per value type
 | Text<br> <br>Long text<br> <br>Phone number<br> <br>Email | Text fields. Can be checked for equality in filters:<br> `#{mCXR7u4kNBW.L8K4BauIKsl} == 'LiteralValue'` |
 | Date<br> <br>Age | Date fields. Most useful when combined with a d2:daysBetween function, which produces a number that can be aggregated as an expression or used in filters:<br> `d2:daysBetween(#{mCXR7u4kNBW.JKJKBausssl},V{enrollment_date}) > 100` <br>Can also directly be checked for equality in filters:<br> `#{mCXR7u4kNBW.JKJKBausssl} == '2011-10-28'` |
 
-### Reference information: Functions, variables and operators to use in program indicator expressions and filters
-
-<!--DHIS2-SECTION-ID:program_indicator_functions_variables_operators-->
+### Reference information: Functions, variables and operators to use in program indicator expressions and filters { #program_indicator_functions_variables_operators } 
 
 An expression that includes both attributes, data elements and constants
 looks like this:
@@ -1085,13 +1033,9 @@ A filter that uses both attributes and data elements looks like this:
 > page](http://commons.apache.org/proper/commons-jexl/reference/syntax.html)
 > to learn how you can create more sophisticated expressions
 
-## Configure program rules
+## Configure program rules { #configure_program_rule } 
 
-<!--DHIS2-SECTION-ID:configure_program_rule-->
-
-### About program rules
-
-<!--DHIS2-SECTION-ID:about_program_rules-->
+### About program rules { #about_program_rules } 
 
 Program rules allows you to create and control dynamic behaviour of the
 user interface in the **Tracker Capture** and **Event Capture** apps.
@@ -1120,9 +1064,7 @@ objects:
 | Program rule | Create, edit, clone, delete, show details and translate |
 | Program rule variable | Create, edit, clone, share, delete, show details and translate |
 
-### Workflow
-
-<!--DHIS2-SECTION-ID:workflow_program_rule-->
+### Workflow { #workflow_program_rule } 
 
 1.  In the **Maintenance** app, create program rule variable(s) if
     needed.
@@ -1138,9 +1080,7 @@ objects:
 3.  In the **Tracker Capture** or **Event Capture** apps, verify that
     the program rule behaves as expected.
 
-### Create or edit a program rule variable
-
-<!--DHIS2-SECTION-ID:create_program_rule_variable-->
+### Create or edit a program rule variable { #create_program_rule_variable } 
 
 1.  Open the **Maintenance** app and click **Program** \> **Program rule
     variable**.
@@ -1177,9 +1117,7 @@ objects:
 
 6.  Click **Save**.
 
-### Create or edit a program rule
-
-<!--DHIS2-SECTION-ID:create_program_rule-->
+### Create or edit a program rule { #create_program_rule } 
 
 > **Note**
 >
@@ -1266,9 +1204,7 @@ objects:
 
 6.  Click **Save**.
 
-### Example: Program rules
-
-<!--DHIS2-SECTION-ID:program_rule_examples-->
+### Example: Program rules { #program_rule_examples } 
 
 > **Note**
 >
@@ -1340,9 +1276,7 @@ date".
 
 ![](resources/images/maintainence/pg_rule_ex/assign_result.png)
 
-### Reference information: Operators and functions to use in program rule expression
-
-<!--DHIS2-SECTION-ID:program_rules_operators_functions-->
+### Reference information: Operators and functions to use in program rule expression { #program_rules_operators_functions } 
 
 > **Tip**
 >
@@ -1457,13 +1391,9 @@ Table: Standard variables to use in program rule expressions
 | V{program_stage_name} | (string) | Contains the name of the current program stage that triggered the rules. This can be used to run rules in specific program stages, or avoid execution in certain stages. When executing the rules in the context of a TEI registration form the variable will be empty. |
 | V{completed_date} | (string) | This variable contains completion date of event which triggered this rule. If event is not yet complete then "completed_date" contains nothing. |
 
-## Configure relationship types
+## Configure relationship types { #configure_relationship_type } 
 
-<!--DHIS2-SECTION-ID:configure_relationship_type-->
-
-### About relationship types
-
-<!--DHIS2-SECTION-ID:about_relationship_types-->
+### About relationship types { #about_relationship_types } 
 
 A relationship represents a link between two entities in the Tracker-model. A relationship is considered data in DHIS2 and is based on a Relationship Type, similar to how a Tracked Entity Instance is based on a Tracked Entity Type.
 
@@ -1473,9 +1403,7 @@ In addition, relationships can be defined as unidirectional or bidirectional. Th
 
 For more information about configuration and the meaning of 'From constraint' and 'To constraint', see [Relationship model](relationship_model#relationship_model_relationship_type).
 
-### Create or edit a relationship type
-
-<!--DHIS2-SECTION-ID:create_relationship_type-->
+### Create or edit a relationship type { #create_relationship_type } 
 
 1.  Open the **Maintenance** app and click **Program** \> **Relationship
     type**.
@@ -1500,13 +1428,9 @@ For more information about configuration and the meaning of 'From constraint' an
 
 11. Click **Save**.
 
-## Configure tracked entity types
+## Configure tracked entity types { #configure_tracked_entity } 
 
-<!--DHIS2-SECTION-ID:configure_tracked_entity-->
-
-### About tracked entity types
-
-<!--DHIS2-SECTION-ID:about_tracked_entity-->
+### About tracked entity types { #about_tracked_entity } 
 
 A tracked entity is a types of entities which can be tracked through the
 system. It can be anything from persons to commodities, for example a
@@ -1520,9 +1444,7 @@ Tracked entity attributes are used to register extra information for a
 tracked entity. Tracked entity attributes can be shared between
 programs.
 
-### Create or edit a tracked entity attribute
-
-<!--DHIS2-SECTION-ID:create_tracked_entity_attribute-->
+### Create or edit a tracked entity attribute { #create_tracked_entity_attribute } 
 
 1.  Open the **Maintenance** app and click **Program** \> **Tracked
     entity attribute**.
@@ -1643,9 +1565,7 @@ programs.
 
 15. Click **Save**.
 
-### Create or edit a tracked entity type
-
-<!--DHIS2-SECTION-ID:create_tracked_entity-->
+### Create or edit a tracked entity type { #create_tracked_entity } 
 
 1.  Open the **Maintenance** app and click **Program** \> **Tracked
     entity type**.
@@ -1679,9 +1599,7 @@ programs.
 
 10. Click **Save**.
 
-## Configure search
-
-<!--DHIS2-SECTION-ID:configure_search-->
+## Configure search { #configure_search } 
 
 Users can be given search organisation units, which makes it possible to
 search for tracked entity instances outside their data capture
@@ -1795,9 +1713,7 @@ give it access to search in all children of that organisation unit.
 
 5.  Click **Save**
 
-## Clone metadata objects
-
-<!--DHIS2-SECTION-ID:clone_metadata-->
+## Clone metadata objects { #clone_metadata } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.

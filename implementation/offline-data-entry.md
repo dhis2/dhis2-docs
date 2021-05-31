@@ -1,4 +1,4 @@
-# Guidelines for offline data entry using DHIS 2
+# Guidelines for offline data entry using DHIS 2 { #offline_data_entry } 
 <!--DHIS2-SECTION-ID:offline_data_entry-->
 
 The de facto standard way of DHIS 2 deployment has become *online* meaning
@@ -71,7 +71,7 @@ alternatives ways to interact with the system need to be found.
 This guideline aims at providing advice on how mitigate the effect of
 lack reliable internet in challenging settings.
 
-##  Cases and corresponding solutions
+##  Cases and corresponding solutions { #offline_data_entry_cases } 
 <!--DHIS2-SECTION-ID:offline_data_entry_cases-->
 
 In this section, we will examine possible challenging cases and describe
@@ -102,7 +102,7 @@ is done at this level) will have the same configuration regarding
 internet availability and only the the remain 5 to 20% will need
 alternative ways to get their data in DHIS 2.
 
-### 1. Limited internet availability (instability of signal or limited mobile data) and data entry forms are small 
+### 1. Limited internet availability (instability of signal or limited mobile data) and data entry forms are small  { #offline_data_entry_cases_small } 
 <!--DHIS2-SECTION-ID:offline_data_entry_cases_small-->
 
 By limited internet availability, we mean case where:
@@ -221,7 +221,7 @@ When internet is back and the user log in DHIS 2
 ![](resources/images/offline_data_entry/image6.png)
 
 
-### 2. Limited internet availability and data entry forms are huge
+### 2. Limited internet availability and data entry forms are huge { #offline_data_entry_cases_huge } 
 <!--DHIS2-SECTION-ID:offline_data_entry_cases_huge-->
 
 <!-- Does the PDF data entry option still exist? Where you could generate PDF-based data entry forms that could be managed offline and then be uploaded?-->
@@ -242,7 +242,7 @@ internet is available when the user cannot afford to wait the next time
 internet will be available in his area.
 
 
-### 3. Internet is not at all available
+### 3. Internet is not at all available { #offline_data_entry_cases_no_available } 
 <!--DHIS2-SECTION-ID:offline_data_entry_cases_no_available-->
 
 In this case there are three options:

@@ -1,8 +1,6 @@
 # Messaging
 
-## Message conversations
-
-<!--DHIS2-SECTION-ID:webapi_message_conversations-->
+## Message conversations { #webapi_message_conversations } 
 
 DHIS2 features a mechanism for sending messages for purposes such as
 user feedback, notifications, and general information to users. Messages
@@ -20,9 +18,7 @@ a message to the *Mobile* user. We will then pretend to be the mobile
 user and read our new message. Following this, we will manage the admin
 user inbox by marking and removing messages.
 
-### Writing and reading messages
-
-<!--DHIS2-SECTION-ID:webapi_writing_messages-->
+### Writing and reading messages { #webapi_writing_messages } 
 
 The resource we need to interact with when sending and reading messages
 is the *messageConversations* resource. We start by visiting the Web API
@@ -185,9 +181,7 @@ The filter searches for matches in subject, text, and senders for message
 conversations. The default query operator is *token*, however other operators
 can be defined in the query.
 
-### Managing messages
-
-<!--DHIS2-SECTION-ID:webapi_managing_messages-->
+### Managing messages { #webapi_managing_messages } 
 
 As users receive and send messages, conversations will start to pile up
 in their inboxes, eventually becoming laborious to track. We will now
@@ -319,9 +313,7 @@ organisation units. The request should look like this:
 
 ```
 
-### Message Attachments
-
-<!--DHIS2-SECTION-ID:webapi_message_attachments-->
+### Message Attachments { #webapi_message_attachments } 
 
 Creating messages with attachments is done in two steps: uploading the
 file to the *attachments* resource, and then including one or several of
@@ -413,9 +405,7 @@ Where <mcv-id> is the *message conversation* ID, <msg-id> is the ID of
 the *message* that contains the attachment and <attachment-id> is the
 ID of the specific *message attachment*.
 
-### Tickets and Validation Result Notifications
-
-<!--DHIS2-SECTION-ID:webapi_messaging_tickets-->
+### Tickets and Validation Result Notifications { #webapi_messaging_tickets } 
 
 You can use the "write feedback" tool to create tickets and messages.
 The only difference between a ticket and a message is that you can give
