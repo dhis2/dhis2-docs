@@ -839,6 +839,7 @@ You can change your context by clicking the "x" button.
 
 On the enrollment dashboard, user can view the Person Profile widget.
 ![](resource/images/capture_app/enrollment-dash-tei-profile-widget.png)
+
 #### Deselecting the program
 
 When you deselect the program you see the following
