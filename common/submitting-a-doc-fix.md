@@ -1,6 +1,4 @@
-# Submitting quick document fixes
-
-<!--DHIS2-SECTION-ID:submitting_doc_fixes-->
+# Submitting quick document fixes { #submitting_doc_fixes } 
 
 For small changes to a document, it's actually very easy for anyone to
 submit changes without going through the whole process of raising a JIRA

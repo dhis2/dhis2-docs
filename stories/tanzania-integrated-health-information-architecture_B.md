@@ -1,6 +1,4 @@
-# Tanzania: Integrated Health Information Architecture
-
-<!--DHIS2-SECTION-ID:user_story_udsm-->
+# Tanzania: Integrated Health Information Architecture { #user_story_udsm } 
 
 ## About this use case
 
