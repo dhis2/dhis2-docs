@@ -1,10 +1,6 @@
-# Using the Tracker Capture app
+# Using the Tracker Capture app { #tracker_capture_app } 
 
-<!--DHIS2-SECTION-ID:tracker_capture_app-->
-
-## About the Tracker Capture app
-
-<!--DHIS2-SECTION-ID:about_tracker_capture_app-->
+## About the Tracker Capture app { #about_tracker_capture_app } 
 
 ![](resources/images/tracker_capture/tracker-capture-tei-list.png)
 
@@ -37,9 +33,7 @@ Capture** app.
     can still search for TEIs and filter the search results. You can
     also view the dashboard of a particular TEI.
 
-## About tracked entity instance (TEI) dashboards
-
-<!--DHIS2-SECTION-ID:about_tracked_entity_instance_dashboard-->
+## About tracked entity instance (TEI) dashboards { #about_tracked_entity_instance_dashboard } 
 
 ![](resources/images/tracker_capture/tei_dashboard.png)
 
@@ -72,9 +66,7 @@ You manage a TEI from the TEI's dashboard in the **Tracker Capture** app.
         program for which you enter data for the selected TEI. When you
         change programs, the content in the widgets change too.
 
-## Workflow
-
-<!--DHIS2-SECTION-ID:workflow_tracker_capture-->
+## Workflow { #workflow_tracker_capture } 
 
 Working process of Mother and child health
 program
@@ -95,9 +87,7 @@ program
 
 5.  Use information about the individual cases to create reports.
 
-## Linking to the Tracker Capture App
-
-<!--DHIS2-SECTION-ID:linking_to_the_tracker_capture_app-->
+## Linking to the Tracker Capture App { #linking_to_the_tracker_capture_app } 
 
 ### Link to a specific program on the "home screen"
 You can share a program selection on the "home screen.
@@ -136,9 +126,7 @@ You can share a TEI dashboard via its web address.
     If you're not logged in to DHIS2 when you click the link, you'll be
     asked to do so and then taken to the dashboard.
 
-## Create a TEI and enroll it in a program
-
-<!--DHIS2-SECTION-ID:create_and_enroll_tracked_entity_instance-->
+## Create a TEI and enroll it in a program { #create_and_enroll_tracked_entity_instance } 
 
 You can create a TEI and enroll that TEI to a program in one operation:
 
@@ -192,17 +180,13 @@ add new**
 > not see the red star next to the attribute lable. Note that super user 
 > that have the __"ALL"__ authority automatically have this authority.
 
-## Open an existing TEI dashboard
-
-<!--DHIS2-SECTION-ID:open_existing_tracked_entity_instance_dashboard-->
+## Open an existing TEI dashboard { #open_existing_tracked_entity_instance_dashboard } 
 
 There are multiple ways to find a TEI: Using the "Lists" which is
 predefined lists in the current selection, or "Search" for global
 lookup.
 
-### Lists
-
-<!--DHIS2-SECTION-ID:simple_tracked_entity_instance_search-->
+### Lists { #simple_tracked_entity_instance_search } 
 
 Lists is used to find and display TEIs in the selected organisation unit
 and program.
@@ -267,9 +251,7 @@ examples:
 See the API documentation for a full list of functionality supported for
 these predefined tracked entity instance filters.
 
-### Search
-
-<!--DHIS2-SECTION-ID:advanced_tracked_entity_instance_search-->
+### Search { #advanced_tracked_entity_instance_search } 
 
 Search is used to search for TEIs in the organisation units the user has
 search access to. This can be used if you want to find a TEI, but you
@@ -366,9 +348,7 @@ In addition to informing users about the tracked entity instance potentially
 being a duplicate, the  flag will be used by the underlying system for finding and
 merging duplicates in coming versions of DHIS2.
 
-### Breaking the glass
-
-<!--DHIS2-SECTION-ID:break_glass-->
+### Breaking the glass { #break_glass } 
 
 If the program is configured with access level **protected**, and the
 user searches and finds tracked entity instances that is owned by
@@ -378,9 +358,7 @@ user will gove a reason for breaking the glass, then gain temporary
 ownership of the tracked entity
 instance.
 
-## Enroll an existing TEI in a program
-
-<!--DHIS2-SECTION-ID:enroll_existing_tracked_entity_instance_in_program-->
+## Enroll an existing TEI in a program { #enroll_existing_tracked_entity_instance_in_program } 
 
 1.  Open the **Tracker Capture** app.
 
@@ -392,9 +370,7 @@ instance.
 
 5.  Fill in the required information and click **Enroll**.
 
-## Enter event data for a TEI
-
-<!--DHIS2-SECTION-ID:enter_event_data_for_tracked_entity_instance-->
+## Enter event data for a TEI { #enter_event_data_for_tracked_entity_instance } 
 
 ### Widgets for data entry
 
@@ -515,9 +491,7 @@ If user assignment is enabled, you will be able to assign a user to an event.
 2. Scroll or search for a user.
 3. Click the user.
 
-## Manage a TEI's enrollments
-
-<!--DHIS2-SECTION-ID:manage_tracked_entity_instance_enrollment-->
+## Manage a TEI's enrollments { #manage_tracked_entity_instance_enrollment } 
 The Enrollment widget gives access to information and functionality
 for the enrollment in the selected program.
 
@@ -540,9 +514,7 @@ TEI/Program will have write access to all enrollments for that TEI/Program combi
 A user that has search access to the organisation unit that is the current owner will have
 access to search and find the TEI/Program combindation.
 
-### Deactivate a TEI's enrollment
-
-<!--DHIS2-SECTION-ID:deactivate_tracked_entity_instance_enrollment-->
+### Deactivate a TEI's enrollment { #deactivate_tracked_entity_instance_enrollment } 
 
 If you deactivate a TEI dashboard, the TEI becomes 'read-only'. You
 can't enter data, enroll the TEI or edit the TEI's profile.
@@ -555,9 +527,7 @@ can't enter data, enroll the TEI or edit the TEI's profile.
 
 4.  Click **Yes** to confirm.
 
-### Activate a TEI's enrollment
-
-<!--DHIS2-SECTION-ID:activate_tracked_entity_instance_enrollment-->
+### Activate a TEI's enrollment { #activate_tracked_entity_instance_enrollment } 
 
 1.  Open the **Tracker Capture** app.
 
@@ -568,9 +538,7 @@ can't enter data, enroll the TEI or edit the TEI's profile.
 4.  Click **Yes** to
 confirm.
 
-### Mark TEI's enrollment as complete
-
-<!--DHIS2-SECTION-ID:mark_tracked_entity_instance_enrollment_complete-->
+### Mark TEI's enrollment as complete { #mark_tracked_entity_instance_enrollment_complete } 
 
 1.  Open the **Tracker Capture** app.
 
@@ -581,9 +549,7 @@ confirm.
 4.  Click **Yes** to
 confirm.
 
-### Reopen completed enrollment
-
-<!--DHIS2-SECTION-ID:reopen_complete_tracked_entity_instance_enrollment-->
+### Reopen completed enrollment { #reopen_complete_tracked_entity_instance_enrollment } 
 
 1.  Open the **Tracker Capture** app.
 
@@ -594,9 +560,7 @@ confirm.
 4.  Click **Yes** to
 confirm.
 
-### Display TEI's enrollment history
-
-<!--DHIS2-SECTION-ID:display_tracked_entity_instance_enrollment_history-->
+### Display TEI's enrollment history { #display_tracked_entity_instance_enrollment_history } 
 
 1.  Open the **Tracker Capture** app.
 
@@ -604,9 +568,7 @@ confirm.
 
 3.  In the **Profile** widget, click the **Audit history** icon.
 
-### Create a TEI enrollment note
-
-<!--DHIS2-SECTION-ID:create_tracked_entity_instance_enrollment_note-->
+### Create a TEI enrollment note { #create_tracked_entity_instance_enrollment_note } 
 
 An enrollment note is useful to record information about for example why
 an enrollment was cancelled.
@@ -617,9 +579,7 @@ an enrollment was cancelled.
 
 3.  In the **Notes** widget, type your note and click **Add**.
 
-## Send a message to a TEI
-
-<!--DHIS2-SECTION-ID:send_message_to_tracked_entity_instance-->
+## Send a message to a TEI { #send_message_to_tracked_entity_instance } 
 
 1.  Open the **Tracker Capture** app.
 
@@ -636,9 +596,7 @@ an enrollment was cancelled.
 
 6.  Click **Send**.
 
-## Mark a TEI for follow-up
-
-<!--DHIS2-SECTION-ID:mark_tracked_entity_instance_for_follow_up-->
+## Mark a TEI for follow-up { #mark_tracked_entity_instance_for_follow_up } 
 
 You can use mark a TEI's enrollment for follow-up and then use this
 status as a filter when you create **Upcoming events** and **Overdue
@@ -651,9 +609,7 @@ cases during a pregnancy program.
 
 3.  In the **Enrollment** widget, click the **Mark for follow-up** icon.
 
-## Edit a TEI's profile
-
-<!--DHIS2-SECTION-ID:edit_tracked_entity_instance_profile-->
+## Edit a TEI's profile { #edit_tracked_entity_instance_profile } 
 
 You edit a TEI's profile or tracked entity attributes in the **Profile**
 widget.
@@ -666,9 +622,7 @@ widget.
 
 4.  Modify the profile and click **Save**.
 
-## Add a relationship to a TEI
-
-<!--DHIS2-SECTION-ID:add_relationship_to_tracked_entity_instance-->
+## Add a relationship to a TEI { #add_relationship_to_tracked_entity_instance } 
 
 You can create a relationship from one TEI to another, for example
 linking a mother and a child together or a husband and a wife. Depending
@@ -702,9 +656,7 @@ automatically generated value.
 > was created in and in the TEI that the relationship was linked to. Also, if the relationship is bi-directional, each end of the
 > relationship will have a unique name that will be displayed in the relationship widget under the "Relationship" column.
 
-## Share a TEI dashboard
-
-<!--DHIS2-SECTION-ID:share_tracked_entity_instance_dashboard-->
+## Share a TEI dashboard { #share_tracked_entity_instance_dashboard } 
 
 You can share a TEI dashboard via its web address.
 
@@ -723,9 +675,7 @@ You can share a TEI dashboard via its web address.
     If you're not logged in to DHIS2 when you click the link, you'll be
     asked to do so and then taken to the dashboard.
 
-## Deactivate a TEI
-
-<!--DHIS2-SECTION-ID:deactivate_tracked_entity_instance-->
+## Deactivate a TEI { #deactivate_tracked_entity_instance } 
 
 If you deactivate a TEI, the TEI becomes 'read-only'. Data associated
 with the TEI is not deleted.
@@ -740,9 +690,7 @@ with the TEI is not deleted.
 
 4.  Click **Yes** to confirm.
 
-## Activate a TEI
-
-<!--DHIS2-SECTION-ID:activate_tracked_entity_instance-->
+## Activate a TEI { #activate_tracked_entity_instance } 
 
 1.  Open the **Tracker Capture** app.
 
@@ -754,9 +702,7 @@ with the TEI is not deleted.
 
 4.  Click **Yes** to confirm.
 
-## Delete a TEI
-
-<!--DHIS2-SECTION-ID:delete_tracked_entity_instance-->
+## Delete a TEI { #delete_tracked_entity_instance } 
 
 > **Warning**
 > 
@@ -773,13 +719,9 @@ with the TEI is not deleted.
 4.  Click **Yes** to
 confirm.
 
-## Configure the TEI dashboard
+## Configure the TEI dashboard { #configure_tracked_entity_instance_dashboard } 
 
-<!--DHIS2-SECTION-ID:configure_tracked_entity_instance_dashboard-->
-
-### Show or hide widgets
-
-<!--DHIS2-SECTION-ID:tracked_entity_instance_dashboard_show_hide_widget-->
+### Show or hide widgets { #tracked_entity_instance_dashboard_show_hide_widget } 
 
 1.  Open the **Tracker Capture** app.
 
@@ -791,9 +733,7 @@ confirm.
 
 5.  Click **Close**.
 
-### Save the dashboard's layout as default
-
-<!--DHIS2-SECTION-ID:tracked_entity_instance_dashboard_save_layout-->
+### Save the dashboard's layout as default { #tracked_entity_instance_dashboard_save_layout } 
 
 You can save the dashboard's layout as default for a program.
 
@@ -864,9 +804,7 @@ Once an option is selected the selection is stored for that spesific program sta
 > 2.  *The **Grid form** and **POP-over form** options are not selectable if the program stage has more than 10 data elements.*
 > 3.  *The icon in the widgets bar will change depending on the option you have selected.*
 
-## Create reports
-
-<!--DHIS2-SECTION-ID:create_report_tracker_capture-->
+## Create reports { #create_report_tracker_capture } 
 
 1.  Open the **Tracker Capture** app.
 

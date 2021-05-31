@@ -1,6 +1,4 @@
-# DHIS2 in the Autonomous Region of Kurdistan, Iraq
-
-<!--DHIS2-SECTION-ID:user_story_kurdistan-->
+# DHIS2 in the Autonomous Region of Kurdistan, Iraq { #user_story_kurdistan } 
 
 *For the citizens of war-torn Iraq, as well as for the hundreds of
 thousands of refugees stranded in camps and sheltered by the Autonomous

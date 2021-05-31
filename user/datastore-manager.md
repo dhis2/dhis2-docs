@@ -1,6 +1,4 @@
-# Datastore Manager
-
-<!--DHIS2-SECTION-ID:datastore_manager_app-->
+# Datastore Manager { #datastore_manager_app } 
 
 The Datastore Manager is intended for advanced-level DHIS2 users. Before
 you use the Datastore Manager, you can read more about the Data store

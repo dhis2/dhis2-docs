@@ -9,9 +9,7 @@ After an entity is saved to database, an audit message will be sent to the Artem
 Audit logs can be retrieved from the DHIS2 database. Currently there is no UI or API endpoint available for retriving audit entries.
 
 
-## Single Audit table
-
-<!--DHIS2-SECTION-ID:audit_table-->
+## Single Audit table { #audit_table } 
 
 All audit entries will be saved into one single table named `audit`
 
@@ -33,9 +31,7 @@ All audit entries will be saved into one single table named `audit`
 
 The new Audit service makes use of two new concepts: Audit Scopes and Audit Type.
 
-## Audit Scope
-
-<!--DHIS2-SECTION-ID:audit_scope-->
+## Audit Scope { #audit_scope } 
 
 An Audit Scope is a logical area of the application which can be audited. Currently there are three Audit Scopes:
 
@@ -55,9 +51,7 @@ Tracked Entity Instance, Tracked Entity Attribute Value, Enrollment, Event
 - For the Aggregate Scope, the Aggregate Data Value objects are audited.
 
 
-## Audit Type
-
-<!--DHIS2-SECTION-ID:audit_type-->
+## Audit Type { #audit_type } 
 
 An Audit Type is an action that triggers an audit operation. Currently we support the following types:
 
@@ -77,9 +71,7 @@ As an example, when a new Tracked Entity Instance gets created, and if configure
 >
 > The READ Audit Type will generate a lot of data in database and may have an impact on the performance.
 
-## Setup
-
-<!--DHIS2-SECTION-ID:audit_configuration-->
+## Setup { #audit_configuration } 
 
 The audit system is automatically configured to audit for the following scopes and types:
 

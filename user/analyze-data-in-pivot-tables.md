@@ -1,10 +1,6 @@
-# Analyze data in pivot tables
+# Analyze data in pivot tables { #pivot } 
 
-<!--DHIS2-SECTION-ID:pivot-->
-
-## About the Pivot Table app
-
-<!--DHIS2-SECTION-ID:pivot_about-->
+## About the Pivot Table app { #pivot_about } 
 
 With the **Pivot Table** app, you can create pivot tables based on all
 available data dimensions in DHIS2. A pivot table is a dynamic tool for
@@ -59,9 +55,7 @@ data based on the selected filter items.
 >     table. You can also drill down from the global organisation unit
 >     to countries, provinces and facilities.
 
-## Create a pivot table
-
-<!--DHIS2-SECTION-ID:pivot_create-->
+## Create a pivot table { #pivot_create } 
 
 1.  Open the **Pivot Table** app.
 
@@ -186,9 +180,7 @@ table like this:
 
 ![](resources/images/pivot_table/pivot_rows.png)
 
-## Change the display of your pivot table
-
-<!--DHIS2-SECTION-ID:pivot_change_display-->
+## Change the display of your pivot table { #pivot_change_display } 
 
 1.  Open the **Pivot Table** app.
 
@@ -348,9 +340,7 @@ To view interpretations for relative periods, such as a year ago:
     based on when the interpretation was created.To view other
     interpretations, click them.
 
-## Download data from a pivot table
-
-<!--DHIS2-SECTION-ID:pivot_download_data-->
+## Download data from a pivot table { #pivot_download_data } 
 
 ### Download table layout data format
 
@@ -431,9 +421,7 @@ browser:
     > You can also download CSV format based on **Code** or **Name**
     > property.
 
-## Embed a pivot table in an external web page
-
-<!--DHIS2-SECTION-ID:pivot_embed-->
+## Embed a pivot table in an external web page { #pivot_embed } 
 
 Certain analysis-related resources in DHIS2, like pivot tables, charts
 and maps, can be embedded in any web page by using a plug-in. You will
@@ -447,9 +435,7 @@ in an external web page:
 
 2.  Click **Select** to highlight the HTML fragment.
 
-## Visualize pivot table data as a chart or a map
-
-<!--DHIS2-SECTION-ID:pivot_integration-->
+## Visualize pivot table data as a chart or a map { #pivot_integration } 
 
 When you have made a pivot table you can switch between pivot table,
 chart and map visualization of your data.

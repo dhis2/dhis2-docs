@@ -1,6 +1,4 @@
-# Configure metadata synchronizing
-
-<!--DHIS2-SECTION-ID:metadata_sync-->
+# Configure metadata synchronizing { #metadata_sync } 
 
 ## About data and metadata synchronization
 

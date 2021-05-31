@@ -1,16 +1,12 @@
 # Data
 
-## Data values
-
-<!--DHIS2-SECTION-ID:webapi_data_values-->
+## Data values { #webapi_data_values } 
 
 This section is about sending and reading data values.
 
     /api/33/dataValueSets
 
-### Sending data values
-
-<!--DHIS2-SECTION-ID:webapi_sending_data_values-->
+### Sending data values { #webapi_sending_data_values } 
 
 A common use-case for system integration is the need to send a set of
 data values from a third-party system into DHIS. In this example, we will
@@ -180,9 +176,7 @@ according to the DXF namespace, `400 Bad Request` is returned. If you
 provide an invalid identifier in the XML content, `409 Conflict` is
 returned together with a descriptive message.
 
-### Sending bulks of data values
-
-<!--DHIS2-SECTION-ID:webapi_sending_bulks_data_values-->
+### Sending bulks of data values { #webapi_sending_bulks_data_values } 
 
 The previous example showed us how to send a set of related data values
 sharing the same period and organisation unit. This example will show us
@@ -287,9 +281,7 @@ The data set complete element will display the date of which the data
 value set was completed, or false if no data element attribute was
 supplied.
 
-### Import parameters
-
-<!--DHIS2-SECTION-ID:webapi_data_values_import_parameters-->
+### Import parameters { #webapi_data_values_import_parameters } 
 
 The import process can be customized using a set of import parameters:
 
@@ -333,9 +325,7 @@ For large import files which contain a large number of distinct data
 elements and organisation units, setting it to true will be orders of
 magnitude faster.
 
-#### Data value requirements
-
-<!--DHIS2-SECTION-ID:webapi_data_values_import_requirement-->
+#### Data value requirements { #webapi_data_values_import_requirement } 
 
 Data value import supports a set of value types. For each value type,
 there is a special requirement. The following table lists the edge cases
@@ -349,9 +339,7 @@ Table: Value type requirements
 |---|---|---|
 | BOOLEAN | true &#124; True &#124; TRUE &#124; false &#124; False &#124; FALSE &#124; 1 &#124; 0 &#124; t &#124; f &#124; | Used when the value is a boolean, true or false value. The import service does not care if the input begins with an uppercase or lowercase letter, or if it's all uppercase. |
 
-#### Identifier schemes
-
-<!--DHIS2-SECTION-ID:webapi_data_values_identifier_schemes-->
+#### Identifier schemes { #webapi_data_values_identifier_schemes } 
 
 Regarding the id schemes, by default the identifiers used in the XML
 messages use the DHIS2 stable object identifiers referred to as `UID`.
@@ -398,9 +386,7 @@ have been marked as *unique*. When using this option, `attribute` must
 be immediately followed by the identifier of the attribute, e.g.
 "attribute:DnrLSdo4hMl".
 
-#### Async data value import
-
-<!--DHIS2-SECTION-ID:webapi_data_values_async_import-->
+#### Async data value import { #webapi_data_values_async_import } 
 
 Data values can be sent and imported in an asynchronous fashion by
 supplying an `async` query parameter set to *true*:
@@ -431,9 +417,7 @@ monitor the import job status. The response will look similar to this:
 Please read the section on *asynchronous task status* for more
 information.
 
-### CSV data value format
-
-<!--DHIS2-SECTION-ID:webapi_data_values_csv-->
+### CSV data value format { #webapi_data_values_csv } 
 
 The following section describes the CSV format used in DHIS2. The first
 row is assumed to be a header row and will be ignored during import.
@@ -465,9 +449,7 @@ An example of a CSV file which can be imported into DHIS2 is seen below.
 "DUSpd8Jq3M7","201202","OjTS752GbZE","V6L425pT3A0",,"9","bombali","2010-04-06"
 ```
 
-### Generating data value set template
-
-<!--DHIS2-SECTION-ID:webapi_data_values_template-->
+### Generating data value set template { #webapi_data_values_template } 
 
 To generate a data value set template for a certain data set you can use
 the `/api/dataSets/<id>/dataValueSet` resource. XML and JSON response
@@ -490,9 +472,7 @@ Table: Data values query parameters
 | orgUnitIdScheme | No | Organisation unit scheme to use, supports id &#124; code. |
 | dataElementIdScheme | No | Data-element scheme to use, supports id &#124; code. |
 
-### Reading data values
-
-<!--DHIS2-SECTION-ID:webapi_reading_data_values-->
+### Reading data values { #webapi_reading_data_values } 
 
 This section explains how to retrieve data values from the Web API by
 interacting with the *dataValueSets* resource. Data values can be
@@ -654,9 +634,7 @@ The following constraints apply to the data value sets resource:
 
   - Limit cannot be less than zero.
 
-### Sending, reading and deleting individual data values
-
-<!--DHIS2-SECTION-ID:webapi_sending_individual_data_values-->
+### Sending, reading and deleting individual data values { #webapi_sending_individual_data_values } 
 
 This example will show how to send individual data values to be saved in
 a request. This can be achieved by sending a *POST* request to the
@@ -721,9 +699,7 @@ curl "https://play.dhis2.org/demo/api/33/dataValues?de=s46m5MS0hxu
 
 You can delete a data value with a request using the *DELETE* method.
 
-#### Working with file data values
-
-<!--DHIS2-SECTION-ID:datavalue_file-->
+#### Working with file data values { #datavalue_file } 
 
 When dealing with data values which have a data element of type *file*
 there is some deviation from the method described above. These data
@@ -771,9 +747,7 @@ configuration). Retrieving the file resource meta-data from the
 `/api/fileResources/<id>` endpoint allows checking the `storageStatus`
 of the content before attempting to download it.
 
-## ADX data format
-
-<!--DHIS2-SECTION-ID:webapi_adx_data_format-->
+## ADX data format { #webapi_adx_data_format } 
 
 From version 2.20 we have included support for an international standard
 for aggregate data exchange called ADX. ADX is developed and maintained
@@ -963,9 +937,7 @@ Note the query parameters are the same as are used with DXF data. An
 important difference is that the identifiers for dataSet and orgUnit are
 assumed to be codes rather than uids.
 
-## Follow-up
-
-<!--DHIS2-SECTION-ID:webapi_follow_up-->
+## Follow-up { #webapi_follow_up } 
 
 This section covers marking data for follow-up.
 

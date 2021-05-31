@@ -1,6 +1,4 @@
-# Using the Event Visualizer app
-
-<!--DHIS2-SECTION-ID:event_visualizer_app-->
+# Using the Event Visualizer app { #event_visualizer_app } 
 
 ## About the Event Visualizer app
 
@@ -46,9 +44,7 @@ different characteristics. To select a chart type:
 
 2.  Click **Update**.
 
-## Select dimension items
-
-<!--DHIS2-SECTION-ID:event_visualizer_select_dimensions-->
+## Select dimension items { #event_visualizer_select_dimensions } 
 
 An event chart is always based on a program and you can do analysis
 based on a range of dimensions. For programs with category combinations,
@@ -154,9 +150,7 @@ only have one dimension at the time.
 
 3.  Click **Update**.
 
-## Change the display of your chart
-
-<!--DHIS2-SECTION-ID:event_visualizer_change_display-->
+## Change the display of your chart { #event_visualizer_change_display } 
 
 You can customize the display of an event report.
 

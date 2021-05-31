@@ -1,10 +1,6 @@
-# Configure report functionality
+# Configure report functionality { #setting_up_reporting } 
 
-<!--DHIS2-SECTION-ID:setting_up_reporting-->
-
-## Data sources for reporting
-
-<!--DHIS2-SECTION-ID:reporting_data_sources-->
+## Data sources for reporting { #reporting_data_sources } 
 
 ### Types of data and aggregation
 
@@ -253,9 +249,7 @@ OU4, DataElement, Period, Value (Sierra Leone, Bo, Badija, Ngelehun CHC,
 BCG \<1, Jan-10, 32) This format makes it much easier for e.g. pivot
 tables or other OLAP tools to aggregate data up the hierarchy.
 
-### Report tables
-
-<!--DHIS2-SECTION-ID:reportTable-->
+### Report tables { #reportTable } 
 
 Report tables are defined, cross-tabulated reports which can be used as
 the basis of further reports, such as Excel Pivot Tables or simply
@@ -266,9 +260,7 @@ country, aggregated by month for the entire country. This data could of
 course be retrieved from the main datamart, but report tables generally
 perform faster and present well defined views of data to users.
 
-## How to create report tables
-
-<!--DHIS2-SECTION-ID:reporting_creating_tables-->
+## How to create report tables { #reporting_creating_tables } 
 
 To create a new report table, go to the Report tables section of the
 Reports module (Reports -\> Report Table). Above the list of standard
@@ -286,9 +278,7 @@ dimensions you want to include. Finally you select which organisation
 units and time periods to use in the report table. Each of these steps
 are described in detail below.
 
-### General options
-
-<!--DHIS2-SECTION-ID:reporting_general_options-->
+### General options { #reporting_general_options } 
 
 
 ![](resources/images/dhis2_creating_reporting/general_options.jpg)
@@ -333,9 +323,7 @@ in the report table.
 This adds additional columns with regression values that can be included
 in the report design, e.g. in line charts.
 
-### Selecting data
-
-<!--DHIS2-SECTION-ID:reporting_selecting_data-->
+### Selecting data { #reporting_selecting_data } 
 
 
 ![](resources/images/dhis2_creating_reporting/select_data.jpg)
@@ -355,9 +343,7 @@ Including a data set will give you data on the data completeness of the
 given set, not data on its data elements. Double click on the items you
 want to include, or use the buttons.
 
-### Selecting report parameters
-
-<!--DHIS2-SECTION-ID:selecting_reporting_params-->
+### Selecting report parameters { #selecting_reporting_params } 
 
 
 ![](resources/images/dhis2_creating_reporting/relative_options.jpg)
@@ -501,9 +487,7 @@ districts will be aggregated further to give an aggregated value for
 Thus, the report table will generate the six values presented in the
 previous example, for "District X", "District Y" and "Region R".
 
-### Data element dimension tables
-
-<!--DHIS2-SECTION-ID:reporting_de_dimension_tables-->
+### Data element dimension tables { #reporting_de_dimension_tables } 
 
 These tables enable the use of data element categories in report tables.
 There are two differences from regular report tables. The first is that
@@ -527,9 +511,7 @@ Use the drop down menu to choose category combinations. The data
 elements using this category combination will be listed. Double click to
 add to the report, or use the buttons.
 
-### Report table - best practices
-
-<!--DHIS2-SECTION-ID:reporting_best_practices-->
+### Report table - best practices { #reporting_best_practices } 
 
 To make the report tables reusable over time and across orgunits they
 can have parameters. Four types of parameters are allowed; orgunit,
@@ -615,9 +597,7 @@ the period dimension as the 'Reporting month' does not cover enough, or
 at least is not intuitive enough, when it comes to e.g. quarterly
 reports.
 
-## Report table outcome
-
-<!--DHIS2-SECTION-ID:reporting_table_outcomes-->
+## Report table outcome { #reporting_table_outcomes } 
 
 When the report table is run, the system will calculate values for
 specified indicators/data elements/data sets, orgunits and periods. The
@@ -673,9 +653,7 @@ presented below the screenshot:
     be opened in the Jasper iReport Designer software. If you plan to
     design standard reports, this is the starting point.
 
-## Standard reports
-
-<!--DHIS2-SECTION-ID:reporting_standard_reports-->
+## Standard reports { #reporting_standard_reports } 
 
 ### What is a standard report?
 

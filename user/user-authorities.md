@@ -1,6 +1,4 @@
-# User authorities
-
-<!--DHIS2-SECTION-ID:user_authorities-->
+# User authorities { #user_authorities } 
 
 
 |||

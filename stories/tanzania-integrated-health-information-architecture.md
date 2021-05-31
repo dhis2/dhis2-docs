@@ -1,6 +1,4 @@
-# Tanzania: Integrated Health Information Architecture
-
-<!--DHIS2-SECTION-ID:user_story_udsm_short-->
+# Tanzania: Integrated Health Information Architecture { #user_story_udsm_short } 
 
 **Tanzania Mainland has come a long way in implementing and rolling out
 its HIS using DHIS2 technology. Over the lapse of five years, the

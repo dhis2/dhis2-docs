@@ -1,6 +1,4 @@
-# Import/Export App
-
-<!--DHIS2-SECTION-ID:import_export-->
+# Import/Export App { #import_export } 
 
 In a primary health system, the HMIS typically involves a distributed
 application, where the same application is running in different
@@ -25,21 +23,15 @@ which can be found below.
 
 ![](resources/images/import_export/overview.png)
 
-## Importing data
+## Importing data { #importing_data } 
 
-<!--DHIS2-SECTION-ID:importing_data-->
-
-### Import progress logger
-
-<!--DHIS2-SECTION-ID:import_progress_logger-->
+### Import progress logger { #import_progress_logger } 
 
 No matter what you import ("Data", "Events", "GML", "Metadata" or
 "Tracked Entity Instances" data), you can always view the progress of
 the import by looking at the "Job Summary" at the top of the page.
 
-### Import Summaries
-
-<!--DHIS2-SECTION-ID:metadata_import_summaries-->
+### Import Summaries { #metadata_import_summaries } 
 
 On import request completion, we show import summaries above the
 import form. Any conflicts or errors are shown in the table under the
@@ -47,9 +39,7 @@ main summary for the import.
 
 ![](resources/images/import_export/import_summary.png)
 
-### Metadata Import
-
-<!--DHIS2-SECTION-ID:metadata_import-->
+### Metadata Import { #metadata_import } 
 
 Metadata Import can be accessed from the sidebar by clicking on
 Metadata Import.
@@ -95,9 +85,7 @@ Metadata Import.
 >
 > You can control this using **Identifier** option, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
 
-#### Matching Identifiers in DXF2
-
-<!--DHIS2-SECTION-ID:matching_identifiers_in_dxf2-->
+#### Matching Identifiers in DXF2 { #matching_identifiers_in_dxf2 } 
 
 The DXF2 format currently support matching for two identifiers, the
 internal DHIS2 identifier (known as a UID), and also using an external
@@ -111,9 +99,7 @@ legacy system's own identifiers in the code field, this identifier is
 required to be unique. This not only works for organisation units, but
 for all kinds of meta-data, allowing for easy import from other systems.
 
-### Data Import
-
-<!--DHIS2-SECTION-ID:import-->
+### Data Import { #import } 
 
 Data Import can be accessed from the sidebar by clicking on Data
 Import.
@@ -148,9 +134,7 @@ Import.
 > Metadata, and to check for problems with out-of-sync data elements or
 > organisation unit names
 
-#### PDF Data
-
-<!--DHIS2-SECTION-ID:importPDFdata-->
+#### PDF Data { #importPDFdata } 
 
 DHIS2 supports import of data in the PDF format. This can be used to
 import data produced by off-line PDF data entry forms. Please refer to
@@ -160,9 +144,7 @@ form which can be used for off-line data entry.
 To import a PDF data file, navigate to the *PDF Data Import* item in the
 side menu. Upload the completed PDF file and click *Import*.
 
-### Event Import
-
-<!--DHIS2-SECTION-ID:event_import-->
+### Event Import { #event_import } 
 
 Event can be access from the sidebar by clicking on Event
 import.
@@ -182,9 +164,7 @@ import.
 3.  Click on the **Import** button which will upload the file and start the
     importing process.
 
-### GML Import
-
-<!--DHIS2-SECTION-ID:gml_import-->
+### GML Import { #gml_import } 
 
 GML Import can be accessed from the sidebar by clicking on GML
 Import.
@@ -196,9 +176,7 @@ Import.
 2.  Click on the **Import** button which will upload the file and start the
     importing process.
 
-### Tracked Entity Instances Import
-
-<!--DHIS2-SECTION-ID:tei_import-->
+### Tracked Entity Instances Import { #tei_import } 
 
 Tracked Entity Instances Import can be accessed from the sidebar by
 clicking on TEI Import.
@@ -237,9 +215,7 @@ clicking on TEI Import.
 
 ## Exporting data
 
-### Metadata Export
-
-<!--DHIS2-SECTION-ID:metadata_export-->
+### Metadata Export { #metadata_export } 
 
 Metadata export can be accessed from the sidebar by clicking on
 Metadata export.
@@ -257,9 +233,7 @@ Metadata export.
 5.  Click **Export metadata** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Metadata Export with Dependencies
-
-<!--DHIS2-SECTION-ID:metadata_export_dependencies-->
+### Metadata Export with Dependencies { #metadata_export_dependencies } 
 
 Metadata export with dependencies lets you create canned exports for
 metadata objects. This type of export will include the metadata objects
@@ -296,9 +270,7 @@ Table: Object types and their dependencies
     web-browser window that will give you a file to download to your
     local computer.
 
-### Data export
-
-<!--DHIS2-SECTION-ID:data_export-->
+### Data export { #data_export } 
 
 Data export can be accessed from the sidebar by clicking on Data
 export.
@@ -330,9 +302,7 @@ export.
 8.  Click **Export data** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Event export
-
-<!--DHIS2-SECTION-ID:event_export-->
+### Event export { #event_export } 
 
 Event export can be accessed from the sidebar by clicking on Event
 export.
@@ -376,9 +346,7 @@ formats.
 8.  Click **Export events** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Tracked Entity Instances export
-
-<!--DHIS2-SECTION-ID:tei_export-->
+### Tracked Entity Instances export { #tei_export } 
 
 Tracked entity instances export can be accessed from the sidebar by
 clicking on TEI export.
@@ -411,9 +379,7 @@ formats.
     web-browser window that will give you a file to download to your
     local computer.
 
-## Job Overview
-
-<!--DHIS2-SECTION-ID:job_overview-->
+## Job Overview { #job_overview } 
 
 The job overview page can be accessed from the sidebar by clicking on
 *Job Overview*.
