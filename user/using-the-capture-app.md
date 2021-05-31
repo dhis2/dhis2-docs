@@ -908,3 +908,14 @@ When you click on the enrollment actions button, a menu with all the available a
 You can delete the enrollment by clicking the delete button and confirming the action in the modal. 
 
 ![](resources/images/capture_app/enrollment-dash-enrollment-widget-3.png)
+
+
+#### Person profile widget
+
+On the enrollment dashboard, you can view the Person Profile widget.
+
+![](resources/images/capture_app/enrollment-dash-tei-profile-widget.png)
+
+The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
+
+
