@@ -1,10 +1,6 @@
-# Configure the Maps app
+# Configure the Maps app { #gis_creating } 
 
-<!--DHIS2-SECTION-ID:gis_creating-->
-
-## Context
-
-<!--DHIS2-SECTION-ID:gis_creating_context-->
+## Context { #gis_creating_context } 
 
 Setting up the Maps simply means storing coordinates for the organisation
 units you want to show on the map in the database. Coordinates are often
@@ -43,9 +39,7 @@ import.  The following section explains how to perform a GML import.
 > EPSG 4326, you will need to re-project the data first before importing
 > into DHIS2.
 
-## Importing coordinates
-
-<!--DHIS2-SECTION-ID:gis_creating_setup-->
+## Importing coordinates { #gis_creating_setup } 
 
 Step 1 - Simplify/generalize your geographical data
 

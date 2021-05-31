@@ -1,8 +1,6 @@
 # Analytics
 
-## Analytics
-
-<!--DHIS2-SECTION-ID:webapi_analytics-->
+## Analytics { #webapi_analytics } 
 
 To access analytical, aggregated data in DHIS2 you can work with the
 *analytics* resource. The analytics resource is powerful as it lets you
@@ -15,9 +13,7 @@ organisation unit group sets.
 
     /api/33/analytics
 
-### Request query parameters
-
-<!--DHIS2-SECTION-ID:webapi_analytics_query_parameters-->
+### Request query parameters { #webapi_analytics_query_parameters } 
 
 The analytics resource lets you specify a range of query parameters:
 
@@ -314,9 +310,7 @@ order is:
     /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:LAST_12_MONTHS
       &dimension=ou:O6uvpzGd5pu&order=DESC
 
-### Dimensions and items
-
-<!--DHIS2-SECTION-ID:webapi_analytics_dimensions_and_items-->
+### Dimensions and items { #webapi_analytics_dimensions_and_items } 
 
 DHIS2 features a multi-dimensional data model with several fixed and
 dynamic data dimensions. The fixed dimensions are the data element,
@@ -542,9 +536,7 @@ below.
     combination dimension. Instead, the response will contain the items
     which are linked to the data values.
 
-### The dx dimension
-
-<!--DHIS2-SECTION-ID:webapi_analytics_dx_dimension-->
+### The dx dimension { #webapi_analytics_dx_dimension } 
 
 The `dx` dimension is a special dimension which can contain all of the
 following data types.
@@ -653,9 +645,7 @@ combination values:
 > to see the resulting analytics API calls in the address bar of
 > your Web browser.
 
-### Response formats
-
-<!--DHIS2-SECTION-ID:webapi_analytics_response_formats-->
+### Response formats { #webapi_analytics_response_formats } 
 
 The analytics response containing aggregate data can be returned in
 various representation formats. As usual, you can indicate interest in a
@@ -791,9 +781,7 @@ data/indicator column, a period column and a value column. The first
 column contains indicator identifiers, the second contains ISO period
 identifiers and the third contains aggregated data values.
 
-### Constraints and validation
-
-<!--DHIS2-SECTION-ID:webapi_analytics_constraints-->
+### Constraints and validation { #webapi_analytics_constraints } 
 
 There are several constraints to the input parameters you can provide to the
 analytics resource. If any of the constraints are violated, the API will
@@ -851,9 +839,7 @@ API are described in the table below.
 | E7130      | Program stage is specified but does not exist |
 | E7131      | Query failed, likely because the query timed out |
 
-### Data value set format
-
-<!--DHIS2-SECTION-ID:webapi_analytics_data_value_set_format-->
+### Data value set format { #webapi_analytics_data_value_set_format } 
 
 The analytics *dataValueSet* resource allows for returning aggregated
 data in the data value set format. This format represents raw data
@@ -917,9 +903,7 @@ duplicates:
     api/analytics/dataValueSet.xml?dimension=dx:Uvn6LCg7dVU;OdiHJayrsKo
       &dimension=pe:LAST_4_QUARTERS&dimension=ou:lc3eMKXaEfw&duplicatesOnly=true
 
-### Raw data format
-
-<!--DHIS2-SECTION-ID:webapi_analytics_raw_data-->
+### Raw data format { #webapi_analytics_raw_data } 
 
 The analytics *rawData* resource allows for returning the data stored in
 the analytics data tables without any aggregation being performed. This
@@ -1061,9 +1045,7 @@ regular analytics resource; the difference is that the response contains
 raw, non-aggregated data, suitable for further aggregation by
 third-party systems.
 
-### Debugging
-
-<!--DHIS2-SECTION-ID:webapi_analytics_debugging-->
+### Debugging { #webapi_analytics_debugging } 
 
 When debugging analytics requests it can be useful to examine the data
 value source of the aggregated analytics response. The
@@ -1076,9 +1058,7 @@ regular analytics queries:
     /api/analytics/debug/sql?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &filter=pe:2016Q1;2016Q2&filter=ou:O6uvpzGd5pu
 
-## Event analytics
-
-<!--DHIS2-SECTION-ID:webapi_event_analytics-->
+## Event analytics { #webapi_event_analytics } 
 
 The event analytics API lets you access aggregated event data and query
 *events* captured in DHIS2. This resource lets you retrieve events based
@@ -1087,9 +1067,7 @@ filter events on any event dimensions.
 
     /api/33/analytics/events
 
-### Dimensions and items
-
-<!--DHIS2-SECTION-ID:webapi_event_analytics_dimensions_items-->
+### Dimensions and items { #webapi_event_analytics_dimensions_items } 
 
 Event dimensions include data elements, attributes, organisation units
 and periods. The aggregated event analytics resource will return
@@ -1148,9 +1126,7 @@ dimensions are listed in the table below.
 </tbody>
 </table>
 
-### Request query parameters
-
-<!--DHIS2-SECTION-ID:webapi_event_analytics_request_query_parameters-->
+### Request query parameters { #webapi_event_analytics_request_query_parameters } 
 
 The analytics event API lets you specify a range of query parameters.
 
@@ -1456,9 +1432,7 @@ The analytics event API lets you specify a range of query parameters.
 </tbody>
 </table>
 
-### Event query analytics
-
-<!--DHIS2-SECTION-ID:webapi_event_query_analytics-->
+### Event query analytics { #webapi_event_query_analytics } 
 
 The *analytics/events/query* resource lets you query for captured
 events. This resource does not perform any aggregation, rather it lets
@@ -1775,9 +1749,7 @@ query (not a filter). Such a request can look like this:
     /api/33/analytics.html+css?dimension=dx:cYeuwXTCPkU;fbfJHSPpUQD&dimension=pe:WEEKS_THIS_YEAR
       &filter=ou:ImspTQPwCqd&displayProperty=SHORTNAME&columns=dx&rows=pe
 
-### Event aggregate analytics
-
-<!--DHIS2-SECTION-ID:webapi_event_aggregate_analytics-->
+### Event aggregate analytics { #webapi_event_aggregate_analytics } 
 
 The `/analytics/events/aggregate` resource lets you retrieve *aggregated
 numbers* of events captured in DHIS2. This resource lets you retrieve
@@ -1969,9 +1941,7 @@ Note that the max limit for rows to return in a single response is 10 000.
 If the query produces more than the max limit, a *409 Conflict* status code
 will be returned.
 
-### Event clustering analytics
-
-<!--DHIS2-SECTION-ID:webapi_event_clustering_analytics-->
+### Event clustering analytics { #webapi_event_clustering_analytics } 
 
 The *analytics/events/cluster* resource provides clustered geospatial
 event data. A request looks like this:
@@ -2044,9 +2014,7 @@ of the underlying events is included. A sample response looks like this:
 }
 ```
 
-### Event count and extent analytics
-
-<!--DHIS2-SECTION-ID:webapi_event_count_extent_analytics-->
+### Event count and extent analytics { #webapi_event_count_extent_analytics } 
 
 The *analytics/events/count* resource is suitable for geometry-related
 requests for retrieving the count and extent (bounding box) of events
@@ -2066,9 +2034,7 @@ The response will provide the count and extent in JSON format:
 }
 ```
 
-### Constraints and validation
-
-<!--DHIS2-SECTION-ID:webapi_event_analytics_constraints-->
+### Constraints and validation { #webapi_event_analytics_constraints } 
 
 There are several constraints to the input parameters you can provide to the
 event analytics resource. If any of the constraints are violated, the API will
@@ -2118,15 +2084,11 @@ in the table below.
 | E7226      | Dimension is not a valid query item |
 | E7227      | Relationship entity type not supported |
 
-## Enrollment analytics
-
-<!--DHIS2-SECTION-ID:webapi_enrollment_analytics-->
+## Enrollment analytics { #webapi_enrollment_analytics } 
 
 The enrollment analytics API lets you access aggregated event data and query *enrollments with their event data* captured in DHIS2. This resource lets you retrieve data for a program based on program stages and data elements - in addition to tracked entity attributes. When querying event data for a specific programstages within each enrollment, the data element values for each program stage will be returned as one row in the response from the api. If querying a data element in a program stage that is repeatable, the newest data element value will be used for that data element in the api response.
 
-### Dimensions and items
-
-<!--DHIS2-SECTION-ID:webapi_enrollment_analytics_dimensions-->
+### Dimensions and items { #webapi_enrollment_analytics_dimensions } 
 
 Enrollment dimensions include data elements, attributes, organisation units and periods. The query analytics resource will simply return enrollments matching a set of criteria and does not perform any aggregation.
 
@@ -2172,9 +2134,7 @@ Enrollment dimensions include data elements, attributes, organisation units and 
 </tbody>
 </table>
 
-### Enrollment query analytics
-
-<!--DHIS2-SECTION-ID:webapi_enrollment_query_analytics-->
+### Enrollment query analytics { #webapi_enrollment_query_analytics } 
 
 The *analytics/enrollments/query* resource lets you query for captured enrollments. This resource does not perform any aggregation, rather it lets you query and filter for information about enrollments.
 
@@ -2279,9 +2239,7 @@ The available operators are listed below.
 </tbody>
 </table>
 
-### Request query parameters
-
-<!--DHIS2-SECTION-ID:webapi_enrollment_analytics_query_parameters-->
+### Request query parameters { #webapi_enrollment_analytics_query_parameters } 
 
 The analytics enrollment query API lets you specify a range of query parameters.
 
@@ -2643,9 +2601,7 @@ For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" prog
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
 
-## Org unit analytics
-
-<!--DHIS2-SECTION-ID:webapi_org_unit_analytics-->
+## Org unit analytics { #webapi_org_unit_analytics } 
 
 The org unit analytics API provides statistics on org units classified by org unit group sets, i.e. counts of org units per org unit group within org unit group sets.
 
@@ -2727,9 +2683,7 @@ The possible validation errors specifically for the org unit analytics API are d
 | E7300      | At least one organisation unit must be specified |
 | E7301      | At least one organisation unit group set must be specified |
 
-## Data set report
-
-<!--DHIS2-SECTION-ID:webapi_data_set_report-->
+## Data set report { #webapi_data_set_report } 
 
 Data set reports can be generated through the web api using the
 `/dataSetReport` resource. This resource generates reports on data set
@@ -2821,9 +2775,7 @@ The syntax for this endpoint is otherwise equal to the general data set report e
     GET /api/33/dataSetReport/custom?ds=lyLU2wR22tC&pe=201810&ou=ImspTQPwCqd
 
 
-## Push Analysis
-
-<!--DHIS2-SECTION-ID:webapi_push_analysis-->
+## Push Analysis { #webapi_push_analysis } 
 
 The push analysis API includes endpoints for previewing a push analysis
 report for the logged in user and manually triggering the system to
@@ -2903,9 +2855,7 @@ required to automatically run push analysis jobs:
 </tbody>
 </table>
 
-## Data usage analytics
-
-<!--DHIS2-SECTION-ID:webapi_usage_analytics-->
+## Data usage analytics { #webapi_usage_analytics } 
 
 The usage analytics API lets you access information about how people are
 using DHIS2 based on data analysis. When users access favorites, an
@@ -2922,9 +2872,7 @@ user) and saved analysis favorites (for example favorite charts and
 pivot tables). DHIS2 will capture nightly snapshots which are then
 aggregated at request.
 
-### Request query parameters
-
-<!--DHIS2-SECTION-ID:webapi_usage_analytics_request_query_parameters-->
+### Request query parameters { #webapi_usage_analytics_request_query_parameters } 
 
 The usage analytics (data statistics) API supports two operations:
 
@@ -2932,9 +2880,7 @@ The usage analytics (data statistics) API supports two operations:
 
   - *GET:* retrieves aggregated statistics
 
-### Create view events (POST)
-
-<!--DHIS2-SECTION-ID:webapi_usage_analytics_create_view_events-->
+### Create view events (POST) { #webapi_usage_analytics_create_view_events } 
 
 The usage analytics API lets you create event views. The
 dataStatisticsEventType parameter describes what type of item was
@@ -2997,9 +2943,7 @@ below shows the supported types of events.
 </tbody>
 </table>
 
-### Retrieve aggregated usage analytics report (GET)
-
-<!--DHIS2-SECTION-ID:webapi_aggregated_usage_analytics-->
+### Retrieve aggregated usage analytics report (GET) { #webapi_aggregated_usage_analytics } 
 
 The usage analytics (data statistics) API lets you specify certain query
 parameters when asking for an aggregated report.
@@ -3053,9 +2997,7 @@ API query that creates a query for a monthly
 
     GET /api/33/dataStatistics?startDate=2014-01-02&endDate=2016-01-01&interval=MONTH
 
-### Retrieve top favorites
-
-<!--DHIS2-SECTION-ID:webapi_usage_analytics_top_favorites-->
+### Retrieve top favorites { #webapi_usage_analytics_top_favorites } 
 
 The usage analytics API lets you retrieve the top favorites used in
 DHIS2, and by user.
@@ -3114,9 +3056,7 @@ If the username is specified, the response will only contain the top favorites o
     /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25
       &sortOrder=ASC&username=admin
 
-### Response format
-
-<!--DHIS2-SECTION-ID:webapi_usage_analytics_response_format-->
+### Response format { #webapi_usage_analytics_response_format } 
 
 You can return the aggregated data in a usage analytics response in
 several representation formats. The default format is JSON. The
@@ -3207,9 +3147,7 @@ The JSON response looks like this:
 ]
 ```
 
-### Retrieve statistics for a favorite
-
-<!--DHIS2-SECTION-ID:webapi_usage_analytics_retrieve_favorite_statistics-->
+### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics } 
 
 You can retrieve the number of view for a specific favorite by using the
 *favorites* resource, where *{favorite-id}* should be substituted with
@@ -3226,9 +3164,7 @@ look like this:
 }
 ```
 
-## Geospatial features
-
-<!--DHIS2-SECTION-ID:webapi_geospatial_features-->
+## Geospatial features { #webapi_geospatial_features } 
 
 The *geoFeatures* resource lets you retrieve geospatial information from
 DHIS2. Geospatial features are stored together with organisation units.
@@ -3324,9 +3260,7 @@ Get all features at level 3 with a boundary organisation unit:
 
     /api/organisationUnits.geojson?parent=fdc6uOvgoji&level=3
 
-## Analytics table hooks
-
-<!--DHIS2-SECTION-ID:webapi_analytics_table_hooks-->
+## Analytics table hooks { #webapi_analytics_table_hooks } 
 
 Analytics table hooks provide a mechanism for invoking SQL scripts
 during different phases of the analytics table generation process. This
@@ -3340,9 +3274,7 @@ The analytics table hooks API supports the standard HTTP CRUD operations
 for creating (POST), updating (PUT), retrieving (GET) and deleting
 (DELETE) entities.
 
-### Hook fields
-
-<!--DHIS2-SECTION-ID:webapi_analytics_table_hook_fields-->
+### Hook fields { #webapi_analytics_table_hook_fields } 
 
 Analytics table hooks have the following fields:
 
@@ -3509,9 +3441,7 @@ and temporary tables.
 </tbody>
 </table>
 
-### Creating hooks
-
-<!--DHIS2-SECTION-ID:webapi_create_analytics_table_hook-->
+### Creating hooks { #webapi_create_analytics_table_hook } 
 
 To create a hook which should run after the resource tables have been
 populated you can do a *POST* request like this using *JSON* format:
@@ -3542,9 +3472,7 @@ format:
 }
 ```
 
-## SVG conversion
-
-<!--DHIS2-SECTION-ID:webapi_svg_conversion-->
+## SVG conversion { #webapi_svg_conversion } 
 
 The Web API provides a resource which can be used to convert SVG content
 into more widely used formats such as PNG and PDF. Ideally this

@@ -1,8 +1,6 @@
 # Email
 
-## Email
-
-<!--DHIS2-SECTION-ID:webapi_email-->
+## Email { #webapi_email } 
 
 The Web API features a resource for sending emails. For emails to be
 sent it is required that the SMTP configuration has been properly set up
@@ -13,9 +11,7 @@ in DHIS2.
 
     /api/33/email
 
-### System notification
-
-<!--DHIS2-SECTION-ID:webapi_email_system_notification-->
+### System notification { #webapi_email_system_notification } 
 
 The *notification* resource lets you send system email notifications
 with a given subject and text in JSON or XML. The email will be sent to
@@ -51,9 +47,7 @@ curl "localhost/api/33/email/notification?recipients=xyz%40abc.com&message=sampl
   -X POST -u admin:district
 ```
 
-### Test message
-
-<!--DHIS2-SECTION-ID:webapi_email_test_message-->
+### Test message { #webapi_email_test_message } 
 
 To test whether the SMTP setup is correct by sending a test email to
 yourself you can interact with the *test* resource. To send test emails

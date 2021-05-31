@@ -1,8 +1,6 @@
 # Maintenance
 
-## Resource and analytics tables
-
-<!--DHIS2-SECTION-ID:webapi_generating_resource_analytics_tables-->
+## Resource and analytics tables { #webapi_generating_resource_analytics_tables } 
 
 DHIS2 features a set of generated database tables which are used as
 a basis for various system functionality. These tables can be executed
@@ -78,9 +76,7 @@ persist them as validation results.
 These requests will return immediately and initiate a server-side
 process.
 
-## Maintenance
-
-<!--DHIS2-SECTION-ID:webapi_maintenance-->
+## Maintenance { #webapi_maintenance } 
 
 To perform maintenance you can interact with the *maintenance* resource. You should use *POST* or *PUT* as a method for requests. The following methods are available.
 
@@ -169,16 +165,12 @@ Maintenance operations are supported in a batch style with a POST request to the
       &periodPruning=true&zeroDataValueRemoval=true&sqlViewsDrop=true&sqlViewsCreate=true
       &categoryOptionComboUpdate=true&cacheClear=true&ouPathsUpdate=true
 
-## System info
-
-<!--DHIS2-SECTION-ID:webapi_system_resource-->
+## System info { #webapi_system_resource } 
 
 The system resource provides you with convenient information and
 functions. The system resource can be found at */api/system*.
 
-### Generate identifiers
-
-<!--DHIS2-SECTION-ID:webapi_system_resource_generate_identifiers-->
+### Generate identifiers { #webapi_system_resource_generate_identifiers } 
 
 To generate valid, random DHIS2 identifiers you can do a GET request to
 this resource:
@@ -209,9 +201,7 @@ The DHIS2 UID format has these requirements:
 
   - Start with an alphabetic character (A-Za-z).
 
-### View system information
-
-<!--DHIS2-SECTION-ID:webapi_system_resource_view_system_information-->
+### View system information { #webapi_system_resource_view_system_information } 
 
 To get information about the current system you can do a GET request to
 this URL:
@@ -264,9 +254,7 @@ JSONP response formats are supported:
 
     /api/33/system/context
 
-### Check if username and password combination is correct
-
-<!--DHIS2-SECTION-ID:webapi_system_resource_check_username_password-->
+### Check if username and password combination is correct { #webapi_system_resource_check_username_password } 
 
 To check if some user credentials (a username and password combination)
 is correct you can make a *GET* request to the following resource using
@@ -312,9 +300,7 @@ general.
 </tbody>
 </table>
 
-### View asynchronous task status
-
-<!--DHIS2-SECTION-ID:webapi_system_resource_view_async_task_status-->
+### View asynchronous task status { #webapi_system_resource_view_async_task_status } 
 
 Tasks which often take a long time to complete can be performed
 asynchronously. After initiating an async task you can poll the status
@@ -525,9 +511,7 @@ this:
 
     /api/33/system/taskSummaries/{task-category-id}
 
-### Get appearance information
-
-<!--DHIS2-SECTION-ID:webapi_system_resource_get_appearance_information-->
+### Get appearance information { #webapi_system_resource_get_appearance_information } 
 
 You can retrieve the available flag icons in JSON format with a GET
 request:
@@ -559,9 +543,7 @@ A sample JSON response looks like this:
 }
 ```
 
-## Min-max data elements
-
-<!--DHIS2-SECTION-ID:webapi_min_max_data_elements-->
+## Min-max data elements { #webapi_min_max_data_elements } 
 
 The min-max data elements resource allows you to set minimum and maximum
 value ranges for data elements. It is unique by the combination of
@@ -633,9 +615,7 @@ eq and in. You can also use the `fields` query parameter.
 
     GET /api/minMaxDataElements.json?fields=:all,dataElement[id,name]
 
-### Add/update min-max data element
-
-<!--DHIS2-SECTION-ID:webapi_add_update_min_max_data_element-->
+### Add/update min-max data element { #webapi_add_update_min_max_data_element } 
 
 To add a new min-max data element, use POST request to:
 
@@ -663,9 +643,7 @@ The JSON content format looks like this:
 If the combination of data element, organisation unit and category
 option combo exists, the min-max value will be updated.
 
-### Delete min-max data element
-
-<!--DHIS2-SECTION-ID:webapi_delete_min_max_data_element-->
+### Delete min-max data element { #webapi_delete_min_max_data_element } 
 
 To delete a min-max data element, send a request with DELETE method:
 
@@ -690,9 +668,7 @@ The JSON content is in similar format as above:
 }
 ```
 
-## Lock exceptions
-
-<!--DHIS2-SECTION-ID:webapi_lock_exceptions-->
+## Lock exceptions { #webapi_lock_exceptions } 
 
 The lock exceptions resource allows you to open otherwise locked data
 sets for data entry for a specific data set, period and organisation

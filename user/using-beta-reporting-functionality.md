@@ -1,12 +1,8 @@
-# Reporting functionality in the Beta Reports app
-
-<!--DHIS2-SECTION-ID:using_the_beta_reports_app-->
+# Reporting functionality in the Beta Reports app { #using_the_beta_reports_app } 
 
 A new Reports app (Beta) is introduced in release 2.32 and serves as an optional replacement of the original [Reports app](#using_reporting), offering a more intuitive and user-friendly interface. Unlike the previous Reports app, however, it does not support Data Approvals.
 
-## Using standard reports
-
-<!--DHIS2-SECTION-ID:standard_reports_in_the_beta_reports_app-->
+## Using standard reports { #standard_reports_in_the_beta_reports_app } 
 
 You access the available reports by navigating to Apps-\>Reports (Beta). In the
 report menu in the left bar, click Standard Report. A list of all
@@ -25,9 +21,7 @@ directly in your browser or be available as a PDF file for download,
 depending on your browser settings for handling PDF files. You can save
 the file and keep it locally on your computer for later use.
 
-## Using dataset reports
-
-<!--DHIS2-SECTION-ID:dataset_reports_in_the_beta_reports_app-->
+## Using dataset reports { #dataset_reports_in_the_beta_reports_app } 
 
 Dataset reports are printer friendly views of the data entry screen
 filled with either raw or aggregated data. These are only available for
@@ -67,9 +61,7 @@ Use the print and save as functions in the browser to print or save (as
 HTML) the report.You can also export the data set report in Excel and
 PDF formats.
 
-## Using reporting rate summary
-
-<!--DHIS2-SECTION-ID:reporting_rate_summary_in_the_beta_reports_app-->
+## Using reporting rate summary { #reporting_rate_summary_in_the_beta_reports_app } 
 
 Access the reporting rate summary from the Apps-\>Reports (Beta) menu.
 Reporting rate summaries will show how many datasets (forms) that have
@@ -118,9 +110,7 @@ To run the report you can follow these steps:
 
 ![](resources/images/dhis2UserManual/react_reports_app_reporting_rate_summary.png)
 
-## Using resources
-
-<!--DHIS2-SECTION-ID:resources_in_the_beta_reports_app-->
+## Using resources { #resources_in_the_beta_reports_app } 
 
 The resource tool allows you to upload both files from your local
 computer to the DHIS server and to add links to other resources on the
@@ -139,9 +129,7 @@ To create a new resource:
 
 5.  Click **Save**.
 
-## Using organisation unit distribution reports
-
-<!--DHIS2-SECTION-ID:orgunit_distribution_reports_in_the_beta_reports_app-->
+## Using organisation unit distribution reports { #orgunit_distribution_reports_in_the_beta_reports_app } 
 
 You can access the Orgunit Distribution reports from the left side menu
 in the Apps-\>Reports (Beta).

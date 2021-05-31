@@ -1,10 +1,6 @@
-# Manage users, user roles and user groups
+# Manage users, user roles and user groups { #manage_user_role_group } 
 
-<!--DHIS2-SECTION-ID:manage_user_role_group-->
-
-## About user management
-
-<!--DHIS2-SECTION-ID:about_user_userrole-->
+## About user management { #about_user_userrole } 
 
 Multiple users can access DHIS2 simultaneously and each user can have
 different authorities. You can fine-tune these authorities so that
@@ -195,9 +191,7 @@ notifications](https://docs.dhis2.org/master/en/user/html/configure_tracker_prog
 [Mange push
 reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 
-## Workflow
-
-<!--DHIS2-SECTION-ID:user_mgt_workflow-->
+## Workflow { #user_mgt_workflow } 
 
 1.  Define the positions you need for your project and identify which
     tasks the different positions will perform.
@@ -220,13 +214,9 @@ reports](https://docs.dhis2.org/master/en/user/html/manage_push_report.html)
 > For users to be able to enter data, you must add them to an
 > organisational unit level and share a dataset with them.
 
-## Manage users
+## Manage users { #mgt_user } 
 
-<!--DHIS2-SECTION-ID:mgt_user-->
-
-### Create a user
-
-<!--DHIS2-SECTION-ID:create_user-->
+### Create a user { #create_user } 
 
 
 ![](resources/images/dhis2UserManual/select_user_menu.png)
@@ -361,9 +351,7 @@ expiration date for a user
 
 4.  **Save the updates** by submitting the form
 
-### Disable users
-
-<!--DHIS2-SECTION-ID:disable_user-->
+### Disable users { #disable_user } 
 
 You can disable a user. This means that the user's account is not
 deleted, but the user can't log in or use DHIS2.
@@ -402,9 +390,7 @@ organisation unit.
 The list of users will be filtered to only include users which have been
 assigned to the selected organisation units.
 
-### Clone users
-
-<!--DHIS2-SECTION-ID:clone_user-->
+### Clone users { #clone_user } 
 
 1.  Open the **Users** app and click **User**.
 
@@ -422,9 +408,7 @@ assigned to the selected organisation units.
 
 7.  Click **Save**.
 
-### Change user password
-
-<!--DHIS2-SECTION-ID:user_manage_password-->
+### Change user password { #user_manage_password } 
 
 To change a user's password:
 
@@ -499,13 +483,9 @@ just a password.
 > for users that have set up Two Factor Authentication via the
 > user-profile-app.
 
-## Manage user roles
+## Manage user roles { #mgt_userrole } 
 
-<!--DHIS2-SECTION-ID:mgt_userrole-->
-
-### Create a user role
-
-<!--DHIS2-SECTION-ID:create_userrole-->
+### Create a user role { #create_userrole } 
 
 
 ![](resources/images/dhis2UserManual/role_maintenance_page.png)
@@ -574,13 +554,9 @@ just a password.
 
 6.  Click **Save**.
 
-## Manage user groups
+## Manage user groups { #mgt_usergroup } 
 
-<!--DHIS2-SECTION-ID:mgt_usergroup-->
-
-### Create a user group
-
-<!--DHIS2-SECTION-ID:create_usergroup-->
+### Create a user group { #create_usergroup } 
 
 1.  Open the **Users** app and click **User group**.
 
@@ -596,18 +572,14 @@ just a password.
 
 6.  Click **Add**.
 
-### Join user groups
-
-<!--DHIS2-SECTION-ID:join_usergroup-->
+### Join user groups { #join_usergroup } 
 
 1.  Open the **Users** app and click **User group**.
 
 2.  In the list, click the relevant user group and select **Join
     group**.
 
-### Leave user groups
-
-<!--DHIS2-SECTION-ID:leave_usergroup-->
+### Leave user groups { #leave_usergroup } 
 
 1.  Open the **Users** app and click **User group**.
 
@@ -701,9 +673,7 @@ user management. You may define a range of user groups where other users
 may add or remove members, but not remove or change the name of the
 group.
 
-## Example: user management in a health system
-
-<!--DHIS2-SECTION-ID:user_mgt_example-->
+## Example: user management in a health system { #user_mgt_example } 
 
 In a health system, users are logically grouped with respect to the task
 they perform and the position they occupy.

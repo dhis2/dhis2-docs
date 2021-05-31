@@ -1,8 +1,6 @@
 # SMS
 
-## Short Message Service (SMS)
-
-<!--DHIS2-SECTION-ID:webapi_sms-->
+## Short Message Service (SMS) { #webapi_sms } 
 
 This section covers the SMS Web API for sending and receiving short text
 messages.
@@ -452,9 +450,7 @@ In generic http gateway any number of parameters can be added.
 
 HTTP.OK will be returned if configurations are saved successfully otherwise *Error*
 
-## SMS Commands
-
-<!--DHIS2-SECTION-ID:webapi_sms_commands-->
+## SMS Commands { #webapi_sms_commands } 
 
 SMS commands are being used to collect data through SMS. These commands
 belong to specific parser type. Each parser has different functionality.

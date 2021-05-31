@@ -1,8 +1,6 @@
 # Localization of DHIS 2
 
-## DHIS 2 localization concepts
-
-<!--DHIS2-SECTION-ID:localization-intro-->
+## DHIS 2 localization concepts { #localization-intro } 
 
 Localization involves the adaptation of an application to a specific
 location. When implementing DHIS 2 in a given country, adequate resources
@@ -78,9 +76,7 @@ chooses Brazilian Portuguese as their language:
 >   value by the application. You must place this variable notation in
 >   the correct position and be sure not to modify it.
 
-### Translation Platform
-
-<!--DHIS2-SECTION-ID:translation-server-->
+### Translation Platform { #translation-server } 
 
 DHIS2 is now using [transifex](www.transifex.com) as our main platform for
 managing translations. You can access the DHIS2 resources at
@@ -177,9 +173,7 @@ become visible in the development demo versions, and be available in future rele
 > DHIS 2 manages metadata (database) locales independently from the UI. _See the following section._ 
 
 
-## Metadata/Database translations
-
-<!--DHIS2-SECTION-ID:metadata-database-translations-->
+## Metadata/Database translations { #metadata-database-translations } 
 
 In addition to translation of the user interface, DHIS 2 also supports
 the localization of the metadata content in the database. It is possible
@@ -189,9 +183,7 @@ app has been developed for this purpose.
 
 New metadata locales can be added in **Maintenance app > Locales**.
 
-### DHIS 2 Translations app
-
-<!--DHIS2-SECTION-ID:translations-app-->
+### DHIS 2 Translations app { #translations-app } 
 
 The DHIS 2 **Translation app** can 
 be used to translate all metadata (data elements, categories,

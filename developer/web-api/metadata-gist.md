@@ -1,4 +1,4 @@
-# Metadata Gist API
+# Metadata Gist API { #gist_api } 
 <!--DHIS2-SECTION-ID:gist_api-->
 
 The Metadata Gist API is a RESTful read-only JSON API to fetch and browse 
@@ -13,7 +13,7 @@ The API is specifically designed to avoid:
   the response
   
 
-## Comparison with Metadata API
+## Comparison with Metadata API { #gist_vs_metadata_api } 
 <!--DHIS2-SECTION-ID:gist_vs_metadata_api-->
 
 The standard Metadata API is a flexible and powerful API built to serve any and 
@@ -64,7 +64,7 @@ Where possible to use the `/gist` API should be considered the preferable way
 of fetching metadata information.
 
 
-## Endpoints
+## Endpoints { #gist_endpoints } 
 <!--DHIS2-SECTION-ID:gist_endpoints-->
 
 The `/gist` API has 3 kinds of endpoints:
@@ -78,7 +78,7 @@ the `/gist` suffix and share the majority of parameters and their options with
 that API.
 
 
-## Browsing Data
+## Browsing Data { #gist_browse } 
 <!--DHIS2-SECTION-ID:gist_browse-->
 
 Since `/gist` API avoids deeply nested data structures in the response the
@@ -95,7 +95,7 @@ Linkage between parts of the gist can now be followed directly in browsers that
 render JSON responses.
 
 
-## Parameters
+## Parameters { #gist_parameters } 
 <!--DHIS2-SECTION-ID:gist_parameters-->
 
 All endpoints of the `/gist` API accept the same set of parameters.
@@ -120,7 +120,7 @@ Parameters in alphabetical order:
 * `translate`: `true` (default) translate all translatable properties, `false` skip translation of translatable properties (no effect on synthetic display names)
 
 
-### The `absoluteUrls` Parameter
+### The `absoluteUrls` Parameter { #gist_parameters_absoluteUrls } 
 <!--DHIS2-SECTION-ID:gist_parameters_absoluteUrls-->
 
 By default, URIs in `apiEndpoints`, `href` and the `pager`'s`prev` and `next` 
@@ -181,7 +181,7 @@ include `organisationUnits`, `dataViewOrganisationUnits`,
 members in the lists/sets.
 
 
-### The `fields` Parameter
+### The `fields` Parameter { #gist_parameters_fields } 
 <!--DHIS2-SECTION-ID:gist_parameters_fields-->
 
 Specifies the list of fields to include for each list item.
@@ -281,7 +281,7 @@ JSON value:
 
 Further details on field presets can be found in section [Fields](#gist_fields).
 
-### The `filter` Parameter
+### The `filter` Parameter { #gist_parameters_filter } 
 <!--DHIS2-SECTION-ID:gist_parameters_filter-->
 
 To filter the list of returned items add one or more `filter` parameters.
@@ -347,7 +347,7 @@ a program one would use:
     /api/organisationUnits/rZxk3S0qN63/children/gist?filter=programs:gt:0
 
 
-### The `headless` Parameter
+### The `headless` Parameter { #gist_parameters_headless } 
 <!--DHIS2-SECTION-ID:gist_parameters_headless-->
 
 Endpoints returning a list by default wrap the items with an envelope containing 
@@ -394,7 +394,7 @@ Filters and orders do apply normally, meaning they filter or order the items
 not contained in the member collection.
 
 
-### The `order` Parameter
+### The `order` Parameter { #gist_parameters_order } 
 <!--DHIS2-SECTION-ID:gist_parameters_order-->
 
 To sort the list of items one or more order expressions can be given.
@@ -423,7 +423,7 @@ If no order is specified the result list will have a stable order based on
 internal data organisation.
 
 
-### The `page` Parameter
+### The `page` Parameter { #gist_parameters_page } 
 <!--DHIS2-SECTION-ID:gist_parameters_page-->
 
 Refers to the viewed page in paged list starting with `1` for the first page.
@@ -435,7 +435,7 @@ If a `page` is given beyond the number of existing matches an empty item list
 is returned.
 
 
-### The `pageSize` Parameter
+### The `pageSize` Parameter { #gist_parameters_pageSize } 
 <!--DHIS2-SECTION-ID:gist_parameters_pageSize-->
 
 Refers to the number of items on a `page`. Maximum is 1000 items.
@@ -443,7 +443,7 @@ Refers to the number of items on a `page`. Maximum is 1000 items.
 If no `pageSize` parameter is present this is equal to `pageSize=50`.
 
 
-### The `rootJunction` Parameter
+### The `rootJunction` Parameter { #gist_parameters_rootJunction } 
 <!--DHIS2-SECTION-ID:gist_parameters_rootJunction-->
 
 The `rootJunction` parameter can be used to explicitly set the logic junction
@@ -455,7 +455,7 @@ used between filters. Possible are:
 Default is `AND`.
 
 
-### The `total` Parameter
+### The `total` Parameter { #gist_parameters_total } 
 <!--DHIS2-SECTION-ID:gist_parameters_total-->
 
 By default, a gist query will **not** count the total number of matches should 
@@ -498,7 +498,7 @@ The response to `/api/organisationUnits/gist?total=true` now returns this `pager
 ```
 
 
-### The `translate` Parameter
+### The `translate` Parameter { #gist_parameters_translate } 
 <!--DHIS2-SECTION-ID:gist_parameters_translate-->
 
 Fields like `name` or `shortName` can be translated (internationalised).
@@ -531,7 +531,7 @@ Note that synthetic fields `displayName` and `displayShortName` are always
 returning the translated value independent of the `translate` parameter.
 
 
-## Fields
+## Fields { #gist_fields } 
 <!--DHIS2-SECTION-ID:gist_fields-->
 
 The fields included by default (without `fields` parameter) correspond to 
@@ -585,7 +585,7 @@ member instead. Note that `rename` also affects the member name of the URI
 reference given in `apiEndpoints`.
 
 
-## Synthetic Fields
+## Synthetic Fields { #gist_syntheticFields } 
 <!--DHIS2-SECTION-ID:gist_syntheticFields-->
 
 The `/gist` API is tightly coupled to properties that exist the database.
@@ -611,7 +611,7 @@ Synthetic fields in alphabetical order:
 * `displayShortName`: translated `displayName` (always translated)
 
 
-### The `href` Field
+### The `href` Field { #gist_syntheticFields_href } 
 <!--DHIS2-SECTION-ID:gist_syntheticFields_href-->
 
 Each item in a `/gist` response can link to itself. This link is given in the 
@@ -622,7 +622,7 @@ To add the `href` field use (for example):
 		/api/<object-type>/gist?fields=*,href
 
 
-### The `displayName` and `displayShortName` Field
+### The `displayName` and `displayShortName` Field { #gist_syntheticFields_displayName } 
 <!--DHIS2-SECTION-ID:gist_syntheticFields_displayName-->
 
 By definition the `displayName` is the translated `name` and the 
@@ -638,7 +638,7 @@ would also be translated. When `translate=false` is used to disable this
 `displayName` and `displayShortName` stay translated.
 
 
-### The `apiEndpoints` Field
+### The `apiEndpoints` Field { #gist_syntheticFields_apiEndpoints } 
 <!--DHIS2-SECTION-ID:gist_syntheticFields_apiEndpoints-->
 
 This property provides the links to further browse complex objects or list of 
@@ -686,7 +686,7 @@ returns items in the form:
 ```
 
 
-## Examples
+## Examples { #gist_examples } 
 <!--DHIS2-SECTION-ID:gist_examples-->
 A few examples starting from simple listings moving to tips on very specific
 use cases. 

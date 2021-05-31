@@ -1,15 +1,11 @@
-# Installation
-
-<!--DHIS2-SECTION-ID:installation-->
+# Installation { #installation } 
 
 The installation chapter provides information on how to install DHIS2 in
 various contexts, including online central server, offline local
 network, standalone application and self-contained package called DHIS2
 Live.
 
-## Introduction
-
-<!--DHIS2-SECTION-ID:install_introduction-->
+## Introduction { #install_introduction } 
 
 DHIS2 runs on all platforms for which there exists a Java JDK, which includes most popular operating
 systems such as Windows, Linux and Mac. DHIS2 runs on the PostgreSQL
@@ -32,9 +28,7 @@ the guide below and is recommended for most users, especially those who
 are not familiar with the command line or administration of servers. It
 is described in detail in a separate chapter in this guide.
 
-## Server specifications
-
-<!--DHIS2-SECTION-ID:install_server_specifications-->
+## Server specifications { #install_server_specifications } 
 
 DHIS2 is a database intensive application and requires that your server
 has an appropriate amount of RAM, number of CPU cores and a fast disk.
@@ -52,9 +46,7 @@ CPU cores so the more you can afford, the better the application will perform.
   disk space. Plan ahead and ensure that your server can be upgraded
   with more disk space as needed.
 
-## Software requirements
-
-<!--DHIS2-SECTION-ID:install_software_requirements-->
+## Software requirements { #install_software_requirements } 
 
 Later DHIS2 versions require the following software versions to operate.
 
@@ -68,9 +60,7 @@ Later DHIS2 versions require the following software versions to operate.
   3.1 compliant servlet containers.
 - Cluster setup only (optional): Redis data store version 4 or later. 
 
-## Server setup
-
-<!--DHIS2-SECTION-ID:install_server_setup-->
+## Server setup { #install_server_setup } 
 
 This section describes how to set up a server instance of DHIS2 on
 Ubuntu 18.04 64 bit with PostgreSQL as database system and Tomcat as
@@ -91,9 +81,7 @@ perform its tasks, for instance around 2 GB. The steps marked as
 *optional*, like the step for performance tuning, can be done at a later
 stage.
 
-### Creating a user to run DHIS2
-
-<!--DHIS2-SECTION-ID:install_creating_user-->
+### Creating a user to run DHIS2 { #install_creating_user } 
 
 You should create a dedicated user for running DHIS2.
 
@@ -115,9 +103,7 @@ sudo passwd dhis
 
 Make sure you set a strong password with at least 15 random characters.
 
-### Creating the configuration directory
-
-<!--DHIS2-SECTION-ID:install_creating_config_directory-->
+### Creating the configuration directory { #install_creating_config_directory } 
 
 Start by creating a suitable directory for the DHIS2 configuration
 files. This directory will also be used for apps, files and log files.
@@ -133,9 +119,7 @@ locate the DHIS2 configuration directory. This directory will be
 referred to as *DHIS2\_HOME* in this installation guide. We will define
 the environment variable in a later step in the installation process.
 
-### Setting server time zone and locale
-
-<!--DHIS2-SECTION-ID:install_setting_server_tz-->
+### Setting server time zone and locale { #install_setting_server_tz } 
 
 It may be necessary to reconfigure the time zone of the server to match
 the time zone of the location which the DHIS2 server will be covering.
@@ -157,9 +141,7 @@ locale -a
 sudo locale-gen nb_NO.UTF-8
 ```
 
-### PostgreSQL installation
-
-<!--DHIS2-SECTION-ID:install_postgresql_installation-->
+### PostgreSQL installation { #install_postgresql_installation } 
 
 Install PostgreSQL by invoking:
 
@@ -195,9 +177,7 @@ sudo -u postgres psql -c "create extension postgis;" dhis2
 Exit the console and return to your previous user with *\\q* followed by
 *exit*.
 
-### PostgreSQL performance tuning
-
-<!--DHIS2-SECTION-ID:install_postgresql_performance_tuning-->
+### PostgreSQL performance tuning { #install_postgresql_performance_tuning } 
 
 Tuning PostgreSQL is necessary to achieve a high-performing system but
 is optional in terms of getting DHIS2 to run. PostgreSQL is configured
@@ -303,9 +283,7 @@ Restart PostgreSQL by invoking the following command:
 sudo /etc/init.d/postgresql restart
 ```
 
-### Java installation
-
-<!--DHIS2-SECTION-ID:install_java_installation-->
+### Java installation { #install_java_installation } 
 
 The recommended Java JDK for DHIS 2 is OpenJDK 11 (for version 2.35 and later). You can install it with the following command:
 
@@ -325,9 +303,7 @@ Verify that your installation is correct by invoking:
 java -version
 ```
 
-### DHIS2 configuration
-
-<!--DHIS2-SECTION-ID:install_database_configuration-->
+### DHIS2 configuration { #install_database_configuration } 
 
 The database connection information is provided to DHIS2 through a
 configuration file called `dhis.conf`. Create this file and save it in
@@ -389,9 +365,7 @@ invoke the following command which ensures only the *dhis* user is allowed to re
 chmod 600 dhis.conf
 ```
 
-### Tomcat and DHIS2 installation
-
-<!--DHIS2-SECTION-ID:install_tomcat_dhis2_installation-->
+### Tomcat and DHIS2 installation { #install_tomcat_dhis2_installation } 
 
 To install the Tomcat servlet container we will utilize the Tomcat user
 package by invoking:
@@ -478,9 +452,7 @@ export CATALINA_BASE="/home/dhis/tomcat-dhis"
 echo "Tomcat started"
 ```
 
-### Running DHIS2
-
-<!--DHIS2-SECTION-ID:install_running_dhis2-->
+### Running DHIS2 { #install_running_dhis2 } 
 
 DHIS2 can now be started by invoking:
 
@@ -504,9 +476,7 @@ DHIS2 instance at the following URL:
 
     http://localhost:8080
 
-## File store configuration
-
-<!--DHIS2-SECTION-ID:install_file_store_configuration-->
+## File store configuration { #install_file_store_configuration } 
 
 DHIS2 is capable of capturing and storing files. By default, files will
 be stored on the local file system of the server which runs DHIS2 in a *files*
@@ -562,9 +532,7 @@ implementation.
 > be added in the future, such as Google Cloud Store and Azure Blob Storage.
 > Let us know if you have a use case for additional providers.
 
-## Google service account configuration
-
-<!--DHIS2-SECTION-ID:install_google_service_account_configuration-->
+## Google service account configuration { #install_google_service_account_configuration } 
 
 DHIS2 can connect to various Google service APIs. For instance, the
 DHIS2 GIS component can utilize the Google Earth Engine API to load map
@@ -588,9 +556,7 @@ As an example this location could be:
 
     /home/dhis/config/dhis-google-auth.json
 
-## OpenID Connect (OIDC) configuration
-
-<!--DHIS2-SECTION-ID:install_oidc_configuration-->
+## OpenID Connect (OIDC) configuration { #install_oidc_configuration } 
 
 DHIS2 supports the OpenID Connect (OIDC) identity layer for single sign-in (SSO). OIDC is a standard authentication protocol that lets users sign in to an identity provider (IdP) such as Google. After users have successfully signed in to their IdP, they will be automatically signed in to DHIS2.
 
@@ -889,9 +855,7 @@ oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
 
 ```
 
-## LDAP configuration
-
-<!--DHIS2-SECTION-ID:install_ldap_configuration-->
+## LDAP configuration { #install_ldap_configuration } 
 
 DHIS2 is capable of using an LDAP server for authentication of users.
 For LDAP authentication it is required to have a matching user in the
@@ -963,9 +927,7 @@ property. When set, the LDAP identifier will be substituted for the {0}
 variable in the filter. This feature is useful when the LDAP common name
 is not suitable or cannot for some reason be used as a DHIS2 username.
 
-## Encryption configuration
-
-<!--DHIS2-SECTION-ID:install_encryption_configuration-->
+## Encryption configuration { #install_encryption_configuration } 
 
 DHIS2 allows for encryption of data. Enabling it requires some extra
 setup. To provide security to the encryption algorithm you will have to set a
@@ -992,9 +954,7 @@ must be kept secret.
 
 Note that encryption support depends on the *Java Cryptography Extension* (JCE) policy files to be available.  These are included in all versions of OpenJDK and Oracle JDK 8 Update 144 or later.
 
-## Read replica database configuration
-
-<!--DHIS2-SECTION-ID:install_read_replica_configuration-->
+## Read replica database configuration { #install_read_replica_configuration } 
 
 DHIS 2 allows for utilizing read only replicas of the master database
 (the main DHIS 2 database). The purpose of read replicas is to enhance
@@ -1043,16 +1003,12 @@ Note that you must restart your servlet container for the changes to
 take effect. DHIS 2 will automatically distribute the load across the
 read replicas. The ordering of replicas has no significance.
 
-## Web server cluster configuration
-
-<!--DHIS2-SECTION-ID:install_web_server_cluster_configuration-->
+## Web server cluster configuration { #install_web_server_cluster_configuration } 
 
 This section describes how to set up the DHIS 2 application to run in a
 cluster.
 
-### Clustering overview
-
-<!--DHIS2-SECTION-ID:install_cluster_configuration_introduction-->
+### Clustering overview { #install_cluster_configuration_introduction } 
 
 Clustering is a common technique for improving system scalability and
 availability. Clustering refers to setting up multiple web servers such
@@ -1078,9 +1034,7 @@ or a shared network drive.
 * A load balancer such as nginx must be configured to distribute Web requests
 across the cluster instances.
 
-### DHIS 2 instance cluster configuration
-
-<!--DHIS2-SECTION-ID:install_cluster_configuration-->
+### DHIS 2 instance cluster configuration { #install_cluster_configuration } 
 
 When setting up multiple Tomcat instances there is a need for making the
 instances aware of each other. This awareness will enable DHIS 2 to keep
@@ -1161,9 +1115,7 @@ ensure that their caches are kept in sync.
 To understand which node acts as the cluster leader you can access the `/api/36/cluster/leader` web API endpoint. Read more in the web API documentation.
 
 
-### Redis shared data store cluster configuration
-
-<!--DHIS2-SECTION-ID:install_cluster_configuration_redis-->
+### Redis shared data store cluster configuration { #install_cluster_configuration_redis } 
 
 In a cluster setup, a *Redis* instance is required and will handle
 shared user sessions, application cache and cluster node leadership.
@@ -1246,9 +1198,7 @@ servers in the cluster. On Linux this can be achieved with *NFS* (Network File S
 which is a distributed file system protocol. Note that only the `files` 
 subfolder under `DHIS2_HOME` should be shared, not the parent folder. 
 
-### Load balancer configuration
-
-<!--DHIS2-SECTION-ID:install_load_balancing-->
+### Load balancer configuration { #install_load_balancing } 
 
 With a cluster of Tomcat instances set up, a common approach for routing
 incoming web requests to the backend instances participating in the
@@ -1294,9 +1244,7 @@ this.
 Note that several instructions have been omitted for brevity in the
 above example. Consult the reverse proxy section for a detailed guide.
 
-## ActiveMQ Artemis configuration
-
-<!--DHIS2-SECTION-ID:webapi_amqp_configuration-->
+## ActiveMQ Artemis configuration { #webapi_amqp_configuration } 
 
 By default DHIS2 will start an embedded instance of ActiveMQ Artemis when booting up. For most use-cases, you do not need to do anything. If you have an existing ActiveMQ Artemis service you want to use instead of the embedded instance you can change the default configuration in your `dhis.conf` file with the configuration properties in the following table.
 
@@ -1338,9 +1286,7 @@ The recommended approach for collecting and visualizing these metrics is through
 
 For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
 
-## System configuration
-
-<!--DHIS2-SECTION-ID:install_system_configuration-->
+## System configuration { #install_system_configuration } 
 
 This section covers various system configuration properties.
 
@@ -1368,9 +1314,7 @@ system.program_rule.server_execution = on | off
 
 Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
 
-## Reverse proxy configuration
-
-<!--DHIS2-SECTION-ID:install_reverse_proxy_configuration-->
+## Reverse proxy configuration { #install_reverse_proxy_configuration } 
 
 A reverse proxy is a proxy server that acts on behalf of a server. Using
 a reverse proxy in combination with a servlet container is optional but
@@ -1390,9 +1334,7 @@ has many advantages:
     responses and provide non-sensitive error messages which will
     improve security.
 
-### Basic nginx setup
-
-<!--DHIS2-SECTION-ID:install_basic_nginx_setup-->
+### Basic nginx setup { #install_basic_nginx_setup } 
 
 We recommend using [nginx](http://www.nginx.org) as a reverse proxy due to
 its low memory footprint and ease of use. To install invoke the
@@ -1463,9 +1405,7 @@ for HTTP 1.1 like this:
 <Connector address="localhost" protocol="HTTP/1.1" />
 ```
 
-### Enabling SSL with nginx
-
-<!--DHIS2-SECTION-ID:install_enabling_ssl_on_nginx-->
+### Enabling SSL with nginx { #install_enabling_ssl_on_nginx } 
 
 In order to improve security it is recommended to configure the server
 running DHIS2 to communicate with clients over an encrypted connection
@@ -1562,9 +1502,7 @@ to add two other parameters to the Connector in the Tomcat `server.xml` file:
 <Connector scheme="https" proxyPort="443" />
 ```
 
-### Enabling caching with nginx
-
-<!--DHIS2-SECTION-ID:install_enabling_caching_ssl_nginx-->
+### Enabling caching with nginx { #install_enabling_caching_ssl_nginx } 
 
 Requests for reports, charts, maps and other analysis-related resources
 will often take some time to respond and might utilize a lot of server
@@ -1612,9 +1550,7 @@ http {
 > Hence, if you capture sensitive information, setting up a server side
 > cache is not recommended.
 
-### Rate limiting with nginx
-
-<!--DHIS2-SECTION-ID:install_rate_limiting-->
+### Rate limiting with nginx { #install_rate_limiting } 
 
 Certain web API calls in DHIS 2, like the `analytics` APIs, are compute intensive. As a result it is favorable to rate limit these APIs in order to allow all users of the system to utilize a fair share of the server resources. Rate limiting can be achieved with `nginx`. There are numerous approaches to achieving rate limiting and this is intended to document the nginx-based approach.
 
@@ -1647,9 +1583,7 @@ The various elements of the configuration can be described as:
 
 For a full explanation please consult the [nginx documentation](https://www.nginx.com/blog/rate-limiting-nginx/).
 
-### Making resources available with nginx
-
-<!--DHIS2-SECTION-ID:install_making_resources_available_with_nginx-->
+### Making resources available with nginx { #install_making_resources_available_with_nginx } 
 
 In some scenarios it is desirable to make certain resources publicly
 available on the Web without requiring authentication. One example is
@@ -1702,9 +1636,7 @@ http {
 ```
 
 
-### Block specific Android App versions with nginx
-
-<!--DHIS2-SECTION-ID:install_block_android_versions-->
+### Block specific Android App versions with nginx { #install_block_android_versions } 
 
 In some scenarios the system administrator might want to block certain Android clients based on its DHIS2 App version. For example, if the users on the field have not updated their Android App version to a specific one and the system administrator wants to block their access to force an update; or completely the opposite scenario when the system administrator wants to block new versions of the App as they have not been yet tested. This can be easily implemented by using specific *User-Agent* rules in the `nginx` configuration file.
 
@@ -1736,9 +1668,7 @@ http {
 > * Android_XX refers to the Android API level i.e. the Android version as listed [here](https://developer.android.com/studio/releases/platforms).
 > * nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching .
 
-## DHIS2 configuration reference
-
-<!--DHIS2-SECTION-ID:install_dhis2_configuration_reference-->
+## DHIS2 configuration reference { #install_dhis2_configuration_reference } 
 
 The following describes the full set of configuration options for the *dhis.conf* configuration file. The configuration file should be placed in a directory which is pointed to by a *DHIS2\_HOME* environment variable.
 
@@ -1893,9 +1823,7 @@ system.monitoring.username =
 system.monitoring.password = xxxx
 ```
 
-## Changelog
-
-<!--DHIS2-SECTION-ID:install_changelog-->
+## Changelog { #install_changelog } 
 
 DHIS2 writes entries to changelogs when certain entities were changed in the system. The entities fall within two categories: _Aggregate_ and _tracker_. The _aggregate_ category includes changes to aggregate data values. The _tracker_ category includes changes to program instances, program temporary ownership items, tracked entity attribute values and tracked entity data values.
 
@@ -1911,9 +1839,7 @@ changelog.aggregate = on
 changelog.tracker = on
 ```
 
-## Application logging
-
-<!--DHIS2-SECTION-ID:install_application_logging-->
+## Application logging { #install_application_logging } 
 
 This section covers application logging in DHIS 2.
 
@@ -1954,9 +1880,7 @@ logging.file.max_archives = 2
 
 DHIS2 will eventually phase out logging to standard out / catalina.out and as a result it is recommended to rely on the logs under DHIS2\_HOME.
 
-## Working with the PostgreSQL database
-
-<!--DHIS2-SECTION-ID:install_working_with_the_postgresql_database-->
+## Working with the PostgreSQL database { #install_working_with_the_postgresql_database } 
 
 Common operations when managing a DHIS2 instance are dumping and
 restoring databases. To make a dump (copy) of your database, assuming

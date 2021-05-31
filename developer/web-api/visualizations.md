@@ -1,7 +1,5 @@
 # Visualizations
-## Dashboard
-
-<!--DHIS2-SECTION-ID:webapi_dashboard-->
+## Dashboard { #webapi_dashboard } 
 
 The dashboard is designed to give you an overview of multiple analytical
 items like maps, charts, pivot tables and reports which together can
@@ -17,9 +15,7 @@ links.
 
     /api/dashboards
 
-### Browsing dashboards
-
-<!--DHIS2-SECTION-ID:webapi_browsing_dashboards-->
+### Browsing dashboards { #webapi_browsing_dashboards } 
 
 To get a list of your dashboards with basic information including
 identifier, name and link in JSON format you can make a *GET* request to
@@ -85,9 +81,7 @@ detailed information about each object on a users dashboard.
 
     /api/dashboards/vQFhmLJU5sK/?fields=:all,dashboardItems[:all]
 
-### Searching dashboards
-
-<!--DHIS2-SECTION-ID:webapi_searching_dasboards-->
+### Searching dashboards { #webapi_searching_dasboards } 
 
 When a user is building a dashboard it is convenient
 to be able to search for various analytical resources using the
@@ -201,9 +195,7 @@ similar to this:
 }
 ```
 
-### Creating, updating and removing dashboards
-
-<!--DHIS2-SECTION-ID:webapi_creating_updating_removing_dashboards-->
+### Creating, updating and removing dashboards { #webapi_creating_updating_removing_dashboards } 
 
 Creating, updating and deleting dashboards follow standard REST
 semantics. In order to create a new dashboard you can make a *POST*
@@ -225,9 +217,7 @@ dashboard resource similar to this:
 
     /api/dashboards/vQFhmLJU5sK
 
-### Adding, moving and removing dashboard items and content
-
-<!--DHIS2-SECTION-ID:webapi_adding_moving_removing_dashboard_items-->
+### Adding, moving and removing dashboard items and content { #webapi_adding_moving_removing_dashboard_items } 
 
 In order to add dashboard items a consumer can use the
 `/api/dashboards/<dashboard-id>/items/content` resource, where
@@ -307,9 +297,7 @@ dashboard item completely:
 
     /api/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
 
-## Visualization
-
-<!--DHIS2-SECTION-ID:webapi_visualization-->
+## Visualization { #webapi_visualization } 
 
 The Visualization API is designed to help clients to interact with charts and pivot/report tables. The endpoints of this API are used by the Data Visualization application which allows the creation, configuration and management of charts and pivot tables based on the client's definitions. The main idea is to enable clients and users to have a unique and centralized API providing all types of charts and pivot tables as well as specific parameters and configuration for each type of visualization.
 
@@ -601,9 +589,7 @@ The root endpoint of the API is `/api/visualizations`, and the list of current a
 </tbody>
 </table>
 
-### Retrieving visualizations
-
-<!--DHIS2-SECTION-ID:webapi_visualization_retrieving_visualizations-->
+### Retrieving visualizations { #webapi_visualization_retrieving_visualizations } 
 
 To retrieve a list of all existing visualizations, in JSON format, with some basic information (including identifier, name and pagination) you can make a `GET` request to the URL below. You should see a list of all public/shared visualizations plus your private ones.
 
@@ -695,9 +681,7 @@ will return
 
 As seen, the `GET` above will return only the interpretations related to the given identifier (in this case `hQxZGXqnLS9`).
 
-### Creating, updating and removing visualizations
-
-<!--DHIS2-SECTION-ID:webapi_visualization_add_update_remove_visualizations-->
+### Creating, updating and removing visualizations { #webapi_visualization_add_update_remove_visualizations } 
 
 These operations follow the standard *REST* semantics. A new Visualization can be created through a `POST` request to the `/api/visualizations` resource with a valid JSON payload. An example of payload could be:
 
@@ -1052,9 +1036,7 @@ Finally, to delete an existing Visualization, you can make a `DELETE` request sp
 
     DELETE /api/visualizations/hQxZGXqnLS9
 
-## Interpretations
-
-<!--DHIS2-SECTION-ID:webapi_interpretations-->
+## Interpretations { #webapi_interpretations } 
 
 For resources related to data analysis in DHIS2, such as pivot tables,
 charts, maps, event reports and event charts, you can write and share
@@ -1063,9 +1045,7 @@ observation or interpretation about a data report or visualization.
 
     /api/interpretations
 
-### Reading interpretations
-
-<!--DHIS2-SECTION-ID:webapi_reading_interpretations-->
+### Reading interpretations { #webapi_reading_interpretations } 
 
 To read interpretations we will interact with the
 `/api/interpretations` resource. A typical GET request using field
@@ -1244,9 +1224,7 @@ in the interpretation or in any comment (OR junction):
 
     GET /api/interpretations?fields=*,comments[*]&filter=mentions:in:[boateng]
 
-### Writing interpretations
-
-<!--DHIS2-SECTION-ID:webapi_writing_interpretations-->
+### Writing interpretations { #webapi_writing_interpretations } 
 
 When writing interpretations you will supply the interpretation text as
 the request body using a POST request with content type "text/plain".
@@ -1290,9 +1268,7 @@ indicating the location of the created interpretation. This is useful
 from a client perspective when you would like to add a comment to the
 interpretation.
 
-### Updating and removing interpretations
-
-<!--DHIS2-SECTION-ID:webapi_updating_removing_interpretations-->
+### Updating and removing interpretations { #webapi_updating_removing_interpretations } 
 
 To update an existing interpretation you can use a PUT request where the
 interpretation text is the request body using the following URL pattern,
@@ -1311,9 +1287,7 @@ curl -d "This charts shows a high dropout" -X PUT
 You can use the same URL pattern as above using a DELETE request to
 remove the interpretation.
 
-### Creating interpretation comments
-
-<!--DHIS2-SECTION-ID:webapi_creating_interpretation_comments-->
+### Creating interpretation comments { #webapi_creating_interpretation_comments } 
 
 When writing comments to interpretations you will supply the comment
 text as the request body using a POST request with content type
@@ -1337,9 +1311,7 @@ curl -d "An intervention is needed" -X POST
   -H "Content-Type:text/plain" -u admin:district
 ```
 
-### Updating and removing interpretation comments
-
-<!--DHIS2-SECTION-ID:webapi_updating_removing_interpretation_comments-->
+### Updating and removing interpretation comments { #webapi_updating_removing_interpretation_comments } 
 
 To updating an interpretation comment you can use a PUT request where
 the comment text is the request body using the following URL pattern:
@@ -1356,9 +1328,7 @@ curl "https://play.dhis2.org/demo/api/interpretations/j8sjHLkK8uY/comments/idAzz
 You can use the same URL pattern as above using a DELETE request to the
 remove the interpretation comment.
 
-### Liking interpretations
-
-<!--DHIS2-SECTION-ID:webapi_liking_interpretations-->
+### Liking interpretations { #webapi_liking_interpretations } 
 
 To like an interpretation you can use an empty POST request to the
 *like* resource:
@@ -1396,9 +1366,7 @@ have liked the interpretation.
   ]
 }
 ```
-## SQL views
-
-<!--DHIS2-SECTION-ID:webapi_sql_views-->
+## SQL views { #webapi_sql_views } 
 
 The SQL views resource allows you to create and retrieve the result set
 of SQL views. The SQL views can be executed directly against the
@@ -1459,9 +1427,7 @@ There are three types of SQL views:
   - *SQL queries:* Plain SQL queries. Support inline variables for
     customized queries.
 
-### Criteria
-
-<!--DHIS2-SECTION-ID:webapi_sql_view_criteria-->
+### Criteria { #webapi_sql_view_criteria } 
 
 You can do simple filtering on the columns in the result set by
 appending *criteria* query parameters to the URL, using the column names
@@ -1476,9 +1442,7 @@ organisation units at level 4 you can use the following
 
     https://play.dhis2.org/demo/api/sqlViews/dI68mLkP1wN/data.csv?criteria=level:4
 
-### Variables
-
-<!--DHIS2-SECTION-ID:webapi_sql_view_variables-->
+### Variables { #webapi_sql_view_variables } 
 
 SQL views support variable substitution. Variable substitution is only
 available for SQL view of type *query*, meaning SQL views which are not
@@ -1531,9 +1495,7 @@ For example, the following SQL view of type *query* shows all the organisation u
     order by ou.path
 ```
 
-### Filtering
-
-<!--DHIS2-SECTION-ID:webapi_sql_view_filtering-->
+### Filtering { #webapi_sql_view_filtering } 
 
 The SQL view api supports data filtering, equal to the [metadata object
 filter](#webapi_metadata_object_filter). For a complete list of filter
@@ -1560,9 +1522,7 @@ And last, an example to return all org units that does not start with
     /api/sqlViews/w3UxFykyHFy/data.json?filter=orgunit_name:!like:Bo
 
 
-## Data items
-
-<!--DHIS2-SECTION-ID:webapi_data_items-->
+## Data items { #webapi_data_items } 
 
 This endpoint allows the user to query data related to a few different dimensional items. These items are: `INDICATOR`, `DATA_ELEMENT`, `DATA_SET`, `PROGRAM_INDICATOR`, `PROGRAM_DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`. The endpoint supports only `GET` requests and, as other endpoints, can return responses in JSON or XML format.
 
@@ -1583,9 +1543,7 @@ In other words, the filter will be applied only when the attribute actually exis
 Another important aspect to be highlighted is that this endpoint does NOT follow the same querying standards as other existing endpoints, like [Metadata object filter](#webapi_metadata_object_filter) for example. As a consequence, it supports a smaller set of features and querying.
 The main reason for that is the need for querying multiple different items that have different relationships, which is not possible using the existing filtering components (used by the others endpoints).
 
-### Possible endpoint responses
-
-<!--DHIS2-SECTION-ID:webapi_data_items_possible_responses-->
+### Possible endpoint responses { #webapi_data_items_possible_responses } 
 
 Base on the `GET` request/query, a few different responses are possible. Below we are summarizing each possibility.
 
@@ -1653,9 +1611,7 @@ Base on the `GET` request/query, a few different responses are possible. Below w
 }
 ```
 
-### Pagination
-
-<!--DHIS2-SECTION-ID:webapi_data_items_pagination-->
+### Pagination { #webapi_data_items_pagination } 
 
 This endpoint also supports pagination as a default option. If needed, you can disable pagination by adding `paging=false` to the `GET` request.
 ie.: `/api/dataItems?filter=dimensionItemType:in:[INDICATOR]&paging=false`.
@@ -1686,9 +1642,7 @@ Here is an example of a payload when the pagination is enabled. Remember that pa
 >
 > The `order` will be considered invalid if it is set on top of `name` (ie.: order=*name:asc*) and a `filter` is set to `displayName` (ie.: filter=*displayName:ilike:aName*), and vice-versa.
 
-### Response attributes
-
-<!--DHIS2-SECTION-ID:webapi_data_items_response_attributes-->
+### Response attributes { #webapi_data_items_response_attributes } 
 
 Now that we have a good idea of the main features and usage of this endpoint let's have a look in the list of attributes returned in the response.
 
@@ -1747,9 +1701,7 @@ Now that we have a good idea of the main features and usage of this endpoint let
 </tr>
 </tbody>
 </table>
-## Viewing analytical resource representations
-
-<!--DHIS2-SECTION-ID:webapi_viewing_analytical_resource_representations-->
+## Viewing analytical resource representations { #webapi_viewing_analytical_resource_representations } 
 
 DHIS2 has several resources for data analysis. These resources include
 *charts*, *maps*, *reportTables*, *reports* and *documents*. By visiting
@@ -1885,9 +1837,7 @@ representations are listed below.
     /api/reports/OeJsA6K1Otx/data.pdf
     /api/reports/OeJsA6K1Otx/data.pdf?date=2014-01-01
 
-## Plugins
-
-<!--DHIS2-SECTION-ID:webapi_plugins-->
+## Plugins { #webapi_plugins } 
 
 DHIS2 comes with plugins which enable you to embed live data directly in
 your web portal or web site. Currently, plugins exist for charts, maps
@@ -1910,9 +1860,7 @@ section of the implementers manual which describes [reverse
 proxy](https://docs.dhis2.org/master/en/implementer/html/install_reverse_proxy_configuration.html#install_making_resources_available_with_nginx)
 configuration.
 
-### Embedding pivot tables with the Pivot Table plug-in
-
-<!--DHIS2-SECTION-ID:webapi_pivot_table_plugin-->
+### Embedding pivot tables with the Pivot Table plug-in { #webapi_pivot_table_plugin } 
 
 In this example, we will see how we can embed good-looking, light-weight
 html pivot tables with data served from a DHIS2 back-end into a Web
@@ -2235,9 +2183,7 @@ columns: [{
 </tbody>
 </table>
 
-### Embedding charts with the Visualizer chart plug-in
-
-<!--DHIS2-SECTION-ID:webapi_chart_plugin-->
+### Embedding charts with the Visualizer chart plug-in { #webapi_chart_plugin } 
 
 In this example, we will see how we can embed good-looking Highcharts
 charts (<http://www.highcharts.com>) with data served from a DHIS2
@@ -2593,9 +2539,7 @@ columns: [{
 </tbody>
 </table>
 
-### Embedding maps with the GIS map plug-in
-
-<!--DHIS2-SECTION-ID:webapi_map_plugin-->
+### Embedding maps with the GIS map plug-in { #webapi_map_plugin } 
 
 In this example we will see how we can embed maps with data served from
 a DHIS2 back-end into a Web page. To accomplish this we will use the GIS

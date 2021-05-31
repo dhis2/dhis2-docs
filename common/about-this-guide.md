@@ -1,6 +1,4 @@
-# About this guide
-
-<!--DHIS2-SECTION-ID:about_this_guide_-->
+# About this guide { #about_this_guide_ } 
 
 The DHIS2 documentation is a collective effort and has been developed by
 the development team and users. While the guide strives to be complete,

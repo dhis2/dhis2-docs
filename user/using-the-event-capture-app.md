@@ -1,10 +1,6 @@
-# Using the Event Capture app
+# Using the Event Capture app { #event_capture_app } 
 
-<!--DHIS2-SECTION-ID:event_capture_app-->
-
-## About the Event Capture app
-
-<!--DHIS2-SECTION-ID:about_event_capture_app-->
+## About the Event Capture app { #about_event_capture_app } 
 
 ![](resources/images/event_capture/event_list.png)
 
@@ -62,9 +58,7 @@ system then sends the data to the server where the data is stored.
     and lower and upper limits for number types. Server side filtering
     is not-support at the moment.
 
-## Register an event
-
-<!--DHIS2-SECTION-ID:event_capture_register_event-->
+## Register an event { #event_capture_register_event } 
 
 1.  Open the **Event Capture** app.
 
@@ -98,9 +92,7 @@ system then sends the data to the server where the data is stored.
 > the red star will not be displayed next to the data element lable. Note that super user that have the __"ALL"__ authority automatically
 > have this authority.
 
-## Edit an event
-
-<!--DHIS2-SECTION-ID:event_capture_edit_event-->
+## Edit an event { #event_capture_edit_event } 
 
 1.  Open the **Event Capture** app.
 
@@ -114,9 +106,7 @@ system then sends the data to the server where the data is stored.
 
 5.  Modify the event details and click **Update**.
 
-## Edit events in grid
-
-<!--DHIS2-SECTION-ID:event_capture_edit_event_grid-->
+## Edit events in grid { #event_capture_edit_event_grid } 
 
 The **Edit in grid** function allows you to edit a selected event within
 the table but only those columns (data elements) visible in the grid. If
@@ -137,9 +127,7 @@ columns should be displayed in the list.
 
 6.  Click on another event to close the edit mode.
 
-## Share events in edit mode
-
-<!--DHIS2-SECTION-ID:event_capture_share_event_edit_mode-->
+## Share events in edit mode { #event_capture_share_event_edit_mode } 
 
 You can share an event in edit mode via its web address.
 
@@ -158,9 +146,7 @@ You can share an event in edit mode via its web address.
     If you're not logged in to DHIS2 when you click the link, you'll be
     asked to do so and then taken to the dashboard.
 
-## View an event audit history
-
-<!--DHIS2-SECTION-ID:event_capture_view_event_audit_history-->
+## View an event audit history { #event_capture_view_event_audit_history } 
 
 1.  Open the **Event Capture** app.
 
@@ -172,9 +158,7 @@ You can share an event in edit mode via its web address.
 
 4.  Click an event and select **Audit history**.
 
-## Delete an event
-
-<!--DHIS2-SECTION-ID:event_capture_delete_event-->
+## Delete an event { #event_capture_delete_event } 
 
 1.  Open the **Event Capture** app.
 
@@ -188,9 +172,7 @@ You can share an event in edit mode via its web address.
 
 5.  Click **Remove** to cocnfirm the deletion.
 
-## Modify an event list's layout
-
-<!--DHIS2-SECTION-ID:event_capture_modify_event_list_layout-->
+## Modify an event list's layout { #event_capture_modify_event_list_layout } 
 
 You can select which columns to show or hide in an event list. This can
 be useful for example when you have a long list of data elements
@@ -210,9 +192,7 @@ programs.
 
 5.  Select the columns you want to display and click **Close**.
 
-## Print an event list
-
-<!--DHIS2-SECTION-ID:event_capture_print_event_list-->
+## Print an event list { #event_capture_print_event_list } 
 
 1.  Open the **Event Capture** app.
 
@@ -224,9 +204,7 @@ programs.
 
 4.  Click **Print list**.
 
-## Download an event list
-
-<!--DHIS2-SECTION-ID:event_capture_download_event_list-->
+## Download an event list { #event_capture_download_event_list } 
 
 1.  Open the **Event Capture** app.
 

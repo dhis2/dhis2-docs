@@ -1,8 +1,6 @@
 # Tracker
 
-## Tracker Web API
-
-<!--DHIS2-SECTION-ID:webapi_tracker_api-->
+## Tracker Web API { #webapi_tracker_api } 
 
 Tracker Web API consists of 3 endpoints that have full CRUD (create,
 read, update, delete) support. The 3 endpoints are
@@ -10,9 +8,7 @@ read, update, delete) support. The 3 endpoints are
 `/api/events` and they are responsible for tracked entity instance,
 enrollment and event items.
 
-### Tracked entity instance management
-
-<!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_management-->
+### Tracked entity instance management { #webapi_tracked_entity_instance_management } 
 
 Tracked entity instances have full CRUD support in the API. Together
 with the API for enrollment most operations needed for working with
@@ -20,9 +16,7 @@ tracked entity instances and programs are supported.
 
     /api/33/trackedEntityInstances
 
-#### Creating a new tracked entity instance
-
-<!--DHIS2-SECTION-ID:webapi_creating_tei-->
+#### Creating a new tracked entity instance { #webapi_creating_tei } 
 
 For creating a new person in the system, you will be working with the
 *trackedEntityInstances* resource. A template payload can be seen below:
@@ -129,9 +123,7 @@ The system does not allow the creation of a tracked entity instance
 (as well as enrollment and event) with a UID that was already used in
 the system. That means that UIDs cannot be reused.
 
-#### Updating a tracked entity instance
-
-<!--DHIS2-SECTION-ID:webapi_updating_tei-->
+#### Updating a tracked entity instance { #webapi_updating_tei } 
 
 For updating a tracked entity instance, the payload is equal to the
 previous section. The difference is that you must use the HTTP *PUT*
@@ -157,17 +149,13 @@ It is not allowed to update an already deleted tracked entity instance.
 Also, it is not allowed to mark a tracked entity instance as deleted via
 an update request. The same rules apply to enrollments and events.
 
-#### Deleting a tracked entity instance
-
-<!--DHIS2-SECTION-ID:webapi_deleting_tei-->
+#### Deleting a tracked entity instance { #webapi_deleting_tei } 
 
 In order to delete a tracked entity instance, make a request to the URL
 identifying the tracked entity instance with the *DELETE*
 method. The URL is equal to the one above used for update.
 
-#### Create and enroll tracked entity instances
-
-<!--DHIS2-SECTION-ID:webapi_create_enroll_tei-->
+#### Create and enroll tracked entity instances { #webapi_create_enroll_tei } 
 
 It is also possible to both create (and update) a tracked entity
 instance and at the same time enroll into a program.
@@ -202,9 +190,7 @@ curl -X POST -d @tei.json -H "Content-Type: application/json"
   -u user:pass "http://server/api/33/trackedEntityInstances"
 ```
 
-#### Complete example of payload including: tracked entity instance, enrollment and event
-
-<!--DHIS2-SECTION-ID:webapi_create_enroll_tei_create_event-->
+#### Complete example of payload including: tracked entity instance, enrollment and event { #webapi_create_enroll_tei_create_event } 
 
 It is also possible to create (and update) a tracked entity instance, at
 the same time enroll into a program and create an event.
@@ -292,9 +278,7 @@ curl -X POST -d @tei.json -H "Content-Type: application/json"
   -u user:pass "http://server/api/33/trackedEntityInstances"
 ```
 
-#### Generated tracked entity instance attributes
-
-<!--DHIS2-SECTION-ID:webapi_generate_tei_attributes-->
+#### Generated tracked entity instance attributes { #webapi_generate_tei_attributes } 
 
 Tracked entity instance attributes that are using automatic generation of
 unique values have three endpoints that are used by apps. The endpoints
@@ -338,9 +322,7 @@ variables should only be supplied if you know what you are doing.
 }
 ```
 
-##### Generate value endpoint
-
-<!--DHIS2-SECTION-ID:webapi_generate_values-->
+##### Generate value endpoint { #webapi_generate_values } 
 
 Online web apps and other clients that want to generate a value that
 will be used right away can use the simple generate endpoint. This
@@ -367,9 +349,7 @@ adding the `?expiration=<number-of-days>` to the request.
 }
 ```
 
-##### Generate and reserve value endpoint
-
-<!--DHIS2-SECTION-ID:webapi_generate_reserve_values-->
+##### Generate and reserve value endpoint { #webapi_generate_reserve_values } 
 
 The generate and reserve endpoint is used by offline clients that need
 to be able to register tracked entities with unique ids. They will
@@ -491,18 +471,14 @@ and will be furnished upon request based on the value of the `dimension` paramet
 curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium"
 ```
 
-#### Tracked entity instance query
-
-<!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_query-->
+#### Tracked entity instance query { #webapi_tracked_entity_instance_query } 
 
 To query for tracked entity instances you can interact with the
 `/api/trackedEntityInstances` resource.
 
     /api/33/trackedEntityInstances
 
-##### Request syntax
-
-<!--DHIS2-SECTION-ID:webapi_tei_query_request_syntax-->
+##### Request syntax { #webapi_tei_query_request_syntax } 
 
 <table style="width:100%;">
 <caption>Tracked entity instances query parameters</caption>
@@ -760,9 +736,7 @@ You can use a range of operators for the filtering:
 </tbody>
 </table>
 
-##### Response format
-
-<!--DHIS2-SECTION-ID:webapi_tei_query_response_format-->
+##### Response format { #webapi_tei_query_response_format } 
 
 This resource supports JSON, JSONP, XLS and CSV resource
 representations.
@@ -898,9 +872,7 @@ a full view, you might want to add `fields=*` to the query:
 }
 ```
 
-#### Tracked entity instance grid query
-
-<!--DHIS2-SECTION-ID:webapi_tracked_entity_instance_grid_query-->
+#### Tracked entity instance grid query { #webapi_tracked_entity_instance_grid_query } 
 
 To query for tracked entity instances you can interact with the
 */api/trackedEntityInstances/grid* resource. There are two types of
@@ -911,9 +883,7 @@ and is an alternative to the query in the previous section.
 
     /api/33/trackedEntityInstances/query
 
-##### Request syntax
-
-<!--DHIS2-SECTION-ID:webapi_tei_grid_query_request_syntax-->
+##### Request syntax { #webapi_tei_grid_query_request_syntax } 
 
 <table style="width:100%;">
 <caption>Tracked entity instances query parameters</caption>
@@ -1243,9 +1213,7 @@ You can use a range of operators for the filtering:
 </tbody>
 </table>
 
-##### Response format
-
-<!--DHIS2-SECTION-ID:webapi_tei_grid_query_response_format-->
+##### Response format { #webapi_tei_grid_query_response_format } 
 
 This resource supports JSON, JSONP, XLS and CSV resource
 representations.
@@ -1317,9 +1285,7 @@ instance.
 }
 ```
 
-#### Tracked entity instance filters
-
-<!--DHIS2-SECTION-ID:webapi_tei_filters-->
+#### Tracked entity instance filters { #webapi_tei_filters } 
 
 To create, read, update and delete tracked entity instance filters you
 can interact with the */api/trackedEntityInstanceFilters* resource.
@@ -1479,9 +1445,7 @@ interact with the */api/trackedEntityInstanceFilters* resource.
 </tbody>
 </table>
 
-### Enrollment management
-
-<!--DHIS2-SECTION-ID:webapi_enrollment_management-->
+### Enrollment management { #webapi_enrollment_management } 
 
 Enrollments have full CRUD support in the API. Together with the API
 for tracked entity instances most operations needed for working with
@@ -1489,9 +1453,7 @@ tracked entity instances and programs are supported.
 
     /api/33/enrollments
 
-#### Enrolling a tracked entity instance into a program
-
-<!--DHIS2-SECTION-ID:webapi_enrolling_tei-->
+#### Enrolling a tracked entity instance into a program { #webapi_enrolling_tei } 
 
 For enrolling persons into a program, you will need to first get the
 identifier of the person from the *trackedEntityInstances* resource.
@@ -1530,18 +1492,14 @@ following URL:
 
     /api/33/enrollments/<enrollment-id>
 
-#### Enrollment instance query
-
-<!--DHIS2-SECTION-ID:webapi_enrollment_instance_query-->
+#### Enrollment instance query { #webapi_enrollment_instance_query } 
 
 To query for enrollments you can interact with the */api/enrollments*
 resource.
 
     /api/33/enrollments
 
-##### Request syntax
-
-<!--DHIS2-SECTION-ID:webapi_enrollment_query_request_syntax-->
+##### Request syntax { #webapi_enrollment_query_request_syntax } 
 
 <table style="width:100%;">
 <caption>Enrollment query parameters</caption>
@@ -1712,9 +1670,7 @@ this you can use the page and pageSize query
 
     /api/33/enrollments.json?ou=O6uvpzGd5pu&ouMode=DESCENDANTS&page=2&pageSize=3
 
-##### Response format
-
-<!--DHIS2-SECTION-ID:webapi_enrollment_query_response_format-->
+##### Response format { #webapi_enrollment_query_response_format } 
 
 This resource supports JSON, JSONP, XLS and CSV resource
 representations.
@@ -1749,17 +1705,13 @@ a full view, you might want to add `fields=*` to the query:
 }
 ```
 
-### Events
-
-<!--DHIS2-SECTION-ID:webapi_events-->
+### Events { #webapi_events } 
 
 This section is about sending and reading events.
 
     /api/33/events
 
-#### Sending events
-
-<!--DHIS2-SECTION-ID:webapi_sending_events-->
+#### Sending events { #webapi_sending_events } 
 
 DHIS2 supports three kinds of events: single events with no registration
 (also referred to as anonymous events), single event with registration
@@ -2052,9 +2004,7 @@ parameter orgUnitIdScheme=SCHEME, where the options are: *ID*, *UID*,
 *UUID*, *CODE*, and *NAME*. There is also the *ATTRIBUTE:* scheme, which
 matches on a *unique* metadata attribute value.
 
-#### Updating events
-
-<!--DHIS2-SECTION-ID:webapi_updating_events-->
+#### Updating events { #webapi_updating_events } 
 
 To update an existing event, the format of the payload is the same, but
 the URL you are posting to must add the identifier to the end of the URL
@@ -2077,9 +2027,7 @@ curl -X PUT -d @updated_event.json "localhost/api/33/events/ID"
   -H "Content-Type: application/json" -u admin:district
 ```
 
-#### Deleting events
-
-<!--DHIS2-SECTION-ID:webapi_deleting_events-->
+#### Deleting events { #webapi_deleting_events } 
 
 To delete an existing event, all you need is to send a DELETE request
 with an identifier reference to the server you are using.
@@ -2088,9 +2036,7 @@ with an identifier reference to the server you are using.
 curl -X DELETE "localhost/api/33/events/ID" -u admin:district
 ```
 
-#### Assigning user to events
-
-<!--DHIS2-SECTION-ID:webapi_user_assign_event-->
+#### Assigning user to events { #webapi_user_assign_event } 
 
 A user can be assigned to an event. This can be done by including the appropriate property in the payload when updating or creating the event.
 
@@ -2099,9 +2045,7 @@ A user can be assigned to an event. This can be done by including the appropriat
 The id refers to the if of the user. Only one user can be assigned to an event at a time.
 
 User assignment must be enabled in the program stage before users can be assigned to events.
-#### Getting events
-
-<!--DHIS2-SECTION-ID:webapi_getting_events-->
+#### Getting events { #webapi_getting_events } 
 
 To get an existing event you can issue a GET request including the
 identifier like this:
@@ -2110,9 +2054,7 @@ identifier like this:
 curl "http://localhost/api/33/events/ID" -H "Content-Type: application/xml" -u admin:district
 ```
 
-#### Querying and reading events
-
-<!--DHIS2-SECTION-ID:webapi_querying_reading_events-->
+#### Querying and reading events { #webapi_querying_reading_events } 
 
 This section explains how to read out the events that have been stored
 in the DHIS2 instance. For more advanced uses of the event data, please
@@ -2466,9 +2408,7 @@ based on data element
     /api/33/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
       &filter=qrur9Dvnyt5:GT:20:LT:50&order=qrur9Dvnyt5:desc
 
-#### Event filters
-
-<!--DHIS2-SECTION-ID:webapi_event_filters-->
+#### Event filters { #webapi_event_filters } 
 
 To create, read, update and delete event filters you
 can interact with the `/api/eventFilters` resource.
@@ -2905,9 +2845,7 @@ In our example payloads, we use a relationship between trackedEntityInstances. B
 }
 ```
 
-### Update strategies
-
-<!--DHIS2-SECTION-ID:webapi_tei_update_strategies-->
+### Update strategies { #webapi_tei_update_strategies } 
 
 Two update strategies for all 3 tracker endpoints are supported:
 enrollment and event creation. This is useful when you have generated an
@@ -2942,9 +2880,7 @@ To change the parameter, please use the strategy parameter:
 
     POST /api/33/trackedEntityInstances?strategy=CREATE_AND_UPDATE
 
-### Tracker bulk deletion
-
-<!--DHIS2-SECTION-ID:webapi_tracker_bulk_deletion-->
+### Tracker bulk deletion { #webapi_tracker_bulk_deletion } 
 
 Bulk deletion of tracker objects work in a similar fashion to adding and
 updating tracker objects, the only difference is that the
@@ -3013,9 +2949,7 @@ curl -X POST -d @data.json -H "Content-Type: application/json"
   "http://server/api/33/events?strategy=DELETE"
 ```
 
-### Identifier reuse and item deletion via POST and PUT methods
-
-<!--DHIS2-SECTION-ID:webapi_updating_and_deleting_items-->
+### Identifier reuse and item deletion via POST and PUT methods { #webapi_updating_and_deleting_items } 
 
 Tracker endpoints */trackedEntityInstances*, */enrollments*, */events*
 support CRUD operations. The system keeps track of used identifiers.
@@ -3029,9 +2963,7 @@ create (*POST*) method. Therefore, an attribute *deleted* is ignored in
 both *PUT* and *POST* methods, and in *POST* method it is by default set
 to *false*.
 
-### Import parameters
-
-<!--DHIS2-SECTION-ID:webapi_import_parameters-->
+### Import parameters { #webapi_import_parameters } 
 
 The import process can be customized using a set of import parameters:
 
@@ -3088,9 +3020,7 @@ The import process can be customized using a set of import parameters:
 </tbody>
 </table>
 
-#### CSV Import / Export
-
-<!--DHIS2-SECTION-ID:webapi_events_csv_import_export-->
+#### CSV Import / Export { #webapi_events_csv_import_export } 
 
 In addition to XML and JSON for event import/export, in DHIS2.17 we
 introduced support for the CSV format. Support for this format builds on
@@ -3224,18 +3154,14 @@ qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,
 qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,4,,
 ```
 
-#### Import strategy: SYNC
-
-<!--DHIS2-SECTION-ID:webapi_sync_import_strategy-->
+#### Import strategy: SYNC { #webapi_sync_import_strategy } 
 
 The import strategy SYNC should be used only by internal synchronization
 task and not for regular import. The SYNC strategy allows all 3
 operations: CREATE, UPDATE, DELETE to be present in the payload at the
 same time.
 
-### Tracker Ownership Management
-
-<!--DHIS2-SECTION-ID:webapi_tracker_ownership_management-->
+### Tracker Ownership Management { #webapi_tracker_ownership_management } 
 
 A new concept called Tracker Ownership is introduced from 2.30. There
 will now be one owner organisation unit for a tracked entity instance in
@@ -3245,9 +3171,7 @@ privileges. Only those users belonging to the owning org unit for a
 tracked entity-program combination will be able to access the data
 related to that program for that tracked entity.
 
-#### Tracker Ownership Override : Break the Glass
-
-<!--DHIS2-SECTION-ID:webapi_tracker_ownership_override_api-->
+#### Tracker Ownership Override : Break the Glass { #webapi_tracker_ownership_override_api } 
 
 It is possible to temporarily override this ownership privilege for a
 program that is configured with an access level of *PROTECTED*. Any user
@@ -3264,9 +3188,7 @@ shown:
     /api/33/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
       &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
-#### Tracker Ownership Transfer
-
-<!--DHIS2-SECTION-ID:webapi_tracker_ownership_transfer_api-->
+#### Tracker Ownership Transfer { #webapi_tracker_ownership_transfer_api } 
 
 It is possible to transfer the ownership of a tracked entity-program
 from one org unit to another. This will be useful in case of patient
@@ -3324,9 +3246,7 @@ To hard delete a potential duplicate:
 
     DELETE /api/potentialDuplicates/<id>
 
-## Program Messages
-
-<!--DHIS2-SECTION-ID:webapi_program_messages-->
+## Program Messages { #webapi_program_messages } 
 
 Program message lets you send messages to tracked entity instances,
 contact addresses associated with organisation units, phone numbers and

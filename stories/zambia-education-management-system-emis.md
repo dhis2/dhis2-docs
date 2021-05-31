@@ -1,6 +1,4 @@
-# Zambia Education Management System (EMIS)
-
-<!--DHIS2-SECTION-ID:user_story_akros_EMIS-->
+# Zambia Education Management System (EMIS) { #user_story_akros_EMIS } 
 
 **Akros is an NGO that is experienced in the design and implementation
 of data-driven systems that improve the health and well-being of

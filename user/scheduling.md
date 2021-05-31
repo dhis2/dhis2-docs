@@ -1,6 +1,4 @@
-# Scheduling
-
-<!--DHIS2-SECTION-ID:scheduling-->
+# Scheduling { #scheduling } 
 
 The Scheduler is an application for managing background jobs in DHIS2.
 Background jobs can do a number of tasks, such as running analytics,
@@ -21,9 +19,7 @@ the selected schedule. To run a job on demand, go to the job list,
 click the "Actions" button of the job you want to run and click
 "Run manually". This action is only available for enabled jobs.
 
-## Creating a job
-
-<!--DHIS2-SECTION-ID:scheduling_create_job-->
+## Creating a job { #scheduling_create_job } 
 
 1.  Open the **Scheduler** app and click the "New job" button in the top
     right corner.
@@ -61,9 +57,7 @@ click the "Actions" button of the job you want to run and click
 
 Newly created jobs are enabled by default.
 
-## Editing a job
-
-<!--DHIS2-SECTION-ID:scheduling_configure_job-->
+## Editing a job { #scheduling_configure_job } 
 
 With the proper permissions, you can modify the details of user-created
 jobs. To quickly enable or disable a user created job from running, use the
@@ -77,9 +71,7 @@ Further editing of user jobs:
 
 1.  When done editing, press the **Save** button to persist the changes.
 
-## Deleting a job
-
-<!--DHIS2-SECTION-ID:dataAdmin_scheduler_delete-->
+## Deleting a job { #dataAdmin_scheduler_delete } 
 
 1.  Click the "Actions" button of the job you want to delete and click "Delete"
     (only user jobs can be deleted).
@@ -94,26 +86,20 @@ User jobs can also be deleted from the editing screen.
 
 The following section describes the various job types.
 
-### Disable Inactive Users
-
-<!--DHIS2-SECTION-ID:scheduling_disable_inactive_users-->
+### Disable Inactive Users { #scheduling_disable_inactive_users } 
 Users that have not been active - not logged in - for a number of months can automatically be disabled.
 Select the number of inactive months as the job parameter.
 All users that have not logged in for that number of months or longer will be disabled by the job.
 Disabled users will no longer be able to log into the system.
 
 
-### Resource table
-
-<!--DHIS2-SECTION-ID:scheduling_resource_table-->
+### Resource table { #scheduling_resource_table } 
 
 The resource table job is responsible for generating and updating the resource database tables. These tables are used by various components in DHIS 2 and is meant to simplify queries against the database.
 
 Note that when specifying any of the analytics table jobs, resource tables can be part of the process and it is not necessary to also specify a resource table job.
 
-### Analytics table
-
-<!--DHIS2-SECTION-ID:scheduling_analytics_table-->
+### Analytics table { #scheduling_analytics_table } 
 
 The analytics tables job is responsible for generating and updating the analytics tables. The analytics tables are used as basis for data analytics queries in DHIS2. Apps such as dashboard, visualizer and maps retrieve data from these tables through the DHIS2 analytics API, and they must be updated in order for analytics data to become available. You can schedule this process to run regularly through an analytics table job type.
 
@@ -123,9 +109,7 @@ The analytics table job will by default populate data for all years and data ele
 - **Skip resource tables:** Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
 - **Skip table types:** Skip one or more analytics table types. This reduces the time the process takes to complete, but leads to those data types not being updated in analytics data.
 
-### Continuous analytics table
-
-<!--DHIS2-SECTION-ID:scheduling_continuous_analytics_table-->
+### Continuous analytics table { #scheduling_continuous_analytics_table } 
 
 The analytics tables job is responsible for generating and updating the analytics tables. The analytics tables are used as basis for data analytics queries in DHIS2. Apps such as dashboard, visualizer and maps retrieve data from these tables through the DHIS2 analytics API, and they must be updated in order for analytics data to become available. You can schedule this process to run regularly through an analytics table job type.
 
@@ -142,9 +126,7 @@ The analytics table job will by default populate data for all years and data ele
 - **Last years:** The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
 - **Skip resource tables:** Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
 
-### Data synchronization
-
-<!--DHIS2-SECTION-ID:scheduling_data_sync-->
+### Data synchronization { #scheduling_data_sync } 
 
 DHIS2 provides synchronisation of data between remotely distributed
 instances and a central instance of DHIS2. This can be useful e.g. when
@@ -260,9 +242,7 @@ Some aspects of the data synchronization feature to be aware of:
   If default values do not fit your purpose, own page size can be specified 
   via parameter in particular sync job in Scheduler app.
 
-### Metadata Synchronization Scheduling
-
-<!--DHIS2-SECTION-ID:scheduling_metadata_sync-->
+### Metadata Synchronization Scheduling { #scheduling_metadata_sync } 
 
 DHIS2 provides a feature for synchronizing meta data from a remote
 instance to a local instance of DHIS2. This can be useful when you have
