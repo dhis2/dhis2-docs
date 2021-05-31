@@ -837,9 +837,6 @@ You can change your context by clicking the "x" button.
 
 ![](resources/images/capture_app/enrollment-dash-03.png)
 
-On the enrollment dashboard, user can view the Person Profile widget.
-![](resources/images/capture_app/enrollment-dash-tei-profile-widget.png)
-
 #### Deselecting the program
 
 When you deselect the program you see the following
@@ -894,6 +891,31 @@ When you deselect the enrollment you see the following
 
 ![](resources/images/capture_app/enrollment-dash-08.png)
 
+### Enrollment widget
+
+On the enrollment page you can see the enrollment widget
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-1.png)
+
+#### Enrollment actions
+
+When you click on the enrollment actions button, a menu with all the available actions will open. You can change the enrollment status to Active, Canceled or Completed using the buttons in the menu. You can mark or remove the enrollment for a follow-up.
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-2.png)
+
+#### Delete the enrollment
+
+You can delete the enrollment by clicking the delete button and confirming the action in the modal. 
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-3.png)
+
+
 #### Person profile widget
 
-The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, user can select `Edit` button which will open a focus modal. 
+On the enrollment dashboard, you can view the Person Profile widget.
+
+![](resources/images/capture_app/enrollment-dash-tei-profile-widget.png)
+
+The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
+
+

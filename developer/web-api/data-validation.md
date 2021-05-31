@@ -484,7 +484,8 @@ The following query parameters are supported.
 | de         | Data element, can be specified multiple times.               | No [*]    | Data element identifier.                  |
 | startDate  | Start date for interval to check for outliers.               | No [*]    | Date (yyyy-MM-dd).                        |
 | endDate    | End date for interval to check for outliers.                 | No [*]    | Date (yyyy-MM-dd).                        |
-| pe         | ISO period.                                                  | No [*]    | Period ISO string.                        |
+| pe         | ISO period ID.                                               | No [*]    | Period ISO ID.                        |
+| peType     | ISO period.                                                  | No [*]    | Period ISO string.                        |
 | coc        | Category option combos, can be specified multiple times.     | No        | Category option combo identifier.         |
 | maxResults | Max limit for the output.                                    | No        | Integer, greater than zero. Default: 50.  |
 

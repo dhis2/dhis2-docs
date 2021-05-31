@@ -337,6 +337,7 @@ Table: Program notification parameters to use in program notifications
 || Program stage name | `V{program_stage_name}` |
 || Event status | `V{event_status}` |
 
+
 ## Configure tracker programs in the Maintenance app
 
 <!--DHIS2-SECTION-ID:configure_tracker_program_in_Maintenance_app-->
@@ -770,6 +771,7 @@ Table: Program notification parameters to use in program notifications
 || Program id | `V{program_id}` |
 || Program instance id/Enrollment id | `V{enrollment_id}` |
 || Tracked entity id | `V{tracked_entity_id}` |
+|| Event/Execution date | `V{event_date}` |
 
 ## Configure program indicators
 

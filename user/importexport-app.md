@@ -164,7 +164,7 @@ side menu. Upload the completed PDF file and click *Import*.
 
 <!--DHIS2-SECTION-ID:event_import-->
 
-Event can be access from the sidebar by by clicking on Event
+Event can be access from the sidebar by clicking on Event
 import.
 
 ![](resources/images/import_export/event_import.png)
