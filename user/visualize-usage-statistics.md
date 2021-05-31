@@ -1,6 +1,4 @@
-# Visualize usage statistics
-
-<!--DHIS2-SECTION-ID:using_usage_analytics-->
+# Visualize usage statistics { #using_usage_analytics } 
 
 ## About the Usage Analytics app
 
@@ -20,9 +18,7 @@ DHIS2. With this statistics you can answers questions such as:
 
   - What are the most viewed favorites?
 
-## Create a usage analytics graph
-
-<!--DHIS2-SECTION-ID:usage_analytics_create_chart-->
+## Create a usage analytics graph { #usage_analytics_create_chart } 
 
 1.  Open the **Usage Analytics** app.
 

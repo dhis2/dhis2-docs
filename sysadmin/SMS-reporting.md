@@ -1,12 +1,8 @@
-# Using Gateways for SMS reporting 
-
-<!--DHIS2-SECTION-ID:sms_report_sending-->
+# Using Gateways for SMS reporting  { #sms_report_sending } 
 
 DHIS2 supports accepting data via [SMS](https://docs.dhis2.org/master/en/dhis2_user_manual_en/mobile.html), however, the SMS needs to be composed in a cryptic way to protect the information. The DHIS2 Android App acts as a transparent layer to send the information via SMS where the user does not have to worry about writing the SMS. To send SMSs with the Android App the SMS gateway need to be properly configured. This section explains the different options available and how to achieve that.
 
-## Sending SMS
-
-<!--DHIS2-SECTION-ID:sms_report_sening-->
+## Sending SMS { #sms_report_sening } 
 
 It is important to clarify firstly, that this section mainly concerns the set up of **receiving SMS** (from mobile devices to the DHIS2 server), which is necessary when considering using the App to send (sync) information recorded in the app to the DHIS2 server via SMS. In the App this can be set-up under the *Settings* > *SMS Settings*
 
@@ -18,9 +14,7 @@ There is out of the box support for common providers such as *Bulk SMS* and *Cli
 
 Note also, it is possible to use a different SMS Gateway for sending and receiving SMS. So even if you set up a solution for receiving SMS below, it is still possible to use one of the aforementioned solutions above for sending SMS.
 
-## Using an Android device as SMS Gateway
-
-<!--DHIS2-SECTION-ID:sms_report_android_gateway-->
+## Using an Android device as SMS Gateway { #sms_report_android_gateway } 
 
 The simplest solution by far is to use a dedicated Android device as your SMS Gateway. Any phone or tablet running Android OS (4.4, Kitkat or above) should be fine. It will require a constant internet connection, in order to forward messages to your DHIS2 server and it will also need a SIM card to receive the incoming SMS.
 
@@ -36,9 +30,7 @@ However, when considering moving a project to production it would be necessary t
 
 This option is currently not supported nor documented.
 
-## Dedicated SMS Gateways
-
-<!--DHIS2-SECTION-ID:sms_report_dedicated_gateway-->
+## Dedicated SMS Gateways { #sms_report_dedicated_gateway } 
 
 This section discusses the use of more permanent and dedicated SMS gateways and the options available. Each of these options below will involve a provider (or yourself) having an SMPP connection to a phone carrier in country and using this connection to receive incoming SMS and forward them on to your DHIS2 server over the internet using HTTP.
 

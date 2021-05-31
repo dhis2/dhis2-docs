@@ -1,6 +1,4 @@
-# Data Administration
-
-<!--DHIS2-SECTION-ID:data_admin-->
+# Data Administration { #data_admin } 
 
 The data administration module provides a range of functions to ensure
 that the data stored in the DHIS2 database is integral and that the
@@ -8,9 +6,7 @@ database performance is optimised. These functions should be executed on
 a regular basis by a data administrator to ensure that the quality of
 the data stored is optimal.
 
-## Data integrity
-
-<!--DHIS2-SECTION-ID:dataAdmin_dataIntegrity-->
+## Data integrity { #dataAdmin_dataIntegrity } 
 
 DHIS2 can perform a wide range of data integrity checks on the data
 contained in the database. Identifying and correcting data integrity
@@ -241,9 +237,7 @@ Reports all the violations in program indicator expression caused by invalid **D
 
 Reports all the violations in program indicator filter expression caused by invalid **DataElement** or invalid **TrackedEntityAttribute**.
 
-## Maintenance
-
-<!--DHIS2-SECTION-ID:data_admin_maintenance-->
+## Maintenance { #data_admin_maintenance } 
 
 <table>
 <caption>Data maintenance functions in the Data Administration app</caption>
@@ -310,9 +304,7 @@ Reports all the violations in program indicator filter expression caused by inva
 </tbody>
 </table>
 
-## Resource tables
-
-<!--DHIS2-SECTION-ID:dataAdmin_resourceTables-->
+## Resource tables { #dataAdmin_resourceTables } 
 
 Resource tables are supporting tables that are used during analysis of
 data. One would typically join the contents of these tables with the
@@ -388,9 +380,7 @@ system.
     This table provides a mapping between data elements and all possible
     category option combinations.
 
-## Analytics tables management
-
-<!--DHIS2-SECTION-ID:analytics_tables_management-->
+## Analytics tables management { #analytics_tables_management } 
 
 DHIS2 generates database tables which the system then uses as basis for
 various analytics functions. These tables are also valuable if you write
@@ -420,9 +410,7 @@ re-process.
 
 4.  Click **Start export**.
 
-## Data statistics
-
-<!--DHIS2-SECTION-ID:dataAdmin_dataStatistics-->
+## Data statistics { #dataAdmin_dataStatistics } 
 
 The data statistics module provides an overview of the number of objects
 stored in the DHIS2 database.
@@ -433,9 +421,7 @@ stored in the DHIS2 database.
 The total number of each type of object is presented in a series of
 tables with summary statistics of each object.
 
-## Lock exceptions
-
-<!--DHIS2-SECTION-ID:dataAdmin_lockException-->
+## Lock exceptions { #dataAdmin_lockException } 
 
 Lock exceptions provide fine-grained control over exemption from a
 locked data set. After the expiry of the data set, data entry will be
@@ -452,9 +438,7 @@ In the example above, a data lock exception would be created for "ab
 Abundant Life Organization" and "ab Seventh Day Hospital" for the "Care
 and Support" dataset for "February 2012".
 
-## Min-Max Value Generation
-
-<!--DHIS2-SECTION-ID:dataAdmin_minMaxValueGeneration-->
+## Min-Max Value Generation { #dataAdmin_minMaxValueGeneration } 
 
 This administrative function can be used to generate min-max values,
 which are used as part of the data quality and validation process for
@@ -467,9 +451,7 @@ values which are currently stored in the database.
 
 ![](resources/images/maintainence/min_max_value_generation.PNG)
 
-## Cache Statistics
-
-<!--DHIS2-SECTION-ID:dataAdmin_cacheStatistics-->
+## Cache Statistics { #dataAdmin_cacheStatistics } 
 
 This option is for system administrators only to use. The cache
 statistics shows the status of the application level cache. The

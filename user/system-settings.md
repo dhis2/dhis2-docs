@@ -1,10 +1,6 @@
-# System settings
+# System settings { #settings } 
 
-<!--DHIS2-SECTION-ID:settings-->
-
-## General settings
-
-<!--DHIS2-SECTION-ID:system_general_settings-->
+## General settings { #system_general_settings } 
 
 <table>
 <caption>General settings</caption>
@@ -95,9 +91,7 @@
 </tbody>
 </table>
 
-## Analytics settings
-
-<!--DHIS2-SECTION-ID:system_analytics_settings-->
+## Analytics settings { #system_analytics_settings } 
 
 <table>
 <caption>Analytics settings</caption>
@@ -182,9 +176,7 @@
 </tbody>
 </table>
 
-## Server settings
-
-<!--DHIS2-SECTION-ID:system_server_settings-->
+## Server settings { #system_server_settings } 
 
 <table>
 <caption>Server settings</caption>
@@ -225,9 +217,7 @@
 </tbody>
 </table>
 
-## Appearance settings
-
-<!--DHIS2-SECTION-ID:system_appearance_settings-->
+## Appearance settings { #system_appearance_settings } 
 
 <table>
 <caption>Appearance settings</caption>
@@ -335,9 +325,7 @@
 </tbody>
 </table>
 
-## Email settings
-
-<!--DHIS2-SECTION-ID:system_email_settings-->
+## Email settings { #system_email_settings } 
 
 <table>
 <caption>Email settings</caption>
@@ -385,9 +373,7 @@
 </tbody>
 </table>
 
-## Access settings
-
-<!--DHIS2-SECTION-ID:system_access_settings-->
+## Access settings { #system_access_settings } 
 
 <table>
 <caption>Access settings</caption>
@@ -468,9 +454,7 @@
 </tbody>
 </table>
 
-## Calendar settings
-
-<!--DHIS2-SECTION-ID:system_calendar_settings-->
+## Calendar settings { #system_calendar_settings } 
 
 <table>
 <caption>Calendar settings</caption>
@@ -501,9 +485,7 @@
 </tbody>
 </table>
 
-## Data import settings
-
-<!--DHIS2-SECTION-ID:system_data_import_settings-->
+## Data import settings { #system_data_import_settings } 
 
 The data import settings apply to extra controls which can be enabled to
 validate aggregate data which is imported through the web API. They
@@ -623,9 +605,7 @@ synchronization.
 </tbody>
 </table>
 
-## OAuth2 clients
-
-<!--DHIS2-SECTION-ID:system_oauth2_settings-->
+## OAuth2 clients { #system_oauth2_settings } 
 
 You create, edit and delete OAuth2 clients in the **System Settings**
 app.

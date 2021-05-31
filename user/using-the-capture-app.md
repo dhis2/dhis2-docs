@@ -1,22 +1,14 @@
-# Using the Capture app
+# Using the Capture app { #capture_app } 
 
-<!--DHIS2-SECTION-ID:capture_app-->
-
-## About the Capture app
-
-<!--DHIS2-SECTION-ID:about_capture_app-->
+## About the Capture app { #about_capture_app } 
 
 The Capture app serves as a replacement for the Event Capture app. In the future, the intention is to incorporate the Tracker Capture app and the Data Entry app into the Capture app.
 
 In the Capture app you register events that occurred at a particular time and place. An event can happen at any given point in time. This stands in contrast to routine data, which can be captured for predefined, regular intervals. Events are sometimes called cases or records. In DHIS2, events are linked to a program. The Capture app lets you select the organisation unit and program and specify a date when a event happened, before entering information for the event.
 
-## Implementer / administrator info
+## Implementer / administrator info { #implementer_info } 
 
-<!--DHIS2-SECTION-ID:implementer_info-->
-
-### Metadata caching
-
-<!--DHIS2-SECTION-ID:metadata_caching-->
+### Metadata caching { #metadata_caching } 
 
 For performance reasons the Capture app caches metadata in the client browser. When metadata is updated on the server the changes needs to be propagated to the clients that have already cached the metadata. Depending on the change, this is done in one of three ways:
 
@@ -26,9 +18,7 @@ For performance reasons the Capture app caches metadata in the client browser. W
 
 3. The exception to the two rules above is option sets. Option sets have their own version property, i.e. increasing the option set version should ensure the option set metadata are propagated to the clients.
 
-## Register an event
-
-<!--DHIS2-SECTION-ID:capture_register_event-->
+## Register an event { #capture_register_event } 
 
 1. Open the **Capture** app.
 
@@ -80,9 +70,7 @@ For performance reasons the Capture app caches metadata in the client browser. W
 > achived by clicking the **Switch to row view** button on the top right of the data entry form. If you are currently in **row view** you
 > can switch to the default form view by clicking the **Switch to form view** button on the top right of the data entry form.
 
-## Adding a relationship
-
-<!--DHIS2-SECTION-ID:capture_add_relationship-->
+## Adding a relationship { #capture_add_relationship } 
 
 Relationships can be added either during registration, editing or viewing of an event.
 Currently the **Capture App** only supports *Event to Tracked Entity Instance* relationships. 
@@ -140,9 +128,7 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 > the **Save as new person** button to register a new **Tracked Entity Instance**.
 
 
-## Edit an event
-
-<!--DHIS2-SECTION-ID:capture_edit_event-->
+## Edit an event { #capture_edit_event } 
 
 1. Open the **Capture** app.
 
@@ -158,9 +144,7 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 
 6. Modify the event details and click **Save**.
 
-## Delete an event
-
-<!--DHIS2-SECTION-ID:capture_delete_event-->
+## Delete an event { #capture_delete_event } 
 
 1. Open the **Capture** app.
 
@@ -176,9 +160,7 @@ Currently the **Capture App** only supports *Event to Tracked Entity Instance* r
 
     ![delete event](resources/images/capture_app/delete_event.png)
 
-## Modify an event list layout
-
-<!--DHIS2-SECTION-ID:capture_modify_event_list_layout-->
+## Modify an event list layout { #capture_modify_event_list_layout } 
 
 You can select which columns to show or hide in an event list. This can
 be useful for example when you have a long list of data elements
@@ -200,9 +182,7 @@ assigned to a program stage.
 
 > Note: You can reorganize the order of the data elements by draging and dropping them in the list.
 
-## Filter an event list
-
-<!--DHIS2-SECTION-ID:capture_filter_event_list-->
+## Filter an event list { #capture_filter_event_list } 
 
 1. Open the **Capture** app.
 
@@ -220,9 +200,7 @@ assigned to a program stage.
 
 > Note: Data elements will have slightly diffrent way that they are filtered. A **Number** data element will for instance show a rang to filter on while a **Text** data element will ask you to enter a search query to filter on.
 
-## Sort an event list
-
-<!--DHIS2-SECTION-ID:capture_sort_event_list-->
+## Sort an event list { #capture_sort_event_list } 
 
 1. Open the **Capture** app.
 
@@ -241,9 +219,7 @@ assigned to a program stage.
 
     ![sort event](resources/images/capture_app/sort_event.png)
 
-## Download an event list
-
-<!--DHIS2-SECTION-ID:capture_download_event_list-->
+## Download an event list { #capture_download_event_list } 
 
 1. Open the **Capture** app.
 
@@ -260,15 +236,11 @@ assigned to a program stage.
 
 > Note: You can download an event list in JSON, XML or CSV formats.
 
-## Predefined list views
-
-<!--DHIS2-SECTION-ID:capture_views-->
+## Predefined list views { #capture_views } 
 
 You can set up your own views and save them for later use. The views can also be shared with others. A view consists of filters, column order and event sort order.
 
-### Saving a new view
-
-<!--DHIS2-SECTION-ID:capture_view_save-->
+### Saving a new view { #capture_view_save } 
 
 1. Select an organisation unit and a program.
 
@@ -292,9 +264,7 @@ You can set up your own views and save them for later use. The views can also be
    
 ![](resources/images/capture_app/view_save_name.png)
 
-### Loading a view
-
-<!--DHIS2-SECTION-ID:capture_view_load-->
+### Loading a view { #capture_view_load } 
 
 1. Select an organisation unit and a program with a predefined view.
 
@@ -306,9 +276,7 @@ You can set up your own views and save them for later use. The views can also be
 
 ![](resources/images/capture_app/view_load_selected.png)
 
-### Updating a view
-
-<!--DHIS2-SECTION-ID:capture_view_update-->
+### Updating a view { #capture_view_update } 
 
 1. Load the view you would like to update (see [loading a view](#capture_view_load)).
 
@@ -322,9 +290,7 @@ You can set up your own views and save them for later use. The views can also be
 
 ![](resources/images/capture_app/view_update.png)
 
-### Sharing a view
-
-<!--DHIS2-SECTION-ID:capture_view_share-->
+### Sharing a view { #capture_view_share } 
 
 1. Load the view you would like to share (see [loading a view](#capture_view_load)).
 
@@ -336,9 +302,7 @@ You can set up your own views and save them for later use. The views can also be
 
 ![](resources/images/capture_app/view_share_access.png)
 
-### Deleting a view
-
-<!--DHIS2-SECTION-ID:capture_view_delete-->
+### Deleting a view { #capture_view_delete } 
 
 1. Load the view you would like to delete (see [loading a view](#capture_view_load)).
 
@@ -346,15 +310,11 @@ You can set up your own views and save them for later use. The views can also be
    
 ![](resources/images/capture_app/view_delete.png)
 
-## User assignment
-
-<!--DHIS2-SECTION-ID:capture_user_assignment-->
+## User assignment { #capture_user_assignment } 
 
 Events can be assigned to users. This feature must be enabled per program.
 
-### Assigning new events
-
-<!--DHIS2-SECTION-ID:capture_user_assignment_new-->
+### Assigning new events { #capture_user_assignment_new } 
 
 1. Select an organisation unit and a program with user assignment enabled.
 
@@ -366,9 +326,7 @@ Events can be assigned to users. This feature must be enabled per program.
 
     ![](resources/images/capture_app/user_assignment_new_filled.png)
 
-### Change assignee
-
-<!--DHIS2-SECTION-ID:capture_user_assignment_edit-->
+### Change assignee { #capture_user_assignment_edit } 
 
 1. Select an organisation unit and a program with user assignment enabled.
 
@@ -386,9 +344,7 @@ Events can be assigned to users. This feature must be enabled per program.
 
 5. Search for and select the user you would like to reassign the event to. The assignment is saved immediately.
 
-### Assignee in the event list
-
-<!--DHIS2-SECTION-ID:capture_user_assignment_event_list-->
+### Assignee in the event list { #capture_user_assignment_event_list } 
 
 In the event list you will be able to view the assignee per event. Moreover, you can sort and filter the list by the assignee.
 
@@ -402,9 +358,7 @@ In the event list you will be able to view the assignee per event. Moreover, you
 
     ![](resources/images/capture_app/user_assignment_event_list_options.png)
 
-## Tracker programs
-
-<!--DHIS2-SECTION-ID:capture_tracker_programs-->
+## Tracker programs { #capture_tracker_programs } 
 
 The Capture app doesn't support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
 
