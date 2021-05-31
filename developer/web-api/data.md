@@ -1004,3 +1004,30 @@ The `categoryOptionCombo` and `attributeOptionCombo` fields are optional. A mini
 The `followup` field should be set to `true` to mark a data value for follow-up, and `false` to remove the mark.
 
 The response status code will be `200 OK` if the operation was successful, and `409 Conflict` in case of an error with the request.
+
+To bulk update data values for follow-up use:
+
+    PUT /api/dataValues/followups
+
+with `JSON` payload:
+
+```json
+{
+  "values": [
+    {
+      "dataElement": "s46m5MS0hxu",
+      "period": "202005",
+      "orgUnit": "DiszpKrYNg8",
+      "categoryOptionCombo": "psbwp3CQEhs",
+      "attributeOptionCombo": "HllvX50cXC0",
+      "followup": true
+    }
+  ]
+}
+```
+
+Each item of the bulk update has the same fields and requirements as the single
+update endpoint.
+
+Bulk update equally confirms with a `200 OK` on success or returns a 
+`409 Conflict` in case of input errors.
