@@ -1,4 +1,4 @@
-# Configuring SMS { #:sms-configuration-intro }
+# Configuring SMS { #sms-configuration-intro }
 
 This document covers the functionality of the SMS Configuration App. For
 additional information about SMS service integration, please refer to the
