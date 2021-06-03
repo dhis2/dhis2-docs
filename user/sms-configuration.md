@@ -39,9 +39,10 @@ To prevent accidental deletions, a confirmation dialog will show up.
 
 ### Adding commands { #sms-configuration-commands-add }
 
-&#9888; &#9888; &#9888; **WARNING!** &#9888; &#9888; &#9888;<br />
-Commands are not working after they've been added!
-Most of the configurable fields are only displayed when editing the command!
+> **Caution**
+>
+> Commands are not active immediately after they are added! 
+> They must then be edited in order to configure the necessary fields!
 
 After clicking on the "Add command" button in the command overview page, a
 dynamic form will appear. Depending on the parser type, different inputs will
@@ -57,14 +58,13 @@ be displayed:
 | Tracked entity registration parser | &#10005; | &#10003; | &#10005; | &#10005; |
 | Unregistered parser | &#10003; | &#10005; | &#10005; | &#10005; |
 
-#### Event registratio { #sms-configuration-commands-add-eventregistration }n parser
+#### Event registration parser { #sms-configuration-commands-add-eventregistration }
 
 These commands can have short codes for their associated program stage.
 Only programs of type "Event program" can be chosen for this command.
 Therefore only one program stage exists, which will be selected automatically.
 
-#### Program stage dat {
-#sms-configuration-commands-add-programstagedataentry }a entry parser
+#### Program stage data entry parser { #sms-configuration-commands-add-programstagedataentry }
 
 These commands can have short codes for their associated program stage.
 Only programs of type "Tracker program" can be chosen for this command.
