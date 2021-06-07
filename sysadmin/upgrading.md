@@ -10,7 +10,9 @@ Upgrading
 Updating
 :   Moving to a newer patch of the current DHIS2 version. e.g. from 2.35.1 to 2.35.4
 
-Upgrading typically requires planning, testing, training (for new features or interfaces), which may take significant time and effort. Updating mainly provides bug fixes without changing the functionality of the software. It is lower risk, and we advise everyone to keep their version up to date.
+**Upgrading** typically requires planning, testing, training (for new features or interfaces), which may take significant time and effort.
+
+**Updating** mainly provides bug fixes without changing the functionality of the software. It is lower risk, and we advise everyone to keep their version up to date.
 
 ## Before you begin { #upgrading-before-you-begin }
 
