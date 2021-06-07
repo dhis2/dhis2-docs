@@ -29,6 +29,7 @@ Regardless of whether you are upgrading or updating, the technical process is mo
 ### 1 Safeguard your data { #upgrading-safeguard-your-data }
 
 Depending on what sort of DHIS2 instance you have, and what you use it for, the first step is to make sure that you can recover any important data if anything goes wrong with the upgrade.
+
 This means performing standard system admin tasks, such as:
 
 1. Backing up your database
