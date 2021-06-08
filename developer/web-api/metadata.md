@@ -1423,9 +1423,40 @@ Table: Organisation unit parameters
 | includeAncestors | false &#124; true | Include all parents of the specified organisation unit. |
 | level | integer | Include children of the specified organisation unit at the given level of the sub-hierarchy (relative to the organisation unit where the immediate level below is level 1). |
 
+### Get organisation units by categoryOption  { #webapi_organisation_units_by_categoryOptions }
+
+Purpose-built endpoint to retrieve associations between CategoryOptions and OrganisationUnits. 
+This endpoint is the preferred way to retrieve program org unit associations.
+
+    /api/33/categoryOptions/orgUnits?categoryOptions=<categoryOptionUid,anotherCategoryOptionUid,...>
+
+responses will have the following format:
+
+    {
+        "<categoryOptionUid>": [
+            "<orgUnitUid>",
+            "<orgUnitUid>",
+            ...,
+            "<orgUnitUid>"
+        ],
+        "<anotherCategoryOptionUid>": [
+            "<orgUnitUid>",
+            "<orgUnitUid>",
+            ...,
+            "<orgUnitUid>"
+        ],
+        "...": [
+            ...,
+            ...
+        ],
+        "<categoryOptionUid>": []
+    }
+
+CategoryOptions that are accessible by all OrganisationUnits are returned with an empty array (`[]`) of OrganisationUnits.
+
 ### Get organisation units by programs { #webapi_organisation_units_by_programs } 
 
-Purpose-built endpoint to retrieve associations between Programs and Organisation Units. This endpoint is
+Purpose-built endpoint to retrieve associations between Programs and OrganisationUnits. This endpoint is
 the preferred way to retrieve program org unit associations.
 
 
@@ -1454,7 +1485,7 @@ responses will have the following format:
         "<programUid>": []
     }
 
-programs with no associated uids (hence accessible by all orgUnits) are returned with an empty array [] of orgUnits.
+Programs that are accessible by all OrganisationUnits are returned with an empty array (`[]`) of OrganisationUnits.
 
 ## Data sets { #webapi_data_sets } 
 
