@@ -194,6 +194,7 @@ Table: System settings
 | lastSuccessfulDataStatistics | Keeps timestamp of last successful data analytics | No |
 | keyHideDailyPeriods | Not in use | No |
 | keyHideWeeklyPeriods || No |
+| keyHideBiWeeklyPeriods | Boolean flag used to hide/show bi-weekly periods | No |
 | keyHideMonthlyPeriods || No |
 | keyHideBiMonthlyPeriods || No |
 | keyGatherAnalyticalObjectStatisticsInDashboardViews | Whether to gather analytical statistics on objects when they are viewed within a dashboard | No |
