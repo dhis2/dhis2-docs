@@ -141,9 +141,18 @@ option could be reused. This is important if particular category options
 
     1.  **Name**
 
-    2.  **Start date**
+    2.  **Start date** (optional)
 
-    3.  **End date**
+    3.  **End date** (optional)
+
+    4.  **Short name** (optional)
+
+    4.  **Code** (optional)
+
+    5.  **Form name** (optional)  
+        Category options can have a form name. These will be displayed in the
+        data entry app as a column header instead of the display name for the
+        respective category option.
 
 4.  Select organisation units and assign them.
 
