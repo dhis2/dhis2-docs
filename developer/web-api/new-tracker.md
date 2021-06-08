@@ -11,16 +11,12 @@ The newly introduced endpoints consist of:
 * `GET /api/tracker/trackedEntities`
 * `GET /api/tracker/relationships`
 
-> ***NOTE***
+> **NOTE**
 >
-> The old endpoints are marked as deprecated but still work as before.<br>
-> Some functionality is not yet ready in the new endpoints, but they support their primary use-cases.
-
-
-> ***NOTE 2***
->
-> These endpoints currently only support the `JSON` format as input/output.<br>
-> Support for the `CSV` format will also be available in the future.
+> - The old endpoints are marked as deprecated but still work as before.
+> - Some functionality is not yet ready in the new endpoints, but they support their primary use-cases.
+> - These endpoints currently only support the `JSON` format as input/output.
+> - Support for the `CSV` format will also be available in the future.
 
 ## Changes in the API
 
@@ -77,7 +73,7 @@ These tables highlight the old endpoint differences in request parameters for `G
 |`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
 
 
-## Tracker Objects { #webapi_nti_tracker_objects } 
+## Tracker Objects { #webapi_nti_tracker_objects }
 
 Tracker consists of a few different types of objects that are nested together to represent the data. In this section, we will show and describe each of the objects used in the Tracker API.
 
@@ -103,7 +99,8 @@ Tracker consists of a few different types of objects that are nested together to
 | relationships | A list of relationships connected to the tracked entity. | No | No | List of Relationship | See Relationship |
 | programOwners | A list of organisation units that have access through specific programs to this tracked entity. See "Program Ownership" for more. | No | No | List of ProgramOwner | See section "Program Ownership" |
 
-> ***Note***
+> **Note**
+>
 > `Tracked Entities` "owns" all `Tracked Entity Attribute Values` (Or "attributes" as described in the previous table). However, `Tracked Entity Attributes` are either connected to a `Tracked Entity` through its `Tracked Entity Type` or a `Program`. We often refer to this separation as `Tracked Entity Type Attrbiutes` and `Tracked Entity Program Attributes`. The importance of this separation is related to access control and limiting what information the user can see.
 >
 > The "attributes" referred to in the `Tracked Entity` are `Tracked Entity Type Attributes`.
@@ -139,7 +136,8 @@ Tracker consists of a few different types of objects that are nested together to
 | relationships | A list of relationships connected to the enrollment. | No | No | List of Relationship | See Relationship |
 | notes | Notes connected to the enrollment. It can only be created. | No | Yes | List of Note | See Note |
 
-> ***Note***
+> **Note**
+>
 > `Tracked Entities` "owns" all `Tracked Entity Attribute Values` (Or "attributes" as described in the previous table). However, `Tracked Entity Attributes` are either connected to a `Tracked Entity` through its `Tracked Entity Type` or a `Program`. We often refer to this separation as `Tracked Entity Type Attrbiutes` and `Tracked Entity Program Attributes`. The importance of this separation is related to access control and limiting what information the user can see.
 >
 > The "attributes" referred to in the `Enrollment` are `Tracked Entity Program Attributes`.
@@ -195,7 +193,8 @@ In the API, the significant difference is that all events are either connected t
 | bidirectional | Only for reading data. Indicated whether the relationship type is bidirectional or not. | No | No | Boolean | True or False |
 | from, to | A reference to each side of the relationship. Must conform to the constraints set in the relationship type | Yes | Yes | RelationshipItem | {"trackedEntity": "ABCEF12345"}, {"enrollment": "ABCDEF12345"} or {"event": "ABCDEF12345"} |
 
->***Note***
+> **Note**
+>
 >`Relationship item` represents a link to an object. Since a `relationship` can be between any tracker object like `tracked entity`, `enrollment`, and `event`, the value depends on the `relationship type`. For example, if the `relationship type` connects from an `event` to a `tracked entity`, the format is strict:
 >```json
 >{
@@ -222,10 +221,10 @@ In the API, the significant difference is that all events are either connected t
 | valueType | Only for reading data. The type of value the attribute represents. | No | No | Enum | TEXT, INTEGER, and more |
 | value | The value of the tracked entity attribute. | No | No | String:Any | John Doe |
 
->***Note***
+> **Note**
+>
 > For `attributes` only the "attribute" and "value" properties are required when adding data. "value" can be null, which implies the user should remove the value.
-
->***Note***
+>
 > In the context of tracker objects, we refer to `Tracked Entity Attributes` and `Tracked Entity Attribute Values` as "attributes". However, attributes are also their own thing, related to metadata. Therefore it's vital to separate Tracker attributes and metadata attributes. In the tracker API, it is possible to reference the metadata attributes when specifying `idScheme` (See request parameters for more information).
 
 ### Data Values
@@ -241,10 +240,12 @@ While `Attributes` describes a `tracked entity` or an `enrollment`, `data values
 | storedBy | Client reference for who stored/created the value. | No | No | String:Any | John Doe |
 
 
->***Note***
+> **Note**
+>
 > For `data elements` only the "dataElement" and "value" properties are required when adding data. "value" can be null, which implies the user should remove the value.
 
-### Note
+### Tracker Notes
+
 DHIS2 tracker allows for capturing of data using data elements and tracked entity attributes. However, sometimes there could be a situation where it is necessary to record additional information or comment about the issue at hand. Such additional information can be captured using tracker notes. Tracker notes are equivalent to data value comments from the Aggregate DHIS2 side.
 
 There are two types of tracker notes - notes recorded at the event level and those recorded at the enrollment level. An enrollment can have one or more events. Comments about each of the events - for example, why an event was missed, rescheduled, or why only a few data elements were filled and the like - can be documented using event notes. Each of the events within an enrollment can have its own story/notes. One can then record, for example, an overall observation of these events using the parent enrollment note. Enrollment notes are also helpful to document, for example, why an enrollment is canceled. It is the user's imagination and use-case when and how to use notes.
@@ -304,8 +305,7 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 | updatedAt | Timestamp when the note was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | storedBy | Client reference for who stored/created the note. | No | No | String:Any | John Doe |
 
-## Tracker Import (`POST /api/tracker`) { #webapi_nti_import } 
-<!--DHIS2-SECTION-ID:webapi_nti_import-->
+## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
 
 The `POST /api/tracker` endpoint allows clients to import the following tracker objects into DHIS2:
 
@@ -316,6 +316,7 @@ The `POST /api/tracker` endpoint allows clients to import the following tracker 
 * Data embedded in other [tracker objects](#webapi_nti_tracker_objects)
 
 Main changes compared to the other endpoints for tracker import are:
+
 1. Import payload can be ***nested*** or ***flat***
 2. Invocation can be ***synchronous*** or ***asynchronous***
 
@@ -348,12 +349,13 @@ Currently, the tracker import endpoint supports the following parameters:
 The importer support both flat and nested payloads. The main difference is how the client requires their data to be structured.
 
 **Flat**
-The flat-structured payload is straightforward. It can contain collections for each of the core tracker objects we have. This works seamlessly with existing data, which already have UIDs assigned. However, for new data, the client will have to provide new UIDs for any references between objects. For example, if you import a new tracked entity with a new enrollment, the tracked entity requires the client to provide a UID so that the enrollment can be linked to that UID.
+:   The flat-structured payload is straightforward. It can contain collections for each of the core tracker objects we have. This works seamlessly with existing data, which already have UIDs assigned. However, for new data, the client will have to provide new UIDs for any references between objects. For example, if you import a new tracked entity with a new enrollment, the tracked entity requires the client to provide a UID so that the enrollment can be linked to that UID.
 
 **Nested**
-Nested payloads are the most commonly used structure. Here, tracker objects are embedded within their parent object; For example, an enrollment within a tracked entity. The advantage of this structure is that the client does not need to provide UIDs for these connections since they will be given this connection during the import process since they are nested together.
+:   Nested payloads are the most commonly used structure. Here, tracker objects are embedded within their parent object; For example, an enrollment within a tracked entity. The advantage of this structure is that the client does not need to provide UIDs for these connections since they will be given this connection during the import process since they are nested together.
 
-> ***Note***
+> **NOTE**
+>
 > While nested payloads might prove simpler for clients to deal with, the payload will always be flattened before the import. This means that for large imports, providing a flat structured payload will provide both more control and lower overhead for the import process itself.
 
 Examples for the **FLAT** and the **NESTED** versions of the payload are listed below. Both cases use the same data.
@@ -456,6 +458,7 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
 ```
 
 #### ***NESTED*** payload
+
 ```json
 {
   "trackedEntities": [
@@ -576,12 +579,13 @@ Examples of the **ASYNC** response is shown below. For **SYNC** response, look a
 }
 ```
 
-### Import Summary { #webapi_nti_import_summary } 
+### Import Summary { #webapi_nti_import_summary }
 
 The Tracker API has two primary endpoints for consumers to acquire feedback from their imports. These endpoints are most relevant for async import jobs but are available for sync jobs as well. These endpoints will return either the log related to the import or the import summary itself.
 
->***Note***
->These endpoints rely on information stored in the application memory. This means the information will be unavailable after certain cases, as an application restart or after a large number of import requests have started after this one.
+> **Note**
+>
+> These endpoints rely on information stored in the application memory. This means the information will be unavailable after certain cases, as an application restart or after a large number of import requests have started after this one.
 
 After submitting a tracker import request, we can access the following endpoints in order to monitor the job progress based on logs:
 
@@ -682,7 +686,8 @@ Additionally, the following endpoint will return the import summary of the impor
 
 The [response payload](#sample-responses) is the same as the one returned after a sync import request.
 
->***Note***
+> **Note**
+>
 > Both endpoints are used primarily for async import; however, `GET /tracker/jobs/{uid}` would also work for sync requests as it eventually uses the same import process and logging as async requests.
 
 ### Import Summary Structure
@@ -705,8 +710,9 @@ The property, `status`, of the import summary indicates the overall status of th
 
 `status` is based on the presence of the most significant `validationReport`. `ERROR` has the highest significance, followed by `WARNING` and finally `OK`. This implies that `ERROR` is reported as long as a single error was found during the import, regardless of how many warnings occurred.
 
->***Note***
->If the import is performed using the AtomicMode "OBJECT", where the import will import any data without validation errors, the overall status will still be `ERROR` if any errors were found.
+> **Note**
+>
+> If the import is performed using the AtomicMode "OBJECT", where the import will import any data without validation errors, the overall status will still be `ERROR` if any errors were found.
 
 ***validationReport***
 
@@ -732,14 +738,13 @@ For example, a validation error while importing a `TRACKED_ENTITY`:
 
 The report contains a message and a code describing the actual error (See the [error codes](#error-codes) section for more information about errors). Additionally, the report includes the `trackerType` and `uid`, which aims to describe where in the data the error was found. In this case, there was a `TRACKED_ENTITY` with the uid `Kj6vYde4LHh`, which had a reference to a tracked entity type that was not found.
 
->***Note 1***
->When referring to the `uid` of tracker objects, they are labeled as their object names in the payload. For example, the `uid` of a tracked entity would in the payload have the name "trackedEntity". The same goes for "enrollment", "event" and "relationship" for enrollments, events, and relationships, respectively.
-
->***Note 2***
->If no uid is provided in the payload, the import process will generate new uids. This means the error report might refer to a uid that does not exist in your payload.
-
->***Note 3***
->Errors represent issues with the payload which the importer can not circumvent. Any errors will block that data from being imported. Warnings, on the other hand, are issues where it's safe to circumvent them, but the user should be made aware that it happened. Warnings will not block data from being imported.
+> **Note**
+>
+> When referring to the `uid` of tracker objects, they are labeled as their object names in the payload. For example, the `uid` of a tracked entity would in the payload have the name "trackedEntity". The same goes for "enrollment", "event" and "relationship" for enrollments, events, and relationships, respectively.
+>
+> If no uid is provided in the payload, the import process will generate new uids. This means the error report might refer to a uid that does not exist in your payload.
+>
+> Errors represent issues with the payload which the importer can not circumvent. Any errors will block that data from being imported. Warnings, on the other hand, are issues where it's safe to circumvent them, but the user should be made aware that it happened. Warnings will not block data from being imported.
 
 ***stats***
 
@@ -835,7 +840,7 @@ As previously stated, `GET /tracker/jobs/{uid}/report` can be retrieved using a 
 
 In addition, all `reportModes` will return `status`, `stats`, `bundleReport` and `message` when applicable.
 
-### Error Codes { #webapi_nti_error_codes } 
+### Error Codes { #webapi_nti_error_codes }
 
 There are various error codes for different error scenarios. The following table has the list of error codes thrown from the new Tracker API, along with the error messages and some additional descriptions. The placeholders in the error messages (`{0}`,`{1}`,`{2}`..) are usually uids unless otherwise specified.
 
@@ -946,14 +951,16 @@ There are various error codes for different error scenarios. The following table
 | E4014 | Relationship Type `{0}` constraint requires a Tracked Entity having type `{1}` but `{2}` was found. | |
 | E9999 | N/A | Undefined error message. |
 
-### Validation { #webapi_nti_validation } 
+### Validation { #webapi_nti_validation }
 
 While importing data using the tracker importer, a series of validations are performed to ensure the validity of the data. This section will describe some of the different types of validation performed to provide a better understanding if validation fails for your import.
 
 #### Required properties
+
 Each of the tracker objects has a few required properties that need to be present when importing data. For an exhaustive list of required properties, have a look at the [Tracker Object section](#webapi_nti_tracker_objects).
 
 When validating required properties, we are usually talking about references to other data or metadata. In these cases, there are three main criteria:
+
 1. The reference is present and not null in the payload.
 2. The reference points to the correct type of data and exists in the database
 3. The user has access to see the reference
@@ -961,7 +968,9 @@ When validating required properties, we are usually talking about references to 
 If the first condition fails, the import will fail with a message about a missing reference. However, suppose the reference points to something that doesn't exist or which the user cannot access. In that case, both cases will result in a message about the reference not being found.
 
 #### Formats
+
 Some of the properties of tracker objects require a specific format. When importing data, each of these properties is validated against the expected format and will return different errors depending on which property has a wrong format. Some examples of properties that are validated this way:
+
 - UIDs (These cover all references to other data or metadata in DHIS2.)
 - Dates
 - Geometry (The coordinates must match the format as specified by its type)
@@ -996,7 +1005,7 @@ The last part of validations in the importer are validations based on the user's
 
 These configurations will further change how validation is performed during import.
 
-### Program Rules { #webapi_nti_program_rules } 
+### Program Rules { #webapi_nti_program_rules }
 
 Users can configure [Program Rules](#webapi_program_rules), which adds conditional behavior to tracker forms. In addition to running these rules in the tracker apps, the tracker importer will also run a selection of these rules. Since the importer is also running these rules, we can ensure an additional level of validation.
 
@@ -1036,26 +1045,28 @@ The results of the program rules depend on the actions defined in those rules:
 
 Additionally, program rules can also result in side-effects, like send and schedule messages. More information about side effects can be found in the following section.
 
-> ***NOTE***
+> **NOTE**
+>
 > Program rules can be skipped during import using the `skipProgramRules` parameter.
 
-### Side Effects { #webapi_nti_side_effects } 
+### Side Effects { #webapi_nti_side_effects }
 
 After an import has been completed, specific tasks might be triggered as a result of the import. These tasks are what we refer to as "Side effects". These tasks perform operations that do not affect the import itself.
 
 Side effects are tasks running detached from the import but are always triggered by an import. Since side effects are detached from the import, they can fail even when the import is successful. Additionally, side effects are only run when the import is successful, so they cannot fail the other way around.
 
 The following side effects are currently supported:
-  
+
   |Side Effects|Supported|Description|
   |---|:---:|---|
   |**Tracker Notification**|**X**| Updates can trigger notifications. Updates which trigger notifications are **enrollment**, **event update**, **event or enrollment completion**. |
   |**ProgramRule Notification**|**X**| Program rules can trigger notifications. Note that these notifications are part of program rule effects which are generated through the DHIS2 rule engine.|
-  
-  > ***NOTE*** 
+
+  > **NOTE**
+  >
   > Certain configurations can control the execution of side effects. `skipSideEffects` flag can be set during the import to skip side effects entirely. This parameter can be useful if you import something you don't want to trigger notifications for, as an example.
 
-### Assign user to events { #webapi_nti_user_event_assignment } 
+### Assign user to events { #webapi_nti_user_event_assignment }
 
 Specific workflows benefit from treating events like tasks, and for this reason, you can assign a user to an event.
 
@@ -1084,7 +1095,7 @@ In this example, the user with uid `M0fCOxtkURr` will be assigned to the Event w
 
 To use this feature, the relevant program stage needs to have user assignment enabled, and the uid provided for the user must refer to a valid, existing user.
 
-## Tracker Export { #webapi_nti_export } 
+## Tracker Export { #webapi_nti_export }
 
 Tracker export endpoints are a set of services that allow clients to query and retrieve objects stored using the import endpoint.
 
@@ -1100,14 +1111,15 @@ Tracker export endpoints deal with the following Tracker objects:
 - **Enrollments**
 - **Relationships**
 
-> **_NOTE 1:_** 
-> 
-> These endpoints currently only support `JSON`, but `CSV` will be supported in the near future.
-
-
-> **_NOTE 2:_**
-> 
-> These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)** 
+> **NOTE**
+>
+> - These endpoints currently only support `JSON`, but `CSV` will be supported in the near future.
+>
+> - These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)**
+>
+> - The following functionalities are still missing but available in older endpoints:
+>
+>     - field filtering
 
 ### Common request parameters
 
@@ -1128,9 +1140,10 @@ The following endpoint supports standard parameters for pagination.
 |`skipPaging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `false`, meaning that by default all requests are paginated, unless `skipPaging=true`|
 |`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
 
-> **_NOTE_**
-> 
+> **Caution**
+>
 > Be aware that the performance is directly related to the amount of data requested. Larger pages will take more time to return.
+
 #### Request parameters for Organisational Unit selection mode
 
 The available organisation unit selection modes are explained in the
@@ -1169,7 +1182,7 @@ Two endpoints are dedicated to tracked entities:
   - retrieves tracked entities matching given criteria
 - `GET /api/tracker/trackedEntities/{id}`
   - retrieves a tracked entity given the provided id
-    
+
 #### Tracked Entities Collection endpoint `GET /api/tracker/trackedEntities`
 
 The purpose of this endpoint is to retrieve tracked entities matching client-provided criteria.
@@ -1358,7 +1371,7 @@ Responses can be filtered on desired fields, see [Request parameter to filter re
 
 #### Tracked Entities single object endpoint `GET /api/tracker/trackedEntities/{uid}`
 
-The purpose of this endpoint is to retrieve one tracked entity given its uid. 
+The purpose of this endpoint is to retrieve one tracked entity given its uid.
 
 ##### Request syntax
 
@@ -1887,6 +1900,7 @@ Unlike other tracked objects endpoints, Relationship only expose one endpoint:
 - `GET /api/tracker/relationships?[tei={teiUid}|enrollment={enrollmentUid}|event={eventUid}]&fields=[fields]`
 
 #### Request parameters
+
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`tei`|`String`|`uid`| Identifier of a Tracked Entity Instance|
@@ -1898,11 +1912,11 @@ The following rules apply to the query parameters.
 
 - only one parameter among `tei`,`enrollment`,`event` can be passed
 
-> **NOTE:**
+> **NOTE**
 >
-> using tracked entity, Enrollment or Event params, will return any relationship where the tei\enrollment or
+> Using tracked entity, Enrollment or Event params, will return any relationship where the tei, enrollment or
 > event is part of the relationship (either from or to). As long as user has access, that is.
-> 
+>
 
 #### Example response
 
@@ -1943,10 +1957,11 @@ The following rules apply to the query parameters.
 }
 ```
 
-## Tracker Access Control { #webapi_nti_access_control } 
+## Tracker Access Control { #webapi_nti_access_control }
+
 Tracker has a few different concepts in regards to access control, like sharing, organisation unit scopes, ownership, and access levels. The following sections provide a short introduction to the different topics.
 
-### Metadata Sharing { #webapi_nti_metadata_sharing } 
+### Metadata Sharing { #webapi_nti_metadata_sharing }
 
 
 Sharing setting is standard DHIS2 functionality that applies to both Tracker and Aggregate metadata/data as well as dashboards and visualization items. At the core of sharing is the ability to define who can see/do what. In general, there are five possible sharing configurations – no access, metadata read, metadata write, data read, and data write. These access configurations can be granted at user and/or user group level (for more flexibility). With a focus on Tracker, the following metadata and their sharing setting is of particular importance: Data Element, Category Option, Program, Program Stage, Tracked Entity Type, Tracked Entity Attribute as well as Tracker related Dashboards and Dashboard Items.
@@ -1963,7 +1978,7 @@ In summary, DHIS2 has a fine-grained sharing setting that we can use to implemen
 
 For more detailed information about data sharing, check out [Data sharing](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/configuring-the-system/about-sharing-of-objects.html#data-sharing-for-event-based-programs).
 
-### Organisation Unit Scopes { #webapi_nti_ou_scope } 
+### Organisation Unit Scopes { #webapi_nti_ou_scope }
 
 Organisation units are one of the most fundamental objects in DHIS2. They define a universe under which a user is allowed to record and/or read data. There are three types of organisation units that can be assigned to a user. These are data capture, data view, and tracker search. As the name implies, these organisation units define a scope under which a user is allowed to conduct the respective operations.
 
@@ -1992,7 +2007,7 @@ For example, when retrieving TrackedEntities without the context of a program, t
 
   * **Explain how they relate to ownership - Link to Program Ownership**
 
-### Tracker Program Ownership { #webapi_nti_ownership } 
+### Tracker Program Ownership { #webapi_nti_ownership }
 
 A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation unit association for a TrackedEntity - Program combination.
 We call this the Owner (or Owning) Organisation unit of a TrackedEntity in
@@ -2001,7 +2016,7 @@ This, along with the Program's [Access Level](#webapi_nti_access_level) configur
 A user can access a TrackedEntity's Program data if the corresponding Owner OrganisationUnit for that TrackedEntity-Program combination falls under the user's organisation unit scope (Search/Capture). For Programs that are configured with access level  *OPEN* or *AUDITED* , the Owner OrganisationUnit has to be in the user's search scope.
 For Programs that are configured with access level  *PROTECTED* or *CLOSED* , the Owner OrganisationUnit has to be in the user's capture scope to be able to access the corresponding program data for the specific tracked entity.
 
-#### Tracker Ownership Override: Break the Glass { #webapi_nti_tracker_ownership_override } 
+#### Tracker Ownership Override: Break the Glass { #webapi_nti_tracker_ownership_override }
 
 It is possible to temporarily override this ownership privilege for a
 program that is configured with an access level of *PROTECTED*. Any user
@@ -2017,7 +2032,7 @@ TrackedEntity-Program combination, the following POST request can be used:
     /API/33/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
       &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
-#### Tracker Ownership Transfer { #webapi_nti_tracker_ownership_transfer } 
+#### Tracker Ownership Transfer { #webapi_nti_tracker_ownership_transfer }
 
 It is possible to transfer the ownership of a TrackedEntity-Program
 from one organisation unit to another. This will be useful in case of patient
@@ -2027,7 +2042,7 @@ referrals or migrations. Only a user who has Ownership access (or temporary acce
       &program=eBAyeGv0exc&ou=EJNxP3WreNP
 
 
-### Access Level { #webapi_nti_access_level } 
+### Access Level { #webapi_nti_access_level }
 
 DHIS2 treats Tracker data with an extra level of protection. In addition to the standard feature of metadata and data protection through sharing settings, Tracker data are shielded with additional access level protection mechanisms.  Currently, there are four access levels that can be configured for a Program: Open, Audited, Protected, and Closed.
 
