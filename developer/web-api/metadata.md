@@ -775,7 +775,7 @@ Which would yield the result:
 
 ### Partial updates { #webapi_partial_updates } 
 
-For our web api endpoints that deal with metadata, we support partial updates (PATCH) using the JSON Patch [standard](https://tools.ietf.org/html/rfc6902). The payload basically outlines a set of operation you want applied to a existing metadata object. For examples of JSON patch please see [jsonpatch.com](http://jsonpatch.com/).
+For our web api endpoints that deal with metadata, we support partial updates (PATCH) using the JSON Patch [standard](https://tools.ietf.org/html/rfc6902). The payload basically outlines a set of operation you want applied to a existing metadata object. For examples of JSON patch please see [jsonpatch.com](http://jsonpatch.com/), we support 3 operators: `add`, `remove` and `replace`.
 
 Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT payload).
 
