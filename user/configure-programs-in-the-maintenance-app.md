@@ -6,7 +6,7 @@ Traditionally, public health information systems have been reporting
 aggregated data of service provision across its health programs. This
 does not allow you to trace the people provided with these services. In
 DHIS2, you can define your own programs with stages. These programs are
-a essential part of the "tracker" functionality which lets you track
+an essential part of the "tracker" functionality which lets you track
 individual records. You can also track other ‘entities’ such as wells or
 insurances. You can create two types of programs:
 
@@ -290,7 +290,7 @@ attributes and program parameters.
     </tr>
     <tr class="even">
     <td><strong>Feature type</strong></td>
-    <td><p>Sets wether the program is going to capture a geographical feature type or not.
+    <td><p>Sets whether the program is going to capture a geographical feature type or not.
 - **None**
   Nothing is captured.
 - **Polygon**
@@ -305,7 +305,7 @@ attributes and program parameters.
 > Data type validations is always performed regardless of the validation strategy. An integer field is never stored containing text, for example.
 - **On complete**
   This option will enforce required field and error messages to be fixed when completing the event, but the event can be saved to the server without passing these validation requirements.
-  - For legacy reasons, this is always the validation strategy for tracker programs, where each data value in the event is stored to the server while entrering data.
+  - For legacy reasons, this is always the validation strategy for tracker programs, where each data value in the event is stored to the server while entering data.
 - **On update and insert**
   This option will enforce required field validation when saving the event to the server regardless of the completion status. When using this option no events can be stored without passing validations.
     </td>
@@ -484,24 +484,32 @@ Change roles and access:
 
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
         </colgroup>
         <thead>
         <tr class="header">
-        <th><p>Notification trigger</p></th>
+        <th><p>Trigger</p></th>
         <th><p>Description</p></th>
+        <th><p>Note</p></th>
         </tr>
         </thead>
         <tbody>
         <tr class="odd">
         <td><p>Program stage completion</p></td>
         <td><p>The program stage notification is sent when the program stage is completed</p></td>
+        <td><p>-</p></td>
         </tr>
         <tr class="even">
         <td><p>Days scheduled (due date)</p></td>
-        <td><p>The program stage notification is sent XX number of days before or after the due date</p>
-        <p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
+        <td><p>The notification is sent XX number of days before or after the due date</p></td>
+        <td><p>You need to enter the number of days before or after the scheduled date that the notification will be send.</p></td>
+        </tr>
+        <tr class="odd">
+        <td><p>Program Rule</p></td>
+        <td><p>Notification will be triggered as a result of program rule execution.</p></td>
+        <td><p>Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful.</p></td>
         </tr>
         </tbody>
         </table>
@@ -514,37 +522,42 @@ Change roles and access:
 
         <table>
         <colgroup>
-        <col style="width: 50%" />
-        <col style="width: 50%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
         </colgroup>
         <thead>
         <tr class="header">
-        <th><p>Notification recipient</p></th>
+        <th><p>Recipient type</p></th>
         <th><p>Description</p></th>
+        <th><p>Note</p></th>
         </tr>
         </thead>
         <tbody>
         <tr class="odd">
         <td><p>Tracked entity instance</p></td>
-        <td><p>Receives program notifications via e-mail or text message.</p>
-        <p>To receive a program notification, the recipient must have an e-mail address or a phone number attribute.</p></td>
+        <td><p>Receives program notifications via e-mail or text message.</p></td>
+        <td><p>To receive a program notification, the recipient must have an e-mail address or a phone number attribute.</p></td>
         </tr>
         <tr class="even">
         <td><p>Organisation unit contact</p></td>
-        <td><p>Receives program notifications via e-mail or text message.</p>
-        <p>To receive a program notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number.</p></td>
+        <td><p>Receives program notifications via e-mail or text message.</p></td>
+        <td><p>To receive a program notification, the receiving organisation unit must have a registered contact person with e-mail address and phone number.</p></td>
         </tr>
         <tr class="odd">
         <td><p>Users at organisation unit</p></td>
         <td><p>All users registered to the selected organisation unit receive program notifications via the internal DHIS2 messaging system.</p></td>
+        <td>-</td>
         </tr>
         <tr class="even">
         <td><p>User group</p></td>
         <td><p>All members of the selected user group receive the program notifications via the internal DHIS2 messaging system</p></td>
+        <td>-</td>
         </tr>
         <tr class="odd">
-        <td><p>Program</p></td>
-        <td><p>TBA</p></td>
+        <td><p>Data Element</p></td>
+        <td><p>Data Element associated with ProgramStage can be selected as recipient.</p></td>
+        <td><p>Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL.</p></td>
         </tr>
         </tbody>
         </table>
@@ -951,16 +964,16 @@ program. A program needs several types of metadata that you create in the **Main
             <td><strong>Feature type</strong></td>
             <td>
                 <p>
-                    Sets wether the program is going to capture a geographical
+                    Sets whether the program is going to capture a geographical
                     feature type or not.
                 </p>
                 <ul>
-                <li><strong>None:</strong>Nothing is captured.</li>
-                <li><strong>Polygon:</strong> An area is captured. For single
+                <li><strong>None</strong>: Nothing is captured.</li>
+                <li><strong>Polygon</strong>: An area is captured. For single
                 event programs the area will be the area representing the
                 event being captured. For tracker programs, the area will
                 represent the area of the enrollment. </li>
-                <li><strong>Point:</strong>: A point/coordinate is captured. For
+                <li><strong>Point</strong>: A point/coordinate is captured. For
                 single event programs the point will be representing the
                 event being captured. For tracker programs, the point will
                 represent the enrollment. </li>
@@ -985,7 +998,7 @@ program. A program needs several types of metadata that you create in the **Main
   1. In the list of **Available program tracked entity attributes**, double-click the
         attributes you want to assign to the program.
 
-  2. (Opptional) For each assigned attribute, add additional settings:
+  2. (Optional) For each assigned attribute, add additional settings:
 <table>
         <colgroup>
             <col style="width: 50%" />
@@ -1134,7 +1147,7 @@ number of days to wait for starting the program stage.
                 <td>
                     <p>
                         Clear check box to prevent creating an event of this program
-                        stage automatically when a entity is enrolled in the program.
+                        stage automatically when an entity is enrolled in the program.
                     </p>
                 </td>
             </tr>
@@ -1257,19 +1270,19 @@ number of days to wait for starting the program stage.
                 <td><strong>Feature type</strong></td>
                 <td>
                     <p>
-                        Sets wether the program is going to capture a geographical
+                        Sets whether the program is going to capture a geographical
                         feature type or not.
                     </p>
                     <ul>
-                    <li><strong>None:</strong>Nothing is captured.</li>
+                    <li><strong>None</strong>: Nothing is captured.</li>
                     <li>
-                        <strong>Polygon: </strong> An area is captured. For single
+                        <strong>Polygon</strong>: An area is captured. For single
                         event programs the area will be the area representing the
                         event being captured. For tracker programs, the area will
                         represent the area of the enrollment.
                     </li>
                     <li>
-                        <strong>Point:</strong>: A point/coordinate is captured. For
+                        <strong>Point</strong>: A point/coordinate is captured. For
                         single event programs the point will be representing the
                         event being captured. For tracker programs, the point will
                         represent the enrollment.
@@ -1572,7 +1585,7 @@ template.
     </tr>
     <tr class="odd">
     <td><p>Program Rule</p></td>
-    <td><p>Notification will be triggered as a result of program rule exeuction.</p></td>
+    <td><p>Notification will be triggered as a result of program rule execution.</p></td>
     <td><p>Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful.</p></td>
     </tr>
     </tbody>
@@ -1652,7 +1665,7 @@ template.
     program stage opens. If the program stage doesn't have any program
     stage notifications, the list is empty.
 
-2.  Click on add button and select**Program stage notification**.
+2.  Click on add button and select **Program stage notification**.
 
 3.  Click **Add new**.
 
@@ -1986,7 +1999,7 @@ Analytics type Enrollment
 </blockquote></li>
 </ul></li>
 <li><p>Analytics period boundary type: Defines whether the boundary is an end boundary - starting with &quot;before...&quot;, or a start boundary - &quot;after...&quot;. Also defines whether the boundary relates to the end of the aggregate reporting period or the start of the aggregate reporting period.</p></li>
-<li><p>Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back(negative) or forward(positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort program indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with &quot;-1&quot; and &quot;Years&quot;</p></li>
+<li><p>Offset period by amount: In some cases, for example cohort analytics, the boundary should be offset relative to the aggregate reporting period when running pivots and reports. The offset period by amount is used to move the current boundary either back (negative) or forward (positive) in time. The amount and period type together will determine how big the offset will be. An example can be when making a simple enrollment cohort program indicator for a 1 year cohort, it might be enough to offset each boundary of the program indicator with &quot;-1&quot; and &quot;Years&quot;</p></li>
 <li><p>Period type: See above. Can be any period, e.g. <em>Weekly</em> or <em>Quarterly</em>.</p></li>
 </ul></td>
 </tr>
@@ -2065,7 +2078,7 @@ objects:
 
 5.  Select an **Aggregation type**.
 
-6.  Select a if you want to **Display in form**.
+6.  Select if you want to **Display in form**.
 
 7.  Assign one or multiple **Legend**s.
 
@@ -2258,7 +2271,7 @@ functions. The functions can be applied to data elements and attributes:
 <tr class="even">
 <td><p>d2:countIfCondition</p></td>
 <td><p>(dataElement, condition)</p></td>
-<td><p>Useful only for enrollment program indicators. Counts the number of data values that matches the given condition criteria for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The condition is supplied as a expression in single quotes, for example '&lt;10' if only the values less than 10 should be counted.</p></td>
+<td><p>Useful only for enrollment program indicators. Counts the number of data values that matches the given condition criteria for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The condition is supplied as an expression in single quotes, for example '&lt;10' if only the values less than 10 should be counted.</p></td>
 </tr>
 <tr class="odd">
 <td><p>if</p></td>
@@ -2379,7 +2392,7 @@ variables:
 </tr>
 <tr>
 <td><p>sync_date</p></td>
-<td><p>The date of when the event or enrollment was last syncronized with the Android app.</p></td>
+<td><p>The date of when the event or enrollment was last synchronized with the Android app.</p></td>
 </tr>
 <tr>
 <td><p>incident_date</p></td>
@@ -2684,8 +2697,8 @@ objects:
     <tr class="odd">
     <td><p><strong>Calculated value</strong></p></td>
     <td><p>Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules <strong>ASSIGN</strong> action.</p>
-    <p>This variable will be used for making preliminary calculations, having a <strong>ASSIGN</strong> program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintanable.</p>
-    <p>These variables will not be persisted and will stay in memory only during the exectution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a <strong>priority</strong> assigned - to make sure that the preliminary caculation is done before the rule that consumes the calculated value.</p>
+    <p>This variable will be used for making preliminary calculations, having a <strong>ASSIGN</strong> program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintainable.</p>
+    <p>These variables will not be persisted and will stay in memory only during the execution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a <strong>priority</strong> assigned - to make sure that the preliminary calculation is done before the rule that consumes the calculated value.</p>
     </td>
     </tr>
     <tr class="even">
@@ -2786,7 +2799,7 @@ objects:
         <p><strong>Expression to evaluate and assign</strong></p></td>
         <td><p>Used to help the user calculate and fill out fields in the data entry form. The idea is that the user shouldn’t have to fill in values that the system can calculate, for example BMI.</p>
         <p>When a field is assigned a value, the user sees the value but the user can't edit it.</p>
-        <p>Example from Immunization stock card i Zambia: The data element for vaccine stock outgoing balance is calculated based on the data element for incoming stock balance minus the data elements for consumption and wastage.</p>
+        <p>Example from Immunization stock card in Zambia: The data element for vaccine stock outgoing balance is calculated based on the data element for incoming stock balance minus the data elements for consumption and wastage.</p>
         <p>Advanced use: configure an 'assign value' to do a part of a calculation and then assign the result of the calculation to a program rule variable. This is the purpose with the &quot;Calculated value&quot; program rule variable.</p></td>
         </tr>
         <tr class="odd">
@@ -2821,7 +2834,7 @@ objects:
         <p><strong>Custom message for blanked field</strong></p></td>
         <td><p>Used when you want to hide a field from the user.</p>
         <p><strong>Custom message for blanked field</strong> allows you to define a custom message displayed to the user in case the program rule hides and blanks out the field after the user typed in or selected a value.</p>
-        <p>If a hide field action hides a field that contains a value, the field will always removed. If no message is defined, a standard message will be displayed to alert the user.</p></td>
+        <p>If a hide field action hides a field that contains a value, the field will always be removed. If no message is defined, a standard message will be displayed to alert the user.</p></td>
         </tr>
         <tr class="odd">
         <td><p><strong>Hide section</strong></p></td>
@@ -2858,7 +2871,7 @@ objects:
         <p><strong>Static text</strong></p>
         <p><strong>Expression to evaluate and display after static text</strong></p></td>
         <td><p>Used to give the user a warning about the entered data, but at the same time to allow the user to save and continue.</p>
-        <p>You can use warnings to help the user avoid errors in the entered data, while at the same time allow the user to consciously disregard the warnings and save a value that is outside preset expectations.</p>
+        <p>You can use warnings to help the user avoid errors in the entered data, while at the same time allow the user to consciously disregard the warnings and save a value that is outside present expectations.</p>
         <p><strong>Static text</strong> defines the message shown to the user when the expression is true and the action is triggered.</p>
         <p>You can select which data element or tracked entity attribute to link the error to. This will help the user to fix the error.</p>
         <p>In case several data elements or attributes are involved, select the one that is most likely that the user would need to change.</p></td>
@@ -2893,7 +2906,7 @@ objects:
         <p><strong>Tracked entity attribute to hide option for</strong></p>
         <p><strong>Option that should be hidden</strong></p></td>
         <td><p>Used to selectively hide a single option for an option set in a given data element/tracked entity attribute.</p>
-        <p>When combined with <strong>show option group</strong> the <strong>hide option</strong> takes presedence.</p></td>
+        <p>When combined with <strong>show option group</strong> the <strong>hide option</strong> takes precedence.</p></td>
         </tr>
         <tr class="even">
         <td><p><strong>Hide option group</strong></p></td>
@@ -3296,7 +3309,7 @@ e varies between -3.5 to 3.5 depending upon the value of weight.
 <pre><code>d2:zScoreWFA( ageInMonths, weight, gender )</code></pre>
 
 > **Gender**
-> Gender is concidered female by default. Any of the following codes can
+> Gender is considered female by default. Any of the following codes can
 > be used to denote male: 'Male', 'MALE', 'male', 'ma', 'm', 'M', 0, false
 
 </td>
@@ -3392,12 +3405,12 @@ Its value varies between -3.5 to 3.5 depending upon the value of the weight.
 <tr class="even">
 <td>V{enrollment_id}</td>
 <td>(string)</td>
-<td>Universial identifier string(UID) of the current enrollment. Will not have a value for single event programs.</td>
+<td>Unique identifier string(UID) of the current enrollment. Will not have a value for single event programs.</td>
 </tr>
 <tr class="odd">
 <td>V{event_id}</td>
 <td>(string)</td>
-<td>Universial identifier string(UID) of the current event context. Will not have a value at the moment the rule is executed as part of the registration form.</td>
+<td>Unique identifier string(UID) of the current event context. Will not have a value at the moment the rule is executed as part of the registration form.</td>
 </tr>
 <tr class="even">
 <td>V{orgunit_code}</td>
@@ -3472,7 +3485,7 @@ For more information about configuration and the meaning of 'From constraint' an
 
 ### About tracked entity types { #about_tracked_entity } 
 
-A tracked entity is a types of entities which can be tracked through the
+A tracked entity is a type of entity which can be tracked through the
 system. It can be anything from persons to commodities, for example a
 medicine or a person.
 
@@ -3512,8 +3525,8 @@ programs.
    |      \\X      | capital letter |
    |      \\w      |any alphanumeric character|
 
-  For example, the pattern can be used to show hyphens as needed in the input field of the data element. E.g "\d\d\d-\d\d\d-\d\d\d, would 
-  show an hyphen for every third digit.
+  For example, the pattern can be used to show hyphens as needed in the input field of the data element. E.g. "\d\d\d-\d\d\d-\d\d\d, would 
+  show a hyphen for every third digit.
 
 8.  Select an **Option set**.
 
