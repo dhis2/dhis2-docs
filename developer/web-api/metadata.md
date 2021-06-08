@@ -784,7 +784,7 @@ Below is a few examples relevant to dhis2, please note that any update to a payl
 ```json
 [
   {"op": "add", "path": "/name", "value": "New Name"},
-  {"op": "add", "path": "/valueType", "value": "INTEGER"},
+  {"op": "add", "path": "/valueType", "value": "INTEGER"}
 ]
 
 >> Send PATCH to /api/dataElements/ID
