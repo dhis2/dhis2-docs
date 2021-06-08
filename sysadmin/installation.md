@@ -687,7 +687,7 @@ oidc.provider.google.client_id = my_client_id
 oidc.provider.google.client_secret = my_client_secret
 
 # DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
-oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app context)
+oidc.provider.google.redirect_url = (protocol)://(host)/(optional app context)
 
 # Optional, defaults to 'email'
 oidc.provider.google.mapping_claim = email
@@ -731,7 +731,7 @@ oidc.provider.azure.0.client_id = my_azure_ad_client_id
 oidc.provider.azure.0.client_secret = my_azure_ad_client_secret
 
 # DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
-oidc.provider.azure.0.redirect_baseurl = (protocol)://(host)/(optional app context)
+oidc.provider.azure.0.redirect_url = (protocol)://(host)/(optional app context)
 
 # Optional, defaults to 'email'
 oidc.provider.azure.0.mapping_claim = email
@@ -837,7 +837,7 @@ oidc.provider.google.client_id = my_client_id
 oidc.provider.google.client_secret = my_client_secret
 
 # DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
-oidc.provider.google.redirect_baseurl = (protocol)://(host)/(optional app context)
+oidc.provider.google.redirect_url = (protocol)://(host)/(optional app context)
 
 # Optional, defaults to 'email'
 oidc.provider.google.mapping_claim = email
