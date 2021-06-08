@@ -1694,8 +1694,8 @@ Table: ProgramRuleAction Validations
 |HIDEOPTIONGROUP| Option group id |
 |SHOWOPTIONGROUP| Option group id |
 |SETMANDATORYFIELD| DataElement or TrackedEntityAttribute id |
-|SHOWERROR| DataElement or TrackedEntityAttribute id |
-|SHOWWARNING| DataElement or TrackedEntityAttribute id |
+|SHOWERROR| Always valid |
+|SHOWWARNING| Always valid |
 |DISPLAYTEXT| DataElement or TrackedEntityAttribute id |
 |DISPLAYKEYVALUEPAIR||
 |ASSIGN| DataElement or TrackedEntityAttribute id |
