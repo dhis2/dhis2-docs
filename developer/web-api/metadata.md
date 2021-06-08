@@ -775,27 +775,39 @@ Which would yield the result:
 
 ### Partial updates { #webapi_partial_updates } 
 
-For cases where you don't want or need to update all properties on a
-object (which means downloading a potentially huge payload, change one
-property, then upload again) we now support partial update, for one or
-more properties.
+For our web api endpoints that deal with metadata, we support partial updates (PATCH) using the JSON Patch [standard](https://tools.ietf.org/html/rfc6902). The payload basically outlines a set of operation you want applied to a existing metadata object. For examples of JSON patch please see [jsonpatch.com](http://jsonpatch.com/), we support 3 operators: `add`, `remove` and `replace`.
 
-The payload for doing partial updates are the same as when you are
-doing a full update, the only difference is that you only include the
-properties you want to update, i.e.:
+Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT payload).
+
+#### Update name and valueType of data element
 
 ```json
-{
-  "name": "Updated Name",
-  "zeroIsSignificant": true
-}
+[
+  {"op": "add", "path": "/name", "value": "New Name"},
+  {"op": "add", "path": "/valueType", "value": "INTEGER"}
+]
+
+>> Send PATCH to /api/dataElements/ID
 ```
 
-An example curl command looks like this:
+#### Add new data element to a data element group
 
-```bash
-curl -X PATCH -d @file.json -H "Content-Type: application/json"
-  -u admin:district "https://play.dhis2.org/dev/api/dataElements/fbfJHSPpUQD"
+```json
+[
+  {"op": "add", "path": "/dataElements/-", "value": {"id": "data-element-id"}}
+]
+
+>> Send PATCH to /api/dataElementGroups/ID
+```
+
+#### Remove all data element assosciations from a data element group
+
+```json
+[
+  {"op": "remove", "path": "/dataElements"}
+]
+
+>> Send PATCH to /api/dataElementGroups/ID
 ```
 
 ## Metadata export { #webapi_metadata_export } 
