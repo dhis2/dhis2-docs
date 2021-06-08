@@ -336,7 +336,7 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
 ### Reset user password { #webapi_user_reset }
 
 User administrators (with appropriate rights) can reset another user's account
-by triggering password recovery. Once triggered an email is send to the user
+by triggering password recovery. Once triggered an email is sent to the user
 containing a recovery link. Users following the link get to a form which allows
 to set a new password.
 
