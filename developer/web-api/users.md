@@ -333,6 +333,16 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
   -H "Content-Type:application/json" -u admin:district
 ```
 
+### Reset user password by invitation { #webapi_user_reset }
+
+User administrators (with appropriate rights) can reset another user's password 
+through a link send to their email. Users following the link get to a form
+similar to invitation form where they enter the new password.
+
+To trigger this workflow and reset a user to the invited state use:
+
+    POST /api/37/users/tH7WIiIJ0O3/reset
+
 ### Disable and enable user accounts { #webapi_user_disable } 
 
 User accounts can be marked disabled.
