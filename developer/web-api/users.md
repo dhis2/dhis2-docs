@@ -333,6 +333,17 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
   -H "Content-Type:application/json" -u admin:district
 ```
 
+### Reset user password { #webapi_user_reset }
+
+User administrators (with appropriate rights) can reset another user's account
+by triggering password recovery. Once triggered an email is sent to the user
+containing a recovery link. Users following the link get to a form which allows
+to set a new password.
+
+To trigger this workflow for user `tH7WIiIJ0O3` use:
+
+    POST /api/37/users/tH7WIiIJ0O3/reset
+
 ### Disable and enable user accounts { #webapi_user_disable } 
 
 User accounts can be marked disabled.
