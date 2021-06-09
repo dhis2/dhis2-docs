@@ -1,8 +1,4 @@
-# Messaging
-
-<!--DHIS2-SECTION-ID:messages-->
-
-<!--DHIS2-SECTION-ID:dashboard_messages-->
+# Messaging { #messages } 
 
 ## About messages and feedback messages
 

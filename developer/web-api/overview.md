@@ -1,6 +1,4 @@
-# Overview
-
-<!--DHIS2-SECTION-ID:webapi-->
+# Overview { #webapi } 
 
 The Web API is a component which makes it possible for external systems
 to access and manipulate data stored in an instance of DHIS2. More
@@ -8,9 +6,7 @@ precisely, it provides a programmatic interface to a wide range of
 exposed data and service methods for applications such as third-party
 software clients, web portals and internal DHIS2 modules.
 
-## Introduction
-
-<!--DHIS2-SECTION-ID:webapi_introduction-->
+## Introduction { #webapi_introduction } 
 
 The Web API adheres to many of the principles behind the REST
 architectural style. To mention some few and important ones:
@@ -56,9 +52,7 @@ While all of this might sound complicated, the Web API is actually very
 simple to use. We will proceed with a few practical examples in a
 minute.
 
-## Authentication
-
-<!--DHIS2-SECTION-ID:webapi_authentication-->
+## Authentication { #webapi_authentication } 
 
 The DHIS2 Web API supports two protocols for authentication, Basic
 Authentication and OAuth 2. You can verify and get information about the
@@ -73,9 +67,7 @@ authority) by using the endpoints:
     /api/33/me/authorities
     /api/33/me/authorities/ALL
 
-### Basic Authentication
-
-<!--DHIS2-SECTION-ID:webapi_basic_authentication-->
+### Basic Authentication { #webapi_basic_authentication } 
 
 The DHIS2 Web API supports *Basic authentication*. Basic authentication
 is a technique for clients to send login credentials over HTTP to a web
@@ -94,17 +86,13 @@ using SSL/TLS (HTTPS) to encrypt communication with clients. Consider this
 a hard requirement in order to provide secure interactions with the Web
 API.
 
-### Two-factor authentication
-
-<!--DHIS2-SECTION-ID:webapi_2fa-->
+### Two-factor authentication { #webapi_2fa } 
 
 DHIS2 supports two-factor authentication. This can be enabled per user.
 When enabled, users will be asked to enter a 2FA code when logging in. You
 can read more about 2FA [here](https://www.google.com/landing/2step/).
 
-### OAuth2
-
-<!--DHIS2-SECTION-ID:webapi_oauth2-->
+### OAuth2 { #webapi_oauth2 } 
 
 DHIS2 supports the *OAuth2* authentication protocol. OAuth2 is an open
 standard for authorization which allows third-party clients to
@@ -148,9 +136,7 @@ curl -X POST -H "Content-Type: application/json" -d @client.json
 
 We will use this client as the basis for our next grant type examples.
 
-#### Grant type password
-
-<!--DHIS2-SECTION-ID:webapi_oauth2_password-->
+#### Grant type password { #webapi_oauth2_password } 
 
 The simplest of all grant types is the *password* grant type. This
 grant type is similar to basic authentication in the sense that it
@@ -186,9 +172,7 @@ SERVER="https://play.dhis2.org/dev"
 curl -H "Authorization: Bearer 07fc551c-806c-41a4-9a8c-10658bd15435" "$SERVER/api/33/dataElements.json"
 ```
 
-#### Grant type refresh\_token
-
-<!--DHIS2-SECTION-ID:webapi_refresh_token-->
+#### Grant type refresh\_token { #webapi_refresh_token } 
 
 In general the access tokens have limited validity. You can have a look
 at the `expires_in` property of the response in the previous example
@@ -208,9 +192,7 @@ curl -X POST -H "Accept: application/json" -u demo:$SECRET "$SERVER/uaa/oauth/to
 
 The response will be exactly the same as when you get a token to start with.
 
-#### Grant type authorization_code
-
-<!--DHIS2-SECTION-ID:webapi_authorization_code-->
+#### Grant type authorization_code { #webapi_authorization_code } 
 
 Authorized code grant type is the recommended approach if you don't want
 to store the user credentials externally. It allows DHIS2 to collect the
@@ -244,9 +226,7 @@ curl -X POST -u demo:$SECRET -H "Accept: application/json" $SERVER/uaa/oauth/tok
 -d "grant_type=authorization_code" -d "code=XYZ"
 ```
 
-## Error and info messages
-
-<!--DHIS2-SECTION-ID:webapi_error_info_messages-->
+## Error and info messages { #webapi_error_info_messages } 
 
 The Web API uses a consistent format for all error/warning and
 informational messages:
@@ -277,9 +257,7 @@ Table: WebMessage properties
 | devMessage | A more technical, developer-friendly message (not currently in use). |
 | response | Extension point for future extension to the WebMessage format. This will be documented when it starts being used. |
 
-## Date and period format
-
-<!--DHIS2-SECTION-ID:webapi_date_perid_format-->
+## Date and period format { #webapi_date_perid_format } 
 
 Throughout the Web API, we refer to dates and periods. The date format
 is:
@@ -316,9 +294,7 @@ Table: Period format
 | Financial Year Oct | yyyyOct | 2004Oct | Oct 2004-Sep 2005 |
 
 
-### Relative Periods
-
-<!--DHIS2-SECTION-ID:webapi_date_relative_period_values-->
+### Relative Periods { #webapi_date_relative_period_values } 
 
 
 In some parts of the API, like for the analytics resource, you can
@@ -329,6 +305,6 @@ for creating dynamic reports. The available relative period values are:
     THIS_WEEK, LAST_WEEK, LAST_4_WEEKS, LAST_12_WEEKS, LAST_52_WEEKS,
     THIS_MONTH, LAST_MONTH, THIS_BIMONTH, LAST_BIMONTH, THIS_QUARTER, LAST_QUARTER,
     THIS_SIX_MONTH, LAST_SIX_MONTH, MONTHS_THIS_YEAR, QUARTERS_THIS_YEAR,
-    THIS_YEAR, MONTHS_LAST_YEAR, QUARTERS_LAST_YEAR, LAST_YEAR, LAST_5_YEARS, LAST_12_MONTHS,
+    THIS_YEAR, MONTHS_LAST_YEAR, QUARTERS_LAST_YEAR, LAST_YEAR, LAST_5_YEARS, LAST_10_YEARS, LAST_12_MONTHS, 
     LAST_3_MONTHS, LAST_6_BIMONTHS, LAST_4_QUARTERS, LAST_2_SIXMONTHS, THIS_FINANCIAL_YEAR,
     LAST_FINANCIAL_YEAR, LAST_5_FINANCIAL_YEARS

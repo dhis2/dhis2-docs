@@ -1,4 +1,4 @@
-# Relationship model
+# Relationship model { #relationship_model } 
 <!--DHIS2-SECTION-ID:relationship_model-->
 
 A relationship represents a link between two entities in the Tracker-model. A
@@ -15,7 +15,7 @@ of access to create. Unidirectional relationships requires the user to have data
 write access to the "from" entity and data read access for the "to" entity,
 while bidirectional relationships require data write access for both sides.
 
-## Relationship Type
+## Relationship Type { #relationship_model_relationship_type } 
 <!--DHIS2-SECTION-ID:relationship_model_relationship_type-->
 
 A Relationship Type is the definition of the properties a relationship have.

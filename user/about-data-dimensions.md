@@ -1,6 +1,4 @@
-# About data dimensions
-
-<!--DHIS2-SECTION-ID:data_dimensions-->
+# About data dimensions { #data_dimensions } 
 
 ## Data dimensions: Core building blocks in DHIS2
 
@@ -202,9 +200,7 @@ integrity checks to identify organisation units which are not present in
 any organisation unit group set member, or which is present in multiple
 groups.
 
-## Period: the *when* dimension
-
-<!--DHIS2-SECTION-ID:period_types-->
+## Period: the *when* dimension { #period_types } 
 
 The period dimension becomes an important factor when analysing data
 over time e.g. when looking at cumulative data, when creating quarterly

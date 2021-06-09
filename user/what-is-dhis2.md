@@ -1,6 +1,4 @@
-# What is DHIS2?
-
-<!--DHIS2-SECTION-ID:what_is_dhis2-->
+# What is DHIS2? { #what_is_dhis2 } 
 
 After reading this chapter you will be able to understand:
 
@@ -16,9 +14,7 @@ After reading this chapter you will be able to understand:
   - What are some of the benefits and challenges with using Free and
     Open Source Software (FOSS) for HIS?
 
-## DHIS2 Background
-
-<!--DHIS2-SECTION-ID:mod1_1-->
+## DHIS2 Background { #mod1_1 } 
 
 DHIS2 is a tool for collection, validation, analysis, and presentation
 of aggregate and patient-based statistical data, tailored (but not
@@ -316,7 +312,7 @@ are described in the following section.
     on a national super-user team to maintain the software implies a lot
     of travelling.
 
-  - **Database maintenance:**A prerequisite for an efficient system is
+  - **Database maintenance:** A prerequisite for an efficient system is
     that all users enter data with a standardized meta-data set (data
     elements, forms etc). As with the previous point about software
     upgrades, distribution of changes to the meta-data set to numerous
@@ -375,7 +371,7 @@ traditional off-line standalone style:
     accessing the same application version, and bugs and issues can be
     sorted out and deployed on-the-fly.
 
-  - **Database maintenance:**Similar to the previous point, changes to
+  - **Database maintenance:** Similar to the previous point, changes to
     the meta-data can be done on the on-line server in a centralized
     fashion and will automatically propagate to all clients next time
     they connect to the server. This effectively removes the vast issues

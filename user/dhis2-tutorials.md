@@ -1,10 +1,6 @@
-# DHIS2 Tutorials
+# DHIS2 Tutorials { #dhis2_tutorials } 
 
-<!--DHIS2-SECTION-ID:dhis2_tutorials-->
-
-## Create Scorecards using the Pivot Table app
-
-<!--DHIS2-SECTION-ID:create-scorecards-pivot-table-->
+## Create Scorecards using the Pivot Table app { #create-scorecards-pivot-table } 
 
 **Scorecards definition:** In public health settings such as Ministries
 of Health, scorecards offer a useful and standardized method for
@@ -147,9 +143,7 @@ The Scorecard is ready\!
 4.  Enter the name of a user group name, and click **Save**. Your
     scorecard can be viewed by people that you share a dashboard with.
 
-## Working with TextPattern
-
-<!--DHIS2-SECTION-ID:working-with-textpattern-->
+## Working with TextPattern { #working-with-textpattern } 
 
 TextPattern was introduced in DHIS2 version 2.29, as a way of defining a
 pattern that includes variables, generated values and raw text, which

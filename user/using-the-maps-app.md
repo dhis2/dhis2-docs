@@ -1,10 +1,6 @@
-# Using the Maps app
+# Using the Maps app { #using_maps } 
 
-<!--DHIS2-SECTION-ID:using_maps-->
-
-## About the Maps app
-
-<!--DHIS2-SECTION-ID:about_maps-->
+## About the Maps app { #about_maps } 
 
 The Maps App is introduced in release 2.29 and serves as a replacement
 of the GIS App offering a more intuitive and user-friendly interface.
@@ -154,9 +150,7 @@ Along the bottom of the basemap card is:
 
 - A slider for modifying the layer transparency
 
-## Create a new map
-
-<!--DHIS2-SECTION-ID:using_maps_create_map-->
+## Create a new map { #using_maps_create_map } 
 
 1.  In the **Apps** menu, click **Maps**. The **DHIS2 Maps** window
     opens.
@@ -196,9 +190,7 @@ Along the bottom of the basemap card is:
     _Labels overlay_ is an [external
     layer](#using_maps_external_map_layers) defined in the Maintenance app.
 
-## Manage thematic layers
-
-<!--DHIS2-SECTION-ID:using_maps_thematic_layer-->
+## Manage thematic layers { #using_maps_thematic_layer } 
 
 _Thematic maps_ represent spatial variation of geographic distributions.
 Select your desired combination of indicator/data element, period and
@@ -341,8 +333,6 @@ layer** selection. This opens the Events layer configuration dialog.
       Multiple filters may be added. Click the trash button on the right of
       the filter to remove it.
 
-<!--DHIS2-SECTION-ID:using_maps_thematic_layer_style-->
-
 5.  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_thematic_layer_dialog_STYLE.png)
@@ -483,9 +473,7 @@ To clear all data in a thematic layer:
 
     The layer is removed from the current map.
 
-## Manage event layers
-
-<!--DHIS2-SECTION-ID:using_maps_event_layer-->
+## Manage event layers { #using_maps_event_layer } 
 
 The event layer displays the geographical location of events registered
 in the DHIS2 tracker. Provided that events have associated point or polygon
@@ -532,9 +520,7 @@ Along the bottom of the event card from left to right are:
 
   - **Remove layer** will remove this layer from the current map.
 
-### Create an event layer
-
-<!--DHIS2-SECTION-ID:maps_create_event_layer-->
+### Create an event layer { #maps_create_event_layer } 
 
 To create an event layer, choose **Events** on the **Add
 layer** selection. This opens the Events layer configuration dialog.
@@ -759,9 +745,7 @@ To clear all event layer data in a map:
 
     The layer is removed from the current map.
 
-## Manage tracked entity layers
-
-<!--DHIS2-SECTION-ID:using_maps_tracked_entity_layer-->
+## Manage tracked entity layers { #using_maps_tracked_entity_layer } 
 
 The tracked entity layer displays the geographical location of tracked
 entities registered in the DHIS2. Provided that tracked entities have
@@ -798,9 +782,7 @@ Along the bottom of the tracked entity card from left to right are:
 
   - **Remove layer** will remove this layer from the current map.
 
-### Create a tracked entity layer
-
-<!--DHIS2-SECTION-ID:maps_create_tracked_enity_layer-->
+### Create a tracked entity layer { #maps_create_tracked_enity_layer } 
 
 To create an tracked entity layer, choose **Tracked entities** on the
 **Add layer** selection. This opens the Tracked entity layer
@@ -894,9 +876,7 @@ To clear a tracked entity layer from a map:
 
     The layer is removed from the current map.
 
-## Manage facility layers
-
-<!--DHIS2-SECTION-ID:using_maps_facility_layer-->
+## Manage facility layers { #using_maps_facility_layer } 
 
 The facility layer displays icons that represent types of facilities.
 Polygons do not show up on the map, so make sure that you select an
@@ -1079,9 +1059,7 @@ Table: View organisation unit information
 | View information for the current period | 1. Click a facility. |
 | View information for a selected period | 1. Right-click a facility and click **Show information**.<br> 2. In the **Infrastructural data** section, select a period.<br>      <br>    **Note**<br>     <br>    You configure the displayed infrastructural data in the **System Settings** app. |
 
-## Manage boundary layers
-
-<!--DHIS2-SECTION-ID:using_maps_boundary_layer-->
+## Manage boundary layers { #using_maps_boundary_layer } 
 
 The boundary layer displays the borders and locations of your
 organisation units. This layer is particularly useful if you are offline
@@ -1237,9 +1215,7 @@ To clear all data in a boundary layer:
 
     The layer is removed from the current map.
 
-## Manage Earth Engine layer
-
-<!--DHIS2-SECTION-ID:using_maps_gee-->
+## Manage Earth Engine layer { #using_maps_gee } 
 
 ![](resources/images/maps/maps_earth_eng_layer.png)
 
@@ -1393,9 +1369,7 @@ The data table displays all the aggregated values for the organisation units sel
 >
 > Data table filters are temporary and are not saved with the map layers.
 
-## Add external map layers
-
-<!--DHIS2-SECTION-ID:using_maps_external_map_layers-->
+## Add external map layers { #using_maps_external_map_layers } 
 
 ![](resources/images/maps/maps_terrain_imagery.png)
 
@@ -1431,9 +1405,7 @@ Along the bottom of the overlay card from left to right are:
 - A delete (trash can) icon to remove the layer from the current
   thematic map.
 
-## File menu
-
-<!--DHIS2-SECTION-ID:using_maps_file_menu-->
+## File menu { #using_maps_file_menu } 
 
 ![](resources/images/maps/maps_file_menu.png)
 
@@ -1540,9 +1512,7 @@ everyone or a user group. To modify the sharing settings:
 2.  Click **DELETE** to confirm that you want to delete the favorite.
     Your map is deleted and the layers are cleared from the view.
 
-## Map interpretations
-
-<!--DHIS2-SECTION-ID:mapsInterpretation-->
+## Map interpretations { #mapsInterpretation } 
 
 An interpretation is a description of a map at a given period. This
 information is visible in the **Dashboard app**. Click
@@ -1612,9 +1582,7 @@ write is visible to those people.
 
 5.  Click **CLOSE** when sharing settings are updated.
 
-## Save a map as an image
-
-<!--DHIS2-SECTION-ID:using_maps_image_export-->
+## Save a map as an image { #using_maps_image_export } 
 
 You can download your map as an image by clicking on the Download button in the top menu
 
@@ -1631,9 +1599,7 @@ use Google Chrome or Firefox.
 
 3.  Click **Download** to download your map.
 
-## Search for a location
-
-<!--DHIS2-SECTION-ID:using_maps_search-->
+## Search for a location { #using_maps_search } 
 
 The place search function allows you to search for almost any location
 or address. This function is useful in order to locate for example
@@ -1650,9 +1616,7 @@ sites, facilities, villages or towns on the map.
 3.  From the list, select a location. A pin indicates the location on
     the map.
 
-## Measure distances and areas in a map
-
-<!--DHIS2-SECTION-ID:using_maps_measure_distance-->
+## Measure distances and areas in a map { #using_maps_measure_distance } 
 
 1.  In the upper left part of the map, put the cursor on the **Measure
     distances and areas** (ruler) icon and click **Create new
@@ -1664,9 +1628,7 @@ sites, facilities, villages or towns on the map.
 
 ![](resources/images/maps/maps_measure_distance.png)
 
-## Get the latitude and longitude at any location
-
-<!--DHIS2-SECTION-ID:using_maps_latitude_longitude-->
+## Get the latitude and longitude at any location { #using_maps_latitude_longitude } 
 
 Right-click a point on the map and select **Show longitude/latitude**.
 The values display in a pop-up window.

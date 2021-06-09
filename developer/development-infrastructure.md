@@ -1,10 +1,6 @@
-# Development Infrastructure
+# Development Infrastructure { #dev_infrastructure } 
 
-<!--DHIS2-SECTION-ID:dev_infrastructure-->
-
-## Release process
-
-<!--DHIS2-SECTION-ID:dev_inf_release_process-->
+## Release process { #dev_inf_release_process } 
 
 Checklist for release.
 

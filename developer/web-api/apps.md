@@ -1,8 +1,6 @@
 # Apps
 
-## Apps
-
-<!--DHIS2-SECTION-ID:webapi_apps-->
+## Apps { #webapi_apps } 
 
 The `/api/apps` endpoint can be used for installing, deleting and
 listing apps. The app key is based on the app name, but with all
@@ -17,9 +15,7 @@ non-alphanumerical characters removed, and spaces replaced with a dash.
 
     /api/33/apps
 
-### Get apps
-
-<!--DHIS2-SECTION-ID:webapi_get_apps-->
+### Get apps { #webapi_get_apps } 
 
 > **Note**
 >
@@ -48,9 +44,7 @@ one or more *filter* parameters to the URL:
 App names support the *eq* and *ilike* filter operators, while *appType*
 supports *eq* only.
 
-### Install an app
-
-<!--DHIS2-SECTION-ID:webapi_install_app-->
+### Install an app { #webapi_install_app } 
 
 To install an app, the following command can be issued:
 
@@ -58,9 +52,7 @@ To install an app, the following command can be issued:
 curl -X POST -u user:pass -F file=@app.zip "http://server.com/api/33/apps"
 ```
 
-### Delete an app
-
-<!--DHIS2-SECTION-ID:webapi_delete_app-->
+### Delete an app { #webapi_delete_app } 
 
 To delete an app, you can issue the following command:
 
@@ -68,9 +60,7 @@ To delete an app, you can issue the following command:
 curl -X DELETE -u user:pass "http://server.com/api/33/apps/<app-key>"
 ```
 
-### Reload apps
-
-<!--DHIS2-SECTION-ID:webapi_reload_apps-->
+### Reload apps { #webapi_reload_apps } 
 
 To force a reload of currently installed apps, you can issue the
 following command. This is useful if you added a file manually directly
@@ -81,9 +71,7 @@ interface.
 curl -X PUT -u user:pass "http://server.com/api/33/apps"
 ```
 
-### Share apps between instances
-
-<!--DHIS2-SECTION-ID:webapi_share_apps_between_instances-->
+### Share apps between instances { #webapi_share_apps_between_instances } 
 
 If the DHIS2 instance has been configured to use cloud storage, apps
 will now be installed and stored on the cloud service. This will enable
@@ -97,18 +85,14 @@ installing the same apps on each individual instance.
 > instance it was installed, but it will not be shared with other
 > instances, as it's still located on the instances local filesystem.
 
-## App store
-
-<!--DHIS2-SECTION-ID:webapi_app_store-->
+## App store { #webapi_app_store } 
 
 The Web API exposes the content of the DHIS2 App Store as a JSON
 representation which can found at the `/api/appHub` resource.
 
     /api/33/appHub
 
-### Get apps
-
-<!--DHIS2-SECTION-ID:webapi_get_app_store_apps-->
+### Get apps { #webapi_get_app_store_apps } 
 
 You can retrieve apps with a GET request:
 
@@ -156,9 +140,7 @@ A sample JSON response is described below.
 }
 ```
 
-### Install apps
-
-<!--DHIS2-SECTION-ID:webapi_install_app_store_apps-->
+### Install apps { #webapi_install_app_store_apps } 
 
 You can install apps on your instance of DHIS2 assuming you have the
 appropriate permissions. An app is referred to using the `id` property

@@ -1,8 +1,6 @@
 # Data approval
 
-## Data approval
-
-<!--DHIS2-SECTION-ID:webapi_data_approval-->
+## Data approval { #webapi_data_approval } 
 
 This section explains how to approve, unapprove and check approval
 status using the *dataApprovals* resource. Approval is done per data
@@ -17,9 +15,7 @@ A data approval workflow is associated with several entities:
 * One or many data approval levels which are part of the workflow
 * One or many data sets which are used for data collection
 
-### Get approval status
-
-<!--DHIS2-SECTION-ID:webapi_data_approval_get_status-->
+### Get approval status { #webapi_data_approval_get_status } 
 
 To get approval information for a data set you can issue a GET request:
 
@@ -161,9 +157,7 @@ The returned fields are described in the table below.
 | state       | One of the data approval states (same as for get single approval status.) |
 | wf          | Data approval workflow identifier |
 
-### Approve data
-
-<!--DHIS2-SECTION-ID:webapi_data_approval_approve_data-->
+### Approve data { #webapi_data_approval_approve_data } 
 
 To approve data you can issue a *POST* request to the *dataApprovals*
 resource. To un-approve data, you can issue a *DELETE* request to the
@@ -200,9 +194,7 @@ approved. In particular, both of the following must be true:
   - The time period specified must match the period type of the
     workflow.
 
-### Bulk approve data
-
-<!--DHIS2-SECTION-ID:webapi_data_approval_bulk_approve_data-->
+### Bulk approve data { #webapi_data_approval_bulk_approve_data } 
 
 You can approve a bulk of data records by posting to
 the `/api/dataApprovals/approvals` resource.

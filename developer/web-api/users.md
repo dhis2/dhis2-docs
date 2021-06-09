@@ -1,16 +1,12 @@
 # Users
 
-## Users
-
-<!--DHIS2-SECTION-ID:webapi_users-->
+## Users { #webapi_users } 
 
 This section covers the user resource methods.
 
     /api/33/users
 
-### User query
-
-<!--DHIS2-SECTION-ID:webapi_users_query-->
+### User query { #webapi_users_query } 
 
 The *users* resource offers additional query parameters beyond the
 standard parameters (e.g. paging). To query for users at the users
@@ -135,9 +131,7 @@ The response will contain information about the users matching the request.
 }
 ```
 
-### User account create and update
-
-<!--DHIS2-SECTION-ID:webapi_users_create_update-->
+### User account create and update { #webapi_users_create_update } 
 
 Creating and updating users are supported through the API. A basic
 payload to create a user looks like the below example. Note that the password
@@ -212,9 +206,7 @@ For more info about the full payload available, please see `/api/schemas/user`.
 For more info about uploading and retrieving user avatars, please see the
 `/fileResources` endpoint.
 
-### User account invitations
-
-<!--DHIS2-SECTION-ID:webapi_user_invitations-->
+### User account invitations { #webapi_user_invitations } 
 
 The Web API supports inviting people to create user accounts through the
 `invite` resource. To create an invitation you should POST a user in XML
@@ -313,9 +305,7 @@ out:
 If any of these requirements are not met the invite resource will return
 with a *409 Conflict* status code together with a descriptive message.
 
-### User replication
-
-<!--DHIS2-SECTION-ID:webapi_user_replication-->
+### User replication { #webapi_user_replication } 
 
 To replicate a user you can use the *replica* resource. Replicating a
 user can be useful when debugging or reproducing issues reported by a
@@ -343,9 +333,18 @@ curl -d @replica.json "localhost/api/33/users/N3PZBUlN8vq/replica"
   -H "Content-Type:application/json" -u admin:district
 ```
 
-### Disable and enable user accounts
+### Reset user password { #webapi_user_reset }
 
-<!--DHIS2-SECTION-ID:webapi_user_disable-->
+User administrators (with appropriate rights) can reset another user's account
+by triggering password recovery. Once triggered an email is sent to the user
+containing a recovery link. Users following the link get to a form which allows
+to set a new password.
+
+To trigger this workflow for user `tH7WIiIJ0O3` use:
+
+    POST /api/37/users/tH7WIiIJ0O3/reset
+
+### Disable and enable user accounts { #webapi_user_disable } 
 
 User accounts can be marked disabled.
 A disabled user can no longer log in.
@@ -358,9 +357,7 @@ To enable a disabled user again use accordingly (requires user with appropriate 
 
     POST /api/36/users/tH7WIiIJ0O3/enabled
 
-### User expiration
-
-<!--DHIS2-SECTION-ID:webapi_user_expiration-->
+### User expiration { #webapi_user_expiration } 
 
 An expiration date can be set for an user account.
 It marks the point in time from which the user account has expired 
@@ -385,9 +382,7 @@ you can use the *dataApprovalWorkflows* resource as follows:
 GET /api/users/{id}/dataApprovalWorkflows
 ```
 
-## Current user information
-
-<!--DHIS2-SECTION-ID:webapi_current_user_information-->
+## Current user information { #webapi_current_user_information } 
 
 In order to get information about the currently authenticated user and
 its associations to other resources you can work with the *me* resource

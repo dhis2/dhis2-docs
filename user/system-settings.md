@@ -1,10 +1,6 @@
-# System settings
+# System settings { #settings } 
 
-<!--DHIS2-SECTION-ID:settings-->
-
-## General settings
-
-<!--DHIS2-SECTION-ID:system_general_settings-->
+## General settings { #system_general_settings } 
 
 
 
@@ -28,9 +24,7 @@ Table: General settings
 | **Gather analytical object statistics in dashboard views** | Gather usage analytics data when analytical objects (e.g., maps, charts, etc.) are viewed within a dashboard. Without this setting, analytics data on the objects  is gathered only when the objects are viewed outside of a dashboard. |
 | **Include passive dashboard views in usage analytics statistics** | (Reserved for future use) |
 
-## Analytics settings
-
-<!--DHIS2-SECTION-ID:system_analytics_settings-->
+## Analytics settings { #system_analytics_settings } 
 
 
 
@@ -56,9 +50,7 @@ Table: Analytics settings
 | **Allow users to show dashboard favorite interpretations and details** | Allows users to see dashboard favorites' interpretations and details, using the dashboard item menu. |
 | **Allow users to view dashboard favorite in fullscreen** | Allows users to view dashboard favorites in fullscreen, using the dashboard item menu. |
 
-## Server settings
-
-<!--DHIS2-SECTION-ID:system_server_settings-->
+## Server settings { #system_server_settings } 
 
 
 
@@ -72,9 +64,7 @@ Table: Server settings
 | **Google Maps API key** | Defines the API key for the Google Maps API. This is used to display maps within DHIS2. |
 | **Bing Maps API key** | Defines the API key for the Bing Maps API. This is used to display maps within DHIS2. |
 
-## Appearance settings
-
-<!--DHIS2-SECTION-ID:system_appearance_settings-->
+## Appearance settings { #system_appearance_settings } 
 
 
 
@@ -100,9 +90,7 @@ Table: Appearance settings
 | **Custom login page logo** | Select this option and upload an image to add your logo to the login page. |
 | **Custom top menu logo** | Select this option and upload an image to add your logo to the left in the top menu. |
 
-## Email settings
-
-<!--DHIS2-SECTION-ID:system_email_settings-->
+## Email settings { #system_email_settings } 
 
 
 
@@ -118,9 +106,7 @@ Table: Email settings
 | **Email sender** | The email address to use as sender when sending out emails. |
 | **Send me a test email** | Sends a test email to the current user logged into DHIS2. |
 
-## Access settings
-
-<!--DHIS2-SECTION-ID:system_access_settings-->
+## Access settings { #system_access_settings } 
 
 
 
@@ -140,9 +126,7 @@ Table: Access settings
 | **Minimum characters in password** | Defines the minimum number of characters users must have in their passwords.<br> <br>You can select 8 (default), 10, 12 or 14. |
 | **CORS whitelist** | Whitelists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
 
-## Calendar settings
-
-<!--DHIS2-SECTION-ID:system_calendar_settings-->
+## Calendar settings { #system_calendar_settings } 
 
 
 
@@ -153,9 +137,7 @@ Table: Calendar settings
 | **Calendar** | Defines which calendar the system will use.<br> <br>The system supports the following calendars: Coptic, Ethiopian, Gregorian, Islamic (Lunar Hijri), ISO 8601, Julian, Nepali, Persian (Solar Hijri) and Thai.<br>      <br>    **Note**<br>     <br>    This is a system wide setting. It is not possible to have multiple calendars within a single DHIS2 instance. |
 | **Date format** | Defines which date format the system will use. |
 
-## Data import settings
-
-<!--DHIS2-SECTION-ID:system_data_import_settings-->
+## Data import settings { #system_data_import_settings } 
 
 The data import settings apply to extra controls which can be enabled to
 validate aggregate data which is imported through the web API. They
@@ -201,9 +183,7 @@ Table: Synchronization settings
 | **Best effort** | A type of metadata version which decides how the importer on local instance(s) will handle the metadata version.<br> <br>*Best effort* means that if the metadata import encounters missing references (for example missing data elements on a data element group import) it ignores the errors and continues the import. |
 | **Atomic** | A type of metadata version which decides how the importer on local instance(s) will handle the metadata version.<br> <br>*Atomic* means all or nothing - the metadata import will fail if any of the references do not exist. |
 
-## OAuth2 clients
-
-<!--DHIS2-SECTION-ID:system_oauth2_settings-->
+## OAuth2 clients { #system_oauth2_settings } 
 
 You create, edit and delete OAuth2 clients in the **System Settings**
 app.

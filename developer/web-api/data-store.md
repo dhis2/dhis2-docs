@@ -1,8 +1,6 @@
 # Data store
 
-## Data store
-
-<!--DHIS2-SECTION-ID:webapi_data_store-->
+## Data store { #webapi_data_store } 
 
 Using the *dataStore* resource, developers can store arbitrary data for
 their apps. Access to a datastore's key is based on its sharing settings.
@@ -15,9 +13,7 @@ is not reserved, no specific access is required to use it.
 
     /api/33/dataStore
 
-### Data store structure
-
-<!--DHIS2-SECTION-ID:webapi_data_store_structure-->
+### Data store structure { #webapi_data_store_structure } 
 
 Data store entries consist of a namespace, key and value. The
 combination of namespace and key is unique. The value data type is JSON.
@@ -33,9 +29,7 @@ Table: Data store structure
 | Value | Value holding the information for the entry. | JSON |
 | Encrypted | Indicates whether the value of the given key should be encrypted | Boolean |
 
-### Get keys and namespaces
-
-<!--DHIS2-SECTION-ID:webapi_data_store_get_keys_and_namespaces-->
+### Get keys and namespaces { #webapi_data_store_get_keys_and_namespaces } 
 
 For a list of all existing namespaces:
 
@@ -115,9 +109,7 @@ Example response:
 }
 ```
 
-### Create values
-
-<!--DHIS2-SECTION-ID:webapi_data_store_create_values-->
+### Create values { #webapi_data_store_create_values } 
 
 To create a new key and value for a namespace:
 
@@ -146,9 +138,7 @@ credentials or similar) you can append a query to the url like this:
 
     GET /api/33/dataStore/<namespace>/<key>?encrypt=true
 
-### Update values
-
-<!--DHIS2-SECTION-ID:webapi_data_store_update_values-->
+### Update values { #webapi_data_store_update_values } 
 
 To update a key that exists in a namespace:
 
@@ -172,9 +162,7 @@ Example response:
 }
 ```
 
-### Delete keys
-
-<!--DHIS2-SECTION-ID:webapi_data_store_delete_keys-->
+### Delete keys { #webapi_data_store_delete_keys } 
 
 To delete an existing key from a namespace:
 
@@ -218,9 +206,7 @@ Example response:
 }
 ```
 
-### Sharing datastore keys
-
-<!--DHIS2-SECTION-ID:webapi_data_store_sharing-->
+### Sharing datastore keys { #webapi_data_store_sharing } 
 
 Sharing of datastore keys follows the same principle as for other metadata sharing (see
 [Sharing](#webapi_sharing)).
@@ -260,9 +246,7 @@ with the following request:
 }
 ```
 
-## User data store
-
-<!--DHIS2-SECTION-ID:webapi_user_data_store-->
+## User data store { #webapi_user_data_store } 
 
 In addition to the *dataStore* which is shared between all users of the
 system, a user-based data store is also available. Data stored to the
@@ -274,9 +258,7 @@ associated with the currently logged in user.
 
     /api/33/userDataStore
 
-### User data store structure
-
-<!--DHIS2-SECTION-ID:webapi_user_data_store_structure-->
+### User data store structure { #webapi_user_data_store_structure } 
 
 *userDataStore* consists of a user, a namespace, keys and associated
 values. The combination of user, namespace and key is unique.
@@ -293,9 +275,7 @@ Table: User data store structure
 | Value | The value stored | JSON |
 | Encrypted | Indicates whether the value should be encrypted | Boolean |
 
-### Get namespaces
-
-<!--DHIS2-SECTION-ID:webapi_user_data_store_get_namespaces-->
+### Get namespaces { #webapi_user_data_store_get_namespaces } 
 
 Returns an array of all existing namespaces
 
@@ -315,9 +295,7 @@ curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/3
 ]
 ```
 
-### Get keys
-
-<!--DHIS2-SECTION-ID:webapi_user_data_store_get_keys-->
+### Get keys { #webapi_user_data_store_get_keys } 
 
 Returns an array of all existing keys in a given namespace
 
@@ -336,9 +314,7 @@ curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/3
 ]
 ```
 
-### Get values
-
-<!--DHIS2-SECTION-ID:webapi_user_data_store_get_values-->
+### Get values { #webapi_user_data_store_get_values } 
 
 Returns the value for a given namespace and key
 
@@ -356,9 +332,7 @@ curl -H "Content-Type: application/json" -u admin:district "play.dhis2.org/api/3
 }
 ```
 
-### Create value
-
-<!--DHIS2-SECTION-ID:webapi_user_data_store_create_values-->
+### Create value { #webapi_user_data_store_create_values } 
 
 Adds a new value to a given key in a given namespace.
 
@@ -385,9 +359,7 @@ and such) you can append a query to the url like this:
 
     GET /api/33/userDataStore/<namespace>/<key>?encrypt=true
 
-### Update values
-
-<!--DHIS2-SECTION-ID:webapi_user_data_store_update_values-->
+### Update values { #webapi_user_data_store_update_values } 
 
 Updates an existing value
 
@@ -409,9 +381,7 @@ curl -X PUT -H "Content-Type: application/json" -u admin:district -d "['new valu
 }
 ```
 
-### Delete key
-
-<!--DHIS2-SECTION-ID:webapi_user_data_store_delete_key-->
+### Delete key { #webapi_user_data_store_delete_key } 
 
 Delete a key
 
@@ -432,9 +402,7 @@ curl -X DELETE -u admin:district "play.dhis2.org/api/33/userDataStore/foo/bar"
 }
 ```
 
-### Delete namespace
-
-<!--DHIS2-SECTION-ID:webapi_user_data_store_delete_namespace-->
+### Delete namespace { #webapi_user_data_store_delete_namespace } 
 
 Delete all keys in the given namespace
 

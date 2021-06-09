@@ -1,6 +1,4 @@
-# Managing dashboards
-
-<!--DHIS2-SECTION-ID:dashboard-->
+# Managing dashboards { #dashboard } 
 
 ## About dashboards
 
@@ -14,9 +12,7 @@ dashboard could then be shared with the user group called "ANC control",
 which might consist of all users of the ANC control program. All users
 within this group would then be able to view the same dashboard.
 
-## Dashboard and control bar
-
-<!--DHIS2-SECTION-ID:dashboards_setup-->
+## Dashboard and control bar { #dashboards_setup } 
 
 Dashboards have a title, description, and any number of dashboard items.
 The dashboard items can be of many different types, including charts,
@@ -143,9 +139,7 @@ Click on **Exit Print preview** to return to editing the dashboard.
 
 Note that some items may be moved down in order to avoid page breaks. Items may also be shortened to fit on one page. Items that are shortened show an info icon in the upper right corner in preview. This icon is removed in the actual print.
 
-### Restricting dashboard filters
-
-<!--DHIS2-SECTION-ID:restricting-dashboard-filters-->
+### Restricting dashboard filters { #restricting-dashboard-filters } 
 
 By default, users will be able to filter dashboard items by any dimension defined in your system. Dashboard filter settings can be edited for a given dashboard by clicking on **Filter settings**.
 
@@ -336,9 +330,7 @@ Interpretation replies are sorted in ascending order by date, with the oldest sh
 
 ![](resources/images/dashboard/dashboard-interpretations.png)
 
-## Sharing a dashboard
-
-<!--DHIS2-SECTION-ID:dashboard_sharing-->
+## Sharing a dashboard { #dashboard_sharing } 
 
 In order to share a dashboard with user groups, click on the **SHARE**
 button to the right of the dashboard title to display the dashboard

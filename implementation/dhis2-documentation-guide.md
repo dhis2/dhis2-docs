@@ -1,10 +1,6 @@
-# DHIS 2 Documentation Guide
+# DHIS 2 Documentation Guide { #doc_guide_chapter } 
 
-<!--DHIS2-SECTION-ID:doc_guide_chapter-->
-
-## DHIS 2 Documentation System Overview
-
-<!--DHIS2-SECTION-ID:docs_1-->
+## DHIS 2 Documentation System Overview { #docs_1 } 
 
 DHIS 2 is a web-based information management system under very active
 development with typically three releases per year. Each release
@@ -16,9 +12,7 @@ documentation system is required.
 In this chapter, we will describe the documentation system of DHIS 2 and how you
 can contribute.
 
-## Introduction
-
-<!--DHIS2-SECTION-ID:docs_2-->
+## Introduction { #docs_2 } 
 
 The DHIS 2 documentation is written in [Commonmark](https://commonmark.org) markdown format.
 One of the main advantages of markdown is
@@ -54,9 +48,7 @@ processing programs. The rendering process will automatically take care of numbe
 the sections for you when the document is produced.
 
 
-## Getting started with GitHub
-
-<!--DHIS2-SECTION-ID:docs_3-->
+## Getting started with GitHub { #docs_3 } 
 
 The DHIS 2 documentation system is managed at
 [GitHub](https://github.com/dhis2/dhis2-docs) in its own source
@@ -88,9 +80,7 @@ changes to your own fork, and request that your changes be merged with
 the source of the documentation with a pull request
 [here](https://github.com/dhis2/dhis2-docs/pulls).
 
-## Getting the document source
-
-<!--DHIS2-SECTION-ID:docs_4-->
+## Getting the document source { #docs_4 } 
 
 In order to edit the documentation, you will need to download the source
 of the documentation to your computer. GitHub uses a version control
@@ -122,9 +112,7 @@ the document source. Just follow this procedure:
     editing. Simply execute` git checkout -b mybranch` where *mybranch*
     is the name of the branch you wish to create.
 
-## Editing the documentation
-
-<!--DHIS2-SECTION-ID:docs_5-->
+## Editing the documentation { #docs_5 } 
 
 Once you have downloaded the source, you should have a series of folders
 inside of the repository directory. The documents are structured as follows:
@@ -207,7 +195,7 @@ Image resources should be included inside a folder structure beginning with `res
 This is important because the `resources`<!-- prevent processing -->`/images` string is used to identify images in the files. Images will be collected under `resources`<!-- prevent processing -->`/images/content/android/<rest-of-path>` relative to the master document, when the the files are pre-processed for generation. *The paths are partially reversed to ensure they remain unique when collecting images from multiple thematic folders.*
 
 
-### Section references
+### Section references { #name_of_section } 
 
 In order to provide fixed references within the document, we can set a fixed text string to be applied to any section. For our markdown docs this is done by adding a comment after the section heading in the form:
 ```
@@ -219,9 +207,7 @@ where ```name_of_section``` is replace with the id you wish to use.
 For example:
 ```
 
-## Validation
-
-<!--DHIS2-SECTION-ID:webapi_validation-->
+## Validation { #webapi_validation } 
 
 To generate a data validation summary you can interact ...
 ```
@@ -259,9 +245,7 @@ You can also continue to use HTML tables when you really need more complexity (b
 Bilbliographic references are currently not supported in the markdown version of DHIS 2 documentation.
 
 
-## Handling multilingual documentation
-
-<!--DHIS2-SECTION-ID:docs_8-->
+## Handling multilingual documentation { #docs_8 } 
 
 The DHIS 2 documentation has been translated into a number of different
 languages including French, Spanish and Portuguese. If you would like to
@@ -270,9 +254,7 @@ existing translations, please contact the DHIS 2 documentation team at
 the email provided at the end of this chapter.
 
 
-## Committing your changes back to GitHub
-
-<!--DHIS2-SECTION-ID:docs_10-->
+## Committing your changes back to GitHub { #docs_10 } 
 
 Once you have finished editing your document, you will need to commit
 your changes back to GitHub. Open up a command prompt on Windows or a

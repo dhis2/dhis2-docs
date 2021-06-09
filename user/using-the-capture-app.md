@@ -1,10 +1,6 @@
-# Using the Capture app
+# Using the Capture app { #capture_app } 
 
-<!--DHIS2-SECTION-ID:capture_app-->
-
-## About the Capture app
-
-<!--DHIS2-SECTION-ID:about_capture_app-->
+## About the Capture app { #about_capture_app } 
 
 > **Note**
 >
@@ -12,9 +8,7 @@
 
 In the Capture app you register events that occurred at a particular time and place. An event can happen at any given point in time. This stands in contrast to routine data, which is captured for predefined, regular intervals. Events are sometimes called cases or records. In DHIS2, events are linked to a program. The Capture app lets you select the organisation unit and program and specify a date when an event happened, before entering information for the event.
 
-## Register an event
-
-<!--DHIS2-SECTION-ID:capture_register_event-->
+## Register an event { #capture_register_event } 
 
 1. Open the **Capture** app.
 
@@ -311,9 +305,7 @@ To see a rule being executed while enrolling a tracked entity instance you will 
 ![](resources/images/capture_app/program-rules-on-creation-02.png)
 
 
-## Adding a relationship
-
-<!--DHIS2-SECTION-ID:capture_add_relationship-->
+## Adding a relationship { #capture_add_relationship } 
 
 Relationships can be added either during registration, editing or viewing of an event.
 Currently the **Capture App** only supports *Event to Tracked Entity Instance* relationships.
@@ -377,9 +369,7 @@ You now have two options:
 > the **Save as new person** button to register a new **Tracked Entity Instance**.
 
 
-## Edit an event
-
-<!--DHIS2-SECTION-ID:capture_edit_event-->
+## Edit an event { #capture_edit_event } 
 
 1. Open the **Capture** app.
 
@@ -395,9 +385,7 @@ You now have two options:
 
 6. Modify the event details and click **Save**.
 
-## Delete an event
-
-<!--DHIS2-SECTION-ID:capture_delete_event-->
+## Delete an event { #capture_delete_event } 
 
 1. Open the **Capture** app.
 
@@ -413,9 +401,7 @@ You now have two options:
 
     ![delete event](resources/images/capture_app/delete_event.png)
 
-## Modify an event list layout
-
-<!--DHIS2-SECTION-ID:capture_modify_event_list_layout-->
+## Modify an event list layout { #capture_modify_event_list_layout } 
 
 You can select which columns to show or hide in an event list. This can
 be useful for example when you have a long list of data elements
@@ -439,9 +425,7 @@ assigned to a program stage.
 >
 > You can reorganize the order of the data elements by draging and dropping them in the list.
 
-## Filter an event list
-
-<!--DHIS2-SECTION-ID:capture_filter_event_list-->
+## Filter an event list { #capture_filter_event_list } 
 
 1. Open the **Capture** app.
 
@@ -461,9 +445,7 @@ assigned to a program stage.
 >
 > Different data element types are fitered in different ways. A **Number** data element will for instance show a rang to filter on while a **Text** data element will ask you to enter a search query to filter on.
 
-## Sort an event list
-
-<!--DHIS2-SECTION-ID:capture_sort_event_list-->
+## Sort an event list { #capture_sort_event_list } 
 
 1. Open the **Capture** app.
 
@@ -482,9 +464,7 @@ assigned to a program stage.
 
     ![sort event](resources/images/capture_app/sort_event.png)
 
-## Download an event list
-
-<!--DHIS2-SECTION-ID:capture_download_event_list-->
+## Download an event list { #capture_download_event_list } 
 
 1. Open the **Capture** app.
 
@@ -503,15 +483,11 @@ assigned to a program stage.
 >
 > You can download an event list in JSON, XML or CSV formats.
 
-## Predefined list views
-
-<!--DHIS2-SECTION-ID:capture_views-->
+## Predefined list views { #capture_views } 
 
 You can set up your own views and save them for later use. The views can also be shared with others. A view consists of filters, column order and event sort order.
 
-### Saving a new view
-
-<!--DHIS2-SECTION-ID:capture_view_save-->
+### Saving a new view { #capture_view_save } 
 
 1. Select an organisation unit and a program.
 
@@ -535,9 +511,7 @@ You can set up your own views and save them for later use. The views can also be
 
     ![](resources/images/capture_app/view_save_name.png)
 
-### Loading a view
-
-<!--DHIS2-SECTION-ID:capture_view_load-->
+### Loading a view { #capture_view_load } 
 
 1. Select an organisation unit and a program with a predefined view.
 
@@ -549,9 +523,7 @@ You can set up your own views and save them for later use. The views can also be
 
     ![](resources/images/capture_app/view_load_selected.png)
 
-### Updating a view
-
-<!--DHIS2-SECTION-ID:capture_view_update-->
+### Updating a view { #capture_view_update } 
 
 1. Load the view you would like to update (see [loading a view](#capture_view_load)).
 
@@ -565,9 +537,7 @@ You can set up your own views and save them for later use. The views can also be
 
     ![](resources/images/capture_app/view_update.png)
 
-### Sharing a view
-
-<!--DHIS2-SECTION-ID:capture_view_share-->
+### Sharing a view { #capture_view_share } 
 
 1. Load the view you would like to share (see [loading a view](#capture_view_load)).
 
@@ -579,9 +549,7 @@ You can set up your own views and save them for later use. The views can also be
 
     ![](resources/images/capture_app/view_share_access.png)
 
-### Deleting a view
-
-<!--DHIS2-SECTION-ID:capture_view_delete-->
+### Deleting a view { #capture_view_delete } 
 
 1. Load the view you would like to delete (see [loading a view](#capture_view_load)).
 
@@ -589,15 +557,11 @@ You can set up your own views and save them for later use. The views can also be
 
     ![](resources/images/capture_app/view_delete.png)
 
-## User assignment
-
-<!--DHIS2-SECTION-ID:capture_user_assignment-->
+## User assignment { #capture_user_assignment } 
 
 Events can be assigned to users. This feature must be enabled per program.
 
-### Assigning new events
-
-<!--DHIS2-SECTION-ID:capture_user_assignment_new-->
+### Assigning new events { #capture_user_assignment_new } 
 
 1. Select an organisation unit and a program with user assignment enabled.
 
@@ -609,9 +573,7 @@ Events can be assigned to users. This feature must be enabled per program.
 
     ![](resources/images/capture_app/user_assignment_new_filled.png)
 
-### Change assignee
-
-<!--DHIS2-SECTION-ID:capture_user_assignment_edit-->
+### Change assignee { #capture_user_assignment_edit } 
 
 1. Select an organisation unit and a program with user assignment enabled.
 
@@ -629,9 +591,7 @@ Events can be assigned to users. This feature must be enabled per program.
 
 5. Search for and select the user you would like to reassign the event to. The assignment is saved immediately.
 
-### Assignee in the event list
-
-<!--DHIS2-SECTION-ID:capture_user_assignment_event_list-->
+### Assignee in the event list { #capture_user_assignment_event_list } 
 
 In the event list you will be able to view the assignee per event. Moreover, you can sort and filter the list by the assignee.
 
@@ -645,9 +605,7 @@ In the event list you will be able to view the assignee per event. Moreover, you
 
     ![](resources/images/capture_app/user_assignment_event_list_options.png)
 
-## Tracker programs
-
-<!--DHIS2-SECTION-ID:capture_tracker_programs-->
+## Tracker programs { #capture_tracker_programs } 
 
 The Capture app does not support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
 
@@ -800,13 +758,9 @@ You will find the predefined list views above the filters for the list. Click to
 
 ![](resources/images/capture_app/tei_list_predefined_views.png)
 
-## Implementer / administrator info
+## Implementer / administrator info { #implementer_info } 
 
-<!--DHIS2-SECTION-ID:implementer_info-->
-
-### Metadata caching
-
-<!--DHIS2-SECTION-ID:metadata_caching-->
+### Metadata caching { #metadata_caching } 
 
 For performance reasons the Capture app caches metadata in the client browser. When metadata is updated on the server the changes needs to be propagated to the clients that have already cached the metadata. Depending on the change, this is done in one of three ways:
 
@@ -890,3 +844,32 @@ When you deselect the tracked entity instance, in this case "Anna Jones" you are
 When you deselect the enrollment you see the following
 
 ![](resources/images/capture_app/enrollment-dash-08.png)
+
+### Enrollment widget
+
+On the enrollment page you can see the enrollment widget
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-1.png)
+
+#### Enrollment actions
+
+When you click on the enrollment actions button, a menu with all the available actions will open. You can change the enrollment status to Active, Canceled or Completed using the buttons in the menu. You can mark or remove the enrollment for a follow-up.
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-2.png)
+
+#### Delete the enrollment
+
+You can delete the enrollment by clicking the delete button and confirming the action in the modal. 
+
+![](resources/images/capture_app/enrollment-dash-enrollment-widget-3.png)
+
+
+#### Person profile widget
+
+On the enrollment dashboard, you can view the Person Profile widget.
+
+![](resources/images/capture_app/enrollment-dash-tei-profile-widget.png)
+
+The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
+
+
