@@ -570,6 +570,8 @@ confirm.
 
 ### Reopen completed enrollment { #reopen_complete_tracked_entity_instance_enrollment } 
 
+A enrollment in a program can be re-opened if the enrollment was completed. But it is not possible to re-open the enrollment if there is another active enrollment going on in the same program (because you cannot enroll into a program if another active enrollment already exists for the program).
+
 1.  Open the **Tracker Capture** app.
 
 2.  Open an existing TEI dashboard.
