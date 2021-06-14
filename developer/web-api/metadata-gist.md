@@ -50,7 +50,8 @@ Known Differences:
   always considers object sharing (the set of considered items is always the set
   visible to the user)
 * Gist offers `member(<id>)` and `not-member(<id>)` collection field transformers
-* Gist offers `canRead` and `canWrite` access check filter
+* Gist offers `canRead` and `canWrite` access check filter instead of filtering
+  on the `access` property
 
 Known Limitations:
 
@@ -175,9 +176,9 @@ Possible options for `auto` are ("t-shirt sizes"):
 
 * `XS`: includes only IDs and textual properties
 * `S`: excludes complex (object) properties, collection are only linked (not counted)
-* `M`: complex included as reference URL, collections as count and reference URL
-* `L`: like `M` but collections included as list of IDs (OBS! unbound in size)
-* `XL`: like `L` but collections included as ID objects: `{ "id": <id> }`
+* `M`: complex included as reference URL, references and collections as count and reference URL
+* `L`: like `M` but references and collections included as IDs (OBS! unbound in size)
+* `XL`: like `L` but references and collections included as ID objects: `{ "id": <id> }`
 
 For example, `/api/users/gist` would list items with fields `id`, `surname`, 
 `firstName`, `phoneNumber`, `email`, `lastUpdated` whereas 
@@ -368,6 +369,10 @@ Binary operators for access (sharing) based filtering:
 | `canDataRead`     | Has user `<value>` data read permission to the object    |
 | `canDataWrite`    | Has user `<value>` data write permission to the object   |
 | `canAccess`       | Has user `<value0>` permission `<value1>` to the object  |
+
+When the user ID `<value>` is omitted the check is performed for the currently
+logged-in user. Similarly, if `<value0>` is ommitted for `canAccess` filter
+the check is performed for the currently logged-in user.
 
 When applied to a simple value property, here `code`, the filter restricts the response to
 those data elements (owner object) the user can read/write:
