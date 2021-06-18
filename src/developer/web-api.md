@@ -21,4 +21,5 @@
 !INCLUDE "web-api/new-tracker.md", 1
 !INCLUDE "web-api/email.md", 1
 !INCLUDE "web-api/data-store.md", 1
+!INCLUDE "web-api/organisation-unit-profile.md", 1
 !INCLUDE "web-api/apps.md", 1
