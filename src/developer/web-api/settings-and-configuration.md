@@ -31,7 +31,7 @@ property and value for each system setting key-value pair using a POST request:
 
 Translations for translatable Setting keys can be set by specifying locale as
 a query parameter and translated value which can be specified
-either as a query param or withing the body payload. See an example URL:
+either as a query param or within the body payload. See an example URL:
 
     /api/33/systemSettings/<my-key>?locale=<my-locale>&value=<my-translated-value>
 
@@ -69,7 +69,7 @@ present, again, the default value is returned.
 
 The priority for translatable keys is the following:
 
-    specified locale > user's default UI locale > defaut value
+    specified locale > user's default UI locale > default value
 
 To delete a system setting, you can make a *DELETE* request to the URL
 similar to the one used above for retrieval. If a translatable key is
@@ -334,7 +334,7 @@ The available system settings are listed below.
 </tr>
 <tr class="even">
 <td>keyAnalyticsMaxLimit</td>
-<td>Maximum number of analytics recors. Default: &quot;50000&quot;</td>
+<td>Maximum number of analytics records. Default: &quot;50000&quot;</td>
 <td>No</td>
 </tr>
 <tr class="odd">
@@ -789,7 +789,7 @@ The available system settings are listed below.
 <tr class="odd">
 <td>keyTrackerDashboardLayout</td>
 <td>false | true</td>
-<td>Tracker dasboard layout.</td>
+<td>Tracker dashboard layout.</td>
 </tr>
 </tbody>
 </table>
