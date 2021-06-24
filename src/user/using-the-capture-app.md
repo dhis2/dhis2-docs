@@ -138,8 +138,7 @@ The second option, is to register a tracked entity instance with program and enr
 
     The enrollment form has different layouts depending on how the program is customized. The top section has the title "Enrollment",
     and it holds all the relevant information about the enrollment details. This section will always be present, regardless of layout.
-    If the tracked entity type has a feature type, this will be rendered as a separate section directly underneath.
-    Lastly, the different data input fields relevant to the tracked entity instance will be displayed. 
+    Underneath, the different data input fields relevant to the tracked entity instance will be displayed. 
     These fields will either be displayed within sections or as a completely custom form. 
     The sections, or custom form, mainly contains all the tracked entity attributes linked to the program or tracked entity type.
 
