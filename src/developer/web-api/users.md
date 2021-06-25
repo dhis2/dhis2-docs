@@ -250,13 +250,13 @@ curl -X POST -d @u.json "http://server/api/33/users" -u user:pass
 
 In the user creation payload, user groups are only supported when importing
 or *POSTing* a single user at a time. If you attempt to create more than one
-user while specifiying user groups, you will not recieve an error and the
+user while specifying user groups, you will not receive an error and the
 users will be created but no user groups will be assigned. This is by design
 and is limited because of the many-to-many relationship between users and
 user groups whereby user groups is the owner of the relationship. To update
-or create mulitple users and their user groups, consider a program to *POST*
+or create multiple users and their user groups, consider a program to *POST*
 one at a time, or *POST* all users followed by another action to
-update their user groups while specifiying the new user's identifiers.
+update their user groups while specifying the new user's identifiers.
 
 After the user is created, a *Location* header is sent back with the
 newly generated ID (you can also provide your own using the `/api/system/id`
