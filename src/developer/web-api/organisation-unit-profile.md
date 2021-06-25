@@ -7,6 +7,7 @@ The `OrgUnitProfile` settings allow user to defined a list of `OrganisationUnit`
 User can create one `OrgUnitProfile` in system, and it will be applied for all `OrganisationUnit`. 
 
 The information includes:
+
 - Name, short name, description, opening date, closed date, URL of org unit.
 - Contact person, address, email, phone number (if exists).
 - Location ( longtitude / latitude ).
@@ -16,32 +17,35 @@ The information includes:
 
 ## OrgUnitProfile API endpoint
 
- ### Get `OrgUnitProfile` settings
+### Get `OrgUnitProfile` settings
  
- - A `GET` request to `/api/orgUnitProfile` will receive `OrgUnitProfile` payload as below
+A `GET` request to `/api/orgUnitProfile` will receive `OrgUnitProfile` payload as below
 
- ```
- {
-  "attributes":[
-    "Zc3y9LinmtA",
-    "Zc3y9LinmtB"
-  ],
-  "groupSets": [
-    "Zc3y9LinmtC",
-    "Zc3y9LinmtD",
-  ],
-  "dataItems": [
-    "Zc3y9LinmtE",
-    "Zc3y9LinmtF"
-  ]
+```
+{
+ "attributes":[
+   "Zc3y9LinmtA",
+   "Zc3y9LinmtB"
+ ],
+ "groupSets": [
+   "Zc3y9LinmtC",
+   "Zc3y9LinmtD",
+ ],
+ "dataItems": [
+   "Zc3y9LinmtE",
+   "Zc3y9LinmtF"
+ ]
 }
 ```
-- Payload descriptions:
-    - `attributes`: arrays of Metadata `Attribute` UID.
-    - `groupSets`: arrays of `OrganisationUnitGroupSet` UID.
-    - `dataItems`: arrays of Data Item UID, can be `DataElement`, `Indicator`, `ReportingRate`, Event data items, `ProgramIndicator`.
+
+Payload descriptions:
+
+- `attributes`: arrays of Metadata `Attribute` UID.
+- `groupSets`: arrays of `OrganisationUnitGroupSet` UID.
+- `dataItems`: arrays of Data Item UID, can be `DataElement`, `Indicator`, `ReportingRate`, Event data items, `ProgramIndicator`.
 
 ### Save `OrgUnitProfile` settings
+
 - Send `POST` request to `/api/orgUnitProfile` with same payload format as above for saving `OrgUnitProfile` settings.
 - Authority `F_ORG_UNIT_PROFILE_ADD` or `ALL` is required for this function.
 - All UIDs will be validated for exsitence in database. 
@@ -52,11 +56,12 @@ The information includes:
 - The object `OrgUnitProfileData` contains infomation of an `OrganisationUnit` based on `OrgUnitProfile` settings.
 - If there is no `OrgUnitProfile` defined, only basic info of `OrganisationUnit` will be returned.
 - Send `GET` request to `api/orgUnitProfile/data/{orgUnitId}?period={isoPeriod}` to get `OrgUnitProfileData` of an `OrganisationUnit`.
-  - `orgUnitId` path parameter is required.
-  - `period` parameter is not required, the period shoud be in ISO format.
-  - Sharing check is applied for all metadata.
+    - `orgUnitId` path parameter is required.
+    - `period` parameter is not required, the period shoud be in ISO format.
+    - Sharing check is applied for all metadata.
   
 Sample `OrgUnitProfileData` JSON payload
+
 ```
 {
   "info": {
