@@ -136,15 +136,15 @@ The second option, is to register a tracked entity instance with program and enr
  
 5. Now, you will be able to see a form similar to the image below. 
 
-    The form will have two sections. The first section has the title "Enrollment".
-    There you will add all the information relevant to this program's enrollment. 
-    The second section has the title "Profile" there you will add data relevant to the 
-    tracked entity instance. The profile section mainly contains all the tracked entity 
-    attributes linked to the program or tracked entity type. 
+    The enrollment form has different layouts depending on how the program is customized. The top section has the title "Enrollment",
+    and it holds all the relevant information about the enrollment details. This section will always be present, regardless of layout.
+    Underneath, the different data input fields relevant to the tracked entity instance will be displayed. 
+    These fields will either be displayed within sections or as a completely custom form. 
+    The sections, or custom form, mainly contains all the tracked entity attributes linked to the program or tracked entity type.
 
       ![create new event](resources/images/capture_app/register-and-enroll-form.png)
 
-6. Fill in the required information for both sections.
+6. Fill in the required information for the enrollment.
     If the tracked entity type is configured to capture a location:
 
     - If the field is a coordinate field you can either enter the coordinates
