@@ -1,6 +1,6 @@
 # OrganisationUnit Profile API { #orgUnitProfile_api }
-<!--DHIS2-SECTION-ID:orgUnitProfile_api-->
-## 1. Overview
+
+## Overview
 
 The `OrgUnitProfile` settings allow user to defined a list of `OrganisationUnit` information for displaying in UI. 
 
@@ -14,9 +14,10 @@ The information includes:
 - Exclusive org unit group sets. Use to display group in exclusive group sets (e.g. "Facility type: Hospital", "Facility ownership: Public").
 - Aggregate data for data elements, indicators, reporting rates, program indicators (configurable). The period to retrieve aggregate data is provided as an API input parameter. Period type is fixed to yearly for now.
 
-## 2. OrgUnitProfile API endpoint
+## OrgUnitProfile API endpoint
 
- ### 2.1 Get `OrgUnitProfile` settings
+ ### Get `OrgUnitProfile` settings
+ 
  - A `GET` request to `/api/orgUnitProfile` will receive `OrgUnitProfile` payload as below
 
  ```
@@ -40,13 +41,13 @@ The information includes:
     - `groupSets`: arrays of `OrganisationUnitGroupSet` UID.
     - `dataItems`: arrays of Data Item UID, can be `DataElement`, `Indicator`, `ReportingRate`, Event data items, `ProgramIndicator`.
 
-### 2.2 Save `OrgUnitProfile` settings
+### Save `OrgUnitProfile` settings
 - Send `POST` request to `/api/orgUnitProfile` with same payload format as above for saving `OrgUnitProfile` settings.
 - Authority `F_ORG_UNIT_PROFILE_ADD` or `ALL` is required for this function.
 - All UIDs will be validated for exsitence in database. 
 - ACL check is also applied. If user doesn't have `METADATA READ` permission then the object is considered not existed.
 
-### 2.3 Get `OrgUnitProfileData` 
+### Get `OrgUnitProfileData` 
 
 - The object `OrgUnitProfileData` contains infomation of an `OrganisationUnit` based on `OrgUnitProfile` settings.
 - If there is no `OrgUnitProfile` defined, only basic info of `OrganisationUnit` will be returned.
