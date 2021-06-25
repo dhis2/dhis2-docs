@@ -1689,11 +1689,11 @@ Now that we have a good idea of the main features and usage of this endpoint let
 </tr>
 <tr class="even">
 <td>valueType</td>
-<td>The item value type (more specific definition). Possitble types: TEXT, LONG_TEXT, LETTER, BOOLEAN, TRUE_ONLY, UNIT_INTERVAL, PERCENTAGE, INTEGER, INTEGER_POSITIVE, INTEGER_NEGATIVE, INTEGER_ZERO_OR_POSITIVE, COORDINATE</td>
+<td>The item value type (more specific definition). Possible types: TEXT, LONG_TEXT, LETTER, BOOLEAN, TRUE_ONLY, UNIT_INTERVAL, PERCENTAGE, INTEGER, INTEGER_POSITIVE, INTEGER_NEGATIVE, INTEGER_ZERO_OR_POSITIVE, COORDINATE</td>
 </tr>
 <tr class="odd">
 <td>simplifiedValueType</td>
-<td>The genereal representation of a value type. Valid values: NUMBER, BOOLEAN, DATE, FILE_RESOURCE, COORDINATE, TEXT</td>
+<td>The general representation of a value type. Valid values: NUMBER, BOOLEAN, DATE, FILE_RESOURCE, COORDINATE, TEXT</td>
 </tr>
 <tr class="even">
 <td>programId</td>
