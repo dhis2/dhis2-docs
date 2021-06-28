@@ -1532,9 +1532,26 @@ You can specify multiple filters for a given item by repeating the operator and 
 
     &dimension=qrur9Dvnyt5:GT:5:LT:15
 
+##### NV keyword
+A special keyword `NV` can be used to filter by `null` values
+
+Filter by AGE is null
+
+    &dimension=qrur9Dvnyt5:EQ:NV
+
+Filter by AGE is not null
+
+    &dimension=qrur9Dvnyt5:NE:NV
+ 
+Filter by AGE is 18, 19 or is null
+ 
+    &dimension=qrur9Dvnyt5:IN:18;19;NV
+
+`NV` can be used with `EQ`, `NE` and `IN` operators
+
+##### Operators
+
 The available operators are listed below.
-
-
 
 Table: Filter operators
 
