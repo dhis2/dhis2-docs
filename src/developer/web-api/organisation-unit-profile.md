@@ -30,8 +30,8 @@ The payload looks like this, where `attributes` refers to metadata attributes,  
 ```json
 {
     "attributes": [
-        "l1VmqIHKk6t",
-        "xqWyz9jNCA5"
+        "xqWyz9jNCA5",
+        "n2xYlNbsfko"
     ],
     "groupSets": [
         "Bpx0589u8y0",
@@ -62,7 +62,7 @@ GET /api/organisationUnitProfile
 To retrieve the profile data you can use a `POST` request:
 
 ```
-POST /api/organisationUnitProfile/{org-unit-id}/data?period={iso-period}
+GET /api/organisationUnitProfile/{org-unit-id}/data?period={iso-period}
 ```
 
 The organisation unit profile data endpoint will combine the profile definition with the associated information/data values. 
@@ -79,9 +79,76 @@ The response will include the following sections:
 
 Note that access control checks are performed and metadata items which are not accessible to the current user will be omitted.
 
-The profile data response payload will look like this:
+An example request looks like this:
+
+```
+GET /api/organisationUnitProfile/DiszpKrYNg8/data?period=2021
+```
+
+The profile data response payload will look like this, where the `id` and `label` fields refer to the metadata item, and the `value` field refers to the associated value.
 
 ```json
-
+{
+    "info": {
+        "id": "DiszpKrYNg8",
+        "code": "OU_559",
+        "name": "Ngelehun CHC",
+        "shortName": "Ngelehun CHC",
+        "openingDate": "1970-01-01T00:00:00.000",
+        "longitude": -11.4197,
+        "latitude": 8.1039
+    },
+    "attributes": [
+        {
+            "id": "n2xYlNbsfko",
+            "label": "NGO ID",
+            "value": "GHE51"
+        },
+        {
+            "id": "xqWyz9jNCA5",
+            "label": "TZ code",
+            "value": "NGE54"
+        }
+    ],
+    "groupSets": [
+        {
+            "id": "Bpx0589u8y0",
+            "label": "Facility Ownership",
+            "value": "Public facilities"
+        },
+        {
+            "id": "J5jldMd8OHv",
+            "label": "Facility Type",
+            "value": "CHC"
+        }
+    ],
+    "dataItems": [
+        {
+            "id": "WUg3MYWQ7pt",
+            "label": "Total Population",
+            "value": 3503.0
+        },
+        {
+            "id": "DTVRnCGamkV",
+            "label": "Total population < 1 year",
+            "value": 140.0
+        },
+        {
+            "id": "vg6pdjObxsm",
+            "label": "Population of women of child bearing age (WRA)",
+            "value": 716.0
+        },
+        {
+            "id": "Uvn6LCg7dVU",
+            "label": "ANC 1 Coverage",
+            "value": 368.2
+        },
+        {
+            "id": "eTDtyyaSA7f",
+            "label": "FIC <1y",
+            "value": 291.4
+        }
+    ]
+}
 ```
 
