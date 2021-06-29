@@ -291,10 +291,13 @@ Table: Import parameters
 
 | Parameter | Values (default first) | Description |
 |---|---|---|
-| dataElementIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the data element object to use to map the data values. |
-| orgUnitIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the org unit object to use to map the data values. |
-| categoryOptionComboIdScheme | id &#124; name &#124; code &#124; attribute:ID | Property of the category option combo and attribute option combo objects to use to map the data values. |
-| idScheme | id &#124; name &#124; code&#124; attribute:ID | Property of all objects including data elements, org units and category option combos, to use to map the data values. |
+| dataElementIdScheme | uid &#124; name &#124; code &#124; attribute:ID | Property of the data element object to use to map the data values. |
+| orgUnitIdScheme | uid &#124; name &#124; code &#124; attribute:ID | Property of the org unit object to use to map the data values. |
+| categoryOptionComboIdScheme | uid &#124; name &#124; code &#124; attribute:ID | Property of the category option combo and attribute option combo objects to use to map the data values. |
+| dataSetIdScheme | uid &#124; name &#124; code&#124; attribute:ID | Property of the data set object to use to map the data values. |
+| categoryIdScheme | uid &#124; name &#124; code&#124; attribute:ID | Property of the category object to use to map the data values (ADX only). |
+| categoryOptionIdScheme | uid &#124; name &#124; code&#124; attribute:ID | Property of the category option object to use to map the data values (ADX only). |
+| idScheme | uid &#124; name &#124; code&#124; attribute:ID | Property of any of the above objects if they are not specified, to use to map the data values. |
 | preheatCache | false &#124; true | Indicates whether to preload metadata caches before starting to import data values, will speed up large import payloads with high metadata cardinality. |
 | dryRun | false &#124; true | Whether to save changes on the server or just return the import summary. |
 | importStrategy | CREATE &#124; UPDATE &#124; CREATE_AND_UPDATE &#124; DELETE | Save objects of all, new or update import status on the server. |
@@ -365,15 +368,15 @@ precedence:
   - Id schemes defined in the XML or JSON payload take precedence over
     id schemes defined as URL query parameters.
 
-  - Specific id schemes including dataElementIdScheme and
+  - Specific id schemes such as dataElementIdScheme or
     orgUnitIdScheme take precedence over the general idScheme.
 
-  - The default id scheme is UID, which will be used if no explicit id
-    scheme is defined.
+  - If no explicit id scheme is defined, the default id scheme is `code`
+    for ADX format, and `uid` for all other formats.
 
 The following identifier schemes are available.
 
-  - uid (default)
+  - uid
 
   - code
 
@@ -476,12 +479,11 @@ Table: Data values query parameters
 
 This section explains how to retrieve data values from the Web API by
 interacting with the *dataValueSets* resource. Data values can be
-retrieved in *XML*, *JSON* and *CSV* format. Since we want to read data
+retrieved in *XML*, *JSON*, *CSV*, and *ADX* format. Since we want to read data
 we will use the *GET* HTTP verb. We will also specify that we are
 interested in the XML resource representation by including an `Accept`
 HTTP header with our request. The following query parameters are
-required:
-
+accepted:
 
 
 Table: Data value set query parameters
@@ -489,7 +491,7 @@ Table: Data value set query parameters
 | Parameter | Description |
 |---|---|
 | dataSet | Data set identifier. Can be repeated any number of times. |
-| dataElementGroup | Data element group identifier. Can be repeated any number of times. |
+| dataElementGroup | Data element group identifier. Can be repeated any number of times (Not supported for ADX). |
 | period | Period identifier in ISO format. Can be repeated any number of times. |
 | startDate | Start date for the time span of the values to export. |
 | endDate | End date for the time span of the values to export. |
@@ -501,11 +503,18 @@ Table: Data value set query parameters
 | lastUpdated | Include only data values which are updated since the given time stamp. |
 | lastUpdatedDuration | Include only data values which are updated within the given duration. The format is <value\><time-unit\>, where the supported time units are "d" (days), "h" (hours), "m" (minutes) and "s" (seconds). |
 | limit | The max number of results in the response. |
-| idScheme | Property of meta data objects to use for data values in response. |
 | dataElementIdScheme | Property of the data element object to use for data values in response. |
 | orgUnitIdScheme | Property of the org unit object to use for data values in response. |
 | categoryOptionComboIdScheme | Property of the category option combo and attribute option combo objects to use for data values in response. |
 | dataSetIdScheme | Property of the data set object to use in the response. |
+| categoryIdScheme | Property of the category object to use in the response (ADX only). |
+| categoryOptionIdScheme | Property of the category option object to use in the response (ADX only). |
+| idScheme | Property of any of the above objects if they are not specified, to use in the response. If not specified, the default idScheme for ADX is code, and for all other formats is uid. |
+
+The following parameters from the list above are required:
+- either dataSet or dataElementGroup (for ADX this must be dataSet)
+- either period, both startDate and endDate, lastUpdated, or lastUpdatedDuration
+- either orgUnit or orgUnitGroup
 
 The following response formats are supported:
 
@@ -757,7 +766,7 @@ activity can be found at
 [wiki.ihe.net](http://wiki.ihe.net/index.php?title=Quality,_Research_and_Public_Health#Current_Domain_Activities).
 ADX is still under active development and has now been published for
 trial implementation. Note that what is implemented currently in DHIS2
-is the functionality to read and write adx formatted data, i.e. what is
+is the functionality to read and write ADX formatted data, i.e. what is
 described as Content Consumer and Content Producer actors in the ADX
 profile.
 
@@ -799,30 +808,30 @@ reference to a small example:
 </adx>
 ```
 
-### The adx root element
+### The ADX root element
 
-The adx root element has only one mandatory attribute, which is the
-*exported* timestamp. In common with other adx elements, the schema is
+The ADX root element has only one mandatory attribute, which is the
+*exported* timestamp. In common with other ADX elements, the schema is
 extensible in that it does not restrict additional application specific
 attributes.
 
-### The group element
+### The ADX group element
 
-Unlike dxf2, adx requires that the datavalues are grouped according to
+Unlike dxf2, ADX requires that the datavalues are grouped according to
 orgUnit, period and dataSet. The example above shows a data report for
 the "(TB/HIV) VCCT" dataset from the online demo database. This example
 is using codes as identifiers instead of dhis2 uids. Codes are the
-preferred form of identifier when using adx.
+preferred form of identifier when using ADX.
 
-The orgUnit, period and dataSet attributes are mandatory in adx. The
+The orgUnit, period and dataSet attributes are mandatory in ADX. The
 group element may contain additional attributes. In our DHIS2
 implementation any additional attributes are simply passed through to
 the underlying importer. This means that all attributes which currently
 have meaning in dxf2 (such as completeDate in the example above) can
-continue to be used in adx and they will be processed in the same way.
+continue to be used in ADX and they will be processed in the same way.
 
-A significant difference between adx and dxf2 is in the way that periods
-are encoded. Adx makes strict use of ISO8601 and encodes the reporting
+A significant difference between ADX and dxf2 is in the way that periods
+are encoded. ADX makes strict use of ISO8601 and encodes the reporting
 period as (date|datetime)/(duration). So the period in the example above
 is a period of 1 month (P1M) starting on 2015-06-01. So it is the data
 for June 2015. The notation is a bit more verbose, but it is very
@@ -830,53 +839,60 @@ flexible and allows us to support all existing period types in DHIS2
 
 ### ADX period definitions
 
-DHIS2 supports a limited number of periods or durations during import.
-Periods should begin with the date in which the duration begins, followed by
+Periods begin with the date in which the duration begins, followed by
 a "/" and then the duration notation as noted in the table. The
-following table details all of the ADX supported period types, along
-with examples.
-
-
+following table details all of the DHIS2 period types and how they are
+represented in ADX, along with examples.
 
 Table: ADX Periods
 
-| Period type | Duration notation | Example | Duration |
+| Period type | Duration notation | Example(s) | Duration(s) |
 |---|---|---|---|
 | Daily | P1D | 2017-10-01/P1M | Oct 01 2017 |
-| Weekly | P7D | 2017-10-01/P7D | Oct 01 2017-Oct 07-2017 |
+| Weekly | P7D | 2017-10-02/P7D | Oct 02 2017-Oct 08-2017 |
+| Weekly Wednesday | P7D | 2017-10-04/P7D | Oct 04 2017-Oct 10-2017 |
+| Weekly Thursday | P7D | 2017-10-05/P7D | Oct 05 2017-Oct 011-2017 |
+| Weekly Saturday | P7D | 2017-10-07/P7D | Oct 07 2017-Oct 13-2017 |
+| Weekly Sunday | P7D | 2017-10-01/P7D | Oct 01 2017-Oct 07-2017 |
+| Bi-weekly | P14D | 2017-10-02/P14D | Oct 02 2017-Oct 15 2017 |
 | Monthly | P1M | 2017-10-01/P1M | Oct 01 2017-Oct 31 2017 |
 | Bi-monthly | P2M | 2017-11-01/P2M | Nov 01 2017-Dec 31 2017 |
 | Quarterly | P3M | 2017-09-01/P3M | Sep 01 2017-Dec 31 2017 |
-| Six-monthly | P6M | 2017-01-01/P6M | Jan 01 2017-Jun 30 2017 |
-| Yearly | P1Ý | 2017-01-01/P1Y | Jan 01 2017-Dec 31 2017 |
-| Financial October | P1Y | 2017-10-01/P1Y | Oct 01 2017-Sep 30 2018 |
+| Six-monthly | P6M | 2017-01-01/P6M<br>2017-07-01/P6M | Jan 01 2017-Jun 30 2017<br>Jul 01 2017-Dec 31 2017 |
+| Six-monthly April | P6M | 2017-04-01/P6M<br>2017-10-01/P6M | Apr 01 2017-Sep 30 2017<br>Oct 01 2017-Mar 31 2018 |
+| Six-monthly November | P6M | 2017-10-01/P6M<br>2018-05-01/P6M | Nov 01 2017-Apr 30 2018<br>May 01 2018-Oct 31 2018 |
+| Yearly | P1Y | 2017-01-01/P1Y | Jan 01 2017-Dec 31 2017 |
 | Financial April | P1Y | 2017-04-01/P1Y | April 1 2017-Mar 31 2018 |
 | Financial July | P1Y | 2017-07-01/P1Y | July 1 2017-June 30 2018 |
+| Financial October | P1Y | 2017-10-01/P1Y | Oct 01 2017-Sep 30 2018 |
+| Financial November | P1Y | 2017-11-01/P1Y | Nov 01 2017-Oct 31 2018 |
 
-### Data values
+### ADX Data values
 
-The dataValue element in adx is very similar to its equivalent in DXF.
+The dataValue element in ADX is very similar to its equivalent in DXF.
 The mandatory attributes are *dataElement* and *value*. The *orgUnit* and
 *period* attributes don't appear in the dataValue as they are required
 at the *group* level.
 
 The most significant difference is the way that disaggregation is
 represented. DXF uses the categoryOptionCombo to indicate the disaggregation
-of data. In adx the disaggregations (e.g. AGE_GROUP and SEX) are
-expressed explicitly as attributes. One important constraint on using
-adx is that the categories used for dataElements in the dataSet MUST
-have a code assigned to them, and further, that code must be of a form
+of data. In ADX the disaggregations (e.g. AGE_GROUP and SEX) are
+expressed explicitly as attributes. If you use `code` as the id scheme for
+`category`, not that you must assign a code to all the categories used for
+dataElements in the dataSet, and further, that code must be of a form
 which is suitable for use as an XML attribute. The exact constraint on
 an XML attribute name is described in the W3C XML standard - in practice,
 this means no spaces, no non-alphanumeric characters other than '_' and
 it may not start with a letter. The example above shows examples of
-'good' category codes ('GENDER' and 'HIV_AGE').
+'good' category codes ('GENDER' and 'HIV_AGE'). The same restrictions
+apply if you use `name` or `attribute` as id schemes.
 
-This restriction on the form of codes applies only to categories.
-Currently, the convention is not enforced by DHIS2 when you are assigning
-codes, but you will get an informative error message if you try to
-import adx data and the category codes are either not assigned or not
-suitable.
+In ADX, only category identifiers are used as XML attributes; identifiers
+for other metadata types do not have to be usalbe as XML attributes.
+Note that this syntax is not enforced by DHIS2 when you are assigning
+names, codes, or DHIS2 attributes, but you will get an informative error
+message if you try to import ADX data and the category identifiers are
+either not assigned or not suitable.
 
 The main benefits of using explicit dimensions of disaggregated data are
 that
@@ -892,7 +908,7 @@ that
 Note that this feature may be extremely useful, for example when
 producing disaggregated data from an EMR system, but there may be cases
 where a *categoryOptionCombo* mapping is easier or more desirable. The
-DHIS2 implementation of adx will check for the existence of a
+DHIS2 implementation of ADX will check for the existence of a
 *categoryOptionCombo* attribute and, if it exists, it will use that in
 preference to exploded dimension attributes. Similarly, an
 *attributeOptionCombo* attribute on the *group* element will be
@@ -903,11 +919,12 @@ In the simple example above, each of the dataElements in the dataSet
 have the same dimensionality (categorycombo) so the data is neatly
 rectangular. This need not be the case. dataSets may contain
 dataElements with different categoryCombos, resulting in a
-*ragged-right* adx data message.
+*ragged-right* ADX data message (i.e. values for different dataElements
+may have different numbers of categories.)
 
-### Importing data
+### Importing ADX data
 
-DHIS2 exposes an endpoint for POST adx data at `/api/dataValueSets`
+DHIS2 exposes an endpoint for POST ADX data at `/api/dataValueSets`
 using *application/xml+adx* as content type. So, for example, the
 following curl command can be used to POST the example data above to the
 DHIS2 demo server:
@@ -918,14 +935,14 @@ curl -u admin:district -X POST -H "Content-Type: application/adx+xml"
 ```
 
 Note the query parameters are the same as are used with DXF data. The
-adx endpoint should interpret all the existing DXF parameters with the
+ADX endpoint should interpret all the existing DXF parameters with the
 same semantics as DXF.
 
-### Exporting data
+### Exporting ADX data
 
-DHIS2 exposes an endpoint to GET adx data sets at `/api/dataValueSets`
+DHIS2 exposes an endpoint to GET ADX data sets at `/api/dataValueSets`
 using *application/xml+adx* as the accepted content type. So, for
-example, the following curl command can be used to retrieve the adx
+example, the following curl command can be used to retrieve the ADX
 data:
 
 ```bash
@@ -934,8 +951,8 @@ curl -u admin:district -H "Accept: application/adx+xml"
 ```
 
 Note the query parameters are the same as are used with DXF data. An
-important difference is that the identifiers for dataSet and orgUnit are
-assumed to be codes rather than uids.
+important difference is that the identifiers for dataSet and orgUnit may
+be either uids or codes.
 
 ## Follow-up { #webapi_follow_up } 
 
