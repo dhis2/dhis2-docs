@@ -25,7 +25,7 @@ To define the organisation unit profile you can use a `POST` request:
 POST /api/organisationUnitProfile
 ```
 
-The payload looks like this, where `attributes` refers to metadata attributes,  `groupSets` refer to organisation unit group sets and `dataItems` refers to data elements, indicators, data sets and program indicators.
+The payload looks like this, where `attributes` refers to metadata attributes,  `groupSets` refer to organisation unit group sets and `dataItems` refers to data elements, indicators, data sets and program indicators:
 
 ```json
 {
@@ -68,7 +68,7 @@ GET /api/organisationUnitProfile/{org-unit-id}/data?period={iso-period}
 The organisation unit profile data endpoint will combine the profile definition with the associated information/data values. 
 
 * The `{org-unit-id}` path variable is required and refers to the ID of the organisation unit to provide aggregated data for.
-* The `iso-period` query parameter is optional and refers to the ISO period ID for the period to provide aggregated data for. If none is specified, _this year_ will be used as fallback.
+* The `iso-period` query parameter is optional and refers to the ISO period ID for the period to provide aggregated data for the data items. If none is specified, the _this year_ relative period will be used as fallback.
 
 The response will include the following sections:
 
@@ -85,7 +85,7 @@ An example request looks like this:
 GET /api/organisationUnitProfile/DiszpKrYNg8/data?period=2021
 ```
 
-The profile data response payload will look like this, where the `id` and `label` fields refer to the metadata item, and the `value` field refers to the associated value.
+The profile data response payload will look like this, where the `id` and `label` fields refer to the metadata item, and the `value` field refers to the associated value:
 
 ```json
 {
