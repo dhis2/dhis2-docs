@@ -29,21 +29,21 @@ The payload looks like this, where `attributes` refers to metadata attributes,  
 
 ```json
 {
-    "attributes": [
-        "xqWyz9jNCA5",
-        "n2xYlNbsfko"
-    ],
-    "groupSets": [
-        "Bpx0589u8y0",
-        "J5jldMd8OHv"
-    ],
-    "dataItems": [
-        "WUg3MYWQ7pt",
-        "vg6pdjObxsm",
-        "DTVRnCGamkV",
-        "Uvn6LCg7dVU",
-        "eTDtyyaSA7f"        
-    ]
+  "attributes": [
+    "xqWyz9jNCA5",
+    "n2xYlNbsfko"
+  ],
+  "groupSets": [
+    "Bpx0589u8y0",
+    "J5jldMd8OHv"
+  ],
+  "dataItems": [
+    "WUg3MYWQ7pt",
+    "vg6pdjObxsm",
+    "DTVRnCGamkV",
+    "Uvn6LCg7dVU",
+    "eTDtyyaSA7f"
+  ]
 }
 ```
 
@@ -89,66 +89,66 @@ The profile data response payload will look like this, where the `id` and `label
 
 ```json
 {
-    "info": {
-        "id": "DiszpKrYNg8",
-        "code": "OU_559",
-        "name": "Ngelehun CHC",
-        "shortName": "Ngelehun CHC",
-        "openingDate": "1970-01-01T00:00:00.000",
-        "longitude": -11.4197,
-        "latitude": 8.1039
+  "info": {
+    "id": "DiszpKrYNg8",
+    "code": "OU_559",
+    "name": "Ngelehun CHC",
+    "shortName": "Ngelehun CHC",
+    "openingDate": "1970-01-01T00:00:00.000",
+    "longitude": -11.4197,
+    "latitude": 8.1039
+  },
+  "attributes": [
+    {
+      "id": "n2xYlNbsfko",
+      "label": "NGO ID",
+      "value": "GHE51"
     },
-    "attributes": [
-        {
-            "id": "n2xYlNbsfko",
-            "label": "NGO ID",
-            "value": "GHE51"
-        },
-        {
-            "id": "xqWyz9jNCA5",
-            "label": "TZ code",
-            "value": "NGE54"
-        }
-    ],
-    "groupSets": [
-        {
-            "id": "Bpx0589u8y0",
-            "label": "Facility Ownership",
-            "value": "Public facilities"
-        },
-        {
-            "id": "J5jldMd8OHv",
-            "label": "Facility Type",
-            "value": "CHC"
-        }
-    ],
-    "dataItems": [
-        {
-            "id": "WUg3MYWQ7pt",
-            "label": "Total Population",
-            "value": 3503.0
-        },
-        {
-            "id": "DTVRnCGamkV",
-            "label": "Total population < 1 year",
-            "value": 140.0
-        },
-        {
-            "id": "vg6pdjObxsm",
-            "label": "Population of women of child bearing age (WRA)",
-            "value": 716.0
-        },
-        {
-            "id": "Uvn6LCg7dVU",
-            "label": "ANC 1 Coverage",
-            "value": 368.2
-        },
-        {
-            "id": "eTDtyyaSA7f",
-            "label": "FIC <1y",
-            "value": 291.4
-        }
-    ]
+    {
+      "id": "xqWyz9jNCA5",
+      "label": "TZ code",
+      "value": "NGE54"
+    }
+  ],
+  "groupSets": [
+    {
+      "id": "Bpx0589u8y0",
+      "label": "Facility Ownership",
+      "value": "Public facilities"
+    },
+    {
+      "id": "J5jldMd8OHv",
+      "label": "Facility Type",
+      "value": "CHC"
+    }
+  ],
+  "dataItems": [
+    {
+      "id": "WUg3MYWQ7pt",
+      "label": "Total Population",
+      "value": 3503
+    },
+    {
+      "id": "DTVRnCGamkV",
+      "label": "Total population < 1 year",
+      "value": 140
+    },
+    {
+      "id": "vg6pdjObxsm",
+      "label": "Population of women of child bearing age (WRA)",
+      "value": 716
+    },
+    {
+      "id": "Uvn6LCg7dVU",
+      "label": "ANC 1 Coverage",
+      "value": 368.2
+    },
+    {
+      "id": "eTDtyyaSA7f",
+      "label": "FIC <1y",
+      "value": 291.4
+    }
+  ]
 }
 ```
 
