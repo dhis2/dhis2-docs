@@ -577,6 +577,21 @@ Table: Complete data set registrations query parameters
 | skipExistingCheck | false &#124; true | Skip checks for existing complete registrations. Improves performance. Only use for empty databases or when the registrations to import do not exist already. |
 | async | false &#124; true | Indicates whether the import should be done asynchronous or synchronous. The former is suitable for very large imports as it ensures that the request does not time out, although it has a significant performance overhead. The latter is faster but requires the connection to persist until the process is finished. |
 
+The `idScheme`, `dataSetIdScheme`, `orgUnitIdScheme`, `attributeOptionComboIdScheme`, 
+`dryRun` and `strategy` (note the dissimilar naming to parameter `importStrategy`) 
+can also be set as part of the payload.
+In case of XML these are attributes, in case of JSON these are members in the
+`completeDataSetRegistrations` node.
+
+For example:
+```xml
+<completeDataSetRegistrations xmlns="http://dhis2.org/schema/dxf/2.0"
+      orgUnitIdScheme="CODE">
+    <completeDataSetRegistration period="200810" dataSet="eZDhcZi6FLP"
+    organisationUnit="qhqAxPSTUXp" attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
+</completeDataSetRegistrations>
+```
+
 ### Reading complete data set registrations { #webapi_reading_complete_data_sets } 
 
 This section explains how to retrieve data set completeness
