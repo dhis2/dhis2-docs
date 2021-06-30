@@ -2246,22 +2246,24 @@ one root unit.
 
     In many countries organisation units are assigned a code.
 
-7.  (Optional) Type a **Description** of the organisation unit.
+7.  (Optional) Upload a / remove the **Organisation unit image**
 
-8.  Select an **Opening date**.
+8.  (Optional) Type a **Description** of the organisation unit.
+
+9.  Select an **Opening date**.
 
     The opening dates control which organisation units that existed at a
     point in time, for example when analysing historical data.
 
-9.  If applicable, select a **Closed date**.
+10. If applicable, select a **Closed date**.
 
-10. In the **Comment** field, enter any additional information that you
+11. In the **Comment** field, enter any additional information that you
     would like to add.
 
-11. (Optional) In the **URL** field, enter a link to an external web
+12. (Optional) In the **URL** field, enter a link to an external web
     site that has additional information about the organisation unit.
 
-12. Enter contact information:
+13. Enter contact information:
 
       - Contact person
 
@@ -2271,7 +2273,7 @@ one root unit.
 
       - Phone number
 
-13. (Optional) Enter **Latitude** and **Longitude**.
+14. (Optional) Enter **Latitude** and **Longitude**.
 
     You must have latitude and longitude values to create maps in the
     **Maps** app. Then your organisation units can be represented as
@@ -2283,7 +2285,7 @@ one root unit.
     also use the **Import-Export** app to create polygons. A polygon is
     an organisation unit that represent an administrative boundary.
 
-14. If applicable, select **Data sets** and assign them.
+15. If applicable, select **Data sets** and assign them.
 
     > **Note**
     >
@@ -2294,7 +2296,7 @@ one root unit.
     > **Allow assigning object to related objects during add or
     > update**.
 
-15. If applicable, select **Programs** and assign them.
+16. If applicable, select **Programs** and assign them.
 
     > **Note**
     >
@@ -2305,7 +2307,7 @@ one root unit.
     > **Allow assigning object to related objects during add or
     > update**.
 
-16. If applicable, enter custom attributes values, for example **HR
+17. If applicable, enter custom attributes values, for example **HR
     identifier**.
 
     > **Note**
@@ -2314,7 +2316,7 @@ one root unit.
     >
     > Open the **Maintenance** app and click **Other** \> **Attribute**.
 
-17. Click **Save**.
+18. Click **Save**.
 
 ### Create or edit an organisation unit group { #create_organisation_unit_group } 
 
