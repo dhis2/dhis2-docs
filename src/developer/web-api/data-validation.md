@@ -588,9 +588,11 @@ For example:
 <completeDataSetRegistrations xmlns="http://dhis2.org/schema/dxf/2.0"
       orgUnitIdScheme="CODE">
     <completeDataSetRegistration period="200810" dataSet="eZDhcZi6FLP"
-    organisationUnit="qhqAxPSTUXp" attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
+    organisationUnit="OU_559" attributeOptionCombo="bRowv6yZOF2" storedBy="imported"/>
 </completeDataSetRegistrations>
 ```
+
+Should both URL parameter and payload set a scheme the payload takes precedence. 
 
 ### Reading complete data set registrations { #webapi_reading_complete_data_sets } 
 
