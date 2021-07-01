@@ -59,7 +59,7 @@ GET /api/organisationUnitProfile
 
 ## Get organisation unit profile data
 
-To retrieve the profile data you can use a `POST` request:
+To retrieve the organisation unit profile data you can use a `GET` request:
 
 ```
 GET /api/organisationUnitProfile/{org-unit-id}/data?period={iso-period}
@@ -94,6 +94,9 @@ The profile data response payload will look like this, where the `id` and `label
     "code": "OU_559",
     "name": "Ngelehun CHC",
     "shortName": "Ngelehun CHC",
+    "parentName": "Badjia",
+    "level": 4,
+    "levelName": "Facility",
     "openingDate": "1970-01-01T00:00:00.000",
     "longitude": -11.4197,
     "latitude": 8.1039
