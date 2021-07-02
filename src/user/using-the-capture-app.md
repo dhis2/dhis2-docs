@@ -891,7 +891,7 @@ In the view/edit event form you can see the stage name and icon.
 
 ## Program stage event list 
 
-You can reach the program stage event list by typing `/#/enrollment/stageEvents?enrollmentId={enrollmentId}&stageId={stageId}&orgUnitId={orgUnitId}&programId={programId}`, you have to specify `enrollmentId`, `stageId`, `orgUnitId` and `programId`
+You can reach the program stage event list by typing in the address bar of your browser, you have to specify `enrollmentId`, `stageId`, `orgUnitId` and `programId`
 
 ### Stage Event list 
 In this view you can see all events in a stage 
