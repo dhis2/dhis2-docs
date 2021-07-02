@@ -157,3 +157,32 @@ The profile data response payload in JSON format will look like this, where the 
 }
 ```
 
+## Upload OrganisationUnit Image
+
+From DHIS2 version 2.37, `OrganisationUnit` has a new property named `image` for storing image.
+
+The `image` property stores `uid` of a `FileResource`. In order to upload an image for an `OrganisationUnit` you can follow these steps:
+1. Send a `POST` request with the image file to `api/fileResource?domain=ORG_UNIT` as in [this doc](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-234/web-api.html#webapi_file_resources). Take note of the `fileResourceUid` from the response. 
+2. For linking the uploaded `fileResource` to an `OrganisationUnit` you have two ways: 
+  - Send a `PATCH` request to `api/organisationUnits/{org-unit-uid}` with the payload
+```
+{ 
+  "image": "{file-resource-uid}" 
+}
+```
+  - Send a `PUT` request to `api/organisationUnits/{org-unit-uid}` with full `OrganisationUnit` payload
+```
+{
+  "name":"Test organisationUnit",
+  "shortName":"Test organisationUnit ",
+  "openingDate":"2021-06-22T22:00:00.000Z",
+  "image":
+  {
+    "id":  "{file-resource-uid}"
+  }   
+}
+```
+
+## Get OrganisationUnit Image
+
+For retrieving an image of an `OrganisationUnit` you can send a `GET` request to `api/fileResources/{file-resource-uid}/data`.
