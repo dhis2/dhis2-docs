@@ -872,6 +872,17 @@ On the enrollment dashboard, you can view the Person Profile widget.
 
 The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
 
+### Feedback widget
+On the enrollment dashboard, you can view the Feedback widget.
+
+![](resources/images/capture_app/enrollment-dash-feedback-widget-1.png)
+
+The feedback widget displays text and key/value-pairs that are triggered by program rules and are not specific to any data element or attribute. 
+
+#### Empty state
+If there are no feedback for the specific context, the widget will display a text to inform that there are no feedbacks.
+If there are no program rules that could potentially lead to a displayed feedback, the widget will be removed completely.
+
 ## Enrollment event view and edit page
 
 You can reach the enrollment event form by typing in the address bar of your browser. You have to specify the `programId`, `orgUnitId`, `teiId`, `enrollmentId`, `stageId` and `eventId`
