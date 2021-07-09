@@ -878,14 +878,14 @@ On the enrollment dashboard, you can view the Indicator widget.
 
 ![](resources/images/capture_app/enrollment-dash-indicator-widget-1.png)
 
-The indicator widget displays indicators from either program rules or program indicators. These indicators is a combination of keys and values.
+The indicator widget displays program indicators that are configured as "Display in form" or through program rules (Displaying text or key/value pairs in "Program indicator widget"). 
 
 #### Empty state
 If there are no indicators available for the enrollment, the widget will be shown with a text saying there are no indicators.
 If there are no program rules or indicators that can possibly display a message, the indicator will not be displayed at all.
 
-#### Color (Optional)
-As customized in the maintenance app, program indicators can also have a `Color`-attribute. This will be showed as small circle to the left of the indicator value.
+#### Legends (Optional)
+As customized in the maintenance app, program indicators can also have a `Legend` assigned to them. This will be showed as small circle to the left of the indicator value.
 
 ## Enrollment event view and edit page
 
