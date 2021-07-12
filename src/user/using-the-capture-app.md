@@ -880,12 +880,10 @@ You can reach the enrollment event form by typing in the address bar of your bro
 
 ### Error Widget
 
-On the enrollment dashboard, you can view the Error widget.
-
 ![](resources/images/capture_app/enrollment-dash-error-widget-1.png)
 
-The error widget will display errors recieved from configured program rules which are not associated with a specific data element or attribute.
-If there are no errors, the error widget will not be displayed. 
+On the enrollment dashboard, the errors widget displays errors related to the current dashboard. The widget shows errors that are not associated with any specific data item.
+If there aren't any errors to show for the current dashboard then the widget is hidden.
 
 ### View/Edit event form 
 
