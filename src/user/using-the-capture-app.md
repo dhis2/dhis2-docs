@@ -873,12 +873,11 @@ On the enrollment dashboard, you can view the Person Profile widget.
 The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
 
 ### Warning widget
-On the enrollment dashboard, the warning widget will be displayed.
 
 ![](resources/images/capture_app/enrollment-dash-warning-widget-1.png)
 
-The warning widget will display warnings recieved from configured program rules which are not associated with a specific data element or attribute.
-If there are no warnings, the warning widget will not be displayed.
+On the enrollment dashboard, the warning widget displays warnings related to the current dashboard. The widget shows warnings that are not associated with any specific data item.
+If there aren't any warnings to show for the current dashboard then the widget is hidden.
 
 ## Enrollment event view and edit page
 
