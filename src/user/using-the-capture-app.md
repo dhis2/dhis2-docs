@@ -874,18 +874,18 @@ The Person profile widget is used for viewing key attributes but not for editing
 
 ### Indicator widget
 
-On the enrollment dashboard, you can view the Indicator widget.
-
 ![](resources/images/capture_app/enrollment-dash-indicator-widget-1.png)
 
-The indicator widget displays program indicators that are configured as "Display in form" or through program rules (Displaying text or key/value pairs in "Program indicator widget"). 
+On the enrollment dashboard, the indicator widget displays indicator text and values output related to the current dashboard.
 
 #### Empty state
-If there are no indicators available for the enrollment, the widget will be shown with a text saying there are no indicators.
-If there are no program rules or indicators that can possibly display a message, the indicator will not be displayed at all.
+If there aren't any related indicators or indicator output for the current dashboard, the widget shows a short _empty_ message.
+If the current dashboard can't show any indicator output (because it has no related indicators) then the widget is hidden.
 
-#### Legends (Optional)
-As customized in the maintenance app, program indicators can also have a `Legend` assigned to them. This will be showed as small circle to the left of the indicator value.
+#### Legends
+Some indicator values show a colored circle next to the value. 
+The colored circle shows the related legend color for that indicator value. 
+Colored legend circles are only shown for indicator values that have them set up.
 
 ## Enrollment event view and edit page
 
