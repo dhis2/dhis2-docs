@@ -231,11 +231,13 @@ This results in a chart that combines the `Column` and `Line` types.
 
 ## Data drilling
 
-This feature is enabled for the `Pivot Table` visualization type and allows to drill in the data by clicking on a value cell in the table. A contextual menu opens with various options.
+This feature is enabled for the `Pivot Table`, `Column`, `Stacked column`, `Bar` and `Bar stacked` visualization types and allows to drill in the data by clicking on a value cell / column / bar in the visualization. A contextual menu opens with various options.
 
-You can drill the data by organisation unit, meaning navigating up and down the org unit tree. The data drill affects the current dimension selection in the layout area.
+You can drill the data by organisation unit, meaning navigating up and down the org unit tree. The data drill affects the current dimension selection in the layout area. The organisation unit dimension must thus be present on either the Columns / Series axis or the Rows / Category axis for the drill feature to be enabled.
 
 ![](resources/images/data-visualizer/data-visualizer-pt-drill.png)
+
+![](resources/images/data-visualizer/data-visualizer-column-drill.png)
 
 ## Manage saved visualizations
 
