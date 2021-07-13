@@ -158,7 +158,7 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Value labels|Shows the values above the series in the visualization.|
 ||Axes tab|
 |Axis range|Defines the maximum and minimum value that will be visible on the range axis.|
-|Axis title|Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.|
+|Axis title|Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.<br>Auto generated provides a title based on the content of the axis.<br>None removes the title.<br>The Custom option allows you to type a custom title.|
 |Decimals|Defines the number of decimals that will be used for range axis values.|
 |Steps|Defines the number of ticks that will be visible on the range axis.|
 ||**Legend tab**|
