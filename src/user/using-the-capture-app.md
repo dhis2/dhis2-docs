@@ -887,3 +887,12 @@ This is the form where you can see and edit the enrollment event details.
 In the view/edit event form you can see the stage name and icon.
 
 ![](resources/images/capture_app/enrollment-event-view-edit-header.png)
+
+
+## Add event in enrollment page
+You can reach this page add event page only via typing the full url, or by clicking one of the options for adding a new event. You have to specify `programId`, `programId`, `orgUnitId`, `teiId`, `enrollmentId`, `stageId` and `eventId`.
+
+### New event widget form
+This is the form where you can modify the event details before saving. In the header you can see the stage name and icon.
+![](resources/images/capture_app/new-event-widget-form-header.png)
+
