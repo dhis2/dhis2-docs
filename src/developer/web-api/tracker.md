@@ -2237,7 +2237,7 @@ To update a potential duplicate status:
 
 To flag as Potential Duplicate a Tracked Entity Instance (referred as tei)
 
- `PUT /api/trackedEntityInstances/{tei}/potentialduplicate`
+ `PUT /api/trackedEntityInstances/{tei}/potentialDuplicate`
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
