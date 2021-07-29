@@ -2154,7 +2154,7 @@ Potential duplicates are records we work with in the data deduplication feature.
 
 A potential duplicate represents a pair of records which are suspected to be a duplicate.
 
-The payload of a Potential Duplicate looks like this:
+The payload of a potential duplicate looks like this:
 
 ```json
 {
@@ -2171,7 +2171,7 @@ You can retrieve a list of potential duplicates using the following endpoint:
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
 | teis | List of tracked entity instances | List of string (separated by comma )| existing tracked entity instance id |
-| status | Potential Duplicate status | string | `OPEN <default>`, `INVALID`, `MERGED`, `ALL` |
+| status | Potential duplicate status | string | `OPEN <default>`, `INVALID`, `MERGED`, `ALL` |
 
 | Error | Description
 |---|---|
@@ -2183,7 +2183,7 @@ You can inspect individual potential duplicate records:
 
 | Error | Description
 |---|---|
-| 404 | Potential Duplicate not found
+| 404 | Potential duplicate not found
 
 You can also inspect potential duplicates by Tracked Entity Instance (referred as tei) :
 
@@ -2191,13 +2191,13 @@ You can also inspect potential duplicates by Tracked Entity Instance (referred a
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
-| status | Potential Duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL <default>` |
+| status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL <default>` |
 
 | Error | Description
 |---|---|
 | 400 | Invalid input status
 | 403 | User do not have access to read tei
-| 404 | tei not found
+| 404 | Tei not found
 
 To create a new potential duplicate, you can use this endpoint:
 
@@ -2216,7 +2216,7 @@ The payload you provide must include both teiA and teiB
 |---|---|
 | 400 | Input teiA or teiB is null or has invalid id
 | 403 | User do not have access to read teiA or teiB
-| 404 | tei not found
+| 404 | Tei not found
 | 409 | Pair of teiA or teiB already existing
 
 To update a potential duplicate status:
@@ -2225,30 +2225,29 @@ To update a potential duplicate status:
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
-| status | Potential Duplicate status | string | `OPEN`, `INVALID`, `MERGED` |
-
+| status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED` |
 
 | Error | Description
 |---|---|
-| 400 | You can't update a Potential Duplicate to MERGED as this is possible only by a merging request
-| 400 | You can't update a Potential Duplicate that is already in a MERGED status
+| 400 | You can't update a potential duplicate to MERGED as this is possible only by a merging request
+| 400 | You can't update a potential duplicate that is already in a MERGED status
 
 ## Flag Tracked Entity Instance as Potential Duplicate
 
-To flag as Potential Duplicate a Tracked Entity Instance (referred as tei)
+To flag as potential duplicate a Tracked Entity Instance (referred as tei)
 
  `PUT /api/trackedEntityInstances/{tei}/potentialDuplicate`
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
-| flag | either flag or unflag a tei as Potential Duplicate | string | `true`, `false` |
+| flag | either flag or unflag a tei as potential duplicate | string | `true`, `false` |
 
 
 | Error | Description
 |---|---|
 | 400 | Invalid flag must be true of false
 | 403 | User do not have access to update tei
-| 404 | tei not found
+| 404 | Tei not found
 
 ## Program Messages { #webapi_program_messages } 
 
