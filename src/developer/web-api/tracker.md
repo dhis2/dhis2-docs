@@ -2152,9 +2152,9 @@ as shown:
 
 Potential duplicates are records we work with in the data deduplication feature. Due to the nature of the deduplication feature, this API endpoint is somewhat restricted.
 
-A potential duplicate represents a single or pair of records which are suspected to be a duplicate.
+A potential duplicate represents a pair of records which are suspected to be a duplicate.
 
-The payload of a potential duplicate looks like this:
+The payload of a Potential Duplicate looks like this:
 
 ```json
 {
@@ -2168,15 +2168,42 @@ You can retrieve a list of potential duplicates using the following endpoint:
 
     GET /api/potentialDuplicates
 
-Additionally you can inspect individual records:
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| teis | List of tracked entity instances | List of string (separated by comma )| existing tracked entity instance id |
+| status | Potential Duplicate status | string | `OPEN <default>`, `INVALID`, `MERGED`, `ALL` |
+
+| Error | Description
+|---|---|
+| 400 | Invalid input status
+
+You can inspect individual potential duplicate records:
 
     GET /api/potentialDuplicates/<id>
+
+| Error | Description
+|---|---|
+| 404 | Potential Duplicate not found
+
+You can also inspect potential duplicates by Tracked Entity Instance (referred as tei) :
+
+    GET /api/potentialDuplicates//tei/<tei>
+
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| status | Potential Duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL <default>` |
+
+| Error | Description
+|---|---|
+| 400 | Invalid input status
+| 403 | User do not have access to read tei
+| 404 | tei not found
 
 To create a new potential duplicate, you can use this endpoint:
 
     POST /api/potentialDuplicates
 
-The payload you provide needs at least _teiA_ to be a valid tracked entity instance; _teiB_ is optional. If _teiB_ is set, it also needs to point to an existing tracked entity instance.
+The payload you provide must include both teiA and teiB
 
 ```json
 {
@@ -2185,13 +2212,43 @@ The payload you provide needs at least _teiA_ to be a valid tracked entity insta
 }
 ```
 
-You can mark a potential duplicate as _invalid_ to tell the system that the potential duplicate has been investigated and deemed to be not a duplicate. To do so you can use the following endpoint:
+| Error | Description
+|---|---|
+| 400 | Input teiA or teiB is null or has invalid id
+| 403 | User do not have access to read teiA or teiB
+| 404 | tei not found
+| 409 | Pair of teiA or teiB already existing
 
-    PUT /api/potentialDuplicates/<id>/invalidation
+To update a potential duplicate status:
 
-To hard delete a potential duplicate:
+    PUT /api/potentialDuplicates/<id>
 
-    DELETE /api/potentialDuplicates/<id>
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| status | Potential Duplicate status | string | `OPEN`, `INVALID`, `MERGED` |
+
+
+| Error | Description
+|---|---|
+| 400 | You can't update a Potential Duplicate to MERGED as this is possible only by a merging request
+| 400 | You can't update a Potential Duplicate that is already in a MERGED status
+
+## Flag Tracked Entity Instance as Potential Duplicate
+
+To flag as Potential Duplicate a Tracked Entity Instance (referred as tei)
+
+ `PUT /api/trackedEntityInstances/{tei}/potentialduplicate`
+
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| flag | either flag or unflag a tei as Potential Duplicate | string | `true`, `false` |
+
+
+| Error | Description
+|---|---|
+| 400 | Invalid flag must be true of false
+| 403 | User do not have access to update tei
+| 404 | tei not found
 
 ## Program Messages { #webapi_program_messages } 
 
