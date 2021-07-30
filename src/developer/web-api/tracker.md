@@ -2170,10 +2170,10 @@ You can retrieve a list of potential duplicates using the following endpoint:
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
-| teis | List of tracked entity instances | List of string (separated by comma )| existing tracked entity instance id |
+| teis | List of tracked entity instances | List of string (separated by comma)| existing tracked entity instance id |
 | status | Potential duplicate status | string | `OPEN <default>`, `INVALID`, `MERGED`, `ALL` |
 
-| Error | Description
+| Status code | Description
 |---|---|
 | 400 | Invalid input status
 
@@ -2181,19 +2181,19 @@ You can inspect individual potential duplicate records:
 
     GET /api/potentialDuplicates/<id>
 
-| Error | Description
+| Status code | Description
 |---|---|
 | 404 | Potential duplicate not found
 
-You can also inspect potential duplicates by Tracked Entity Instance (referred as tei) :
+You can also filter potential duplicates by Tracked Entity Instance (referred as tei) :
 
-    GET /api/potentialDuplicates//tei/<tei>
+    GET /api/potentialDuplicates/tei/<tei>
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
 | status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL <default>` |
 
-| Error | Description
+| Status code | Description
 |---|---|
 | 400 | Invalid input status
 | 403 | User do not have access to read tei
@@ -2212,12 +2212,12 @@ The payload you provide must include both teiA and teiB
 }
 ```
 
-| Error | Description
+| Status code | Description
 |---|---|
 | 400 | Input teiA or teiB is null or has invalid id
 | 403 | User do not have access to read teiA or teiB
 | 404 | Tei not found
-| 409 | Pair of teiA or teiB already existing
+| 409 | Pair of teiA and teiB already existing
 
 To update a potential duplicate status:
 
@@ -2227,7 +2227,7 @@ To update a potential duplicate status:
 |---|---|---|---|
 | status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED` |
 
-| Error | Description
+| Status code | Description
 |---|---|
 | 400 | You can't update a potential duplicate to MERGED as this is possible only by a merging request
 | 400 | You can't update a potential duplicate that is already in a MERGED status
@@ -2243,7 +2243,7 @@ To flag as potential duplicate a Tracked Entity Instance (referred as tei)
 | flag | either flag or unflag a tei as potential duplicate | string | `true`, `false` |
 
 
-| Error | Description
+| Status code | Description
 |---|---|
 | 400 | Invalid flag must be true of false
 | 403 | User do not have access to update tei
