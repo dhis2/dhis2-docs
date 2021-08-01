@@ -246,12 +246,7 @@ Windows, Linux, Macintosh etc. DHIS2 is platform independent and thus
 can be used in many different contexts depending on the exact
 requirements of the operating system to be used.
 
-Additionally, DHIS2 supports three major database management systems
-systems (DBMS). DHIS2 uses the Hibernate database abstraction framework
-and is compatible with the following database systems: PostgreSQL, MySQL
-and H2. PostgreSQL and MySQL are high-quality production ready
-databases, while H2 is a useful in-memory database for small-scale
-applications or development activities.
+Additionally, PostgreSQL is the required database management system (DBMS) for DHIS2. DHIS2 newest versions come with advanced features which require PostgreSQL. Other DBMS systems such as H2 and MySQL are no longer supported in the newer versions of DHIS2.
 
 Lastly, and perhaps most importantly, since DHIS2 is a browser-based
 application, the only real requirement to interact with the system is
