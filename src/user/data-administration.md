@@ -370,7 +370,7 @@ The data statistics module provides an overview of the number of objects
 stored in the DHIS2 database.
 
 
-![](resources/images/maintainence/data_stats.png)
+![](resources/images/maintenance/data_stats.png)
 
 The total number of each type of object is presented in a series of
 tables with summary statistics of each object.
@@ -386,7 +386,7 @@ granting a lock exception, data entry will be enabled even after the
 expiry period of the data set has passed.
 
 
-![](resources/images/maintainence/create_lock_exception.png)
+![](resources/images/maintenance/create_lock_exception.png)
 
 In the example above, a data lock exception would be created for "ab
 Abundant Life Organization" and "ab Seventh Day Hospital" for the "Care
@@ -403,7 +403,7 @@ selector on the right. Press the "Generate" button to generate or
 regenerate all min-max values. Press "Remove" to remove all min-max
 values which are currently stored in the database.
 
-![](resources/images/maintainence/min_max_value_generation.PNG)
+![](resources/images/maintenance/min_max_value_generation.PNG)
 
 ## Cache Statistics { #dataAdmin_cacheStatistics } 
 
