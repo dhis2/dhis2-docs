@@ -1,7 +1,0 @@
-README.md
-setup.py
-edit_url.egg-info/PKG-INFO
-edit_url.egg-info/SOURCES.txt
-edit_url.egg-info/dependency_links.txt
-edit_url.egg-info/entry_points.txt
-edit_url.egg-info/top_level.txt
