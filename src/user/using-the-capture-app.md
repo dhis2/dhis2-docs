@@ -887,3 +887,16 @@ This is the form where you can see and edit the enrollment event details.
 In the view/edit event form you can see the stage name and icon.
 
 ![](resources/images/capture_app/enrollment-event-view-edit-header.png)
+
+#### View mode
+
+When the form is in the edit mode the title of the page will appear as: `Enrollment: View Event`. You can see in the page all the informations related with the event. Click the `Edit event` button to switch to the edit mode. 
+
+![](resources/images/capture_app/enrollment-event-view-edit-view.png)
+
+#### Edit mode
+
+When the form is in the edit mode the title of the page will appear as: `Enrollment: Edit Event`. You can modify the event and click the `Save` button. Click the `Cancel` button to switch to the view mode without saving the changes. 
+
+![](resources/images/capture_app/enrollment-event-view-edit-edit.png)
+
