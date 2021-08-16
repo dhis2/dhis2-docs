@@ -887,3 +887,9 @@ This is the form where you can see and edit the enrollment event details.
 In the view/edit event form you can see the stage name and icon.
 
 ![](resources/images/capture_app/enrollment-event-view-edit-header.png)
+
+#### Widgets in View/Edit event page
+
+The widgets seen in the right-hand column will display and function the same way as mentioned in the enrollment dashboard.
+
+![](resources/images/capture_app/enrollment-event-view-edit-widgets.png)
