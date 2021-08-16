@@ -380,17 +380,23 @@ tables with summary statistics of each object.
 Lock exceptions provide fine-grained control over exemption from a
 locked data set. After the expiry of the data set, data entry will be
 denied by default, unless an exception has been granted through the Lock
-exception interface. To enable a lock exception, select the desired
-organization units, data sets, and time period and press "Add". By
-granting a lock exception, data entry will be enabled even after the
+exception interface.
+
+### Adding a lock exception
+
+By granting a lock exception, data entry will be enabled even after the
 expiry period of the data set has passed.
 
+1. Open the **Data Administration** app and click **Lock Exception**.
+2. Click **Add lock exception** at the top of the page
+3. Select the desired data set, organisation units and time period (see
+   screenshot below)
+4. Click **Add lock exception**
 
 ![](resources/images/maintenance/create_lock_exception.png)
 
-In the example above, a data lock exception would be created for "ab
-Abundant Life Organization" and "ab Seventh Day Hospital" for the "Care
-and Support" dataset for "February 2012".
+In the example above, a data lock exception would be created for "Bo" for the
+"ART monthly summary" dataset for "February 2014".
 
 ## Min-Max Value Generation { #dataAdmin_minMaxValueGeneration }
 
