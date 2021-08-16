@@ -877,6 +877,7 @@ The Person profile widget is used for viewing key attributes but not for editing
 ![](resources/images/capture_app/enrollment-dash-indicator-widget-1.png)
 
 On the enrollment dashboard, the indicator widget displays indicator text and values output related to the current dashboard.
+The indicators will be sorted alphabetically.
 
 #### Empty state
 If there aren't any related indicators or indicator output for the current dashboard, the widget shows a short _empty_ message.
