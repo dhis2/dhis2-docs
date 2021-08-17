@@ -1923,16 +1923,20 @@ Table: Data set report query parameters
 | Parameter | Description | Type | Required |
 |---|---|---|---|
 | ds | Data set to create the report from. | Data set UID | Yes |
-| pe | Period to create the report from. | ISO String | Yes |
+| pe | Period(s) to create the report from. May be a comma-separated list. | ISO String | Yes |
 | ou | Organisation unit to create the report from. | Organisation unit UID | Yes |
 | filter | Filters to be used as filters for the report. Can be repeated any number of times. Follows the analytics API syntax. | One or more UIDs | No |
 | selectedUnitOnly | Whether to use captured data only or aggregated data. | Boolean | No |
 
 The data set report resource accepts `GET` requests only. The response content type is `application/json` and returns data in a grid. This endpoint works for all types of data sets, including default, section and custom forms.
 
-An example request to retrieve a report for a data set and org unit for 2018 looks like this:
+An example request to retrieve a report for a monthly data set and org unit for October 2018 looks like this:
 
     GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
+
+An example request to retrieve a report for a monthly data set and org unit for October, November, and December 2018 looks like this:
+
+    GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810,201811,201812&ou=ImspTQPwCqd&selectedUnitOnly=false
 
 To get a data set report with a filter you can use the `filter` parameter. In this case, the filter is based on an org unit group set and two org unit groups:
 
