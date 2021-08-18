@@ -87,7 +87,7 @@ When selecting data items, there are different ways to filter the displayed item
 
 #### Select periods
 
-When selecting a Period you have to option to choose between fixed periods and relative periods. These can also be combined. Overlapping periods are filtered so that they only appear once. For relative periods the names are relative to the current date, e.g. if the current month is March and **Last month** is selected, the month of February is shown in the visualization.
+When selecting a Period you have the option to choose between fixed periods and relative periods. These can also be combined. Overlapping periods are filtered so that they only appear once. For relative periods the names are relative to the current date, e.g. if the current month is March and **Last month** is selected, the month of February is shown in the visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-period-dimension-modal.png)
 
@@ -110,6 +110,13 @@ The organisation units dialog is flexible, offering essentially three ways of se
   - User sub-x2-units: Selects the units two levels below the user organisation unit.
 
 ![](resources/images/data-visualizer/data-visualizer-organisation-unit-dimension-modal.png)
+
+#### Select dynamic dimensions
+
+When selecting a dynamic dimension, either individual or all items can be selected. By default, the **Manually select items** option is selected, which allows for individual items to be picked out of a list, similar to how the **Data** and **Period** dimensions are selected above.
+To automatically select all items for a dimension, the **Automatically include all items** option can be selected. This will also include any additional items that are added in the future if the available dimension items are updated.
+
+![](resources/images/data-visualizer/data-visualizer-dynamic-dimension-modal.png)
 
 ### Two category charts
 
