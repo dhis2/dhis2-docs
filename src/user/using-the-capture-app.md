@@ -136,15 +136,15 @@ The second option, is to register a tracked entity instance with program and enr
  
 5. Now, you will be able to see a form similar to the image below. 
 
-    The form will have two sections. The first section has the title "Enrollment".
-    There you will add all the information relevant to this program's enrollment. 
-    The second section has the title "Profile" there you will add data relevant to the 
-    tracked entity instance. The profile section mainly contains all the tracked entity 
-    attributes linked to the program or tracked entity type. 
+    The enrollment form has different layouts depending on how the program is customized. The top section has the title "Enrollment",
+    and it holds all the relevant information about the enrollment details. This section will always be present, regardless of layout.
+    Underneath, the different data input fields relevant to the tracked entity instance will be displayed. 
+    These fields will either be displayed within sections or as a completely custom form. 
+    The sections, or custom form, mainly contains all the tracked entity attributes linked to the program or tracked entity type.
 
       ![create new event](resources/images/capture_app/register-and-enroll-form.png)
 
-6. Fill in the required information for both sections.
+6. Fill in the required information for the enrollment.
     If the tracked entity type is configured to capture a location:
 
     - If the field is a coordinate field you can either enter the coordinates
@@ -872,6 +872,7 @@ On the enrollment dashboard, you can view the Person Profile widget.
 
 The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
 
+
 ### Feedback widget
 
 ![](resources/images/capture_app/enrollment-dash-feedback-widget-1.png)
@@ -883,11 +884,44 @@ If the current dashboard triggers some rules set up in the program, the text or 
 If there isn't any feedback for the current dashboard, the widget shows a short _empty_ message.
 If there aren't any program rules that could show feedback for the current dashboard then the widget is hidden.
 
+
+### Indicator widget
+
+![](resources/images/capture_app/enrollment-dash-indicator-widget-1.png)
+
+On the enrollment dashboard, the indicator widget displays indicator text and values output related to the current dashboard.
+The indicators will be sorted alphabetically.
+
+#### Empty state
+If there aren't any related indicators or indicator output for the current dashboard, the widget shows a short _empty_ message.
+If the current dashboard can't show any indicator output (because it has no related indicators) then the widget is hidden.
+
+#### Legends
+Some indicator values show a colored circle next to the value. 
+The colored circle shows the related legend color for that indicator value. 
+Colored legend circles are only shown for indicator values that have them set up.
+
+
+### Warning widget
+
+![](resources/images/capture_app/enrollment-dash-warning-widget-1.png)
+
+On the enrollment dashboard, the warning widget displays warnings related to the current dashboard. The widget shows warnings that are not associated with any specific data item.
+If there aren't any warnings to show for the current dashboard then the widget is hidden.
+
+
 ## Enrollment event view and edit page
 
 You can reach the enrollment event form by typing in the address bar of your browser. You have to specify the `programId`, `orgUnitId`, `teiId`, `enrollmentId`, `stageId` and `eventId`
 
 ![](resources/images/capture_app/enrollment-event-view-edit-url.png)
+
+### Error Widget
+
+![](resources/images/capture_app/enrollment-dash-error-widget-1.png)
+
+On the enrollment dashboard, the errors widget displays errors related to the current dashboard. The widget shows errors that are not associated with any specific data item.
+If there aren't any errors to show for the current dashboard then the widget is hidden.
 
 ### View/Edit event form 
 
