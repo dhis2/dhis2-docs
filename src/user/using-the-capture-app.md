@@ -873,6 +873,18 @@ On the enrollment dashboard, you can view the Person Profile widget.
 The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
 
 
+### Feedback widget
+
+![](resources/images/capture_app/enrollment-dash-feedback-widget-1.png)
+
+On the enrollment dashboard, the feedback widget displays text and values that are triggered by certain conditions. 
+If the current dashboard triggers some rules set up in the program, the text or values will be automatically displayed.
+
+#### Empty state
+If there isn't any feedback for the current dashboard, the widget shows a short _empty_ message.
+If there aren't any program rules that could show feedback for the current dashboard then the widget is hidden.
+
+
 ### Indicator widget
 
 ![](resources/images/capture_app/enrollment-dash-indicator-widget-1.png)
