@@ -40,7 +40,9 @@ well in context of huge number of potential items.
 
 Known Differences:
 
-* items never include fields with identifiable objects or list of such objects
+* items only includes fields of referenced identifiable objects if these do not
+  have an endpoint on their own
+* it never includes identifiable collections of objects directly
 * items by default do not include all available fields, but a subset that depends 
   on context and parameters
 * lists cannot be used without pager (therefore there is no `pager` parameter)

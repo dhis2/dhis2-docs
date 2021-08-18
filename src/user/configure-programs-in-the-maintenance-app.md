@@ -1217,32 +1217,32 @@ format the clinician is used to see it in. The calculation is based on
 previous recorded
     data.
 
-1.  ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_details.png)
+1.  ![](resources/images/maintenance/pg_rule_ex/keyvaluepair_details.png)
 
-2.  ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_expression.png)
+2.  ![](resources/images/maintenance/pg_rule_ex/keyvaluepair_expression.png)
 
-3.  ![](resources/images/maintainence/pg_rule_ex/keyvaluepair_action.png)
+3.  ![](resources/images/maintenance/pg_rule_ex/keyvaluepair_action.png)
 
     The full expression in the **Data** field:
 
         d2:concatenate(d2:weeksBetween(#{lmp}, V{current_date}), '+',
         d2:modulus(d2:daysBetween(#{lmp}, V{current_date}), 7))
 
-![](resources/images/maintainence/pg_rule_ex/keyvaluepair_result.png)
+![](resources/images/maintenance/pg_rule_ex/keyvaluepair_result.png)
 
 This example shows how to configure a program rule to display text in
 the Feedback widget in the **Tracker Capture**
     app.
 
-1.  ![](resources/images/maintainence/pg_rule_ex/displaytext_pgrule_variable.png)
+1.  ![](resources/images/maintenance/pg_rule_ex/displaytext_pgrule_variable.png)
 
-2.  ![](resources/images/maintainence/pg_rule_ex/displaytext_details.png)
+2.  ![](resources/images/maintenance/pg_rule_ex/displaytext_details.png)
 
-3.  ![](resources/images/maintainence/pg_rule_ex/displaytext_expression.png)
+3.  ![](resources/images/maintenance/pg_rule_ex/displaytext_expression.png)
 
-4.  ![](resources/images/maintainence/pg_rule_ex/displaytext_action.png)
+4.  ![](resources/images/maintenance/pg_rule_ex/displaytext_action.png)
 
-![](resources/images/maintainence/pg_rule_ex/displaytext_result.png)
+![](resources/images/maintenance/pg_rule_ex/displaytext_result.png)
 
 This example shows how to configure a program rule to always display
 certain data in the Feedback widget in the **Tracker Capture** app. This
@@ -1250,17 +1250,17 @@ is useful when you want to make sure that vital data, for example
 medicine allergies, is always
     visible.
 
-1.  ![](resources/images/maintainence/pg_rule_ex/displaytext2_pgrule_variable.png)
+1.  ![](resources/images/maintenance/pg_rule_ex/displaytext2_pgrule_variable.png)
 
-2.  ![](resources/images/maintainence/pg_rule_ex/displaytext2_details.png)
+2.  ![](resources/images/maintenance/pg_rule_ex/displaytext2_details.png)
 
-3.  ![](resources/images/maintainence/pg_rule_ex/displaytext2_expression.png)
+3.  ![](resources/images/maintenance/pg_rule_ex/displaytext2_expression.png)
 
-4.  ![](resources/images/maintainence/pg_rule_ex/displaytext2_action.png)
+4.  ![](resources/images/maintenance/pg_rule_ex/displaytext2_action.png)
 
-![](resources/images/maintainence/pg_rule_ex/displaytext2_first_pgstage.png)
+![](resources/images/maintenance/pg_rule_ex/displaytext2_first_pgstage.png)
 
-![](resources/images/maintainence/pg_rule_ex/displaytext2_result.png)
+![](resources/images/maintenance/pg_rule_ex/displaytext2_result.png)
 
 By using a program rule of type "Assign value" you can calculate the
 "Gestational age at visit" value and fill it in the data entry form. You
@@ -1268,13 +1268,13 @@ configure the program rule to calculate "Gestational age at visit" based
 on either "LMP date" or "Ultrasound estimated due
 date".
 
-1.  ![](resources/images/maintainence/pg_rule_ex/assign_details.png)
+1.  ![](resources/images/maintenance/pg_rule_ex/assign_details.png)
 
-2.  ![](resources/images/maintainence/pg_rule_ex/assign_expression.png)
+2.  ![](resources/images/maintenance/pg_rule_ex/assign_expression.png)
 
-3.  ![](resources/images/maintainence/pg_rule_ex/assign_action.png)
+3.  ![](resources/images/maintenance/pg_rule_ex/assign_action.png)
 
-![](resources/images/maintainence/pg_rule_ex/assign_result.png)
+![](resources/images/maintenance/pg_rule_ex/assign_result.png)
 
 ### Reference information: Operators and functions to use in program rule expression { #program_rules_operators_functions } 
 

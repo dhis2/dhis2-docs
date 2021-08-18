@@ -23,7 +23,7 @@ with other people). Once you have accessed the sharing settings for the
 object you wish to share, a dialog similar to the one below will be
 shown.
 
-![](resources/images/maintainence/mtn_sharing_dialog.png)
+![](resources/images/maintenance/mtn_sharing_dialog.png)
 
 You can share your report with everyone or with a number of user groups.
 "External access" can be enabled to allow this resource to be shared

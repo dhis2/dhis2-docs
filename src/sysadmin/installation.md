@@ -800,13 +800,11 @@ oidc.provider.helseid.extra_request_parameters = acr_values lvl4
 
 # (This is for optional PKCE support see: https://oauth.net/2/pkce/) Default value is: FALSE
 oidc.provider.helseid.enable_pkce = true
-
 ```
 
-## Setup JWT bearer token authentication for the DHIS2 Android client
+### JWT bearer token authentication
 
-For clients that are API-only, setting up authentication with JWT bearer tokens is possible when you have configured an OIDC provider.
-The DHIS2 Android client is such a type of client and have to use JWT authentication if OIDC login is enabled.
+Authentication with *JWT bearer tokens* can be enabled for clients which API-based when OIDC is configured. The DHIS2 Android client is such a type of client and have to use JWT authentication if OIDC login is enabled.
 
 > **Note**
 >
@@ -820,7 +818,10 @@ The DHIS2 Android client is such a type of client and have to use JWT authentica
 * Enable the config parameter ```oidc.jwt.token.authentication.enabled``` by setting it to 'on'
 * Generate an Android OAuth2 client_id as described [here](https://developers.google.com/identity/protocols/oauth2/native-app#creatingcred)
 
-### Example DHIS2 config file with JWT authentication for an API only client
+### JWT authentication example
+
+The following `dhis.conf` section shows an example of how to enable JWT authentication for an API-based client.
+
 ```properties
 # ----------------------------------------------------------------------
 # Google OIDC Configuration with extra clients using JWT tokens 
@@ -829,7 +830,8 @@ The DHIS2 Android client is such a type of client and have to use JWT authentica
 # Enable OIDC
 oidc.oauth2.login.enabled = on
 
-# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
+# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout
+# Refers to where to end up after calling end_session_endpoint on the IdP
 oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
 
 # Google specific parameters:
@@ -841,7 +843,6 @@ oidc.provider.google.redirect_url = (protocol)://(host)/(optional app context)
 
 # Optional, defaults to 'email'
 oidc.provider.google.mapping_claim = email
-
 
 # Enable JWT support
 oauth2.authorization.server.enabled = off
