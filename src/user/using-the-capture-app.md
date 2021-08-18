@@ -874,7 +874,8 @@ The Person profile widget is used for viewing key attributes but not for editing
 
 ## Enrollment event view and edit page
 
-You can reach the enrollment event form by typing in the address bar of your browser. You have to specify the `programId`, `orgUnitId`, `teiId`, `enrollmentId`, `stageId` and `eventId`
+One way to reach the enrollment event form is by typing in the address bar of your browser. You have to specify the `programId`, `orgUnitId`, `teiId`, `enrollmentId`, `stageId` and `eventId`. 
+The second way to reach the enrollment event form is by clicking any event in the Program stage list from the Enrollment Overview page.
 
 ![](resources/images/capture_app/enrollment-event-view-edit-url.png)
 
@@ -900,3 +901,6 @@ When the form is in the edit mode the title of the page will appear as: `Enrollm
 
 ![](resources/images/capture_app/enrollment-event-view-edit-edit.png)
 
+To go back to the enrollment overview page coick the "Back to all stages and events" button 
+
+![](resources/images/capture_app/enrollment-event-view-edit-navigation.png)
