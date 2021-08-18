@@ -878,6 +878,13 @@ You can reach the enrollment event form by typing in the address bar of your bro
 
 ![](resources/images/capture_app/enrollment-event-view-edit-url.png)
 
+### Error Widget
+
+![](resources/images/capture_app/enrollment-dash-error-widget-1.png)
+
+On the enrollment dashboard, the errors widget displays errors related to the current dashboard. The widget shows errors that are not associated with any specific data item.
+If there aren't any errors to show for the current dashboard then the widget is hidden.
+
 ### View/Edit event form 
 
 This is the form where you can see and edit the enrollment event details.
