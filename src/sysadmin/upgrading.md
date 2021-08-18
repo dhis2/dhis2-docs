@@ -2,17 +2,13 @@
 
 ## Upgrading vs. Updating { #upgrading-vs-updating }
 
-When we talk about **Upgrading** DHIS2, we generally simply mean "moving to a newer version". However, there is an important distinction between **upgrading** and **updating**.
+When we talk about upgrading DHIS2, we generally simply mean "moving to a newer version". However, there is an important distinction between *upgrading* and *updating*.
 
-Upgrading
-:   Moving to a newer base version of DHIS2 (for example, from 2.34 to 2.36)
+**Upgrading**
+:   Moving to a newer base version of DHIS2 (for example, from 2.34 to 2.36). Upgrading typically requires planning, testing, training (for new features or interfaces), which may take significant time and effort.
 
-Updating
-:   Moving to a newer patch of the current DHIS2 version (for example, from 2.35.1 to 2.35.4)
-
-**Upgrading** typically requires planning, testing, training (for new features or interfaces), which may take significant time and effort.
-
-**Updating** mainly provides bug fixes without changing the functionality of the software. It is lower risk, and we advise everyone to keep their version up to date.
+**Updating**
+:   Moving to a newer patch of the current DHIS2 version (for example, from 2.35.1 to 2.35.4). Updating mainly provides bug fixes without changing the functionality of the software. It is lower risk, and we advise everyone to keep their version up to date.
 
 ## Before you begin { #upgrading-before-you-begin }
 
