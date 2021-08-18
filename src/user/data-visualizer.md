@@ -242,9 +242,9 @@ This feature is enabled for the `Pivot Table`, `Column`, `Stacked column`, `Bar`
 
 You can drill the data by organisation unit, meaning navigating up and down the org unit tree. The data drill affects the current dimension selection in the layout area. The organisation unit dimension must thus be present on either the Columns / Series axis or the Rows / Category axis for the drill feature to be enabled.
 
-![](resources/images/data-visualizer/data-visualizer-pt-drill.png)
+![Data drilling in a pivot table](resources/images/data-visualizer/data-visualizer-pt-drill.png)
 
-![](resources/images/data-visualizer/data-visualizer-column-drill.png)
+![Data drilling in a column chart](resources/images/data-visualizer/data-visualizer-column-drill.png)
 
 ## Manage saved visualizations
 
