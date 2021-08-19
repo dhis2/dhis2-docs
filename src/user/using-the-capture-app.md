@@ -888,7 +888,7 @@ In case there are more than 5 events in the list, only the first 5 are shown. Yo
 
 ![](resources/images/capture_app/enrollment-dash-stages-events-05.png)
 
-If you want to collapse events, you can use  **Reset** button which will return the table back to the default sorting and initial 5 events.
+If you want to collapse events, you can use  **Reset list** button which will return the table back to the default sorting and initial 5 events.
 
 ![](resources/images/capture_app/enrollment-dash-stages-events-07.png)
 
