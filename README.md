@@ -52,6 +52,19 @@ For screenshots of the DHIS 2 web interface, we recommend using Chrome browser, 
 
 When taking screenshots of the Android app, size should be set to **360x640**.
 
+#### Localising images
+
+Localisation of images is supported by storing language-specific versions of an image alongside the original image. The filename should be the same as the original English version, but should include `_` plus the language code at the end of the name, before the extension.
+
+For example, if you want to have a French version of 
+`resources/images/my_screenshot.png`
+You can simply create the French version and save it as
+`resources/images/my_screenshot_fr.png`
+
+The link in the documention should still point at the original image. When the documentation site is built for each language, localised images will be identified and used instead of the English originals.
+
+> *The language code is the first part of the URL that you see after the "docs.dhis2.org/" when viewing the localised version of the documentation. At the time of writing, for example, we have `fr`, `es_419`, `pt`, `cs` and `zh`.*
+
 ### Section references
 
 In order to provide fixed references (anchors) within the documentation, we can set a fixed text string to be applied to any section. For our markdown processor this is done by adding a hash id in curly brackets at the end of the line with the section title, e.g.
