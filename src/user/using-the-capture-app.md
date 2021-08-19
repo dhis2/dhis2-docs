@@ -845,6 +845,53 @@ When you deselect the enrollment you see the following
 
 ![](resources/images/capture_app/enrollment-dash-08.png)
 
+### Program stage list
+
+Stages can be collapsed or expanded to reveal the events inside.
+
+![](resources/images/capture_app/enrollment-dash-stages-events-02.png)
+
+#### Collapsed stages
+
+![](resources/images/capture_app/enrollment-dash-stages-events-01.png)
+
+In the collapsed state, you can view the summary information about this stage including: 
+- Icon
+- Program stage name
+- Program stage description (on hovering the information icon)
+- Total number of events
+- Last updated date 
+Depending on the status of events, there can be additional information regarding: total number of overdue events or total number of scheduled events.
+
+#### Expanded stages
+
+![](resources/images/capture_app/enrollment-dash-stages-events-03.png)
+
+When you expand the list, you will see the table contains the data of events in the stage. This includes mandatory columns: `Status`, `Report date` and `Registering unit`, the following columns depend on the data elements that have been selected as `Display in list`  of event.
+
+Events are sorted with most recent on top and other columns are also sortable.
+
+![](resources/images/capture_app/enrollment-dash-stages-events-04.png)
+
+When clicking  **New {stage event name}** button, you will be redirected to the  **Add new event page** for this selected stage.
+
+![](resources/images/capture_app/enrollment-dash-stages-events-06.png)
+
+
+When clicking  **Go to full {stage event name}** button, you will be redirected to the  **Program stage list page** for this selected stage.
+
+![](resources/images/capture_app/enrollment-dash-stages-events-08.png)
+
+#### Expanded stages with more than 5 events 
+
+In case there are more than 5 events in the list, only the first 5 are shown. You will be able to view the rest by clicking  **Show more**.
+
+![](resources/images/capture_app/enrollment-dash-stages-events-05.png)
+
+If you want to collapse events, you can use  **Reset list** button which will return the table back to the default sorting and initial 5 events.
+
+![](resources/images/capture_app/enrollment-dash-stages-events-07.png)
+
 ### Enrollment widget
 
 On the enrollment page you can see the enrollment widget
