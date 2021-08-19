@@ -870,6 +870,10 @@ Events are sorted with most recent on top and other columns are also sortable.
 When clicking `New {stage event name}` button, you will be redirected to the `Add new event page` for this selected stage.
 ![](resources/images/capture_app/enrollment-dash-stages-events-06.png)
 
+
+When clicking `Go to full {stage event name}` button, you will be redirected to the `Program stage list page` for this selected stage.
+![](resources/images/capture_app/enrollment-dash-stages-events-08.png)
+
 #### Expanded stages with more than 5 events 
 In case there are more than 5 events in the list, only the first 5 are shown. You will be able to view the rest by clicking `Show more`.
 ![](resources/images/capture_app/enrollment-dash-stages-events-05.png)
