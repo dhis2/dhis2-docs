@@ -246,8 +246,7 @@ Windows, Linux, Macintosh etc. DHIS2 is platform independent and thus
 can be used in many different contexts depending on the exact
 requirements of the operating system to be used.
 
-
-Lastly, and perhaps most importantly, since DHIS2 is a browser-based
+Additionally, and perhaps most importantly, since DHIS2 is a browser-based
 application, the only real requirement to interact with the system is
 with a web browser. DHIS2 supports most web browsers, although currently
 either Google Chrome, Mozilla Firefox or Opera are recommended.
