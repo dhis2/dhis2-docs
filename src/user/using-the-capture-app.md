@@ -866,6 +866,7 @@ Depending on the status of events, there can be additional information regarding
 #### Expanded stages
 
 ![](resources/images/capture_app/enrollment-dash-stages-events-03.png)
+
 When you expand the list, you will see the table contains the data of events in the stage. This includes mandatory columns: `Status`, `Report date` and `Registering unit`, the following columns depend on the data elements that have been selected as `Display in list`  of event.
 
 Events are sorted with most recent on top and other columns are also sortable.
