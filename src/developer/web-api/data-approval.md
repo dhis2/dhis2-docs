@@ -246,3 +246,9 @@ can make a GET request similar to this:
 
     /api/dataApprovalWorkflows?
       fields=id,name,periodType,dataApprovalLevels[id,name,level,orgUnitLevel]
+
+
+### Authorities for data approval
+
+- `F_DATA_APPROVAL_WORKFLOW` : allow user to Add/Update Data Approval Workflow
+- `F_DATA_APPROVAL_LEVEL` : allow user to Add/Update Data Approval Level

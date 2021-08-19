@@ -62,7 +62,7 @@ Implementing Partner (AIDSRelief Consortium) and Project (Improve access
 to medicines).  The disaggregation categories are gender
 (male/female/etc.), age (<15, 15-24, 25-49, >49).
 
-![](resources/images/maintainence/categories_dataset_attributes.png)
+![](resources/images/maintenance/categories_dataset_attributes.png)
 
 ## Analysis with disaggregation categories and attribute categories
 

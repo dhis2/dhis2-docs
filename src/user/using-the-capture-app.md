@@ -904,11 +904,56 @@ On the enrollment dashboard, you can view the Person Profile widget.
 
 The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
 
+
+### Feedback widget
+
+![](resources/images/capture_app/enrollment-dash-feedback-widget-1.png)
+
+On the enrollment dashboard, the feedback widget displays text and values that are triggered by certain conditions. 
+If the current dashboard triggers some rules set up in the program, the text or values will be automatically displayed.
+
+#### Empty state
+If there isn't any feedback for the current dashboard, the widget shows a short _empty_ message.
+If there aren't any program rules that could show feedback for the current dashboard then the widget is hidden.
+
+
+### Indicator widget
+
+![](resources/images/capture_app/enrollment-dash-indicator-widget-1.png)
+
+On the enrollment dashboard, the indicator widget displays indicator text and values output related to the current dashboard.
+The indicators will be sorted alphabetically.
+
+#### Empty state
+If there aren't any related indicators or indicator output for the current dashboard, the widget shows a short _empty_ message.
+If the current dashboard can't show any indicator output (because it has no related indicators) then the widget is hidden.
+
+#### Legends
+Some indicator values show a colored circle next to the value. 
+The colored circle shows the related legend color for that indicator value. 
+Colored legend circles are only shown for indicator values that have them set up.
+
+
+### Warning widget
+
+![](resources/images/capture_app/enrollment-dash-warning-widget-1.png)
+
+On the enrollment dashboard, the warning widget displays warnings related to the current dashboard. The widget shows warnings that are not associated with any specific data item.
+If there aren't any warnings to show for the current dashboard then the widget is hidden.
+
+
 ## Enrollment event view and edit page
 
 You can reach the enrollment event form by typing in the address bar of your browser. You have to specify the `programId`, `orgUnitId`, `teiId`, `enrollmentId`, `stageId` and `eventId`
 
 ![](resources/images/capture_app/enrollment-event-view-edit-url.png)
+
+### Error Widget
+
+![](resources/images/capture_app/enrollment-dash-error-widget-1.png)
+
+On the enrollment dashboard, the errors widget displays errors related to the current dashboard. The widget shows errors that are not associated with any specific data item.
+If there aren't any errors to show for the current dashboard then the widget is hidden.
 
 ### View/Edit event form 
 
