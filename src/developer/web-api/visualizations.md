@@ -341,8 +341,8 @@ Table: Visualization attributes
 | subscribers | List of user ids who have subscribed to this Visualization. |
 | translations | Set of available object translation, normally filtered by locale. |
 | outlierAnalysis | Object responsible to keep settings related to outlier analysis. The internal attribute 'outlierMethod' supports: IQR, STANDARD_Z_SCORE, MODIFIED_Z_SCORE. The 'normalizationMethod' accepts only Y_RESIDUALS_LINEAR for now. |
-| seriesKey | Settings related to the series items. |
-| legend | Definitions for the legend keys. |
+| seriesKey | Styling options for and whether or not to display the series key. |
+| legend | Options for and whether or not to apply legend colors to the chart series. |
 
 ### Retrieving visualizations { #webapi_visualization_retrieving_visualizations } 
 
