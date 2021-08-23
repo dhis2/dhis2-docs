@@ -78,6 +78,69 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
   -H "Content-Type:application/json" -u admin:district
 ```
 
+## Cascade Sharing for Dashboard
+### Overview
+- The sharing solution supports cascade sharing for Dashboard. 
+- This function will copy `userAccesses` and `userGroupAccesses` of a Dashboard to all of its DashboardItem's objects including `Map`, `EventReport`, `EventChart`, `Visualization`. The copied `UserAccess` and `UserGroupAccess` will only have `METADATA_READ` permission. 
+- The `publicAccess` setting is currently ***NOT*** handled by this function. Means the `publicAccess` of the current `Dashboard` will not be copied to its `DashboardItems`'s objects.
+- If target object has `publicAccess` enabled, then it will be ignored by this function. Means that no `UserAccesses` or `UserGroupAccesses` will be copied from `Dashboard`.
+- Current `User` is required to have `METADATA_READ` sharing permission to all target objects, otherwise error `E5001` will be thrown. And to update target objects, `METADATA_WRITE` is required, otherwise error `E3001` will be thrown.
+
+### API endpoint 
+
+- Send `POST` request to endpoint `api/dashboard/cascadeSharing/{dashboardUID}`
+
+
+### API Parameters
+
+| Name | Default | Description |
+| --- | --- | -- |
+| dryRun | false | If this is set to `true`, then cascade sharing function will proceed without updating any objects. </br> The response will includes errors if any and all objects which will be updated. </br>This helps user to know the result before actually executing the cascade sharing function.
+| atomic | false | If this is set to `true`, then the cascade sharing function will stop and not updating any objects if there is an error. </br>Otherwise, it will try to proceed with best effort mode.
+
+Sample request with parameters: 
+
+- `dryRun` and `atmoic` are `default` false with `POST` request to `api/dashboard/cascadeSharing/{dashboardUID}`
+- To enable `dryRun` or `atomic` parameters, send `POST` request to `api/dashboard/cascadeSharing/{dashboardUID}?dryRun=true&atomic=true`
+
+
+Sample response: 
+
+```
+{
+  "errorReports": [
+    {
+      "message": "No matching object for reference. Identifier was s46m5MS0hxu, and object was DataElement.",
+      "mainKlass": "org.hisp.dhis.dataelement.DataElement",
+      "errorCode": "E5001",
+      "errorProperties": [
+        "s46m5MS0hxu",
+        "DataElement"
+      ]
+    }
+  ],
+  "countUpdatedDashBoardItems": 1,
+  "updateObjects": {
+    "dataElements": [
+      {
+        "id": "YtbsuPPo010",
+        "name": "Measles doses given"
+      },
+      {
+        "id": "l6byfWFUGaP",
+        "name": "Yellow Fever doses given"
+      }
+    ]
+  }
+}
+```
+
+### Response explanation:
+
+- `errorReports`: includes all errors during cascade sharing process.
+- `countUpdatedDashBoardItems`: Number of `DashboardItem` will be or has been updated depends on `dryRun` mode.
+- `updateObjects`: List of all objects which will be or has been updated depends on `dryRun` mode.
+
 ## Scheduling { #webapi_scheduling } 
 
 DHIS2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
