@@ -85,6 +85,11 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 - The `publicAccess` setting is currently ***NOT*** handled by this function. Means the `publicAccess` of the current `Dashboard` will not be copied to its `DashboardItems`'s objects.
 - If target object has `publicAccess` enabled, then it will be ignored by this function. Means that no `UserAccesses` or `UserGroupAccesses` will be copied from `Dashboard`.
 - Current `User` is required to have `METADATA_READ` sharing permission to all target objects, otherwise error `E5001` will be thrown. And to update target objects, `METADATA_WRITE` is required, otherwise error `E3001` will be thrown.
+- Sample use case: 
+  - DashboardA is shared to userA with `METADATA_READ_WRITE` permission. 
+  - DashboardA has VisualizationA which has DataElementA.
+  - VisualizationA, DataElementA have `publicAccess` *disabled* and are *not shared* to userA.
+  - After executing cascade sharing for DashboardA, userA will have `METADATA_READ` access to VisualizationA and DataElementA.
 
 ### API endpoint 
 
