@@ -284,7 +284,7 @@ You can define and save a layout for each dashboard. The following object is res
       }
     }
 
-The layout definition will be applied for all dashboard items related to the given dashboard, respecting the layout attributes like spacing, columns, span and so on. See, below, a brief description of each attribute.
+The layout definition will be applied for all dashboard items related to the given dashboard, respecting layout attributes like spacing, columns, span and so on. See, below, a brief description of each attribute.
 
 Table: Layout attributes
 
