@@ -71,6 +71,19 @@ brevity).
     "created": "2013-09-10T13:57:02.480+0000",
     "lastUpdated": "2013-09-10T13:57:02.480+0000"
   }],
+  "layout": {
+    "spacing": {
+      "column": 5,
+      "row": 5
+    },
+    "columns": [{
+      "index": 0,
+      "span": 2
+    }, {
+      "index": 1,
+      "span": 1
+    }]
+  },
   "userGroupAccesses": []
 }
 ```
@@ -250,6 +263,36 @@ report from a dashboard item of type reports, as opposed to removing the
 dashboard item completely:
 
     /api/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
+
+### Defining a dashboard layout { #webapi_dasboard_layout } 
+
+You can define and save a layout for each dashboard. The following object is responsible to hold this setting.
+
+    {
+      "layout": {
+        "spacing": {
+          "column": 5,
+          "row": 5
+        },
+        "columns": [{
+          "index": 0,
+          "span": 2
+        }, {
+          "index": 1,
+          "span": 1
+        }]
+      }
+    }
+
+The layout definition will be applied for all dashboard items related to the given dashboard, respecting the layout attributes like spacing, columns, span and so on. See, below, a brief description of each attribute.
+
+Table: Layout attributes
+
+| Attribute | Description | Type |
+|---|---|---|
+| layout | This is the root object | Object |
+| spacing | Defines the spacing for specific layout components. Currently, it supports columns and rows. | Object |
+| columns | Stores specific parameters related to columns (at the moment, index and span) | Array of objects |
 
 ## Visualization { #webapi_visualization } 
 
