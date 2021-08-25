@@ -1724,7 +1724,14 @@ Table: ProgramRuleAction Validations
 |WARNINGONCOMPLETE| DataElement or TrackedEntityAttribute id |
 |ERRORONCOMPLETE| DataElement or TrackedEntityAttribute id |
 
-
+Apart from above validations, `data` field in program rule action which normally contains expression can also be evaluated using below api endpoint.
+	
+	POST /api/programRuleActions?programId=<uid>
+	```json
+	{
+	  "condition": "1 + 1"
+	}
+	```
 
 #### Program rule variable model details
 
