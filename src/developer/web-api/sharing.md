@@ -93,7 +93,7 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 
 ### API endpoint 
 
-- Send `POST` request to endpoint `api/dashboard/cascadeSharing/{dashboardUID}`
+- Send `POST` request to endpoint `api/dashboards/cascadeSharing/{dashboardUID}`
 
 
 ### API Parameters
@@ -105,8 +105,8 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 
 Sample request with parameters: 
 
-- `dryRun` and `atmoic` are `default` false with `POST` request to `api/dashboard/cascadeSharing/{dashboardUID}`
-- To enable `dryRun` or `atomic` parameters, send `POST` request to `api/dashboard/cascadeSharing/{dashboardUID}?dryRun=true&atomic=true`
+- `dryRun` and `atmoic` are `default` false with `POST` request to `api/dashboards/cascadeSharing/{dashboardUID}`
+- To enable `dryRun` or `atomic` parameters, send `POST` request to `api/dashboards/cascadeSharing/{dashboardUID}?dryRun=true&atomic=true`
 
 
 Sample response: 
