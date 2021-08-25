@@ -1726,7 +1726,7 @@ Table: ProgramRuleAction Validations
 
 Apart from above validations, `data` field in program rule action which normally contains expression can also be evaluated using below api endpoint.
 	
-	POST /api/programRuleActions?programId=<uid>
+	POST /api/programRuleActions/data/expression/description?programId=<uid>
 	```json
 	{
 	  "condition": "1 + 1"
