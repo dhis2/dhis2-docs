@@ -123,6 +123,8 @@ Table: System settings
 | googleAnalyticsUA | Google Analytic UA key for tracking site-usage | No |
 | credentialsExpires | Require user account password change. Default: "0" (Never) | No |
 | credentialsExpiryAlert | Enable alert when credentials are close to expiration date | No |
+| accountExpiryAlert | Send an alert email to users whose account is about to expire due to expiry date being set Default: "false" | No |
+| accountExpiresInDays | Number of days the account expiry alert should be send in advance of the actual expiry. Default: 7 | No |
 | keySelfRegistrationNoRecaptcha | Do not require recaptcha for self registration. Default: "false" | No |
 | recaptchaSecret | Google API recaptcha secret. Default: dhis2 play instance API secret, but this will only works on you local instance and not in production. | No |
 | recaptchaSite | Google API recaptcha site. Default: dhis2 play instance API site, but this will only works on you local instance and not in production. | No |
