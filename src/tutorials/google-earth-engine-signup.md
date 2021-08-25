@@ -23,4 +23,4 @@ To enable the [Google Earth Engine](https://earthengine.google.com/) layers in D
 
 5. **Configure DHIS2 for Earth Engine**
 
-    Using your newly created service account, log into the console, download credentials and configure it for DHIS2 as described in the installation guide [here](https://docs.dhis2.org/master/en/implementer/html/install_google_service_account_configuration.html). Make sure you restart your DHIS2 instance. You should now be able to access the Earth Engine layer from the top menu in the GIS app. Enjoy!
+    Using your newly created service account, log into the console, download credentials and configure it for DHIS2 as described in the installation guide [here](#install_google_service_account_configuration). Make sure you restart your DHIS2 instance. You should now be able to access the Earth Engine layer from the top menu in the GIS app. Enjoy!
