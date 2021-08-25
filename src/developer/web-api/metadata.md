@@ -2713,3 +2713,28 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
   -d "https://dhis2.org/metadata-repo/221/trainingland-org-units/metadata.json"
   -H "Content-Type:text/plain" -u admin:district
 ```
+
+## Reference to createdBy User
+
+Each object created in DHIS2 will have a property named `user` which is linked to `User` who created the object.
+
+From version 2.36 we have changed the name of this property to `createdBy` to avoid confusion.
+
+However, in order to keep the backwards compability, the legacy `user` property is still included in the payload and works normally as before.
+
+```json
+{
+  "createdBy": {
+      "displayName": "John Kamara",
+      "name": "John Kamara",
+      "id": "N3PZBUlN8vq",
+      "username": "district"
+  },
+  "user": {
+      "displayName": "John Kamara",
+      "name": "John Kamara",
+      "id": "N3PZBUlN8vq",
+      "username": "district"
+  }
+}
+```
