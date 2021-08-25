@@ -308,3 +308,28 @@ for creating dynamic reports. The available relative period values are:
     THIS_YEAR, MONTHS_LAST_YEAR, QUARTERS_LAST_YEAR, LAST_YEAR, LAST_5_YEARS, LAST_10_YEARS, LAST_10_FINANCIAL_YEARS, LAST_12_MONTHS, 
     LAST_3_MONTHS, LAST_6_BIMONTHS, LAST_4_QUARTERS, LAST_2_SIXMONTHS, THIS_FINANCIAL_YEAR,
     LAST_FINANCIAL_YEAR, LAST_5_FINANCIAL_YEARS
+
+## Reference to createdBy User
+
+Each object created in DHIS2 will have a property named `user` which is linked to `User` who created the object.
+
+From version 2.36 we have changed the name of this property to `createdBy` to avoid confusion.
+
+However, in order to keep the backwards compability, the legacy `user` property is still included in the payload and works normally as before.
+
+```json
+{
+  "createdBy": {
+      "displayName": "John Kamara",
+      "name": "John Kamara",
+      "id": "N3PZBUlN8vq",
+      "username": "district"
+  },
+  "user": {
+      "displayName": "John Kamara",
+      "name": "John Kamara",
+      "id": "N3PZBUlN8vq",
+      "username": "district"
+  }
+}
+```
