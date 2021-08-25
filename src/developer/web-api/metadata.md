@@ -388,7 +388,7 @@ Example: Get all data elements where *ANC visit* is found in any of the *identif
 It is also possible to combine the identifiable filter with property-based filter and expect the *rootJunction* to be applied.
 
     /api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
-
+    
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
@@ -1388,8 +1388,6 @@ To get a list of organisation units you can use the following resource.
 
     /api/33/organisationUnits
 
-
-
 Table: Organisation units query parameters
 
 | Query parameter | Options | Description |
@@ -1405,14 +1403,11 @@ Table: Organisation units query parameters
 | memberCollection | string | For displaying count of members within a collection, refers to the name of the collection associated with organisation units. |
 | memberObject | UID | For displaying count of members within a collection, refers to the identifier of the object member of the collection. |
 
-### Get organisation unit with relations { #webapi_organisation_units_with_relations } 
+### Get organisation unit with sub-hierarchy { #webapi_organisation_units_with_sub_hierarchy } 
 
-To get an organisation unit with related organisation units you can use
-the following resource.
+To get an organisation unit including organisation units in its sub-hierarchy you can use the following resource.
 
     /api/33/organisationUnits/{id}
-
-
 
 Table: Organisation unit parameters
 
@@ -1423,69 +1418,53 @@ Table: Organisation unit parameters
 | includeAncestors | false &#124; true | Include all parents of the specified organisation unit. |
 | level | integer | Include children of the specified organisation unit at the given level of the sub-hierarchy (relative to the organisation unit where the immediate level below is level 1). |
 
-### Get organisation units by categoryOption  { #webapi_organisation_units_by_categoryOptions }
+### Get organisation units by category option  { #webapi_organisation_units_by_category_options }
 
-Purpose-built endpoint to retrieve associations between CategoryOptions and OrganisationUnits. 
-This endpoint is the preferred way to retrieve program org unit associations.
+Purpose-built endpoint to retrieve associations between category options and organisation units. This endpoint is the preferred way to retrieve program organisation unit associations.
 
-    /api/33/categoryOptions/orgUnits?categoryOptions=<categoryOptionUid,anotherCategoryOptionUid,...>
+    /api/33/categoryOptions/orgUnits?categoryOptions={categoryOptionIdA},{categoryOptionIdB}
 
 responses will have the following format:
 
-    {
-        "<categoryOptionUid>": [
-            "<orgUnitUid>",
-            "<orgUnitUid>",
-            ...,
-            "<orgUnitUid>"
-        ],
-        "<anotherCategoryOptionUid>": [
-            "<orgUnitUid>",
-            "<orgUnitUid>",
-            ...,
-            "<orgUnitUid>"
-        ],
-        "...": [
-            ...,
-            ...
-        ],
-        "<categoryOptionUid>": []
-    }
+```json
+{
+    "<categoryOptionIdA>": [
+        "<orgUnitUid>",
+        "<orgUnitUid>"
+    ],
+    "<categoryOptionIdB>": [
+        "<orgUnitUid>",
+        "<orgUnitUid>"
+    ],
+    "<categoryOptionIdC>": []
+}
+```
 
-CategoryOptions that are accessible by all OrganisationUnits are returned with an empty array (`[]`) of OrganisationUnits.
+Category options that are accessible by all organisation units are returned with an empty array (`[]`) of organisation units.
 
 ### Get organisation units by programs { #webapi_organisation_units_by_programs } 
 
-Purpose-built endpoint to retrieve associations between Programs and OrganisationUnits. This endpoint is
-the preferred way to retrieve program org unit associations.
+Purpose-built endpoint to retrieve associations between programs and organisation units. This endpoint is the preferred way to retrieve program organisation unit associations.
 
-
-
-    /api/33/programs/orgUnits?programs=<programUid,anotherProgramUid,...>
+    /api/33/programs/orgUnits?programs={programIdA},{programIdB}
 
 responses will have the following format:
 
-    {
-        "<programUid>": [
-            "<orgUnitUid>",
-            "<orgUnitUid>",
-            ...,
-            "<orgUnitUid>"
-        ],
-        "<programUid>": [
-            "<orgUnitUid>",
-            "<orgUnitUid>",
-            ...,
-            "<orgUnitUid>"
-        ],
-        "...": [
-            ...,
-            ...
-        ],
-        "<programUid>": []
-    }
+```json
+{
+    "<programIdA>": [
+        "<orgUnitUid>",
+        "<orgUnitUid>"
+    ],
+    "<programIdB>": [
+        "<orgUnitUid>",
+        "<orgUnitUid>"
+    ],
+    "<programIdC>": []
+}
+```
 
-Programs that are accessible by all OrganisationUnits are returned with an empty array (`[]`) of OrganisationUnits.
+Programs which are accessible by all organisation units are returned with an empty array (`[]`) of organisation units.
 
 ## Data sets { #webapi_data_sets } 
 
@@ -1504,7 +1483,7 @@ request:
 
     POST /api/33/dataSets/<uid>/version
 
-### DataSet Notification Template { #webapi_dataset_notifications } 
+### Data set notification template { #webapi_dataset_notifications } 
 
 The *dataset notification templates* resource follows the standard
 conventions as other metadata resources in DHIS2.
