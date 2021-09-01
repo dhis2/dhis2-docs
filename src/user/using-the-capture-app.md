@@ -892,6 +892,16 @@ In the view/edit event form you can see the stage name and icon.
 ## Add event in enrollment page
 You can reach this page add event page only via typing the full url, or by clicking one of the options for adding a new event. You have to specify `programId`, `programId`, `orgUnitId`, `teiId`, `enrollmentId`, and `stageId`.
 
+### Top bar context  
+
+At the top of the page you can see different informations related with the current context. You can see the program, the organization unit, the tracked entity, the enrollment date, the stage. 
+
+To go to Enrollment Overview page you can: 
+- deselect the stage from the top bar. 
+- deselect the event from the top bar. 
+
+![](resources/images/capture_app/enrollment-event-new-navigation.png) 
+
 ### New event widget form
 This is the form where you can modify the event details before saving. In the header you can see the stage name and icon.
 ![](resources/images/capture_app/new-event-widget-form-header.png)
