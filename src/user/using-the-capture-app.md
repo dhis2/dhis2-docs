@@ -959,10 +959,21 @@ If there aren't any warnings to show for the current dashboard then the widget i
 
 ## Enrollment event view and edit page
 
-One way to reach the enrollment event form is by typing in the address bar of your browser. You have to specify the `programId`, `orgUnitId`, `teiId`, `enrollmentId`, `stageId` and `eventId`. 
-The second way to reach the enrollment event form is by clicking any event in the Program stage list from the Enrollment Overview page.
+### Navigation 
 
-![](resources/images/capture_app/enrollment-event-view-edit-url.png)
+You can reach the enrollment event edit page is by clicking any event in the Program stage list from the Enrollment Overview page.
+
+### Top bar context 
+
+At the top of the page you can see different informations related with the current context. You can see the program, the organization unit, the tracked entity, the enrollment date, the stage and the enrollmenet event date.
+
+To go to Enrollment Overview page you can:
+- click the "Back to all stages and events" button.
+- deselect the stage from the top bar.
+- deselect the event from the top bar.
+
+![](resources/images/capture_app/enrollment-event-view-edit-navigation.png)
+
 
 ### Error Widget
 
@@ -992,7 +1003,3 @@ When the form is in the edit mode the title of the page will appear as: `Enrollm
 When the form is in the edit mode the title of the page will appear as: `Enrollment: Edit Event`. You can modify the event and click the `Save` button. Click the `Cancel` button to switch to the view mode without saving the changes. 
 
 ![](resources/images/capture_app/enrollment-event-view-edit-edit.png)
-
-To go back to the enrollment overview page coick the "Back to all stages and events" button 
-
-![](resources/images/capture_app/enrollment-event-view-edit-navigation.png)
