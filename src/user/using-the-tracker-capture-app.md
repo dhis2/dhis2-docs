@@ -94,7 +94,7 @@ You can share a program selection on the "home screen.
 
 1. Open the **Tracker Capture** app.
 
-2. Selecte the program you want to link to.
+2. Select the program you want to link to.
 
 3. Copy the URL.
     
@@ -145,11 +145,11 @@ You can create a TEI and enroll that TEI to a program in one operation:
     This makes it possible to capture geometry for either the TEI or the enrollment.
     Supported feature type is Point and Polygon. Please see **How to use geometry**.
 
-6. If the selected program is configured to display first stage during registation, 
+6. If the selected program is configured to display first stage during registration, 
    all mandatory fields in the stage will have to be filled in. At the end of the stage
    you will also be asked if you want to complete the stage that you have entered data for.
    If you select **Yes**, the stage will have the status completed once saved. If you select **No**, 
-   the stage will have the staus active.
+   the stage will have the status active.
 
 7.  If searching for program is configured, a background search will be
     performed on searchable fields to help you prevent registering
@@ -174,10 +174,10 @@ add new**
     TEI after another without enter data.
 
 > Note: All mandatory attributes have to be filled in to be able to save. 
-> Mandatory attributes are marked with a red star next to the attribute lable.
+> Mandatory attributes are marked with a red star next to the attribute label.
 > If the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture"__
 > you will not be required to fill in the mandatory attributes and will 
-> not see the red star next to the attribute lable. Note that super user 
+> not see the red star next to the attribute label. Note that super user 
 > that have the __"ALL"__ authority automatically have this authority.
 
 ## Open an existing TEI dashboard { #open_existing_tracked_entity_instance_dashboard } 
@@ -255,7 +255,7 @@ these predefined tracked entity instance filters.
 
 Search is used to search for TEIs in the organisation units the user has
 search access to. This can be used if you want to find a TEI, but you
-dont know which organisation unit or program the TEI was enrolled in.
+don't know which organisation unit or program the TEI was enrolled in.
 There are two ways of doing this: With and without a program context.
 Searchable fields needs to be configured. For configuring searching with
 program context, this is done individually for each program in the
@@ -354,7 +354,7 @@ If the program is configured with access level **protected**, and the
 user searches and finds tracked entity instances that is owned by
 organisation unit that the user does not have data capture authority
 for, the user is presented with the option of breaking the glass. The
-user will gove a reason for breaking the glass, then gain temporary
+user will give a reason for breaking the glass, then gain temporary
 ownership of the tracked entity
 instance.
 
@@ -399,7 +399,7 @@ You can create an event for a TEI by:
 3.  In the **Timeline Data entry** or **Tabular data entry** widget,
     click the **+**-button.
 
-4.  Select a **Programstage** and set a **Report date**.
+4.  Select a **Program stage** and set a **Report date**.
 
     Program stages can be configured to use a feature type.
     This makes it possible to capture geometry for an event.
@@ -409,7 +409,7 @@ You can create an event for a TEI by:
 
 ### Schedule an event
 
-You can shedule an event for a future date by:
+You can schedule an event for a future date by:
 
 1.  Open the **Tracker Capture** app.
 
@@ -418,13 +418,13 @@ You can shedule an event for a future date by:
 3.  In the **Timeline Data entry** or **Tabular data entry** widget,
     click the **Calendar** icon.
 
-4.  Select a **Programstage** and set a **Schedule date**.
+4.  Select a **Program stage** and set a **Schedule date**.
 
 5.  Click **Save**.
 
 ### Refer an event
 
-Sometimes it might be nessascary to refer a patient to a different
+Sometimes it might be necessary to refer a patient to a different
 **Organisation unit**. To refer a TEI:
 
 1.  Open the **Tracker Capture** app.
@@ -434,7 +434,7 @@ Sometimes it might be nessascary to refer a patient to a different
 3.  In the **Timeline Data entry** or **Tabular data entry** widget,
     click the **Arrow** icon.
 
-4.  Select a **Programstage**, **Organisation unit** and set a
+4.  Select a **Program stage**, **Organisation unit** and set a
     ****Report date****.
 
 5.  Click either **One-time referral** which will only refer TEI for one
@@ -443,11 +443,11 @@ Sometimes it might be nessascary to refer a patient to a different
     will be based on the ownership organisation unit.
 
 ### Mandatory data elements in events
-Some data elements in an event might be mandatory (marked with a red star next to the data element lable).
+Some data elements in an event might be mandatory (marked with a red star next to the data element label).
 What this means is that all mandatory data elements must be filled in before the user is allowed to complete the event.
 The exception to this is if the user has the authority called __"Ignore validation of required fields in Tracker and Event Capture".__
 If the user has this authority, the mandatory data elements will not be required to be filled in before saving and
-the red star will not be displayed next to the data element lable. Note that super user that have the __"ALL"__ authority automatically
+the red star will not be displayed next to the data element label. Note that super user that have the __"ALL"__ authority automatically
 have this authority.
 
 ## How to use geometry
@@ -512,7 +512,7 @@ referral functionality and select the "Move permanently" option while referring.
 A user that has capture access to the organisation unit that is the current owner of the
 TEI/Program will have write access to all enrollments for that TEI/Program combination.
 A user that has search access to the organisation unit that is the current owner will have
-access to search and find the TEI/Program combindation.
+access to search and find the TEI/Program combination.
 
 ### Deactivate a TEI's enrollment { #deactivate_tracked_entity_instance_enrollment } 
 
@@ -782,14 +782,14 @@ easy way. To start using the top bar:
 
 ### Change table display mode for **Timeline Data Entry** widget
 
-The **Timeline Data Entry** widget has 5 diffrent table display modes that can be selected. The different options are:
-- **Default form** - Shows all data elements verticaly.
+The **Timeline Data Entry** widget has 5 different table display modes that can be selected. The different options are:
+- **Default form** - Shows all data elements vertically.
 
-- **Compare form previous** - Shows the prevoius (repeatable) program stage next to the current selected program stage.
+- **Compare form previous** - Shows the previous (repeatable) program stage next to the current selected program stage.
 
-- **Compare form all** - Shows all prevoius (repeatable) program stages next to the current selected program stage.
+- **Compare form all** - Shows all previous (repeatable) program stages next to the current selected program stage.
 
-- **Grid form** - Shows the data elements horizontaly.
+- **Grid form** - Shows the data elements horizontally.
 
 - **POP-over form** - The same as **Grid form**, but when clicked the data elements are displayed in a pop-up.
 
@@ -797,10 +797,10 @@ To change the current display mode, click the second icon in the widgets top bar
 
 ![](resources/images/tracker_capture/compareForm.png)
 
-Once an option is selected the selection is stored for that spesific program stage. This mean that you can have different table modes for the different program stages in a program.  
+Once an option is selected the selection is stored for that specific program stage. This mean that you can have different table modes for the different program stages in a program.  
 
 > **Notes:**
-> 1.  *The **Compare form** options will function best if you have multipe repeatable events (of the same program stage) present.*
+> 1.  *The **Compare form** options will function best if you have multiple repeatable events (of the same program stage) present.*
 > 2.  *The **Grid form** and **POP-over form** options are not selectable if the program stage has more than 10 data elements.*
 > 3.  *The icon in the widgets bar will change depending on the option you have selected.*
 
