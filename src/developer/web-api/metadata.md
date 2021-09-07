@@ -1416,7 +1416,7 @@ Table: Organisation unit parameters
 | includeChildren | false &#124; true | Include immediate children of the specified organisation unit, i.e. the units at the immediate level below in the subhierarchy. |
 | includeDescendants | false &#124; true | Include all children of the specified organisation unit, i.e. all units in the sub-hierarchy. |
 | includeAncestors | false &#124; true | Include all parents of the specified organisation unit. |
-| level | integer | Include children of the specified organisation unit at the given level of the sub-hierarchy (relative to the organisation unit where the immediate level below is level 1). |
+| level | integer | Include children of the specified organisation unit at the given level of the sub-hierarchy. This is relative to the organisation unit, starting on 1 for the level immediately below the org unit. |
 
 ### Get organisation units by category option  { #webapi_organisation_units_by_category_options }
 
@@ -1465,6 +1465,10 @@ responses will have the following format:
 ```
 
 Programs which are accessible by all organisation units are returned with an empty array (`[]`) of organisation units.
+
+### Split organisation unit
+
+### Merge organisation units
 
 ## Data sets { #webapi_data_sets } 
 
