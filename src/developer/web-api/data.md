@@ -505,11 +505,16 @@ Table: Data value set query parameters
 | limit | The max number of results in the response. |
 | dataElementIdScheme | Property of the data element object to use for data values in response. |
 | orgUnitIdScheme | Property of the org unit object to use for data values in response. |
-| categoryOptionComboIdScheme | Property of the category option combo and attribute option combo objects to use for data values in response. |
+| categoryOptionComboIdScheme | Property of the category option combo to use for data values in response. |
+| attributeOptionComboIdScheme | Property of the attribute option combo objects to use for data values in response. |
 | dataSetIdScheme | Property of the data set object to use in the response. |
 | categoryIdScheme | Property of the category object to use in the response (ADX only). |
 | categoryOptionIdScheme | Property of the category option object to use in the response (ADX only). |
 | idScheme | Property of any of the above objects if they are not specified, to use in the response. If not specified, the default idScheme for ADX is code, and for all other formats is uid. |
+| inputOrgUnitIdScheme | Identification property used for the provided `orgUnit` parameter values; `id` or `code` |
+| inputDataSetIdScheme | Identification property used for the provided `dataSet` parameter values; `id` or `code` |
+| inputDataElementGroupIdScheme | Identification property used for the provided `dataElementGroup` parameter values; `id` or `code` |
+| inputIdScheme | Identification property used for any of the provided `dataSet`, `dataElementGroup`, `orgUnit`, `orgUnitGroup`, `attributeOptionCombo`  parameter values unless any of the three schemes above explicitly overrides this input default; `id` or `code` |
 
 The following parameters from the list above are required:
 - either dataSet or dataElementGroup (for ADX this must be dataSet)
