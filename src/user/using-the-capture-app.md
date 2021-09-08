@@ -229,6 +229,7 @@ When there is no incident date, the reference date will fall back on the enrollm
 
 On SCHEDULE type of events the user can also configure the "Scheduled days from start". Which means if a stage has a number in "Scheduled days from start" the reference date will increased by that number. 
 In the example below we increase the due date by 30 days.
+
 ![](resources/images/capture_app/auto-generated-08.png)
 
 When the "Scheduled days from start" does not contain a number or contains 0 the reference date is used without adding any days to it.
@@ -330,7 +331,7 @@ You now have two options:
   You have the option to select a **program**. If a **program** is selected the attributes are derived from the selected **program**.
   If no **program** is selected, only the attributes that belong to the **Tracked Entity Instance** will be visible.
 
-    ![search for Tracked Entity Instance](resources/images/capture_app/search_tei.png)
+    ![search for Tracked Entity Instance](resources/images/capture_app/search_tei_1.png)
 
     - If the **Tracked Entity Instance** or **program** is configured with a unique attribute, this attribute can be
       used for finding a specific **Tracked Entity Instance** or **program**. This attribute should be presented alone.
@@ -624,7 +625,7 @@ The Capture app does not support tracker programs yet, but the tracker programs 
 
 3. If the program has a category combination set the category option will have to be selected.
 
-4. Click the Find button.
+4. Click the Search button.
 
 5. From the dropdown menu click the first option.
 
@@ -677,7 +678,7 @@ To execute a fallback search, simply press the button on the bottom saying "Sear
 
 1. Open the **Capture** app.
 
-2. Click the **Find** button to open the search page.
+2. Click the **Search** button to open the search page.
 
 3. Click on the drop down menu and select the type of entity you want to search for.
 
@@ -780,7 +781,7 @@ In this section we are focusing on the first use-case, where you type or paste t
 
 ![](resources/images/capture_app/enrollment-dash-01.png)
 
-One way to reach the enrollment dashboard and view a specific tracked entity instance's enrollment is by using _only_ the enrollment id. For example the link .../dhis-web-capture/#/?enrollmentId=wBU0RAsYjKE will 
+One way to reach the enrollment dashboard and view a specific tracked entity instance's enrollment is by using _only_ the enrollment id. For example the link .../dhis-web-capture/#/enrollment?enrollmentId=wBU0RAsYjKE will 
 take you the dashboard for the enrollment with id `wBU0RAsYjKE`. 
 
 The top of the dashboard defines your context. For example in the image below the context is as follows, the selected program is "Child Programme", the organisation unit is "Ngelehun CHC", the selected person is "Anna Jones" and the selected enrollment is "2017-11-16 11:38".
