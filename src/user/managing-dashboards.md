@@ -260,7 +260,7 @@ For best print results:
 
 - use Chrome or Edge
 - wait until all dashboard items have loaded before printing
-- use A4 landscape setting with default margins set
+- use A4 landscape setting with default margins set and background graphics turned on
 
 #### Print dashboard layout
 
