@@ -2249,7 +2249,72 @@ To flag as potential duplicate a Tracked Entity Instance (referred as tei)
 | 403 | User do not have access to update tei
 | 404 | Tei not found
 
-## Program Messages { #webapi_program_messages } 
+
+## Program Notification Template
+
+Program Notification Template lets you create message templates which can be sent as a result of different type of events.
+Message and Subject templates will be translated into actual values and can be sent to the configured destination.
+There are multiple configuraiton parameters in Program Notification Tempalte which are critical for correct working of notifications.
+All those are explained in the table below.
+
+    POST /api/programNotificationTemplates
+
+```json
+{
+	"name": "Case notification",
+	"notificationTrigger": "ENROLLMENT",
+	"subjectTemplate": "Case notification V{org_unit_name}",
+	"displaySubjectTemplate": "Case notification V{org_unit_name}",
+	"notifyUsersInHierarchyOnly": false,
+	"sendRepeatable": false,
+	"notificationRecipient": "ORGANISATION_UNIT_CONTACT",
+	"notifyParentOrganisationUnitOnly": false,
+	"displayMessageTemplate": "Case notification A{h5FuguPFF2j}",
+	"messageTemplate": "Case notification A{h5FuguPFF2j}",
+	"deliveryChannels": [
+		"EMAIL"
+	]
+}
+```
+
+The fields are explained in the following table.
+
+
+Table: Program Notification Template payload
+
+| Field | Required | Description | Values |
+|---|---|---|---|
+| name | Yes | name of Program Notification Tempalte | case-notification-alert |
+| notificationTrigger | Yes | When notification should be triggered. Possible values are ENROLLMENT, COMPLETION, PROGRAM_RULE, SCHEDULED_DAYS_DUE_DATE| ENROLLMENT |
+| subjectTemplate | No | Subject template string | Case notification V{org_unit_name} |
+| messageTemplate | Yes | Message template string | Case notification A{h5FuguPFF2j} |
+| notificationRecipient | YES | Who is going to receive notification. Possible values are USER_GROUP, ORGANISATION_UNIT_CONTACT, TRACKED_ENTITY_INSTANCE, USERS_AT_ORGANISATION_UNIT, DATA_ELEMENT, PROGRAM_ATTRIBUTE, WEB_HOOK  | USER_GROUP |
+| deliveryChannels | No | Which channel should be used for this notification. It can be either SMS, EMAIL or HTTP | SMS |
+| sendRepeatable | No | Whether notification should be sent multiple times | false |
+
+NOTE: WEB_HOOK notificationRecipient is used only to POST http request to an external system. Make sure to choose HTTP delivery channel when using WEB_HOOK.
+
+### Retrieving and deleting Program Notification Template
+
+The list of Program Notification Templates can be retrieved using GET.
+
+    GET /api/programNotificationTemplates
+
+For one particular Program Notification Template.
+
+	GET /api/33/programNotificationTemplates/{uid}
+
+To get filtered list of Program Notification Templates
+
+	GET /api/programNotificationTemplates/filter?program=<uid>
+	GET /api/programNotificationTemplates/filter?programStage=<uid>
+
+Program Notification Template can be deleted using DELETE.
+
+    DELETE /api/33/programNotificationTemplates/{uid}
+
+
+## Program Messages
 
 Program message lets you send messages to tracked entity instances,
 contact addresses associated with organisation units, phone numbers and
