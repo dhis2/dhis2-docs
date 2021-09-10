@@ -237,8 +237,8 @@ When the "Scheduled days from start" does not contain a number or contains 0 the
 
 ### Possible duplicates detection
 
-In both cases of registering a tracked entity instance, (with enrollment or without enrollment) the system will warn you for possible duplicates.
-Note that, programs need to be correctly configured through the maintenance app for the duplicates warning to appear. 
+In both cases of registering a tracked entity instance, (with enrollment or without enrollment) the system will start looking for possible duplicates.
+Note that, programs need to be correctly configured through the maintenance app for the system to start detecting duplicates when enrolling a new person in a program. 
 
 To configure a program through the maintenance app you will have to: 
 
@@ -269,14 +269,13 @@ Let us explain this with an example that demonstrates the detection of possible 
 ![](resources/images/capture_app/duplicates-on-creation-02.png)
 
 4. Fill in the first name in the form. **Remember, the first name we have checked as "Searchable" in the maintenance app.** 
-It is because we have checked the first name as "Searchable" that the system will start looking for possible 
-duplicates that match the name Sarah as you see in the image below.
+Click **Save new**. The system will start looking for possible duplicates that match the name Sarah.
 ![](resources/images/capture_app/duplicates-on-creation-03.png)
 
-5. Click the link with text "Possible duplicates"
+5. The system will automatically view a list of possible duplicates if there are any. 
 ![](resources/images/capture_app/duplicates-on-creation-04.png)
 
-6. View the possible duplicates
+6. You can choose to make a new enrollement by clicking **Save new** or if you see the right person in the list - you can view the dashboard.
 ![](resources/images/capture_app/duplicates-on-creation-05.png)
 
 > **Tip**
@@ -474,9 +473,11 @@ assigned to a program stage.
 3. Select a program.
     All events registered to the selected program show up in a list.
 
-4. Click the **downward arrow** icon on the top right of the event list.
+4. Click the **three dots** icon on the top right of the event list.
 
-5. Select the format you want to download.
+5. Click **Download data**.
+
+6. Select the format you want to download.
 
     ![download event list](resources/images/capture_app/download_event_list.png)
 
@@ -608,7 +609,7 @@ In the event list you will be able to view the assignee per event. Moreover, you
 
 ## Tracker programs { #capture_tracker_programs } 
 
-The Capture app does not support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
+The Capture app supports the workinglists in tracker programs, but when you open a tracked entity instance, you will be redirected to the enrollment dashboard in the Tracker Capture app.
 
 ![](resources/images/capture_app/tracker_program.png)
 
