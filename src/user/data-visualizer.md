@@ -221,7 +221,9 @@ When combining data with different measurement scales you will get a more meanin
 Four axes are available, two on the left side (axis 1 and 3) of the chart and two on the right side (axis 2 and 4).
 Each axis has a different color and the chart items are going to be colored accordingly.
 
-Note: When multiple axes are in use, the `Color set` option in the `Style` tab will be disabled. The `Target line` and `Base line` options are available on the `Axes` tab per axis.
+> **Note**
+>
+> When multiple axes are in use, the `Color set` option in the `Style` tab will be disabled. The `Target line` and `Base line` options are available on the `Axes` tab per axis.
 
 ![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis.png)
 
