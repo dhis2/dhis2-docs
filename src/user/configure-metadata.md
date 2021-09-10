@@ -4725,8 +4725,8 @@ then its **SQL type** must be either "View" or a "Materialized View"
 (not "Query"). It also must have **Execute query** run on it before
 being called.
 
-For instance, a view named **Data element count** with SQL type 
-"View" with this SQL:
+For instance, if you created a view named **Data element count**
+with SQL type "View" and this SQL:
 
 ```sql
 select count(*) as count from dataelement;
