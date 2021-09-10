@@ -1,4 +1,4 @@
-# Configure report functionality { #setting_up_reporting } 
+ # Configure report functionality { #setting_up_reporting } 
 
 ## Data sources for reporting { #reporting_data_sources } 
 
@@ -1401,9 +1401,7 @@ The report is now available as a "Standard Report" in DHIS2:
     reports where you need to put specific indicators, periods, or
     orgunits on columns.
 
-  - Learn from others, there are many DHIS2 report designs for Jasper on
-    launchpad, see
-    http://bazaar.launchpad.net/~DHIS2-devs-core/DHIS2/trunk/files/head:/resources/
+  - Learn from others, e.g. on the [community of practice](https://community.dhis2.org)
 
 
 
