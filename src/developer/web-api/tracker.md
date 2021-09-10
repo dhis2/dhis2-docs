@@ -2253,7 +2253,9 @@ To flag as potential duplicate a Tracked Entity Instance (referred as tei)
 ## Program Notification Template
 
 Program Notification Template lets you create message templates which can be sent as a result of different type of events.
-Message and Subject templates will be translated into actual values and can be sent to the configured destination.
+Message and Subject templates will be translated into actual values and can be sent to the configured destination. Each program notification template will be
+transformed to either MessageConversation object or ProgramMessage object based on external or internal notificationRecipient. These intermediate objects will
+only contain translated message and subject text.
 There are multiple configuraiton parameters in Program Notification Tempalte which are critical for correct working of notifications.
 All those are explained in the table below.
 
