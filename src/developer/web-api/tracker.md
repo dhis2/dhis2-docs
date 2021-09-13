@@ -437,11 +437,11 @@ curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?
   > image.jpg
 ```
 
-The API also supports a *dimension* parameter. It can take three possible values: `small` (254x254), `medium` (512x512), `large` (1024x1024) or `original`. Image type attributes will be stored in pre-generated sizes
+The API also supports a *dimension* parameter. It can take three possible values (please note capital letters): `SMALL` (254x254), `MEDIUM` (512x512), `LARGE` (1024x1024) or `ORIGINAL`. Image type attributes will be stored in pre-generated sizes
 and will be furnished upon request based on the value of the `dimension` parameter.
 
 ```bash
-curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium"
+curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=MEDIUM"
 ```
 
 #### Tracked entity instance query { #webapi_tracked_entity_instance_query } 
