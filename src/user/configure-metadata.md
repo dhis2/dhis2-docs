@@ -2776,6 +2776,8 @@ Table: Validation Rule functions
 | least | (expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
 | log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
 | log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
+| orgUnit.ancestor | (orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
+| orgUnit.group | (ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
 
 ### Create or edit a validation rule { #create_validation_rule } 
 
@@ -4107,11 +4109,13 @@ sampled. For example:
         | stddevSamp(x) | Sample standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / ( n - 1 ) ). Note that this value is not computed when there is only one sample. |
         | sum(x) | Sum of the values of x |
 
-        Any items inside an aggregate function will be evaluated for all
-        sampled past periods, and then combined according to the formula
-        inside the aggregate function. Any items outside an aggregate
-        function will be evaluated for the period in which the
-        prediction is being made.
+        > **Note**
+        >
+        > Any items inside an aggregate function will be evaluated for all
+        > sampled past periods, and then combined according to the formula
+        > inside the aggregate function. Any items outside an aggregate
+        > function will be evaluated for the period in which the
+        > prediction is being made.
 
         You can build more complex expressions by clicking on (or
         typing) any of the elements below the expression field:
@@ -4135,6 +4139,8 @@ sampled. For example:
         | least(expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
         | log(expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
         | log10(expression) | Returns the common logarithm (base 10) of the numeric expression. |
+        | orgUnit.ancestor(orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
+        | orgUnit.group(ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
 
         **Boolean expression notes:** A boolean expression must evaluate
         to **true** or **false**. The following operators may be used to
@@ -4170,7 +4176,7 @@ sampled. For example:
         function, you may click on (or type) any of the elements below
         the expression field: ( ) \* / + - Days.
 
-        The non-aggregating functions described above may also be used
+        The non-aggregating functions described above for generator expressions may also be used
         in skip tests.
 
         The expression must evaluate to a boolean value of **true** or
