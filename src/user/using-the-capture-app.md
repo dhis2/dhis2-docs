@@ -272,7 +272,7 @@ Let us explain this with an example that demonstrates the detection of possible 
 Click **Save new**. The system will start looking for possible duplicates that match the name Sarah.
 ![](resources/images/capture_app/duplicates-on-creation-03.png)
 
-5. The system will automatically view a list of possible duplicates if there are any. 
+5. The system will automatically show a list of possible duplicates if there are any. 
 ![](resources/images/capture_app/duplicates-on-creation-04.png)
 
 6. You can choose to make a new enrollement by clicking **Save new** or if you see the right person in the list - you can view the dashboard.
