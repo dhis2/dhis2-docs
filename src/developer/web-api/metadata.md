@@ -2325,14 +2325,14 @@ or a skip test expression:
 
 | Variable    | Object     | Description |
 | ----------- | ---------- | ----------- |
-| #{\<dataelement-id>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
-| #{\<dataelement-id>.\<categoryoptcombo-id> | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
-| D{\<program-id>.\<dataelement-id>} | Program data element | Refers to the value of a tracker data element within a program. |
-| A{\<program-id>.\<attribute-id>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
-| I{\<program-indicator-id>} | Program indicator | Refers to the value of a program indicator. |
-| R{\<dataset-id>.\<metric>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
-| C{\<constant-id>} | Constant | Refers to a constant value. |
-| OUG{\<orgunitgroup-id>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
+| #{\&lt;dataelement-id&gt;} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
+| #{\&lt;dataelement-id&gt;.\&lt;categoryoptcombo-id&gt;} | Data element operand | Refers to a combination of an aggregate data element and a category option combination. |
+| D{\&lt;program-id&gt;.\&lt;dataelement-id&gt;} | Program data element | Refers to the value of a tracker data element within a program. |
+| A{\&lt;program-id&gt;.\&lt;attribute-id&gt;} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
+| I{\&lt;program-indicator-id&gt;} | Program indicator | Refers to the value of a program indicator. |
+| R{\&lt;dataset-id&gt;.\&lt;metric&gt;} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
+| C{\&lt;constant-id&gt;} | Constant | Refers to a constant value. |
+| OUG{\&lt;orgunitgroup-id&gt;} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
 | [days] | Number of days | The number of days in the current period. |
 
 ### Generating predicted values { #webapi_generating_predicted_values } 
