@@ -195,9 +195,8 @@ collected according to related, but different category combinations.
 ## Data element groups
 
 Data elements which are related to one another can be grouped together
-with a *data element group*. Data element groups can. Data element 
-groups are completely flexible in the  sense that both their names and their
- memberships are completely flexible in how they are designed. 
+with a *data element group*. Data element groups are completely flexible in
+terms of both their names and their memberships. 
 
 
 
