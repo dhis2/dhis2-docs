@@ -146,7 +146,7 @@ renders these combinations invalid and a low-level database operation
 must be done to correct it. It is hence recommended to thoughtfully
 consider which breakdowns are required and to not change them too often.
 
-## Atrtibute combinations
+## Attribute combinations
 
 All aggregate data in DHIS2 is always associated with four primary dimensions: 
 
