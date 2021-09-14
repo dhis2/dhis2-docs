@@ -994,7 +994,7 @@ In the view/edit event form you can see the stage name and icon.
 
 #### View mode
 
-When the form is in the edit mode the title of the page will appear as: `Enrollment: View Event`. You can see in the page all the informations related with the event. Click the `Edit event` button to switch to the edit mode. 
+When the form is in the view mode the title of the page will appear as: `Enrollment: View Event`. You can see in the page all the information related to the event. Click the `Edit event` button to switch to the edit mode. 
 
 ![](resources/images/capture_app/enrollment-event-view-edit-view.png)
 
