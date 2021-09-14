@@ -79,7 +79,9 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 ```
 
 ## Cascade Sharing for Dashboard
+
 ### Overview
+
 - The sharing solution supports cascade sharing for Dashboard. 
 - This function will copy `userAccesses` and `userGroupAccesses` of a Dashboard to all of its DashboardItem's objects including `Map`, `EventReport`, `EventChart`, `Visualization`. 
 - This function will ***NOT*** copy `METADATA_WRITE` access. The copied `UserAccess` and `UserGroupAccess` will **only** have `METADATA_READ` permission. 
