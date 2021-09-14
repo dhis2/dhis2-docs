@@ -4688,10 +4688,22 @@ To create a new SQL view, click **Apps** \> **Maintenance**
 The "Name" attribute of the SQL view will be used to determine the name
 of the table that DHIS2 will create when the view is materialized by the
 user. The "Description" attribute allows one to provide some descriptive
-text about what the SQL view actually does. Finally, the "SQL query"
-should contain the SQL view definition. Only SQL "SELECT" statements are
-allowed and certain sensitive tables (i.e. user information) are not
-accessible Press "Save" to store the SQL view definition.
+text about what the SQL view actually does.
+
+The "SQL type" attribute allows the creation of three kinds of views:
+  - A "View" is stored in the database and regenerated when queried
+  - A "Materialized View" is stored in the database and its results
+  are cached in the database
+  - A "Query" is not stored in the database
+
+Finally, the "SQL query" should contain the SQL view definition.
+
+Only SQL "SELECT" statements are allowed and certain sensitive tables 
+(i.e., user information) are not accessible.
+
+Press "Save" to store the SQL view definition. If you created a "View"
+or a "Materialized View", you must also "Execute query" to finish the
+creation of the SQL view.
 
 Keep in mind that the the columns returned by the used SELECT statement
 become table columns, that means they must be of a valid table column
@@ -4704,6 +4716,28 @@ to `text`, like in the below sample:
 
 ```sql
 select jsonb_each_text(eventdatavalues)::text from ...
+```
+
+### SQL views that call other SQL views
+
+If you wish to make a SQL view that can be called be other SQL views,
+then its **SQL type** must be either "View" or a "Materialized View"
+(not "Query"). It also must have **Execute query** run on it before
+being called.
+
+For instance, if you created a view named **Data element count**
+with SQL type "View" and this SQL:
+
+```sql
+select count(*) as count from dataelement;
+```
+
+...then you could run **Execute query** from the context menu and
+create a second SQL view named **More than 100 data elements** with
+this SQL:
+
+```sql
+select case when count > 100 then 1 else 0 end as result from _view_data_element_count;
 ```
 
 ### SQL View management
