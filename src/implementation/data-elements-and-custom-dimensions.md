@@ -62,7 +62,7 @@ diseases as data elements and create a separate model for the breakdown
 attributes. This can be achieved by using the category model, which is
 described in the following.
 
-The category model has four main elements which is best described using
+The category model has four main elements which are best described using
 the above example:
 
 1.  *Category options*, which correspond to “Female”, “Male” and “\< 5
