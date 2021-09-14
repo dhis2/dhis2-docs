@@ -84,7 +84,7 @@ years", "Male/\<5 years", "Male/\>5 years"
 
 It is worth noting that the category model is completely indepent of the data element model. 
  Data elements are loosely coupled to categories, in that the association 
- between them can be changed as any time without losing any data. 
+ between them can be changed at any time without losing any data. 
  As a practical example from above, perhaps data needs to be collected 
 for malaria cases with more granular age bands. Instead of just "\<5" and
 "/>5", a new category could be created for "\<1", "1-5","\>5" to describe
