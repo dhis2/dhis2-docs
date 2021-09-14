@@ -213,7 +213,7 @@ Similar to category option group sets, data element group sets can be used
 to aggregate related data elements together. We might be interested in 
 determining the total number of communicable and non-communicable 
 diseases from a morbidity data set. A data element group set could be 
-created with two groups: "Communicalble diseases" and "Non-communicable
+created with two groups: "Communicable diseases" and "Non-communicable
 diseases". Data elements could be placed into each of these groups. 
 
 During a pivot table analysis, the data elemement group set could be 
