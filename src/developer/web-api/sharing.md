@@ -114,7 +114,7 @@ Sample request with parameters:
 
 Sample response: 
 
-```
+```json
 {
   "errorReports": [
     {
