@@ -172,6 +172,7 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Use legend for chart colors|Applies a legend to the visualization items, which is a value-based color for each item. The legends themselves are configured in the `Maintenance app`.
 |Legend type| Controls which legend is applied.<br>`Use pre-defined legend per data item` applies a legend to each data element or indicator individually, based on the legend assigned to each one in the `Maintenance app`.<br>`Select a single legend for entire visualization` applies a single legend to all data items, chosen in a drop-down list of available legends.
 |Legend style| Controls where the color from the legend is applied, either to the text or the background. You can use this option for scorecards to identify high and low values at a glance. Not applicable for `Single Value`, `Column` or `Bar` visualizations.|
+|Show legend key|Displays a key for the legend on the right side of the visualization, to indicate the value ranges and their respective color. If the visualization is added to a dashboard, this option can also be toggled from the top right corner of the dashboard item. 
 ||**Series tab**|
 ||Options for adding more axes and changing how different series are displayed are set in this tab. Please see a detailed description of how this works in the corresponding sections below.|
 ||**Style tab**|
@@ -181,7 +182,7 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Font size|Controls the size of a Pivot table text font. You can set it to Large, Normal or Small.|
 |Chart/Table title|Controls the title that appears above the visualization.<br>Auto generated uses the default title generated from the visualization's dimensions/filters.<br>None removes the title.<br>The Custom option allows you to type a custom title.|
 |Chart/Table subtitle|Controls the subtitle that appears above the visualization.<br>Auto generated uses the default subtitle generated from the visualization's dimensions/filters.<br>None removes the subtitle.<br>The Custom option allows you to type a custom subtitle.|
-|Show legend key|Toggles the legend on and off leaving more room for the visualization itself.|
+|Show series key|Toggles the series key on and off leaving more room for the visualization itself.|
 |No space between bars/columns|Removes the space between the columns or bars in the visualization. Useful for displaying the visualization as an EPI curve.|
 |Value labels|Shows the values above the series in the visualization.|
 |Chart/Table title|Controls the title that appears above the visualization.<br>Auto generated uses the default title generated from the visualization's dimensions/filters.<br>None removes the title.<br>The Custom option allows you to type a custom title.|
@@ -200,9 +201,9 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Outlier detection method|Outlier analysis is a process that involves identifying anomalous observations in a dataset. In Data Visualizer outliers are detected by first normalizing the data into a linear regression line and then analysing each point's distance from regression line. Currently three methods are supported. **Interquartile Range (IQR)** is based on dividing a dataset into quartiles while **Modified z-score** is based on the Median Absolute Deviation (MAD). IQR and MAD are considered the two most common robust measures of scale. **Standard z-score** is based on standard deviation and is therefore considered less robust as it is greatly influenced by outliers.|
 |Threshold factor|The number that the outlier thresholds are multiplied by. Controls the sensitivity of the threshold range. Default factors are 1.5 for IQR and 3 for z-scores.|
 
-### Custom styling for text and legend in charts
+### Custom styling for text and series key in charts
 
-The following options can be customized using the text styling tool: `Chart title`, `Chart subtitle`, `Show legend key`, `Target line`, `Base line`, `Axis title` and `Labels` for both horizontal and vertical axes.
+The following options can be customized using the text styling tool: `Chart title`, `Chart subtitle`, `Show series key`, `Target line`, `Base line`, `Axis title` and `Labels` for both horizontal and vertical axes.
 The text styling tool allows to choose a font size, color and italic/bold variants. It's also possible to choose the position of the text.
 
 ![](resources/images/data-visualizer/data-visualizer-text-styling-tool.png)
