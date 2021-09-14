@@ -13,19 +13,19 @@ Audit logs can be retrieved from the DHIS2 database. Currently there is no UI or
 
 All audit entries will be saved into one single table named `audit`
 
-| Column     | Type                        |                                                                                                                                                   |   |
-|------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|---|
-| auditid    | integer                     |                                                                                                                                                   |   |
-| audittype  | text                        | READ, CREATE, UPDATE, DELETE, SEARCH                                                                                                                  |   |
-| auditscope | text                        | METADATA, AGGREGATE, TRACKER                                                                                                                        |   |
-| klass      | text                        | Audit Entity Java class name                                                                                                                      |   |
-| attributes | jsonb                       | Json string stores attributes of the audit entity, used for searching. Example: {"valueType":"TEXT", "categoryCombo":"SWQW313FQY", "domainType":"TRACKER"} |   |
-| data       | bytea                       | Compressed Json string of the Audit Entity. It is currently in byte array format and not human-readable.                                                                                                        |   |
-| createdat  | timestamp without time zone |                                                                                                                                                   |   |
-| createdby  | text                        |                                                                                                                                                   |   |
-| uid        | text                        |                                                                                                                                                   |   |
-| code       | text                        |                                                                                                                                                   |   |
-|            |                             |   
+| Column     | Type                        |                                                                                                                                                            |
+|------------|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| auditid    | integer                     |                                                                                                                                                            |
+| audittype  | text                        | READ, CREATE, UPDATE, DELETE, SEARCH                                                                                                                       |
+| auditscope | text                        | METADATA, AGGREGATE, TRACKER                                                                                                                               |
+| klass      | text                        | Audit Entity Java class name                                                                                                                               |
+| attributes | jsonb                       | Json string stores attributes of the audit entity, used for searching. Example: {"valueType":"TEXT", "categoryCombo":"SWQW313FQY", "domainType":"TRACKER"} |
+| data       | bytea                       | Compressed Json string of the Audit Entity. It is currently in byte array format and not human-readable.                                                   |
+| createdat  | timestamp without time zone |                                                                                                                                                            |
+| createdby  | text                        |                                                                                                                                                            |
+| uid        | text                        |                                                                                                                                                            |
+| code       | text                        |                                                                                                                                                            |
+
 
 
 
