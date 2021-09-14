@@ -965,7 +965,7 @@ You can reach the enrollment event edit page is by clicking any event in the Pro
 
 ### Top bar context 
 
-At the top of the page you can see different informations related with the current context. You can see the program, the organization unit, the tracked entity, the enrollment date, the stage and the enrollmenet event date.
+At the top of the page you can see various information related to the current context. You can see the program, the organization unit, the tracked entity, the enrollment date, the stage and the enrollment event date.
 
 To go to Enrollment Overview page you can:
 - click the "Back to all stages and events" button.
