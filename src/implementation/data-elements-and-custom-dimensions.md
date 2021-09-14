@@ -166,7 +166,7 @@ Thus, while attribute option combinations are structurally equivalent to categor
 
 ## Group sets and analytical dimensions
 
-Category and attribute combinations are used during data entry to disaggretgate data in certain ways, 
+Category and attribute combinations are used during data entry to disaggregate data in certain ways, 
 for instance by age and sex breakdowns. When the data is later analyzed, there may be a need to 
 aggregate or group the data in different ways. Consider a category with the following age bands: 
 
