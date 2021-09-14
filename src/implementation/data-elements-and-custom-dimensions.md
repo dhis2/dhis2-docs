@@ -32,7 +32,7 @@ the context in any given data entry form is not accessible nor relevant.
 In other words, it must be possible to clearly identify what event a
 data element represents by only looking at its name. Based on this, 
 it is considered best practice to create the name of the data element
-such that it is able to stand on its own. Any user should be able to and 
+such that it is able to stand on its own. Any user should be able to 
 read the name and understand what event it represents, even outside
 of the context of the data entry form.
 
