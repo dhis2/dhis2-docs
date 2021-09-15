@@ -680,6 +680,10 @@ template.
     | Days scheduled (due date) | The program stage notification is sent XX number of days before or after the due date | You need to enter the number of days before or after the scheduled date that the notification will be send. |
     | Program Rule | Notification will be triggered as a result of program rule execution. | Program rule with ProgramRuleActionType.SENDMESSAGE need to be in place to make this trigger successful. |
 
+    1. **Allow notification to be sent multiple times**
+
+        This flag can be used if notification is required to be sent multiple times. For example in case of repeatable program stage, same notification will be sent as many times as the stage is repeated.
+
 8.  In the **Recipients** field, select who should receive the program
     stage notification. You can select:
 
@@ -695,11 +699,6 @@ template.
     | Data Element | Data Element associated with ProgramStage can be selected as recipient. | Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL. |
     | Tracked Entity Attribute | Tracked Entity Attribute associated with ProgramInstance/Enrollment can be selected as recipient. | Attribute will only be effective if it has value type PHONE_NUMBER/EMAIL. |
 
-
-
-9.  Flag **sendRepeatable**.
-
-    This flag can be used if notification is required to be sent multiple times. For example in case of repeatable program stage, same notification will be sent as many times as the stage is repeated.
 
 10.  Click **Save**.
 
