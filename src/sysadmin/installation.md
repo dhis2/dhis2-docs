@@ -74,7 +74,9 @@ a terminal.
 For this guide we assume that 8 Gb RAM is allocated for PostgreSQL and 8
 GB RAM is allocated for Tomcat/JVM, and that a 64-bit operating system
 is used. *If you are running a different configuration please adjust the
-suggested values accordingly\!* We recommend that the available memory
+suggested values accordingly\!*
+
+We recommend that the available memory
 is split roughly equally between the database and the JVM. Remember to
 leave some of the physical memory to the operating system for it to
 perform its tasks, for instance around 2 GB. The steps marked as
@@ -206,7 +208,7 @@ memory which should be reserved for PostgreSQL. Should be set to around
 40% of total memory dedicated for PostgreSQL.
 
 ```properties
-work_mem = 20MB
+work_mem = 24MB
 ```
 
 Determines the amount of memory used for internal sort and hash
@@ -215,13 +217,21 @@ may be consumed if raising this too high. Setting this value correctly
 is essential for DHIS2 aggregation performance.
 
 ```properties
-maintenance_work_mem = 512MB
+maintenance_work_mem = 1024MB
 ```
 
 Determines the amount of memory PostgreSQL can use for maintenance
 operations such as creating indexes, running vacuum, adding foreign
 keys. Increasing this value might improve performance of index creation
 during the analytics generation processes.
+
+```properties
+temp_buffers = 16MB
+```
+
+Sets the maximum number of temporary buffers used by each database 
+session. These are session-local buffers used only for access to temporary 
+tables. 
 
 ```properties
 effective_cache_size = 8000MB
