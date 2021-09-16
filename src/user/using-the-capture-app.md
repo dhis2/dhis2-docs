@@ -890,7 +890,7 @@ In the view/edit event form you can see the stage name and icon.
 
 
 ## Add event in enrollment page
-You can reach this page add event page only via typing the full url, or by clicking one of the options for adding a new event. You have to specify `programId`, `programId`, `orgUnitId`, `teiId`, `enrollmentId`, and `stageId`.
+You can reach this page add event page by either clicking in the **New {stage event name}** button in the overview page or by typing the full url, or by clicking one of the options for adding a new event. You have to specify `programId`, `programId`, `orgUnitId`, `teiId`, `enrollmentId`, and `stageId`.
 
 ### New event widget form
 This is the form where you can modify the event details before saving. In the header you can see the stage name and icon.
