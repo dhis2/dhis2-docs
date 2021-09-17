@@ -863,6 +863,13 @@ You can delete the enrollment by clicking the delete button and confirming the a
 
 ![](resources/images/capture_app/enrollment-dash-enrollment-widget-3.png)
 
+#### Enrollment comment widget
+
+![](resources/images/capture_app/enrollment-widget-comment.png)
+
+The enrollment comment widget displays comments and allows addition of comments, associated with the current enrollment. 
+
+By clicking in the text field, you will be able to enter new text and see action buttons **Save comment** and **Cancel**.
 
 #### Person profile widget
 
@@ -915,6 +922,12 @@ If there aren't any warnings to show for the current dashboard then the widget i
 You can reach the enrollment event form by typing in the address bar of your browser. You have to specify the `programId`, `orgUnitId`, `teiId`, `enrollmentId`, `stageId` and `eventId`
 
 ![](resources/images/capture_app/enrollment-event-view-edit-url.png)
+
+### Event Comment Widget
+
+![](resources/images/capture_app/event-widget-comment.png)
+
+The event comments widget displays and allows the addition of comments related to the currently selected event. The widget is displayed in the right sidebar when both viewing and editing events.
 
 ### Error Widget
 
