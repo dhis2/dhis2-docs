@@ -1262,16 +1262,27 @@ Table: Indicator variables
 
 | Variable | Object | Description |
 |---|---|---|
-| #{<dataelement-id\>.<categoryoptcombo-id\>.<attributeoptcombo-id\>} | Data element operand | Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard "\*" symbol can be used to indicate any value. |
-| #{<dataelement-id\>.<categoryoptiongroup-id\>.<attributeoptcombo-id\>} | Category Option Group | Refers to an aggregate data element and a category option group, containing multiple category option combinations. |
-| #{<dataelement-id\>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
-| D{<program-id\>.<dataelement-id\>} | Program data element | Refers to the value of a tracker data element within a program. |
+| #{<data-element-id\>.<category-option-combo-id\>.<attribute-option-combo-id\>} | Data element operand | Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard "\*" symbol can be used to indicate any value. |
+| #{<dataelement-id\>.<category-option-group-id\>.<attribute-option-combo-id\>} | Category Option Group | Refers to an aggregate data element and a category option group, containing multiple category option combinations. |
+| #{<data-element-id\>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
+| D{<program-id\>.<data-element-id\>} | Program data element | Refers to the value of a tracker data element within a program. |
 | A{<program-id\>.<attribute-id\>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
 | I{<program-indicator-id\>} | Program indicator | Refers to the value of a program indicator. |
 | R{<dataset-id\>.<metric\>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
 | C{<constant-id\>} | Constant | Refers to a constant value. |
 | N{<indicator-id\>} | Indicator | Refers to an existing Indicator. |
 | OUG{<orgunitgroup-id\>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
+
+Within a Data element operand or an Aggregate data element, the following substitutions may be made:
+
+| Item | Value | Description |
+|---|---|---|
+| data-element-id | data-element-id | An aggregate data element |
+| data-element-id | deGroup:data-element-group-id | All the aggregate data elements in a data element group |
+| category-option-combo-id | category-option-combo-id | A category option combination |
+| category-option-combo-id | co:category-option-id | All the category option combinations in a category option |
+| category-option-combo-id | coGroup:category-option-group-id | All the category option combinations in a category option group |
+| category-option-combo-id | coGroup:co-group-id1&co-group-id2... | All the category option combinations that are members of multiple category option groups |
 
 The syntax looks like
     this:
@@ -1294,24 +1305,35 @@ attribute option combination, and use wildcards to indicate any
 
     #{P3jJH5Tu5VC.S34ULMcHMca} + #{P3jJH5Tu5VC.*.j8vBiBqGf6O} + #{P3jJH5Tu5VC.S34ULMcHMca.*}
 
-An example which uses a program data element and a program
-    attribute:
+An example using a data element group:
+
+    #{deGroup:oDkJh5Ddh7d} + #{deGroup:GBHN1a1Jddh.j8vBiBqGf6O}
+
+An example using a category option, data element group, and a category option group:
+
+    #{P3jJH5Tu5VC.co:FbLZS3ueWbQ} + #{deGroup:GBHN1a1Jddh.coGroup:OK2Nr4wdfrZ.j8vBiBqGf6O}
+
+An example using multiple category option groups:
+
+    #{P3jJH5Tu5VC.coGroup:OK2Nr4wdfrZ&j3C417uW6J7&ddAo6zmIHOk}
+
+An example using a program data element and a program attribute:
 
     ( D{eBAyeGv0exc.vV9UWAZohSf} * A{IpHINAT79UW.cejWyOfXge6} ) / D{eBAyeGv0exc.GieVkTxp4HH}
 
-An example which combines program indicators and aggregate indicators:
+An example combining program indicators and aggregate indicators:
 
     I{EMOt6Fwhs1n} * 1000 / #{WUg3MYWQ7pt}
 
-An example which uses a reporting rate looks like this:
+An example using a reporting rate:
 
     R{BfMAe6Itzgt.REPORTING_RATE} * #{P3jJH5Tu5VC.S34ULMcHMca}
 
-Another example which uses actual data set reports:
+Another reporting rate example using actual data set reports and expected reports:
 
     R{BfMAe6Itzgt.ACTUAL_REPORTS} / R{BfMAe6Itzgt.EXPECTED_REPORTS}
 
-An example which uses an existing indicator would look like this:
+An example using an existing indicator:
 
     N{Rigf2d2Zbjp} * #{P3jJH5Tu5VC.S34ULMcHMca}
 
