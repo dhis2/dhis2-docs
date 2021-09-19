@@ -139,8 +139,8 @@ type should be your choice.
 #### 2. Browser context:
 _"This type us used for applications, like public portals, that will be accessed with a web browser"._
 
-If you need to embed a link to DHIS2 on a webpage, typically an iframe,
-this is a type of token usually will be what you want.
+If you need to link to DHIS2 on a webpage, or e.g. embed in an iframe,
+this is probably the type of token you want.
 
 
 ### Configuring your token
