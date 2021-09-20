@@ -156,8 +156,9 @@ e.g. on a public dashboard on another site, embedded in an iframe.
 Since tokens always have the same access/authorities that your user currently has, taking special 
 care is needed if you intend to use it in any environment you don't have 100% control over.
 
-**NB**: If anyone else gets the hand on your token, they can do anything your user can, and
-there is no way to see any difference between what is done with the token or your normal user.
+**NB**: If anyone else gets their hands on your token, they can do anything your user can do. 
+It is not possible to distinguish between actions performed using the token and other actions
+performed by your user.
 
 **Important**: It is strongly advised that you create a separate unique user with only the roles/authorities
 you want the token to have if you plan on using PAT tokens in a non-secure and/or public environment,
