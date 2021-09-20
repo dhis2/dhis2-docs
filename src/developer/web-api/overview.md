@@ -110,9 +110,9 @@ need to be explicitly enabled in the configuration.
 
 #### Important security concerns!
 
-Your PAT's will automatically inherit all the permissions/authorizations your
-user has at all time. It is therefore extremely important that you limit the access your
-token has depending on the use-case, see more on how to configure your token.
+Your PATs will automatically inherit all the permissions and authorizations your
+user has. It is therefore extremely important that you limit the access granted to
+your token depending on how you intend to use it, see **Configuring your token**.
 
 **If you only want the token to have access to a narrow and specific part of the
 server, it is advised to rather create a new special user that you assign only
