@@ -214,7 +214,7 @@ d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092
 that you copy the token key now and save it in a secure place for use later. 
 The secret token key will be securely hashed on the server, and only the hash of this secret token 
 key will be saved to the database. This is done to minimize the security impact if someone gets 
-unauthorized access to the database, this is similar to how passwords are saved in the database.
+unauthorized access to the database, similar to the way passwords are handled.
 
 ### B. Creating a token via the API
 
