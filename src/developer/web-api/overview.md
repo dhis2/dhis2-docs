@@ -54,10 +54,14 @@ minute.
 
 ## Authentication { #webapi_authentication } 
 
-The DHIS2 Web API supports three protocols for authentication, Basic
-Authentication and OAuth 2 and Personal Access Tokens (PAT). You can 
-verify and get information about the currently authenticated user by 
-making a GET request to the following URL:
+The DHIS2 Web API supports three protocols for authentication: 
+
+- [Basic Authentication](#webapi_basic_authentication)
+- [Personal Access Tokens (PAT)](#webapi_pat_authentication)
+- [OAuth 2](#webapi_oauth2)
+
+You can verify and get information about the currently authenticated 
+user by making a GET request to the following URL:
 
     /api/33/me
 
