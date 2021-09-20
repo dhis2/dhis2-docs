@@ -245,7 +245,7 @@ This will return a response containing a token similar to this:
 }
 ```
 
-**Important**: The token key will only be showed one here in this response.
+**Important**: The token key will only be shown once here in this response.
 You need to copy and save this is in a secure place for use later!
 
 The token itself consists of three parts:
