@@ -99,10 +99,10 @@ authentication to DHIS2 when using the API.
 PATs can be a more secure alternative to HTTP Basic Authentication,
 and should be your preferred choice when creating a new app/script etc. 
 
-Since HTTP Basic Authentication is considered unsecure because among other things
-that it uses your username and password in clear text, it might be phased out in 
-future versions and made optional, which means it needs to be explicitly enabled 
-in the configuration.
+HTTP Basic Authentication is considered insecure because, among other things, 
+it sends your username and password in clear text. It may be deprecated in 
+future DHIS2 versions or made opt-in, meaning that basic authentication would 
+need to be explicitly enabled in the configuration.
 
 #### Important security concerns!
 
