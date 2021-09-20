@@ -210,7 +210,7 @@ The secret token key will look similar to this:
 ```
 d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092
 ```
-**Important**: This generated secret token key will only be shown once, so it is of importance 
+**Important**: This generated secret token key will only be shown once, so it is important 
 that you copy the token key now and save it in a secure place for use later. 
 The secret token key will be securely hashed on the server, and only the hash of this secret token 
 key will be saved to the database. This is done to minimize the security impact if someone gets 
