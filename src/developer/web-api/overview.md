@@ -194,7 +194,7 @@ Read more about the HTTP referer header here: https://en.wikipedia.org/wiki/HTTP
 
 This can be used to limit the use of a "public" token embedded on another page on another site. 
 Making sure that the referer header match the site hostname in should come from, can
-help you from abuse of the token, e.g. if someone puts it on a forum etc.
+help avoid abuse of the token, e.g. if someone posts it on a public forum.
 
 **Important**: this is not a security feature. The `referer` header can easily be spoofed.
 This setting is intended to discourage unauthorized third-party developers from connecting
