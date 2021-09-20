@@ -196,7 +196,7 @@ This can be used to limit the use of a "public" token embedded on another page o
 Making sure that the referer header match the site hostname in should come from, can
 help you from abuse of the token, e.g. if someone puts it on a forum etc.
 
-**Important**: this is not a security feature. The referrer header can easily be spoofed.
+**Important**: this is not a security feature. The `referer` header can easily be spoofed.
 This setting is intended to discourage unauthorized third-party developers from connecting
 to public access instances.
 
