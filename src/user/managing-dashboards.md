@@ -17,7 +17,7 @@ Features of the Dashboards app include:
 
 Dashboards have a title, description, and any number of dashboard items. Above the dashboard is the dashboards bar, which shows all your available dashboards, a dashboard search field, and a **+** button for creating a new dashboard.
 
-The dashboard has two modes: view and edit/create. When you first log in
+The dashboard has two modes: *view* and *edit/create*. When you first log in
 to DHIS2, your most recently used dashboard will be displayed in view mode, if you are on the same computer as you were previously. If you are using a different computer or browser, then the first starred dashboard will be displayed. If there are no starred dashboards, then the first dashboard (alphabetically) will be displayed. Starred dashboards always show first in the dashboard list.
 
 Below is an example of a dashboard named "Antenatal Care", which has been populated with charts and maps:
@@ -81,20 +81,19 @@ Add items to the dashboard by searching for items using the **Search for items t
 The list of items in the drop-down initially displays 10 visualizations (charts and tables), and 5 from each of the other categories, based on the search text you enter. Messages (Email), text boxes and spacer items are also found in the list. To view more items, click on **Show more**, and the list for that type will be extended to 25 items. If you still do not find the item you want, try typing a more specific search text.
 
 #### Dashboard layout and placement of new items
-When adding items to the dashboard you can choose an overall layout by clicking on **Change layout** button, as well as whether new items added are placed at the start or end of the dashboard. In *Freeflow* layout, you can place and size the items freely on the dashboard. With *Fixed columns* layout, you can choose the number of columns to have on the dashboard, and the dashboard will automatically be layed out for you. Items cannot be moved or resized in *Fixed columns* layout. You can change this layout setting at any time.
+When adding items to the dashboard you can choose an overall layout by clicking on **Change layout** button.
+* With *Freeflow* layout, the added items can be moved using the mouse by down-clicking on the item and dragging it to the desired position. Items can also be resized with the mouse by down-clicking on the drag handle in the lower right corner of the item and dragging to the desired size.
+* With *Fixed columns* layout, you can choose the number of columns to have on the dashboard, and the dashboard will automatically be layed out for you. Items cannot be moved or resized in *Fixed columns* layout. You can change this layout setting at any time.
 
 ![](resources/images/dashboard/dashboard-layout-modal.png)
 
-Once you select an item, it will be added to either the start or the end of the dashboard, depending on the setting you have selected. In *Freeflow* layout, the added items can be moved using the mouse by down-clicking on the item and dragging it to the desired position. It can also be resized with the mouse by down-clicking on the drag handle in the lower right corner of the item and dragging to the desired size.
+You can also configure whether newly added items are automatically placed at the start or end of the dashboard by choosing the desired option. This option can be changed at any time.
+
+![](resources/images/dashboard/dashboard-place-items.png)
 
 #### Spacer items
 
-The dashboard is configured with the "anti-gravity" setting for
-positioning items. This means that items will "rise" upwards until they
-bump into another item. In order to force empty vertical space between
-items (like an empty row), you can add spacer items to the dashboard.
-They are only visible in edit/create mode. In view mode, they are not
-displayed, but take up the defined space.
+When adding items to the dashboard, they will "rise" upwards until they bump into another item. In order to force empty vertical space between items (like an empty row), you can add spacer items to the dashboard. They are only visible in edit/create mode. In view mode, they are not displayed, but take up the defined space.
 
 Spacer in **edit/create mode**:
 
@@ -106,10 +105,7 @@ Spacer in **view mode**:
 
 ### Removing items
 
-Remove items by clicking on the red trash can at the upper right of the
-item. Be aware that because of the "anti-gravity" setting in the
-dashboard, when you remove an item, the items that are positioned below
-the removed item will "rise" upwards.
+Remove items by clicking on the red trash can at the upper right of the item. Be aware that when you remove an item, the items that are positioned below the removed item will "rise" upwards until they bump into an item above.
 
 ### Print preview
 
@@ -123,15 +119,15 @@ Note that some items may be moved to the next page to avoid being split between 
 
 ### Restricting dashboard filters { #restricting-dashboard-filters } 
 
-By default, users will be able to filter dashboard items by any dimension defined in your system. Dashboard filter settings can be edited for a given dashboard by clicking on **Filter settings**.
+By default, users will be able to filter dashboard items by any dimension defined in the DHIS2 instance. Dashboard filter settings can be edited for a given dashboard by clicking on **Filter settings**.
 
 ![](resources/images/dashboard/dashboard-filter-settings-button.png)
 
-To restrict available filters, you can click **Only allow filtering by selected dimensions** and select the filters which you wish to allow on the dashboard. When the dashboard is in view mode, users will only be able to choose from among the filters selected. Period and Organisation Unit will be selected by default but can be removed if desired.
+To restrict available filters, you can click **Only allow filtering by selected dimensions** and select the filters you wish to allow on the dashboard. Period and Organisation Unit are selected by default but can be removed if desired. When the dashboard is in view mode, users will only be able to choose from among the filters selected.
 
 ![](resources/images/dashboard/dashboard-filter-settings.png)
 
-In order to save updates to filter settings, you need to first click **Confirm** to close the filter settings and then click **Save changes** to save the dashboard changes.
+In order to save updates to filter settings, you need to first click **Confirm** to close the Filter settings dialog and then click **Save changes** to save the dashboard changes.
 
 ### Saving the dashboard
 
@@ -152,7 +148,7 @@ You can add translations for dashboard title and description while in edit mode 
 ![](resources/images/dashboard/dashboard-translation-dialog.png)
 
 
-## Deleting a dashboard
+### Deleting a dashboard
 
 If you have access to delete the dashboard, then there will be a **Delete** button in the actions bar when in edit mode. A confirmation dialog will first be displayed to confirm that you want to delete the dashboard.
 
@@ -196,17 +192,20 @@ By default, users are able to filter dashboard items by any dimension defined in
 
 ### Making dashboards available offline
 
-To make a dashboard available offline, choose the **Make dashboard available offline** option in the **...More** menu. This will cause a reload of the dashboard where requests to the server are recorded and saved in browser storage. Note that offline dashboards are only available on the computer and browser where you set it to offline.
+To make a dashboard available offline, choose the **Make dashboard available offline** option in the **...More** menu. This will cause a reload of the dashboard where requests to the server are recorded and saved in browser storage. Note that offline dashboards are only available on the computer and browser where you set it to offline. If you currently have a filter applied when requesting the dashboard be made available offline, the filter will have to be removed first.
 
-Offline dashboards have an indicator on the dashboard chip in the dashboards bar, as well as a tag showing the time it was saved
+Dashboards that have been saved for offline have an indicator on the dashboard chip in the dashboards bar, as well as a tag showing the time it was saved.
 
 ![](resources/images/dashboard/dashboard-offline-dashboard.png)
 
-If the dashboard has been changed since you made it available offline, either by you or someone else, you'll need to choose **Sync offline data now** from the **...More** menu to save the latest version of the dashboard. If you currently have a filter applied when requesting the dashboard be made available offline, the filter will have to be removed first.
+If the dashboard has been changed since you made it available offline, either by you or someone else, you'll need to choose **Sync offline data now** from the **...More** menu to save the latest version of the dashboard.
+
 
 ![](resources/images/dashboard/dashboard-sync-offline.png)
 
-You can also remove a dashboard from offline storaged by choosing **Remove from offline storage** in the **...More** menu.
+You can remove a dashboard from offline storaged by choosing **Remove from offline storage** in the **...More** menu.
+
+In addition, if you manually log out of the DHIS2 instance, all cached dashboards will be cleared and they will no longer be available offline.
 
 
 ![](resources/images/dashboard/dashboard-remove-offline.png)
@@ -216,7 +215,7 @@ If you are offline, any buttons or actions that require a connection to complete
 
 ### Printing a dashboard
 
-From the **...More** menu you can print the active dashboard. There are two styles of dashboard print: dashboard layout and one item per page. For both styles, a title page is added that shows the dashboard title, description (if the Show description setting is on), and any applied dashboard filters.
+From the **...More** menu you can print the current dashboard. There are two styles of dashboard print: dashboard layout and one item per page. For both styles, a title page is added that shows the dashboard title, description (if the Show description setting is on), and any applied dashboard filters.
 
 ![](resources/images/dashboard/dashboard-print-menu.png)
 
@@ -244,7 +243,7 @@ Click on the **Print** button in the upper right to trigger the browser print fu
 
 ## Dashboard items with charts, pivot tables or maps
 
-Dashboard items with charts, pivot table or maps may have an item menu button in the upper right corner of the item with additional viewing options, depending on the system settings that have been configured for the DHIS2 instance. If all the relevant system settings have been disabled byt the DHIS2 instance, then there will not be an item menu button. Here are the possible menu options: 
+Dashboard items with charts, pivot table or maps may have an item menu button in the upper right corner of the item with additional viewing options, depending on the system settings that have been configured for the DHIS2 instance. If all the relevant system settings have been disabled by the DHIS2 instance, then there will not be an item menu button. Here are the possible item menu options: 
 
 ### Switching between visualizations
 
@@ -260,7 +259,7 @@ To view the chart, table or map in fullscreen, click on the **View fullscreen** 
 
 ### Open in app
 
-To open the visualization in its relevant app (e.g., Data Visualizer, Maps) click on the **Open in [app name] app** option.
+To open the visualization in its corresponding app (e.g., Data Visualizer, Maps) click on the **Open in [app name] app** option.
 
 
 ## Show interpretations and details
@@ -306,7 +305,7 @@ All dashboards have two sharing groups set by default.
 
 - All users
 
-  The *All users* group defines access to the dashboard for all logged-in users in your DHIS2 instance. By default the setting is **No access** and can be changed to **View only** or **View and edit**.
+  The *All users* group defines access to the dashboard for all logged-in users in the DHIS2 instance. By default the setting is **No access** and can be changed to **View only** or **View and edit**.
 
 ### Add users and user groups
 
