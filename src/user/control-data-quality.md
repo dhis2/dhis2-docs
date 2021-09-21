@@ -211,6 +211,8 @@ chance of course, but can potentially indicate a measurement or data entry error
 
 5.  Set **Algorithm** to **Z-score**
 
+    Modified Z-score can also be selected. If selected, the median of the values is used instead of the mean.
+
 6.  Select a **Threshold**.
 
     This refers to the number of standard deviations the data is allowed
