@@ -491,7 +491,8 @@ coordinates, you can use this layer to drill down from the aggregated
 data displayed in the thematic layers to the underlying individual
 events or cases.
 
-You can also display aggregated events for facilities or organisation units. You do this through a thematic layer using event data
+You can also display aggregated events for facilities or organisation
+units. You do this through a thematic layer using event data
 items. This is useful when you only have the coordinates for the Org
 Unit under which the events are recorded.
 
@@ -973,8 +974,9 @@ layer**selection. This opens the Facility layer configuration dialog.
 
     - Facilities can be styled an **organisation unit group set** using
       different icons. Select a group set from the list of organisation
-      unit group sets defined for your DHIS2 instance. The system administrator can set the default organsation unit group set in the
-      **System Settings** app.
+      unit group sets defined for your DHIS2 instance.
+      The system administrator can set the default organsation unit
+      group set in the **System Settings** app.
 
     - If no group set is selected, the facilities will be shown as filled
       circles. The color and the circle radius can be changed.
@@ -1429,7 +1431,8 @@ You can open the organisation unit profile in two ways:
 2. Right-click one of the organisation units, and select **View profile** from
    the menu.
 
-The profile will show on the right side of the map. The profile contents shown is set by the system administrator.
+The profile will show on the right side of the map. The profile contents is
+set by the system administrator.
 
 ## File menu { #using_maps_file_menu }
 
