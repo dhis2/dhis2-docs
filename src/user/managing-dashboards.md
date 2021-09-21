@@ -12,21 +12,24 @@ Features of the Dashboards app include:
 * Responsive view on mobile devices and small screens
 * Access dashboards while offline
 
-The Dashboards app can be personalized in the following ways:
-* [Set the height of the bar displaying the list of available dashboards](#dashboards_personalize_bar)
-* [Star dashboards for quick access to your favorite dashboards](#dashboard-star-dashboard)
-* [Show or hide dashboard description](#dashboard-show-description)
 
-## Dashboard and control bar { #dashboards_setup } 
+## Dashboard layout { #dashboards_setup } 
 
 Dashboards have a title, description, and any number of dashboard items. Above the dashboard is the dashboards bar, which shows all your available dashboards, a dashboard search field, and a **+** button for creating a new dashboard.
 
 The dashboard has two modes: view and edit/create. When you first log in
-to DHIS2, your most recently used dashboard will be displayed in view mode, if you are on the same computer as you were previously. If you are using a different computer, then the first starred dashboard will be displayed. If there are no starred dashboards, then the first dashboard (alphabetically) will be displayed. Starred dashboards always show first in the dashboard list.
+to DHIS2, your most recently used dashboard will be displayed in view mode, if you are on the same computer as you were previously. If you are using a different computer or browser, then the first starred dashboard will be displayed. If there are no starred dashboards, then the first dashboard (alphabetically) will be displayed. Starred dashboards always show first in the dashboard list.
 
 Below is an example of a dashboard named "Antenatal Care", which has been populated with charts and maps:
 
 ![](resources/images/dashboard/dashboard-view-mode.png)
+
+### Personalization
+
+The Dashboards app can be personalized in the following ways:
+* [Set the height of the bar displaying the list of available dashboards](#dashboards_personalize_bar)
+* [Star dashboards for quick access to your favorite dashboards](#dashboard-star-dashboard)
+* [Show or hide dashboard description](#dashboard-show-description)
 
 ### Responsive view on small screens
 
@@ -34,9 +37,9 @@ When viewing dashboards on small screens (for instance, portrait orientation on 
 
 ![](resources/images/dashboard/dashboard-small-screen.png)
 
-### Searching in the list of dashboards
+### Filtering the list of dashboards
 
-You can search for a specific dashboard using the search field in the upper left of the control bar entitled “Search for a dashboard”. The search is case insensitive, and as you type, the list of dashboards will filter down to those that match your search text.
+You can search for a specific dashboard using the filter field in the upper left of the dashboards bar entitled “Search for a dashboard”. The filter field is case insensitive, and as you type, the list of dashboards will be narrowed down to those that match your filter text.
 
 ![](resources/images/dashboard/dashboard-search-for-dashboard.png)
 
