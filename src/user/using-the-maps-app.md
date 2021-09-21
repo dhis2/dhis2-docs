@@ -1,6 +1,6 @@
-# Using the Maps app { #using_maps } 
+# Using the Maps app { #using_maps }
 
-## About the Maps app { #about_maps } 
+## About the Maps app { #about_maps }
 
 The Maps App is introduced in release 2.29 and serves as a replacement
 of the GIS App offering a more intuitive and user-friendly interface.
@@ -150,7 +150,7 @@ Along the bottom of the basemap card is:
 
 - A slider for modifying the layer transparency
 
-## Create a new map { #using_maps_create_map } 
+## Create a new map { #using_maps_create_map }
 
 1.  In the **Apps** menu, click **Maps**. The **DHIS2 Maps** window
     opens.
@@ -190,7 +190,7 @@ Along the bottom of the basemap card is:
     _Labels overlay_ is an [external
     layer](#using_maps_external_map_layers) defined in the Maintenance app.
 
-## Manage thematic layers { #using_maps_thematic_layer } 
+## Manage thematic layers { #using_maps_thematic_layer }
 
 _Thematic maps_ represent spatial variation of geographic distributions.
 Select your desired combination of indicator/data element, period and
@@ -473,7 +473,7 @@ To clear all data in a thematic layer:
 
     The layer is removed from the current map.
 
-## Manage event layers { #using_maps_event_layer } 
+## Manage event layers { #using_maps_event_layer }
 
 The event layer displays the geographical location of events registered
 in the DHIS2 tracker. Provided that events have associated point or polygon
@@ -481,8 +481,7 @@ coordinates, you can use this layer to drill down from the aggregated
 data displayed in the thematic layers to the underlying individual
 events or cases.
 
-You can also display aggregated events at the facility or at the
-boundary level. You do this through a thematic layer using event data
+You can also display aggregated events for facilities or organisation units. You do this through a thematic layer using event data
 items. This is useful when you only have the coordinates for the Org
 Unit under which the events are recorded.
 
@@ -520,7 +519,7 @@ Along the bottom of the event card from left to right are:
 
   - **Remove layer** will remove this layer from the current map.
 
-### Create an event layer { #maps_create_event_layer } 
+### Create an event layer { #maps_create_event_layer }
 
 To create an event layer, choose **Events** on the **Add
 layer** selection. This opens the Events layer configuration dialog.
@@ -745,7 +744,7 @@ To clear all event layer data in a map:
 
     The layer is removed from the current map.
 
-## Manage tracked entity layers { #using_maps_tracked_entity_layer } 
+## Manage tracked entity layers { #using_maps_tracked_entity_layer }
 
 The tracked entity layer displays the geographical location of tracked
 entities registered in the DHIS2. Provided that tracked entities have
@@ -782,7 +781,7 @@ Along the bottom of the tracked entity card from left to right are:
 
   - **Remove layer** will remove this layer from the current map.
 
-### Create a tracked entity layer { #maps_create_tracked_enity_layer } 
+### Create a tracked entity layer { #maps_create_tracked_enity_layer }
 
 To create an tracked entity layer, choose **Tracked entities** on the
 **Add layer** selection. This opens the Tracked entity layer
@@ -876,7 +875,7 @@ To clear a tracked entity layer from a map:
 
     The layer is removed from the current map.
 
-## Manage facility layers { #using_maps_facility_layer } 
+## Manage facility layers { #using_maps_facility_layer }
 
 The facility layer displays icons that represent types of facilities.
 Polygons do not show up on the map, so make sure that you select an
@@ -962,7 +961,7 @@ layer**selection. This opens the Facility layer configuration dialog.
         each facility. The radius of the buffer can be modified
         here.
 
-4.  Click **ADD LAYER**.
+3.  Click **ADD LAYER**.
 
 ### Create or modify a facility layer
 
@@ -1021,60 +1020,26 @@ To clear all data in a facility layer:
 
     The layer is removed from the current map.
 
-### Manage facilities in a layer
+## Manage org unit layers { #using_maps_org_unit_layer }
 
-You can have facilities in **Facility**, **Boundary** and **Thematic**
-layers.
-
-#### Relocate a facility
-
-1.  Right-click a facility and click **Relocate**.
-
-2.  Put the cursor in the new location.
-
-    The new coordinate is stored permanently. This cannot be undone.
-
-#### Swap longitude and latitude of a facility
-
-1.  Right-click a facility and click **Swap longitude/latitude**.
-
-    This is useful if a user inverted latitude and longitude coordinates
-    when creating the organisation unit.
-
-#### Display facility information
-
-You can view organisation unit information set by the administrator as
-follows:
-
-
-
-Table: View organisation unit information
-
-| Function | Action |
-|---|---|
-| View information for the current period | 1. Click a facility. |
-| View information for a selected period | 1. Right-click a facility and click **Show information**.<br> 2. In the **Infrastructural data** section, select a period.<br>      <br>    **Note**<br>     <br>    You configure the displayed infrastructural data in the **System Settings** app. |
-
-## Manage org unit layers { #using_maps_org_unit_layer } 
-
-The boundary layer displays the borders and locations of your
+The org unit layer displays the borders and locations of your
 organisation units. This layer is particularly useful if you are offline
 and don't have access to background maps.
 
 ![](resources/images/maps/maps_org_unit_layer.png)
 
-Boundary layers are represented by layer _cards_ in the layer panel such
+Org unit layers are represented by layer _cards_ in the layer panel such
 as:
 
-Along the top of the boundary card from left to right are:
+Along the top of the org unit card from left to right are:
 
 - A grab field to allow dragging and re-ordering layers with the mouse
 
-- The **Boundaries** title
+- The **Organisation unit** title
 
-- An arrow symbol to collapse and expand the boundary card
+- An arrow symbol to collapse and expand the org unit card
 
-Along the bottom of the boundary card from left to right are:
+Along the bottom of the org unit card from left to right are:
 
 - An edit (pencil) button to open the layer configuration dialog
 
@@ -1093,10 +1058,10 @@ Along the bottom of the boundary card from left to right are:
 
   - **Remove layer** will remove this layer from the current map.
 
-### Create a boundary layer
+### Create an org unit layer
 
-To create boundary layer, choose **Boundaries** on the **Add
-layer**selection. This opens the Boundary layer configuration dialog.
+To create an org unit layer, choose **Org units** on the **Add
+layer**selection. This opens the org unit layer configuration dialog.
 
 1.  In the **ORGANISATION UNITS** tab
 
@@ -1129,13 +1094,13 @@ layer**selection. This opens the Boundary layer configuration dialog.
       - Point radius
 
         Sets the base radius when point type elements, such as
-        facilities, are presented on the boundary layer.
+        facilities, are presented on the org unit layer.
 
 3.  Click **ADD LAYER**.
 
-### Modify a boundary layer
+### Modify an org unit layer
 
-1.  In the layer panel, click the edit (pencil) icon on the boundary
+1.  In the layer panel, click the edit (pencil) icon on the org unit
     layer card.
 
 2.  Modify the setting on the ORGANISATION UNITS and STYLE tabs as
@@ -1143,14 +1108,14 @@ layer**selection. This opens the Boundary layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
-### Filter values in a boundary layer
+### Filter values in an org unit layer
 
-Boundary layers have a **data table** option that can be toggled on or
-off from the boundary layer card.
+Org unit layers have a **data table** option that can be toggled on or
+off from the org unit layer card.
 
 ![](resources/images/maps/maps_bound_layer_data_table.png)
 
-The data table displays the data forming the boundary layer.
+The data table displays the data forming the org unit layer.
 
 - clicking on a title will sort the table based on that column;
   toggling between ascending and descending.
@@ -1187,33 +1152,33 @@ The data table displays the data forming the boundary layer.
 ### Search for an organisational unit
 
 The NAME filter field in the data table provides an effective way of
-searching for individual organisational units displayed in the boundary
+searching for individual organisational units displayed in the org unit
 layer.
 
 ### Navigate between organisation hierarchies
 
-You can modify the target of the boundary layer in the hierarchy without
+You can modify the target of the org unit layer in the hierarchy without
 using the level/parent user interface.
 
-1.  Right-click one of the boundaries.
+1.  Right-click one of the organisation units.
 
 2.  Select **Drill up one level** or **Drill down one level**.
 
     The drill down option is disabled if you are on the lowest level.
     Likewise the drill up option is disabled from the highest level.
 
-### Remove boundary layer
+### Remove org unit layer
 
-To clear all data in a boundary layer:
+To clear all data in an org unit layer:
 
 1.  In the layer card to the left, click the _more actions_ (three dots) icon
     and then on **Remove layer**.
 
     The layer is removed from the current map.
 
-## Manage Earth Engine layer { #using_maps_gee } 
+## Manage Earth Engine layer { #using_maps_gee }
 
-![](resources/images/maps/maps_earth_eng_layer.png)
+![](resources/images/maps/maps_ee_layer.png)
 
 The layers from Google Earth Engine let you display and aggregate external
 data to your organisation units. Use the population layer to calculate the
@@ -1224,7 +1189,7 @@ or urban areas, and calculate the percentage for each organisation unit.
 
 The following layers are supported:
 
-![](resources/images/maps/maps_earth_eng_layer_types.png)
+![](resources/images/maps/maps_ee_layer_types.png)
 
 - **Population**: Detailed population data from WorldPop showing the estimated
   number of poeple living in an area. Available for yearly periods from 2000 and
@@ -1365,7 +1330,7 @@ The data table displays all the aggregated values for the organisation units sel
 >
 > Data table filters are temporary and are not saved with the map layers.
 
-## Add external map layers { #using_maps_external_map_layers } 
+## Add external map layers { #using_maps_external_map_layers }
 
 ![](resources/images/maps/maps_terrain_imagery.png)
 
@@ -1403,9 +1368,7 @@ Along the bottom of the overlay card from left to right are:
 
 ## Organisation unit profile { #using_maps_org_unit_profile }
 
-
-
-## File menu { #using_maps_file_menu } 
+## File menu { #using_maps_file_menu }
 
 ![](resources/images/maps/maps_file_menu.png)
 
@@ -1512,7 +1475,7 @@ everyone or a user group. To modify the sharing settings:
 2.  Click **DELETE** to confirm that you want to delete the favorite.
     Your map is deleted and the layers are cleared from the view.
 
-## Map interpretations { #mapsInterpretation } 
+## Map interpretations { #mapsInterpretation }
 
 An interpretation is a description of a map at a given period. This
 information is visible in the **Dashboard app**. Click
@@ -1582,7 +1545,7 @@ write is visible to those people.
 
 5.  Click **CLOSE** when sharing settings are updated.
 
-## Save a map as an image { #using_maps_image_export } 
+## Save a map as an image { #using_maps_image_export }
 
 You can download your map as an image by clicking on the Download button in the top menu
 
@@ -1599,7 +1562,7 @@ use Google Chrome or Firefox.
 
 3.  Click **Download** to download your map.
 
-## Search for a location { #using_maps_search } 
+## Search for a location { #using_maps_search }
 
 The place search function allows you to search for almost any location
 or address. This function is useful in order to locate for example
@@ -1616,7 +1579,7 @@ sites, facilities, villages or towns on the map.
 3.  From the list, select a location. A pin indicates the location on
     the map.
 
-## Measure distances and areas in a map { #using_maps_measure_distance } 
+## Measure distances and areas in a map { #using_maps_measure_distance }
 
 1.  In the upper left part of the map, put the cursor on the **Measure
     distances and areas** (ruler) icon and click **Create new
@@ -1628,7 +1591,7 @@ sites, facilities, villages or towns on the map.
 
 ![](resources/images/maps/maps_measure_distance.png)
 
-## Get the latitude and longitude at any location { #using_maps_latitude_longitude } 
+## Get the latitude and longitude at any location { #using_maps_latitude_longitude }
 
 Right-click a point on the map and select **Show longitude/latitude**.
 The values display in a pop-up window.
