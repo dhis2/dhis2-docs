@@ -429,6 +429,6 @@ minimum maximum outlier analysis.
 
 > **Tip**
 >
-> Click the star icon to remove the follow-up tag from the data value.
+> Check the **Unfollow** checkbox in the list and click the **Unfollow**-button to remove the follow-up tags from the marked data values.
 > You can also enter a comment in the field to indicate any additional 
 > information regarding the value. 
