@@ -50,11 +50,11 @@ You may customize which columns are shown in the list for the current object. Th
 
 ![](resources/images/maintenance/configurable_columns_dialog.png)
 
-1. Click the ![settings-icon](resources/images/maintenance/icon_settings.png) -icon to the top right of the list of objects you want to configure.
+1. Click the ![](resources/images/maintenance/icon_settings.png) icon to the top right of the list of objects you want to configure.
 2. A dropdown-menu will appear, select **Manage columns**.
 3. A dialog will appear, with the default columns selected.
 3. Click any column-name in the list of **Available columns** to add them to the list of selected columns.
-4. You may reorder the selected columns by drag-and-dropping the ![reorder-icon](resources/images/maintenance/icon_reorder.png) -icon.
+4. You may reorder the selected columns by drag-and-dropping the ![](resources/images/maintenance/icon_reorder.png) icon.
 5. You may also remove any column from the view by clicking the X-icon next to the name.
 6. Click **Save** once you are satisified with your changes.
 
@@ -64,7 +64,7 @@ You may easily reset to the default values by clicking the **Reset to default** 
 
 You can download the metadata for the object you are currently viewing. The metadata download will respect any filters you have active for the list.
 
-1. Click the ![settings-icon](resources/images/maintenance/icon_settings.png) -icon to the top right of the list of objects you want to configure.
+1. Click the ![](resources/images/maintenance/icon_settings.png) icon to the top right of the list of objects you want to configure.
 2. A dropdown-menu will appear, select **Download**.
 3. A dialog will appear, where you can select the desired format and compression.
 4. **With sharing** can be selected to include sharing-data for the metadata.
