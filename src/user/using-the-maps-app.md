@@ -387,6 +387,16 @@ layer** selection. This opens the Events layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
+### Open organisation unit profile
+
+You can open the [organisation unit profile](#using_maps_org_unit_profile) in two ways:
+
+1. Click on any of the organisasjon units shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the organisation units, and select **View profile** from
+   the menu.
+
 ### Filter values in a thematic layer
 
 Thematic layers have a **data table** option that can be toggled on or
@@ -928,7 +938,7 @@ layer**selection. This opens the Facility layer configuration dialog.
 
     ![](resources/images/maps/maps_facility_layer_dialog_ORG_UNITS.png)
 
-    - select the organisation unit level(s) and/or group(s) from the
+    - Select the organisation unit level(s) and/or group(s) from the
       selection fields on the right hand side.
 
     - Select the organisation units you want to include in the layer.
@@ -941,14 +951,14 @@ layer**selection. This opens the Facility layer configuration dialog.
         unit** the map data will appear differently for users at
         different levels in the organisation unit hierarchy.
 
+    - The system administrator can set the default organsation unit
+      level containing facilities in the **System Settings** app.
+
 2.  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_facility_layer_dialog_STYLE.png)
 
-    - Select a **Group set** from the list of organisation unit group
-      sets defined for your DHIS2 instance.
-
-    - select any styling you wish to apply to the facilities.
+    - Select any styling you wish to apply to the facilities.
 
       - Show labels
 
@@ -961,6 +971,14 @@ layer**selection. This opens the Facility layer configuration dialog.
         each facility. The radius of the buffer can be modified
         here.
 
+    - Facilities can be styled an **organisation unit group set** using
+      different icons. Select a group set from the list of organisation
+      unit group sets defined for your DHIS2 instance. The system administrator can set the default organsation unit group set in the
+      **System Settings** app.
+
+    - If no group set is selected, the facilities will be shown as filled
+      circles. The color and the circle radius can be changed.
+
 3.  Click **ADD LAYER**.
 
 ### Create or modify a facility layer
@@ -972,6 +990,16 @@ layer**selection. This opens the Facility layer configuration dialog.
     tabs as desired.
 
 3.  Click **UPDATE LAYER**.
+
+### Open organisation unit profile
+
+You can open the [organisation unit profile](#using_maps_org_unit_profile) in two ways:
+
+1. Click on any of the facilities shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the facilities, and select **View profile** from
+   the menu.
 
 ### Filter values in a facility layer
 
@@ -1061,7 +1089,7 @@ Along the bottom of the org unit card from left to right are:
 ### Create an org unit layer
 
 To create an org unit layer, choose **Org units** on the **Add
-layer**selection. This opens the org unit layer configuration dialog.
+layer** selection. This opens the org unit layer configuration dialog.
 
 1.  In the **ORGANISATION UNITS** tab
 
@@ -1084,17 +1112,26 @@ layer**selection. This opens the org unit layer configuration dialog.
 
     ![](resources/images/maps/maps_org_unit_layer_dialog_STYLE.png)
 
-    - select any styling you wish to apply to the boundaries.
+    - select any styling you wish to apply to the org unitss.
 
-      - Show labels
+      - Labels
 
-        Allows labels to be shown on the layer. Font size and weight
-        can be modified here.
+        Allows labels to be shown on the layer. Font style can be
+        modified here.
+
+      - Boundary color
+
+        Allows the boundary or outline color of the organisation units
+        to be changed.
 
       - Point radius
 
         Sets the base radius when point type elements, such as
         facilities, are presented on the org unit layer.
+
+    - Organisation units can be styled an **organisation unit group set**
+      using different colors. Select a group set from the list of organisation
+      unit group sets defined for your DHIS2 instance.
 
 3.  Click **ADD LAYER**.
 
@@ -1107,6 +1144,16 @@ layer**selection. This opens the org unit layer configuration dialog.
     desired.
 
 3.  Click **UPDATE LAYER**.
+
+### Open organisation unit profile
+
+You can open the [organisation unit profile](#using_maps_org_unit_profile) in two ways:
+
+1. Click on any of the organisasjon units shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the organisation units, and select **View profile** from
+   the menu.
 
 ### Filter values in an org unit layer
 
@@ -1367,6 +1414,22 @@ Along the bottom of the overlay card from left to right are:
   thematic map.
 
 ## Organisation unit profile { #using_maps_org_unit_profile }
+
+![](resources/images/maps/maps_org_unit_profile.png)
+
+The organisation unit profile shows detailed information about
+each organisation unit. You can open the profile from org unit, facility
+and thematic layers.
+
+You can open the organisation unit profile in two ways:
+
+1. Click on any of the organisasjon units shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the organisation units, and select **View profile** from
+   the menu.
+
+The profile will show on the right side of the map. The profile contents shown is set by the system administrator.
 
 ## File menu { #using_maps_file_menu }
 
