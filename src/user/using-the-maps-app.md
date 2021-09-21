@@ -170,7 +170,7 @@ Along the bottom of the basemap card is:
 
     - [Facilities](#using_maps_facility_layer)
 
-    - [Boundaries](#using_maps_boundary_layer)
+    - [Org units](#using_maps_org_unit_layer)
 
     In addition, there are several layers provided by Google Earth
     Engine and other services:
@@ -925,14 +925,7 @@ Along the bottom of the facilities card from left to right are:
 To create facility layer, choose **Facilities** on the **Add
 layer**selection. This opens the Facility layer configuration dialog.
 
-1.  In the **GROUP SET** tab:
-
-    ![](resources/images/maps/maps_facility_layer_dialog_GROUPSET.png)
-
-    - Select a **Group set** from the list of organisation unit group
-      sets defined for your DHIS2 instance.
-
-2.  In the **ORGANISATION UNITS** tab
+1.  In the **ORGANISATION UNITS** tab
 
     ![](resources/images/maps/maps_facility_layer_dialog_ORG_UNITS.png)
 
@@ -949,9 +942,12 @@ layer**selection. This opens the Facility layer configuration dialog.
         unit** the map data will appear differently for users at
         different levels in the organisation unit hierarchy.
 
-3.  In the **STYLE** tab:
+2.  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_facility_layer_dialog_STYLE.png)
+
+    - Select a **Group set** from the list of organisation unit group
+      sets defined for your DHIS2 instance.
 
     - select any styling you wish to apply to the facilities.
 
@@ -1059,13 +1055,13 @@ Table: View organisation unit information
 | View information for the current period | 1. Click a facility. |
 | View information for a selected period | 1. Right-click a facility and click **Show information**.<br> 2. In the **Infrastructural data** section, select a period.<br>      <br>    **Note**<br>     <br>    You configure the displayed infrastructural data in the **System Settings** app. |
 
-## Manage boundary layers { #using_maps_boundary_layer } 
+## Manage org unit layers { #using_maps_org_unit_layer } 
 
 The boundary layer displays the borders and locations of your
 organisation units. This layer is particularly useful if you are offline
 and don't have access to background maps.
 
-![](resources/images/maps/maps_bound_layers.png)
+![](resources/images/maps/maps_org_unit_layer.png)
 
 Boundary layers are represented by layer _cards_ in the layer panel such
 as:
@@ -1104,7 +1100,7 @@ layer**selection. This opens the Boundary layer configuration dialog.
 
 1.  In the **ORGANISATION UNITS** tab
 
-    ![](resources/images/maps/maps_boundary_layer_dialog_ORG_UNITS.png)
+    ![](resources/images/maps/maps_org_unit_layer_dialog_ORG_UNITS.png)
 
     - select the organisation unit level(s) and/or group(s) from the
       selection fields on the right hand side.
@@ -1121,7 +1117,7 @@ layer**selection. This opens the Boundary layer configuration dialog.
 
 2.  In the **STYLE** tab:
 
-    ![](resources/images/maps/maps_boundary_layer_dialog_STYLE.png)
+    ![](resources/images/maps/maps_org_unit_layer_dialog_STYLE.png)
 
     - select any styling you wish to apply to the boundaries.
 
@@ -1404,6 +1400,10 @@ Along the bottom of the overlay card from left to right are:
 
 - A delete (trash can) icon to remove the layer from the current
   thematic map.
+
+## Organisation unit profile { #using_maps_org_unit_profile }
+
+
 
 ## File menu { #using_maps_file_menu } 
 
