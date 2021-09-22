@@ -37,9 +37,9 @@ When viewing dashboards on small screens (for instance, portrait orientation on 
 
 ![](resources/images/dashboard/dashboard-small-screen.png)
 
-### Filtering the list of dashboards
+### Searching for a dashboard
 
-You can search for a specific dashboard using the filter field in the upper left of the dashboards bar entitled “Search for a dashboard”. The filter field is case insensitive, and as you type, the list of dashboards will be narrowed down to those that match your filter text.
+You can search for a specific dashboard using the search field in the upper left of the dashboards bar entitled “Search for a dashboard”. The search is case insensitive, and as you type, the list of dashboards will be narrowed down to those that match your search text.
 
 ![](resources/images/dashboard/dashboard-search-for-dashboard.png)
 
