@@ -13,11 +13,11 @@ Features of the Dashboards app include:
 * Access dashboards while offline
 
 
-## Dashboard layout { #dashboards_setup } 
+## Dashboards app layout { #dashboards_setup } 
 
 Dashboards have a title, description, and any number of dashboard items. Above the dashboard is the dashboards bar, which shows all your available dashboards, a dashboard search field, and a **+** button for creating a new dashboard.
 
-The dashboard has two modes: *view* and *edit/create*. When you first log in
+The Dashboards app has two modes: *view* and *edit/create*. When you first log in
 to DHIS2, your most recently used dashboard will be displayed in view mode, if you are on the same computer as you were previously. If you are using a different computer or browser, then the first starred dashboard will be displayed. If there are no starred dashboards, then the first dashboard (alphabetically) will be displayed. Starred dashboards always show first in the dashboard list.
 
 Below is an example of a dashboard named "Antenatal Care", which has been populated with charts and maps:
@@ -27,7 +27,7 @@ Below is an example of a dashboard named "Antenatal Care", which has been popula
 ### Personalization
 
 The Dashboards app can be personalized in the following ways:
-* [Set the height of the bar displaying the list of available dashboards](#dashboards_personalize_bar)
+* [Set the height of the dashboards bar](#dashboards_personalize_bar)
 * [Star dashboards for quick access to your favorite dashboards](#dashboard-star-dashboard)
 * [Show or hide dashboard description](#dashboard-show-description)
 
@@ -81,9 +81,9 @@ Add items to the dashboard by searching for items using the **Search for items t
 The list of items in the drop-down initially displays 10 visualizations (charts and tables), and 5 from each of the other categories, based on the search text you enter. Messages (Email), text boxes and spacer items are also found in the list. To view more items, click on **Show more**, and the list for that type will be extended to 25 items. If you still do not find the item you want, try typing a more specific search text.
 
 #### Dashboard layout and placement of new items
-When adding items to the dashboard you can choose an overall layout by clicking on **Change layout** button.
+When adding items to the dashboard you can choose an overall layout by clicking on **Change layout** button. You can change this layout setting at any time.
 * With *Freeflow* layout, the added items can be moved using the mouse by down-clicking on the item and dragging it to the desired position. Items can also be resized with the mouse by down-clicking on the drag handle in the lower right corner of the item and dragging to the desired size.
-* With *Fixed columns* layout, you can choose the number of columns to have on the dashboard, and the dashboard will automatically be layed out for you. Items cannot be moved or resized in *Fixed columns* layout. You can change this layout setting at any time.
+* With *Fixed columns* layout, you can choose the number of columns to have on the dashboard, and the dashboard will automatically be layed out for you. Items cannot be moved or resized in *Fixed columns* layout. 
 
 ![](resources/images/dashboard/dashboard-layout-modal.png)
 
@@ -131,7 +131,9 @@ In order to save updates to filter settings, you need to first click **Confirm**
 
 ### Saving the dashboard
 
-When creating or editing a dashboard, changes are only saved when you click **Save changes** button in the dashboard edit bar at the top of the page. If you don't want to save your changes, click the **Exit without saving** button to the upper right. You will then be returned to view mode with the dashboard you were previously viewing.
+When creating or editing a dashboard, changes are only saved when you click **Save changes** button in the dashboard edit actions bar at the top of the page. If you don't want to save your changes, click the **Exit without saving** button to the upper right. You will then be returned to view mode with the dashboard you were previously viewing.
+
+![](resources/images/dashboard/dashboard-save-changes.png)
 
 ## Editing an existing dashboard
 
@@ -143,14 +145,16 @@ Refer to the above section about creating dashboards for information on making c
 
 ### Translating dashboard title and description
 
-You can add translations for dashboard title and description while in edit mode by clicking the **Translate** button in the actions bar. The dialog provides a list of languages to translate to, and shows the original dashboard title underneath the name input field. First choose the language you want to translate for, then fill in the dashboard name and description translation.
+You can add translations for dashboard title and description while in edit mode by clicking the **Translate** button in the edit actions bar. The dialog provides a list of languages to translate to, and shows the original dashboard title underneath the name input field. First choose the language you want to translate for, then fill in the dashboard name and description translation.
 
 ![](resources/images/dashboard/dashboard-translation-dialog.png)
 
 
 ### Deleting a dashboard
 
-If you have access to delete the dashboard, then there will be a **Delete** button in the actions bar when in edit mode. A confirmation dialog will first be displayed to confirm that you want to delete the dashboard.
+If you have access to delete the dashboard, then there will be a **Delete** button in the edit actions bar when in edit mode. A confirmation dialog will first be displayed to confirm that you want to delete the dashboard.
+
+![](resources/images/dashboard/dashboard-confirm-delete.png)
 
 ## Viewing a dashboard
 
@@ -161,15 +165,15 @@ From view mode, you can toggle showing the description, star a dashboard, apply 
 
 ### Show description { #dashboard-show-description }
 
-To toggle the description, click on the **...More** button and choose **Show description** (or **Hide description**). This setting will be remembered for all dashboards that you open. This setting applies to you, not other users.
+To toggle the description, open the **...More** menu and choose **Show description** (or **Hide description**). This setting will be remembered for all dashboards that you open. This setting applies to you, not other users.
 
 ### Star dashboards { #dashboard-star-dashboard }
 
-Your starred dashboards are listed first in the list of dashboards. To star a dashboard, click on the star button to the right of the title. You can also toggle the star from the **...More** button. When the star is “filled”, that means the dashboard is starred. Starring a dashboard only applies to you, not other users.
+Your starred dashboards are listed first in the list of dashboards for quick access. To star a dashboard, click on the star button to the right of the title. You can also toggle the star from the **...More** menu. When the star is “filled”, that means the dashboard is starred. Starring a dashboard only applies to you, not other users.
 
 ### Filtering a dashboard
 
-Multiple filters can be applied to a dashboard for changing the data displayed in the various dashboard items. The filters are applied to each dashboard item in the same way: each added filter overrides the original value for that dimension in the original chart, table or map (visualization). It is possible to filter on Organisation Units, Periods and other dynamic dimensions depending on the DHIS2 instance.
+Filters can be applied to a dashboard for changing the data displayed in the dashboard items. The filters are applied to each dashboard item in the same way: each added filter overrides the original value for that dimension in the original chart, table or map (visualization). It is possible to filter on Organisation Units, Periods and other dynamic dimensions depending on the DHIS2 instance. You can apply multiple filters to the dashboard.
 
 To add a filter, click on the **Add Filter** button and choose the dimension:
 
@@ -229,7 +233,7 @@ For best print results:
 
 Dashboard layout print will approximate the dashboard layout as it is shown in the browser. Note that some adjustments may need to be made to the layout in order to prevent items being split onto multiple pages: items that would be cut off by a page break are moved to the next page, and items that are taller than one page are shortened to fit on one page.
 
-Click on the **Print** button in the upper right to trigger the browser print functionality.
+Once in print mode, click on the **Print** button in the upper right to trigger the browser print functionality.
 
 ![](resources/images/dashboard/dashboard-print-layout.png)
 
