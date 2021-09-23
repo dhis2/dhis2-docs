@@ -48,15 +48,17 @@ You can search for a specific dashboard using the search field in the upper left
 You can set a specific height for the dashboards bar by
 down-clicking and dragging the bottom edge of the bar. When you finish dragging, the new height will be set. Clicking on the down arrow at the bottom of the dashboards bar will expand the bar to its maximum height (10 "rows"). Clicking on the up arrow will reset the height to your personalized height.
 
-## Creating a dashboard
+## Creating and editing a dashboard
 
-To create a new dashboard, click the **+** button in the left corner of the dashboards bar to enter create mode:
+To create a new dashboard, click the **+** button in the left corner of the dashboards bar to enter create/edit mode:
 
 ![](resources/images/dashboard/dashboard-new-button.png)
 
-**Create mode:**
+To edit an existing dashboard, click the **Edit** button next to the dashboard title (you must have edit access to see this button):
 
-In create mode, you can add a title, description and dashboard items to your dashboard. If you do not add a title, the dashboard will automatically be titled "Untitled dashboard".
+![](resources/images/dashboard/dashboard-title-bar.png)
+
+In create/edit mode, you can add or change the dashboard title, description and dashboard items. If you do not add a title, the dashboard will automatically be titled "Untitled dashboard".
 
 ![](resources/images/dashboard/dashboard-create-mode.png)
 
@@ -107,6 +109,16 @@ Spacer in **view mode**:
 
 Remove items by clicking on the red trash can at the upper right of the item. Be aware that when you remove an item while in *Freeflow* layout, the items that are positioned below the removed item will "rise" upwards until they bump into an item above.
 
+### Actions in create/edit mode
+
+You can take the following actions while creating or editing a dashboard
+
+![](resources/images/dashboard/dashboard-edit-mode-actions.png)
+
+### Saving the dashboard
+
+When creating or editing a dashboard, changes are only saved when you click the **Save changes** button in the dashboard edit actions bar at the top of the page. If you don't want to save your changes, click the **Exit without saving** button to the upper right. You will then be returned to view mode with the dashboard you were previously viewing.
+
 ### Print preview
 
 Click on the **Print preview** button to view what the dashboard will look like when being printed with the [Dashboard layout option](#dashboard-print-layout).
@@ -121,37 +133,23 @@ Note that some items may be moved to the next page to avoid being split between 
 
 By default, users will be able to filter dashboard items by any dimension defined in the DHIS2 instance. Dashboard filter settings can be edited for a dashboard by clicking on **Filter settings**.
 
-![](resources/images/dashboard/dashboard-filter-settings-button.png)
-
 To restrict available filters, you can click **Only allow filtering by selected dimensions** and select the filters you wish to allow on the dashboard. Period and Organisation Unit are selected by default but can be removed if desired. When the dashboard is viewed, users will only be able to choose from among the filters selected.
 
 ![](resources/images/dashboard/dashboard-filter-settings.png)
 
 In order to save updates to filter settings, you need to first click **Confirm** to close the Filter settings dialog and then click **Save changes** to save the dashboard changes.
 
-### Saving the dashboard
-
-When creating or editing a dashboard, changes are only saved when you click the **Save changes** button in the dashboard edit actions bar at the top of the page. If you don't want to save your changes, click the **Exit without saving** button to the upper right. You will then be returned to view mode with the dashboard you were previously viewing.
-
 ![](resources/images/dashboard/dashboard-save-changes.png)
-
-## Editing an existing dashboard
-
-If you have access rights to edit the currently active dashboard, there will be an **Edit** button to the right of the dashboard title in view mode. Click on this button to enter edit mode.
-
-![](resources/images/dashboard/dashboard-title-bar.png)
-
-In addition to all the tools for creating a dashboard, there are two additional actions that can be taken when editing an existing dashboard.
 
 ### Translating dashboard title and description
 
-You can add translations for dashboard title and description while in edit mode by clicking the **Translate** button in the edit actions bar. The dialog provides a list of languages to translate to, and shows the original dashboard title underneath the name input field. First choose the language you want to translate for, then fill in the dashboard name and description translation.
+If you are editing an existing dashboard, then there will be a **Translate** button. Click on this button to open the Translation dialog, which provides a list of languages to translate to, and shows the original dashboard title underneath the name input field. First choose the language you want to translate for, then fill in the dashboard name and description translation.
 
 ![](resources/images/dashboard/dashboard-translation-dialog.png)
 
 ### Deleting a dashboard
 
-If you have access to delete the dashboard, then there will be a **Delete** button in the edit actions bar when in edit mode. A confirmation dialog will first be displayed to confirm that you want to delete the dashboard.
+If you have access to delete the dashboard, then there will be a **Delete** button. When you click the **Delete** button, a confirmation dialog will first be displayed to confirm that you want to delete the dashboard.
 
 ![](resources/images/dashboard/dashboard-confirm-delete.png)
 
