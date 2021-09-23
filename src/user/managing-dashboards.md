@@ -1,6 +1,6 @@
 # Managing dashboards { #dashboard } 
 
-## About dashboards
+## About the Dashboards app
 
 The Dashboards app makes it possible to present a high level overview of your data, including displaying analytical objects such as maps, charts, reports and tables, as well as displaying text-based information, resource links, and app widgets.
 
@@ -93,7 +93,7 @@ You can also configure whether newly added items are automatically placed at the
 
 #### Spacer items
 
-When adding items to the dashboard, they will "rise" upwards until they bump into another item. In order to force empty vertical space between items (like an empty row), you can add spacer items to the dashboard. They are only visible in edit/create mode. In view mode, they are not displayed, but take up the defined space.
+When adding items to the dashboard using *Freeflow* layout, they will "rise" upwards until they bump into another item. In order to force empty vertical space between items (like an empty row), you can add spacer items to the dashboard. They are only visible in edit/create mode. In view mode, they are not displayed, but take up the defined space.
 
 Spacer in **edit/create mode**:
 
@@ -103,13 +103,13 @@ Spacer in **view mode**:
 
 ![](resources/images/dashboard/dashboard-spacer-view-mode.png)
 
-### Removing items
+#### Removing items
 
-Remove items by clicking on the red trash can at the upper right of the item. Be aware that when you remove an item, the items that are positioned below the removed item will "rise" upwards until they bump into an item above.
+Remove items by clicking on the red trash can at the upper right of the item. Be aware that when you remove an item while in *Freeflow* layout, the items that are positioned below the removed item will "rise" upwards until they bump into an item above.
 
 ### Print preview
 
-Click on the **Print preview** button to view how the dashboard would look in dashboard layout print.
+Click on the **Print preview** button to view what the dashboard will look like when being printed with the [Dashboard layout option](#dashboard-print-layout).
 
 ![](resources/images/dashboard/dashboard-edit-print-preview.png)
 
@@ -119,11 +119,11 @@ Note that some items may be moved to the next page to avoid being split between 
 
 ### Restricting dashboard filters { #restricting-dashboard-filters } 
 
-By default, users will be able to filter dashboard items by any dimension defined in the DHIS2 instance. Dashboard filter settings can be edited for a given dashboard by clicking on **Filter settings**.
+By default, users will be able to filter dashboard items by any dimension defined in the DHIS2 instance. Dashboard filter settings can be edited for a dashboard by clicking on **Filter settings**.
 
 ![](resources/images/dashboard/dashboard-filter-settings-button.png)
 
-To restrict available filters, you can click **Only allow filtering by selected dimensions** and select the filters you wish to allow on the dashboard. Period and Organisation Unit are selected by default but can be removed if desired. When the dashboard is in view mode, users will only be able to choose from among the filters selected.
+To restrict available filters, you can click **Only allow filtering by selected dimensions** and select the filters you wish to allow on the dashboard. Period and Organisation Unit are selected by default but can be removed if desired. When the dashboard is viewed, users will only be able to choose from among the filters selected.
 
 ![](resources/images/dashboard/dashboard-filter-settings.png)
 
@@ -131,7 +131,7 @@ In order to save updates to filter settings, you need to first click **Confirm**
 
 ### Saving the dashboard
 
-When creating or editing a dashboard, changes are only saved when you click **Save changes** button in the dashboard edit actions bar at the top of the page. If you don't want to save your changes, click the **Exit without saving** button to the upper right. You will then be returned to view mode with the dashboard you were previously viewing.
+When creating or editing a dashboard, changes are only saved when you click the **Save changes** button in the dashboard edit actions bar at the top of the page. If you don't want to save your changes, click the **Exit without saving** button to the upper right. You will then be returned to view mode with the dashboard you were previously viewing.
 
 ![](resources/images/dashboard/dashboard-save-changes.png)
 
@@ -141,14 +141,13 @@ If you have access rights to edit the currently active dashboard, there will be 
 
 ![](resources/images/dashboard/dashboard-title-bar.png)
 
-Refer to the above section about creating dashboards for information on making changes to the dashboard.
+In addition to all the tools for creating a dashboard, there are two additional actions that can be taken when editing an existing dashboard.
 
 ### Translating dashboard title and description
 
 You can add translations for dashboard title and description while in edit mode by clicking the **Translate** button in the edit actions bar. The dialog provides a list of languages to translate to, and shows the original dashboard title underneath the name input field. First choose the language you want to translate for, then fill in the dashboard name and description translation.
 
 ![](resources/images/dashboard/dashboard-translation-dialog.png)
-
 
 ### Deleting a dashboard
 
@@ -173,9 +172,9 @@ Your starred dashboards are listed first in the list of dashboards for quick acc
 
 ### Filtering a dashboard
 
-Filters can be applied to a dashboard for changing the data displayed in the dashboard items. The filters are applied to each dashboard item in the same way: each added filter overrides the original value for that dimension in the original chart, table or map (visualization). It is possible to filter on Organisation Units, Periods and other dynamic dimensions depending on the DHIS2 instance. You can apply multiple filters to the dashboard.
+Applying filters to a dashboard change the data displayed in dashboard items containing visualizations. The filters are applied to each dashboard item in the same way: each added filter overrides the original value for that dimension in the original chart, table or map. It is possible to filter on Organisation Units and Periods, as well as dynamic dimensions, depending on the DHIS2 instance. You can apply multiple filters to the dashboard.
 
-To add a filter, click on the **Add Filter** button and choose the dimension:
+To add a filter, click on the **Add Filter** button and choose a dimension:
 
 ![Adding a filter](resources/images/dashboard/dashboard-filters.png)
 
@@ -186,17 +185,20 @@ A dialog opens where the filter selection can be made.
 Click on **Confirm** in the dialog to apply the filter to the
 current dashboard.
 
-Filters are not stored, so when switching to a different dashboard they are lost. Black filter badges appear above the dashboard items to indicate that what is shown in the dashboard items is not the original visualization, but a filtered one where the filters override the stored dimensions' values.
+Filters are not stored, so when switching to a different dashboard they are reset. Black filter badges appear above the dashboard items to indicate which filters have been applied to the dashboard's visualizations.
 
 ![Current filters displayed as badges above the dashboard](resources/images/dashboard/dashboard-filter-badges.png)
 
-Filter badges can be clicked for opening the filter selection dialogs thus allowing for filter editing. A filter can be removed by clicking on the **Remove** button in the badge. Whenever a filter is added, edited or removed, the dashboard items reload to show the updated data. The filter badges are always visible at the top of the page when scrolling the dashboard content.
+You can edit a filter by clicking on the filter badge to open the filter selection dialog. A filter can be removed by clicking on the **Remove** button on the badge. Whenever a filter is added, edited or removed, the dashboard items reload to show the updated data. The filter badges are always visible at the top of the page when scrolling the dashboard content.
 
-By default, users are able to filter dashboard items by any dimension defined in your system. To limit available filters, see [Restricting dashboard filters](#restricting-dashboard-filters).
+By default, users are able to filter dashboard items by any dimension defined in the DHIS2 instance. To limit available filters, see [Restricting dashboard filters](#restricting-dashboard-filters).
 
 ### Making dashboards available offline
 
-To make a dashboard available offline, choose the **Make dashboard available offline** option in the **...More** menu. This will cause a reload of the dashboard where requests to the server are recorded and saved in browser storage. Note that offline dashboards are only available on the computer and browser where you set it to offline. If you currently have a filter applied when requesting the dashboard be made available offline, the filter will have to be removed first.
+To make a dashboard available offline, choose the **Make dashboard available offline** option in the **...More** menu. This will cause a reload of the dashboard where requests to the server are recorded and saved in browser storage. Note that offline dashboards are only available on the computer and browser where you set it to offline. If you currently have a filter applied when requesting the dashboard be made available offline, a dialog will appear to confirm the removal of the filters.
+
+![](resources/images/dashboard/dashboard-clear-filters-to-sync.png)
+
 
 Dashboards that have been saved for offline have an indicator on the dashboard chip in the dashboards bar, as well as a tag showing the time it was saved.
 
@@ -209,17 +211,16 @@ If the dashboard has been changed since you made it available offline, either by
 
 You can remove a dashboard from offline storaged by choosing **Remove from offline storage** in the **...More** menu.
 
-In addition, if you manually log out of the DHIS2 instance, all cached dashboards will be cleared and they will no longer be available offline.
-
-
 ![](resources/images/dashboard/dashboard-remove-offline.png)
 
 #### Other notes about Dashboards app when you are offline:
+If you manually log out of the DHIS2 instance, all cached dashboards will be cleared and they will no longer be available offline.
+
 If you are offline, any buttons or actions that require a connection to complete successfully are disabled. They will be re-enabled once connectivity is restored.
 
 ### Printing a dashboard
 
-From the **...More** menu you can print the current dashboard. There are two styles of dashboard print: dashboard layout and one item per page. For both styles, a title page is added that shows the dashboard title, description (if the Show description setting is on), and any applied dashboard filters.
+From the **...More** menu you can print the current dashboard. There are two styles of dashboard print: *Dashboard layout* and *One item per page*. For both styles, a title page is added that shows the dashboard title, description (if the *Show description* setting is enabled), and any applied dashboard filters.
 
 ![](resources/images/dashboard/dashboard-print-menu.png)
 
@@ -229,9 +230,9 @@ For best print results:
 - wait until all dashboard items have loaded before printing
 - use A4 landscape setting with default margins set and background graphics turned on
 
-#### Print dashboard layout
+#### Print dashboard layout { #dashboard-print-layout }
 
-Dashboard layout print will approximate the dashboard layout as it is shown in the browser. Note that some adjustments may need to be made to the layout in order to prevent items being split onto multiple pages: items that would be cut off by a page break are moved to the next page, and items that are taller than one page are shortened to fit on one page.
+*Dashboard layout* print will approximate the dashboard layout as it is shown in the browser. Note that some adjustments may need to be made to the layout in order to prevent items being split onto multiple pages: items that would be cut off by a page break are moved to the next page, and items that are taller than one page are shortened to fit on one page.
 
 Once in print mode, click on the **Print** button in the upper right to trigger the browser print functionality.
 
@@ -251,8 +252,7 @@ Dashboard items with charts, pivot table or maps may have an item menu button in
 
 ### Switching between visualizations
 
-Dashboard items showing charts, pivot tables and maps can be toggled
-between these visualizations. Click on the item menu button and choose the desired view (e.g., **View as Table**, **View as Map**, **View as Chart**):
+It is possible to toggle the visualization view for items containing charts, pivot tables and maps. Click on the item menu button and choose the desired view (e.g., **View as Table**, **View as Map**, **View as Chart**):
 
 ![](resources/images/dashboard/dashboard-item-menu.png)
 
@@ -266,7 +266,7 @@ To view the chart, table or map in fullscreen, click on the **View fullscreen** 
 To open the visualization in its corresponding app (e.g., Data Visualizer, Maps) click on the **Open in [app name] app** option.
 
 
-## Show interpretations and details
+### Show interpretations and details
 
 You can write interpretations for the chart, pivot table, map, event report, and event chart items by clicking on **Show interpretations and details**:
 
@@ -299,7 +299,7 @@ There are 3 levels of sharing permissions available for a dashboard:
 
 - View and edit
 
-  The user or user group can view and edit the dashboard. Editing allows for altering the layout, resizing and removing items, renaming and deleting the dashboard, etc.
+  The user or user group can view and edit the dashboard. This level of sharing allows for all types of changes, including altering the layout, resizing and removing items, renaming and deleting the dashboard, etc.
 
 All dashboards have two sharing groups set by default.
 
@@ -319,7 +319,7 @@ To share a dashboard with specific users and user groups, type the name in the i
 
 You can provide users with the url of the dashboard, allowing them to navigate directly to the dashboard. To get the dashboard url, just open the dashboard in view mode, and copy the browser url. For example, the url to the Antenatal Care dashboard in play.dhis2.org/demo is:
 
-https://play.dhis2.org/demo/dhis-web-dashboard/\#/nghVC4wtyzi
+https://play.dhis2.org/dev/dhis-web-dashboard/#/nghVC4wtyzi
 
 ### Cascade sharing of visualizations on the dashboard
 
