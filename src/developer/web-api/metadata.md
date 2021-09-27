@@ -2749,3 +2749,131 @@ However, in order to keep the backwards compability, the legacy `user` property 
   }
 }
 ```
+
+## Propose Metadata Changes { #webapi_metadata_proposals }
+
+### Propose a Metadata Change { #webapi_metadata_proposals_propose }
+A proposal always targets a single metadata object using:
+
+    POST /api/metadata/proposals
+
+Depending on the payload the proposal 
+
+* adds a new metadata object
+* updates an existing metadata object references by UID
+* removes an existing metadata object referenced by UID
+
+To propose adding a new metadata object send a JSON payload like the following:
+
+```json
+{
+  "type": "ADD",
+  "target": "ORGANISATION_UNIT",
+  "change": {"name":"My Unit", "shortName":"MyOU", "openingDate": "2020-01-01"}
+}
+```
+The `change` property contains the same JSON object that could directly be 
+posted to the corresponding endpoint to create the object.
+
+To propose updating an existing metadata object send a JSON payload like in 
+the below example:
+
+```json
+{
+  "type": "UPDATE",
+  "target": "ORGANISATION_UNIT",
+  "targetUid": "<uid>",
+  "change": [
+    { "op": "replace", "path": "/name", "value": "New name" }
+  ]
+}
+```
+The `targetUid` refers to the object by its UID which should be updated.
+The `change` property here contains a JSON patch payload. This is the same
+patch payload that could be posted to the corresponding endpoint to directly
+apply the update.
+
+To propose the removal of an existing object send a payload like in the last 
+example:
+
+```json
+{
+  "type": "REMOVE",
+  "target": "ORGANISATION_UNIT",
+  "targetUid": "<uid>"
+}
+```
+The `targetUid` refers to the object  by its UID which should be removed.
+
+Only `target` type `ORGANISATION_UNIT` is supported currently.
+
+### Accept a Metadata Change Proposal { #webapi_metadata_proposals_accept }
+To accept an open proposal use `POST` on the proposal resource
+
+    POST /api/metadata/proposals/<uid>
+
+When successful the status of the proposal changes to status `ACCEPTED`.
+Once accepted the proposal can no longer be rejected.
+A comment can still be set/updated.
+
+Should a proposal fail to apply it changes to status `FAILED`.
+A new changed proposal should be made with an update `change`.
+
+### Reject a Metadata Change Proposal { #webapi_metadata_proposals_reject }
+To reject an open proposal use `DELETE` on the proposal resource
+
+    DELETE /api/metadata/proposals/<uid>
+
+This changes the status of the proposal to `REJECTED`.
+Once rejected the proposal can no longer be accepted.
+A comment can still be set/updated.
+
+### Comment a Metadata Change Proposal { #webapi_metadata_proposals_comment }
+Proposal can be commented in any state using `PATCH` on the proposal resource
+with a `plain/text` payload:
+
+    PATCH /api/metadata/proposals/<uid>
+
+### List Metadata Change Proposals { #webapi_metadata_proposals_list }
+All proposals can be listed:
+
+    GET /api/metadata/proposals/
+
+The result list can be filtered using the `filter` parameter.
+For example, to list only accepted proposals use:
+
+    GET /api/metadata/proposals?filter=status=ACCEPTED
+
+Similarly to only show open proposals use:
+
+    GET /api/metadata/proposals?filter=status=PROPOSED
+
+Filters can also be applied to any field except `change`.
+Supported filter operators are those described in the Gist Metadata API.
+This also includes property transformers described for Gist API.
+
+List of available fields are:
+
+| Field       | Description |
+| ----------- | -------------------------------------------------------------- |
+| id          | unique identifier of the proposal |
+| type        | `ADD` a new object, `UPDATE` an existing object, `REMOVE` an existing object |
+| status      | `PROPOSED` (open proposal), `ACCEPTED` (successful), `FAILED` (accepting caused import error), `REJECTED` |
+| target      | type of metadata object to add/update/remove; currently only `ORGANISATION_UNIT` |
+| targetUid   | UID of the updated or removed object, not defined for `ADD` |
+| createdBy   | the user that created the proposal |
+| created     | the date time when the proposal was created |
+| acceptedBy  | the user that accepted the proposal | 
+| comment     | optional plain text comment |
+| change      | JSON object for `ADD` proposal, JSON array for `UPDATE` proposal, nothing for `REMOVE` proposal |
+
+### Viewing Metadata Change Proposals { #webapi_metadata_proposals_show }
+Individual change proposals can be viewed using 
+
+    GET /api/metadata/proposals/<uid>
+
+The `fields` parameter can be used to narrow the fields included for the shown 
+object. For example:
+
+    GET /api/metadata/proposals/<uid>?fields=id,type,status,change
+
