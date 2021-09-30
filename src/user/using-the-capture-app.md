@@ -229,6 +229,7 @@ When there is no incident date, the reference date will fall back on the enrollm
 
 On SCHEDULE type of events the user can also configure the "Scheduled days from start". Which means if a stage has a number in "Scheduled days from start" the reference date will increased by that number. 
 In the example below we increase the due date by 30 days.
+
 ![](resources/images/capture_app/auto-generated-08.png)
 
 When the "Scheduled days from start" does not contain a number or contains 0 the reference date is used without adding any days to it.
@@ -236,8 +237,8 @@ When the "Scheduled days from start" does not contain a number or contains 0 the
 
 ### Possible duplicates detection
 
-In both cases of registering a tracked entity instance, (with enrollment or without enrollment) the system will warn you for possible duplicates.
-Note that, programs need to be correctly configured through the maintenance app for the duplicates warning to appear. 
+In both cases of registering a tracked entity instance, (with enrollment or without enrollment) the system will start looking for possible duplicates.
+Note that, programs need to be correctly configured through the maintenance app for the system to start detecting duplicates when enrolling a new person in a program. 
 
 To configure a program through the maintenance app you will have to: 
 
@@ -268,14 +269,13 @@ Let us explain this with an example that demonstrates the detection of possible 
 ![](resources/images/capture_app/duplicates-on-creation-02.png)
 
 4. Fill in the first name in the form. **Remember, the first name we have checked as "Searchable" in the maintenance app.** 
-It is because we have checked the first name as "Searchable" that the system will start looking for possible 
-duplicates that match the name Sarah as you see in the image below.
+Click **Save new**. The system will start looking for possible duplicates that match the name Sarah.
 ![](resources/images/capture_app/duplicates-on-creation-03.png)
 
-5. Click the link with text "Possible duplicates"
+5. The system will automatically show a list of possible duplicates if there are any. 
 ![](resources/images/capture_app/duplicates-on-creation-04.png)
 
-6. View the possible duplicates
+6. You can choose to make a new enrollement by clicking **Save new** or if you see the right person in the list - you can view the dashboard.
 ![](resources/images/capture_app/duplicates-on-creation-05.png)
 
 > **Tip**
@@ -330,7 +330,7 @@ You now have two options:
   You have the option to select a **program**. If a **program** is selected the attributes are derived from the selected **program**.
   If no **program** is selected, only the attributes that belong to the **Tracked Entity Instance** will be visible.
 
-    ![search for Tracked Entity Instance](resources/images/capture_app/search_tei.png)
+    ![search for Tracked Entity Instance](resources/images/capture_app/search_tei_1.png)
 
     - If the **Tracked Entity Instance** or **program** is configured with a unique attribute, this attribute can be
       used for finding a specific **Tracked Entity Instance** or **program**. This attribute should be presented alone.
@@ -473,9 +473,11 @@ assigned to a program stage.
 3. Select a program.
     All events registered to the selected program show up in a list.
 
-4. Click the **downward arrow** icon on the top right of the event list.
+4. Click the **three dots** icon on the top right of the event list.
 
-5. Select the format you want to download.
+5. Click **Download data**.
+
+6. Select the format you want to download.
 
     ![download event list](resources/images/capture_app/download_event_list.png)
 
@@ -607,7 +609,7 @@ In the event list you will be able to view the assignee per event. Moreover, you
 
 ## Tracker programs { #capture_tracker_programs } 
 
-The Capture app does not support tracker programs yet, but the tracker programs are still listed. If you select a tracker program, the app will lead you to the Tracker Capture app as shown below.
+The Capture app supports the workinglists in tracker programs, but when you open a tracked entity instance, you will be redirected to the enrollment dashboard in the Tracker Capture app.
 
 ![](resources/images/capture_app/tracker_program.png)
 
@@ -624,7 +626,7 @@ The Capture app does not support tracker programs yet, but the tracker programs 
 
 3. If the program has a category combination set the category option will have to be selected.
 
-4. Click the Find button.
+4. Click the Search button.
 
 5. From the dropdown menu click the first option.
 
@@ -677,7 +679,7 @@ To execute a fallback search, simply press the button on the bottom saying "Sear
 
 1. Open the **Capture** app.
 
-2. Click the **Find** button to open the search page.
+2. Click the **Search** button to open the search page.
 
 3. Click on the drop down menu and select the type of entity you want to search for.
 
@@ -780,7 +782,7 @@ In this section we are focusing on the first use-case, where you type or paste t
 
 ![](resources/images/capture_app/enrollment-dash-01.png)
 
-One way to reach the enrollment dashboard and view a specific tracked entity instance's enrollment is by using _only_ the enrollment id. For example the link .../dhis-web-capture/#/?enrollmentId=wBU0RAsYjKE will 
+One way to reach the enrollment dashboard and view a specific tracked entity instance's enrollment is by using _only_ the enrollment id. For example the link .../dhis-web-capture/#/enrollment?enrollmentId=wBU0RAsYjKE will 
 take you the dashboard for the enrollment with id `wBU0RAsYjKE`. 
 
 The top of the dashboard defines your context. For example in the image below the context is as follows, the selected program is "Child Programme", the organisation unit is "Ngelehun CHC", the selected person is "Anna Jones" and the selected enrollment is "2017-11-16 11:38".
