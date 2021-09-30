@@ -1493,7 +1493,23 @@ Programs which are accessible by all organisation units are returned with an emp
 
 ### Split organisation unit
 
+The organisation unit split endpoint allows you to split organisation units into a number of target organisation units.
+
+```
+/api/33/organisationUnits/split
+```
+
+
+
 ### Merge organisation units
+
+The organisation unit merge endpoint allows you to merge a number of organisation units into a target organisation unit.
+
+```
+/api/33/organisationUnits/merge
+```
+
+
 
 ## Data sets { #webapi_data_sets } 
 
