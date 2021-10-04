@@ -525,14 +525,14 @@ associated objects or collection of objects, is supported as well.
 </tbody>
 </table>
 
-Operators will be applied as logical *and* query, if you need a *or*
+Operators will be applied as logical *and* query, if you need an *or*
 query, you can have a look at our *in* filter (also have a look at the
 section below). The filtering mechanism allows for recursion. See below
 for some examples.
 
-Get data elements with id property ID1 or ID2:
+Get data elements with id property ID1 and aggregation operator "sum":
 
-    /api/dataElements?filter=id:eq:ID1&filter=id:eq:ID2
+    /api/dataElements?filter=id:eq:ID1&filter=aggregationOperator:eq:sum
 
 Get all data elements which have the dataSet with id ID1:
 
