@@ -316,8 +316,7 @@ Sharing settings can be accessed by clicking **File** \> **Share**. Change shari
 
 - **Can view only**: Can only view the visualization.
 
-- **No access**: Won't have access to the visualization. This
-  setting is only applicable to **Public access** and **External access**.
+- **No access**: Won't have access to the visualization. This setting is only applicable to **Public access** and **External access**. (Note that to enable access to everyone, both **Public access** and **External access** must be set to allow view.)
 
 New users can be added by searching for them by name under `Add users and user groups`.
 
