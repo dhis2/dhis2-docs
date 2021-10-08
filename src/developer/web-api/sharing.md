@@ -80,10 +80,10 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 
 > **Note**
 >
-> It is possible to create illogical sharing combinations. For
+> It is possible to create surprising sharing combinations. For
 > instance, if `externalAccess` is set to `true` but `publicAccess` is
 > set to `--------`, then users will have access to the object 
-> ***only when they are logged out.***
+> only when they are logged out.
 
 ## Cascade Sharing for Dashboard
 
