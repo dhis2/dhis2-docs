@@ -2249,6 +2249,69 @@ To flag as potential duplicate a Tracked Entity Instance (referred as tei)
 | 403 | User do not have access to update tei
 | 404 | Tei not found
 
+## Merging Tracked Entity Instances
+Tracked entity instances can now be merged together if they are viable. To initiate a merge, the first step is to define two tracked entity instances as a Potential Duplicate. The merge endpoint
+will move data from the duplicate tracked entity instance to the original tracked entity instance, and delete the remaining data of the duplicate.
+
+To merge a Potential Duplicate, or the two tracked entity instances the Potential Duplicate represents, the following endpoint can be used:
+
+    POST /potentialDuplicates/<id>/merge
+
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| mergeStrategy | Strategy to use for merging the potentialDuplicate | enum | AUTO(default) or MANUAL |
+
+The endpoint accepts a single parameter, "mergeStrategy", which decides which strategy to use when merging. For the AUTO strategy, the server will attempt to merge the two tracked entities
+automatically, without any input from the user. This strategy only allows merging tracked entities without conflicting data (See examples below). The other strategy, MANUAL, requires the
+user to send in a payload describing how the merge should be done. For examples and rules for each strategy, see their respective sections below.
+
+### Merge Strategy AUTO
+The automatic merge will evaluate the mergability of the two tracked entity instances, and merge them if they are deemed mergable. The mergability is based on whether the two tracked entity instances
+has any conflicts or not. Conflicts refers to data which cannot be merged together automatically. Examples of possible conflicts are:
+- The same attribute has different values in each tracked entity instance
+- Both tracked entity instances are enrolled in the same program
+- Tracked entity instances have different types
+
+If any conflict is encountered, an errormessage is returned to the user.
+
+When no conflicts are found, all data in the duplicate that is not already in the original will be moved over to the original. This includes attribute values, enrollments (Including events) and relationships.
+After the merge completes, the duplicate is deleted and the potentialDuplicate is marked as MERGED.
+
+When requesting an automatic merge like this, a payload is not required and will be ignored.
+
+### Merge Strategy MANUAL
+The manual merge is suitable when the merge has resolvable conflicts, or when not all the data is required to be moved over during a merge. For example, if an attribute has different values in both tracked
+entity instances, the user can specify whether to keep the original value, or move over the duplicate's value. Since the manual merge is the user explicitly requesting to move data, there are some different 
+checks being done here:
+- Relationship cannot be between the original and the duplicate (This results in an invalid self-referencing relationship)
+- Relationship cannot be of the same type and to the same object in both tracked entity instances (IE. between original and other, and duplicate and other; This would result in a duplicate relationship)
+
+There are two ways to do a manual merge: With and without a payload.
+
+When a manual merge is requested without a payload, we are telling the API to merge the two tracked entity instances without moving any data. In other words, we are just removing the duplicate and marking the 
+potentialDuplicate MERGED. This might be valid in a lot of cases where the tracked entity instance was just created, but not enrolled for example.
+
+Otherwise, if a manual merge is requested with a payload, the payload refers to what data should be moved from the duplicate to the original. The payload looks like this:
+```json
+{
+  "attributes": ["B58KFJ45L9D"],
+	"enrollments": ["F61SJ2DhINO"],
+	"relationships": ["ETkkZVSNSVw"]
+}
+```
+
+This payload contains three lists, one for each of the types of data that can be moved. Attributes is a list of uids for Tracked Entity Attributes, enrollments is a list of uids for enrollments and relationships 
+a list of uids for relationships. The uids in this payload have to refer to data that actually exists on the duplicate. There is no way to add new data or change data using the merge endpoint - Only moving data.
+
+
+### Additional information about merging
+Currently it is not possible to merge tracked entity instances that are enrolled in the same program, due to the added complexity. A workaround is to manually remove the enrollments from one of the tracked entity
+instances before starting the merge.
+
+All merging is based on data already persisted in the database, which means the current merging service is not validating that data again. This means if data was already invalid, it will not be reported during the merge.
+The only validation done in the service relates to relationships, as mentioned in the previous section.
+
+
 
 ## Program Notification Template
 
