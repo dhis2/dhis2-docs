@@ -2295,8 +2295,8 @@ Otherwise, if a manual merge is requested with a payload, the payload refers to 
 ```json
 {
   "attributes": ["B58KFJ45L9D"],
-	"enrollments": ["F61SJ2DhINO"],
-	"relationships": ["ETkkZVSNSVw"]
+  "enrollments": ["F61SJ2DhINO"],
+  "relationships": ["ETkkZVSNSVw"]
 }
 ```
 
