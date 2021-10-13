@@ -2805,6 +2805,8 @@ example:
 ```
 The `targetUid` refers to the object  by its UID which should be removed.
 
+A free text `comment` can be added to any type of comment.
+
 Only `target` type `ORGANISATION_UNIT` is supported currently.
 
 ### Accept a Metadata Change Proposal { #webapi_metadata_proposals_accept }
@@ -2814,25 +2816,51 @@ To accept an open proposal use `POST` on the proposal resource
 
 When successful the status of the proposal changes to status `ACCEPTED`.
 Once accepted the proposal can no longer be rejected.
-A comment can still be set/updated.
 
-Should a proposal fail to apply it changes to status `FAILED`.
-A new changed proposal should be made with an update `change`.
+Should a proposal fail to apply it changes to status `NEEDS_UPDATE`.
+The `reason` field contains a summary of the failures when this information is 
+available.
+
+### Oppose a Metadata Change Proposal { #webapi_metadata_proposals_oppose }
+If a proposal isn't quite right and needs adjustment this can be indicated
+by opposing the proposal by sending a `PATCH` for the proposal resource
+
+    PATCH /api/metadata/proposals/<uid>
+
+Optionally a plain text body can be added to this to give a `reason` why the
+proposal got opposed.
+
+A opposed proposal must be in state `PROPOSED` and will change to state 
+`NEEDS_UPDATE`.
+
+### Adjust a Metadata Change Proposal { #webapi_metadata_proposals_adjust }
+A proposal in state `NEEDS_UPDATE` needs to be adjusted before it can be 
+accepted. To adjust the proposal a `PUT` request is made for the proposal's 
+resource
+
+    PUT /api/metadata/proposals/<uid>
+
+Such an adjustment can either be made without a body or with a JSON body 
+containing an object with the updated `change` and `targetUid` for the 
+adjustment:
+
+```json
+{
+  "targetUid": "<uid>",
+  "change": ...
+}
+```
+The JSON type of the `change` value depends on the proposal `type` analogous to
+when a proposal is initially made.
 
 ### Reject a Metadata Change Proposal { #webapi_metadata_proposals_reject }
 To reject an open proposal use `DELETE` on the proposal resource
 
     DELETE /api/metadata/proposals/<uid>
 
-This changes the status of the proposal to `REJECTED`.
-Once rejected the proposal can no longer be accepted.
-A comment can still be set/updated.
-
-### Comment a Metadata Change Proposal { #webapi_metadata_proposals_comment }
-Proposal can be commented in any state using `PATCH` on the proposal resource
-with a `plain/text` payload:
-
-    PATCH /api/metadata/proposals/<uid>
+This changes the status of the proposal conclusively to `REJECTED`.
+No further changes can be made to this proposal.
+It is kept as a documentation of the events.
 
 ### List Metadata Change Proposals { #webapi_metadata_proposals_list }
 All proposals can be listed:
@@ -2858,13 +2886,15 @@ List of available fields are:
 | ----------- | -------------------------------------------------------------- |
 | id          | unique identifier of the proposal |
 | type        | `ADD` a new object, `UPDATE` an existing object, `REMOVE` an existing object |
-| status      | `PROPOSED` (open proposal), `ACCEPTED` (successful), `FAILED` (accepting caused import error), `REJECTED` |
+| status      | `PROPOSED` (open proposal), `ACCEPTED` (successful), `NEEDS_UPDATE` (accepting caused error or opposed), `REJECTED` |
 | target      | type of metadata object to add/update/remove; currently only `ORGANISATION_UNIT` |
 | targetUid   | UID of the updated or removed object, not defined for `ADD` |
 | createdBy   | the user that created the proposal |
 | created     | the date time when the proposal was created |
-| acceptedBy  | the user that accepted the proposal | 
-| comment     | optional plain text comment |
+| finalisedBy | the user that accepted or rejected the proposal |
+| finalised   | the date time when the proposal changed to a conclusive state of either accepted or rejected |
+| comment     | optional plain text comment given for the initial proposal |
+| reason      | optional plain text given when the proposal was opposed or the errors occurring when accepting a proposal failed | 
 | change      | JSON object for `ADD` proposal, JSON array for `UPDATE` proposal, nothing for `REMOVE` proposal |
 
 ### Viewing Metadata Change Proposals { #webapi_metadata_proposals_show }
@@ -2876,4 +2906,3 @@ The `fields` parameter can be used to narrow the fields included for the shown
 object. For example:
 
     GET /api/metadata/proposals/<uid>?fields=id,type,status,change
-
