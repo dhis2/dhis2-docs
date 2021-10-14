@@ -90,16 +90,18 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 ### Overview
 
 - `cascadeSharing` is available for Dashboards. This function copies the `userAccesses` and `userGroupAccesses` of a Dashboard to all of the objects in its `DashboardItems`, including `Map`, `EventReport`, `EventChart`, `Visualization`. 
-- This function will ***NOT*** copy `METADATA_WRITE` access. The copied `UserAccess` and `UserGroupAccess` will **only** have `METADATA_READ` permission. 
-- The `publicAccess` setting is currently ***NOT*** handled by this function. That means the `publicAccess` of the current `Dashboard` will not be copied.
+- This function will ***not*** copy `METADATA_WRITE` access. The copied `UserAccess` and `UserGroupAccess` will **only** have `METADATA_READ` permission. 
+- The `publicAccess` setting is currently ***not*** handled by this function. That means the `publicAccess` of the current `Dashboard` will not be copied.
 - If any target object has `publicAccess` enabled, then it will be skipped and will not receive the `UserAccesses` or `UserGroupAccesses` will be copied from the Dashboard.
-- The current user must have `METADATA_READ` sharing permission to all target objects. If the user do not, the error `E5001` will be thrown.
-- The current user must have `METADATA_WRITE` sharing permission to update any target objects. If the user does not have the required permission to update a target object, the error `E3001` will be thrown.
-- Sample use case: 
-  - DashboardA is shared to userA with `METADATA_READ_WRITE` permission. 
-  - DashboardA has VisualizationA which has DataElementA.
-  - VisualizationA, DataElementA have `publicAccess` *disabled* and are *not shared* to userA.
-  - After executing cascade sharing for DashboardA, userA will have `METADATA_READ` access to VisualizationA and DataElementA.
+- The current user must have `METADATA_READ` sharing permission to all target objects. If the user does not, error `E5001` will be thrown.
+- The current user must have `METADATA_WRITE` sharing permission to update any target objects. If a target object should be updated and the user does not have this permission, error `E3001` will be thrown.
+
+### Sample use case
+
+- DashboardA is shared to userA with `METADATA_READ_WRITE` permission. 
+- DashboardA has VisualizationA which has DataElementA.
+- VisualizationA, DataElementA have `publicAccess` *disabled* and are *not shared* to userA.
+- After executing cascade sharing for DashboardA, userA will have `METADATA_READ` access to VisualizationA and DataElementA.
 
 ### API endpoint 
 
@@ -115,7 +117,7 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 
 Sample request with parameters: 
 
-- `dryRun` and `atmoic` are `default` false with `POST` request to `api/dashboards/cascadeSharing/{dashboardUID}`
+- `dryRun` and `atomic` are `default` false with `POST` request to `api/dashboards/cascadeSharing/{dashboardUID}`
 - To enable `dryRun` or `atomic` parameters, send `POST` request to `api/dashboards/cascadeSharing/{dashboardUID}?dryRun=true&atomic=true`
 
 
