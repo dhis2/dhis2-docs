@@ -327,6 +327,8 @@ Table: Visualization attributes
 | cumulativeValues | Indicates whether the visualization is using cumulative values. Boolean value. |
 | hideEmptyColumns | Indicates whether to hide columns with no data values. Boolean value. |
 | hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
+| fixColumnHeaders | Keeps the columns' headers fixed (or not) in a Pivot Table. Boolean value. |
+| fixRowHeaders | Keeps the rows' headers fixed (or not) in a Pivot Table. Boolean value. |
 | completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
 | skipRounding | Apply or not rounding. Boolean value. |
 | showDimensionLabels | Shows the dimension labels or not. Boolean value. |
@@ -533,6 +535,8 @@ These operations follow the standard *REST* semantics. A new Visualization can b
   "legendDisplayStyle": "FILL",
   "legendDisplayStrategy": "FIXED",
   "hideEmptyRowItems": "BEFORE_FIRST_AFTER_LAST",
+  "fixColumnHeaders": true,
+  "fixRowHeaders": false,
   "regression": false,
   "cumulative": true,
   "sortOrder": 1,
