@@ -760,7 +760,7 @@ The generic provider can be used to configure any standard OIDC provider which a
 
 In the example below we configure the Norwegian governmental _HelseID_ OIDC provider using the key `helseid`.
 
-The client key will automatically appear as a button in the login page with the key value, or the value of the `display_alias` if defined. The `key` is arbitrary and can be any value, except for the keys used by the specific providers (`google`, `azure`, `wso2`). It is recommended to use a key which is descriptive and reflects the provider.s
+The client key will automatically appear as a button in the login page with the key value, or the value of the `display_alias` if defined. The `key` is arbitrary and can be any value, except for the keys used by the specific providers (`google`, `azure`, `wso2`). It is recommended to use a key which is descriptive and reflects the provider.
 
 The DHIS2 generic provider uses the following defaults:
 

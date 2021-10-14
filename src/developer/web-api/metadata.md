@@ -732,7 +732,7 @@ curl -X POST -d "{\"name\": \"some name\"}" -H "Content-Type: application/json"
   -u admin:district "https://play.dhis2.org/dev/api/schemas/dataElement"
 ```
 
-Which would yield the result:
+Which will yield the result:
 
 ```json
 [
@@ -761,7 +761,7 @@ For our web api endpoints that deal with metadata, we support partial updates (P
 
 Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT payload).
 
-#### Update name and valueType of data element
+#### Update name and value type of data element
 
 ```
 PATCH /api/dataElements/{id}
@@ -864,7 +864,6 @@ from one DHIS2 instance to another instance there are six dedicated endpoints av
 /api/optionSets/{id}/metadata.json
 
 /api/dataElementGroups/{id}/metadata.json
-
 ```
 
 These exports can then be imported using `/api/metadata`.
@@ -1463,7 +1462,7 @@ responses will have the following format:
 
 Programs which are accessible by all organisation units are returned with an empty array (`[]`) of organisation units.
 
-### Split organisation unit
+### Split organisation unit { #webapi_organisation_unit_split }
 
 The organisation unit split endpoint allows you to split organisation units into a number of target organisation units. 
 
@@ -1504,7 +1503,7 @@ The split operation will split the source org unit into the target org units. It
 
 The split operation will transfer all of the metadata associations of the source org unit over to the target org units. This includes data sets, programs, org unit groups, category options, users, visualizations, maps and event reports.
 
-The operation will transfer all data records of the source org unit over to the org unit specified as the primary target, or if not specified, the first specified target org units. This includes aggregate data values, data approval records, events, tracked entities and more.
+The operation will transfer all data records of the source org unit over to the org unit specified as the primary target, or if not specified, the first specified target org unit. This includes aggregate data values, data approval records, events, tracked entities and more.
 
 #### Validation
 
@@ -1520,7 +1519,7 @@ Table: Constraints and error codes
 | E1513      | Primary target must be specified                |
 | E1514      | Primary target must be a target org unit        |
 
-### Merge organisation units
+### Merge organisation units { #webapi_organisation_unit_merge}
 
 The organisation unit merge endpoint allows you to merge a number of organisation units into a target organisation unit.
 
@@ -1768,8 +1767,6 @@ programRules' expressions.
 The following table gives a detailed overview over the programRule
 model.
 
-
-
 Table: programRule
 
 | name | description | Compulsory |
@@ -1785,8 +1782,6 @@ Table: programRule
 
 The following table gives a detailed overview over the programRuleAction
 model.
-
-
 
 Table: programRuleAction
 
@@ -1842,8 +1837,6 @@ Apart from above validations, `data` field in program rule action which normally
 The following table gives a detailed overview over the
 programRuleVariable model.
 
-
-
 Table: programRuleVariable
 
 | name | description | Compulsory |
@@ -1892,8 +1885,6 @@ about each section (group) in the form as well as each field in the
 sections, including labels and identifiers. By supplying period and
 organisation unit identifiers the form response will be populated with
 data values.
-
-
 
 Table: Form query parameters
 
@@ -1987,8 +1978,6 @@ To upload metadata in CSV format you can make a POST request to the metadata end
 
 The following object types are supported. The `classKey` query parameter is mandatory and can be found next to each object type in the table below.
 
-
-
 Table: Object types and keys
 
 | Object type | Class key |
@@ -2017,8 +2006,6 @@ curl --data-binary @data_elements.csv "http://localhost/api/metadata?classKey=DA
 The formats for the currently supported object types for CSV import are listed in the following sections.
 
 ### Data elements { #webapi_csv_data_elements } 
-
-
 
 Table: Data Element CSV Format
 
@@ -2052,8 +2039,6 @@ name,uid,code,shortname,description
 
 ### Organisation units { #webapi_csv_org_units } 
 
-
-
 Table: Organisation Unit CSV Format
 
 | Index | Column | Required | Value (default first) | Description |
@@ -2086,8 +2071,6 @@ name,uid,code,parent
 
 ### Validation rules { #webapi_csv_validation_rules } 
 
-
-
 Table: Validation Rule CSV Format
 
 | Index | Column | Required | Value (default first) | Description |
@@ -2109,8 +2092,6 @@ Table: Validation Rule CSV Format
 | 15 | Right side missing value strategy | No | SKIP_IF_ANY_VALUE_MISSING &#124; SKIP_IF_ALL_VALUES_MISSING &#124; NEVER_SKIP | Behavior in case of missing values in right side expression. |
 
 ### Option sets { #webapi_csv_option_sets } 
-
-
 
 Table: Option Set CSV Format
 
@@ -2145,8 +2126,6 @@ optionsetname,optionsetuid,optionsetcode,optionname,optionuid,optioncode
 ```
 
 ### Option group
-
-
 
 Table: Option Group CSV Format
 
@@ -2450,8 +2429,7 @@ The following file extensions are blocked.
 
 ## Metadata versioning { #webapi_metadata_versioning } 
 
-This section explains the Metadata Versioning APIs available starting
-2.24
+This section explains the metadata versioning APIs.
 
   - `/api/metadata/version`: This endpoint will return the current metadata
     version of the system on which it is invoked.
