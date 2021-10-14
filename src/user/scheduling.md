@@ -92,6 +92,10 @@ Select the number of inactive months as the job parameter.
 All users that have not logged in for that number of months or longer will be disabled by the job.
 Disabled users will no longer be able to log into the system.
 
+The _Reminder days before_ parameter can be set to send a reminder email to
+those users the specified number of days before their account is due to expire.
+If the value is not set (blank) no reminder is sent.
+
 
 ### Resource table { #scheduling_resource_table } 
 
