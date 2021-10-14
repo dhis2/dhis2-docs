@@ -211,6 +211,8 @@ chance of course, but can potentially indicate a measurement or data entry error
 
 5.  Set **Algorithm** to **Z-score**
 
+    Modified Z-score can also be selected. If selected, the median of the values is used instead of the mean.
+
 6.  Select a **Threshold**.
 
     This refers to the number of standard deviations the data is allowed
@@ -427,6 +429,6 @@ minimum maximum outlier analysis.
 
 > **Tip**
 >
-> Click the star icon to remove the follow-up tag from the data value.
+> Check the **Unfollow** checkbox in the list and click the **Unfollow**-button to remove the follow-up tags from the marked data values.
 > You can also enter a comment in the field to indicate any additional 
 > information regarding the value. 

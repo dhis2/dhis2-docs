@@ -912,6 +912,13 @@ You can delete the enrollment by clicking the delete button and confirming the a
 
 ![](resources/images/capture_app/enrollment-dash-enrollment-widget-3.png)
 
+#### Enrollment comment widget
+
+![](resources/images/capture_app/enrollment-widget-comment.png)
+
+The enrollment comment widget displays comments and allows addition of comments, associated with the current enrollment. 
+
+By clicking in the text field, you will be able to enter new text and see action buttons **Save comment** and **Cancel**.
 
 #### Person profile widget
 
@@ -930,6 +937,7 @@ On the enrollment dashboard, the feedback widget displays text and values that a
 If the current dashboard triggers some rules set up in the program, the text or values will be automatically displayed.
 
 #### Empty state
+
 If there isn't any feedback for the current dashboard, the widget shows a short _empty_ message.
 If there aren't any program rules that could show feedback for the current dashboard then the widget is hidden.
 
@@ -942,10 +950,12 @@ On the enrollment dashboard, the indicator widget displays indicator text and va
 The indicators will be sorted alphabetically.
 
 #### Empty state
+
 If there aren't any related indicators or indicator output for the current dashboard, the widget shows a short _empty_ message.
 If the current dashboard can't show any indicator output (because it has no related indicators) then the widget is hidden.
 
 #### Legends
+
 Some indicator values show a colored circle next to the value. 
 The colored circle shows the related legend color for that indicator value. 
 Colored legend circles are only shown for indicator values that have them set up.
@@ -961,9 +971,27 @@ If there aren't any warnings to show for the current dashboard then the widget i
 
 ## Enrollment event view and edit page
 
-You can reach the enrollment event form by typing in the address bar of your browser. You have to specify the `programId`, `orgUnitId`, `teiId`, `enrollmentId`, `stageId` and `eventId`
+### Navigation 
 
-![](resources/images/capture_app/enrollment-event-view-edit-url.png)
+You can reach the enrollment event edit page is by clicking any event in the Program stage list from the Enrollment Overview page.
+
+### Top bar context 
+
+At the top of the page you can see various information related to the current context. You can see the program, the organization unit, the tracked entity, the enrollment date, the stage and the enrollment event date.
+
+To go to Enrollment Overview page you can:
+- click the "Back to all stages and events" button.
+- deselect the stage from the top bar.
+- deselect the event from the top bar.
+
+![](resources/images/capture_app/enrollment-event-view-edit-navigation.png)
+
+
+### Event Comment Widget
+
+![](resources/images/capture_app/event-widget-comment.png)
+
+The event comments widget displays and allows the addition of comments related to the currently selected event. The widget is displayed in the right sidebar when both viewing and editing events.
 
 ### Error Widget
 
@@ -981,3 +1009,47 @@ This is the form where you can see and edit the enrollment event details.
 In the view/edit event form you can see the stage name and icon.
 
 ![](resources/images/capture_app/enrollment-event-view-edit-header.png)
+
+#### View mode
+
+When the form is in the view mode the title of the page will appear as: `Enrollment: View Event`. You can see in the page all the information related to the event. Click the `Edit event` button to switch to the edit mode. 
+
+![](resources/images/capture_app/enrollment-event-view-edit-view.png)
+
+#### Edit mode
+
+When the form is in the edit mode the title of the page will appear as: `Enrollment: Edit Event`. You can modify the event and click the `Save` button. Click the `Cancel` button to switch to the view mode without saving the changes. 
+
+![](resources/images/capture_app/enrollment-event-view-edit-edit.png)
+
+#### Widgets in View/Edit event page
+
+The widgets seen in the right-hand column will display and function the same way as mentioned in the [enrollment dashboard](#enrollment-dashboard).
+
+![](resources/images/capture_app/enrollment-event-view-edit-widgets.png)
+
+## Add event in enrollment page
+
+You can reach this page add event page by clicking in the **New {stage event name}** button in the overview page.
+
+### New event widget form
+
+This is the form where you can modify the event details before saving. In the header you can see the stage name and icon.
+
+![](resources/images/capture_app/new-event-widget-form-header.png)
+
+## Program stage event list 
+
+You can reach the program stage event list by clicking **Go to full {stage event name}** button in the overview page.
+
+### Stage Event list 
+
+In this view you can see all events in a stage 
+
+#### Stage Event list header
+
+In the header, you can see the stage name and icon 
+
+![](resources/images/capture_app/program-stage-event-list-header.png)
+
+

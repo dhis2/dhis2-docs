@@ -140,23 +140,24 @@ perform the calculations.
 
 DHIS2 has a powerful web API which can be easily accessed using R.  In this section, we will illustrate a few examples of
 the use of the DHIS2 metadata and analytics API with R. The web API uses basic HTTP authentication (as described in
-the Web API section of this document). Using two R packages "RCurl" and
-"XML", we will be able to work with the output of the API in R. In the
+the Web API section of this document). Using two R packages "httr" and
+"readr", we will be able to work with the output of the API in R. In the
 first example, we will get some metadata from the database.
 
 ```
 #We are going to need these two libraries
 require(httr)
-require(magrittr)
 require(readr)
+#and this for the `%>%` operation
+require(magrittr)
 base.url<-"https://play.dhis2.org/dev/"
 url<-paste0(base.url,"api/me")
 username<-"admin"
 password<-"district"
-login<-GET(url)
+login<-GET(url, authenticate(username,password))
 #If we cannot login, stop with an error
-if(r$status == 200L) { print("Logged in successfully!")} else {stop("Could not login")}
-}
+if(login$status == 200L) { print("Logged in successfully!")} else {stop("Could not login")}
+
 
 
 
@@ -187,7 +188,6 @@ if(r$status == 200L) { print("Logged in successfully!")} else {stop("Could not l
 }
 
 getDataElements<-function(base.url) {
-
 url<-paste0(base.url,"api/dataElements?fields=id,name,shortName")
 r<-content(GET(url,authenticate(username,password)),as="parsed")
 do.call(rbind.data.frame,r$dataElements)
