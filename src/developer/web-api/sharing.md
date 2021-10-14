@@ -77,8 +77,15 @@ submit this to the sharing resource using curl:
 curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
   -H "Content-Type:application/json" -u admin:district
 ```
+**Note**
+> It is possible to create surprising sharing combinations. For
+> instance, if `externalAccess` is set to `true` but `publicAccess` is
+> set to `--------`, then users will have access to the object 
+> only when they are logged out.
 
-### New Sharing object
+
+
+## New Sharing object
 From 2.36 a new `sharing` property has been introduced in order to replace the old sharing properties `userAccesses`, `userGroupAccesses`, `publicAccess`, `externalAccess` in all metadata classes that have sharing enabled. This `Sharing` object is saved as a JSONB column in database. 
 However, in order make it backward compatible the old sharing objects still work normally as before, for both import and export. In backend sharing data will be saved to new  JSONb `sharing` column instead of the old `*accesses` tables.
 

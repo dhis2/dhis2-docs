@@ -1488,6 +1488,9 @@ everyone or a user group. To modify the sharing settings:
     Repeat the step to add more user groups.
 
 3.  If you want to allow external access, select the corresponding box.
+    
+    Note that in order for logged in and not logged in users to have
+    access, you must also allow public access.
 
 4.  For each user group, choose an access setting. The options are:
 

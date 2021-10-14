@@ -493,6 +493,9 @@ just a password.
     plus icon. The user group is added to the list.
 
 4.  (Optional) Select **External access (without login)**.
+    
+    Note that this only gives access when no user is logged in.  To give
+    access also to logged in users, you must also allow **Public access**.
 
 5.  Change the settings for the user groups you want to modify.
  - **None**
@@ -575,6 +578,9 @@ just a password.
     plus icon. The user group is added to the list.
 
 4.  (Optional) Select **External access (without login)**.
+    
+    Note that this only gives access when no user is logged in.  To give
+    access also to logged in users, you must also allow **Public access**.
 
 5.  Change the settings for the user groups you want to modify.
  - **None**
