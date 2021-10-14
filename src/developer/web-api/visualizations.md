@@ -315,7 +315,7 @@ Table: Visualization attributes
 | percentStackedValues | Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value. |
 | noSpaceBetweenColumns | Show/hide space between columns. Boolean value. |
 | regression | Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value. |
-| externalAccess | Indicates whether the Visualization is available as external read-only. Boolean value. |
+| externalAccess | Indicates whether the Visualization is available as external read-only. Only applies when no user is logged in. Boolean value. |
 | userOrganisationUnit | Indicates if the user has an organisation unit. Boolean value. |
 | userOrganisationUnitChildren | Indicates if the user has a children organisation unit. Boolean value. |
 | userOrganisationUnitGrandChildren | Indicates if the user has a grand children organisation unit . Boolean value. |
