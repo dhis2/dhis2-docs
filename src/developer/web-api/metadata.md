@@ -1518,6 +1518,7 @@ Table: Constraints and error codes
 | E1512      | Source org unit cannot be a target org unit     |
 | E1513      | Primary target must be specified                |
 | E1514      | Primary target must be a target org unit        |
+| E1515      | Target org unit does not exist                  |
 
 ### Merge organisation units { #webapi_organisation_unit_merge}
 
@@ -1575,6 +1576,7 @@ Table: Constraints and error codes
 | E1500      | At least two source orgs unit must be specified |
 | E1501      | Target org unit must be specified               |
 | E1502      | Target org unit cannot be a source org unit     |
+| E1503      | Source org unit does not exist                  |
 
 ## Data sets { #webapi_data_sets } 
 
