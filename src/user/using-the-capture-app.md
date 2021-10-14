@@ -930,6 +930,7 @@ On the enrollment dashboard, the feedback widget displays text and values that a
 If the current dashboard triggers some rules set up in the program, the text or values will be automatically displayed.
 
 #### Empty state
+
 If there isn't any feedback for the current dashboard, the widget shows a short _empty_ message.
 If there aren't any program rules that could show feedback for the current dashboard then the widget is hidden.
 
@@ -942,10 +943,12 @@ On the enrollment dashboard, the indicator widget displays indicator text and va
 The indicators will be sorted alphabetically.
 
 #### Empty state
+
 If there aren't any related indicators or indicator output for the current dashboard, the widget shows a short _empty_ message.
 If the current dashboard can't show any indicator output (because it has no related indicators) then the widget is hidden.
 
 #### Legends
+
 Some indicator values show a colored circle next to the value. 
 The colored circle shows the related legend color for that indicator value. 
 Colored legend circles are only shown for indicator values that have them set up.
@@ -982,14 +985,27 @@ In the view/edit event form you can see the stage name and icon.
 
 ![](resources/images/capture_app/enrollment-event-view-edit-header.png)
 
+## Add event in enrollment page
+
+You can reach this page add event page by clicking in the **New {stage event name}** button in the overview page.
+
+### New event widget form
+
+This is the form where you can modify the event details before saving. In the header you can see the stage name and icon.
+
+![](resources/images/capture_app/new-event-widget-form-header.png)
 
 ## Program stage event list 
 
 You can reach the program stage event list by clicking **Go to full {stage event name}** button in the overview page.
 
 ### Stage Event list 
+
 In this view you can see all events in a stage 
 
 #### Stage Event list header
+
 In the header, you can see the stage name and icon 
+
 ![](resources/images/capture_app/program-stage-event-list-header.png)
+
