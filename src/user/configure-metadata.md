@@ -50,11 +50,11 @@ You may customize which columns are shown in the list for the current object. Th
 
 ![](resources/images/maintenance/configurable_columns_dialog.png)
 
-1. Click the ![settings-icon](resources/images/maintenance/icon_settings.png) -icon to the top right of the list of objects you want to configure.
+1. Click the ![](resources/images/maintenance/icon_settings.png) icon to the top right of the list of objects you want to configure.
 2. A dropdown-menu will appear, select **Manage columns**.
 3. A dialog will appear, with the default columns selected.
 3. Click any column-name in the list of **Available columns** to add them to the list of selected columns.
-4. You may reorder the selected columns by drag-and-dropping the ![reorder-icon](resources/images/maintenance/icon_reorder.png) -icon.
+4. You may reorder the selected columns by drag-and-dropping the ![](resources/images/maintenance/icon_reorder.png) icon.
 5. You may also remove any column from the view by clicking the X-icon next to the name.
 6. Click **Save** once you are satisified with your changes.
 
@@ -64,7 +64,7 @@ You may easily reset to the default values by clicking the **Reset to default** 
 
 You can download the metadata for the object you are currently viewing. The metadata download will respect any filters you have active for the list.
 
-1. Click the ![settings-icon](resources/images/maintenance/icon_settings.png) -icon to the top right of the list of objects you want to configure.
+1. Click the ![](resources/images/maintenance/icon_settings.png) icon to the top right of the list of objects you want to configure.
 2. A dropdown-menu will appear, select **Download**.
 3. A dialog will appear, where you can select the desired format and compression.
 4. **With sharing** can be selected to include sharing-data for the metadata.
@@ -2776,6 +2776,8 @@ Table: Validation Rule functions
 | least | (expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
 | log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
 | log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
+| orgUnit.ancestor | (orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
+| orgUnit.group | (ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
 
 ### Create or edit a validation rule { #create_validation_rule } 
 
@@ -4107,11 +4109,13 @@ sampled. For example:
         | stddevSamp(x) | Sample standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / ( n - 1 ) ). Note that this value is not computed when there is only one sample. |
         | sum(x) | Sum of the values of x |
 
-        Any items inside an aggregate function will be evaluated for all
-        sampled past periods, and then combined according to the formula
-        inside the aggregate function. Any items outside an aggregate
-        function will be evaluated for the period in which the
-        prediction is being made.
+        > **Note**
+        >
+        > Any items inside an aggregate function will be evaluated for all
+        > sampled past periods, and then combined according to the formula
+        > inside the aggregate function. Any items outside an aggregate
+        > function will be evaluated for the period in which the
+        > prediction is being made.
 
         You can build more complex expressions by clicking on (or
         typing) any of the elements below the expression field:
@@ -4135,6 +4139,8 @@ sampled. For example:
         | least(expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
         | log(expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
         | log10(expression) | Returns the common logarithm (base 10) of the numeric expression. |
+        | orgUnit.ancestor(orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
+        | orgUnit.group(ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
 
         **Boolean expression notes:** A boolean expression must evaluate
         to **true** or **false**. The following operators may be used to
@@ -4170,7 +4176,7 @@ sampled. For example:
         function, you may click on (or type) any of the elements below
         the expression field: ( ) \* / + - Days.
 
-        The non-aggregating functions described above may also be used
+        The non-aggregating functions described above for generator expressions may also be used
         in skip tests.
 
         The expression must evaluate to a boolean value of **true** or
@@ -4688,10 +4694,22 @@ To create a new SQL view, click **Apps** \> **Maintenance**
 The "Name" attribute of the SQL view will be used to determine the name
 of the table that DHIS2 will create when the view is materialized by the
 user. The "Description" attribute allows one to provide some descriptive
-text about what the SQL view actually does. Finally, the "SQL query"
-should contain the SQL view definition. Only SQL "SELECT" statements are
-allowed and certain sensitive tables (i.e. user information) are not
-accessible Press "Save" to store the SQL view definition.
+text about what the SQL view actually does.
+
+The "SQL type" attribute allows the creation of three kinds of views:
+  - A "View" is stored in the database and regenerated when queried
+  - A "Materialized View" is stored in the database and its results
+  are cached in the database
+  - A "Query" is not stored in the database
+
+Finally, the "SQL query" should contain the SQL view definition.
+
+Only SQL "SELECT" statements are allowed and certain sensitive tables 
+(i.e., user information) are not accessible.
+
+Press "Save" to store the SQL view definition. If you created a "View"
+or a "Materialized View", you must also "Execute query" to finish the
+creation of the SQL view.
 
 Keep in mind that the the columns returned by the used SELECT statement
 become table columns, that means they must be of a valid table column
@@ -4704,6 +4722,28 @@ to `text`, like in the below sample:
 
 ```sql
 select jsonb_each_text(eventdatavalues)::text from ...
+```
+
+### SQL views that call other SQL views
+
+If you wish to make a SQL view that can be called be other SQL views,
+then its **SQL type** must be either "View" or a "Materialized View"
+(not "Query"). It also must have **Execute query** run on it before
+being called.
+
+For instance, if you created a view named **Data element count**
+with SQL type "View" and this SQL:
+
+```sql
+select count(*) as count from dataelement;
+```
+
+...then you could run **Execute query** from the context menu and
+create a second SQL view named **More than 100 data elements** with
+this SQL:
+
+```sql
+select case when count > 100 then 1 else 0 end as result from _view_data_element_count;
 ```
 
 ### SQL View management

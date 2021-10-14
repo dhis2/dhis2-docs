@@ -71,6 +71,19 @@ brevity).
     "created": "2013-09-10T13:57:02.480+0000",
     "lastUpdated": "2013-09-10T13:57:02.480+0000"
   }],
+  "layout": {
+    "spacing": {
+      "column": 5,
+      "row": 5
+    },
+    "columns": [{
+      "index": 0,
+      "span": 2
+    }, {
+      "index": 1,
+      "span": 1
+    }]
+  },
   "userGroupAccesses": []
 }
 ```
@@ -251,6 +264,36 @@ dashboard item completely:
 
     /api/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
 
+### Defining a dashboard layout { #webapi_dasboard_layout } 
+
+You can define and save a layout for each dashboard. The following object is responsible to hold this setting.
+
+    {
+      "layout": {
+        "spacing": {
+          "column": 5,
+          "row": 5
+        },
+        "columns": [{
+          "index": 0,
+          "span": 2
+        }, {
+          "index": 1,
+          "span": 1
+        }]
+      }
+    }
+
+The layout definition will be applied for all dashboard items related to the given dashboard, respecting layout attributes like spacing, columns, span and so on. See, below, a brief description of each attribute.
+
+Table: Layout attributes
+
+| Attribute | Description | Type |
+|---|---|---|
+| layout | This is the root object | Object |
+| spacing | Defines the spacing for specific layout components. Currently, it supports columns and rows. | Object |
+| columns | Stores specific parameters related to columns (at the moment, index and span) | Array of objects |
+
 ## Visualization { #webapi_visualization } 
 
 The Visualization API is designed to help clients to interact with charts and pivot/report tables. The endpoints of this API are used by the Data Visualization application which allows the creation, configuration and management of charts and pivot tables based on the client's definitions. The main idea is to enable clients and users to have a unique and centralized API providing all types of charts and pivot tables as well as specific parameters and configuration for each type of visualization.
@@ -315,7 +358,7 @@ Table: Visualization attributes
 | percentStackedValues | Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value. |
 | noSpaceBetweenColumns | Show/hide space between columns. Boolean value. |
 | regression | Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value. |
-| externalAccess | Indicates whether the Visualization is available as external read-only. Boolean value. |
+| externalAccess | Indicates whether the Visualization is available as external read-only. Only applies when no user is logged in. Boolean value. |
 | userOrganisationUnit | Indicates if the user has an organisation unit. Boolean value. |
 | userOrganisationUnitChildren | Indicates if the user has a children organisation unit. Boolean value. |
 | userOrganisationUnitGrandChildren | Indicates if the user has a grand children organisation unit . Boolean value. |
@@ -327,6 +370,8 @@ Table: Visualization attributes
 | cumulativeValues | Indicates whether the visualization is using cumulative values. Boolean value. |
 | hideEmptyColumns | Indicates whether to hide columns with no data values. Boolean value. |
 | hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
+| fixColumnHeaders | Keeps the columns' headers fixed (or not) in a Pivot Table. Boolean value. |
+| fixRowHeaders | Keeps the rows' headers fixed (or not) in a Pivot Table. Boolean value. |
 | completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
 | skipRounding | Apply or not rounding. Boolean value. |
 | showDimensionLabels | Shows the dimension labels or not. Boolean value. |
@@ -341,6 +386,8 @@ Table: Visualization attributes
 | subscribers | List of user ids who have subscribed to this Visualization. |
 | translations | Set of available object translation, normally filtered by locale. |
 | outlierAnalysis | Object responsible to keep settings related to outlier analysis. The internal attribute 'outlierMethod' supports: IQR, STANDARD_Z_SCORE, MODIFIED_Z_SCORE. The 'normalizationMethod' accepts only Y_RESIDUALS_LINEAR for now. |
+| seriesKey | Styling options for and whether or not to display the series key. |
+| legend | Options for and whether or not to apply legend colors to the chart series. |
 
 ### Retrieving visualizations { #webapi_visualization_retrieving_visualizations } 
 
@@ -531,6 +578,8 @@ These operations follow the standard *REST* semantics. A new Visualization can b
   "legendDisplayStyle": "FILL",
   "legendDisplayStrategy": "FIXED",
   "hideEmptyRowItems": "BEFORE_FIRST_AFTER_LAST",
+  "fixColumnHeaders": true,
+  "fixRowHeaders": false,
   "regression": false,
   "cumulative": true,
   "sortOrder": 1,
@@ -665,12 +714,21 @@ These operations follow the standard *REST* semantics. A new Visualization can b
     }
   },
   "legend": {
+    "strategy": "FIXED",
+    "style": "FILL",
+    "set": {
+      "id": "fqs276KXCXi",
+      "displayName": "ANC Coverage"
+    },
+    "showKey": false
+  },
+  "seriesKey": {
+    "hidden": true,
     "label": {
       "fontStyle": {
-        "textColor": "#dddddd"
+        "textColor": "#cccddd"
       }
-    },
-    "hidden": false
+    }
   },
   "axes": [
     {
@@ -728,14 +786,6 @@ These operations follow the standard *REST* semantics. A new Visualization can b
       }
     }
   ],
-  "legend": {
-    "label": {
-      "fontStyle": {
-        "textColor": "#dddddd"
-      }
-    },
-    "hidden": false
-  },
   "axes": [
     {
       "index": 0,
