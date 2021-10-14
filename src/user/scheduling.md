@@ -93,7 +93,7 @@ All users that have not logged in for that number of months or longer will be di
 Disabled users will no longer be able to log into the system.
 
 The _Reminder days before_ parameter can be set to send a reminder email to
-those users that are about to expire in within the number of days set.
+those users the specified number of days before their account is due to expire.
 If the value is not set (blank) no reminder is sent.
 
 
