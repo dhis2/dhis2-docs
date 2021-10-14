@@ -1504,7 +1504,7 @@ The split operation will split the source org unit into the target org units. It
 
 The split operation will transfer all of the metadata associations of the source org unit over to the target org units. This includes data sets, programs, org unit groups, category options, users, visualizations, maps and event reports.
 
-The operation will transfer all data records of the source org unit over to the org unit specified as the primary target, or if not specified, the first specified target org units. This includes aggregate data values, data approval records, events, tracked entities and more.
+The operation will transfer all data records of the source org unit over to the org unit specified as the primary target, or if not specified, the first specified target org unit. This includes aggregate data values, data approval records, events, tracked entities and more.
 
 #### Validation
 
