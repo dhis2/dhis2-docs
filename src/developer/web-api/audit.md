@@ -180,8 +180,8 @@ Get all audits which have attribute with ID VqEFza8wbwA:
 
 Once auditing is enabled for tracked entity instances (by setting
 allowAuditLog of tracked entity types to true), all read and search
-operations are logged. The endpoint for accessing audit logs is
-api/audits/trackedEntityInstance. Below are available parameters to
+operations are logged. The endpoint for accessing audit logs is located at
+`api/audits/trackedEntityInstance`. Below are available parameters to
 interact with this endpoint.
 
 <table>
@@ -252,7 +252,7 @@ startDate=2018-03-01 and endDate=2018-04-24 in a page size of 5:
 
 Once auditing is enabled for enrollments (by setting allowAuditLog of
 tracker programs to true), all read operations are logged. The
-endpoint for accessing audit logs is api/audits/enrollment. Below are
+endpoint for accessing audit logs is located at `api/audits/enrollment`. Below are
 available parameters to interact with this endpoint.
 
 <table>
@@ -320,7 +320,7 @@ Get all enrollment audits for user admin:
 ### Data approval audits
 
 The endpoint for data approval audits is located at
-/api/audits/dataApproval, and the available parameters are displayed in
+`/api/audits/dataApproval`, and the available parameters are displayed in
 the table below.
 
 <table>
