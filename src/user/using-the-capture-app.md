@@ -1009,6 +1009,12 @@ When the form is in the edit mode the title of the page will appear as: `Enrollm
 
 ![](resources/images/capture_app/enrollment-event-view-edit-edit.png)
 
+#### Widgets in View/Edit event page
+
+The widgets seen in the right-hand column will display and function the same way as mentioned in the [enrollment dashboard](#enrollment-dashboard).
+
+![](resources/images/capture_app/enrollment-event-view-edit-widgets.png)
+
 ## Add event in enrollment page
 
 You can reach this page add event page by clicking in the **New {stage event name}** button in the overview page.
@@ -1032,4 +1038,5 @@ In this view you can see all events in a stage
 In the header, you can see the stage name and icon 
 
 ![](resources/images/capture_app/program-stage-event-list-header.png)
+
 
