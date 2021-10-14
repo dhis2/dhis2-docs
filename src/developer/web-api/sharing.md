@@ -85,6 +85,7 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 
 
 
+
 ## New Sharing object
 From 2.36 a new `sharing` property has been introduced in order to replace the old sharing properties `userAccesses`, `userGroupAccesses`, `publicAccess`, `externalAccess` in all metadata classes that have sharing enabled. This `Sharing` object is saved as a JSONB column in database. 
 However, in order make it backward compatible the old sharing objects still work normally as before, for both import and export. In backend sharing data will be saved to new  JSONb `sharing` column instead of the old `*accesses` tables.
@@ -130,7 +131,7 @@ You can use [JSON Patch API](#webapi_partial_updates) to update sharing for an o
 ```
 api/dataElements/fbfJHSPpUQD
 ```
-Please note that this function ***only supports*** new `sharing` format, so the payload in JSON format looks like this:
+Please note that this function ***only supports*** new `sharing` format. The payload in JSON format looks like this:
 ```json
 [
   {
