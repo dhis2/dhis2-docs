@@ -23,7 +23,7 @@ with other people). Once you have accessed the sharing settings for the
 object you wish to share, a dialog similar to the one below will be
 shown.
 
-![](resources/images/maintainence/mtn_sharing_dialog.png)
+![](resources/images/maintenance/mtn_sharing_dialog.png)
 
 You can share your report with everyone or with a number of user groups.
 "External access" can be enabled to allow this resource to be shared
@@ -31,7 +31,9 @@ with everyone, including users which cannot logon to DHIS2. This is
 useful for sharing public resources with external systems. Note, that if
 objects are shared externally, then they are visible to anyone who has
 access to the URL which provides the resource without any login
-credentials.
+credentials. Also note that "External access" ***does not*** give access
+to logged in users—to give them access, you must also allow 
+"Public access".
 
 Next to "Public access" you can choose your public access option under
 "METADATA": "No access", "Can view only" or "Can edit and view", and

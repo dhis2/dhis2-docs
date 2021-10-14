@@ -74,7 +74,9 @@ a terminal.
 For this guide we assume that 8 Gb RAM is allocated for PostgreSQL and 8
 GB RAM is allocated for Tomcat/JVM, and that a 64-bit operating system
 is used. *If you are running a different configuration please adjust the
-suggested values accordingly\!* We recommend that the available memory
+suggested values accordingly\!*
+
+We recommend that the available memory
 is split roughly equally between the database and the JVM. Remember to
 leave some of the physical memory to the operating system for it to
 perform its tasks, for instance around 2 GB. The steps marked as
@@ -206,7 +208,7 @@ memory which should be reserved for PostgreSQL. Should be set to around
 40% of total memory dedicated for PostgreSQL.
 
 ```properties
-work_mem = 20MB
+work_mem = 24MB
 ```
 
 Determines the amount of memory used for internal sort and hash
@@ -215,13 +217,21 @@ may be consumed if raising this too high. Setting this value correctly
 is essential for DHIS2 aggregation performance.
 
 ```properties
-maintenance_work_mem = 512MB
+maintenance_work_mem = 1024MB
 ```
 
 Determines the amount of memory PostgreSQL can use for maintenance
 operations such as creating indexes, running vacuum, adding foreign
 keys. Increasing this value might improve performance of index creation
 during the analytics generation processes.
+
+```properties
+temp_buffers = 16MB
+```
+
+Sets the maximum number of temporary buffers used by each database 
+session. These are session-local buffers used only for access to temporary 
+tables. 
 
 ```properties
 effective_cache_size = 8000MB
@@ -744,19 +754,19 @@ oidc.provider.azure.1.tenant = my_other_azure_ad_tenant_id
 ...
 ```
 
-#### Generic Providers
+#### Generic providers
 
-The generic provider can be used to configure any OIDC provider that uses the "default" features in Spring Security.
+The generic provider can be used to configure any standard OIDC provider which are compatible with Spring Security.
 
-In the example below we configure the Norwegian governmental health service OIDC provider.
+In the example below we configure the Norwegian governmental _HelseID_ OIDC provider using the key `helseid`.
 
-The client name here is *helseid* and will automatically show up on the login page as a button with the same name or the name of the *display_alias* if defined.
+The client key will automatically appear as a button in the login page with the key value, or the value of the `display_alias` if defined. The `key` is arbitrary and can be any value, except for the keys used by the specific providers (`google`, `azure`, `wso2`). It is recommended to use a key which is descriptive and reflects the provider.
 
 The DHIS2 generic provider uses the following defaults:
 
-* Client Authentication: https://tools.ietf.org/html/rfc6749#section-2.3 > ClientAuthenticationMethod.BASIC
+* Client Authentication: https://tools.ietf.org/html/rfc6749#section-2.3 > `ClientAuthenticationMethod.BASIC`
 
-* Authenticated Requests: https://tools.ietf.org/html/rfc6750#section-2 > AuthenticationMethod.HEADER
+* Authenticated Requests: https://tools.ietf.org/html/rfc6750#section-2 > `AuthenticationMethod.HEADER`
 
 > **Note**
 >
@@ -775,7 +785,6 @@ oidc.oauth2.login.enabled = on
 # DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
 oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
 
-
 # This is the name displayed on the DHIS2 login page
 oidc.provider.helseid.display_alias = HelseID
 
@@ -791,22 +800,20 @@ oidc.provider.helseid.end_session_endpoint = https://helseid.no/connect/endsessi
 oidc.provider.helseid.scopes = helseid://scopes/identity/email
 oidc.provider.helseid.redirect_url = {baseUrl}/oauth2/code/{registrationId}
 
-# (You can link to an url for any logo here as long as it is served from the same domain as the DHIS2 server.)
+# Link to an url for any logo here as long as it is served from the same domain as DHIS2
 oidc.provider.helseid.logo_image = ../security/btn_helseid.svg
 oidc.provider.helseid.logo_image_padding = 0px 1px
 
-# (These values are appended to the request, they must be key/value pairs like: "KEY1 VALUE1,KEY2 VALUE2,...")
+# Appended to the request, must be key/value pairs like: "KEY1 VALUE1,KEY2 VALUE2,..."
 oidc.provider.helseid.extra_request_parameters = acr_values lvl4
 
-# (This is for optional PKCE support see: https://oauth.net/2/pkce/) Default value is: FALSE
+# For optional PKCE support, see: https://oauth.net/2/pkce/), default is 'false'
 oidc.provider.helseid.enable_pkce = true
-
 ```
 
-## Setup JWT bearer token authentication for the DHIS2 Android client
+### JWT bearer token authentication
 
-For clients that are API-only, setting up authentication with JWT bearer tokens is possible when you have configured an OIDC provider.
-The DHIS2 Android client is such a type of client and have to use JWT authentication if OIDC login is enabled.
+Authentication with *JWT bearer tokens* can be enabled for clients which API-based when OIDC is configured. The DHIS2 Android client is such a type of client and have to use JWT authentication if OIDC login is enabled.
 
 > **Note**
 >
@@ -820,7 +827,10 @@ The DHIS2 Android client is such a type of client and have to use JWT authentica
 * Enable the config parameter ```oidc.jwt.token.authentication.enabled``` by setting it to 'on'
 * Generate an Android OAuth2 client_id as described [here](https://developers.google.com/identity/protocols/oauth2/native-app#creatingcred)
 
-### Example DHIS2 config file with JWT authentication for an API only client
+### JWT authentication example
+
+The following `dhis.conf` section shows an example of how to enable JWT authentication for an API-based client.
+
 ```properties
 # ----------------------------------------------------------------------
 # Google OIDC Configuration with extra clients using JWT tokens 
@@ -829,7 +839,8 @@ The DHIS2 Android client is such a type of client and have to use JWT authentica
 # Enable OIDC
 oidc.oauth2.login.enabled = on
 
-# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
+# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout
+# Refers to where to end up after calling end_session_endpoint on the IdP
 oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
 
 # Google specific parameters:
@@ -841,7 +852,6 @@ oidc.provider.google.redirect_url = (protocol)://(host)/(optional app context)
 
 # Optional, defaults to 'email'
 oidc.provider.google.mapping_claim = email
-
 
 # Enable JWT support
 oauth2.authorization.server.enabled = off
@@ -1696,11 +1706,43 @@ connection.username = dhis
 # Database password (sensitive)
 connection.password = xxxx
 
-# Database schema behavior, can be 'validate', 'update', 'create', 'create-drop'
-connection.schema = update
-
 # Max size of connection pool (default: 40)
 connection.pool.max_size = 40
+
+# ----------------------------------------------------------------------
+# Database connection for PostgreSQL [Optional]
+# ----------------------------------------------------------------------
+
+# Minimum number of Connections a pool will maintain at any given time (default: 5).
+connection.pool.min_size=5
+
+# Initial size of connection pool (default : 5)
+#Number of Connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize
+connection.pool.initial_size=5
+
+#Determines how many connections at a time will try to acquire when the pool is exhausted.
+connection.pool.acquire_incr=5
+
+#Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. (default: 7200)
+connection.pool.max_idle_time=7200
+
+#Number of seconds that Connections in excess of minPoolSize should be permitted to remain idle in the pool before being culled (default: 0)
+connection.pool.max_idle_time_excess_con=0
+
+#If this is a number greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
+connection.pool.idle.con.test.period=0
+
+#If true, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
+connection.pool.test.on.checkout=false
+
+#If true, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: true)
+connection.pool.test.on.checkin=true
+
+#Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
+connection.pool.preferred.test.query=select 1
+
+#Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
+connection.pool.num.helper.threads=3
 
 # ----------------------------------------------------------------------
 # Server [Mandatory]

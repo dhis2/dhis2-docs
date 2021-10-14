@@ -315,7 +315,7 @@ Table: Visualization attributes
 | percentStackedValues | Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value. |
 | noSpaceBetweenColumns | Show/hide space between columns. Boolean value. |
 | regression | Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value. |
-| externalAccess | Indicates whether the Visualization is available as external read-only. Boolean value. |
+| externalAccess | Indicates whether the Visualization is available as external read-only. Only applies when no user is logged in. Boolean value. |
 | userOrganisationUnit | Indicates if the user has an organisation unit. Boolean value. |
 | userOrganisationUnitChildren | Indicates if the user has a children organisation unit. Boolean value. |
 | userOrganisationUnitGrandChildren | Indicates if the user has a grand children organisation unit . Boolean value. |
@@ -341,6 +341,8 @@ Table: Visualization attributes
 | subscribers | List of user ids who have subscribed to this Visualization. |
 | translations | Set of available object translation, normally filtered by locale. |
 | outlierAnalysis | Object responsible to keep settings related to outlier analysis. The internal attribute 'outlierMethod' supports: IQR, STANDARD_Z_SCORE, MODIFIED_Z_SCORE. The 'normalizationMethod' accepts only Y_RESIDUALS_LINEAR for now. |
+| seriesKey | Styling options for and whether or not to display the series key. |
+| legend | Options for and whether or not to apply legend colors to the chart series. |
 
 ### Retrieving visualizations { #webapi_visualization_retrieving_visualizations } 
 
@@ -665,12 +667,21 @@ These operations follow the standard *REST* semantics. A new Visualization can b
     }
   },
   "legend": {
+    "strategy": "FIXED",
+    "style": "FILL",
+    "set": {
+      "id": "fqs276KXCXi",
+      "displayName": "ANC Coverage"
+    },
+    "showKey": false
+  },
+  "seriesKey": {
+    "hidden": true,
     "label": {
       "fontStyle": {
-        "textColor": "#dddddd"
+        "textColor": "#cccddd"
       }
-    },
-    "hidden": false
+    }
   },
   "axes": [
     {
@@ -728,14 +739,6 @@ These operations follow the standard *REST* semantics. A new Visualization can b
       }
     }
   ],
-  "legend": {
-    "label": {
-      "fontStyle": {
-        "textColor": "#dddddd"
-      }
-    },
-    "hidden": false
-  },
   "axes": [
     {
       "index": 0,

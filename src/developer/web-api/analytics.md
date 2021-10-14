@@ -803,6 +803,7 @@ Table: Query parameters for event query analytics only
 | asc | No | Dimensions to be sorted ascending, can reference event date, org unit name and code and any item identifiers. | EVENTDATE &#124; OUNAME &#124; OUCODE &#124; item identifier |
 | desc | No | Dimensions to be sorted descending, can reference event date, org unit name and code and any item identifiers. | EVENTDATE &#124; OUNAME &#124; OUCODE &#124; item identifier |
 | coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
+| coordinateOuFallback | No | Program instance geometry is applied whenever organization unit geometry is missing. | false &#124; true |
 | dataIdScheme | No | Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response. | NAME &#124; CODE &#124; UID |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
@@ -1532,9 +1533,26 @@ You can specify multiple filters for a given item by repeating the operator and 
 
     &dimension=qrur9Dvnyt5:GT:5:LT:15
 
+##### NV keyword
+A special keyword `NV` can be used to filter by `null` values
+
+Filter by AGE is null
+
+    &dimension=qrur9Dvnyt5:EQ:NV
+
+Filter by AGE is not null
+
+    &dimension=qrur9Dvnyt5:NE:NV
+ 
+Filter by AGE is 18, 19 or is null
+ 
+    &dimension=qrur9Dvnyt5:IN:18;19;NV
+
+`NV` can be used with `EQ`, `NE` and `IN` operators
+
+##### Operators
+
 The available operators are listed below.
-
-
 
 Table: Filter operators
 
