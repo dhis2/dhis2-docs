@@ -89,12 +89,12 @@ curl -d @sharing.json "localhost/api/33/sharing?type=dataElement&id=fbfJHSPpUQD"
 
 ### Overview
 
-- The sharing solution supports cascade sharing for Dashboard. 
-- This function will copy `userAccesses` and `userGroupAccesses` of a Dashboard to all of its DashboardItem's objects including `Map`, `EventReport`, `EventChart`, `Visualization`. 
+- `cascadeSharing` is available for Dashboards. This function copies the `userAccesses` and `userGroupAccesses` of a Dashboard to all of the objects in its `DashboardItems`, including `Map`, `EventReport`, `EventChart`, `Visualization`. 
 - This function will ***NOT*** copy `METADATA_WRITE` access. The copied `UserAccess` and `UserGroupAccess` will **only** have `METADATA_READ` permission. 
-- The `publicAccess` setting is currently ***NOT*** handled by this function. Means the `publicAccess` of the current `Dashboard` will not be copied to its `DashboardItems`'s objects.
-- If target object has `publicAccess` enabled, then it will be ignored by this function. Means that no `UserAccesses` or `UserGroupAccesses` will be copied from `Dashboard`.
-- Current `User` is required to have `METADATA_READ` sharing permission to all target objects, otherwise error `E5001` will be thrown. And to update target objects, `METADATA_WRITE` is required, otherwise error `E3001` will be thrown.
+- The `publicAccess` setting is currently ***NOT*** handled by this function. That means the `publicAccess` of the current `Dashboard` will not be copied.
+- If any target object has `publicAccess` enabled, then it will be skipped and will not receive the `UserAccesses` or `UserGroupAccesses` will be copied from the Dashboard.
+- The current user must have `METADATA_READ` sharing permission to all target objects. If the user do not, the error `E5001` will be thrown.
+- The current user must have `METADATA_WRITE` sharing permission to update any target objects. If the user does not have the required permission to update a target object, the error `E3001` will be thrown.
 - Sample use case: 
   - DashboardA is shared to userA with `METADATA_READ_WRITE` permission. 
   - DashboardA has VisualizationA which has DataElementA.
