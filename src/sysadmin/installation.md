@@ -791,14 +791,14 @@ oidc.provider.helseid.end_session_endpoint = https://helseid.no/connect/endsessi
 oidc.provider.helseid.scopes = helseid://scopes/identity/email
 oidc.provider.helseid.redirect_url = {baseUrl}/oauth2/code/{registrationId}
 
-# (You can link to an url for any logo here as long as it is served from the same domain as the DHIS2 server.)
+# Link to an url for any logo here as long as it is served from the same domain as DHIS2
 oidc.provider.helseid.logo_image = ../security/btn_helseid.svg
 oidc.provider.helseid.logo_image_padding = 0px 1px
 
-# (These values are appended to the request, they must be key/value pairs like: "KEY1 VALUE1,KEY2 VALUE2,...")
+# Appended to the request, must be key/value pairs like: "KEY1 VALUE1,KEY2 VALUE2,..."
 oidc.provider.helseid.extra_request_parameters = acr_values lvl4
 
-# (This is for optional PKCE support see: https://oauth.net/2/pkce/) Default value is: FALSE
+# For optional PKCE support, see: https://oauth.net/2/pkce/), default is 'false'
 oidc.provider.helseid.enable_pkce = true
 
 ```
