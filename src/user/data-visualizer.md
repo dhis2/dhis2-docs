@@ -87,7 +87,7 @@ When selecting data items, there are different ways to filter the displayed item
 
 #### Select periods
 
-When selecting a Period you have to option to choose between fixed periods and relative periods. These can also be combined. Overlapping periods are filtered so that they only appear once. For relative periods the names are relative to the current date, e.g. if the current month is March and **Last month** is selected, the month of February is shown in the visualization.
+When selecting a Period you have the option to choose between fixed periods and relative periods. These can also be combined. Overlapping periods are filtered so that they only appear once. For relative periods the names are relative to the current date, e.g. if the current month is March and **Last month** is selected, the month of February is shown in the visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-period-dimension-modal.png)
 
@@ -110,6 +110,13 @@ The organisation units dialog is flexible, offering essentially three ways of se
   - User sub-x2-units: Selects the units two levels below the user organisation unit.
 
 ![](resources/images/data-visualizer/data-visualizer-organisation-unit-dimension-modal.png)
+
+#### Select dynamic dimensions
+
+When selecting a dynamic dimension, either individual or all items can be selected. By default, the **Manually select items** option is selected, which allows for individual items to be picked out of a list, similar to how the **Data** and **Period** dimensions are selected above.
+To automatically select all items for a dimension, the **Automatically include all items** option can be selected. This will also include any additional items that are added in the future if the available dimension items are updated.
+
+![](resources/images/data-visualizer/data-visualizer-dynamic-dimension-modal.png)
 
 ### Two category charts
 
@@ -158,7 +165,7 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Value labels|Shows the values above the series in the visualization.|
 ||Axes tab|
 |Axis range|Defines the maximum and minimum value that will be visible on the range axis.|
-|Axis title|Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.|
+|Axis title|Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.<br>Auto generated provides a title based on the content of the axis.<br>None removes the title.<br>The Custom option allows you to type a custom title.|
 |Decimals|Defines the number of decimals that will be used for range axis values.|
 |Steps|Defines the number of ticks that will be visible on the range axis.|
 ||**Legend tab**|
@@ -231,11 +238,13 @@ This results in a chart that combines the `Column` and `Line` types.
 
 ## Data drilling
 
-This feature is enabled for the `Pivot Table` visualization type and allows to drill in the data by clicking on a value cell in the table. A contextual menu opens with various options.
+This feature is enabled for the `Pivot Table`, `Column`, `Stacked column`, `Bar` and `Bar stacked` visualization types and allows to drill in the data by clicking on a value cell / column / bar in the visualization. A contextual menu opens with various options.
 
-You can drill the data by organisation unit, meaning navigating up and down the org unit tree. The data drill affects the current dimension selection in the layout area.
+You can drill the data by organisation unit, meaning navigating up and down the org unit tree. The data drill affects the current dimension selection in the layout area. The organisation unit dimension must thus be present on either the Columns / Series axis or the Rows / Category axis for the drill feature to be enabled.
 
-![](resources/images/data-visualizer/data-visualizer-pt-drill.png)
+![Data drilling in a pivot table](resources/images/data-visualizer/data-visualizer-pt-drill.png)
+
+![Data drilling in a column chart](resources/images/data-visualizer/data-visualizer-column-drill.png)
 
 ## Manage saved visualizations
 
@@ -307,8 +316,7 @@ Sharing settings can be accessed by clicking **File** \> **Share**. Change shari
 
 - **Can view only**: Can only view the visualization.
 
-- **No access**: Won't have access to the visualization. This
-  setting is only applicable to **Public access** and **External access**.
+- **No access**: Won't have access to the visualization. This setting is only applicable to **Public access** and **External access**. (Note that to enable access to everyone, both **Public access** and **External access** must be set to allow view.)
 
 New users can be added by searching for them by name under `Add users and user groups`.
 
