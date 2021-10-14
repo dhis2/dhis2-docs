@@ -754,19 +754,19 @@ oidc.provider.azure.1.tenant = my_other_azure_ad_tenant_id
 ...
 ```
 
-#### Generic Providers
+#### Generic providers
 
-The generic provider can be used to configure any OIDC provider that uses the "default" features in Spring Security.
+The generic provider can be used to configure any standard OIDC provider which are compatible with Spring Security.
 
-In the example below we configure the Norwegian governmental health service OIDC provider.
+In the example below we configure the Norwegian governmental _HelseID_ OIDC provider using the key `helseid`.
 
-The client name here is *helseid* and will automatically show up on the login page as a button with the same name or the name of the *display_alias* if defined.
+The client key will automatically appear as a button in the login page with the key value, or the value of the `display_alias` if defined. The `key` is arbitrary and can be any value, except for the keys used by the specific providers (`google`, `azure`, `wso2`). It is recommended to use a key which is descriptive and reflects the provider.s
 
 The DHIS2 generic provider uses the following defaults:
 
-* Client Authentication: https://tools.ietf.org/html/rfc6749#section-2.3 > ClientAuthenticationMethod.BASIC
+* Client Authentication: https://tools.ietf.org/html/rfc6749#section-2.3 > `ClientAuthenticationMethod.BASIC`
 
-* Authenticated Requests: https://tools.ietf.org/html/rfc6750#section-2 > AuthenticationMethod.HEADER
+* Authenticated Requests: https://tools.ietf.org/html/rfc6750#section-2 > `AuthenticationMethod.HEADER`
 
 > **Note**
 >
@@ -785,7 +785,6 @@ oidc.oauth2.login.enabled = on
 # DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
 oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
 
-
 # This is the name displayed on the DHIS2 login page
 oidc.provider.helseid.display_alias = HelseID
 
@@ -801,14 +800,14 @@ oidc.provider.helseid.end_session_endpoint = https://helseid.no/connect/endsessi
 oidc.provider.helseid.scopes = helseid://scopes/identity/email
 oidc.provider.helseid.redirect_url = {baseUrl}/oauth2/code/{registrationId}
 
-# (You can link to an url for any logo here as long as it is served from the same domain as the DHIS2 server.)
+# Link to an url for any logo here as long as it is served from the same domain as DHIS2
 oidc.provider.helseid.logo_image = ../security/btn_helseid.svg
 oidc.provider.helseid.logo_image_padding = 0px 1px
 
-# (These values are appended to the request, they must be key/value pairs like: "KEY1 VALUE1,KEY2 VALUE2,...")
+# Appended to the request, must be key/value pairs like: "KEY1 VALUE1,KEY2 VALUE2,..."
 oidc.provider.helseid.extra_request_parameters = acr_values lvl4
 
-# (This is for optional PKCE support see: https://oauth.net/2/pkce/) Default value is: FALSE
+# For optional PKCE support, see: https://oauth.net/2/pkce/), default is 'false'
 oidc.provider.helseid.enable_pkce = true
 ```
 

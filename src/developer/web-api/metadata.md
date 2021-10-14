@@ -1493,10 +1493,22 @@ Programs which are accessible by all organisation units are returned with an emp
 
 ### Split organisation unit
 
-The organisation unit split endpoint allows you to split organisation units into a number of target organisation units.
+The organisation unit split endpoint allows you to split organisation units into a number of target organisation units. You can split organisation units with a POST request:
 
 ```
-/api/33/organisationUnits/split
+POST /api/33/organisationUnits/split
+```
+
+The payload in JSON format:
+
+```json
+{
+    "source": "rspjJHg4WY1",
+    "targets": [
+        "Xytauldn2QJ", 
+        "RpjUEvgWSNO"
+    ]
+}
 ```
 
 
@@ -1506,7 +1518,7 @@ The organisation unit split endpoint allows you to split organisation units into
 The organisation unit merge endpoint allows you to merge a number of organisation units into a target organisation unit.
 
 ```
-/api/33/organisationUnits/merge
+POST /api/33/organisationUnits/merge
 ```
 
 
