@@ -744,19 +744,19 @@ oidc.provider.azure.1.tenant = my_other_azure_ad_tenant_id
 ...
 ```
 
-#### Generic Providers
+#### Generic providers
 
-The generic provider can be used to configure any OIDC provider that uses the "default" features in Spring Security.
+The generic provider can be used to configure any standard OIDC provider which are compatible with Spring Security.
 
-In the example below we configure the Norwegian governmental health service OIDC provider.
+In the example below we configure the Norwegian governmental *_HelseID_* OIDC provider using the key `helseid`.
 
-The client name here is *helseid* and will automatically show up on the login page as a button with the same name or the name of the *display_alias* if defined.
+The client key will automatically appear as a button in the login page with the key value, or the value of the `display_alias` if defined. The `key` is arbitrary and can be any value, except for the keys used by the specific providers (`google`, `azure`, `wso2`). It is recommended to use a key which is descriptive and reflects the provider.
 
 The DHIS2 generic provider uses the following defaults:
 
-* Client Authentication: https://tools.ietf.org/html/rfc6749#section-2.3 > ClientAuthenticationMethod.BASIC
+* Client Authentication: https://tools.ietf.org/html/rfc6749#section-2.3 > `ClientAuthenticationMethod.BASIC`
 
-* Authenticated Requests: https://tools.ietf.org/html/rfc6750#section-2 > AuthenticationMethod.HEADER
+* Authenticated Requests: https://tools.ietf.org/html/rfc6750#section-2 > `AuthenticationMethod.HEADER`
 
 > **Note**
 >
