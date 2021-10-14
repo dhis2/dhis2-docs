@@ -165,7 +165,7 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Value labels|Shows the values above the series in the visualization.|
 ||Axes tab|
 |Axis range|Defines the maximum and minimum value that will be visible on the range axis.|
-|Axis title|Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.<br>Auto generated provides a title based on the content of the axis.<br>None removes the title.<br>The Custom option allows you to type a custom title.|
+|Axis title|Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.<br>`Auto generated from axis items` provides a title based on the content of the axis.<br>None removes the title.<br>`Custom` allows you to type a custom title.|
 |Decimals|Defines the number of decimals that will be used for range axis values.|
 |Steps|Defines the number of ticks that will be visible on the range axis.|
 ||**Legend tab**|
@@ -180,12 +180,11 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Display density|Controls the size of the cells in a Pivot table. You can set it to Comfortable, Normal or Compact.<br>Compact is useful when you want to fit large tables into the browser screen.|
 |Display organisation unit hierarchy|Shows the name of all ancestors for organisation units, for example "Sierra Leone / Bombali / Tamabaka / Sanya CHP" for "Sanya CHP".<br>The organisation units are then sorted alphabetically which will order the organisation units according to the hierarchy.<br>When you download a pivot table with organisation units as rows and you've selected Display organisation unit hierarchy, each organisation unit level is rendered as a separate column. This is useful for example when you create Excel pivot tables on a local computer.|
 |Font size|Controls the size of a Pivot table text font. You can set it to Large, Normal or Small.|
-|Chart/Table title|Controls the title that appears above the visualization.<br>Auto generated uses the default title generated from the visualization's dimensions/filters.<br>None removes the title.<br>The Custom option allows you to type a custom title.|
-|Chart/Table subtitle|Controls the subtitle that appears above the visualization.<br>Auto generated uses the default subtitle generated from the visualization's dimensions/filters.<br>None removes the subtitle.<br>The Custom option allows you to type a custom subtitle.|
-|Show series key|Toggles the series key on and off leaving more room for the visualization itself.|
+|Chart/Table title|Controls the title that appears above the visualization.<br>`Auto generated` uses the default title generated from the visualization's dimensions/filters.<br>None removes the title.<br>`Custom` allows you to type a custom title.|
+|Chart/Table subtitle|Controls the subtitle that appears above the visualization.<br>`Auto generated` uses the default subtitle generated from the visualization's dimensions/filters.<br>None removes the subtitle.<br>`Custom` allows you to type a custom subtitle.|
+|Show legend key|Toggles the legend on and off leaving more room for the visualization itself.|
 |No space between bars/columns|Removes the space between the columns or bars in the visualization. Useful for displaying the visualization as an EPI curve.|
 |Value labels|Shows the values above the series in the visualization.|
-|Chart/Table title|Controls the title that appears above the visualization.<br>Auto generated uses the default title generated from the visualization's dimensions/filters.<br>None removes the title.<br>The Custom option allows you to type a custom title.|
 |Color set|Controls the colors used in the chart. A list of available color sets is shown with a preview of the colors. There is also a "Mono patterns" option which uses colored patterns instead of solid colors.|
 ||**Limit values tab**|
 |Limit minimum/maximum values|Allows for the data to be filtered on the server side.<br>You can instruct the system to return only records where the aggregated data value is equal, greater than, greater or equal, less than or less or equal to certain values.<br>If both parts of the filter are used, it's possible to filter out a range of data records.|
@@ -223,7 +222,9 @@ When combining data with different measurement scales you will get a more meanin
 Four axes are available, two on the left side (axis 1 and 3) of the chart and two on the right side (axis 2 and 4).
 Each axis has a different color and the chart items are going to be colored accordingly.
 
-Note: When multiple axes are in use, some options like `Lines`, `Vertical (y) axis` and `Color set` in the other option tabs will be disabled.
+> **Note**
+>
+> When multiple axes are in use, the `Color set` option in the `Style` tab will be disabled. The `Target line` and `Base line` options are available on the `Axes` tab per axis.
 
 ![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis.png)
 
