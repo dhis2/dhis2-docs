@@ -912,6 +912,13 @@ You can delete the enrollment by clicking the delete button and confirming the a
 
 ![](resources/images/capture_app/enrollment-dash-enrollment-widget-3.png)
 
+#### Enrollment comment widget
+
+![](resources/images/capture_app/enrollment-widget-comment.png)
+
+The enrollment comment widget displays comments and allows addition of comments, associated with the current enrollment. 
+
+By clicking in the text field, you will be able to enter new text and see action buttons **Save comment** and **Cancel**.
 
 #### Person profile widget
 
@@ -979,6 +986,12 @@ To go to Enrollment Overview page you can:
 
 ![](resources/images/capture_app/enrollment-event-view-edit-navigation.png)
 
+
+### Event Comment Widget
+
+![](resources/images/capture_app/event-widget-comment.png)
+
+The event comments widget displays and allows the addition of comments related to the currently selected event. The widget is displayed in the right sidebar when both viewing and editing events.
 
 ### Error Widget
 
