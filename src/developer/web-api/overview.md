@@ -525,3 +525,27 @@ for creating dynamic reports. The available relative period values are:
     THIS_YEAR, MONTHS_LAST_YEAR, QUARTERS_LAST_YEAR, LAST_YEAR, LAST_5_YEARS, LAST_10_YEARS, LAST_10_FINANCIAL_YEARS, LAST_12_MONTHS, 
     LAST_3_MONTHS, LAST_6_BIMONTHS, LAST_4_QUARTERS, LAST_2_SIXMONTHS, THIS_FINANCIAL_YEAR,
     LAST_FINANCIAL_YEAR, LAST_5_FINANCIAL_YEARS
+
+
+## Authorities
+System authority ids and names can be listed using:
+
+    /api/authorities
+
+It returns the following format:
+```json
+{
+  "systemAuthorities": [
+    {
+      "id": "ALL",
+      "name": "ALL"
+    },
+    {
+      "id": "F_ACCEPT_DATA_LOWER_LEVELS",
+      "name": "Accept data at lower levels"
+    }
+    //...
+  ]
+}
+```
+
