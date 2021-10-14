@@ -981,3 +981,15 @@ This is the form where you can see and edit the enrollment event details.
 In the view/edit event form you can see the stage name and icon.
 
 ![](resources/images/capture_app/enrollment-event-view-edit-header.png)
+
+
+## Program stage event list 
+
+You can reach the program stage event list by clicking **Go to full {stage event name}** button in the overview page.
+
+### Stage Event list 
+In this view you can see all events in a stage 
+
+#### Stage Event list header
+In the header, you can see the stage name and icon 
+![](resources/images/capture_app/program-stage-event-list-header.png)
