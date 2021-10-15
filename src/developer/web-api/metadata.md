@@ -551,15 +551,14 @@ The same content as an XML payload:
 ```
 
 We are now ready to create the new *constant* by sending a POST request to
-the *constants*endpoint with the JSON payload using curl:
+the `constants` endpoint with the JSON payload using curl:
 
 ```bash
 curl -d @constant.json "http://server/api/constants" -X POST
   -H "Content-Type: application/json" -u user:password
 ```
 
-A specific example of posting the constant to the demo
-    server:
+A specific example of posting the constant to the demo server:
 
 ```bash
 curl -d @constant.json "https://play.dhis2.org/api/constants" -X POST
@@ -1471,7 +1470,7 @@ The organisation unit split endpoint allows you to split organisation units into
 Split organisation units with a POST request:
 
 ```
-POST /api/33/organisationUnits/split
+POST /api/organisationUnits/split
 ```
 
 The payload in JSON format looks like the following:
@@ -1480,7 +1479,7 @@ The payload in JSON format looks like the following:
 {
   "source": "rspjJHg4WY1",
   "targets": [
-    "HT0w9YLMLyn", 
+    "HT0w9YLMLyn",
     "rEpnzuNpRKM"
   ],
   "primaryTarget": "HT0w9YLMLyn",
@@ -1492,8 +1491,8 @@ The JSON properties are described in the following table.
 
 Table: Split payload fields
 
-| Field         | Required | Value                                                        |
-| ------------- | -------- | ------------------------------------------------------------ |
+| Field         | Required | Value |
+| ------------- | -------- |------ |
 | source        | Yes      | Identifier of the organisation unit to split (the source organisation unit). |
 | targets       | Yes      | Array of identifiers of the organisation units to split the source into (the target organisation units). |
 | primaryTarget | No       | Identifier of the organisation unit to transfer the aggregate data, events and tracked entities associated with the source over to. If not specified, the first target will be used. |
@@ -1529,7 +1528,7 @@ The organisation unit merge endpoint allows you to merge a number of organisatio
 Merge organisation units with a POST request:
 
 ```
-POST /api/33/organisationUnits/merge
+POST /api/organisationUnits/merge
 ```
 
 The payload in JSON format looks like the following:
@@ -1537,7 +1536,7 @@ The payload in JSON format looks like the following:
 ```json
 {
   "sources": [
-    "jNb63DIHuwU", 
+    "jNb63DIHuwU",
     "WAjjFMDJKcx"
   ],
   "target": "V9rfpjwHbYg",
@@ -1549,21 +1548,21 @@ The payload in JSON format looks like the following:
 
 The JSON properties are described in the following table.
 
-Table: Split payload fields
+Table: Merge payload fields
 
-| Field                     | Required | Value                                                        |
-| ------------------------- | -------- | ------------------------------------------------------------ |
+| Field                     | Required | Value |
+| ------------------------- | -------- | ----- |
 | sources                   | Yes      | Array of identifiers of the organisation units to merge (the source organisation units). |
 | target                    | Yes      | Identifier of the organisation unit to merge the sources into (the target organisation unit). |
-| dataValueMergeStrategy    | No       | Strategy for merging data values. Options: `LAST_UPDATED` (default) | `DISCARD`. |
-| dataApprovalMergeStrategy | No       | Strategy for merging data approval records. Options: `LAST_UPDATED` (default) | `DISCARD`. |
-| deleteSources             | No       | Whether to delete the source organisation units after the operation. Default is `true`. |
+| dataValueMergeStrategy    | No       | Strategy for merging data values. Options: `LAST_UPDATED` (default), `DISCARD`. |
+| dataApprovalMergeStrategy | No       | Strategy for merging data approval records. Options: `LAST_UPDATED` (default), `DISCARD`. |
+| deleteSources             | No       | Whether to delete the source organisation units after the operation. Default is true. |
 
 The merge operation will merge the source org units into the target org unit. It is recommended to first create a new target org unit before performing the split, and at a minimum ensure that no aggregate data exists for the target org unit. Any number of source org units can be specified.
 
 The merge operation will transfer all of the metadata associations of the source org units over to the target org unit. This includes data sets, programs, org unit groups, category options, users, visualizations, maps and event reports. The operation will also transfer all event and tracker data, such as events, enrollments, ownership history, program ownership and tracked entities, over to the target org unit.
 
-The specified data value merge strategy defines how data values are handled. For strategy `LAST_UPDATED`, data values for all source org units are transferred over to the target org unit, and in situation where data values exist for the same parameters, the last updated or created data value will be used. This is done to avoid duplication of data. The specified data approval merge strategy defined how data approval records are handled, and follows the same logic as data values.
+The specified data value merge strategy defines how data values are handled. For strategy `LAST_UPDATED`, data values for all source org units are transferred over to the target org unit, and in situation where data values exist for the same parameters, the last updated or created data value will be used. This is done to avoid duplication of data. For strategy `DISCARD`, data values are not transferred over to the target org unit, and simply deleted. The specified data approval merge strategy defines how data approval records are handled, and follows the same logic as data values.
 
 #### Validation
 
