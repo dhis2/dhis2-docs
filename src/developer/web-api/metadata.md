@@ -1470,7 +1470,7 @@ The organisation unit split endpoint allows you to split organisation units into
 Split organisation units with a POST request:
 
 ```
-POST /api/33/organisationUnits/split
+POST /api/organisationUnits/split
 ```
 
 The payload in JSON format looks like the following:
@@ -1528,7 +1528,7 @@ The organisation unit merge endpoint allows you to merge a number of organisatio
 Merge organisation units with a POST request:
 
 ```
-POST /api/33/organisationUnits/merge
+POST /api/organisationUnits/merge
 ```
 
 The payload in JSON format looks like the following:
