@@ -551,15 +551,14 @@ The same content as an XML payload:
 ```
 
 We are now ready to create the new *constant* by sending a POST request to
-the *constants*endpoint with the JSON payload using curl:
+the `constants` endpoint with the JSON payload using curl:
 
 ```bash
 curl -d @constant.json "http://server/api/constants" -X POST
   -H "Content-Type: application/json" -u user:password
 ```
 
-A specific example of posting the constant to the demo
-    server:
+A specific example of posting the constant to the demo server:
 
 ```bash
 curl -d @constant.json "https://play.dhis2.org/api/constants" -X POST
