@@ -1491,8 +1491,8 @@ The JSON properties are described in the following table.
 
 Table: Split payload fields
 
-| Field         | Required | Value                                                        |
-| ------------- | -------- | ------------------------------------------------------------ |
+| Field         | Required | Value |
+| ------------- | -------- |------ |
 | source        | Yes      | Identifier of the organisation unit to split (the source organisation unit). |
 | targets       | Yes      | Array of identifiers of the organisation units to split the source into (the target organisation units). |
 | primaryTarget | No       | Identifier of the organisation unit to transfer the aggregate data, events and tracked entities associated with the source over to. If not specified, the first target will be used. |
@@ -1548,15 +1548,15 @@ The payload in JSON format looks like the following:
 
 The JSON properties are described in the following table.
 
-Table: Split payload fields
+Table: Merge payload fields
 
-| Field                     | Required | Value                                                        |
-| ------------------------- | -------- | ------------------------------------------------------------ |
+| Field                     | Required | Value |
+| ------------------------- | -------- | ----- |
 | sources                   | Yes      | Array of identifiers of the organisation units to merge (the source organisation units). |
 | target                    | Yes      | Identifier of the organisation unit to merge the sources into (the target organisation unit). |
-| dataValueMergeStrategy    | No       | Strategy for merging data values. Options: `LAST_UPDATED` (default) | `DISCARD`. |
-| dataApprovalMergeStrategy | No       | Strategy for merging data approval records. Options: `LAST_UPDATED` (default) | `DISCARD`. |
-| deleteSources             | No       | Whether to delete the source organisation units after the operation. Default is `true`. |
+| dataValueMergeStrategy    | No       | Strategy for merging data values. Options: `LAST_UPDATED` (default), `DISCARD`. |
+| dataApprovalMergeStrategy | No       | Strategy for merging data approval records. Options: `LAST_UPDATED` (default), `DISCARD`. |
+| deleteSources             | No       | Whether to delete the source organisation units after the operation. Default is true. |
 
 The merge operation will merge the source org units into the target org unit. It is recommended to first create a new target org unit before performing the split, and at a minimum ensure that no aggregate data exists for the target org unit. Any number of source org units can be specified.
 
