@@ -1479,7 +1479,7 @@ The payload in JSON format looks like the following:
 {
   "source": "rspjJHg4WY1",
   "targets": [
-    "HT0w9YLMLyn", 
+    "HT0w9YLMLyn",
     "rEpnzuNpRKM"
   ],
   "primaryTarget": "HT0w9YLMLyn",
@@ -1536,7 +1536,7 @@ The payload in JSON format looks like the following:
 ```json
 {
   "sources": [
-    "jNb63DIHuwU", 
+    "jNb63DIHuwU",
     "WAjjFMDJKcx"
   ],
   "target": "V9rfpjwHbYg",
