@@ -157,19 +157,19 @@ The profile data response payload in JSON format will look like this, where the 
 }
 ```
 
-## Upload image for an organisation unit
+## Upload image for organisation unit
 
-To upload an image for an organisation unit you can use the `fileResource` endpoint.
+To upload an image for an organisation unit you can use the `fileResources` endpoint.
 
 ```
 /api/fileResources
 ```
 
-The `fileResource` endpoint accepts a raw file as the request body. The `JPG`/`JPEG` and `PNG` formats are supported for organisation unit images. The domain for organisation unit images is `ORG_UNIT`.
+The `fileResource` endpoint accepts a raw file as the request body. The `JPG`, `JPEG` and `PNG` formats are supported for organisation unit images. The domain for organisation unit images is `ORG_UNIT`.
 
 Please consult *File resources* in the *Metadata* section for details about the `fileResources` endpoint. 
 
-To upload an image you can send a `POST` request with `ORG_UNIT` as domain query parameter with the image as the request paylaod. The `Content-Type` header should match the type of file being uploaded.
+To upload an image you can send a `POST` request with `ORG_UNIT` as domain query parameter together with the image as the request payload. The `Content-Type` header should match the type of file being uploaded.
 
 ```
 POST /api/fileResources?domain=ORG_UNIT
@@ -205,7 +205,7 @@ PUT /api/organisationUnits/{id}
 }
 ```
 
-## Get image for an organisation unit
+## Get image for organisation unit
 
 The organisation unit entity has an `image` object which refers to a file resource by identifier. You can get the organisation unit information from the `organisationUnits` endpoint. If set, the JSON format looks like this:
 
