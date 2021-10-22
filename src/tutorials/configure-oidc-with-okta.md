@@ -107,6 +107,7 @@ oidc.provider.okta.end_session_endpoint = https://dev-123.okta.com/oauth2/v1/log
 ```
 
 * Restart the DHIS 2 instance for the changes to take effect.
+* Tip: These values can be retrieved from Okta with the URL path `.well-known/openid-configuration`, e.g. `https://dev-123-admin.okta.com/.well-known/openid-configuration`.
 
 #### Sign in to DHIS 2 with Okta
 
