@@ -71,6 +71,19 @@ brevity).
     "created": "2013-09-10T13:57:02.480+0000",
     "lastUpdated": "2013-09-10T13:57:02.480+0000"
   }],
+  "layout": {
+    "spacing": {
+      "column": 5,
+      "row": 5
+    },
+    "columns": [{
+      "index": 0,
+      "span": 2
+    }, {
+      "index": 1,
+      "span": 1
+    }]
+  },
   "userGroupAccesses": []
 }
 ```
@@ -86,7 +99,7 @@ detailed information about each object on a users dashboard.
 When a user is building a dashboard it is convenient
 to be able to search for various analytical resources using the
 */dashboards/q* resource. This resource lets you search for matches on
-the name property of the following objects: charts, maps, report tables,
+the name property of the following objects: visualizations, maps,
 users, reports and resources. You can do a search by making a *GET*
 request on the following resource URL pattern, where my-query should be
 replaced by the preferred search query:
@@ -95,13 +108,13 @@ replaced by the preferred search query:
 
 For example, this query:
 
-    /api/dashboards/q/ma?count=6&maxCount=20&max=CHART&max=MAP
+    /api/dashboards/q/ma?count=6&maxCount=20&max=REPORT&max=MAP
 
 Will search for the following:
 
 * Analytical object name contains the string "ma"
 * Return up to 6 of each type
-* For CHART and MAP types, return up to 20 items
+* For REPORT and MAP types, return up to 20 items
 
 
 
@@ -111,7 +124,7 @@ Table: dashboards/q query parameters
 |---|---|---|---|
 | count | The number of items of each type to return | Positive integer | 6 |
 | maxCount | The number of items of max types to return | Positive integer | 25 |
-| max | The type to return the maxCount for | String [CHART&#124;MAP&#124;REPORT_TABLE&#124;USER&#124;REPORT&#124;RESOURCE&#124;VISUALIZATION] | N/A |
+| max | The type to return the maxCount for | String [MAP&#124;USER&#124;REPORT&#124;RESOURCE&#124;VISUALIZATION] | N/A |
 
 JSON and XML response formats are supported. The response in JSON format
 will contain references to matching resources and counts of how many
@@ -120,16 +133,6 @@ similar to this:
 
 ```json
 {
-  "charts": [{
-    "name": "ANC: 1-3 dropout rate Yearly",
-    "id": "LW0O27b7TdD"
-  }, {
-    "name": "ANC: 1 and 3 coverage Yearly",
-    "id": "UlfTKWZWV4u"
-  }, {
-    "name": "ANC: 1st and 3rd trends Monthly",
-    "id": "gnROK20DfAA"
-  }],
   "visualizations": [{
     "name": "ANC: ANC 3 Visits Cumulative Numbers",
     "id": "arf9OiyV7df",
@@ -146,10 +149,6 @@ similar to this:
     "name": "ANC: 3rd visit coverage 2014 by district",
     "id": "ytkZY3ChM6J"
   }],
-  "reportTables": [{
-    "name": "ANC: ANC 1 Visits Cumulative Numbers",
-    "id": "tWg9OiyV7mu"
-  }],
   "reports": [{
     "name": "ANC: 1st Visit Cumulative Chart",
     "id": "Kvg1AhYHM8Q"
@@ -158,9 +157,8 @@ similar to this:
     "id": "qYVNH1wkZR0"
   }],
   "searchCount": 8,
-  "chartCount": 3,
+  "visualizationCount": 3,
   "mapCount": 2,
-  "reportTableCount": 1,
   "reportCount": 2,
   "userCount": 0,
   "patientTabularReportCount": 0,
@@ -204,19 +202,16 @@ Table: Items content parameters
 
 | Query parameter | Description | Options |
 |---|---|---|
-| type | Type of the resource to be represented by the dashboard item | chart &#124; visualization &#124; map &#124; reportTable &#124; users &#124; reports &#124; reportTables &#124; resources &#124; patientTabularReports &#124; app |
+| type | Type of the resource to be represented by the dashboard item | visualization &#124; map &#124; reportTable &#124; users &#124; reports &#124; resources &#124; patientTabularReports &#124; app |
 | id | Identifier of the resource to be represented by the dashboard item | Resource identifier |
 
-A *POST* request URL for adding a chart to a specific dashboard could
-look like this, where the last id query parameter value is the chart
-resource
-    identifier:
+A *POST* request URL for adding a visualization to a specific dashboard could look like this, where the last id query parameter value is the chart resource identifier:
 
-    /api/dashboards/vQFhmLJU5sK/items/content?type=chart&id=LW0O27b7TdD
+    /api/dashboards/vQFhmLJU5sK/items/content?type=visualization&id=LW0O27b7TdD
 
-When adding resource of type map, chart, report table and app, the API
+When adding resource of type map, visualization and app, the API
 will create and add a new item to the dashboard. When adding a resource
-of type users, reports, report tables and resources, the API will try to
+of type users, reports and resources, the API will try to
 add the resource to an existing dashboard item of the same type. If no
 item of same type or no item of same type with less than eight resources
 associated with it exists, the API will create a new dashboard item and
@@ -251,21 +246,41 @@ dashboard item completely:
 
     /api/dashboards/<dashboard-id>/items/<item-id>/content/<content-resource-id>
 
+### Defining a dashboard layout { #webapi_dasboard_layout } 
+
+You can define and save a layout for each dashboard. The following object is responsible to hold this setting.
+
+    {
+      "layout": {
+        "spacing": {
+          "column": 5,
+          "row": 5
+        },
+        "columns": [{
+          "index": 0,
+          "span": 2
+        }, {
+          "index": 1,
+          "span": 1
+        }]
+      }
+    }
+
+The layout definition will be applied for all dashboard items related to the given dashboard, respecting layout attributes like spacing, columns, span and so on. See, below, a brief description of each attribute.
+
+Table: Layout attributes
+
+| Attribute | Description | Type |
+|---|---|---|
+| layout | This is the root object | Object |
+| spacing | Defines the spacing for specific layout components. Currently, it supports columns and rows. | Object |
+| columns | Stores specific parameters related to columns (at the moment, index and span) | Array of objects |
+
 ## Visualization { #webapi_visualization } 
 
 The Visualization API is designed to help clients to interact with charts and pivot/report tables. The endpoints of this API are used by the Data Visualization application which allows the creation, configuration and management of charts and pivot tables based on the client's definitions. The main idea is to enable clients and users to have a unique and centralized API providing all types of charts and pivot tables as well as specific parameters and configuration for each type of visualization.
 
-This API was introduced with the expectation to unify both `charts` and `reportTables` APIs and entirely replace them in favour of the `visualizations` API (which means that the usage of `charts` and `reportTables` APIs should be avoided). In summary, the following resources/APIs:
-
-    /api/charts, /api/reportTables
-
-*are being replaced by*
-
-    /api/visualizations
-
-> **Note**
->
-> New applications and clients should avoid using the `charts` and `reportTables` APIs because they are deprecated. Use the `visualizations` API instead.
+This API was introduced to unify both `charts` and `reportTables` APIs and entirely replace them by the `visualizations` API.
 
 A Visualization object is composed of many attributes (some of them related to charts and others related to pivot tables), but the most important ones responsible to reflect the core information of the object are: *"id", "name", "type", "dataDimensionItems", "columns", "rows" and "filters".*
 
@@ -315,7 +330,7 @@ Table: Visualization attributes
 | percentStackedValues | Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value. |
 | noSpaceBetweenColumns | Show/hide space between columns. Boolean value. |
 | regression | Indicates whether the Visualization contains regression columns. More likely to be applicable to Pivot/Report. Boolean value. |
-| externalAccess | Indicates whether the Visualization is available as external read-only. Boolean value. |
+| externalAccess | Indicates whether the Visualization is available as external read-only. Only applies when no user is logged in. Boolean value. |
 | userOrganisationUnit | Indicates if the user has an organisation unit. Boolean value. |
 | userOrganisationUnitChildren | Indicates if the user has a children organisation unit. Boolean value. |
 | userOrganisationUnitGrandChildren | Indicates if the user has a grand children organisation unit . Boolean value. |
@@ -327,6 +342,8 @@ Table: Visualization attributes
 | cumulativeValues | Indicates whether the visualization is using cumulative values. Boolean value. |
 | hideEmptyColumns | Indicates whether to hide columns with no data values. Boolean value. |
 | hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
+| fixColumnHeaders | Keeps the columns' headers fixed (or not) in a Pivot Table. Boolean value. |
+| fixRowHeaders | Keeps the rows' headers fixed (or not) in a Pivot Table. Boolean value. |
 | completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
 | skipRounding | Apply or not rounding. Boolean value. |
 | showDimensionLabels | Shows the dimension labels or not. Boolean value. |
@@ -533,6 +550,8 @@ These operations follow the standard *REST* semantics. A new Visualization can b
   "legendDisplayStyle": "FILL",
   "legendDisplayStrategy": "FIXED",
   "hideEmptyRowItems": "BEFORE_FIRST_AFTER_LAST",
+  "fixColumnHeaders": true,
+  "fixRowHeaders": false,
   "regression": false,
   "cumulative": true,
   "sortOrder": 1,
@@ -806,10 +825,7 @@ Finally, to delete an existing Visualization, you can make a `DELETE` request sp
 
 ## Interpretations { #webapi_interpretations } 
 
-For resources related to data analysis in DHIS2, such as pivot tables,
-charts, maps, event reports and event charts, you can write and share
-data interpretations. An interpretation can be a comment, question,
-observation or interpretation about a data report or visualization.
+For resources related to data analysis in DHIS2, such as visualizations, maps, event reports and event charts, you can write and share data interpretations. An interpretation can be a comment, question, observation or interpretation about a data report or visualization.
 
     /api/interpretations
 
@@ -831,7 +847,7 @@ fields omitted for brevity):
       "id": "XSHiFlHAhhh",
       "created": "2013-05-30T10:24:06.181+0000",
       "text": "Data looks suspicious, could be a data entry mistake.",
-      "type": "REPORT_TABLE",
+      "type": "MAP",
       "likes": 2,
       "user": {
         "id": "uk7diLujYif"
@@ -846,13 +862,10 @@ fields omitted for brevity):
       "id": "kr4AnZmYL43",
       "created": "2013-05-29T14:47:13.081+0000",
       "text": "Delivery rates in Bo looks high.",
-      "type": "CHART",
+      "type": "VISUALIZATION",
       "likes": 3,
       "user": {
         "id": "uk7diLujYif"
-      },
-      "chart": {
-        "id": "HDEDqV3yv3H"
       },
       "visualization": {
         "id": "HDEDqV3yv3H"
@@ -905,11 +918,9 @@ Table: Interpretation fields
 |---|---|
 | id | The interpretation identifier. |
 | created | The time of when the interpretation was created. |
-| type | The type of analytical object being interpreted. Valid options: REPORT_TABLE, CHART, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT. |
+| type | The type of analytical object being interpreted. Valid options: VISUALIZATION, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT. |
 | user | Association to the user who created the interpretation. |
-| reportTable | Association to the report table if type is REPORT_TABLE. |
-| chart | Association to the chart if type is CHART. |
-| visualization | Association to the visualization if type is CHART or REPORT_TABLE (**both types are in deprecation process in favour of VISUALIZATION**). |
+| visualization | Association to the visualization if type is VISUALIZATION |
 | map | Association to the map if type is MAP. |
 | eventReport | Association to the event report is type is EVENT_REPORT. |
 | eventChart | Association to the event chart if type is EVENT_CHART. |
@@ -954,33 +965,24 @@ identifier of the object being interpreted.
 
     /api/interpretations/{object-type}/{object-id}
 
-Valid options for object type are *reportTable*, *chart*, *map*,
+Valid options for object type are *visualization*, *map*,
 *eventReport*, *eventChart* and *dataSetReport*.
 
 Some valid examples for interpretations are listed below.
 
-> **Note**
->
-> The `charts` and `reportTables` APIs are deprecated. We recommend using the `visualizations` API instead.
-
-    /api/interpretations/reportTable/yC86zJxU1i1
-    /api/interpretations/chart/ZMuYVhtIceD
     /api/interpretations/visualization/hQxZGXqnLS9
     /api/interpretations/map/FwLHSMCejFu
     /api/interpretations/eventReport/xJmPLGP3Cde
     /api/interpretations/eventChart/nEzXB2M9YBz
     /api/interpretations/dataSetReport/tL7eCjmDIgM
 
-As an example, we will start by writing an interpretation for the chart
-with identifier *EbRN2VIbPdV*. To write chart interpretations we will
-interact with the `/api/interpretations/chart/{chartId}` resource.
+As an example, we will start by writing an interpretation for the visualization with identifier *EbRN2VIbPdV*. To write visualization interpretations we will interact with the `/api/interpretations/visualization/{visualizationId}` resource.
 The interpretation will be the request body. Based on this we can put
 together the following request using cURL:
 
 ```bash
-curl -d "This chart shows a significant ANC 1-3 dropout" -X POST
-  "https://play.dhis2.org/demo/api/interpretations/chart/EbRN2VIbPdV"
-  -H "Content-Type:text/plain" -u admin:district
+curl -d "This visualization shows a significant ANC 1-3 dropout" -X POST
+  "https://play.dhis2.org/demo/api/interpretations/visualization/EbRN2VIbPdV" -H "Content-Type:text/plain" -u admin:district
 ```
 
 Notice that the response provides a Location header with a value
@@ -999,9 +1001,8 @@ where {id} refers to the interpretation identifier:
 Based on this we can use curl to update the interpretation:
 
 ```bash
-curl -d "This charts shows a high dropout" -X PUT
-  "https://play.dhis2.org/demo/api/interpretations/chart/EV08iI1cJRA"
-  -H "Content-Type:text/plain" -u admin:district
+curl -d "This visualization shows a high dropout" -X PUT
+  "https://play.dhis2.org/demo/api/interpretations/visualization/EV08iI1cJRA" -H "Content-Type:text/plain" -u admin:district
 ```
 
 You can use the same URL pattern as above using a DELETE request to
@@ -1074,7 +1075,7 @@ have liked the interpretation.
 {
   "id": "XSHiFlHAhhh",
   "text": "Data looks suspicious, could be a data entry mistake.",
-  "type": "REPORT_TABLE",
+  "type": "VISUALIZATION",
   "likes": 2,
   "likedBy": [
     {
@@ -1386,14 +1387,7 @@ Table: Data items attributes
 ## Viewing analytical resource representations { #webapi_viewing_analytical_resource_representations } 
 
 DHIS2 has several resources for data analysis. These resources include
-*charts*, *maps*, *reportTables*, *reports* and *documents*. By visiting
-these resources you will retrieve information about the resource. For
-instance, by navigating to `/api/charts/R0DVGvXDUNP` the response will
-contain the name, last date of modification and so on for the chart. To
-retrieve the analytical representation, for instance, a PNG
-representation of the chart, you can append */data* to all these
-resources. For instance, by visiting `/api/charts/R0DVGvXDUNP/data` the
-system will return a PNG image of the chart.
+*maps*, *visualizations*, *reports* and *documents*. By visiting these resources you will retrieve information about the resource. For instance, by navigating to `/api/visualizations/R0DVGvXDUNP` the response will contain the name, last date of modification and so on for the chart. To retrieve the analytical representation, for instance, a PNG representation of the visualization, you can append */data* to all these resources. For instance, by visiting `/api/visualizations/R0DVGvXDUNP/data` the system will return a PNG image of the visualization.
 
 
 
@@ -1401,10 +1395,9 @@ Table: Analytical resources
 
 | Resource | Description | Data URL | Resource representations |
 |---|---|---|---|
-| charts | Charts | /api/charts/<identifier\>/data | png |
 | eventCharts | Event charts | /api/eventCharts/<identifier\>/data | png |
 | maps | Maps | /api/maps/<identifier\>/data | png |
-| reportTables | Pivot tables | /api/reportTables/<identifier\>/data | json &#124; jsonp &#124; html &#124; xml &#124; pdf &#124; xls &#124; csv |
+| visualization | Pivot tables and charts | /api/visualizations/<identifier\>/data | json &#124; jsonp &#124; html &#124; xml &#124; pdf &#124; xls &#124; csv | png |
 | reports | Standard reports | /api/reports/<identifier\>/data | pdf &#124; xls &#124; html |
 | documents | Resources | /api/documents/<identifier\>/data | <follows document\> |
 
@@ -1422,7 +1415,7 @@ Table: Data query parameters
 
 
 
-Table: Query parameters for png / image types (charts, maps)
+Table: Query parameters for png / image types (visualizations, maps)
 
 | Query parameter | Description |
 |---|---|
@@ -1432,13 +1425,13 @@ Table: Query parameters for png / image types (charts, maps)
 Some examples of valid URLs for retrieving various analytical
 representations are listed below.
 
-    /api/charts/R0DVGvXDUNP/data
-    /api/charts/R0DVGvXDUNP/data?date=2013-06-01
+    /api/visualization/R0DVGvXDUNP/data
+    /api/visualization/R0DVGvXDUNP/data?date=2013-06-01
 
-    /api/reportTables/jIISuEWxmoI/data.html
-    /api/reportTables/jIISuEWxmoI/data.html?date=2013-01-01
-    /api/reportTables/FPmvWs7bn2P/data.xls
-    /api/reportTables/FPmvWs7bn2P/data.pdf
+    /api/visualization/jIISuEWxmoI/data.html
+    /api/visualization/jIISuEWxmoI/data.html?date=2013-01-01
+    /api/visualization/FPmvWs7bn2P/data.xls
+    /api/visualization/FPmvWs7bn2P/data.pdf
 
     /api/maps/DHE98Gsynpr/data
     /api/maps/DHE98Gsynpr/data?date=2013-07-01
