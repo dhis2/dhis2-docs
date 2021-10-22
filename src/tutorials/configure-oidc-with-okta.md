@@ -20,7 +20,7 @@ This guide assumes a **DHIS 2 instance** running at `http://localhost:8080`. The
 
 * Enter your work email, first name, last name and country. Note that the email you enter will become the Okta username.
 
-* After signing in, navigate to **Directory** > **People** and observe that a person (i.e. user) exists for the name and email you used when signing up. The email will later be used to map to a DHIS 2 user. You can create additional users later.
+* After signing in, navigate to **Directory** > **People** and observe that a person (user) exists for the name and email you used when signing up. The email will later be used to map to a DHIS 2 user. You can create additional users later.
 
 ![](resources/images/okta_oidc_people.png)
 
@@ -80,7 +80,7 @@ To be able to log in to DHIS 2, a DHIS 2 user must be created for each Okta pers
 
 #### Configure DHIS 2
 
-* Look up the Okta settings noted previously. For this tutorial, we will assume the following fictional Okta setting values. Note: Replace these with the real values of your account.
+* Look up the Okta settings noted previously. For this tutorial, we will assume the following fictional Okta setting values. **Note:** Replace these with the real values of your account.
 
   - Client domain: `dev-123.okta.com`
   - Client ID: `0kh6yTgRg45191j97H6y`
