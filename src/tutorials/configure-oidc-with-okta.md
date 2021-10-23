@@ -14,7 +14,7 @@ OIDC is supported by DHIS 2 and can be configured in the `dhis.conf` configurati
 
 This guide assumes a **DHIS 2 instance** running at `http://localhost:8080`. The guide refers to a **provider key** which in this case is **okta**.
 
-#### Sign up for an Okta developer account
+### Sign up for an Okta developer account
 
 * To test OIDC with Okta, sign up for their free developer trial access: https://developer.okta.com/signup/
 * Enter your work email, first name, last name and country. Note that the email you enter will become the Okta username.
@@ -22,7 +22,7 @@ This guide assumes a **DHIS 2 instance** running at `http://localhost:8080`. The
 
 ![](resources/images/okta_oidc_people.png)
 
-#### Create Okta application integration
+### Create Okta application integration
 
 In this step we will create an Okta web app integration.
 
@@ -41,7 +41,7 @@ In this step we will create an Okta web app integration.
 * Click **Save**.
 * In the **Assignments** tab in the application overview, ensure that the relevant people are assigned.
 
-#### Take note of Okta settings
+### Take note of Okta settings
 
 In this step we will take note of the relevant Okta settings and credentials.
 
@@ -54,7 +54,7 @@ In this step we will take note of the relevant Okta settings and credentials.
     * Okta domain
 * Log out of the Okta portal, to allow logging back in later.
 
-#### Create DHIS 2 user
+### Create DHIS 2 user
 
 To be able to log in to DHIS 2, a DHIS 2 user must be created for each Okta person. The DHIS 2 user is mapped to the Okta person through the DHIS 2 user **OpenId mapping value** field. User roles, user groups and organisation units can be granted to the DHIS 2 user as usual.
 
@@ -70,7 +70,7 @@ To be able to log in to DHIS 2, a DHIS 2 user must be created for each Okta pers
 * Select appropriate user roles and organisation units.
 * Click **Save**.
 
-#### Configure DHIS 2
+### Configure DHIS 2
 
 * Look up the Okta settings noted previously. For this tutorial, we will assume the following fictional Okta setting values. **Note:** Replace these with the real values of your account.
     * Client domain: `dev-123.okta.com`
@@ -99,7 +99,7 @@ oidc.provider.okta.end_session_endpoint = https://dev-123.okta.com/oauth2/v1/log
 * Restart the DHIS 2 instance for the changes to take effect.
 * Tip: These values can be retrieved from Okta with the URL path `/.well-known/openid-configuration`, e.g. `https://dev-123-admin.okta.com/.well-known/openid-configuration`.
 
-#### Sign in to DHIS 2 with Okta
+### Sign in to DHIS 2 with Okta
 
 In this step we will test the setup and log in to DHIS 2 using Okta.
 
@@ -109,7 +109,7 @@ In this step we will test the setup and log in to DHIS 2 using Okta.
 * Click the *Okta Login* button. You should be redirected to the Okta login page. Note that if you are still logged in to Okta, you will be automatically logged in to DHIS 2.
 * Enter the Okta username and password for the account created previously, and click **Sign In**. You should be redirected to the DHIS 2 instance and be automatically logged in as the DHIS 2 user created previously.
 
-#### Summary
+### Summary
 
 At this point you should be automatically logged into DHIS 2 throgh Okta, without having entered any DHIS 2 credentials.
 
