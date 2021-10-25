@@ -42,7 +42,7 @@ Table: Objects in the Users app
 
 | Object type | Available functions |
 |---|---|
-| User | Create, edit, invite, clone, disable, display by organisation unit, delete and show details |
+| User | Create, edit, invite, clone, disable, display by organisation unit, delete, show details and reset password |
 | User role | Create, edit, share, delete and show details |
 | User group | Create, edit, join, leave, share, delete and show details |
 
