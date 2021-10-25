@@ -87,7 +87,7 @@ oidc.oauth2.login.enabled = on
 oidc.provider.okta.client_id = 0kh6yTgRg45191j97H6y
 oidc.provider.okta.client_secret = xJh6ybgh5yajTku7qE35F5h8hj8km7yG-Hj61j49
 oidc.provider.okta.mapping_claim = email
-oidc.provider.okta.display_alias = Okta Login
+oidc.provider.okta.display_alias = Sign in with Okta
 oidc.provider.okta.enable_logout = true
 oidc.provider.okta.scopes = email
 oidc.provider.okta.authorization_uri = https://dev-123.okta.com/oauth2/v1/authorize
@@ -106,8 +106,8 @@ In this step we will test the setup and log in to DHIS 2 using Okta.
 
 ![Okta sign in](resources/images/okta_oidc_sign_in.png)
 
-* Navigate to the DHIS 2 login page. A button labelled *Okta Login* should appear on the login page.
-* Click the **Okta Login** button. You should be redirected to the Okta login page. Note that if you are still logged in to Okta, you will be automatically logged in to DHIS 2.
+* Navigate to the DHIS 2 login page. A button labelled *Sign in with Okta* should appear on the login page.
+* Click the **Sign in with Okta** button. You should be redirected to the Okta sign in page. Note that if you are still logged in to Okta, you will be automatically logged in to DHIS 2.
 * Enter the Okta username and password for the account created previously, and click **Sign In**. You should be redirected to the DHIS 2 instance and be automatically logged in as the DHIS 2 user created previously.
 
 ### Summary
