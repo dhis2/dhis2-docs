@@ -107,7 +107,7 @@ In this step we will test the setup and log in to DHIS 2 using Okta.
 ![Okta sign in](resources/images/okta_oidc_sign_in.png)
 
 * Navigate to the DHIS 2 login page. A button labelled *Okta Login* should appear on the login page.
-* Click the *Okta Login* button. You should be redirected to the Okta login page. Note that if you are still logged in to Okta, you will be automatically logged in to DHIS 2.
+* Click the **Okta Login** button. You should be redirected to the Okta login page. Note that if you are still logged in to Okta, you will be automatically logged in to DHIS 2.
 * Enter the Okta username and password for the account created previously, and click **Sign In**. You should be redirected to the DHIS 2 instance and be automatically logged in as the DHIS 2 user created previously.
 
 ### Summary
