@@ -24,11 +24,11 @@ We want to fix this, so...
     (public accounts are free)
     ![GitHub sign in](resources/images/doc_pr_001b.png)
 
-2. Now we need to find the chapter that we want to change in GitHub. Simply go to the page you want to change on the DHIS2 documentation site and scroll to the top of the page. On the right side, above the main content, is an **edit** (pencil) icon. If there are several versions, you may wish to select a specific one before editing.
+2. Now we need to find the chapter that we want to change in GitHub. We simply go to the page we want to change on the DHIS2 documentation site and scroll to the top of the page. On the right side, above the main content, is an **edit** (pencil) icon. For pages with multiple versions, we select the one we want before editing; here we have selected the `master` version.
     
     ![Documentation index files](resources/images/doc_pr_002b.png)
 
-3. Clicking the **edit** icon to take you directly to the relevant file in GitHub.
+3. Clicking the **edit** icon on the docs site takes us directly to the relevant file in GitHub.
 
     ![Capture app chapter](resources/images/doc_pr_004b.png)
 
