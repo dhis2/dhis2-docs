@@ -48,7 +48,7 @@ In this step we will take note of the relevant Okta settings and credentials.
 ![Okta app credentials](resources/images/okta_oidc_app_credentials.png)
 
 * Navigate to **General** tab in the application overview screen.
-* Take note of the following settings in a **secure place** by clicking the _Copy to clipboard_ buttons. These settings will be used in the DHIS 2 configuration file later.
+* Take note of the following settings by clicking the _Copy to clipboard_ buttons. These settings will be used in the DHIS 2 configuration file later. The settings should be considered secrets and stored in a secure way.
     * Client ID  
     * Client secret  
     * Okta domain
@@ -56,7 +56,7 @@ In this step we will take note of the relevant Okta settings and credentials.
 
 ### Create DHIS 2 user
 
-To be able to log in to DHIS 2, a DHIS 2 user must be created for each Okta person. The DHIS 2 user is mapped to the Okta person through the DHIS 2 user **OpenId mapping value** field. User roles, user groups and organisation units can be granted to the DHIS 2 user as usual.
+To be able to log in to DHIS 2, a DHIS 2 user must be created for each Okta person. The DHIS 2 user is mapped to the Okta person through the DHIS 2 user **OIDC mapping value** field. User roles, user groups and organisation units can be granted to the DHIS 2 user as usual.
 
 ![DHIS 2 user](resources/images/okta_oidc_dhis2_user.png)
 
@@ -66,7 +66,7 @@ To be able to log in to DHIS 2, a DHIS 2 user must be created for each Okta pers
 * The username can be any username. For new DHIS 2 users, it is recommended (but not required) to use the Okta username.
 * Enable **External authentication only (OpenID or LDAP)**.
 * Enter the **Surname** and **First name** of the user.
-* For **OIDC connect mapping value**, enter the Okta username (email). This value is used to map the DHIS 2 user to the Okta user.
+* For **OIDC mapping value**, enter the Okta username (email). This value is used to map the DHIS 2 user to the Okta user.
 * Select appropriate user roles and organisation units.
 * Click **Save**.
 
@@ -114,4 +114,4 @@ In this step we will test the setup and log in to DHIS 2 using Okta.
 
 At this point you should be automatically logged into DHIS 2 throgh Okta, without having entered any DHIS 2 credentials.
 
-This guide has explained how to set up an Okta application and an Okta user, set up a DHIS 2 user mapped to the Okta user, how to configure DHIS 2 for Okta OIDC and how to log in using Okta. You can repeat the DHIS 2 configuration steps for additional DHIS 2 instances in order to enable Single Sign-On.
+This guide has explained how to set up an Okta application and an Okta user, set up a DHIS 2 user mapped to the Okta user, how to configure DHIS 2 for Okta OIDC and how to log in using Okta. You can repeat the DHIS 2 user and configuration steps for additional DHIS 2 instances in order to include them in the Single Sign-On setup.
