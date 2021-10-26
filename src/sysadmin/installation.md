@@ -597,7 +597,7 @@ The following IdPs are currently supported and tested:
 * Google
 * Azure AD
 * WSO2
-* Okta (See separate tutorial: [here](../tutorials/configure-oidc-with-okta.md))
+* Okta (See separate tutorial: [here](#configure-openid-connect-with-okta))
 
 There is also a **generic provider** config which can support "any" OIDC compatible provider.
 
