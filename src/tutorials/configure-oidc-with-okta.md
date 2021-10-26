@@ -4,7 +4,7 @@ title: Configure OpenID Connect with Okta
 
 # Configure OpenID Connect with Okta
 
-**OpenId Connect (OIDC) is an identity and authorization layer built on top of the OAuth2 authorization framework. This guide explains how to set up OIDC with Okta as identity platform for DHIS 2.**
+**OpenId Connect (OIDC) is an identity and authentication layer built on top of the OAuth2 authorization framework. This guide explains how to set up OIDC with Okta as identity platform for DHIS 2.**
 
 OIDC is useful for _Single Sign-On_ across multiple applications and systems, where a user can sign in once and then access many DHIS 2 instances and other type of systems. For sysadmins, OIDC allows for maintaining usernames, passwords and user deactivation in a single place. 
 
@@ -114,4 +114,4 @@ In this step we will test the setup and log in to DHIS 2 using Okta.
 
 At this point you should be automatically logged into DHIS 2 throgh Okta, without having entered any DHIS 2 credentials.
 
-This guide has explained how to set up an Okta application and an Okta user, set up a DHIS 2 user mapped to the Okta user, how to configure DHIS 2 for Okta OIDC and how to log in using Okta. You can repeat the DHIS 2 user and configuration steps for additional DHIS 2 instances in order to include them in the Single Sign-On setup.
+This guide has explained how to set up an Okta application and user, set up a DHIS 2 user mapped to the Okta user, how to configure DHIS 2 for Okta OIDC and how to log in using Okta. You can repeat the DHIS 2 user and configuration steps for additional DHIS 2 instances in order to include them in the Single Sign-On setup.
