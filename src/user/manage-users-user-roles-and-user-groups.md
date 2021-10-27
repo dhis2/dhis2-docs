@@ -388,8 +388,6 @@ The following rules apply when you create a new password. The password must:
 
 To reset the password of a user by email:
 
-To change a user's password:
-
 1.  Open the **Users** app and click **User**.
 2.  In the user list, click the menu icon of the relevant user and select "Reset password".
 3.  Click **Confirm**.
