@@ -2847,13 +2847,13 @@ To propose updating an existing metadata object send a JSON payload like in the 
 {
   "type": "UPDATE",
   "target": "ORGANISATION_UNIT",
-  "targetUid": "<uid>",
+  "targetId": "<uid>",
   "change": [
     { "op": "replace", "path": "/name", "value": "New name" }
   ]
 }
 ```
-The `targetUid` refers to the object by its ID which should be updated. The `change` property here contains a JSON patch payload. This is the same
+The `targetId` refers to the object by its ID which should be updated. The `change` property here contains a JSON patch payload. This is the same
 patch payload that could be posted to the corresponding endpoint to directly apply the update.
 
 To propose the removal of an existing object send a payload like in the last example:
@@ -2862,10 +2862,10 @@ To propose the removal of an existing object send a payload like in the last exa
 {
   "type": "REMOVE",
   "target": "ORGANISATION_UNIT",
-  "targetUid": "<uid>"
+  "targetId": "<uid>"
 }
 ```
-The `targetUid` refers to the object  by its ID which should be removed. A free text `comment` can be added to any type of comment.
+The `targetId` refers to the object  by its ID which should be removed. A free text `comment` can be added to any type of comment.
 
 Only `target` type `ORGANISATION_UNIT` is supported currently.
 
@@ -2894,12 +2894,12 @@ resource
 
     PUT /api/metadata/proposals/<uid>
 
-Such an adjustment can either be made without a body or with a JSON body containing an object with the updated `change` and `targetUid` for the 
+Such an adjustment can either be made without a body or with a JSON body containing an object with the updated `change` and `targetId` for the 
 adjustment:
 
 ```json
 {
-  "targetUid": "<uid>",
+  "targetId": "<uid>",
   "change": ...
 }
 ```
@@ -2936,7 +2936,7 @@ List of available fields are:
 | type        | `ADD` a new object, `UPDATE` an existing object, `REMOVE` an existing object |
 | status      | `PROPOSED` (open proposal), `ACCEPTED` (successful), `NEEDS_UPDATE` (accepting caused error or opposed), `REJECTED` |
 | target      | type of metadata object to add/update/remove; currently only `ORGANISATION_UNIT` |
-| targetUid   | UID of the updated or removed object, not defined for `ADD` |
+| targetId    | UID of the updated or removed object, not defined for `ADD` |
 | createdBy   | the user that created the proposal |
 | created     | the date time when the proposal was created |
 | finalisedBy | the user that accepted or rejected the proposal |
