@@ -2847,7 +2847,7 @@ To propose updating an existing metadata object send a JSON payload like in the 
 {
   "type": "UPDATE",
   "target": "ORGANISATION_UNIT",
-  "targetId": "<uid>",
+  "targetId": "<id>",
   "change": [
     { "op": "replace", "path": "/name", "value": "New name" }
   ]
@@ -2862,7 +2862,7 @@ To propose the removal of an existing object send a payload like in the last exa
 {
   "type": "REMOVE",
   "target": "ORGANISATION_UNIT",
-  "targetId": "<uid>"
+  "targetId": "<id>"
 }
 ```
 The `targetId` refers to the object  by its ID which should be removed. A free text `comment` can be added to any type of comment.
@@ -2899,7 +2899,7 @@ adjustment:
 
 ```json
 {
-  "targetId": "<uid>",
+  "targetId": "<id>",
   "change": ...
 }
 ```
