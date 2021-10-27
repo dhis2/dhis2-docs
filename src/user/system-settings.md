@@ -22,7 +22,7 @@ Table: General settings
 | **Enable multi-organisation unit forms** | Enables support to enter data forms for multiple organisation units at the same time in the **Data Entry** app.<br> <br>If you've enabled this setting, you can in the **Data Entry** app, click on the parent organisation unit for the children that you want to enter data for, and the data set list will include data sets that are assigned to the children of that parent. |
 | **Acceptance required before approval** | When this setting is selected, acceptance of data will be required first before submission to the next approval level is possible. |
 | **Gather analytical object statistics in dashboard views** | Gather usage analytics data when analytical objects (e.g., maps, charts, etc.) are viewed within a dashboard. Without this setting, analytics data on the objects  is gathered only when the objects are viewed outside of a dashboard. |
-| **Include passive dashboard views in usage analytics statistics** | (Reserved for future use) |
+| **Include passive dashboard views in usage analytics statistics** | Gather usage analytics data on the first dashboard shown when the Dashboard app is launched (otherwise only explicit dashboard selections are counted). |
 
 ## Analytics settings { #system_analytics_settings } 
 

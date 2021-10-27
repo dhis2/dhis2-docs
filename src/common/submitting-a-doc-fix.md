@@ -24,36 +24,15 @@ We want to fix this, so...
     (public accounts are free)
     ![GitHub sign in](resources/images/doc_pr_001b.png)
 
-2. Now we need to find the chapter that we want to change.
-    Each chapter is a single file in the GitHub repository, and chapters are
-    referenced from an "INDEX" file which represents the full document.
+2. Now we need to find the chapter that we want to change in GitHub. We simply go to the page we want to change on the DHIS2 documentation site and scroll to the top of the page. On the right side, above the main content, is an **edit** (pencil) icon. For pages with multiple versions, we select the one we want before editing; here we have selected the `master` version.
+    
+    ![Page on documentation site](resources/images/doc_pr_002b.png)
 
-    The index files are here:  https://github.com/dhis2/dhis2-docs/tree/master/src/commonmark/en
+3. Clicking the **edit** icon on the docs site takes us directly to the relevant file in GitHub.
 
-    ![Documentation index files](resources/images/doc_pr_002.png)
+    ![Capture app chapter on GitHub](resources/images/doc_pr_004b.png)
 
-    > You may notice the button near the top right that says "Branch: **master**". This indicates that we
-    are looking at the documents for the master branch (i.e. the documentation for the very latest version of DHIS 2).
-    If we wanted to edit the document for, say, version 2.29 instead, then we would use that button to select branch 2.29!  
-    (_2.29 is the earliest version supported in this markdown format_).
-
-    a. In this case, the chapter we want is in the User Manual
-    so we open the `dhis2_user_manual_en_INDEX.md` index file:
-    > Select `Raw` or `Edit` mode in order to view the index properly!
-
-    ![Index file content](resources/images/doc_pr_003.png)
-
-    Here we see that the "Using the Capture app" chapter is referenced as
-    `content/user/using-the-capture-app.md`
-
-3. The reference we found above is the path from the current location, so
-we need to go to: [https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/**content/user/using-the-capture-app.md**](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/using-the-capture-app.md)
-
-    ![Capture app chapter](resources/images/doc_pr_004b.png)
-
-4. From here we can choose to edit the file (_pencil icon_). An edit
-panel is displayed:
-
+4. From here we can choose to edit the file (_pencil icon_). An edit panel is displayed:
 
     Here we have found and highlighted the offending word!
     ![Edit](resources/images/doc_pr_005.png)
