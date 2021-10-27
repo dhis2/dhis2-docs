@@ -6,13 +6,12 @@ metadata. Items in this API contain the gist of the same item in the Metadata AP
 
 The API is specifically designed to avoid:
 
-* large response payloads because of the inclusion of partial nested object 
-  graphs
-* resource intensive in memory processing of requests 
-  (e.g. in memory filtering or object graph traversal)
+* Large response payloads because of the inclusion of partial nested object 
+  graphs.
+* Resource intensive in memory processing of requests 
+  (e.g. in memory filtering or object graph traversal).
 * _n + 1_ database queries as a result of object graph traversal while rendering
-  the response
-  
+  the response.
 
 ## Comparison with Metadata API { #gist_vs_metadata_api } 
 <!--DHIS2-SECTION-ID:gist_vs_metadata_api-->
@@ -33,6 +32,7 @@ standard Metadata API exist for the Gist API.
 The Gist API uses a divide and conquer strategy to avoid responses with large
 partial object graphs. Instead of including nested objects or lists it provides
 a `/gist` endpoint URI where this object or list can be viewed in isolation.
+
 **The `/gist` API refers to nested data using URIs rather than including it.**
 This means if a client is interested in this nested information more requests
 are required but each of them is kept reasonable small and will scale
@@ -135,7 +135,7 @@ Parameters in alphabetical order:
 ### The `absoluteUrls` Parameter { #gist_parameters_absoluteUrls } 
 <!--DHIS2-SECTION-ID:gist_parameters_absoluteUrls-->
 
-By default, URIs in `apiEndpoints`, `href` and the `pager`'s`prev` and `next` 
+By default, URIs in `apiEndpoints`, `href` and the `pager` `prev` and `next` 
 members are relative, starting with `/<object-type>/` path.
 
 The URIs can be changed to absolute URLs using the `absoluteUrls` parameter.
@@ -166,10 +166,10 @@ provided URLs.
 
 ### The `auto` Parameter
 Each endpoint implicitly sets a default for the extent of fields matched by the
-`*`/`:all` fields selector:
+`*` / `:all` fields selector:
 
 * `/api/<object-type>/gist`: implies `auto=S`
-* `/api/<object-type>/<object-id>/gist`: implies  `auto=L`
+* `/api/<object-type>/<object-id>/gist`: implies `auto=L`
 * `/api/<object-type>/<object-id>/<field-name>/gist`: implies `auto=M`
 
 The `auto` parameter is used to manually override the default to make list items
@@ -863,5 +863,4 @@ List users and flag whether they are a member of a specific user group
 List links to all users in pages of 10 items:
 
     /api/users/gist?fields=href&absoluteUrls&pageSize=10
-
 
