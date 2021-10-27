@@ -12,11 +12,13 @@ OIDC is supported by DHIS 2 and can be configured in the `dhis.conf` configurati
 
 [Okta](https://www.okta.com/) is a popular identity and access management platform which supports the OIDC protocol. This tutorial will explain how to set up OIDC with Okta for DHIS 2. Refer to the DHIS 2 OIDC [installation guide](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-236/installation.html#install_oidc_configuration) for details.
 
-This guide assumes a **DHIS 2 instance** running at `http://localhost:8080`. The guide refers to a **provider key** which in this case is **okta**.
+This guide assumes a DHIS 2 instance running at `http://localhost:8080`. The guide refers to a *provider key* which in this case is **okta**.
 
 ### Sign up for an Okta developer account
 
-* To test OIDC with Okta, sign up for their free developer trial access: https://developer.okta.com/signup/
+In this step we will sign up for the Okta free developer trial.
+
+* Navigate to Okta developer trial signup: https://developer.okta.com/signup/
 * Enter your work email, first name, last name and country. Note that the email you enter will become the Okta username.
 * After signing in, navigate to **Directory** > **People** and observe that a person (user) exists for the name and email you used when signing up. The email will later be used to map to a DHIS 2 user. You can create additional users later.
 
@@ -72,29 +74,31 @@ To be able to log in to DHIS 2, a DHIS 2 user must be created for each Okta pers
 
 ### Configure DHIS 2
 
+In this step we will configure the DHIS 2 instance to authenticate with Okta through the `dhis.conf` DHIS 2 configuration file.
+
 * Look up the Okta settings noted previously. Note that `okta` in the property keys refers to the provider key specified in the Okta application integration.
-* For this tutorial, we will assume the following fictional Okta setting values. **Note:** Replace these with the real values for your account.
-    * Client domain: `dev-123.okta.com`
-    * Client ID: `0kh6yTgRg45191j97H6y`
-    * Client secret: `xJh6ybgh5yajTku7qE35F5h8hj8km7yG-Hj61j49`
-* Locate the `dhis.conf` configuration file for DHIS 2, and enter the following properties.
+* Locate the `dhis.conf` configuration file for the DHIS 2 instance.
+* Enter the properties described below. Replace the following three variables (enclosed in brackets) with the real values for your environment.
+    * Client ID / `{client_id}`. Example: `0kh6yTgRg45191j97H6y`
+    * Client secret / `{client_secret}`. Example: `xJh6ybgh5yajTku7qE35F5h8hj8km7yG-Hj61j49`
+    * Client domain / `{client_domain}`. Example: `dev-123.okta.com`
 
 ```properties
 # Enable OIDC
 oidc.oauth2.login.enabled = on
 
 # Okta OIDC settings
-oidc.provider.okta.client_id = 0kh6yTgRg45191j97H6y
-oidc.provider.okta.client_secret = xJh6ybgh5yajTku7qE35F5h8hj8km7yG-Hj61j49
+oidc.provider.okta.client_id = {client_id}
+oidc.provider.okta.client_secret = {client_secret}
 oidc.provider.okta.mapping_claim = email
 oidc.provider.okta.display_alias = Sign in with Okta
 oidc.provider.okta.enable_logout = true
 oidc.provider.okta.scopes = email
-oidc.provider.okta.authorization_uri = https://dev-123.okta.com/oauth2/v1/authorize
-oidc.provider.okta.token_uri = https://dev-123.okta.com/oauth2/v1/token
-oidc.provider.okta.user_info_uri = https://dev-123.okta.com/oauth2/v1/userinfo
-oidc.provider.okta.jwk_uri = https://dev-123.okta.com/oauth2/v1/keys
-oidc.provider.okta.end_session_endpoint = https://dev-123.okta.com/oauth2/v1/logout
+oidc.provider.okta.authorization_uri = https://{client_domain}/oauth2/v1/authorize
+oidc.provider.okta.token_uri = https://{client_domain}/oauth2/v1/token
+oidc.provider.okta.user_info_uri = https://{client_domain}/oauth2/v1/userinfo
+oidc.provider.okta.jwk_uri = https://{client_domain}/oauth2/v1/keys
+oidc.provider.okta.end_session_endpoint = https://{client_domain}/oauth2/v1/logout
 ```
 
 * Restart the DHIS 2 instance for the changes to take effect.
