@@ -760,6 +760,8 @@ For our web api endpoints that deal with metadata, we support partial updates (P
 
 Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT payload).
 
+As per the JSON Patch specification you must always use the mimetype `application/json-patch+json` when sending patches.
+
 #### Update name and value type of data element
 
 ```
@@ -785,7 +787,7 @@ PATCH /api/dataElementGroups/{id}
 ]
 ```
 
-#### Remove all data element assosciations from a data element group
+#### Remove all data element associations from a data element group
 
 ```
 PATCH /api/dataElementGroups/{id}
