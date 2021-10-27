@@ -12,8 +12,6 @@ The *users* resource offers additional query parameters beyond the
 standard parameters (e.g. paging). To query for users at the users
 resource you can use the following parameters.
 
-
-
 Table: User query parameters
 
 | Parameter | Type | Description |
