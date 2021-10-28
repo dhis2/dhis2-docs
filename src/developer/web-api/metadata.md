@@ -758,11 +758,15 @@ Which will yield the result:
 
 For our web api endpoints that deal with metadata, we support partial updates (PATCH) using the JSON Patch [standard](https://tools.ietf.org/html/rfc6902). The payload basically outlines a set of operation you want applied to a existing metadata object. For examples of JSON patch please see [jsonpatch.com](http://jsonpatch.com/), we support 3 operators: `add`, `remove` and `replace`.
 
-Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT payload).
+Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT metadata payload).
+
+The default `importReportMode` for JSON Patch is `ERRORS_NOT_OWNER` which means that if you try and update any property that is not owned by that particular object (for example trying to add a indicator group directly to an indicator) you will get an error.
 
 As per the JSON Patch specification you must always use the mimetype `application/json-patch+json` when sending patches.
 
-#### Update name and value type of data element
+#### Examples
+
+##### Update name and value type of data element
 
 ```
 PATCH /api/dataElements/{id}
@@ -775,7 +779,7 @@ PATCH /api/dataElements/{id}
 ] 
 ```
 
-#### Add new data element to a data element group
+##### Add new data element to a data element group
 
 ```
 PATCH /api/dataElementGroups/{id}
@@ -787,7 +791,7 @@ PATCH /api/dataElementGroups/{id}
 ]
 ```
 
-#### Remove all data element associations from a data element group
+##### Remove all data element associations from a data element group
 
 ```
 PATCH /api/dataElementGroups/{id}
@@ -798,6 +802,32 @@ PATCH /api/dataElementGroups/{id}
   {"op": "remove", "path": "/dataElements"}
 ]
 ```
+
+##### Change domain and value type of a data element
+
+```
+PATCH /api/dataElements/{id}
+```
+
+```json
+[
+    {"op": "add", "path": "/domainType", "value": "TRACKER"},
+    {"op": "add", "path": "/valueType", "value": "INTEGER"}
+]
+```
+
+##### Remove a specific orgUnit from an orgUnit group
+
+```
+PATCH /api/organisationUnitGroups/{id}
+```
+
+```json
+[
+  {"op": "remove", "path": "/organisationUnits/1"}
+]
+```
+
 
 ## Metadata export { #webapi_metadata_export } 
 
