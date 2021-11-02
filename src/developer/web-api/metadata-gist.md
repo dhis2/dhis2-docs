@@ -6,13 +6,12 @@ metadata. Items in this API contain the gist of the same item in the Metadata AP
 
 The API is specifically designed to avoid:
 
-* large response payloads because of the inclusion of partial nested object 
-  graphs
-* resource intensive in memory processing of requests 
-  (e.g. in memory filtering or object graph traversal)
+* Large response payloads because of the inclusion of partial nested object 
+  graphs.
+* Resource intensive in memory processing of requests 
+  (e.g. in memory filtering or object graph traversal).
 * _n + 1_ database queries as a result of object graph traversal while rendering
-  the response
-  
+  the response.
 
 ## Comparison with Metadata API { #gist_vs_metadata_api } 
 <!--DHIS2-SECTION-ID:gist_vs_metadata_api-->
@@ -33,6 +32,7 @@ standard Metadata API exist for the Gist API.
 The Gist API uses a divide and conquer strategy to avoid responses with large
 partial object graphs. Instead of including nested objects or lists it provides
 a `/gist` endpoint URI where this object or list can be viewed in isolation.
+
 **The `/gist` API refers to nested data using URIs rather than including it.**
 This means if a client is interested in this nested information more requests
 are required but each of them is kept reasonable small and will scale
@@ -54,6 +54,8 @@ Known Differences:
 * Gist offers `member(<id>)` and `not-member(<id>)` collection field transformers
 * Gist offers `canRead` and `canWrite` access check filter instead of filtering
   on the `access` property
+* Gist offers using attribute UIDs as field and filter property names to allow
+  listing or filtering based on custom attribute values
 
 Known Limitations:
 
@@ -133,7 +135,7 @@ Parameters in alphabetical order:
 ### The `absoluteUrls` Parameter { #gist_parameters_absoluteUrls } 
 <!--DHIS2-SECTION-ID:gist_parameters_absoluteUrls-->
 
-By default, URIs in `apiEndpoints`, `href` and the `pager`'s`prev` and `next` 
+By default, URIs in `apiEndpoints`, `href` and the `pager` `prev` and `next` 
 members are relative, starting with `/<object-type>/` path.
 
 The URIs can be changed to absolute URLs using the `absoluteUrls` parameter.
@@ -164,10 +166,10 @@ provided URLs.
 
 ### The `auto` Parameter
 Each endpoint implicitly sets a default for the extent of fields matched by the
-`*`/`:all` fields selector:
+`*` / `:all` fields selector:
 
 * `/api/<object-type>/gist`: implies `auto=S`
-* `/api/<object-type>/<object-id>/gist`: implies  `auto=L`
+* `/api/<object-type>/<object-id>/gist`: implies `auto=L`
 * `/api/<object-type>/<object-id>/<field-name>/gist`: implies `auto=M`
 
 The `auto` parameter is used to manually override the default to make list items
@@ -301,8 +303,11 @@ There are two types of filters:
 * unary: `<field>:<operator>`
 * binary: `<field>:<operator>:<value>`
 
-A field must be a persisted field of the listed item type or field of a directly
-referenced object (1:1 relation).
+A field can be: 
+
+* a persisted field of the listed item type 
+* a persisted field of a directly referenced object (1:1 relation)
+* a UID of an attribute
 
 Available unary operators are:
 
@@ -345,9 +350,12 @@ Available binary pattern matching operators are:
 | `!like$`, `!ilike$`, `!endsWith`  | field does _not end with_ `<value>`      |
 
 The `like` and `!like` operators can be used by either providing a search term
-in which case a match is any value where the term occurs anywhere or they can
+in which case a match is any value where the term occurs anywhere, or they can
 be used by providing the search pattern using `*` as _any number of characters_
 and `?` as _any single character_.
+
+Note that filters on attribute values use text based comparison which means 
+all text filters are supported.
 
 Operators have multiple aliases to be backwards compatible with the 
 standard metadata API. For the gist API any like is always case-insensitive. 
@@ -776,6 +784,40 @@ the returned data element items contain a `"access"` member like the one below:
 }
 ```
 
+### Attributes as Fields { #gist_attributeFields }
+DHIS2 allows creating and adding custom attributes to metadata objects.
+Their values are contained in the `attributeValues` property of a metadata 
+object in form of a map with the attribute UID as the map's key.
+
+To directly list one or more specific attribute values from this map as if they
+were usual fields of the metadata object the attribute UID can be used as if it
+was a name of a usual field.
+
+For example, to include the value of the attribute with UID `Y1LUDU8sWBR` as 
+the property `unit-of-measure` in the list use:
+
+    /api/dataElements/gist?fields=id,name,Y1LUDU8sWBR::rename(unit-of-measure)
+
+This results in list items of the form:
+```json
+{
+  "id": "qrur9Dvnyt5",
+  "name": "Age in years",
+  "unit-of-measure": "years"
+}
+```
+
+By default, the values are fetched as JSON and extracted from the map of 
+attribute values. This means the listing will contain the proper JSON type for
+the type of attribute value. This comes at the overhead of fetching all 
+attribute values. To single out the value within the database the `PLUCK` 
+transformation can be used.
+
+    /api/dataElements/gist?fields=id,name,Y1LUDU8sWBR::rename(unit-of-measure)~pluck
+
+The result will look the same but now the value is extracted as text in the 
+database turning any JSON value to a string in the property output. 
+
 ## Examples { #gist_examples } 
 <!--DHIS2-SECTION-ID:gist_examples-->
 A few examples starting from simple listings moving on to very specific use cases. 
@@ -821,5 +863,4 @@ List users and flag whether they are a member of a specific user group
 List links to all users in pages of 10 items:
 
     /api/users/gist?fields=href&absoluteUrls&pageSize=10
-
 

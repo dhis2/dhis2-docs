@@ -54,10 +54,14 @@ minute.
 
 ## Authentication { #webapi_authentication } 
 
-The DHIS2 Web API supports two protocols for authentication, Basic
-Authentication and OAuth 2. You can verify and get information about the
-currently authenticated user by making a GET request to the following
-URL:
+The DHIS2 Web API supports three protocols for authentication: 
+
+- [Basic Authentication](#webapi_basic_authentication)
+- [Personal Access Tokens (PAT)](#webapi_pat_authentication)
+- [OAuth 2](#webapi_oauth2)
+
+You can verify and get information about the currently authenticated 
+user by making a GET request to the following URL:
 
     /api/33/me
 
@@ -67,7 +71,7 @@ authority) by using the endpoints:
     /api/33/me/authorities
     /api/33/me/authorities/ALL
 
-### Basic Authentication { #webapi_basic_authentication } 
+## Basic Authentication { #webapi_basic_authentication } 
 
 The DHIS2 Web API supports *Basic authentication*. Basic authentication
 is a technique for clients to send login credentials over HTTP to a web
@@ -86,13 +90,226 @@ using SSL/TLS (HTTPS) to encrypt communication with clients. Consider this
 a hard requirement in order to provide secure interactions with the Web
 API.
 
-### Two-factor authentication { #webapi_2fa } 
+## Two-factor authentication { #webapi_2fa } 
 
 DHIS2 supports two-factor authentication. This can be enabled per user.
 When enabled, users will be asked to enter a 2FA code when logging in. You
 can read more about 2FA [here](https://www.google.com/landing/2step/).
 
-### OAuth2 { #webapi_oauth2 } 
+## Personal Access Token { #webapi_pat_authentication }
+Personal access tokens (PATs) are an alternative to using passwords for
+authentication to DHIS2 when using the API.
+
+PATs can be a more secure alternative to HTTP Basic Authentication,
+and should be your preferred choice when creating a new app/script etc. 
+
+HTTP Basic Authentication is considered insecure because, among other things, 
+it sends your username and password in clear text. It may be deprecated in 
+future DHIS2 versions or made opt-in, meaning that basic authentication would 
+need to be explicitly enabled in the configuration.
+
+#### Important security concerns!
+
+Your PATs will automatically inherit all the permissions and authorizations your
+user has. It is therefore extremely important that you limit the access granted to
+your token depending on how you intend to use it, see **Configuring your token**.
+
+**If you only want the token to have access to a narrow and specific part of the
+server, it is advised to rather create a new special user that you assign only
+the roles/authorities you want it to have access to.**
+
+
+### Creating a token
+To create a new PAT, you have two choices:
+* A. Create a token in the UI on your account's profile page.
+* B. Create a token via the API
+
+### A. Creating a token on the account's page
+Log in with your username and password, go to your profile page
+(Click top right corner, and chose "Edit profile" from the dropdown).
+On your user profile page, choose "Manage personal access tokens" from the
+left side menu.
+You should now be on the "Manage personal access tokens" page and see the
+text: "You don't have any active personal access tokens".
+Click "Generate new token" to make a new token.
+A "Generate new token" popup will be shown and present you with two choices:
+
+#### 1. Server/script context:
+_"This type is used for integrations and scripts that won't be accessed by a browser"._
+
+If you plan to use the token in an application, a script or similar, this
+type should be your choice.
+
+#### 2. Browser context:
+_"This type us used for applications, like public portals, that will be accessed with a web browser"._
+
+If you need to link to DHIS2 on a webpage, or e.g. embed in an iframe,
+this is probably the type of token you want.
+
+
+### Configuring your token
+
+After choosing what token type you want, you can configure different access constraints on
+your token. By constraint, we mean how to limit and narrow down how your token can be used.
+This can be of crucial importance if you plan on using the token in a public environment,
+e.g. on a public dashboard on another site, embedded in an iframe.
+Since tokens always have the same access/authorities that your user currently has, taking special 
+care is needed if you intend to use it in any environment you don't have 100% control over.
+
+**NB**: If anyone else gets their hands on your token, they can do anything your user can do. 
+It is not possible to distinguish between actions performed using the token and other actions
+performed by your user.
+
+**Important**: It is strongly advised that you create a separate unique user with only the roles/authorities
+you want the token to have if you plan on using PAT tokens in a non-secure and/or public environment,
+e.g. on a PC or server, you don't have 100% control over, or "embedded" in a webpage on another server.
+
+#### The different constraint types are as follows:
+* Expiry time
+* Allowed UP addresses
+* Allowed HTTP methods
+* Allowed HTTP referrers
+
+##### Expiry time
+Expiry time simply sets for how long you want your token to be usable, the default is 30
+days. After the expiry time, the token will simply return a 401 (Unauthorized) message.
+You can set any expiry time you want, but it is strongly advised that you set an expiry time 
+that is reasonable for your use case.
+
+#### Allowed IP addresses
+This is a comma-separated list of IP addresses you want to limit where the token requests can come from.
+
+**Important**: IP address validation relies on the X-Forwarded-For header, which can be spoofed.
+For security, make sure a load balancer or reverse proxy overwrites this header.
+
+#### Allowed HTTP methods
+A comma-separated list of HTTP methods you want your token to be able to use.
+If you only need your token to view data, not modify or delete, selecting only the GET HTTP method 
+makes sense.
+
+#### Allowed HTTP referrers
+HTTP referer is a header added to the request, when you click on a link, this says which site/page 
+you were on when you clicked the link. 
+Read more about the HTTP referer header here: https://en.wikipedia.org/wiki/HTTP_referer
+
+This can be used to limit the use of a "public" token embedded on another page on another site. 
+Making sure that the referer header match the site hostname in should come from, can
+help avoid abuse of the token, e.g. if someone posts it on a public forum.
+
+**Important**: this is not a security feature. The `referer` header can easily be spoofed.
+This setting is intended to discourage unauthorized third-party developers from connecting
+to public access instances.
+
+#### Saving your token:
+When you are done configuring your token, you can save it by clicking the "Generate new token"
+button, on the bottom right of the pop-up.
+When doing so the token will be saved and a secret token key will be generated on the server.
+The new secret token key will be shown on the bottom of the PAT token list with a green background,
+and the text "Newly created token".
+The secret token key will look similar to this:
+```
+d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092
+```
+**Important**: This generated secret token key will only be shown once, so it is important 
+that you copy the token key now and save it in a secure place for use later. 
+The secret token key will be securely hashed on the server, and only the hash of this secret token 
+key will be saved to the database. This is done to minimize the security impact if someone gets 
+unauthorized access to the database, similar to the way passwords are handled.
+
+### B. Creating a token via the API
+
+Example of how to create a new Personal Access Token with the API:
+
+```
+POST https://play.dhis2.org/dev/api/apiToken
+Content-Type: application/json
+Authorization: Basic admin district
+
+{}
+```
+**NB**: Remember the empty JSON body (`{}`) in the payload! 
+
+This will return a response containing a token similar to this:
+```json
+{
+  "httpStatus": "Created",
+  "httpStatusCode": 201,
+  "status": "OK",
+  "response": {
+     "responseType": "ApiTokenCreationResponse",
+     "key": "d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092",
+     "uid": "jJYrtIVP7qU",
+     "klass": "org.hisp.dhis.security.apikey.ApiToken",
+     "errorReports": []
+  }
+}
+```
+
+**Important**: The token key will only be shown once here in this response.
+You need to copy and save this is in a secure place for use later!
+
+The token itself consists of three parts:
+1. Prefix: (`d2pat_`) indicates what type of token this is.
+2. Random bytes Base64 encoded: (`5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ`)
+3. CRC32 checksum: (`1151814092`) the checksum part is padded with 0 so that it always stays ten characters long.
+
+
+#### Configure your token via the API:
+To change any of the constraints on your token, you can issue the following HTTP API request.
+
+**NB**: Only the constraints are possible to modify after the token is created! 
+
+```
+PUT https://play.dhis2.org/dev/api/apiToken/jJYrtIVP7qU
+Content-Type: application/json
+Authorization: Basic admin district
+```
+
+```json
+{
+  "version": 1,
+  "type": "PERSONAL_ACCESS_TOKEN",
+  "expire": 163465349603200,
+  "attributes": [
+      {
+        "type": "IpAllowedList",
+        "allowedIps": ["192.168.0.1"]
+      },
+      {
+        "type": "MethodAllowedList",
+        "allowedMethods": ["GET"]
+      }
+  ]
+}
+```
+
+### Using your Personal Access Token
+
+To issue a request with your newly created token, use the Authorization header
+accordingly.
+The Authorization header format is:
+```
+Authorization: ApiToken [YOUR_SECRET_API_TOKEN_KEY]
+```
+**Example**:
+```
+GET https://play.dhis2.org/dev/api/apiToken/jJYrtIVP7qU
+Content-Type: application/json
+Authorization: ApiToken d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092
+```
+
+
+### Deleting your Personal Access Token
+You can delete your PATs either in the UI on your profile page where you created it,
+or via the API like this:
+```
+DELETE https://play.dhis2.org/dev/api/apiToken/jJYrtIVP7qU
+Content-Type: application/json
+Authorization: ApiToken d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092
+```
+
+
+## OAuth2 { #webapi_oauth2 } 
 
 DHIS2 supports the *OAuth2* authentication protocol. OAuth2 is an open
 standard for authorization which allows third-party clients to
@@ -305,6 +522,30 @@ for creating dynamic reports. The available relative period values are:
     THIS_WEEK, LAST_WEEK, LAST_4_WEEKS, LAST_12_WEEKS, LAST_52_WEEKS,
     THIS_MONTH, LAST_MONTH, THIS_BIMONTH, LAST_BIMONTH, THIS_QUARTER, LAST_QUARTER,
     THIS_SIX_MONTH, LAST_SIX_MONTH, MONTHS_THIS_YEAR, QUARTERS_THIS_YEAR,
-    THIS_YEAR, MONTHS_LAST_YEAR, QUARTERS_LAST_YEAR, LAST_YEAR, LAST_5_YEARS, LAST_10_YEARS, LAST_12_MONTHS, 
+    THIS_YEAR, MONTHS_LAST_YEAR, QUARTERS_LAST_YEAR, LAST_YEAR, LAST_5_YEARS, LAST_10_YEARS, LAST_10_FINANCIAL_YEARS, LAST_12_MONTHS, 
     LAST_3_MONTHS, LAST_6_BIMONTHS, LAST_4_QUARTERS, LAST_2_SIXMONTHS, THIS_FINANCIAL_YEAR,
     LAST_FINANCIAL_YEAR, LAST_5_FINANCIAL_YEARS
+
+
+## Authorities
+System authority ids and names can be listed using:
+
+    /api/authorities
+
+It returns the following format:
+```json
+{
+  "systemAuthorities": [
+    {
+      "id": "ALL",
+      "name": "ALL"
+    },
+    {
+      "id": "F_ACCEPT_DATA_LOWER_LEVELS",
+      "name": "Accept data at lower levels"
+    }
+    //...
+  ]
+}
+```
+

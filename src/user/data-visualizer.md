@@ -87,7 +87,7 @@ When selecting data items, there are different ways to filter the displayed item
 
 #### Select periods
 
-When selecting a Period you have to option to choose between fixed periods and relative periods. These can also be combined. Overlapping periods are filtered so that they only appear once. For relative periods the names are relative to the current date, e.g. if the current month is March and **Last month** is selected, the month of February is shown in the visualization.
+When selecting a Period you have the option to choose between fixed periods and relative periods. These can also be combined. Overlapping periods are filtered so that they only appear once. For relative periods the names are relative to the current date, e.g. if the current month is March and **Last month** is selected, the month of February is shown in the visualization.
 
 ![](resources/images/data-visualizer/data-visualizer-period-dimension-modal.png)
 
@@ -110,6 +110,13 @@ The organisation units dialog is flexible, offering essentially three ways of se
   - User sub-x2-units: Selects the units two levels below the user organisation unit.
 
 ![](resources/images/data-visualizer/data-visualizer-organisation-unit-dimension-modal.png)
+
+#### Select dynamic dimensions
+
+When selecting a dynamic dimension, either individual or all items can be selected. By default, the **Manually select items** option is selected, which allows for individual items to be picked out of a list, similar to how the **Data** and **Period** dimensions are selected above.
+To automatically select all items for a dimension, the **Automatically include all items** option can be selected. This will also include any additional items that are added in the future if the available dimension items are updated.
+
+![](resources/images/data-visualizer/data-visualizer-dynamic-dimension-modal.png)
 
 ### Two category charts
 
@@ -158,13 +165,14 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Value labels|Shows the values above the series in the visualization.|
 ||Axes tab|
 |Axis range|Defines the maximum and minimum value that will be visible on the range axis.|
-|Axis title|Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.|
+|Axis title|Type a title here to display a label next to the x or y axis. Useful when you want to give context information to the visualization, for example about the unit of measure.<br>`Auto generated from axis items` provides a title based on the content of the axis.<br>None removes the title.<br>`Custom` allows you to type a custom title.|
 |Decimals|Defines the number of decimals that will be used for range axis values.|
 |Steps|Defines the number of ticks that will be visible on the range axis.|
 ||**Legend tab**|
 |Use legend for chart colors|Applies a legend to the visualization items, which is a value-based color for each item. The legends themselves are configured in the `Maintenance app`.
 |Legend type| Controls which legend is applied.<br>`Use pre-defined legend per data item` applies a legend to each data element or indicator individually, based on the legend assigned to each one in the `Maintenance app`.<br>`Select a single legend for entire visualization` applies a single legend to all data items, chosen in a drop-down list of available legends.
 |Legend style| Controls where the color from the legend is applied, either to the text or the background. You can use this option for scorecards to identify high and low values at a glance. Not applicable for `Single Value`, `Column` or `Bar` visualizations.|
+|Show legend key|Displays a key for the legend on the right side of the visualization, to indicate the value ranges and their respective color. If the visualization is added to a dashboard, this option can also be toggled from the top right corner of the dashboard item. 
 ||**Series tab**|
 ||Options for adding more axes and changing how different series are displayed are set in this tab. Please see a detailed description of how this works in the corresponding sections below.|
 ||**Style tab**|
@@ -172,12 +180,11 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Display density|Controls the size of the cells in a Pivot table. You can set it to Comfortable, Normal or Compact.<br>Compact is useful when you want to fit large tables into the browser screen.|
 |Display organisation unit hierarchy|Shows the name of all ancestors for organisation units, for example "Sierra Leone / Bombali / Tamabaka / Sanya CHP" for "Sanya CHP".<br>The organisation units are then sorted alphabetically which will order the organisation units according to the hierarchy.<br>When you download a pivot table with organisation units as rows and you've selected Display organisation unit hierarchy, each organisation unit level is rendered as a separate column. This is useful for example when you create Excel pivot tables on a local computer.|
 |Font size|Controls the size of a Pivot table text font. You can set it to Large, Normal or Small.|
-|Chart/Table title|Controls the title that appears above the visualization.<br>Auto generated uses the default title generated from the visualization's dimensions/filters.<br>None removes the title.<br>The Custom option allows you to type a custom title.|
-|Chart/Table subtitle|Controls the subtitle that appears above the visualization.<br>Auto generated uses the default subtitle generated from the visualization's dimensions/filters.<br>None removes the subtitle.<br>The Custom option allows you to type a custom subtitle.|
+|Chart/Table title|Controls the title that appears above the visualization.<br>`Auto generated` uses the default title generated from the visualization's dimensions/filters.<br>None removes the title.<br>`Custom` allows you to type a custom title.|
+|Chart/Table subtitle|Controls the subtitle that appears above the visualization.<br>`Auto generated` uses the default subtitle generated from the visualization's dimensions/filters.<br>None removes the subtitle.<br>`Custom` allows you to type a custom subtitle.|
 |Show legend key|Toggles the legend on and off leaving more room for the visualization itself.|
 |No space between bars/columns|Removes the space between the columns or bars in the visualization. Useful for displaying the visualization as an EPI curve.|
 |Value labels|Shows the values above the series in the visualization.|
-|Chart/Table title|Controls the title that appears above the visualization.<br>Auto generated uses the default title generated from the visualization's dimensions/filters.<br>None removes the title.<br>The Custom option allows you to type a custom title.|
 |Color set|Controls the colors used in the chart. A list of available color sets is shown with a preview of the colors. There is also a "Mono patterns" option which uses colored patterns instead of solid colors.|
 ||**Limit values tab**|
 |Limit minimum/maximum values|Allows for the data to be filtered on the server side.<br>You can instruct the system to return only records where the aggregated data value is equal, greater than, greater or equal, less than or less or equal to certain values.<br>If both parts of the filter are used, it's possible to filter out a range of data records.|
@@ -193,9 +200,9 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Outlier detection method|Outlier analysis is a process that involves identifying anomalous observations in a dataset. In Data Visualizer outliers are detected by first normalizing the data into a linear regression line and then analysing each point's distance from regression line. Currently three methods are supported. **Interquartile Range (IQR)** is based on dividing a dataset into quartiles while **Modified z-score** is based on the Median Absolute Deviation (MAD). IQR and MAD are considered the two most common robust measures of scale. **Standard z-score** is based on standard deviation and is therefore considered less robust as it is greatly influenced by outliers.|
 |Threshold factor|The number that the outlier thresholds are multiplied by. Controls the sensitivity of the threshold range. Default factors are 1.5 for IQR and 3 for z-scores.|
 
-### Custom styling for text and legend in charts
+### Custom styling for text and series key in charts
 
-The following options can be customized using the text styling tool: `Chart title`, `Chart subtitle`, `Show legend key`, `Target line`, `Base line`, `Axis title` and `Labels` for both horizontal and vertical axes.
+The following options can be customized using the text styling tool: `Chart title`, `Chart subtitle`, `Show series key`, `Target line`, `Base line`, `Axis title` and `Labels` for both horizontal and vertical axes.
 The text styling tool allows to choose a font size, color and italic/bold variants. It's also possible to choose the position of the text.
 
 ![](resources/images/data-visualizer/data-visualizer-text-styling-tool.png)
@@ -215,7 +222,9 @@ When combining data with different measurement scales you will get a more meanin
 Four axes are available, two on the left side (axis 1 and 3) of the chart and two on the right side (axis 2 and 4).
 Each axis has a different color and the chart items are going to be colored accordingly.
 
-Note: When multiple axes are in use, some options like `Lines`, `Vertical (y) axis` and `Color set` in the other option tabs will be disabled.
+> **Note**
+>
+> When multiple axes are in use, the `Color set` option in the `Style` tab will be disabled. The `Target line` and `Base line` options are available on the `Axes` tab per axis.
 
 ![](resources/images/data-visualizer/data-visualizer-series-tab-multi-axis.png)
 
@@ -231,11 +240,13 @@ This results in a chart that combines the `Column` and `Line` types.
 
 ## Data drilling
 
-This feature is enabled for the `Pivot Table` visualization type and allows to drill in the data by clicking on a value cell in the table. A contextual menu opens with various options.
+This feature is enabled for the `Pivot Table`, `Column`, `Stacked column`, `Bar` and `Bar stacked` visualization types and allows to drill in the data by clicking on a value cell / column / bar in the visualization. A contextual menu opens with various options.
 
-You can drill the data by organisation unit, meaning navigating up and down the org unit tree. The data drill affects the current dimension selection in the layout area.
+You can drill the data by organisation unit, meaning navigating up and down the org unit tree. The data drill affects the current dimension selection in the layout area. The organisation unit dimension must thus be present on either the Columns / Series axis or the Rows / Category axis for the drill feature to be enabled.
 
-![](resources/images/data-visualizer/data-visualizer-pt-drill.png)
+![Data drilling in a pivot table](resources/images/data-visualizer/data-visualizer-pt-drill.png)
+
+![Data drilling in a column chart](resources/images/data-visualizer/data-visualizer-column-drill.png)
 
 ## Manage saved visualizations
 
@@ -307,8 +318,7 @@ Sharing settings can be accessed by clicking **File** \> **Share**. Change shari
 
 - **Can view only**: Can only view the visualization.
 
-- **No access**: Won't have access to the visualization. This
-  setting is only applicable to **Public access** and **External access**.
+- **No access**: Won't have access to the visualization. This setting is only applicable to **Public access** and **External access**. (Note that to enable access to everyone, both **Public access** and **External access** must be set to allow view.)
 
 New users can be added by searching for them by name under `Add users and user groups`.
 

@@ -35,8 +35,6 @@ The default scheme for all parameters is UID (stable DHIS2
 identifiers). The supported identifier schemes are described in the
 table below.
 
-
-
 Table: Scheme Values
 
 | Scheme | Description |
@@ -61,8 +59,6 @@ scheme for all other objects you can use these parameters:
 
     ?orgUnitIdScheme=ATTRIBUTE:j38fk2dKFsG&dataElementIdScheme=CODE
 
-
-
 ## Browsing the Web API { #webapi_browsing_the_web_api } 
 
 The entry point for browsing the Web API is `/api`. This resource
@@ -74,8 +70,6 @@ to the `/api` entry point and follow the links to your desired
 resource, for instance `/api/dataElements`. For all resources which
 return a list of elements certain query parameters can be used to modify
 the response:
-
-
 
 Table: Query parameters
 
@@ -121,8 +115,6 @@ indicators, and programs. All metadata objects in the Web API have
 properties meant to be used for display / UI purposes, which include
 *displayName*, *displayShortName*, *displayDescription* and
 *displayFormName* (for data elements and tracked entity attributes).
-
-
 
 Table: Translate options
 
@@ -283,8 +275,6 @@ operators require value). Please see the *schema* section to discover
 which properties are available. Recursive filtering, ie. filtering on
 associated objects or collection of objects, is supported as well.
 
-
-
 Table: Available Operators
 
 | Operator | Types | Value required | Description |
@@ -388,7 +378,7 @@ Example: Get all data elements where *ANC visit* is found in any of the *identif
 It is also possible to combine the identifiable filter with property-based filter and expect the *rootJunction* to be applied.
 
     /api/dataElements.json?filter=identifiable:token:ANC visit&filter=displayName:ilike:tt1
-
+    
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
@@ -426,8 +416,6 @@ presets.
 A few presets (selected fields groups) are available and can be applied
 using the `:` operator.
 
-
-
 Table: Property operators
 
 | Operator | Description |
@@ -437,8 +425,6 @@ Table: Property operators
 | !<field-name\>, <object\>[!<field-name\> | Do not include this field name, it also works inside objects/collections. Useful when you use a preset to include fields. |
 | \*, <object\>[\*] | Include all fields on a certain object, if applied to a collection, it will include all fields on all objects on that collection. |
 | :<preset\> | Alias to select multiple fields. Three presets are currently available, see the table below for descriptions. |
-
-
 
 Table: Field presets
 
@@ -475,8 +461,6 @@ This will rename the *id* property to *i* and *name* property to *n*.
 Multiple transformers can be used by repeating the transformer syntax:
 
     /api/dataElementGroups.json?fields=id,displayName,dataElements~isNotEmpty~rename(haveDataElements)
-
-
 
 Table: Available Transformers
 
@@ -528,14 +512,12 @@ for _data elements_ is:
 
 The following request query parameters are available across all metadata endpoints.
 
-
-
 Table: Available Query Filters
 
 | Param | Type | Required | Options (default first) | Description |
 |---|---|---|---|---|
 | preheatCache | boolean | false | true &#124; false | Turn cache-map preheating on/off. This is on by default, turning this off will make initial load time for importer much shorter (but will make the import itself slower). This is mostly used for cases where you have a small XML/JSON file you want to import, and don't want to wait for cache-map preheating. |
-| strategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
+| importStrategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
 | mergeMode | enum | false | REPLACE, MERGE | Strategy for merging of objects when doing updates. REPLACE will just overwrite the property with the new value provided, MERGE will only set the property if it is not null (only if the property was provided). |
 
 ### Creating and updating objects { #webapi_creating_updating_objects } 
@@ -569,15 +551,14 @@ The same content as an XML payload:
 ```
 
 We are now ready to create the new *constant* by sending a POST request to
-the *constants*endpoint with the JSON payload using curl:
+the `constants` endpoint with the JSON payload using curl:
 
 ```bash
 curl -d @constant.json "http://server/api/constants" -X POST
   -H "Content-Type: application/json" -u user:password
 ```
 
-A specific example of posting the constant to the demo
-    server:
+A specific example of posting the constant to the demo server:
 
 ```bash
 curl -d @constant.json "https://play.dhis2.org/api/constants" -X POST
@@ -750,7 +731,7 @@ curl -X POST -d "{\"name\": \"some name\"}" -H "Content-Type: application/json"
   -u admin:district "https://play.dhis2.org/dev/api/schemas/dataElement"
 ```
 
-Which would yield the result:
+Which will yield the result:
 
 ```json
 [
@@ -777,38 +758,76 @@ Which would yield the result:
 
 For our web api endpoints that deal with metadata, we support partial updates (PATCH) using the JSON Patch [standard](https://tools.ietf.org/html/rfc6902). The payload basically outlines a set of operation you want applied to a existing metadata object. For examples of JSON patch please see [jsonpatch.com](http://jsonpatch.com/), we support 3 operators: `add`, `remove` and `replace`.
 
-Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT payload).
+Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT metadata payload).
 
-#### Update name and valueType of data element
+The default `importReportMode` for JSON Patch is `ERRORS_NOT_OWNER` which means that if you try and update any property that is not owned by that particular object (for example trying to add a indicator group directly to an indicator) you will get an error.
+
+As per the JSON Patch specification you must always use the mimetype `application/json-patch+json` when sending patches.
+
+#### Examples
+
+##### Update name and value type of data element
+
+```
+PATCH /api/dataElements/{id}
+```
 
 ```json
 [
   {"op": "add", "path": "/name", "value": "New Name"},
   {"op": "add", "path": "/valueType", "value": "INTEGER"}
-]
-
->> Send PATCH to /api/dataElements/ID
+] 
 ```
 
-#### Add new data element to a data element group
+##### Add new data element to a data element group
+
+```
+PATCH /api/dataElementGroups/{id}
+```
 
 ```json
 [
   {"op": "add", "path": "/dataElements/-", "value": {"id": "data-element-id"}}
 ]
-
->> Send PATCH to /api/dataElementGroups/ID
 ```
 
-#### Remove all data element assosciations from a data element group
+##### Remove all data element associations from a data element group
+
+```
+PATCH /api/dataElementGroups/{id}
+```
 
 ```json
 [
   {"op": "remove", "path": "/dataElements"}
 ]
-
->> Send PATCH to /api/dataElementGroups/ID
 ```
+
+##### Change domain and value type of a data element
+
+```
+PATCH /api/dataElements/{id}
+```
+
+```json
+[
+    {"op": "add", "path": "/domainType", "value": "TRACKER"},
+    {"op": "add", "path": "/valueType", "value": "INTEGER"}
+]
+```
+
+##### Remove a specific orgUnit from an orgUnit group
+
+```
+PATCH /api/organisationUnitGroups/{id}
+```
+
+```json
+[
+  {"op": "remove", "path": "/organisationUnits/1"}
+]
+```
+
 
 ## Metadata export { #webapi_metadata_export } 
 
@@ -821,8 +840,6 @@ The most common parameters are described below in the "Export Parameter"
 table. You can also apply this to all available types by using
 `type:fields=<filter>` and `type:filter=<filter>`. You can also
 enable/disable the export of certain types by setting `type=true|false`.
-
-
 
 Table: Export Parameter
 
@@ -878,14 +895,11 @@ from one DHIS2 instance to another instance there are six dedicated endpoints av
 /api/optionSets/{id}/metadata.json
 
 /api/dataElementGroups/{id}/metadata.json
-
 ```
 
 These exports can then be imported using `/api/metadata`.
 
 These endpoints also support the following parameters:
-
-
 
 Table: Export Parameter
 
@@ -908,8 +922,6 @@ generated by the metadata export API can be imported directly.
 The metadata import endpoint support a variety of parameters, which are
 listed below.
 
-
-
 Table: Import Parameter
 
 | Name | Options (first is default) | Description |
@@ -920,14 +932,17 @@ Table: Import Parameter
 | preheatMode | REFERENCE, ALL, NONE | Sets the preheater mode, used to signal if preheating should be done for `ALL` (as it was before with *preheatCache=true*) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to `NONE` is not recommended. |
 | importStrategy | CREATE_AND_UPDATE, CREATE, UPDATE, DELETE | Sets import strategy, `CREATE_AND_UPDATE` will try and match on identifier, if it doesn't exist, it will create the object. |
 | atomicMode | ALL, NONE | Sets atomic mode, in the old importer we always did a *best effort* import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the `NONE` mode emulated the old behavior. |
-| mergeMode | REPLACE, MERGE | Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not. |
-| flushMode | AUTO, OBJECT | Sets the flush mode, which controls when to flush the internal cache. It is *strongly* recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues). |
+| ~~mergeMode~~ | ~~REPLACE, MERGE~~ | ~~Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not.~~ (*) |
+| flushMode | AUTO, OBJECT | Sets the flush mode, which controls when to flush the internal cache. It is *strongly* recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues). | 
 | skipSharing | false, true | Skip sharing properties, does not merge sharing when doing updates, and does not add user group access when creating new objects. |
 | skipValidation | false, true | Skip validation for import. `NOT RECOMMENDED`. |
 | async | false, true | Asynchronous import, returns immediately with a *Location* header pointing to the location of the *importReport*. The payload also contains a json object of the job created. |
 | inclusionStrategy | NON_NULL, ALWAYS, NON_EMPTY | *NON_NULL* includes properties which are not null, *ALWAYS* include all properties, *NON_EMPTY* includes non empty properties (will not include strings of 0 length, collections of size 0, etc.) |
 | userOverrideMode | NONE, CURRENT, SELECTED | Allows you to override the user property of every object you are importing, the options are NONE (do nothing), CURRENT (use import user), SELECTED (select a specific user using overrideUser=X) |
 | overrideUser | User ID | If userOverrideMode is SELECTED, use this parameter to select the user you want override with. |
+
+> (*) Currently the `mergeMode=MERGE` option of the import service has limitations and doesn't support all objects. It doesn't work with some object types such as Embedded objects, or objects which are saved as JSONB format in database ( sharing, attributeValues, etc...). Fixing those issues are complicated and would just cause new issues. Therefore, this `mergedMode=MERGE` is deprecated and currently is not recommended to use. The update mode should always be mergedMode=REPLACE. We have developed a new [JSON Patch API](#webapi_partial_updates) which can be used as an alternative approach. This feature is introduced in 2.37 release.
+
 
 An example of a metadata payload to be imported looks like this. Note how
 each entity type have their own property with an array of objects:
@@ -1102,8 +1117,6 @@ The following table lists the metadata and rendering types available.
 The value type rendering has addition constraints based on the metadata
 configuration, which will be shown in a second table.
 
-
-
 Table: Metadata and RenderingType overview
 
 | Metadata type | Available RenderingTypes |
@@ -1115,8 +1128,6 @@ Since handling the default rendering of data elements and tracked entity
 attributes are depending on the value type of the object, there is also
 a DEFAULT type to tell the client it should be handled as normal.
 Program Stage Section is LISTING as default.
-
-
 
 Table: RenderingTypes allowed based on value types
 
@@ -1140,8 +1151,6 @@ the following endpoint:
 
 Value type rendering also has some additional properties that can be
 set, which is usually needed when rendering some of the specific types:
-
-
 
 Table: renderType object properties
 
@@ -1182,8 +1191,6 @@ For data element and tracked entity attribute:
 Most metadata have a property names "style". This property can be used
 by clients to represent the object in a certain way. The properties
 currently supported by style is as follows:
-
-
 
 Table: Style properties
 
@@ -1253,22 +1260,31 @@ organisation unit groups. The variables will be substituted with data
 values when used e.g. in reports. Variables which are allowed in
 expressions are described in the following table.
 
-
-
 Table: Indicator variables
 
 | Variable | Object | Description |
 |---|---|---|
-| #{<dataelement-id\>.<categoryoptcombo-id\>.<attributeoptcombo-id\>} | Data element operand | Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard "\*" symbol can be used to indicate any value. |
-| #{<dataelement-id\>.<categoryoptiongroup-id\>.<attributeoptcombo-id\>} | Category Option Group | Refers to an aggregate data element and a category option group, containing multiple category option combinations. |
-| #{<dataelement-id\>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
-| D{<program-id\>.<dataelement-id\>} | Program data element | Refers to the value of a tracker data element within a program. |
+| #{<data-element-id\>.<category-option-combo-id\>.<attribute-option-combo-id\>} | Data element operand | Refers to a combination of an aggregate data element and a category option combination. Both category and attribute option combo ids are optional, and a wildcard "\*" symbol can be used to indicate any value. |
+| #{<dataelement-id\>.<category-option-group-id\>.<attribute-option-combo-id\>} | Category Option Group | Refers to an aggregate data element and a category option group, containing multiple category option combinations. |
+| #{<data-element-id\>} | Aggregate data element | Refers to the total value of an aggregate data element across all category option combinations. |
+| D{<program-id\>.<data-element-id\>} | Program data element | Refers to the value of a tracker data element within a program. |
 | A{<program-id\>.<attribute-id\>} | Program tracked entity attribute | Refers to the value of a tracked entity attribute within a program. |
 | I{<program-indicator-id\>} | Program indicator | Refers to the value of a program indicator. |
 | R{<dataset-id\>.<metric\>} | Reporting rate | Refers to a reporting rate metric. The metric can be REPORTING_RATE, REPORTING_RATE_ON_TIME, ACTUAL_REPORTS, ACTUAL_REPORTS_ON_TIME, EXPECTED_REPORTS. |
 | C{<constant-id\>} | Constant | Refers to a constant value. |
 | N{<indicator-id\>} | Indicator | Refers to an existing Indicator. |
 | OUG{<orgunitgroup-id\>} | Organisation unit group | Refers to the count of organisation units within an organisation unit group. |
+
+Within a Data element operand or an Aggregate data element, the following substitutions may be made:
+
+| Item | Value | Description |
+|---|---|---|
+| data-element-id | data-element-id | An aggregate data element |
+| data-element-id | deGroup:data-element-group-id | All the aggregate data elements in a data element group |
+| category-option-combo-id | category-option-combo-id | A category option combination |
+| category-option-combo-id | co:category-option-id | All the category option combinations in a category option |
+| category-option-combo-id | coGroup:category-option-group-id | All the category option combinations in a category option group |
+| category-option-combo-id | coGroup:co-group-id1&co-group-id2... | All the category option combinations that are members of multiple category option groups |
 
 The syntax looks like
     this:
@@ -1291,24 +1307,35 @@ attribute option combination, and use wildcards to indicate any
 
     #{P3jJH5Tu5VC.S34ULMcHMca} + #{P3jJH5Tu5VC.*.j8vBiBqGf6O} + #{P3jJH5Tu5VC.S34ULMcHMca.*}
 
-An example which uses a program data element and a program
-    attribute:
+An example using a data element group:
+
+    #{deGroup:oDkJh5Ddh7d} + #{deGroup:GBHN1a1Jddh.j8vBiBqGf6O}
+
+An example using a category option, data element group, and a category option group:
+
+    #{P3jJH5Tu5VC.co:FbLZS3ueWbQ} + #{deGroup:GBHN1a1Jddh.coGroup:OK2Nr4wdfrZ.j8vBiBqGf6O}
+
+An example using multiple category option groups:
+
+    #{P3jJH5Tu5VC.coGroup:OK2Nr4wdfrZ&j3C417uW6J7&ddAo6zmIHOk}
+
+An example using a program data element and a program attribute:
 
     ( D{eBAyeGv0exc.vV9UWAZohSf} * A{IpHINAT79UW.cejWyOfXge6} ) / D{eBAyeGv0exc.GieVkTxp4HH}
 
-An example which combines program indicators and aggregate indicators:
+An example combining program indicators and aggregate indicators:
 
     I{EMOt6Fwhs1n} * 1000 / #{WUg3MYWQ7pt}
 
-An example which uses a reporting rate looks like this:
+An example using a reporting rate:
 
     R{BfMAe6Itzgt.REPORTING_RATE} * #{P3jJH5Tu5VC.S34ULMcHMca}
 
-Another example which uses actual data set reports:
+Another reporting rate example using actual data set reports and expected reports:
 
     R{BfMAe6Itzgt.ACTUAL_REPORTS} / R{BfMAe6Itzgt.EXPECTED_REPORTS}
 
-An example which uses an existing indicator would look like this:
+An example using an existing indicator:
 
     N{Rigf2d2Zbjp} * #{P3jJH5Tu5VC.S34ULMcHMca}
 
@@ -1388,8 +1415,6 @@ To get a list of organisation units you can use the following resource.
 
     /api/33/organisationUnits
 
-
-
 Table: Organisation units query parameters
 
 | Query parameter | Options | Description |
@@ -1405,14 +1430,11 @@ Table: Organisation units query parameters
 | memberCollection | string | For displaying count of members within a collection, refers to the name of the collection associated with organisation units. |
 | memberObject | UID | For displaying count of members within a collection, refers to the identifier of the object member of the collection. |
 
-### Get organisation unit with relations { #webapi_organisation_units_with_relations } 
+### Get organisation unit with sub-hierarchy { #webapi_organisation_units_with_sub_hierarchy } 
 
-To get an organisation unit with related organisation units you can use
-the following resource.
+To get an organisation unit including organisation units in its sub-hierarchy you can use the following resource.
 
     /api/33/organisationUnits/{id}
-
-
 
 Table: Organisation unit parameters
 
@@ -1421,71 +1443,171 @@ Table: Organisation unit parameters
 | includeChildren | false &#124; true | Include immediate children of the specified organisation unit, i.e. the units at the immediate level below in the subhierarchy. |
 | includeDescendants | false &#124; true | Include all children of the specified organisation unit, i.e. all units in the sub-hierarchy. |
 | includeAncestors | false &#124; true | Include all parents of the specified organisation unit. |
-| level | integer | Include children of the specified organisation unit at the given level of the sub-hierarchy (relative to the organisation unit where the immediate level below is level 1). |
+| level | integer | Include children of the specified organisation unit at the given level of the sub-hierarchy. This is relative to the organisation unit, starting on 1 for the level immediately below the org unit. |
 
-### Get organisation units by categoryOption  { #webapi_organisation_units_by_categoryOptions }
+### Get organisation units by category option  { #webapi_organisation_units_by_category_options }
 
-Purpose-built endpoint to retrieve associations between CategoryOptions and OrganisationUnits. 
-This endpoint is the preferred way to retrieve program org unit associations.
+Purpose-built endpoint to retrieve associations between category options and organisation units. This endpoint is the preferred way to retrieve program organisation unit associations.
 
-    /api/33/categoryOptions/orgUnits?categoryOptions=<categoryOptionUid,anotherCategoryOptionUid,...>
+    /api/33/categoryOptions/orgUnits?categoryOptions={categoryOptionIdA},{categoryOptionIdB}
 
 responses will have the following format:
 
-    {
-        "<categoryOptionUid>": [
-            "<orgUnitUid>",
-            "<orgUnitUid>",
-            ...,
-            "<orgUnitUid>"
-        ],
-        "<anotherCategoryOptionUid>": [
-            "<orgUnitUid>",
-            "<orgUnitUid>",
-            ...,
-            "<orgUnitUid>"
-        ],
-        "...": [
-            ...,
-            ...
-        ],
-        "<categoryOptionUid>": []
-    }
+```json
+{
+  "<categoryOptionIdA>": [
+    "<orgUnitUid>",
+    "<orgUnitUid>"
+  ],
+  "<categoryOptionIdB>": [
+    "<orgUnitUid>",
+    "<orgUnitUid>"
+  ],
+  "<categoryOptionIdC>": []
+}
+```
 
-CategoryOptions that are accessible by all OrganisationUnits are returned with an empty array (`[]`) of OrganisationUnits.
+Category options that are accessible by all organisation units are returned with an empty array (`[]`) of organisation units.
 
 ### Get organisation units by programs { #webapi_organisation_units_by_programs } 
 
-Purpose-built endpoint to retrieve associations between Programs and OrganisationUnits. This endpoint is
-the preferred way to retrieve program org unit associations.
+Purpose-built endpoint to retrieve associations between programs and organisation units. This endpoint is the preferred way to retrieve program organisation unit associations.
 
-
-
-    /api/33/programs/orgUnits?programs=<programUid,anotherProgramUid,...>
+    /api/33/programs/orgUnits?programs={programIdA},{programIdB}
 
 responses will have the following format:
 
-    {
-        "<programUid>": [
-            "<orgUnitUid>",
-            "<orgUnitUid>",
-            ...,
-            "<orgUnitUid>"
-        ],
-        "<programUid>": [
-            "<orgUnitUid>",
-            "<orgUnitUid>",
-            ...,
-            "<orgUnitUid>"
-        ],
-        "...": [
-            ...,
-            ...
-        ],
-        "<programUid>": []
-    }
+```json
+{
+  "<programIdA>": [
+    "<orgUnitUid>",
+    "<orgUnitUid>"
+  ],
+  "<programIdB>": [
+    "<orgUnitUid>",
+    "<orgUnitUid>"
+  ],
+  "<programIdC>": []
+}
+```
 
-Programs that are accessible by all OrganisationUnits are returned with an empty array (`[]`) of OrganisationUnits.
+Programs which are accessible by all organisation units are returned with an empty array (`[]`) of organisation units.
+
+### Split organisation unit { #webapi_organisation_unit_split }
+
+The organisation unit split endpoint allows you to split organisation units into a number of target organisation units. 
+
+#### Request
+
+Split organisation units with a POST request:
+
+```
+POST /api/organisationUnits/split
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "source": "rspjJHg4WY1",
+  "targets": [
+    "HT0w9YLMLyn",
+    "rEpnzuNpRKM"
+  ],
+  "primaryTarget": "HT0w9YLMLyn",
+  "deleteSource": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Split payload fields
+
+| Field         | Required | Value |
+| ------------- | -------- |------ |
+| source        | Yes      | Identifier of the organisation unit to split (the source organisation unit). |
+| targets       | Yes      | Array of identifiers of the organisation units to split the source into (the target organisation units). |
+| primaryTarget | No       | Identifier of the organisation unit to transfer the aggregate data, events and tracked entities associated with the source over to. If not specified, the first target will be used. |
+| deleteSource  | No       | Whether to delete the source organisation unit after the operation. Default is `true`. |
+
+The split operation will split the source org unit into the target org units. It is recommended to first create new target org units before performing the split, and at a minimum ensure that no aggregate data exists for the target org units. Any number of target org units can be specified.
+
+The split operation will transfer all of the metadata associations of the source org unit over to the target org units. This includes data sets, programs, org unit groups, category options, users, visualizations, maps and event reports.
+
+The operation will transfer all data records of the source org unit over to the org unit specified as the primary target, or if not specified, the first specified target org unit. This includes aggregate data values, data approval records, events, tracked entities and more.
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                     |
+| ---------- | ----------------------------------------------- |
+| E1510      | Source org unit must be specified               |
+| E1511      | At least two target org units must be specified |
+| E1512      | Source org unit cannot be a target org unit     |
+| E1513      | Primary target must be specified                |
+| E1514      | Primary target must be a target org unit        |
+| E1515      | Target org unit does not exist                  |
+
+### Merge organisation units { #webapi_organisation_unit_merge}
+
+The organisation unit merge endpoint allows you to merge a number of organisation units into a target organisation unit.
+
+#### Request
+
+Merge organisation units with a POST request:
+
+```
+POST /api/organisationUnits/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "dataValueMergeStrategy": "LAST_UPDATED",
+  "dataApprovalMergeStrategy": "LAST_UPDATED",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field                     | Required | Value |
+| ------------------------- | -------- | ----- |
+| sources                   | Yes      | Array of identifiers of the organisation units to merge (the source organisation units). |
+| target                    | Yes      | Identifier of the organisation unit to merge the sources into (the target organisation unit). |
+| dataValueMergeStrategy    | No       | Strategy for merging data values. Options: `LAST_UPDATED` (default), `DISCARD`. |
+| dataApprovalMergeStrategy | No       | Strategy for merging data approval records. Options: `LAST_UPDATED` (default), `DISCARD`. |
+| deleteSources             | No       | Whether to delete the source organisation units after the operation. Default is true. |
+
+The merge operation will merge the source org units into the target org unit. It is recommended to first create a new target org unit before performing the split, and at a minimum ensure that no aggregate data exists for the target org unit. Any number of source org units can be specified.
+
+The merge operation will transfer all of the metadata associations of the source org units over to the target org unit. This includes data sets, programs, org unit groups, category options, users, visualizations, maps and event reports. The operation will also transfer all event and tracker data, such as events, enrollments, ownership history, program ownership and tracked entities, over to the target org unit.
+
+The specified data value merge strategy defines how data values are handled. For strategy `LAST_UPDATED`, data values for all source org units are transferred over to the target org unit, and in situation where data values exist for the same parameters, the last updated or created data value will be used. This is done to avoid duplication of data. For strategy `DISCARD`, data values are not transferred over to the target org unit, and simply deleted. The specified data approval merge strategy defines how data approval records are handled, and follows the same logic as data values.
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                     |
+| ---------- | ----------------------------------------------- |
+| E1500      | At least two source orgs unit must be specified |
+| E1501      | Target org unit must be specified               |
+| E1502      | Target org unit cannot be a source org unit     |
+| E1503      | Source org unit does not exist                  |
 
 ## Data sets { #webapi_data_sets } 
 
@@ -1504,7 +1626,7 @@ request:
 
     POST /api/33/dataSets/<uid>/version
 
-### DataSet Notification Template { #webapi_dataset_notifications } 
+### Data set notification template { #webapi_dataset_notifications } 
 
 The *dataset notification templates* resource follows the standard
 conventions as other metadata resources in DHIS2.
@@ -1551,7 +1673,7 @@ list to fill positions for which it does not exist a persisted level.
     GET /api/33/filledOrganisationUnitLevels
 
 To set the organisation unit levels you can issue a POST request with a
-JSON payload looking like this.
+JSON payload and content type `application/json` looking like this:
 
 ```json
 {
@@ -1570,13 +1692,6 @@ JSON payload looking like this.
     "level": 4
   }]
 }
-```
-
-To do functional testing with curl you can issue the following command.
-
-```bash
-curl "http://localhost/api/33/filledOrganisationUnitLevels" -H "Content-Type:application/json"
-  -d @levels.json -u admin:district
 ```
 
 ## Predictors { #webapi_predictors } 
@@ -1685,8 +1800,6 @@ programRules' expressions.
 The following table gives a detailed overview over the programRule
 model.
 
-
-
 Table: programRule
 
 | name | description | Compulsory |
@@ -1702,8 +1815,6 @@ Table: programRule
 
 The following table gives a detailed overview over the programRuleAction
 model.
-
-
 
 Table: programRuleAction
 
@@ -1745,14 +1856,21 @@ Table: ProgramRuleAction Validations
 |WARNINGONCOMPLETE| DataElement or TrackedEntityAttribute id |
 |ERRORONCOMPLETE| DataElement or TrackedEntityAttribute id |
 
+Apart from above validations, `data` field in program rule action which normally contains expression can also be evaluated using below api endpoint.
+	
+	POST /api/programRuleActions/data/expression/description?programId=<uid>
 
+
+```json
+{
+  "condition": "1 + 1"
+}
+```
 
 #### Program rule variable model details
 
 The following table gives a detailed overview over the
 programRuleVariable model.
-
-
 
 Table: programRuleVariable
 
@@ -1802,8 +1920,6 @@ about each section (group) in the form as well as each field in the
 sections, including labels and identifiers. By supplying period and
 organisation unit identifiers the form response will be populated with
 data values.
-
-
 
 Table: Form query parameters
 
@@ -1897,8 +2013,6 @@ To upload metadata in CSV format you can make a POST request to the metadata end
 
 The following object types are supported. The `classKey` query parameter is mandatory and can be found next to each object type in the table below.
 
-
-
 Table: Object types and keys
 
 | Object type | Class key |
@@ -1928,14 +2042,12 @@ The formats for the currently supported object types for CSV import are listed i
 
 ### Data elements { #webapi_csv_data_elements } 
 
-
-
 Table: Data Element CSV Format
 
 | Index | Column | Required | Value (default first) | Description |
 |---|---|---|---|---|
 | 1 | Name | Yes || Name. Max 230 char. Unique. |
-| 2 | UID | No | UID | Stable identifier. Exactly 11 alpha-numeric characters, beginning with a character. Will be generated by system if not specified. |
+| 2 | UID | No | UID | Stable identifier. Exactly 11 alpha-numeric characters, beginning with a letter. Will be generated by system if not specified. |
 | 3 | Code | No || Stable code. Max 50 char. |
 | 4 | Short name | No | 50 first char of name | Will fall back to first 50 characters of name if unspecified. Max 50 char. Unique. |
 | 5 | Description | No || Free text description. |
@@ -1961,8 +2073,6 @@ name,uid,code,shortname,description
 ```
 
 ### Organisation units { #webapi_csv_org_units } 
-
-
 
 Table: Organisation Unit CSV Format
 
@@ -1996,8 +2106,6 @@ name,uid,code,parent
 
 ### Validation rules { #webapi_csv_validation_rules } 
 
-
-
 Table: Validation Rule CSV Format
 
 | Index | Column | Required | Value (default first) | Description |
@@ -2019,8 +2127,6 @@ Table: Validation Rule CSV Format
 | 15 | Right side missing value strategy | No | SKIP_IF_ANY_VALUE_MISSING &#124; SKIP_IF_ALL_VALUES_MISSING &#124; NEVER_SKIP | Behavior in case of missing values in right side expression. |
 
 ### Option sets { #webapi_csv_option_sets } 
-
-
 
 Table: Option Set CSV Format
 
@@ -2055,8 +2161,6 @@ optionsetname,optionsetuid,optionsetcode,optionname,optionuid,optioncode
 ```
 
 ### Option group
-
-
 
 Table: Option Group CSV Format
 
@@ -2360,8 +2464,7 @@ The following file extensions are blocked.
 
 ## Metadata versioning { #webapi_metadata_versioning } 
 
-This section explains the Metadata Versioning APIs available starting
-2.24
+This section explains the metadata versioning APIs.
 
   - `/api/metadata/version`: This endpoint will return the current metadata
     version of the system on which it is invoked.
@@ -2713,3 +2816,173 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
   -d "https://dhis2.org/metadata-repo/221/trainingland-org-units/metadata.json"
   -H "Content-Type:text/plain" -u admin:district
 ```
+
+## Reference to createdBy User
+
+Each object created in DHIS2 will have a property named `user` which is linked to `User` who created the object.
+
+From version 2.36 we have changed the name of this property to `createdBy` to avoid confusion.
+
+However, in order to keep the backwards compability, the legacy `user` property is still included in the payload and works normally as before.
+
+```json
+{
+  "createdBy": {
+      "displayName": "John Kamara",
+      "name": "John Kamara",
+      "id": "N3PZBUlN8vq",
+      "username": "district"
+  },
+  "user": {
+      "displayName": "John Kamara",
+      "name": "John Kamara",
+      "id": "N3PZBUlN8vq",
+      "username": "district"
+  }
+}
+```
+
+## Metadata Proposal Workflow { #webapi_metadata_proposal_workflow }
+
+The metadata proposal workflow endpoint allows for a workflow of proposing and accepting changes to metadata.
+
+```
+/api/metadata/proposals
+```
+
+### Propose a metadata change { #webapi_metadata_proposal_propose }
+
+A proposal always targets a single metadata object using:
+
+    POST /api/metadata/proposals
+
+Depending on the payload the proposal could:
+
+* Add a new metadata object.
+* Update an existing metadata object references by ID.
+* Remove an existing metadata object referenced by ID.
+
+To propose adding a new metadata object send a JSON payload like the following:
+
+```json
+{
+  "type": "ADD",
+  "target": "ORGANISATION_UNIT",
+  "change": {"name":"My Unit", "shortName":"MyOU", "openingDate": "2020-01-01"}
+}
+```
+The `change` property contains the same JSON object that could directly be posted to the corresponding endpoint to create the object.
+
+To propose updating an existing metadata object send a JSON payload like in the below example:
+
+```json
+{
+  "type": "UPDATE",
+  "target": "ORGANISATION_UNIT",
+  "targetId": "<id>",
+  "change": [
+    { "op": "replace", "path": "/name", "value": "New name" }
+  ]
+}
+```
+The `targetId` refers to the object by its ID which should be updated. The `change` property here contains a JSON patch payload. This is the same
+patch payload that could be posted to the corresponding endpoint to directly apply the update.
+
+To propose the removal of an existing object send a payload like in the last example:
+
+```json
+{
+  "type": "REMOVE",
+  "target": "ORGANISATION_UNIT",
+  "targetId": "<id>"
+}
+```
+The `targetId` refers to the object  by its ID which should be removed. A free text `comment` can be added to any type of comment.
+
+Only `target` type `ORGANISATION_UNIT` is supported currently.
+
+### Accept a metadata change proposal { #webapi_metadata_proposal_accept }
+To accept an open proposal use `POST` on the proposal resource
+
+    POST /api/metadata/proposals/<uid>
+
+When successful the status of the proposal changes to status `ACCEPTED`. Once accepted the proposal can no longer be rejected.
+
+Should a proposal fail to apply it changes to status `NEEDS_UPDATE`. The `reason` field contains a summary of the failures when this information is 
+available.
+
+### Oppose a metadata change proposal { #webapi_metadata_proposal_oppose }
+If a proposal isn't quite right and needs adjustment this can be indicated by opposing the proposal by sending a `PATCH` for the proposal resource
+
+    PATCH /api/metadata/proposals/<uid>
+
+Optionally a plain text body can be added to this to give a `reason` why the proposal got opposed.
+
+A opposed proposal must be in state `PROPOSED` and will change to state `NEEDS_UPDATE`.
+
+### Adjust a metadata change proposal { #webapi_metadata_proposal_adjust }
+A proposal in state `NEEDS_UPDATE` needs to be adjusted before it can be accepted. To adjust the proposal a `PUT` request is made for the proposal's 
+resource
+
+    PUT /api/metadata/proposals/<uid>
+
+Such an adjustment can either be made without a body or with a JSON body containing an object with the updated `change` and `targetId` for the 
+adjustment:
+
+```json
+{
+  "targetId": "<id>",
+  "change": ...
+}
+```
+The JSON type of the `change` value depends on the proposal `type` analogous to when a proposal is initially made.
+
+### Reject a metadata change proposal { #webapi_metadata_proposal_reject }
+To reject an open proposal use `DELETE` on the proposal resource
+
+    DELETE /api/metadata/proposals/<uid>
+
+This changes the status of the proposal conclusively to `REJECTED`. No further changes can be made to this proposal. It is kept as a documentation of the events.
+
+### List metadata change proposals { #webapi_metadata_proposal_list }
+All proposals can be listed:
+
+    GET /api/metadata/proposals/
+
+The result list can be filtered using the `filter` parameter.
+For example, to list only accepted proposals use:
+
+    GET /api/metadata/proposals?filter=status=ACCEPTED
+
+Similarly to only show open proposals use:
+
+    GET /api/metadata/proposals?filter=status=PROPOSED
+
+Filters can also be applied to any field except `change`. Supported filter operators are those described in the Gist Metadata API. This also includes property transformers described for Gist API.
+
+List of available fields are:
+
+| Field       | Description |
+| ----------- | -------------------------------------------------------------- |
+| id          | unique identifier of the proposal |
+| type        | `ADD` a new object, `UPDATE` an existing object, `REMOVE` an existing object |
+| status      | `PROPOSED` (open proposal), `ACCEPTED` (successful), `NEEDS_UPDATE` (accepting caused error or opposed), `REJECTED` |
+| target      | type of metadata object to add/update/remove; currently only `ORGANISATION_UNIT` |
+| targetId    | UID of the updated or removed object, not defined for `ADD` |
+| createdBy   | the user that created the proposal |
+| created     | the date time when the proposal was created |
+| finalisedBy | the user that accepted or rejected the proposal |
+| finalised   | the date time when the proposal changed to a conclusive state of either accepted or rejected |
+| comment     | optional plain text comment given for the initial proposal |
+| reason      | optional plain text given when the proposal was opposed or the errors occurring when accepting a proposal failed | 
+| change      | JSON object for `ADD` proposal, JSON array for `UPDATE` proposal, nothing for `REMOVE` proposal |
+
+### Viewing metadata change proposals { #webapi_metadata_proposal_show }
+Individual change proposals can be viewed using 
+
+    GET /api/metadata/proposals/<uid>
+
+The `fields` parameter can be used to narrow the fields included for the shown object. For example:
+
+    GET /api/metadata/proposals/<uid>?fields=id,type,status,change
+

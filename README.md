@@ -8,7 +8,7 @@ This is the easy bit, and is all that most people have to do. The following sect
 ## Format and editing
 The documents are maintained in [commonmark](https://commonmark.org/help/) markdown format, with an `.md` extension.
 
-Editing documents is as simple as editing a text file. Many IDEs have markdown support, including live previews. For Linux and Windows, [ghostwriter](https://wereturtle.github.io/ghostwriter/) is a nice option; it is free and supports side-by-side preview and custom stylesheets.
+Editing documents is as simple as editing a text file. Many IDEs have markdown support, including live previews. For Linux and Windows, [Typora](https://typora.io/) is a great, open-source markdown editor.
 
 
 ### Structure
@@ -51,6 +51,19 @@ For screenshots of the DHIS 2 web interface, we recommend using Chrome browser, 
 > *Fireshot can even capture the full page, i.e. scrolled, if desired. It can also capture just a selected area (but the maximum width should always be 1440px)*
 
 When taking screenshots of the Android app, size should be set to **360x640**.
+
+#### Localising images
+
+Localisation of images is supported by storing language-specific versions of an image alongside the original image. The filename should be the same as the original English version, but should include `_` plus the language code at the end of the name, before the extension.
+
+For example, if you want to have a French version of  
+`resources/images/my_screenshot.png`  
+You can simply create the French version and save it as  
+`resources/images/my_screenshot_fr.png`
+
+The link in the documention should still point at the original image. When the documentation site is built for each language, localised images will be identified and used instead of the English originals.
+
+> *The language code is the first part of the URL that you see after the "docs.dhis2.org/" when viewing the localised version of the documentation. At the time of writing, for example, we have `fr`, `es_419`, `pt`, `cs` and `zh`.*
 
 ### Section references
 

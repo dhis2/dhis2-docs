@@ -48,13 +48,13 @@ You may customize which columns are shown in the list for the current object. Th
 
 #### Managing visible columns
 
-![](resources/images/maintainence/configurable_columns_dialog.png)
+![](resources/images/maintenance/configurable_columns_dialog.png)
 
-1. Click the ![settings-icon](resources/images/maintainence/icon_settings.png) -icon to the top right of the list of objects you want to configure.
+1. Click the ![](resources/images/maintenance/icon_settings.png) icon to the top right of the list of objects you want to configure.
 2. A dropdown-menu will appear, select **Manage columns**.
 3. A dialog will appear, with the default columns selected.
 3. Click any column-name in the list of **Available columns** to add them to the list of selected columns.
-4. You may reorder the selected columns by drag-and-dropping the ![reorder-icon](resources/images/maintainence/icon_reorder.png) -icon.
+4. You may reorder the selected columns by drag-and-dropping the ![](resources/images/maintenance/icon_reorder.png) icon.
 5. You may also remove any column from the view by clicking the X-icon next to the name.
 6. Click **Save** once you are satisified with your changes.
 
@@ -64,7 +64,7 @@ You may easily reset to the default values by clicking the **Reset to default** 
 
 You can download the metadata for the object you are currently viewing. The metadata download will respect any filters you have active for the list.
 
-1. Click the ![settings-icon](resources/images/maintainence/icon_settings.png) -icon to the top right of the list of objects you want to configure.
+1. Click the ![](resources/images/maintenance/icon_settings.png) icon to the top right of the list of objects you want to configure.
 2. A dropdown-menu will appear, select **Download**.
 3. A dialog will appear, where you can select the desired format and compression.
 4. **With sharing** can be selected to include sharing-data for the metadata.
@@ -337,7 +337,7 @@ These attributes (when specified as a dimension) can be used in the
 analysis applications similar to other dimensions, for example the
 period and organisation unit.
 
-![](resources/images/maintainence/categories_dataset_attributes.png)
+![](resources/images/maintenance/categories_dataset_attributes.png)
 
 ### Assign a code to a category option combination { #assign_code_category_option_combo } 
 
@@ -517,7 +517,7 @@ Table: Data element objects in the Maintenance app
 
 ### Create or edit a data element { #create_data_element } 
 
-![](resources/images/maintainence/create_data_element.png)
+![](resources/images/maintenance/create_data_element.png)
 
 1.  Open the **Maintenance** app and click **Data elements** \> **Data
     element**.
@@ -1790,7 +1790,7 @@ Table: Indicator objects in the Maintenance app
 
 ### Create or edit an indicator type { #create_indicator_type } 
 
-![](resources/images/maintainence/indicator_type_create.png)
+![](resources/images/maintenance/indicator_type_create.png)
 
 Indicator types define a factor that is applied during aggregation.
 Indicator values that are calculated during a data mart export or report
@@ -1825,7 +1825,7 @@ case of percent) for the values to appear correctly formatted.
 
 ### Create or edit an indicator { #create_indicator } 
 
-![](resources/images/maintainence/indicator_create.png)
+![](resources/images/maintenance/indicator_create.png)
 
 1.  Open the **Maintenance** app and click **Indicator** \>
     **Indicator**.
@@ -1943,7 +1943,7 @@ case of percent) for the values to appear correctly formatted.
 
 ### Create or edit an indicator group { #create_indicator_group } 
 
-![](resources/images/maintainence/indicator_group_create.png)
+![](resources/images/maintenance/indicator_group_create.png)
 
 1.  Open the **Maintenance** app and click **Indicator** \> **Indicator
     group**.
@@ -1958,7 +1958,7 @@ case of percent) for the values to appear correctly formatted.
 
 ### Create or edit an indicator group set { #create_indicator_group_set } 
 
-![](resources/images/maintainence/indicator_group_set_create.png)
+![](resources/images/maintenance/indicator_group_set_create.png)
 
 Indicator group sets create combined groups of similar indicators. For
 example, you might have a group of indicators called "Malaria" and
@@ -2462,9 +2462,9 @@ option:
     "Faith-based" to the "Ownership" organisation group
 set.
 
-![](resources/images/maintainence/analytics-include-org-unit-subhierarchy.png)
+![](resources/images/maintenance/analytics-include-org-unit-subhierarchy.png)
 
-![](resources/images/maintainence/include-subhierarchy-analytics.png)
+![](resources/images/maintenance/include-subhierarchy-analytics.png)
 
 Group you organisation unit in two ways and aggregate data on these two
 parallel hierarchies
@@ -2721,7 +2721,7 @@ an end point. The example below shows disease surveillance data:.
   - The validation rule makes sure users are notified when the total
     number of cases breaks the threshold for the period.
 
-![](resources/images/maintainence/validation_rules_sliding_window.gif)
+![](resources/images/maintenance/validation_rules_sliding_window.gif)
 
 
 
@@ -2776,6 +2776,8 @@ Table: Validation Rule functions
 | least | (expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
 | log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
 | log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
+| orgUnit.ancestor | (orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
+| orgUnit.group | (ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
 
 ### Create or edit a validation rule { #create_validation_rule } 
 
@@ -3069,7 +3071,7 @@ these objects it may be useful to store information for additional
 attributes, for example the collection method for a data element.
 
 
-![](resources/images/maintainence/attribute_create.png)
+![](resources/images/maintenance/attribute_create.png)
 
 In the **Maintenance** app, you manage the following attribute objects:
 
@@ -3196,7 +3198,7 @@ protection rate" depend on constants which usually do not change over
 time.
 
 
-![](resources/images/maintainence/constant_create.png)
+![](resources/images/maintenance/constant_create.png)
 
 In the **Maintenance** app, you manage the following constant objects:
 
@@ -3363,7 +3365,7 @@ An option set called "Delivery type" would have the options: "Normal",
 "Breach", "Caesarian" and "Assisted".
 
 
-![](resources/images/maintainence/option_set_create.png)
+![](resources/images/maintenance/option_set_create.png)
 
 
 
@@ -3935,21 +3937,21 @@ previous periods to sample. For example, if a predictor's period type is
 four previous weeks immediately preceding the predicted value week. So the
 predicted value for week 9 would use samples from weeks 5, 6, 7, and 8:
 
-![](resources/images/maintainence/predictor_sequential.png){.center width=50% }
+![](resources/images/maintenance/predictor_sequential.png){.center width=50% }
 
 If a predictor's period type is *Monthly* and the *Sequential sample
 count* is 4, this means to sample four previous months immediately
 preceding the predicted value month. So the predicted value for May
 would use samples from weeks January, February, March, and April:
 
-![](resources/images/maintainence/predictor_sequential_month.png){.center width=51% }
+![](resources/images/maintenance/predictor_sequential_month.png){.center width=51% }
 
 The *Sequential sample count* can be greater than the number of periods
 in a year. For example, if you want to sample the 24 months immediately
 preceding the predicted value month, set the *Sequential sample count*
 to 24:
 
-![](resources/images/maintainence/predictor_24_months.png){.center width=57% }
+![](resources/images/maintenance/predictor_24_months.png){.center width=57% }
 
 #### Sequential skip count { #sequential_skip_count } 
 
@@ -3966,7 +3968,7 @@ predicted period will be skipped, resulting in only two periods being
 sampled:
 
 
-![](resources/images/maintainence/predictor_skip.png){.center width=50% }
+![](resources/images/maintenance/predictor_skip.png){.center width=50% }
 
 #### Annual sample count { #annual_sample_count } 
 
@@ -3980,7 +3982,7 @@ zero), then samples would be collected from periods in the immediately
 preceding two years, at the same time of year.
 
 
-![](resources/images/maintainence/predictor_annual.png){.center width=53% }
+![](resources/images/maintenance/predictor_annual.png){.center width=53% }
 
 #### Sequential and annual sample counts together { #sequential_annual_sample_count } 
 
@@ -3998,7 +4000,7 @@ will be collected in the previous 2 years for the corresponding period, as
 well as 4 periods on either side:
 
 
-![](resources/images/maintainence/predictor_sequential_annual.png){.center width=66% }
+![](resources/images/maintenance/predictor_sequential_annual.png){.center width=66% }
 
 #### Sequential, annual, and skip sample counts together { #sequential_annual_skip_sample_count } 
 
@@ -4011,14 +4013,14 @@ the predicted value period period will be skipped, but the two periods
 before that will be sampled:
 
 
-![](resources/images/maintainence/predictor_skip_2_weeks.png){.center width=66% }
+![](resources/images/maintenance/predictor_skip_2_weeks.png){.center width=66% }
 
 If the *Sequential skip count* is equal to or greater than the
 *Sequential sample count*, then no samples will be collected for the
 year containing the predicted value period; only periods from past years
 will be sampled:
 
-![](resources/images/maintainence/predictor_skip_current_year.png){.center width=66% }
+![](resources/images/maintenance/predictor_skip_current_year.png){.center width=66% }
 
 #### Sample skip test { #sample_skip_test } 
 
@@ -4041,7 +4043,7 @@ Any periods for which the *Sample skip test* is *true* will not be
 sampled. For example:
 
 
-![](resources/images/maintainence/predictor_sample_skip_test.png){.center width=66% }
+![](resources/images/maintenance/predictor_sample_skip_test.png){.center width=66% }
 
 ### Create or edit a predictor { #create_predictor } 
 
@@ -4107,11 +4109,13 @@ sampled. For example:
         | stddevSamp(x) | Sample standard deviation of x: sqrt( sum( (x - avg(x))^2 ) / ( n - 1 ) ). Note that this value is not computed when there is only one sample. |
         | sum(x) | Sum of the values of x |
 
-        Any items inside an aggregate function will be evaluated for all
-        sampled past periods, and then combined according to the formula
-        inside the aggregate function. Any items outside an aggregate
-        function will be evaluated for the period in which the
-        prediction is being made.
+        > **Note**
+        >
+        > Any items inside an aggregate function will be evaluated for all
+        > sampled past periods, and then combined according to the formula
+        > inside the aggregate function. Any items outside an aggregate
+        > function will be evaluated for the period in which the
+        > prediction is being made.
 
         You can build more complex expressions by clicking on (or
         typing) any of the elements below the expression field:
@@ -4135,6 +4139,8 @@ sampled. For example:
         | least(expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
         | log(expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
         | log10(expression) | Returns the common logarithm (base 10) of the numeric expression. |
+        | orgUnit.ancestor(orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
+        | orgUnit.group(ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
 
         **Boolean expression notes:** A boolean expression must evaluate
         to **true** or **false**. The following operators may be used to
@@ -4170,7 +4176,7 @@ sampled. For example:
         function, you may click on (or type) any of the elements below
         the expression field: ( ) \* / + - Days.
 
-        The non-aggregating functions described above may also be used
+        The non-aggregating functions described above for generator expressions may also be used
         in skip tests.
 
         The expression must evaluate to a boolean value of **true** or
@@ -4339,7 +4345,7 @@ addresses.
 > don't include any sensitive data.
 
 
-![](resources/images/maintainence/push_report_ex.png)
+![](resources/images/maintenance/push_report_ex.png)
 
 In the **Maintenance** app, you manage the following push reports
 objects:
@@ -4683,15 +4689,27 @@ To create a new SQL view, click **Apps** \> **Maintenance**
 \> **Other** \> **SQL View** and click the Add **+** button.
 
 
-![](resources/images/maintainence/create_sql_view.PNG)
+![](resources/images/maintenance/create_sql_view.PNG)
 
 The "Name" attribute of the SQL view will be used to determine the name
 of the table that DHIS2 will create when the view is materialized by the
 user. The "Description" attribute allows one to provide some descriptive
-text about what the SQL view actually does. Finally, the "SQL query"
-should contain the SQL view definition. Only SQL "SELECT" statements are
-allowed and certain sensitive tables (i.e. user information) are not
-accessible Press "Save" to store the SQL view definition.
+text about what the SQL view actually does.
+
+The "SQL type" attribute allows the creation of three kinds of views:
+  - A "View" is stored in the database and regenerated when queried
+  - A "Materialized View" is stored in the database and its results
+  are cached in the database
+  - A "Query" is not stored in the database
+
+Finally, the "SQL query" should contain the SQL view definition.
+
+Only SQL "SELECT" statements are allowed and certain sensitive tables 
+(i.e., user information) are not accessible.
+
+Press "Save" to store the SQL view definition. If you created a "View"
+or a "Materialized View", you must also "Execute query" to finish the
+creation of the SQL view.
 
 Keep in mind that the the columns returned by the used SELECT statement
 become table columns, that means they must be of a valid table column
@@ -4704,6 +4722,28 @@ to `text`, like in the below sample:
 
 ```sql
 select jsonb_each_text(eventdatavalues)::text from ...
+```
+
+### SQL views that call other SQL views
+
+If you wish to make a SQL view that can be called be other SQL views,
+then its **SQL type** must be either "View" or a "Materialized View"
+(not "Query"). It also must have **Execute query** run on it before
+being called.
+
+For instance, if you created a view named **Data element count**
+with SQL type "View" and this SQL:
+
+```sql
+select count(*) as count from dataelement;
+```
+
+...then you could run **Execute query** from the context menu and
+create a second SQL view named **More than 100 data elements** with
+this SQL:
+
+```sql
+select case when count > 100 then 1 else 0 end as result from _view_data_element_count;
 ```
 
 ### SQL View management
@@ -4737,7 +4777,7 @@ slight variants between countries which use a common metadata
 definition.
 
 
-![](resources/images/maintainence/locale_management.png)
+![](resources/images/maintenance/locale_management.png)
 
 The locale is composed of a language along with a country. Select the
 desired values and press "Add". This custom locale will now be available

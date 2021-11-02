@@ -437,11 +437,11 @@ curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?
   > image.jpg
 ```
 
-The API also supports a *dimension* parameter. It can take three possible values: `small` (254x254), `medium` (512x512), `large` (1024x1024) or `original`. Image type attributes will be stored in pre-generated sizes
+The API also supports a *dimension* parameter. It can take three possible values (please note capital letters): `SMALL` (254x254), `MEDIUM` (512x512), `LARGE` (1024x1024) or `ORIGINAL`. Image type attributes will be stored in pre-generated sizes
 and will be furnished upon request based on the value of the `dimension` parameter.
 
 ```bash
-curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=medium"
+curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=MEDIUM"
 ```
 
 #### Tracked entity instance query { #webapi_tracked_entity_instance_query } 
@@ -2152,7 +2152,7 @@ as shown:
 
 Potential duplicates are records we work with in the data deduplication feature. Due to the nature of the deduplication feature, this API endpoint is somewhat restricted.
 
-A potential duplicate represents a single or pair of records which are suspected to be a duplicate.
+A potential duplicate represents a pair of records which are suspected to be a duplicate.
 
 The payload of a potential duplicate looks like this:
 
@@ -2168,15 +2168,42 @@ You can retrieve a list of potential duplicates using the following endpoint:
 
     GET /api/potentialDuplicates
 
-Additionally you can inspect individual records:
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| teis | List of tracked entity instances | List of string (separated by comma)| existing tracked entity instance id |
+| status | Potential duplicate status | string | `OPEN <default>`, `INVALID`, `MERGED`, `ALL` |
+
+| Status code | Description
+|---|---|
+| 400 | Invalid input status
+
+You can inspect individual potential duplicate records:
 
     GET /api/potentialDuplicates/<id>
+
+| Status code | Description
+|---|---|
+| 404 | Potential duplicate not found
+
+You can also filter potential duplicates by Tracked Entity Instance (referred as tei) :
+
+    GET /api/potentialDuplicates/tei/<tei>
+
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL <default>` |
+
+| Status code | Description
+|---|---|
+| 400 | Invalid input status
+| 403 | User do not have access to read tei
+| 404 | Tei not found
 
 To create a new potential duplicate, you can use this endpoint:
 
     POST /api/potentialDuplicates
 
-The payload you provide needs at least _teiA_ to be a valid tracked entity instance; _teiB_ is optional. If _teiB_ is set, it also needs to point to an existing tracked entity instance.
+The payload you provide must include both teiA and teiB
 
 ```json
 {
@@ -2185,15 +2212,174 @@ The payload you provide needs at least _teiA_ to be a valid tracked entity insta
 }
 ```
 
-You can mark a potential duplicate as _invalid_ to tell the system that the potential duplicate has been investigated and deemed to be not a duplicate. To do so you can use the following endpoint:
+| Status code | Description
+|---|---|
+| 400 | Input teiA or teiB is null or has invalid id
+| 403 | User do not have access to read teiA or teiB
+| 404 | Tei not found
+| 409 | Pair of teiA and teiB already existing
 
-    PUT /api/potentialDuplicates/<id>/invalidation
+To update a potential duplicate status:
 
-To hard delete a potential duplicate:
+    PUT /api/potentialDuplicates/<id>
 
-    DELETE /api/potentialDuplicates/<id>
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED` |
 
-## Program Messages { #webapi_program_messages } 
+| Status code | Description
+|---|---|
+| 400 | You can't update a potential duplicate to MERGED as this is possible only by a merging request
+| 400 | You can't update a potential duplicate that is already in a MERGED status
+
+## Flag Tracked Entity Instance as Potential Duplicate
+
+To flag as potential duplicate a Tracked Entity Instance (referred as tei)
+
+ `PUT /api/trackedEntityInstances/{tei}/potentialDuplicate`
+
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| flag | either flag or unflag a tei as potential duplicate | string | `true`, `false` |
+
+
+| Status code | Description
+|---|---|
+| 400 | Invalid flag must be true of false
+| 403 | User do not have access to update tei
+| 404 | Tei not found
+
+## Merging Tracked Entity Instances
+Tracked entity instances can now be merged together if they are viable. To initiate a merge, the first step is to define two tracked entity instances as a Potential Duplicate. The merge endpoint
+will move data from the duplicate tracked entity instance to the original tracked entity instance, and delete the remaining data of the duplicate.
+
+To merge a Potential Duplicate, or the two tracked entity instances the Potential Duplicate represents, the following endpoint can be used:
+
+    POST /potentialDuplicates/<id>/merge
+
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| mergeStrategy | Strategy to use for merging the potentialDuplicate | enum | AUTO(default) or MANUAL |
+
+The endpoint accepts a single parameter, "mergeStrategy", which decides which strategy to use when merging. For the AUTO strategy, the server will attempt to merge the two tracked entities
+automatically, without any input from the user. This strategy only allows merging tracked entities without conflicting data (See examples below). The other strategy, MANUAL, requires the
+user to send in a payload describing how the merge should be done. For examples and rules for each strategy, see their respective sections below.
+
+### Merge Strategy AUTO
+The automatic merge will evaluate the mergability of the two tracked entity instances, and merge them if they are deemed mergable. The mergability is based on whether the two tracked entity instances
+has any conflicts or not. Conflicts refers to data which cannot be merged together automatically. Examples of possible conflicts are:
+- The same attribute has different values in each tracked entity instance
+- Both tracked entity instances are enrolled in the same program
+- Tracked entity instances have different types
+
+If any conflict is encountered, an errormessage is returned to the user.
+
+When no conflicts are found, all data in the duplicate that is not already in the original will be moved over to the original. This includes attribute values, enrollments (Including events) and relationships.
+After the merge completes, the duplicate is deleted and the potentialDuplicate is marked as MERGED.
+
+When requesting an automatic merge like this, a payload is not required and will be ignored.
+
+### Merge Strategy MANUAL
+The manual merge is suitable when the merge has resolvable conflicts, or when not all the data is required to be moved over during a merge. For example, if an attribute has different values in both tracked
+entity instances, the user can specify whether to keep the original value, or move over the duplicate's value. Since the manual merge is the user explicitly requesting to move data, there are some different 
+checks being done here:
+- Relationship cannot be between the original and the duplicate (This results in an invalid self-referencing relationship)
+- Relationship cannot be of the same type and to the same object in both tracked entity instances (IE. between original and other, and duplicate and other; This would result in a duplicate relationship)
+
+There are two ways to do a manual merge: With and without a payload.
+
+When a manual merge is requested without a payload, we are telling the API to merge the two tracked entity instances without moving any data. In other words, we are just removing the duplicate and marking the 
+potentialDuplicate MERGED. This might be valid in a lot of cases where the tracked entity instance was just created, but not enrolled for example.
+
+Otherwise, if a manual merge is requested with a payload, the payload refers to what data should be moved from the duplicate to the original. The payload looks like this:
+```json
+{
+  "attributes": ["B58KFJ45L9D"],
+  "enrollments": ["F61SJ2DhINO"],
+  "relationships": ["ETkkZVSNSVw"]
+}
+```
+
+This payload contains three lists, one for each of the types of data that can be moved. Attributes is a list of uids for Tracked Entity Attributes, enrollments is a list of uids for enrollments and relationships 
+a list of uids for relationships. The uids in this payload have to refer to data that actually exists on the duplicate. There is no way to add new data or change data using the merge endpoint - Only moving data.
+
+
+### Additional information about merging
+Currently it is not possible to merge tracked entity instances that are enrolled in the same program, due to the added complexity. A workaround is to manually remove the enrollments from one of the tracked entity
+instances before starting the merge.
+
+All merging is based on data already persisted in the database, which means the current merging service is not validating that data again. This means if data was already invalid, it will not be reported during the merge.
+The only validation done in the service relates to relationships, as mentioned in the previous section.
+
+
+
+## Program Notification Template
+
+Program Notification Template lets you create message templates which can be sent as a result of different type of events.
+Message and Subject templates will be translated into actual values and can be sent to the configured destination. Each program notification template will be
+transformed to either MessageConversation object or ProgramMessage object based on external or internal notificationRecipient. These intermediate objects will
+only contain translated message and subject text.
+There are multiple configuraiton parameters in Program Notification Tempalte which are critical for correct working of notifications.
+All those are explained in the table below.
+
+    POST /api/programNotificationTemplates
+
+```json
+{
+	"name": "Case notification",
+	"notificationTrigger": "ENROLLMENT",
+	"subjectTemplate": "Case notification V{org_unit_name}",
+	"displaySubjectTemplate": "Case notification V{org_unit_name}",
+	"notifyUsersInHierarchyOnly": false,
+	"sendRepeatable": false,
+	"notificationRecipient": "ORGANISATION_UNIT_CONTACT",
+	"notifyParentOrganisationUnitOnly": false,
+	"displayMessageTemplate": "Case notification A{h5FuguPFF2j}",
+	"messageTemplate": "Case notification A{h5FuguPFF2j}",
+	"deliveryChannels": [
+		"EMAIL"
+	]
+}
+```
+
+The fields are explained in the following table.
+
+
+Table: Program Notification Template payload
+
+| Field | Required | Description | Values |
+|---|---|---|---|
+| name | Yes | name of Program Notification Tempalte | case-notification-alert |
+| notificationTrigger | Yes | When notification should be triggered. Possible values are ENROLLMENT, COMPLETION, PROGRAM_RULE, SCHEDULED_DAYS_DUE_DATE| ENROLLMENT |
+| subjectTemplate | No | Subject template string | Case notification V{org_unit_name} |
+| messageTemplate | Yes | Message template string | Case notification A{h5FuguPFF2j} |
+| notificationRecipient | YES | Who is going to receive notification. Possible values are USER_GROUP, ORGANISATION_UNIT_CONTACT, TRACKED_ENTITY_INSTANCE, USERS_AT_ORGANISATION_UNIT, DATA_ELEMENT, PROGRAM_ATTRIBUTE, WEB_HOOK  | USER_GROUP |
+| deliveryChannels | No | Which channel should be used for this notification. It can be either SMS, EMAIL or HTTP | SMS |
+| sendRepeatable | No | Whether notification should be sent multiple times | false |
+
+NOTE: WEB_HOOK notificationRecipient is used only to POST http request to an external system. Make sure to choose HTTP delivery channel when using WEB_HOOK.
+
+### Retrieving and deleting Program Notification Template
+
+The list of Program Notification Templates can be retrieved using GET.
+
+    GET /api/programNotificationTemplates
+
+For one particular Program Notification Template.
+
+	GET /api/33/programNotificationTemplates/{uid}
+
+To get filtered list of Program Notification Templates
+
+	GET /api/programNotificationTemplates/filter?program=<uid>
+	GET /api/programNotificationTemplates/filter?programStage=<uid>
+
+Program Notification Template can be deleted using DELETE.
+
+    DELETE /api/33/programNotificationTemplates/{uid}
+
+
+## Program Messages
 
 Program message lets you send messages to tracked entity instances,
 contact addresses associated with organisation units, phone numbers and

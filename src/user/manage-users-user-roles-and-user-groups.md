@@ -23,8 +23,6 @@ reports.
 
   - You can set an expiration date to individual users
 
-
-
 Table: User management terms and definitions
 
 | Term | Definition | Example |
@@ -36,13 +34,11 @@ Table: User management terms and definitions
 
 You manager users, user roles and user groups in the **Users** app.
 
-
-
 Table: Objects in the Users app
 
 | Object type | Available functions |
 |---|---|
-| User | Create, edit, invite, clone, disable, display by organisation unit, delete and show details |
+| User | Create, edit, invite, clone, disable, display by organisation unit, delete, show details and reset password |
 | User role | Create, edit, share, delete and show details |
 | User group | Create, edit, join, leave, share, delete and show details |
 
@@ -125,8 +121,7 @@ Recommendations:
 ### About user groups
 
 A user group is a group of users. You use user groups when you set up
-sharing of objects or notifications, for example push reports or program
-notifications.
+sharing of metadata objects or notifications for example for reports or programs.
 
 See also:
 
@@ -218,12 +213,12 @@ names or organisation unit level names.
 
 7. Select **Data capture and maintenance organisation units**.<br/>
  ![](resources/images/dhis2UserManual/user_management_fewer_options.png)<br/>
-The data capture and maintenance organisation units control for which organisation units the user can do data entry. You must assign at least one data capture and maintenance organisation unit to each user.<br/><br/>
-Users will have access to all sub-organisation units of the assigned
-organisation units. For example, if you've assigned a user to a district
-which has several facilities contained in the district, the user would
-have access to the district's data, as well as all of the facilities
-contained within the district.
+    The data capture and maintenance organisation units control for which organisation units the user can do data entry. You must assign at least one data capture and maintenance organisation unit to each user.<br/><br/>
+    Users will have access to all sub-organisation units of the assigned
+    organisation units. For example, if you've assigned a user to a district
+    which has several facilities contained in the district, the user would
+    have access to the district's data, as well as all of the facilities
+    contained within the district.
 
 8. (Optional) Select **Data output and analysis organisation units**.<br/><br/>
 The data output and analysis organisation units controls for 
@@ -273,12 +268,11 @@ This insures that any data visible to the user through the analytics apps will b
 
 13. Click **Save**. 
 
-### Edit user objects
+### Edit user { #edit_user }
 
-1.  Open the **Users** app and find the type of user object you want to
-    edit.
+1.  Open the **Users** app and find the user you want to edit.
 
-2.  In the object list, directly click the relevant object, or click the
+2.  In the user list, directly click the relevant user, or click the
     menu icon and select **Edit**.
 
 3.  Modify the options you want.
@@ -298,7 +292,7 @@ expiration date for a user
 
 4.  **Save the updates** by submitting the form
 
-### Disable users { #disable_user } 
+### Disable user { #disable_user }
 
 You can disable a user. This means that the user's account is not
 deleted, but the user can't log in or use DHIS2.
@@ -314,7 +308,7 @@ deleted, but the user can't log in or use DHIS2.
 > 
 > If you are using the [Android Capture App](https://www.dhis2.org/android) disabling a user will cause the application to delete the local data stored on the phone next time the user attemps an on-line login. Please make sure that when you use the *disable user* function all the data has been synced with the server. Or that you are using this funcionality to ensure data deletion in case of a device being lost.
 
-### Display a user's profile
+### Display user profile { #display_user_profile }
 
 1.  Open the **Users** app and click **User**.
 
@@ -337,18 +331,18 @@ organisation unit.
 The list of users will be filtered to only include users which have been
 assigned to the selected organisation units.
 
-### Clone users { #clone_user } 
+### Clone user { #clone_user } 
 
 1.  Open the **Users** app and click **User**.
 
-2.  In the object list, click the menu icon of the relevant user and
+2.  In the user list, click the menu icon of the relevant user and
     select **Replicate**.
 
 3.  Enter a new user name and password for the cloned user account.
 
 4.  Click **Replicate**.
 
-5.  In the object list, click the user you just created and click
+5.  In the user list, click the user you just created and click
     **Edit**.
 
 6.  Modify the options you want.
@@ -361,7 +355,7 @@ To change a user's password:
 
 1.  Open the **Users** app and click **User**.
 
-2.  In the object list, click the menu icon of the relevant user and
+2.  In the user list, click the menu icon of the relevant user and
     select **Edit**.
 
 3.  Enter a new password and retype it.
@@ -390,25 +384,34 @@ The following rules apply when you create a new password. The password must:
 
   - Not be one of the previous 24 passwords the user has used. This does not apply in case when a super user resets the password for another user.
 
-### Delete user objects
+### Reset user password by email { #reset_user_password_by_email } 
 
-1.  Open the **Users** app and find the type of user object you want to
+To reset the password of a user by email:
+
+1.  Open the **Users** app and click **User**.
+2.  In the user list, click the menu icon of the relevant user and select "Reset password".
+3.  Click **Confirm**.
+
+The person owning the user account will receive an email with instructions for how to reset the password. The email is sent to the address specified for the user account. 
+
+### Delete user { #delete_user } 
+
+1.  Open the **Users** app and find the type of user you want to
     delete.
 
-2.  In the object list, click the menu icon of the relevant object and
+2.  In the user list, click the menu icon of the relevant user and
     select **Remove**.
 
-3.  Click **OK** to confirm.
+3.  Click **Confirm**.
 
-### Display details of user objects
+### Display details of user { #display_user_details } 
 
-1.  Open the **Users** app and find the type of user object you want to
-    view.
+1.  Open the **Users** app and find user you want to view.
 
-2.  In the object list, click the menu icon of the relevant object and
+2.  In the user list, click the menu icon of the relevant user and
     select **Show details**.
 
-### Disable Two Factor Authentication for a user
+### Disable Two Factor Authentication for a user { #user_disable_2fa }
 
 If a user has enabled Two Factor Authentication and then loses access to
 his/her authentication device (e.g. smartphone gets lost or broken),
@@ -419,7 +422,7 @@ just a password.
 
 1.  Open the **Users** app and click **Users**.
 
-2.  In the object list, click the menu icon of the relevant user and
+2.  In the user list, click the menu icon of the relevant user and
     select **Disable Two Factor Authentication**.
 
 3.  Click **OK** to confirm
@@ -451,48 +454,48 @@ just a password.
 
 6.  Click **Add**.
 
-### Edit user objects
+### Edit user role
 
-1.  Open the **Users** app and find the type of user object you want to
+1.  Open the **Users** app and find the type of user role you want to
     edit.
 
-2.  In the object list, directly click the relevant object, or click the
+2.  In the user list, directly click the relevant user role, or click the
     menu icon and select **Edit**.
 
 3.  Modify the options you want.
 
 4.  Click **Save**.
 
-### Delete user objects
+### Delete user role
 
-1.  Open the **Users** app and find the type of user object you want to
-    delete.
-
-2.  In the object list, click the menu icon of the relevant object and
+1.  Open the **Users** app and find the user role you want to delete.
+    
+2.  In the user role list, click the menu icon of the relevant user and
     select **Remove**.
 
-3.  Click **OK** to confirm.
+3.  Click **Confirm**.
 
-### Display details of user objects
+### Display details of user role
 
-1.  Open the **Users** app and find the type of user object you want to
-    view.
-
-2.  In the object list, click the menu icon of the relevant object and
+1.  Open the **Users** app and find the user role you want to view.
+    
+2.  In the user list, click the menu icon of the relevant user role and
     select **Show details**.
 
-### Change sharing settings for user objects
+### Change sharing settings for user role
 
-1.  Open the **Users** app and find the type of user object you want to
-    modify.
-
-2.  In the object list, click the relevant object and select **Sharing
+1.  Open the **Users** app and find the user role you want to modify.
+    
+2.  In the user list, click the relevant user role and select **Sharing
     settings**.
 
 3.  (Optional) Search for a user group and select it, then click the
     plus icon. The user group is added to the list.
 
 4.  (Optional) Select **External access (without login)**.
+    
+    Note that this only gives access when no user is logged in.  To give
+    access also to logged in users, you must also allow **Public access**.
 
 5.  Change the settings for the user groups you want to modify.
  - **None**
@@ -533,48 +536,49 @@ just a password.
 2.  In the list, click the relevant user group and select **Leave
     group**.
 
-### Edit user objects
+### Edit user group
 
-1.  Open the **Users** app and find the type of user object you want to
+1.  Open the **Users** app and find the type of user group you want to
     edit.
 
-2.  In the object list, directly click the relevant object, or click the
+2.  In the user group list, directly click the relevant user group, or click the
     menu icon and select **Edit**.
 
 3.  Modify the options you want.
 
 4.  Click **Save**.
 
-### Delete user objects
+### Delete user group
 
-1.  Open the **Users** app and find the type of user object you want to
+1.  Open the **Users** app and find the type of user group you want to
     delete.
 
-2.  In the object list, click the menu icon of the relevant object and
+2.  In the user group list, click the menu icon of the relevant user group and
     select **Remove**.
 
 3.  Click **OK** to confirm.
 
-### Display details of user objects
+### Display details of user group
 
-1.  Open the **Users** app and find the type of user object you want to
-    view.
+1.  Open the **Users** app and find the user group you want to view.
 
-2.  In the object list, click the menu icon of the relevant object and
+2.  In the object list, click the menu icon of the relevant user group and
     select **Show details**.
 
-### Change sharing settings for user objects
+### Change sharing settings for user group
 
-1.  Open the **Users** app and find the type of user object you want to
-    modify.
+1.  Open the **Users** app and find user you want to modify.
 
-2.  In the object list, click the relevant object and select **Sharing
+2.  In the user group list, click the relevant user group and select **Sharing
     settings**.
 
 3.  (Optional) Search for a user group and select it, then click the
     plus icon. The user group is added to the list.
 
 4.  (Optional) Select **External access (without login)**.
+    
+    Note that this only gives access when no user is logged in.  To give
+    access also to logged in users, you must also allow **Public access**.
 
 5.  Change the settings for the user groups you want to modify.
  - **None**

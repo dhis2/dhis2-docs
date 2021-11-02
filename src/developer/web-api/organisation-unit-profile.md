@@ -157,32 +157,76 @@ The profile data response payload in JSON format will look like this, where the 
 }
 ```
 
-## Upload OrganisationUnit Image
+## Upload image for organisation unit
 
-From DHIS2 version 2.37, `OrganisationUnit` has a new property named `image` for storing image.
+To upload an image for an organisation unit you can use the `fileResources` endpoint.
 
-The `image` property stores `uid` of a `FileResource`. In order to upload an image for an `OrganisationUnit` you can follow these steps:
-1. Send a `POST` request with the image file to `api/fileResource?domain=ORG_UNIT` as in [this doc](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-234/web-api.html#webapi_file_resources). Take note of the `fileResourceUid` from the response. 
-2. For linking the uploaded `fileResource` to an `OrganisationUnit` you have two ways: 
-  - Send a `PATCH` request to `api/organisationUnits/{org-unit-uid}` with the payload
 ```
+/api/fileResources
+```
+
+The `fileResource` endpoint accepts a raw file as the request body. The `JPG`, `JPEG` and `PNG` formats are supported for organisation unit images. The domain for organisation unit images is `ORG_UNIT`.
+
+Please consult *File resources* in the *Metadata* section for details about the `fileResources` endpoint. 
+
+To upload an image you can send a `POST` request with `ORG_UNIT` as domain query parameter together with the image as the request payload. The `Content-Type` header should match the type of file being uploaded.
+
+```
+POST /api/fileResources?domain=ORG_UNIT
+```
+
+The `id ` property of the `response` > `fileResource` object in the JSON response will contain a reference to the identifier of the file resource.
+
+The organisation unit entity has an `image` property which refers to the file resource image. To set the file resource reference on an organisation unit you can send a `PATCH` request to the organisation unit with a JSON payload:
+
+```
+PATCH /api/organisationUnits/{id}
+```
+
+```json
 { 
-  "image": "{file-resource-uid}" 
+  "image": "{file-resource-id}" 
 }
 ```
-  - Send a `PUT` request to `api/organisationUnits/{org-unit-uid}` with full `OrganisationUnit` payload
+
+Alternatively, you can use a `PUT` request with the full organisation unit payload (fields omitted for brevity):
+
 ```
+PUT /api/organisationUnits/{id}
+```
+
+```json
 {
-  "name":"Test organisationUnit",
-  "shortName":"Test organisationUnit ",
-  "openingDate":"2021-06-22T22:00:00.000Z",
-  "image":
-  {
-    "id":  "{file-resource-uid}"
-  }   
+  "id": "Rp268JB6Ne4",
+  "name": "Adonkia CHP",
+  "image": {
+    "id":  "{file-resource-iid}"
+  }
 }
 ```
 
-## Get OrganisationUnit Image
+## Get image for organisation unit
 
-For retrieving an image of an `OrganisationUnit` you can send a `GET` request to `api/fileResources/{file-resource-uid}/data`.
+The organisation unit entity has an `image` object which refers to a file resource by identifier. You can get the organisation unit information from the `organisationUnits` endpoint. If set, the JSON format looks like this:
+
+```
+GET /api/organisationUnits/{id}
+```
+
+```json
+{
+  "id": "Rp268JB6Ne4",
+  "name": "Adonkia CHP",
+  "image": {
+    "id":  "{file-resource-id}"
+  }
+}
+```
+
+The image file resource identifier can be used to make a request to the `fileResources` endpoint to retrieve the file content:
+
+```
+GET /api/fileResources/{id}/data
+```
+
+The `Content-Type` header will reflect the type of file being retrieved.

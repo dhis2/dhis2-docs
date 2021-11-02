@@ -803,6 +803,7 @@ Table: Query parameters for event query analytics only
 | asc | No | Dimensions to be sorted ascending, can reference event date, org unit name and code and any item identifiers. | EVENTDATE &#124; OUNAME &#124; OUCODE &#124; item identifier |
 | desc | No | Dimensions to be sorted descending, can reference event date, org unit name and code and any item identifiers. | EVENTDATE &#124; OUNAME &#124; OUCODE &#124; item identifier |
 | coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
+| coordinateOuFallback | No | Program instance geometry is applied whenever organization unit geometry is missing. | false &#124; true |
 | dataIdScheme | No | Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response. | NAME &#124; CODE &#124; UID |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
@@ -1923,16 +1924,20 @@ Table: Data set report query parameters
 | Parameter | Description | Type | Required |
 |---|---|---|---|
 | ds | Data set to create the report from. | Data set UID | Yes |
-| pe | Period to create the report from. | ISO String | Yes |
+| pe | Period(s) to create the report from. May be a comma-separated list. | ISO String | Yes |
 | ou | Organisation unit to create the report from. | Organisation unit UID | Yes |
 | filter | Filters to be used as filters for the report. Can be repeated any number of times. Follows the analytics API syntax. | One or more UIDs | No |
 | selectedUnitOnly | Whether to use captured data only or aggregated data. | Boolean | No |
 
 The data set report resource accepts `GET` requests only. The response content type is `application/json` and returns data in a grid. This endpoint works for all types of data sets, including default, section and custom forms.
 
-An example request to retrieve a report for a data set and org unit for 2018 looks like this:
+An example request to retrieve a report for a monthly data set and org unit for October 2018 looks like this:
 
     GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
+
+An example request to retrieve a report for a monthly data set and org unit for October, November, and December 2018 looks like this:
+
+    GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810,201811,201812&ou=ImspTQPwCqd&selectedUnitOnly=false
 
 To get a data set report with a filter you can use the `filter` parameter. In this case, the filter is based on an org unit group set and two org unit groups:
 
