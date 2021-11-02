@@ -1029,7 +1029,7 @@ it possible to add new DHIS2 instances without requiring to configure a unique I
 file.
 
 This cache invalidation is based on the open-source project [Debezium](https://debezium.io/), it works by listening to
-the replication stream from a Postgres database to detect updates made by other nodes.
+the replication stream from a Postgres database to detect updates made by other instances.
 
 ### Prerequisites:
 
@@ -1100,8 +1100,8 @@ SELECT pg_drop_replication_slot('dhis2_1624530654__a890ba555e634f50983d4d6ad0fd6
 
 If the replication connection fails and can not recover, the node will eventually be out of sync. To prevent this from
 happening, you can enable the server to shut down if it detects it has lost connection. This feature is disabled by
-default, since it will shut down the instance without warning. If however you have several nodes in a typical load
-balanced setup and can tolerate that some nodes are down, and you have adequate monitoring and alerting set up, you
+default, since it will shut down the instance without warning. If however you have several instances in a typical load
+balanced setup and can tolerate that some instances are down, and you have adequate monitoring and alerting set up, you
 might consider enabling this. It can be enabled by setting this dhis.conf variable:
 
 ```
