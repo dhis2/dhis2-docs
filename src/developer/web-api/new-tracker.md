@@ -580,7 +580,7 @@ Examples of the **ASYNC** response is shown below. For **SYNC** response, look a
 
 ### CSV Events payload
 
-In order to maintain compatibility with older versions of tracker, the API allow to import events using the CSV format.
+In order to maintain compatibility with older versions of tracker, the API allows to import events using the CSV format.
 As this format does not allow list as field, every row of the CSV payload represents an event and a data value.
 So for events with multiple data values, the CSV file will have `x` rows per event where `x` is the number of data values in that event.
 Other fields that are lists as ***relationships*** and ***notes*** are not supported.
