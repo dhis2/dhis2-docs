@@ -2719,7 +2719,7 @@ Response:
 }
 ```
 
-## Metadata Synchronization { #webapi_metadata_synchronization } 
+## Metadata synchronization { #webapi_metadata_synchronization } 
 
 This section explains the Metadata Synchronization API available
 starting 2.24
@@ -2817,7 +2817,7 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
   -H "Content-Type:text/plain" -u admin:district
 ```
 
-## Reference to createdBy User
+## Reference to created by user
 
 Each object created in DHIS2 will have a property named `user` which is linked to `User` who created the object.
 
@@ -2842,7 +2842,7 @@ However, in order to keep the backwards compability, the legacy `user` property 
 }
 ```
 
-## Metadata Proposal Workflow { #webapi_metadata_proposal_workflow }
+## Metadata proposal workflow { #webapi_metadata_proposal_workflow }
 
 The metadata proposal workflow endpoint allows for a workflow of proposing and accepting changes to metadata.
 
@@ -2881,7 +2881,7 @@ To propose updating an existing metadata object send a JSON payload like in the 
   "target": "ORGANISATION_UNIT",
   "targetId": "<id>",
   "change": [
-    { "op": "replace", "path": "/name", "value": "New name" }
+    {"op": "replace", "path": "/name", "value": "New name"}
   ]
 }
 ```

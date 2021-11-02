@@ -101,6 +101,12 @@ oidc.provider.okta.jwk_uri = https://{client_domain}/oauth2/v1/keys
 oidc.provider.okta.end_session_endpoint = https://{client_domain}/oauth2/v1/logout
 ```
 
+* Note that when logging out of DHIS 2, the above configuration will also log the user out of Okta. To ensure that the user is only logged out of DHIS 2, use the property described below.
+
+```properties
+oidc.provider.okta.end_session_endpoint = /dhis-web-commons-security/logout.action
+```
+
 * Restart the DHIS 2 instance for the changes to take effect.
 * _Tip:_ These values can be retrieved from Okta with the URL path `/.well-known/openid-configuration`, e.g. `https://dev-123-admin.okta.com/.well-known/openid-configuration`.
 
@@ -113,6 +119,7 @@ In this step we will test the setup and log in to DHIS 2 using Okta.
 * Navigate to the DHIS 2 login page. A button labelled *Sign in with Okta* should appear on the login page.
 * Click the **Sign in with Okta** button. You should be redirected to the Okta sign in page. Note that if you are still logged in to Okta, you will be automatically logged in to DHIS 2.
 * Enter the Okta username and password for the account created previously, and click **Sign In**. You should be redirected to the DHIS 2 instance and be automatically logged in as the DHIS 2 user created previously.
+* _Tip:_ For _IdP-initiated SSO_, that is, logging in to Okta and navigating to the DHIS 2 landing page without going through the DHIS 2 login page, you can use the following web URL for DHIS 2: `http://localhost:8080/oauth2/authorization/okta`.  
 
 ### Summary
 
