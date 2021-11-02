@@ -1031,7 +1031,7 @@ The widgets seen in the right-hand column will display and function the same way
 ## Add event in enrollment page
 
 You can reach this page add event page by clicking in the **New {stage event name}** button in the overview page. 
-In this page you can switch between different tabs: **Report event** to add new event, **Schedule** to schedule an event and **Refer** to refer event.
+In this page you can switch between different tabs: **Report** to add new event, **Schedule** to schedule an event and **Refer** to refer event.
 If you have unsaved changes in one tab and switch to another tab, there will be a warning displayed.
 
 ### New event widget form
