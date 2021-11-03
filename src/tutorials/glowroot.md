@@ -69,8 +69,16 @@ The Glowroot interface is quite intuitive, and you are encouraged to explore it,
 
 ### Transactions tab
 
+The `Transactions` tabs gives several real time information on the different APIs served by the application along with associated queries, response times , slow traces etc. An overview of the total API transactions will be shown on the left hand pane and on selecting individual API transaction types, a detailed breakdown of the slowtraces/response times/queries can be listed. Real time monitoring of this tab will help in identifying if any specific API is performing poorly than usual. The corresponding Slow Trace for the API can be opened in the Slow Traces tab which gives detailed information of the specific API. `JVM Thread stats` and `Query stats` are useful if retrieved from a poorly performing API's slowtrace to understand if the issue is in a specific slow query or if there is high memory allocation etc.
+
 ### Errors tab
+
+The `Errors` tab shows the exception stacktraces that has occured during execution of any part of the system. Usually information from other tabs is required to get the complete picture.
 
 ### JVM tab
 
+The `JVM` tab has certain sub sections that is useful to know the current state of the JVM. This tab should be used with caution as there are options to Force GC (Garbage Collection), or to take Heap dump or Thread dump. Unnecessarily using these will add extra pressure onto the JVM. A useful information to look in the tab is the `Mbean tree` section. There are several configs exposed by Mbeans in DHIS2. Some of them are the connection pool configuration and it's current state. It shows the configuration of the connection pool like the maxPoolSize and other parameters as well as real-time state of the connection pool parameters like `numBusyConnections`, `numConnections`, `numIdleConnections` and so on which gives an idea of how the connection pool is behaving. If you notice that the `numBusyConnection` is equal to the `maxPoolSize` configuration, and if the database is not struggling for resources, it would be wise to increase the `maxPoolSize` dhis2 config so that the connection pool has a bigger size. 
+
 ### Reporting tab
+
+The `Reporting` tab can be used to  export any metric for a specific date/time range. It supports exporting Metrics like Response Time (Average or Percentile) or Transaction count from the Transactions tab. It also supports explorting metrics related to the JVM tab which include Guages for the different memory spaces. In most cases, real time monitoring and analysis will suffice, but it would be good to assess whether any exporting of specific metrics are needed for future reference.
