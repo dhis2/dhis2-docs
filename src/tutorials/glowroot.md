@@ -4,6 +4,9 @@
 
 This page intends to give a quick overview in order to help you get started using Glowroot.
 
+- [Installation](#installation)
+- [Usage](#usage-tips)
+
 ## Installation
 
 Installation is quite straightforward, and is described in the Glowroot [wiki](https://github.com/glowroot/glowroot/wiki/Agent-Installation-(with-Embedded-Collector)).
