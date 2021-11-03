@@ -69,7 +69,7 @@ The Glowroot interface is quite intuitive, and you are encouraged to explore it,
 
 ### Transactions tab
 
-The `Transactions` tabs gives several real time information on the different APIs served by the application along with associated queries, response times , slow traces etc. An overview of the total API transactions will be shown on the left hand pane and on selecting individual API transaction types, a detailed breakdown of the slowtraces/response times/queries can be listed. Real time monitoring of this tab will help in identifying if any specific API is performing poorly than usual. The corresponding Slow Trace for the API can be opened in the Slow Traces tab which gives detailed information of the specific API. `JVM Thread stats` and `Query stats` are useful if retrieved from a poorly performing API's slowtrace to understand if the issue is in a specific slow query or if there is high memory allocation etc.
+The `Transactions` tabs gives various real time information on the different APIs served by the application along with associated queries, response times, slow traces etc. An overview of the total API transactions will be shown on the left hand pane and on selecting individual API transaction type, a detailed breakdown of the slowtraces/response times/queries can be listed. Real time monitoring of this tab will help in identifying if any specific API is performing poorly. The corresponding Slow Trace for the API can be opened in the Slow Traces tab which gives detailed information of the specific API. `JVM Thread stats` and `Query stats` are useful if retrieved from a poorly performing API's slowtrace to understand if the issue is in a specific slow query or if there is high memory allocation etc.
 
 ### Errors tab
 
@@ -77,7 +77,11 @@ The `Errors` tab shows the exception stacktraces that has occured during executi
 
 ### JVM tab
 
-The `JVM` tab has certain sub sections that is useful to know the current state of the JVM. This tab should be used with caution as there are options to Force GC (Garbage Collection), or to take Heap dump or Thread dump. Unnecessarily using these will add extra pressure onto the JVM. A useful information to look in the tab is the `Mbean tree` section. There are several configs exposed by Mbeans in DHIS2. Some of them are the connection pool configuration and it's current state. It shows the configuration of the connection pool like the maxPoolSize and other parameters as well as real-time state of the connection pool parameters like `numBusyConnections`, `numConnections`, `numIdleConnections` and so on which gives an idea of how the connection pool is behaving. If you notice that the `numBusyConnection` is equal to the `maxPoolSize` configuration, and if the database is not struggling for resources, it would be wise to increase the `maxPoolSize` dhis2 config so that the connection pool has a bigger size. 
+> **Caution**
+>
+> This tab should be used with caution as there are options to Force GC (Garbage Collection), or to take Heap dump or Thread dump. Using these unnecessarily will add extra pressure onto the JVM!
+
+The `JVM` tab has certain sub sections that is useful to know the current state of the JVM. A useful area to check in the tab is the `Mbean tree` section. There are several configs exposed by Mbeans in DHIS2. Some of them are the connection pool configuration and it's current state. It shows the configuration of the connection pool like the maxPoolSize and other parameters as well as real-time state of the connection pool parameters like `numBusyConnections`, `numConnections`, `numIdleConnections` and so on which gives an idea of how the connection pool is behaving. If you notice that the `numBusyConnection` is equal to the `maxPoolSize` configuration, and if the database is not struggling for resources, it would be wise to increase the `maxPoolSize` dhis2 config so that the available connection pool is larger. 
 
 ### Reporting tab
 
