@@ -1010,8 +1010,7 @@ making the system inaccessible to users.
 There are a few aspects to configure in order to run DHIS 2
 in a cluster.
 
-* Each DHIS 2 instance must specify the other DHIS 2 instance members of 
-the cluster in *dhis.conf*.
+* Each DHIS 2 instance must have enabled Hibernate cache invalidation.
 
 * A Redis data store must be installed and connection information must 
 be provided for each DHIS 2 application instance in *dhis.conf*.
@@ -1023,86 +1022,91 @@ or a shared network drive.
 * A load balancer such as nginx must be configured to distribute Web requests
 across the cluster instances.
 
-### DHIS 2 instance cluster configuration { #install_cluster_configuration } 
+### DHIS 2 instance cache invalidation { #install_cluster_configuration }
 
-When setting up multiple Tomcat instances there is a need for making the
-instances aware of each other. This awareness will enable DHIS 2 to keep
-the local data (Hibernate) caches in sync and in a consistent state.
-When an update is done on one instance, the caches on the other
-instances must be notified so that they can be invalidated and avoid
-becoming stale.
+DHIS2 can invalidate the Hibernate cache by listening for replication events emitted by the Postgres database, this makes
+it possible to add new DHIS2 instances without requiring to configure a unique ID for each "instance" in the dhis.conf
+file.
 
-A DHIS 2 cluster setup is based on manual configuration of each
-instance. For each DHIS 2 instance one must specify the public
-*hostname* as well as the hostnames of the other instances participating
-in the cluster.
+This cache invalidation is based on the open-source project [Debezium](https://debezium.io/), it works by listening to
+the replication stream from a Postgres database to detect updates made by other instances.
 
-The hostname of the server is specified using the *cluster.hostname*
-configuration property. Additional servers which participate in the
-cluster are specified using the *cluster.members* configuration
-property. The property expects a list of comma separated values where
-each value is of the format *host:port*.
+### Prerequisites:
 
-The hostname must be visible to the participating servers on the network
-for the clustering to work. You might have to allow incoming and
-outgoing connections on the configured port numbers in the firewall.
+* Postgres 10+
+* Logical replication enabled
+* A Postgres user with replication access
 
-The port number of the server is specified using the *cluster.cache.port*
-configuration property. The remote object port used for registry receive
-calls is specified using *cluster.cache.remote.object.port*. Specifying
-the port numbers is typically only useful when you have multiple cluster
-instances on the same server or if you need to explicitly specify the ports 
-to match a firewall configuration. When running cluster instances on separate 
-servers it is often appropriate to use the default port number and omit 
-the ports configuration properties. If omitted, 4001 will be assigned as 
-the listener port and a random free port will be assigned as the remote 
-object port.
+### Postgres configuration (postgres.conf)
 
-The *node.id* configuration property can be used to provide an explicit identification string for an instance. Note that it is up to the administrators to make sure the Node IDs are unique across its cluster. DHIS2 will not enforce uniqueness and will continue to startup even if there are multiple instances in the cluster using the same node ID. 
+```
+wal_level = logical
 
-An example setup for a cluster of two web servers is described below.
-For *server A* available at hostname *193.157.199.131* the following can
-be specified in *dhis.conf*:
+# This number has to be the same or bigger as the total number of 
+# DHIS2 instances you intend to run at the same time.  
+max_replication_slots = 10
+max_wal_senders = 10              
 
-```properties
-# Cluster configuration for server A
-
-# Hostname for this web server
-cluster.hostname = 193.157.199.131
-
-# Ports for cache listener, can be omitted
-cluster.cache.port = 4001
-cluster.cache.remote.object.port = 5001
-
-# List of Host:port participating in the cluster
-cluster.members = 193.157.199.132:4001
-
-#node identification (optional). 
-node.id = nodeA1
 ```
 
-For *server B* available at hostname *193.157.199.132* the following can
-be specified in *dhis.conf* (notice how port configuration is omitted):
+### DHIS2 configuration (dhis.conf)
 
-```properties
-# Cluster configuration for server B
+```
+debezium.enabled = on 
+debezium.db.hostname = DHIS2_DATABASE_HOSTNAME
+debezium.db.port = DHIS2_DATABASE_PORT_NUMBER
+debezium.db.name = DHIS2_DATABASE_NAME
+debezium.connection.username = DHIS2_DATABASE_USER 
+debezium.connection.password = DHIS2_DATABASE_PASSWORD
 
-# Hostname for this web server
-cluster.hostname = 193.157.199.132
-
-# List of servers participating in cluster
-cluster.members = 193.157.199.131:4001
-
-#node identification (optional). 
-node.id = nodeB1
+# [Optional] If you want the server to shutdown if the replication connection is lost. (defaults off)
+debezium.shutdown_on.connector_stop = on
 ```
 
-You must restart each Tomcat instance to make the changes take effect.
-The two instances have now been made aware of each other and DHIS 2 will
-ensure that their caches are kept in sync.
+### Enable replication access on the database user
 
-To understand which node acts as the cluster leader you can access the `/api/36/cluster/leader` web API endpoint. Read more in the web API documentation.
+Execute the following statement with an admin user to give replication access to your database user.
 
+```
+ALTER ROLE [YOUR DHIS2 DATABASE USER] WITH replication;
+```
+
+### Potential issues
+
+#### Running out of available replication slots
+
+Every time a DHIS2 instance is started, a new replication slot is created in the database. On every normal shutdown of
+the instance, the slot is automatically removed. However, if the server has not shut down normally, like for example on
+a power outage, the replication slot will remain in the database until it is manually removed. Each replication slot
+name includes the date it was created and a random string, such that no replication slot will ever have the same name.
+The number of available replication slots is fixed and is determined by the Postgres config variables: 
+'max_wal_senders' and 'max_replication_slots'.
+
+To manually remove old stale replication slots, you can use the following SQL statements:
+
+#### List all replication slots
+
+```
+SELECT * FROM pg_replication_slots;
+```
+
+#### Remove a stale replication slot
+
+```
+SELECT pg_drop_replication_slot('dhis2_1624530654__a890ba555e634f50983d4d6ad0fd63f1');
+```
+
+### The Debezium engine loses its connection to the database
+
+If the replication connection fails and can not recover, the node will eventually be out of sync. To prevent this from
+happening, you can enable the server to shut down if it detects it has lost connection. This feature is disabled by
+default, since it will shut down the instance without warning. If however you have several instances in a typical load
+balanced setup and can tolerate that some instances are down, and you have adequate monitoring and alerting set up, you
+might consider enabling this. It can be enabled by setting this dhis.conf variable:
+
+```
+debezium.shutdown_on.connector_stop = on
+```
 
 ### Redis shared data store cluster configuration { #install_cluster_configuration_redis } 
 

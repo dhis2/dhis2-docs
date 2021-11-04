@@ -15,8 +15,6 @@ The newly introduced endpoints consist of:
 >
 > - The old endpoints are marked as deprecated but still work as before.
 > - Some functionality is not yet ready in the new endpoints, but they support their primary use-cases.
-> - These endpoints currently only support the `JSON` format as input/output.
-> - Support for the `CSV` format will also be available in the future.
 
 ## Changes in the API
 
@@ -319,6 +317,7 @@ Main changes compared to the other endpoints for tracker import are:
 
 1. Import payload can be ***nested*** or ***flat***
 2. Invocation can be ***synchronous*** or ***asynchronous***
+3. Import ***CSV*** events payload
 
 ### Request parameters
 
@@ -578,6 +577,21 @@ Examples of the **ASYNC** response is shown below. For **SYNC** response, look a
     }
 }
 ```
+
+### CSV Events payload
+
+In order to maintain compatibility with older versions of tracker, the API allows to import events using the CSV format.
+As this format does not allow list as field, every row of the CSV payload represents an event and a data value.
+So for events with multiple data values, the CSV file will have `x` rows per event where `x` is the number of data values in that event.
+Other fields that are lists as ***relationships*** and ***notes*** are not supported.
+To import a CSV payload, the content type of the request must be set to ***application/csv*** or ***text/csv***.
+
+#### ***CSV PAYLOAD*** example
+
+|event|status|program|programStage|enrollment|orgUnit|occurredAt|scheduledAt|dataElement|value|storedBy|providedElsewhere
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|V1CerIi3sdL|COMPLETED|IpHINAT79UW|A03MvHHogjR|CCBLMntFuzb|DiszpKrYNg8|2020-02-26T23:00:00Z|2020-02-27T23:00:00Z|a3kGcGDCuk6|11|admin|false
+|V1CerIi3sdL|COMPLETED|IpHINAT79UW|A03MvHHogjR|CCBLMntFuzb|DiszpKrYNg8|2020-02-26T23:00:00Z|2020-02-27T23:00:00Z|mB2QHw1tU96|[-11.566044,9.477801]|admin|false
 
 ### Import Summary { #webapi_nti_import_summary }
 
@@ -1628,6 +1642,16 @@ Please note that field filtering (`fields=...`) support is planned but not yet i
     "pageSize": 1
 }
 ```
+
+The `CSV` response can look like the following.
+
+```
+|event|status|program|programStage|enrollment|orgUnit|occurredAt|scheduledAt|dataElement|value|storedBy|providedElsewhere
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|V1CerIi3sdL|COMPLETED|IpHINAT79UW|A03MvHHogjR|CCBLMntFuzb|DiszpKrYNg8|2020-02-26T23:00:00Z|2020-02-27T23:00:00Z|a3kGcGDCuk6|11|admin|false
+|V1CerIi3sdL|COMPLETED|IpHINAT79UW|A03MvHHogjR|CCBLMntFuzb|DiszpKrYNg8|2020-02-26T23:00:00Z|2020-02-27T23:00:00Z|mB2QHw1tU96|[-11.566044,9.477801]|admin|false
+```
+
 #### Events single object endpoint `GET /api/tracker/events/{uid}`
 
 The purpose of this endpoint is to retrieve one Event given its uid.
