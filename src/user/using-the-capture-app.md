@@ -373,10 +373,11 @@ You now have two options:
 
 1. Open the **Capture** app.
 
-2. Select an organisation unit.
+2. Select a program.
 
-3. Select a program.
+3. Select an organisation unit or click the _all events_-link to view all events accessible to you.
 
+    ![](resources/images/capture_app/main-page-all-accessible-records.png)
     All events registered to the selected program show up in a list.
 
 4. Click the event you want to modify.
