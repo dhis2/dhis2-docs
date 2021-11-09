@@ -64,7 +64,7 @@ A response will look similar to this:
 }
 ```
 
-### Create job
+### Create a Job Configuration
 
 To configure jobs you can do a POST request to the following resource:
 
@@ -123,7 +123,7 @@ An example of a job with scheduling type `FIXED_DELAY` and 120 seconds delay:
 }
 ```
 
-### Get jobs
+### Get Job Configurations
 
 List all job configurations:
 
@@ -175,7 +175,7 @@ The response payload looks like this:
 }
 ```
 
-### Update job
+### Update a Job Configuration
 
 Update a job with parameters using the following endpoint and JSON payload format:
 
@@ -195,7 +195,7 @@ Update a job with parameters using the following endpoint and JSON payload forma
 }
 ```
 
-### Delete job
+### Delete a Job Configuration
 
 Delete a job using:
 
@@ -204,6 +204,88 @@ Delete a job using:
 Note that some jobs with custom configuration parameters may not be added if the
 required system settings are not configured. An example of this is data
 synchronization, which requires remote server configuration.
+
+
+### Observe Running Jobs
+The execution steps and state can be observed while the job is running.
+To get an overview of all running jobs by job type use:
+
+    GET /api/scheduling/running
+
+As there only can be one job running for each type at a time the status of a 
+running job can be viewed in details using:
+
+    GET /api/scheduling/running/{type}
+
+For example, to see status of a running `ANALYTICS_TABLE` job use
+
+    GET /api/scheduling/running/ANALYTICS_TABLE
+
+A job is a sequence of processes. Each process has a sequence of `stages`.
+Within each stage there might be zero, one or many `items`. Items could be 
+processed strictly sequential or parallel, n items at a time. Often the 
+number of `totalItems` is known up-front.
+
+In general the stages in a process and the items in a stage are "discovered" 
+as a "side effect" of processing the data. While most processes have a fixed 
+sequence of stages some processed might have varying stages depending on the 
+data processed. Items are usually data dependent. Most jobs just include a 
+single process.
+
+Each of the nodes in the process-stage-item tree has a status that is either
+* `RUNNING`: is currently processed (not yet finished)
+* `SUCCESS`: when completed successful
+* `ERROR`: when completed with errors or when an exception has occurred
+* `CANCELLED`: when cancellation was requested and the item will not complete
+
+### See Completed Job Runs
+Once a job has completed successful or with a failure as a consequence of an 
+exception or cancellation the status moves from the set of running states to 
+the completed job states. This set keeps only the most recent execution 
+state for each job type. The overview is available at:
+
+    GET /api/scheduling/completed
+
+Details on a particular job type are accordingly provided at:
+
+    GET /api/scheduling/completed/{type}
+
+In case of the `ANALYTICS_TABLE` job this would be:
+
+    GET /api/scheduling/completed/ANALYTICS_TABLE
+
+### Request Cancelling a Running Jobs
+Once a job is started it works through a sequence of steps. Each step might 
+in turn have collections of items that are processed. While jobs usually 
+cannot be stopped at any point in time we can request cancellation and the
+process gives up cooperatively once it has completed an item or step and 
+recognises that a cancellation was requested. This means jobs do not stop 
+immediately and leave at an unknown point right in the middle of some 
+processing. Instead, they give up when there is an opportunity to skip to 
+the end. This still means that the overall process is unfinished and is not 
+rolled back. It might just have done a number of steps and skipped others at 
+the end.
+
+To cancel a running job use:
+
+    POST /api/scheduling/cancel/{type}
+
+For example, to cancel the `ANALYTICS_TABLE` job run:
+
+    POST /api/scheduling/cancel/ANALYTICS_TABLE
+
+Depending on the current step and item performed this can take from 
+milliseconds to minutes before the cancellation becomes effective.
+However, the status of the overall process will be shown as `CANCELLED` 
+immediately when check using 
+
+    GET /api/scheduling/running/ANALYTICS_TABLE
+
+Only jobs that have been split into processes, stages and items can be 
+cancelled effectively. Not all jobs have been split yet. These will run till 
+completion even if cancellation has been requested.
+
+
 
 ## Synchronization { #webapi_synchronization } 
 
