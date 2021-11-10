@@ -3071,7 +3071,7 @@ cultural region.
 
 5.  Click **Save**.
 
-## \[Work in progress\] Manage validation rules { #manage_validation_rule } 
+## Manage validation rules { #manage_validation_rule } 
 
 ### About validation rules { #about_validation_rule } 
 
