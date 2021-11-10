@@ -62,7 +62,7 @@ Known Limitations:
 * only persisted or synthetic fields (those based on persisted fields) can be included
 * filters can only be applied to persisted fields
 * orders can only be applied to persisted fields
-* like-filters are always case-insensitive
+* like-filters are always case-sensitive
 * token filters are not available
 * order is always case-sensitive
 * `pluck` transformer limited to text properties
@@ -358,7 +358,7 @@ Note that filters on attribute values use text based comparison which means
 all text filters are supported.
 
 Operators have multiple aliases to be backwards compatible with the 
-standard metadata API. For the gist API any like is always case-insensitive. 
+standard metadata API. For the gist API any like is always case-sensitive. 
 
 For example, to only list organisations on second level use
 
