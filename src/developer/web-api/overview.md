@@ -127,7 +127,7 @@ To create a new PAT, you have two choices:
 ### A. Creating a token on the account's page
 Log in with your username and password, go to your profile page
 (Click top right corner, and chose "Edit profile" from the dropdown).
-On your user profile page, choose "Manage personal access tokens" from the
+On your user profile page, choose "Personal access tokens" from the
 left side menu.
 You should now be on the "Manage personal access tokens" page and see the
 text: "You don't have any active personal access tokens".
