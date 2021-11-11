@@ -79,9 +79,9 @@ In this step we will configure the DHIS 2 instance to authenticate with Okta thr
 * Look up the Okta settings noted previously. Note that `okta` in the property keys refers to the provider key specified in the Okta application integration.
 * Locate the `dhis.conf` configuration file for the DHIS 2 instance.
 * Enter the properties described below. Replace the following three variables (enclosed in brackets) with the real values for your environment.
-    * Client ID / `{client_id}`. Example: `0kh6yTgRg45191j97H6y`
-    * Client secret / `{client_secret}`. Example: `xJh6ybgh5yajTku7qE35F5h8hj8km7yG-Hj61j49`
-    * Client domain / `{client_domain}`. Example: `dev-123.okta.com`
+    * Client ID / `{client_id}`. Example: `0kh6yTgRg45191j97H6y`.
+    * Client secret / `{client_secret}`. Example: `xJh6ybgh5yajTku7qE35F5h8hj8km7yG-Hj61j49`.
+    * Client domain / `{client_domain}`. Example: `dev-123.okta.com`.
 
 ```properties
 # Enable OIDC
@@ -101,7 +101,7 @@ oidc.provider.okta.jwk_uri = https://{client_domain}/oauth2/v1/keys
 oidc.provider.okta.end_session_endpoint = https://{client_domain}/oauth2/v1/logout
 ```
 
-* Note that when logging out of DHIS 2, the above configuration will also log the user out of Okta. To ensure that the user is only logged out of DHIS 2, use the property described below.
+* Note that when logging out of DHIS 2, the above configuration will also log the user out of Okta. To ensure that the user is only logged out of DHIS 2, use the property and value described below instead.
 
 ```properties
 oidc.provider.okta.end_session_endpoint = /dhis-web-commons-security/logout.action
@@ -123,6 +123,6 @@ In this step we will test the setup and log in to DHIS 2 using Okta.
 
 ### Summary
 
-At this point you should be automatically logged into DHIS 2 throgh Okta, without having entered any DHIS 2 credentials.
+At this point you should be automatically logged into DHIS 2 through Okta, without having entered any DHIS 2 credentials.
 
 This guide has explained how to set up an Okta application and user, set up a DHIS 2 user mapped to the Okta user, how to configure DHIS 2 for Okta OIDC and how to log in using Okta. You can repeat the DHIS 2 user and configuration steps for additional DHIS 2 instances in order to include them in the Single Sign-On setup.
