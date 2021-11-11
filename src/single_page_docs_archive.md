@@ -4,7 +4,8 @@
 
 |Document|Version|||
 |:---|---|---|---|
-|End User Manual|2.33|[HTML](/archive/en/2.33/end-user/html/dhis2_end_user_manual_full.html)|[PDF](/archive/en/2.33/end-user/dhis2_end_user_manual.pdf)|
+|End User Manual|2.34|[HTML](/archive/en/2.34/user/html/dhis2_end_user_manual_full.html)|[PDF](/archive/en/2.34/user/dhis2_end_user_manual.pdf)|
+|End User Manual|2.33|[HTML](/archive/en/2.33/user/html/dhis2_end_user_manual_full.html)|[PDF](/archive/en/2.33/user/dhis2_end_user_manual.pdf)|
 |End User Manual|2.32|[HTML](/archive/en/2.32/end-user/html/dhis2_end_user_manual_full.html)|[PDF](/archive/en/2.32/end-user/dhis2_end_user_manual.pdf)|
 |End User Manual|2.31|[HTML](/archive/en/2.31/end-user/html/dhis2_end_user_manual_full.html)|[PDF](/archive/en/2.31/end-user/dhis2_end_user_manual.pdf)|
 |End User Manual|2.30|[HTML](/archive/en/2.30/end-user/html/dhis2_end_user_manual_full.html)|[PDF](/archive/en/2.30/end-user/dhis2_end_user_manual.pdf)|
@@ -21,6 +22,7 @@
 
 |Document|Version|||
 |:---|---|---|---|
+|User Manual|2.34|[HTML](/archive/en/2.34/user/html/dhis2_user_manual_en_full.html)|[PDF](/archive/en/2.34/user/dhis2_user_manual_en.pdf)|
 |User Manual|2.33|[HTML](/archive/en/2.33/user/html/dhis2_user_manual_en_full.html)|[PDF](/archive/en/2.33/user/dhis2_user_manual_en.pdf)|
 |User Manual|2.32|[HTML](/archive/en/2.32/user/html/dhis2_user_manual_en_full.html)|[PDF](/archive/en/2.32/user/dhis2_user_manual_en.pdf)|
 |User Manual|2.31|[HTML](/archive/en/2.31/user/html/dhis2_user_manual_en_full.html)|[PDF](/archive/en/2.31/user/dhis2_user_manual_en.pdf)|
@@ -38,7 +40,8 @@
 
 |Document|Version|||
 |:---|---|---|---|
-|Developer Manual|2.33|[HTML](/archive/en/2.33/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.33/developer/dhis2_developer_manual.pdf)|
+|Developer Manual|2.34|[HTML](/archive/en/2.34/developer/dhis2_developer_manual.html)|[PDF](/archive/en/2.34/developer/dhis2_developer_manual.pdf)|
+|Developer Manual|2.33|[HTML](/archive/en/2.33/developer/dhis2_developer_manual.html)|[PDF](/archive/en/2.33/developer/dhis2_developer_manual.pdf)|
 |Developer Manual|2.32|[HTML](/archive/en/2.32/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.32/developer/dhis2_developer_manual.pdf)|
 |Developer Manual|2.31|[HTML](/archive/en/2.31/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.31/developer/dhis2_developer_manual.pdf)|
 |Developer Manual|2.30|[HTML](/archive/en/2.30/developer/html/dhis2_developer_manual.html)|[PDF](/archive/en/2.30/developer/dhis2_developer_manual.pdf)|
