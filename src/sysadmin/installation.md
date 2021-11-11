@@ -287,10 +287,16 @@ max_locks_per_transaction = 96
 
 Specifies the average number of object locks allocated for each transaction. This is set mainly to allow upgrade routines which touch a large number of tables to complete.
 
+```properties
+track_activity_query_size = 8192
+```
+
+Specifies the number of bytes reserved to track the currently executing command for each active session. Useful to view the full query string for monitoring of currently running queries.
+
 Restart PostgreSQL by invoking the following command:
 
 ```sh
-sudo /etc/init.d/postgresql restart
+sudo systemctl restart postgresql
 ```
 
 ### Java installation { #install_java_installation } 
@@ -1024,20 +1030,19 @@ across the cluster instances.
 
 ### DHIS 2 instance cache invalidation { #install_cluster_configuration }
 
-DHIS2 can invalidate the Hibernate cache by listening for replication events emitted by the Postgres database, this makes
-it possible to add new DHIS2 instances without requiring to configure a unique ID for each "instance" in the dhis.conf
-file.
+DHIS2 can invalidate the application cache by listening for replication events emitted by the PostgreSQL database. This allows for adding new DHIS2 instances without having to configure a unique ID for each "instance" in `dhis.conf`. 
 
-This cache invalidation is based on the open-source project [Debezium](https://debezium.io/), it works by listening to
-the replication stream from a Postgres database to detect updates made by other instances.
+Cache invalidation is based on the open-source project [Debezium](https://debezium.io/), which works by listening to the replication stream from a PostgreSQL database to detect updates made by other instances.
 
-### Prerequisites:
+#### Prerequisites
 
-* Postgres 10+
-* Logical replication enabled
-* A Postgres user with replication access
+* PostgreSQL version 10 or later.
+* Logical replication enabled in PostgreSQL.
+* PostgreSQL user must have replication authority.
 
-### Postgres configuration (postgres.conf)
+#### PostgreSQL configuration
+
+The following properties must be specified in the PostgreSQL configuration file:
 
 ```
 wal_level = logical
@@ -1049,7 +1054,9 @@ max_wal_senders = 10
 
 ```
 
-### DHIS2 configuration (dhis.conf)
+#### DHIS2 configuration
+
+The following properties must be specified in the DHIS 2 `dhis.conf` configuration file:
 
 ```
 debezium.enabled = on 
@@ -1059,21 +1066,21 @@ debezium.db.name = DHIS2_DATABASE_NAME
 debezium.connection.username = DHIS2_DATABASE_USER 
 debezium.connection.password = DHIS2_DATABASE_PASSWORD
 
-# [Optional] If you want the server to shutdown if the replication connection is lost. (defaults off)
+# [Optional] If you want the server to shutdown if the replication connection is lost (default is off)
 debezium.shutdown_on.connector_stop = on
 ```
 
-### Enable replication access on the database user
+#### Enable replication access on the database user
 
-Execute the following statement with an admin user to give replication access to your database user.
+Execute the following statement with a PostgreSQL superuser to give replication access to your database user:
 
 ```
-ALTER ROLE [YOUR DHIS2 DATABASE USER] WITH replication;
+alter role {db-user} with replication;
 ```
 
-### Potential issues
+#### Troubleshooting
 
-#### Running out of available replication slots
+**Running out of available replication slots**
 
 Every time a DHIS2 instance is started, a new replication slot is created in the database. On every normal shutdown of
 the instance, the slot is automatically removed. However, if the server has not shut down normally, like for example on
@@ -1082,21 +1089,19 @@ name includes the date it was created and a random string, such that no replicat
 The number of available replication slots is fixed and is determined by the Postgres config variables: 
 'max_wal_senders' and 'max_replication_slots'.
 
-To manually remove old stale replication slots, you can use the following SQL statements:
-
-#### List all replication slots
+To manually remove old stale replication slots, you can use the following SQL statement:
 
 ```
-SELECT * FROM pg_replication_slots;
+select * from pg_replication_slots;
 ```
 
-#### Remove a stale replication slot
+To remove a stale replication slot, you can use the following SQL statement (replace the slot ID):
 
 ```
-SELECT pg_drop_replication_slot('dhis2_1624530654__a890ba555e634f50983d4d6ad0fd63f1');
+select pg_drop_replication_slot('dhis2_1624530654__a890ba555e634f50983d4d6ad0fd63f1');
 ```
 
-### The Debezium engine loses its connection to the database
+**Debezium engine losing connection to the database**
 
 If the replication connection fails and can not recover, the node will eventually be out of sync. To prevent this from
 happening, you can enable the server to shut down if it detects it has lost connection. This feature is disabled by
