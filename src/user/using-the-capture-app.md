@@ -1055,6 +1055,14 @@ This is the form where you can modify the event details before saving. In the he
 
 ![](resources/images/capture_app/new-event-widget-form-header.png)
 
+### New event page without a stage
+
+If you enter the new event page with no stage selected, a list of available stages will be displayed.
+Select the stage you want to add a new event in by clicking the associated button.
+To navigate back to the enrollment overview, click the **Cancel without saving**-button
+
+![](resources/images/capture_app/enrollment-event-new-stage-selection-list.png)
+
 ## Program stage event list 
 
 You can reach the program stage event list by clicking **Go to full {stage event name}** button in the overview page.
