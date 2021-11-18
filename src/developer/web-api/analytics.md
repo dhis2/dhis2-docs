@@ -933,6 +933,12 @@ Table: Filter operators
 | LIKE | Like (free text match) |
 | IN | Equal to one of multiple values separated by ";" |
 
+#### Time Field Filtering
+
+By default, the `query` endpoints filter periods based on `eventDate`.
+However, it is possible to filter entries based on `lastUpdated` instead, by using the `timeField` query parameter.
+    &timeField=LAST_UPDATED
+
 #### Response formats
 
 The default response representation format is JSON. The requests must be
@@ -983,6 +989,22 @@ The default response JSON format will look similar to this:
       "type": "java.lang.String",
       "hidden": false,
       "meta": false
+    },
+    {
+      "name": "storedby",
+      "column": "Stored by",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "lastupdated",
+      "column": "Last Updated",
+      "valueType": "DATE",
+      "type": "java.time.LocalDate",
+      "hidden": false,
+      "meta": true
     },
     {
       "name": "coordinates",
@@ -1047,6 +1069,8 @@ The default response JSON format will look similar to this:
       "yx9IDINf82o",
       "Zj7UnCAulEk",
       "2016-08-05",
+      "system",
+      "2018-08-07",
       "[5.12, 1.23]",
       "Ngelehun",
       "OU_559",
@@ -1058,6 +1082,8 @@ The default response JSON format will look similar to this:
       "IPNa7AsCyFt",
       "Zj7UnCAulEk",
       "2016-06-12",
+      "system",
+      "2018-08-07",
       "[5.22, 1.43]",
       "Ngelehun",
       "OU_559",
@@ -1069,6 +1095,8 @@ The default response JSON format will look similar to this:
       "ZY9JL9dkhD2",
       "Zj7UnCAulEk",
       "2016-06-15",
+      "system",
+      "2018-08-07",
       "[5.42, 1.33]",
       "Ngelehun",
       "OU_559",
@@ -1080,6 +1108,8 @@ The default response JSON format will look similar to this:
       "MYvh4WAUdWt",
       "Zj7UnCAulEk",
       "2016-06-16",
+      "system",
+      "2018-08-07",
       "[5.32, 1.53]",
       "Ngelehun",
       "OU_559",
@@ -1533,6 +1563,13 @@ You can specify multiple filters for a given item by repeating the operator and 
 
     &dimension=qrur9Dvnyt5:GT:5:LT:15
 
+#### Time Field Filtering
+
+By default, the `query` endpoints filter periods based on `enrollmentDate`.
+However, it is possible to filter entries based on `lastUpdated` instead, by using the `timeField` query parameter.
+
+    &timeField=LAST_UPDATED
+
 ##### NV keyword
 A special keyword `NV` can be used to filter by `null` values
 
@@ -1643,6 +1680,22 @@ The default response JSON format will look similar to this:
       "column": "Incident date",
       "valueType": "DATE",
       "type": "java.util.Date",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "storedby",
+      "column": "Stored by",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "lastupdated",
+      "column": "Last Updated",
+      "valueType": "DATE",
+      "type": "java.time.LocalDate",
       "hidden": false,
       "meta": true
     },
@@ -1766,6 +1819,8 @@ The default response JSON format will look similar to this:
       "to8G9jAprnx",
       "2019-02-02 12:05:00.0",
       "2019-02-02 12:05:00.0",
+      "system",
+      "2020-08-06 21:20:52.0",
       "",
       "0.0",
       "0.0",
@@ -1780,6 +1835,8 @@ The default response JSON format will look similar to this:
       "SJtv0WzoYki",
       "2019-02-02 12:05:00.0",
       "2019-02-02 12:05:00.0",
+      "system",
+      "2020-08-06 21:20:52.0",
       "",
       "0.0",
       "0.0",
@@ -1794,6 +1851,8 @@ The default response JSON format will look similar to this:
       "PGzTv2A1xzn",
       "2019-02-02 12:05:00.0",
       "2019-02-02 12:05:00.0",
+      "system",
+      "2020-08-06 21:20:52.0",
       "",
       "0.0",
       "0.0",
@@ -1808,6 +1867,8 @@ The default response JSON format will look similar to this:
       "pav3tGLjYuq",
       "2019-02-03 12:05:00.0",
       "2019-02-03 12:05:00.0",
+      "system",
+      "2020-08-06 21:20:52.0",
       "",
       "0.0",
       "0.0",
