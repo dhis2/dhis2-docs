@@ -6,7 +6,7 @@ The organisation unit profile resource allows you to define and retrieve an info
 /api/organisationUnitProfile
 ```
 
-A single organisation unit profile can be created in applies to all organisation units.
+A single organisation unit profile can be created and applies to all organisation units.
 
 The information part of the organisation unit profile includes:
 
