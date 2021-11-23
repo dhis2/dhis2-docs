@@ -325,6 +325,7 @@ Available binary operators are:
 | Binary Operator   | Description                                              |
 | ----------------- | -------------------------------------------------------- |
 | `eq`              | field _equals_ value                                     |
+| `ieq`             | field _equals_ value (case insensitive)                  |
 | `!eq`, `neq`, `ne`| field is _not equal_ value                               |
 | `lt`              | field is _less than_ value                               |
 | `le`, `lte`       | field is _less than or equal to_ value                   |
@@ -339,6 +340,11 @@ If the `<value>` of an `in` or `!in` filter is a list it is given in the form
 Any `>`, `>=`, `<` `<=`, `==` or `!=` comparison applied to a collection field 
 with a numeric value will compare the size of the collection to the value, for
 example: `userGroups:gt:0`.
+
+Any `>`, `>=`, `<` `<=`, `==` or `!=` comparison applied to a text field 
+with a integer number value will compare the text length to the value, for 
+example: `name:eq:4` (name has length 4).
+
 
 Available binary pattern matching operators are:
 
