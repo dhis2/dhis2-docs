@@ -65,7 +65,6 @@ Known Limitations:
   non-persistent fields might be possible to extract using `from` transformation
 * filters can only be applied to persisted fields
 * orders can only be applied to persisted fields
-* like-filters are always case-sensitive
 * token filters are not available
 * order is always case-sensitive
 * `pluck` transformer limited to text properties
@@ -357,11 +356,11 @@ in which case a match is any value where the term occurs anywhere, or they can
 be used by providing the search pattern using `*` as _any number of characters_
 and `?` as _any single character_.
 
+All pattern matching operators named `like` are case-sensitive. All others 
+are case-insensitive. 
+
 Note that filters on attribute values use text based comparison which means 
 all text filters are supported.
-
-Operators have multiple aliases to be backwards compatible with the 
-standard metadata API. For the gist API any like is always case-sensitive. 
 
 For example, to only list organisations on second level use
 
