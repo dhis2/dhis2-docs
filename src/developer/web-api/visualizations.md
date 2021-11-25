@@ -99,7 +99,7 @@ detailed information about each object on a users dashboard.
 When a user is building a dashboard it is convenient
 to be able to search for various analytical resources using the
 */dashboards/q* resource. This resource lets you search for matches on
-the name property of the following objects: visualizations, maps,
+the name property of the following objects: visualizations, eventVisualizations maps,
 users, reports and resources. You can do a search by making a *GET*
 request on the following resource URL pattern, where my-query should be
 replaced by the preferred search query:
@@ -124,7 +124,7 @@ Table: dashboards/q query parameters
 |---|---|---|---|
 | count | The number of items of each type to return | Positive integer | 6 |
 | maxCount | The number of items of max types to return | Positive integer | 25 |
-| max | The type to return the maxCount for | String [MAP&#124;USER&#124;REPORT&#124;RESOURCE&#124;VISUALIZATION] | N/A |
+| max | The type to return the maxCount for | String [MAP&#124;USER&#124;REPORT&#124;RESOURCE&#124;VISUALIZATION#124;EVENT_VISUALIZATION,EVENT_CHART,EVENT_REPORT] | N/A |
 
 JSON and XML response formats are supported. The response in JSON format
 will contain references to matching resources and counts of how many
@@ -142,6 +142,15 @@ similar to this:
     "id": "jkf6OiyV7el",
     "type": "PIVOT_TABLE"
   }],
+  "eventVisualizations": [{
+    "name": "ANC: ANC 1 Visits Cumulative Numbers",
+    "id": "arf9OiyV7df",
+    "type": "GAUGE"
+  }, {
+    "name": "ANC: 1st and 2rd trends Daily",
+    "id": "jkf6OiyV7el",
+    "type": "COLUMN"
+  }],
   "maps": [{
     "name": "ANC: 1st visit at facility (fixed) 2013",
     "id": "YOEGBvxjAY0"
@@ -157,11 +166,13 @@ similar to this:
     "id": "qYVNH1wkZR0"
   }],
   "searchCount": 8,
-  "visualizationCount": 3,
+  "visualizationCount": 2,
+  "eventVisualizationCount": 2,
   "mapCount": 2,
   "reportCount": 2,
   "userCount": 0,
-  "patientTabularReportCount": 0,
+  "eventReports": 0,
+  "eventCharts" :0,
   "resourceCount": 0
 }
 ```
@@ -202,7 +213,7 @@ Table: Items content parameters
 
 | Query parameter | Description | Options |
 |---|---|---|
-| type | Type of the resource to be represented by the dashboard item | visualization &#124; map &#124; reportTable &#124; users &#124; reports &#124; resources &#124; patientTabularReports &#124; app |
+| type | Type of the resource to be represented by the dashboard item | visualization &#124; map &#124; eventVisualization &#124; users &#124; reports &#124; resources &#124; app |
 | id | Identifier of the resource to be represented by the dashboard item | Resource identifier |
 
 A *POST* request URL for adding a visualization to a specific dashboard could look like this, where the last id query parameter value is the chart resource identifier:
@@ -823,9 +834,419 @@ Finally, to delete an existing Visualization, you can make a `DELETE` request sp
 
     DELETE /api/visualizations/hQxZGXqnLS9
 
+## Event visualization
+<!--DHIS2-SECTION-ID:webapi_event_visualization-->
+The EventVisualization API is designed to help clients to interact with event charts and reports. The endpoints of this API are used by the Event Visualization application which allows the creation, configuration and management of charts and reports based on the client's definitions. The main idea is to enable clients and users to have a unique and centralized API providing all types of event charts and reports as well as specific parameters and configuration for each type of event visualization.
+This API was introduced with the expectation to unify both `eventCharts` and `eventReports` APIs and entirely replace them in favour of the `eventVisualizations` API (which means that the usage of `eventCharts` and `eventReports` APIs should be avoided). In summary, the following resources/APIs:
+    /api/eventCharts, /api/eventReports
+*are being replaced by*
+    /api/eventVisualizations
+
+> **Note**
+>
+> New applications and clients should avoid using the `eventCharts` and `eventReports` APIs because they are deprecated. Use the `eventVisualizations` API instead.
+
+An EventVisualization object is composed of many attributes (some of them related to charting and others related to reporting), but the most important ones responsible to reflect the core information of the object are: *"id", "name", "type", "dataDimensionItems", "columns", "rows" and "filters".*
+The root endpoint of the API is `/api/eventVisualizations`, and the list of current attributes and elements are described in the table below.
+
+
+
+Table: EventVisualization attributes
+
+| Field | Description |
+|---|---|
+| id | The unique identifier. |
+| code | A custom code to identify the EventVisualiation. |
+| name | The name of the EventVisualiation |
+| type | The type of the EventVisualiation. The valid types are: COLUMN, STACKED_COLUMN, BAR, STACKED_BAR, LINE, LINE_LIST, AREA, STACKED_AREA, PIE, RADAR, GAUGE, YEAR_OVER_YEAR_LINE, YEAR_OVER_YEAR_COLUMN, SINGLE_VALUE, PIVOT_TABLE, SCATTER, BUBBLE. |
+| title | A custom title. |
+| subtitle | A custom subtitle. |
+| description | Defines a custom description for the EventVisualiation. |
+| created | The date/time of the EventVisualiation creation. |
+| startDate | The beginning date used during the filtering. |
+| endDate | The ending date used during the filtering. |
+| sortOrder | The sorting order of this EventVisualiation. Integer value. |
+| user | An object representing the creator of the Visualization. |
+| publicAccess | Sets the permissions for public access. |
+| displayDensity | The display density of the text. |
+| fontSize | The font size of the text. |
+| relativePeriods | An object representing the relative periods used in the analytics query. |
+| legendSet | An object representing the definitions for the legend. |
+| legendDisplayStyle | The legend's display style. It can be: FILL or TEXT. |
+| legendDisplayStrategy | The legend's display style. It can be: FIXED or BY_DATA_ITEM. |
+| aggregationType | Determines how the values are aggregated (if applicable). Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT. |
+| regressionType | A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS. |
+| targetLineValue | The chart target line. Accepts a Double type. |
+| targetLineLabel | The chart target line label. |
+| rangeAxisLabel | The chart vertical axis (y) label/title. |
+| domainAxisLabel | The chart horizontal axis (x) label/title. |
+| rangeAxisMaxValue | The chart axis maximum value. Values outside of the range will not be displayed. |
+| rangeAxisMinValue | The chart axis minimum value. Values outside of the range will not be displayed. |
+| rangeAxisSteps | The number of axis steps between the minimum and maximum values. |
+| rangeAxisDecimals | The number of decimals for the axes values. |
+| baseLineValue | A chart baseline value. |
+| baseLineLabel | A chart baseline label. |
+| digitGroupSeparator | The digit group separator. Valid values: COMMA, SPACE or NONE. |
+| topLimit | The top limit set for the Pivot table. |
+| measureCriteria | Describes the criteria applied to this measure. |
+| percentStackedValues | Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value. |
+| noSpaceBetweenColumns | Show/hide space between columns. Boolean value. |
+| externalAccess | Indicates whether the EventVisualization is available as external read-only. Boolean value. |
+| userOrganisationUnit | Indicates if the user has an organisation unit. Boolean value. |
+| userOrganisationUnitChildren | Indicates if the user has a children organisation unit. Boolean value. |
+| userOrganisationUnitGrandChildren | Indicates if the user has a grand children organisation unit. Boolean value. |
+| rowTotals | Displays (or not) the row totals. Boolean value. |
+| colTotals | Displays (or not) the columns totals. Boolean value. |
+| rowSubTotals | Displays (or not) the row sub-totals. Boolean value. |
+| colSubTotals | Displays (or not) the columns sub-totals. Boolean value. |
+| cumulativeValues | Indicates whether the EventVisualization is using cumulative values. Boolean value. |
+| hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
+| completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
+| showDimensionLabels | Shows the dimension labels or not. Boolean value. |
+| hideTitle | Hides the title or not. Boolean value. |
+| hideSubtitle | Hides the subtitle or not. Boolean value. |
+| showHierarchy | Displays (or not) the organisation unit hierarchy names. Boolean value. |
+| showData | Used by charts to hide or not data/values within the rendered model. Boolean value. |
+| lastUpdatedBy | Object that represents the user that applied the last changes to the EventVisualization. |
+| lastUpdated | The date/time of the last time the EventVisualization was changed. |
+| favorites | List of user ids who have marked this object as a favorite. |
+| subscribers | List of user ids who have subscribed to this EventVisualization. |
+| translations | Set of available object translation, normally filtered by locale. |
+| program | The program associated. |
+| programStage | The program stage associated. |
+| programStatus | The program status. It can be ACTIVE, COMPLETED, CANCELLED. |
+| eventStatus | The event status. It can be ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED. |
+| dataType | The event data type. It can be AGGREGATED_VALUES or EVENTS. |
+| columnDimensions | The dimensions defined for the columns. |
+| rowDimensions | The dimensions defined for the rows. |
+| filterDimensions | The dimensions defined for the filters. |
+| outputType | Indicates output type of the EventVisualization. It can be EVENT, ENROLLMENT or TRACKED_ENTITY_INSTANCE. |
+| collapseDataDimensions | Indicates whether to collapse all data dimensions into a single dimension. Boolean value. |
+| hideNaData | Indicates whether to hide N/A data. Boolean value. |
+
+### Retrieving event visualizations
+<!--DHIS2-SECTION-ID:webapi_event_visualization_retrieving_event_visualizations-->
+To retrieve a list of all existing event visualizations, in JSON format, with some basic information (including identifier, name and pagination) you can make a `GET` request to the URL below. You should see a list of all public/shared event visualizations plus your private ones.
+    GET /api/eventVisualizations.json
+If you want to retrieve the JSON definition of a specific EventVisualization you can add its respective identifier to the URL:
+    GET /api/eventVisualizations/hQxZGXqnLS9.json
+The following representation is an example of a response in JSON format (for brevity, certain information has been removed). For the complete schema, please use `GET /api/schemas/eventVisualization`.
+
+```json
+{
+    "lastUpdated": "2021-11-25T17:18:03.834",
+    "href": "http://localhost:8080/dhis/api/eventVisualizations/EZ5jbRTxRGh",
+    "id": "EZ5jbRTxRGh",
+    "created": "2021-11-25T17:18:03.834",
+    "name": "Inpatient: Mode of discharge by facility type this year",
+    "publicAccess": "rw------",
+    "userOrganisationUnitChildren": false,
+    "type": "STACKED_COLUMN",
+    "subscribed": false,
+    "userOrganisationUnit": false,
+    "rowSubTotals": false,
+    "cumulativeValues": false,
+    "showDimensionLabels": false,
+    "sortOrder": 0,
+    "favorite": false,
+    "topLimit": 0,
+    "collapseDataDimensions": false,
+    "userOrganisationUnitGrandChildren": false,
+    "displayName": "Inpatient: Mode of discharge by facility type this year",
+    "percentStackedValues": false,
+    "noSpaceBetweenColumns": false,
+    "showHierarchy": false,
+    "hideTitle": false,
+    "showData": true,
+    "hideEmptyRows": false,
+    "hideNaData": false,
+    "regressionType": "NONE",
+    "completedOnly": false,
+    "colTotals": false,
+    "sharing": {
+        "owner": "GOLswS44mh8",
+        "external": false,
+        "users": {},
+        "userGroups": {},
+        "public": "rw------"
+    },
+    "programStatus": "CANCELLED",
+    "hideEmptyRowItems": "NONE",
+    "hideSubtitle": false,
+    "outputType": "EVENT",
+    "hideLegend": false,
+    "externalAccess": false,
+    "colSubTotals": false,
+    "rowTotals": false,
+    "digitGroupSeparator": "SPACE",
+    "program": {
+        "id": "IpHINAT79UW"
+    },
+    "access": {
+        "read": true,
+        "update": true,
+        "externalize": true,
+        "delete": true,
+        "write": true,
+        "manage": true
+    },
+    "lastUpdatedBy": {
+        "displayName": "John Traore",
+        "name": "John Traore",
+        "id": "xE7jOejl9FI",
+        "username": "admin"
+    },
+    "relativePeriods": {
+        "thisYear": false,
+        ...
+    },
+    "programStage": {
+        "id": "A03MvHHogjR"
+    },
+    "createdBy": {
+        "displayName": "Tom Wakiki",
+        "name": "Tom Wakiki",
+        "id": "GOLswS44mh8",
+        "username": "system"
+    },
+    "user": {
+        "displayName": "Tom Wakiki",
+        "name": "Tom Wakiki",
+        "id": "GOLswS44mh8",
+        "username": "system"
+    },
+    "attributeDimensions": [],
+    "translations": [],
+    "filterDimensions": [
+        "ou",
+        "H6uSAMO5WLD"
+    ],
+    "interpretations": [],
+    "userGroupAccesses": [],
+    "subscribers": [],
+    "columns": [
+        {
+            "id": "X8zyunlgUfM"
+        }
+    ]
+    "periods": [],
+    "categoryDimensions": [],
+    "rowDimensions": [
+        "pe"
+    ],
+    "itemOrganisationUnitGroups": [],
+    "programIndicatorDimensions": [],
+    "attributeValues": [],
+    "columnDimensions": [
+        "X8zyunlgUfM"
+    ],
+    "userAccesses": [],
+    "favorites": [],
+    "dataDimensionItems": [],
+    "categoryOptionGroupSetDimensions": [],
+    "organisationUnitGroupSetDimensions": [],
+    "organisationUnitLevels": [],
+    "organisationUnits": [
+        {
+            "id": "ImspTQPwCqd"
+        }
+    ],
+    "filters": [
+        {
+            "id": "ou"
+        },
+        {
+            "id": "H6uSAMO5WLD"
+        }
+    ],
+    "rows": [
+        {
+            "id": "pe"
+        }
+    ]
+}
+```
+
+A more tailored response can be obtained by specifying, in the URL, the fields you want to extract. Ie.:
+    GET /api/eventVisualizations/hQxZGXqnLS9.json?fields=interpretations
+will return
+
+```json
+{
+  "interpretations": [
+    {
+      "id": "Lfr8I2RPU0C"
+    },
+    {
+      "id": "JuwgdJlJPGb"
+    },
+    {
+      "id": "WAoU2rSpyZp"
+    }
+  ]
+}
+```
+
+As seen, the `GET` above will return only the interpretations related to the given identifier (in this case `hQxZGXqnLS9`).
+
+### Creating, updating and removing event visualizations
+<!--DHIS2-SECTION-ID:webapi_event_visualization_add_update_remove_event_visualizations-->
+These operations follow the standard *REST* semantics. A new EventVisualization can be created through a `POST` request to the `/api/eventVisualizations` resource with a valid JSON payload. An example of payload could be:
+
+```json
+{
+    "name": "Inpatient: Cases under 10 years last 4 quarters",
+    "publicAccess": "rw------",
+    "userOrganisationUnitChildren": false,
+    "type": "STACKED_COLUMN",
+    "subscribed": false,
+    "userOrganisationUnit": false,
+    "rowSubTotals": false,
+    "cumulativeValues": false,
+    "showDimensionLabels": false,
+    "sortOrder": 0,
+    "favorite": false,
+    "topLimit": 0,
+    "collapseDataDimensions": false,
+    "userOrganisationUnitGrandChildren": false,
+    "displayName": "Inpatient: Cases under 10 years last 4 quarters",
+    "percentStackedValues": false,
+    "noSpaceBetweenColumns": false,
+    "showHierarchy": false,
+    "hideTitle": false,
+    "showData": true,
+    "hideEmptyRows": false,
+    "userAccesses": [],
+    "userGroupAccesses": [],
+    "hideNaData": false,
+    "regressionType": "NONE",
+    "completedOnly": false,
+    "colTotals": false,
+    "programStatus": "CANCELLED",
+    "sharing": {
+        "owner": "GOLswS44mh8",
+        "external": false,
+        "users": {},
+        "userGroups": {},
+        "public": "rw------"
+    },
+    "displayFormName": "Inpatient: Cases under 10 years last 4 quarters",
+    "hideEmptyRowItems": "NONE",
+    "hideSubtitle": false,
+    "outputType": "EVENT",
+    "hideLegend": false,
+    "externalAccess": false,
+    "colSubTotals": false,
+    "rowTotals": false,
+    "digitGroupSeparator": "SPACE",
+    "access": {
+        "read": true,
+        "update": true,
+        "externalize": false,
+        "delete": true,
+        "write": true,
+        "manage": true
+    },
+    "lastUpdatedBy": {
+        "displayName": "Tom Wakiki",
+        "name": "Tom Wakiki",
+        "id": "GOLswS44mh8",
+        "username": "system"
+    },
+    "relativePeriods": {
+        "thisYear": false,
+      ...
+    },
+    "program": {
+        "id": "IpHINAT79UW",
+        "enrollmentDateLabel": "Date of enrollment",
+        "incidentDateLabel": "Date of birth",
+        "name": "Child Programme"
+    },
+    "programStage": {
+        "id": "A03MvHHogjR",
+        "executionDateLabel": "Report date",
+        "name": "Birth"
+    },
+    "createdBy": {
+        "displayName": "Tom Wakiki",
+        "name": "Tom Wakiki",
+        "id": "GOLswS44mh8",
+        "username": "system"
+    },
+    "user": {
+        "displayName": "Tom Wakiki",
+        "name": "Tom Wakiki",
+        "id": "GOLswS44mh8",
+        "username": "system"
+    },
+    "translations": [],
+    "filterDimensions": [
+        "ou"
+    ],
+    "interpretations": [],
+    "dataElementDimensions": [
+        {
+            "filter": "LE:10",
+            "dataElement": {
+                "id": "qrur9Dvnyt5"
+            }
+        }
+    ],
+    "periods": [],
+    "categoryDimensions": [],
+    "rowDimensions": [
+        "pe"
+    ],
+    "columnDimensions": [
+        "qrur9Dvnyt5"
+    ],
+    "organisationUnits": [
+        {
+            "id": "ImspTQPwCqd"
+        }
+    ],
+    "filters": [
+        {
+            "dimension": "ou",
+            "items": [
+                {
+                    "id": "ImspTQPwCqd"
+                }
+            ]
+        },
+        {
+            "dimension": "H6uSAMO5WLD",
+            "items": []
+        }
+    ],
+    "columns": [
+        {
+            "dimension": "X8zyunlgUfM",
+            "items": []
+        }
+    ],
+    "rows": [
+        {
+            "dimension": "pe",
+            "items": [
+                {
+                    "id": "LAST_12_MONTHS"
+                }
+            ]
+        }
+    ]
+}
+```
+
+To update a specific EventVisualization, you can send a `PUT` request to the same `/api/eventVisualizations` resource with a similar payload `PLUS` the respective EventVisualization's identifier, ie.:
+    PUT /api/eventVisualizations/hQxZGXqnLS9
+Finally, to delete an existing EventVisualization, you can make a `DELETE` request specifying the identifier of the EventVisualization to be removed, as shown:
+    DELETE /api/eventVisualizations/hQxZGXqnLS9
+
 ## Interpretations { #webapi_interpretations } 
 
-For resources related to data analysis in DHIS2, such as visualizations, maps, event reports and event charts, you can write and share data interpretations. An interpretation can be a comment, question, observation or interpretation about a data report or visualization.
+For resources related to data analysis in DHIS2, such as visualizations, maps, event reports, event charts and even visualizations you can write and share data interpretations. An interpretation can be a comment, question, observation or interpretation about a data report or visualization.
 
     /api/interpretations
 
@@ -918,9 +1339,10 @@ Table: Interpretation fields
 |---|---|
 | id | The interpretation identifier. |
 | created | The time of when the interpretation was created. |
-| type | The type of analytical object being interpreted. Valid options: VISUALIZATION, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT. |
+| type | The type of analytical object being interpreted. Valid options: VISUALIZATION, MAP, EVENT_REPORT, EVENT_CHART, EVENT_VISUALIZATION, DATASET_REPORT. |
 | user | Association to the user who created the interpretation. |
 | visualization | Association to the visualization if type is VISUALIZATION |
+| eventVisualization | Association to the event visualization if type is EVENT_VISUALIZATION |
 | map | Association to the map if type is MAP. |
 | eventReport | Association to the event report is type is EVENT_REPORT. |
 | eventChart | Association to the event chart if type is EVENT_CHART. |
@@ -966,14 +1388,19 @@ identifier of the object being interpreted.
     /api/interpretations/{object-type}/{object-id}
 
 Valid options for object type are *visualization*, *map*,
-*eventReport*, *eventChart* and *dataSetReport*.
+*eventReport*, *eventChart*, *eventVisualization* and *dataSetReport*.
 
 Some valid examples for interpretations are listed below.
+
+> **Note**
+>
+> The `eventCharts` and `eventReports` APIs are deprecated. We recommend using the `eventVisualizations` API instead.
 
     /api/interpretations/visualization/hQxZGXqnLS9
     /api/interpretations/map/FwLHSMCejFu
     /api/interpretations/eventReport/xJmPLGP3Cde
     /api/interpretations/eventChart/nEzXB2M9YBz
+    /api/interpretations/eventVisualization/nEzXB2M9YBz
     /api/interpretations/dataSetReport/tL7eCjmDIgM
 
 As an example, we will start by writing an interpretation for the visualization with identifier *EbRN2VIbPdV*. To write visualization interpretations we will interact with the `/api/interpretations/visualization/{visualizationId}` resource.
@@ -1387,7 +1814,7 @@ Table: Data items attributes
 ## Viewing analytical resource representations { #webapi_viewing_analytical_resource_representations } 
 
 DHIS2 has several resources for data analysis. These resources include
-*maps*, *visualizations*, *reports* and *documents*. By visiting these resources you will retrieve information about the resource. For instance, by navigating to `/api/visualizations/R0DVGvXDUNP` the response will contain the name, last date of modification and so on for the chart. To retrieve the analytical representation, for instance, a PNG representation of the visualization, you can append */data* to all these resources. For instance, by visiting `/api/visualizations/R0DVGvXDUNP/data` the system will return a PNG image of the visualization.
+*maps*, *visualizations*, *eventVisualizations*, *reports* and *documents*. By visiting these resources you will retrieve information about the resource. For instance, by navigating to `/api/visualizations/R0DVGvXDUNP` the response will contain the name, last date of modification and so on for the chart. To retrieve the analytical representation, for instance, a PNG representation of the visualization, you can append */data* to all these resources. For instance, by visiting `/api/visualizations/R0DVGvXDUNP/data` the system will return a PNG image of the visualization.
 
 
 
@@ -1397,7 +1824,9 @@ Table: Analytical resources
 |---|---|---|---|
 | eventCharts | Event charts | /api/eventCharts/<identifier\>/data | png |
 | maps | Maps | /api/maps/<identifier\>/data | png |
-| visualization | Pivot tables and charts | /api/visualizations/<identifier\>/data | json &#124; jsonp &#124; html &#124; xml &#124; pdf &#124; xls &#124; csv | png |
+| visualizations | Pivot tables and charts | /api/visualizations/<identifier\>/data | json &#124; jsonp &#124; html &#124; xml &#124; pdf &#124; xls &#124; csv 
+| eventVisualizations | Event charts | /api/eventVisualizations/<identifier\>/data | png 
+| png |
 | reports | Standard reports | /api/reports/<identifier\>/data | pdf &#124; xls &#124; html |
 | documents | Resources | /api/documents/<identifier\>/data | <follows document\> |
 
@@ -1425,13 +1854,16 @@ Table: Query parameters for png / image types (visualizations, maps)
 Some examples of valid URLs for retrieving various analytical
 representations are listed below.
 
-    /api/visualization/R0DVGvXDUNP/data
-    /api/visualization/R0DVGvXDUNP/data?date=2013-06-01
+    /api/visualizations/R0DVGvXDUNP/data
+    /api/visualizations/R0DVGvXDUNP/data?date=2013-06-01
 
-    /api/visualization/jIISuEWxmoI/data.html
-    /api/visualization/jIISuEWxmoI/data.html?date=2013-01-01
-    /api/visualization/FPmvWs7bn2P/data.xls
-    /api/visualization/FPmvWs7bn2P/data.pdf
+    /api/visualizations/jIISuEWxmoI/data.html
+    /api/visualizations/jIISuEWxmoI/data.html?date=2013-01-01
+    /api/visualizations/FPmvWs7bn2P/data.xls
+    /api/visualizations/FPmvWs7bn2P/data.pdf
+
+    /api/eventVisualizations/x5FVFVt5CDI/data
+    /api/eventVisualizations/x5FVFVt5CDI/data.png
 
     /api/maps/DHE98Gsynpr/data
     /api/maps/DHE98Gsynpr/data?date=2013-07-01

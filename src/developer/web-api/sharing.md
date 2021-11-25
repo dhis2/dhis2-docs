@@ -197,7 +197,7 @@ You can remove one user from `sharing` like this
 ### Overview
 
 - The sharing solution supports cascade sharing for Dashboard. 
-- This function will copy `userAccesses` and `userGroupAccesses` of a Dashboard to all of its DashboardItem's objects including `Map`, `EventReport`, `EventChart`, `Visualization`. 
+- This function will copy `userAccesses` and `userGroupAccesses` of a Dashboard to all of its DashboardItem's objects including `Map`, `EventReport`, `EventChart`, `Visualization`, `EventVisualization`. 
 - This function will ***NOT*** copy `METADATA_WRITE` access. The copied `UserAccess` and `UserGroupAccess` will **only** have `METADATA_READ` permission. 
 - The `publicAccess` setting is currently ***NOT*** handled by this function. Means the `publicAccess` of the current `Dashboard` will not be copied to its `DashboardItems`'s objects.
 - If target object has `publicAccess` enabled, then it will be ignored by this function. Means that no `UserAccesses` or `UserGroupAccesses` will be copied from `Dashboard`.
