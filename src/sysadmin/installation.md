@@ -730,8 +730,8 @@ oidc.logout.redirect_url = https://mydhis2-server.org
 # [Optional], defaults to 'email'
 oidc.provider.azure.0.mapping_claim = email
 
-# [Optional], defaults to 'true'
-oidc.provider.azure.0.support_logout = true
+# [Optional], defaults to 'on'
+oidc.provider.azure.0.support_logout = on
 
 
 # Second provider (azure.1):
@@ -779,8 +779,8 @@ oidc.provider.helseid.scopes = helseid://scopes/identity/email
 # you need to provide your full public url, like the example below.
 oidc.provider.helseid.redirect_url = https://mydhis2-server.org/oauth2/code/helseid
 
-# [Optional], defaults to 'true'
-oidc.provider.helseid.enable_logout = true
+# [Optional], defaults to 'on'
+oidc.provider.helseid.enable_logout = on
 
 # [Optional] Where to redirect after logging out.
 # If your public hostname is different from what the server sees internally, 
@@ -788,7 +788,7 @@ oidc.provider.helseid.enable_logout = true
 oidc.logout.redirect_url = https://mydhis2-server.org
 
 # [Optional] PKCE support, see: https://oauth.net/2/pkce/), default is 'false'
-oidc.provider.helseid.enable_pkce = true
+oidc.provider.helseid.enable_pkce = on
 
 # [Optional] Extra variables appended to the request. 
 # Must be key/value pairs like: "KEY1 VALUE1,KEY2 VALUE2,..."
@@ -1131,7 +1131,7 @@ notify-keyspace-events Egx
 ```
 
 DHIS2 will connect to Redis if the *redis.enabled* configuration
-property in *dhis.conf* is set to *true* along with the following properties:
+property in *dhis.conf* is set to *on* along with the following properties:
 
 - *redis.host*: Specifies where the redis server is running. Defaults to *localhost*. Mandatory.
 
@@ -1157,7 +1157,7 @@ configured is shown below.
 ```properties
 # Redis Configuration
 
-redis.enabled = true
+redis.enabled = on
 
 redis.host = 193.158.100.111
 
@@ -1253,7 +1253,7 @@ By default DHIS2 will start an embedded instance of ActiveMQ Artemis when bootin
 | amqp.port                 | 15672                 | If mode is `EMBEDDED`, the embedded server will bind to this port. If mode is `NATIVE`, the client will use this port to connect. |
 | amqp.username             | guest                 | Username to connect to if using `NATIVE` mode.               |
 | amqp.password             | guest                 | Password to connect to if using `NATIVE` mode.               |
-| amqp.embedded.persistence | false \| true         | If mode is `EMBEDDED`, this property controls persistence of the internal queue. |
+| amqp.embedded.persistence | off \| on         | If mode is `EMBEDDED`, this property controls persistence of the internal queue. |
 
 
 ## Monitoring
@@ -1720,11 +1720,11 @@ connection.pool.max_idle_time_excess_con=0
 #If this is a number greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
 connection.pool.idle.con.test.period=0
 
-#If true, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
+#If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
 connection.pool.test.on.checkout=false
 
-#If true, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: true)
-connection.pool.test.on.checkin=true
+#If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
+connection.pool.test.on.checkin=on
 
 #Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
 connection.pool.preferred.test.query=select 1
