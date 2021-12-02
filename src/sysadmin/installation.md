@@ -1851,6 +1851,15 @@ system.monitoring.username =
 
 # System monitoring password (sensitive)
 system.monitoring.password = xxxx
+
+# ----------------------------------------------------------------------
+# App Hub [Optional]
+# ----------------------------------------------------------------------
+
+# Base URL to the DHIS2 App Hub service
+apphub.base.url = https://apps.dhis2.org"
+# Base API URL to the DHIS2 App Hub service, used for app updates
+apphub.api.url = https://apps.dhis2.org/api
 ```
 
 ## Changelog { #install_changelog } 
