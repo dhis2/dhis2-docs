@@ -263,3 +263,128 @@ Sample response:
 - `errorReports`: includes all errors during cascade sharing process.
 - `countUpdatedDashBoardItems`: Number of `DashboardItem` will be or has been updated depends on `dryRun` mode.
 - `updateObjects`: List of all objects which will be or has been updated depends on `dryRun` mode.
+
+## Bulk Sharing patch API { #webapi_bulk_sharing } 
+- The bulk sharing API allow you to apply sharing settings to multiple metadata objects. This means the ability to add or remove many users and user groups to many objects in one API operation.
+- This API should not support keeping metadata objects in sync over time, and instead treat it as a one-time operation.
+- The API needs to respect the sharing access control, in that the current user must have access to edit the sharing of the objects being updated.
+- There are two new api endpoints introduced from 2.38 that allow bulk sharing patch update as described below.
+- Please note that those `PATCH` request must use header `Content-type:application/json-patch+json`
+
+### Using `/api/{object-type}/sharing` with `PATCH` request
+- This endpoint allows user to apply one set of Sharing settings for multiple metadata objects of *one object-type*.
+- Note that we still support JsonPatch request for one object with endpoint `api/{object-type}/{uid}`. For instance, you can still update sharing of a DataElement by sending PATCH request to `api/dataElements/cYeuwXTCPkU/sharing`
+
+Example: 
+```
+curl -X PATCH -d @payload.json -H "Content-Type: application/json-patch+json" "https://play.dhis2.org/dev/api/dataElements/sharing"
+```
+
+### Using `/api/metadata/sharing` with `PATCH` request
+- This endpoint allows user to apply Sharing settings for *multiple object-types* in one payload.
+
+Example:
+```
+curl -X PATCH -d @payload.json -H "Content-Type: application/json-patch+json" "https://play.dhis2.org/dev/api/metadata/sharing"
+```
+
+## Parameters
+- Both patch api endpoints have same parameter:
+
+| Name  |  Default  |  Description  |
+| ---- | ---- | -------------------- |
+| atomic | false | If this is set to true, then the batch function will stop and not updating any objects if there is an error <br> Otherwise, if this is false then the function will try to proceed with best effort mode. |
+
+
+## Validation
+- All object ID will be validated for existence.
+- Current User need to have metadata READ/WRITE permission on updating objects.
+- All existing validations from metadata import service will also be applied.
+
+## Response
+- Response format should be same as from `/api/metadata` api.
+
+## Payload formats
+- Payload for single object type using `/api/{object-type}/sharing` looks like this
+```json
+{
+  "dataSets":[
+    "cYeuwXTCPkU",
+    "aYeuwXTCPkU"
+  ],
+  "patch":[
+    {
+      "op":"add",
+      "path":"/sharing/users/DXyJmlo9rge",
+      "value":{
+        "access":"rw------",
+        "id":"DXyJmlo9rge"
+      }
+    },
+    {
+      "op":"remove",
+      "path":"/sharing/users/N3PZBUlN8vq"
+    }
+  ]
+}
+```
+
+- Payload for multiple object types in one payload using `api/metadata/sharing`
+```json
+{
+  "dataElements": {
+    "fbfJHSPpUQD": [
+      {
+        "op": "replace",
+        "path": "/sharing/users",
+        "value": {
+          "NOOF56dveaZ": {
+            "access": "rw------",
+            "id": "CotVI2NX0rI"
+          },
+          "Kh68cDMwZsg": {
+            "access": "rw------",
+            "id": "DLjZWMsVsq2"
+          }
+        }
+      }
+    ]
+  },
+  "dataSets": {
+    "cYeuwXTCPkA": [
+      {
+        "op": "remove",
+        "path": "/sharing/users/N3PZBUlN8vq"
+      }
+    ],
+    "cYeuwXTCPkU": [
+      {
+        "op": "add",
+        "path": "/sharing/users/DXyJmlo9rge",
+        "value": {
+          "access": "rw------",
+          "id": "DXyJmlo9rge"
+        }
+      }
+    ]
+  },
+  "programs": {
+    "GOLswS44mh8": [
+      {
+        "op": "add",
+        "path": "/sharing/userGroups",
+        "value": {
+          "NOOF56dveaZ": {
+            "access": "rw------",
+            "id": "NOOF56dveaZ"
+          },
+          "Kh68cDMwZsg": {
+            "access": "rw------",
+            "id": "Kh68cDMwZsg"
+          }
+        }
+      }
+    ]
+  }
+}
+```
