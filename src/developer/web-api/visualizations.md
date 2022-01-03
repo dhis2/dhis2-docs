@@ -964,11 +964,11 @@ The following representation is an example of a response in JSON format (for bre
     "completedOnly": false,
     "colTotals": false,
     "sharing": {
-        "owner": "GOLswS44mh8",
-        "external": false,
-        "users": {},
-        "userGroups": {},
-        "public": "rw------"
+      "owner": "GOLswS44mh8",
+      "external": false,
+      "users": {},
+      "userGroups": {},
+      "public": "rw------"
     },
     "programStatus": "CANCELLED",
     "hideEmptyRowItems": "NONE",
@@ -980,65 +980,65 @@ The following representation is an example of a response in JSON format (for bre
     "rowTotals": false,
     "digitGroupSeparator": "SPACE",
     "program": {
-        "id": "IpHINAT79UW"
+      "id": "IpHINAT79UW"
     },
     "access": {
-        "read": true,
-        "update": true,
-        "externalize": true,
-        "delete": true,
-        "write": true,
-        "manage": true
+      "read": true,
+      "update": true,
+      "externalize": true,
+      "delete": true,
+      "write": true,
+      "manage": true
     },
     "lastUpdatedBy": {
-        "displayName": "John Traore",
-        "name": "John Traore",
-        "id": "xE7jOejl9FI",
-        "username": "admin"
+      "displayName": "John Traore",
+      "name": "John Traore",
+      "id": "xE7jOejl9FI",
+      "username": "admin"
     },
     "relativePeriods": {
-        "thisYear": false,
-        ...
+      "thisYear": false,
+      ...
     },
     "programStage": {
-        "id": "A03MvHHogjR"
+      "id": "A03MvHHogjR"
     },
     "createdBy": {
-        "displayName": "Tom Wakiki",
-        "name": "Tom Wakiki",
-        "id": "GOLswS44mh8",
-        "username": "system"
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
     },
     "user": {
-        "displayName": "Tom Wakiki",
-        "name": "Tom Wakiki",
-        "id": "GOLswS44mh8",
-        "username": "system"
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
     },
     "attributeDimensions": [],
     "translations": [],
     "filterDimensions": [
-        "ou",
-        "H6uSAMO5WLD"
+      "ou",
+      "H6uSAMO5WLD"
     ],
     "interpretations": [],
     "userGroupAccesses": [],
     "subscribers": [],
     "columns": [
-        {
-            "id": "X8zyunlgUfM"
-        }
+      {
+        "id": "X8zyunlgUfM"
+      }
     ]
     "periods": [],
     "categoryDimensions": [],
     "rowDimensions": [
-        "pe"
+      "pe"
     ],
     "itemOrganisationUnitGroups": [],
     "programIndicatorDimensions": [],
     "attributeValues": [],
     "columnDimensions": [
-        "X8zyunlgUfM"
+      "X8zyunlgUfM"
     ],
     "userAccesses": [],
     "favorites": [],
@@ -1047,22 +1047,22 @@ The following representation is an example of a response in JSON format (for bre
     "organisationUnitGroupSetDimensions": [],
     "organisationUnitLevels": [],
     "organisationUnits": [
-        {
-            "id": "ImspTQPwCqd"
-        }
+      {
+        "id": "ImspTQPwCqd"
+      }
     ],
     "filters": [
-        {
-            "id": "ou"
-        },
-        {
-            "id": "H6uSAMO5WLD"
-        }
+      {
+        "id": "ou"
+      },
+      {
+        "id": "H6uSAMO5WLD"
+      }
     ],
     "rows": [
-        {
-            "id": "pe"
-        }
+      {
+        "id": "pe"
+      }
     ]
 }
 ```
@@ -1124,11 +1124,11 @@ These operations follow the standard *REST* semantics. A new EventVisualization 
     "colTotals": false,
     "programStatus": "CANCELLED",
     "sharing": {
-        "owner": "GOLswS44mh8",
-        "external": false,
-        "users": {},
-        "userGroups": {},
-        "public": "rw------"
+      "owner": "GOLswS44mh8",
+      "external": false,
+      "users": {},
+      "userGroups": {},
+      "public": "rw------"
     },
     "displayFormName": "Inpatient: Cases under 10 years last 4 quarters",
     "hideEmptyRowItems": "NONE",
@@ -1140,104 +1140,119 @@ These operations follow the standard *REST* semantics. A new EventVisualization 
     "rowTotals": false,
     "digitGroupSeparator": "SPACE",
     "access": {
-        "read": true,
-        "update": true,
-        "externalize": false,
-        "delete": true,
-        "write": true,
-        "manage": true
+      "read": true,
+      "update": true,
+      "externalize": false,
+      "delete": true,
+      "write": true,
+      "manage": true
     },
     "lastUpdatedBy": {
-        "displayName": "Tom Wakiki",
-        "name": "Tom Wakiki",
-        "id": "GOLswS44mh8",
-        "username": "system"
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
     },
     "relativePeriods": {
-        "thisYear": false,
-      ...
+      "thisYear": false,
+    ...
     },
     "program": {
-        "id": "IpHINAT79UW",
-        "enrollmentDateLabel": "Date of enrollment",
-        "incidentDateLabel": "Date of birth",
-        "name": "Child Programme"
+      "id": "IpHINAT79UW",
+      "enrollmentDateLabel": "Date of enrollment",
+      "incidentDateLabel": "Date of birth",
+      "name": "Child Programme"
     },
     "programStage": {
-        "id": "A03MvHHogjR",
-        "executionDateLabel": "Report date",
-        "name": "Birth"
+      "id": "A03MvHHogjR",
+      "executionDateLabel": "Report date",
+      "name": "Birth"
     },
     "createdBy": {
-        "displayName": "Tom Wakiki",
-        "name": "Tom Wakiki",
-        "id": "GOLswS44mh8",
-        "username": "system"
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
     },
     "user": {
-        "displayName": "Tom Wakiki",
-        "name": "Tom Wakiki",
-        "id": "GOLswS44mh8",
-        "username": "system"
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
     },
     "translations": [],
     "filterDimensions": [
-        "ou"
+      "ou"
     ],
     "interpretations": [],
     "dataElementDimensions": [
-        {
-            "filter": "LE:10",
-            "dataElement": {
-                "id": "qrur9Dvnyt5"
-            }
+      {
+        "filter": "LE:10",
+        "dataElement": {
+          "id": "qrur9Dvnyt5"
         }
+      }
     ],
     "periods": [],
     "categoryDimensions": [],
     "rowDimensions": [
-        "pe"
+      "pe"
     ],
     "columnDimensions": [
-        "qrur9Dvnyt5"
+      "qrur9Dvnyt5"
     ],
     "organisationUnits": [
-        {
-            "id": "ImspTQPwCqd"
-        }
+      {
+        "id": "ImspTQPwCqd"
+      }
     ],
     "filters": [
-        {
-            "dimension": "ou",
-            "items": [
-                {
-                    "id": "ImspTQPwCqd"
-                }
-            ]
-        },
-        {
-            "dimension": "H6uSAMO5WLD",
-            "items": []
-        }
+      {
+        "dimension": "ou",
+        "items": [
+          {
+            "id": "ImspTQPwCqd"
+          }
+        ]
+      },
+      {
+        "dimension": "H6uSAMO5WLD",
+        "items": []
+      }
     ],
     "columns": [
-        {
-            "dimension": "X8zyunlgUfM",
-            "items": []
+      {
+        "dimension": "X8zyunlgUfM",
+        "items": [],
+        "repetition": {
+          "indexes": [1, 2, 3, -2, -1, 0]
         }
+      }
     ],
     "rows": [
-        {
-            "dimension": "pe",
-            "items": [
-                {
-                    "id": "LAST_12_MONTHS"
-                }
-            ]
-        }
+      {
+        "dimension": "pe",
+        "items": [
+          {
+              "id": "LAST_12_MONTHS"
+          }
+        ]
+      }
     ]
 }
 ```
+
+> **Note**
+>
+> The `repetition` attribute (in `rows`, `columns` or `filters`) indicates the events indexes to be retrieved. Taking the example above (in the previous `json` payload), it can be read as follows:
+> 
+    1 = First event
+    2 = Second event
+    3 = Third
+    ...
+    -2 = Third latest event
+    -1 = Second latest event
+    0 = Latest event (default)
 
 To update a specific EventVisualization, you can send a `PUT` request to the same `/api/eventVisualizations` resource with a similar payload `PLUS` the respective EventVisualization's identifier, ie.:
     PUT /api/eventVisualizations/hQxZGXqnLS9
