@@ -488,13 +488,112 @@ If no option combos `coc` are provided all data elements of numeric value type a
 
 
 ## Data integrity { #webapi_data_integrity } 
-
 The data integrity capabilities of the data administration module are
 available through the web API. This section describes how to run the
 data integrity process as well as retrieving the result. The details of
 the analysis performed are described in the user manual.
 
-### Running data integrity { #webapi_data_integrity_run } 
+### Listing the available data integrity checks { #webapi_data_integrity_list }
+A description of the available checks is returned by
+
+    GET /api/dataIntegrity
+
+The `name` member of the returned check elements is the identifier used for the
+`checks` parameter to declare the set of checks to run.
+
+Checks are grouped semantically by the `section` member and categorised in 
+one of four `severity` levels:
+
+| Severity | Description |
+| -------- | ----------- |
+| INFO     | Indicates that this is for information only. |
+| WARNING  | A warning indicates that this may be a problem, but not necessarily an error. It is however recommended triaging these issues. |
+| SEVERE   | An error which should be fixed, but which may not necessarily lead to the system not functioning. |
+| CRITICAL | An error which must be fixed, and which may lead to end-user error or system crashes. |
+
+### Running a selection of data integrity checks { #webapi_data_integrity_run }
+Since 2.38 data integrity checks have two levels, the summary level giving 
+statistical overview, and the details level giving a list of issues each 
+pointing to an individual data integrity violation.
+
+To get the summary of a set of checks run:
+
+    GET /api/dataIntegrity/summary?checks=<name1>,<name2>
+
+When the `checks` parameter is omitted all checks are run.
+
+The response is a "map" of check results, one for each check that ran.
+
+```json
+{
+  "<name1>": {
+    "name": "<name1>",
+    "section": "...",
+    "severity": "WARNING",
+    "description": "...",
+    "count": 12,
+    "percentage": 2.3
+  },
+  "<name2>": {
+    "name": "<name2>",
+    "section": "...",
+    "severity": "WARNING",
+    "description": "...",
+    "count": 4,
+    "percentage": 5.1
+  }
+}
+```
+Alongside the check's information of `name`, `section`, `severity`, 
+`description` and optionally `introduction` and `recommendation` the summary 
+contains the number of issues found as `count` and when possible how large 
+this count is in relation to all relevant entries as `percentage`.
+
+Similarly to run a selection of details checks run:
+
+    GET /api/dataIntegrity/details?checks=<name1>,<name2>
+
+Again, not providing the `checks` parameter will run all checks.
+
+The `/details` response returns a similar map again, just that each entry 
+does not have a `count` and `percentage` member but a list of `issues`.
+
+```json
+{
+  "<name1>": {
+    "name": "<name1>",
+    "section": "...",
+    "severity": "WARNING",
+    "description": "...",
+    "issues": [{
+      "id": "<id-or-other-identifier>",
+      "name": "<name-of-the-id-obj>",
+      "comment": "optional plain text description or hint of the issue",
+      "refs": ["<id1>", "<id2>"]
+    }]
+  },
+  "<name2>": {
+    "name": "<name2>",
+    "section": "...",
+    "severity": "WARNING",
+    "description": "...",
+    "issues": []
+  }
+}
+```
+The issue objects always have `id` and `name` members. Sometimes an 
+additional `comment` is available that gives more context or insight into 
+why the data integrity is violated. In addition, the `refs` list might 
+sometimes also give the ids of other objects that contributed to the violation.
+
+> **Tip**
+>
+> A set of checks can also be specified using wild-cards. To include all 
+> checks with _element_ in the name use `checks=*element*`. Like full names 
+> such patterns can be used in a comma separated list and be mixed with full 
+> names as well. Duplicates will be eliminated. 
+
+### Running data integrity asynchronously (legacy) { #webapi_data_integrity_run_legacy } 
 
 The operation of measuring data integrity is a fairly resource (and
 time) demanding task. It is therefore run as an asynchronous process and
@@ -511,7 +610,7 @@ JSON response if the task has not yet completed and a JSON taskSummary
 object when the task is done. Polling (conservatively) to this resource
 can hence be used to wait for the task to finish.
 
-### Fetching integrity summary { #webapi_data_integrity_fetch_results } 
+### Fetching asynchronous integrity summary (legacy) { #webapi_data_integrity_fetch_results } 
 
 Once data integrity is finished running the result can be fetched from
 the `system/taskSummaries` resource like so:
