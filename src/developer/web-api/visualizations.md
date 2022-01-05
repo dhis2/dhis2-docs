@@ -1438,4 +1438,3 @@ representations are listed below.
 
     /api/reports/OeJsA6K1Otx/data.pdf
     /api/reports/OeJsA6K1Otx/data.pdf?date=2014-01-01
-    
