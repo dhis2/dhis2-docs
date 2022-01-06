@@ -1248,7 +1248,7 @@ These operations follow the standard *REST* semantics. A new EventVisualization 
 > 
     1 = First event
     2 = Second event
-    3 = Third
+    3 = Third event
     ...
     -2 = Third latest event
     -1 = Second latest event
