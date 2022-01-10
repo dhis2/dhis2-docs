@@ -49,6 +49,7 @@ Table: Analytics settings
 | **Allow users to open dashboard favorite in relevant app** | Allows users to open dashboard items in the app for that type of item, using the dashboard item menu. |
 | **Allow users to show dashboard favorite interpretations and details** | Allows users to see dashboard favorites' interpretations and details, using the dashboard item menu. |
 | **Allow users to view dashboard favorite in fullscreen** | Allows users to view dashboard favorites in fullscreen, using the dashboard item menu. |
+| **Default basemap** | Select which basemap will be selected by default in the **Maps** app. If no value is selected, then **OSM Light** will be used.|
 
 ## Server settings { #system_server_settings } 
 
