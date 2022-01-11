@@ -4549,7 +4549,7 @@ Table: External map layer objects in the Maintenance app
 
       - Vector tiles (Vector Style)
 
-      When Vector Style is chosen, you can then add a value for "Before layer id". It indicates the layer id in the Vector tile (layer) stack at which the user's layers (such as Thematic, Events) will be inserted. If this value isn't set, then the user's layers will be placed on top of the layers in the Vector Style.
+      When Vector Style is chosen, you can then add a value for "Before layer id". It indicates the layer id in the Vector tile (layer) stack at which the user's layers (such as Thematic, Events) will be inserted. If this value isn't set, then the user's layers will be placed on top of the layers in the Vector Style. The map service URL should be to a JSON document that follows the [Mapbox GL Style Spec](https://docs.mapbox.com/mapbox-gl-js/style-spec/). 
 
 6.  Enter the **URL** to the map service.
 
@@ -4567,14 +4567,14 @@ Table: External map layer objects in the Maintenance app
 8.  Select a **Placement**:
 
       - **Bottom - basemap**: For the Maps app, this makes the external map layer
-        selectable as the base map (i.e. as an alternative to the DHIS2
-        base maps).
+        selectable as the basemap (i.e. as an alternative to the DHIS2
+        basemaps).
 
       - **Top - overlay**: For the Maps app, this allows the external map to
         be added from the Add Layer selection and placed anywhere above
-        the base map.
+        the basemap.
 
-    Note that Vector Style layers can only be added as a Basemap.
+    Note that Vector Style layers can only be added as a basemap.
 
 9.  (Optional) Add a legend.
 
