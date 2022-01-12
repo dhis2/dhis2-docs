@@ -939,7 +939,6 @@ Table: Filter operators
 | !ILIKE | Not like, ignoring case (free text match) |
 | IN | Equal to one of multiple values separated by ";" |
 
-
 #### Response formats
 
 The default response representation format is JSON. The requests must be
