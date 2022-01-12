@@ -925,13 +925,20 @@ Table: Filter operators
 | Operator | Description |
 |---|---|
 | EQ | Equal to |
+| !EQ | Not equal to |
+| IEQ | Equal to, ignoring case |
+| !IEQ | Not equal to, ignoring case |
 | GT | Greater than |
 | GE | Greater than or equal to |
 | LT | Less than |
 | LE | Less than or equal to |
 | NE | Not equal to |
 | LIKE | Like (free text match) |
+| !LIKE | Not like (free text match) |
+| ILIKE | Like, ignoring case (free text match) |
+| !ILIKE | Not like, ignoring case (free text match) |
 | IN | Equal to one of multiple values separated by ";" |
+
 
 #### Response formats
 
