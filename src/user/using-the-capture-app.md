@@ -1063,6 +1063,14 @@ To navigate back to the enrollment overview, click the **Cancel without saving**
 
 ![](resources/images/capture_app/enrollment-event-new-stage-selection-list.png)
 
+### Schedule event widget form
+Instead of reporting an event the user can select to schedule an event later. This is done with a scheduled date. The dialog will open with a suggested scheduled date, and this date is determined by a set of rules from program stage configuration and program configuration.
+
+Below the schedule date entry, user can choose to add a comment to the scheduled event.
+
+![](resources/images/capture_app/enrollment-add-event-schedule-page.png)
+
+
 ## Program stage event list 
 
 You can reach the program stage event list by clicking **Go to full {stage event name}** button in the overview page.

@@ -1590,7 +1590,7 @@ Table: Merge payload fields
 | dataApprovalMergeStrategy | No       | Strategy for merging data approval records. Options: `LAST_UPDATED` (default), `DISCARD`. |
 | deleteSources             | No       | Whether to delete the source organisation units after the operation. Default is true. |
 
-The merge operation will merge the source org units into the target org unit. It is recommended to first create a new target org unit before performing the split, and at a minimum ensure that no aggregate data exists for the target org unit. Any number of source org units can be specified.
+The merge operation will merge the source org units into the target org unit. It is recommended to first create a new target org unit before performing the merge, and at a minimum ensure that no aggregate data exists for the target org unit. Any number of source org units can be specified.
 
 The merge operation will transfer all of the metadata associations of the source org units over to the target org unit. This includes data sets, programs, org unit groups, category options, users, visualizations, maps and event reports. The operation will also transfer all event and tracker data, such as events, enrollments, ownership history, program ownership and tracked entities, over to the target org unit.
 
