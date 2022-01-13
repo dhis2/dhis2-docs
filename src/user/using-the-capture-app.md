@@ -848,6 +848,13 @@ When you deselect the enrollment you see the following
 
 ![](resources/images/capture_app/enrollment-dash-08.png)
 
+
+###Quick actions
+
+The quick actions-widget contains shortcuts to the most common actions performed by the user. 
+
+![](resources/images/capture_app/enrollment-dashboard-quick-actions.png)
+
 ### Program stage list
 
 Stages can be collapsed or expanded to reveal the events inside.
