@@ -1852,16 +1852,19 @@ Four resources allow to easily retrieve data dimensions.
 
 - [Event Query data dimensions](#webapi_event_query_analytics_dimension)`/analytics/events/query/dimensions` 
 - [Event Aggregate data dimensions](#webapi_event_aggregate_analytics_dimension) `/analytics/events/aggregate/dimensions`
-- [Enrollment Query data dimensions](#webapi_enrollment_query_analytics_dimension) `/analytics/events/query/dimensions`
-- [Enrollment Aggregate data dimensions](#webapi_enrollment_aggregate_analytics_dimension) `/analytics/events/aggregate/dimensions`
+- [Enrollment Query data dimensions](#webapi_enrollment_query_analytics_dimension) `/analytics/enrollments/query/dimensions`
+- [Enrollment Aggregate data dimensions](#webapi_enrollment_aggregate_analytics_dimension) `/analytics/enrollments/aggregate/dimensions`
 
 Above mentrioned resources share the following request parameter:
 
-| Query parameter | required                                         | Description                        | Options |
-|-----------------|--------------------------------------------------|------------------------------------| --------|
-| filter          | no                                               | allows to specify output filtering.<br/>Format: `filter=field:OP:value;field:OP:value;...`| see [dimension filters section](#webapi_analytics_dimension_filters) |
-
-Paging and sorting parameters are also supported. See [dimension paging and sorting section](#webapi_analytics_dimension_paging_and_sorting) for more informations.
+| Query parameter | required                                         | Description                                                                                                                       | Options |
+|-----------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------| --------|
+| filter          | no                                               | allows to specify output filtering.<br/>Format: `filter=field:OP:value;field:OP:value;...`                                        | see [dimension filters section](#webapi_analytics_dimension_filters) |
+| fields          | no                                               | allows to speficy desired fields in the response |
+| page | no | page number | defaults to 1 - first page |
+| pageSize| no | page size | defaults to 50 elements per page |
+| skipPaging | no | when `true` disables pagination | `true` or `false` |
+| order | no | format: `order=field:direction` | sortable fields: `created`, `lastUpdated`,`code`,`uid`,`id`,`name`. <br/>Defaults to `created`.<br/><br/> Direction can be `ASC` or `DESC`.<br/>Defaults to `ASC` |
 
 #### Dimension filters { #webapi_analytics_dimension_filters }
 
@@ -1886,21 +1889,10 @@ Supported `op`values are:
 - `like` - contains
 - `ilike` - contains ignoring case
 
-#### Dimension paging and sorting parameters { #webapi_analytics_dimensions_paging_and_sorting }
-
-Dimensions endpoints support parameters to order and paginate the response.
-
-| Query parameter | required                                         | Description                        | Options |
-|-----------------|--------------------------------------------------|------------------------------------| --------|
-| page | no | page number | defaults to 1 - first page |
-| pageSize| no | page size | defaults to 50 elements per page |
-| skipPaging | no | when `true` disables pagination | `true` or `false` |
-| order | no | format: `order=field:direction` | sortable fields: `created`, `lastUpdated`,`code`,`uid`,`id`,`name`. <br/>Defaults to `created`.<br/><br/> Direction can be `ASC` or `DESC`.<br/>Defaults to `ASC` |
-
 ### Event analytics dimensions
 #### Event query analytics dimensions { #webapi_event_query_analytics_dimension }
 
-The `/analytics/events/query/dimensions?programStageId=...` resource accepts a mandatory `programStageId` parameter and returns the following data dimensions:
+The `/analytics/events/query/dimensions?programStageId=...` resource accepts a mandatory tracker program stage and returns the following data dimensions:
 
 - **Program indicators** associated with the program (derived from programStageId)
 - **Data elements** of *supported types* in the program stage
@@ -1935,7 +1927,7 @@ Data elements and tracked entity attributes are considered *supported types* if 
 
 #### Enrollment query analytics dimensions { #webapi_enrollment_query_analytics_dimension }
 
-The `/analytics/enrollment/query/dimensions?programId=...` resource accepts a mandatory `programId` parameter and returns the following data dimensions:
+The `/analytics/enrollments/query/dimensions?programId=...` resource accepts a mandatory id of a tracker program and returns the following data dimensions:
 
 - **Program indicators** connected to the program
 - **Data elements** of *supported types* in the program, with program stage for each data element
@@ -1945,7 +1937,7 @@ All value types for data elements and tracked entity attributes are considered *
 
 #### Enrollment aggregate dimensions { #webapi_enrollment_aggregate_analytics_dimension }
 
-The `/analytics/enrollment/aggregate/dimensions?programId=...` resource accepts a mandatory `programId` parameter, referring to a program with registration, and returns the following data dimensions:
+The `/analytics/enrollments/aggregate/dimensions?programId=...` resource accepts a mandatory id of a tracker program, referring to a program with registration, and returns the following data dimensions:
 
 - **Data elements** of *supported types* in the program, with program stage for each data element
 - **Tracked entity attributes** of *supported types* associated with the program that are not confidential
