@@ -1058,7 +1058,15 @@ This is the form where you can modify the event details before saving. In the he
 ### Schedule event widget form 
 Instead of reporting an event the user can select to schedule an event later. This is done with a scheduled date. The dialog will open with a suggested scheduled date, and this date is determined by a set of rules from program stage configuration and program configuration.
 
+- if program stage has **Next schedule date** then the suggested date is the most recent next schedule date
+- if program has **Standard interval days** then the suggested date is calculated by the most recent event date plus the standard interval days value
+- if no value found after these 2 steps, then the suggested date will be defined by enrollment date and incident date. In case the option **Generate events based on enrollment date** is checked in Maintenance app, the suggested date is calculated by the enrollment date plus the value of min days from the start. In case the option **Show incident date** is checked, the suggested date is calculated by the incident date plus the value of min days from the start.
+
+User can also find more information about how many events that scheduled on the same selected date or the interval of selected date and the suggested date from the information box below.
+
 Below the schedule date entry, user can choose to add a comment to the scheduled event.
+
+After clicking **Schedule** button, user will be navigated back to enrollment overview page.
 
 ![](resources/images/capture_app/enrollment-add-event-schedule-page.png)
 
