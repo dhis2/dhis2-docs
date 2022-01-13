@@ -1848,14 +1848,14 @@ The API supports using program indicators which are not associated to the "main"
 
 ## Dimensions { #webapi_dimensions }
 
-Four resources allow to easily retrieve data dimensions.
+Four resources allow to easily retrieve data dimensions:
 
 - [Event Query data dimensions](#webapi_event_query_analytics_dimension)`/analytics/events/query/dimensions` 
 - [Event Aggregate data dimensions](#webapi_event_aggregate_analytics_dimension) `/analytics/events/aggregate/dimensions`
 - [Enrollment Query data dimensions](#webapi_enrollment_query_analytics_dimension) `/analytics/events/query/dimensions`
 - [Enrollment Aggregate data dimensions](#webapi_enrollment_aggregate_analytics_dimension) `/analytics/events/aggregate/dimensions`
 
-Above mentrioned resources share the following request parameter:
+Resources mentioned above share the following request parameter:
 
 | Query parameter | required                                         | Description                        | Options |
 |-----------------|--------------------------------------------------|------------------------------------| --------|
@@ -1894,7 +1894,7 @@ Dimensions endpoints support parameters to order and paginate the response.
 |-----------------|--------------------------------------------------|------------------------------------| --------|
 | page | no | page number | defaults to 1 - first page |
 | pageSize| no | page size | defaults to 50 elements per page |
-| skipPaging | no | when `true` disables pagination | `true` or `false` |
+| skipPaging | no | disables pagination when `true`| `true` or `false` |
 | order | no | format: `order=field:direction` | sortable fields: `created`, `lastUpdated`,`code`,`uid`,`id`,`name`. <br/>Defaults to `created`.<br/><br/> Direction can be `ASC` or `DESC`.<br/>Defaults to `ASC` |
 
 ### Event analytics dimensions
@@ -1906,7 +1906,7 @@ The `/analytics/events/query/dimensions?programStageId=...` resource accepts a m
 - **Data elements** of *supported types* in the program stage
 - **Tracked entity attributes** of *supported types* associated with the program (derived from programStageId)
 - **Categories** in category combo associated with the program (derived from programStageId)
-- **Category option group sets** of type `ATTRIBUTE` associated with program (derived from programStageId)
+- **Category option group sets** of type `ATTRIBUTE`
 
 All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
 
