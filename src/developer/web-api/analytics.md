@@ -1459,6 +1459,8 @@ in the table below.
 | E7225      | Program stage is mandatory for data element dimensions in enrollment analytics queries |
 | E7226      | Dimension is not a valid query item |
 | E7227      | Relationship entity type not supported |
+| E7228      | Fallback coordinate field is invalid |
+| E7229      | Operator does not allow missing value |
 
 ## Enrollment analytics { #webapi_enrollment_analytics } 
 
