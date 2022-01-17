@@ -107,7 +107,7 @@ Fetching tracked entity instances can be slower than creating, so it can be usef
   ],
   "captureKind": "other",
   "transactionType": "Web",
-  "transactionNameTemplate": "/idsr/api/trackedEntityInstances: GET"
+  "transactionNameTemplate": "/api/trackedEntityInstances: GET"
 }
 ```
 
@@ -124,7 +124,7 @@ Some asynchronous requests can not be monitored easily. One of those cases is tr
     ],
     "captureKind": "transaction",
     "transactionType": "Web",
-    "transactionNameTemplate": "/tracker: import",
+    "transactionNameTemplate": "/api/tracker: import",
     "alreadyInTransactionBehavior": "capture-new-transaction",
     "traceEntryMessageTemplate": "{{0}}",
     "traceEntryStackThresholdMillis": 1000,
