@@ -96,7 +96,7 @@ The _Reminder days before_ parameter can be set to send a reminder email to
 those users the specified number of days before their account is due to expire.
 If users do not log in further reminder emails are sent each halving the 
 previous number of days. For example if the number of days is set to 7 the 
-first email is send 7 days in advance, the second 3 days and the third and 
+first email is sent 7 days in advance, the second 3 days and the third and 
 last 1 day in advance.
 If the value is not set (blank) no reminder is sent.
 
