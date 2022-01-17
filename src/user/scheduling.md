@@ -130,6 +130,15 @@ The analytics table job will by default populate data for all years and data ele
 - **Last years:** The number of last years to populate analytics tables for. As an example, if you specify 2 years, the process will update the two last years worth of data, but not update older data. This parameter is useful to reduce the time the process takes to complete, and is appropriate if older data has not changed, and when updating the latest data is desired.
 - **Skip resource tables:** Skip resource tables during the analytics table update process. This reduces the time the process takes to complete, but leads to changes in metadata not being reflected in the analytics data.
 
+### Tracker search optimization { #scheduling_tracker_search_optimization } 
+
+The tracker search optimization job is responsible for generating and updating the trigram indexes for relevant tracked entity attributes. Trigram indexes improves the performance of tracked entity instance lookups (searches) based on specific tracked entity attribute values. The usefulness of trigram indexes depends on whether the tracked entity attribute is configured as unique or if they are attached to program/tracked entity type and configured as searchable. You can configure the job to choose which tracked entity attributes should be trigram indexed. The job also takes care of deleting any obsolete indexes that have been created earlier but are no more required due to change in metadata configuration. 
+
+The following parameters are available:
+
+- **Attributes:** The list of attributes that needs a trigram index created. For each attribute, a partial trigram index will be created. As an example, if you specify "firstname" and "lastname" attribute, the process will create two separate trigram indexes for the corresponding attributes "firstname" and "lastname". Note that, if the attribute provided in this parameter is not indexable (either because they are not unique or not searchable), such attributes are simply ignored by the process and no trigram index will be created for them. 
+- **Skip index deletion:** Skip obsolete index deletion during the trigram index process. If set to true, indexes that are deemed obsolete will not be deleted.
+
 ### Data synchronization { #scheduling_data_sync } 
 
 DHIS2 provides synchronisation of data between remotely distributed
