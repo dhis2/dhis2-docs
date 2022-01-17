@@ -988,12 +988,6 @@ To go to Enrollment Overview page you can:
 ![](resources/images/capture_app/enrollment-event-view-edit-navigation.png)
 
 
-### Event Comment Widget
-
-![](resources/images/capture_app/event-widget-comment.png)
-
-The event comments widget displays and allows the addition of comments related to the currently selected event. The widget is displayed in the right sidebar when both viewing and editing events.
-
 ### Error Widget
 
 ![](resources/images/capture_app/enrollment-dash-error-widget-1.png)
