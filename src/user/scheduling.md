@@ -132,7 +132,7 @@ The analytics table job will by default populate data for all years and data ele
 
 ### Tracker search optimization { #scheduling_tracker_search_optimization } 
 
-The tracker search optimization job is responsible for generating and updating the trigram indexes for relevant tracked entity attributes. Trigram indexes improves the performance of tracked entity instance lookups (searches) based on specific tracked entity attribute values. The usefulness of trigram indexes depends on whether the tracked entity attribute is configured as unique or if they are attached to program/tracked entity type and configured as searchable. You can configure the job to choose which tracked entity attributes should be trigram indexed. The job also takes care of deleting any obsolete indexes that have been created earlier but are no more required due to change in metadata configuration. 
+The tracker search optimization job is responsible for generating and updating the trigram indexes for relevant tracked entity attributes. Trigram indexes improve the performance of searching tracked entity instances based on specific tracked entity attribute values. The usefulness of trigram indexes depends on whether the tracked entity attribute is configured as unique or if they are configured as searchable (when connected to program/tracked entity type). You can configure the job to choose which tracked entity attributes should be trigram indexed. The job also takes care of deleting any obsolete indexes that have been created earlier but are no more required due to change in metadata configuration. 
 
 The following parameters are available:
 
