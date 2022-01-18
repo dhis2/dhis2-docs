@@ -1857,14 +1857,14 @@ Four resources allow to easily retrieve data dimensions:
 
 Resources mentioned above share the following request parameter:
 
-| Query parameter | required                                         | Description                                                                                       | Options |
-|-----------------|--------------------------------------------------|---------------------------------------------------------------------------------------------------| --------|
-| filter          | no                                               | allows to specify output filtering.<br/>Format: `filter=field:OP:value&filter=field:OP:value&...` | see [dimension filters section](#webapi_analytics_dimension_filters) |
+| Query parameter | required                                         | Description                                                                                       | Options                                                                                                                                                           |
+|-----------------|--------------------------------------------------|---------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| filter          | no                                               | allows to specify output filtering.<br/>Format: `filter=field:OP:value&filter=field:OP:value&...` | see [dimension filters section](#webapi_analytics_dimension_filters)                                                                                              |
 | fields          | no                                               | allows to speficy desired fields in the response                                                  |
-| page | no | page number                                                                                       | defaults to 1 - first page |
-| pageSize| no | page size                                                                                         | defaults to 50 elements per page |
-| skipPaging | no | disables pagination when `true`                                                                   | `true` or `false` |
-| order | no | format: `order=field:direction`                                                                   | sortable fields: `created`, `lastUpdated`,`code`,`uid`,`id`,`name`. <br/>Defaults to `created`.<br/><br/> Direction can be `ASC` or `DESC`.<br/>Defaults to `ASC` |
+| page            | no | page number                                                                                       | defaults to 1 - first page                                                                                                                                        |
+| pageSize        | no | page size                                                                                         | defaults to 50 elements per page                                                                                                                                  |
+| paging          | no | disables pagination when `false`                                                                  | `true` or `false`, defaults to `true`                                                                                                                              |
+| order           | no | format: `order=field:direction`                                                                   | sortable fields: `created`, `lastUpdated`,`code`,`uid`,`id`,`name`. <br/>Defaults to `created`.<br/><br/> Direction can be `ASC` or `DESC`.<br/>Defaults to `ASC` |
 
 #### Dimension filters { #webapi_analytics_dimension_filters }
 
