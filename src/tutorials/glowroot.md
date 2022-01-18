@@ -1,4 +1,4 @@
-# Using Glowroot
+# Using Glowroot { #glowroot_tutorial }
 
 [Glowroot](https://glowroot.org/) is a lightweight Java Application Performance Monitor that can be very useful in providing insight into performance issues when running DHIS2.
 
