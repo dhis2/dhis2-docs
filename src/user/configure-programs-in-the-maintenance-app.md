@@ -1618,9 +1618,9 @@ To be able to search with a program, you will have to make some of the
 program attributes searchable. Unique program attributes will always be
 searchable.
 
-1.  Open **Program app**
+1.  Open **Maintenance app** and click **Program**
 
-2.  Open or create a tracker program
+2.  Open or create a Tracker program
 
 3.  Go to **Attributes**
 
@@ -1640,7 +1640,7 @@ Searchable program attributes will assigned to a search group.
     search.
 
 There are two limits that can be set for a program search, as part of
-the **Program** configuration.
+the **Program details** configuration.
 
   - Minimum number of attributes required to search: This property
     defines how many of the non-unique attributes that must be entered
