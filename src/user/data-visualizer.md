@@ -30,7 +30,7 @@ For each visualization type there is a brief description with suggestions about 
 |Gauge|Semi-circle which displays a single value, typically out of 100% (start and end values are configurable).<br><br>Layout restrictions: exactly 1 dimension with exactly 1 item as series, data dimension is locked to series.|
 |Year over year (line)|Useful when you want to compare one year of data to other years of data. Based on calendar years.<br><br>Layout restrictions: period dimension is disabled.|
 |Year over year (column)|Same as Year over year (line), only with columns.|
-|Single value|Displays a single value in a dashboard friendly way.<br><br>Layout restrictions: same as Gauge.|
+|Single value|Displays a single value in a dashboard friendly way. If the dimension displayed has an indicator type assigned, a % symbol or a string (per thousand, per hundred thousand, etc...) is appended to the value.<br><br>Layout restrictions: same as Gauge.|
 |Pivot table|Summarizes the data of a more extensive table and might include sums, averages, or other statistics, which the pivot table groups together in a meaningful way.<br><br>Layout restrictions: none.|
 |Scatter|Scatter plots enable users to chart organisational units as points against two variables for a single fixed or relative period.<br><br>Layout restrictions: exactly 1 item each as vertical and horizontal, data dimension is locked to vertical and horizontal, organisation unit is locked to points.|
 
@@ -179,6 +179,8 @@ The display of a visualization can be changed by enabling/disabling and configur
 |Digit group separator|Controls which character to use to separate groups of digits or "thousands". You can set it to Comma, Space or None.|
 |Display density|Controls the size of the cells in a Pivot table. You can set it to Comfortable, Normal or Compact.<br>Compact is useful when you want to fit large tables into the browser screen.|
 |Display organisation unit hierarchy|Shows the name of all ancestors for organisation units, for example "Sierra Leone / Bombali / Tamabaka / Sanya CHP" for "Sanya CHP".<br>The organisation units are then sorted alphabetically which will order the organisation units according to the hierarchy.<br>When you download a pivot table with organisation units as rows and you've selected Display organisation unit hierarchy, each organisation unit level is rendered as a separate column. This is useful for example when you create Excel pivot tables on a local computer.|
+|Fix column headers to top of table|Freezes row headers in Pivot Tables so they are always visible when scrolling the table content.|
+|Fix row headers to left of table|Freezes column headers in Pivot Tables so they are always visible when scrolling the table content.|
 |Font size|Controls the size of a Pivot table text font. You can set it to Large, Normal or Small.|
 |Chart/Table title|Controls the title that appears above the visualization.<br>`Auto generated` uses the default title generated from the visualization's dimensions/filters.<br>None removes the title.<br>`Custom` allows you to type a custom title.|
 |Chart/Table subtitle|Controls the subtitle that appears above the visualization.<br>`Auto generated` uses the default subtitle generated from the visualization's dimensions/filters.<br>None removes the subtitle.<br>`Custom` allows you to type a custom subtitle.|
