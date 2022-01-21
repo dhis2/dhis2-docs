@@ -851,7 +851,7 @@ When you deselect the enrollment you see the following
 
 ###Quick actions
 
-The quick actions-widget contains shortcuts to the most common actions performed by the user. 
+The quick actions widget offers shortcuts for frequently used actions for the current enrollment.
 
 ![](resources/images/capture_app/enrollment-dashboard-quick-actions.png)
 
