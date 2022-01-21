@@ -1060,7 +1060,7 @@ Instead of reporting an event the user can select to schedule an event later. Th
 
 - if program stage has **Next schedule date** then the suggested date is the most recent next schedule date
 - if program has **Standard interval days** then the suggested date is calculated by the most recent event date plus the standard interval days value
-- if no value found after these 2 steps, then the suggested date will be defined by enrollment date and incident date. In case the option **Generate events based on enrollment date** is checked in Maintenance app, the suggested date is calculated by the enrollment date plus the value of min days from the start. In case the option **Show incident date** is checked, the suggested date is calculated by the incident date plus the value of min days from the start.
+- if no value is found after these 2 steps, then the suggested date will be defined by enrollment date and incident date. In case the option **Generate events based on enrollment date** is checked in the Maintenance app, the suggested date is calculated by the enrollment date plus the value of minimum days from the start. In case the option **Show incident date** is checked, the suggested date is calculated by the incident date plus the value of minimum days from the start.
 
 User can also find more information about how many events that scheduled on the same selected date or the interval of selected date and the suggested date from the information box below.
 
