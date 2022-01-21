@@ -929,7 +929,7 @@ On the enrollment dashboard, you can view the tracked entity instance profile wi
 
 In order to edit the tracked entity instance profile, you must click the `Edit` button. The edit modal will open and you can modify and save the attributes values.
 
-![](resources/images/capture_app/enrollment-dash-tei-profile-widget.png)
+![](resources/images/capture_app/enrollment-dash-tei-profile-widget-edit.png)
 
 ### Feedback widget
 
