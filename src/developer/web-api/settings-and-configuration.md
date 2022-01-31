@@ -342,6 +342,12 @@ The available system settings are listed below.
 <td>Put analytics in maintenance mode. Default: &quot;false&quot;</td>
 <td>No</td>
 </tr>
+340
+<tr class="odd">
+<td>keyIncludeZeroValuesInAnalytics</td>
+<td>Include zero data values in analytics tables. This only applies to data elements where the &quot;zero is significant&quot; property is enabled. Default: &quot;false&quot;</td>
+<td>No</td>
+</tr>
 <tr class="even">
 <td>keyDatabaseServerCpus</td>
 <td>Number of database server CPUs. Default: &quot;0&quot; (Automatic)</td>
