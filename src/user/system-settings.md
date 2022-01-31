@@ -180,6 +180,10 @@ is gathered only when the objects are viewed outside of a dashboard.</td>
 <p>This is useful when you need to perform maintenance on the server, for example rebuilding indexes while the server is running in production, in order to reduce load and more efficiently carry out the maintenance.</p></td>
 </tr>
 <tr class="even">
+<td><p><strong>Include zero data values in analytics tables</strong></p></td>
+<td><p>Includes data elements with zero values in analytics. This only applies to data elements where the &quot;zero is significant&quot; property is enabled. Note that setting &quot;zero is significant&quot; on large numbers of data elements is strongly discouraged, as it can fill the analytics tables with zeros and cause unnecessary performance overhead.</p></td>
+</tr> 
+<tr class="even">
 <td><p><strong>Allow users to switch dashboard favorite view type</strong></p></td>
 <td><p>Allows users to switch dashboard favorites' view between charts,
 pivot tables and maps, using the dashboard item menu.</p></td>
