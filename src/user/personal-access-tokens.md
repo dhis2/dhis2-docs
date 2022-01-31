@@ -13,18 +13,21 @@ it sends your username and password in clear text. It may be deprecated in
 future DHIS2 versions or made opt-in, meaning that basic authentication would
 need to be explicitly enabled in the configuration.
 
+#### Version support
+
+To utilize the benefits of PATs, you will need to be on dhis2 2.37.X or later version.
+
 #### Important security concerns!
 
 Your PATs will automatically inherit all the permissions and authorizations your
 user has. It is therefore extremely important that you limit the access granted to
 your token depending on how you intend to use it, see **Configuring your token**.
 
-> **Caution** 
-> 
+> **Caution**
+>
 > If you only want the token to have access to a narrow and specific part of the
 > server, it is advised to rather create a new special user that you assign only
-> the roles/authorities you want it to have access to.
-
+> the roles/authorities you want it to have access to
 
 ## Server/script and browser contexts
 
@@ -47,7 +50,7 @@ from IP address `142.250.187.206`, your DHIS2 instance will reject these
 malicious requests.
 
 > **Important**
-> 
+>
 > IP address validation relies on the `X-Forwarded-For` header, which can be spoofed.
 > For security, make sure a load balancer or reverse proxy overwrites this header.
 
@@ -63,11 +66,10 @@ embedded. This restriction is achieved using the [HTTP referer
 header](https://en.wikipedia.org/wiki/HTTP_referer).
 
 > **Important**
-> 
+>
 > This is not a security feature. The `referer` header can easily be spoofed.
 > This setting is intended to discourage unauthorized third-party developers from connecting
 > to public access instances.
-
 
 ## Use cases
 
@@ -78,7 +80,6 @@ to read and modify relevant data.
 
 PATs are also a more secure alternative to HTTP Basic Authentication, and should
 be your preferred choice when creating a new app/script etc.
-
 
 ## Security considerations
 
@@ -102,7 +103,6 @@ While the referer restrictions for browser context tokens are useful in limiting
 abuse, the `referer` header can be spoofed. Do not rely on referer restrictions
 as the `referer` header is not a security feature.
 
-
 ## Creating PATs
 
 Personal access tokens are created using the User Profile app.
@@ -112,12 +112,15 @@ Personal access tokens are created using the User Profile app.
    corner, and choosing "Edit profile" from the dropdown
 
    ![](resources/images/personal_access_tokens/user_profile.png)
+
 2. Choose "Personal access tokens" from the left-hand navigation sidebar
 
    ![](resources/images/personal_access_tokens/manage_tokens.png)
+
 3. Click the "Generate new token" button to show the new token pop-up
 
    ![](resources/images/personal_access_tokens/contexts.png)
+
 4. Choose the appropriate context for your new token
 5. Enter an appropriate expiration date for your token
 6. Optionally, configure your token's context-specific restrictions (IP
@@ -131,7 +134,7 @@ Personal access tokens are created using the User Profile app.
    ![](resources/images/personal_access_tokens/new_token.png)
 
 > **Important**
-> 
+>
 > This generated secret token key will only be shown once, so it is important
 > that you copy the token key now and save it in a secure place for use later.
 > The secret token key will be securely hashed on the server, and only the hash of this secret token
@@ -152,7 +155,6 @@ Tokens for browsers contexts can limit the web pages from which they can be used
 These URLs can be provided in the "Allowed referrers" input area, with one URL
 per line.
 
-
 ## Using PATs
 
 To issue a request with your newly created token, use the Authorization header
@@ -169,7 +171,7 @@ Example using the JavaScript `fetch` API:
 ```js
 fetch(url, {
   headers: {
-    'Authorization': 'ApiToken d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092',
-  }
-})
+    Authorization: 'ApiToken d2pat_5xVA12xyUbWNedQxy4ohH77WlxRGVvZZ1151814092',
+  },
+});
 ```
