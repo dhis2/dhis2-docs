@@ -387,16 +387,6 @@ layer** selection. This opens the Events layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
-### Open organisation unit profile
-
-You can open the [organisation unit profile](#using_maps_org_unit_profile) in two ways:
-
-1. Click on any of the organisasjon units shown on the map, and click
-   the **View profile** button in the popup.
-
-2. Right-click one of the organisation units, and select **View profile** from
-   the menu.
-
 ### Filter values in a thematic layer
 
 Thematic layers have a **data table** option that can be toggled on or
@@ -459,6 +449,18 @@ The data table displays the data forming the thematic layer.
 
 The NAME filter field in the data table provides an effective way of
 searching for individual organisation units.
+
+### Open organisation unit profile
+
+You can open the [organisation unit profile](#using_maps_org_unit_profile) in three ways:
+
+1. Click on any of the organisasjon units shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the organisation units on the map, and select **View profile**
+   from the menu.
+
+3. Click on an organisation unit row in the **data table**.
 
 ### Navigate between organisation hierarchies
 
@@ -993,16 +995,6 @@ layer**selection. This opens the Facility layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
-### Open organisation unit profile
-
-You can open the [organisation unit profile](#using_maps_org_unit_profile) in two ways:
-
-1. Click on any of the facilities shown on the map, and click
-   the **View profile** button in the popup.
-
-2. Right-click one of the facilities, and select **View profile** from
-   the menu.
-
 ### Filter values in a facility layer
 
 Facility layers have a **data table** option that can be toggled on or
@@ -1040,6 +1032,18 @@ The data table displays the data forming the facility layer.
 
 The NAME filter field in the data table provides an effective way of
 searching for individual facilities.
+
+### Open organisation unit profile
+
+You can open the [organisation unit profile](#using_maps_org_unit_profile) in three ways:
+
+1. Click on any of the organisasjon units shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the organisation units on the map, and select **View profile**
+   from the menu.
+
+3. Click on an organisation unit row in the **data table**.
 
 ### Remove facility layer
 
@@ -1147,16 +1151,6 @@ layer** selection. This opens the org unit layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
-### Open organisation unit profile
-
-You can open the [organisation unit profile](#using_maps_org_unit_profile) in two ways:
-
-1. Click on any of the organisasjon units shown on the map, and click
-   the **View profile** button in the popup.
-
-2. Right-click one of the organisation units, and select **View profile** from
-   the menu.
-
 ### Filter values in an org unit layer
 
 Org unit layers have a **data table** option that can be toggled on or
@@ -1203,6 +1197,18 @@ The data table displays the data forming the org unit layer.
 The NAME filter field in the data table provides an effective way of
 searching for individual organisational units displayed in the org unit
 layer.
+
+### Open organisation unit profile
+
+You can open the [organisation unit profile](#using_maps_org_unit_profile) in three ways:
+
+1. Click on any of the organisasjon units shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the organisation units on the map, and select **View profile**
+   from the menu.
+
+3. Click on an organisation unit row in the **data table**.
 
 ### Navigate between organisation hierarchies
 
@@ -1423,13 +1429,15 @@ The organisation unit profile shows detailed information about
 each organisation unit. You can open the profile from org unit, facility
 and thematic layers.
 
-You can open the organisation unit profile in two ways:
+You can open the organisation unit profile in three ways:
 
 1. Click on any of the organisasjon units shown on the map, and click
    the **View profile** button in the popup.
 
-2. Right-click one of the organisation units, and select **View profile** from
-   the menu.
+2. Right-click one of the organisation units on the map, and select **View profile**
+   from the menu.
+
+3. Click on an organisation unit row in the **data table**.
 
 The profile will show on the right side of the map. The profile contents is
 set by the system administrator.
@@ -1517,7 +1525,7 @@ everyone or a user group. To modify the sharing settings:
     Repeat the step to add more user groups.
 
 3.  If you want to allow external access, select the corresponding box.
-    
+
     Note that in order for logged in and not logged in users to have
     access, you must also allow public access.
 
