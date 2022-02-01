@@ -13,9 +13,9 @@ it sends your username and password in clear text. It may be deprecated in
 future DHIS2 versions or made opt-in, meaning that basic authentication would
 need to be explicitly enabled in the configuration.
 
-#### Dhis2 supported versions
+#### DHIS2 supported versions
 
-To utilize the benefits of PATs, you will need to be on dhis2 2.37.X or later version.
+To utilize the benefits of PATs, you will need to be on DHIS version 2.37 or above.
 
 #### Important security concerns!
 
