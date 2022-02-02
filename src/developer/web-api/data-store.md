@@ -114,6 +114,115 @@ Example response:
 }
 ```
 
+
+### Get Partial Object Values
+The datastore allows extracting only parts of complex value objects stored.
+Values that are not JSON objects are ignored by default.
+
+To filter a certain set of fields add a `fields` parameter to the namespace 
+query:
+
+    GET /api/dataStore/<namespace>?fields=name,description
+
+This returns a list of all entries having a non-null `name` and/or a 
+`description` field like in the following example:
+
+```json
+[
+  {"key": "key1", "name": "name1", "description": "description1"},
+  {"key": "key2", "name": "name2", "description": "description2"}
+]
+```
+
+If for some reason we even want entries where none of the extracted fields 
+is non-null contained in the result list the `includeAll` parameter can be 
+added:
+
+    GET /api/dataStore/<namespace>?fields=name,description&includeAll=true
+
+The response now might look like this:
+
+```json
+[
+  {"key": "key1", "name": "name1", "description": "description1"},
+  {"key": "key2", "name": "name2", "description": "description2"},
+  {"key": "key3", "name": null, "description": null},
+  {"key": "key4", "name": null, "description": null}
+]
+```
+
+The extraction is not limited to simple root level members but can pick 
+nested members as well by using square brackets after a members name:
+
+    GET /api/dataStore/<namespace>?fields=name,root[child1,child2]
+
+The example response could look like this:
+
+```json
+[
+  { "key": "key1", "name": "name1", "root": {"child1": 1, "child2": []}},
+  { "key": "key2", "name": "name2", "root": {"child1": 2, "child2": []}}
+]
+```
+
+The same syntax works for nested members:
+
+        GET /api/dataStore/<namespace>?fields=root[level1[level2[level3]]]
+
+Example response here:
+
+```json
+[
+  { "key": "key1", "root": {"level1": {"level2": {"level3": 42}}}},
+  { "key": "key1", "root": {"level1": {"level2": {"level3": 13}}}}
+]
+```
+
+When such deeply nested values are extracted we might not want to keep the 
+structure but extract the leaf member to a top level member in the response.
+Aliases can be used to make this happen. An alias can be placed anywhere 
+after a member name using round brackets containing the alias name like so:
+
+    GET /api/dataStore/<namespace>?fields=root[level1[level2[level3(my-prop)]]]
+
+The response now would look like this:
+
+```json
+[
+  { "key": "key1", "my-prop": 42},
+  { "key": "key2", "my-prop": 13}
+]
+```
+
+If the full path should be kept while giving an alias to a nested member the 
+parent path needs to be repeated using dot-syntax to indicate the nesting.
+This can also be used to restructure a response in a new different structure 
+like so:
+
+    GET /api/dataStore/<namespace>?fields=root[level1[level2[level3(my-root.my-prop)]]]
+
+The newly structured response now looks like this:
+
+```json
+[
+  { "key": "key1", "my-root": {"my-prop": 42}},
+  { "key": "key2", "my-root": {"my-prop": 13}}
+]
+```
+
+OBS! An alias cannot be used to rename an intermediate level. However, an alias
+could be used to resolve a name collision with the `key` member.
+
+    GET /api/dataStore/<namespace>?fields=id,key(value-key)
+
+```json
+[
+  { "key": "key1", "id": 1, "value-key": "my-key1"},
+  { "key": "key2", "id": 2, "value-key": "my-key2"}
+]
+```
+
+
 ### Create values { #webapi_data_store_create_values } 
 
 To create a new key and value for a namespace:
