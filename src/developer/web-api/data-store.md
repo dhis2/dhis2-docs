@@ -115,9 +115,49 @@ Example response:
 ```
 
 
-### Get Partial Object Values
-The datastore allows extracting only parts of complex value objects stored.
-Values that are not JSON objects are ignored by default.
+### Datastore Query API
+The query API is used by at least using the `fields` parameter:
+
+    GET /api/dataStore/<namespace>?fields=
+
+The list of `fields` can be:
+
+* empty: returns just the entry keys
+* `.`: return the root value as stored
+* a comma separated list of paths: `<path>[,<path>]`; each `<path>` can be a simple property name (like `age`) or a nested path (like `person.age`) 
+
+Furthermore, entries can be filtered using one or more `filter` parameters 
+and sorted using the `order` parameter. 
+Multiple filters can be combined using `rootJunction=OR` (default) or `rootJunction=AND`. 
+
+All details on the `fields`, `filter` and `order` parameters are given in the following sections.
+
+By default, results use paging. Use `pageSize` and `page` to adjust size and offset. 
+The parameter `paging=false` can be used to opt-out and always return all matches. 
+This should be used with caution as there could be many entries in a namespace.
+
+When paging is turned off entries are returned as plain result array as the root JSON structure.
+The same effect can be achieved while having paged results by using `headless=true`.
+
+```json
+{
+  "pager": { ... },
+  "entries": [...]
+}
+```
+vs.
+```json
+[...]
+```
+
+#### Value Extraction
+The datastore allows extracting entire simple or complex values 
+as well as the extraction of parts of complex JSON values.
+
+> **Note**
+> 
+> For clarity of the examples the responses shown mostly omit the outermost object with the `pager` information
+> and the `entries` array that the examples show.
 
 To filter a certain set of fields add a `fields` parameter to the namespace 
 query:
@@ -221,6 +261,123 @@ could be used to resolve a name collision with the `key` member.
   { "key": "key2", "id": 2, "value-key": "my-key2"}
 ]
 ```
+
+### Sorting Results
+Results can be sored by a single property using the `order=<path>[:direction]` parameter.
+This can be any valid value `<path>` or the entry key (use `_` as path).
+
+By default, sorting is alphanumeric assuming the value at the path is a string of mixed type.
+
+For example to extract the name property and also sort the result by it use:
+
+    GET /api/dataStore/<namespace>?fields=name&order=name
+
+To switch to descending order use `:desc`:
+
+    GET /api/dataStore/<namespace>?fields=name&order=name:desc
+
+Sometimes the property sorted by is numeric so alphanumeric interpretation would be confusing.
+In such cases special ordering types `:nasc` and `:ndesc` can be used.
+
+In summary, order can be one of the following:
+
+* `asc`: alphanumeric ascending order
+* `desc:`: alphanumeric descending order
+* `nasc`: numeric ascending order
+* `ndesc`: numeric descending order
+
+> **OBS!**
+> 
+> When using numeric order all matches must have a numeric value for the property at the provided `<path>`.
+
+#### Filtering Entries
+To filter entries within the query API context add one or more `filter` parameters
+while also using the `fields` parameter.
+
+Each `filter` parameter has the following form:
+
+* unary operators: `<path>:<operator>`
+* binary operators: `<path>:<operator>:<value>`
+* set operators: `<path>:<operator>:[<value>,<value>,...]`
+
+Unary operators are:
+
+| Operator | Description |
+| -------- | ----------- |
+| `null`   | value is JSON `null` |
+| `!null`  | value is defined but different to JSON `null` |
+| `empty`  | value is an empty object, empty array or JSON string of length zero |
+| `!empty` | value is different to an empty object, empty array or zero length string |
+
+Binary operators are:
+
+| Operator | Description |
+| -------- | ----------- |
+| `eq`     | value is equal to the given boolean, number or string |
+| `!eq`, `ne`, `neq` | value is not equal to the given boolean, number or string |
+| `lt`     | value is numerically or alphabetically less than the given number or string |
+| `le`     | value is numerically or alphabetically less than or equal to the given number or string |
+| `gt`     | value is numerically or alphabetically greater than the given number or string |
+| `ge`     | value is numerically or alphabetically greater than or equal to the given number or string |
+
+Text pattern matching binary operators are:
+
+| Operator | Case Insensitive |  Description |
+| -------- | ---------------- | ----------- |
+| `like`   | `ilike`          | value matches the text pattern given |
+| `!like`  | `!ilike`         | value does not match the text pattern given |
+| `$like`  | `$ilike`, `startswith`   | value starts with the text pattern given |
+| `!$like` | `!$ilike`, `!startswith` | value does not start with the text pattern given |
+| `like$`  | `ilike$`, `endswith`     | value ends with the text pattern given |
+| `!like$` | `!ilike$`, `!endswith`   | value does not end with the text pattern given |
+
+For operators that work for multiple JSON node types the semantic is determined from the provided value.
+If the value is `true` or `false` the filter matches boolean JSON values.
+If the value is a number the filter matches number JSON values.
+Otherwise, the value matches string JSON values or mixed types of values.
+
+> **Tip**
+>
+> To force text comparison for a value that is numeric quote the value in single quotes.
+> For example, the value `'13'` is the text 13 while `13` is the number 13.  
+
+Set operators are:
+
+| Operator | Description |
+| -------- | ----------- |
+| `in`     | entry value is textually equal to one of the given values (is in set) |
+| `!in`    | entry value is not textually equal to any of the given values (is not in set) |
+
+The `<path>` can be:
+
+* `_`: the entry key is
+* `.`: the entry root value is
+* `<member>`: the member of the root value is
+* `<member>.<member>`: the member at the path is (up to 5 levels deep)
+
+A `<member>` path expression can be a member name or in case of arrays an array index.
+In case of an array the index can also be given in the form: `[<index>]`.
+For example, the path `addresses[0].street` would be identical to `addresses.0.street`.
+
+Some examples:
+
+    // name (of root object) is "Luke"
+    GET /api/dataStore/<namespace>?fields=.&filter=name:eq:Luke
+    
+    // age (of root object) is greater than 42 (numeric)
+    GET /api/dataStore/<namespace>?fields=.&filter=age:gt:42
+    
+    // the root value is a number greater than 42 (numeric matching inferred from the value) 
+    GET /api/dataStore/<namespace>?fields=.&filter=.:gt:42
+
+    // enabled (of root object) is true (boolean matching inferred from the value) 
+    GET /api/dataStore/<namespace>?fields=.&filter=enabled:eq:true
+
+    // root object has name containing "Pet" and has an age greater than 20
+    GET /api/dataStore/<namespace>?fields=.&filter=name:like:Pet&filter=age:gt:20
+
+    // root object is either flagged as minor or has an age less than 18
+    GET /api/dataStore/<namespace>?fields=.&filter=minor:eq:true&filter=age:lt:18&rootJunction=or
 
 
 ### Create values { #webapi_data_store_create_values } 
