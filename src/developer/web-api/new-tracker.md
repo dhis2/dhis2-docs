@@ -15,8 +15,6 @@ The newly introduced endpoints consist of:
 >
 > - The old endpoints are marked as deprecated but still work as before.
 > - Some functionality is not yet ready in the new endpoints, but they support their primary use-cases.
-> - These endpoints currently only support the `JSON` format as input/output.
-> - Support for the `CSV` format will also be available in the future.
 
 ## Changes in the API
 
@@ -81,23 +79,23 @@ Tracker consists of a few different types of objects that are nested together to
 
 `Tracked Entities` are the root object for the Tracker model.
 
-| Property | Description | Required | Updateable | Type | Example |
+| Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
 | trackedEntity | The identifier of the tracked entity. Generated if not supplied | No | Yes | String:Uid | ABCDEF12345 |
-| trackedEntityType | The type of tracked entity. | Yes | No | String:Uid | ABCDEF12345 |
-| createdAt | Timestamp when the user created the tracked entity. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| createdAtClient | Timestamp when the user created the tracked entity on the client. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| updatedAt | Timestamp when the object was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| updatedAtClient | Timestamp when the object was last updated on the client. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| orgUnit | The organisation unit where the user created the tracked entity. | Yes | No | String:Uid | ABCDEF12345 |
-| inactive | Indicates whether the tracked entity is inactive or not. | No | No | Boolean | Default: False, True |
-| deleted | Indicates whether the tracked entity has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
-| geometry | A  geographical representation of the tracked entity. Based on the "featureType" of the TrackedEntityType. | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
-| storedBy | Client reference for who stored/created the tracked entity. | No | No | String:Any | John Doe |
-| attributes | A list of tracked entity attribute values owned by the tracked entity. | No | No | List of TrackedEntityAttributeValue | See Attribute |
-| enrollments | A list of enrollments owned by the tracked entity. | No | No | List of Enrollment | See Enrollment |
-| relationships | A list of relationships connected to the tracked entity. | No | No | List of Relationship | See Relationship |
-| programOwners | A list of organisation units that have access through specific programs to this tracked entity. See "Program Ownership" for more. | No | No | List of ProgramOwner | See section "Program Ownership" |
+| trackedEntityType | The type of tracked entity. | Yes | Yes | String:Uid | ABCDEF12345 |
+| createdAt | Timestamp when the user created the tracked entity. Set on the server. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| createdAtClient | Timestamp when the user created the tracked entity on the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| updatedAt | Timestamp when the object was last updated. Set on the server. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| updatedAtClient | Timestamp when the object was last updated on the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| orgUnit | The organisation unit where the user created the tracked entity. | Yes | Yes | String:Uid | ABCDEF12345 |
+| inactive | Indicates whether the tracked entity is inactive or not. | No | Yes | Boolean | Default: False, True |
+| deleted | Indicates whether the tracked entity has been deleted. It can only change when deleting. | No | No | Boolean | False until deleted |
+| geometry | A  geographical representation of the tracked entity. Based on the "featureType" of the TrackedEntityType. | No | Yes | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
+| storedBy | Client reference for who stored/created the tracked entity. | No | Yes | String:Any | John Doe |
+| attributes | A list of tracked entity attribute values owned by the tracked entity. | No | Yes | List of TrackedEntityAttributeValue | See Attribute |
+| enrollments | A list of enrollments owned by the tracked entity. | No | Yes | List of Enrollment | See Enrollment |
+| relationships | A list of relationships connected to the tracked entity. | No | Yes | List of Relationship | See Relationship |
+| programOwners | A list of organisation units that have access through specific programs to this tracked entity. See "Program Ownership" for more. | No | Yes | List of ProgramOwner | See section "Program Ownership" |
 
 > **Note**
 >
@@ -152,7 +150,7 @@ In the API, the significant difference is that all events are either connected t
 |---|---|---|---|---|---|
 | event | The identifier of the event. Generated if not supplied | No | Yes | String:Uid | ABCDEF12345 |
 | programStage | The program stage the event represents. | Yes | No | String:Uid | ABCDEF12345 |
-| enrollment | A reference to the enrollment which owns the event. | Yes | Yes | String:Uid | ABCDEF12345 |
+| enrollment | A reference to the enrollment which owns the event. ***Not applicable for `EVENT PROGRAM`*** | Yes | Yes | String:Uid | ABCDEF12345 |
 | program | Only for reading data. The type of program the enrollment which owns the event has. | No | Yes | String:Uid | ABCDEF12345 |
 | trackedEntity | Only for reading data. The tracked entity which owns the event. ***Not applicable for `EVENT PROGRAM`*** | No | No | String:Uid | ABCDEF12345 |
 | status | Status of the event. ACTIVE if not supplied. | No | No | Enum | ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED |
@@ -163,8 +161,8 @@ In the API, the significant difference is that all events are either connected t
 | createdAtClient | Timestamp when the user created the event on client | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the event was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAtClient | Timestamp when the event was last updated on client | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| scheduledAt | Timestamp when the event was scheduled for. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| occurredAt | Timestamp when something occurred. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| scheduledAt | Timestamp when the event was scheduled for. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| occurredAt | Timestamp when something occurred. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedAt | Timestamp when the user completed the event. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedBy | Reference to who completed the event | No | No | String:Any | John Doe |
 | followUp | Indicates whether the event has been flagged for follow-up. False if not supplied | No | No | Booelan | Default: False, True |
@@ -319,6 +317,7 @@ Main changes compared to the other endpoints for tracker import are:
 
 1. Import payload can be ***nested*** or ***flat***
 2. Invocation can be ***synchronous*** or ***asynchronous***
+3. Import ***CSV*** events payload
 
 ### Request parameters
 
@@ -578,6 +577,21 @@ Examples of the **ASYNC** response is shown below. For **SYNC** response, look a
     }
 }
 ```
+
+### CSV Events payload
+
+In order to maintain compatibility with older versions of tracker, the API allows to import events using the CSV format.
+As this format does not allow list as field, every row of the CSV payload represents an event and a data value.
+So for events with multiple data values, the CSV file will have `x` rows per event where `x` is the number of data values in that event.
+Other fields that are lists as ***relationships*** and ***notes*** are not supported.
+To import a CSV payload, the content type of the request must be set to ***application/csv*** or ***text/csv***.
+
+#### ***CSV PAYLOAD*** example
+
+|event|status|program|programStage|enrollment|orgUnit|occurredAt|scheduledAt|dataElement|value|storedBy|providedElsewhere
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|V1CerIi3sdL|COMPLETED|IpHINAT79UW|A03MvHHogjR|CCBLMntFuzb|DiszpKrYNg8|2020-02-26T23:00:00Z|2020-02-27T23:00:00Z|a3kGcGDCuk6|11|admin|false
+|V1CerIi3sdL|COMPLETED|IpHINAT79UW|A03MvHHogjR|CCBLMntFuzb|DiszpKrYNg8|2020-02-26T23:00:00Z|2020-02-27T23:00:00Z|mB2QHw1tU96|[-11.566044,9.477801]|admin|false
 
 ### Import Summary { #webapi_nti_import_summary }
 
@@ -1628,6 +1642,16 @@ Please note that field filtering (`fields=...`) support is planned but not yet i
     "pageSize": 1
 }
 ```
+
+The `CSV` response can look like the following.
+
+```
+|event|status|program|programStage|enrollment|orgUnit|occurredAt|scheduledAt|dataElement|value|storedBy|providedElsewhere
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|V1CerIi3sdL|COMPLETED|IpHINAT79UW|A03MvHHogjR|CCBLMntFuzb|DiszpKrYNg8|2020-02-26T23:00:00Z|2020-02-27T23:00:00Z|a3kGcGDCuk6|11|admin|false
+|V1CerIi3sdL|COMPLETED|IpHINAT79UW|A03MvHHogjR|CCBLMntFuzb|DiszpKrYNg8|2020-02-26T23:00:00Z|2020-02-27T23:00:00Z|mB2QHw1tU96|[-11.566044,9.477801]|admin|false
+```
+
 #### Events single object endpoint `GET /api/tracker/events/{uid}`
 
 The purpose of this endpoint is to retrieve one Event given its uid.

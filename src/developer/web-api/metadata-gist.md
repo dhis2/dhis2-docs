@@ -6,13 +6,12 @@ metadata. Items in this API contain the gist of the same item in the Metadata AP
 
 The API is specifically designed to avoid:
 
-* large response payloads because of the inclusion of partial nested object 
-  graphs
-* resource intensive in memory processing of requests 
-  (e.g. in memory filtering or object graph traversal)
+* Large response payloads because of the inclusion of partial nested object 
+  graphs.
+* Resource intensive in memory processing of requests 
+  (e.g. in memory filtering or object graph traversal).
 * _n + 1_ database queries as a result of object graph traversal while rendering
-  the response
-  
+  the response.
 
 ## Comparison with Metadata API { #gist_vs_metadata_api } 
 <!--DHIS2-SECTION-ID:gist_vs_metadata_api-->
@@ -33,6 +32,7 @@ standard Metadata API exist for the Gist API.
 The Gist API uses a divide and conquer strategy to avoid responses with large
 partial object graphs. Instead of including nested objects or lists it provides
 a `/gist` endpoint URI where this object or list can be viewed in isolation.
+
 **The `/gist` API refers to nested data using URIs rather than including it.**
 This means if a client is interested in this nested information more requests
 are required but each of them is kept reasonable small and will scale
@@ -56,13 +56,15 @@ Known Differences:
   on the `access` property
 * Gist offers using attribute UIDs as field and filter property names to allow
   listing or filtering based on custom attribute values
+* Gist offers filter grouping
 
 Known Limitations:
 
-* only persisted or synthetic fields (those based on persisted fields) can be included
+* by default only persisted are included; a handful of special 
+  non-persistent fields (synthetic fields) can be added explicitly; other 
+  non-persistent fields might be possible to extract using `from` transformation
 * filters can only be applied to persisted fields
 * orders can only be applied to persisted fields
-* like-filters are always case-insensitive
 * token filters are not available
 * order is always case-sensitive
 * `pluck` transformer limited to text properties
@@ -135,7 +137,7 @@ Parameters in alphabetical order:
 ### The `absoluteUrls` Parameter { #gist_parameters_absoluteUrls } 
 <!--DHIS2-SECTION-ID:gist_parameters_absoluteUrls-->
 
-By default, URIs in `apiEndpoints`, `href` and the `pager`'s`prev` and `next` 
+By default, URIs in `apiEndpoints`, `href` and the `pager` `prev` and `next` 
 members are relative, starting with `/<object-type>/` path.
 
 The URIs can be changed to absolute URLs using the `absoluteUrls` parameter.
@@ -166,10 +168,10 @@ provided URLs.
 
 ### The `auto` Parameter
 Each endpoint implicitly sets a default for the extent of fields matched by the
-`*`/`:all` fields selector:
+`*` / `:all` fields selector:
 
 * `/api/<object-type>/gist`: implies `auto=S`
-* `/api/<object-type>/<object-id>/gist`: implies  `auto=L`
+* `/api/<object-type>/<object-id>/gist`: implies `auto=L`
 * `/api/<object-type>/<object-id>/<field-name>/gist`: implies `auto=M`
 
 The `auto` parameter is used to manually override the default to make list items
@@ -323,6 +325,7 @@ Available binary operators are:
 | Binary Operator   | Description                                              |
 | ----------------- | -------------------------------------------------------- |
 | `eq`              | field _equals_ value                                     |
+| `ieq`             | field _equals_ value (case insensitive)                  |
 | `!eq`, `neq`, `ne`| field is _not equal_ value                               |
 | `lt`              | field is _less than_ value                               |
 | `le`, `lte`       | field is _less than or equal to_ value                   |
@@ -337,6 +340,11 @@ If the `<value>` of an `in` or `!in` filter is a list it is given in the form
 Any `>`, `>=`, `<` `<=`, `==` or `!=` comparison applied to a collection field 
 with a numeric value will compare the size of the collection to the value, for
 example: `userGroups:gt:0`.
+
+Any `>`, `>=`, `<` `<=`, `==` or `!=` comparison applied to a text field 
+with a integer number value will compare the text length to the value, for 
+example: `name:eq:4` (name has length 4).
+
 
 Available binary pattern matching operators are:
 
@@ -354,11 +362,11 @@ in which case a match is any value where the term occurs anywhere, or they can
 be used by providing the search pattern using `*` as _any number of characters_
 and `?` as _any single character_.
 
+All pattern matching operators named `like` are case-sensitive. All others 
+are case-insensitive. 
+
 Note that filters on attribute values use text based comparison which means 
 all text filters are supported.
-
-Operators have multiple aliases to be backwards compatible with the 
-standard metadata API. For the gist API any like is always case-insensitive. 
 
 For example, to only list organisations on second level use
 
@@ -404,6 +412,39 @@ The `canAccess` expects two arguments, 1st is user ID, 2nd the access pattern,
 for example to check metadata read and write access the pattern is `rw%`:
 
     /api/dataElements/gist?filter=code:canAccess:[OYLGMiazHtW,rw%]
+
+
+In addition, filter can be grouped to allow combining selected filters with 
+logical OR when the general filter combinator is logical AND, or vice-versa 
+with logical AND when the general combinator is logical OR.
+
+For groups the filter pattern is extended as following:
+
+* unary: `<group>:<field>:<operator>`
+* binary: `<group>:<field>:<operator>:<value>`
+
+The group is an arbitrary number between `0` and `9` (when omitted `0` is 
+assumed). 
+
+The behaviour is best explained with a small example for an imaginary object
+type with an `age` and `name` property.
+
+    ?filter=1:age:eq:50&filter=2:name:eq:foo&filter=2:name:eq:bar
+
+The above filter has two groups `1` and `2`, and the `2` group has 2 members.
+This is equivalent to the SQL (note the `and` and `or` as well as the 
+grouping braces):
+
+    e.age = 50 and (e.name = 'foo' or e.name = 'bar')
+
+Now, if the same `filter`s would be used in combination with `rootJunction=OR`
+
+    ?filter=1:age:eq:50&filter=2:name:eq:foo&filter=2:name:eq:bar&rootJunction=OR
+
+the effect would be equivalent to the following SQL instead:
+
+    e.age = 50 or (e.name = 'foo' and e.name = 'bar')
+
 
 ### The `headless` Parameter { #gist_parameters_headless } 
 <!--DHIS2-SECTION-ID:gist_parameters_headless-->
@@ -647,6 +688,7 @@ Available transformer expressions are:
 | `member(<id>)`     | `boolean`           | has member with `<id>` for collection field |
 | `not-member(<id>)` | `boolean`           | not has member with `<id>` for collection field |
 | `pluck(<field>)`   | `string` or `[string]` | extract single text property of the object or of each collection item |
+| `from(<field>,...)`| depends on bean type | extracts a non-persistent field from one or more persistent ones |
 
 A field can receive both the `rename` transformer and one of the other 
 transformers, for example:
@@ -656,6 +698,30 @@ transformers, for example:
 The returned items now no longer have a `children` member but a `child-count`
 member instead. Note that `rename` also affects the member name of the URI
 reference given in `apiEndpoints`.
+
+The `from` transformation can be used with one or more persistent fields as
+parameter. These will be loaded from the database, set in an instance of the 
+listed element object before the non-persistent property transformed with 
+`from` is extracted from that instance by calling the getter. This allows to 
+extract derived fields while using the same logic that is used in usual metadata API.
+
+For example, a user's (non-persistent property) `name` is composed of the 
+persistent property `firstName` and `surname`. It can be fetched like this:
+
+    /api/users/gist?fields=id,name~from(firstName,surname)
+
+Since a user's name is such a common case an auto-detection was added so that in
+this special case the `from` transformation is added automatically to `name`.
+We are allowed to just use the following which internally adds the `from` 
+transformation:
+
+    /api/users/gist?fields=id,name
+
+While this makes non-persistent properties accessible in general these always 
+have to be included in the `fields` explicitly. For a user this could be 
+done using the following:
+
+    /api/users/gist?fields=*,name
 
 
 ## Synthetic Fields { #gist_syntheticFields } 
@@ -863,5 +929,4 @@ List users and flag whether they are a member of a specific user group
 List links to all users in pages of 10 items:
 
     /api/users/gist?fields=href&absoluteUrls&pageSize=10
-
 

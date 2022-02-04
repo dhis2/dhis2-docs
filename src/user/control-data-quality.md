@@ -175,33 +175,32 @@ internal DHIS 2 messaging system.
   - [Data Administration
     app](https://docs.dhis2.org/master/en/user/html/data_admin.html)
 
-## Standard deviation outlier analysis { #standard_deviation_analysis } 
+## Outlier detection { #outlier_detection } 
 
-### About standard deviation outlier analysis
+### About outlier detection
 
-The standard deviation outlier analysis identifies values that are
+The outlier detection tool identifies values which are
 numerically distant from the rest of the data, potentially indicating that they are outliers.
 The analysis is based on the standard normal distribution. DHIS 2 calculates the mean of
 all values for an organisation unit, data element, category option
-combination and attribute option combination. Outliers can occur by
-chance of course, but can potentially indicate a measurement or data entry error.
+combination and attribute option combination.
 
 > **Note**
 >
 >  As indicated above, this data quality analysis is only appropriate for 
->  data which is actually normally distributed. Data which has large seasonal
+>  data which is normally distributed. Data with large seasonal
 >  variation, or which may be distributed according to other statistical models
 >  (e.g. logistical ) may lead values being flagged which actually should be considered valid. 
->  It is therefore recommended to confirm first, whether the data actually is normally 
+>  It is therefore recommended to first confirm whether the data actually is normally 
 >  distributed before running a standard deviation outlier analysis.
 
-### Run a standard deviation outlier analysis
+### Run outlier detection
 
 ![](resources/images/data_quality/std_dev_analysis.png)
 
 1.  Open the **Data Quality** app and click **Outlier Detection**.
 
-2.  Select data set(s).
+2.  Select one or multiple data sets.
 
 3.  Select **Organisation units**.
 
@@ -209,41 +208,40 @@ chance of course, but can potentially indicate a measurement or data entry error
 
 4.  Select **From date** and **To date**.
 
-5.  Set **Algorithm** to **Z-score**
+5.  Set the **Algorithm** to use. 
 
-    Modified Z-score can also be selected. If selected, the median of the values is used instead of the mean.
+    **Z-score** (based on the mean of data values), **Modified Z-score** (based on the median of data values) and **Min-max values** (based on stored min-max data values) are available algorithms.
 
-6.  Select a **Threshold**.
+6. Select a **Threshold**.
 
-    This refers to the number of standard deviations the data is allowed
-    to deviate from the mean before it is classified as an outlier.
+   This refers to the number of standard deviations the data is allowed to deviate from the mean before it is classified as an outlier.
 
-7.  Select **Max results**
+7. Select **Max results**.
 
-    This refers to the maximum number of outliers listed in the results.
+   This refers to the maximum number of outliers listed in the results.
 
-8.  (Optional) Select a **Data start date** and **Data end date**
+8. (Optional) Select a **Data start date** and **Data end date**
 
-    These fields can be used to perform outlier detection analysis on a subset of the data within the provided date range. When left blank, the natural start and end date of the dataset will be used _(In advanced section)_.
+   These fields can be used to perform outlier detection analysis on a subset of the data within the provided date range. When left blank, the natural start and end date of the dataset will be used _(in advanced section)_.
 
-9.  (Optional) Select a measure to **Sort by** 
+9. (Optional) Select a measure to **Sort by**.
 
-    The outliers can be sorted by **Z-score** or by **Absolute deviation from Mean** _(In advanced section)_.
+   The outliers can be sorted by **Z-score** or by **Absolute deviation from Mean** _(in advanced section)_.
 
-10.  Click **Start**
+10. Click **Start**
     The analysis process duration depends on the amount of data that is    being analysed. If there are standard deviations outliers, they will be presented in a list.
     ![](resources/images/data_quality/std_dev_analysis_outlier_result.png)
     For each outlier, you will see the data element, period, organisation unit, value, z-score, deviation, standard deviation, mean, min, and max. The minimum and maximum values refer to the border values derived from the number of standard deviations selected for the analysis.
 
-11.  (Optional) Click **Download as CSV** to download the list in CSV format.
+11. (Optional) Click **Download as CSV** to download the list in CSV format.
 
 > **Tip**
 >
 > Click the checkbox to mark an outlier value for further follow-up.
 
-## Minimum maximum outlier analysis { #min_max_analysis } 
+## Minimum maximum outlier detection { #min_max_outlier_detection } 
 
-### About minimum maximum value based outlier analysis
+### About minimum maximum value based outlier detection
 
 You can verify the data quality at the point of data entry by setting a
 minimun/maximum value range for each data value. You can define the value
@@ -280,11 +278,9 @@ seasonal diseases.
 
 2.  In the **Data Quality** app, run the **Min-max outlier analysis**.
 
-### Configure a minimum maximum outlier analysis
+### Configure a minimum maximum outlier detection
 
 #### Create minimum maximum value range automatically
-
-![](resources/images/data_quality/generate_min_max.png)
 
 > **Note**
 >
@@ -359,7 +355,7 @@ data sets and organisation units in the **Data Administration** app.
 
 4.  Click **Remove**.
 
-### Run a minimum maximum outlier analysis
+### Run a minimum maximum outlier detection
 
 ![](resources/images/data_quality/min_max_analysis.png)
 

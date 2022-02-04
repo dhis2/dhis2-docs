@@ -517,7 +517,7 @@ Table: Available Query Filters
 | Param | Type | Required | Options (default first) | Description |
 |---|---|---|---|---|
 | preheatCache | boolean | false | true &#124; false | Turn cache-map preheating on/off. This is on by default, turning this off will make initial load time for importer much shorter (but will make the import itself slower). This is mostly used for cases where you have a small XML/JSON file you want to import, and don't want to wait for cache-map preheating. |
-| strategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
+| importStrategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
 | mergeMode | enum | false | REPLACE, MERGE | Strategy for merging of objects when doing updates. REPLACE will just overwrite the property with the new value provided, MERGE will only set the property if it is not null (only if the property was provided). |
 
 ### Creating and updating objects { #webapi_creating_updating_objects } 
@@ -551,15 +551,14 @@ The same content as an XML payload:
 ```
 
 We are now ready to create the new *constant* by sending a POST request to
-the *constants*endpoint with the JSON payload using curl:
+the `constants` endpoint with the JSON payload using curl:
 
 ```bash
 curl -d @constant.json "http://server/api/constants" -X POST
   -H "Content-Type: application/json" -u user:password
 ```
 
-A specific example of posting the constant to the demo
-    server:
+A specific example of posting the constant to the demo server:
 
 ```bash
 curl -d @constant.json "https://play.dhis2.org/api/constants" -X POST
@@ -759,9 +758,15 @@ Which will yield the result:
 
 For our web api endpoints that deal with metadata, we support partial updates (PATCH) using the JSON Patch [standard](https://tools.ietf.org/html/rfc6902). The payload basically outlines a set of operation you want applied to a existing metadata object. For examples of JSON patch please see [jsonpatch.com](http://jsonpatch.com/), we support 3 operators: `add`, `remove` and `replace`.
 
-Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT payload).
+Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT metadata payload).
 
-#### Update name and value type of data element
+The default `importReportMode` for JSON Patch is `ERRORS_NOT_OWNER` which means that if you try and update any property that is not owned by that particular object (for example trying to add a indicator group directly to an indicator) you will get an error.
+
+As per the JSON Patch specification you must always use the mimetype `application/json-patch+json` when sending patches.
+
+#### Examples
+
+##### Update name and value type of data element
 
 ```
 PATCH /api/dataElements/{id}
@@ -774,7 +779,7 @@ PATCH /api/dataElements/{id}
 ] 
 ```
 
-#### Add new data element to a data element group
+##### Add new data element to a data element group
 
 ```
 PATCH /api/dataElementGroups/{id}
@@ -786,7 +791,7 @@ PATCH /api/dataElementGroups/{id}
 ]
 ```
 
-#### Remove all data element assosciations from a data element group
+##### Remove all data element associations from a data element group
 
 ```
 PATCH /api/dataElementGroups/{id}
@@ -797,6 +802,32 @@ PATCH /api/dataElementGroups/{id}
   {"op": "remove", "path": "/dataElements"}
 ]
 ```
+
+##### Change domain and value type of a data element
+
+```
+PATCH /api/dataElements/{id}
+```
+
+```json
+[
+    {"op": "add", "path": "/domainType", "value": "TRACKER"},
+    {"op": "add", "path": "/valueType", "value": "INTEGER"}
+]
+```
+
+##### Remove a specific orgUnit from an orgUnit group
+
+```
+PATCH /api/organisationUnitGroups/{id}
+```
+
+```json
+[
+  {"op": "remove", "path": "/organisationUnits/1"}
+]
+```
+
 
 ## Metadata export { #webapi_metadata_export } 
 
@@ -1471,7 +1502,7 @@ The organisation unit split endpoint allows you to split organisation units into
 Split organisation units with a POST request:
 
 ```
-POST /api/33/organisationUnits/split
+POST /api/organisationUnits/split
 ```
 
 The payload in JSON format looks like the following:
@@ -1480,7 +1511,7 @@ The payload in JSON format looks like the following:
 {
   "source": "rspjJHg4WY1",
   "targets": [
-    "HT0w9YLMLyn", 
+    "HT0w9YLMLyn",
     "rEpnzuNpRKM"
   ],
   "primaryTarget": "HT0w9YLMLyn",
@@ -1492,8 +1523,8 @@ The JSON properties are described in the following table.
 
 Table: Split payload fields
 
-| Field         | Required | Value                                                        |
-| ------------- | -------- | ------------------------------------------------------------ |
+| Field         | Required | Value |
+| ------------- | -------- |------ |
 | source        | Yes      | Identifier of the organisation unit to split (the source organisation unit). |
 | targets       | Yes      | Array of identifiers of the organisation units to split the source into (the target organisation units). |
 | primaryTarget | No       | Identifier of the organisation unit to transfer the aggregate data, events and tracked entities associated with the source over to. If not specified, the first target will be used. |
@@ -1529,7 +1560,7 @@ The organisation unit merge endpoint allows you to merge a number of organisatio
 Merge organisation units with a POST request:
 
 ```
-POST /api/33/organisationUnits/merge
+POST /api/organisationUnits/merge
 ```
 
 The payload in JSON format looks like the following:
@@ -1537,7 +1568,7 @@ The payload in JSON format looks like the following:
 ```json
 {
   "sources": [
-    "jNb63DIHuwU", 
+    "jNb63DIHuwU",
     "WAjjFMDJKcx"
   ],
   "target": "V9rfpjwHbYg",
@@ -1549,21 +1580,21 @@ The payload in JSON format looks like the following:
 
 The JSON properties are described in the following table.
 
-Table: Split payload fields
+Table: Merge payload fields
 
-| Field                     | Required | Value                                                        |
-| ------------------------- | -------- | ------------------------------------------------------------ |
+| Field                     | Required | Value |
+| ------------------------- | -------- | ----- |
 | sources                   | Yes      | Array of identifiers of the organisation units to merge (the source organisation units). |
 | target                    | Yes      | Identifier of the organisation unit to merge the sources into (the target organisation unit). |
-| dataValueMergeStrategy    | No       | Strategy for merging data values. Options: `LAST_UPDATED` (default) | `DISCARD`. |
-| dataApprovalMergeStrategy | No       | Strategy for merging data approval records. Options: `LAST_UPDATED` (default) | `DISCARD`. |
-| deleteSources             | No       | Whether to delete the source organisation units after the operation. Default is `true`. |
+| dataValueMergeStrategy    | No       | Strategy for merging data values. Options: `LAST_UPDATED` (default), `DISCARD`. |
+| dataApprovalMergeStrategy | No       | Strategy for merging data approval records. Options: `LAST_UPDATED` (default), `DISCARD`. |
+| deleteSources             | No       | Whether to delete the source organisation units after the operation. Default is true. |
 
-The merge operation will merge the source org units into the target org unit. It is recommended to first create a new target org unit before performing the split, and at a minimum ensure that no aggregate data exists for the target org unit. Any number of source org units can be specified.
+The merge operation will merge the source org units into the target org unit. It is recommended to first create a new target org unit before performing the merge, and at a minimum ensure that no aggregate data exists for the target org unit. Any number of source org units can be specified.
 
 The merge operation will transfer all of the metadata associations of the source org units over to the target org unit. This includes data sets, programs, org unit groups, category options, users, visualizations, maps and event reports. The operation will also transfer all event and tracker data, such as events, enrollments, ownership history, program ownership and tracked entities, over to the target org unit.
 
-The specified data value merge strategy defines how data values are handled. For strategy `LAST_UPDATED`, data values for all source org units are transferred over to the target org unit, and in situation where data values exist for the same parameters, the last updated or created data value will be used. This is done to avoid duplication of data. The specified data approval merge strategy defined how data approval records are handled, and follows the same logic as data values.
+The specified data value merge strategy defines how data values are handled. For strategy `LAST_UPDATED`, data values for all source org units are transferred over to the target org unit, and in situation where data values exist for the same parameters, the last updated or created data value will be used. This is done to avoid duplication of data. For strategy `DISCARD`, data values are not transferred over to the target org unit, and simply deleted. The specified data approval merge strategy defines how data approval records are handled, and follows the same logic as data values.
 
 #### Validation
 
@@ -1847,6 +1878,7 @@ Table: programRuleVariable
 |---|---|---|
 | name | the name for the programRuleVariable - this name is used in expressions. #{myVariable} \> 5 | Compulsory |
 | sourceType | Defines how this variable is populated with data from the enrollment and events. <br> * DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE - In tracker capture, gets the newest value that exists for a data element, within the events of a given program stage in the current enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.<br> * DATAELEMENT_NEWEST_EVENT_PROGRAM - In tracker capture, get the newest value that exists for a data element across the whole enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.<br> * DATAELEMENT_CURRENT_EVENT - Gets the value of the given data element in the current event only.<br> * DATAELEMENT_PREVIOUS_EVENT - In tracker capture, gets the newest value that exists among events in the program that precedes the current event. In event capture, gets the newvest value among the 10 preceeding events registered on the organisation unit.<br> * CALCULATED_VALUE - Used to reserve a variable name that will be assigned by a ASSIGN program rule action<br> * TEI_ATTRIBUTE - Gets the value of a given tracked entity attribute | Compulsory |
+| valueType | valueType parameter defines the type of the value that this ProgramRuleVariable can contain. Its value is dependent on sourceType parameter. If source is DataElement or TrackedEntityAttribute<br> then valueType will be derived from valueType of the source. When the sourceType is CALCULATED_VALUE, then valueType should be provided by the user otherwise it will default <br> to ValueType.TEXT| Compulsory
 | dataElement | Used for linking the programRuleVariable to a dataElement. Compulsory for all sourceTypes that starts with DATAELEMENT_. | See description |
 | trackedEntity- Attribute | Used for linking the programRuleVariable to a trackedEntityAttribute. Compulsory for sourceType TEI_ATTRIBUTE. | See description |
 | useCodeFor- OptionSet | If checked, the variable will be populated with the code - not the name - from any linked option set. Default is unchecked, meaning that the name of the option is populated. ||
@@ -2688,7 +2720,7 @@ Response:
 }
 ```
 
-## Metadata Synchronization { #webapi_metadata_synchronization } 
+## Metadata synchronization { #webapi_metadata_synchronization } 
 
 This section explains the Metadata Synchronization API available
 starting 2.24
@@ -2786,7 +2818,7 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
   -H "Content-Type:text/plain" -u admin:district
 ```
 
-## Reference to createdBy User
+## Reference to created by user
 
 Each object created in DHIS2 will have a property named `user` which is linked to `User` who created the object.
 
@@ -2811,18 +2843,25 @@ However, in order to keep the backwards compability, the legacy `user` property 
 }
 ```
 
-## Propose Metadata Changes { #webapi_metadata_proposals }
+## Metadata proposal workflow { #webapi_metadata_proposal_workflow }
 
-### Propose a Metadata Change { #webapi_metadata_proposals_propose }
+The metadata proposal workflow endpoint allows for a workflow of proposing and accepting changes to metadata.
+
+```
+/api/metadata/proposals
+```
+
+### Propose a metadata change { #webapi_metadata_proposal_propose }
+
 A proposal always targets a single metadata object using:
 
     POST /api/metadata/proposals
 
-Depending on the payload the proposal 
+Depending on the payload the proposal could:
 
-* adds a new metadata object
-* updates an existing metadata object references by UID
-* removes an existing metadata object referenced by UID
+* Add a new metadata object.
+* Update an existing metadata object references by ID.
+* Remove an existing metadata object referenced by ID.
 
 To propose adding a new metadata object send a JSON payload like the following:
 
@@ -2833,97 +2872,80 @@ To propose adding a new metadata object send a JSON payload like the following:
   "change": {"name":"My Unit", "shortName":"MyOU", "openingDate": "2020-01-01"}
 }
 ```
-The `change` property contains the same JSON object that could directly be 
-posted to the corresponding endpoint to create the object.
+The `change` property contains the same JSON object that could directly be posted to the corresponding endpoint to create the object.
 
-To propose updating an existing metadata object send a JSON payload like in 
-the below example:
+To propose updating an existing metadata object send a JSON payload like in the below example:
 
 ```json
 {
   "type": "UPDATE",
   "target": "ORGANISATION_UNIT",
-  "targetUid": "<uid>",
+  "targetId": "<id>",
   "change": [
-    { "op": "replace", "path": "/name", "value": "New name" }
+    {"op": "replace", "path": "/name", "value": "New name"}
   ]
 }
 ```
-The `targetUid` refers to the object by its UID which should be updated.
-The `change` property here contains a JSON patch payload. This is the same
-patch payload that could be posted to the corresponding endpoint to directly
-apply the update.
+The `targetId` refers to the object by its ID which should be updated. The `change` property here contains a JSON patch payload. This is the same
+patch payload that could be posted to the corresponding endpoint to directly apply the update.
 
-To propose the removal of an existing object send a payload like in the last 
-example:
+To propose the removal of an existing object send a payload like in the last example:
 
 ```json
 {
   "type": "REMOVE",
   "target": "ORGANISATION_UNIT",
-  "targetUid": "<uid>"
+  "targetId": "<id>"
 }
 ```
-The `targetUid` refers to the object  by its UID which should be removed.
-
-A free text `comment` can be added to any type of comment.
+The `targetId` refers to the object  by its ID which should be removed. A free text `comment` can be added to any type of comment.
 
 Only `target` type `ORGANISATION_UNIT` is supported currently.
 
-### Accept a Metadata Change Proposal { #webapi_metadata_proposals_accept }
+### Accept a metadata change proposal { #webapi_metadata_proposal_accept }
 To accept an open proposal use `POST` on the proposal resource
 
     POST /api/metadata/proposals/<uid>
 
-When successful the status of the proposal changes to status `ACCEPTED`.
-Once accepted the proposal can no longer be rejected.
+When successful the status of the proposal changes to status `ACCEPTED`. Once accepted the proposal can no longer be rejected.
 
-Should a proposal fail to apply it changes to status `NEEDS_UPDATE`.
-The `reason` field contains a summary of the failures when this information is 
+Should a proposal fail to apply it changes to status `NEEDS_UPDATE`. The `reason` field contains a summary of the failures when this information is 
 available.
 
-### Oppose a Metadata Change Proposal { #webapi_metadata_proposals_oppose }
-If a proposal isn't quite right and needs adjustment this can be indicated
-by opposing the proposal by sending a `PATCH` for the proposal resource
+### Oppose a metadata change proposal { #webapi_metadata_proposal_oppose }
+If a proposal isn't quite right and needs adjustment this can be indicated by opposing the proposal by sending a `PATCH` for the proposal resource
 
     PATCH /api/metadata/proposals/<uid>
 
-Optionally a plain text body can be added to this to give a `reason` why the
-proposal got opposed.
+Optionally a plain text body can be added to this to give a `reason` why the proposal got opposed.
 
-A opposed proposal must be in state `PROPOSED` and will change to state 
-`NEEDS_UPDATE`.
+A opposed proposal must be in state `PROPOSED` and will change to state `NEEDS_UPDATE`.
 
-### Adjust a Metadata Change Proposal { #webapi_metadata_proposals_adjust }
-A proposal in state `NEEDS_UPDATE` needs to be adjusted before it can be 
-accepted. To adjust the proposal a `PUT` request is made for the proposal's 
+### Adjust a metadata change proposal { #webapi_metadata_proposal_adjust }
+A proposal in state `NEEDS_UPDATE` needs to be adjusted before it can be accepted. To adjust the proposal a `PUT` request is made for the proposal's 
 resource
 
     PUT /api/metadata/proposals/<uid>
 
-Such an adjustment can either be made without a body or with a JSON body 
-containing an object with the updated `change` and `targetUid` for the 
+Such an adjustment can either be made without a body or with a JSON body containing an object with the updated `change` and `targetId` for the 
 adjustment:
 
 ```json
 {
-  "targetUid": "<uid>",
+  "targetId": "<id>",
   "change": ...
 }
 ```
-The JSON type of the `change` value depends on the proposal `type` analogous to
-when a proposal is initially made.
+The JSON type of the `change` value depends on the proposal `type` analogous to when a proposal is initially made.
 
-### Reject a Metadata Change Proposal { #webapi_metadata_proposals_reject }
+### Reject a metadata change proposal { #webapi_metadata_proposal_reject }
 To reject an open proposal use `DELETE` on the proposal resource
 
     DELETE /api/metadata/proposals/<uid>
 
-This changes the status of the proposal conclusively to `REJECTED`.
-No further changes can be made to this proposal.
-It is kept as a documentation of the events.
+This changes the status of the proposal conclusively to `REJECTED`. No further changes can be made to this proposal. It is kept as a documentation of the events.
 
-### List Metadata Change Proposals { #webapi_metadata_proposals_list }
+### List metadata change proposals { #webapi_metadata_proposal_list }
 All proposals can be listed:
 
     GET /api/metadata/proposals/
@@ -2937,9 +2959,7 @@ Similarly to only show open proposals use:
 
     GET /api/metadata/proposals?filter=status=PROPOSED
 
-Filters can also be applied to any field except `change`.
-Supported filter operators are those described in the Gist Metadata API.
-This also includes property transformers described for Gist API.
+Filters can also be applied to any field except `change`. Supported filter operators are those described in the Gist Metadata API. This also includes property transformers described for Gist API.
 
 List of available fields are:
 
@@ -2949,7 +2969,7 @@ List of available fields are:
 | type        | `ADD` a new object, `UPDATE` an existing object, `REMOVE` an existing object |
 | status      | `PROPOSED` (open proposal), `ACCEPTED` (successful), `NEEDS_UPDATE` (accepting caused error or opposed), `REJECTED` |
 | target      | type of metadata object to add/update/remove; currently only `ORGANISATION_UNIT` |
-| targetUid   | UID of the updated or removed object, not defined for `ADD` |
+| targetId    | UID of the updated or removed object, not defined for `ADD` |
 | createdBy   | the user that created the proposal |
 | created     | the date time when the proposal was created |
 | finalisedBy | the user that accepted or rejected the proposal |
@@ -2958,12 +2978,12 @@ List of available fields are:
 | reason      | optional plain text given when the proposal was opposed or the errors occurring when accepting a proposal failed | 
 | change      | JSON object for `ADD` proposal, JSON array for `UPDATE` proposal, nothing for `REMOVE` proposal |
 
-### Viewing Metadata Change Proposals { #webapi_metadata_proposals_show }
+### Viewing metadata change proposals { #webapi_metadata_proposal_show }
 Individual change proposals can be viewed using 
 
     GET /api/metadata/proposals/<uid>
 
-The `fields` parameter can be used to narrow the fields included for the shown 
-object. For example:
+The `fields` parameter can be used to narrow the fields included for the shown object. For example:
 
     GET /api/metadata/proposals/<uid>?fields=id,type,status,change
+

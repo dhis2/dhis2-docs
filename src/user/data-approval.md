@@ -1,4 +1,4 @@
-# Data approval { #data_approval } 
+# Data approval overview { #data_approval_overview } 
 
 DHIS2 has an optional feature that allows authorized users to approve
 data that has been entered. It allows data to be reviewed and approved
@@ -28,7 +28,6 @@ period and workflow. But it is not ready to be approved for organization
 unit A. Before it can be approved for organisation unit A, it must be
 approved for B, and for any other children of organisation unit A, for
 that period and workflow.
-
 
 ![Approving at organisation
 units](resources/images/data_approval/approval_hierarchy.png){.center width=50% }
@@ -66,8 +65,6 @@ track of which lower-level data has already been reviewed.
 
 Two-step process can be activated by checking **Acceptance required
 before approval** in SystemSettings app under General section.
-
-
 
 ## Authorities for approving data { #data_approvals_authorities } 
 
@@ -172,8 +169,6 @@ Using this example, lets consider some scenarios:
   - Data is approved by *User C* at district level: Data becomes visible
     to User A, as data is now approved at the level immediately below
     herself.
-
-
 
 ## Approving data { #data_approvals_approving_data } 
 
@@ -317,8 +312,6 @@ or all of the following approval levels:
 </tbody>
 </table>
 
-
-
 ## Approving by multiple category option group sets { #approving_by_multiple_category_option_group_sets } 
 
 You can also define approval levels for different category option group
@@ -420,6 +413,4 @@ Just click on the approval level you wish to move, and select *Move up*
 or *Move down*. If you have an approval level with no category option
 groups set, it must be the highest approval level for that organisation
 unit level.
-
-
 

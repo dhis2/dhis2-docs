@@ -287,10 +287,16 @@ max_locks_per_transaction = 96
 
 Specifies the average number of object locks allocated for each transaction. This is set mainly to allow upgrade routines which touch a large number of tables to complete.
 
+```properties
+track_activity_query_size = 8192
+```
+
+Specifies the number of bytes reserved to track the currently executing command for each active session. Useful to view the full query string for monitoring of currently running queries.
+
 Restart PostgreSQL by invoking the following command:
 
 ```sh
-sudo /etc/init.d/postgresql restart
+sudo systemctl restart postgresql
 ```
 
 ### Java installation { #install_java_installation } 
@@ -568,252 +574,239 @@ As an example this location could be:
 
 ## OpenID Connect (OIDC) configuration { #install_oidc_configuration } 
 
-DHIS2 supports the OpenID Connect (OIDC) identity layer for single sign-in (SSO). OIDC is a standard authentication protocol that lets users sign in to an identity provider (IdP) such as Google. After users have successfully signed in to their IdP, they will be automatically signed in to DHIS2.
+DHIS2 supports the OpenID Connect (OIDC) identity layer for single sign-in (SSO). OIDC is a standard authentication protocol that lets users sign in with an identity provider (IdP) such as for example Google. After users have successfully signed in to their IdP, they will be automatically signed in to DHIS2.
 
-This section provides general information about using DHIS2 with OIDC, as well as configuration options for the IdP and DHIS2. The authentication flow will be like the following.
+This section provides general information about using DHIS2 with an OIDC provider, as well as complete configuration examples.
 
-1. A user attempts to log in to DHIS2 from a client computer.
+The DHIS2 OIDC 'authorization code' authentication flow:
 
-2. DHIS2 redirects the request for authentication to the IdP gateway.
+1. A user attempts to log in to DHIS2 and clicks the OIDC provider button on the login page.
 
-3. The user is prompted for credentials and successfully authenticates to the IdP. The IdP responds with a redirect URL back to DHIS2. The redirect URL includes an authorization code for the user.
+2. DHIS2 redirects the browser to the IdP's login page.
 
-4. The client is redirected to DHIS2 and presents the authorization code.
+3. If not already logged in, the user is prompted for credentials. When successfully authenticated, the IdP responds with a redirect back to the DHIS2 server. The redirect includes a unique authorization code generated for the user.
 
-5. DHIS2 presents the client's authorization code to the IdP along with its own client credentials.
+4. The DHIS2 server internally sends the user's authorization code back to the IdP server along with its own client id and client secret credentials.
 
-6. The IdP returns an access token and an ID token to DHIS2. DHIS2 performs a validation of the IdP token (JWT). The ID token is a set of attribute key pairs for the user. The key pairs are called claims.
+5. The IdP returns an ID token back to the DHIS2 server. DHIS2 server performs validation of the token.
 
-7. DHIS2 identifies the user from the IdP claims and completes the authentication request from Step 1. DHIS2 searches for a user that matches the `email` claim from the IdP. DHIS2 can be configured to use different claims for this process.
+6. The DHIS2 server looks up the internal DHIS2 user with the mapping claims found in the ID token (defaults to email), authorizes the user and completes the login process.
 
-8. DHIS2 authorizes the user.
+### Requirements for using OIDC with DHIS2:
 
-### Requirements for OIDC
+#### IdP server account
 
-#### IdP account
+You must have an admin account on an online identity provider (IdP) or on a standalone server that are supported by DHIS2.
 
-You must have access to an identity provider (IdP) that are supported by DHIS2.
-
-The following IdPs are currently supported:
+The following IdPs are currently supported and tested:
 
 * Google
 * Azure AD
 * WSO2
-* Generic provider
+* Okta (See separate tutorial: [here](#configure-openid-connect-with-okta))
 
-#### Local user account
+There is also a **generic provider** config which can support "any" OIDC compatible provider.
 
-You must explicitly create users in the DHIS2 instance. Importing them from an external directory such as Active Directory is currently not supported. Managing users with an external identity store is not supported with OIDC.
+#### DHIS2 user account
+
+You must explicitly create the users in the DHIS2 server before they can log in with the identity provider. Importing them from an external directory such as Active Directory is currently not supported. Provisioning and management of users with an external identity store is not supported by the OIDC standard.
 
 #### IdP claims and mapping of users
 
-To sign in to DHIS2, a given user must be provisioned in the IdP and then mapped to a user account in DHIS2. OIDC uses a method that relies on claims to share user account attributes with other applications. Claims include user account attributes such as email, phone number, name, etc. DHIS2 relies on the IdP claims to map user accounts from the IdP to those hosted on DHIS2. By default, DHIS2 expects the IdP to pass the _email_ claim. Depending on your IdP, you may need to configure DHIS2 to use a different IdP claim.
+To sign in to DHIS2 with OIDC, a given user must be provisioned in the IdP and then mapped to a pre created user account in DHIS2. OIDC uses a method that relies on claims to share user account attributes with other applications. Claims include user account attributes such as email, phone number, name, etc. DHIS2 relies on a IdP claim to map user accounts from the IdP to those in the DHIS2 server. By default, DHIS2 expects the IdP to pass the _email_ claim. Depending on your IdP, you may need to configure DHIS2 to use a different IdP claim.
 
-If you are using Google or Azure AD as an IdP, the default behavior is to use the email claim to map IdP identities to DHIS2 user accounts.
+If you are using Google or Azure AD as an IdP, the default behavior is to use the _email_ claim to map IdP identities to DHIS2 user accounts.
 
-In order for a DHIS2 user to be able to login with an IdP, the user profile checkbox *External authentication only (OpenID or LDAP)* must be checked and *OpenID* field must match the claim (mapping claim) returned by the IdP. Email is used as the claim by default by both Google and Azure AD.
+> **Note**
+>
+> In order for a DHIS2 user to be able to log in with an IdP, the user profile checkbox: *External authentication only OpenID or LDAP* must be checked and *OpenID* field must match the claim (mapping claim) returned by the IdP. Email is the default claim used by both Google and Azure AD.
 
 ### Configure the Identity Provider for OIDC
 
-This topic provides information about configuring an identity provider (IdP) to use OIDC with DHIS2. This is one step in a multi-step process. The following topics provide information about configuring and using OIDC with DHIS2.
-
-#### Configure the IdP
-
-Before you can use OIDC with DHIS2, you must have an account at a supported identity provider (IdP) and a project or application with the IdP. When you configure DHIS2 you must provide the following information:
-
-* **Provider client ID:** This is the identifier that the IdP assigned to your application.
-
-* **Provider client secret:** This value is a secret and should be kept secure.
+This topic provides general information about configuring an identity provider (IdP) to use OIDC with DHIS2. This is one step in a multi-step process. Each IdP has slightly different ways to configure it. Check your IdP's own documentation for how to create and configure an OIDC application. Here we refer to the DHIS2 server as the OIDC "application".
 
 #### Redirect URL
 
-Some IdPs will require a redirect URL for your DHIS2 instance. You can construct your URL for the IdP using the following syntax:
+All IdPs will require a redirect URL to your DHIS2 server. 
+You can construct it using the following pattern:
 
 ```
-(protocol):/(your DHIS2 host)/oauth2/code/{IdP-code}
+(protocol):/(your DHIS2 host)/oauth2/code/PROVIDER_KEY
 ```
 
-An example looks like this:
+Example when using Google IdP:
 
 ```
-https://dhis2.org/oauth2/code/google
+https://mydhis2-server.org/oauth2/code/google
 ```
 
-#### Example IdP process (Google)
-
-The following procedure provides an outline of the steps that you follow with the provider. As an example, the procedure discusses using Google as an identity provider. However, each provider has a somewhat different flow, so the specifics of the steps and their order might vary depending on your provider.
-
-1. Register at the provider's developer site and sign in. For example, for Google, you can go to the Google [developer console](https://console.developers.google.com).
-
-2. Create a new project or application.
-
-3. In the developer dashboard, follow the steps for creating an OAuth 2.0 client ID and client secret. Record these values for later.
-
-4. Set your Authorized redirect URIs to: `(protocol):/(host)/oauth2/code/google` Keep the client secret in a secure place.
-
-Follow your IdP service instructions to configure your IdP:
+External links to instructions for configuring your IdP:
 
 * [Google](https://developers.google.com/identity/protocols/oauth2/openid-connect)
+* [Azure AD tutorial](https://medium.com/xebia-engineering/authentication-and-authorization-using-azure-active-directory-266980586ab8)
 
-* [Azure AD](https://medium.com/xebia-engineering/authentication-and-authorization-using-azure-active-directory-266980586ab8)
 
-> **Note**
+### Example setup for Google
+
+1. Register an account and sign in. For example, for Google, you can go to the Google [developer console](https://console.developers.google.com).
+2. In the Google developer dashboard, click 'create a new project'.
+3. Follow the instructions for creating an OAuth 2.0 client ID and client secret.
+4. Set your "Authorized redirect URL" to: `https://mydhis2-server.org/oauth2/code/google`
+5. Copy and keep the "client id" and "client secret" in a secure place.
+
+> **Tip**
 >
-> Azure AD Authorized redirect URIs must have this form: `(protocol):/(host)/oauth2/code/my_azure_ad_tenant_id`
+> When testing on a local DHIS2 instance running for example on your laptop, you can use localhost as the redirect URL, like this: `https://localhost:8080/oauth2/code/google`
+> *Remember to also add the redirect URL in the Google developer console*
 
-### Configure DHIS2 for OIDC
-
-> **Note**
->
-> Before you perform the following steps you must configure the OIDC identity provider as described in Configure the Identity Provider for OIDC.
-
-This section describes the configuration options to set in `dhis.conf`. Remember to restart DHIS 2 for changes to take effect.
-
-To enable OIDC, start by setting the following property in `dhis.conf`.
-
+#### Google dhis.conf example:
 ```properties
-oidc.oauth2.login.enabled = on
-```
 
-The following sections cover provider-specific configuration.
-
-#### Google
-
-```properties
-# ----------------------------------------------------------------------
-# Google OIDC Configuration
-# ----------------------------------------------------------------------
-
-# Generic config parameters
-
-# Enable OIDC
+# Enables OIDC login
 oidc.oauth2.login.enabled = on
 
-# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
-oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
+# Client id, given to you in the Google developer console
+oidc.provider.google.client_id = my client id
 
-# Google specific parameters:
-oidc.provider.google.client_id = my_client_id
-oidc.provider.google.client_secret = my_client_secret
+# Client secret, given to you in the Google developer console
+oidc.provider.google.client_secret = my client secret
 
-# DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
-oidc.provider.google.redirect_url = (protocol)://(host)/(optional app context)
+# [Optional] Authorized redirect URI, the same as set in the Google developer console 
+# If your public hostname is different from what the server sees internally, 
+# you need to provide your full public url, like the example below.
+oidc.provider.google.redirect_url = https://mydhis2-server.org/oauth2/code/goole
 
-# Optional, defaults to 'email'
-oidc.provider.google.mapping_claim = email
+# [Optional] Where to redirect after logging out.
+# If your public hostname is different from what the server sees internally, 
+# you need to provide your full public url, like the example below. 
+oidc.logout.redirect_url = https://mydhis2-server.org
 
 ```
 
-#### Azure AD
+### Example setup for Azure AD
 
-Note that Azure AD supports having multiple tenants, hence the numbering scheme `oidc.provider.azure.NUMBER.VARIABLE` below.
+Make sure your Azure AD account in the Azure portal is configured with a redirect URL like: `(protocol):/(host)/oauth2/code/PROVIDER_KEY`. 
+To register your DHIS2 server as an "application" in the Azure portal, follow these steps:
 
-Make sure your Azure AD account in the Azure portal is configured with a redirect URL like `(protocol):/(host)/oauth2/code/my_azure_ad_tenant_id`. To register DHIS 2 as an "app" in the Azure portal, follow these steps:
+> **Note**
+>
+> PROVIDER_KEY is the "name" part of the configuration key, example: "oidc.provider.PROVIDER_KEY.tenant = My Azure SSO"
+> If you have multiple Azure providers you want to configure, you can use this name form: (azure.0), (azure.1) etc.
+> Redirect URL example: https://mydhis2-server.org/oauth2/code/azure.0
 
 1. Search for and select *App registrations*.
-
 2. Click *New registration*.
-
-3. In the *Name* field, enter a descriptive name for your DHIS 2 instance.
-
+3. In the *Name* field, enter a descriptive name for your DHIS2 instance.
 4. In the *Redirect URI* field, enter the redirect URL as specified above.
-
 5. Click *Register*.
 
+#### Azure AD dhis.conf example:
 ```properties
-# ----------------------------------------------------------------------
-# Azure OIDC Configuration
-# ----------------------------------------------------------------------
 
-# Generic config parameters
-
-# Enable OIDC
+# Enables OIDC login
 oidc.oauth2.login.enabled = on
 
-# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
-oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
+# First provider (azure.0):
 
-# Azure AD specific parameters:
+# Alias, or name that will show on the login button in the DHIS2 login screen.
+oidc.provider.azure.0.tenant = organization name
 
-# First provider (0)
-oidc.provider.azure.0.tenant = my_azure_ad_tenant_id
-oidc.provider.azure.0.client_id = my_azure_ad_client_id
-oidc.provider.azure.0.client_secret = my_azure_ad_client_secret
+# Client id, given to you in the Azure portal
+oidc.provider.azure.0.client_id = my client id
 
-# DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
-oidc.provider.azure.0.redirect_url = (protocol)://(host)/(optional app context)
+# Client secret, given to you in the Azure portal
+oidc.provider.azure.0.client_secret = my client secret
 
-# Optional, defaults to 'email'
+# [Optional] Authorized redirect URI, the as set in Azure portal 
+# If your public hostname is different from what the server sees internally, 
+# you need to provide your full public url, like the example below.
+oidc.provider.azure.0.redirect_url = https://mydhis2-server.org/oauth2/code/azure.0
+
+# [Optional] Where to redirect after logging out.
+# If your public hostname is different from what the server sees internally, 
+# you need to provide your full public URL, like the example below.
+oidc.logout.redirect_url = https://mydhis2-server.org
+
+# [Optional], defaults to 'email'
 oidc.provider.azure.0.mapping_claim = email
 
-# Optional, defaults to 'true'
-oidc.provider.azure.0.support_logout = true
+# [Optional], defaults to 'on'
+oidc.provider.azure.0.support_logout = on
 
-# Second provider (1)
-oidc.provider.azure.1.tenant = my_other_azure_ad_tenant_id
+
+# Second provider (azure.1):
+
+oidc.provider.azure.1.tenant = other organization name
 ...
 ```
 
-#### Generic providers
+### Generic providers
 
-The generic provider can be used to configure any standard OIDC provider which are compatible with Spring Security.
+The generic provider can be used to configure "any" standard OIDC provider which are compatible with "Spring Security".
 
-In the example below we configure the Norwegian governmental _HelseID_ OIDC provider using the key `helseid`.
+In the example below we will configure the Norwegian governmental _HelseID_ OIDC provider using the provider key `helseid`.
 
-The client key will automatically appear as a button in the login page with the key value, or the value of the `display_alias` if defined. The `key` is arbitrary and can be any value, except for the keys used by the specific providers (`google`, `azure`, `wso2`). It is recommended to use a key which is descriptive and reflects the provider.
-
-The DHIS2 generic provider uses the following defaults:
-
-* Client Authentication: https://tools.ietf.org/html/rfc6749#section-2.3 > `ClientAuthenticationMethod.BASIC`
-
-* Authenticated Requests: https://tools.ietf.org/html/rfc6750#section-2 > `AuthenticationMethod.HEADER`
+The defined provider will appear as a button on the login page with the provider key as the default name, 
+or the value of the `display_alias` if defined. The provider key is arbitrary and can be any alphanumeric string, 
+except for the reserved names used by the specific providers (`google`, `azure.0,azure.1...`, `wso2`).
 
 > **Note**
->
-> The following client names are reserved for non-generic provider use and can not be used here: google, azure, wso2.
+> The generic provider uses the following hardcoded configuration defaults:
+> **(These are not possible to change)**
+> * Client Authentication, `ClientAuthenticationMethod.BASIC`: [rfc](https://tools.ietf.org/html/rfc6749#section-2.3)
+> * Authenticated Requests, `AuthenticationMethod.HEADER`: [rfc](https://tools.ietf.org/html/rfc6750#section-2) 
+
+#### Generic (helseid) dhis.conf example:
 
 ```properties
-# ----------------------------------------------------------------------
-# Generic OIDC Configuration
-# ----------------------------------------------------------------------
 
-# Generic config parameters
-
-# Enable OIDC
+# Enables OIDC login
 oidc.oauth2.login.enabled = on
 
-# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout (Where to end up after calling end_session_endpoint on the IdP)
-oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
-
-# This is the name displayed on the DHIS2 login page
-oidc.provider.helseid.display_alias = HelseID
-
+# Required variables:
 oidc.provider.helseid.client_id = CLIENT_ID
 oidc.provider.helseid.client_secret = CLIENT_SECRET
 oidc.provider.helseid.mapping_claim = helseid://claims/identity/email
 oidc.provider.helseid.authorization_uri = https://helseid.no/connect/authorize
-oidc.provider.helseid.enable_logout = true
 oidc.provider.helseid.token_uri = https://helseid.no/connect/token
 oidc.provider.helseid.user_info_uri = https://helseid.no/connect/userinfo
 oidc.provider.helseid.jwk_uri = https://helseid.no/.well-known/openid-configuration/jwks
 oidc.provider.helseid.end_session_endpoint = https://helseid.no/connect/endsession
 oidc.provider.helseid.scopes = helseid://scopes/identity/email
-oidc.provider.helseid.redirect_url = {baseUrl}/oauth2/code/{registrationId}
 
-# Link to an url for any logo here as long as it is served from the same domain as DHIS2
+# [Optional] Authorized redirect URI, the as set in Azure portal 
+# If your public hostname is different from what the server sees internally, 
+# you need to provide your full public url, like the example below.
+oidc.provider.helseid.redirect_url = https://mydhis2-server.org/oauth2/code/helseid
+
+# [Optional], defaults to 'on'
+oidc.provider.helseid.enable_logout = on
+
+# [Optional] Where to redirect after logging out.
+# If your public hostname is different from what the server sees internally, 
+# you need to provide your full public URL, like the example below.
+oidc.logout.redirect_url = https://mydhis2-server.org
+
+# [Optional] PKCE support, see: https://oauth.net/2/pkce/), default is 'false'
+oidc.provider.helseid.enable_pkce = on
+
+# [Optional] Extra variables appended to the request. 
+# Must be key/value pairs like: "KEY1 VALUE1,KEY2 VALUE2,..."
+oidc.provider.helseid.extra_request_parameters = acr_values lvl4,other_key value2
+
+# [Optional] This is the alias/name displayed on the login button in the DHIS2 login page
+oidc.provider.helseid.display_alias = HelseID
+
+# [Optional] Link to an url for a logo. (Can use absolute or relative URLs)
 oidc.provider.helseid.logo_image = ../security/btn_helseid.svg
+# [Optional] CSS padding for the logo image
 oidc.provider.helseid.logo_image_padding = 0px 1px
-
-# Appended to the request, must be key/value pairs like: "KEY1 VALUE1,KEY2 VALUE2,..."
-oidc.provider.helseid.extra_request_parameters = acr_values lvl4
-
-# For optional PKCE support, see: https://oauth.net/2/pkce/), default is 'false'
-oidc.provider.helseid.enable_pkce = true
 ```
 
 ### JWT bearer token authentication
 
-Authentication with *JWT bearer tokens* can be enabled for clients which API-based when OIDC is configured. The DHIS2 Android client is such a type of client and have to use JWT authentication if OIDC login is enabled.
+Authentication with *JWT bearer tokens* can be enabled for clients which API-based when OIDC is configured. 
+The DHIS2 Android client is such a type of client and have to use JWT authentication if OIDC login is enabled.
 
 > **Note**
 >
@@ -832,26 +825,13 @@ Authentication with *JWT bearer tokens* can be enabled for clients which API-bas
 The following `dhis.conf` section shows an example of how to enable JWT authentication for an API-based client.
 
 ```properties
-# ----------------------------------------------------------------------
-# Google OIDC Configuration with extra clients using JWT tokens 
-# ----------------------------------------------------------------------
 
-# Enable OIDC
+# Enables OIDC login
 oidc.oauth2.login.enabled = on
 
-# DHIS 2 instance URL, do not end with a slash, not all IdPs support logout
-# Refers to where to end up after calling end_session_endpoint on the IdP
-oidc.logout.redirect_url = (protocol)://(host)/(optional app context)
-
-# Google specific parameters:
+# Minimum required config variables:
 oidc.provider.google.client_id = my_client_id
 oidc.provider.google.client_secret = my_client_secret
-
-# DHIS 2 instance URL, do not end with a slash, e.g.: https://dhis2.org/demo
-oidc.provider.google.redirect_url = (protocol)://(host)/(optional app context)
-
-# Optional, defaults to 'email'
-oidc.provider.google.mapping_claim = email
 
 # Enable JWT support
 oauth2.authorization.server.enabled = off
@@ -864,6 +844,11 @@ oidc.provider.google.ext_client.0.client_id = JWT_CLIENT_ID
 oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
 
 ```
+
+> **Note**
+>
+> See link for a separate tutorial for setting up Okta as a generic OIDC provider. 
+> [link](../tutorials/configure-oidc-with-okta.md)
 
 ## LDAP configuration { #install_ldap_configuration } 
 
@@ -1031,8 +1016,7 @@ making the system inaccessible to users.
 There are a few aspects to configure in order to run DHIS 2
 in a cluster.
 
-* Each DHIS 2 instance must specify the other DHIS 2 instance members of 
-the cluster in *dhis.conf*.
+* Each DHIS 2 instance must have enabled Hibernate cache invalidation.
 
 * A Redis data store must be installed and connection information must 
 be provided for each DHIS 2 application instance in *dhis.conf*.
@@ -1044,86 +1028,90 @@ or a shared network drive.
 * A load balancer such as nginx must be configured to distribute Web requests
 across the cluster instances.
 
-### DHIS 2 instance cluster configuration { #install_cluster_configuration } 
+### DHIS 2 instance cache invalidation { #install_cluster_configuration }
 
-When setting up multiple Tomcat instances there is a need for making the
-instances aware of each other. This awareness will enable DHIS 2 to keep
-the local data (Hibernate) caches in sync and in a consistent state.
-When an update is done on one instance, the caches on the other
-instances must be notified so that they can be invalidated and avoid
-becoming stale.
+DHIS2 can invalidate the application cache by listening for replication events emitted by the PostgreSQL database. This allows for adding new DHIS2 instances without having to configure a unique ID for each "instance" in `dhis.conf`. 
 
-A DHIS 2 cluster setup is based on manual configuration of each
-instance. For each DHIS 2 instance one must specify the public
-*hostname* as well as the hostnames of the other instances participating
-in the cluster.
+Cache invalidation is based on the open-source project [Debezium](https://debezium.io/), which works by listening to the replication stream from a PostgreSQL database to detect updates made by other instances.
 
-The hostname of the server is specified using the *cluster.hostname*
-configuration property. Additional servers which participate in the
-cluster are specified using the *cluster.members* configuration
-property. The property expects a list of comma separated values where
-each value is of the format *host:port*.
+#### Prerequisites
 
-The hostname must be visible to the participating servers on the network
-for the clustering to work. You might have to allow incoming and
-outgoing connections on the configured port numbers in the firewall.
+* PostgreSQL version 10 or later.
+* Logical replication enabled in PostgreSQL.
+* PostgreSQL user must have replication authority.
 
-The port number of the server is specified using the *cluster.cache.port*
-configuration property. The remote object port used for registry receive
-calls is specified using *cluster.cache.remote.object.port*. Specifying
-the port numbers is typically only useful when you have multiple cluster
-instances on the same server or if you need to explicitly specify the ports 
-to match a firewall configuration. When running cluster instances on separate 
-servers it is often appropriate to use the default port number and omit 
-the ports configuration properties. If omitted, 4001 will be assigned as 
-the listener port and a random free port will be assigned as the remote 
-object port.
+#### PostgreSQL configuration
 
-The *node.id* configuration property can be used to provide an explicit identification string for an instance. Note that it is up to the administrators to make sure the Node IDs are unique across its cluster. DHIS2 will not enforce uniqueness and will continue to startup even if there are multiple instances in the cluster using the same node ID. 
+The following properties must be specified in the PostgreSQL configuration file:
 
-An example setup for a cluster of two web servers is described below.
-For *server A* available at hostname *193.157.199.131* the following can
-be specified in *dhis.conf*:
+```
+wal_level = logical
 
-```properties
-# Cluster configuration for server A
+# This number has to be the same or bigger as the total number of 
+# DHIS2 instances you intend to run at the same time.  
+max_replication_slots = 10
+max_wal_senders = 10              
 
-# Hostname for this web server
-cluster.hostname = 193.157.199.131
-
-# Ports for cache listener, can be omitted
-cluster.cache.port = 4001
-cluster.cache.remote.object.port = 5001
-
-# List of Host:port participating in the cluster
-cluster.members = 193.157.199.132:4001
-
-#node identification (optional). 
-node.id = nodeA1
 ```
 
-For *server B* available at hostname *193.157.199.132* the following can
-be specified in *dhis.conf* (notice how port configuration is omitted):
+#### DHIS2 configuration
 
-```properties
-# Cluster configuration for server B
+The following properties must be specified in the DHIS 2 `dhis.conf` configuration file:
 
-# Hostname for this web server
-cluster.hostname = 193.157.199.132
+```
+debezium.enabled = on 
+debezium.db.hostname = DHIS2_DATABASE_HOSTNAME
+debezium.db.port = DHIS2_DATABASE_PORT_NUMBER
+debezium.db.name = DHIS2_DATABASE_NAME
+debezium.connection.username = DHIS2_DATABASE_USER 
+debezium.connection.password = DHIS2_DATABASE_PASSWORD
 
-# List of servers participating in cluster
-cluster.members = 193.157.199.131:4001
-
-#node identification (optional). 
-node.id = nodeB1
+# [Optional] If you want the server to shutdown if the replication connection is lost (default is off)
+debezium.shutdown_on.connector_stop = on
 ```
 
-You must restart each Tomcat instance to make the changes take effect.
-The two instances have now been made aware of each other and DHIS 2 will
-ensure that their caches are kept in sync.
+#### Enable replication access on the database user
 
-To understand which node acts as the cluster leader you can access the `/api/36/cluster/leader` web API endpoint. Read more in the web API documentation.
+Execute the following statement with a PostgreSQL superuser to give replication access to your database user:
 
+```
+alter role {db-user} with replication;
+```
+
+#### Troubleshooting
+
+**Running out of available replication slots**
+
+Every time a DHIS2 instance is started, a new replication slot is created in the database. On every normal shutdown of
+the instance, the slot is automatically removed. However, if the server has not shut down normally, like for example on
+a power outage, the replication slot will remain in the database until it is manually removed. Each replication slot
+name includes the date it was created and a random string, such that no replication slot will ever have the same name.
+The number of available replication slots is fixed and is determined by the Postgres config variables: 
+'max_wal_senders' and 'max_replication_slots'.
+
+To manually remove old stale replication slots, you can use the following SQL statement:
+
+```
+select * from pg_replication_slots;
+```
+
+To remove a stale replication slot, you can use the following SQL statement (replace the slot ID):
+
+```
+select pg_drop_replication_slot('dhis2_1624530654__a890ba555e634f50983d4d6ad0fd63f1');
+```
+
+**Debezium engine losing connection to the database**
+
+If the replication connection fails and can not recover, the node will eventually be out of sync. To prevent this from
+happening, you can enable the server to shut down if it detects it has lost connection. This feature is disabled by
+default, since it will shut down the instance without warning. If however you have several instances in a typical load
+balanced setup and can tolerate that some instances are down, and you have adequate monitoring and alerting set up, you
+might consider enabling this. It can be enabled by setting this dhis.conf variable:
+
+```
+debezium.shutdown_on.connector_stop = on
+```
 
 ### Redis shared data store cluster configuration { #install_cluster_configuration_redis } 
 
@@ -1143,7 +1131,7 @@ notify-keyspace-events Egx
 ```
 
 DHIS2 will connect to Redis if the *redis.enabled* configuration
-property in *dhis.conf* is set to *true* along with the following properties:
+property in *dhis.conf* is set to *on* along with the following properties:
 
 - *redis.host*: Specifies where the redis server is running. Defaults to *localhost*. Mandatory.
 
@@ -1169,7 +1157,7 @@ configured is shown below.
 ```properties
 # Redis Configuration
 
-redis.enabled = true
+redis.enabled = on
 
 redis.host = 193.158.100.111
 
@@ -1265,7 +1253,7 @@ By default DHIS2 will start an embedded instance of ActiveMQ Artemis when bootin
 | amqp.port                 | 15672                 | If mode is `EMBEDDED`, the embedded server will bind to this port. If mode is `NATIVE`, the client will use this port to connect. |
 | amqp.username             | guest                 | Username to connect to if using `NATIVE` mode.               |
 | amqp.password             | guest                 | Password to connect to if using `NATIVE` mode.               |
-| amqp.embedded.persistence | false \| true         | If mode is `EMBEDDED`, this property controls persistence of the internal queue. |
+| amqp.embedded.persistence | off \| on         | If mode is `EMBEDDED`, this property controls persistence of the internal queue. |
 
 
 ## Monitoring
@@ -1732,11 +1720,11 @@ connection.pool.max_idle_time_excess_con=0
 #If this is a number greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
 connection.pool.idle.con.test.period=0
 
-#If true, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
+#If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
 connection.pool.test.on.checkout=false
 
-#If true, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: true)
-connection.pool.test.on.checkin=true
+#If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
+connection.pool.test.on.checkin=on
 
 #Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
 connection.pool.preferred.test.query=select 1
@@ -1863,6 +1851,15 @@ system.monitoring.username =
 
 # System monitoring password (sensitive)
 system.monitoring.password = xxxx
+
+# ----------------------------------------------------------------------
+# App Hub [Optional]
+# ----------------------------------------------------------------------
+
+# Base URL to the DHIS2 App Hub service
+apphub.base.url = https://apps.dhis2.org"
+# Base API URL to the DHIS2 App Hub service, used for app updates
+apphub.api.url = https://apps.dhis2.org/api
 ```
 
 ## Changelog { #install_changelog } 

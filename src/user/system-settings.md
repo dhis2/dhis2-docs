@@ -22,7 +22,7 @@ Table: General settings
 | **Enable multi-organisation unit forms** | Enables support to enter data forms for multiple organisation units at the same time in the **Data Entry** app.<br> <br>If you've enabled this setting, you can in the **Data Entry** app, click on the parent organisation unit for the children that you want to enter data for, and the data set list will include data sets that are assigned to the children of that parent. |
 | **Acceptance required before approval** | When this setting is selected, acceptance of data will be required first before submission to the next approval level is possible. |
 | **Gather analytical object statistics in dashboard views** | Gather usage analytics data when analytical objects (e.g., maps, charts, etc.) are viewed within a dashboard. Without this setting, analytics data on the objects  is gathered only when the objects are viewed outside of a dashboard. |
-| **Include passive dashboard views in usage analytics statistics** | (Reserved for future use) |
+| **Include passive dashboard views in usage analytics statistics** | Gather usage analytics data on the first dashboard shown when the Dashboard app is launched (otherwise only explicit dashboard selections are counted). |
 
 ## Analytics settings { #system_analytics_settings } 
 
@@ -80,6 +80,7 @@ Table: Appearance settings
 | **Application right-side footer** | Sets a text in the right-side footer area of the login page. |
 | **Style** | Sets the style (look-and-feel) of the system.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Style**.<br>      <br>    **Note**<br>     <br>    Due to technical reasons, it's not possible to change the color of the newest version of the header bar. The apps with the newest header bar will retain the blue header bar. |
 | **Start page** | Sets the page or app which the user will be redirected to after log in.<br> <br>Recommended setting: the **Dashboard** app. |
+| **Enable light-weight start page** | Instructs apps to render a light-weight and fast landing page. Recommended in low-bandwidth environments. |
 | **Help page link** | Defines the URL which users will see when they click **Profile** \>**Help**. |
 | **Flag** | Sets the flag which is displayed in the left menu of the **Dashboard** app. |
 | **Interface language** | Sets the language used in the user interface.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Interface language**. |

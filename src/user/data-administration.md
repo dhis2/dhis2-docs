@@ -6,7 +6,7 @@ database performance is optimised. These functions should be executed on
 a regular basis by a data administrator to ensure that the quality of
 the data stored is optimal.
 
-## Data integrity { #dataAdmin_dataIntegrity }
+## Data integrity { #data_admin_data_integrity }
 
 DHIS2 can perform a wide range of data integrity checks on the data
 contained in the database. Identifying and correcting data integrity
@@ -239,8 +239,6 @@ Reports all the violations in program indicator filter expression caused by inva
 
 ## Maintenance { #data_admin_maintenance }
 
-
-
 Table: Data maintenance functions in the Data Administration app
 
 | Function | Description |
@@ -257,7 +255,7 @@ Table: Data maintenance functions in the Data Administration app
 | Clear application cache | Clears the system cache. |
 | Reload apps | Manually reloads and detects installed DHIS2 apps.<br> <br>The installed apps are also detected when the system starts and when installing or uninstall apps. |
 
-## Resource tables { #dataAdmin_resourceTables }
+## Resource tables { #data_admin_resource_tables }
 
 Resource tables are supporting tables that are used during analysis of
 data. One would typically join the contents of these tables with the
@@ -333,7 +331,7 @@ system.
     This table provides a mapping between data elements and all possible
     category option combinations.
 
-## Analytics tables management { #analytics_tables_management }
+## Analytics tables management { #data_admin_analytics_tables }
 
 DHIS2 generates database tables which the system then uses as basis for
 various analytics functions. These tables are also valuable if you write
@@ -364,7 +362,7 @@ re-process.
 
 4.  Click **Start export**.
 
-## Data statistics { #dataAdmin_dataStatistics }
+## Data statistics { #data_admin__data_statistics }
 
 The data statistics module provides an overview of the number of objects
 stored in the DHIS2 database.
@@ -375,7 +373,7 @@ stored in the DHIS2 database.
 The total number of each type of object is presented in a series of
 tables with summary statistics of each object.
 
-## Lock exceptions { #dataAdmin_lockException }
+## Lock exceptions { #data_admin__lock_exception }
 
 Lock exceptions provide fine-grained control over exemption from a
 locked data set. After the expiry of the data set, data entry will be
@@ -398,7 +396,7 @@ expiry period of the data set has passed.
 In the example above, a data lock exception would be created for "Bo" for the
 "ART monthly summary" dataset for "February 2014".
 
-## Min-Max Value Generation { #dataAdmin_minMaxValueGeneration }
+## Min-Max Value Generation { #data_admin_min_max_value_generation }
 
 This administrative function can be used to generate min-max values,
 which are used as part of the data quality and validation process for
@@ -411,7 +409,7 @@ values which are currently stored in the database.
 
 ![](resources/images/maintenance/min_max_value_generation.png)
 
-## Cache Statistics { #dataAdmin_cacheStatistics }
+## Cache Statistics { #data_admin_cache_statistics }
 
 This option is for system administrators only to use. The cache
 statistics shows the status of the application level cache. The

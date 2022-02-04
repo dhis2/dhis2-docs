@@ -4,15 +4,13 @@
 
 This section covers the user resource methods.
 
-    /api/33/users
+    /api/users
 
 ### User query { #webapi_users_query } 
 
 The *users* resource offers additional query parameters beyond the
 standard parameters (e.g. paging). To query for users at the users
 resource you can use the following parameters.
-
-
 
 Table: User query parameters
 
@@ -37,7 +35,27 @@ A query for max 10 users with "konan" as first name or surname (case
 in-sensitive) who have a subset of authorities compared to the current
 user:
 
-    /api/33/users?query=konan&authSubset=true&pageSize=10
+    /api/users?query=konan&authSubset=true&pageSize=10
+
+To retrieve all user accounts which were initially self-registered:
+
+```
+/api/users?selfRegistered=true
+```
+
+#### User query by identifier
+
+You can retrieve full information about a user with a particular identifier with the following syntax.
+
+```
+/api/users/{id}
+```
+
+An example for a particular identifier looks like this:
+
+```
+/api/users/OYLGMiazHtW
+```
 
 ### User lookup
 

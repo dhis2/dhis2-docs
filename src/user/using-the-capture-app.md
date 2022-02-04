@@ -373,10 +373,11 @@ You now have two options:
 
 1. Open the **Capture** app.
 
-2. Select an organisation unit.
+2. Select a program.
 
-3. Select a program.
+3. Select an organisation unit or click the _all events_-link to view all events accessible to you.
 
+    ![](resources/images/capture_app/main-page-all-accessible-records.png)
     All events registered to the selected program show up in a list.
 
 4. Click the event you want to modify.
@@ -987,12 +988,6 @@ To go to Enrollment Overview page you can:
 ![](resources/images/capture_app/enrollment-event-view-edit-navigation.png)
 
 
-### Event Comment Widget
-
-![](resources/images/capture_app/event-widget-comment.png)
-
-The event comments widget displays and allows the addition of comments related to the currently selected event. The widget is displayed in the right sidebar when both viewing and editing events.
-
 ### Error Widget
 
 ![](resources/images/capture_app/enrollment-dash-error-widget-1.png)
@@ -1009,6 +1004,20 @@ This is the form where you can see and edit the enrollment event details.
 In the view/edit event form you can see the stage name and icon.
 
 ![](resources/images/capture_app/enrollment-event-view-edit-header.png)
+
+### Top bar context  
+
+At the top of the page you can see different informations related with the current context. You can see the program, the organization unit, the tracked entity, the enrollment date, the stage. 
+
+To go to Enrollment Overview page you can: 
+- deselect the stage from the top bar. 
+- deselect the event from the top bar. 
+
+![](resources/images/capture_app/enrollment-event-new-navigation.png) 
+
+### New event widget form
+This is the form where you can modify the event details before saving. In the header you can see the stage name and icon.
+![](resources/images/capture_app/new-event-widget-form-header.png)
 
 #### View mode
 
@@ -1030,13 +1039,31 @@ The widgets seen in the right-hand column will display and function the same way
 
 ## Add event in enrollment page
 
-You can reach this page add event page by clicking in the **New {stage event name}** button in the overview page.
+You can reach this page add event page by clicking in the **New {stage event name}** button in the overview page. 
+In this page you can switch between different tabs: **Report** to add new event, **Schedule** to schedule an event and **Refer** to refer event.
+If you have unsaved changes in one tab and switch to another tab, there will be a warning displayed.
 
 ### New event widget form
 
 This is the form where you can modify the event details before saving. In the header you can see the stage name and icon.
 
 ![](resources/images/capture_app/new-event-widget-form-header.png)
+
+### New event page without a stage
+
+If you enter the new event page with no stage selected, a list of available stages will be displayed.
+Select the stage you want to add a new event in by clicking the associated button.
+To navigate back to the enrollment overview, click the **Cancel without saving**-button
+
+![](resources/images/capture_app/enrollment-event-new-stage-selection-list.png)
+
+### Schedule event widget form
+Instead of reporting an event the user can select to schedule an event later. This is done with a scheduled date. The dialog will open with a suggested scheduled date, and this date is determined by a set of rules from program stage configuration and program configuration.
+
+Below the schedule date entry, user can choose to add a comment to the scheduled event.
+
+![](resources/images/capture_app/enrollment-add-event-schedule-page.png)
+
 
 ## Program stage event list 
 
@@ -1051,5 +1078,4 @@ In this view you can see all events in a stage
 In the header, you can see the stage name and icon 
 
 ![](resources/images/capture_app/program-stage-event-list-header.png)
-
 
