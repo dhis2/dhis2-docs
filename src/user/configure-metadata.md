@@ -4076,9 +4076,12 @@ sampled. For example:
 
 9.  Assign one or more **organisation unit levels**. The output value will be
     assigned to an organisation unit at this level (or these levels).
-    The input values depends on the selection below; **organisation units providing data**.
+    For **aggregate** data, the input values depends on the selection below; **organisation units providing data**.
+    For **tracker** based data,  the input values will come from the organisation unit to which the
+    output is assigned, or from any level lower under the output
+    organisation unit.
 
-10. **Organisation units providing data** controls where the input values comes from. If "at selected levels only", only organisation units in the selected levels are included. If "At selected levels and all levels below", all organisation units below the ones selected are also included.
+10. **Organisation units providing data** controls where the input values comes from for **aggregate** data. If "at selected levels only", only organisation units at the selected levels are included. If "At selected levels and all levels below" is selected, organisation units at the selected level(s) and all organisation units below are also included.
 10. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
 
     1.  Type a **Description** of the generator expression.
