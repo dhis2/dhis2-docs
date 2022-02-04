@@ -3818,7 +3818,7 @@ When you run this predictor at the organisation unit level where the data is
 collected, it will store 1 as the predicted value if the data element has a
 nonzero value for that organisation unit, otherwise 0.
 (If the data element that you predict into does not store zeros, then
-zeors will not be stored in the database, to save space.)
+zeros will not be stored in the database, to save space.)
 You can then sum this predicted value in analytics at a higher
 organisation unit level, to count the number of organisation units
 with a nonzero value that are under each organisation unit in the report.
@@ -4074,12 +4074,11 @@ sampled. For example:
 
 8.  Select a **Period type**.
 
-9.  Assign one or more organisation unit levels. The output value will be
+9.  Assign one or more **organisation unit levels**. The output value will be
     assigned to an organisation unit at this level (or these levels).
-    The input values will come from the organisation unit to which the
-    output is assigned, or from any level lower under the output
-    organisation unit.
+    The input values depends on the selection below; **organisation units providing data**.
 
+10. **Organisation units providing data** controls where the input values comes from. If "at selected levels only", only organisation units in the selected levels are included. If "At selected levels and all levels below", all organisation units below the ones selected are also included.
 10. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
 
     1.  Type a **Description** of the generator expression.
