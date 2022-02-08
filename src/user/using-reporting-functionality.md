@@ -24,9 +24,7 @@ the file and keep it locally on your computer for later use.
 ## Using dataset reports { #dataset_reports_in_the_beta_reports_app } 
 
 Dataset reports are printer friendly views of the data entry screen
-filled with either raw or aggregated data. These are only available for
-data sets that have custom data entry forms and not for default or
-section forms.
+filled with either raw or aggregated data.
 
 You can access data set reports from Apps-\>Reports.
 
