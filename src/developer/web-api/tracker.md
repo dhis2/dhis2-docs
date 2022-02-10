@@ -581,7 +581,9 @@ Table: Filter operators
 | LT | Less than |
 | LE | Less than or equal to |
 | NE | Not equal to |
-| LIKE | Like (free text match) |
+| LIKE | Free text match (Contains) |
+| SW | Starts with |
+| EW | Ends with |
 | IN | Equal to one of multiple values separated by ";" |
 
 ##### Response format { #webapi_tei_query_response_format } 
@@ -920,7 +922,9 @@ Table: Filter operators
 | LT | Less than |
 | LE | Less than or equal to |
 | NE | Not equal to |
-| LIKE | Like (free text match) |
+| LIKE | Free text match (Contains) |
+| SW | Starts with |
+| EW | Ends with |
 | IN | Equal to one of multiple values separated by ";" |
 
 ##### Response format { #webapi_tei_grid_query_response_format } 
