@@ -328,13 +328,13 @@ Currently, the tracker import endpoint supports the following parameters:
 | async | Indicates whether the import should happen asynchronously or synchronously. | Boolean | `TRUE`, `FALSE` |
 | reportMode | Only when performing synchronous import. See importSummary for more info. | Enum | `FULL`, `ERRORS`, `WARNINGS` |
 | importMode | Indicates the mode of import. Can either be validation only or commit (Default) | Enum | `VALIDATION`, `COMMIT` |
-| idScheme | Indicates the overall idScheme to use for metadata references when importing. Default is AUTO (UID). Can be overridden for specific metadata (Listed below) | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
-| dataElementIdScheme | Indicates the idScheme to use for data elements when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
-| orgUnitIdScheme | Indicates the idScheme to use for organisation units when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
-| programIdScheme | Indicates the idScheme to use for programs when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
-| programStageIdScheme | Indicates the idScheme to use for program stages when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
-| categoryOptionComboIdScheme | Indicates the idScheme to use for category option combos when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
-| categoryOptionIdScheme | Indicates the idScheme to use for category options when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE`, `AUTO` |
+| idScheme | Indicates the overall idScheme to use for metadata references when importing. Default is UID. Can be overridden for specific metadata (Listed below) | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
+| dataElementIdScheme | Indicates the idScheme to use for data elements when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
+| orgUnitIdScheme | Indicates the idScheme to use for organisation units when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
+| programIdScheme | Indicates the idScheme to use for programs when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
+| programStageIdScheme | Indicates the idScheme to use for program stages when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
+| categoryOptionComboIdScheme | Indicates the idScheme to use for category option combos when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
+| categoryOptionIdScheme | Indicates the idScheme to use for category options when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
 | importStrategy | Indicates the effect the import should have. Can either be `CREATE`, `UPDATE`, `CREATE_AND_UPDATE` and `DELETE`, which respectively only allows importing new data, importing changes to existing data, importing any new or updates to existing data, and finally deleting data. | Enum | `CREATE`, `UPDATE`, `CREATE_AND_UPDATE`, `DELETE` |
 | atomicMode | Indicates how the import responds to validation errors. If `ALL`, all data imported must be valid for any data to be committed. For `OBJECT`, only the data committed needs to be valid, while other data can be invalid. | Enum | `ALL`, `OBJECT` |
 | flushMode | Indicates the frequency of flushing. This is related to how often data is pushed into the database during the import. Primarily used for debugging reasons, and should not be changed in a production setting | Enum | `AUTO`, `OBJECT` |
@@ -342,6 +342,12 @@ Currently, the tracker import endpoint supports the following parameters:
 | skipPatternValidation | If true, it will skip validating the pattern of generated attributes. | Boolean | `TRUE`, `FALSE` |
 | skipSideEffects | If true, it will skip running any side effects for the import | Boolean | `TRUE`, `FALSE` |
 | skipRuleEngine | If true, it will skip running any program rules for the import | Boolean | `TRUE`, `FALSE` |
+
+**NOTE**: idScheme and its metadata specific idScheme parameters like
+orgUnitIdScheme, programIdScheme, ... used to allow and use the default `AUTO`.
+`AUTO` has been removed. The default idScheme has already been `UID`. Any
+requests sent with idScheme `AUTO` will see the same behavior as before, namely
+matching done using `UID`.
 
 ### Flat and nested payloads
 
