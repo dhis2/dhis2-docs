@@ -1400,7 +1400,7 @@ Relationships always include two entities, and these entities can include Tracke
 
 In addition, relationships can be defined as unidirectional or bidirectional. The only functional difference is currently that these requires different levels of access to create. Unidirectional relationships requires the user to have data write access to the “from” entity and data read access for the “to” entity, while bidirectional relationships require data write access for both sides.
 
-For more information about configuration and the meaning of 'From constraint' and 'To constraint', see [Relationship model](relationship_model#relationship_model_relationship_type).
+For more information about configuration and the meaning of 'From constraint' and 'To constraint', see [Relationship model](#relationship_model_relationship_type).
 
 ### Create or edit a relationship type { #create_relationship_type } 
 
@@ -1421,9 +1421,9 @@ For more information about configuration and the meaning of 'From constraint' an
 
 8. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
 
-9.  Select a 'From constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](relationship_model#relationship_model_relationship_type).
+9.  Select a 'From constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](#relationship_model_relationship_type).
 
-10. Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](relationship_model#relationship_model_relationship_type).
+10. Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](#relationship_model_relationship_type).
 
 11. Click **Save**.
 
@@ -1618,9 +1618,9 @@ To be able to search with a program, you will have to make some of the
 program attributes searchable. Unique program attributes will always be
 searchable.
 
-1.  Open **Program app**
+1.  Open **Maintenance app** and click **Program**
 
-2.  Open or create a tracker program
+2.  Open or create a Tracker program
 
 3.  Go to **Attributes**
 
@@ -1640,7 +1640,7 @@ Searchable program attributes will assigned to a search group.
     search.
 
 There are two limits that can be set for a program search, as part of
-the **Program** configuration.
+the **Program details** configuration.
 
   - Minimum number of attributes required to search: This property
     defines how many of the non-unique attributes that must be entered
