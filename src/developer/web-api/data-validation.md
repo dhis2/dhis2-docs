@@ -516,18 +516,32 @@ Since 2.38 data integrity checks have two levels, the summary level giving
 statistical overview, and the details level giving a list of issues each 
 pointing to an individual data integrity violation.
 
-To get the summary of a set of checks run:
+To trigger a summary analysis for a set of checks run:
+
+    POST /api/dataIntegrity/summary?checks=<name1>,<name2>
+
+This triggers a job that runs the check(s) asynchronously. 
+The job details are given in the POST response that returns immediately once the job is scheduled.
+The response's `Localtion` header points to the URL where the results can be fetched (see below). 
+
+To fetch the data integrity summary of the triggered check(s) use:
 
     GET /api/dataIntegrity/summary?checks=<name1>,<name2>
 
-When the `checks` parameter is omitted all checks are run.
+When the `checks` parameter is omitted all checks are run/fetched.
 
-The response is a "map" of check results, one for each check that ran.
+The response is a "map" of check results, one for each check that has completed already.
+This information is cached for 1h or until the check is rerun.
+To wait for the summary to be available in the cache a `timeout` in milliseconds can be added:
 
+    GET /api/dataIntegrity/summary?checks=<name1>,<name2>&timeout=500
+
+An example of a summary response could look like: 
 ```json
 {
   "<name1>": {
     "name": "<name1>",
+    "finishedTime": "2022-02-15 14:55",
     "section": "...",
     "severity": "WARNING",
     "description": "...",
@@ -536,6 +550,7 @@ The response is a "map" of check results, one for each check that ran.
   },
   "<name2>": {
     "name": "<name2>",
+    "finishedTime": "2022-02-15 14:58",
     "section": "...",
     "severity": "WARNING",
     "description": "...",
@@ -548,12 +563,28 @@ Alongside the check's information of `name`, `section`, `severity`,
 `description` and optionally `introduction` and `recommendation` the summary 
 contains the number of issues found as `count` and when possible how large 
 this count is in relation to all relevant entries as `percentage`.
+The `finishedTime` indicates when the analysis of the check finished.
+The cache will hold the result for 1h from this moment.
 
-Similarly to run a selection of details checks run:
+> **Note**
+> 
+> If a summary (or details) response "map" does not contain any data (field) for
+> a check included in the `checks` parameter list it is likely the case that
+> the check either never ran or has not yet finished running.
+> You can either use client side polling or add the `timeout` parameter to use
+> server side waiting for the requested results.
 
-    GET /api/dataIntegrity/details?checks=<name1>,<name2>
+Similarly to run a selection of details checks first trigger them using `POST`:
+
+    POST /api/dataIntegrity/details?checks=<name1>,<name2>
+
+Then fetch the results from the cache using:
+
+    GET /api/dataIntegrity/details?checks=<name1>,<name2>&timeout=500
 
 Again, not providing the `checks` parameter will run all checks.
+Omitting the `timeout` will not wait for results to be found in the cache 
+but instead not have a result for the requested check.
 
 The `/details` response returns a similar map again, just that each entry 
 does not have a `count` and `percentage` member but a list of `issues`.
@@ -562,6 +593,7 @@ does not have a `count` and `percentage` member but a list of `issues`.
 {
   "<name1>": {
     "name": "<name1>",
+    "finishedTime": "2022-02-15 14:55",
     "section": "...",
     "severity": "WARNING",
     "description": "...",
@@ -574,6 +606,7 @@ does not have a `count` and `percentage` member but a list of `issues`.
   },
   "<name2>": {
     "name": "<name2>",
+    "finishedTime": "2022-02-15 14:59",
     "section": "...",
     "severity": "WARNING",
     "description": "...",
@@ -585,6 +618,8 @@ The issue objects always have `id` and `name` members. Sometimes an
 additional `comment` is available that gives more context or insight into 
 why the data integrity is violated. In addition, the `refs` list might 
 sometimes also give the ids of other objects that contributed to the violation.
+The `finishedTime` indicates when the analysis of the check finished.
+The cache will hold the result for 1h from this moment.
 
 > **Tip**
 >
@@ -593,9 +628,27 @@ sometimes also give the ids of other objects that contributed to the violation.
 > such patterns can be used in a comma separated list and be mixed with full 
 > names as well. Duplicates will be eliminated. 
 
-### Running data integrity asynchronously (legacy) { #webapi_data_integrity_run_legacy } 
+Should a check analysis fail due to programming error or unforeseen data inconsistencies
+both the summary and the details will have an `error` field describing the error that occurred.
+In such case no data is available for the check.
 
-The operation of measuring data integrity is a fairly resource (and
+```json
+{
+  "<name1>": {
+    "name": "<name1>",
+    "finishedTime": "2022-02-15 14:55",
+    "section": "...",
+    "severity": "WARNING",
+    "description": "...",
+    "error": "what has happened",
+    "issues": []
+  }
+}
+```
+
+### Running full data integrity report (legacy) { #webapi_data_integrity_run_legacy } 
+
+The operation of performing data integrity analysis is a resource (and
 time) demanding task. It is therefore run as an asynchronous process and
 only when explicitly requested. Starting the task is done by forming an
 empty POST request to the *dataIntegrity* endpoint:
