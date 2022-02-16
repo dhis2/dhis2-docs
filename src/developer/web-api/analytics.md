@@ -1864,7 +1864,7 @@ Resources mentioned above share the following request parameter:
 | page            | no | Page number                                                                                       | Defaults to 1 (first page)                                                                                                                           |
 | pageSize        | no | Page size                                                                                         | Defaults to 50 elements per page                                                                                                                     |
 | paging          | no | Disables pagination when `false`                                                                  | `true` or `false`, defaults to `true`                                                                                                                |
-| order           | no | Allows sorting on the format: `order=field:direction`                                                                   | Sortable fields: `created` (default), `lastUpdated`, `code`, `uid`, `id`, `name`, `displayName`<br/><br/> Direction can be `ASC` (default) or `DESC` |
+| order           | no | Allows sorting on the format: `order=field:direction`                                                                   | Sortable fields: `created` (default), `lastUpdated`, `code`, `uid`, `id`, `name`, `displayName`, `dimensionType`<br/><br/> Direction can be `ASC` (default) or `DESC` |
 
 #### Dimension filters { #webapi_analytics_dimension_filters }
 
