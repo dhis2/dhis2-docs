@@ -1873,9 +1873,12 @@ Filters are in the format `filter=field:op:value&filter=field:op:value&...&filte
 
 Supported `field` values are:
 
+- **id**/**uid** - dimension id
+- **code** - dimension code
+- **valueType** - dimension value type
 - **name** - the name of the dimension
 - **dimensionType** - the type of the dimension 
-	- `DATA_ELEMENT`
+    - `DATA_ELEMENT`
     - `PROGRAM_INDICATOR`
     - `PROGRAM_ATTRIBUTE`
     - `CATEGORY`
@@ -1885,9 +1888,17 @@ Supported `field` values are:
 
 Supported `op`values are:
 
+- `startsWith` - field starts with
+- `!startsWith` - field does not start with
+- `endsWith` - field ends with
+- `!endsWith` - field does not end with- 
 - `eq` - equals
+- `ieq` - equals ignoring case
+- `ne` - not equals
 - `like` - contains
+- `!like` - does not contain
 - `ilike` - contains ignoring case
+- `!ilike` - does not contain ignoring case
 
 ### Event analytics dimensions
 #### Event query analytics dimensions { #webapi_event_query_analytics_dimension }
