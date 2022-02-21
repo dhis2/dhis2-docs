@@ -985,6 +985,30 @@ The default response JSON format will look similar to this:
       "meta": false
     },
     {
+      "name": "storedby",
+      "column": "Stored by",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "createdbydisplayname",
+      "column": "Created by (display name)",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "lastupdatedbydisplayname",
+      "column": "Last updated by (display name)",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
       "name": "coordinates",
       "column": "Coordinates",
       "type": "java.lang.String",
@@ -1643,6 +1667,30 @@ The default response JSON format will look similar to this:
       "column": "Incident date",
       "valueType": "DATE",
       "type": "java.util.Date",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "storedby",
+      "column": "Stored by",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "createdbydisplayname",
+      "column": "Created by (display name)",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "lastupdatedbydisplayname",
+      "column": "Last updated by (display name)",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
