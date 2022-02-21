@@ -1122,7 +1122,7 @@ Table: Metadata and RenderingType overview
 | Metadata type | Available RenderingTypes |
 |---|---|
 | Program Stage Section | * LISTING (default)<br> * SEQUENTIAL<br> * MATRIX |
-| Data element | * DEFAULT<br> * DROPDOWN<br> * VERTICAL_RADIOBUTTONS<br> * HORIZONTAL_RADIOBUTTONS<br> * VERTICAL_CHECKBOXES<br> * HORIZONTAL_CHECKBOXES<br> * SHARED_HEADER_RADIOBUTTONS<br> * ICONS_AS_BUTTONS<br> * SPINNER<br> * ICON<br> * TOGGLE<br> * VALUE<br> * SLIDER<br> * LINEAR_SCALE |
+| Data element | * DEFAULT<br> * DROPDOWN<br> * VERTICAL_RADIOBUTTONS<br> * HORIZONTAL_RADIOBUTTONS<br> * VERTICAL_CHECKBOXES<br> * HORIZONTAL_CHECKBOXES<br> * SHARED_HEADER_RADIOBUTTONS<br> * ICONS_AS_BUTTONS<br> * SPINNER<br> * ICON<br> * TOGGLE<br> * VALUE<br> * SLIDER<br> * LINEAR_SCALE<br> * AUTOCOMPLETE<br> * QR_CODE<br> * BAR_CODE<br> * GS1_DATAMATRIX |
 
 Since handling the default rendering of data elements and tracked entity
 attributes are depending on the value type of the object, there is also
@@ -1137,6 +1137,7 @@ Table: RenderingTypes allowed based on value types
 | BOOLEAN | No ||
 | - | Yes | DEFAULT, DROPDOWN, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, SHARED_HEADER_RADIOBUTTONS, ICONS_AS_BUTTONS, SPINNER, ICON |
 | INTEGER | No | DEFAULT, VALUE, SLIDER, LINEAR_SCALE, SPINNER |
+| TEXT                     | No | DEFAULT, VALUE, AUTOCOMPLETE, QR_CODE, BAR_CODE, GS1_DATAMATRIX |
 | INTEGER_POSITIVE | No ||
 | INTEGER_NEGATIVE | No ||
 | INTEGER_ZERO_OR_POSITIVE | No ||
