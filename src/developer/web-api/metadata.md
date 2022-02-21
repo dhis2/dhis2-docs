@@ -1131,19 +1131,19 @@ Program Stage Section is LISTING as default.
 
 Table: RenderingTypes allowed based on value types
 
-| Value type | Is object an optionset? | RenderingTypes allowed |
-|---|---|---|
-| TRUE_ONLY | No | DEFAULT, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, TOGGLE |
-| BOOLEAN | No ||
-| - | Yes | DEFAULT, DROPDOWN, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, SHARED_HEADER_RADIOBUTTONS, ICONS_AS_BUTTONS, SPINNER, ICON |
-| INTEGER | No | DEFAULT, VALUE, SLIDER, LINEAR_SCALE, SPINNER |
+| Value type               | Is object an optionset? | RenderingTypes allowed |
+|--------------------------|---|---|
+| TRUE_ONLY                | No | DEFAULT, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, TOGGLE |
+| BOOLEAN                  | No ||
+| -                        | Yes | DEFAULT, DROPDOWN, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, SHARED_HEADER_RADIOBUTTONS, ICONS_AS_BUTTONS, SPINNER, ICON |
+| INTEGER                  | No | DEFAULT, VALUE, SLIDER, LINEAR_SCALE, SPINNER |
 | TEXT                     | No | DEFAULT, VALUE, AUTOCOMPLETE, QR_CODE, BAR_CODE, GS1_DATAMATRIX |
-| INTEGER_POSITIVE | No ||
-| INTEGER_NEGATIVE | No ||
+| INTEGER_POSITIVE         | No ||
+| INTEGER_NEGATIVE         | No ||
 | INTEGER_ZERO_OR_POSITIVE | No ||
-| NUMBER | No ||
-| UNIT_INTERVAL | No ||
-| PERCENTAGE | No ||
+| NUMBER                   | No ||
+| UNIT_INTERVAL            | No ||
+| PERCENTAGE               | No ||
 
 A complete reference of the previous table can also be retrieved using
 the following endpoint:
