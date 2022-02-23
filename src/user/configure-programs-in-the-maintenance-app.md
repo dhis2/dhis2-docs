@@ -114,6 +114,7 @@ attributes and program parameters.
     | **Description** | A detailed description of the program. |
     | **Version** | The version of the program. This is used for example when people collect data offline in an Android implementation. When they go online and synchronize their metadata, they should get the latest version of the program. |
     | **Category combination** | The category combination you want to use. The default setting is **None**. |
+    | **Open days after category option end date** | If you selected a category combination other than None, you may enter zero or a positive number. This lets you enter data for this program for a category option up to the specified number of days after that category option's end date.    |
     | **Data approval workflow** | The data approval workflow you want to use. The default setting is **No value**. |
     | **Completed events expiry date** | Defines the number of days for which you can edit a completed event. This means that when an event is completed and the specified number of expiry days has passed, the event is locked.<br>     <br>If you set "Completed events expiry days" to 10", an event is locked ten days after the completion date. After this date you can no longer edit the event. |
     | **Expiry period type**<br>     <br>**Expiry days** | The expiry days defines for how many days after the end of the previous period, an event can be edited. The period type is defined by the expiry period type. This means that when the specified number of expiry days has passed since the end date of the previous period, the events from that period are locked.<br>     <br>If you set the expiry type to "Monthly" and the expiry days to "10" and the month is October, then you can't add or edit an event to October after the 10th of November. |
@@ -354,6 +355,7 @@ program. A program needs several types of metadata that you create in the **Main
 | **Version** |  The version of the program. This is used for example when people collect data offline in an Android implementation. When they go online and synchronize their metadata, they should get the latest version of the program.  |
 | **Tracked Entity Type** |  The tracked entity type you want to use. A program can only have one type of tracked entity.  |
 | **Category combination** |  The category combination you want to use. The default setting is **None**.  |
+| **Open days after category option end date** | If you selected a category combination other than None, you may enter zero or a positive number. This lets you enter data for this program for a category option up to the specified number of days after that category option's end date.    |
 | **Display front page list** |  Select checkbox to display a list of Tracked Entity Instances in Tracker Capture. If not selected, the Search will be displayed.  |
 | **First stage appears on registration page** |  Select checkbox to display the first program stage together with the registration (enrollment).  |
 | **Access level** | Choose the access level of the program. |
