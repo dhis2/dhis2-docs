@@ -44,24 +44,29 @@ This will produce a response similar to this:
   "mayUnapprove": false,
   "mayAccept": false,
   "mayUnaccept": false,
-  "state": "UNAPPROVED_ELSEWHERE"
+  "state": "APPROVED_HERE",
+  "approvedBy": "User A",
+  "approvedAt": "2022-01-13T12:56:07.005",
+  "acceptedBy": "User A",
+  "acceptedAt": "2022-01-13T12:56:07.005"
 }
 ```
 
 The returned parameters are:
 
-
-
 Table: Data approval returned parameters
 
 | Return Parameter | Description |
 |---|---|
-| mayApprove | Whether the current user may approve this data selection. |
-| mayUnapprove | Whether the current user may unapprove this data selection. |
-| mayAccept | Whether the current user may accept this data selection. |
-| mayUnaccept | Whether the current user may unaccept this data selection. |
-| state | One of the data approval states from the table below. |
-
+| mayApprove        | Whether the current user may approve this data selection. |
+| mayUnapprove      | Whether the current user may unapprove this data selection. |
+| mayAccept         | Whether the current user may accept this data selection. |
+| mayUnaccept       | Whether the current user may unaccept this data selection. |
+| state             | One of the data approval states from the table below. |
+| approvedBy        | If the selection is approved, and if present (not always needed), the user's name who made this approval. |
+| approvedAt        | If the selection is approved, and if present (not always needed), the date and time at which the highest level of approval was created. |
+| acceptedBy        | If the selection is approved, and if present (not always needed), the user's name who made the last update. |
+| acceptedAt        | If the selection is approved, and if present (not always needed), the date and time at which the highest level of approval was last updated. |
 
 
 Table: Data approval states
@@ -124,7 +129,11 @@ This will give you a response containing a list of approval parameters and statu
       "mayUnapprove": true,
       "mayAccept": true,
       "mayUnaccept": false,
-      "mayReadData": true
+      "mayReadData": true,
+      "approvedBy": "User A",
+      "approvedAt": "2022-01-13T12:56:07.005",
+      "acceptedBy": "User A",
+      "acceptedAt": "2022-01-13T12:56:07.005"      
     },
     "state": "APPROVED_HERE",
     "wf": "rIUL3hYOjJc"
@@ -153,7 +162,7 @@ The returned fields are described in the table below.
 | aoc         | Attribute option combination identifier |
 | pe          | Period identifier |
 | ou          | Organisation Unit identifier |
-| permissions | The permissions: 'mayApprove', 'mayUnapprove', 'mayAccept', 'mayUnaccept', and 'mayReadData' (same definitions as for get single approval status). |
+| permissions | The permissions: same definitions as for get single approval status (see table _Data approval returned parameters_) . |
 | state       | One of the data approval states (same as for get single approval status.) |
 | wf          | Data approval workflow identifier |
 

@@ -2,13 +2,13 @@
 
 ## About the Maps app { #about_maps }
 
-The Maps App is introduced in release 2.29 and serves as a replacement
+The Maps App was introduced in release 2.29 and serves as a replacement
 of the GIS App offering a more intuitive and user-friendly interface.
 The mapping engine from version 2.34 is based on WebGL technology,
 capable of showing thousands of features on a map simultaneously.
 
 With the Maps app you can overlay multiple layers and choose among
-different base maps. You can create thematic maps of areas and points,
+different basemaps. You can create thematic maps of areas and points,
 view facilities based on classifications, and visualize catchment areas
 for each facility. You can add labels to areas and points, and search
 and filter using various criteria. You can move points and set locations
@@ -29,7 +29,8 @@ and groups, or downloaded as an image.
     are arranged and managed in this panel.
 
   - The **basemap** is always shown in the panel. The default
-    basemap is OSM Light and is selected by default. OpenStreetMap
+    basemap is OSM Light and is selected by default, unless a different
+    basemap has been configured in the system settings. OpenStreetMap
     Detailed contains more map features and place names. There are 4
     basemaps from Bing Maps, replacing Google Maps provided in previous
     versions. Bing Road and Bing Dark shows roads, borders and places.
@@ -43,49 +44,7 @@ and groups, or downloaded as an image.
 <!-- end list -->
 
 - The **File** button near the top left allows you to open and save
-  maps:
-
-  - New
-
-    will clear any existing map layers to create a new map.
-
-  - Open
-
-    will display a dialog box with a list of existing maps where
-    they be opened, renamed, shared and deleted. _The title of the
-    current map is displayed in the header bar above the File
-    button._
-
-  - Save
-
-    will save any changes to the current map.
-
-  - Save as
-
-    will save the current map with a new name.
-
-  - Rename
-
-    allows you to change the name and/or description of the current
-    map.
-
-  - Translate
-
-    allows you to translate the name and/or description of the
-    current map.
-
-  - Share
-
-    will open a dialog where the current map can be shared with
-    everyone or a group of users.
-
-  - Get link
-
-    will provide a direct link to the current map.
-
-  - Delete
-
-    deletes the current map.
+  maps. See [using the maps file menu](#using_maps_file_menu) for more detailed information.
 
 <!-- end list -->
 
@@ -94,13 +53,7 @@ and groups, or downloaded as an image.
 <!-- end list -->
 
 - The **Interpretations** button at top right opens an interpretations
-  panel on the right side of the workspace. The button is only
-  clickable if the map is saved.
-
-  - **Map details** shows information about the current map.
-
-  - **Interpretations** allows you to view, add, edit and share
-    interpretations about the current map.
+  panel on the right side of the workspace. See [viewing interpretations](#mapsInterpretation) for more information.
 
 <!-- end list -->
 
@@ -387,16 +340,6 @@ layer** selection. This opens the Events layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
-### Open organisation unit profile
-
-You can open the [organisation unit profile](#using_maps_org_unit_profile) in two ways:
-
-1. Click on any of the organisasjon units shown on the map, and click
-   the **View profile** button in the popup.
-
-2. Right-click one of the organisation units, and select **View profile** from
-   the menu.
-
 ### Filter values in a thematic layer
 
 Thematic layers have a **data table** option that can be toggled on or
@@ -459,6 +402,18 @@ The data table displays the data forming the thematic layer.
 
 The NAME filter field in the data table provides an effective way of
 searching for individual organisation units.
+
+### Open organisation unit profile
+
+You can open the [organisation unit profile](#using_maps_org_unit_profile) in three ways:
+
+1. Click on any of the organisasjon units shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the organisation units on the map, and select **View profile**
+   from the menu.
+
+3. Click on an organisation unit row in the **data table**.
 
 ### Navigate between organisation hierarchies
 
@@ -993,16 +948,6 @@ layer**selection. This opens the Facility layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
-### Open organisation unit profile
-
-You can open the [organisation unit profile](#using_maps_org_unit_profile) in two ways:
-
-1. Click on any of the facilities shown on the map, and click
-   the **View profile** button in the popup.
-
-2. Right-click one of the facilities, and select **View profile** from
-   the menu.
-
 ### Filter values in a facility layer
 
 Facility layers have a **data table** option that can be toggled on or
@@ -1040,6 +985,18 @@ The data table displays the data forming the facility layer.
 
 The NAME filter field in the data table provides an effective way of
 searching for individual facilities.
+
+### Open organisation unit profile
+
+You can open the [organisation unit profile](#using_maps_org_unit_profile) in three ways:
+
+1. Click on any of the organisasjon units shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the organisation units on the map, and select **View profile**
+   from the menu.
+
+3. Click on an organisation unit row in the **data table**.
 
 ### Remove facility layer
 
@@ -1147,16 +1104,6 @@ layer** selection. This opens the org unit layer configuration dialog.
 
 3.  Click **UPDATE LAYER**.
 
-### Open organisation unit profile
-
-You can open the [organisation unit profile](#using_maps_org_unit_profile) in two ways:
-
-1. Click on any of the organisasjon units shown on the map, and click
-   the **View profile** button in the popup.
-
-2. Right-click one of the organisation units, and select **View profile** from
-   the menu.
-
 ### Filter values in an org unit layer
 
 Org unit layers have a **data table** option that can be toggled on or
@@ -1203,6 +1150,18 @@ The data table displays the data forming the org unit layer.
 The NAME filter field in the data table provides an effective way of
 searching for individual organisational units displayed in the org unit
 layer.
+
+### Open organisation unit profile
+
+You can open the [organisation unit profile](#using_maps_org_unit_profile) in three ways:
+
+1. Click on any of the organisasjon units shown on the map, and click
+   the **View profile** button in the popup.
+
+2. Right-click one of the organisation units on the map, and select **View profile**
+   from the menu.
+
+3. Click on an organisation unit row in the **data table**.
 
 ### Navigate between organisation hierarchies
 
@@ -1423,13 +1382,15 @@ The organisation unit profile shows detailed information about
 each organisation unit. You can open the profile from org unit, facility
 and thematic layers.
 
-You can open the organisation unit profile in two ways:
+You can open the organisation unit profile in three ways:
 
 1. Click on any of the organisasjon units shown on the map, and click
    the **View profile** button in the popup.
 
-2. Right-click one of the organisation units, and select **View profile** from
-   the menu.
+2. Right-click one of the organisation units on the map, and select **View profile**
+   from the menu.
+
+3. Click on an organisation unit row in the **data table**.
 
 The profile will show on the right side of the map. The profile contents is
 set by the system administrator.
@@ -1517,7 +1478,7 @@ everyone or a user group. To modify the sharing settings:
     Repeat the step to add more user groups.
 
 3.  If you want to allow external access, select the corresponding box.
-    
+
     Note that in order for logged in and not logged in users to have
     access, you must also allow public access.
 

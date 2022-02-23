@@ -49,6 +49,7 @@ Table: Analytics settings
 | **Allow users to open dashboard favorite in relevant app** | Allows users to open dashboard items in the app for that type of item, using the dashboard item menu. |
 | **Allow users to show dashboard favorite interpretations and details** | Allows users to see dashboard favorites' interpretations and details, using the dashboard item menu. |
 | **Allow users to view dashboard favorite in fullscreen** | Allows users to view dashboard favorites in fullscreen, using the dashboard item menu. |
+| **Default basemap** | Select which basemap will be selected by default in the **Maps** app. If no value is selected, then **OSM Light** will be used.|
 
 ## Server settings { #system_server_settings } 
 
@@ -60,7 +61,7 @@ Table: Server settings
 |---|---|
 | **Number of database server CPUs** | Sets the number of CPU cores of your database server.<br> <br>This allows the system to perform optimally when the database is hosted on a different server than the application server, since analytics in DHIS2 scales linearly with the number of available cores. |
 | **System notifications email address** | Defines the email address which will receive system notifications.<br> <br>Notifications about failures in processes such as analytics table generation will be sent here. This is useful for application monitoring. |
-| **Google Analytics (Universal Analytics) key** | Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.<br> <br>You can read more about Google Analytics at [http://google.com/analytics](http://google.com/analytics). |
+| **Google Analytics (Universal Analytics) key** | Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.<br> <br>You can read more about Google Analytics at [google.com/analytics](https://google.com/analytics). |
 | **Google Maps API key** | Defines the API key for the Google Maps API. This is used to display maps within DHIS2. |
 | **Bing Maps API key** | Defines the API key for the Bing Maps API. This is used to display maps within DHIS2. |
 
@@ -135,7 +136,7 @@ Table: Calendar settings
 
 | Setting | Description |
 |---|---|
-| **Calendar** | Defines which calendar the system will use.<br> <br>The system supports the following calendars: Coptic, Ethiopian, Gregorian, Islamic (Lunar Hijri), ISO 8601, Julian, Nepali, Persian (Solar Hijri) and Thai.<br>      <br>    **Note**<br>     <br>    This is a system wide setting. It is not possible to have multiple calendars within a single DHIS2 instance. |
+| **Calendar** | Defines which calendar the system will use.<br> <br>The system supports the following calendars: Coptic, Ethiopian, Gregorian, Islamic (Lunar Hijri), ISO 8601, Julian, Nepali, Persian (Solar Hijri) and Thai.<br><br>This is a system wide setting. It is not possible to have multiple calendars within a single DHIS2 instance.<br><br>[Refer here for more information about the difference between Gregorian and ISO 8601.](https://en.wikipedia.org/wiki/ISO_8601#Week_dates)</a> |
 | **Date format** | Defines which date format the system will use. |
 
 ## Data import settings { #system_data_import_settings } 

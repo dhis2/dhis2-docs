@@ -1919,6 +1919,15 @@ logging.file.max_archives = 2
 
 DHIS2 will eventually phase out logging to standard out / catalina.out and as a result it is recommended to rely on the logs under DHIS2\_HOME.
 
+DHIS2 will provide the following context values:
+
+* `sessionId`: Current user's session ID
+* `xRequestID`: An alphanumeric ID as send by the `X-Request-ID` HTTP header for the currently processed request; empty if not provided
+
+To use the context variables in the log add them using `-X{<name>}` to your log pattern as in this example:
+
+    * %-5p %d{ISO8601} %m (%F [%t])%n %X{sessionId} %X{xRequestID}
+
 ## Working with the PostgreSQL database { #install_working_with_the_postgresql_database } 
 
 Common operations when managing a DHIS2 instance are dumping and
