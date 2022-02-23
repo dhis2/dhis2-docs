@@ -1904,6 +1904,191 @@ For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" prog
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
 
+## Dimensions { #webapi_dimensions }
+
+Four resources allow to easily retrieve data dimensions:
+
+- [Event Query data dimensions](#webapi_event_query_analytics_dimension)`/analytics/events/query/dimensions` 
+- [Event Aggregate data dimensions](#webapi_event_aggregate_analytics_dimension) `/analytics/events/aggregate/dimensions`
+- [Enrollment Query data dimensions](#webapi_enrollment_query_analytics_dimension) `/analytics/enrollments/query/dimensions`
+- [Enrollment Aggregate data dimensions](#webapi_enrollment_aggregate_analytics_dimension) `/analytics/enrollments/aggregate/dimensions`
+
+Resources mentioned above share the following request parameter:
+
+| Query parameter | required                                         | Description                                                                                       | Options                                                                                                                                              |
+|-----------------|--------------------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| filter          | no                                               | Allows field value filtering on the format: <br/> `filter=field:OP:value&filter=field:OP:value&...` | See [dimension filters section].(#webapi_analytics_dimension_filters)                                                                                |
+| fields          | no                                               | Allows field filtering                                                  |
+| page            | no | Page number                                                                                       | Defaults to 1 (first page)                                                                                                                           |
+| pageSize        | no | Page size                                                                                         | Defaults to 50 elements per page                                                                                                                     |
+| paging          | no | Disables pagination when `false`                                                                  | `true` or `false`, defaults to `true`                                                                                                                |
+| order           | no | Allows sorting on the format: `order=field:direction`                                                                   | Sortable fields: `created` (default), `lastUpdated`, `code`, `uid`, `id`, `name`, `displayName`, `dimensionType`<br/><br/> Direction can be `ASC` (default) or `DESC` |
+
+#### Dimension filters { #webapi_analytics_dimension_filters }
+
+Dimensions endpoints support filtering the output to narrow down the response to desired elements.
+Filters are in the format `filter=field:op:value&filter=field:op:value&...&filter=field:op:value`.
+
+Supported `field` values are:
+
+- **id**/**uid** - dimension id
+- **code** - dimension code
+- **valueType** - dimension value type
+- **name** - the name of the dimension
+- **dimensionType** - the type of the dimension 
+    - `DATA_ELEMENT`
+    - `PROGRAM_INDICATOR`
+    - `PROGRAM_ATTRIBUTE`
+    - `CATEGORY`
+    - `CATEGORY_OPTION_GROUP_SET`
+- **displayName** - displayName of the dimension
+- **displayShortName** - displayShortName of the dimension
+
+Supported `op`values are:
+
+- `startsWith` - field starts with
+- `!startsWith` - field does not start with
+- `endsWith` - field ends with
+- `!endsWith` - field does not end with- 
+- `eq` - equals
+- `ieq` - equals ignoring case
+- `ne` - not equals
+- `like` - contains
+- `!like` - does not contain
+- `ilike` - contains ignoring case
+- `!ilike` - does not contain ignoring case
+
+### Event analytics dimensions
+#### Event query analytics dimensions { #webapi_event_query_analytics_dimension }
+
+The `/analytics/events/query/dimensions?programStageId=...` resource accepts a mandatory tracker program stage and returns the following data dimensions:
+
+- **Program indicators** associated with the program (derived from programStageId)
+- **Data elements** of *supported types* in the program stage
+- **Tracked entity attributes** of *supported types* associated with the program (derived from programStageId)
+- **Categories** in category combo associated with the program (derived from programStageId)
+- **Category option group sets** of type `ATTRIBUTE`
+
+All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
+
+#### Event aggregate dimensions { #webapi_event_aggregate_analytics_dimension }
+
+The `/analytics/events/aggregate/dimensions?programStageId=...` resource accepts a mandatory `programStageId` parameter and returns the following data dimensions:
+
+- **Data elements** of *supported types* in the program stage
+- **Tracked entity attributes** of *supported types* associated with the program (derived from programStageId)
+- **Categories** in category combo associated with the program (derived from programStageId)
+- **Category option group sets** of type `ATTRIBUTE` associated with program (derived from programStageId)
+
+Data elements and tracked entity attributes are considered *supported types* if their value type is one of the following:
+
+- `NUMBER`
+- `UNIT_INTERVAL`
+- `PERCENTAGE`
+- `INTEGER`
+- `INTEGER_POSITIVE`
+- `INTEGER_NEGATIVE`
+- `INTEGER_ZERO_OR_POSITIVE`
+- `BOOLEAN`
+- `TRUE_ONLY`
+
+### Enrollment analytics dimensions
+
+#### Enrollment query analytics dimensions { #webapi_enrollment_query_analytics_dimension }
+
+The `/analytics/enrollments/query/dimensions?programId=...` resource accepts a mandatory id of a tracker program and returns the following data dimensions:
+
+- **Program indicators** connected to the program
+- **Data elements** of *supported types* in the program, with program stage for each data element
+- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
+
+All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
+
+#### Enrollment aggregate dimensions { #webapi_enrollment_aggregate_analytics_dimension }
+
+The `/analytics/enrollments/aggregate/dimensions?programId=...` resource accepts a mandatory id of a tracker program, referring to a program with registration, and returns the following data dimensions:
+
+- **Data elements** of *supported types* in the program, with program stage for each data element
+- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
+
+Data elements and tracked entity attributes are considered *supported types* if their value type is one of the following:
+
+- `NUMBER`
+- `UNIT_INTERVAL`
+- `PERCENTAGE`
+- `INTEGER`
+- `INTEGER_POSITIVE`
+- `INTEGER_NEGATIVE`
+- `INTEGER_ZERO_OR_POSITIVE`
+- `BOOLEAN`
+- `TRUE_ONLY`
+
+### Sample request and response
+
+    GET /api/analytics/events/query/dimensions?programStageId=A03MvHHogjR&order=code&filter=name:ilike:weight
+    
+```json
+{
+   "page":1,
+   "total":5,
+   "pageSize":50,
+   "dimensions":[
+      {
+         "dimensionType":"PROGRAM_INDICATOR",
+         "created":"2015-08-06T22:49:20.128",
+         "lastUpdated":"2015-08-06T22:51:19.787",
+         "name":"Measles + Yellow fever doses low infant weight",
+         "displayName":"Measles + Yellow fever doses low infant weight",
+         "id":"tt54DiKuQ9c",
+         "uid":"tt54DiKuQ9c",
+         "displayShortName":"Measles + Yellow fever doses low infant weight"
+      },
+      {
+         "dimensionType":"PROGRAM_INDICATOR",
+         "created":"2017-01-20T10:32:26.388",
+         "lastUpdated":"2017-01-20T10:32:26.388",
+         "name":"Weight gain(in g) between birth and last postnatal",
+         "displayName":"Weight gain(in g) between birth and last postnatal",
+         "id":"qhTkqwAJLMv",
+         "uid":"qhTkqwAJLMv",
+         "displayShortName":"Weight gain(g)"
+      },
+      {
+         "dimensionType":"PROGRAM_INDICATOR",
+         "created":"2015-09-14T20:25:55.543",
+         "lastUpdated":"2018-08-28T12:22:47.857",
+         "name":"Average weight (g)",
+         "displayName":"Average weight (g)",
+         "id":"GxdhnY5wmHq",
+         "uid":"GxdhnY5wmHq",
+         "displayShortName":"Average weight (g)"
+      },
+      {
+         "dimensionType":"PROGRAM_INDICATOR",
+         "created":"2015-08-06T22:35:40.391",
+         "lastUpdated":"2015-08-06T22:35:40.391",
+         "name":"BCG doses low birth weight",
+         "displayName":"BCG doses low birth weight",
+         "id":"hCYU0G5Ti2T",
+         "uid":"hCYU0G5Ti2T",
+         "displayShortName":"BCG doses low birth weight"
+      },
+      {
+         "valueType":"NUMBER",
+         "dimensionType":"DATA_ELEMENT",
+         "created":"2012-09-20T17:37:45.474",
+         "lastUpdated":"2014-11-11T21:56:05.418",
+         "name":"MCH Weight (g)",
+         "displayName":"MCH Weight (g)",
+         "id":"A03MvHHogjR.UXz7xuGCEhU",
+         "uid":"UXz7xuGCEhU",
+         "code":"DE_2005736",
+         "displayShortName":"Weight (g)"
+      }
+   ]
+}
+```
+
 ## Org unit analytics { #webapi_org_unit_analytics } 
 
 The org unit analytics API provides statistics on org units classified by org unit group sets, i.e. counts of org units per org unit group within org unit group sets.
