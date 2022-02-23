@@ -2,13 +2,13 @@
 
 ## About the Maps app { #about_maps }
 
-The Maps App is introduced in release 2.29 and serves as a replacement
+The Maps App was introduced in release 2.29 and serves as a replacement
 of the GIS App offering a more intuitive and user-friendly interface.
 The mapping engine from version 2.34 is based on WebGL technology,
 capable of showing thousands of features on a map simultaneously.
 
 With the Maps app you can overlay multiple layers and choose among
-different base maps. You can create thematic maps of areas and points,
+different basemaps. You can create thematic maps of areas and points,
 view facilities based on classifications, and visualize catchment areas
 for each facility. You can add labels to areas and points, and search
 and filter using various criteria. You can move points and set locations
@@ -29,7 +29,8 @@ and groups, or downloaded as an image.
     are arranged and managed in this panel.
 
   - The **basemap** is always shown in the panel. The default
-    basemap is OSM Light and is selected by default. OpenStreetMap
+    basemap is OSM Light and is selected by default, unless a different
+    basemap has been configured in the system settings. OpenStreetMap
     Detailed contains more map features and place names. There are 4
     basemaps from Bing Maps, replacing Google Maps provided in previous
     versions. Bing Road and Bing Dark shows roads, borders and places.
@@ -43,49 +44,7 @@ and groups, or downloaded as an image.
 <!-- end list -->
 
 - The **File** button near the top left allows you to open and save
-  maps:
-
-  - New
-
-    will clear any existing map layers to create a new map.
-
-  - Open
-
-    will display a dialog box with a list of existing maps where
-    they be opened, renamed, shared and deleted. _The title of the
-    current map is displayed in the header bar above the File
-    button._
-
-  - Save
-
-    will save any changes to the current map.
-
-  - Save as
-
-    will save the current map with a new name.
-
-  - Rename
-
-    allows you to change the name and/or description of the current
-    map.
-
-  - Translate
-
-    allows you to translate the name and/or description of the
-    current map.
-
-  - Share
-
-    will open a dialog where the current map can be shared with
-    everyone or a group of users.
-
-  - Get link
-
-    will provide a direct link to the current map.
-
-  - Delete
-
-    deletes the current map.
+  maps. See [using the maps file menu](#using_maps_file_menu) for more detailed information.
 
 <!-- end list -->
 
@@ -94,13 +53,7 @@ and groups, or downloaded as an image.
 <!-- end list -->
 
 - The **Interpretations** button at top right opens an interpretations
-  panel on the right side of the workspace. The button is only
-  clickable if the map is saved.
-
-  - **Map details** shows information about the current map.
-
-  - **Interpretations** allows you to view, add, edit and share
-    interpretations about the current map.
+  panel on the right side of the workspace. See [viewing interpretations](#mapsInterpretation) for more information.
 
 <!-- end list -->
 

@@ -4500,9 +4500,8 @@ cultural region.
 ### About external map layers { #about_gis_map_layers } 
 
 You can customize GIS by including map layers from various sources and
-combine them with your own data in DHIS2. DHIS2 supports common map
-service formats such as Web Map Service (WMS), Tile Map Service (TMS)
-and XYZ tiles.
+combine them with your own data in DHIS2. DHIS2 supports these common map
+service formats: Web Map Service (WMS), Tile Map Service (TMS), XYZ tiles and Vector tiles (Vector Style).
 
 ### Create or edit an external map layer { #create_external_map_layer } 
 
@@ -4534,7 +4533,7 @@ Table: External map layer objects in the Maintenance app
 
 5.  Select a **Map service** format.
 
-    DHIS2 supports three common map service formats:
+    DHIS2 supports four common map service formats:
 
       - Web Map Service (WMS)
 
@@ -4549,6 +4548,10 @@ Table: External map layer objects in the Maintenance app
       - Tile Map Service (TMS)
 
       - XYZ tiles (can also be used for WMTS)
+
+      - Vector tiles (Vector Style)
+
+      When Vector Style is chosen, you can then add a value for "Before layer id". It indicates the layer id in the Vector tile (layer) stack at which the user's layers (such as Thematic, Events) will be inserted. If this value isn't set, then the user's layers will be placed on top of the layers in the Vector Style. The map service URL should be to a JSON document that follows the [Mapbox GL Style Spec](https://docs.mapbox.com/mapbox-gl-js/style-spec/). 
 
 6.  Enter the **URL** to the map service.
 
@@ -4566,12 +4569,14 @@ Table: External map layer objects in the Maintenance app
 8.  Select a **Placement**:
 
       - **Bottom - basemap**: For the Maps app, this makes the external map layer
-        selectable as the base map (i.e. as an alternative to the DHIS2
-        base maps).
+        selectable as the basemap (i.e. as an alternative to the DHIS2
+        basemaps).
 
       - **Top - overlay**: For the Maps app, this allows the external map to
         be added from the Add Layer selection and placed anywhere above
-        the base map.
+        the basemap.
+
+    Note that Vector Style layers can only be added as a basemap.
 
 9.  (Optional) Add a legend.
 
