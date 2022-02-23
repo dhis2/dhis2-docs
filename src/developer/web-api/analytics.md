@@ -805,6 +805,7 @@ Table: Query parameters for event query analytics only
 | coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
 | coordinateOuFallback | No | Program instance geometry is applied whenever organization unit geometry is missing. | false &#124; true |
 | dataIdScheme | No | Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response. | NAME &#124; CODE &#124; UID |
+| headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
 
@@ -1488,6 +1489,8 @@ in the table below.
 | E7225      | Program stage is mandatory for data element dimensions in enrollment analytics queries |
 | E7226      | Dimension is not a valid query item |
 | E7227      | Relationship entity type not supported |
+| E7228      | Fallback coordinate field is invalid |
+| E7229      | Operator does not allow missing value |
 
 ## Enrollment analytics { #webapi_enrollment_analytics } 
 
@@ -1618,6 +1621,7 @@ Table: Query parameters for enrollment query endpoint
 | asc | No | Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code. | ENROLLMENTDATE &#124; INCIDENTDATE&#124; OUNAME &#124; OUCODE |
 | desc | No | Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code. | ENROLLMENTDATE &#124; INCIDENTDATE&#124; OUNAME &#124; OUCODE |
 | coordinatesOnly | No | Whether to only return enrollments which have coordinates. | false &#124; true |
+| headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
 
