@@ -1028,6 +1028,7 @@ Table: Payload
 | enrollmentStatus | The TEIs enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELED ||
 | followup | When this parameter is true, the filter only returns TEIs that have an enrollment with status followup. ||
 | enrollmentCreatedPeriod | Period object containing a period in which the enrollment must be created. See *Period* definition table below. | { "periodFrom": -15, "periodTo": 15} |
+| attributeValueFilters | A list of attributeValueFilters. This is used to specify filters for attribute values when listing tracked entity instances | "attributeValueFilters"=[{       "attribute": "abcAttributeUid",       "le": "20",       "ge": "10",       "lt": "20",       "gt": "10",       "in": ["India", "Norway"],       "like": "abc",       "sw": "abc",       "ew": "abc",       "dateFilter": {         "startDate": "2014-05-01",         "endDate": "2019-03-20",         "startBuffer": -5,         "endBuffer": 5,         "period": "LAST_WEEK",         "type": "RELATIVE"       }     }] |
 | eventFilters | A list of eventFilters. See *Event filters* definition table below. | [{"programStage": "eaDH9089uMp", "eventStatus": "OVERDUE", "eventCreatedPeriod": {"periodFrom": -15, "periodTo": 15}}] |
 
 
@@ -1043,6 +1044,16 @@ Table: Event filters definition
 | assignedUsers | To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"] |
 
 
+Table: DateFilterPeriod object definition
+
+||||
+|---|---|---|
+| type | Specify whether the date period type is ABSOLUTE &#124; RELATIVE | "type" : "RELATIVE" |
+| period | Specify if a relative system defined period is to be used. Applicable only when "type" is RELATIVE. (see [Relative Periods](#webapi_date_relative_period_values) for supported relative periods) | "period" : "THIS_WEEK" |
+| startDate | Absolute start date. Applicable only when "type" is ABSOLUTE | "startDate":"2014-05-01" |
+| endDate | Absolute end date. Applicable only when "type" is ABSOLUTE | "startDate":"2014-05-01" |
+| startBuffer | Relative custom start date. Applicable only when "type" is RELATIVE | "startBuffer":-10 |
+| endBuffer | Relative custom end date. Applicable only when "type" is RELATIVE | "startDate":+10 |
 
 Table: Period definition
 
