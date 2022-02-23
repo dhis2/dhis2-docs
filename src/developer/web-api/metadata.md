@@ -2296,12 +2296,12 @@ object (e.g. the dashboard) in the metadata response.
 ## Subscriptions { #webapi_subscription } 
 
 A logged user can subscribe to certain types of objects. Currently
-subscribable objects are those of type Chart, EventChart, EventReport,
-Map, ReportTable and Visualization.
+subscribable objects are those of type EventChart, EventReport,
+Map, Visualization and EventVisualization.
 
 > **Note**
 >
-> The Chart and ReportTable objects are deprecated. Use Visualization instead.
+> The EventChart and EventReport objects are deprecated. Use EventVisualization instead.
 
 To get the subscribers of an object (return an array of user IDs) you
 can make a *GET* request:
@@ -2310,7 +2310,7 @@ can make a *GET* request:
 
 See example as follows:
 
-    /api/charts/DkPKc1EUmC2/subscribers
+    /api/visualizations/DkPKc1EUmC2/subscribers
 
 To check whether the current user is subscribed to an object (returns a
 boolean) you can perform a *GET* call:
@@ -2319,7 +2319,7 @@ boolean) you can perform a *GET* call:
 
 See example as follows:
 
-    /api/charts/DkPKc1EUmC2/subscribed
+    /api/visualizations/DkPKc1EUmC2/subscribed
 
 To subscribe/de-subscribe to an object you perform a *POST/DELETE*
 request (no content type required):
