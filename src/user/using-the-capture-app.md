@@ -921,14 +921,15 @@ The enrollment comment widget displays comments and allows addition of comments,
 
 By clicking in the text field, you will be able to enter new text and see action buttons **Save comment** and **Cancel**.
 
-#### Person profile widget
+#### Tracked entity instance profile widget
 
-On the enrollment dashboard, you can view the Person Profile widget.
+On the enrollment dashboard, you can view the tracked entity instance profile widget. Inside the profile widget you can view the key attributes values. 
 
 ![](resources/images/capture_app/enrollment-dash-tei-profile-widget.png)
 
-The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
+Click the **Edit** button to make changes to the tracked entity instance profile. Editing the profile opens a dialog where the profile attributes can be changed.
 
+![](resources/images/capture_app/enrollment-dash-tei-profile-widget-edit.png)
 
 ### Feedback widget
 
