@@ -848,6 +848,13 @@ When you deselect the enrollment you see the following
 
 ![](resources/images/capture_app/enrollment-dash-08.png)
 
+
+###Quick actions
+
+The quick actions widget offers shortcuts for frequently used actions for the current enrollment.
+
+![](resources/images/capture_app/enrollment-dashboard-quick-actions.png)
+
 ### Program stage list
 
 Stages can be collapsed or expanded to reveal the events inside.
@@ -921,14 +928,15 @@ The enrollment comment widget displays comments and allows addition of comments,
 
 By clicking in the text field, you will be able to enter new text and see action buttons **Save comment** and **Cancel**.
 
-#### Person profile widget
+#### Tracked entity instance profile widget
 
-On the enrollment dashboard, you can view the Person Profile widget.
+On the enrollment dashboard, you can view the tracked entity instance profile widget. Inside the profile widget you can view the key attributes values. 
 
 ![](resources/images/capture_app/enrollment-dash-tei-profile-widget.png)
 
-The Person profile widget is used for viewing key attributes but not for editing. In order to edit the person profile, you must select the `Edit` button to open an edit window. 
+Click the **Edit** button to make changes to the tracked entity instance profile. Editing the profile opens a dialog where the profile attributes can be changed.
 
+![](resources/images/capture_app/enrollment-dash-tei-profile-widget-edit.png)
 
 ### Feedback widget
 
@@ -987,12 +995,6 @@ To go to Enrollment Overview page you can:
 
 ![](resources/images/capture_app/enrollment-event-view-edit-navigation.png)
 
-
-### Event Comment Widget
-
-![](resources/images/capture_app/event-widget-comment.png)
-
-The event comments widget displays and allows the addition of comments related to the currently selected event. The widget is displayed in the right sidebar when both viewing and editing events.
 
 ### Error Widget
 
@@ -1054,6 +1056,30 @@ If you have unsaved changes in one tab and switch to another tab, there will be 
 This is the form where you can modify the event details before saving. In the header you can see the stage name and icon.
 
 ![](resources/images/capture_app/new-event-widget-form-header.png)
+
+### New event page without a stage
+
+If you enter the new event page with no stage selected, a list of available stages will be displayed.
+Select the stage you want to add a new event in by clicking the associated button.
+To navigate back to the enrollment overview, click the **Cancel without saving**-button
+
+![](resources/images/capture_app/enrollment-event-new-stage-selection-list.png)
+
+### Schedule event widget form
+Instead of reporting an event the user can select to schedule an event later. This is done with a scheduled date. The dialog will open with a suggested scheduled date, and this date is determined by a set of rules from program stage configuration and program configuration.
+
+- if program stage has **Next schedule date** then the suggested date is the most recent next schedule date
+- if program has **Standard interval days** then the suggested date is calculated by the most recent event date plus the standard interval days value
+- if no value is found after these 2 steps, then the suggested date will be defined by enrollment date and incident date. In case the option **Generate events based on enrollment date** is checked in the Maintenance app, the suggested date is calculated by the enrollment date plus the value of minimum days from the start. In case the option **Show incident date** is checked, the suggested date is calculated by the incident date plus the value of minimum days from the start.
+
+User can also find more information about how many events that scheduled on the same selected date or the interval of selected date and the suggested date from the information box below.
+
+Below the schedule date entry, user can choose to add a comment to the scheduled event.
+
+After clicking **Schedule** button, user will be navigated back to enrollment overview page.
+
+![](resources/images/capture_app/enrollment-add-event-schedule-page.png)
+
 
 ## Program stage event list 
 

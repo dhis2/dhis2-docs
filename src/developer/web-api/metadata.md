@@ -1122,7 +1122,7 @@ Table: Metadata and RenderingType overview
 | Metadata type | Available RenderingTypes |
 |---|---|
 | Program Stage Section | * LISTING (default)<br> * SEQUENTIAL<br> * MATRIX |
-| Data element | * DEFAULT<br> * DROPDOWN<br> * VERTICAL_RADIOBUTTONS<br> * HORIZONTAL_RADIOBUTTONS<br> * VERTICAL_CHECKBOXES<br> * HORIZONTAL_CHECKBOXES<br> * SHARED_HEADER_RADIOBUTTONS<br> * ICONS_AS_BUTTONS<br> * SPINNER<br> * ICON<br> * TOGGLE<br> * VALUE<br> * SLIDER<br> * LINEAR_SCALE |
+| Data element | * DEFAULT<br> * DROPDOWN<br> * VERTICAL_RADIOBUTTONS<br> * HORIZONTAL_RADIOBUTTONS<br> * VERTICAL_CHECKBOXES<br> * HORIZONTAL_CHECKBOXES<br> * SHARED_HEADER_RADIOBUTTONS<br> * ICONS_AS_BUTTONS<br> * SPINNER<br> * ICON<br> * TOGGLE<br> * VALUE<br> * SLIDER<br> * LINEAR_SCALE<br> * AUTOCOMPLETE<br> * QR_CODE<br> * BAR_CODE<br> * GS1_DATAMATRIX |
 
 Since handling the default rendering of data elements and tracked entity
 attributes are depending on the value type of the object, there is also
@@ -1131,18 +1131,19 @@ Program Stage Section is LISTING as default.
 
 Table: RenderingTypes allowed based on value types
 
-| Value type | Is object an optionset? | RenderingTypes allowed |
-|---|---|---|
-| TRUE_ONLY | No | DEFAULT, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, TOGGLE |
-| BOOLEAN | No ||
-| - | Yes | DEFAULT, DROPDOWN, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, SHARED_HEADER_RADIOBUTTONS, ICONS_AS_BUTTONS, SPINNER, ICON |
-| INTEGER | No | DEFAULT, VALUE, SLIDER, LINEAR_SCALE, SPINNER |
-| INTEGER_POSITIVE | No ||
-| INTEGER_NEGATIVE | No ||
+| Value type               | Is object an optionset? | RenderingTypes allowed |
+|--------------------------|---|---|
+| TRUE_ONLY                | No | DEFAULT, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, TOGGLE |
+| BOOLEAN                  | No ||
+| -                        | Yes | DEFAULT, DROPDOWN, VERTICAL_RADIOBUTTONS, HORIZONTAL_RADIOBUTTONS, VERTICAL_CHECKBOXES, HORIZONTAL_CHECKBOXES, SHARED_HEADER_RADIOBUTTONS, ICONS_AS_BUTTONS, SPINNER, ICON |
+| INTEGER                  | No | DEFAULT, VALUE, SLIDER, LINEAR_SCALE, SPINNER |
+| TEXT                     | No | DEFAULT, VALUE, AUTOCOMPLETE, QR_CODE, BAR_CODE, GS1_DATAMATRIX |
+| INTEGER_POSITIVE         | No ||
+| INTEGER_NEGATIVE         | No ||
 | INTEGER_ZERO_OR_POSITIVE | No ||
-| NUMBER | No ||
-| UNIT_INTERVAL | No ||
-| PERCENTAGE | No ||
+| NUMBER                   | No ||
+| UNIT_INTERVAL            | No ||
+| PERCENTAGE               | No ||
 
 A complete reference of the previous table can also be retrieved using
 the following endpoint:
@@ -1590,7 +1591,7 @@ Table: Merge payload fields
 | dataApprovalMergeStrategy | No       | Strategy for merging data approval records. Options: `LAST_UPDATED` (default), `DISCARD`. |
 | deleteSources             | No       | Whether to delete the source organisation units after the operation. Default is true. |
 
-The merge operation will merge the source org units into the target org unit. It is recommended to first create a new target org unit before performing the split, and at a minimum ensure that no aggregate data exists for the target org unit. Any number of source org units can be specified.
+The merge operation will merge the source org units into the target org unit. It is recommended to first create a new target org unit before performing the merge, and at a minimum ensure that no aggregate data exists for the target org unit. Any number of source org units can be specified.
 
 The merge operation will transfer all of the metadata associations of the source org units over to the target org unit. This includes data sets, programs, org unit groups, category options, users, visualizations, maps and event reports. The operation will also transfer all event and tracker data, such as events, enrollments, ownership history, program ownership and tracked entities, over to the target org unit.
 
@@ -1878,6 +1879,7 @@ Table: programRuleVariable
 |---|---|---|
 | name | the name for the programRuleVariable - this name is used in expressions. #{myVariable} \> 5 | Compulsory |
 | sourceType | Defines how this variable is populated with data from the enrollment and events. <br> * DATAELEMENT_NEWEST_EVENT_PROGRAM_STAGE - In tracker capture, gets the newest value that exists for a data element, within the events of a given program stage in the current enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.<br> * DATAELEMENT_NEWEST_EVENT_PROGRAM - In tracker capture, get the newest value that exists for a data element across the whole enrollment. In event capture, gets the newest value among the 10 newest events on the organisation unit.<br> * DATAELEMENT_CURRENT_EVENT - Gets the value of the given data element in the current event only.<br> * DATAELEMENT_PREVIOUS_EVENT - In tracker capture, gets the newest value that exists among events in the program that precedes the current event. In event capture, gets the newvest value among the 10 preceeding events registered on the organisation unit.<br> * CALCULATED_VALUE - Used to reserve a variable name that will be assigned by a ASSIGN program rule action<br> * TEI_ATTRIBUTE - Gets the value of a given tracked entity attribute | Compulsory |
+| valueType | valueType parameter defines the type of the value that this ProgramRuleVariable can contain. Its value is dependent on sourceType parameter. If source is DataElement or TrackedEntityAttribute<br> then valueType will be derived from valueType of the source. When the sourceType is CALCULATED_VALUE, then valueType should be provided by the user otherwise it will default <br> to ValueType.TEXT| Compulsory
 | dataElement | Used for linking the programRuleVariable to a dataElement. Compulsory for all sourceTypes that starts with DATAELEMENT_. | See description |
 | trackedEntity- Attribute | Used for linking the programRuleVariable to a trackedEntityAttribute. Compulsory for sourceType TEI_ATTRIBUTE. | See description |
 | useCodeFor- OptionSet | If checked, the variable will be populated with the code - not the name - from any linked option set. Default is unchecked, meaning that the name of the option is populated. ||
