@@ -3818,7 +3818,7 @@ When you run this predictor at the organisation unit level where the data is
 collected, it will store 1 as the predicted value if the data element has a
 nonzero value for that organisation unit, otherwise 0.
 (If the data element that you predict into does not store zeros, then
-zeors will not be stored in the database, to save space.)
+zeros will not be stored in the database, to save space.)
 You can then sum this predicted value in analytics at a higher
 organisation unit level, to count the number of organisation units
 with a nonzero value that are under each organisation unit in the report.
@@ -4074,13 +4074,15 @@ sampled. For example:
 
 8.  Select a **Period type**.
 
-9.  Assign one or more organisation unit levels. The output value will be
+9.  Assign one or more **organisation unit levels**. The output value will be
     assigned to an organisation unit at this level (or these levels).
-    The input values will come from the organisation unit to which the
+    For **aggregate** data, the input values depends on the selection below; **organisation units providing data**.
+    For **tracker** based data,  the input values will come from the organisation unit to which the
     output is assigned, or from any level lower under the output
     organisation unit.
 
-10. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
+10. **Organisation units providing data** controls where the input values comes from for **aggregate** data. If "at selected levels only", only organisation units at the selected levels are included. If "At selected levels and all levels below" is selected, organisation units at the selected level(s) and all organisation units below are also included.
+11. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
 
     1.  Type a **Description** of the generator expression.
 
@@ -4164,7 +4166,7 @@ sampled. For example:
         | percentileCont(0.5, #{T7OyqQpUpNd}) | Continuous 50th percentile of the sampled values for data element T7OyqQpUpNd. Note that this is the same as median(#{T7OyqQpUpNd}) |
         | if(count(#{T7OyqQpUpNd}) == 1, 0, stddevSamp(#{T7OyqQpUpNd})) | If there is one sample value present for data element T7OyqQpUpNd, then 0, otherwise the sample standard deviation of these sample values. (Note that if no samples are present then the stddevSamp returns no value, so no value is predicted.) |
 
-11. (Optional) Create a **Sample skip test**. The sample skip test tells
+12. (Optional) Create a **Sample skip test**. The sample skip test tells
     which previous periods if any to exclude from the sample.
 
     1.  Type a **Description** of the skip test.
@@ -4191,22 +4193,22 @@ sampled. For example:
         | #{uF1DLnZNlWe} \> 0 | The value of data element uF1DLnZNlWe (sum of all disaggregations) is greater than the zero |
         | #{FTRrcoaog83} \> #{M62VHgYT2n0} &#124;&#124; #{uF1DLnZNlWe} \> 0 | The value of data element FTRrcoaog83 (sum of all disaggregations) is greater than the value of data element M62VHgYT2n0 (sum of all disaggregations) or the value of data element uF1DLnZNlWe (sum of all disaggregations) is greater than the zero |
 
-12. Enter a **Sequential sample count** value.
+13. Enter a **Sequential sample count** value.
 
     This is for how many sequential periods the calculation should go
     back in time to sample data for the calculations.
 
-13. Enter an **Annual sample count** value.
+14. Enter an **Annual sample count** value.
 
     This is for how many years the calculation should go back in time to
     sample data for the calculations.
 
-14. (Optional) Enter a **Sequential skip count** value.
+15. (Optional) Enter a **Sequential skip count** value.
 
     This is how many sequential periods, immediately preceding the
     predicted value period, should be skipped before sampling the data.
 
-15. Click **Save**.
+16. Click **Save**.
 
 ### Create or edit a predictor group { #create_predictor_group } 
 
