@@ -532,7 +532,7 @@ Analytics `query` resources support extra parameters to express periods.
 
 Default `pe` dimension fallbacks to:
 
-- `executionDate` for `/analytics/events/query`
+- `eventDate` for `/analytics/events/query`
 - `enrollmentDate` for `/analytics/enrollments/query`
 
 It is, however, possible to add conditions on one or more date field and combine them.
