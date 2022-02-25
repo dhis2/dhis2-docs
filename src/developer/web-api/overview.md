@@ -535,7 +535,7 @@ Default `pe` dimension fallbacks to:
 - `eventDate` for `/analytics/events/query`
 - `enrollmentDate` for `/analytics/enrollments/query`
 
-It is, however, possible to add conditions on one or more date field and combine them.
+It is, however, possible to add conditions on one or more date fields and combine them.
 
 #### Usage of custom date periods
 
@@ -561,11 +561,9 @@ All of these conditions can be combined with `pe` dimension:
 
 `analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&...`
 
-Supported formats are the one described in "date and period format" above plus an extra one provided to express custom date periods to express ranges of dates within two days.
+Supported formats are described in "date and period format" above. An extra format is provided to express a range of dates: `yyyyMMdd_yyyyMMdd` and `yyyy-MM-dd_yyyy-MM-dd`.
 
-`yyyyMMdd_yyyyMMdd` and `yyyy-MM-dd_yyyy-MM-dd`
-
-ex.:
+In the example bellow, the endpoint will return events that are scheduled to happen between 20210101 and 20210104:
 
 `analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&scheduledDate=20210101_20210104&...`
 
