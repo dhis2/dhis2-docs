@@ -526,6 +526,49 @@ for creating dynamic reports. The available relative period values are:
     LAST_3_MONTHS, LAST_6_BIMONTHS, LAST_4_QUARTERS, LAST_2_SIXMONTHS, THIS_FINANCIAL_YEAR,
     LAST_FINANCIAL_YEAR, LAST_5_FINANCIAL_YEARS
 
+### Custom date periods { #webapi_date_custom_date_periods }
+
+Analytics `query` resources support extra parameters to express periods.
+
+Default `pe` dimension fallbacks to:
+
+- `executionDate` for `/analytics/events/query`
+- `enrollmentDate` for `/analytics/enrollments/query`
+
+It is, however, possible to add conditions on one or more date field and combine them.
+
+#### Usage of custom date periods
+
+In resources supporting custom date periods, there are extra query parameters that will be combined to express conditions on the time dimension.
+
+| custom date period | events query resource  | enrollment query resource |
+|--------------------|------------------------|---------------------------|
+| `eventDate`        | [x]                    | [ ]                       |
+| `enrollmentDate`   | [x]                    | [x]                       |
+| `scheduledDate`    | [x]                    | [ ]                       |
+| `incidentDate`     | [x]                    | [x]                       |
+| `lastUpdated`      | [x]                    | [x]                       |
+
+Conditions can be expressed in the following form:
+
+`analytics/events/query/...?...&eventDate=2021&...`
+
+It's possible to combine more time fields in the same query:
+
+`analytics/events/query/...?...&eventDate=2021&incidentDate=202102&...`
+
+All of these conditions can be combined with `pe` dimension:
+
+`analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&...`
+
+Supported formats are the one described in "date and period format" above plus an extra one provided to express custom date periods to express ranges of dates within two days.
+
+`yyyyMMdd_yyyyMMdd` and `yyyy-MM-dd_yyyy-MM-dd`
+
+ex.:
+
+`analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&scheduledDate=20210101_20210104&...`
+
 
 ## Authorities
 System authority ids and names can be listed using:
