@@ -808,6 +808,11 @@ Table: Query parameters for event query analytics only
 | headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
+| eventDate | no | (`events` resource only) Custom period on `eventDate` (see "custom date periods" section) | see "date and period format" section |
+| enrollmentDate | no | Custom period on `enrollmentDate` (see "custom date periods" section) | see "date and period format" section |
+| scheduledDate | no | (`events` resource only) Custom period on `scheduledDate` (see "custom date periods" section) | see "date and period format" section |
+| incidentDate | no | Custom period on `incidentDate` (see "custom date periods" section) | see "date and period format" section |
+| lastUpdated | no | Custom period on `lastUpdated` (see "custom date periods" section) | see "date and period format" section |
 
 
 
