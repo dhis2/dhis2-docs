@@ -1927,24 +1927,24 @@ The purpose of this endpoint is to retrieve Relationships between objects.
 
 Unlike other tracked objects endpoints, Relationship only expose one endpoint:
 
-- `GET /api/tracker/relationships?[tei={teiUid}|enrollment={enrollmentUid}|event={eventUid}]&fields=[fields]`
+- `GET /api/tracker/relationships?[trackedEntity={trackedEntityUid}|enrollment={enrollmentUid}|event={eventUid}]&fields=[fields]`
 
 #### Request parameters
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`tei`|`String`|`uid`| Identifier of a Tracked Entity Instance|
+|`trackedEntity`|`String`|`uid`| Identifier of a Tracked Entity Instance|
 |`enrollment`|`String`|`uid`| Identifier of an Enrollment |
-|`event`|`String`|`uid`| Identifier of and Event|
+|`event`|`String`|`uid`| Identifier of an Event|
 |`fields`|`String`| | **Not implemented yet:** Only includes specified properties in the response| 
 
 The following rules apply to the query parameters.
 
-- only one parameter among `tei`,`enrollment`,`event` can be passed
+- only one parameter among `trackedEntity`, `enrollment`, `event` can be passed
 
 > **NOTE**
 >
-> Using tracked entity, Enrollment or Event params, will return any relationship where the tei, enrollment or
+> Using tracked entity, Enrollment or Event params, will return any relationship where the trackedEntity, enrollment or
 > event is part of the relationship (either from or to). As long as user has access, that is.
 >
 
