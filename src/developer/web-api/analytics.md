@@ -787,8 +787,8 @@ Table: Query parameters for both event query and aggregate analytics
 | dimension | Yes | Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. | Operators can be EQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; IN |
 | filter | No | Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. ||
 | hierarchyMeta | No | Include names of organisation unit ancestors and hierarchy paths of organisation units in the metadata. | false &#124; true |
-| eventStatus | No | Specify status of events to include. | ACTIVE &#124; COMPLETED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED |
-| programStatus | No | Specify enrollment status of events to include. | ACTIVE &#124; COMPLETED &#124; CANCELLED |
+| eventStatus | No | Specify status of events to include. | ACTIVE &#124; COMPLETED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED. Can be comma separated (*for query only*). |
+| programStatus | No | Specify enrollment status of events to include. | ACTIVE &#124; COMPLETED &#124; CANCELLED. Can be comma separated (*for query only*). |
 | relativePeriodDate | string | No | Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
 | columns | No | Dimensions to use as columns for table layout. | Any dimension (must be query dimension) |
 | rows | No | Dimensions to use as rows for table layout. | Any dimension (must be query dimension) |
@@ -805,8 +805,14 @@ Table: Query parameters for event query analytics only
 | coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
 | coordinateOuFallback | No | Program instance geometry is applied whenever organization unit geometry is missing. | false &#124; true |
 | dataIdScheme | No | Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response. | NAME &#124; CODE &#124; UID |
+| headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
+| eventDate | no | (`events` resource only) Custom period on `eventDate` (see "custom date periods" section) | see "date and period format" section |
+| enrollmentDate | no | Custom period on `enrollmentDate` (see "custom date periods" section) | see "date and period format" section |
+| scheduledDate | no | (`events` resource only) Custom period on `scheduledDate` (see "custom date periods" section) | see "date and period format" section |
+| incidentDate | no | Custom period on `incidentDate` (see "custom date periods" section) | see "date and period format" section |
+| lastUpdated | no | Custom period on `lastUpdated` (see "custom date periods" section) | see "date and period format" section |
 
 
 
@@ -925,13 +931,25 @@ Table: Filter operators
 | Operator | Description |
 |---|---|
 | EQ | Equal to |
+| !EQ | Not equal to |
+| IEQ | Equal to, ignoring case |
+| !IEQ | Not equal to, ignoring case |
 | GT | Greater than |
 | GE | Greater than or equal to |
 | LT | Less than |
 | LE | Less than or equal to |
 | NE | Not equal to |
 | LIKE | Like (free text match) |
+| !LIKE | Not like (free text match) |
+| ILIKE | Like, ignoring case (free text match) |
+| !ILIKE | Not like, ignoring case (free text match) |
 | IN | Equal to one of multiple values separated by ";" |
+
+#### Time Field Filtering
+
+By default, the `query` endpoints filter periods based on `eventDate`.
+However, it is possible to filter entries based on `lastUpdated` instead, by using the `timeField` query parameter.
+    &timeField=LAST_UPDATED
 
 #### Response formats
 
@@ -983,6 +1001,38 @@ The default response JSON format will look similar to this:
       "type": "java.lang.String",
       "hidden": false,
       "meta": false
+    },
+    {
+      "name": "storedby",
+      "column": "Stored by",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "lastupdated",
+      "column": "Last Updated",
+      "valueType": "DATE",
+      "type": "java.time.LocalDate",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "createdbydisplayname",
+      "column": "Created by (display name)",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "lastupdatedbydisplayname",
+      "column": "Last updated by (display name)",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
     },
     {
       "name": "coordinates",
@@ -1047,6 +1097,8 @@ The default response JSON format will look similar to this:
       "yx9IDINf82o",
       "Zj7UnCAulEk",
       "2016-08-05",
+      "system",
+      "2018-08-07",
       "[5.12, 1.23]",
       "Ngelehun",
       "OU_559",
@@ -1058,6 +1110,8 @@ The default response JSON format will look similar to this:
       "IPNa7AsCyFt",
       "Zj7UnCAulEk",
       "2016-06-12",
+      "system",
+      "2018-08-07",
       "[5.22, 1.43]",
       "Ngelehun",
       "OU_559",
@@ -1069,6 +1123,8 @@ The default response JSON format will look similar to this:
       "ZY9JL9dkhD2",
       "Zj7UnCAulEk",
       "2016-06-15",
+      "system",
+      "2018-08-07",
       "[5.42, 1.33]",
       "Ngelehun",
       "OU_559",
@@ -1080,6 +1136,8 @@ The default response JSON format will look similar to this:
       "MYvh4WAUdWt",
       "Zj7UnCAulEk",
       "2016-06-16",
+      "system",
+      "2018-08-07",
       "[5.32, 1.53]",
       "Ngelehun",
       "OU_559",
@@ -1458,6 +1516,8 @@ in the table below.
 | E7225      | Program stage is mandatory for data element dimensions in enrollment analytics queries |
 | E7226      | Dimension is not a valid query item |
 | E7227      | Relationship entity type not supported |
+| E7228      | Fallback coordinate field is invalid |
+| E7229      | Operator does not allow missing value |
 
 ## Enrollment analytics { #webapi_enrollment_analytics } 
 
@@ -1533,6 +1593,13 @@ You can specify multiple filters for a given item by repeating the operator and 
 
     &dimension=qrur9Dvnyt5:GT:5:LT:15
 
+#### Time Field Filtering
+
+By default, the `query` endpoints filter periods based on `enrollmentDate`.
+However, it is possible to filter entries based on `lastUpdated` instead, by using the `timeField` query parameter.
+
+    &timeField=LAST_UPDATED
+
 ##### NV keyword
 A special keyword `NV` can be used to filter by `null` values
 
@@ -1588,6 +1655,7 @@ Table: Query parameters for enrollment query endpoint
 | asc | No | Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code. | ENROLLMENTDATE &#124; INCIDENTDATE&#124; OUNAME &#124; OUCODE |
 | desc | No | Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code. | ENROLLMENTDATE &#124; INCIDENTDATE&#124; OUNAME &#124; OUCODE |
 | coordinatesOnly | No | Whether to only return enrollments which have coordinates. | false &#124; true |
+| headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
 
@@ -1643,6 +1711,46 @@ The default response JSON format will look similar to this:
       "column": "Incident date",
       "valueType": "DATE",
       "type": "java.util.Date",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "storedby",
+      "column": "Stored by",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "lastupdated",
+      "column": "Last Updated",
+      "valueType": "DATE",
+      "type": "java.time.LocalDate",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "storedby",
+      "column": "Stored by",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "createdbydisplayname",
+      "column": "Created by (display name)",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
+      "hidden": false,
+      "meta": true
+    },
+    {
+      "name": "lastupdatedbydisplayname",
+      "column": "Last updated by (display name)",
+      "valueType": "TEXT",
+      "type": "java.lang.String",
       "hidden": false,
       "meta": true
     },
@@ -1766,6 +1874,8 @@ The default response JSON format will look similar to this:
       "to8G9jAprnx",
       "2019-02-02 12:05:00.0",
       "2019-02-02 12:05:00.0",
+      "system",
+      "2020-08-06 21:20:52.0",
       "",
       "0.0",
       "0.0",
@@ -1780,6 +1890,8 @@ The default response JSON format will look similar to this:
       "SJtv0WzoYki",
       "2019-02-02 12:05:00.0",
       "2019-02-02 12:05:00.0",
+      "system",
+      "2020-08-06 21:20:52.0",
       "",
       "0.0",
       "0.0",
@@ -1794,6 +1906,8 @@ The default response JSON format will look similar to this:
       "PGzTv2A1xzn",
       "2019-02-02 12:05:00.0",
       "2019-02-02 12:05:00.0",
+      "system",
+      "2020-08-06 21:20:52.0",
       "",
       "0.0",
       "0.0",
@@ -1808,6 +1922,8 @@ The default response JSON format will look similar to this:
       "pav3tGLjYuq",
       "2019-02-03 12:05:00.0",
       "2019-02-03 12:05:00.0",
+      "system",
+      "2020-08-06 21:20:52.0",
       "",
       "0.0",
       "0.0",
@@ -1845,6 +1961,191 @@ For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" prog
       &startDate=2019-01-01&endDate=2019-01-31    
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
+
+## Dimensions { #webapi_dimensions }
+
+Four resources allow to easily retrieve data dimensions:
+
+- [Event Query data dimensions](#webapi_event_query_analytics_dimension)`/analytics/events/query/dimensions` 
+- [Event Aggregate data dimensions](#webapi_event_aggregate_analytics_dimension) `/analytics/events/aggregate/dimensions`
+- [Enrollment Query data dimensions](#webapi_enrollment_query_analytics_dimension) `/analytics/enrollments/query/dimensions`
+- [Enrollment Aggregate data dimensions](#webapi_enrollment_aggregate_analytics_dimension) `/analytics/enrollments/aggregate/dimensions`
+
+Resources mentioned above share the following request parameter:
+
+| Query parameter | required                                         | Description                                                                                       | Options                                                                                                                                              |
+|-----------------|--------------------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| filter          | no                                               | Allows field value filtering on the format: <br/> `filter=field:OP:value&filter=field:OP:value&...` | See [dimension filters section].(#webapi_analytics_dimension_filters)                                                                                |
+| fields          | no                                               | Allows field filtering                                                  |
+| page            | no | Page number                                                                                       | Defaults to 1 (first page)                                                                                                                           |
+| pageSize        | no | Page size                                                                                         | Defaults to 50 elements per page                                                                                                                     |
+| paging          | no | Disables pagination when `false`                                                                  | `true` or `false`, defaults to `true`                                                                                                                |
+| order           | no | Allows sorting on the format: `order=field:direction`                                                                   | Sortable fields: `created` (default), `lastUpdated`, `code`, `uid`, `id`, `name`, `displayName`, `dimensionType`<br/><br/> Direction can be `ASC` (default) or `DESC` |
+
+#### Dimension filters { #webapi_analytics_dimension_filters }
+
+Dimensions endpoints support filtering the output to narrow down the response to desired elements.
+Filters are in the format `filter=field:op:value&filter=field:op:value&...&filter=field:op:value`.
+
+Supported `field` values are:
+
+- **id**/**uid** - dimension id
+- **code** - dimension code
+- **valueType** - dimension value type
+- **name** - the name of the dimension
+- **dimensionType** - the type of the dimension 
+    - `DATA_ELEMENT`
+    - `PROGRAM_INDICATOR`
+    - `PROGRAM_ATTRIBUTE`
+    - `CATEGORY`
+    - `CATEGORY_OPTION_GROUP_SET`
+- **displayName** - displayName of the dimension
+- **displayShortName** - displayShortName of the dimension
+
+Supported `op`values are:
+
+- `startsWith` - field starts with
+- `!startsWith` - field does not start with
+- `endsWith` - field ends with
+- `!endsWith` - field does not end with- 
+- `eq` - equals
+- `ieq` - equals ignoring case
+- `ne` - not equals
+- `like` - contains
+- `!like` - does not contain
+- `ilike` - contains ignoring case
+- `!ilike` - does not contain ignoring case
+
+### Event analytics dimensions
+#### Event query analytics dimensions { #webapi_event_query_analytics_dimension }
+
+The `/analytics/events/query/dimensions?programStageId=...` resource accepts a mandatory tracker program stage and returns the following data dimensions:
+
+- **Program indicators** associated with the program (derived from programStageId)
+- **Data elements** of *supported types* in the program stage
+- **Tracked entity attributes** of *supported types* associated with the program (derived from programStageId)
+- **Categories** in category combo associated with the program (derived from programStageId)
+- **Category option group sets** of type `ATTRIBUTE`
+
+All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
+
+#### Event aggregate dimensions { #webapi_event_aggregate_analytics_dimension }
+
+The `/analytics/events/aggregate/dimensions?programStageId=...` resource accepts a mandatory `programStageId` parameter and returns the following data dimensions:
+
+- **Data elements** of *supported types* in the program stage
+- **Tracked entity attributes** of *supported types* associated with the program (derived from programStageId)
+- **Categories** in category combo associated with the program (derived from programStageId)
+- **Category option group sets** of type `ATTRIBUTE` associated with program (derived from programStageId)
+
+Data elements and tracked entity attributes are considered *supported types* if their value type is one of the following:
+
+- `NUMBER`
+- `UNIT_INTERVAL`
+- `PERCENTAGE`
+- `INTEGER`
+- `INTEGER_POSITIVE`
+- `INTEGER_NEGATIVE`
+- `INTEGER_ZERO_OR_POSITIVE`
+- `BOOLEAN`
+- `TRUE_ONLY`
+
+### Enrollment analytics dimensions
+
+#### Enrollment query analytics dimensions { #webapi_enrollment_query_analytics_dimension }
+
+The `/analytics/enrollments/query/dimensions?programId=...` resource accepts a mandatory id of a tracker program and returns the following data dimensions:
+
+- **Program indicators** connected to the program
+- **Data elements** of *supported types* in the program, with program stage for each data element
+- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
+
+All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
+
+#### Enrollment aggregate dimensions { #webapi_enrollment_aggregate_analytics_dimension }
+
+The `/analytics/enrollments/aggregate/dimensions?programId=...` resource accepts a mandatory id of a tracker program, referring to a program with registration, and returns the following data dimensions:
+
+- **Data elements** of *supported types* in the program, with program stage for each data element
+- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
+
+Data elements and tracked entity attributes are considered *supported types* if their value type is one of the following:
+
+- `NUMBER`
+- `UNIT_INTERVAL`
+- `PERCENTAGE`
+- `INTEGER`
+- `INTEGER_POSITIVE`
+- `INTEGER_NEGATIVE`
+- `INTEGER_ZERO_OR_POSITIVE`
+- `BOOLEAN`
+- `TRUE_ONLY`
+
+### Sample request and response
+
+    GET /api/analytics/events/query/dimensions?programStageId=A03MvHHogjR&order=code&filter=name:ilike:weight
+    
+```json
+{
+   "page":1,
+   "total":5,
+   "pageSize":50,
+   "dimensions":[
+      {
+         "dimensionType":"PROGRAM_INDICATOR",
+         "created":"2015-08-06T22:49:20.128",
+         "lastUpdated":"2015-08-06T22:51:19.787",
+         "name":"Measles + Yellow fever doses low infant weight",
+         "displayName":"Measles + Yellow fever doses low infant weight",
+         "id":"tt54DiKuQ9c",
+         "uid":"tt54DiKuQ9c",
+         "displayShortName":"Measles + Yellow fever doses low infant weight"
+      },
+      {
+         "dimensionType":"PROGRAM_INDICATOR",
+         "created":"2017-01-20T10:32:26.388",
+         "lastUpdated":"2017-01-20T10:32:26.388",
+         "name":"Weight gain(in g) between birth and last postnatal",
+         "displayName":"Weight gain(in g) between birth and last postnatal",
+         "id":"qhTkqwAJLMv",
+         "uid":"qhTkqwAJLMv",
+         "displayShortName":"Weight gain(g)"
+      },
+      {
+         "dimensionType":"PROGRAM_INDICATOR",
+         "created":"2015-09-14T20:25:55.543",
+         "lastUpdated":"2018-08-28T12:22:47.857",
+         "name":"Average weight (g)",
+         "displayName":"Average weight (g)",
+         "id":"GxdhnY5wmHq",
+         "uid":"GxdhnY5wmHq",
+         "displayShortName":"Average weight (g)"
+      },
+      {
+         "dimensionType":"PROGRAM_INDICATOR",
+         "created":"2015-08-06T22:35:40.391",
+         "lastUpdated":"2015-08-06T22:35:40.391",
+         "name":"BCG doses low birth weight",
+         "displayName":"BCG doses low birth weight",
+         "id":"hCYU0G5Ti2T",
+         "uid":"hCYU0G5Ti2T",
+         "displayShortName":"BCG doses low birth weight"
+      },
+      {
+         "valueType":"NUMBER",
+         "dimensionType":"DATA_ELEMENT",
+         "created":"2012-09-20T17:37:45.474",
+         "lastUpdated":"2014-11-11T21:56:05.418",
+         "name":"MCH Weight (g)",
+         "displayName":"MCH Weight (g)",
+         "id":"A03MvHHogjR.UXz7xuGCEhU",
+         "uid":"UXz7xuGCEhU",
+         "code":"DE_2005736",
+         "displayShortName":"Weight (g)"
+      }
+   ]
+}
+```
 
 ## Org unit analytics { #webapi_org_unit_analytics } 
 

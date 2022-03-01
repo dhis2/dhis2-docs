@@ -526,6 +526,47 @@ for creating dynamic reports. The available relative period values are:
     LAST_3_MONTHS, LAST_6_BIMONTHS, LAST_4_QUARTERS, LAST_2_SIXMONTHS, THIS_FINANCIAL_YEAR,
     LAST_FINANCIAL_YEAR, LAST_5_FINANCIAL_YEARS
 
+### Custom date periods { #webapi_date_custom_date_periods }
+
+Analytics `query` resources support extra parameters to express periods.
+
+Default `pe` dimension fallbacks to:
+
+- `eventDate` for `/analytics/events/query`
+- `enrollmentDate` for `/analytics/enrollments/query`
+
+It is, however, possible to add conditions on one or more date fields and combine them.
+
+#### Usage of custom date periods
+
+In resources supporting custom date periods, there are extra query parameters that will be combined to express conditions on the time dimension.
+
+| custom date period | events query resource  | enrollment query resource |
+|--------------------|------------------------|---------------------------|
+| `eventDate`        | [x]                    | [ ]                       |
+| `enrollmentDate`   | [x]                    | [x]                       |
+| `scheduledDate`    | [x]                    | [ ]                       |
+| `incidentDate`     | [x]                    | [x]                       |
+| `lastUpdated`      | [x]                    | [x]                       |
+
+Conditions can be expressed in the following form:
+
+`analytics/events/query/...?...&eventDate=2021&...`
+
+It's possible to combine more time fields in the same query:
+
+`analytics/events/query/...?...&eventDate=2021&incidentDate=202102&...`
+
+All of these conditions can be combined with `pe` dimension:
+
+`analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&...`
+
+Supported formats are described in "date and period format" above. An extra format is provided to express a range of dates: `yyyyMMdd_yyyyMMdd` and `yyyy-MM-dd_yyyy-MM-dd`.
+
+In the example bellow, the endpoint will return events that are scheduled to happen between 20210101 and 20210104:
+
+`analytics/events/query/...?...&dimension=pe:TODAY&enrollmentDate=2021&incidentDate=202102&scheduledDate=20210101_20210104&...`
+
 
 ## Authorities
 System authority ids and names can be listed using:

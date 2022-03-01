@@ -99,7 +99,7 @@ detailed information about each object on a users dashboard.
 When a user is building a dashboard it is convenient
 to be able to search for various analytical resources using the
 */dashboards/q* resource. This resource lets you search for matches on
-the name property of the following objects: visualizations, maps,
+the name property of the following objects: visualizations, eventVisualizations maps,
 users, reports and resources. You can do a search by making a *GET*
 request on the following resource URL pattern, where my-query should be
 replaced by the preferred search query:
@@ -124,7 +124,7 @@ Table: dashboards/q query parameters
 |---|---|---|---|
 | count | The number of items of each type to return | Positive integer | 6 |
 | maxCount | The number of items of max types to return | Positive integer | 25 |
-| max | The type to return the maxCount for | String [MAP&#124;USER&#124;REPORT&#124;RESOURCE&#124;VISUALIZATION] | N/A |
+| max | The type to return the maxCount for | String [MAP&#124;USER&#124;REPORT&#124;RESOURCE&#124;VISUALIZATION#124;EVENT_VISUALIZATION,EVENT_CHART,EVENT_REPORT] | N/A |
 
 JSON and XML response formats are supported. The response in JSON format
 will contain references to matching resources and counts of how many
@@ -142,6 +142,15 @@ similar to this:
     "id": "jkf6OiyV7el",
     "type": "PIVOT_TABLE"
   }],
+  "eventVisualizations": [{
+    "name": "ANC: ANC 1 Visits Cumulative Numbers",
+    "id": "arf9OiyV7df",
+    "type": "GAUGE"
+  }, {
+    "name": "ANC: 1st and 2rd trends Daily",
+    "id": "jkf6OiyV7el",
+    "type": "COLUMN"
+  }],
   "maps": [{
     "name": "ANC: 1st visit at facility (fixed) 2013",
     "id": "YOEGBvxjAY0"
@@ -157,11 +166,13 @@ similar to this:
     "id": "qYVNH1wkZR0"
   }],
   "searchCount": 8,
-  "visualizationCount": 3,
+  "visualizationCount": 2,
+  "eventVisualizationCount": 2,
   "mapCount": 2,
   "reportCount": 2,
   "userCount": 0,
-  "patientTabularReportCount": 0,
+  "eventReports": 0,
+  "eventCharts" :0,
   "resourceCount": 0
 }
 ```
@@ -202,7 +213,7 @@ Table: Items content parameters
 
 | Query parameter | Description | Options |
 |---|---|---|
-| type | Type of the resource to be represented by the dashboard item | visualization &#124; map &#124; reportTable &#124; users &#124; reports &#124; resources &#124; patientTabularReports &#124; app |
+| type | Type of the resource to be represented by the dashboard item | visualization &#124; map &#124; eventVisualization &#124; users &#124; reports &#124; resources &#124; app |
 | id | Identifier of the resource to be represented by the dashboard item | Resource identifier |
 
 A *POST* request URL for adding a visualization to a specific dashboard could look like this, where the last id query parameter value is the chart resource identifier:
@@ -823,9 +834,434 @@ Finally, to delete an existing Visualization, you can make a `DELETE` request sp
 
     DELETE /api/visualizations/hQxZGXqnLS9
 
+## Event visualization
+<!--DHIS2-SECTION-ID:webapi_event_visualization-->
+The EventVisualization API is designed to help clients to interact with event charts and reports. The endpoints of this API are used by the Event Visualization application which allows the creation, configuration and management of charts and reports based on the client's definitions. The main idea is to enable clients and users to have a unique and centralized API providing all types of event charts and reports as well as specific parameters and configuration for each type of event visualization.
+This API was introduced with the expectation to unify both `eventCharts` and `eventReports` APIs and entirely replace them in favour of the `eventVisualizations` API (which means that the usage of `eventCharts` and `eventReports` APIs should be avoided). In summary, the following resources/APIs:
+    /api/eventCharts, /api/eventReports
+*are being replaced by*
+    /api/eventVisualizations
+
+> **Note**
+>
+> New applications and clients should avoid using the `eventCharts` and `eventReports` APIs because they are deprecated. Use the `eventVisualizations` API instead.
+
+An EventVisualization object is composed of many attributes (some of them related to charting and others related to reporting), but the most important ones responsible to reflect the core information of the object are: *"id", "name", "type", "dataDimensionItems", "columns", "rows" and "filters".*
+The root endpoint of the API is `/api/eventVisualizations`, and the list of current attributes and elements are described in the table below.
+
+
+
+Table: EventVisualization attributes
+
+| Field | Description |
+|---|---|
+| id | The unique identifier. |
+| code | A custom code to identify the EventVisualiation. |
+| name | The name of the EventVisualiation |
+| type | The type of the EventVisualiation. The valid types are: COLUMN, STACKED_COLUMN, BAR, STACKED_BAR, LINE, LINE_LIST, AREA, STACKED_AREA, PIE, RADAR, GAUGE, YEAR_OVER_YEAR_LINE, YEAR_OVER_YEAR_COLUMN, SINGLE_VALUE, PIVOT_TABLE, SCATTER, BUBBLE. |
+| title | A custom title. |
+| subtitle | A custom subtitle. |
+| description | Defines a custom description for the EventVisualiation. |
+| created | The date/time of the EventVisualiation creation. |
+| startDate | The beginning date used during the filtering. |
+| endDate | The ending date used during the filtering. |
+| sortOrder | The sorting order of this EventVisualiation. Integer value. |
+| user | An object representing the creator of the Visualization. |
+| publicAccess | Sets the permissions for public access. |
+| displayDensity | The display density of the text. |
+| fontSize | The font size of the text. |
+| relativePeriods | An object representing the relative periods used in the analytics query. |
+| legendSet | An object representing the definitions for the legend. |
+| legendDisplayStyle | The legend's display style. It can be: FILL or TEXT. |
+| legendDisplayStrategy | The legend's display style. It can be: FIXED or BY_DATA_ITEM. |
+| aggregationType | Determines how the values are aggregated (if applicable). Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT. |
+| regressionType | A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS. |
+| targetLineValue | The chart target line. Accepts a Double type. |
+| targetLineLabel | The chart target line label. |
+| rangeAxisLabel | The chart vertical axis (y) label/title. |
+| domainAxisLabel | The chart horizontal axis (x) label/title. |
+| rangeAxisMaxValue | The chart axis maximum value. Values outside of the range will not be displayed. |
+| rangeAxisMinValue | The chart axis minimum value. Values outside of the range will not be displayed. |
+| rangeAxisSteps | The number of axis steps between the minimum and maximum values. |
+| rangeAxisDecimals | The number of decimals for the axes values. |
+| baseLineValue | A chart baseline value. |
+| baseLineLabel | A chart baseline label. |
+| digitGroupSeparator | The digit group separator. Valid values: COMMA, SPACE or NONE. |
+| topLimit | The top limit set for the Pivot table. |
+| measureCriteria | Describes the criteria applied to this measure. |
+| percentStackedValues | Uses stacked values or not. More likely to be applied for graphics/charts. Boolean value. |
+| noSpaceBetweenColumns | Show/hide space between columns. Boolean value. |
+| externalAccess | Indicates whether the EventVisualization is available as external read-only. Boolean value. |
+| userOrganisationUnit | Indicates if the user has an organisation unit. Boolean value. |
+| userOrganisationUnitChildren | Indicates if the user has a children organisation unit. Boolean value. |
+| userOrganisationUnitGrandChildren | Indicates if the user has a grand children organisation unit. Boolean value. |
+| rowTotals | Displays (or not) the row totals. Boolean value. |
+| colTotals | Displays (or not) the columns totals. Boolean value. |
+| rowSubTotals | Displays (or not) the row sub-totals. Boolean value. |
+| colSubTotals | Displays (or not) the columns sub-totals. Boolean value. |
+| cumulativeValues | Indicates whether the EventVisualization is using cumulative values. Boolean value. |
+| hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
+| completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
+| showDimensionLabels | Shows the dimension labels or not. Boolean value. |
+| hideTitle | Hides the title or not. Boolean value. |
+| hideSubtitle | Hides the subtitle or not. Boolean value. |
+| showHierarchy | Displays (or not) the organisation unit hierarchy names. Boolean value. |
+| showData | Used by charts to hide or not data/values within the rendered model. Boolean value. |
+| lastUpdatedBy | Object that represents the user that applied the last changes to the EventVisualization. |
+| lastUpdated | The date/time of the last time the EventVisualization was changed. |
+| favorites | List of user ids who have marked this object as a favorite. |
+| subscribers | List of user ids who have subscribed to this EventVisualization. |
+| translations | Set of available object translation, normally filtered by locale. |
+| program | The program associated. |
+| programStage | The program stage associated. |
+| programStatus | The program status. It can be ACTIVE, COMPLETED, CANCELLED. |
+| eventStatus | The event status. It can be ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED. |
+| dataType | The event data type. It can be AGGREGATED_VALUES or EVENTS. |
+| columnDimensions | The dimensions defined for the columns. |
+| rowDimensions | The dimensions defined for the rows. |
+| filterDimensions | The dimensions defined for the filters. |
+| outputType | Indicates output type of the EventVisualization. It can be EVENT, ENROLLMENT or TRACKED_ENTITY_INSTANCE. |
+| collapseDataDimensions | Indicates whether to collapse all data dimensions into a single dimension. Boolean value. |
+| hideNaData | Indicates whether to hide N/A data. Boolean value. |
+
+### Retrieving event visualizations
+<!--DHIS2-SECTION-ID:webapi_event_visualization_retrieving_event_visualizations-->
+To retrieve a list of all existing event visualizations, in JSON format, with some basic information (including identifier, name and pagination) you can make a `GET` request to the URL below. You should see a list of all public/shared event visualizations plus your private ones.
+    GET /api/eventVisualizations.json
+If you want to retrieve the JSON definition of a specific EventVisualization you can add its respective identifier to the URL:
+    GET /api/eventVisualizations/hQxZGXqnLS9.json
+The following representation is an example of a response in JSON format (for brevity, certain information has been removed). For the complete schema, please use `GET /api/schemas/eventVisualization`.
+
+```json
+{
+    "lastUpdated": "2021-11-25T17:18:03.834",
+    "href": "http://localhost:8080/dhis/api/eventVisualizations/EZ5jbRTxRGh",
+    "id": "EZ5jbRTxRGh",
+    "created": "2021-11-25T17:18:03.834",
+    "name": "Inpatient: Mode of discharge by facility type this year",
+    "publicAccess": "rw------",
+    "userOrganisationUnitChildren": false,
+    "type": "STACKED_COLUMN",
+    "subscribed": false,
+    "userOrganisationUnit": false,
+    "rowSubTotals": false,
+    "cumulativeValues": false,
+    "showDimensionLabels": false,
+    "sortOrder": 0,
+    "favorite": false,
+    "topLimit": 0,
+    "collapseDataDimensions": false,
+    "userOrganisationUnitGrandChildren": false,
+    "displayName": "Inpatient: Mode of discharge by facility type this year",
+    "percentStackedValues": false,
+    "noSpaceBetweenColumns": false,
+    "showHierarchy": false,
+    "hideTitle": false,
+    "showData": true,
+    "hideEmptyRows": false,
+    "hideNaData": false,
+    "regressionType": "NONE",
+    "completedOnly": false,
+    "colTotals": false,
+    "sharing": {
+      "owner": "GOLswS44mh8",
+      "external": false,
+      "users": {},
+      "userGroups": {},
+      "public": "rw------"
+    },
+    "programStatus": "CANCELLED",
+    "hideEmptyRowItems": "NONE",
+    "hideSubtitle": false,
+    "outputType": "EVENT",
+    "hideLegend": false,
+    "externalAccess": false,
+    "colSubTotals": false,
+    "rowTotals": false,
+    "digitGroupSeparator": "SPACE",
+    "program": {
+      "id": "IpHINAT79UW"
+    },
+    "access": {
+      "read": true,
+      "update": true,
+      "externalize": true,
+      "delete": true,
+      "write": true,
+      "manage": true
+    },
+    "lastUpdatedBy": {
+      "displayName": "John Traore",
+      "name": "John Traore",
+      "id": "xE7jOejl9FI",
+      "username": "admin"
+    },
+    "relativePeriods": {
+      "thisYear": false,
+      ...
+    },
+    "programStage": {
+      "id": "A03MvHHogjR"
+    },
+    "createdBy": {
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
+    },
+    "user": {
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
+    },
+    "attributeDimensions": [],
+    "translations": [],
+    "filterDimensions": [
+      "ou",
+      "H6uSAMO5WLD"
+    ],
+    "interpretations": [],
+    "userGroupAccesses": [],
+    "subscribers": [],
+    "columns": [
+      {
+        "id": "X8zyunlgUfM"
+      }
+    ]
+    "periods": [],
+    "categoryDimensions": [],
+    "rowDimensions": [
+      "pe"
+    ],
+    "itemOrganisationUnitGroups": [],
+    "programIndicatorDimensions": [],
+    "attributeValues": [],
+    "columnDimensions": [
+      "X8zyunlgUfM"
+    ],
+    "userAccesses": [],
+    "favorites": [],
+    "dataDimensionItems": [],
+    "categoryOptionGroupSetDimensions": [],
+    "organisationUnitGroupSetDimensions": [],
+    "organisationUnitLevels": [],
+    "organisationUnits": [
+      {
+        "id": "ImspTQPwCqd"
+      }
+    ],
+    "filters": [
+      {
+        "id": "ou"
+      },
+      {
+        "id": "H6uSAMO5WLD"
+      }
+    ],
+    "rows": [
+      {
+        "id": "pe"
+      }
+    ]
+}
+```
+
+A more tailored response can be obtained by specifying, in the URL, the fields you want to extract. Ie.:
+    GET /api/eventVisualizations/hQxZGXqnLS9.json?fields=interpretations
+will return
+
+```json
+{
+  "interpretations": [
+    {
+      "id": "Lfr8I2RPU0C"
+    },
+    {
+      "id": "JuwgdJlJPGb"
+    },
+    {
+      "id": "WAoU2rSpyZp"
+    }
+  ]
+}
+```
+
+As seen, the `GET` above will return only the interpretations related to the given identifier (in this case `hQxZGXqnLS9`).
+
+### Creating, updating and removing event visualizations
+<!--DHIS2-SECTION-ID:webapi_event_visualization_add_update_remove_event_visualizations-->
+These operations follow the standard *REST* semantics. A new EventVisualization can be created through a `POST` request to the `/api/eventVisualizations` resource with a valid JSON payload. An example of payload could be:
+
+```json
+{
+    "name": "Inpatient: Cases under 10 years last 4 quarters",
+    "publicAccess": "rw------",
+    "userOrganisationUnitChildren": false,
+    "type": "STACKED_COLUMN",
+    "subscribed": false,
+    "userOrganisationUnit": false,
+    "rowSubTotals": false,
+    "cumulativeValues": false,
+    "showDimensionLabels": false,
+    "sortOrder": 0,
+    "favorite": false,
+    "topLimit": 0,
+    "collapseDataDimensions": false,
+    "userOrganisationUnitGrandChildren": false,
+    "displayName": "Inpatient: Cases under 10 years last 4 quarters",
+    "percentStackedValues": false,
+    "noSpaceBetweenColumns": false,
+    "showHierarchy": false,
+    "hideTitle": false,
+    "showData": true,
+    "hideEmptyRows": false,
+    "userAccesses": [],
+    "userGroupAccesses": [],
+    "hideNaData": false,
+    "regressionType": "NONE",
+    "completedOnly": false,
+    "colTotals": false,
+    "programStatus": "CANCELLED",
+    "sharing": {
+      "owner": "GOLswS44mh8",
+      "external": false,
+      "users": {},
+      "userGroups": {},
+      "public": "rw------"
+    },
+    "displayFormName": "Inpatient: Cases under 10 years last 4 quarters",
+    "hideEmptyRowItems": "NONE",
+    "hideSubtitle": false,
+    "outputType": "EVENT",
+    "hideLegend": false,
+    "externalAccess": false,
+    "colSubTotals": false,
+    "rowTotals": false,
+    "digitGroupSeparator": "SPACE",
+    "access": {
+      "read": true,
+      "update": true,
+      "externalize": false,
+      "delete": true,
+      "write": true,
+      "manage": true
+    },
+    "lastUpdatedBy": {
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
+    },
+    "relativePeriods": {
+      "thisYear": false,
+    ...
+    },
+    "program": {
+      "id": "IpHINAT79UW",
+      "enrollmentDateLabel": "Date of enrollment",
+      "incidentDateLabel": "Date of birth",
+      "name": "Child Programme"
+    },
+    "programStage": {
+      "id": "A03MvHHogjR",
+      "executionDateLabel": "Report date",
+      "name": "Birth"
+    },
+    "createdBy": {
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
+    },
+    "user": {
+      "displayName": "Tom Wakiki",
+      "name": "Tom Wakiki",
+      "id": "GOLswS44mh8",
+      "username": "system"
+    },
+    "translations": [],
+    "filterDimensions": [
+      "ou"
+    ],
+    "interpretations": [],
+    "dataElementDimensions": [
+      {
+        "filter": "LE:10",
+        "dataElement": {
+          "id": "qrur9Dvnyt5"
+        }
+      }
+    ],
+    "periods": [],
+    "categoryDimensions": [],
+    "rowDimensions": [
+      "pe"
+    ],
+    "columnDimensions": [
+      "qrur9Dvnyt5"
+    ],
+    "organisationUnits": [
+      {
+        "id": "ImspTQPwCqd"
+      }
+    ],
+    "filters": [
+      {
+        "dimension": "ou",
+        "items": [
+          {
+            "id": "ImspTQPwCqd"
+          }
+        ]
+      },
+      {
+        "dimension": "H6uSAMO5WLD",
+        "items": []
+      }
+    ],
+    "columns": [
+      {
+        "dimension": "X8zyunlgUfM",
+        "items": [],
+        "repetition": {
+          "indexes": [1, 2, 3, -2, -1, 0]
+        }
+      }
+    ],
+    "rows": [
+      {
+        "dimension": "pe",
+        "items": [
+          {
+              "id": "LAST_12_MONTHS"
+          }
+        ]
+      }
+    ]
+}
+```
+
+> **Note**
+>
+> The `repetition` attribute (in `rows`, `columns` or `filters`) indicates the events indexes to be retrieved. Taking the example above (in the previous `json` payload), it can be read as follows:
+> 
+    1 = First event
+    2 = Second event
+    3 = Third event
+    ...
+    -2 = Third latest event
+    -1 = Second latest event
+    0 = Latest event (default)
+
+To update a specific EventVisualization, you can send a `PUT` request to the same `/api/eventVisualizations` resource with a similar payload `PLUS` the respective EventVisualization's identifier, ie.:
+    PUT /api/eventVisualizations/hQxZGXqnLS9
+Finally, to delete an existing EventVisualization, you can make a `DELETE` request specifying the identifier of the EventVisualization to be removed, as shown:
+    DELETE /api/eventVisualizations/hQxZGXqnLS9
+
 ## Interpretations { #webapi_interpretations } 
 
-For resources related to data analysis in DHIS2, such as visualizations, maps, event reports and event charts, you can write and share data interpretations. An interpretation can be a comment, question, observation or interpretation about a data report or visualization.
+For resources related to data analysis in DHIS2, such as visualizations, maps, event reports, event charts and even visualizations you can write and share data interpretations. An interpretation can be a comment, question, observation or interpretation about a data report or visualization.
 
     /api/interpretations
 
@@ -918,9 +1354,10 @@ Table: Interpretation fields
 |---|---|
 | id | The interpretation identifier. |
 | created | The time of when the interpretation was created. |
-| type | The type of analytical object being interpreted. Valid options: VISUALIZATION, MAP, EVENT_REPORT, EVENT_CHART, DATASET_REPORT. |
+| type | The type of analytical object being interpreted. Valid options: VISUALIZATION, MAP, EVENT_REPORT, EVENT_CHART, EVENT_VISUALIZATION, DATASET_REPORT. |
 | user | Association to the user who created the interpretation. |
 | visualization | Association to the visualization if type is VISUALIZATION |
+| eventVisualization | Association to the event visualization if type is EVENT_VISUALIZATION |
 | map | Association to the map if type is MAP. |
 | eventReport | Association to the event report is type is EVENT_REPORT. |
 | eventChart | Association to the event chart if type is EVENT_CHART. |
@@ -966,14 +1403,19 @@ identifier of the object being interpreted.
     /api/interpretations/{object-type}/{object-id}
 
 Valid options for object type are *visualization*, *map*,
-*eventReport*, *eventChart* and *dataSetReport*.
+*eventReport*, *eventChart*, *eventVisualization* and *dataSetReport*.
 
 Some valid examples for interpretations are listed below.
+
+> **Note**
+>
+> The `eventCharts` and `eventReports` APIs are deprecated. We recommend using the `eventVisualizations` API instead.
 
     /api/interpretations/visualization/hQxZGXqnLS9
     /api/interpretations/map/FwLHSMCejFu
     /api/interpretations/eventReport/xJmPLGP3Cde
     /api/interpretations/eventChart/nEzXB2M9YBz
+    /api/interpretations/eventVisualization/nEzXB2M9YBz
     /api/interpretations/dataSetReport/tL7eCjmDIgM
 
 As an example, we will start by writing an interpretation for the visualization with identifier *EbRN2VIbPdV*. To write visualization interpretations we will interact with the `/api/interpretations/visualization/{visualizationId}` resource.
@@ -1387,7 +1829,7 @@ Table: Data items attributes
 ## Viewing analytical resource representations { #webapi_viewing_analytical_resource_representations } 
 
 DHIS2 has several resources for data analysis. These resources include
-*maps*, *visualizations*, *reports* and *documents*. By visiting these resources you will retrieve information about the resource. For instance, by navigating to `/api/visualizations/R0DVGvXDUNP` the response will contain the name, last date of modification and so on for the chart. To retrieve the analytical representation, for instance, a PNG representation of the visualization, you can append */data* to all these resources. For instance, by visiting `/api/visualizations/R0DVGvXDUNP/data` the system will return a PNG image of the visualization.
+*maps*, *visualizations*, *eventVisualizations*, *reports* and *documents*. By visiting these resources you will retrieve information about the resource. For instance, by navigating to `/api/visualizations/R0DVGvXDUNP` the response will contain the name, last date of modification and so on for the chart. To retrieve the analytical representation, for instance, a PNG representation of the visualization, you can append */data* to all these resources. For instance, by visiting `/api/visualizations/R0DVGvXDUNP/data` the system will return a PNG image of the visualization.
 
 
 
@@ -1397,7 +1839,9 @@ Table: Analytical resources
 |---|---|---|---|
 | eventCharts | Event charts | /api/eventCharts/<identifier\>/data | png |
 | maps | Maps | /api/maps/<identifier\>/data | png |
-| visualization | Pivot tables and charts | /api/visualizations/<identifier\>/data | json &#124; jsonp &#124; html &#124; xml &#124; pdf &#124; xls &#124; csv | png |
+| visualizations | Pivot tables and charts | /api/visualizations/<identifier\>/data | json &#124; jsonp &#124; html &#124; xml &#124; pdf &#124; xls &#124; csv 
+| eventVisualizations | Event charts | /api/eventVisualizations/<identifier\>/data | png 
+| png |
 | reports | Standard reports | /api/reports/<identifier\>/data | pdf &#124; xls &#124; html |
 | documents | Resources | /api/documents/<identifier\>/data | <follows document\> |
 
@@ -1425,554 +1869,19 @@ Table: Query parameters for png / image types (visualizations, maps)
 Some examples of valid URLs for retrieving various analytical
 representations are listed below.
 
-    /api/visualization/R0DVGvXDUNP/data
-    /api/visualization/R0DVGvXDUNP/data?date=2013-06-01
+    /api/visualizations/R0DVGvXDUNP/data
+    /api/visualizations/R0DVGvXDUNP/data?date=2013-06-01
 
-    /api/visualization/jIISuEWxmoI/data.html
-    /api/visualization/jIISuEWxmoI/data.html?date=2013-01-01
-    /api/visualization/FPmvWs7bn2P/data.xls
-    /api/visualization/FPmvWs7bn2P/data.pdf
+    /api/visualizations/jIISuEWxmoI/data.html
+    /api/visualizations/jIISuEWxmoI/data.html?date=2013-01-01
+    /api/visualizations/FPmvWs7bn2P/data.xls
+    /api/visualizations/FPmvWs7bn2P/data.pdf
+
+    /api/eventVisualizations/x5FVFVt5CDI/data
+    /api/eventVisualizations/x5FVFVt5CDI/data.png
 
     /api/maps/DHE98Gsynpr/data
     /api/maps/DHE98Gsynpr/data?date=2013-07-01
 
     /api/reports/OeJsA6K1Otx/data.pdf
     /api/reports/OeJsA6K1Otx/data.pdf?date=2014-01-01
-
-## Plugins { #webapi_plugins } 
-
-DHIS2 comes with plugins which enable you to embed live data directly in
-your web portal or web site. Currently, plugins exist for charts, maps
-and pivot tables.
-
-Please be aware that all of the code examples in this section are for
-demonstration purposes only. They should not be used as is in
-production systems. To make things simple, the credentials
-(admin/district) have been embedded into the scripts. In a real scenario,
-you should never expose credentials in javascript as it opens a
-vulnerability to the application. In addition, you would create a user
-with more minimal privileges rather than make use of a superuser to
-fetch resources for your portal.
-
-It is possible to workaround exposing the credentials by using a reverse
-proxy such as nginx or apache2. The proxy can be configured to inject
-the required Authorization header for only the endpoints that you wish
-to make public. There is some documentation to get you started in the
-section of the implementers manual which describes [reverse
-proxy](https://docs.dhis2.org/master/en/implementer/html/install_reverse_proxy_configuration.html#install_making_resources_available_with_nginx)
-configuration.
-
-### Embedding pivot tables with the Pivot Table plug-in { #webapi_pivot_table_plugin } 
-
-In this example, we will see how we can embed good-looking, light-weight
-html pivot tables with data served from a DHIS2 back-end into a Web
-page. To accomplish this we will use the Pivot table plug-in. The
-plug-in is written in Javascript and depends on the jQuery library only.
-A complete working example can be found at
-<http://play.dhis2.org/portal/table.html>. Open the page in a web
-browser and view the source to see how it is set up.
-
-We start by having a look at what the complete html file could look
-like. This setup puts two tables in our web page. The first one is
-referring to an existing table. The second is configured inline.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
-  <script src="https://dhis2-cdn.org/v227/plugin/reporttable.js"></script>
-
-  <script>
-    reportTablePlugin.url = "https://play.dhis2.org/demo";
-    reportTablePlugin.username = "admin";
-    reportTablePlugin.password = "district";
-    reportTablePlugin.loadingIndicator = true;
-
-    // Referring to an existing table through the id parameter, render to "report1" div
-
-    var r1 = { el: "report1", id: "R0DVGvXDUNP" };
-
-    // Table configuration, render to "report2" div
-
-    var r2 = {
-      el: "report2",
-      columns: [
-        {dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
-      ],
-      rows: [
-        {dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
-      ],
-      filters: [
-        {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
-      ],
-
-      // All following properties are optional
-      title: "My custom title",
-      showColTotals: false,
-      showRowTotals: false,
-      showColSubTotals: false,
-      showRowSubTotals: false,
-      showDimensionLabels: false,
-      hideEmptyRows: true,
-      skipRounding: true,
-      aggregationType: "AVERAGE",
-      showHierarchy: true,
-      completedOnly: true,
-      displayDensity: "COMFORTABLE",
-      fontSize: "SMALL",
-      digitGroupSeparator: "COMMA",
-      legendSet: {id: "fqs276KXCXi"}
-    };
-
-    reportTablePlugin.load([r1, r2]);
-  </script>
-</head>
-
-<body>
-  <div id="report1"></div>
-  <div id="report2"></div>
-</body>
-</html>
-```
-
-Two files are included in the header section of the HTML document. The
-first file is the jQuery JavaScript library (we use the DHIS2 content
-delivery network in this case). The second file is the Pivot table
-plug-in. Make sure the path is pointing to your DHIS2 server
-installation.
-
-Now let us have a look at the various options for the Pivot tables. One
-property is required: *el* (please refer to the table below). Now, if
-you want to refer to pre-defined tables already made inside DHIS2 it is
-sufficient to provide the additional *id* parameter. If you instead want
-to configure a pivot table dynamically you should omit the id parameter
-and provide data dimensions inside a *columns* array, a *rows* array and
-optionally a *filters* array instead.
-
-A data dimension is defined as an object with a text property called
-*dimension*. This property accepts the following values: *dx*
-(indicator, data element, data element operand, data set, event data
-item and program indicator), *pe* (period), *ou* (organisation unit) or
-the id of any organisation unit group set or data element group set (can
-be found in the web api). The data dimension also has an array property
-called *items* which accepts objects with an *id* property.
-
-To sum up, if you want to have e.g. "ANC 1 Coverage", "ANC 2 Coverage"
-and "ANC 3 Coverage" on the columns in your table you can make the
-following *columns* config:
-
-```json
-columns: [{
-  dimension: "dx",
-  items: [
-    {id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
-    {id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
-    {id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
-  ]
-}]
-```
-
-
-
-Table: Pivot table plug-in configuration
-
-| Param | Type | Required | Options (default first) | Description |
-|---|---|---|---|---|
-| url | string | Yes || Base URL of the DHIS2 server |
-| username | string | Yes (if cross-domain) || Used for authentication if the server is running on a different domain |
-| password | string | Yes (if cross-domain) || Used for authentication if the server is running on a different domain |
-| loadingIndicator | boolean | No || Whether to show a loading indicator before the table appears |
-
-
-
-Table: Pivot table configuration
-
-| Param | Type | Required | Options (default first) | Description |
-|---|---|---|---|---|
-| el | string | Yes || Identifier of the HTML element to render the table in your web page |
-| id | string | No || Identifier of a pre-defined table (favorite) in DHIS2 |
-| columns | array | Yes (if no id provided) || Data dimensions to include in table as columns |
-| rows | array | Yes (if no id provided) || Data dimensions to include in table as rows |
-| filter | array | No || Data dimensions to include in table as filters |
-| title | string | No || Show a custom title above the table |
-| showColTotals | boolean | No | true &#124; false | Whether to display totals for columns |
-| showRowTotals | boolean | No | true &#124; false | Whether to display totals for rows |
-| showColSubTotals | boolean | No | true &#124; false | Whether to display sub-totals for columns |
-| showRowSubTotals | boolean | No | true &#124; false | Whether to display sub-totals for rows |
-| showDimensionLabels | boolean | No | true &#124; false | Whether to display the name of the dimension top-left in the table |
-| hideEmptyRows | boolean | No | false &#124; true | Whether to hide rows with no data |
-| skipRounding | boolean | No | false &#124; true | Whether to skip rounding of data values |
-| completedOnly | boolean | No | false &#124; true | Whether to only show completed events |
-| showHierarchy | boolean | No | false &#124; true | Whether to extend orgunit names with the name of all anchestors |
-| aggregationType | string | No | "SUM" &#124;"AVERAGE" &#124; "AVERAGE_SUM_ORG_UNIT"&#124;"LAST"&#124;"LAST_AVERAGE_ORG_UNIT"&#124; "COUNT" &#124; "STDDEV" &#124; "VARIANCE" &#124; "MIN" &#124; "MAX" | Override the data element's default aggregation type |
-| displayDensity | string | No | "NORMAL" &#124; "COMFORTABLE" &#124; "COMPACT" | The amount of space inside table cells |
-| fontSize | string | No | "NORMAL" &#124; "LARGE" &#124; "SMALL" | Table font size |
-| digitGroupSeparator | string | No | "SPACE" &#124; "COMMA" &#124; "NONE" | How values are formatted: 1 000 &#124; 1,000 &#124; 1000 |
-| legendSet | object | No || Color the values in the table according to the legend set |
-| userOrgUnit | string / array | No || Organisation unit identifiers, overrides organisation units associated with curretn user, single or array |
-| relativePeriodDate | string | No || Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
-
-### Embedding charts with the Visualizer chart plug-in { #webapi_chart_plugin } 
-
-In this example, we will see how we can embed good-looking Highcharts
-charts (<http://www.highcharts.com>) with data served from a DHIS2
-back-end into a Web page. To accomplish this we will use the DHIS2
-Visualizer plug-in. The plug-in is written in JavaScript and depends on
-the jQuery library. A complete working example can be found at
-<http://play.dhis2.org/portal/chart.html>. Open the page in a web
-browser and view the source to see how it is set up.
-
-We start by having a look at what the complete html file could look
-like. This setup puts two charts on our web page. The first one is
-referring to an existing chart. The second is configured inline.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <script src="https://dhis2-cdn.org/v227/plugin/jquery-2.2.4.min.js"></script>
-  <script src="https://dhis2-cdn.org/v227/plugin/chart.js"></script>
-
-  <script>
-    chartPlugin.url = "https://play.dhis2.org/demo";
-    chartPlugin.username = "admin";
-    chartPlugin.password = "district";
-    chartPlugin.loadingIndicator = true;
-
-    // Referring to an existing chart through the id parameter, render to "report1" div
-
-    var r1 = { el: "report1", id: "R0DVGvXDUNP" };
-
-    // Chart configuration, render to "report2" div
-
-    var r2 = {
-      el: "report2",
-      columns: [
-        {dimension: "dx", items: [{id: "YtbsuPPo010"}, {id: "l6byfWFUGaP"}]}
-      ],
-      rows: [
-        {dimension: "pe", items: [{id: "LAST_12_MONTHS"}]}
-      ],
-      filters: [
-        {dimension: "ou", items: [{id: "USER_ORGUNIT"}]}
-      ],
-
-      // All following properties are optional
-      title: "Custom title",
-      type: "line",
-      showValues: false,
-      hideEmptyRows: true,
-      regressionType: "LINEAR",
-      completedOnly: true,
-      targetLineValue: 100,
-      targetLineTitle: "My target line title",
-      baseLineValue: 20,
-      baseLineTitle: "My base line title",
-      aggregationType: "AVERAGE",
-      rangeAxisMaxValue: 100,
-      rangeAxisMinValue: 20,
-      rangeAxisSteps: 5,
-      rangeAxisDecimals: 2,
-      rangeAxisTitle: "My range axis title",
-      domainAxisTitle: "My domain axis title",
-      hideLegend: true
-    };
-
-    // Render the charts
-
-    chartPlugin.load(r1, r2);
-  </script>
-</head>
-
-<body>
-  <div id="report1"></div>
-  <div id="report2"></div>
-</body>
-</html>
-```
-
-Two files are included in the header section of the HTML document. The
-first file is the jQuery JavaScript library (we use the DHIS2 content
-delivery network in this case). The second file is the Visualizer chart
-plug-in. Make sure the path is pointing to your DHIS2 server
-installation.
-
-Now let us have a look at the various options for the charts. One
-property is required: *el* (please refer to the table below). Now, if
-you want to refer to pre-defined charts already made inside DHIS2 it is
-sufficient to provide the additional *id* parameter. If you instead want
-to configure a chart dynamically you should omit the id parameter and
-provide data dimensions inside a *columns* array, a *rows* array and
-optionally a *filters* array instead.
-
-A data dimension is defined as an object with a text property called
-*dimension*. This property accepts the following values: *dx*
-(indicator, data element, data element operand, data set, event data
-item and program indicator), *pe* (period), *ou* (organisation unit) or
-the id of any organisation unit group set or data element group set (can
-be found in the web api). The data dimension also has an array property
-called *items* which accepts objects with an *id* property.
-
-To sum up, if you want to have e.g. "ANC 1 Coverage", "ANC 2 Coverage"
-and "ANC 3 Coverage" on the columns in your chart you can make the
-following *columns* config:
-
-```json
-columns: [{
-  dimension: "dx",
-  items: [
-    {id: "Uvn6LCg7dVU"}, // the id of ANC 1 Coverage
-    {id: "OdiHJayrsKo"}, // the id of ANC 2 Coverage
-    {id: "sB79w2hiLp8"}  // the id of ANC 3 Coverage
-  ]
-}]
-```
-
-
-
-Table: Chart plug-in configuration
-
-| Param | Type | Required | Options (default first) | Description |
-|---|---|---|---|---|
-| url | string | Yes || Base URL of the DHIS2 server |
-| username | string | Yes (if cross-domain) || Used for authentication if the server is running on a different domain |
-| password | string | Yes (if cross-domain) || Used for authentication if the server is running on a different domain |
-| loadingIndicator | boolean | No || Whether to show a loading indicator before the chart appears |
-
-
-
-Table: Chart configuration
-
-| Param | Type | Required | Options (default first) | Description |
-|---|---|---|---|---|
-| el | string | Yes || Identifier of the HTML element to render the chart in your web page |
-| id | string | No || Identifier of a pre-defined chart (favorite) in DHIS |
-| type | string | No | column &#124; stackedcolumn &#124; bar &#124; stackedbar &#124; line &#124; area &#124; pie &#124; radar &#124; gauge | Chart type |
-| columns | array | Yes (if no id provided) || Data dimensions to include in chart as series |
-| rows | array | Yes (if no id provided) || Data dimensions to include in chart as category |
-| filter | array | No || Data dimensions to include in chart as filters |
-| title | string | No || Show a custom title above the chart |
-| showValues | boolean | No | false &#124; true | Whether to display data values on the chart |
-| hideEmptyRows | boolean | No | false &#124; true | Whether to hide empty categories |
-| completedOnly | boolean | No | false &#124; true | Whether to only show completed events |
-| regressionType | string | No | "NONE" &#124; "LINEAR" | Show trend lines |
-| targetLineValue | number | No || Display a target line with this value |
-| targetLineTitle | string | No || Display a title on the target line (does not apply without a target line value) |
-| baseLineValue | number | No || Display a base line with this value |
-| baseLineTitle | string | No || Display a title on the base line (does not apply without a base line value) |
-| rangeAxisTitle | number | No || Title to be displayed along the range axis |
-| rangeAxisMaxValue | number | No || Max value for the range axis to display |
-| rangeAxisMinValue | number | No || Min value for the range axis to display |
-| rangeAxisSteps | number | No || Number of steps for the range axis to display |
-| rangeAxisDecimals | number | No || Bumber of decimals for the range axis to display |
-| domainAxisTitle | number | No || Title to be displayed along the domain axis |
-| aggregationType | string | No | "SUM" &#124;"AVERAGE" &#124; "AVERAGE_SUM_ORG_UNIT"&#124;"LAST"&#124;"LAST_AVERAGE_ORG_UNIT"&#124; "COUNT" &#124; "STDDEV" &#124; "VARIANCE" &#124; "MIN" &#124; "MAX" | Override the data element's default aggregation type |
-| hideLegend | boolean | No | false &#124; true | Whether to hide the series legend |
-| hideTitle | boolean | No | false &#124; true | Whether to hide the chart title |
-| userOrgUnit | string / array | No || Organisation unit identifiers, overrides organisation units associated with curretn user, single or array |
-| relativePeriodDate | string | No || Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
-
-### Embedding maps with the GIS map plug-in { #webapi_map_plugin } 
-
-In this example we will see how we can embed maps with data served from
-a DHIS2 back-end into a Web page. To accomplish this we will use the GIS
-map plug-in. The plug-in is written in JavaScript and depends on the Ext
-JS library only. A complete working example can be found at
-<http://play.dhis2.org/portal/map.html>. Open the page in a web browser
-and view the source to see how it is set up.
-
-We start by having a look at what the complete html file could look
-like. This setup puts two maps on our web page. The first one is
-referring to an existing map. The second is configured inline.
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v215/ext/resources/css/ext-plugin-gray.css" />
-  <script src="http://dhis2-cdn.org/v215/ext/ext-all.js"></script>
-  <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
-  <script src="http://dhis2-cdn.org/v215/openlayers/OpenLayers.js"></script>
-  <script src="http://dhis2-cdn.org/v215/plugin/map.js"></script>
-
-  <script>
-    var base = "https://play.dhis2.org/demo";
-
-    // Login - if OK, call the setLinks function
-
-    Ext.onReady( function() {
-      Ext.Ajax.request({
-        url: base + "dhis-web-commons-security/login.action",
-        method: "POST",
-        params: { j_username: "portal", j_password: "Portal123" },
-        success: setLinks
-      });
-    });
-
-    function setLinks() {
-      DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
-
-      DHIS.getMap({
-        url: base,
-        el: "map2",
-        mapViews: [{
-          columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
-          rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units,
-          filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
-          // All following options are optional
-          classes: 7,
-          colorLow: "02079c",
-          colorHigh: "e5ecff",
-          opacity: 0.9,
-          legendSet: {id: "fqs276KXCXi"}
-        }]
-      });
-    }
-  </script>
-</head>
-
-<body>
-  <div id="map1"></div>
-  <div id="map2"></div>
-</body>
-</html>
-```
-
-Four files and Google Maps are included in the header section of the
-HTML document. The first two files are the Ext JS JavaScript library (we
-use the DHIS2 content delivery network in this case) and its stylesheet.
-The third file is the OpenLayers JavaScript mapping framework
-(<http://openlayers.org>) and finally we include the GIS map plug-in.
-Make sure the path is pointing to your DHIS2 server
-    installation.
-
-    <link rel="stylesheet" type="text/css" href="http://dhis2-cdn.org/v215/ext/resources/css/ext-plugin-gray.css" />
-    <script src="http://dhis2-cdn.org/v215/ext/ext-all.js"></script>
-    <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="http://dhis2-cdn.org/v215/openlayers/OpenLayers.js"></script>
-    <script src="http://dhis2-cdn.org/v215/plugin/map.js"></script>
-
-To authenticate with the DHIS2 server we use the same approach as in the
-previous section. In the header of the HTML document we include the
-following Javascript inside a script element. The *setLinks* method will
-be implemented later. Make sure the *base* variable is pointing to your
-DHIS2 installation.
-
-    Ext.onReady( function() {
-      Ext.Ajax.request({
-        url: base + "dhis-web-commons-security/login.action",
-        method: "POST",
-        params: { j_username: "portal", j_password: "Portal123" },
-        success: setLinks
-      });
-    });
-
-Now let us have a look at the various options for the GIS plug-in. Two
-properties are required: *el* and *url* (please refer to the table
-below). Now, if you want to refer to pre-defined maps already made in
-the DHIS2 GIS it is sufficient to provide the additional *id* parameter.
-If you instead want to configure a map dynamically you should omit the id
-parameter and provide *mapViews* (layers) instead. They should be
-configured with data dimensions inside a *columns* array, a *rows* array
-and optionally a *filters* array instead.
-
-A data dimension is defined as an object with a text property called
-*dimension*. This property accepts the following values: *in*
-(indicator), *de* (data element), *ds* (data set), *dc* (data element
-operand), *pe* (period), *ou* (organisation unit) or the id of any
-organisation unit group set or data element group set (can be found in
-the web api). The data dimension also has an array property called
-*items* which accepts objects with an *id* property.
-
-To sum up, if you want to have a layer with e.g. "ANC 1 Coverage" in
-your map you can make the following *columns* config:
-
-```json
-columns: [{
-  dimension: "in", // could be "in", "de", "ds", "dc", "pe", "ou" or any dimension id
-  items: [{id: "Uvn6LCg7dVU"}], // the id of ANC 1 Coverage
-}]
-```
-
-
-
-Table: GIS map plug-in configuration
-
-| Param | Type | Required | Options (default first) | Description |
-|---|---|---|---|---|
-| el | string | Yes || Identifier of the HTML element to render the map in your web page |
-| url | string | Yes || Base URL of the DHIS2 server |
-| id | string | No || Identifier of a pre-defined map (favorite) in DHIS |
-| baseLayer | string/boolean | No | 'gs', 'googlestreets' &#124; 'gh', 'googlehybrid' &#124; 'osm', 'openstreetmap' &#124; false, null, 'none', 'off' | Show background map |
-| hideLegend | boolean | No | false &#124; true | Hide legend panel |
-| mapViews | array | Yes (if no id provided) || Array of layers |
-
-If no id is provided you must add map view objects with the following
-config options:
-
-
-
-Table: Map plug-in configuration
-
-||||||
-|---|---|---|---|---|
-| layer | string | No | "thematic1" &#124; "thematic2" &#124; "thematic3" &#124; "thematic4" &#124; "boundary" &#124; "facility" &#124; | The layer to which the map view content should be added |
-| columns | array | Yes || Indicator, data element, data operand or data set (only one will be used) |
-| rows | array | Yes || Organisation units (multiple allowed) |
-| filter | array | Yes || Period (only one will be used) |
-| classes | integer | No | 5 &#124; 1-7 | The number of automatic legend classes |
-| method | integer | No | 2 &#124; 3 | Legend calculation method where 2 = equal intervals and 3 = equal counts |
-| colorLow | string | No | "ff0000" (red) &#124; Any hex color | The color representing the first automatic legend class |
-| colorHigh | string | No | "00ff00" (green) &#124; Any hex color | The color representing the last automatic legend class |
-| radiusLow | integer | No | 5 &#124; Any integer | Only applies for facilities (points) - radius of the point with lowest value |
-| radiusHigh | integer | No | 15 &#124; Any integer | Only applies for facilities (points) - radius of the point with highest value |
-| opacity | double | No | 0.8 &#124; 0 - 1 | Opacity/transparency of the layer content |
-| legendSet | object | No || Pre-defined legend set. Will override the automatic legend set. |
-| labels | boolean/object | No | false &#124; true &#124; object properties: fontSize (integer), color (hex string), strong (boolean), italic (boolean) | Show labels on the map |
-| width | integer | No || Width of map |
-| height | integer | No || Height of map |
-| userOrgUnit | string / array | No || Organisation unit identifiers, overrides organisation units associated with current user, single or array |
-
-We continue by adding one pre-defined and one dynamically configured map
-to our HTML document. You can browse the list of available maps using
-the Web API here: <http://play.dhis2.org/demo/api/33/maps>.
-
-```javascript
-function setLinks() {
-  DHIS.getMap({ url: base, el: "map1", id: "ytkZY3ChM6J" });
-
-  DHIS.getMap({
- url: base,
- el: "map2",
- mapViews: [
-   columns: [ // Chart series
-  columns: [{dimension: "in", items: [{id: "Uvn6LCg7dVU"}]}], // data
-   ],
-   rows: [ // Chart categories
-  rows: [{dimension: "ou", items: [{id: "LEVEL-3"}, {id: "ImspTQPwCqd"}]}], // organisation units
-   ],
-   filters: [
-  filters: [{dimension: "pe", items: [{id: "LAST_3_MONTHS"}]}], // period
-   ],
-   // All following options are optional
-   classes: 7,
-   colorLow: "02079c",
-   colorHigh: "e5ecff",
-   opacity: 0.9,
-   legendSet: {id: "fqs276KXCXi"}
- ]
-  });
-}
-```
-
-Finally we include some *div* elements in the body section of the HTML
-document with the identifiers referred to in the plug-in JavaScript.
-
-```html
-<div id="map1"></div>
-<div id="map2"></div>
-```
-
-To see a complete working example please visit
-<http://play.dhis2.org/portal/map.html>.

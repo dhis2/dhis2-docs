@@ -103,6 +103,7 @@ Table: System settings
 | keyFlag | Application flag | No |
 | keyFlagImage | Flag used in dashboard menu | No |
 | startModule | The startpage of the application. Default: "dhis-web-dashboard-integration" | No |
+| startModuleEnableLightweight | The starting page app to render a light-weight landing page. Default: "false" | No |
 | factorDeviation | Data analysis standard deviation factor. Default: "2d" | No |
 | keyEmailHostName | Email server hostname | No |
 | keyEmailPort | Email server port | No |
