@@ -726,7 +726,7 @@ You can delete a data value with a request using the *DELETE* method.
 You can send individual data values as a JSON payload using the following resource using `Content-Type: application/json`.
 
 ```
-POST /api/dataValueSets
+POST /api/dataValues
 ```
 
 The resource will create a new data value or update a data value if it already exists. The JSON payload format is defined below.
