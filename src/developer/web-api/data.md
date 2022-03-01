@@ -726,7 +726,7 @@ You can delete a data value with a request using the *DELETE* method.
 You can send individual data values as a JSON payload using the following resource using `Content-Type: application/json`.
 
 ```
-POST /api/dataValues
+POST /api/dataValueSets
 ```
 
 The resource will create a new data value or update a data value if it already exists. The JSON payload format is defined below.
@@ -750,9 +750,9 @@ The endpoint supports specifying attribute option combos in a nested structure.
   "categoryOptionCombo": "TkDhg29x18A",
   "attribute": {
     "combo": "O4VaNks6tta",
-      "options": [
-        "C6nZpLKjEJr", "i4Nbp8S2G6A"
-      ]
+    "options": [
+      "C6nZpLKjEJr", "i4Nbp8S2G6A"
+    ]
   },
   "dataSet": "lyLU2wR22tC",
   "period": "202201",
