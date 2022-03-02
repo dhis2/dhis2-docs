@@ -581,7 +581,7 @@ Table: Data element objects in the Maintenance app
 
 
     Table: Value types
-
+    
     | Value type | Description |
     |---|---|
     | Age | - |
@@ -621,7 +621,7 @@ Table: Data element objects in the Maintenance app
 
 
     Table: Aggregation operators
-
+    
     | Aggregation operator | Description |
     |---|---|
     | Average | Average the values in both the period as and the organisation unit dimensions. |
@@ -748,15 +748,12 @@ group sets.
 3.  Fill in the form:
 
     1.  **Name**
-
-    2.  **Code**
-
-    3.  **Description**
-
-    4.  **Compulsory**
-
+    2.  **Short name**
+    3.  **Code**
+    4.  **Description**
+    5.  **Compulsory**
     5.  **Data dimension**
-
+    
 4.  Select data element groups and assign them.
 
     Available data element groups are displayed in the left panel. Data
@@ -1341,7 +1338,7 @@ section.
         |---|---|
         | **None** | Displays all data elements that don't have a category combination. |
         | **<No filter\>** | Displays all data elements. |
-
+    
     2.  Select data elements and assign them.
 
 10. (Optional) Sort the data elements within the section by using the up
@@ -1525,19 +1522,19 @@ Table: Data entry events
 To register for an event:
 
     <script type="text/javascript">
-
+    
     dhis2.util.on( 'dhis2.de.event.formReady', function( event, ds ) {
       console.log( 'The form with id: ' + ds + ' is loaded!' );
     } );
-
+    
     dhis2.util.on( 'dhis2.de.event.dataValueSaved', function( event, ds, dv ) {
       console.log( 'Data value: ' + dv.value + ' was saved with data element: ' + dv.de );
     } );
-
+    
     dhis2.util.on( 'dhis2.de.event.completed', function( event, ds, cr ) {
       console.log( 'Form was completed for org unit: ' + cr.ou );
     } );
-
+    
     </script>
 
 > **Note**
@@ -1974,9 +1971,9 @@ analysis of data to combine similar themes of indicators.
 3.  Fill in the form:
 
     1.  **Name**
-
-    2.  **Description**
-
+2.  **Short name**
+    3.  **Code**
+4.  **Description**
     3.  **Compulsory**
 
 4.  Select indicator groups and assign them.
@@ -2460,7 +2457,7 @@ option:
 
 4.  Assign the organisation unit groups "MoH", "Private" and
     "Faith-based" to the "Ownership" organisation group
-set.
+    set.
 
 ![](resources/images/maintenance/analytics-include-org-unit-subhierarchy.png)
 
@@ -2831,16 +2828,16 @@ Table: Validation Rule functions
         | Skip if any value is missing | The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.<br>         <br>Always select this option you use the **Exclusive pair** or **Compulsory pair** operator. |
         | Skip if all values are missing | The validation rule will be skipped only if all of the operands which compose it are missing. |
         | Never skip | The validation rule will never be skipped in case of missing data, and all missing operands will be treated effectively as a zero. |
-
+    
     4.  Type a **Description**.
-
+    
     5.  Build an expression based on the available data elements,
         program objects, organisation units, counts and constants.
-
+    
         In the right pane, double-click the data objects you want to
         include in the expression. Combine with the mathematical
         operators located below the left pane.
-
+    
     6.  Click **Save**.
 
 10. Create the right side of the expression:
@@ -2856,20 +2853,20 @@ Table: Validation Rule functions
         | Skip if any value is missing | The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.<br>         <br>Always select this option you use the **Exclusive pair** or **Compulsory pair** operator. |
         | Skip if all values are missing | The validation rule will be skipped only if all of the operands which compose it are missing. |
         | Never skip | The validation rule will never be skipped in case of missing data, and all missing operands will be treated effectively as a zero. |
-
+    
     3.  Select **Sliding window** if you want to view data relative to
         the period you are comparing. See also [About validation
         rules](https://docs.dhis2.org/master/en/user/html/manage_validation_rule.html#about_validation_rule).
-
+    
     4.  Type a **Description**.
-
+    
     5.  Build an expression based on the available data elements,
         program objects, organisation units, counts and constants.
-
+    
         In the right pane, double-click the data objects you want to
         include in the expression. Combine with the mathematical
         operators located below the left pane.
-
+    
     6.  Click **Save**.
 
 11. (Optional) Choose which **Organisation unit levels** this rule
@@ -4143,7 +4140,7 @@ sampled. For example:
         | log10(expression) | Returns the common logarithm (base 10) of the numeric expression. |
         | orgUnit.ancestor(orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
         | orgUnit.group(ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
-
+    
         **Boolean expression notes:** A boolean expression must evaluate
         to **true** or **false**. The following operators may be used to
         compare two values resulting in a boolean expression: \<, \>,
@@ -4151,7 +4148,7 @@ sampled. For example:
         combine two boolean expressions: && (logical and), and ||
         (logical or). The unary operator \! may be used to negate a
         boolean expression.
-
+    
         Generator expression examples:
 
 
@@ -4706,7 +4703,7 @@ text about what the SQL view actually does.
 The "SQL type" attribute allows the creation of three kinds of views:
   - A "View" is stored in the database and regenerated when queried
   - A "Materialized View" is stored in the database and its results
-  are cached in the database
+    are cached in the database
   - A "Query" is not stored in the database
 
 Finally, the "SQL query" should contain the SQL view definition.
