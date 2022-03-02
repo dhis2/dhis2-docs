@@ -304,6 +304,10 @@ To see a rule being executed while enrolling a tracked entity instance you will 
 5. You will now be able to see the warning produced by the program rule underneath the birth date field. 
 ![](resources/images/capture_app/program-rules-on-creation-02.png)
 
+## Re-enroll an existing tracked entity instance
+
+When you are on the re-enroll page, the teId will be visible in the URL parameters. The attributes of the tracked entity instance will be pre-fielded with the current values. 
+![](resources/images/capture_app/enroll-existing-tei.png)
 
 ## Adding a relationship { #capture_add_relationship } 
 
