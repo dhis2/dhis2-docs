@@ -753,7 +753,7 @@ group sets.
     4.  **Description**
     5.  **Compulsory**
     5.  **Data dimension**
-    
+
 4.  Select data element groups and assign them.
 
     Available data element groups are displayed in the left panel. Data
