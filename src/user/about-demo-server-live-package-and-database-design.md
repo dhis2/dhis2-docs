@@ -333,7 +333,7 @@ forms.
 When the form you want to design is too complicated for the default or
 section forms then your last option is to use a custom form. This takes
 more time, but gives you full flexibility in term of the design. In
-DHIS2 there is a built in HTML editor (FcK Editor) for the form designer
+DHIS2 there is a built in HTML editor (CK Editor) for the form designer
 and you can either design the form in the UI or paste in your HTML
 directly using the Source window in the editor. In the custom form you
 can insert static text or data fields (linked to data elements +
