@@ -1118,7 +1118,7 @@ by the data capture apps to identify this program stage.
 number of days to wait for starting the program stage.
 3. Enter repeatable program stage details.
     1. Specify if the program stage is **Repeatable** or not.
-    2. Select a **Period type**.
+    2. Select a **Period type** (when the period type on program stage works, it will mask the event date selection and replace it with a period picker).
     3. Clear **Display generate event box after completed** if you 
     don't want to display *Create new event box* to create new event
     for a repeatable stage after you click *Complete* for an event
