@@ -330,7 +330,7 @@ You now have two options:
   You have the option to select a **program**. If a **program** is selected the attributes are derived from the selected **program**.
   If no **program** is selected, only the attributes that belong to the **Tracked Entity Instance** will be visible.
 
-    ![search for Tracked Entity Instance](resources/images/capture_app/search_tei_1.png)
+    ![search for Tracked Entity Instance](resources/images/capture_app/search_tei.png)
 
     - If the **Tracked Entity Instance** or **program** is configured with a unique attribute, this attribute can be
       used for finding a specific **Tracked Entity Instance** or **program**. This attribute should be presented alone.
