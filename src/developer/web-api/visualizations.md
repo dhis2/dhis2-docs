@@ -1227,6 +1227,52 @@ These operations follow the standard *REST* semantics. A new EventVisualization 
         "repetition": {
           "indexes": [1, 2, 3, -2, -1, 0]
         }
+      },
+      {
+        "dimension": "eventDate",
+        "items": [
+          {
+            "id": "2021-07-21_2021-08-01"
+          },
+          {
+            "id": "2021-01-21_2021-02-01"
+          }
+        ]
+      },
+      {
+        "dimension": "incidentDate",
+        "items": [
+          {
+            "id": "2021-10-01_2021-10-30"
+          }
+        ]
+      },
+      {
+        "dimension": "eventStatus",
+        "items": [
+          {
+            "id": "ACTIVE"
+          },
+          {
+            "id": "COMPLETED"
+          }
+        ]
+      },
+      {
+        "dimension": "createdBy",
+        "items": [
+          {
+            "id": "userA"
+          }
+        ]
+      },
+      {
+        "dimension": "lastUpdatedBy",
+        "items": [
+          {
+            "id": "userB"
+          }
+        ]
       }
     ],
     "rows": [
