@@ -2713,3 +2713,358 @@ Table: Query parameters
 |---|---|---|
 | svg | Yes | The SVG content |
 | filename | No | The file name for the returned attachment without file extension |
+
+## Analytics query execution plan and costs including execution time estimation
+The Web Api provides entry point for the investigation of analytics database issues. 
+It is implemented as a part of all analytics controllers:
+- analytics/explain
+- analytics/event/explain
+- analytics/enrollment/explain
+
+**Example**
+
+Request:
+
+http://localhost:8080/dhis/api/29/analytics/explain?displayProperty=NAME&dimension=dx:Uvn6LCg7dVU;sB79w2hiLp8,ou:USER_ORGUNIT&filter=pe:THIS_YEAR&includeNumDen=false&skipMeta=false&skipData=true&includeMetadataDetails=true
+
+Response:
+
+```
+{
+    "headers": [
+        {
+            "name": "dx",
+            "column": "Data",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": true
+        },
+        {
+            "name": "ou",
+            "column": "Organisation unit",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": true
+        },
+        {
+            "name": "value",
+            "column": "Value",
+            "valueType": "NUMBER",
+            "type": "java.lang.Double",
+            "hidden": false,
+            "meta": false
+        }
+    ],
+    "metaData": {
+        "items": {
+            "ImspTQPwCqd": {
+                "uid": "ImspTQPwCqd",
+                "code": "OU_525",
+                "name": "Sierra Leone",
+                "dimensionItemType": "ORGANISATION_UNIT",
+                "valueType": "NUMBER",
+                "totalAggregationType": "SUM"
+            },
+            "sB79w2hiLp8": {
+                "uid": "sB79w2hiLp8",
+                "name": "ANC 3 Coverage",
+                "description": "Total 3rd ANC visits (Fixed and outreach) by expected number of pregnant women.",
+                "legendSet": "fqs276KXCXi",
+                "dimensionItemType": "INDICATOR",
+                "valueType": "NUMBER",
+                "totalAggregationType": "AVERAGE",
+                "indicatorType": {
+                    "name": "Per cent",
+                    "displayName": "Per cent",
+                    "factor": 100,
+                    "number": false
+                }
+            },
+            "dx": {
+                "uid": "dx",
+                "name": "Data",
+                "dimensionType": "DATA_X"
+            },
+            "pe": {
+                "uid": "pe",
+                "name": "Period",
+                "dimensionType": "PERIOD"
+            },
+            "ou": {
+                "uid": "ou",
+                "name": "Organisation unit",
+                "dimensionType": "ORGANISATION_UNIT"
+            },
+            "Uvn6LCg7dVU": {
+                "uid": "Uvn6LCg7dVU",
+                "code": "IN_52486",
+                "name": "ANC 1 Coverage",
+                "description": "Total 1st ANC visits (Fixed and outreach) by expected number of pregnant women.",
+                "legendSet": "fqs276KXCXi",
+                "dimensionItemType": "INDICATOR",
+                "valueType": "NUMBER",
+                "totalAggregationType": "AVERAGE",
+                "indicatorType": {
+                    "name": "Per cent",
+                    "displayName": "Per cent",
+                    "factor": 100,
+                    "number": false
+                }
+            },
+            "THIS_YEAR": {
+                "name": "This year"
+            },
+            "2022": {
+                "uid": "2022",
+                "code": "2022",
+                "name": "2022",
+                "dimensionItemType": "PERIOD",
+                "valueType": "NUMBER",
+                "totalAggregationType": "SUM",
+                "startDate": "2022-01-01T00:00:00.000",
+                "endDate": "2022-12-31T00:00:00.000"
+            }
+        },
+        "dimensions": {
+            "dx": [
+                "Uvn6LCg7dVU",
+                "sB79w2hiLp8"
+            ],
+            "pe": [
+                "2022"
+            ],
+            "ou": [
+                "ImspTQPwCqd"
+            ],
+            "co": []
+        }
+    },
+    "performanceMetrics": {
+        "totalTimeInMillis": 90.894,
+        "executionPlans": [
+            {
+                "timeInMillis": 12.314,
+                "planningTime": 6.801,
+                "executionTime": 5.513,
+                "query": "select ax.\"dx\",ax.\"uidlevel1\", sum(daysxvalue) / 365 as value from analytics_2022 as ax where ax.\"dx\" in ('h0xKKjijTdI') and ax.\"uidlevel1\" in ('ImspTQPwCqd') and ( ax.\"yearly\" in ('2022') ) and ax.\"year\" in (2022) group by ax.\"dx\",ax.\"uidlevel1\"",
+                "plan": {
+                    "Node Type": "Aggregate",
+                    "Strategy": "Sorted",
+                    "Partial Mode": "Simple",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 20.21,
+                    "Total Cost": 5602.98,
+                    "Plan Rows": 260,
+                    "Plan Width": 32,
+                    "Actual Startup Time": 5.448,
+                    "Actual Total Time": 5.449,
+                    "Actual Rows": 1,
+                    "Actual Loops": 1,
+                    "Group Key": [
+                        "dx",
+                        "uidlevel1"
+                    ],
+                    "Plans": [
+                        {
+                            "Node Type": "Bitmap Heap Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "analytics_2022",
+                            "Alias": "ax",
+                            "Startup Cost": 20.21,
+                            "Total Cost": 5588.33,
+                            "Plan Rows": 1520,
+                            "Plan Width": 32,
+                            "Actual Startup Time": 0.446,
+                            "Actual Total Time": 5.003,
+                            "Actual Rows": 1032,
+                            "Actual Loops": 1,
+                            "Recheck Cond": "(dx = 'h0xKKjijTdI'::bpchar)",
+                            "Rows Removed by Index Recheck": 0,
+                            "Filter": "((uidlevel1 = 'ImspTQPwCqd'::bpchar) AND (yearly = '2022'::text) AND (year = 2022))",
+                            "Rows Removed by Filter": 0,
+                            "Exact Heap Blocks": 46,
+                            "Lossy Heap Blocks": 0,
+                            "Plans": [
+                                {
+                                    "Node Type": "Bitmap Index Scan",
+                                    "Parent Relationship": "Outer",
+                                    "Parallel Aware": false,
+                                    "Async Capable": false,
+                                    "Index Name": "in_dx_ao_ax_2022_MClNI",
+                                    "Startup Cost": 0.0,
+                                    "Total Cost": 19.83,
+                                    "Plan Rows": 1520,
+                                    "Plan Width": 0,
+                                    "Actual Startup Time": 0.406,
+                                    "Actual Total Time": 0.407,
+                                    "Actual Rows": 1032,
+                                    "Actual Loops": 1,
+                                    "Index Cond": "(dx = 'h0xKKjijTdI'::bpchar)"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "timeInMillis": 38.35,
+                "planningTime": 0.627,
+                "executionTime": 37.723,
+                "query": "select ax.\"dx\",ax.\"uidlevel1\", sum(value) as value from analytics_2022 as ax where ax.\"dx\" in ('Jtf34kNZhzP') and ax.\"uidlevel1\" in ('ImspTQPwCqd') and ( ax.\"yearly\" in ('2022') ) and ax.\"year\" in (2022) group by ax.\"dx\",ax.\"uidlevel1\"",
+                "plan": {
+                    "Node Type": "Aggregate",
+                    "Strategy": "Sorted",
+                    "Partial Mode": "Simple",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 193.57,
+                    "Total Cost": 47322.83,
+                    "Plan Rows": 261,
+                    "Plan Width": 32,
+                    "Actual Startup Time": 37.685,
+                    "Actual Total Time": 37.685,
+                    "Actual Rows": 1,
+                    "Actual Loops": 1,
+                    "Group Key": [
+                        "dx",
+                        "uidlevel1"
+                    ],
+                    "Plans": [
+                        {
+                            "Node Type": "Bitmap Heap Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "analytics_2022",
+                            "Alias": "ax",
+                            "Startup Cost": 193.57,
+                            "Total Cost": 47191.38,
+                            "Plan Rows": 17179,
+                            "Plan Width": 32,
+                            "Actual Startup Time": 1.981,
+                            "Actual Total Time": 32.332,
+                            "Actual Rows": 17462,
+                            "Actual Loops": 1,
+                            "Recheck Cond": "(dx = 'Jtf34kNZhzP'::bpchar)",
+                            "Rows Removed by Index Recheck": 0,
+                            "Filter": "((uidlevel1 = 'ImspTQPwCqd'::bpchar) AND (yearly = '2022'::text) AND (year = 2022))",
+                            "Rows Removed by Filter": 0,
+                            "Exact Heap Blocks": 1165,
+                            "Lossy Heap Blocks": 0,
+                            "Plans": [
+                                {
+                                    "Node Type": "Bitmap Index Scan",
+                                    "Parent Relationship": "Outer",
+                                    "Parallel Aware": false,
+                                    "Async Capable": false,
+                                    "Index Name": "in_dx_ax_2022_Eb64F",
+                                    "Startup Cost": 0.0,
+                                    "Total Cost": 189.27,
+                                    "Plan Rows": 17179,
+                                    "Plan Width": 0,
+                                    "Actual Startup Time": 1.765,
+                                    "Actual Total Time": 1.765,
+                                    "Actual Rows": 17462,
+                                    "Actual Loops": 1,
+                                    "Index Cond": "(dx = 'Jtf34kNZhzP'::bpchar)"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "timeInMillis": 40.23,
+                "planningTime": 5.153,
+                "executionTime": 35.077,
+                "query": "select ax.\"dx\",ax.\"uidlevel1\", sum(value) as value from analytics_2022 as ax where ax.\"dx\" in ('fbfJHSPpUQD') and ax.\"uidlevel1\" in ('ImspTQPwCqd') and ( ax.\"yearly\" in ('2022') ) and ax.\"year\" in (2022) group by ax.\"dx\",ax.\"uidlevel1\"",
+                "plan": {
+                    "Node Type": "Aggregate",
+                    "Strategy": "Sorted",
+                    "Partial Mode": "Simple",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 207.21,
+                    "Total Cost": 49892.62,
+                    "Plan Rows": 261,
+                    "Plan Width": 32,
+                    "Actual Startup Time": 35.034,
+                    "Actual Total Time": 35.034,
+                    "Actual Rows": 1,
+                    "Actual Loops": 1,
+                    "Group Key": [
+                        "dx",
+                        "uidlevel1"
+                    ],
+                    "Plans": [
+                        {
+                            "Node Type": "Bitmap Heap Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "analytics_2022",
+                            "Alias": "ax",
+                            "Startup Cost": 207.21,
+                            "Total Cost": 49751.83,
+                            "Plan Rows": 18423,
+                            "Plan Width": 32,
+                            "Actual Startup Time": 1.688,
+                            "Actual Total Time": 30.32,
+                            "Actual Rows": 18542,
+                            "Actual Loops": 1,
+                            "Recheck Cond": "(dx = 'fbfJHSPpUQD'::bpchar)",
+                            "Rows Removed by Index Recheck": 0,
+                            "Filter": "((uidlevel1 = 'ImspTQPwCqd'::bpchar) AND (yearly = '2022'::text) AND (year = 2022))",
+                            "Rows Removed by Filter": 0,
+                            "Exact Heap Blocks": 1239,
+                            "Lossy Heap Blocks": 0,
+                            "Plans": [
+                                {
+                                    "Node Type": "Bitmap Index Scan",
+                                    "Parent Relationship": "Outer",
+                                    "Parallel Aware": false,
+                                    "Async Capable": false,
+                                    "Index Name": "in_dx_ax_2022_Eb64F",
+                                    "Startup Cost": 0.0,
+                                    "Total Cost": 202.6,
+                                    "Plan Rows": 18423,
+                                    "Plan Width": 0,
+                                    "Actual Startup Time": 1.324,
+                                    "Actual Total Time": 1.325,
+                                    "Actual Rows": 18542,
+                                    "Actual Loops": 1,
+                                    "Index Cond": "(dx = 'fbfJHSPpUQD'::bpchar)"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "width": 0,
+    "rows": [],
+    "height": 0,
+    "headerWidth": 3
+}
+```
+
+All entry points are secured by authorization. The user has to be in  **ALL** or **F_PERFORM_ANALYTICS_EXPLAIN** role.
+
+## Analytics explain { #webapi_analytics_explain }
+**Entry points:**
+- analytics/explain
+
+## Event analytics explain { #webapi_event_analytics_explain }
+**Entry points:**
+- analytics/event/aggregate/{program}/explain
+- analytics/event/query/{program}/explain
+
+## Enrollment analytics explain { #webapi_enrollment_analytics_explain }
+**Entry points:**
+- analytics/enrollment/query/{program}/explain
