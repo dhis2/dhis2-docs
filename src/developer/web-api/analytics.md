@@ -3059,12 +3059,10 @@ All entry points are secured by authorization. The user has to be in  **ALL** or
 ## Analytics explain { #webapi_analytics_explain }
 **Entry points:**
 - analytics/explain
-
 ## Event analytics explain { #webapi_event_analytics_explain }
 **Entry points:**
 - analytics/event/aggregate/{program}/explain
 - analytics/event/query/{program}/explain
-
 ## Enrollment analytics explain { #webapi_enrollment_analytics_explain }
 **Entry points:**
 - analytics/enrollment/query/{program}/explain
