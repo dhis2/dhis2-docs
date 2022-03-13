@@ -3054,6 +3054,10 @@ Response:
 }
 ```
 
+This response displays the execution plan that the PostgreSQL planner generates for the supplied statement. The execution plan shows how the table(s) referenced by the statement will be scanned — by plain sequential scan, index scan, etc. — and if multiple tables are referenced, what join algorithms will be used to bring together the required rows from each input table.
+
+The most critical part of the display is the estimated statement execution cost, which is the planner's guess at how long it will take to run the statement.
+
 All entry points are secured by authorization. The user has to be in  **ALL** or **F_PERFORM_ANALYTICS_EXPLAIN** role.
 
 ## Analytics explain { #webapi_analytics_explain }
