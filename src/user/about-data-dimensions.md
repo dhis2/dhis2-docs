@@ -128,7 +128,7 @@ points". Orgunits are represented in a default hierarchy, usually the
 default administrative hierarchy of a country or region, and are
 therefore assigned an organisational level. As an example, Sierra Leone
 has four organisation unit levels; National, District, Chiefdom, and
-Facility, and all orgunits are linked to one of these levels. An orgunit
+PHU, and all orgunits are linked to one of these levels. An orgunit
 hierarchy in DHIS2 can have any number of levels. Normally data is
 collected at the lowest level, at the health facility, but can be
 collected at any level within the hierarchy, such as both the districts
@@ -173,12 +173,12 @@ A more advanced use of organisation unit group sets is to create
 alternative hierarchies e.g. use administrative borders from other
 ministries. In Sierra Leone that could mean an alternative hierarchy of
 1:MoHS, 2:Districts, and 3: Local councils, instead of the four-level
-hierarchy with chiefdoms and facilities. For instance, if all facilities are linked
+hierarchy with chiefdoms and PHUs. For instance, if all PHUs are linked
 to a specific local council, it would be possible to look at data
 aggregated by local council instead of chiefdom. Then you would first
 need to create a group set called "Local council" and then create one
 organisation unit group for every local council, and finally link all
-facilities to their corresponding local council group.
+PHUs to their corresponding local council group.
 
 
 | District | OrgUnit Type | Data Element | Period | Value |
@@ -321,7 +321,7 @@ report on Measles immunisation one would sum up the three monthly values
 for "Measles doses given".
 
 Other types of data that are more permanently valid over time like
-"Number of staff in the facility" or an annual population estimate of
+"Number of staff in the PHU" or an annual population estimate of
 "Population under 1 year" need to be aggregated differently. These
 values are static for all months as long as there are valid data. For
 example, the "Estimated population under 1", calculated from the census
@@ -332,7 +332,7 @@ months period the number is reported for.
 This difference becomes important when calculating an annual value for
 the indicator morbidity service burden for a facility. The monthly
 head-counts are summed up for the 12 months to get the annual headcount,
-while the number of staff for the facility is calculated as the average of
+while the number of staff for the PHU is calculated as the average of
 the two 6-monthly values reported through the 6-monthly staff report. So
 in this example the data element "OPD headcount" would have the
 aggregation operator "SUM" and the data element "Number of staff" would
