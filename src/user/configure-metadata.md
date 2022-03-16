@@ -2777,7 +2777,9 @@ Table: Validation Rule functions
 | log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
 | log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
 | orgUnit.ancestor | (orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
+| orgUnit.dataSet | (dataSetUid [, dataSetUid ...]) | Returns true if the organisation unit is assgined to of any of the (1 or more) data sets, otherwise false. |
 | orgUnit.group | (ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
+| orgUnit.program | (programUid [, programUid ...]) | Returns true if the organisation unit is assgined to of any of the (1 or more) programs, otherwise false. |
 
 ### Create or edit a validation rule { #create_validation_rule } 
 
@@ -4140,7 +4142,9 @@ sampled. For example:
         | log(expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
         | log10(expression) | Returns the common logarithm (base 10) of the numeric expression. |
         | orgUnit.ancestor(orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
+        | orgUnit.dataSet(dataSetUid [, dataSetUid ...]) | Returns true if the organisation unit is assgined to of any of the (1 or more) data sets, otherwise false. |
         | orgUnit.group(ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
+        | orgUnit.program(programUid [, programUid ...]) | Returns true if the organisation unit is assgined to of any of the (1 or more) programs, otherwise false. |
 
         **Boolean expression notes:** A boolean expression must evaluate
         to **true** or **false**. The following operators may be used to
