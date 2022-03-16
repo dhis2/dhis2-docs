@@ -1746,15 +1746,42 @@ Table: Indicator functions
 | least | (expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
 | log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
 | log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
+| .aggregationType | (aggregation type) | Overrides the default data element aggregation type for aggregate data (not for program data). |
+| .maxDate | (yyyy-mm-dd) | For a data element (not program data), value from periods ending on or before a maximum date. |
+| .minDate | (yyyy-mm-dd) | For a data element (not program data), value from periods starting on or after a minimum date. |
 | .periodOffset | (integer constant) | Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below. |
 
-Examples of the .periodOffset() function in an indicator expression:
+Valid aggregation types:
+| Aggregation type | Description |
+|---|---|
+| AVERAGE | Average of values in both period and organisation unit hierarchy |
+| AVERAGE_SUM_ORG_UNIT | Average of values, sum in the organisation unit hierarchy |
+| COUNT | Count of values |
+| FIRST | First value, sum in organisation unit hierarchy |
+| FIRST_AVERAGE_ORG_UNIT | First value, average in organisation unit hierarchy |
+| LAST | Last value, sum in organisation unit hierarchy |
+| LAST_AVERAGE_ORG_UNIT | Last value, average in organisation unit hierarchy |
+| LAST_IN_PERIOD | Last value in period, sum in organisation unit hierarchy
+| LAST_IN_PERIOD_AVERAGE_ORG_UNIT | Last value in period, average in organisation unit hierarchy |
+| MAX | Maximum value |
+| MIN | Minimum value |
+| NONE | No aggregation is performed in any dimension |
+| SUM | Sum of values in both period and organisation unit hierarchy |
+| STDEEV | Standard deviation (population-based) of values |
+| VARIANCE | Variance (population-based) of values |
+
+Examples of .aggregationType, .maxDate, .minDate, and .periodOffset functions:
 
 | Indicator expression            | Means                                           |
 | ------------------------------- | ----------------------------------------------- |
-| #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from the period before |
-| #{FH8ab5Rog83}.periodOffset(+1) | data element FH8ab5Rog83 from the period after  |
-| #{FH8ab5Rog83}.periodOffset(1)  | data element FH8ab5Rog83 from the period after  |
+| #{FH8ab5Rog83}.aggregationType(COUNT) | count of  values |
+| #{FH8ab5Rog83}.aggregationType(LAST) - #{FH8ab5Rog83}.aggregationType(FIRST) | the difference between first and last values |
+| #{FH8ab5Rog83}.maxDate(2021-6-30) | values until 30-Jun-2021 |
+| #{FH8ab5Rog83}.minDate(2021-1-1) | values from 1-Jan-2021 onwards |
+| #{FH8ab5Rog83}.minDate(2021-1-1)<br />.maxDate(2021-6-30) | values between 1-Jan-2021 and 30-Jun-2021 |
+| #{FH8ab5Rog83}.periodOffset(-1) | value from the period before |
+| #{FH8ab5Rog83}.periodOffset(+1) | value from the period after  |
+| #{FH8ab5Rog83}.periodOffset(1)  | value from the period after  |
 | #{FH8ab5Rog83} - 2 * D{IpHINAT79UW.uf3svrmp8Oj}.periodOffset(-1)  | data element FH8ab5Rog83 from the reported period minus twice program data element IpHINAT79UW.uf3svrmp8Oj from the period before |
 | ( #{FH8ab5Rog83} - <br /> #{QOlfIKgNJ3D2} ).periodOffset(-2) | data element FH8ab5Rog83 from 2 periods before minus data element QOlfIKgNJ3D2 from 2 periods before |
 | #{FH8ab5Rog83}.periodOffset(-2) + <br /> #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before |
