@@ -186,9 +186,9 @@ You can remove one user from `sharing` like this
 ```json
 [
   { 
-  	"op": "remove", 
-  	"path": "/sharing/users/N3PZBUlN8vq"
-	}
+    "op": "remove", 
+    "path": "/sharing/users/N3PZBUlN8vq"
+  }
 ]
 ```
 
@@ -196,21 +196,19 @@ You can remove one user from `sharing` like this
 
 ### Overview
 
-- The sharing solution supports cascade sharing for Dashboard. 
-- This function will copy `userAccesses` and `userGroupAccesses` of a Dashboard to all of its DashboardItem's objects including `Map`, `EventReport`, `EventChart`, `Visualization`. 
-- This function will ***NOT*** copy `METADATA_WRITE` access. The copied `UserAccess` and `UserGroupAccess` will **only** have `METADATA_READ` permission. 
-- The `publicAccess` setting is currently ***NOT*** handled by this function. Means the `publicAccess` of the current `Dashboard` will not be copied to its `DashboardItems`'s objects.
-- If target object has `publicAccess` enabled, then it will be ignored by this function. Means that no `UserAccesses` or `UserGroupAccesses` will be copied from `Dashboard`.
-- Current `User` is required to have `METADATA_READ` sharing permission to all target objects, otherwise error `E5001` will be thrown. And to update target objects, `METADATA_WRITE` is required, otherwise error `E3001` will be thrown.
-- Sample use case:
+- `cascadeSharing` is available for Dashboards. This function copies the `userAccesses` and `userGroupAccesses` of a Dashboard to all of the objects in its `DashboardItems`, including `Map`, `EventReport`, `EventChart`, `Visualization`. 
+- This function will not copy `METADATA_WRITE` access. The copied `UserAccess` and `UserGroupAccess` will **only** receive the `METADATA_READ` permission. 
+- The `publicAccess` setting of the Dashboard is not copied.
+- If any target object has `publicAccess` enabled, then it will be skipped and will not receive the `UserAccesses` or `UserGroupAccesses` from the Dashboard.
+- The current user must have `METADATA_READ` sharing permission to all target objects. If the user does not, error `E5001` is thrown.
+- The current user must have `METADATA_WRITE` sharing permission to update any target objects. If a target object should be updated and the user does not have this permission, error `E3001` is thrown.
 
-	- DashboardA is shared to userA with `METADATA_READ_WRITE` permission.
+### Sample use case
 
-	- DashboardA has VisualizationA which has DataElementA.
-
-	- VisualizationA, DataElementA have `publicAccess`  *disabled* and are *not shared* to userA.
-
-	- After executing cascade sharing for DashboardA, userA will have `METADATA_READ` access to VisualizationA and DataElementA.
+- DashboardA is shared to userA with `METADATA_READ_WRITE` permission. 
+- DashboardA has VisualizationA which has DataElementA.
+- VisualizationA, DataElementA have `publicAccess` *disabled* and are *not shared* to userA.
+- After executing cascade sharing for DashboardA, userA will have `METADATA_READ` access to VisualizationA and DataElementA.
 
 ### API endpoint 
 
@@ -263,3 +261,128 @@ Sample response:
 - `errorReports`: includes all errors during cascade sharing process.
 - `countUpdatedDashBoardItems`: Number of `DashboardItem` will be or has been updated depends on `dryRun` mode.
 - `updateObjects`: List of all objects which will be or has been updated depends on `dryRun` mode.
+
+## Bulk Sharing patch API { #webapi_bulk_sharing } 
+- The bulk sharing API allow you to apply sharing settings to multiple metadata objects. This means the ability to add or remove many users and user groups to many objects in one API operation.
+- This API should not support keeping metadata objects in sync over time, and instead treat it as a one-time operation.
+- The API needs to respect the sharing access control, in that the current user must have access to edit the sharing of the objects being updated.
+- There are two new api endpoints introduced from 2.38 that allow bulk sharing patch update as described below.
+- Please note that those `PATCH` request must use header `Content-type:application/json-patch+json`
+
+### Using `/api/{object-type}/sharing` with `PATCH` request
+- This endpoint allows user to apply one set of Sharing settings for multiple metadata objects of *one object-type*.
+- Note that we still support JsonPatch request for one object with endpoint `api/{object-type}/{uid}`. For instance, you can still update sharing of a DataElement by sending PATCH request to `api/dataElements/cYeuwXTCPkU/sharing`
+
+Example: 
+```
+curl -X PATCH -d @payload.json -H "Content-Type: application/json-patch+json" "https://play.dhis2.org/dev/api/dataElements/sharing"
+```
+
+### Using `/api/metadata/sharing` with `PATCH` request
+- This endpoint allows user to apply Sharing settings for *multiple object-types* in one payload.
+
+Example:
+```
+curl -X PATCH -d @payload.json -H "Content-Type: application/json-patch+json" "https://play.dhis2.org/dev/api/metadata/sharing"
+```
+
+## Parameters
+- Both patch api endpoints have same parameter:
+
+| Name  |  Default  |  Description  |
+| ---- | ---- | -------------------- |
+| atomic | false | If this is set to true, then the batch function will stop and not updating any objects if there is an error <br> Otherwise, if this is false then the function will try to proceed with best effort mode. |
+
+
+## Validation
+- All object ID will be validated for existence.
+- Current User need to have metadata READ/WRITE permission on updating objects.
+- All existing validations from metadata import service will also be applied.
+
+## Response
+- Response format should be same as from `/api/metadata` api.
+
+## Payload formats
+- Payload for single object type using `/api/{object-type}/sharing` looks like this
+```json
+{
+  "dataSets":[
+    "cYeuwXTCPkU",
+    "aYeuwXTCPkU"
+  ],
+  "patch":[
+    {
+      "op":"add",
+      "path":"/sharing/users/DXyJmlo9rge",
+      "value":{
+        "access":"rw------",
+        "id":"DXyJmlo9rge"
+      }
+    },
+    {
+      "op":"remove",
+      "path":"/sharing/users/N3PZBUlN8vq"
+    }
+  ]
+}
+```
+
+- Payload for multiple object types in one payload using `api/metadata/sharing`
+```json
+{
+  "dataElements": {
+    "fbfJHSPpUQD": [
+      {
+        "op": "replace",
+        "path": "/sharing/users",
+        "value": {
+          "NOOF56dveaZ": {
+            "access": "rw------",
+            "id": "CotVI2NX0rI"
+          },
+          "Kh68cDMwZsg": {
+            "access": "rw------",
+            "id": "DLjZWMsVsq2"
+          }
+        }
+      }
+    ]
+  },
+  "dataSets": {
+    "cYeuwXTCPkA": [
+      {
+        "op": "remove",
+        "path": "/sharing/users/N3PZBUlN8vq"
+      }
+    ],
+    "cYeuwXTCPkU": [
+      {
+        "op": "add",
+        "path": "/sharing/users/DXyJmlo9rge",
+        "value": {
+          "access": "rw------",
+          "id": "DXyJmlo9rge"
+        }
+      }
+    ]
+  },
+  "programs": {
+    "GOLswS44mh8": [
+      {
+        "op": "add",
+        "path": "/sharing/userGroups",
+        "value": {
+          "NOOF56dveaZ": {
+            "access": "rw------",
+            "id": "NOOF56dveaZ"
+          },
+          "Kh68cDMwZsg": {
+            "access": "rw------",
+            "id": "Kh68cDMwZsg"
+          }
+        }
+      }
+    ]
+  }
+}
+```

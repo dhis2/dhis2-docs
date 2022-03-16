@@ -240,10 +240,8 @@ or work with the data relevant for the user in that program.
 Working lists can be defined with a wide variety of options, here are some
 examples:
 
-- Display all TEIs with at least one event in a given program stage that
-- has a due date on the current date.
-- Display all TEIs that has at least one event that is assigned to the
-- logged in user.
+- Display all TEIs with at least one event in a given program stage that has a due date on the current date.
+- Display all TEIs that has at least one event that is assigned to the logged in user.
 - Display all TEIs that is active, but is not assigned to any user.
 
 ![Predefined working lists in tracker capture](resources/images/tracker_capture/predefined_working_list_based_on_user_assignment.png)

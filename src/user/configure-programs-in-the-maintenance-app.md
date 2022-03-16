@@ -114,6 +114,7 @@ attributes and program parameters.
     | **Description** | A detailed description of the program. |
     | **Version** | The version of the program. This is used for example when people collect data offline in an Android implementation. When they go online and synchronize their metadata, they should get the latest version of the program. |
     | **Category combination** | The category combination you want to use. The default setting is **None**. |
+    | **Open days after category option end date** | If you selected a category combination other than None, you may enter zero or a positive number. This lets you enter data for this program for a category option up to the specified number of days after that category option's end date.    |
     | **Data approval workflow** | The data approval workflow you want to use. The default setting is **No value**. |
     | **Completed events expiry date** | Defines the number of days for which you can edit a completed event. This means that when an event is completed and the specified number of expiry days has passed, the event is locked.<br>     <br>If you set "Completed events expiry days" to 10", an event is locked ten days after the completion date. After this date you can no longer edit the event. |
     | **Expiry period type**<br>     <br>**Expiry days** | The expiry days defines for how many days after the end of the previous period, an event can be edited. The period type is defined by the expiry period type. This means that when the specified number of expiry days has passed since the end date of the previous period, the events from that period are locked.<br>     <br>If you set the expiry type to "Monthly" and the expiry days to "10" and the month is October, then you can't add or edit an event to October after the 10th of November. |
@@ -354,6 +355,7 @@ program. A program needs several types of metadata that you create in the **Main
 | **Version** |  The version of the program. This is used for example when people collect data offline in an Android implementation. When they go online and synchronize their metadata, they should get the latest version of the program.  |
 | **Tracked Entity Type** |  The tracked entity type you want to use. A program can only have one type of tracked entity.  |
 | **Category combination** |  The category combination you want to use. The default setting is **None**.  |
+| **Open days after category option end date** | If you selected a category combination other than None, you may enter zero or a positive number. This lets you enter data for this program for a category option up to the specified number of days after that category option's end date.    |
 | **Display front page list** |  Select checkbox to display a list of Tracked Entity Instances in Tracker Capture. If not selected, the Search will be displayed.  |
 | **First stage appears on registration page** |  Select checkbox to display the first program stage together with the registration (enrollment).  |
 | **Access level** | Choose the access level of the program. |
@@ -1368,7 +1370,7 @@ Table: Custom functions to use in a program rule expression
 | d2:zScoreWFH | Z-Score weight for height indicator | Calculates z-score based on data derived from the WHO weight-for-length and weight-for-height indicators. The data used for girls can be found [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-girls-table.txt) and for boys [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-boys-table.txt). Its value varies between -3.5 to 3.5 depending upon the value of the weight. <br>Example expression:<br> `d2:zScoreWFH( height, weight, gender )` |
 | d2:minValue | Get minimum value for provided item | Function gets minimum value of provided data element across entire enrollment. <br>Example expression:<br> `d2:minValue( 'blood-pressure' )` |
 | d2:maxValue | Get maximum value for provided item | Function gets maximum value of provided data element across entire enrollment. <br>Example expression:<br> `d2:maxValue( 'blood-pressure' )` |
-
+| d2:extractDataMatrixValue | Given a field value formatted with the gs1 data matrix standard and a string key from the GS1 application identifiers. The function looks and returns the value linked to the provided key. <br>Example expression:<br> `d2:extractDataMatrixValue( 'grin', A{GS1 Value} )` |
 
 
 Table: Standard variables to use in program rule expressions
@@ -1400,7 +1402,7 @@ Relationships always include two entities, and these entities can include Tracke
 
 In addition, relationships can be defined as unidirectional or bidirectional. The only functional difference is currently that these requires different levels of access to create. Unidirectional relationships requires the user to have data write access to the “from” entity and data read access for the “to” entity, while bidirectional relationships require data write access for both sides.
 
-For more information about configuration and the meaning of 'From constraint' and 'To constraint', see [Relationship model](relationship_model#relationship_model_relationship_type).
+For more information about configuration and the meaning of 'From constraint' and 'To constraint', see [Relationship model](#relationship_model_relationship_type).
 
 ### Create or edit a relationship type { #create_relationship_type } 
 
@@ -1421,9 +1423,9 @@ For more information about configuration and the meaning of 'From constraint' an
 
 8. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
 
-9.  Select a 'From constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](relationship_model#relationship_model_relationship_type).
+9.  Select a 'From constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](#relationship_model_relationship_type).
 
-10. Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](relationship_model#relationship_model_relationship_type).
+10. Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](#relationship_model_relationship_type).
 
 11. Click **Save**.
 
@@ -1618,9 +1620,9 @@ To be able to search with a program, you will have to make some of the
 program attributes searchable. Unique program attributes will always be
 searchable.
 
-1.  Open **Program app**
+1.  Open **Maintenance app** and click **Program**
 
-2.  Open or create a tracker program
+2.  Open or create a Tracker program
 
 3.  Go to **Attributes**
 
@@ -1640,7 +1642,7 @@ Searchable program attributes will assigned to a search group.
     search.
 
 There are two limits that can be set for a program search, as part of
-the **Program** configuration.
+the **Program details** configuration.
 
   - Minimum number of attributes required to search: This property
     defines how many of the non-unique attributes that must be entered

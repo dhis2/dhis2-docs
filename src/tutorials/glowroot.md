@@ -1,4 +1,4 @@
-# Using Glowroot
+# Using Glowroot { #glowroot_tutorial }
 
 [Glowroot](https://glowroot.org/) is a lightweight Java Application Performance Monitor that can be very useful in providing insight into performance issues when running DHIS2.
 
@@ -89,3 +89,46 @@ The `JVM` tab has certain sub sections that is useful to know the current state 
 ### Reporting tab
 
 The `Reporting` tab can be used to  export any metric for a specific date/time range. It supports exporting Metrics like Response Time (Average or Percentile) or Transaction count from the Transactions tab. It also supports explorting metrics related to the JVM tab which include Guages for the different memory spaces. In most cases, real time monitoring and analysis will suffice, but it would be good to assess whether any exporting of specific metrics are needed for future reference.
+
+## Instrumentation
+
+By default, glowroot will group all requests to an endpoint in one transaction group. This can be suboptimal in cases when you want to make optimisations to a specific flow and want to track the improvements. In these cases, glowroot can be instrumented to separate the requests into different transaction groups based on java method. That can be done in Configuration -> Instrumentation. 
+
+### Example: separate GETs and POST's to /trackedEntityInstances
+
+Fetching tracked entity instances can be slower than creating, so it can be useful to monitor these types of requests separately. The following configuration can be imported into glowroot to achieve that (`Instrumentation -> Import`).
+
+```
+{
+  "className": "org.hisp.dhis.webapi.controller.event.TrackedEntityInstanceController",
+  "methodName": "getTrackedEntityInstances",
+  "methodParameterTypes": [
+    ".."
+  ],
+  "captureKind": "other",
+  "transactionType": "Web",
+  "transactionNameTemplate": "/api/trackedEntityInstances: GET"
+}
+```
+
+### Example: monitor asynchronous requests
+
+Some asynchronous requests can not be monitored easily. One of those cases is tracker import using `/tracker` endpoint, with `async` parameter set to `true` ( applicable to 2.37 and up). That is because the initial request only returns a job id and doesn't wait for job to finish. To be able to monitor the internal process of tracker import, you import the following configuration (`Instrumentation -> Import). 
+
+```
+{
+    "className": "org.hisp.dhis.tracker.report.DefaultTrackerImportService",
+    "methodName": "importTracker",
+    "methodParameterTypes": [
+      ".."
+    ],
+    "captureKind": "transaction",
+    "transactionType": "Web",
+    "transactionNameTemplate": "/api/tracker: import",
+    "alreadyInTransactionBehavior": "capture-new-transaction",
+    "traceEntryMessageTemplate": "{{0}}",
+    "traceEntryStackThresholdMillis": 1000,
+    "traceEntryCaptureSelfNested": true,
+    "timerName": "Timer"
+  }  
+```
