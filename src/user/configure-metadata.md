@@ -1754,8 +1754,8 @@ Table: Indicator functions
 Valid aggregation types:
 | Aggregation type | Description |
 |---|---|
-| AVERAGE | Average of values in both period and organisation unit hierarchy |
-| AVERAGE_SUM_ORG_UNIT | Average of values, sum in the organisation unit hierarchy |
+| AVERAGE | Average value in both period and organisation unit hierarchy |
+| AVERAGE_SUM_ORG_UNIT | Average value, sum in organisation unit hierarchy |
 | COUNT | Count of values |
 | FIRST | First value, sum in organisation unit hierarchy |
 | FIRST_AVERAGE_ORG_UNIT | First value, average in organisation unit hierarchy |
