@@ -1930,8 +1930,7 @@ To use the context variables in the log add them using `-X{<name>}` to your log 
 
 ### Setting logging level in `dhis.conf`
 
-If you want to change the logging level of individual packages you can do this by setting `logging.level.*`, for example to set the entire springframework to display logging
-lines from DEBUG and up, you can set:
+If you want to change the logging level of individual packages you can do this by setting `logging.level.*`, for example to set the entire springframework to display logging lines from DEBUG and up, you can set:
 
 ```
 logging.level.org.springframework=DEBUG
