@@ -334,7 +334,7 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 | firstName | Only for reading data. First name of the user. | No | Yes | String:Any | John |
 | surname | Only for reading data. Last name of the user. | No | Yes | String:Any | Doe |
 
-> *One between `uid` or `username` field must be provided. If both are provided, only username is considered.
+> One between `uid` or `username` field must be provided. If both are provided, only username is considered.
 
 
 ## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
