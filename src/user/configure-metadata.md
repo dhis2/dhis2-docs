@@ -581,7 +581,7 @@ Table: Data element objects in the Maintenance app
 
 
     Table: Value types
-
+    
     | Value type | Description |
     |---|---|
     | Age | - |
@@ -621,7 +621,7 @@ Table: Data element objects in the Maintenance app
 
 
     Table: Aggregation operators
-
+    
     | Aggregation operator | Description |
     |---|---|
     | Average | Average the values in both the period as and the organisation unit dimensions. |
@@ -748,13 +748,10 @@ group sets.
 3.  Fill in the form:
 
     1.  **Name**
-
-    2.  **Code**
-
-    3.  **Description**
-
-    4.  **Compulsory**
-
+    2.  **Short name**
+    3.  **Code**
+    4.  **Description**
+    5.  **Compulsory**
     5.  **Data dimension**
 
 4.  Select data element groups and assign them.
@@ -1341,7 +1338,7 @@ section.
         |---|---|
         | **None** | Displays all data elements that don't have a category combination. |
         | **<No filter\>** | Displays all data elements. |
-
+    
     2.  Select data elements and assign them.
 
 10. (Optional) Sort the data elements within the section by using the up
@@ -1525,19 +1522,19 @@ Table: Data entry events
 To register for an event:
 
     <script type="text/javascript">
-
+    
     dhis2.util.on( 'dhis2.de.event.formReady', function( event, ds ) {
       console.log( 'The form with id: ' + ds + ' is loaded!' );
     } );
-
+    
     dhis2.util.on( 'dhis2.de.event.dataValueSaved', function( event, ds, dv ) {
       console.log( 'Data value: ' + dv.value + ' was saved with data element: ' + dv.de );
     } );
-
+    
     dhis2.util.on( 'dhis2.de.event.completed', function( event, ds, cr ) {
       console.log( 'Form was completed for org unit: ' + cr.ou );
     } );
-
+    
     </script>
 
 > **Note**
@@ -1974,9 +1971,9 @@ analysis of data to combine similar themes of indicators.
 3.  Fill in the form:
 
     1.  **Name**
-
-    2.  **Description**
-
+2.  **Short name**
+    3.  **Code**
+4.  **Description**
     3.  **Compulsory**
 
 4.  Select indicator groups and assign them.
@@ -2460,7 +2457,7 @@ option:
 
 4.  Assign the organisation unit groups "MoH", "Private" and
     "Faith-based" to the "Ownership" organisation group
-set.
+    set.
 
 ![](resources/images/maintenance/analytics-include-org-unit-subhierarchy.png)
 
@@ -2833,16 +2830,16 @@ Table: Validation Rule functions
         | Skip if any value is missing | The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.<br>         <br>Always select this option you use the **Exclusive pair** or **Compulsory pair** operator. |
         | Skip if all values are missing | The validation rule will be skipped only if all of the operands which compose it are missing. |
         | Never skip | The validation rule will never be skipped in case of missing data, and all missing operands will be treated effectively as a zero. |
-
+    
     4.  Type a **Description**.
-
+    
     5.  Build an expression based on the available data elements,
         program objects, organisation units, counts and constants.
-
+    
         In the right pane, double-click the data objects you want to
         include in the expression. Combine with the mathematical
         operators located below the left pane.
-
+    
     6.  Click **Save**.
 
 10. Create the right side of the expression:
@@ -2858,20 +2855,20 @@ Table: Validation Rule functions
         | Skip if any value is missing | The validation rule will be skipped if any of the values which compose the expression are missing. This is the default option.<br>         <br>Always select this option you use the **Exclusive pair** or **Compulsory pair** operator. |
         | Skip if all values are missing | The validation rule will be skipped only if all of the operands which compose it are missing. |
         | Never skip | The validation rule will never be skipped in case of missing data, and all missing operands will be treated effectively as a zero. |
-
+    
     3.  Select **Sliding window** if you want to view data relative to
         the period you are comparing. See also [About validation
         rules](https://docs.dhis2.org/master/en/user/html/manage_validation_rule.html#about_validation_rule).
-
+    
     4.  Type a **Description**.
-
+    
     5.  Build an expression based on the available data elements,
         program objects, organisation units, counts and constants.
-
+    
         In the right pane, double-click the data objects you want to
         include in the expression. Combine with the mathematical
         operators located below the left pane.
-
+    
     6.  Click **Save**.
 
 11. (Optional) Choose which **Organisation unit levels** this rule
@@ -3820,7 +3817,7 @@ When you run this predictor at the organisation unit level where the data is
 collected, it will store 1 as the predicted value if the data element has a
 nonzero value for that organisation unit, otherwise 0.
 (If the data element that you predict into does not store zeros, then
-zeors will not be stored in the database, to save space.)
+zeros will not be stored in the database, to save space.)
 You can then sum this predicted value in analytics at a higher
 organisation unit level, to count the number of organisation units
 with a nonzero value that are under each organisation unit in the report.
@@ -4076,13 +4073,15 @@ sampled. For example:
 
 8.  Select a **Period type**.
 
-9.  Assign one or more organisation unit levels. The output value will be
+9.  Assign one or more **organisation unit levels**. The output value will be
     assigned to an organisation unit at this level (or these levels).
-    The input values will come from the organisation unit to which the
+    For **aggregate** data, the input values depends on the selection below; **organisation units providing data**.
+    For **tracker** based data,  the input values will come from the organisation unit to which the
     output is assigned, or from any level lower under the output
     organisation unit.
 
-10. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
+10. **Organisation units providing data** controls where the input values comes from for **aggregate** data. If "at selected levels only", only organisation units at the selected levels are included. If "At selected levels and all levels below" is selected, organisation units at the selected level(s) and all organisation units below are also included.
+11. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
 
     1.  Type a **Description** of the generator expression.
 
@@ -4153,7 +4152,7 @@ sampled. For example:
         combine two boolean expressions: && (logical and), and ||
         (logical or). The unary operator \! may be used to negate a
         boolean expression.
-
+    
         Generator expression examples:
 
 
@@ -4168,7 +4167,7 @@ sampled. For example:
         | percentileCont(0.5, #{T7OyqQpUpNd}) | Continuous 50th percentile of the sampled values for data element T7OyqQpUpNd. Note that this is the same as median(#{T7OyqQpUpNd}) |
         | if(count(#{T7OyqQpUpNd}) == 1, 0, stddevSamp(#{T7OyqQpUpNd})) | If there is one sample value present for data element T7OyqQpUpNd, then 0, otherwise the sample standard deviation of these sample values. (Note that if no samples are present then the stddevSamp returns no value, so no value is predicted.) |
 
-11. (Optional) Create a **Sample skip test**. The sample skip test tells
+12. (Optional) Create a **Sample skip test**. The sample skip test tells
     which previous periods if any to exclude from the sample.
 
     1.  Type a **Description** of the skip test.
@@ -4195,22 +4194,22 @@ sampled. For example:
         | #{uF1DLnZNlWe} \> 0 | The value of data element uF1DLnZNlWe (sum of all disaggregations) is greater than the zero |
         | #{FTRrcoaog83} \> #{M62VHgYT2n0} &#124;&#124; #{uF1DLnZNlWe} \> 0 | The value of data element FTRrcoaog83 (sum of all disaggregations) is greater than the value of data element M62VHgYT2n0 (sum of all disaggregations) or the value of data element uF1DLnZNlWe (sum of all disaggregations) is greater than the zero |
 
-12. Enter a **Sequential sample count** value.
+13. Enter a **Sequential sample count** value.
 
     This is for how many sequential periods the calculation should go
     back in time to sample data for the calculations.
 
-13. Enter an **Annual sample count** value.
+14. Enter an **Annual sample count** value.
 
     This is for how many years the calculation should go back in time to
     sample data for the calculations.
 
-14. (Optional) Enter a **Sequential skip count** value.
+15. (Optional) Enter a **Sequential skip count** value.
 
     This is how many sequential periods, immediately preceding the
     predicted value period, should be skipped before sampling the data.
 
-15. Click **Save**.
+16. Click **Save**.
 
 ### Create or edit a predictor group { #create_predictor_group } 
 
@@ -4502,9 +4501,8 @@ cultural region.
 ### About external map layers { #about_gis_map_layers } 
 
 You can customize GIS by including map layers from various sources and
-combine them with your own data in DHIS2. DHIS2 supports common map
-service formats such as Web Map Service (WMS), Tile Map Service (TMS)
-and XYZ tiles.
+combine them with your own data in DHIS2. DHIS2 supports these common map
+service formats: Web Map Service (WMS), Tile Map Service (TMS), XYZ tiles and Vector tiles (Vector Style).
 
 ### Create or edit an external map layer { #create_external_map_layer } 
 
@@ -4536,7 +4534,7 @@ Table: External map layer objects in the Maintenance app
 
 5.  Select a **Map service** format.
 
-    DHIS2 supports three common map service formats:
+    DHIS2 supports four common map service formats:
 
       - Web Map Service (WMS)
 
@@ -4551,6 +4549,10 @@ Table: External map layer objects in the Maintenance app
       - Tile Map Service (TMS)
 
       - XYZ tiles (can also be used for WMTS)
+
+      - Vector tiles (Vector Style)
+
+      When Vector Style is chosen, you can then add a value for "Before layer id". It indicates the layer id in the Vector tile (layer) stack at which the user's layers (such as Thematic, Events) will be inserted. If this value isn't set, then the user's layers will be placed on top of the layers in the Vector Style. The map service URL should be to a JSON document that follows the [Mapbox GL Style Spec](https://docs.mapbox.com/mapbox-gl-js/style-spec/). 
 
 6.  Enter the **URL** to the map service.
 
@@ -4568,12 +4570,14 @@ Table: External map layer objects in the Maintenance app
 8.  Select a **Placement**:
 
       - **Bottom - basemap**: For the Maps app, this makes the external map layer
-        selectable as the base map (i.e. as an alternative to the DHIS2
-        base maps).
+        selectable as the basemap (i.e. as an alternative to the DHIS2
+        basemaps).
 
       - **Top - overlay**: For the Maps app, this allows the external map to
         be added from the Add Layer selection and placed anywhere above
-        the base map.
+        the basemap.
+
+    Note that Vector Style layers can only be added as a basemap.
 
 9.  (Optional) Add a legend.
 
@@ -4703,7 +4707,7 @@ text about what the SQL view actually does.
 The "SQL type" attribute allows the creation of three kinds of views:
   - A "View" is stored in the database and regenerated when queried
   - A "Materialized View" is stored in the database and its results
-  are cached in the database
+    are cached in the database
   - A "Query" is not stored in the database
 
 Finally, the "SQL query" should contain the SQL view definition.

@@ -65,7 +65,6 @@ Known Limitations:
   non-persistent fields might be possible to extract using `from` transformation
 * filters can only be applied to persisted fields
 * orders can only be applied to persisted fields
-* like-filters are always case-sensitive
 * token filters are not available
 * order is always case-sensitive
 * `pluck` transformer limited to text properties
@@ -326,6 +325,7 @@ Available binary operators are:
 | Binary Operator   | Description                                              |
 | ----------------- | -------------------------------------------------------- |
 | `eq`              | field _equals_ value                                     |
+| `ieq`             | field _equals_ value (case insensitive)                  |
 | `!eq`, `neq`, `ne`| field is _not equal_ value                               |
 | `lt`              | field is _less than_ value                               |
 | `le`, `lte`       | field is _less than or equal to_ value                   |
@@ -340,6 +340,11 @@ If the `<value>` of an `in` or `!in` filter is a list it is given in the form
 Any `>`, `>=`, `<` `<=`, `==` or `!=` comparison applied to a collection field 
 with a numeric value will compare the size of the collection to the value, for
 example: `userGroups:gt:0`.
+
+Any `>`, `>=`, `<` `<=`, `==` or `!=` comparison applied to a text field 
+with a integer number value will compare the text length to the value, for 
+example: `name:eq:4` (name has length 4).
+
 
 Available binary pattern matching operators are:
 
@@ -357,11 +362,11 @@ in which case a match is any value where the term occurs anywhere, or they can
 be used by providing the search pattern using `*` as _any number of characters_
 and `?` as _any single character_.
 
+All pattern matching operators named `like` are case-sensitive. All others 
+are case-insensitive. 
+
 Note that filters on attribute values use text based comparison which means 
 all text filters are supported.
-
-Operators have multiple aliases to be backwards compatible with the 
-standard metadata API. For the gist API any like is always case-sensitive. 
 
 For example, to only list organisations on second level use
 

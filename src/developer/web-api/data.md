@@ -4,9 +4,15 @@
 
 This section is about sending and reading data values.
 
-    /api/33/dataValueSets
+    /api/dataValueSets
 
 ### Sending data values { #webapi_sending_data_values } 
+
+To send data values you can make a POST request to the following resource.
+
+```
+POST /api/dataValueSets
+```
 
 A common use-case for system integration is the need to send a set of
 data values from a third-party system into DHIS. In this example, we will
@@ -149,7 +155,7 @@ directory where this file resides we invoke the following from the
 command line:
 
 ```bash
-curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/33/dataValueSets"
+curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/dataValueSets"
   -H "Content-Type:application/xml" -u admin:district
 ```
 
@@ -157,7 +163,7 @@ For sending JSON content you must set the content-type header
 accordingly:
 
 ```bash
-curl -d @datavalueset.json "https://play.dhis2.org/demo/api/33/dataValueSets"
+curl -d @datavalueset.json "https://play.dhis2.org/demo/api/dataValueSets"
   -H "Content-Type:application/json" -u admin:district
 ```
 
@@ -247,7 +253,7 @@ In CSV format:
 We test by using curl to send the data values in XML format:
 
 ```bash
-curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/33/dataValueSets"
+curl -d @datavalueset.xml "https://play.dhis2.org/demo/api/dataValueSets"
   -H "Content-Type:application/xml" -u admin:district
 ```
 
@@ -309,7 +315,7 @@ Table: Import parameters
 All parameters are optional and can be supplied as query parameters in
 the request URL like this:
 
-    /api/33/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=name
+    /api/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=name
       &dryRun=true&importStrategy=CREATE
 
 They can also be supplied as XML attributes on the data value set
@@ -394,7 +400,7 @@ be immediately followed by the identifier of the attribute, e.g.
 Data values can be sent and imported in an asynchronous fashion by
 supplying an `async` query parameter set to *true*:
 
-    /api/33/dataValueSets?async=true
+    /api/dataValueSets?async=true
 
 This will initiate an asynchronous import job for which you can monitor
 the status at the task summaries API. The API response indicates the
@@ -458,7 +464,7 @@ To generate a data value set template for a certain data set you can use
 the `/api/dataSets/<id>/dataValueSet` resource. XML and JSON response
 formats are supported. Example:
 
-    /api/dataSets/BfMAe6Itzgt/dataValueSet.json
+    /api/dataSets/BfMAe6Itzgt/dataValueSet
 
 The parameters you can use to further adjust the output are described
 below:
@@ -477,12 +483,14 @@ Table: Data values query parameters
 
 ### Reading data values { #webapi_reading_data_values } 
 
-This section explains how to retrieve data values from the Web API by
-interacting with the *dataValueSets* resource. Data values can be
-retrieved in *XML*, *JSON*, *CSV*, and *ADX* format. Since we want to read data
-we will use the *GET* HTTP verb. We will also specify that we are
-interested in the XML resource representation by including an `Accept`
-HTTP header with our request. The following query parameters are
+To read data values you can make a GET request to the following resource.
+
+```
+GET /api/dataValueSets
+```
+
+Data values can be retrieved in *XML*, *JSON*, *CSV*, and *ADX* format. Since we want to read data we will use the *GET* HTTP verb. We will also specify that we are
+interested in the XML resource representation by including an `Accept` HTTP header with our request. The following query parameters are
 accepted:
 
 
@@ -536,7 +544,7 @@ previous section called *Sending data values* we can now put together
 our request for a single data value set and request it using cURL:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/33/dataValueSets?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8"
+curl "https://play.dhis2.org/demo/api/dataValueSets?dataSet=pBOMPrpg1QX&period=201401&orgUnit=DiszpKrYNg8"
   -H "Accept:application/xml" -u admin:district
 ```
 
@@ -548,7 +556,7 @@ precedence over the start and end date parameters. An example looks like
 this:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/33/dataValueSets?dataSet=pBOMPrpg1QX&dataSet=BfMAe6Itzgt
+curl "https://play.dhis2.org/demo/api/dataValueSets?dataSet=pBOMPrpg1QX&dataSet=BfMAe6Itzgt
   &startDate=2013-01-01&endDate=2013-01-31&orgUnit=YuQRtpLP10I&orgUnit=vWbkYPRmKyS&children=true"
   -H "Accept:application/xml" -u admin:district
 ```
@@ -616,12 +624,12 @@ Note that data values are softly deleted, i.e. a deleted value has the
 This is useful when integrating multiple systems in order to communicate
 deletions. You can include deleted values in the response like this:
 
-    /api/33/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401
+    /api/dataValueSets.json?dataSet=pBOMPrpg1QX&period=201401
       &orgUnit=DiszpKrYNg8&includeDeleted=true
 
 You can also request data in CSV format like this:
 
-    /api/33/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401
+    /api/dataValueSets.csv?dataSet=pBOMPrpg1QX&period=201401
       &orgUnit=DiszpKrYNg8
 
 The response will look like this:
@@ -654,7 +662,7 @@ This example will show how to send individual data values to be saved in
 a request. This can be achieved by sending a *POST* request to the
 `dataValues` resource:
 
-    /api/dataValues
+    POST /api/dataValues
 
 The following query parameters are supported for this resource:
 
@@ -682,7 +690,7 @@ operation leads to a saved or updated value, *200 OK* will be returned.
 An example of a request looks like this:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/33/dataValues?de=s46m5MS0hxu
+curl "https://play.dhis2.org/demo/api/dataValues?de=s46m5MS0hxu
   &pe=201301&ou=DiszpKrYNg8&co=Prlt0C1RF0s&value=12"
   -X POST -u admin:district
 ```
@@ -697,7 +705,7 @@ parameter. It is necessary to ensure that the category options are all part
 of the category combination. An example looks like this:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/33/dataValues?de=s46m5MS0hxu&ou=DiszpKrYNg8
+curl "https://play.dhis2.org/demo/api/dataValues?de=s46m5MS0hxu&ou=DiszpKrYNg8
   &pe=201308&cc=dzjKKQq0cSO&cp=wbrDrL2aYEc;btOyqprQ9e8&value=26"
   -X POST -u admin:district
 ```
@@ -706,14 +714,57 @@ You can retrieve a data value with a request using the *GET* method. The
 value, comment and followUp params are not applicable in this regard:
 
 ```bash
-curl "https://play.dhis2.org/demo/api/33/dataValues?de=s46m5MS0hxu
+curl "https://play.dhis2.org/demo/api/dataValues?de=s46m5MS0hxu
   &pe=201301&ou=DiszpKrYNg8&co=Prlt0C1RF0s"
   -u admin:district
 ```
 
 You can delete a data value with a request using the *DELETE* method.
 
-#### Working with file data values { #datavalue_file } 
+### Sending individual data values as payload { #webapi_sending_individual_data_values_as_payload } 
+
+You can send individual data values as a JSON payload using the following resource using `Content-Type: application/json`.
+
+```
+POST /api/dataValueSets
+```
+
+The resource will create a new data value or update a data value if it already exists. The JSON payload format is defined below.
+
+```json
+{
+  "dataElement": "fbfJHSPpUQD",
+  "categoryOptionCombo": "PT59n8BQbqM",
+  "period": "202201",
+  "orgUnit": "DiszpKrYNg8",
+  "value": "10",
+  "comment": "OK"
+}
+```
+
+The endpoint supports specifying attribute option combos in a nested structure.
+
+```json
+{
+  "dataElement": "BOSZApCrBni",
+  "categoryOptionCombo": "TkDhg29x18A",
+  "attribute": {
+    "combo": "O4VaNks6tta",
+    "options": [
+      "C6nZpLKjEJr", "i4Nbp8S2G6A"
+    ]
+  },
+  "dataSet": "lyLU2wR22tC",
+  "period": "202201",
+  "orgUnit": "DiszpKrYNg8",
+  "value": "15",
+  "comment": "Good"
+}
+```
+
+The status code will be `201 Created` if the data value was successfully saved or updated, or `409 Conflict` if there was a validation error.
+
+### Working with file data values { #datavalue_file } 
 
 When dealing with data values which have a data element of type *file*
 there is some deviation from the method described above. These data
@@ -723,20 +774,20 @@ data values will behave just like other data values which store text
 content, but should be handled differently in order to produce
 meaningful input and output.
 
-There are two methods of storing FileResource data values.
+There are two methods of storing file resource data values.
 
-**The Easy Way:** Upload the file to the `/api/dataValues/file` endpoint as
-described in the file resource section.  This works on versions 2.36 and later.
+* Upload the file to the `/api/dataValues/file` endpoint as
+  described in the file resource section.  This works on versions 2.36 and later.
 
-**The Hard Way:** If you are writing code that needs to be compatible
-with versions of DHIS2 before 2.36, then the process is:
+* If you are writing code that needs to be compatible
+  with versions of DHIS2 before 2.36, then the process is:
 
 1.  Upload the file to the `/api/fileResources` endpoint as described
     in the file resource section.
 
-2.  Retrieve the `id` property of the returned *FileResource*.
+2.  Retrieve the `id` property of the returned file resource.
 
-3.  Store the retrieved id *as the value* to the data value using any
+3.  Store the retrieved identifier using the `value` property of the data value using any
     of the methods described above.
 
 Only one-to-one relationships between data values and file resources are
@@ -936,7 +987,7 @@ DHIS2 demo server:
 
 ```bash
 curl -u admin:district -X POST -H "Content-Type: application/adx+xml"
-  -d @data.xml "https://play.dhis2.org/demo/api/33/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=code"
+  -d @data.xml "https://play.dhis2.org/demo/api/dataValueSets?dataElementIdScheme=code&orgUnitIdScheme=code"
 ```
 
 Note the query parameters are the same as are used with DXF data. The
@@ -952,7 +1003,7 @@ data:
 
 ```bash
 curl -u admin:district -H "Accept: application/adx+xml"
- "https://play.dhis2.org/demo/api/33/dataValueSets?dataValueSets?orgUnit=M_CLINIC&dataSet=MALARIA&period=201501"
+ "https://play.dhis2.org/demo/api/dataValueSets?dataValueSets?orgUnit=M_CLINIC&dataSet=MALARIA&period=201501"
 ```
 
 Note the query parameters are the same as are used with DXF data. An

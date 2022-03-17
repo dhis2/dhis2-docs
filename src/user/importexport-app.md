@@ -48,9 +48,9 @@ Metadata Import.
 
 1.  Choose a file to upload
 
-2.  Select from the available formats e.g. *JSON* , *XML* or *CSV*
+2.  Select a format: *JSON* , *CSV*, or *XML*
 
-3.  Select the appropriate settings of:
+3.  Select the appropriate settings for:
 
     * Identifier
     * Import report mode
@@ -108,10 +108,9 @@ Import.
 
 1.  Choose a file to upload
 
-2.  Select from the available formats: *JSON*, *XML*, *PDF*,
-    *ADX* or *CSV*
+2.  Select a format: *JSON*, *CSV*, *XML*, *ADX*, or *PDF*
 
-3.  Select the appropriate settings of:
+3.  Select the appropriate settings for:
 
     * Strategy
     * Preheat cache
@@ -151,7 +150,7 @@ import.
 
 ![](resources/images/import_export/event_import.png)
 
-1.  Select from the available formats e.g. *JSON* , *XML* or *CSV*
+1.  Select a format: *JSON* , *CSV*, or *XML*
 
 2.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
@@ -185,9 +184,9 @@ clicking on TEI Import.
 
 1.  Choose a file to upload
 
-2.  Select from the available formats e.g. *JSON*  or *XML*
+2.  Select a format: *JSON* or *XML*
 
-3.  Select the appropriate settings of:
+3.  Select the appropriate settings for:
 
     * Identifier
     * Import report mode
@@ -224,11 +223,11 @@ Metadata export.
 
 1.  Choose the list of objects you would like to export.
 
-2.  Choose export *format* *JSON*, *CSV* or *XML*
+2.  Select a format: *JSON*, *CSV* or *XML*
 
-3.  Choose *compression* type *zip* , *gzip* or *uncompressed*
+3.  Select a compression type: *zip*, *gzip* or *uncompressed*
 
-4.  Choose option *Sharing* with or without sharing.
+4.  Decide whether to check *Skip sharing and access settings*
 
 5.  Click **Export metadata** which will open a new web-browser window
     that will give you a file to download to your local computer.
@@ -257,14 +256,14 @@ Table: Object types and their dependencies
 
 ![](resources/images/import_export/metadata_dependency_export_object_types.png)
 
-1.  Select an **Object type** : **Data sets** , **Programs** ,
-    **Category combination** , **Dashboard** , **Data element groups** or **OptionSets**.
+1.  Select an object type: *Data sets*, *Programs*, *Category combination*, 
+    *Dashboard*, *Data element groups* or *OptionSets*.
 
-2.  Select an **Object**.
+2.  Select an object.
 
-3.  Select a format: **JSON** or **XML**.
+3.  Select a format: *JSON* or *XML*
 
-4.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
+4.  Select a compression type: *Zip* , *GZip* or *Uncompressed*
 
 5.  Click **Export metadata dependencies** which will open a new
     web-browser window that will give you a file to download to your
@@ -277,19 +276,19 @@ export.
 
 ![](resources/images/import_export/data_export.png)
 
-1.  Select the *Organisation Units* .
+1.  Select which organisation units to export from.
 
 2.  Select if you want export to include descendants of organisation
     units selected in Step 1 or only the manually selected
     organisation units.
 
-3.  Choose the *Data Sets*.
+3.  Select which data sets to export.
 
-4.  Set the *Start* and *End Date* .
+4.  Set the start and end date.
 
-5.  Select a format: **XML**, **CSV** or **JSON** .
+5.  Select a format: *JSON*, *CSV*, *XML*, or *ADX*
 
-6.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
+6.  Select a compression mode: **Zip** , **GZip** or **Uncompressed**
 
 7.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
@@ -309,31 +308,30 @@ export.
 
 ![](resources/images/import_export/event_export.png)
 
-You can export event or tracker data in **XML** , **JSON** or **CSV**
-formats.
+You can export event or tracker data in JSON, CSV, or XML formats.
 
 1.  Select an organisation unit.
 
-2.  Select the **Inclusion**:
+2.  Select the inclusion:
 
-      - **Selected** : Export event data only for the selected
+      - *Selected*: Export event data only for the selected
         organisation unit
 
-      - **Directly below** : Export event data including the first
+      - *Directly below*: Export event data including the first
         level of the organisation units inside the selections as well
         as the selected organisation unit itself.
 
-      - **All below** : Export event data for all organisation units
+      - *All below*: Export event data for all organisation units
         inside the selections as well as the selected organisation
         unit itself.
 
 3.  Select a program and a program stage (if applicable).
 
-4.  Select **Start date** and **End date** .
+4.  Set the start date and end date.
 
-5.  Select a format: **XML** , **JSON** or **CSV**.
+5.  Select a format: *JSON*, *CSV*, or *XML*.
 
-6.  Select **Compression** : **Zip** , **Gzip** or **Uncompressed**.
+6.  Select a compression mode: *Zip*, *GZip* or *Uncompressed*.
 
 7.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
@@ -353,15 +351,13 @@ clicking on TEI export.
 
 ![](resources/images/import_export/tei_export.png)
 
-You can export event or tracker data in **XML** , **JSON** or **CSV**
-formats.
+You can export event or tracker data in JSON, CSV, or XML format.
 
-1.  Select the *organisation units* that should be included.
+1.  Select the organisation units that should be included.
 
-2.  Select whether you want to filter by *program* or *tracked entity
-    type*.
+2.  Decide whether you want to filter by program or tracked entity type.
 
-6.  Select a format: **XML** , **JSON** or **CSV**.
+6.  Select a format: *JSON*, *CSV*, or *XML*.
 
 7.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:

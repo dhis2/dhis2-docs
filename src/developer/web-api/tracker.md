@@ -581,7 +581,9 @@ Table: Filter operators
 | LT | Less than |
 | LE | Less than or equal to |
 | NE | Not equal to |
-| LIKE | Like (free text match) |
+| LIKE | Free text match (Contains) |
+| SW | Starts with |
+| EW | Ends with |
 | IN | Equal to one of multiple values separated by ";" |
 
 ##### Response format { #webapi_tei_query_response_format } 
@@ -920,7 +922,9 @@ Table: Filter operators
 | LT | Less than |
 | LE | Less than or equal to |
 | NE | Not equal to |
-| LIKE | Like (free text match) |
+| LIKE | Free text match (Contains) |
+| SW | Starts with |
+| EW | Ends with |
 | IN | Equal to one of multiple values separated by ";" |
 
 ##### Response format { #webapi_tei_grid_query_response_format } 
@@ -998,7 +1002,7 @@ instance.
 #### Tracked entity instance filters { #webapi_tei_filters } 
 
 To create, read, update and delete tracked entity instance filters you
-can interact with the */api/trackedEntityInstanceFilters* resource.
+can interact with the */api/trackedEntityInstanceFilters* resource. Tracked entity instance filters are shareable and follows the same pattern of sharing as any other metadata object. When using the */api/sharing* the type parameter will be *trackedEntityInstanceFilter*. 
 
     /api/33/trackedEntityInstanceFilters
 
@@ -1021,12 +1025,30 @@ Table: Payload
 | sortOrder | The sort order of the filter. Used in Tracker Capture to order the filters in the program dashboard. ||
 | style | Object containing css style. | ( "color": "blue", "icon": "fa fa-calendar"} |
 | program | Object containing the id of the program. Required. | { "id" : "uy2gU8kTjF"} |
-| enrollmentStatus | The TEIs enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELED ||
-| followup | When this parameter is true, the filter only returns TEIs that have an enrollment with status followup. ||
-| enrollmentCreatedPeriod | Period object containing a period in which the enrollment must be created. See *Period* definition table below. | { "periodFrom": -15, "periodTo": 15} |
+| entityQueryCriteria | An object representing various possible filtering values. See *Entity Query Criteria* definition table below.
 | eventFilters | A list of eventFilters. See *Event filters* definition table below. | [{"programStage": "eaDH9089uMp", "eventStatus": "OVERDUE", "eventCreatedPeriod": {"periodFrom": -15, "periodTo": 15}}] |
 
+Table: Entity Query Criteria definition
 
+||||
+|---|---|---|
+| attributeValueFilters | A list of attributeValueFilters. This is used to specify filters for attribute values when listing tracked entity instances | "attributeValueFilters"=[{       "attribute": "abcAttributeUid",       "le": "20",       "ge": "10",       "lt": "20",       "gt": "10",       "in": ["India", "Norway"],       "like": "abc",       "sw": "abc",       "ew": "abc",       "dateFilter": {         "startDate": "2014-05-01",         "endDate": "2019-03-20",         "startBuffer": -5,         "endBuffer": 5,         "period": "LAST_WEEK",         "type": "RELATIVE"       }     }] |
+| enrollmentStatus | The TEIs enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELED ||
+| followup | When this parameter is true, the filter only returns TEIs that have an enrollment with status followup. ||
+| organisationUnit | To specify the uid of the organisation unit | "organisationUnit": "a3kGcGDCuk7" |
+| ouMode | To specify the OU selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL | "ouMode": "SELECTED" |
+| assignedUserMode | To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered. | "assignedUserMode": "PROVIDED" |
+| assignedUsers | To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"] |
+| displayColumnOrder | To specify the output ordering of columns | "displayOrderColumns": ["enrollmentDate", "program"] |
+| order | To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "orderDimension:direction". | "order"="a3kGcGDCuk6:desc,eventDate:asc" |
+| eventStatus | Any valid EventStatus | "eventStatus": "COMPLETED" |
+| programStage | To specify a programStage uid to filter on. TEIs will be filtered based on presence of enrollment in the specified program stage.| "programStage"="a3kGcGDCuk6" |
+| trackedEntityType | To specify a trackedEntityType filter TEIs on. | "trackedEntityType"="a3kGcGDCuk6" |
+| trackedEntityInstances | To specify a list of trackedEntityInstances to use when querying TEIs. | "trackedEntityInstances"=["a3kGcGDCuk6","b4jGcGDCuk7"] |
+| enrollmentIncidentDate | DateFilterPeriod object date filtering based on enrollment incident date. | "enrollmentIncidentDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "startBuffer": -5,     "endBuffer": 5,     "period": "LAST_WEEK",     "type": "RELATIVE"   } |
+| eventDate | DateFilterPeriod object date filtering based on event date. | "eventDate": {     "startBuffer": -5,     "endBuffer": 5,     "type": "RELATIVE"   } |
+| enrollmentCreatedDate | DateFilterPeriod object date filtering based on enrollment created date. | "enrollmentCreatedDate": {     "period": "LAST_WEEK",     "type": "RELATIVE"   } |
+| lastUpdatedDate | DateFilterPeriod object date filtering based on last updated date. | "lastUpdatedDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "type": "ABSOLUTE"   } |
 
 Table: Event filters definition
 
@@ -1039,6 +1061,16 @@ Table: Event filters definition
 | assignedUsers | To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"] |
 
 
+Table: DateFilterPeriod object definition
+
+||||
+|---|---|---|
+| type | Specify whether the date period type is ABSOLUTE &#124; RELATIVE | "type" : "RELATIVE" |
+| period | Specify if a relative system defined period is to be used. Applicable only when "type" is RELATIVE. (see [Relative Periods](#webapi_date_relative_period_values) for supported relative periods) | "period" : "THIS_WEEK" |
+| startDate | Absolute start date. Applicable only when "type" is ABSOLUTE | "startDate":"2014-05-01" |
+| endDate | Absolute end date. Applicable only when "type" is ABSOLUTE | "startDate":"2014-05-01" |
+| startBuffer | Relative custom start date. Applicable only when "type" is RELATIVE | "startBuffer":-10 |
+| endBuffer | Relative custom end date. Applicable only when "type" is RELATIVE | "startDate":+10 |
 
 Table: Period definition
 
