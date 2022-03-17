@@ -36,7 +36,7 @@ The following table highlights the differences between the previous tracker impo
 |**Relationship**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
 |**TrackedEntity**|`trackedEntityInstance`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`createByUserInfo`<br>`lastUpdatedByUserInfo`|`trackedEntity`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`createdBy`<br>`updatedBy`|
 
-> **Note** *
+> **Note**
 >
 >Field `assignedUser` was a String before, now it is of type User:
 >```json
