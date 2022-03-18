@@ -132,6 +132,8 @@ Along the bottom of the basemap card is:
 
     - Population age groups
 
+    - Building footprints
+
     - Elevation
 
     - Precipitation
@@ -1206,6 +1208,9 @@ The following layers are supported:
 - **Population age groups**: Estimated number of people living in an area, grouped
   by age and gender.
 
+- **Building footprints**: The outlines of buildings derived from high-resolution
+  satellite imagery. Only for the continent of Africa.
+
 - **Elevation**: Elevation above sea level.
 
 - **Precipitation**: The values are in millimeters within 5 days periods. Updated
@@ -1280,6 +1285,9 @@ layer** selection. This opens the layer configuration dialog.
         respect to the user. By selecting a **User organisation
         unit** the map data will appear differently for users at
         different levels in the organisation unit hierarchy.
+
+      - **Building footprints**: Building counts are only available for smaller
+        organisation unit areas.
 
 4.  In the **STYLE** tab
 
