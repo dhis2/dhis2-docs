@@ -324,8 +324,8 @@ Some aspects of the meta data synchronization feature to be aware of:
 
 This runs selected predictors and/or predictor groups.
 
-The relative start and relative end parameters determine the periods in
-which data will be predicted, relative to the date on which the
+The relative start and end parameters determine the periods in
+which data will be predicted, corresponding to the date on which the
 predictor job is run:
 
 - **Relative start** counts the days from the job date to the
@@ -350,18 +350,19 @@ and end dates.
 
 Examples:
 
-1. A predictor is computed from weekly data of the same week. (No past
-sampled data is used.) After the week ends on Sunday,
-you expect the weekly data to be entered on the Monday and Tuesday.
+1. **Requirement**: A predictor uses data from the same week
+as the predicted value. (No past sampled data is used.)
+After the week ends on Sunday, you expect the data
+to be entered in the following two days: Monday and Tuesday.
 You don't want to start predicting data until Wednesday after the
 week ends because you don't want partial results to be shown.
 However, data may still be adjusted on Wednesday, so you want to
 update the predictions also on Thursday. After that, the
 data is frozen and you don't want to predict for that period anymore.
 
-    For a job running daily or more frequently, define the relative start as -10
-    and the relative end as -2 (for periods within 10 to 2 days
-    before the job runs).
+    **Solution:** For a job running daily or more frequently, define the
+    relative start as -10 and the relative end as -2 (for periods
+    within 10 to 2 days before the job runs).
 
     - Before Wednesday of the following week, the period end is
     greater than 2 days before, so no predictions are made.
@@ -380,14 +381,16 @@ data is frozen and you don't want to predict for that period anymore.
     - Predictions are made only on Wednesday and Thursday. On Friday through
     Tuesday, no predictions are made (and the job finishes very quickly).
 
-2. A predictor is used to forecast a limit (average plus twice the standard deviation)
+2. **Requirement**: A predictor is used to forecast a limit (average plus twice
+the standard deviation)
 for expected non-seasonally varying disease cases based on data from the
 previous five weeks. Weeks are Monday through Sunday. Predictions should start
 being made from the previous Tuesday, using available data at that time, and
 continue being made through Tuesday of the week that the predictions are being
-made for (by which it is assumed that the previous week's data is final).
+made for (by which time it is assumed that the previous week's data are final).
 
-    Define relative start as -1 and relative end as 12.
+    **Solution:** For a job running daily or more frequently,
+    define the relative start as -1 and the relative end as 12.
 
     - Before Tuesday, predictions will not be made for the following week because it
     ends more than 12 days later.
@@ -399,7 +402,7 @@ made for (by which it is assumed that the previous week's data is final).
     the week whose start-to-end dates are Wed: 5 to 11, Thu: 4 to 10,
     Fri: 3 to 9, Sat: 2 to 8, Sun: 1 to 7, Mon: 0 to 6, and Tue: -1 to 5.
 
-    - Note that on Tuesday, predicitons are made for the current week with
+    - Note that on Tuesday, predictions are made for the current week with
     start-to-end dates -1 to 5, and also for the following week
     with start-to-end dates 6 to 12. On all other days of the week
     predictions are made for one week.
