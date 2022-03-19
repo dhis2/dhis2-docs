@@ -319,3 +319,99 @@ Some aspects of the meta data synchronization feature to be aware of:
 
 - You can see the time of last successful synchronization with remote
   server in the scheduling screen next to the "Last success" label.
+
+### Predictor { #scheduling_predictor } 
+
+This runs selected predictors and/or predictor groups.
+
+The relative start and relative end parameters determine the periods in
+which data will be predicted, relative to the date on which the
+predictor job is run:
+
+- **Relative start** counts the days from the job date to the
+earliest date on which a predicted period may start. It can be positive
+or negative. For example, a value of 3 means predict into periods that
+start at least 3 days after the predictor run. A value of -3 means
+predict into periods that start at least 3 days before the predictor run.
+
+- **Relative end** counts the days from the job date to the
+latest date on which a predicted period may end. It can be positive
+or negative. For example, a value of 9 means predict into periods that
+end at least 9 days after the predictor run. A value of -9 means
+predict into periods that end at least 9 days before the predictor run.
+
+Setting these values can give you very flexible control over when
+predictions will be made, especially if your predictor job is set to
+run daily or more frequently. Before you set these values, you should
+think carefully about when you want predictions for a period to start
+being made, and when you want them to stop being made. Then you
+need to compute the appropriate relative start
+and end dates.
+
+Examples:
+
+1. A predictor is computed from weekly data of the same week. (No past
+sampled data is used.) After the week ends on Sunday,
+you expect the weekly data to be entered on the Monday and Tuesday.
+You don't want to start predicting data until Wednesday after the
+week ends because you don't want partial results to be shown.
+However, data may still be adjusted on Wednesday, so you want to
+update the predictions also on Thursday. After that, the
+data is frozen and you don't want to predict for that period anymore.
+
+    For a job running daily or more frequently, define the relative start as -10
+    and the relative end as -2 (for periods within 10 to 2 days
+    before the job runs).
+
+    - Before Wednesday of the following week, the period end is
+    greater than 2 days before, so no predictions are made.
+
+    - On Wednesday of the following week, the period started 9 days
+    before and ended 2 days before. Predictions are made because -9 to -2
+    are within the range -10 to -2.
+
+    - On Thursday of the following week, the period started 10 days
+    before and ended 3 days before. Predictions are made because -10 to -3
+    are within the range -10 to -2.
+
+    - After Thursday, the previous week started more than
+    10 days before, so no predictions are made.
+
+    - Predictions are made only on Wednesday and Thursday. On Friday through
+    Tuesday, no predictions are made (and the job finishes very quickly).
+
+2. A predictor is used to forecast a limit (average plus twice the standard deviation)
+for expected non-seasonally varying disease cases based on data from the
+previous five weeks. Weeks are Monday through Sunday. Predictions should start
+being made from the previous Tuesday, using available data at that time, and
+continue being made through Tuesday of the week that the predictions are being
+made for (by which it is assumed that the previous week's data is final).
+
+    Define relative start as -1 and relative end as 12.
+
+    - Before Tuesday, predictions will not be made for the following week because it
+    ends more than 12 days later.
+
+    - On Tuesday, predictions will be made for the following week which starts
+    in 6 days and ends in 12 days.
+
+    - On Wednesday through the following Tuesday, predictions will be made for
+    the week whose start-to-end dates are Wed: 5 to 11, Thu: 4 to 10,
+    Fri: 3 to 9, Sat: 2 to 8, Sun: 1 to 7, Mon: 0 to 6, and Tue: -1 to 5.
+
+    - Note that on Tuesday, predicitons are made for the current week with
+    start-to-end dates -1 to 5, and also for the following week
+    with start-to-end dates 6 to 12. On all other days of the week
+    predictions are made for one week.
+
+You can select which predictors and predictor groups will run during the job:
+
+- **Predictors** runs individual predictors.
+They run in the order added.
+
+- **Predictor groups** runs predictor groups.
+They run in the order added. The predictors within each group run in the
+order of their names (comparing Unicode character values).
+
+If both individual predictors and predictor groups are selected in the same
+job, the individual predictors run first, followed by the predictor groups.
