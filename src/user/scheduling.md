@@ -351,14 +351,14 @@ and end dates.
 Examples:
 
 1. **Requirement**: A predictor uses data from the same week
-as the predicted value. (No past sampled data is used.)
+as the predicted value. (No past sampled data are used.)
 After the week ends on Sunday, you expect the data
-to be entered in the following two days: Monday and Tuesday.
+to be entered in the following two days (Monday and Tuesday).
 You don't want to start predicting data until Wednesday after the
 week ends because you don't want partial results to be shown.
 However, data may still be adjusted on Wednesday, so you want to
 update the predictions also on Thursday. After that, the
-data is frozen and you don't want to predict for that period anymore.
+data are frozen and you don't want to predict for that period anymore.
 
     **Solution:** For a job running daily or more frequently, define the
     relative start as -10 and the relative end as -2 (for periods
