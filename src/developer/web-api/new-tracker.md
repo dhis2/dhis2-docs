@@ -209,7 +209,7 @@ In the API, the significant difference is that all events are either connected t
 | createdAt | Timestamp when the user created the relationship. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the relationship was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | bidirectional | Only for reading data. Indicated whether the relationship type is bidirectional or not. | No | No | Boolean | True or False |
-| from, to | A reference to each side of the relationship. Must conform to the constraints set in the relationship type | Yes | Yes | RelationshipItem | {"trackedEntity": "ABCEF12345"}, {"enrollment": "ABCDEF12345"} or {"event": "ABCDEF12345"} |
+| from, to | A reference to each side of the relationship. Must conform to the constraints set in the relationship type | Yes | Yes | RelationshipItem | {"trackedEntity": {"trackedEntity": "ABCEF12345"}}, {"enrollment": {"enrollment": "ABCDEF12345"}} or {"event": {"event": "ABCDEF12345" }} |
 
 > **Note**
 >
@@ -217,10 +217,10 @@ In the API, the significant difference is that all events are either connected t
 >```json
 >{
 >   "from": {
->     "event": "ABCDEF12345"    
+>     "event": { "event": "ABCDEF12345" }
 >   },
 >   "to": {
->     "trackedEntity": "FEDCBA12345"
+>     "trackedEntity": { "trackedEntity": "FEDCBA12345" }
 >   }
 >}
 >```
@@ -486,10 +486,10 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
     {
       "relationshipType": "Udhj3bsdHeT",
       "from": {
-        "trackedEntity": "Kj6vYde4LHh"
+        "trackedEntity": { "trackedEntity": "Kj6vYde4LHh" }
       },
       "to": {
-        "trackedEntity": "Gjaiu3ea38E"
+        "trackedEntity": { "trackedEntity": "Gjaiu3ea38E" }
       }
     }
   ]
@@ -509,10 +509,10 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
         {
           "relationshipType": "Udhj3bsdHeT",
           "from": {
-            "trackedEntity": "Kj6vYde4LHh"
+            "trackedEntity": { "trackedEntity": "Kj6vYde4LHh" }
           },
           "to": {
-            "trackedEntity": "Gjaiu3ea38E"
+            "trackedEntity": { "trackedEntity": "Gjaiu3ea38E" }
           }
         }
       ],
@@ -1212,23 +1212,26 @@ following table.
 |`CAPTURE`| The data capture organisation units associated with the current user and all children, i.e., all organisation units in the sub-hierarchy.|
 |`ALL`| All organisation units in the system. Requires the ALL authority.|
 
-#### Request parameter to filter responses
+#### Request parameter to filter responses { #webapi_nti_field_filter }
 
 All new export endpoints support a `fields` parameter which allows to filter the response based on a simple grammar.
 
 `fields` parameter accepts a comma separated list of field names or patterns and responses are filtered based on it
 
+See [Metadata field filter](#webapi_metadata_field_filter) for more information on field filtering.
+
 ##### Examples
 
 |Parameter example|Meaning|
 |:---|:---|
+|`fields=*`| returns all fields|
 |`fields=createdAt,uid`| only returns `createdAt` and `uid` fields for the requested object|
-|`fields=enrollments.uid`| only returns `uid` field for nested `enrollments`|
-|`fields=enrollments[uid]`| same as above with a different syntax|
+|`fields=enrollments[*,!uid]`| return all fields of nested `enrollments` field except its `uid`|
+|`fields=enrollments[uid]`| only returns `uid` field for nested `enrollments`|
 |`fields=enrollments[uid,enrolledAt]`| only returns `uid` and `enrolledAt` fields for nested `enrollments`|
 |`fields=**`| don't filter (same behaviour as not passing the `field` parameter at all)|
 
-### Tracked Entities
+### Tracked Entities (`GET /api/tracker/trackedEntities`)
 
 Two endpoints are dedicated to tracked entities:
 
@@ -1376,7 +1379,7 @@ You can use a range of operators for the filtering:
 
 The `JSON` response can look like the following.
 
-Responses can be filtered on desired fields, see [Request parameter to filter responses](#Request-parameter-to-filter-responses)
+Responses can be filtered on desired fields, see [Request parameter to filter responses](#webapi_nti_field_filter)
 
 ```json
 {
@@ -1435,7 +1438,7 @@ The purpose of this endpoint is to retrieve one tracked entity given its uid.
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Tracked Entity Instance with specified `uid`|
 |`program`|`String`|`uid`| Include program attributes in the response (only the ones user has access to) |
-|`fields`|`String`| **Currently:** <br>`*`&#124;`relationships`&#124;`enrollments`&#124;`events`&#124;`programOwners`<br><br>**Planned:**<br> a `String` specifying which fields to include in the response|Include specified sub-objects in the response| 
+|`fields`|`String`| Any valid field filter (default `*,!relationships,!enrollments,!events,!programOwners`) |Include specified sub-objects in the response| 
 
 ##### Example requests
 
@@ -1643,8 +1646,6 @@ scheme for the rest of the metadata with assigned attributes.
 
 The `JSON` response can look like the following.
 
-Please note that field filtering (`fields=...`) support is planned but not yet implemented.
-
 ```json
 {
     "instances": [
@@ -1704,6 +1705,7 @@ The purpose of this endpoint is to retrieve one Event given its uid.
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Event with specified `uid`|
 |`fields`|`String`| **Not implemented yet**|Include specified properties in the response| 
+|`fields`|`String`| Any valid field filter (default `*,!relationships`) |Include specified sub-objects in the response| 
 
 ##### Example requests
 
@@ -1876,8 +1878,6 @@ user:
 
 The `JSON` response can look like the following.
 
-Please note that field filtering (`fields=...`) support is planned but not yet implemented.
-
 ```json
 {
   "instances": [
@@ -1919,7 +1919,7 @@ The purpose of this endpoint is to retrieve one Enrollment given its uid.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Enrollment with specified `uid`|
-|`fields`|`String`| **Not implemented yet**|Include specified sub-objects in the response| 
+|`fields`|`String`| Any valid field filter (default `*,!relationships,!events,!attributes`) |Include specified sub-objects in the response| 
 
 ##### Example requests
 
@@ -1957,9 +1957,9 @@ A query for a Enrollment:
 Relationships are links between two entities in the Tracker.
 These entities can be tracked entity instances, enrollments, and events.
 
-The purpose of this endpoint is to retrieve Relationships between objects.
+The purpose of this endpoint is to retrieve relationships between objects.
 
-Unlike other tracked objects endpoints, Relationship only expose one endpoint:
+Unlike other tracked objects endpoints, relationships only expose one endpoint:
 
 - `GET /api/tracker/relationships?[trackedEntity={trackedEntityUid}|enrollment={enrollmentUid}|event={eventUid}]&fields=[fields]`
 
@@ -1970,7 +1970,7 @@ Unlike other tracked objects endpoints, Relationship only expose one endpoint:
 |`trackedEntity`|`String`|`uid`| Identifier of a Tracked Entity Instance|
 |`enrollment`|`String`|`uid`| Identifier of an Enrollment |
 |`event`|`String`|`uid`| Identifier of an Event|
-|`fields`|`String`| | **Not implemented yet:** Only includes specified properties in the response| 
+|`fields`|`String`| Any valid field filter (default `*`) |Include specified sub-objects in the response| 
 
 The following rules apply to the query parameters.
 
@@ -1995,10 +1995,138 @@ The following rules apply to the query parameters.
       "updatedAt": "2019-08-21T13:31:42.064",
       "bidirectional": false,
       "from": {
-        "trackedEntity": "neR4cmMY22o"
+        "trackedEntity": {
+          "trackedEntity": "neR4cmMY22o",
+          "trackedEntityType": "We9I19a3vO1",
+          "createdAt": "2019-08-21T13:27:46.421",
+          "createdAtClient": "2019-03-19T01:11:04.551",
+          "updatedAt": "2019-08-21T13:29:37.121",
+          "updatedAtClient": "2019-03-19T01:11:04.551",
+          "orgUnit": "g8upMTyEZGZ",
+          "inactive": false,
+          "deleted": false,
+          "potentialDuplicate": false,
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [-11.7728, 8.3099],
+                [-11.7513, 8.329],
+                [-11.7742, 8.3439],
+                [-11.7965, 8.341],
+                [-11.7877, 8.3174],
+                [-11.7728, 8.3099]
+              ]
+            ]
+          },
+          "attributes": [
+            {
+              "attribute": "TgSJNUL2cqd",
+              "displayName": "Average location of health facility (from inhabitants)",
+              "createdAt": "2019-08-21T13:27:46.616",
+              "updatedAt": "2019-08-21T13:27:46.616",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "2-5KM"
+            },
+            {
+              "attribute": "Kv4fmHVAzwX",
+              "displayName": "Focus Name",
+              "createdAt": "2019-08-21T13:27:46.489",
+              "updatedAt": "2019-08-21T13:27:46.489",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "Village B"
+            },
+            {
+              "attribute": "KrCahWFMYYz",
+              "displayName": "Locality",
+              "createdAt": "2019-08-21T13:27:46.648",
+              "updatedAt": "2019-08-21T13:27:46.648",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "URBAN"
+            },
+            {
+              "attribute": "ffbaoqebOT3",
+              "displayName": "Name of health facility catchment area",
+              "createdAt": "2019-08-21T13:27:46.584",
+              "updatedAt": "2019-08-21T13:27:46.584",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "test2"
+            },
+            {
+              "attribute": "QRg7SZ6VOAV",
+              "displayName": "Local Focus ID",
+              "createdAt": "2019-08-21T13:27:46.458",
+              "updatedAt": "2019-08-21T13:27:46.458",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "Focus Village B"
+            },
+            {
+              "attribute": "coaSpbzZiTB",
+              "displayName": "System Focus ID",
+              "createdAt": "2019-08-21T13:27:46.519",
+              "updatedAt": "2019-08-21T13:27:46.520",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "WQQ003161"
+            }
+          ],
+          "enrollments": [],
+          "programOwners": []
+        }
       },
       "to": {
-        "trackedEntity": "rEYUGH97Ssd"
+        "trackedEntity": {
+          "trackedEntity": "rEYUGH97Ssd",
+          "trackedEntityType": "Zy2SEgA61ys",
+          "createdAt": "2019-08-21T13:24:34.951",
+          "createdAtClient": "2019-03-19T01:12:27.864",
+          "updatedAt": "2019-08-21T13:30:53.495",
+          "updatedAtClient": "2019-03-19T01:12:27.864",
+          "orgUnit": "DiszpKrYNg8",
+          "inactive": false,
+          "deleted": false,
+          "potentialDuplicate": false,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-11.779, 8.3306]
+          },
+          "attributes": [
+            {
+              "attribute": "B6TnnFMgmCk",
+              "displayName": "Age (years)",
+              "createdAt": "2019-08-21T13:24:35.121",
+              "updatedAt": "2019-08-21T13:24:35.121",
+              "storedBy": "testmalaria",
+              "valueType": "INTEGER_ZERO_OR_POSITIVE",
+              "value": "0"
+            },
+            {
+              "attribute": "flGbXLXCrEo",
+              "displayName": "System Case ID",
+              "createdAt": "2019-08-21T13:24:35.032",
+              "updatedAt": "2019-08-21T13:24:35.032",
+              "storedBy": "testmalaria",
+              "valueType": "TEXT",
+              "value": "ZQB274687"
+            },
+            {
+              "attribute": "BiTsLcJQ95V",
+              "displayName": "Date of birth (mal)",
+              "createdAt": "2019-08-21T13:24:34.995",
+              "updatedAt": "2019-08-21T13:24:34.995",
+              "storedBy": "testmalaria",
+              "valueType": "DATE",
+              "value": "2019-01-31"
+            }
+          ],
+          "enrollments": [],
+          "programOwners": []
+        }
       }
     },
     {
@@ -2009,10 +2137,201 @@ The following rules apply to the query parameters.
       "updatedAt": "2019-08-21T13:31:42.071",
       "bidirectional": false,
       "from": {
-        "trackedEntity": "neR4cmMY22o"
+        "trackedEntity": {
+          "trackedEntity": "neR4cmMY22o",
+          "trackedEntityType": "We9I19a3vO1",
+          "createdAt": "2019-08-21T13:27:46.421",
+          "createdAtClient": "2019-03-19T01:11:04.551",
+          "updatedAt": "2019-08-21T13:29:37.121",
+          "updatedAtClient": "2019-03-19T01:11:04.551",
+          "orgUnit": "g8upMTyEZGZ",
+          "inactive": false,
+          "deleted": false,
+          "potentialDuplicate": false,
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+              [
+                [-11.7728, 8.3099],
+                [-11.7513, 8.329],
+                [-11.7742, 8.3439],
+                [-11.7965, 8.341],
+                [-11.7877, 8.3174],
+                [-11.7728, 8.3099]
+              ]
+            ]
+          },
+          "attributes": [
+            {
+              "attribute": "TgSJNUL2cqd",
+              "displayName": "Average location of health facility (from inhabitants)",
+              "createdAt": "2019-08-21T13:27:46.616",
+              "updatedAt": "2019-08-21T13:27:46.616",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "2-5KM"
+            },
+            {
+              "attribute": "Kv4fmHVAzwX",
+              "displayName": "Focus Name",
+              "createdAt": "2019-08-21T13:27:46.489",
+              "updatedAt": "2019-08-21T13:27:46.489",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "Village B"
+            },
+            {
+              "attribute": "KrCahWFMYYz",
+              "displayName": "Locality",
+              "createdAt": "2019-08-21T13:27:46.648",
+              "updatedAt": "2019-08-21T13:27:46.648",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "URBAN"
+            },
+            {
+              "attribute": "ffbaoqebOT3",
+              "displayName": "Name of health facility catchment area",
+              "createdAt": "2019-08-21T13:27:46.584",
+              "updatedAt": "2019-08-21T13:27:46.584",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "test2"
+            },
+            {
+              "attribute": "QRg7SZ6VOAV",
+              "displayName": "Local Focus ID",
+              "createdAt": "2019-08-21T13:27:46.458",
+              "updatedAt": "2019-08-21T13:27:46.458",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "Focus Village B"
+            },
+            {
+              "attribute": "coaSpbzZiTB",
+              "displayName": "System Focus ID",
+              "createdAt": "2019-08-21T13:27:46.519",
+              "updatedAt": "2019-08-21T13:27:46.520",
+              "storedBy": "healthworker2",
+              "valueType": "TEXT",
+              "value": "WQQ003161"
+            }
+          ],
+          "enrollments": [],
+          "programOwners": []
+        }
       },
       "to": {
-        "trackedEntity": "k8TU70vWtnP"
+        "trackedEntity": {
+          "trackedEntity": "k8TU70vWtnP",
+          "trackedEntityType": "Zy2SEgA61ys",
+          "createdAt": "2019-08-21T13:24:38.952",
+          "createdAtClient": "2019-03-19T01:12:27.244",
+          "updatedAt": "2019-08-21T13:30:56.099",
+          "updatedAtClient": "2019-03-19T01:12:27.244",
+          "orgUnit": "DiszpKrYNg8",
+          "inactive": false,
+          "deleted": false,
+          "potentialDuplicate": false,
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-11.7883, 8.3272]
+          },
+          "attributes": [
+            {
+              "attribute": "TfdH5KvFmMy",
+              "displayName": "First Name",
+              "createdAt": "2019-08-21T13:24:39.350",
+              "updatedAt": "2019-08-21T13:24:39.350",
+              "storedBy": "testmalaria",
+              "valueType": "TEXT",
+              "value": "qwerty"
+            },
+            {
+              "attribute": "flGbXLXCrEo",
+              "displayName": "System Case ID",
+              "createdAt": "2019-08-21T13:24:39.192",
+              "updatedAt": "2019-08-21T13:24:39.192",
+              "storedBy": "testmalaria",
+              "valueType": "TEXT",
+              "value": "NEL233673"
+            },
+            {
+              "attribute": "aW66s2QSosT",
+              "displayName": "Last Name",
+              "createdAt": "2019-08-21T13:24:39.115",
+              "updatedAt": "2019-08-21T13:24:39.115",
+              "storedBy": "testmalaria",
+              "valueType": "TEXT",
+              "value": "qwerty"
+            },
+            {
+              "attribute": "bJeK4FaRKDS",
+              "displayName": "Resident in catchment area",
+              "createdAt": "2019-08-21T13:24:38.996",
+              "updatedAt": "2019-08-21T13:24:38.996",
+              "storedBy": "testmalaria",
+              "valueType": "TRUE_ONLY",
+              "value": "true"
+            },
+            {
+              "attribute": "h5FuguPFF2j",
+              "displayName": "Local Case ID",
+              "createdAt": "2019-08-21T13:24:39.037",
+              "updatedAt": "2019-08-21T13:24:39.037",
+              "storedBy": "testmalaria",
+              "valueType": "TEXT",
+              "value": "audit"
+            },
+            {
+              "attribute": "BiTsLcJQ95V",
+              "displayName": "Date of birth (mal)",
+              "createdAt": "2019-08-21T13:24:39.154",
+              "updatedAt": "2019-08-21T13:24:39.154",
+              "storedBy": "testmalaria",
+              "valueType": "DATE",
+              "value": "2019-01-31"
+            },
+            {
+              "attribute": "Z1rLc1rVHK8",
+              "displayName": "Date of birth (mal) is estimated",
+              "createdAt": "2019-08-21T13:24:39.075",
+              "updatedAt": "2019-08-21T13:24:39.076",
+              "storedBy": "testmalaria",
+              "valueType": "TRUE_ONLY",
+              "value": "true"
+            },
+            {
+              "attribute": "B6TnnFMgmCk",
+              "displayName": "Age (years)",
+              "createdAt": "2019-08-21T13:24:39.310",
+              "updatedAt": "2019-08-21T13:24:39.310",
+              "storedBy": "testmalaria",
+              "valueType": "INTEGER_ZERO_OR_POSITIVE",
+              "value": "0"
+            },
+            {
+              "attribute": "spkM2E9dn2J",
+              "displayName": "Nationality",
+              "createdAt": "2019-08-21T13:24:39.390",
+              "updatedAt": "2019-08-21T13:24:39.390",
+              "storedBy": "testmalaria",
+              "valueType": "TEXT",
+              "value": "AX"
+            },
+            {
+              "attribute": "CklPZdOd6H1",
+              "displayName": "Sex",
+              "createdAt": "2019-08-21T13:24:39.271",
+              "updatedAt": "2019-08-21T13:24:39.271",
+              "storedBy": "testmalaria",
+              "valueType": "TEXT",
+              "value": "MALE"
+            }
+          ],
+          "enrollments": [],
+          "programOwners": []
+        }
       }
     }
   ],
