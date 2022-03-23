@@ -1229,7 +1229,6 @@ See [Metadata field filter](#webapi_metadata_field_filter) for more information 
 |`fields=enrollments[*,!uid]`| return all fields of nested `enrollments` field except its `uid`|
 |`fields=enrollments[uid]`| only returns `uid` field for nested `enrollments`|
 |`fields=enrollments[uid,enrolledAt]`| only returns `uid` and `enrolledAt` fields for nested `enrollments`|
-|`fields=**`| don't filter (same behaviour as not passing the `field` parameter at all)|
 
 ### Tracked Entities (`GET /api/tracker/trackedEntities`)
 
