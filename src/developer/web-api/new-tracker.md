@@ -1970,7 +1970,7 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 |`trackedEntity`|`String`|`uid`| Identifier of a Tracked Entity Instance|
 |`enrollment`|`String`|`uid`| Identifier of an Enrollment |
 |`event`|`String`|`uid`| Identifier of an Event|
-|`fields`|`String`| Any valid field filter (default `*`) |Include specified sub-objects in the response| 
+|`fields`|`String`| Any valid field filter (default `relationship,relationshipType,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response| 
 
 The following rules apply to the query parameters.
 
@@ -1989,348 +1989,29 @@ The following rules apply to the query parameters.
   "instances": [
     {
       "relationship": "SSfIicJKbh5",
-      "relationshipName": "Focus to Case",
       "relationshipType": "Mv8R4MPcNcX",
-      "createdAt": "2019-08-21T13:29:45.648",
-      "updatedAt": "2019-08-21T13:31:42.064",
-      "bidirectional": false,
       "from": {
         "trackedEntity": {
-          "trackedEntity": "neR4cmMY22o",
-          "trackedEntityType": "We9I19a3vO1",
-          "createdAt": "2019-08-21T13:27:46.421",
-          "createdAtClient": "2019-03-19T01:11:04.551",
-          "updatedAt": "2019-08-21T13:29:37.121",
-          "updatedAtClient": "2019-03-19T01:11:04.551",
-          "orgUnit": "g8upMTyEZGZ",
-          "inactive": false,
-          "deleted": false,
-          "potentialDuplicate": false,
-          "geometry": {
-            "type": "Polygon",
-            "coordinates": [
-              [
-                [-11.7728, 8.3099],
-                [-11.7513, 8.329],
-                [-11.7742, 8.3439],
-                [-11.7965, 8.341],
-                [-11.7877, 8.3174],
-                [-11.7728, 8.3099]
-              ]
-            ]
-          },
-          "attributes": [
-            {
-              "attribute": "TgSJNUL2cqd",
-              "displayName": "Average location of health facility (from inhabitants)",
-              "createdAt": "2019-08-21T13:27:46.616",
-              "updatedAt": "2019-08-21T13:27:46.616",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "2-5KM"
-            },
-            {
-              "attribute": "Kv4fmHVAzwX",
-              "displayName": "Focus Name",
-              "createdAt": "2019-08-21T13:27:46.489",
-              "updatedAt": "2019-08-21T13:27:46.489",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "Village B"
-            },
-            {
-              "attribute": "KrCahWFMYYz",
-              "displayName": "Locality",
-              "createdAt": "2019-08-21T13:27:46.648",
-              "updatedAt": "2019-08-21T13:27:46.648",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "URBAN"
-            },
-            {
-              "attribute": "ffbaoqebOT3",
-              "displayName": "Name of health facility catchment area",
-              "createdAt": "2019-08-21T13:27:46.584",
-              "updatedAt": "2019-08-21T13:27:46.584",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "test2"
-            },
-            {
-              "attribute": "QRg7SZ6VOAV",
-              "displayName": "Local Focus ID",
-              "createdAt": "2019-08-21T13:27:46.458",
-              "updatedAt": "2019-08-21T13:27:46.458",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "Focus Village B"
-            },
-            {
-              "attribute": "coaSpbzZiTB",
-              "displayName": "System Focus ID",
-              "createdAt": "2019-08-21T13:27:46.519",
-              "updatedAt": "2019-08-21T13:27:46.520",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "WQQ003161"
-            }
-          ],
-          "enrollments": [],
-          "programOwners": []
+          "trackedEntity": "neR4cmMY22o"
         }
       },
       "to": {
         "trackedEntity": {
-          "trackedEntity": "rEYUGH97Ssd",
-          "trackedEntityType": "Zy2SEgA61ys",
-          "createdAt": "2019-08-21T13:24:34.951",
-          "createdAtClient": "2019-03-19T01:12:27.864",
-          "updatedAt": "2019-08-21T13:30:53.495",
-          "updatedAtClient": "2019-03-19T01:12:27.864",
-          "orgUnit": "DiszpKrYNg8",
-          "inactive": false,
-          "deleted": false,
-          "potentialDuplicate": false,
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-11.779, 8.3306]
-          },
-          "attributes": [
-            {
-              "attribute": "B6TnnFMgmCk",
-              "displayName": "Age (years)",
-              "createdAt": "2019-08-21T13:24:35.121",
-              "updatedAt": "2019-08-21T13:24:35.121",
-              "storedBy": "testmalaria",
-              "valueType": "INTEGER_ZERO_OR_POSITIVE",
-              "value": "0"
-            },
-            {
-              "attribute": "flGbXLXCrEo",
-              "displayName": "System Case ID",
-              "createdAt": "2019-08-21T13:24:35.032",
-              "updatedAt": "2019-08-21T13:24:35.032",
-              "storedBy": "testmalaria",
-              "valueType": "TEXT",
-              "value": "ZQB274687"
-            },
-            {
-              "attribute": "BiTsLcJQ95V",
-              "displayName": "Date of birth (mal)",
-              "createdAt": "2019-08-21T13:24:34.995",
-              "updatedAt": "2019-08-21T13:24:34.995",
-              "storedBy": "testmalaria",
-              "valueType": "DATE",
-              "value": "2019-01-31"
-            }
-          ],
-          "enrollments": [],
-          "programOwners": []
+          "trackedEntity": "rEYUGH97Ssd"
         }
       }
     },
     {
       "relationship": "S9kZGYPKk3x",
-      "relationshipName": "Focus to Case",
       "relationshipType": "Mv8R4MPcNcX",
-      "createdAt": "2019-08-21T13:29:45.630",
-      "updatedAt": "2019-08-21T13:31:42.071",
-      "bidirectional": false,
       "from": {
         "trackedEntity": {
-          "trackedEntity": "neR4cmMY22o",
-          "trackedEntityType": "We9I19a3vO1",
-          "createdAt": "2019-08-21T13:27:46.421",
-          "createdAtClient": "2019-03-19T01:11:04.551",
-          "updatedAt": "2019-08-21T13:29:37.121",
-          "updatedAtClient": "2019-03-19T01:11:04.551",
-          "orgUnit": "g8upMTyEZGZ",
-          "inactive": false,
-          "deleted": false,
-          "potentialDuplicate": false,
-          "geometry": {
-            "type": "Polygon",
-            "coordinates": [
-              [
-                [-11.7728, 8.3099],
-                [-11.7513, 8.329],
-                [-11.7742, 8.3439],
-                [-11.7965, 8.341],
-                [-11.7877, 8.3174],
-                [-11.7728, 8.3099]
-              ]
-            ]
-          },
-          "attributes": [
-            {
-              "attribute": "TgSJNUL2cqd",
-              "displayName": "Average location of health facility (from inhabitants)",
-              "createdAt": "2019-08-21T13:27:46.616",
-              "updatedAt": "2019-08-21T13:27:46.616",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "2-5KM"
-            },
-            {
-              "attribute": "Kv4fmHVAzwX",
-              "displayName": "Focus Name",
-              "createdAt": "2019-08-21T13:27:46.489",
-              "updatedAt": "2019-08-21T13:27:46.489",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "Village B"
-            },
-            {
-              "attribute": "KrCahWFMYYz",
-              "displayName": "Locality",
-              "createdAt": "2019-08-21T13:27:46.648",
-              "updatedAt": "2019-08-21T13:27:46.648",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "URBAN"
-            },
-            {
-              "attribute": "ffbaoqebOT3",
-              "displayName": "Name of health facility catchment area",
-              "createdAt": "2019-08-21T13:27:46.584",
-              "updatedAt": "2019-08-21T13:27:46.584",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "test2"
-            },
-            {
-              "attribute": "QRg7SZ6VOAV",
-              "displayName": "Local Focus ID",
-              "createdAt": "2019-08-21T13:27:46.458",
-              "updatedAt": "2019-08-21T13:27:46.458",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "Focus Village B"
-            },
-            {
-              "attribute": "coaSpbzZiTB",
-              "displayName": "System Focus ID",
-              "createdAt": "2019-08-21T13:27:46.519",
-              "updatedAt": "2019-08-21T13:27:46.520",
-              "storedBy": "healthworker2",
-              "valueType": "TEXT",
-              "value": "WQQ003161"
-            }
-          ],
-          "enrollments": [],
-          "programOwners": []
+          "trackedEntity": "neR4cmMY22o"
         }
       },
       "to": {
         "trackedEntity": {
-          "trackedEntity": "k8TU70vWtnP",
-          "trackedEntityType": "Zy2SEgA61ys",
-          "createdAt": "2019-08-21T13:24:38.952",
-          "createdAtClient": "2019-03-19T01:12:27.244",
-          "updatedAt": "2019-08-21T13:30:56.099",
-          "updatedAtClient": "2019-03-19T01:12:27.244",
-          "orgUnit": "DiszpKrYNg8",
-          "inactive": false,
-          "deleted": false,
-          "potentialDuplicate": false,
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-11.7883, 8.3272]
-          },
-          "attributes": [
-            {
-              "attribute": "TfdH5KvFmMy",
-              "displayName": "First Name",
-              "createdAt": "2019-08-21T13:24:39.350",
-              "updatedAt": "2019-08-21T13:24:39.350",
-              "storedBy": "testmalaria",
-              "valueType": "TEXT",
-              "value": "qwerty"
-            },
-            {
-              "attribute": "flGbXLXCrEo",
-              "displayName": "System Case ID",
-              "createdAt": "2019-08-21T13:24:39.192",
-              "updatedAt": "2019-08-21T13:24:39.192",
-              "storedBy": "testmalaria",
-              "valueType": "TEXT",
-              "value": "NEL233673"
-            },
-            {
-              "attribute": "aW66s2QSosT",
-              "displayName": "Last Name",
-              "createdAt": "2019-08-21T13:24:39.115",
-              "updatedAt": "2019-08-21T13:24:39.115",
-              "storedBy": "testmalaria",
-              "valueType": "TEXT",
-              "value": "qwerty"
-            },
-            {
-              "attribute": "bJeK4FaRKDS",
-              "displayName": "Resident in catchment area",
-              "createdAt": "2019-08-21T13:24:38.996",
-              "updatedAt": "2019-08-21T13:24:38.996",
-              "storedBy": "testmalaria",
-              "valueType": "TRUE_ONLY",
-              "value": "true"
-            },
-            {
-              "attribute": "h5FuguPFF2j",
-              "displayName": "Local Case ID",
-              "createdAt": "2019-08-21T13:24:39.037",
-              "updatedAt": "2019-08-21T13:24:39.037",
-              "storedBy": "testmalaria",
-              "valueType": "TEXT",
-              "value": "audit"
-            },
-            {
-              "attribute": "BiTsLcJQ95V",
-              "displayName": "Date of birth (mal)",
-              "createdAt": "2019-08-21T13:24:39.154",
-              "updatedAt": "2019-08-21T13:24:39.154",
-              "storedBy": "testmalaria",
-              "valueType": "DATE",
-              "value": "2019-01-31"
-            },
-            {
-              "attribute": "Z1rLc1rVHK8",
-              "displayName": "Date of birth (mal) is estimated",
-              "createdAt": "2019-08-21T13:24:39.075",
-              "updatedAt": "2019-08-21T13:24:39.076",
-              "storedBy": "testmalaria",
-              "valueType": "TRUE_ONLY",
-              "value": "true"
-            },
-            {
-              "attribute": "B6TnnFMgmCk",
-              "displayName": "Age (years)",
-              "createdAt": "2019-08-21T13:24:39.310",
-              "updatedAt": "2019-08-21T13:24:39.310",
-              "storedBy": "testmalaria",
-              "valueType": "INTEGER_ZERO_OR_POSITIVE",
-              "value": "0"
-            },
-            {
-              "attribute": "spkM2E9dn2J",
-              "displayName": "Nationality",
-              "createdAt": "2019-08-21T13:24:39.390",
-              "updatedAt": "2019-08-21T13:24:39.390",
-              "storedBy": "testmalaria",
-              "valueType": "TEXT",
-              "value": "AX"
-            },
-            {
-              "attribute": "CklPZdOd6H1",
-              "displayName": "Sex",
-              "createdAt": "2019-08-21T13:24:39.271",
-              "updatedAt": "2019-08-21T13:24:39.271",
-              "storedBy": "testmalaria",
-              "valueType": "TEXT",
-              "value": "MALE"
-            }
-          ],
-          "enrollments": [],
-          "programOwners": []
+          "trackedEntity": "k8TU70vWtnP"
         }
       }
     }
