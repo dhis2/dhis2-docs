@@ -1929,6 +1929,16 @@ To use the context variables in the log add them using `-X{<name>}` to your log 
 
     * %-5p %d{ISO8601} %m (%F [%t])%n %X{sessionId} %X{xRequestID}
 
+### Setting logging level in `dhis.conf`
+
+If you want to change the logging level of individual packages you can do this by setting `logging.level.*`, for example to set the entire springframework to display logging lines from DEBUG and up, you can set:
+
+```
+logging.level.org.springframework=DEBUG
+```
+
+Please note that this does not work when using the embedded jetty version of DHIS2.
+
 ## Working with the PostgreSQL database { #install_working_with_the_postgresql_database } 
 
 Common operations when managing a DHIS2 instance are dumping and
