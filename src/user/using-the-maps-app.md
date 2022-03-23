@@ -1317,7 +1317,7 @@ layer** selection. This opens the layer configuration dialog.
       (facilities) you can set a radius buffer to calculate the
       data value within. A radius of 5000 meters will aggregate all
       values available within a 5 km distance from a facility. Buffer
-      option is not available if asscoiated geometry is used.
+      option is not available if associated geometry is used.
 
 5.  Click **ADD LAYER**.
 
