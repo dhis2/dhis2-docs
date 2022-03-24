@@ -143,13 +143,13 @@ similar to this:
     "type": "PIVOT_TABLE"
   }],
   "eventVisualizations": [{
-    "name": "ANC: ANC 1 Visits Cumulative Numbers",
-    "id": "arf9OiyV7df",
-    "type": "GAUGE"
+    "name": "Inpatient: Cases 5 to 15 years this year (case)",
+    "id": "TIuOzZ0ID0V",
+    "type": "LINE_LIST"
   }, {
-    "name": "ANC: 1st and 2rd trends Daily",
-    "id": "jkf6OiyV7el",
-    "type": "COLUMN"
+    "name": "Inpatient: Cases last quarter (case)",
+    "id": "R4wAb2yMLik",
+    "type": "LINE_LIST"
   }],
   "maps": [{
     "name": "ANC: 1st visit at facility (fixed) 2013",
@@ -1227,6 +1227,52 @@ These operations follow the standard *REST* semantics. A new EventVisualization 
         "repetition": {
           "indexes": [1, 2, 3, -2, -1, 0]
         }
+      },
+      {
+        "dimension": "eventDate",
+        "items": [
+          {
+            "id": "2021-07-21_2021-08-01"
+          },
+          {
+            "id": "2021-01-21_2021-02-01"
+          }
+        ]
+      },
+      {
+        "dimension": "incidentDate",
+        "items": [
+          {
+            "id": "2021-10-01_2021-10-30"
+          }
+        ]
+      },
+      {
+        "dimension": "eventStatus",
+        "items": [
+          {
+            "id": "ACTIVE"
+          },
+          {
+            "id": "COMPLETED"
+          }
+        ]
+      },
+      {
+        "dimension": "createdBy",
+        "items": [
+          {
+            "id": "userA"
+          }
+        ]
+      },
+      {
+        "dimension": "lastUpdatedBy",
+        "items": [
+          {
+            "id": "userB"
+          }
+        ]
       }
     ],
     "rows": [

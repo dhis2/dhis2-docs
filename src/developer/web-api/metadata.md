@@ -2954,11 +2954,11 @@ All proposals can be listed:
 The result list can be filtered using the `filter` parameter.
 For example, to list only accepted proposals use:
 
-    GET /api/metadata/proposals?filter=status=ACCEPTED
+    GET /api/metadata/proposals?filter=status:eq:ACCEPTED
 
 Similarly to only show open proposals use:
 
-    GET /api/metadata/proposals?filter=status=PROPOSED
+    GET /api/metadata/proposals?filter=status:eq:PROPOSED
 
 Filters can also be applied to any field except `change`. Supported filter operators are those described in the Gist Metadata API. This also includes property transformers described for Gist API.
 
