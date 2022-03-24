@@ -23,8 +23,6 @@ will require `F_METADATA_MANAGE` authority.
 Data store entries consist of a namespace, key and value. The
 combination of namespace and key is unique. The value data type is JSON.
 
-
-
 Table: Data store structure
 
 | Item | Description | Data type |
@@ -115,8 +113,8 @@ Example response:
 ```
 
 
-### Datastore Query API
-The query API is used by at least using the `fields` parameter:
+### Query API
+The query API is allows you to query and filter values over all keys in a namespace. The `fields` parameter is used to specify the query. This is useful for retrieving specific values of keys across a namespace in a single request. 
 
     GET /api/dataStore/<namespace>?fields=
 
@@ -124,20 +122,23 @@ The list of `fields` can be:
 
 * empty: returns just the entry keys
 * `.`: return the root value as stored
-* a comma separated list of paths: `<path>[,<path>]`; each `<path>` can be a simple property name (like `age`) or a nested path (like `person.age`) 
+* comma separated list of paths: `<path>[,<path>]`; each `<path>` can be a simple property name (like `age`) or a nested path (like `person.age`) 
 
 Furthermore, entries can be filtered using one or more `filter` parameters 
 and sorted using the `order` parameter. 
+
 Multiple filters can be combined using `rootJunction=OR` (default) or `rootJunction=AND`. 
 
 All details on the `fields`, `filter` and `order` parameters are given in the following sections.
 
+#### Paging
 By default, results use paging. Use `pageSize` and `page` to adjust size and offset. 
 The parameter `paging=false` can be used to opt-out and always return all matches. 
-This should be used with caution as there could be many entries in a namespace.
+This should be used with caution as there could be many entries in a namespace. The default page size is 50.
 
-When paging is turned off entries are returned as plain result array as the root JSON structure.
-The same effect can be achieved while having paged results by using `headless=true`.
+    GET /api/dataStore/<namespace>?fields=.&page=2&pageSize=10
+
+When paging is turned off, entries are returned as plain result array as the root JSON structure. The same effect can be achieved while having paged results by using `headless=true`.
 
 ```json
 {
@@ -150,8 +151,8 @@ vs.
 [...]
 ```
 
-#### Value Extraction
-The datastore allows extracting entire simple or complex values 
+#### Value extraction
+The data store allows extracting entire simple or complex values 
 as well as the extraction of parts of complex JSON values.
 
 > **Note**
@@ -207,7 +208,7 @@ The example response could look like this:
 
 The same syntax works for nested members:
 
-        GET /api/dataStore/<namespace>?fields=root[level1[level2[level3]]]
+    GET /api/dataStore/<namespace>?fields=root[level1[level2[level3]]]
 
 Example response here:
 
@@ -262,7 +263,7 @@ could be used to resolve a name collision with the `key` member.
 ]
 ```
 
-### Sorting Results
+### Sorting results
 Results can be sored by a single property using the `order=<path>[:direction]` parameter.
 This can be any valid value `<path>` or the entry key (use `_` as path).
 
@@ -290,7 +291,7 @@ In summary, order can be one of the following:
 > 
 > When using numeric order all matches must have a numeric value for the property at the provided `<path>`.
 
-#### Filtering Entries
+### Filtering entries
 To filter entries within the query API context add one or more `filter` parameters
 while also using the `fields` parameter.
 
@@ -359,26 +360,31 @@ A `<member>` path expression can be a member name or in case of arrays an array 
 In case of an array the index can also be given in the form: `[<index>]`.
 For example, the path `addresses[0].street` would be identical to `addresses.0.street`.
 
-Some examples:
+Some example queries are found below.
 
-    // name (of root object) is "Luke"
+Name (of root object) is "Luke":
+
     GET /api/dataStore/<namespace>?fields=.&filter=name:eq:Luke
-    
-    // age (of root object) is greater than 42 (numeric)
+
+Age (of root object) is greater than 42 (numeric):
+
     GET /api/dataStore/<namespace>?fields=.&filter=age:gt:42
-    
-    // the root value is a number greater than 42 (numeric matching inferred from the value) 
+
+Root value is a number greater than 42 (numeric matching inferred from the value):
+
     GET /api/dataStore/<namespace>?fields=.&filter=.:gt:42
 
-    // enabled (of root object) is true (boolean matching inferred from the value) 
+Enabled (of root object) is true (boolean matching inferred from the value):
+
     GET /api/dataStore/<namespace>?fields=.&filter=enabled:eq:true
 
-    // root object has name containing "Pet" and has an age greater than 20
+Root object has name containing "Pet" and has an age greater than 20:
+
     GET /api/dataStore/<namespace>?fields=.&filter=name:like:Pet&filter=age:gt:20
 
-    // root object is either flagged as minor or has an age less than 18
-    GET /api/dataStore/<namespace>?fields=.&filter=minor:eq:true&filter=age:lt:18&rootJunction=or
+Root object is either flagged as minor or has an age less than 18:
 
+    GET /api/dataStore/<namespace>?fields=.&filter=minor:eq:true&filter=age:lt:18&rootJunction=or
 
 ### Create values { #webapi_data_store_create_values } 
 
@@ -477,20 +483,20 @@ Example response:
 }
 ```
 
-### Sharing datastore keys { #webapi_data_store_sharing } 
+### Sharing data store keys { #webapi_data_store_sharing } 
 
-Sharing of datastore keys follows the same principle as for other metadata sharing (see
+Sharing of data store keys follows the same principle as for other metadata sharing (see
 [Sharing](#webapi_sharing)).
 
-To get sharing settings for a specific datastore key:
+To get sharing settings for a specific data store key:
 
     GET /api/33/sharing?type=dataStore&id=<uid>
 
-Where the id for the datastore key comes from the `/metaData` endpoint for that key:
+Where the id for the data store key comes from the `/metaData` endpoint for that key:
 
-    /api/33/dataStore/<namespace>/<key>/metaData
+    GET /api/33/dataStore/<namespace>/<key>/metaData
 
-To modify sharing settings for a specific datastore key:
+To modify sharing settings for a specific data store key:
 
     POST /api/33/sharing?type=dataStore&id=<uid>
 
@@ -533,8 +539,6 @@ associated with the currently logged in user.
 
 *userDataStore* consists of a user, a namespace, keys and associated
 values. The combination of user, namespace and key is unique.
-
-
 
 Table: User data store structure
 
@@ -693,7 +697,6 @@ curl -X DELETE -u admin:district "play.dhis2.org/api/33/userDataStore/foo"
   "message":"All keys from namespace 'foo' deleted."
 }
 ```
-
 
 
 
