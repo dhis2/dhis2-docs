@@ -143,13 +143,13 @@ similar to this:
     "type": "PIVOT_TABLE"
   }],
   "eventVisualizations": [{
-    "name": "ANC: ANC 1 Visits Cumulative Numbers",
-    "id": "arf9OiyV7df",
-    "type": "GAUGE"
+    "name": "Inpatient: Cases 5 to 15 years this year (case)",
+    "id": "TIuOzZ0ID0V",
+    "type": "LINE_LIST"
   }, {
-    "name": "ANC: 1st and 2rd trends Daily",
-    "id": "jkf6OiyV7el",
-    "type": "COLUMN"
+    "name": "Inpatient: Cases last quarter (case)",
+    "id": "R4wAb2yMLik",
+    "type": "LINE_LIST"
   }],
   "maps": [{
     "name": "ANC: 1st visit at facility (fixed) 2013",

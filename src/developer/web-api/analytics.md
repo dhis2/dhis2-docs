@@ -2347,11 +2347,11 @@ Table: Supported event types
 
 | Key | Description |
 |---|---|
-| REPORT_TABLE_VIEW | Report table (pivot table) view |
-| CHART_VIEW | Chart view |
+| VISUALIZATION_VIEW | Visualization view |
 | MAP_VIEW | Map view (GIS) |
 | EVENT_REPORT_VIEW | Event report view |
 | EVENT_CHART_VIEW | Event chart view |
+| EVENT_VISUALIZATION_VIEW | Event visualization view |
 | DASHBOARD_VIEW | Dashboard view |
 | PASSIVE_DASHBOARD_VIEW | Dashboard view (when not explicitly selecting the dashboard) |
 | DATA_SET_REPORT_VIEW | Data set report view |
@@ -2446,6 +2446,7 @@ The JSON response looks like this:
     "reportTableViews": 5633,
     "eventReportViews": 6757,
     "eventChartViews": 9860,
+    "eventVisualizationViews": 2387,
     "dashboardViews": 10082,
     "passiveDashboardViews": 0,
     "totalViews": 46346,
@@ -2455,6 +2456,7 @@ The JSON response looks like this:
     "averageReportTableViews": 56,
     "averageEventReportViews": 68,
     "averageEventChartViews": 99,
+    "averageEventVisualizationViews": 10,
     "averageDashboardViews": 101,
     "averagePassiveDashboardViews": 0,
     "savedMaps": 1805,
@@ -2462,6 +2464,7 @@ The JSON response looks like this:
     "savedReportTables": 1995,
     "savedEventReports": 1679,
     "savedEventCharts": 1613,
+    "savedEventVisualizations": 1231,
     "savedDashboards": 0,
     "savedIndicators": 1831,
     "activeUsers": 99,
