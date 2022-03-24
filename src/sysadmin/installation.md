@@ -1899,8 +1899,7 @@ background processes. The main file includes the background process logs as well
 
 ### Log configuration
 
-In order to override the default log configuration you can specify a Java system property with the name *log4j.configuration* and a value pointing to the Log4j configuration file on the classpath. If you want to point to a
-file on the file system (i.e. outside Tomcat) you can use the *file* prefix e.g. like this:
+To override the default log configuration you can specify a Java system property with the name `log4j.configuration` and a value pointing to the Log4j configuration file at the file system like this:
 
 ```properties
 -Dlog4j.configuration=file:/home/dhis/config/log4j.properties
@@ -1929,15 +1928,15 @@ To use the context variables in the log add them using `-X{<name>}` to your log 
 
     * %-5p %d{ISO8601} %m (%F [%t])%n %X{sessionId} %X{xRequestID}
 
-### Setting logging level in `dhis.conf`
+### Log level configuration
 
-If you want to change the logging level of individual packages you can do this by setting `logging.level.*`, for example to set the entire springframework to display logging lines from DEBUG and up, you can set:
+To set the log level of individual packages you can specify properties on the format  `logging.level.{package-names}` in `dhis.conf`. For example, to set the the log level for the entire Spring Framework to DEBUG and up, you can specify:
 
 ```
-logging.level.org.springframework=DEBUG
+logging.level.org.springframework = DEBUG
 ```
 
-Please note that this does not work when using the embedded jetty version of DHIS2.
+Note: This is not supported for the embedded DHIS2 Jetty version.
 
 ## Working with the PostgreSQL database { #install_working_with_the_postgresql_database } 
 
