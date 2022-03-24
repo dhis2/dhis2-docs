@@ -51,8 +51,9 @@ CPU cores so the more you can afford, the better the application will perform.
 Later DHIS2 versions require the following software versions to operate.
 
 - An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
-- Java JDK. OpenJDK is recommended. 
-    - For DHIS 2 version 2.35 version and later, JDK 11 is recommended and JDK 8 or later is required. 
+- Java JDK. OpenJDK is recommended.  
+    - For DHIS 2 version 2.38 and later, JDK 11 is required.
+    - For DHIS 2 version 2.35 and later, JDK 11 is recommended and JDK 8 or later is required. 
     - For DHIS 2 versions older than 2.35, JDK 8 is required.
 - PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 13 is recommended.
 - PostGIS database extension version 2.2 or later.
@@ -1927,6 +1928,16 @@ DHIS2 will provide the following context values:
 To use the context variables in the log add them using `-X{<name>}` to your log pattern as in this example:
 
     * %-5p %d{ISO8601} %m (%F [%t])%n %X{sessionId} %X{xRequestID}
+
+### Setting logging level in `dhis.conf`
+
+If you want to change the logging level of individual packages you can do this by setting `logging.level.*`, for example to set the entire springframework to display logging lines from DEBUG and up, you can set:
+
+```
+logging.level.org.springframework=DEBUG
+```
+
+Please note that this does not work when using the embedded jetty version of DHIS2.
 
 ## Working with the PostgreSQL database { #install_working_with_the_postgresql_database } 
 

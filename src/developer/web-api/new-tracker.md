@@ -27,14 +27,28 @@ The following table highlights the differences between the previous tracker impo
 |Tracker Object|Previously|Now|
 |---|---|---|
 |**Attribute**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
-|**DataValue**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
-|**Enrollment**|`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`trackedEntityInstance`<br>`enrollmentDate`<br>`incidentDate`<br>`completedDate`|`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`trackedEntity`<br>`enrolledAt`<br>`occurredAt`<br>`completedAt`|
-|**Event**|`trackedEntityInstance`<br>`eventDate`<br>`dueDate`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`completedDate`|`trackedEntity`<br>`occurredAt`<br>`scheduledAt`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`completedAt`|
-|**Note**|`storedDate`|`storedAt`|
+|**DataValue**|`created`<br>`lastUpdated`<br>`createByUserInfo`<br>`lastUpdatedByUserInfo`|`createdAt`<br>`updatedAt`<br>`createdBy`<br>`updatedBy`|
+|**Enrollment**|`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`trackedEntityInstance`<br>`enrollmentDate`<br>`incidentDate`<br>`completedDate`<br>`createByUserInfo`<br>`lastUpdatedByUserInfo`|`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`trackedEntity`<br>`enrolledAt`<br>`occurredAt`<br>`completedAt`<br>`createdBy`<br>`updatedBy`|
+|**Event**|`trackedEntityInstance`<br>`eventDate`<br>`dueDate`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`completedDate`<br>`createByUserInfo`<br>`lastUpdatedByUserInfo`<br>`assignedUser`*|`trackedEntity`<br>`occurredAt`<br>`scheduledAt`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`completedAt`<br>`createdBy`<br>`updatedBy`<br>`assignedUser`*|
+|**Note**|`storedDate`<br>`lastUpdatedBy`|`storedAt`<br>`createdBy`|
 |**ProgramOwner**|`ownerOrgUnit`<br>`trackedEntityInstance`|`orgUnit`<br>`trackedEntity`|
 |**RelationshipItem**|`trackedEntityInstance.trackedEntityInstance`<br>`enrollment.enrollment`<br>`event.event`|`trackedEntity`<br>`enrollment`<br>`event`|
 |**Relationship**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
-|**TrackedEntity**|`trackedEntityInstance`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`|`trackedEntity`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`|
+|**TrackedEntity**|`trackedEntityInstance`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`createByUserInfo`<br>`lastUpdatedByUserInfo`|`trackedEntity`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`createdBy`<br>`updatedBy`|
+
+> **Note**
+>
+>Field `assignedUser` was a String before, now it is of type User:
+>```json
+>{
+>   "assignedUser": {
+>     "uid": "ABCDEF12345",
+>     "username": "username",
+>     "firstName": "John",
+>     "surname": "Doe"
+>   }
+>}
+>```
 
 ### Tracker Export changelog (`GET`)
 
@@ -92,6 +106,8 @@ Tracker consists of a few different types of objects that are nested together to
 | deleted | Indicates whether the tracked entity has been deleted. It can only change when deleting. | No | No | Boolean | False until deleted |
 | geometry | A  geographical representation of the tracked entity. Based on the "featureType" of the TrackedEntityType. | No | Yes | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
 | storedBy | Client reference for who stored/created the tracked entity. | No | Yes | String:Any | John Doe |
+| createdBy | Only for reading data. User that created the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
+| updatedBy | Only for reading data. User that last updated the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributes | A list of tracked entity attribute values owned by the tracked entity. | No | Yes | List of TrackedEntityAttributeValue | See Attribute |
 | enrollments | A list of enrollments owned by the tracked entity. | No | Yes | List of Enrollment | See Enrollment |
 | relationships | A list of relationships connected to the tracked entity. | No | Yes | List of Relationship | See Relationship |
@@ -99,7 +115,7 @@ Tracker consists of a few different types of objects that are nested together to
 
 > **Note**
 >
-> `Tracked Entities` "owns" all `Tracked Entity Attribute Values` (Or "attributes" as described in the previous table). However, `Tracked Entity Attributes` are either connected to a `Tracked Entity` through its `Tracked Entity Type` or a `Program`. We often refer to this separation as `Tracked Entity Type Attrbiutes` and `Tracked Entity Program Attributes`. The importance of this separation is related to access control and limiting what information the user can see.
+> `Tracked Entities` "owns" all `Tracked Entity Attribute Values` (Or "attributes" as described in the previous table). However, `Tracked Entity Attributes` are either connected to a `Tracked Entity` through its `Tracked Entity Type` or a `Program`. We often refer to this separation as `Tracked Entity Type Attributes` and `Tracked Entity Program Attributes`. The importance of this separation is related to access control and limiting what information the user can see.
 >
 > The "attributes" referred to in the `Tracked Entity` are `Tracked Entity Type Attributes`.
 
@@ -124,11 +140,13 @@ Tracker consists of a few different types of objects that are nested together to
 | enrolledAt | Timestamp when the user enrolled the tracked entity. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | occurredAt | Timestamp when enrollment occurred. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedAt | Timestamp when the user completed the enrollment. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| completedBy | Reference to who completed the enrollment | No | No | John Doe |
+| completedBy | Reference to who completed the enrollment | No | No | String:any | John Doe |
 | followUp | Indicates whether the enrollment requires follow-up. False if not supplied | No | No | Booelan | Default: False, True |
 | deleted | Indicates whether the enrollment has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the enrollment. Based on the "featureType" of the Program | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
 | storedBy | Client reference for who stored/created the enrollment. | No | No | String:Any | John Doe |
+| createdBy | Only for reading data. User that created the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
+| updatedBy | Only for reading data. User that last updated the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributes | A list of tracked entity attribute values connected to the enrollment. | No | No | List of TrackedEntityAttributeValue | See Attribute |
 | events | A list of events owned by the enrollment. | No | No | List of Event | See Event |
 | relationships | A list of relationships connected to the enrollment. | No | No | List of Relationship | See Relationship |
@@ -136,7 +154,7 @@ Tracker consists of a few different types of objects that are nested together to
 
 > **Note**
 >
-> `Tracked Entities` "owns" all `Tracked Entity Attribute Values` (Or "attributes" as described in the previous table). However, `Tracked Entity Attributes` are either connected to a `Tracked Entity` through its `Tracked Entity Type` or a `Program`. We often refer to this separation as `Tracked Entity Type Attrbiutes` and `Tracked Entity Program Attributes`. The importance of this separation is related to access control and limiting what information the user can see.
+> `Tracked Entities` "owns" all `Tracked Entity Attribute Values` (Or "attributes" as described in the previous table). However, `Tracked Entity Attributes` are either connected to a `Tracked Entity` through its `Tracked Entity Type` or a `Program`. We often refer to this separation as `Tracked Entity Type Attributes` and `Tracked Entity Program Attributes`. The importance of this separation is related to access control and limiting what information the user can see.
 >
 > The "attributes" referred to in the `Enrollment` are `Tracked Entity Program Attributes`.
 
@@ -169,9 +187,11 @@ In the API, the significant difference is that all events are either connected t
 | deleted | Indicates whether the event has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the event. Based on the "featureType" of the Program Stage | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
 | storedBy | Client reference for who stored/created the event. | No | No | String:Any | John Doe |
+| createdBy | Only for reading data. User that created the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
+| updatedBy | Only for reading data. User that last updated the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributeOptionCombo | Attribute option combo for the event. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
 | attributeCategoryOptions | Attribute category option for the event. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
-| assignedUser | A reference to a user who has been assigned to the event. | No | No | String:Uid | ABCDEF12345 |
+| assignedUser | A reference to a user who has been assigned to the event. | No | No | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | dataValues | A list of data values connected to the event. | No | No | List of TrackedEntityAttributeValue | See Attribute |
 | relationships | A list of relationships connected to the event. | No | No | List of Relationship | See Relationship |
 | notes | Notes connected to the event. It can only be created. | No | Yes | List of Note | See Note |
@@ -236,6 +256,8 @@ While `Attributes` describes a `tracked entity` or an `enrollment`, `data values
 | createdAt | Timestamp when the user added the value. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the value was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | storedBy | Client reference for who stored/created the value. | No | No | String:Any | John Doe |
+| createdBy | Only for reading data. User that created the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
+| updatedBy | Only for reading data. User that last updated the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 
 
 > **Note**
@@ -300,8 +322,20 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 | note | The reference of the note. Generated if empty | No | Yes | String:Uid | ABCDEF12345 |
 | value | The content of the note. | Yes | Yes | String:Any | This is a note |
 | storedAt | Timestamp when the user added the note. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| updatedAt | Timestamp when the note was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | storedBy | Client reference for who stored/created the note. | No | No | String:Any | John Doe |
+| createdBy | Only for reading data. User that created the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
+
+### User
+
+| Property | Description | Required | Immutable | Type | Example |
+|---|---|---|---|---|---|
+| uid | The identifier of the user. | Yes* | Yes | String:Uid | ABCDEF12345 |
+| username | Username used by the user. | Yes* | Yes | String:Any | 123 |
+| firstName | Only for reading data. First name of the user. | No | Yes | String:Any | John |
+| surname | Only for reading data. Last name of the user. | No | Yes | String:Any | Doe |
+
+> *One between `uid` or `username` field must be provided. If both are provided, only username is considered.
+
 
 ## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
 

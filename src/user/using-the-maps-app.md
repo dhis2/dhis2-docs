@@ -132,6 +132,8 @@ Along the bottom of the basemap card is:
 
     - Population age groups
 
+    - Building footprints
+
     - Elevation
 
     - Precipitation
@@ -268,6 +270,10 @@ layer** selection. This opens the Events layer configuration dialog.
         unit** the map data will appear differently for users at
         different levels in the organisation unit hierarchy.
 
+    - **Use associated geometry**: This dropdown will only show if there
+      are any additional geometry available for your organisation units.
+      This is typically used to show facility catchment areas.
+
 4.  In the **FILTER** tab:
 
     ![](resources/images/maps/maps_thematic_layer_dialog_FILTER.png)
@@ -275,11 +281,11 @@ layer** selection. This opens the Events layer configuration dialog.
     - Click ADD FILTER and select an available data item to add a new
       filter to the data set.
 
-      - Select a data dimension from the drop down box. You can
+      - Select a data dimension from the dropdown box. You can
         reduce the number of dimensions shown by using the search field.
         Click on the name to select a dimension.
 
-      - When a dimension is selected you get a second drop down with
+      - When a dimension is selected you get a second dropdown with
         dimension items. Check the items you want to include in the
         filter.
 
@@ -552,7 +558,7 @@ layer** selection. This opens the Events layer configuration dialog.
       filter to the data set.
 
       - For data item of type _option set_, you can select any of
-        the options from the drop down box by using the down-wards
+        the options from the dropdown box by using the down-wards
         arrow or by start typing directly in the box to filter for
         options.
 
@@ -910,6 +916,10 @@ layer**selection. This opens the Facility layer configuration dialog.
     - The system administrator can set the default organsation unit
       level containing facilities in the **System Settings** app.
 
+    - **Use associated geometry**: This dropdown will only show if there
+      are any additional geometry available for your organisation units.
+      This is typically used to show facility catchment areas.
+
 2.  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_facility_layer_dialog_STYLE.png)
@@ -925,7 +935,7 @@ layer**selection. This opens the Facility layer configuration dialog.
 
         Allows a visual buffer to be displayed on the layer around
         each facility. The radius of the buffer can be modified
-        here.
+        here. Buffer option is not available if asscoiated geometry is used.
 
     - Facilities can be styled an **organisation unit group set** using
       different icons. Select a group set from the list of organisation
@@ -1067,6 +1077,10 @@ layer** selection. This opens the org unit layer configuration dialog.
         unit** the map data will appear differently for users at
         different levels in the organisation unit hierarchy.
 
+    - **Use associated geometry**: This dropdown will only show if there
+      are any additional geometry available for your organisation units.
+      This is typically used to show facility catchment areas.
+
 2.  In the **STYLE** tab:
 
     ![](resources/images/maps/maps_org_unit_layer_dialog_STYLE.png)
@@ -1206,6 +1220,9 @@ The following layers are supported:
 - **Population age groups**: Estimated number of people living in an area, grouped
   by age and gender.
 
+- **Building footprints**: The outlines of buildings derived from high-resolution
+  satellite imagery. Only for the continent of Africa.
+
 - **Elevation**: Elevation above sea level.
 
 - **Precipitation**: The values are in millimeters within 5 days periods. Updated
@@ -1281,6 +1298,13 @@ layer** selection. This opens the layer configuration dialog.
         unit** the map data will appear differently for users at
         different levels in the organisation unit hierarchy.
 
+    - **Use associated geometry**: This dropdown will only show if there
+      are any additional geometry available for your organisation units.
+      This is typically used to calculate values for facility catchment areas.
+
+    - **Building footprints**: Building counts are only available for smaller
+      organisation unit areas.
+
 4.  In the **STYLE** tab
 
     ![](resources/images/maps/maps_ee_layer_dialog_STYLE.png)
@@ -1292,7 +1316,8 @@ layer** selection. This opens the layer configuration dialog.
     - If you select organisation units having a single point coordinate
       (facilities) you can set a radius buffer to calculate the
       data value within. A radius of 5000 meters will aggregate all
-      values available within a 5 km distance from a facility.
+      values available within a 5 km distance from a facility. Buffer
+      option is not available if associated geometry is used.
 
 5.  Click **ADD LAYER**.
 

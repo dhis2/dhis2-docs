@@ -10,7 +10,7 @@ data.
 
 ## Create a chart
 
-1.  \<Open the **Event Visualizer** app and select a chart type.
+1.  Open the **Event Visualizer** app and select a chart type.
 
 2.  In the menu to the left, select the meta data you want to analyse.
 

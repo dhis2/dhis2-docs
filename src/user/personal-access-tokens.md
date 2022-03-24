@@ -173,3 +173,10 @@ fetch(url, {
   }
 })
 ```
+
+### Server configuration
+
+> **Important**
+>
+> Before the DHIS2 2.38 version, the PATs feature is default disabled.
+> To enable PATs, set the `enable.api_token.authentication` property to `on` in the dhis.conf file.
