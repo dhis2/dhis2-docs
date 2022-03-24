@@ -209,7 +209,7 @@ In the API, the significant difference is that all events are either connected t
 | createdAt | Timestamp when the user created the relationship. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the relationship was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | bidirectional | Only for reading data. Indicated whether the relationship type is bidirectional or not. | No | No | Boolean | True or False |
-| from, to | A reference to each side of the relationship. Must conform to the constraints set in the relationship type | Yes | Yes | RelationshipItem | {"trackedEntity": "ABCEF12345"}, {"enrollment": "ABCDEF12345"} or {"event": "ABCDEF12345"} |
+| from, to | A reference to each side of the relationship. Must conform to the constraints set in the relationship type | Yes | Yes | RelationshipItem | {"trackedEntity": {"trackedEntity": "ABCEF12345"}}, {"enrollment": {"enrollment": "ABCDEF12345"}} or {"event": {"event": "ABCDEF12345" }} |
 
 > **Note**
 >
@@ -217,10 +217,10 @@ In the API, the significant difference is that all events are either connected t
 >```json
 >{
 >   "from": {
->     "event": "ABCDEF12345"    
+>     "event": { "event": "ABCDEF12345" }
 >   },
 >   "to": {
->     "trackedEntity": "FEDCBA12345"
+>     "trackedEntity": { "trackedEntity": "FEDCBA12345" }
 >   }
 >}
 >```
@@ -486,10 +486,10 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
     {
       "relationshipType": "Udhj3bsdHeT",
       "from": {
-        "trackedEntity": "Kj6vYde4LHh"
+        "trackedEntity": { "trackedEntity": "Kj6vYde4LHh" }
       },
       "to": {
-        "trackedEntity": "Gjaiu3ea38E"
+        "trackedEntity": { "trackedEntity": "Gjaiu3ea38E" }
       }
     }
   ]
@@ -509,10 +509,10 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
         {
           "relationshipType": "Udhj3bsdHeT",
           "from": {
-            "trackedEntity": "Kj6vYde4LHh"
+            "trackedEntity": { "trackedEntity": "Kj6vYde4LHh" }
           },
           "to": {
-            "trackedEntity": "Gjaiu3ea38E"
+            "trackedEntity": { "trackedEntity": "Gjaiu3ea38E" }
           }
         }
       ],
@@ -1212,23 +1212,25 @@ following table.
 |`CAPTURE`| The data capture organisation units associated with the current user and all children, i.e., all organisation units in the sub-hierarchy.|
 |`ALL`| All organisation units in the system. Requires the ALL authority.|
 
-#### Request parameter to filter responses
+#### Request parameter to filter responses { #webapi_nti_field_filter }
 
 All new export endpoints support a `fields` parameter which allows to filter the response based on a simple grammar.
 
 `fields` parameter accepts a comma separated list of field names or patterns and responses are filtered based on it
 
+See [Metadata field filter](#webapi_metadata_field_filter) for more information on field filtering.
+
 ##### Examples
 
 |Parameter example|Meaning|
 |:---|:---|
+|`fields=*`| returns all fields|
 |`fields=createdAt,uid`| only returns `createdAt` and `uid` fields for the requested object|
-|`fields=enrollments.uid`| only returns `uid` field for nested `enrollments`|
-|`fields=enrollments[uid]`| same as above with a different syntax|
+|`fields=enrollments[*,!uid]`| return all fields of nested `enrollments` field except its `uid`|
+|`fields=enrollments[uid]`| only returns `uid` field for nested `enrollments`|
 |`fields=enrollments[uid,enrolledAt]`| only returns `uid` and `enrolledAt` fields for nested `enrollments`|
-|`fields=**`| don't filter (same behaviour as not passing the `field` parameter at all)|
 
-### Tracked Entities
+### Tracked Entities (`GET /api/tracker/trackedEntities`)
 
 Two endpoints are dedicated to tracked entities:
 
@@ -1376,7 +1378,7 @@ You can use a range of operators for the filtering:
 
 The `JSON` response can look like the following.
 
-Responses can be filtered on desired fields, see [Request parameter to filter responses](#Request-parameter-to-filter-responses)
+Responses can be filtered on desired fields, see [Request parameter to filter responses](#webapi_nti_field_filter)
 
 ```json
 {
@@ -1435,7 +1437,7 @@ The purpose of this endpoint is to retrieve one tracked entity given its uid.
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Tracked Entity Instance with specified `uid`|
 |`program`|`String`|`uid`| Include program attributes in the response (only the ones user has access to) |
-|`fields`|`String`| **Currently:** <br>`*`&#124;`relationships`&#124;`enrollments`&#124;`events`&#124;`programOwners`<br><br>**Planned:**<br> a `String` specifying which fields to include in the response|Include specified sub-objects in the response| 
+|`fields`|`String`| Any valid field filter (default `*,!relationships,!enrollments,!events,!programOwners`) |Include specified sub-objects in the response| 
 
 ##### Example requests
 
@@ -1643,8 +1645,6 @@ scheme for the rest of the metadata with assigned attributes.
 
 The `JSON` response can look like the following.
 
-Please note that field filtering (`fields=...`) support is planned but not yet implemented.
-
 ```json
 {
     "instances": [
@@ -1704,6 +1704,7 @@ The purpose of this endpoint is to retrieve one Event given its uid.
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Event with specified `uid`|
 |`fields`|`String`| **Not implemented yet**|Include specified properties in the response| 
+|`fields`|`String`| Any valid field filter (default `*,!relationships`) |Include specified sub-objects in the response| 
 
 ##### Example requests
 
@@ -1876,8 +1877,6 @@ user:
 
 The `JSON` response can look like the following.
 
-Please note that field filtering (`fields=...`) support is planned but not yet implemented.
-
 ```json
 {
   "instances": [
@@ -1919,7 +1918,7 @@ The purpose of this endpoint is to retrieve one Enrollment given its uid.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Enrollment with specified `uid`|
-|`fields`|`String`| **Not implemented yet**|Include specified sub-objects in the response| 
+|`fields`|`String`| Any valid field filter (default `*,!relationships,!events,!attributes`) |Include specified sub-objects in the response| 
 
 ##### Example requests
 
@@ -1957,9 +1956,9 @@ A query for a Enrollment:
 Relationships are links between two entities in the Tracker.
 These entities can be tracked entity instances, enrollments, and events.
 
-The purpose of this endpoint is to retrieve Relationships between objects.
+The purpose of this endpoint is to retrieve relationships between objects.
 
-Unlike other tracked objects endpoints, Relationship only expose one endpoint:
+Unlike other tracked objects endpoints, relationships only expose one endpoint:
 
 - `GET /api/tracker/relationships?[trackedEntity={trackedEntityUid}|enrollment={enrollmentUid}|event={eventUid}]&fields=[fields]`
 
@@ -1970,7 +1969,7 @@ Unlike other tracked objects endpoints, Relationship only expose one endpoint:
 |`trackedEntity`|`String`|`uid`| Identifier of a Tracked Entity Instance|
 |`enrollment`|`String`|`uid`| Identifier of an Enrollment |
 |`event`|`String`|`uid`| Identifier of an Event|
-|`fields`|`String`| | **Not implemented yet:** Only includes specified properties in the response| 
+|`fields`|`String`| Any valid field filter (default `relationship,relationshipType,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response| 
 
 The following rules apply to the query parameters.
 
@@ -1989,30 +1988,30 @@ The following rules apply to the query parameters.
   "instances": [
     {
       "relationship": "SSfIicJKbh5",
-      "relationshipName": "Focus to Case",
       "relationshipType": "Mv8R4MPcNcX",
-      "createdAt": "2019-08-21T13:29:45.648",
-      "updatedAt": "2019-08-21T13:31:42.064",
-      "bidirectional": false,
       "from": {
-        "trackedEntity": "neR4cmMY22o"
+        "trackedEntity": {
+          "trackedEntity": "neR4cmMY22o"
+        }
       },
       "to": {
-        "trackedEntity": "rEYUGH97Ssd"
+        "trackedEntity": {
+          "trackedEntity": "rEYUGH97Ssd"
+        }
       }
     },
     {
       "relationship": "S9kZGYPKk3x",
-      "relationshipName": "Focus to Case",
       "relationshipType": "Mv8R4MPcNcX",
-      "createdAt": "2019-08-21T13:29:45.630",
-      "updatedAt": "2019-08-21T13:31:42.071",
-      "bidirectional": false,
       "from": {
-        "trackedEntity": "neR4cmMY22o"
+        "trackedEntity": {
+          "trackedEntity": "neR4cmMY22o"
+        }
       },
       "to": {
-        "trackedEntity": "k8TU70vWtnP"
+        "trackedEntity": {
+          "trackedEntity": "k8TU70vWtnP"
+        }
       }
     }
   ],
