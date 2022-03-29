@@ -214,7 +214,7 @@ app.
 The system will default send a notification in the mail inbox under the "system" category when there is a new patch version available for download. 
 This notification will be sent to the users who have the "ALL" authority, unless the "System update notification recipients" user group is defined, under the "General settings". 
 
-It is also possible to disable this feature all together by setting the "system.update_notifications_enabled" configuration variable to "off", in the "dhis.conf" file.
+It is also possible to disable this feature altogether by setting the "system.update_notifications_enabled" configuration variable to "off", in the "dhis.conf" file.
 
 Under the hood, it works by calling (GET, with no parameters) on a REST API endpoint on a central server every day around 2:00 AM.
 
