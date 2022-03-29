@@ -1539,6 +1539,7 @@ Table: Enrollment dimensions
 | Organisation units | ou | Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\> |
 
 #### Repeatable stages
+
 Data element identifier must include program stage. The program stage can be repeatable. For example the dimension edqlbukwRfQ.vANAXwtLwcT can refer to repeatable program stage. The data element of this stage is accessible via index parameters (enclosed with [ ]).
 
 Table: Possible indexing of repeatable stages
