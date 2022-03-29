@@ -8,7 +8,7 @@ This is the easy bit, and is all that most people have to do. The following sect
 ## Format and editing
 The documents are maintained in [commonmark](https://commonmark.org/help/) markdown format, with an `.md` extension.
 
-Editing documents is as simple as editing a text file. Many IDEs have markdown support, including live previews. For Linux and Windows, [ghostwriter](https://wereturtle.github.io/ghostwriter/) is a nice option; it is free and supports side-by-side preview and custom stylesheets.
+Editing documents is as simple as editing a text file. Many IDEs have markdown support, including live previews. For Linux and Windows, [Typora](https://typora.io/) is a great, open-source markdown editor.
 
 
 ### Structure
@@ -52,20 +52,40 @@ For screenshots of the DHIS 2 web interface, we recommend using Chrome browser, 
 
 When taking screenshots of the Android app, size should be set to **360x640**.
 
+#### Localising images
+
+Localisation of images is supported by storing language-specific versions of an image alongside the original image. The filename should be the same as the original English version, but should include `_` plus the language code at the end of the name, before the extension.
+
+For example, if you want to have a French version of  
+`resources/images/my_screenshot.png`  
+You can simply create the French version and save it as  
+`resources/images/my_screenshot_fr.png`
+
+The link in the documention should still point at the original image. When the documentation site is built for each language, localised images will be identified and used instead of the English originals.
+
+> *The language code is the first part of the URL that you see after the "docs.dhis2.org/" when viewing the localised version of the documentation. At the time of writing, for example, we have `fr`, `es_419`, `pt`, `cs` and `zh`.*
+
 ### Section references
 
-In order to provide fixed references within the document, we can set a fixed text string to be applied to any section. For our markdown processor this is done by adding a hash id in curly brackets at the end of the line with the section title, e.g.
+In order to provide fixed references (anchors) within the documentation, we can set a fixed text string to be applied to any section. For our markdown processor this is done by adding a hash id in curly brackets at the end of the line with the section title, e.g.
 ```
 ## Validation { #webapi_validation }
 
 To generate a data validation summary you can interact ...
 ```
 
-Will set the section id of the level 2 heading **Validation** to "webapi_validation", which may then be referenced as "#webapi_validation" within the html file.
+Will set the section id of the level 2 heading **Validation** to "webapi_validation", which may then be referenced as "#webapi_validation" from *any* html file.
 
-After the full html file is generated, it is post-processed and the first ```DHIS2-SECTION-ID``` after the start of the section is used as the section id.
+> **Note**
+>
+> In order to support linking by anchor reference from other documents, please try to keep the section ids unique. For example, if "#webapi_validation" is unique across the documentation, then you can refer to it from any other part of the documentation simply with `[link name](#webapi_validation)`.  
+> If the section id being referenced is not unique, the document processor will attempt to resolve to the "closest" anchor with that name. *When the linking file belongs to a specific version, the processor will ignore anchors belonging to different versions*.
 
-Please follow the convention of lowercase letters and underscores, in order to create id's that are also valid as filenames when the html files are split.
+> **Caution**
+>
+> Our documentation is compiled into both pages and full documents. For this reason it is not advised to include paths in inter-document references. Please use unique section ids as described above in order for the links to resolve correctly in both document types.
+
+(Please follow the convention of lowercase letters and underscores, in order to create id's that are also valid as filenames in cases where we split files as part of the document generation).
 
 
 ### Tables
@@ -94,6 +114,23 @@ They are limited to single lines of text (i.e. each row must be on a single line
 > **Please try to use GFM tables** as they give much better support for translations.  
 > You can also continue to use HTML tables when you really need more complexity (but you can also consider whether there is a better way of presenting the data).
 
+
+> **Tip**
+>
+> If you want to apply a caption to your markdown tables, add a preceding block starting with "Table: " followed by the caption title.  
+> e.g. the following results in the caption "Data store structure" 
+>
+>```
+> Table: Data store structure
+>
+>| Item | Description | Data type |
+>|---|---|---|
+>| Namespace | Namespace for organization of entries. | String |
+>| Key | Key for identification of values. | String |
+>| Value | Value holding the information for the entry. | JSON |
+>| Encrypted | Indicates whether the value of the given key should be encrypted | Boolean | 
+>```
+>(Note: in GitHub you will just see the "Table: ..." block as text, but it will be rendered as a caption in the docs site)
 
 ### INCLUDES
 
