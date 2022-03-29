@@ -218,6 +218,6 @@ It is also possible to disable this feature all together by setting the "system.
 
 Under the hood, it works by calling (GET, with no parameters) on a REST API endpoint on a central server every day around 2:00 AM.
 
-This is the URL: "https://releases.dhis2.org/v1/versions/stable.json".
+This is the URL: [https://releases.dhis2.org/v1/versions/stable.json](https://releases.dhis2.org/v1/versions/stable.json)
 
-The code for this service can be found here: 
+The code for this service can be found [here.](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-core/src/main/java/org/hisp/dhis/system/SystemUpdateService.java).
