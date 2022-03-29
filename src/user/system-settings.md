@@ -220,4 +220,4 @@ Under the hood, it works by calling (GET, with no parameters) on a REST API endp
 
 This is the URL: [https://releases.dhis2.org/v1/versions/stable.json](https://releases.dhis2.org/v1/versions/stable.json)
 
-The code for this service can be found [here.](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-core/src/main/java/org/hisp/dhis/system/SystemUpdateService.java).
+The code for this service can be found [here.](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-core/src/main/java/org/hisp/dhis/system/SystemUpdateService.java)
