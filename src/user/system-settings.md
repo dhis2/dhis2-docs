@@ -218,6 +218,4 @@ It is also possible to disable this feature altogether by setting the "system.up
 
 Under the hood, it works by calling (GET, with no parameters) on a REST API endpoint on a central server every day around 2:00 AM.
 
-This is the URL: "https://releases.dhis2.org/v1/versions/stable.json".
-
-The code for this service can be found here: 
+This is the URL: [https://releases.dhis2.org/v1/versions/stable.json](https://releases.dhis2.org/v1/versions/stable.json)
