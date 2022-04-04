@@ -83,8 +83,6 @@ provided:
 
 The available system settings are listed below.
 
-
-
 Table: System settings
 
 | Key | Description | Translatable |
@@ -294,19 +292,23 @@ resources:
 
     GET /api/33/configuration/systemId
 
-    GET POST DELETE /api/33/configuration/feedbackRecipients
+    GET POST DELETE /api/configuration/feedbackRecipients
 
-    GET POST DELETE /api/33/configuration/offlineOrganisationUnitLevel
+    GET POST DELETE /api/configuration/offlineOrganisationUnitLevel
 
-    GET POST /api/33/configuration/infrastructuralDataElements
+    GET POST /api/configuration/infrastructuralDataElements
 
-    GET POST /api/33/configuration/infrastructuralIndicators
+    GET POST /api/configuration/infrastructuralIndicators
 
-    GET POST /api/33/configuration/infrastructuralPeriodType
+    GET POST /api/configuration/infrastructuralPeriodType
 
-    GET POST DELETE /api/33/configuration/selfRegistrationRole
+    GET POST DELETE /api/configuration/selfRegistrationRole
 
-    GET POST DELETE /api/33/configuration/selfRegistrationOrgUnit
+    GET POST DELETE /api/configuration/selfRegistrationOrgUnit
+    
+    GET POST /api/facilityOrgUnitGroupSet
+    
+    GET POST /api/facilityOrgUnitLevel
 
 For the CORS whitelist configuration you can make a POST request with an
 array of URLs to whitelist as payload using "application/json" as
