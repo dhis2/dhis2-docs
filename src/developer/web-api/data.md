@@ -291,8 +291,6 @@ supplied.
 
 The import process can be customized using a set of import parameters:
 
-
-
 Table: Import parameters
 
 | Parameter | Values (default first) | Description |
@@ -666,8 +664,6 @@ a request. This can be achieved by sending a *POST* request to the
 
 The following query parameters are supported for this resource:
 
-
-
 Table: Data values query parameters
 
 | Query parameter | Required | Description |
@@ -726,7 +722,7 @@ You can delete a data value with a request using the *DELETE* method.
 You can send individual data values as a JSON payload using the following resource using `Content-Type: application/json`.
 
 ```
-POST /api/dataValueSets
+POST /api/dataValues
 ```
 
 The resource will create a new data value or update a data value if it already exists. The JSON payload format is defined below.
