@@ -7,7 +7,7 @@
 Table: General settings
 
 | Setting | Description |
-|---|---|
+|---|--|
 | **Maximum number of analytics records** | Increase this number to provide more records from the analytics.<br> <br>The default value is 50,000.<br>      <br>    **Warning**<br>     <br>    Use the setting **Unlimited** carefully, it might result in a very high load on your server. |
 | **Maximum number of SQL view records** | Set the maximum number of records in a SQL view.<br> <br>The default value is Unlimited. |
 | **Cache strategy** | Decides for how long reports analytics responses should be cached.<br> <br>If you use the scheduled, nightly analytics update, you may want to select **Cache until 6 AM tomorrow**. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tables are updated.<br> <br>If you are loading data continuously into the analytics tables, select **No cache**.<br> <br>For other cases select the amount of time you want the data to be cached. |
@@ -16,6 +16,7 @@ Table: General settings
 | **Infrastructural period type** | Sets the frequency for which the data elements in the infrastructural data elements group are captured.<br> <br>This will typically be yearly. When viewing the infrastructural data you will be able to select the time period of the data source.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
 | **Default relative period for analysis** | Setting this value will determine which relative period is selected as the default in the analytics apps. |
 | **Feedback recipients** | Defines a user group where the members will receive all messages sent via the feedback function in the **Dashboard** app.<br> <br>This will typically be members of the super user team who are able to support and answer questions coming from end-users. |
+| **System update notification recipients** | Defines a user group where the members will receive messages about new system updates available for download, the recipients will only receive the message once for each new patch version of the DHIS2 installation. If no such user group is defined, the system defaults to sending it to all users that have the ALL authority.                                                                                                                                                                             |
 | **Max offline organisation unit levels** | Defines how many levels in the organisation unit hierarchy will be available offline in the organisation unit tree widget.<br> <br>Under normal circumstances you can leave this on the lowest level, which is default is the default setting.<br> <br>It can be useful to set it to a higher level to reduce initial load time in cases where you have a large number of organisation units, typically more than 30 000. |
 | **Data analysis std dev factor** | Sets the number of standard deviations used in the outlier analysis performed on the captured data in the **Data Entry** app.<br> <br>The default value is 2. A high value will catch less outlier values than a low value. |
 | **Phone number area code** | The area code for the area in which your deployment is located.<br> <br>Used for sending and receiving SMS. Typically, this is a country code.<br> <br>*+260* (country code for Zambia) |
@@ -207,3 +208,14 @@ app.
 
 5.  Enter **Redirect URIs**. If you've multiple URIs, separate them with
     a line.
+
+## System update notification { #system_update_notification_settings }
+
+The system will default send a notification in the mail inbox under the "system" category when there is a new patch version available for download. 
+This notification will be sent to the users who have the "ALL" authority, unless the "System update notification recipients" user group is defined, under the "General settings". 
+
+It is also possible to disable this feature altogether by setting the "system.update_notifications_enabled" configuration variable to "off", in the "dhis.conf" file.
+
+Under the hood, it works by calling (GET, with no parameters) on a REST API endpoint on a central server every day around 2:00 AM.
+
+This is the URL: [https://releases.dhis2.org/v1/versions/stable.json](https://releases.dhis2.org/v1/versions/stable.json)

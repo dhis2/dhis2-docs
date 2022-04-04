@@ -16,20 +16,71 @@ Table: Main properties
 
 
 
-Table: Available job types
+### Job Parameters
 
-| Job type | Parameters                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Param(Type:Default)                                                                                                                                                                      |
-|---|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DATA_INTEGRITY | * checks: names of the checks to run in order of execution<br>* type: REPORT, SUMMARY, DETAILS                                                                                                                                                                                                                                                                                                                                                                                | * checks (Array of String:_none=all_) <br>* type (String (Enum):REPORT)                                                                                                                  |
-| ANALYTICS_TABLE | * lastYears: Number of years back to include<br> * skipTableTypes: Skip generation of tables<br>Possible values: DATA_VALUE, COMPLETENESS, COMPLETENESS_TARGET, ORG_UNIT_TARGET, EVENT, ENROLLMENT, VALIDATION_RESULT<br> * skipResourceTables: Skip generation of resource tables                                                                                                                                                                                            | * lastYears (int:0)<br> * skipTableTypes (Array of String (Enum):None )<br> * skipResourceTables (Boolean)                                                                               |
-| CONTINUOUS_ANALYTICS_TABLE | * fullUpdateHourOfDay: Hour of day for full update of analytics tables (0-23)<br> * lastYears: Number of years back to include<br> * skipTableTypes: Skip generation of tables<br>Possible values: DATA_VALUE, COMPLETENESS, COMPLETENESS_TARGET, ORG_UNIT_TARGET, EVENT, ENROLLMENT, VALIDATION_RESULT<br> * skipResourceTables: Skip generation of resource tables                                                                                                          | * lastYears (int:0)<br> * skipTableTypes (Array of String (Enum):None )<br> * skipResourceTables (Boolean)                                                                               |
-| DATA_SYNC | NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ||
-| META_DATA_SYNC | NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ||
-| SEND_SCHEDULED_MESSAGE | NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ||
-| PROGRAM_NOTIFICATIONS | NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ||
-| MONITORING (Validation rule analysis) | * relativeStart: A number related to date of execution which resembles the start of the period to monitor<br> * relativeEnd: A number related to date of execution which resembles the end of the period to monitor<br> * validationRuleGroups: Validation rule groups(UIDs) to include in job<br> * sendNotification: Set "true" if job should send notifications based on validation rule groups<br> * persistsResults: Set "true" if job should persist validation results | * relativeStart (int:0)<br> * relativeEnd (int:0)<br> * validationRuleGroups (Array of String (UIDs):None )<br> * sendNotification (Boolean:false)<br> * persistsResults (Boolean:false) |
-| PUSH_ANALYSIS | * pushAnalysis: The uid of the push analysis you want to run                                                                                                                                                                                                                                                                                                                                                                                                                  | * pushAnalysis (String:None)                                                                                                                                                             |
-| PREDICTOR | * relativeStart: A number related to date of execution which resembles the start of the period to monitor<br> * relativeEnd: A number related to date of execution which resembles the start of the period to monitor<br> * predictors: Predictors(UIDs) to include in job                                                                                                                                                                                                    | * relativeStart (int:0)<br> * relativeEnd (int:0)<br> * predictors (Array of String (UIDs):None )                                                                                        |
+Table: `DATA_INTEGRITY` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `checks` | array of string | `[]` = all | names of the checks to run in order of execution |
+| `type`   | enum            | `REPORT`   | REPORT, SUMMARY or DETAILS                       |
+
+Table: `ANALYTICS_TABLE` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `lastYears` | int  | 0       | Number of years back to include |
+| `skipTableTypes` | array of enum  | `[]`    | Skip generation of tables; Possible values: `DATA_VALUE`, `COMPLETENESS`, `COMPLETENESS_TARGET`, `ORG_UNIT_TARGET`, `EVENT`, `ENROLLMENT`, `VALIDATION_RESULT` |
+| `skipResourceTables` | boolean | `false`   | Skip generation of resource tables | 
+| `skipPrograms` | array of string | `[]`    | Optional list of programs (IDs) that should be skipped |
+
+Table: `CONTINUOUS_ANALYTICS_TABLE` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `lastYears` | int           | `0`     | Number of years back to include |
+| `skipTableTypes` | array of enum | `[]`    | Skip generation of tables; Possible values: `DATA_VALUE`, `COMPLETENESS`, `COMPLETENESS_TARGET`, `ORG_UNIT_TARGET`, `EVENT`, `ENROLLMENT`, `VALIDATION_RESULT` |
+| `fullUpdateHourOfDay` | int           | `0`     | Hour of day for full update of analytics tables (0-23) |
+
+Table: `DATA_SYNC` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `pageSize` | int | `10000` | number of data values processed as a unit |
+
+Table: `META_DATA_SYNC` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `trackerProgramPageSize` | int | `20` | number of tracked entities processed as a unit |
+| `eventProgramPageSize` | int | `60` | number of events processed as a unit           |
+| `dataValuesPageSize` | int | `10000` | number of data values processed as a unit  |
+
+Table: `MONITORING` (Validation rule analysis) job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `relativeStart` | int | `0` | A number related to date of execution which resembles the start of the period to monitor |
+| `relativeEnd` | int | `0` | A number related to date of execution which resembles the end of the period to monitor |
+| `validationRuleGroups` | array of string | `[]` | Validation rule groups (UIDs) to include in job |
+| `sendNotification` | boolean | `false` | Set `true` if job should send notifications based on validation rule groups |
+| `persistsResults` | boolean | `false` | Set `true` if job should persist validation results |
+
+Table: `PUSH_ANALYSIS` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `pushAnalysis` | array of string | `[]` |  The UIDs of the push analysis you want to run |
+
+Table: `PREDICTOR` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `relativeStart` | int | `0` | A number related to date of execution which resembles the start of the period to monitor |
+| `relativeEnd` | int | `0` | A number related to date of execution which resembles the start of the period to monitor |
+| `predictors` | array of string | `[]` | Predictors (UIDs) to include in job                                                      |
+| `predictorGroups` | array of string | `[]` | Predictor groups (UIDs) to include in job                                                |
+
 
 ### Get available job types
 

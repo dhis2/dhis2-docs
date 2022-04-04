@@ -2540,10 +2540,16 @@ boundary of an organisation unit (e.g. at level 2) you can use this URL:
 
     /api/33/geoFeatures.json?ou=ou:LEVEL-4;O6uvpzGd5pu
 
+The response coordinates value can be read from two properties which is decided by the parameter `coordinateField`.
+  - The `geometry` property of the OrganisationUnit: this is the default behaviour which is applied when parameter `coordinateField` is not provided.
+  - The OrgansationUnit attribute of value type GeoJSON: the api will use the provided `coordinateField={attributeId}` to get the GeoJSON coordinates from this attribute value.
+
+For example, to retrieve geo features for all organisation units at level 3 as above but get the coordinates from OrganisationUnit attribute `tJqtSV4quLb`
+
+    /api/33/geoFeatures.json?ou=ou:LEVEL-3&coordinateField=tJqtSV4quLb
+
 The semantics of the response properties are described in the following
 table.
-
-
 
 Table: Geo features response
 
@@ -2559,6 +2565,7 @@ Table: Geo features response
 | pn | Parent name, the name of the parent of this organisation unit |
 | ty | Geo feature type, 1 = point and 2 = polygon or multi-polygon |
 | co | Coordinates of this geo feature |
+
 
 ### GeoJSON
 

@@ -37,7 +37,7 @@ Some data elements have been allocated to several data element groups
 that are members of the same data element group set. All group sets in
 DHIS2 are defined as exclusive, which means that a data element can
 *only* be allocated to *one* data element group within that group set.
-Go to Maintenance -\> Data elements and indicators -\>Data element
+Go to Maintenance -\> Data elements and indicators -\> Data element
 groups to review each data element identified in the integrity check.
 Either remove the data element from all groups except the one that it
 should be allocated to, or see if one of the groups should be placed in
@@ -101,7 +101,7 @@ Some indicators have been allocated to several indicator groups that are
 members of the same indicator group set. All group sets in DHIS2 are
 defined as exclusive, which means that an indicator can *only* be
 allocated to *one* indicator group within that group set. Go to
-Maintenance -\> Data elements and indicators -\>Indicator groups to
+Maintenance -\> Data elements and indicators -\> Indicator groups to
 review each indicator identified in the integrity check. Either remove
 the indicator from all groups except the one that it should be allocated
 to, or see if one of the groups should be placed in a different group
@@ -127,7 +127,7 @@ organisation units.
 ### Orphaned organisation units
 
 All organisation units must exist within the organisation unit
-hierarchy. Go to Organisation- units \>Hierarchy Operations and move the
+hierarchy. Go to Organisation units -\> Hierarchy Operations and move the
 offending organisation unit into the proper position in the hierarchy.
 
 ### Organisation units without groups
@@ -184,13 +184,13 @@ rule to a group.
 ### Invalid validation rule left side expressions
 
 An error exists in the left-side validation rule definition. Go to
-**Maintenance** app \> **Validation rule** and click **Edit** on the
+**Maintenance** app -\> **Validation rule** and click **Edit** on the
 offending rule. Click **Left side** and make the required corrections.
 
 ### Invalid validation rule right side expressions
 
 An error exists in the right-side validation rule definition. Go to
-**Maintenance** app \> **Validation rule** and click **Edit** on the
+**Maintenance** app -\> **Validation rule** and click **Edit** on the
 offending rule. Click **Right side** and make the required corrections.
 
 ### ProgramRules with no condition
