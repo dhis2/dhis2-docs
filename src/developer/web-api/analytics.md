@@ -54,6 +54,7 @@ Table: Query parameters
 | order | No | Specify the ordering of rows based on value. | ASC &#124; DESC |
 | timeField | No | The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element with a time-based value type. | EVENT_DATE &#124; ENROLLMENT_DATE &#124; INCIDENT_DATE &#124; DUE_DATE &#124; COMPLETED_DATE &#124; CREATED &#124; LAST_UPDATED &#124; <Attribute ID\> &#124; <Data element ID\> |
 | orgUnitField | No | The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter. <Attribute ID\> &#124; <Data element ID\> | <Attribute ID\> &#124; <Data element ID\> |
+| enhancedConditions           | No       | Enable enhanced conditions for dimensions/filters | false&#124;true |
 
 The *dimension* query parameter defines which dimensions should be
 included in the analytics query. Any number of dimensions can be
@@ -950,6 +951,28 @@ Table: Filter operators
 By default, the `query` endpoints filter periods based on `eventDate`.
 However, it is possible to filter entries based on `lastUpdated` instead, by using the `timeField` query parameter.
     &timeField=LAST_UPDATED
+
+#### Enhanced conditions
+
+By default `enhancedConditions` flag is set to `false`. This means all conditions expressed in `dimension` and `filter` are meant as `AND` conditions.
+For example:
+
+    dimension=a:GT:20:LT:40&dimension=b:GT:1:LT:5
+
+translates into the following logical condition:
+
+    a>20 and a<40 and b>1 and b<5 
+
+However, there are cases in which more control on conditions might be needed and can be enabled by setting `enhancedConditions` query parameter to `true`.
+By doing so, a client can use a special `_OR_` separator to join conditions using `OR` logical operator.
+
+Example:
+
+    dimension=a:GT:20:LT:40_OR_b:GT:1:LT:5&dimension=c:EQ:test
+
+translates into the following logical condition:
+
+    ((a>20 and a<40) or (b>1 and b<5)) and c = "test"
 
 #### Response formats
 
