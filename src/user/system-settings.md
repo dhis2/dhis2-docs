@@ -34,6 +34,8 @@ Table: Analytics settings
 | Setting | Description |
 |---|---|
 | **Default relative period for analysis** | Defines the relative period to use by default in analytics app: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. The relative period will be automatically selected when you open these apps.<br> <br>Recommended setting: the most commonly used relative period among your users. |
+| **Property to display in analysis modules** | Sets whether you want to display the metadata objects' names or short names in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Property to display in analysis modules**. |
+| **Default digit group separator to display in analysis modules** | Sets the default digit group separator in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. |
 | **Hide daily periods** | Hide daily periods in the analysis tools |
 | **Hide weekly periods** | Hide weekly periods in the analysis tools |
 | **Hide monthly periods** | Hide monthly periods in the analysis tools |
@@ -87,8 +89,6 @@ Table: Appearance settings
 | **Flag** | Sets the flag which is displayed in the left menu of the **Dashboard** app. |
 | **Interface language** | Sets the language used in the user interface.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Interface language**. |
 | **Database language** | Sets the language used in the database.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Database language**. |
-| **Property to display in analysis modules** | Sets whether you want to display the metadata objects' names or short names in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Property to display in analysis modules**. |
-| **Default digit group separator to display in analysis modules** | Sets the default digit group separator in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. |
 | **Require authority to add to view object lists** | If you select this option, you'll hide menu and index page items and links to lists of objects if the current user doesn't have the authority to create the type of objects (privately or publicly). |
 | **Custom login page logo** | Select this option and upload an image to add your logo to the login page. |
 | **Custom top menu logo** | Select this option and upload an image to add your logo to the left in the top menu. |
