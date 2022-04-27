@@ -333,9 +333,7 @@ To get data elements with a particular attribute value for a metadata
 attribute, a filter for the attribute ID and the attribute value can be 
 specified using the same collection query syntax:
 
-```
-/api/dataElements.json?filter=attributeValues.attribute.id:eq:n2xYlNbsfko&filter=attributeValues.value:eq:AFP
-```
+	/api/dataElements.json?filter=attributeValues.attribute.id:eq:n2xYlNbsfko&filter=attributeValues.value:eq:AFP
 
 Since all operators are *and* by default, you can't find a data
 element matching more than one id, for that purpose you can use the *in*
