@@ -193,9 +193,10 @@ The response now might look like this:
 ```
 
 The extraction is not limited to simple root level members but can pick 
-nested members as well by using square brackets after a members name:
+nested members as well by using square or round brackets after a members name:
 
     GET /api/dataStore/<namespace>?fields=name,root[child1,child2]
+    GET /api/dataStore/<namespace>?fields=name,root(child1,child2)
 
 The example response could look like this:
 
@@ -209,6 +210,7 @@ The example response could look like this:
 The same syntax works for nested members:
 
     GET /api/dataStore/<namespace>?fields=root[level1[level2[level3]]]
+    GET /api/dataStore/<namespace>?fields=root(level1(level2(level3)))
 
 Example response here:
 
@@ -222,9 +224,9 @@ Example response here:
 When such deeply nested values are extracted we might not want to keep the 
 structure but extract the leaf member to a top level member in the response.
 Aliases can be used to make this happen. An alias can be placed anywhere 
-after a member name using round brackets containing the alias name like so:
+after a member name using `~hoist` followed by the alias in round brackets like so:
 
-    GET /api/dataStore/<namespace>?fields=root[level1[level2[level3(my-prop)]]]
+    GET /api/dataStore/<namespace>?fields=root[level1[level2[level3~hoist(my-prop)]]]
 
 The response now would look like this:
 
@@ -240,7 +242,7 @@ parent path needs to be repeated using dot-syntax to indicate the nesting.
 This can also be used to restructure a response in a new different structure 
 like so:
 
-    GET /api/dataStore/<namespace>?fields=root[level1[level2[level3(my-root.my-prop)]]]
+    GET /api/dataStore/<namespace>?fields=root[level1[level2[level3~hoist(my-root.my-prop)]]]
 
 The newly structured response now looks like this:
 
@@ -254,7 +256,7 @@ The newly structured response now looks like this:
 OBS! An alias cannot be used to rename an intermediate level. However, an alias
 could be used to resolve a name collision with the `key` member.
 
-    GET /api/dataStore/<namespace>?fields=id,key(value-key)
+    GET /api/dataStore/<namespace>?fields=id,key~hoist(value-key)
 
 ```json
 [
