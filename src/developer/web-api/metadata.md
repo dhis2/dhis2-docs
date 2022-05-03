@@ -389,7 +389,7 @@ It is also possible to combine the identifiable filter with property-based filte
 
 ### IndexableOnly filter for Tracked Entity Attributes
 
-For tracked entity attributes, there is a special filter In addition to the previous mentioned filtering capabilities. 
+For tracked entity attributes, there is a special filter in addition to the previous mentioned filtering capabilities. 
 Some of the Tracked Entity Attributes are candidates for creating a trigram index for better lookup performance. 
 Using the *indexableOnly* parameter set to true, the results can be filtered to include only the attributes that are trigram indexable.
 
