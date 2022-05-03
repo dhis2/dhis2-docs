@@ -176,7 +176,7 @@ a complete list of dynamic dimensions by visiting this URL in the Web API:
     /api/33/dimensions
 
 If you want to retrieve only the dimensional items for a given dynamic dimension you can
-use the exemple below. The pagination is disabled by default. It can be enabled by adding
+use the example below. Pagination is disabled by default. It can be enabled by adding
 the pagination parameter `paging=true` to the URL.
 
     /api/33/dimensions/J5jldMd8OHv/items?paging=true
@@ -1633,9 +1633,9 @@ Filter by AGE is null
 Filter by AGE is not null
 
     &dimension=qrur9Dvnyt5:NE:NV
- 
+
 Filter by AGE is 18, 19 or is null
- 
+
     &dimension=qrur9Dvnyt5:IN:18;19;NV
 
 `NV` can be used with `EQ`, `NE` and `IN` operators
@@ -2107,7 +2107,7 @@ Data elements and tracked entity attributes are considered *supported types* if 
 ### Sample request and response
 
     GET /api/analytics/events/query/dimensions?programStageId=A03MvHHogjR&order=code&filter=name:ilike:weight
-    
+
 ```json
 {
    "page":1,

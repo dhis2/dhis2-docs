@@ -4,10 +4,10 @@
 
 This section provides an explanation of the identifier scheme concept.
 Identifier schemes are used to map metadata objects to other metadata
-during import, and to render metadata as part of exports. Please note
+during import, and to render metadata as part of exports. Note
 that not all schemes work for all API calls, and not all
 schemes can be used for both input and output. This is outlined in the
-sections explaining the various Web APIs.
+sections explaining the various API endpoints.
 
 The full set of identifier scheme object types available are listed
 below, using the name of the property to use in queries:
@@ -73,7 +73,7 @@ the response:
 
 Table: Query parameters
 
-| Param | Option values | Default option | Description |
+| Parameter | Option values | Default option | Description |
 |---|---|---|---|
 | paging | true &#124; false | true | Indicates whether to return lists of elements in pages. |
 | page | number | 1 | Defines which page number to return. |
@@ -306,29 +306,34 @@ Table: Available Operators
 | in | string &#124; boolean &#124; integer &#124; float &#124; date | true | Find objects matching 1 or more values |
 | !in | string &#124; boolean &#124; integer &#124; float &#124; date | true | Find objects not matching 1 or more values |
 
-Operators will be applied as logical *and* query, if you need a *or*
-query, you can have a look at our *in* filter (also have a look at the
-section below). The filtering mechanism allows for recursion. See below
-for some examples.
+Operators will be applied as logical *and* query. If you need a *or*
+query, you can have a look at the *in* filter and the section below.
+The filtering mechanism allows for recursion. See below for some examples.
 
 Get data elements with id property ID1 or ID2:
 
     /api/dataElements?filter=id:eq:ID1&filter=id:eq:ID2
 
-Get all data elements which have the dataSet with id ID1:
+Get all data elements which have a data set with id ID1:
 
     /api/dataElements?filter=dataSetElements.dataSet.id:eq:ID1
 
-Get all data elements with aggregation operator "sum" and value type
-"int":
+Get all data elements with aggregation operator *sum* and value type
+*int*:
 
     /api/dataElements.json?filter=aggregationOperator:eq:sum&filter=type:eq:int
 
 You can do filtering within collections, e.g. to get data elements which
-are members of the "ANC" data element group you can use the following
+are members of the *ANC* data element group you can use the following
 query using the id property of the associated data element groups:
 
     /api/dataElements.json?filter=dataElementGroups.id:eq:qfxEYY9xAl6
+
+To get data elements with a particular attribute value for a metadata 
+attribute, a filter for the attribute ID and the attribute value can be 
+specified using the same collection query syntax:
+
+	/api/dataElements.json?filter=attributeValues.attribute.id:eq:n2xYlNbsfko&filter=attributeValues.value:eq:AFP
 
 Since all operators are *and* by default, you can't find a data
 element matching more than one id, for that purpose you can use the *in*
@@ -414,14 +419,14 @@ complex objects with properties on their own, you can use the format
 `?fields=id,name,dataSets[id,name]` which would return `id`, `name` of
 the root, and the `id` and `name` of every data set on that object.
 Negation can be done with the exclamation operator, and we have a set of
-presets of field select. Both XML and JSON are supported.
+presets of field select. Both XML and JSON formats are supported.
 
 **Example**: Get `id` and `name` on the indicators resource:
 
     /api/indicators?fields=id,name
 
-**Example**: Get `id` and `name` from dataElements, and `id` and `name`
-from the dataSets on dataElements:
+**Example**: Get `id` and `name` from data elements, and `id` and `name`
+from the associated data sets:
 
     /api/dataElements?fields=id,name,dataSets[id,name]
 
@@ -454,7 +459,7 @@ Table: Field presets
 | persisted | Returns all persisted property on an object, does not take into consideration if the object is the owner of the relation. |
 | owner | Returns all persisted property on an object where the object is the owner of all properties, this payload can be used to update through the API. |
 
-**Example**: Include all fields from dataSets except organisationUnits:
+**Example**: Include all fields from data sets except organisation units:
 
     /api/dataSets?fields=:all,!organisationUnits
 
@@ -468,16 +473,17 @@ Table: Field presets
 
 ### Field transformers { #webapi_field_transformers } 
 
-In DHIS2.17 we introduced field transformers, the idea is to allow
-further customization of the properties on the server-side.
+Field transforms can be used to transform properties. The syntax is described below.
 
     /api/dataElements/ID?fields=id~rename(i),name~rename(n)
 
 This will rename the *id* property to *i* and *name* property to *n*.
 
-Multiple transformers can be used by repeating the transformer syntax:
+Multiple transformers can be applied to a single property by repeating the transformer operator:
 
     /api/dataElementGroups.json?fields=id,displayName,dataElements~isNotEmpty~rename(haveDataElements)
+
+The supported transformer operators are described in the table below.
 
 Table: Available Transformers
 
@@ -492,25 +498,35 @@ Table: Available Transformers
 
 #### Examples { #webapi_field_transformers_examples } 
 
-Examples of transformer usage.
+Examples of transformer usage are found below.
 
-```
-/api/dataElements?fields=dataSets~size
+Get the size of a collection:
 
-/api/dataElements?fields=dataSets~isEmpty
+	/api/dataElements?fields=dataSets~size
 
-/api/dataElements?fields=dataSets~isNotEmpty
+Test if a collection is empty:
 
-/api/dataElements/ID?fields=id~rename(i),name~rename(n)
+	/api/dataElements?fields=dataSets~isEmpty
 
-/api/dataElementGroups?fields=id,displayName,dataElements~paging(1;20)
+Test if a collection is not empty:
 
-# Include array with IDs of organisation units:
-/api/categoryOptions.json?fields=id,organisationUnits~pluck
+	/api/dataElements?fields=dataSets~isNotEmpty
 
-# Include array with names of organisation units (collection only returns field name):
-/api/categoryOptions.json?fields=id,organisationUnits~pluck[name]
-```
+Rename properties:
+
+	/api/dataElements/ID?fields=id~rename(i),name~rename(n)
+
+Apply paging to a collection:
+
+	/api/dataElementGroups?fields=id,displayName,dataElements~paging(1;20)
+
+Get array with IDs of organisation units:
+
+	/api/categoryOptions.json?fields=id,organisationUnits~pluck
+
+Get array with names of organisation units:
+
+	/api/categoryOptions.json?fields=id,organisationUnits~pluck[name]
 
 ## Metadata create, read, update, delete, validate { #webapi_metadata_crud } 
 
@@ -773,13 +789,13 @@ Which will yield the result:
 
 ### Partial updates { #webapi_partial_updates } 
 
-For our web api endpoints that deal with metadata, we support partial updates (PATCH) using the JSON Patch [standard](https://tools.ietf.org/html/rfc6902). The payload basically outlines a set of operation you want applied to a existing metadata object. For examples of JSON patch please see [jsonpatch.com](http://jsonpatch.com/), we support 3 operators: `add`, `remove` and `replace`.
+For our API endpoints that deal with metadata, we support partial updates (PATCH) using the JSON patch [standard](https://tools.ietf.org/html/rfc6902). The payload basically outlines a set of operation you want applied to a existing metadata object. For JSON patch details and examples, see [jsonpatch.com](http://jsonpatch.com/). Three operators are supported: `add`, `remove` and `replace`.
 
-Below is a few examples relevant to dhis2, please note that any update to a payload should be thought of as a HTTP PUT (i.e. any mutation must result in a valid PUT metadata payload).
+Below is a few examples relevant to DHIS2. Note that any update to a payload should be thought of as a HTTP PUT operation, i.e. any mutation must result in a valid PUT metadata payload.
 
-The default `importReportMode` for JSON Patch is `ERRORS_NOT_OWNER` which means that if you try and update any property that is not owned by that particular object (for example trying to add a indicator group directly to an indicator) you will get an error.
+The default `importReportMode` for JSON patch is `ERRORS_NOT_OWNER` which implies that when updating any property which is not owned by that particular object (for example trying to add a indicator group directly to an indicator) you will get an error.
 
-As per the JSON Patch specification you must always use the mimetype `application/json-patch+json` when sending patches.
+As per the JSON patch specification you must always use the mimetype `application/json-patch+json` when sending patches.
 
 #### Examples
 
