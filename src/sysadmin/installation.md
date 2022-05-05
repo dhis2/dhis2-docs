@@ -1905,10 +1905,13 @@ background processes. The main file includes the background process logs as well
 
 ### Log configuration
 
-To override the default log configuration you can specify a Java system property with the name `log4j.configuration` and a value pointing to the Log4j configuration file at the file system like this:
+To override the default log configuration you can specify a Java system
+property with the name `log4j2.configurationFile` and a value pointing to the
+[Log4j version 2](https://logging.apache.org/log4j/2.x/manual/configuration.html)
+configuration file at the file system like this:
 
 ```properties
--Dlog4j.configuration=file:/home/dhis/config/log4j.properties
+-Dlog4j2.configurationFile=/home/dhis/config/log4j2.properties
 ```
 
 Java system properties can be set e.g. through the *JAVA\_OPTS* environment variable or in the tomcat startup script.
@@ -1932,7 +1935,7 @@ DHIS2 will provide the following context values:
 
 To use the context variables in the log add them using `-X{<name>}` to your log pattern as in this example:
 
-    * %-5p %d{ISO8601} %m (%F [%t])%n %X{sessionId} %X{xRequestID}
+    * %-5p %d{ISO8601} %m (%F [%t]) %X{sessionId} %X{xRequestID}%n
 
 ### Log level configuration
 
