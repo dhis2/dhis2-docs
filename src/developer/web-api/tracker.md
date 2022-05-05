@@ -1,5 +1,20 @@
 # Tracker
 
+> **Note**
+>Tracker has been re-implemented in [New Tracker - DHIS2 Documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/new-tracker.html).
+>
+>This version of the endpoints is in maintenance mode and does not receive any
+>new features. Important bugs on the endpoints will still be fixed.
+>
+>* If you are using the tracker endpoints in your implementation, it is
+>  advisable to use the new version at [New Tracker - DHIS2 Documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/new-tracker.html)
+>* If you already use the tracker endpoints in production, please plan to
+>  migrate over to the new version. Reach out on the [community of practice](https://community.dhis2.org)
+>  if you need any assistance. NOTE: The feature for data sync(importMode=SYNC)
+>  is not implemented in the new tracker endpoints, and if you are using this
+>  feature you will have to postpone the migration until a new SYNC feature is
+>  in place.
+
 ## Tracker Web API { #webapi_tracker_api } 
 
 Tracker Web API consists of 3 endpoints that have full CRUD (create,
