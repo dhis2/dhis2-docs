@@ -1,4 +1,4 @@
-# Scheduling { #webapi_scheduling } 
+# Scheduling { #webapi_scheduling }
 
 DHIS2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
 
@@ -31,7 +31,7 @@ Table: `ANALYTICS_TABLE` job parameters
 |---------------|---------------|---------|--------------------------------------------------|
 | `lastYears` | int  | 0       | Number of years back to include |
 | `skipTableTypes` | array of enum  | `[]`    | Skip generation of tables; Possible values: `DATA_VALUE`, `COMPLETENESS`, `COMPLETENESS_TARGET`, `ORG_UNIT_TARGET`, `EVENT`, `ENROLLMENT`, `VALIDATION_RESULT` |
-| `skipResourceTables` | boolean | `false`   | Skip generation of resource tables | 
+| `skipResourceTables` | boolean | `false`   | Skip generation of resource tables |
 | `skipPrograms` | array of string | `[]`    | Optional list of programs (IDs) that should be skipped |
 
 Table: `CONTINUOUS_ANALYTICS_TABLE` job parameters
@@ -258,7 +258,7 @@ synchronization, which requires remote server configuration.
 
 ### Run Jobs Manually
 
-Jobs can be run manually using: 
+Jobs can be run manually using:
 
     POST /api/jobConfiguration/{id}/execute
 
@@ -269,7 +269,7 @@ To get an overview of all running jobs by job type use:
 
     GET /api/scheduling/running
 
-As there only can be one job running for each type at a time the status of a 
+As there only can be one job running for each type at a time the status of a
 running job can be viewed in details using:
 
     GET /api/scheduling/running/{type}
@@ -279,14 +279,14 @@ For example, to see status of a running `ANALYTICS_TABLE` job use
     GET /api/scheduling/running/ANALYTICS_TABLE
 
 A job is a sequence of processes. Each process has a sequence of `stages`.
-Within each stage there might be zero, one or many `items`. Items could be 
-processed strictly sequential or parallel, n items at a time. Often the 
+Within each stage there might be zero, one or many `items`. Items could be
+processed strictly sequential or parallel, n items at a time. Often the
 number of `totalItems` is known up-front.
 
-In general the stages in a process and the items in a stage are "discovered" 
-as a "side effect" of processing the data. While most processes have a fixed 
-sequence of stages some processed might have varying stages depending on the 
-data processed. Items are usually data dependent. Most jobs just include a 
+In general the stages in a process and the items in a stage are "discovered"
+as a "side effect" of processing the data. While most processes have a fixed
+sequence of stages some processed might have varying stages depending on the
+data processed. Items are usually data dependent. Most jobs just include a
 single process.
 
 Each of the nodes in the process-stage-item tree has a status that is either
@@ -296,9 +296,9 @@ Each of the nodes in the process-stage-item tree has a status that is either
 * `CANCELLED`: when cancellation was requested and the item will not complete
 
 ### See Completed Job Runs
-Once a job has completed successful or with a failure as a consequence of an 
-exception or cancellation the status moves from the set of running states to 
-the completed job states. This set keeps only the most recent execution 
+Once a job has completed successful or with a failure as a consequence of an
+exception or cancellation the status moves from the set of running states to
+the completed job states. This set keeps only the most recent execution
 state for each job type. The overview is available at:
 
     GET /api/scheduling/completed
@@ -312,15 +312,15 @@ In case of the `ANALYTICS_TABLE` job this would be:
     GET /api/scheduling/completed/ANALYTICS_TABLE
 
 ### Request Cancelling a Running Jobs
-Once a job is started it works through a sequence of steps. Each step might 
-in turn have collections of items that are processed. While jobs usually 
+Once a job is started it works through a sequence of steps. Each step might
+in turn have collections of items that are processed. While jobs usually
 cannot be stopped at any point in time we can request cancellation and the
-process gives up cooperatively once it has completed an item or step and 
-recognises that a cancellation was requested. This means jobs do not stop 
-immediately and leave at an unknown point right in the middle of some 
-processing. Instead, they give up when there is an opportunity to skip to 
-the end. This still means that the overall process is unfinished and is not 
-rolled back. It might just have done a number of steps and skipped others at 
+process gives up cooperatively once it has completed an item or step and
+recognises that a cancellation was requested. This means jobs do not stop
+immediately and leave at an unknown point right in the middle of some
+processing. Instead, they give up when there is an opportunity to skip to
+the end. This still means that the overall process is unfinished and is not
+rolled back. It might just have done a number of steps and skipped others at
 the end.
 
 To cancel a running job use:
@@ -331,41 +331,13 @@ For example, to cancel the `ANALYTICS_TABLE` job run:
 
     POST /api/scheduling/cancel/ANALYTICS_TABLE
 
-Depending on the current step and item performed this can take from 
+Depending on the current step and item performed this can take from
 milliseconds to minutes before the cancellation becomes effective.
-However, the status of the overall process will be shown as `CANCELLED` 
-immediately when check using 
+However, the status of the overall process will be shown as `CANCELLED`
+immediately when check using
 
     GET /api/scheduling/running/ANALYTICS_TABLE
 
-Only jobs that have been split into processes, stages and items can be 
-cancelled effectively. Not all jobs have been split yet. These will run till 
+Only jobs that have been split into processes, stages and items can be
+cancelled effectively. Not all jobs have been split yet. These will run till
 completion even if cancellation has been requested.
-
-
-
-## Synchronization { #webapi_synchronization } 
-
-This section covers pull and push of data and metadata.
-
-### Data value push { #webapi_sync_data_push } 
-
-To initiate a data value push to a remote server one must first configure the
-URL and credentials for the relevant server from System settings >
-Synchronization, then make a POST request to the following resource:
-
-    /api/33/synchronization/dataPush
-
-### Metadata pull { #webapi_sync_metadata_pull } 
-
-To initiate a metadata pull from a remote JSON document you can make a
-POST request with a *url* as request payload to the following resource:
-
-    /api/33/synchronization/metadataPull
-
-### Availability check { #webapi_sync_availability_check } 
-
-To check the availability of the remote data server and verify user
-credentials you can make a GET request to the following resource:
-
-    /api/33/synchronization/availability
