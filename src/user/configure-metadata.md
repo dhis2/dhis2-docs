@@ -1747,7 +1747,7 @@ Table: Indicator functions
 | log | (expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
 | log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
 | null | | Returns no result. For example, _if( #{FH8ab5Rog83}<0, null, 1 )_ returns nothing if the data element value is less than 0, otherwise 1. |
-| removeZeros | (expression) | Returns nothing if the expression value is 0, otherwise returns the expresion value. |
+| removeZeros | (expression) | Returns nothing if the expression value is 0, otherwise returns the expression value. |
 | .aggregationType | (aggregation type) | Overrides the default data element aggregation type for aggregate data (not for program data). |
 | .maxDate | (yyyy-mm-dd) | For a data element (not program data), value from periods ending on or before a maximum date. |
 | .minDate | (yyyy-mm-dd) | For a data element (not program data), value from periods starting on or after a minimum date. |
@@ -2807,7 +2807,7 @@ Table: Validation Rule functions
 | orgUnit.dataSet | (dataSetUid [, dataSetUid ...]) | Returns true if the organisation unit is assigned to any of the (1 or more) data sets, otherwise false. |
 | orgUnit.group | (ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
 | orgUnit.program | (programUid [, programUid ...]) | Returns true if the organisation unit is assigned to any of the (1 or more) programs, otherwise false. |
-| removeZeros | (expression) | Returns nothing if the expression value is 0, otherwise returns the expresion value. |
+| removeZeros | (expression) | Returns nothing if the expression value is 0, otherwise returns the expression value. |
 
 ### Create or edit a validation rule { #create_validation_rule } 
 
@@ -4176,7 +4176,7 @@ sampled. For example:
         | orgUnit.dataSet(dataSetUid [, dataSetUid ...]) | Returns true if the organisation unit is assigned to any of the (1 or more) data sets, otherwise false. |
         | orgUnit.group(ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
         | orgUnit.program(programUid [, programUid ...]) | Returns true if the organisation unit is assigned to any of the (1 or more) programs, otherwise false. |
-        | removeZeros(expression) | Returns nothing if the expression value is 0, otherwise returns the expresion value. |
+        | removeZeros(expression) | Returns nothing if the expression value is 0, otherwise returns the expression value. |
 
         **Boolean expression notes:** A boolean expression must evaluate
         to **true** or **false**. The following operators may be used to
