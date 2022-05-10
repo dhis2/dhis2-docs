@@ -181,6 +181,33 @@ the pagination parameter `paging=true` to the URL.
 
     /api/33/dimensions/J5jldMd8OHv/items?paging=true
 
+The `/dimensions` API also provides an endpoint where the clients can get the *recomendations* for a given set of *dimensions*. For example:
+
+    /api/33/dimensions/recommendations?fields=id&dimension=dx:fbfJHSPpUQD
+
+In the example above, the client will receive back all the *Categories* that has `Data dimension` set to `true`.
+The *Categories*, in this case, will be the ones associated (through data sets and category combos) with the data element `fbfJHSPpUQD`.
+In addition, all *Organization Unit Group Set* that have `Data dimension` set to `true` will also (and always) be returned as part of the response.
+
+In other words, in a more technical approach, behind the scenes it does:
+
+1) For each data element (`dx`) provided in the URL as dimension do
+
+   `dx` -> GET category combos -> GET categories -> CHECK if `Data dimension` is true -> THEN include the `Category` in the response list.
+
+   `dx` -> GET data sets -> GET category combos -> GET categories -> CHECK `Data dimension` is true ->  THEN include the `Category` in the response list.
+
+2) Find all *Organization Unit Group Set* which has `Data dimension` set to `true` -> THEN include the *Organization Unit Group Set* in the response list.
+
+The endpoint supports multiple data elements. If one wishes to send multiple data elements, they should be separated by `;`. For example:
+
+    /api/33/dimensions/recommendations?fields=id&dimension=dx:fbfJHSPpUQD;JuTpJ2Ywq5b
+
+> Note
+>
+> This endpoint returns only dimensions that can be read by the current logged user. It will check if the current user can read the data or the metadata of the respective recommended dimension. Non-authorized dimensions are omitted from the list.
+
+
 The base URL to the analytics resource is `/api/analytics`. To request
 specific dimensions and dimension items you can use a query string on
 the following format, where `dim-id` and `dim-item` should be substituted with real values:
