@@ -949,7 +949,7 @@ Table: Filter operators
 #### Time Field Filtering
 
 By default, the `query` endpoints filter periods based on `eventDate`.
-However, it is possible to filter entries based on `lastUpdated`  or `schedule` instead, by using the `timeField` query parameter.
+However, it is possible to filter entries based on `lastUpdated` or `schedule` instead, by using the `timeField` query parameter.
 For example:
 
     &timeField=LAST_UPDATED
