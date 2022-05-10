@@ -511,6 +511,18 @@ one of four `severity` levels:
 | SEVERE   | An error which should be fixed, but which may not necessarily lead to the system not functioning. |
 | CRITICAL | An error which must be fixed, and which may lead to end-user error or system crashes. |
 
+The available checks can be filtered using the `checks` parameter.
+
+    GET /api/dataIntegrity?checks=<pattern1>,<pattern2>
+
+One or more exact names or patterns using `*` as wildcard can be provided.
+
+Additional results can be filtered using `section` parameter.
+
+    GET /api/dataIntegrity?section=Categories
+
+If filter using `section` checks must have an exact match for the provided section name.
+
 ### Running a selection of data integrity checks { #webapi_data_integrity_run }
 Since 2.38 data integrity checks have two levels, the summary level giving 
 statistical overview, and the details level giving a list of issues each 
@@ -541,6 +553,7 @@ An example of a summary response could look like:
 {
   "<name1>": {
     "name": "<name1>",
+    "displayName": "<displayName1>",
     "finishedTime": "2022-02-15 14:55",
     "section": "...",
     "severity": "WARNING",
@@ -550,6 +563,7 @@ An example of a summary response could look like:
   },
   "<name2>": {
     "name": "<name2>",
+    "displayName": "<displayName2>",
     "finishedTime": "2022-02-15 14:58",
     "section": "...",
     "severity": "WARNING",
@@ -593,6 +607,7 @@ does not have a `count` and `percentage` member but a list of `issues`.
 {
   "<name1>": {
     "name": "<name1>",
+    "displayName": "<displayName1>",
     "finishedTime": "2022-02-15 14:55",
     "section": "...",
     "severity": "WARNING",
@@ -606,6 +621,7 @@ does not have a `count` and `percentage` member but a list of `issues`.
   },
   "<name2>": {
     "name": "<name2>",
+    "displayName": "<displayName2>",
     "finishedTime": "2022-02-15 14:59",
     "section": "...",
     "severity": "WARNING",
@@ -636,6 +652,7 @@ In such case no data is available for the check.
 {
   "<name1>": {
     "name": "<name1>",
+    "displayName": "<displayName1>",
     "finishedTime": "2022-02-15 14:55",
     "section": "...",
     "severity": "WARNING",
