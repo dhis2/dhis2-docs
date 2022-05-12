@@ -1880,11 +1880,13 @@ background processes. The main file includes the background process logs as well
 
 ### Log configuration
 
-In order to override the default log configuration you can specify a Java system property with the name *log4j.configuration* and a value pointing to the Log4j configuration file on the classpath. If you want to point to a
-file on the file system (i.e. outside Tomcat) you can use the *file* prefix e.g. like this:
+To override the default log configuration you can specify a Java system
+property with the name `log4j2.configurationFile` and a value pointing to the
+[Log4j version 2](https://logging.apache.org/log4j/2.x/manual/configuration.html)
+configuration file at the file system like this:
 
 ```properties
--Dlog4j.configuration=file:/home/dhis/config/log4j.properties
+-Dlog4j2.configurationFile=/home/dhis/config/log4j2.properties
 ```
 
 Java system properties can be set e.g. through the *JAVA\_OPTS* environment variable or in the tomcat startup script.
