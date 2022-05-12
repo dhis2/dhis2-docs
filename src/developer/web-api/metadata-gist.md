@@ -749,7 +749,7 @@ Synthetic fields in alphabetical order:
 | `apiEndpoints`     | contains links to browse nested complex objects or collections |
 | `href`             | link to the list item itself (single item view)         |
 | `displayName`      | translated `name` (always translated)                   |
-| `displayShortName` | translated `displayName` (always translated)            |
+| `displayShortName` | translated `shortName` (always translated)              |
 | `access`           | summary on ability of current user to read/write/modify the entry |
 
 
