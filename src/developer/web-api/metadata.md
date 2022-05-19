@@ -45,7 +45,8 @@ Table: Scheme Values
 | ATTRIBUTE:ID | Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to *true*. The main usage of this is also to exchange data with external systems, it has some advantages over *CODE* since multiple attributes can be added, so it can be used to synchronize with more than one system. |
 
 Note that identifier schemes is not an independent feature but needs to
-be used in combination with resources such as data value import and metadata import.
+be used in combination with resources such as data value import, metadata import and
+GeoJson import.
 
 As an example, to specify CODE as the general id scheme and override
 with UID for organisation unit id scheme you can use these query
@@ -1071,6 +1072,7 @@ ignored:
 }
 ```
 
+!INCLUDE "geo-json.md"
 
 ## Schema { #webapi_schema } 
 
