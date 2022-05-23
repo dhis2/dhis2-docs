@@ -16,14 +16,14 @@ parameter `attributeId`.
 
 Table: Import Parameters
 
-| Name        | Type                           | Default | Description                                                                                                                       |
-|-------------|--------------------------------|---|-----------------------------------------------------------------------------------------------------------------------------------|
-| `geoJsonId` | `boolean`                      | `true` | When `true` the `id` property of the GeoJSON features is expected to hold the organisation unit identifier                        |
+| Name              | Type                           | Default | Description                                                                                                                       |
+|-------------------|--------------------------------|---|-----------------------------------------------------------------------------------------------------------------------------------|
+| `geoJsonId`       | `boolean`                      | `true` | When `true` the `id` property of the GeoJSON features is expected to hold the organisation unit identifier                        |
 | `geoJsonProperty` | `String`                       | _undefined_ | If `geoJsonId` is `false` this parameter names the property in the GeoJSON feature's `properties` that holds the organisation unit identifier |
 | `orgUnitProperty` | `enum`: [`id`, `code`, `name`] | `id` | The property of the organisation unit that is referred to by the identifiers used in the GeoJSON file                             |
-| `attributeId` | `String` | _undefined_ | When set the geometry is stored as value of the attribute referenced  by ID                                                       |
-| `dryRun` | `boolean` | `false` | When `true` the import is processed without actually updating the organisation units |
-| `asnyc` | `boolean` | `false` | When `true` the import is processed asnychronously |
+| `attributeId`     | `String` | _undefined_ | When set the geometry is stored as value of the attribute referenced  by ID                                                       |
+| `dryRun`          | `boolean` | `false` | When `true` the import is processed without actually updating the organisation units |
+| `async`           | `boolean` | `false` | When `true` the import is processed asnychronously |
 
 Uasge:
 
