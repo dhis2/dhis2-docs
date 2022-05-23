@@ -12,7 +12,7 @@ an organisation unit. To store additional geometries attributes of type
 are stored for the same attribute which is provided with an additional 
 parameter `attributeId`.
 
-### GeoJSON Bulk Import
+### GeoJSON Bulk Data Import { #webapi_geojson_bulk_import }
 
 Table: Import Parameters
 
@@ -65,6 +65,9 @@ would have this structure:
   ]
 }
 ```
+A `geometry` may also be `null` to effectively clear or delete the geometry 
+for specific organisation units. There is a special bulk deletion API that is
+described in the next section.
 
 When run synchronously an import report is returned directly.
 The HTTP status code is either `OK` when at least 1 organisation unit was 
@@ -75,6 +78,7 @@ The import counts statistics contained in the report give further information:
 * `imported`: number of organisation units that were successfully updated with a geometry that did not have one before for the updated property
 * `updated`: number of organisation units that were successfully updated with a geometry that did have value for the updated property already
 * `ignored`: number of organisation units that failed to update
+* `deleted`: number of organisation units that where successfully update with a _empty_ geometry
 
 When the import is run asynchronous the request returns immediately with status 
 `OK` and job configuration response that contains a relative reference to 
@@ -89,7 +93,21 @@ The summary that is returned directly for synchronous execution is available at
 
 once the import is finished.
 
-### GeoJSON Single Import
+### GeoJSON Bulk Data Deletion { #webapi_geojson_bulk_deletion }
+To clear or unset the `geometry` data for all organisation units use:
+
+    DELETE /api/organisationUnits/geometry
+
+To clear or unset the geometry data for a specific `GEOJSON` attribute for
+all organisation units use:
+
+    DELETE /api/organisationUnits/geometry?attributeId={attr-id}
+
+Clearing is always synchronous and returns a similar report as the bulk import.
+It does not support any other parameters. No `dry-run` can be performed.
+Bulk clearing requires the `F_PERFORM_MAINTENANCE` authority.
+
+### GeoJSON Single Data Import { #webapi_geojson_single_import }
 The single import allows to update the geometry of a single organisation unit.
 
     POST /api/organisationUnits/{id}/geometry
@@ -102,3 +120,17 @@ The post body only contains the GeoJSON `geometry` value, for example:
 }
 ```
 Single import only supports `attributeId` and `dryRun` parameters.
+
+### GeoJSON Single Data Deletion { #webapi_geojson_single_deletion }
+To clear the `geometry` GeoJSON data of an individual organisation unit use:
+
+    DELETE /api/organisationUnits/{id}/geometry
+
+Similarly to clear a `GEOJSON` attribute value for an individual organisation 
+unit use:
+
+    DELETE /api/organisationUnits/{id}/geometry?attributeId={attr-id}
+
+Clearing is always synchronous returns a similar report as single import.
+The `dry-run` parameter is supported as well. 
+The performing user requires authority to modify the target organisation unit.
