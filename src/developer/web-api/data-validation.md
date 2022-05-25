@@ -597,6 +597,7 @@ does not have a `count` and `percentage` member but a list of `issues`.
     "section": "...",
     "severity": "WARNING",
     "description": "...",
+    "issuesIdType": "<object-type-plural>",
     "issues": [{
       "id": "<id-or-other-identifier>",
       "name": "<name-of-the-id-obj>",
@@ -614,10 +615,14 @@ does not have a `count` and `percentage` member but a list of `issues`.
   }
 }
 ```
-The issue objects always have `id` and `name` members. Sometimes an 
-additional `comment` is available that gives more context or insight into 
-why the data integrity is violated. In addition, the `refs` list might 
-sometimes also give the ids of other objects that contributed to the violation.
+The issue objects always have `id` and `name` members. Often the `issuesIdType`
+is available to point out the type of objects the `id` refers to. If the 
+`issuesIdType` is not available the `id` often is not available either and the
+`name` is used for a aggregate key of an issue that has no object equivalent.
+
+Sometimes an additional `comment` is available that gives more context or
+insight into why the data integrity is violated. In addition, the `refs` list
+might sometimes also give the ids of other objects that contributed to the violation.
 The `finishedTime` indicates when the analysis of the check finished.
 The cache will hold the result for 1h from this moment.
 
