@@ -1867,6 +1867,11 @@ system.update_notifications_enabled = on
 apphub.base.url = https://apps.dhis2.org"
 # Base API URL to the DHIS2 App Hub service, used for app updates
 apphub.api.url = https://apps.dhis2.org/api
+
+
+# Number of possible concurrent sessions on different computers or browsers for each user. If configured to 1, the
+# user will be logged out from any other session when a new session is started.
+max.sessions.per_user = 10
 ```
 
 ## Changelog { #install_changelog } 
