@@ -441,7 +441,7 @@ Trigram indexes can be created using Tracker Search Optimization jobs. It is use
 The attributes corresponding to the property "indexedAttributes" are currently indexed in the system. The attributes corresponding to the property "indexableAttributes" are not indexed currently but are candidates for creating indexes if required. The attributes corresponding to the property "obsoleteIndexedAttributes" are indexed in the system, but those indexes are obsolete due to changes in the attribute configuration which do not qualify them as indexable anymore.
 
 ```
-GET /api/39/trigramsummary
+GET /api/39/trigramSummary
 ```
 
 A sample JSON response looks like this:
