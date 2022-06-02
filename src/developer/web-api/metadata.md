@@ -495,6 +495,7 @@ Table: Available Transformers
 | rename | Arg1: name | Renames the property name |
 | paging | Arg1: page,Arg2: pageSize | Pages a collection, default pageSize is 50. |
 | pluck | Optional Arg1: fieldName | Converts an array of objects to an array of a selected field of that object. By default, the first field that is returned by the collection is used (normally the ID). |
+| keyBy | Optional Arg1: fieldName | Converts an array of objects to an object where the fieldName (default id) is used as the key. This can be useful for quick lookups in JavaScript for example |
 
 #### Examples { #webapi_field_transformers_examples } 
 
@@ -527,6 +528,14 @@ Get array with IDs of organisation units:
 Get array with names of organisation units:
 
 	/api/categoryOptions.json?fields=id,organisationUnits~pluck[name]
+
+Key the dataElements array by the `id` field:
+
+    /api/dataElementGroups.json?fields=id,name,dataElements~keyBy[id,name,valueType]
+
+Key the dataElements array by the `valueType` field, since multiple hits this will results in arrays (of data elements):
+
+    /api/dataElementGroups.json?fields=id,name,dataElements~keyBy(valueType)[id,name,valueType]
 
 ## Metadata create, read, update, delete, validate { #webapi_metadata_crud } 
 
