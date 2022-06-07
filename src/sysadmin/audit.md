@@ -9,9 +9,25 @@ After an entity is saved to database, an audit message will be created and sent 
 Audit logs can be retrieved from the DHIS2 database. Currently there is no UI or API endpoint available for retrieving audit entries.
 
 
+## What we log { #what_we_log }
+
+This is the list of operations we log as part of the audit system:
+
+- Operations on user accounts
+- Operations on user roles, groups and authority groups
+- Operations on categories
+- Operations on organization units
+- Operations on reports
+- Operations on tracked instances
+- Operations on tracked attributes
+- Operations on tracked data values
+- Authentication attemps (log files)
+- Jobs configuration
+- Breaking the glass operations
+
 ## Single Audit table { #audit_table } 
 
-All audit entries will be saved into one single table named `audit`
+All audit entries, excepts the ones related to tracked entities, will be saved into one single table named `audit`
 
 | Column     | Type                        | Description |   |
 |------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|---|
@@ -55,11 +71,82 @@ An audit type is an action that triggers an audit operation. Currently we suppor
 >
 > The READ audit type may generate a lot of data in the database and may have an impact on the performance.
 
+
+## Tracked entity audits
+
+Operations on tracked entities like instances, attributes and values are stored, respectively in the `trackedentityinstanceaudit`, `trackedentityattributevalueaudit` and `trackedentitydatavalueaudit` tables.
+
+### trackedentityinstanceaudit
+
+| Column     | Type                        | Description |   |
+|------------|-----------------------------|-------------|---|
+| trackedentityinstanceauditid | integer | Primary key. |   |
+| trackedentityinstance | text  |AAAAAAAAAAAAAAAAAAAAAAAA  |   |
+| created  | timestamp without time zone | Time of creation. |   |
+| accessedby | text | Username of the user performing the audited operation. |   |
+| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |   |
+| comment | text | The code of the audited object. |   |
+
+### trackedentityattributevalueaudit
+
+| Column     | Type                        | Description |   |
+|------------|-----------------------------|-------------|---|
+| trackedentityattributevalueauditid | integer | Primary key. |   |
+| trackedentityinstanceid | integer | Instance ID of which the attribute value belongs to.  |   |
+| trackedentityattributeid | integer | Attribute ID.  |   |
+| created  | timestamp without time zone | Time of creation. |   |
+| modifiedby  | text | Username of the user performing the audited operation. |   |
+| audittype | text  | READ, CREATE, UPDATE, DELETE, SEARCH |   |
+| value | text | The value of the audited object. |   |
+| encryptedvalue | text | The encrypted value if confidentiality flag is set. |   |
+
+### trackedentitydatavalueaudit
+
+| Column     | Type                        | Description |   |
+|------------|-----------------------------|-------------|---|
+| trackedentitydatavalueauditid | integer | Primary key. |   |
+| programstageinstanceid | integer | Program stage ID of which the data value belongs to.  |   |
+| dataelementid | integer | ID of the data element.  |   |
+| created | timestamp without time zone | Time of creation. |   |
+| modifiedby | text | Username of the user performing the audited operation. |   |
+| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |   |
+| value | text | The value of the audited object. |   |
+| providedelsewhere | bool | AAAAAAAAAAAAAA. |   |
+
+## Authentication attemps
+
+Every time an authentication requrest is performed against the DHIS2 system, the event is logged into the `dhis.log` file, following the format described below
+
+```
+INFO <Date> Authentication event: <event>; username: <username>; ip: <IP>; sessionId: <session_id>; <javacode>
+```
+
+`event` can be one of the followings:
+- AuthenticationFailureBadCredentialsEvent
+- AuthenticationSuccessEvent
+- LogoutSuccessEvent
+
+
+## Breaking the glass
+Breaking the glass features consist of ......
+
+The information is stored in the `programtempownershipaudit` table, described below:
+
+| Column     | Type  | Description |   |
+|------------|-------|-------------|---|
+| programtempownershipauditid | integer | Primary key. |   |
+| programid | integer | AAAAAAA.  |   |
+| trackedentityinstanceid | integer | AAAAAA.  |   |
+| created  | timestamp without time zone | Time of creation. |   |
+| accessedby  | text | Username of the user performing the audited operation. |   |
+| reason       | text | The reason as inserted in the dialog. |   |
+
+
 ## Setup { #audit_configuration } 
 
 The audit system is enabled by default for the following scopes and types.
 
-Scopes:
+Scopes (case sensitive):
 
 - `CREATE`
 - `UPDATE`
@@ -84,6 +171,20 @@ The audit can be configured using the _audit matrix_. The audit matrix represent
 * `audit.metadata`
 * `audit.tracker`
 * `audit.aggregate`
+
+
+To start collecting audit data into the database, add the following to your `dhis.conf` file:
+
+```properties
+audit.database = on
+audit.logger = off
+```
+
+Applying the following configuration, audit logs will be saved in `$DHIS2_HOME/logs/dhis-audit.log`:
+```properties
+audit.database = off
+audit.logger = on
+```
 
 ## Examples
 
@@ -112,3 +213,14 @@ audit.tracker = DISABLED
 audit.aggregate = DISABLED
 ```
 
+To extract logs from the `audit` table, you can use [`dhis2-audit-data-extractor`](https://github.com/dhis2/dhis2-utils/tree/master/tools/dhis2-audit-data-extractor) from the system where DHIS2 is running:
+```
+$ python extract_audit.py extract
+```
+
+Please read the documentation for full details.
+
+To analyze authentication attemps, you can use the following command to extract relevant information:
+```
+$ grep “Authentication event” $DHIS2_HOME/logs/dhis.log
+```
