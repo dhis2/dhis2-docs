@@ -70,9 +70,8 @@ for specific organisation units. There is a special bulk deletion API that is
 described in the next section.
 
 When run synchronously an import report is returned directly.
-The HTTP status code is either `OK` when at least 1 organisation unit was 
-updated successful. Otherwise, the status code is `Conflict`.
-
+The HTTP status code is always `OK`, the `status` in the message payload
+indicates if all rows were imported successfully.
 The import counts statistics contained in the report give further information:
 
 * `imported`: number of organisation units that were successfully updated with a geometry that did not have one before for the updated property
