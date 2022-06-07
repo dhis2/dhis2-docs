@@ -21,7 +21,6 @@ This is the list of operations we log as part of the audit system:
 - Operations on tracked instances
 - Operations on tracked attributes
 - Operations on tracked data values
-- Authentication attemps (log files)
 - Jobs configuration
 - Breaking the glass operations
 
@@ -113,20 +112,6 @@ Operations on tracked entities like instances, attributes and values are stored,
 | value | text | The value of the audited object. |   |
 | providedelsewhere | bool | AAAAAAAAAAAAAA. |   |
 
-## Authentication attemps
-
-Every time an authentication requrest is performed against the DHIS2 system, the event is logged into the `dhis.log` file, following the format described below
-
-```
-INFO <Date> Authentication event: <event>; username: <username>; ip: <IP>; sessionId: <session_id>; <javacode>
-```
-
-`event` can be one of the followings:
-- AuthenticationFailureBadCredentialsEvent
-- AuthenticationSuccessEvent
-- LogoutSuccessEvent
-
-
 ## Breaking the glass
 Breaking the glass features consist of ......
 
@@ -172,20 +157,6 @@ The audit can be configured using the _audit matrix_. The audit matrix represent
 * `audit.tracker`
 * `audit.aggregate`
 
-
-To start collecting audit data into the database, add the following to your `dhis.conf` file:
-
-```properties
-audit.database = on
-audit.logger = off
-```
-
-Applying the following configuration, audit logs will be saved in `$DHIS2_HOME/logs/dhis-audit.log`:
-```properties
-audit.database = off
-audit.logger = on
-```
-
 ## Examples
 
 This section demonstrates how to configure the audit system in `dhis.conf`.
@@ -213,14 +184,22 @@ audit.tracker = DISABLED
 audit.aggregate = DISABLED
 ```
 
+To start collecting audit data into the database, add the following to your `dhis.conf` file (default up until version 2.38):
+
+```properties
+audit.database = on
+audit.logger = off
+```
+
+Applying the following configuration, audit logs will be saved in `$DHIS2_HOME/logs/dhis-audit.log`:
+```properties
+audit.database = off
+audit.logger = on
+```
+
 To extract logs from the `audit` table, you can use [`dhis2-audit-data-extractor`](https://github.com/dhis2/dhis2-utils/tree/master/tools/dhis2-audit-data-extractor) from the system where DHIS2 is running:
 ```
 $ python extract_audit.py extract
 ```
 
 Please read the documentation for full details.
-
-To analyze authentication attemps, you can use the following command to extract relevant information:
-```
-$ grep “Authentication event” $DHIS2_HOME/logs/dhis.log
-```
