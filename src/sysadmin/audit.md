@@ -28,18 +28,18 @@ This is the list of operations we log as part of the audit system:
 
 All audit entries, excepts the ones related to tracked entities, will be saved into one single table named `audit`
 
-| Column     | Type                        | Description |   |
-|------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|---|
-| auditid    | integer                     | Primary key. |   |
-| audittype  | text                        | READ, CREATE, UPDATE, DELETE, SEARCH                                                                                                                  |   |
-| auditscope | text                        | METADATA, AGGREGATE, TRACKER                                                                                                                        |   |
-| klass      | text                        | Audit Entity Java class name.                                                                                                                     |   |
-| attributes | jsonb                       | A JSON string with attributes of the audited object. Example: `{"valueType":"TEXT", "categoryCombo":"SWQW313FQY", "domainType":"TRACKER"}`. |   |
-| data       | bytea                       | Compressed JSON string of the audit entity in byte array format (not humanly readable).                                                                                             |   |
-| createdat  | timestamp without time zone | Time of creation. |   |
-| createdby  | text                        | Username of the user performing the audited operation. |   |
-| uid        | text                        | The UID of the audited object. |   |
-| code       | text                        | The code of the audited object. |   |
+| Column     | Type                        | Description |
+|------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| auditid    | integer                     | Primary key. |
+| audittype  | text                        | READ, CREATE, UPDATE, DELETE, SEARCH |
+| auditscope | text                        | METADATA, AGGREGATE, TRACKER |
+| klass      | text                        | Audit Entity Java class name. |
+| attributes | jsonb                       | A JSON string with attributes of the audited object. Example: `{"valueType":"TEXT", "categoryCombo":"SWQW313FQY", "domainType":"TRACKER"}`. |
+| data       | bytea                       | Compressed JSON string of the audit entity in byte array format (not humanly readable). |
+| createdat  | timestamp without time zone | Time of creation. |
+| createdby  | text                        | Username of the user performing the audited operation. |
+| uid        | text                        | The UID of the audited object. |
+| code       | text                        | The code of the audited object. |
 
 The audit service makes use of two new concepts: *Audit Scope* and *Audit Type*.
 
@@ -77,54 +77,54 @@ Operations on tracked entities like instances, attributes and values are stored,
 
 ### trackedentityinstanceaudit
 
-| Column     | Type                        | Description |   |
-|------------|-----------------------------|-------------|---|
-| trackedentityinstanceauditid | integer | Primary key. |   |
-| trackedentityinstance | text  |AAAAAAAAAAAAAAAAAAAAAAAA  |   |
-| created  | timestamp without time zone | Time of creation. |   |
-| accessedby | text | Username of the user performing the audited operation. |   |
-| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |   |
-| comment | text | The code of the audited object. |   |
+| Column     | Type                        | Description |
+|------------|-----------------------------|-------------|
+| trackedentityinstanceauditid | integer | Primary key. |
+| trackedentityinstance | text  |AAAAAAAAAAAAAAAAAAAAAAAA  |
+| created  | timestamp without time zone | Time of creation. |
+| accessedby | text | Username of the user performing the audited operation. |
+| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
+| comment | text | The code of the audited object. |
 
 ### trackedentityattributevalueaudit
 
-| Column     | Type                        | Description |   |
-|------------|-----------------------------|-------------|---|
-| trackedentityattributevalueauditid | integer | Primary key. |   |
-| trackedentityinstanceid | integer | Instance ID of which the attribute value belongs to.  |   |
-| trackedentityattributeid | integer | Attribute ID.  |   |
-| created  | timestamp without time zone | Time of creation. |   |
-| modifiedby  | text | Username of the user performing the audited operation. |   |
-| audittype | text  | READ, CREATE, UPDATE, DELETE, SEARCH |   |
-| value | text | The value of the audited object. |   |
-| encryptedvalue | text | The encrypted value if confidentiality flag is set. |   |
+| Column     | Type                        | Description |
+|------------|-----------------------------|-------------|
+| trackedentityattributevalueauditid | integer | Primary key. |
+| trackedentityinstanceid | integer | Instance ID of which the attribute value belongs to.  |
+| trackedentityattributeid | integer | Attribute ID.  |
+| created  | timestamp without time zone | Time of creation. |
+| modifiedby  | text | Username of the user performing the audited operation. |
+| audittype | text  | READ, CREATE, UPDATE, DELETE, SEARCH |
+| value | text | The value of the audited object. |
+| encryptedvalue | text | The encrypted value if confidentiality flag is set. |
 
 ### trackedentitydatavalueaudit
 
-| Column     | Type                        | Description |   |
-|------------|-----------------------------|-------------|---|
-| trackedentitydatavalueauditid | integer | Primary key. |   |
-| programstageinstanceid | integer | Program stage ID of which the data value belongs to.  |   |
-| dataelementid | integer | ID of the data element.  |   |
-| created | timestamp without time zone | Time of creation. |   |
-| modifiedby | text | Username of the user performing the audited operation. |   |
-| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |   |
-| value | text | The value of the audited object. |   |
-| providedelsewhere | bool | AAAAAAAAAAAAAA. |   |
+| Column     | Type                        | Description |
+|------------|-----------------------------|-------------|
+| trackedentitydatavalueauditid | integer | Primary key. |
+| programstageinstanceid | integer | Program stage ID of which the data value belongs to.  |
+| dataelementid | integer | ID of the data element.  |
+| created | timestamp without time zone | Time of creation. |
+| modifiedby | text | Username of the user performing the audited operation. |
+| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
+| value | text | The value of the audited object. |
+| providedelsewhere | bool | AAAAAAAAAAAAAA. |
 
 ## Breaking the glass
 Breaking the glass features consist of ......
 
 The information is stored in the `programtempownershipaudit` table, described below:
 
-| Column     | Type  | Description |   |
-|------------|-------|-------------|---|
-| programtempownershipauditid | integer | Primary key. |   |
-| programid | integer | AAAAAAA.  |   |
-| trackedentityinstanceid | integer | AAAAAA.  |   |
-| created  | timestamp without time zone | Time of creation. |   |
-| accessedby  | text | Username of the user performing the audited operation. |   |
-| reason       | text | The reason as inserted in the dialog. |   |
+| Column     | Type  | Description |
+|------------|-------|-------------|
+| programtempownershipauditid | integer | Primary key. |
+| programid | integer | AAAAAAA.  |
+| trackedentityinstanceid | integer | AAAAAA.  |
+| created  | timestamp without time zone | Time of creation. |
+| accessedby  | text | Username of the user performing the audited operation. |
+| reason       | text | The reason as inserted in the dialog. |
 
 
 ## Setup { #audit_configuration } 
@@ -184,17 +184,16 @@ audit.tracker = DISABLED
 audit.aggregate = DISABLED
 ```
 
-To start collecting audit data into the database, add the following to your `dhis.conf` file (default up until version 2.38):
-
-```properties
-audit.database = on
-audit.logger = off
-```
-
-Applying the following configuration, audit logs will be saved in `$DHIS2_HOME/logs/dhis-audit.log`:
+We recommend keeping the audit trails into a file, as by default in version 2.38. For older versions, the following configuration saves the audit logs into the `$DHIS2_HOME/logs/dhis-audit.log` file:
 ```properties
 audit.database = off
 audit.logger = on
+```
+
+To collect audit data into the database, add the following to your `dhis.conf` file (default up until version 2.38):
+```properties
+audit.database = on
+audit.logger = off
 ```
 
 To extract logs from the `audit` table, you can use [`dhis2-audit-data-extractor`](https://github.com/dhis2/dhis2-utils/tree/master/tools/dhis2-audit-data-extractor) from the system where DHIS2 is running:
@@ -203,3 +202,8 @@ $ python extract_audit.py extract
 ```
 
 Please read the documentation for full details.
+
+To parse entries from log file, you can use the python script as follow:
+```
+$ grep "auditType" dhis-audit.log | python extract_audit.py parse
+```
