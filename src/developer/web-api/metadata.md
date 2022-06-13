@@ -387,6 +387,23 @@ It is also possible to combine the identifiable filter with property-based filte
     /api/dataElements.json?filter=identifiable:token:ANC visit
       &filter=displayName:ilike:tt1&rootJunction=OR
 
+### IndexableOnly filter for Tracked Entity Attributes
+
+For tracked entity attributes, there is a special filter in addition to the previous mentioned filtering capabilities. 
+Some of the Tracked Entity Attributes are candidates for creating a trigram index for better lookup performance. 
+Using the *indexableOnly* parameter set to true, the results can be filtered to include only the attributes that are trigram indexable.
+
+Example: Get all trackedEntityAttributes that are indexable 
+
+    /api/trackedEntityAttributtes.json?indexableOnly=true
+
+It is also possible to specify additional filters along with the indexableOnly params.
+
+Example: Get all trackedEntityAttributes where *ANC* is found in any of the *name* property. The system returns the tracked entity attributes where the name matches the provided keyword as well as if the attribute is indexable
+
+    /api/trackedEntityAttributtes.json?filter=name:like:ANC&indexableOnly=true
+      
+      
 ## Metadata field filter { #webapi_metadata_field_filter } 
 
 In many situations, the default views of the metadata can be too
@@ -478,6 +495,7 @@ Table: Available Transformers
 | rename | Arg1: name | Renames the property name |
 | paging | Arg1: page,Arg2: pageSize | Pages a collection, default pageSize is 50. |
 | pluck | Optional Arg1: fieldName | Converts an array of objects to an array of a selected field of that object. By default, the first field that is returned by the collection is used (normally the ID). |
+| keyBy | Optional Arg1: fieldName | Converts an array of objects to an object where the fieldName (default id) is used as the key. This can be useful for quick lookups in JavaScript for example |
 
 #### Examples { #webapi_field_transformers_examples } 
 
@@ -510,6 +528,14 @@ Get array with IDs of organisation units:
 Get array with names of organisation units:
 
 	/api/categoryOptions.json?fields=id,organisationUnits~pluck[name]
+
+Key the dataElements array by the `id` field:
+
+    /api/dataElementGroups.json?fields=id,name,dataElements~keyBy[id,name,valueType]
+
+Key the dataElements array by the `valueType` field, since multiple hits this will results in arrays (of data elements):
+
+    /api/dataElementGroups.json?fields=id,name,dataElements~keyBy(valueType)[id,name,valueType]
 
 ## Metadata create, read, update, delete, validate { #webapi_metadata_crud } 
 

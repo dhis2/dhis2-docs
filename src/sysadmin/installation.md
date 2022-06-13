@@ -1243,18 +1243,18 @@ this.
 Note that several instructions have been omitted for brevity in the
 above example. Consult the reverse proxy section for a detailed guide.
 
-## ActiveMQ Artemis configuration { #webapi_amqp_configuration } 
+## ActiveMQ Artemis configuration { #webapi_artemis_configuration } 
 
 By default DHIS2 will start an embedded instance of ActiveMQ Artemis when booting up. For most use-cases, you do not need to do anything. If you have an existing ActiveMQ Artemis service you want to use instead of the embedded instance you can change the default configuration in your `dhis.conf` file with the configuration properties in the following table.
 
 | Property                  | Value (default first) | Description                                                  |
 | ------------------------- | --------------------- | ------------------------------------------------------------ |
-| amqp.mode                 | EMBEDDED \| NATIVE    | The default `EMBEDDED` mode starts up an internal AMQP service when the DHIS2 instance is starting up. If you want to connect to an external AMQP service, set the mode to `NATIVE`. |
-| amqp.host                 | 127.0.0.1             | Host to bind to.                                             |
-| amqp.port                 | 15672                 | If mode is `EMBEDDED`, the embedded server will bind to this port. If mode is `NATIVE`, the client will use this port to connect. |
-| amqp.username             | guest                 | Username to connect to if using `NATIVE` mode.               |
-| amqp.password             | guest                 | Password to connect to if using `NATIVE` mode.               |
-| amqp.embedded.persistence | off \| on         | If mode is `EMBEDDED`, this property controls persistence of the internal queue. |
+| artemis.mode                 | EMBEDDED \| NATIVE    | The default `EMBEDDED` mode starts up an internal AMQP service when the DHIS2 instance is starting up. If you want to connect to an external AMQP service, set the mode to `NATIVE`. |
+| artemis.host                 | 127.0.0.1             | Host to bind to.                                             |
+| artemis.port                 | 15672                 | If mode is `EMBEDDED`, the embedded server will bind to this port. If mode is `NATIVE`, the client will use this port to connect. |
+| artemis.username             | guest                 | Username to connect to if using `NATIVE` mode.               |
+| artemis.password             | guest                 | Password to connect to if using `NATIVE` mode.               |
+| artemis.embedded.persistence | off \| on         | If mode is `EMBEDDED`, this property controls persistence of the internal queue. |
 
 
 ## Monitoring
@@ -1867,6 +1867,11 @@ system.update_notifications_enabled = on
 apphub.base.url = https://apps.dhis2.org"
 # Base API URL to the DHIS2 App Hub service, used for app updates
 apphub.api.url = https://apps.dhis2.org/api
+
+
+# Number of possible concurrent sessions on different computers or browsers for each user. If configured to 1, the
+# user will be logged out from any other session when a new session is started.
+max.sessions.per_user = 10
 ```
 
 ## Changelog { #install_changelog } 
@@ -1905,10 +1910,13 @@ background processes. The main file includes the background process logs as well
 
 ### Log configuration
 
-To override the default log configuration you can specify a Java system property with the name `log4j.configuration` and a value pointing to the Log4j configuration file at the file system like this:
+To override the default log configuration you can specify a Java system
+property with the name `log4j2.configurationFile` and a value pointing to the
+[Log4j version 2](https://logging.apache.org/log4j/2.x/manual/configuration.html)
+configuration file at the file system like this:
 
 ```properties
--Dlog4j.configuration=file:/home/dhis/config/log4j.properties
+-Dlog4j2.configurationFile=/home/dhis/config/log4j2.properties
 ```
 
 Java system properties can be set e.g. through the *JAVA\_OPTS* environment variable or in the tomcat startup script.
@@ -1932,7 +1940,7 @@ DHIS2 will provide the following context values:
 
 To use the context variables in the log add them using `-X{<name>}` to your log pattern as in this example:
 
-    * %-5p %d{ISO8601} %m (%F [%t])%n %X{sessionId} %X{xRequestID}
+    * %-5p %d{ISO8601} %m (%F [%t]) %X{sessionId} %X{xRequestID}%n
 
 ### Log level configuration
 
