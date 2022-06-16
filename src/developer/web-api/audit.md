@@ -44,7 +44,7 @@ Table: Tracked entity data value query parameters
 | Parameter | Option | Description |
 |---|---|---|
 | de | Data Element | One or more data element identifiers. |
-| ps | Program Stage Entity | One or more program stage instance identifiers. |
+| psi | Program Stage Entity | One or more program stage instance identifiers. |
 | auditType | UPDATE &#124; DELETE | Filter by audit type. |
 | skipPaging | false &#124; true | Turn paging on / off |
 | page | 1 (default) | If paging is enabled, this parameter decides which page to show |
