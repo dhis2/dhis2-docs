@@ -271,9 +271,14 @@ itself is straight-forward and follows the pattern
 *property:operator:value*, where *property* is the property on the
 metadata you want to filter on, *operator* is the comparison operator
 you want to perform and *value* is the value to check against (not all
-operators require value). Please see the *schema* section to discover
-which properties are available. Recursive filtering, ie. filtering on
-associated objects or collection of objects, is supported as well.
+operators require value). 
+
+Please see the *schema* section to discover which properties are available. 
+In addition to the listed properties filters can apply to custom attribute 
+values by using the attribute's ID as property name.
+
+Recursive filtering, ie. filtering on associated objects or collection of 
+objects, is supported as well.
 
 Table: Available Operators
 
@@ -410,6 +415,8 @@ In many situations, the default views of the metadata can be too
 verbose. A client might only need a few fields from each object and want
 to remove unnecessary fields from the response. To discover which fields
 are available for each object please see the *schema* section.
+In addition to the listed properties custom attributes can be included
+for top level objects by using the attribute's ID as property name.
 
 The format for include/exclude allows for infinite recursion. To filter
 at the "root" level you can just use the name of the field,
@@ -429,6 +436,15 @@ presets of field select. Both XML and JSON formats are supported.
 from the associated data sets:
 
     /api/dataElements?fields=id,name,dataSets[id,name]
+
+**Example**: Get `id`, `name` and the value of a user defined attribute 
+with ID `DnrLSdo4hMl` for organisation units:
+
+    /api/organisationUnits?fields=id,name,DnrLSdo4hMl
+
+The attribute is then included as property `DnrLSdo4hMl` of each
+matching object in the response. This can be renamed using the `rename` 
+transformer as shown in the next section.
 
 To exclude a field from the output you can use the exclamation `!`
 operator. This is allowed anywhere in the query and will simply not

@@ -793,6 +793,7 @@ Table: Query parameters for both event query and aggregate analytics
 | relativePeriodDate | string | No | Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
 | columns | No | Dimensions to use as columns for table layout. | Any dimension (must be query dimension) |
 | rows | No | Dimensions to use as rows for table layout. | Any dimension (must be query dimension) |
+| timeField | No | Time field used in aggregations/queries on events. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element with a time-based value type. For "/analytics/events/" endpoints, the default "timeField" is EVENT_DATE. | EVENT_DATE &#124; SCHEDULED_DATE &#124; <Attribute ID\> &#124; <Data element ID\> |
 
 
 
@@ -833,7 +834,6 @@ Table: Query parameters for aggregate event analytics only
 | skipData | No | Exclude the data part of the response. | false &#124; true |
 | skipRounding | No | Skip rounding of aggregate data values. | false &#124; true |
 | aggregateData | No | Produce aggregate values for the data dimensions (as opposed to dimension items). | false &#124; true |
-| timeField | No | The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element having a time-based value type. | EVENT_DATE &#124; ENROLLMENT_DATE &#124; INCIDENT_DATE &#124; DUE_DATE &#124; COMPLETED_DATE &#124; <Attribute ID\> &#124; <Data element ID\> |
 | orgUnitField | No | The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter. <Attribute ID\> &#124; <Data element ID\> | <Attribute ID\> &#124; <Data element ID\> |
 
 
@@ -949,8 +949,11 @@ Table: Filter operators
 #### Time Field Filtering
 
 By default, the `query` endpoints filter periods based on `eventDate`.
-However, it is possible to filter entries based on `lastUpdated` instead, by using the `timeField` query parameter.
+However, it is possible to filter entries based on `lastUpdated` or `schedule` instead, by using the `timeField` query parameter.
+For example:
+
     &timeField=LAST_UPDATED
+    &timeField=SCHEDULED_DATE
 
 #### Enhanced conditions
 
@@ -1681,6 +1684,7 @@ Table: Query parameters for enrollment query endpoint
 | headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
 | page | No | The page number. Default page is 1. | Numeric positive value |
 | pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
+| timeField | No | Time field used in aggregations/queries on enrollments. Applies to enrollment data items only. Can be a predefined option or the ID of an attribute or data element with a time-based value type. For "/analytics/enrollments/" endpoints, the default "timeField" is ENROLLMENT_DATE. | ENROLLMENT_DATE &#124; LAST_UPDATED &#124; <Attribute ID\> &#124; <Data element ID\> |
 
 #### Response formats
 
