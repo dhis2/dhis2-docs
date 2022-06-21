@@ -1949,8 +1949,17 @@ To set the log level of individual packages you can specify properties on the fo
 ```
 logging.level.org.springframework = DEBUG
 ```
+To set the log level to DEBUG for the DHIS2 services, you can specify:
 
-Note: This is not supported for the embedded DHIS2 Jetty version.
+```
+logging.level.org.hisp.dhis = DEBUG
+```
+
+Common log levels are `DEBUG`, `INFO`, `WARN` and `ERROR`.
+
+> **Note**
+> 
+> Log level configuration is not supported for the embedded DHIS2 Jetty version.
 
 ## Working with the PostgreSQL database { #install_working_with_the_postgresql_database } 
 
