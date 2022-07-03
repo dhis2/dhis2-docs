@@ -239,6 +239,9 @@ translations for the specific object and not just for a single locale
 (if not you will potentially overwrite existing locales for other
 locales).
 
+The status code will be `204 No Content` if the data value was successfully saved or updated, or `404 Not Found` if there was a validation error (e.g. more than one `SHORT_NAME` for the same `locale`).
+
+
 ### Web API versions { #webapi_api_versions } 
 
 The Web API is versioned starting from DHIS 2.25. The API versioning
