@@ -1564,6 +1564,26 @@ Table: Enrollment dimensions
 | Periods | pe | ISO periods and relative periods, see "date and period format" |
 | Organisation units | ou | Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\> |
 
+#### Repeatable stages
+
+Data element identifier must include program stage. The program stage can be repeatable. For example the dimension edqlbukwRfQ.vANAXwtLwcT can refer to repeatable program stage. The data element of this stage is accessible via index parameters (enclosed with [ ]).
+
+Table: Possible indexing of repeatable stages
+
+| Dimension                                  | Index parameters             | DataElement value refers to                                                                |
+|--------------------------------------------|------------------------------|--------------------------------------------------------------------------------------------|
+| edqlbukwRfQ.vANAXwtLwcT                    | N/A                          | last execution date                                                                        |
+| edqlbukwRfQ[0].vANAXwtLwcT                 | 0                            | last execution date                                                                        |
+| dqlbukwRfQ[-2].vANAXwtLwcT                 | -2                           | second from last execution date                                                            |
+| dqlbukwRfQ[1].vANAXwtLwcT                  | 1                            | first execution date                                                                       |
+| dqlbukwRfQ[3].vANAXwtLwcT                  | 3                            | third execution date                                                                       |
+| edqlbukwRfQ[*].vANAXwtLwcT                 | *                            | all repetitions                                                                            |
+| edqlbukwRfQ[-1~3].vANAXwtLwcT              | -1, 3                        | 3 repetitions starting with -1 (first after last execution date)                           |
+| edqlbukwRfQ[0~5~LAST_3_MONTHS ].vANAXwtLwcT | 0, 5, LAST_3_MONTHS          | 5 repetitions starting with last execution date down to the fifth one within last 3 months |
+| edqlbukwRfQ[-1~3~2021-01-01~2022-05-31].vANAXwtLwcT            | -1, 3, 2021-01-01,2022-05-31 | 3 repetitions starting with -1 (first after last execution date) within specified dates                                     |
+
+Warning: Indexing of non-repeatable program stage leads to parameter validation error.
+
 ### Enrollment query analytics { #webapi_enrollment_query_analytics } 
 
 The *analytics/enrollments/query* resource lets you query for captured enrollments. This resource does not perform any aggregation, rather it lets you query and filter for information about enrollments.
