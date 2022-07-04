@@ -48,6 +48,7 @@ Table: Tracked entity data value query parameters
 | ps | Program stage ID | One or more program sages of the audit event program |
 | startDate | Start date | Return only audit records created after date |
 | endDate | End date | Return only audit records created before date |
+| ouMode | Organisation unit selection mode | SELECTED \| DESCENDANTS |
 | auditType | UPDATE &#124; DELETE | Filter by audit type |
 | skipPaging | false &#124; true | Turn paging on / off |
 | paging | false \| true | Whether to enable or disable paging |
