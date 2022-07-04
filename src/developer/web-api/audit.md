@@ -26,7 +26,7 @@ Table: Aggregate data value query parameters
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get all audits for data set with ID `lyLU2wR22tC`:
+Example: Get audits for data set with ID `lyLU2wR22tC`:
 
     /api/33/audits/dataValue?ds=lyLU2wR22tC
 
@@ -55,9 +55,13 @@ Table: Tracked entity data value query parameters
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get all audits which have data element ID `eMyVanycQSC` or `qrur9Dvnyt5`:
+Example: Get audits which have data element ID `eMyVanycQSC` or `qrur9Dvnyt5`:
 
     /api/33/audits/trackedEntityDataValue?de=eMyVanycQSC&de=qrur9Dvnyt5
+
+Example: Get audits for org unit `O6uvpzGd5pu` including all descendant org units in the hierarchy:
+
+    /api/audits/trackedEntityDataValue?ou=O6uvpzGd5pu&ouMode=DESCENDANTS
 
 ### Tracked entity attribute value audits { #webapi_tracked_entity_attribute_value_audits } 
 
@@ -79,7 +83,7 @@ Table: Tracked entity attribute value query parameters
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get all audits which have attribute with ID `VqEFza8wbwA`:
+Example: Get audits which have attribute with ID `VqEFza8wbwA`:
 
     /api/33/audits/trackedEntityAttributeValue?tea=VqEFza8wbwA
 
@@ -105,7 +109,7 @@ Table: Tracked entity instance audit query parameters
 | page | Number | Page number  (default 1) |
 | pageSize | Number | Page size  (default 50) |
 
-Example: Get all tracked entity instance audits of type read with `startDate` 2018-03-01 and `endDate` 2018-04-24 with a page size of 5:
+Example: Get tracked entity instance audits of type read with `startDate` 2018-03-01 and `endDate` 2018-04-24 with a page size of 5:
 
     /api/33/audits/trackedEntityInstance.json?startDate=2018-03-01&endDate=2018-04-24&auditType=READ&pageSize=5
 
@@ -129,11 +133,11 @@ Table: Enrollment audit query parameters
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get all enrollment audits with `startDate`2018-03-01 and `endDate` with a page size of 5:
+Example: Get enrollment audits with `startDate`2018-03-01 and `endDate` with a page size of 5:
 
     /api/audits/enrollment?startDate=2018-03-01&endDate=2018-04-24&pageSize=5
 
-Example: Get all enrollment audits for user admin:
+Example: Get enrollment audits for user `admin`:
 
     /api/audits/enrollment?user=admin
 
@@ -159,7 +163,7 @@ Table: Data approval query parameters
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get all audits for data approval workflow `RwNpkAM7Hw7`:
+Example: Get audits for data approval workflow `RwNpkAM7Hw7`:
 
     /api/33/audits/dataApproval?wf=RwNpkAM7Hw7
 
