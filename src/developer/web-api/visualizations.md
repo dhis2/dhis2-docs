@@ -1591,12 +1591,13 @@ level and name, and the coordinates listed in the database. The view
 might look something like this:
 
 ```sql
-SELECT ou.name as orgunit, par.name as parent, ou.coordinates, ous.level, oul.name from organisationunit ou
-INNER JOIN _orgunitstructure ous ON ou.organisationunitid = ous.organisationunitid
-INNER JOIN organisationunit par ON ou.parentid = par.organisationunitid
-INNER JOIN orgunitlevel oul ON ous.level = oul.level
-WHERE ou.coordinates is not null
-ORDER BY oul.level, par.name, ou.name
+select ou.name as orgunit, par.name as parent, ou.coordinates, ous.level, oul.name 
+from organisationunit ou
+inner join _orgunitstructure ous on ou.organisationunitid = ous.organisationunitid
+inner join organisationunit par on ou.parentid = par.organisationunitid
+inner join orgunitlevel oul on ous.level = oul.level
+where ou.coordinates is not null
+order by oul.level, par.name, ou.name;
 ```
 
 We will use *curl* to first execute the view on the DHIS2 server. This
@@ -1609,17 +1610,13 @@ api/sqlViews resource, then POST using the following command:
 curl "https://play.dhis2.org/demo/api/sqlViews/dI68mLkP1wN/execute" -X POST -u admin:district
 ```
 
-The next step in the process is the retrieval of the data.The basic
-structure of the URL is as follows
+The next step in the process is the retrieval of the data. The endpoint is available at:
 
-    http://{server}/api/sqlViews/{id}/data(.csv)
+    /api/sqlViews/{id}/data(.csv)
 
-The `{server}` parameter should be replaced with your own server. The
-next part of the URL `/api/sqlViews/` should be appended with the
-specific SQL view identifier. Append either `data` for XML data or
-`data.csv` for comma delimited values. Support response formats are
-json, xml, csv, xls, html and html+css. As an example, the following
-command would retrieve XML data for the SQL view defined above.
+The `id` path represents the SQL view identifier. The path extensions refers to the format of the data download. Append either `data` for JSON data or `data.csv` for comma separated  values. Support response formats are json, xml, csv, xls, html and html+css. 
+
+As an example, the following command would retrieve CSV data for the SQL view defined above.
 
 ```bash
 curl "https://play.dhis2.org/demo/api/sqlViews/dI68mLkP1wN/data.csv" -u admin:district
@@ -1646,8 +1643,7 @@ following format:
     /api/sqlViews/{id}/data?criteria=col1:value1&criteria=col2:value2
 
 As an example, to filter the SQL view result set above to only return
-organisation units at level 4 you can use the following
-    URL:
+organisation units at level 4 you can use the following URL:
 
     https://play.dhis2.org/demo/api/sqlViews/dI68mLkP1wN/data.csv?criteria=level:4
 
@@ -1696,37 +1692,27 @@ Values for these variables cannot be supplied as part of the URL. They are alway
 For example, the following SQL view of type *query* shows all the organisation units that are assigned to the user:
 
 ```sql
-    select ou.path, ou.name
-    from organisationunit ou_user
-    join organisationunit ou on ou.path like ou_user.path || '%'
-    join usermembership um on um.organisationunitid = ou_user.organisationunitid
-    where um.userinfoid = ${_current_user_id}
-    order by ou.path
+select ou.path, ou.name
+from organisationunit ou_user
+join organisationunit ou on ou.path like ou_user.path || '%'
+join usermembership um on um.organisationunitid = ou_user.organisationunitid
+where um.userinfoid = ${_current_user_id}
+order by ou.path;
 ```
 
 ### Filtering { #webapi_sql_view_filtering } 
 
-The SQL view api supports data filtering, equal to the [metadata object
-filter](#webapi_metadata_object_filter). For a complete list of filter
-operators you can look at the documentation for [metadata object
-filter](#webapi_metadata_object_filter).
+The SQL view API supports data filtering, equal to the [metadata object_filter](#webapi_metadata_object_filter). For a complete list of filter operators you can look at the documentation for [metadata object_filter](#webapi_metadata_object_filter).
 
-To use filters, simply add them as parameters at the end of the request
-url for your SQL view like
-    this:
+To use filters, simply add them as parameters at the end of the request URL for your SQL view like this. This request will return a result including org units with "bo" in the name at level 2 of the org unit hierarchy:
 
     /api/sqlViews/w3UxFykyHFy/data.json?filter=orgunit_level:eq:2&filter=orgunit_name:ilike:bo
 
-This request will return a result including org units with "bo" in the
-name and which has org unit level 2.
-
-The following example will return all org units with `orgunit_level` 2 or
-4:
+The following example will return all org units with `orgunit_level` 2 or 4:
 
     /api/sqlViews/w3UxFykyHFy/data.json?filter=orgunit_level:in:[2,4]
 
-And last, an example to return all org units that does not start with
-"Bo"
+And last, an example to return all org units that does not start with "Bo":
 
     /api/sqlViews/w3UxFykyHFy/data.json?filter=orgunit_name:!like:Bo
 
@@ -1752,20 +1738,19 @@ In other words, the filter will be applied only when the attribute actually exis
 Another important aspect to be highlighted is that this endpoint does NOT follow the same querying standards as other existing endpoints, like [Metadata object filter](#webapi_metadata_object_filter) for example. As a consequence, it supports a smaller set of features and querying.
 The main reason for that is the need for querying multiple different items that have different relationships, which is not possible using the existing filtering components (used by the others endpoints).
 
-### Possible endpoint responses { #webapi_data_items_possible_responses } 
+### Endpoint responses { #webapi_data_items_possible_responses } 
 
-Base on the `GET` request/query, a few different responses are possible. Below we are summarizing each possibility.
+Base on the `GET` request/query, the following status codes and responses are can be returned.
 
-#### Results found (HTTP status code 200)
+#### Results found (status code 200)
 
-```
+```json
 {
   "pager": {
     "page": 1,
     "pageCount": 27,
     "total": 1339,
-    "pageSize": 50,
-    "nextPage": "https://play.dhis2.org/dev/api/36/dataItems?page=2&filter=displayName:ilike:a&filter=id:eq:nomatch&rootJunction=OR&displayName:asc=&paging=true"
+    "pageSize": 50
   },
   "dataItems": [
     {
@@ -1774,19 +1759,18 @@ Base on the `GET` request/query, a few different responses are possible. Below w
       "displayShortName": "TB prog. Gen.",
       "valueType": "TEXT",
       "name": "TB program Gender",
-      "shortName": ""TB prog. Gen.",
+      "shortName": "TB prog Gen",
       "id": "ur1Edk5Oe2n.cejWyOfXge6",
       "programId": "ur1Edk5Oe2n",
       "dimensionItemType": "PROGRAM_ATTRIBUTE"
-    },
-    ...
+    }
   ]
 }
 ```
 
-#### Results not found (HTTP status code 200)
+#### Results not found (status code 200)
 
-```
+```json
 {
   "pager": {
     "page": 1,
@@ -1794,47 +1778,36 @@ Base on the `GET` request/query, a few different responses are possible. Below w
     "total": 0,
     "pageSize": 50
   },
-  "dataItems": []
+  "dataItems": [
+  ]
 }
 ```
 
-#### Invalid query (HTTP status code 409)
+#### Invalid query (status code 409)
 
-```
+```json
 {
   "httpStatus": "Conflict",
   "httpStatusCode": 409,
   "status": "ERROR",
-  "message": "Unable to parse element `INVALID_TYPE` on filter `dimensionItemType`. The values available are: [INDICATOR, DATA_ELEMENT, DATA_ELEMENT_OPERAND, DATA_SET, PROGRAM_INDICATOR, PROGRAM_DATA_ELEMENT, PROGRAM_ATTRIBUTE]",
+  "message": "Unable to parse element `INVALID_TYPE` on filter dimensionItemType`. The values available are: [INDICATOR, DATA_ELEMENT, DATA_ELEMENT_OPERAND, DATA_SET, PROGRAM_INDICATOR, PROGRAM_DATA_ELEMENT, PROGRAM_ATTRIBUTE]",
   "errorCode": "E2016"
-}
-```
-
-#### Unhandled error (HTTP status code 500)
-
-```
-{
-  "httpStatus": "Internal Server Error",
-  "httpStatusCode": 500,
-  "status": "ERROR"
 }
 ```
 
 ### Pagination { #webapi_data_items_pagination } 
 
-This endpoint also supports pagination as a default option. If needed, you can disable pagination by adding `paging=false` to the `GET` request.
-ie.: `/api/dataItems?filter=dimensionItemType:in:[INDICATOR]&paging=false`.
+This endpoint also supports pagination as a default option. If needed, you can disable pagination by adding `paging=false` to the `GET` request, i.e.: `/api/dataItems?filter=dimensionItemType:in:[INDICATOR]&paging=false`.
 
 Here is an example of a payload when the pagination is enabled. Remember that pagination is the default option and does not need to be explicitly set.
 
-```
+```json
 {
   "pager": {
     "page": 1,
     "pageCount": 20,
     "total": 969,
-    "pageSize": 50,
-    "nextPage": "https://play.dhis2.org/dev/api/dataItems?page=2&filter=dimensionItemType:in:[INDICATOR]"
+    "pageSize": 50
   },
   "dataItems": [...]
 }
@@ -1854,8 +1827,6 @@ Here is an example of a payload when the pagination is enabled. Remember that pa
 ### Response attributes { #webapi_data_items_response_attributes } 
 
 Now that we have a good idea of the main features and usage of this endpoint let's have a look in the list of attributes returned in the response.
-
-
 
 Table: Data items attributes
 
@@ -1877,8 +1848,6 @@ Table: Data items attributes
 DHIS2 has several resources for data analysis. These resources include
 *maps*, *visualizations*, *eventVisualizations*, *reports* and *documents*. By visiting these resources you will retrieve information about the resource. For instance, by navigating to `/api/visualizations/R0DVGvXDUNP` the response will contain the name, last date of modification and so on for the chart. To retrieve the analytical representation, for instance, a PNG representation of the visualization, you can append */data* to all these resources. For instance, by visiting `/api/visualizations/R0DVGvXDUNP/data` the system will return a PNG image of the visualization.
 
-
-
 Table: Analytical resources
 
 | Resource | Description | Data URL | Resource representations |
@@ -1895,15 +1864,11 @@ The data content of the analytical representations can be modified by
 providing a *date* query parameter. This requires that the analytical
 resource is set up for relative periods for the period dimension.
 
-
-
 Table: Data query parameters
 
 | Query parameter | Value | Description |
 |---|---|---|
 | date | Date in yyyy-MM-dd format | Basis for relative periods in report (requires relative periods) |
-
-
 
 Table: Query parameters for png / image types (visualizations, maps)
 
@@ -1917,17 +1882,17 @@ representations are listed below.
 
     /api/visualizations/R0DVGvXDUNP/data
     /api/visualizations/R0DVGvXDUNP/data?date=2013-06-01
-
+    
     /api/visualizations/jIISuEWxmoI/data.html
     /api/visualizations/jIISuEWxmoI/data.html?date=2013-01-01
     /api/visualizations/FPmvWs7bn2P/data.xls
     /api/visualizations/FPmvWs7bn2P/data.pdf
-
+    
     /api/eventVisualizations/x5FVFVt5CDI/data
     /api/eventVisualizations/x5FVFVt5CDI/data.png
-
+    
     /api/maps/DHE98Gsynpr/data
     /api/maps/DHE98Gsynpr/data?date=2013-07-01
-
+    
     /api/reports/OeJsA6K1Otx/data.pdf
     /api/reports/OeJsA6K1Otx/data.pdf?date=2014-01-01
