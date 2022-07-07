@@ -2664,7 +2664,7 @@ The *ANALYTICS_TABLE_POPULATED* phase takes place after the analytics
 table has been populated, but before indexes have been created and the
 temp table has been swapped with the main table. As a result, the SQL
 script should refer to the analytics temp table, e.g. *analytics_temp*,
-*analytics_completeness_temp*.
+*analytics_completeness_temp*, *analytics_event_temp_ebayegv0exc*.
 
 This applies also to the *RESOURCE_TABLE_POPULATED* phase, which takes
 place after the resource table has been populated, but before indexes
@@ -2706,14 +2706,13 @@ Table: Phases, table types and temporary tables
 || COMPLETENESS | analytics_completeness_temp |
 || COMPLETENESS_TARGET | analytics_completenesstarget_temp |
 || ORG_UNIT_TARGET | analytics_orgunittarget_temp |
-|| EVENT | analytics_event_temp_<program-uid\> |
-|| ENROLLMENT | analytics_enrollment_temp_<program-uid\> |
+|| EVENT | analytics_event_temp_{program-uid} |
+|| ENROLLMENT | analytics_enrollment_temp_{program-uid} |
 || VALIDATION_RESULT | analytics_validationresult_temp |
 
 ### Creating hooks { #webapi_create_analytics_table_hook } 
 
-To create a hook which should run after the resource tables have been
-populated you can do a *POST* request like this using *JSON* format:
+To create a hook which should run after the resource tables have been populated you can do a *POST* request like this using *JSON* format:
 
 ```bash
 curl -d @hooks.json "localhost/api/analyticsTableHooks" -H "Content-Type:application/json" -u admin:district
@@ -2728,18 +2727,29 @@ curl -d @hooks.json "localhost/api/analyticsTableHooks" -H "Content-Type:applica
 }
 ```
 
-To create a hook which should run after the data value analytics table
-has been populated you can do a *POST* request like this using *JSON*
-format:
+To create a hook which should run after the data value analytics table has been populated you can do a *POST* request like this using *JSON* format:
 
 ```json
 {
   "name": "Update 'Currently on treatment' data in analytics table",
   "phase": "ANALYTICS_TABLE_POPULATED",
   "analyticsTableType": "DATA_VALUE",
-  "sql": "update analytics_temp set monthly = '200212' where \"monthly\" in ('200210', '200211')"
+  "sql": "update analytics_temp set monthly = '200212' where monthly in ('200210', '200211')"
 }
 ```
+
+To create a hook which should run after the event analytics tables are populated you can do a *POST* request like this using *JSON* format:
+
+```json
+{
+  "name": "Delete data for a data element",
+  "phase": "ANALYTICS_TABLE_POPULATED",
+  "analyticsTableType": "EVENT",
+  "sql": "delete from analytics_event_temp_lxaq7zs9vyr where dx = 'uDX9LKGRwaH'"
+}
+```
+
+
 
 ## SVG conversion { #webapi_svg_conversion } 
 
