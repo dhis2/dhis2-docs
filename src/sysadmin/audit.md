@@ -8,6 +8,7 @@ After an entity is saved to database, an audit message will be created and sent 
 
 Audit logs can be retrieved from the DHIS2 database. Currently there is no UI or API endpoint available for retrieving audit entries.
 
+Detailed explanation of the audit system architecture can be found [here](https://github.com/dhis2/wow-backend/blob/master/guides/auditing.md).
 
 ## What we log { #what_we_log }
 
@@ -80,11 +81,13 @@ Operations on tracked entities like instances, attributes and values are stored,
 | Column     | Type                        | Description |
 |------------|-----------------------------|-------------|
 | trackedentityinstanceauditid | integer | Primary key. |
-| trackedentityinstance | text  |AAAAAAAAAAAAAAAAAAAAAAAA  |
+| trackedentityinstance | text  | Tracked entity instance name.  |
 | created  | timestamp without time zone | Time of creation. |
 | accessedby | text | Username of the user performing the audited operation. |
 | audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
 | comment | text | The code of the audited object. |
+
+This data can be retrieved via [API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/audit.html#webapi_tracked_entity_instance_audits).
 
 ### trackedentityattributevalueaudit
 
@@ -99,6 +102,9 @@ Operations on tracked entities like instances, attributes and values are stored,
 | value | text | The value of the audited object. |
 | encryptedvalue | text | The encrypted value if confidentiality flag is set. |
 
+
+This data can be retrieved via [API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/audit.html#webapi_tracked_entity_attribute_value_audits).
+
 ### trackedentitydatavalueaudit
 
 | Column     | Type                        | Description |
@@ -110,18 +116,22 @@ Operations on tracked entities like instances, attributes and values are stored,
 | modifiedby | text | Username of the user performing the audited operation. |
 | audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
 | value | text | The value of the audited object. |
-| providedelsewhere | bool | AAAAAAAAAAAAAA. |
+| providedelsewhere | bool | Indicates whether the user provided the value elsewhere or not. |
+
+This data can be retrieved via [API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/audit.html#webapi_tracked_entity_data_value_audits).
 
 ## Breaking the glass
-Breaking the glass features consist of ......
+Breaking the glass features allows to access records a DHIS2 user doesn't have access in special circumstances. As a result of such, users must enter a reason to access such records.
 
-The information is stored in the `programtempownershipaudit` table, described below:
+A video explaining how it works can be found in our Youtube channel [here](https://www.youtube.com/watch?v=rTwg5Ix_E_M).
+
+The breaking the glass event is stored in the `programtempownershipaudit` table, described below:
 
 | Column     | Type  | Description |
 |------------|-------|-------------|
 | programtempownershipauditid | integer | Primary key. |
-| programid | integer | AAAAAAA.  |
-| trackedentityinstanceid | integer | AAAAAA.  |
+| programid | integer | Program ID of which the tracked entity belongs to.  |
+| trackedentityinstanceid | integer | Instance ID of which the attribute value belongs to.  |
 | created  | timestamp without time zone | Time of creation. |
 | accessedby  | text | Username of the user performing the audited operation. |
 | reason       | text | The reason as inserted in the dialog. |
@@ -157,6 +167,22 @@ The audit can be configured using the _audit matrix_. The audit matrix represent
 * `audit.tracker`
 * `audit.aggregate`
 
+### Artemis
+[Apache ActiveMQ Artemis](https://activemq.apache.org/components/artemis/documentation/) is an open source project to build a multi-protocol, embeddable, very high performance, clustered, asynchronous messaging system. It has been part of DHIS2 since version 2.31 and used as a system to consume audit logs.
+
+By default, DHIS2 will start an embedded Artemis server, which is used internally by the application to store and access audit events.
+
+However, if you have already an Artemis server, you can connect to it from DHIS2 to send audit events, as described in our [official documentation](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-238/installation.html#webapi_amqp_configuration): in this setup, audit events will flow from DHIS2 to the external Artemis system.
+
+### log4j2
+[log4j2](https://logging.apache.org/log4j/2.x/index.html) is the default DHIS2 logging library used to handle output messages. It's used to control what events are recored in which file.
+
+For a detailed explaination of how it works within DHIS2, please refer to the [related section](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-238/installation.html#install_application_logging) in our official documentation.
+
+The application ships a [default configuration file](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-web/dhis-web-commons-resources/src/main/webapp/WEB-INF/classes/log4j2.xml), which can be tweaked to accomodate different compliance needs, such as saving the files in a different storage location, compress and rotate them.
+
+An example of custom log4j2 configuration can be found [here](): it shows how to configure DHIS2 to save all logs into an external storage location, rotate them on a weekly basis and retain them for 30 days.
+
 ## Examples
 
 This section demonstrates how to configure the audit system in `dhis.conf`.
@@ -190,7 +216,7 @@ audit.database = off
 audit.logger = on
 ```
 
-To collect audit data into the database, add the following to your `dhis.conf` file (default up until version 2.38):
+To store audit data into the database, add the following to your `dhis.conf` file (default up until version 2.38):
 ```properties
 audit.database = on
 audit.logger = off
@@ -206,4 +232,21 @@ Please read the documentation for full details.
 To parse entries from log file, you can use the python script as follow:
 ```
 $ grep "auditType" dhis-audit.log | python extract_audit.py parse
+```
+
+Or use `jq` as follow:
+
+```
+$ grep "auditType" dhis-audit.log | jq -r .
+```
+
+To select events within a specific date, you can use `jq` as follow (in this example, we're selecting all events happened between January 2022 and end of June 2022):
+
+```
+$ grep "auditType" dhis-audit.log | jq -r '.[] | select ( (.datetime >="2022-01-01") and (.datetime <= "2022-06-30") )'
+```
+
+Same with `extract_audit`:
+```
+$ python3 extract_audit.py extract -m stdout -f JSON | jq -r '.[] | select ( (.datetime >="2022-01-01") and (.datetime <= "2022-06-30") )'
 ```
