@@ -2666,25 +2666,25 @@ Table: Phases, table types and temporary tables
 
 | Phase | Table type | Temporary table |
 |---|---|---|
-| RESOURCE_TABLE_POPULATED | ORG_UNIT_STRUCTURE | _orgunitstructure_temp |
-|| DATA_SET_ORG_UNIT_CATEGORY | _datasetorgunitcategory_temp |
-|| CATEGORY_OPTION_COMBO_NAME | _categoryoptioncomboname_temp |
-|| DATA_ELEMENT_GROUP_SET_STRUCTURE | _dataelementgroupsetstructure_temp |
-|| INDICATOR_GROUP_SET_STRUCTURE | _indicatorgroupsetstructure_temp |
-|| ORG_UNIT_GROUP_SET_STRUCTURE | _organisationunitgroupsetstructure_temp |
-|| CATEGORY_STRUCTURE | _categorystructure_temp |
-|| DATA_ELEMENT_STRUCTURE | _dataelementstructure_temp |
-|| PERIOD_STRUCTURE | _periodstructure_temp |
-|| DATE_PERIOD_STRUCTURE | _dateperiodstructure_temp |
-|| DATA_ELEMENT_CATEGORY_OPTION_COMBO | _dataelementcategoryoptioncombo_temp |
-|| DATA_APPROVAL_MIN_LEVEL | _dataapprovalminlevel_temp |
-| ANALYTICS_TABLE_POPULATED | DATA_VALUE | analytics_temp |
-|| COMPLETENESS | analytics_completeness_temp |
-|| COMPLETENESS_TARGET | analytics_completenesstarget_temp |
-|| ORG_UNIT_TARGET | analytics_orgunittarget_temp |
-|| EVENT | analytics_event_temp_{program-uid} |
-|| ENROLLMENT | analytics_enrollment_temp_{program-uid} |
-|| VALIDATION_RESULT | analytics_validationresult_temp |
+| RESOURCE_TABLE_POPULATED | ORG_UNIT_STRUCTURE | \_orgunitstructure\_temp |
+|| DATA_SET_ORG_UNIT_CATEGORY |\_datasetorgunitcategory\_temp |
+|| CATEGORY_OPTION_COMBO_NAME | \_categoryoptioncomboname\_temp |
+|| DATA_ELEMENT_GROUP_SET_STRUCTURE | \_dataelementgroupsetstructure\_temp |
+|| INDICATOR_GROUP_SET_STRUCTURE |\_indicatorgroupsetstructure\_temp |
+|| ORG_UNIT_GROUP_SET_STRUCTURE | \_organisationunitgroupsetstructure\_temp |
+|| CATEGORY_STRUCTURE | \_categorystructure\_temp |
+|| DATA_ELEMENT_STRUCTURE | \_dataelementstructure\_temp |
+|| PERIOD_STRUCTURE | \_periodstructure\_temp |
+|| DATE_PERIOD_STRUCTURE | \_dateperiodstructure\_temp |
+|| DATA_ELEMENT_CATEGORY_OPTION_COMBO | \_dataelementcategoryoptioncombo\_temp |
+|| DATA_APPROVAL_MIN_LEVEL | \_dataapprovalminlevel\_temp |
+| ANALYTICS_TABLE_POPULATED | DATA_VALUE | analytics\_temp |
+|| COMPLETENESS | analytics\_completeness\_temp |
+|| COMPLETENESS_TARGET | analytics\_completenesstarget\_temp |
+|| ORG_UNIT_TARGET | analytics\_orgunittarget\_temp |
+|| EVENT | analytics\_event\_temp\_{program-uid} |
+|| ENROLLMENT | analytics\_enrollment\_temp\_{program-uid} |
+|| VALIDATION_RESULT | analytics\_validationresult\_temp |
 
 ### Creating hooks { #webapi_create_analytics_table_hook } 
 
