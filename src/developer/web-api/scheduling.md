@@ -265,6 +265,10 @@ Jobs can be run manually using:
 
 ### Observe Running Jobs
 The execution steps and state can be observed while the job is running.
+A list of all types of jobs that are currently running is provided by:
+
+    GET /api/scheduling/running/types
+
 To get an overview of all running jobs by job type use:
 
     GET /api/scheduling/running
