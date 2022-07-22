@@ -177,11 +177,11 @@ However, if you have already an Artemis server, you can connect to it from DHIS2
 ### log4j2
 [log4j2](https://logging.apache.org/log4j/2.x/index.html) is the default DHIS2 logging library used to handle output messages. It's used to control what events are recored in which file.
 
-For a detailed explaination of how it works within DHIS2, please refer to the [related section](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-238/installation.html#install_application_logging) in our official documentation.
+The application ships a [log4j2 default configuration file](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-web/dhis-web-commons-resources/src/main/webapp/WEB-INF/classes/log4j2.xml), which instructs what information to log and where (console). DHIS2 then takes care of import that file and instruction logging as described in the [log4j configuration class](https://github.com/dhis2/dhis2-core/blob/2.38/dhis-2/dhis-support/dhis-support-system/src/main/java/org/hisp/dhis/system/log/Log4JLogConfigInitializer.java), that is, redirecting output from console to files.
 
-The application ships a [default configuration file](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-web/dhis-web-commons-resources/src/main/webapp/WEB-INF/classes/log4j2.xml), which can be tweaked to accomodate different compliance needs, such as saving the files in a different storage location, compress and rotate them.
+From 2.36 to 2.38, audit log file `dhis-audit.log` is rotated [every day at midnight](https://github.com/dhis2/dhis2-core/blob/2.38/dhis-2/dhis-support/dhis-support-system/src/main/java/org/hisp/dhis/system/log/Log4JLogConfigInitializer.java#L171).
 
-An example of custom log4j2 configuration can be found [here](): it shows how to configure DHIS2 to save all logs into an external storage location, rotate them on a weekly basis and retain them for 30 days.
+An example of custom log4j2 configuration can be found [here](): it shows how to configure DHIS2 to save all logs into an external storage location, rotate them on a weekly basis and retain them for 30 days. Please read the [application logging section](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-238/installation.html#install_application_logging) on how to use it.
 
 ## Examples
 
