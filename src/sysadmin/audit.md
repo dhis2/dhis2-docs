@@ -172,7 +172,7 @@ The audit can be configured using the _audit matrix_. The audit matrix represent
 
 By default, DHIS2 will start an embedded Artemis server, which is used internally by the application to store and access audit events.
 
-However, if you have already an Artemis server, you can connect to it from DHIS2 to send audit events, as described in our [official documentation](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-238/installation.html#webapi_amqp_configuration): in this setup, audit events will flow from DHIS2 to the external Artemis system.
+However, if you have already an Artemis server, you can connect to it from DHIS2 to send audit events, as described in our [official documentation](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-master/installation.html#webapi_amqp_configuration): in this setup, audit events will flow from DHIS2 to the external Artemis system.
 
 ### log4j2
 [log4j2](https://logging.apache.org/log4j/2.x/index.html) is the default DHIS2 logging library used to handle output messages. It's used to control what events are recored in which file.
@@ -181,7 +181,7 @@ The application ships a [log4j2 default configuration file](https://github.com/d
 
 From 2.36 to 2.38, audit log file `dhis-audit.log` is rotated [every day at midnight](https://github.com/dhis2/dhis2-core/blob/2.38/dhis-2/dhis-support/dhis-support-system/src/main/java/org/hisp/dhis/system/log/Log4JLogConfigInitializer.java#L171).
 
-An example of custom log4j2 configuration can be found [here](): it shows how to configure DHIS2 to save all logs into an external storage location, rotate them on a weekly basis and retain them for 30 days. Please read the [application logging section](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-238/installation.html#install_application_logging) on how to use it.
+An example of custom log4j2 configuration can be found [here](): it shows how to configure DHIS2 to save all logs into an external storage location, rotate them on a weekly basis and retain them for 30 days. Please read the [application logging section](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-master/installation.html#install_application_logging) on how to use it.
 
 ## Examples
 
