@@ -355,7 +355,7 @@ Table: Visualization attributes
 | hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
 | fixColumnHeaders | Keeps the columns' headers fixed (or not) in a Pivot Table. Boolean value. |
 | fixRowHeaders | Keeps the rows' headers fixed (or not) in a Pivot Table. Boolean value. |
-| completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
+| completedOnly | Flag used in analytics requests. If true, only completed events/enrollments will be taken into consideration. Boolean value. |
 | skipRounding | Apply or not rounding. Boolean value. |
 | showDimensionLabels | Shows the dimension labels or not. Boolean value. |
 | hideTitle | Hides the title or not. Boolean value. |
@@ -901,7 +901,7 @@ Table: EventVisualization attributes
 | colSubTotals | Displays (or not) the columns sub-totals. Boolean value. |
 | cumulativeValues | Indicates whether the EventVisualization is using cumulative values. Boolean value. |
 | hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
-| completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
+| completedOnly | Flag used in analytics requests. If true, only completed events/enrollments will be taken into consideration. Boolean value. |
 | showDimensionLabels | Shows the dimension labels or not. Boolean value. |
 | hideTitle | Hides the title or not. Boolean value. |
 | hideSubtitle | Hides the subtitle or not. Boolean value. |
