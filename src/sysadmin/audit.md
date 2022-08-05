@@ -14,14 +14,10 @@ Detailed explanation of the audit system architecture can be found [here](https:
 
 This is the list of operations we log as part of the audit system:
 
-- Operations on user accounts
+- Operations on user accounts (like but not limited to creation, profile edits)
 - Operations on user roles, groups and authority groups
-- Operations on categories
-- Operations on organization units
-- Operations on reports
-- Operations on tracked instances
-- Operations on tracked attributes
-- Operations on tracked data values
+- Operations on metadata objects (like but not limited to categories, organization units, reports)
+- Operations on tracked objects (like but not limited to instances, attributes, data values)
 - Jobs configuration
 - Breaking the glass operations
 
