@@ -2409,6 +2409,11 @@ POST to the endpoint `/api/fileResources` with a multipart upload:
 curl "https://server/api/fileResources" -X POST
   -F "file=@/path/to/file/name-of-file.png"
 ```
+The `uid` of a file resource can be provided when it is created, for example:
+```bash
+curl "https://server/api/fileResources?uid=0123456789x" -X POST
+  -F "file=@/path/to/file/name-of-file.png"
+```
 
 To create both a file resource and a data value that references the file,
 POST to the `/api/dataValues/file` endpoint in DHIS 2.36 or later:
