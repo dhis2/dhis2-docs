@@ -20,15 +20,15 @@ Table: Aggregate data value query parameters
 | de | Data element ID | One or more data element identifiers |
 | pe | ISO period | One or more period ISO identifiers |
 | ou | Organisation unit ID | One or more org unit identifiers |
-| auditType | UPDATE &#124; DELETE | Filter by audit type |
+| auditType | UPDATE &#124; DELETE | Filter by one or more audit types |
 | skipPaging | false &#124; true | Turn paging on / off |
 | paging | false \| true | Enable or disable paging |
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get audits for a data set `lyLU2wR22tC` and audit type `UPDATE`:
+Example: Get audits for a data set `lyLU2wR22tC` and audit type `CREATE` or `UPDATE`:
 
-    /api/33/audits/dataValue?ds=lyLU2wR22tC&auditType=UPDATE
+    /api/33/audits/dataValue?ds=lyLU2wR22tC&auditType=CREATE,UPDATE
 
 Example: Get audits for data element `BOSZApCrBni`, org unit `DiszpKrYNg8` and category option combination `TkDhg29x18A`:
 
@@ -53,7 +53,7 @@ Table: Tracked entity data value query parameters
 | startDate | Start date | Return only audit records created after date |
 | endDate | End date | Return only audit records created before date |
 | ouMode | Organisation unit selection mode | SELECTED \| DESCENDANTS |
-| auditType | UPDATE &#124; DELETE | Filter by audit type |
+| auditType | UPDATE &#124; DELETE | Filter by one or more audit types |
 | skipPaging | false &#124; true | Turn paging on / off |
 | paging | false \| true | Whether to enable or disable paging |
 | page | Number | Page number (default 1) |
@@ -81,7 +81,7 @@ Table: Tracked entity attribute value query parameters
 |---|---|---|
 | tea | Tracked entity attribute ID | One or more tracked entity attribute identifiers |
 | tei | Tracked entity instance ID | One or more tracked entity instance identifiers |
-| auditType | UPDATE &#124; DELETE | Filter by audit type |
+| auditType | UPDATE &#124; DELETE | Filter by one or more audit types |
 | skipPaging | false &#124; true | Turn paging on / off |
 | paging | false \| true | Whether to enable or disable paging |
 | page | Number | Page number (default 1) |
@@ -109,7 +109,7 @@ Table: Tracked entity instance audit query parameters
 |---|---|---|
 | tei | Tracked Entity Instance | One or more tracked entity instance identifiers |
 | user | User | One or more user identifiers |
-| auditType | SEARCH &#124; READ | Audit type to filter for |
+| auditType | SEARCH &#124; READ | Filter by one or more audit types |
 | startDate | Start date | Start date for audits in `yyyy-mm-dd` format |
 | endDate | End date | End date for audits in `yyyy-mm-dd` format |
 | skipPaging | false &#124; true | Turn paging on / off. |
