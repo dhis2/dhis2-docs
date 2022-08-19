@@ -22,13 +22,17 @@ Table: Aggregate data value query parameters
 | ou | Organisation unit ID | One or more org unit identifiers |
 | auditType | UPDATE &#124; DELETE | Filter by audit type |
 | skipPaging | false &#124; true | Turn paging on / off |
-| paging | false \| true | Whether to enable or disable paging |
+| paging | false \| true | Enable or disable paging |
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get audits for data set with ID `lyLU2wR22tC`:
+Example: Get audits for a data set `lyLU2wR22tC` and audit type `UPDATE`:
 
-    /api/33/audits/dataValue?ds=lyLU2wR22tC
+    /api/33/audits/dataValue?ds=lyLU2wR22tC&auditType=UPDATE
+
+Example: Get audits for data element `BOSZApCrBni`, org unit `DiszpKrYNg8` and category option combination `TkDhg29x18A`:
+
+    /api/33/audits/dataValue?de=BOSZApCrBni&ou=DiszpKrYNg8&co=TkDhg29x18A
 
 ### Tracked entity data value audits { #webapi_tracked_entity_data_value_audits } 
 
@@ -55,11 +59,11 @@ Table: Tracked entity data value query parameters
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get audits which have data element ID `eMyVanycQSC` or `qrur9Dvnyt5`:
+Example: Get audits for data elements `eMyVanycQSC` and `qrur9Dvnyt5`:
 
     /api/33/audits/trackedEntityDataValue?de=eMyVanycQSC&de=qrur9Dvnyt5
 
-Example: Get audits for org unit `O6uvpzGd5pu` including all descendant org units in the hierarchy:
+Example: Get audits for org unit `O6uvpzGd5pu` including descendant org units in the org unit hierarchy:
 
     /api/audits/trackedEntityDataValue?ou=O6uvpzGd5pu&ouMode=DESCENDANTS
 
@@ -83,9 +87,13 @@ Table: Tracked entity attribute value query parameters
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get audits which have attribute with ID `VqEFza8wbwA`:
+Example: Get audits for tracked entity attribute `VqEFza8wbwA`:
 
     /api/33/audits/trackedEntityAttributeValue?tea=VqEFza8wbwA
+    
+Example: Get audits for tracked entity instance `wNiQ2coVZ39` and audit type `DELETE`:
+
+    /api/33/audits/trackedEntityAttributeValue?tei=wNiQ2coVZ39&auditType=DELETE
 
 ### Tracked entity instance audits { #webapi_tracked_entity_instance_audits } 
 
@@ -109,37 +117,13 @@ Table: Tracked entity instance audit query parameters
 | page | Number | Page number  (default 1) |
 | pageSize | Number | Page size  (default 50) |
 
-Example: Get tracked entity instance audits of type read with `startDate` 2018-03-01 and `endDate` 2018-04-24 with a page size of 5:
+Example: Get audits of audit type `READ` with `startDate` 2018-03-01 and `endDate` 2018-04-24 with a page size of 5:
 
-    /api/33/audits/trackedEntityInstance.json?startDate=2018-03-01&endDate=2018-04-24&auditType=READ&pageSize=5
+    /api/33/audits/trackedEntityInstance.json?startDate=2021-03-01&endDate=2022-04-24&auditType=READ&pageSize=5
 
-### Enrollment audits { #webapi_enrollment_audits } 
+Example: Get audits for tracked entity instance `wNiQ2coVZ39`:
 
-Once auditing is enabled for enrollments (by setting `allowAuditLog` of tracker programs to `true`), all read operations are logged. The endpoint for accessing audit logs is located at:
-
-```
-/api/audits/enrollment
-```
-
-Table: Enrollment audit query parameters
-
-| Parameter | Option | Description |
-|---|---|---|
-| en | Enrollment | One or more tracked entity instance identifiers |
-| user | User | One or more user identifiers |
-| startDate | Start date | Start date for audit filtering in `yyyy-mm-dd` format |
-| endDate | End date | End date for audit filtering in `yyyy-mm-dd` format |
-| skipPaging | false &#124; true | Turn paging on / off |
-| page | Number | Page number (default 1) |
-| pageSize | Number | Page size (default 50) |
-
-Example: Get enrollment audits with `startDate`2018-03-01 and `endDate` with a page size of 5:
-
-    /api/audits/enrollment?startDate=2018-03-01&endDate=2018-04-24&pageSize=5
-
-Example: Get enrollment audits for user `admin`:
-
-    /api/audits/enrollment?user=admin
+    /api/33/audits/trackedEntityInstance.json?tei=wNiQ2coVZ39
 
 ### Data approval audits
 
@@ -163,7 +147,10 @@ Table: Data approval query parameters
 | page | Number | Page number (default 1) |
 | pageSize | Number | Page size (default 50) |
 
-Example: Get audits for data approval workflow `RwNpkAM7Hw7`:
+Example: Get audits for data approval workflow `i5m0JPw4DQi`:
 
-    /api/33/audits/dataApproval?wf=RwNpkAM7Hw7
+    /api/33/audits/dataApproval?wf=i5m0JPw4DQi
+    
+Exaple: Get audits between `2021-01-01` and `2022-01-01` for org unit `DiszpKrYNg8`:
 
+    /api/33/audits/dataApproval?ou=DiszpKrYNg8&startDate=2021-01-01&endDate=2022-01-01
