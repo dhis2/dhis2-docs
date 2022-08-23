@@ -767,7 +767,7 @@ Table: Tracked entity instances query parameters
 | programStartDate | Start date of enrollment in the given program for the tracked entity instance. |
 | programEndDate | End date of enrollment in the given program for the tracked entity instance. |
 | trackedEntity | Tracked entity identifier. Restricts instances to the given tracked instance type. |
-| eventStatus | Status of any event associated with the given program and the tracked entity instance. Can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULED &#124; OVERDUE &#124; SKIPPED. |
+| eventStatus | Status of any event associated with the given program and the tracked entity instance. Can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED. |
 | eventStartDate | Start date of event associated with the given program and event status. |
 | eventEndDate | End date of event associated with the given program and event status. |
 | programStage | The programStage for which the event related filters should be applied to. If not provided all stages will be considered. |
@@ -1070,7 +1070,7 @@ Table: Event filters definition
 ||||
 |---|---|---|
 | programStage | Which programStage the TEI needs an event in to be returned. | "eaDH9089uMp" |
-| eventStatus | The events status. Can be none(any event status) or ACTIVE&#124;COMPLETED&#124;SCHEDULED&#124;OVERDUE | ACTIVE |
+| eventStatus | The events status. Can be none(any event status) or ACTIVE&#124;COMPLETED&#124;SCHEDULE&#124;OVERDUE | ACTIVE |
 | eventCreatedPeriod | Period object containing a period in which the event must be created. See *Period* definition below. | { "periodFrom": -15, "periodTo": 15} |
 | assignedUserMode | To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)&#124; PROVIDED (events assigned to users provided in "assignedUsers" list) &#124; NONE (events assigned to no one) &#124; ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered. | "assignedUserMode": "PROVIDED" |
 | assignedUsers | To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"] |
@@ -1597,7 +1597,7 @@ Table: Events resource query parameters
 | ouMode | enum | false | Org unit selection mode, can be SELECTED &#124; CHILDREN &#124; DESCENDANTS |
 | startDate | date | false | Only events newer than this date |
 | endDate | date | false | Only events older than this date |
-| status | enum | false | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULED &#124; OVERDUE &#124; SKIPPED |
+| status | enum | false | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED |
 | lastUpdatedStartDate | date | false | Filter for events which were updated after this date. Cannot be used together with *lastUpdatedDuration*. |
 | lastUpdatedEndDate | date | false | Filter for events which were updated up until this date. Cannot be used together with *lastUpdatedDuration*. |
 | lastUpdatedDuration | string | false | Include only items which are updated within the given duration. The format is , where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with *lastUpdatedStartDate* and/or *lastUpdatedEndDate*. |
@@ -2122,7 +2122,7 @@ Table: CSV column
 | Index | Key | Type | Description |
 |---|---|---|---|
 | 1 | event | identifier | Identifier of event |
-| 2 | status | enum | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULED &#124; OVERDUE &#124; SKIPPED |
+| 2 | status | enum | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED |
 | 3 | program | identifier | Identifier of program |
 | 4 | programStage | identifier | Identifier of program stage |
 | 5 | enrollment | identifier | Identifier of enrollment (program instance) |
