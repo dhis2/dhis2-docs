@@ -309,6 +309,7 @@ Table: Import parameters
 | skipAudit | false &#124; true | Skip audit, meaning audit values will not be generated. Improves performance at the cost of ability to audit changes. Requires authority "F_SKIP_DATA_IMPORT_AUDIT". |
 | async | false &#124; true | Indicates whether the import should be done asynchronous or synchronous. The former is suitable for very large imports as it ensures that the request does not time out, although it has a significant performance overhead. The latter is faster but requires the connection to persist until the process is finished. |
 | force | false &#124; true | Indicates whether the import should be forced. Data import could be rejected for various reasons of data set locking for example due to approval, data input period, expiry days, etc. In order to override such locks and force data input one can use data import with force=true. However, one needs to be a \*superuser\* for this parameter to work. |
+| dataSet | uid | Provide the data set ID for CSV import where the ID cannot be provided in the file itself |
 
 All parameters are optional and can be supplied as query parameters in
 the request URL like this:
