@@ -887,6 +887,29 @@ PATCH /api/organisationUnitGroups/{id}
 ]
 ```
 
+#### Blocked add dataElementGroup to dataElement
+
+```
+PATCH /api/dataElements/{id}?importReportMode=ERRORS_NOT_OWNER
+```
+
+```json
+[
+    {"op": "add", "path": "/dataElementGroups/-", "value": {"id": "data-element-group-id"}}
+]
+```
+
+#### Blocked update name of dataElementGroup in dataElement
+
+```
+PATCH /api/dataElements/{id}?importReportMode=ERRORS_NOT_OWNER
+```
+
+```json
+[
+    {"op": "add", "path": "/dataElementGroups/0", "value": {"name": "new-name"}}
+]
+```
 
 ## Metadata export { #webapi_metadata_export } 
 
