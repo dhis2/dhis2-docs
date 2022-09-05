@@ -871,9 +871,7 @@ Table: EventVisualization attributes
 | displayDensity | The display density of the text. |
 | fontSize | The font size of the text. |
 | relativePeriods | An object representing the relative periods used in the analytics query. |
-| legendSet | An object representing the definitions for the legend. |
-| legendDisplayStyle | The legend's display style. It can be: FILL or TEXT. |
-| legendDisplayStrategy | The legend's display style. It can be: FIXED or BY_DATA_ITEM. |
+| legend | An object representing the definitions for the legend and legend set, display style (FILL or TEXT) and display strategy (FIXED or BY_DATA_ITEM). |
 | aggregationType | Determines how the values are aggregated (if applicable). Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT. |
 | regressionType | A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS. |
 | targetLineValue | The chart target line. Accepts a Double type. |
@@ -1017,6 +1015,14 @@ The following representation is an example of a response in JSON format (for bre
     },
     "attributeDimensions": [],
     "translations": [],
+    "legend": {
+      "set": {
+        "id": "gFJUXah1uRH"
+      },
+      "showKey": false,
+      "style": "FILL",
+      "strategy": "FIXED"
+    },
     "filterDimensions": [
       "ou",
       "H6uSAMO5WLD"
@@ -1152,6 +1158,14 @@ These operations follow the standard *REST* semantics. A new EventVisualization 
       "name": "Tom Wakiki",
       "id": "GOLswS44mh8",
       "username": "system"
+    },
+    "legend": {
+      "set": {
+        "id": "gFJUXah1uRH"
+      },
+      "showKey": false,
+      "style": "FILL",
+      "strategy": "FIXED"
     },
     "relativePeriods": {
       "thisYear": false,
