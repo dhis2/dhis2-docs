@@ -1048,7 +1048,7 @@ Table: Entity Query Criteria definition
 ||||
 |---|---|---|
 | attributeValueFilters | A list of attributeValueFilters. This is used to specify filters for attribute values when listing tracked entity instances | "attributeValueFilters"=[{       "attribute": "abcAttributeUid",       "le": "20",       "ge": "10",       "lt": "20",       "gt": "10",       "in": ["India", "Norway"],       "like": "abc",       "sw": "abc",       "ew": "abc",       "dateFilter": {         "startDate": "2014-05-01",         "endDate": "2019-03-20",         "startBuffer": -5,         "endBuffer": 5,         "period": "LAST_WEEK",         "type": "RELATIVE"       }     }] |
-| enrollmentStatus | The TEIs enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELED ||
+| enrollmentStatus | The TEIs enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELLED ||
 | followup | When this parameter is true, the filter only returns TEIs that have an enrollment with status followup. ||
 | organisationUnit | To specify the uid of the organisation unit | "organisationUnit": "a3kGcGDCuk7" |
 | ouMode | To specify the OU selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL | "ouMode": "SELECTED" |
