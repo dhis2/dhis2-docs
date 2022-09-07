@@ -498,6 +498,7 @@ Table: Data value set query parameters
 |---|---|
 | dataSet | Data set identifier. Can be repeated any number of times. |
 | dataElementGroup | Data element group identifier. Can be repeated any number of times (Not supported for ADX). |
+| dataElement | Data element identifier. Can be repeated any number of times. |
 | period | Period identifier in ISO format. Can be repeated any number of times. |
 | startDate | Start date for the time span of the values to export. |
 | endDate | End date for the time span of the values to export. |
