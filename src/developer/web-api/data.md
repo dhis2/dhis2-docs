@@ -521,6 +521,7 @@ Table: Data value set query parameters
 | inputOrgUnitIdScheme | Identification property used for the provided `orgUnit` parameter values; `id` or `code` |
 | inputDataSetIdScheme | Identification property used for the provided `dataSet` parameter values; `id` or `code` |
 | inputDataElementGroupIdScheme | Identification property used for the provided `dataElementGroup` parameter values; `id` or `code` |
+| inputDataElementIdScheme | Identification property used for the provided `dataElement` parameter values; `id` or `code` |
 | inputIdScheme | Identification property used for any of the provided `dataSet`, `dataElementGroup`, `orgUnit`, `orgUnitGroup`, `attributeOptionCombo`  parameter values unless any of the three schemes above explicitly overrides this input default; `id` or `code` |
 
 The following parameters from the list above are required:
