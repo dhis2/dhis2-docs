@@ -910,6 +910,40 @@ PATCH /api/dataElements/{id}?importReportMode=ERRORS_NOT_OWNER
     {"op": "add", "path": "/dataElementGroups/0", "value": {"name": "new-name"}}
 ]
 ```
+#### Remove collection item by id
+
+```
+PATCH /api/dataSets/{id}?importReportMode=ERRORS_NOT_OWNER
+```
+
+```json
+[
+    {"op": "remove-by-id", "path": "/organisationUnits", "id": "u6CvKyF0Db5"}
+]
+```
+
+#### Patch request with invalid path
+If `path` property is invalid or does not exist the patch service will return an error as below
+
+
+```
+PATCH /api/dataSets/{id}?importReportMode=ERRORS_NOT_OWNER
+```
+
+```json
+[
+    {"op": "remove-by-id", "path": "/test", "id": "u6CvKyF0Db5"}
+]
+```
+Response
+```json
+{
+    "httpStatus": "Bad Request",
+    "httpStatusCode": 400,
+    "status": "ERROR",
+    "message": "Invalid path /test"
+}
+```
 
 ## Metadata export { #webapi_metadata_export } 
 
