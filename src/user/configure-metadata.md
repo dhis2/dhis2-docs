@@ -1754,6 +1754,7 @@ Table: Indicator functions
 | .periodOffset | (integer constant) | Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below. |
 
 Valid aggregation types:
+
 | Aggregation type | Description |
 |---|---|
 | AVERAGE | Average value in both period and organisation unit hierarchy |
