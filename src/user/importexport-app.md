@@ -1,4 +1,4 @@
-# Import/Export App { #import_export } 
+# Import/Export App { #import_export }
 
 In a primary health system, the HMIS typically involves a distributed
 application, where the same application is running in different
@@ -23,15 +23,15 @@ which can be found below.
 
 ![](resources/images/import_export/overview.png)
 
-## Importing data { #importing_data } 
+## Importing data { #importing_data }
 
-### Import progress logger { #import_progress_logger } 
+### Import progress logger { #import_progress_logger }
 
-No matter what you import ("Data", "Events", "GML", "Metadata" or
+No matter what you import ("Data", "Events", "Org unit geometry", "Metadata" or
 "Tracked Entity Instances" data), you can always view the progress of
 the import by looking at the "Job Summary" at the top of the page.
 
-### Import Summaries { #metadata_import_summaries } 
+### Import Summaries { #metadata_import_summaries }
 
 On import request completion, we show import summaries above the
 import form. Any conflicts or errors are shown in the table under the
@@ -39,7 +39,7 @@ main summary for the import.
 
 ![](resources/images/import_export/import_summary.png)
 
-### Metadata Import { #metadata_import } 
+### Metadata Import { #metadata_import }
 
 Metadata Import can be accessed from the sidebar by clicking on
 Metadata Import.
@@ -48,25 +48,25 @@ Metadata Import.
 
 1.  Choose a file to upload
 
-2.  Select a format: *JSON* , *CSV*, or *XML*
+2.  Select a format: _JSON_ , _CSV_, or _XML_
 
 3.  Select the appropriate settings for:
 
-    * Identifier
-    * Import report mode
-    * Preheat mode
-    * Import strategy
-    * Atomic mode
-    * Merge mode
+    - Identifier
+    - Import report mode
+    - Preheat mode
+    - Import strategy
+    - Atomic mode
+    - Merge mode
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    * Flush mode
-    * Skip sharing
-    * Skip validation
-    * Async
-    * Inclusive strategy
+    - Flush mode
+    - Skip sharing
+    - Skip validation
+    - Async
+    - Inclusive strategy
 
 5.  Click on the **Import** button which will upload the file and start the
     importing process.
@@ -78,14 +78,13 @@ Metadata Import.
 > Metadata, and to check for problems with out-of-sync data elements or
 > organisation unit names
 
-
 > **Note**
 >
 > If an organisation unit e.g. `Nduvuibu MCHP` had a unknown reference to an object with ID `aaaU6Kr7Gtpidn`, it means that the object with ID `aaaU6Kr7Gtpidn` was not present in your imported file, and it was not found in the existing database.
 >
 > You can control this using **Identifier** option, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
 
-#### Matching Identifiers in DXF2 { #matching_identifiers_in_dxf2 } 
+#### Matching Identifiers in DXF2 { #matching_identifiers_in_dxf2 }
 
 The DXF2 format currently support matching for two identifiers, the
 internal DHIS2 identifier (known as a UID), and also using an external
@@ -99,7 +98,7 @@ legacy system's own identifiers in the code field, this identifier is
 required to be unique. This not only works for organisation units, but
 for all kinds of meta-data, allowing for easy import from other systems.
 
-### Data Import { #import } 
+### Data Import { #import }
 
 Data Import can be accessed from the sidebar by clicking on Data
 Import.
@@ -108,20 +107,20 @@ Import.
 
 1.  Choose a file to upload
 
-2.  Select a format: *JSON*, *CSV*, *XML*, *ADX*, or *PDF*
+2.  Select a format: _JSON_, _CSV_, _XML_, _ADX_, or _PDF_
 
 3.  Select the appropriate settings for:
 
-    * Strategy
-    * Preheat cache
+    - Strategy
+    - Preheat cache
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    * Data element ID scheme
-    * Org unit ID scheme
-    * ID scheme
-    * Skip existing check
+    - Data element ID scheme
+    - Org unit ID scheme
+    - ID scheme
+    - Skip existing check
 
 5.  Click on the **Import** button which will upload the file and start the
     importing process.
@@ -133,49 +132,80 @@ Import.
 > Metadata, and to check for problems with out-of-sync data elements or
 > organisation unit names
 
-#### PDF Data { #importPDFdata } 
+#### PDF Data { #importPDFdata }
 
 DHIS2 supports import of data in the PDF format. This can be used to
 import data produced by off-line PDF data entry forms. Please refer to
 the section **Data set management** for details on how to produce a PDF
 form which can be used for off-line data entry.
 
-To import a PDF data file, navigate to the *PDF Data Import* item in the
-side menu. Upload the completed PDF file and click *Import*.
+To import a PDF data file, navigate to the _PDF Data Import_ item in the
+side menu. Upload the completed PDF file and click _Import_.
 
-### Event Import { #event_import } 
+### Event Import { #event_import }
 
 Event can be access from the sidebar by clicking on Event
 import.
 
 ![](resources/images/import_export/event_import.png)
 
-1.  Select a format: *JSON* , *CSV*, or *XML*
+1.  Select a format: _JSON_ , _CSV_, or _XML_
 
 2.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    * Event ID scheme
-    * Data element ID scheme
-    * Org unit ID scheme
-    * ID scheme
+    - Event ID scheme
+    - Data element ID scheme
+    - Org unit ID scheme
+    - ID scheme
 
 3.  Click on the **Import** button which will upload the file and start the
     importing process.
 
-### GML Import { #gml_import } 
+### Organisation Unit Geometry Import { #geometry_import }
 
-GML Import can be accessed from the sidebar by clicking on GML
-Import.
+Accessed from the sidebar by clicking on _Org Unit geometry import_. Two
+geometry formats are supported: GeoJSON and GML. GeoJSON is the
+recommended format and can also be used to import associated geometries
+(catchment areas).
+
+#### GeoJSON import { #geojson_import }
+
+![](resources/images/import_export/geojson_import.png)
+
+1.  Upload a file using the GeoJSON format.
+
+2.  By default the GeoJSON feature id should match the organisation unit id.
+
+3.  Check **Match GeoJSON property to organisation unit scheme** to match by
+    a feature propery. Type the GeoJSON property name and select the
+    Organisation unit ID scheme (_Id_, _Code_ or _Name_).
+
+4.  Check **Import as associated geometry** to import the GeoJSON features
+    as associated geometries the organisation units (e.g. catchment areas).
+    Select at geometry attribute where the data should be imported. This requires
+    an attribure of type _GeoJSON_ applied to _Organisatiot unit_. This
+    attribute can be defined in the Maintenance app.
+
+5.  Click on the **Start import** button which will upload the file and start the
+    importing process.
+
+> **Tip**
+>
+> **It is highly recommend to use the Dry run option** to test before
+> importing data; to make sure you keep control over any changes to
+> your organisation unit geometries.
+
+#### GML import { #gml_import }
 
 ![](resources/images/import_export/gml_import.png)
 
-1.  Upload a file using the *GML* (Geographic Markup Language) format.
+1.  Upload a file using the GML (Geographic Markup Language) format.
 
 2.  Click on the **Import** button which will upload the file and start the
     importing process.
 
-### Tracked Entity Instances Import { #tei_import } 
+### Tracked Entity Instances Import { #tei_import }
 
 Tracked Entity Instances Import can be accessed from the sidebar by
 clicking on TEI Import.
@@ -184,24 +214,24 @@ clicking on TEI Import.
 
 1.  Choose a file to upload
 
-2.  Select a format: *JSON* or *XML*
+2.  Select a format: _JSON_ or _XML_
 
 3.  Select the appropriate settings for:
 
-    * Identifier
-    * Import report mode
-    * Preheat mode
-    * Import strategy
-    * Atomic mode
-    * Merge mode
+    - Identifier
+    - Import report mode
+    - Preheat mode
+    - Import strategy
+    - Atomic mode
+    - Merge mode
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    * Flush mode
-    * Skip sharing
-    * Skip validation
-    * Inclusive strategy
+    - Flush mode
+    - Skip sharing
+    - Skip validation
+    - Inclusive strategy
 
 5.  Click on the **Import** button which will upload the file and start the
     importing process.
@@ -214,7 +244,7 @@ clicking on TEI Import.
 
 ## Exporting data
 
-### Metadata Export { #metadata_export } 
+### Metadata Export { #metadata_export }
 
 Metadata export can be accessed from the sidebar by clicking on
 Metadata export.
@@ -223,53 +253,51 @@ Metadata export.
 
 1.  Choose the list of objects you would like to export.
 
-2.  Select a format: *JSON*, *CSV* or *XML*
+2.  Select a format: _JSON_, _CSV_ or _XML_
 
-3.  Select a compression type: *zip*, *gzip* or *uncompressed*
+3.  Select a compression type: _zip_, _gzip_ or _uncompressed_
 
-4.  Decide whether to check *Skip sharing and access settings*
+4.  Decide whether to check _Skip sharing and access settings_
 
 5.  Click **Export metadata** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Metadata Export with Dependencies { #metadata_export_dependencies } 
+### Metadata Export with Dependencies { #metadata_export_dependencies }
 
 Metadata export with dependencies lets you create canned exports for
 metadata objects. This type of export will include the metadata objects
 and the metadata object's related objects; that is, the metadata which
 belong together with the main object.
 
-
-
 Table: Object types and their dependencies
 
-| Object type | Dependencies included in export |
-|---|---|
-| **Data sets** | Data elements<br> <br>Sections<br> <br>Indicators<br> <br>Indicator types<br> <br>Attributes<br> <br>Data entry forms<br> <br>Legend sets<br> <br>Legends<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets |
-| Programs | Data entry form<br> <br>Tracked entity<br> <br>Program stages<br> <br>Program attributes<br> <br>Program indicators<br> <br>Program rules<br> <br>Program rule actions<br> <br>Program rule variables<br> <br>Program attributes<br> <br>Data elements<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets |
-| Category combination | Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Attributes |
-| Dashboard | Dashboard items<br> <br>Charts<br> <br>Event charts<br> <br>Pivot tables<br> <br>Event reports<br> <br>Maps<br> <br>Reports<br> <br>Resources |
-| Data element groups | Data elements<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets<br> <br>Attributes<br> <br>Legend sets<br> <br>Legends |
-| OptionSets | Option |
+| Object type          | Dependencies included in export                                                                                                                                                                                                                                                                                                                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Data sets**        | Data elements<br> <br>Sections<br> <br>Indicators<br> <br>Indicator types<br> <br>Attributes<br> <br>Data entry forms<br> <br>Legend sets<br> <br>Legends<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets                                                                                              |
+| Programs             | Data entry form<br> <br>Tracked entity<br> <br>Program stages<br> <br>Program attributes<br> <br>Program indicators<br> <br>Program rules<br> <br>Program rule actions<br> <br>Program rule variables<br> <br>Program attributes<br> <br>Data elements<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets |
+| Category combination | Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Attributes                                                                                                                                                                                                                                                                 |
+| Dashboard            | Dashboard items<br> <br>Charts<br> <br>Event charts<br> <br>Pivot tables<br> <br>Event reports<br> <br>Maps<br> <br>Reports<br> <br>Resources                                                                                                                                                                                                                                             |
+| Data element groups  | Data elements<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets<br> <br>Attributes<br> <br>Legend sets<br> <br>Legends                                                                                                                                                                                   |
+| OptionSets           | Option                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ![](resources/images/import_export/metadata_dependency_export.png)
 
 ![](resources/images/import_export/metadata_dependency_export_object_types.png)
 
-1.  Select an object type: *Data sets*, *Programs*, *Category combination*, 
-    *Dashboard*, *Data element groups* or *OptionSets*.
+1.  Select an object type: _Data sets_, _Programs_, _Category combination_,
+    _Dashboard_, _Data element groups_ or _OptionSets_.
 
 2.  Select an object.
 
-3.  Select a format: *JSON* or *XML*
+3.  Select a format: _JSON_ or _XML_
 
-4.  Select a compression type: *Zip* , *GZip* or *Uncompressed*
+4.  Select a compression type: _Zip_ , _GZip_ or _Uncompressed_
 
 5.  Click **Export metadata dependencies** which will open a new
     web-browser window that will give you a file to download to your
     local computer.
 
-### Data export { #data_export } 
+### Data export { #data_export }
 
 Data export can be accessed from the sidebar by clicking on Data
 export.
@@ -286,22 +314,22 @@ export.
 
 4.  Set the start and end date.
 
-5.  Select a format: *JSON*, *CSV*, *XML*, or *ADX*
+5.  Select a format: _JSON_, _CSV_, _XML_, or _ADX_
 
 6.  Select a compression mode: **Zip** , **GZip** or **Uncompressed**
 
 7.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
 
-    * Include deleted
-    * Data element ID scheme
-    * Organisation unit ID scheme
-    * ID scheme
+    - Include deleted
+    - Data element ID scheme
+    - Organisation unit ID scheme
+    - ID scheme
 
 8.  Click **Export data** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Event export { #event_export } 
+### Event export { #event_export }
 
 Event export can be accessed from the sidebar by clicking on Event
 export.
@@ -314,37 +342,37 @@ You can export event or tracker data in JSON, CSV, or XML formats.
 
 2.  Select the inclusion:
 
-      - *Selected*: Export event data only for the selected
-        organisation unit
+    - _Selected_: Export event data only for the selected
+      organisation unit
 
-      - *Directly below*: Export event data including the first
-        level of the organisation units inside the selections as well
-        as the selected organisation unit itself.
+    - _Directly below_: Export event data including the first
+      level of the organisation units inside the selections as well
+      as the selected organisation unit itself.
 
-      - *All below*: Export event data for all organisation units
-        inside the selections as well as the selected organisation
-        unit itself.
+    - _All below_: Export event data for all organisation units
+      inside the selections as well as the selected organisation
+      unit itself.
 
 3.  Select a program and a program stage (if applicable).
 
 4.  Set the start date and end date.
 
-5.  Select a format: *JSON*, *CSV*, or *XML*.
+5.  Select a format: _JSON_, _CSV_, or _XML_.
 
-6.  Select a compression mode: *Zip*, *GZip* or *Uncompressed*.
+6.  Select a compression mode: _Zip_, _GZip_ or _Uncompressed_.
 
 7.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
 
-    * Include deleted
-    * Data element ID scheme
-    * Organisation unit ID scheme
-    * ID scheme
+    - Include deleted
+    - Data element ID scheme
+    - Organisation unit ID scheme
+    - ID scheme
 
 8.  Click **Export events** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Tracked Entity Instances export { #tei_export } 
+### Tracked Entity Instances export { #tei_export }
 
 Tracked entity instances export can be accessed from the sidebar by
 clicking on TEI export.
@@ -357,28 +385,28 @@ You can export event or tracker data in JSON, CSV, or XML format.
 
 2.  Decide whether you want to filter by program or tracked entity type.
 
-6.  Select a format: *JSON*, *CSV*, or *XML*.
+3.  Select a format: _JSON_, _CSV_, or _XML_.
 
-7.  Click **Advanced options** if you want to adjust one or more of
+4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
 
-    * Filter by last updated date
-    * Assigned user mode
-    * Include deleted
-    * Include all attributes
-    * Data element ID scheme
-    * Event ID scheme
-    * Organisation unit ID scheme
-    * ID scheme
+    - Filter by last updated date
+    - Assigned user mode
+    - Include deleted
+    - Include all attributes
+    - Data element ID scheme
+    - Event ID scheme
+    - Organisation unit ID scheme
+    - ID scheme
 
-8.  Click **Export tracked entity instances** which will open a new
+5.  Click **Export tracked entity instances** which will open a new
     web-browser window that will give you a file to download to your
     local computer.
 
-## Job Overview { #job_overview } 
+## Job Overview { #job_overview }
 
 The job overview page can be accessed from the sidebar by clicking on
-*Job Overview*.
+_Job Overview_.
 
 ![](resources/images/import_export/job_overview.png)
 
@@ -399,28 +427,28 @@ type filters above the job list.
 ![](resources/images/import_export/job_overview_recreate.png)
 
 You can recreate previously run import jobs by clicking on the
-*Recreate job* button at the bottom of the page, assuming you have
+_Recreate job_ button at the bottom of the page, assuming you have
 selected a job from the list. This will take you to the correct import
 page and fill in all the form details exactly as the job you chose to
 recreate.
 
 ## Schemes
+
 The various schemes used in many of the import and export pages are
 also known as identifier schemes and are used to map metadata objects
 to other metadata during import, and to render metadata as part of
 exports.
 
-
-
 Table: Available values
 
-| Scheme | Description |
-|---|---|
-| ID, UID | Match on DHIS2 stable Identifier, this is the default id scheme. |
-| CODE | Match on DHIS2 Code, mainly used to exchange data with an external system. |
-| NAME | Match on DHIS2 Name, please note that this uses what is available as *object.name*, and not the translated name. Also note that names are not always unique, and in that case, they can not be used. |
-| ATTRIBUTE:ID | Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to *true*. The main usage of this is also to exchange data with external systems, it has some advantages over *CODE* since multiple attributes can be added, so it can be used to synchronize with more than one system. |
+| Scheme       | Description                                                                                                                                                                                                                                                                                                                                                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ID, UID      | Match on DHIS2 stable Identifier, this is the default id scheme.                                                                                                                                                                                                                                                                                                    |
+| CODE         | Match on DHIS2 Code, mainly used to exchange data with an external system.                                                                                                                                                                                                                                                                                          |
+| NAME         | Match on DHIS2 Name, please note that this uses what is available as _object.name_, and not the translated name. Also note that names are not always unique, and in that case, they can not be used.                                                                                                                                                                |
+| ATTRIBUTE:ID | Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to _true_. The main usage of this is also to exchange data with external systems, it has some advantages over _CODE_ since multiple attributes can be added, so it can be used to synchronize with more than one system. |
 
 ### ID scheme
+
 The ID scheme applies to all types of objects, but can be overwritten
 by more specific object types.

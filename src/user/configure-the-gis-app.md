@@ -1,6 +1,6 @@
-# Configure the Maps app { #gis_creating } 
+# Configure the Maps app { #gis_creating }
 
-## Context { #gis_creating_context } 
+## Context { #gis_creating_context }
 
 Setting up the Maps simply means storing coordinates for the organisation
 units you want to show on the map in the database. Coordinates are often
@@ -15,20 +15,20 @@ are contained in the geospatial data match exactly with the names of the
 organization units which they should be matched to.
 
 Only organisation units with POINT geometry types can be edited through the
-Maintenance App at this time.  To modify POLYGON geometries, please us the
+Maintenance App at this time. To modify POLYGON geometries, please us the
 GML import feature.
 
 To edit the POINT coordinates of an organisation unit, open the Maintenance
-App and navigate to the Organisation Unit section.  Click on the Organisation
+App and navigate to the Organisation Unit section. Click on the Organisation
 Unit you would like to view or edit, you can search or filter the list from
-on the left-hand side of the screen.  Once an organisation unit is selected,
+on the left-hand side of the screen. Once an organisation unit is selected,
 you can edit the **Latitude** and **Longitude** values to update the POINT
-coordinates.  If the Organisation Unit has a POLYGON geometry, the coordinates
+coordinates. If the Organisation Unit has a POLYGON geometry, the coordinates
 cannot be edited.
 
 If you are going to add or update coordinates for a large number of units, or
 if you need to update polygon geometries, you should use the automatic GML
-import.  The following section explains how to perform a GML import.
+import. The following section explains how to perform a GML import.
 
 > **Important**
 >
@@ -39,7 +39,7 @@ import.  The following section explains how to perform a GML import.
 > EPSG 4326, you will need to re-project the data first before importing
 > into DHIS2.
 
-## Importing coordinates { #gis_creating_setup } 
+## Importing coordinates { #gis_creating_setup }
 
 Step 1 - Simplify/generalize your geographical data
 
@@ -86,9 +86,7 @@ shapefile.
 Step 2 - Convert the shapefile to GML
 
 The recommended tool for geographical format conversions is called
-"ogr2ogr". This should be available for most Linux distributions `sudo
-apt-get install
-gdal-bin`. For Windows, go to <http://fwtools.maptools.org/>and download
+"ogr2ogr". This should be available for most Linux distributions `sudo apt-get install gdal-bin`. For Windows, go to <http://fwtools.maptools.org/>and download
 "FWTools", install it and open up the FWTools command shell. During the
 format conversion we also want to ensure that the output has the correct
 coordinate projection (called EPSG:4326 with geographic longitude and
@@ -105,7 +103,7 @@ system by executing the following command.
 
 Assuming that the projection is reported to be EPSG:27700 by `ogrinfo`,
 we can transform it to EPSG:4326 by executing the following
-    command.
+command.
 
     ogr2ogr -s_srs EPSG:27700 -t_srs EPSG:4326 -f GML filename.gml filename.shp
 
@@ -132,7 +130,7 @@ reference to its corresponding organisation unit. The reference itself
 must be one of three possible DHIS2 identifiers: **uid**, **code** or
 **name**. The identifier of choice must be provided as a property for
 each feature member element. The importer will look for a property with
-the local name of either *Uid*, *Code* or *Name*, e.g. "ogr:Name" or
+the local name of either _Uid_, _Code_ or _Name_, e.g. "ogr:Name" or
 "anyPrefix:Code".
 
 If your feature members already contain a property of the identifier you
@@ -142,26 +140,24 @@ in a text editor to rename these elements to a name DHIS2 will recognize
 when using the name as the identifier (the source shapefile or even GML
 will usually contain the name for each area it defines).
 
-
-
 Table: Organisation unit identifiers supported for GML import
 
-| Matching priority | Identifier | Valid spellings | Guaranteed unique |
-|---|---|---|---|
-| 1 | Uid | uid, Uid, UID | Yes |
-| 2 | Code | code, Code, CODE | No |
-| 3 | Name | name, Name, NAME | No |
+| Matching priority | Identifier | Valid spellings  | Guaranteed unique |
+| ----------------- | ---------- | ---------------- | ----------------- |
+| 1                 | Uid        | uid, Uid, UID    | Yes               |
+| 2                 | Code       | code, Code, CODE | No                |
+| 3                 | Name       | name, Name, NAME | No                |
 
 In the case of renaming properties one would usually find a tag named
-something like "ogr:DISTRICT\_NAME", "ogr:NAME\_1" and rename it to
-"ogr:Name". If using the *code* or *uid* identifiers on the other hand,
+something like "ogr:DISTRICT_NAME", "ogr:NAME_1" and rename it to
+"ogr:Name". If using the _code_ or _uid_ identifiers on the other hand,
 looking up the correct values in the DHIS2 database and going through
 the GML file, adding the properties for each corresponding feature
 member might be necessary. In any of the cases it is important to
 realize that the identifier used must **uniquely** identify an
 organisation unit (e.g. if there are two organisation units in the
 database of the same name or code, these cannot be matched properly on
-either). As *uid* is the only guaranteed-to-be-unique identifier it is
+either). As _uid_ is the only guaranteed-to-be-unique identifier it is
 the most robust choice. However, as matching on name is usually easier
 (given that the name is already part of your data), a viable approach to
 solving uniqueness conflicts can be to match any non-uniquely named
@@ -181,8 +177,8 @@ tags. Also make sure the properties follow either of the given valid
 spellings of the property name. The identifying properties are supposed
 to look like e.g. \<ogr:Name\>Moyamba District\</ogr:Name\>,
 \<somePrefix:uid\>x7uuia898nJ\</somePrefix:uid\> or
-\<CODE\>OU\_12345\</CODE\>. Another common error is not making sure the
-identifier matches exactly, especially when using the *name* property.
+\<CODE\>OU_12345\</CODE\>. Another common error is not making sure the
+identifier matches exactly, especially when using the _name_ property.
 All matches are performed on exact values, meaning that "Moyamba" in a
 source GML file would not be matched against "Moyamba District" in the
 database.
