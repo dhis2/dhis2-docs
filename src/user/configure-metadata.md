@@ -1748,6 +1748,7 @@ Table: Indicator functions
 | log10 | (expression) | Returns the common logarithm (base 10) of the numeric expression. |
 | null | | Returns no result. For example, _if( #{FH8ab5Rog83}<0, null, 1 )_ returns nothing if the data element value is less than 0, otherwise 1. |
 | removeZeros | (expression) | Returns nothing if the expression value is 0, otherwise returns the expression value. |
+| subExpression | (expression) | Evaluates part of an expression before aggregating. See Indicator SubExpressions below. |
 | .aggregationType | (aggregation type) | Overrides the default data element aggregation type for aggregate data (not for program data). |
 | .maxDate | (yyyy-mm-dd) | For a data element (not program data), value from periods ending on or before a maximum date. |
 | .minDate | (yyyy-mm-dd) | For a data element (not program data), value from periods starting on or after a minimum date. |
@@ -1789,6 +1790,36 @@ Examples of .aggregationType, .maxDate, .minDate, and .periodOffset functions:
 | ( #{FH8ab5Rog83} - <br /> #{QOlfIKgNJ3D2} ).periodOffset(-2) | data element FH8ab5Rog83 from 2 periods before minus data element QOlfIKgNJ3D2 from 2 periods before |
 | #{FH8ab5Rog83}.periodOffset(-2) + <br /> #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before |
 | ( #{FH8ab5Rog83}.periodOffset(-1) + <br /> #{FH8ab5Rog83} ).periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before (note that the functions are nested) |
+
+### Indicator SubExpressions { #indicator_subexpressions }
+
+When fetching data for a data element, indicators usually aggregate the data before evaluating it in the expression. For example, consider the indicator expression:
+
+    if( #{nYahlae7fe6} > 10, 1, 0 )
+
+If the data element has aggregation type SUM, this will sum all the values of the data element nYahlae7fe6 for the relevant period and then test to see if the sum is greater than 10. It will return 1 if the sum of all the data element values is greater than 10, otherwise it will return 0.
+
+Sometimes you may wish to evaluate a data value in an expression before aggregating it. For example, you may want to show at a district level how many facilities within the district have a data value greater than 10. This can be done by using the `subExpression` function as follows:
+
+    subExpression( if( #{nYahlae7fe6} > 10, 1, 0 ) )
+
+This will test each data element value to see if it is greater than 10. If it is greater than 10, the _if_ statement will return 1, otherwise 0. Then, assuming that data element nYahlae7fe6 has aggregation type SUM, it will sum the 1's and 0's, resulting in a count of how many data elements had a value greater than 10.
+
+SubExpression notes:
+
+1. An example such as the one above will sum the 1's and 0's only if the data element has an aggregation type of SUM. If the data element has a different aggregation type and you want to sum the 1's and 0's, you can override the aggregation type inside the subexpression by using the `.aggregationType()` function as follows:
+
+       subExpression( if( #{nYahlae7fe6} > 10, 1, 0 ) ).aggregationType(SUM)
+
+2. A SubExpression may reference only one data element, but it may reference it multiple times. For example:
+
+       subExpression( if( #{nYahlae7fe6} > 10 && #{nYahlae7fe6} <= 20, 1, 0 ) )
+
+3. A SubExpression may reference a data element with a category option combination and/or an attribute option combination, but it must be exactly the same reference each time. For example:
+
+       subExpression( if( #{nYahlae7fe6.beec4Dewah8} > 10 && #{nYahlae7fe6.beec4Dewah8} <= 20, 1, 0 ) )
+
+4. If you wish to evaluate an expression before aggregating that involves other types of data such as program data, or that involves more than one data element, category option combination or attribute option combination, you can use a Predictor to do so and store the result as a different data element. Then you can reference the predicted data element in an indicator or directly in analytics.
 
 <br />
 
