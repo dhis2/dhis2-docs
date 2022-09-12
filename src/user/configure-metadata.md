@@ -1803,7 +1803,7 @@ Sometimes you may wish to evaluate a data value in an expression before aggregat
 
     subExpression( if( #{nYahlae7fe6} > 10, 1, 0 ) )
 
-This will test each data element value to see if it is greater than 10. If it is greater than 10, the if statement will return 1, otherwise 0. Then, assuming that data element nYahlae7fe6 has aggregation type SUM, it will sum the 1's and 0's, resulting in a count of how many data elements had a value greater than 10.
+This will test each data element value to see if it is greater than 10. If it is greater than 10, the _if_ statement will return 1, otherwise 0. Then, assuming that data element nYahlae7fe6 has aggregation type SUM, it will sum the 1's and 0's, resulting in a count of how many data elements had a value greater than 10.
 
 SubExpression notes:
 
