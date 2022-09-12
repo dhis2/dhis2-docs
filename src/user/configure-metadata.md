@@ -1799,7 +1799,7 @@ When fetching data for a data elemenmt, indicators usually aggregate the data be
 
 If the data element has aggregation type SUM, this will sum all the values of the data element nYahlae7fe6 for the relevant period and then test to see if the sum is greater than 10. It will return 1 if the sum of all the data element values is greater than 10, otherwise it will return 0.
 
-Sometimes you may wish to evaluate a data value in an expression before aggregating it. For example, you may want to show at a district level how many faciltities within the district have a data value greater than 10. This can be done by using the subExpression function as follows:
+Sometimes you may wish to evaluate a data value in an expression before aggregating it. For example, you may want to show at a district level how many facilities within the district have a data value greater than 10. This can be done by using the `subExpression` function as follows:
 
     subExpression( if( #{nYahlae7fe6} > 10, 1, 0 ) )
 
