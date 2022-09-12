@@ -1793,7 +1793,7 @@ Examples of .aggregationType, .maxDate, .minDate, and .periodOffset functions:
 
 ### Indicator SubExpressions { #indicator_subexpressions }
 
-When fetching data for a data elemenmt, indicators usually aggregate the data before evaluating it in the expression. For example, consider the indicator expression:
+When fetching data for a data element, indicators usually aggregate the data before evaluating it in the expression. For example, consider the indicator expression:
 
     if( #{nYahlae7fe6} > 10, 1, 0 )
 
