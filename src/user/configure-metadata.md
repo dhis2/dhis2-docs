@@ -1807,7 +1807,7 @@ This will test each data element value to see if it is greater than 10. If it is
 
 SubExpression notes:
 
-1. An example such as the one above will sum the 1's and 0's only if the data element has an aggregation type of SUM. If the data element has a different aggregation type and you want to sum the 1's and 0's, you can override the aggregation type inside the subexpression by using the .aggregationType() function as follows:
+1. An example such as the one above will sum the 1's and 0's only if the data element has an aggregation type of SUM. If the data element has a different aggregation type and you want to sum the 1's and 0's, you can override the aggregation type inside the subexpression by using the `.aggregationType()` function as follows:
 
        subExpression( if( #{nYahlae7fe6} > 10, 1, 0 ) ).aggregationType(SUM)
 
