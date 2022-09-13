@@ -1137,6 +1137,12 @@ resource identified by the following URL:
 
     /api/33/enrollments
 
+The different status of an enrollment are:
+
+* **ACTIVE**: It is used meanwhile when the tracked entity participates on the program.
+* **COMPLETED**: It is used when the tracked entity finished its participation on the program.
+* **CANCELLED**: "Deactivated" in the web UI. It is used when the tracked entity cancelled its participation on the program.
+
 For cancelling or completing an enrollment, you can make a *PUT*
 request to the `enrollments` resource, including the identifier and the
 action you want to perform. For cancelling an enrollment for a tracked
