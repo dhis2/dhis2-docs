@@ -8,8 +8,6 @@ Table: General settings
 
 | Setting | Description |
 |---|--|
-| **Maximum number of analytics records** | Increase this number to provide more records from the analytics.<br> <br>The default value is 50,000.<br>      <br>    **Warning**<br>     <br>    Use the setting **Unlimited** carefully, it might result in a very high load on your server. |
-| **Maximum number of SQL view records** | Set the maximum number of records in a SQL view.<br> <br>The default value is Unlimited. |
 | **Cache strategy** | Decides for how long reports analytics responses should be cached.<br> <br>If you use the scheduled, nightly analytics update, you may want to select **Cache until 6 AM tomorrow**. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tables are updated.<br> <br>If you are loading data continuously into the analytics tables, select **No cache**.<br> <br>For other cases select the amount of time you want the data to be cached. |
 | **Infrastructural indicators** | Defines an indicator group where the member indicators should describe data about the organisation units' infrastructure.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
 | **Infrastructural data elements** | Defines a data element group where the member data elements should describe data about the organisation units' infrastructure.<br> <br>Infrastructural data elements can be population, doctors, beds, Internet connectivity and climate.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
@@ -67,6 +65,16 @@ Table: Server settings
 | **Google Analytics (Universal Analytics) key** | Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.<br> <br>You can read more about Google Analytics at [google.com/analytics](https://google.com/analytics). |
 | **Google Maps API key** | Defines the API key for the Google Maps API. This is used to display maps within DHIS2. |
 | **Bing Maps API key** | Defines the API key for the Bing Maps API. This is used to display maps within DHIS2. |
+
+Table: Limit settings
+
+| Setting | Description |
+|---|---|
+| **Maximum number of analytics records** | Increase this number to provide more records from the analytics.<br> <br>The default value is 50,000.<br>      <br>    **Warning**<br>     <br>    Use the setting **Unlimited** carefully, it might result in a very high load on your server. |
+| **Maximum number of SQL view records** | Set the maximum number of records in a SQL view.<br> <br>The default value is Unlimited. |
+| **Maximum number of Tracked Entity Instance that can be fetched from database** | Sets the limit on maximum tracked entity instance records that can be fetched from database. If user does not provide any value then default value which is 50,000 will be used.<br>Setting this to 0 or any negative integer will disable this setting. <br>**Warning**<br>Disabling this setting may result in high load on the server.|
+
+
 
 ## Appearance settings { #system_appearance_settings } 
 
