@@ -30,6 +30,7 @@ Table: User query parameters
 | includeChildren | false &#124; true | Includes users from all children organisation units of the ou parameter. |
 | page | Number | The page number. |
 | pageSize | Number | The page size. |
+| orgUnitBoundary | data_capture &#124; data_output &#124; tei_search | Restrict search to users having a common organisation unit with the current user for the given boundary        |
 
 A query for max 10 users with "konan" as first name or surname (case
 in-sensitive) who have a subset of authorities compared to the current
@@ -119,6 +120,9 @@ against the following user properties:
 - Surname
 - Email
 - Username
+
+In addition to the `query` parameter the search can be restricted by the
+`orgUnitBoundary` parameter as described in table of parameters for users above.
 
 An example request looks like this:
 
