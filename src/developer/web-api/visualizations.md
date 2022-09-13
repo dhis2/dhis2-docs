@@ -98,17 +98,20 @@ detailed information about each object on a users dashboard.
 
 When a user is building a dashboard it is convenient
 to be able to search for various analytical resources using the
-*/dashboards/q* resource. This resource lets you search for matches on
+*/dashboards/q* or */dashboards/search* resources. 
+These resources let you search for matches on
 the name property of the following objects: visualizations, eventVisualizations maps,
 users, reports and resources. You can do a search by making a *GET*
 request on the following resource URL pattern, where my-query should be
 replaced by the preferred search query:
 
     /api/dashboards/q/my-query.json
+    /api/dashboards/search?q=my-query
 
 For example, this query:
 
     /api/dashboards/q/ma?count=6&maxCount=20&max=REPORT&max=MAP
+    /api/dashboards/search?q=ma?count=6&maxCount=20&max=REPORT&max=MAP
 
 Will search for the following:
 
@@ -118,7 +121,7 @@ Will search for the following:
 
 
 
-Table: dashboards/q query parameters
+Table: dashboards/q and dashboards/search query parameters
 
 | Query parameter | Description | Type | Default |
 |---|---|---|---|
