@@ -213,6 +213,21 @@ or create mulitple users and their user groups, consider a program to *POST*
 one at a time, or *POST* all users followed by another action to
 update their user groups while specifiying the new user's identifiers.
 
+When creating a user the payload may also contain user settings.
+These are added as `settings` object to the root object.
+Each key-value pair becomes a member in the `settings` object, for example:
+```json
+{
+    "id": "Mj8balLULKp",
+    "firstName": "John",
+    "surname": "Doe",
+    "settings": {
+        "keyUiLocale": "de"
+    },
+    //...
+}
+```
+
 After the user is created, a *Location* header is sent back with the
 newly generated ID (you can also provide your own using the `/api/system/id`
 endpoint). The same payload can then be used to do updates, but remember
