@@ -211,6 +211,10 @@ layer** selection. This opens the Events layer configuration dialog.
       deviation; Variance; Min; Max. See also [Aggregation
       operators](https://dhis2.github.io/dhis2-docs/master/en/user/html/ch10s05.html#d0e8082).
 
+    - **Only show completed events**: Includes only completed events in the aggregation process.
+      This is useful when you want to exclude partial events in indicator calculations. Available
+      for indicators, program indictors and event data items.
+
 2.  In the **PERIOD** tab
 
     ![](resources/images/maps/maps_thematic_layer_dialog_PERIOD.png)
@@ -1495,27 +1499,25 @@ everyone or a user group. To modify the sharing settings:
 
 1.  Click **File** \> **Share**. The sharing settings dialog opens.
 
-2.  In the text box, search for the name of the user or group you want
-    to share your favorite with and select it.
+2.  **Give access to a user or group**: In the text box, search for the name of the
+    user or group you want to share your favorite with and select it.
 
-    The chosen user or group is added to the list of recipients.
+    Select the access level and click on **Give access**.
 
-    Repeat the step to add more user groups.
+    Repeat the step to add more users or groups.
 
-3.  If you want to allow external access, select the corresponding box.
+3.  **Users and groups that currently have access**: For each user or group, choose the
+    access level. The options are:
 
-    Note that in order for logged in and not logged in users to have
-    access, you must also allow public access.
+    - No access: The public won't have access to the map. This setting is only applicable to All users.
 
-4.  For each user group, choose an access setting. The options are:
+    - View only
 
-    - None (for default groups only, as they cannot be removed)
+    - View and edit
 
-    - Can view
+    - Remove access: Remove the access for groups or individuals.
 
-    - Can edit and view
-
-5.  Click **CLOSE** to close the dialog.
+4.  Click **Close** to close the dialog.
 
 ### Get the link to a map
 
@@ -1548,9 +1550,11 @@ To view interpretations for relative periods, such as a year ago:
 2.  Click **Interpretations** in the top right of the workspace to open
     the interpretations panel.
 
-3.  Click an interpretation. Your map displays the data and the date
+3.  Click on **See interpretation**. Your map displays the data and the date
     based on when the interpretation was created. To view other
     interpretations, click them.
+
+![](resources/images/maps/maps_interpretations_modal.png)
 
 ### Write interpretation for a map
 
@@ -1558,7 +1562,7 @@ To create an interpretation, you first need to create a map and save it.
 If you've shared your map with other people, the interpretation you
 write is visible to those people.
 
-1.  Open a favorite with interpretations.
+1.  Open a saved map.
 
 2.  Click **Interpretations** in the top right of the workspace to open
     the interpretations panel.
@@ -1573,32 +1577,32 @@ write is visible to those people.
     an internal DHIS2 message with the interpretation or comment. You
     can see the interpretation in the **Dashboard app**.
 
-5.  Click **SAVE** if you want your interpretation to have the same
-    sharing settings as the map.
-
-    Click **SAVE & SHARE** if you want to change the sharing settings
-    (see below) for your interpretation.
+5.  Click **Post interpretation** to save the interpretation.
 
 ### Change sharing settings for an interpretation
 
 1.  Click an interpretation (see how to view an interpretation above).
 
-2.  Click **Share** below the interpretation. The sharing settings
+2.  Click the share icon below the interpretation. The sharing settings
     dialog opens.
 
 3.  Search for and add a users and user groups that you want to share
-    your map with.
+    your map with, and set the access level. Click on **Give access**.
 
-4.  Change sharing settings for the users you want to modify:
+4.  Change the access level for the users you want to modify:
 
-    - **Can edit and view**: Everyone can view and edit the object.
+    - **View and edit**: Everyone can view and edit the object.
 
-    - **Can view only**: Everyone can view the object.
+    - **View only**: Everyone can view the object.
 
     - **No access**: The public won't have access to the object. This
-      setting is only applicable to Public access.
+      setting is only applicable to All users.
+
+    - **Remove access**: Remove the access for groups or individuals.
 
 5.  Click **CLOSE** when sharing settings are updated.
+
+![](resources/images/maps/maps_interpretations_sharing.png)
 
 ## Save a map as an image { #using_maps_image_export }
 
