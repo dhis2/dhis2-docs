@@ -700,5 +700,12 @@ curl -X DELETE -u admin:district "play.dhis2.org/api/33/userDataStore/foo"
 }
 ```
 
+### Admin Access to another User's Datastore
+Admins can manipulate another user's datastore by adding the `username`
+parameter to any of the manipulations described above to not have them affect
+the admins own datastore but the datastore of the user given by the `username`
+parameter.
 
+For example, to add a value to `Peter`'s datastore an admin uses:
 
+    POST /api/userDataStore/<namespace>/<key>?username=Peter

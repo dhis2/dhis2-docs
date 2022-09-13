@@ -1,6 +1,6 @@
 # Using Gateways for SMS reporting  { #sms_report_sending } 
 
-DHIS2 supports accepting data via [SMS](https://docs.dhis2.org/master/en/dhis2_user_manual_en/mobile.html), however, the SMS needs to be composed in a cryptic way to protect the information. The DHIS2 Android App acts as a transparent layer to send the information via SMS where the user does not have to worry about writing the SMS. To send SMSs with the Android App the SMS gateway need to be properly configured. This section explains the different options available and how to achieve that.
+DHIS2 supports accepting data via [SMS](https://docs.dhis2.org/master/en/dhis2_user_manual_en/mobile.html), however, the SMS needs to be compressed. The DHIS2 Android App acts as a transparent layer to send the information via SMS where the user does not have to worry about writing the SMS. To send SMSs with the Android App the SMS gateway need to be properly configured. This section explains the different options available and how to achieve that.
 
 ## Sending SMS { #sms_report_sening } 
 
@@ -22,9 +22,7 @@ You’ll need to download and install the DHIS2 Android SMS Gateway app on the m
 
 Once this is set up and running, you then enter the phone number of this gateway device in the configuration page of any other mobile device using the DHIS2 Capture App. Then, when SMS are sent from these reporting devices, they will be received on the gateway device and automatically forwarded to the DHIS2 server where they will be processed.
 
-**Using this gateway device is perfect when testing the SMS functionality.** It would be fine when piloting projects that require SMS reporting. As long as the device is plugged into a power supply and has a constant internet connection it works well for small scale projects.
-
-However, when considering moving a project to production it would be necessary to investigate one of the more permanent and reliable solutions for gateways below.
+Using this gateway device is perfect for testing the SMS functionality but should not be used in production as it presents several flaws like not being able to handle multipart SMS, handling concurrent SMS and might even be killed by the Android OS.  Therefor when considering moving a project to production it would be necessary to investigate one of the more permanent and reliable solutions for gateways below.
 
 ### Sending SMS using an Android Device Gateway
 
@@ -72,6 +70,6 @@ You would need to run your own server running software such as [Kannel](https://
 
 ### Receiving concatenated or multipart SMS
 
-When syncing data via SMS with the DHIS2 Android App, it uses a compressed format to use as little space (characters of text) as possible. Despite this, it will quite often be the case that a message will extend over the 160 character limit of one standard SMS. On most modern mobile devices these messages will still be sent as one concatenated or multipart SMS, and received as one message. When sending between two mobile devices, when an Android device is used as the gateway, this should be handled without issue.
+When syncing data via SMS with the DHIS2 Android App, it uses a compressed format to use as little space (characters of text) as possible. Despite this, it will quite often be the case that a message will extend over the 160 character limit of one standard SMS. On most modern mobile devices these messages will still be sent as one concatenated or multipart SMS, and received as one message. 
 
 When selecting an SMS gateway then, it is important to confirm that the phone carrier used supports concatenated SMS. Most of them will support this, but it is important to confirm as the SMS functionality will not work if SMS are split. This relies on something called a UDH (User Data Header). When discussing with providers then, ensure you ask if it is supported.

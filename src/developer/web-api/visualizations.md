@@ -98,17 +98,20 @@ detailed information about each object on a users dashboard.
 
 When a user is building a dashboard it is convenient
 to be able to search for various analytical resources using the
-*/dashboards/q* resource. This resource lets you search for matches on
+*/dashboards/q* or */dashboards/search* resources. 
+These resources let you search for matches on
 the name property of the following objects: visualizations, eventVisualizations maps,
 users, reports and resources. You can do a search by making a *GET*
 request on the following resource URL pattern, where my-query should be
 replaced by the preferred search query:
 
     /api/dashboards/q/my-query.json
+    /api/dashboards/search?q=my-query
 
 For example, this query:
 
     /api/dashboards/q/ma?count=6&maxCount=20&max=REPORT&max=MAP
+    /api/dashboards/search?q=ma?count=6&maxCount=20&max=REPORT&max=MAP
 
 Will search for the following:
 
@@ -118,7 +121,7 @@ Will search for the following:
 
 
 
-Table: dashboards/q query parameters
+Table: dashboards/q and dashboards/search query parameters
 
 | Query parameter | Description | Type | Default |
 |---|---|---|---|
@@ -355,7 +358,7 @@ Table: Visualization attributes
 | hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
 | fixColumnHeaders | Keeps the columns' headers fixed (or not) in a Pivot Table. Boolean value. |
 | fixRowHeaders | Keeps the rows' headers fixed (or not) in a Pivot Table. Boolean value. |
-| completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
+| completedOnly | Flag used in analytics requests. If true, only completed events/enrollments will be taken into consideration. Boolean value. |
 | skipRounding | Apply or not rounding. Boolean value. |
 | showDimensionLabels | Shows the dimension labels or not. Boolean value. |
 | hideTitle | Hides the title or not. Boolean value. |
@@ -871,9 +874,7 @@ Table: EventVisualization attributes
 | displayDensity | The display density of the text. |
 | fontSize | The font size of the text. |
 | relativePeriods | An object representing the relative periods used in the analytics query. |
-| legendSet | An object representing the definitions for the legend. |
-| legendDisplayStyle | The legend's display style. It can be: FILL or TEXT. |
-| legendDisplayStrategy | The legend's display style. It can be: FIXED or BY_DATA_ITEM. |
+| legend | An object representing the definitions for the legend and legend set, display style (FILL or TEXT) and display strategy (FIXED or BY_DATA_ITEM). |
 | aggregationType | Determines how the values are aggregated (if applicable). Valid options: SUM, AVERAGE, AVERAGE_SUM_ORG_UNIT, LAST, LAST_AVERAGE_ORG_UNIT, FIRST, FIRST_AVERAGE_ORG_UNIT, COUNT, STDDEV, VARIANCE, MIN, MAX, NONE, CUSTOM or DEFAULT. |
 | regressionType | A valid regression type: NONE, LINEAR, POLYNOMIAL or LOESS. |
 | targetLineValue | The chart target line. Accepts a Double type. |
@@ -901,7 +902,7 @@ Table: EventVisualization attributes
 | colSubTotals | Displays (or not) the columns sub-totals. Boolean value. |
 | cumulativeValues | Indicates whether the EventVisualization is using cumulative values. Boolean value. |
 | hideEmptyRows | Indicates whether to hide rows with no data values. Boolean value. |
-| completedOnly | Indicates whether to hide columns with no data values. Boolean value. |
+| completedOnly | Flag used in analytics requests. If true, only completed events/enrollments will be taken into consideration. Boolean value. |
 | showDimensionLabels | Shows the dimension labels or not. Boolean value. |
 | hideTitle | Hides the title or not. Boolean value. |
 | hideSubtitle | Hides the subtitle or not. Boolean value. |
@@ -1017,6 +1018,14 @@ The following representation is an example of a response in JSON format (for bre
     },
     "attributeDimensions": [],
     "translations": [],
+    "legend": {
+      "set": {
+        "id": "gFJUXah1uRH"
+      },
+      "showKey": false,
+      "style": "FILL",
+      "strategy": "FIXED"
+    },
     "filterDimensions": [
       "ou",
       "H6uSAMO5WLD"
@@ -1152,6 +1161,14 @@ These operations follow the standard *REST* semantics. A new EventVisualization 
       "name": "Tom Wakiki",
       "id": "GOLswS44mh8",
       "username": "system"
+    },
+    "legend": {
+      "set": {
+        "id": "gFJUXah1uRH"
+      },
+      "showKey": false,
+      "style": "FILL",
+      "strategy": "FIXED"
     },
     "relativePeriods": {
       "thisYear": false,

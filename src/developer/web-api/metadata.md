@@ -887,6 +887,63 @@ PATCH /api/organisationUnitGroups/{id}
 ]
 ```
 
+#### Blocked add dataElementGroup to dataElement
+
+```
+PATCH /api/dataElements/{id}?importReportMode=ERRORS_NOT_OWNER
+```
+
+```json
+[
+    {"op": "add", "path": "/dataElementGroups/-", "value": {"id": "data-element-group-id"}}
+]
+```
+
+#### Blocked update name of dataElementGroup in dataElement
+
+```
+PATCH /api/dataElements/{id}?importReportMode=ERRORS_NOT_OWNER
+```
+
+```json
+[
+    {"op": "add", "path": "/dataElementGroups/0", "value": {"name": "new-name"}}
+]
+```
+#### Remove collection item by id
+
+```
+PATCH /api/dataSets/{id}?importReportMode=ERRORS_NOT_OWNER
+```
+
+```json
+[
+    {"op": "remove-by-id", "path": "/organisationUnits", "id": "u6CvKyF0Db5"}
+]
+```
+
+#### Patch request with invalid path
+If `path` property is invalid or does not exist the patch service will return an error as below
+
+
+```
+PATCH /api/dataSets/{id}?importReportMode=ERRORS_NOT_OWNER
+```
+
+```json
+[
+    {"op": "remove-by-id", "path": "/test", "id": "u6CvKyF0Db5"}
+]
+```
+Response
+```json
+{
+    "httpStatus": "Bad Request",
+    "httpStatusCode": 400,
+    "status": "ERROR",
+    "message": "Invalid path /test"
+}
+```
 
 ## Metadata export { #webapi_metadata_export } 
 
@@ -2407,6 +2464,11 @@ POST to the endpoint `/api/fileResources` with a multipart upload:
 
 ```bash
 curl "https://server/api/fileResources" -X POST
+  -F "file=@/path/to/file/name-of-file.png"
+```
+The `uid` of a file resource can be provided when it is created, for example:
+```bash
+curl "https://server/api/fileResources?uid=0123456789x" -X POST
   -F "file=@/path/to/file/name-of-file.png"
 ```
 
