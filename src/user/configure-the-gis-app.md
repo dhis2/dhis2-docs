@@ -39,11 +39,11 @@ if you need to update polygon geometries, you should use the automatic
 > EPSG 4326, you will need to reproject the data first before importing
 > into DHIS2.
 
-## Importing coordinates { #gis_creating_setup }
+## Importing coordinates in GeoJSON format { #geojson_creating_setup }
 
 Step 1 - Convert geospatial data to GeoJSON format
 
-Skip this step if tour data is already in GeoJSON format using geographic
+Skip this step if your data is already in GeoJSON format using geographic
 longitude/latitude.
 
 The recommended tool for geographical format conversions is called
@@ -90,23 +90,12 @@ the server and rendered in a browser, so if the data is overly complex,
 the performance of the DHIS2 Maps will be negatively impacted. This
 optimization process can be described as follows:
 
-Coordinates: The number of significant decimal digits (e.g.
-23.02937874993774) should be shortened to fewer digits (e.g. 23.03).
-Although this will result in some inaccuracies on the map, given the
-usual scale at which maps in DHIS2 are produced (\> 1:50,000), the loss
-of precision should not be noticeable. Normally, no more than four
-significant digits after the decimal point should be necessary.
-Polygons: In addition to shortening the number of significant digits,
-the actual number of points should also be reduced to an optimal level.
-Finding this optimal level may take a bit of experimentation. Decreasing
-the precision of the points as well as the number of points through
-generalization, will lead to degradation of the polygon. However, after
+For polygons, we can make the boundary lines less detailed by
+removing some of the line points. This generalization will
+lead to degradation of the polygon. However, after
 a bit of experimentation, an optimal level of generalization can be
 found, where the accuracy of the polygon is visually acceptable, and the
-performance is optimal.
-
-For polygons, we need to make the boundary lines less detailed by
-removing some of the line points. Make a backup of your files
+performance is optimal. Make a backup of your files
 before you start. One possible method is the use of
 [MapShaper](http://www.mapshaper.org/) which is an online tool which can
 be used to generalize geographical data. To use MapShaper, simply upload
@@ -176,3 +165,167 @@ has a too small varchar definition. Increase it to 100.
 
 \- Wrongly formatted input GeoJSON, use [GeoJSONLint](https://geojsonlint.com/)
 to test the content.
+
+## Importing coordinates in GML format { #gis_creating_setup }
+
+Step 1 - Simplify/generalize your geographical data
+
+The boundaries in geographical data files are usually very accurate, too
+much so for the needs of a web-based GIS. This usually does not affect
+the performance when using GIS files on a local system, but it is
+usually necessary to optimize the geographical data for the web-based
+GIS system of DHIS2. All geographical data needs to be downloaded from
+the server and rendered in a browser, so if the data is overly complex,
+the performance of the DHIS2 Maps will be negatively impacted. This
+optimization process can be described as follows:
+
+For polygons, we can make the boundary lines less detailed by
+removing some of the line points. This generalization will
+lead to degradation of the polygon. However, after
+a bit of experimentation, an optimal level of generalization can be
+found, where the accuracy of the polygon is visually acceptable, and the
+performance is optimal. Make a backup of your shapefiles
+before you start. One possible method is the use of
+[MapShaper](http://www.mapshaper.org/) which is an online tool which can
+be used to generalize geographical data. To use MapShaper, simply upload
+your shapefile to the site. Then, at the centre bottom you see a slider
+that starts at 0%. It is usually acceptable to drag it up to about 80%.
+In the left menu you can check "show original lines" to compare the
+result and you may want to give a different simplification method a try.
+When you are happy with the result, click "export" in the top right
+corner. Then check the first of the four options called "Shapefile -
+polygons", click "create" and wait for the download buttons to appear.
+Now, download the two files to your local computer and overwrite the
+existing ones. Move on to the next step with your new simplified
+shapefile.
+
+Step 2 - Convert the shapefile to GML
+
+The recommended tool for geographical format conversions is called
+"ogr2ogr". This should be available for most Linux distributions `sudo apt-get install gdal-bin`. For Windows, go to <http://fwtools.maptools.org/>and download
+"FWTools", install it and open up the FWTools command shell. During the
+format conversion we also want to ensure that the output has the correct
+coordinate projection (called EPSG:4326 with geographic longitude and
+latitude). For a more detailed reference of geographic coordinates,
+please refer to this [site](http://www.epsg-registry.org/). If you have
+already reprojected the geographic data to the geographic
+latitude/longitude (EPSG:4326) system, there is no need to explicitly
+define the output coordinate system, assuming that `ogr2ogr` can
+determine the input spatial reference system. Note that most shapefiles
+are using the EPSG:4326 system. You can determine the spatial reference
+system by executing the following command.
+
+    ogrinfo -al -so filename.shp
+
+Assuming that the projection is reported to be EPSG:27700 by `ogrinfo`,
+we can transform it to EPSG:4326 by executing the following
+command.
+
+    ogr2ogr -s_srs EPSG:27700 -t_srs EPSG:4326 -f GML filename.gml filename.shp
+
+If the geographic data is already in EPSG:4326, you can simply transform
+the shapefile to GML by executing the following command.
+
+    ogr2ogr -f GML filename.gml filename.shp
+
+You will find the created GML file in the same folder as the shapefile.
+
+Step 3 - Prepare the GML file
+
+Unfortunately, the GML file is not ready for importation yet. Open it in
+a robust text editor like Geany (Linux) or Notepad++ (Windows). GML is
+an XML based format which means that you will recognize the regular XML
+tag hierarchy. In the GML file an organisation unit is represented as a
+\<gml:featureMember\>. Inside the feature members we usually find a lot
+of attributes, but we are just going to import their coordinates.
+
+In order to import geospatial data from the feature members of the GML
+input, DHIS2 must match each of them with an organisation unit in its
+database. The feature member element must, in other words, contain a
+reference to its corresponding organisation unit. The reference itself
+must be one of three possible DHIS2 identifiers: **uid**, **code** or
+**name**. The identifier of choice must be provided as a property for
+each feature member element. The importer will look for a property with
+the local name of either _Uid_, _Code_ or _Name_, e.g. "ogr:Name" or
+"anyPrefix:Code".
+
+If your feature members already contain a property of the identifier you
+wish to use (such as the name of an area) you can use search and replace
+in a text editor to rename these elements to a name DHIS2 will recognize
+(see the below table). This is typically a workflow which is applicable
+when using the name as the identifier (the source shapefile or even GML
+will usually contain the name for each area it defines).
+
+Table: Organisation unit identifiers supported for GML import
+
+| Matching priority | Identifier | Valid spellings  | Guaranteed unique |
+| ----------------- | ---------- | ---------------- | ----------------- |
+| 1                 | Uid        | uid, Uid, UID    | Yes               |
+| 2                 | Code       | code, Code, CODE | No                |
+| 3                 | Name       | name, Name, NAME | No                |
+
+In the case of renaming properties one would usually find a tag named
+something like "ogr:DISTRICT*NAME", "ogr:NAME_1" and rename it to
+"ogr:Name". If using the \_code* or _uid_ identifiers on the other hand,
+looking up the correct values in the DHIS2 database and going through
+the GML file, adding the properties for each corresponding feature
+member might be necessary. In any of the cases it is important to
+realize that the identifier used must **uniquely** identify an
+organisation unit (e.g. if there are two organisation units in the
+database of the same name or code, these cannot be matched properly on
+either). As _uid_ is the only guaranteed-to-be-unique identifier it is
+the most robust choice. However, as matching on name is usually easier
+(given that the name is already part of your data), a viable approach to
+solving uniqueness conflicts can be to match any non-uniquely named
+organisation units on a different identifier (uid, preferably) and the
+rest on their names.
+
+As can be seen in the above table there is a matching priority, meaning
+is any two or more identifiers are provided for the same feature member,
+matching will be performed on the highest priority identifier. Note also
+the valid properties which can be used in you GML. The namespace prefix
+is not important as only the local name is used.
+
+A common pitfall of performing preparation of the GML files is syntax-
+or element naming errors. Therefore please make sure that all properties
+of the GML file are started and terminated with correctly corresponding
+tags. Also make sure the properties follow either of the given valid
+spellings of the property name. The identifying properties are supposed
+to look like e.g. \<ogr:Name\>Moyamba District\</ogr:Name\>,
+\<somePrefix:uid\>x7uuia898nJ\</somePrefix:uid\> or
+\<CODE\>OU*12345\</CODE\>. Another common error is not making sure the
+identifier matches exactly, especially when using the \_name* property.
+All matches are performed on exact values, meaning that "Moyamba" in a
+source GML file would not be matched against "Moyamba District" in the
+database.
+
+Have a brief look at the identifiers and compare them to the
+corresponding values in the database. If they seem to match fairly good,
+it is about time to do a preview in the import-export module.
+
+Go to Services -\> Import-Export, select "Preview", select the GML file
+and click "Import". Look for new/updated organisation units. Our
+intention is to add coordinates to already existing organisation units
+in the database, so we want as many updates as possible and 0 new. Those
+listed as new will be created as root units and mess up the organisation
+unit trees in DHIS2. If any listed as new, click the number and the
+organisation units in question will appear in the list below. If there
+are any slight misspellings compared to the organisation unit names in
+the database - fix them and do the preview again. Otherwise, click the
+"discard all" button below the list and then the "Import all" button
+above the list.
+
+If the import process completes successfully, you should now be able to
+utilize the geographical data in the DHIS2 GIS. If not, check the log
+for hints and look for common errors such as:
+
+\- Name duplicates in the GML file. The name column in the database is
+unique and does not accept two organisation units with the same name.
+
+\- The "shortname" column in the organisationunit table in your database
+has a too small varchar definition. Increase it to 100.
+
+\- Special name characters in the GML file. Be sure to convert these to
+appropriate XML equivalents or escape sequences.
+
+\- Wrongly formatted input GML, non-matching tags
