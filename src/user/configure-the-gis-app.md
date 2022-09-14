@@ -187,22 +187,12 @@ found, where the accuracy of the polygon is visually acceptable, and the
 performance is optimal. Make a backup of your shapefiles
 before you start. One possible method is the use of
 [MapShaper](http://www.mapshaper.org/) which is an online tool which can
-be used to generalize geographical data. To use MapShaper, simply upload
-your shapefile to the site. Then, at the centre bottom you see a slider
-that starts at 0%. It is usually acceptable to drag it up to about 80%.
-In the left menu you can check "show original lines" to compare the
-result and you may want to give a different simplification method a try.
-When you are happy with the result, click "export" in the top right
-corner. Then check the first of the four options called "Shapefile -
-polygons", click "create" and wait for the download buttons to appear.
-Now, download the two files to your local computer and overwrite the
-existing ones. Move on to the next step with your new simplified
-shapefile.
+be used to generalize geographical data. To use MapShaper, simply upload your files to the site. Then, click on Simplify in the top menu and select a simplification method. A slider will show at the top of the screen that starts at 100%. It is usually acceptable to drag it up to about 30%. When you are happy with the result, click "Export" in the top right corner. Select GeoJSON file format and click the Export button to download the file to your computer.
 
-Step 2 - Convert the shapefile to GML
+Step 2 - Convert to GML
 
 The recommended tool for geographical format conversions is called
-"ogr2ogr". This should be available for most Linux distributions `sudo apt-get install gdal-bin`. For Windows, go to <http://fwtools.maptools.org/>and download
+"ogr2ogr". This should be available for most Linux distributions `sudo apt-get install gdal-bin`. For Windows, go to <http://fwtools.maptools.org/> and download
 "FWTools", install it and open up the FWTools command shell. During the
 format conversion we also want to ensure that the output has the correct
 coordinate projection (called EPSG:4326 with geographic longitude and
@@ -215,18 +205,18 @@ determine the input spatial reference system. Note that most shapefiles
 are using the EPSG:4326 system. You can determine the spatial reference
 system by executing the following command.
 
-    ogrinfo -al -so filename.shp
+    ogrinfo -al -so filename.json
 
 Assuming that the projection is reported to be EPSG:27700 by `ogrinfo`,
 we can transform it to EPSG:4326 by executing the following
 command.
 
-    ogr2ogr -s_srs EPSG:27700 -t_srs EPSG:4326 -f GML filename.gml filename.shp
+    ogr2ogr -s_srs EPSG:27700 -t_srs EPSG:4326 -f GML filename.gml filename.json
 
 If the geographic data is already in EPSG:4326, you can simply transform
 the shapefile to GML by executing the following command.
 
-    ogr2ogr -f GML filename.gml filename.shp
+    ogr2ogr -f GML filename.gml filename.json
 
 You will find the created GML file in the same folder as the shapefile.
 
@@ -303,8 +293,7 @@ Have a brief look at the identifiers and compare them to the
 corresponding values in the database. If they seem to match fairly good,
 it is about time to do a preview in the import-export module.
 
-Go to Services -\> Import-Export, select "Preview", select the GML file
-and click "Import". Look for new/updated organisation units. Our
+Go to the **Import/Export app**, click **Org Unit geometry import** and select the **GML** format. Select the GML file and click **Start dry run** and look at the summary. Look for new/updated organisation units. Our
 intention is to add coordinates to already existing organisation units
 in the database, so we want as many updates as possible and 0 new. Those
 listed as new will be created as root units and mess up the organisation
