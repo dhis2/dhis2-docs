@@ -945,6 +945,36 @@ Response
 }
 ```
 
+### Metadata CSV export { #webapi_metadata_csv_export } 
+
+Field filtering works almost the same for CSV (please note that using CSV on the `/api/metadata` endpoint is not supported), but not that
+field fransformations are not yet supported.
+
+For endpoints that support CSV (our metadata endpoints like `/api/dataElements` `/api/organisationUnits`) you can either use the `Accept` header with
+value `text/csv` or you can use the extension `.csv`. Be aware that complex objects are not supported, and we only support id-object collections (so a list of UIDs
+will be returned).
+
+| Name | Options | Description |
+|---|---|---|
+| fields | Same as metadata field filter (with the caveats mentioned above) | Default filter is `id,displayName` |
+| skipHeader | false/true | Should the header (with column names) be included or not
+| separator | Default: `.` | Column separator
+| arraySeparator | Default: `;` | If one of the field is a collection of id-objects this separator will separate all the UIDs
+
+#### Examples
+
+#### Get all data elements including their group associations
+
+```
+/api/dataElements.csv?fields=id,displayName,dataElementGroups
+```
+
+#### Get all org units including geometry (which will get ignored)
+
+```
+/api/organisationUnits.csv?fields=id,displayName,organisationUnitGroups,geometry
+```
+
 ## Metadata export { #webapi_metadata_export } 
 
 This section explains the metatada API which is available at
