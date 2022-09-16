@@ -1314,6 +1314,16 @@ This section is about sending and reading events.
 
     /api/33/events
 
+The different status of an event are:
+
+* **ACTIVE**: If a event has ACTIVE status, it is possible to edit the event details. COMPLETED events can be turned ACTIVE again and vice versa.
+* **COMPLETED**: An event change the status to COMPLETED only when a user clicks the complete button. If a event has COMPLETED status, it is not possible to edit the event details. ACTIVE events can be turned COMPLETED again and vice versa.
+* **SKIPPED**: Scheduled events that no longer need to happen. In Tracker Capture, there is a button for that.
+* **SCHEDULE**: If an event has no event date (but it has an due date) then the event status is saved as SCHEDULE.
+* **OVERDUE**: If the due date of a scheduled event (no event date) has expired, it can be interpreted as OVERDUE.
+* **VISITED**: (Removed since 2.38. VISITED migrate to ACTIVE). In Tracker Capture its possible to reach VISITED by adding a new event with an event date, and then leave before adding any data to the event - but it is not known to the tracker product team that anyone uses the status for anything. The VISITED status is not visible in the UI, and in all means treated in the same way as an ACTIVE event.
+
+
 #### Sending events { #webapi_sending_events } 
 
 DHIS2 supports three kinds of events: single events with no registration
