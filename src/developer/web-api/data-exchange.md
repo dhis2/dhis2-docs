@@ -94,4 +94,3 @@ Example payload for internal data exchange:
   }
 }
 ```
-
