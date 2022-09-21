@@ -25,7 +25,7 @@ installation and demos. Simply follow the guide
 #### Prerequisites to running D2 Cluster
 
 You must be sure that you have installed [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [Nodejs](https://nodejs.org/en/). A current version of [Docker](https://www.docker.com/) must be
-installed on your machine as well. Please refer to the guide for detailed information [guide](https://developers.dhis2.org/docs/guides/spin-up-local-instance).
+installed on your machine as well. Please refer to the [guide](https://developers.dhis2.org/docs/guides/spin-up-local-instance) for detailed information.
 
 ### Downloading and installing the server version
 
