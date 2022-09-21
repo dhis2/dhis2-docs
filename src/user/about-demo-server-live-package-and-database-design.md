@@ -17,7 +17,7 @@ DHIS2. Simply open the link in your web browser and login with username
 
 ### Running D2 Cluster
 
-Using Docker containers to run a d2 culster is the easiest way to get started with DHIS2 on
+Using Docker containers to run a d2 cluster is an easy way to get started with DHIS2 on
 your local computer. This approach is appropriate for a stand-alone
 installation and demos. Simply follow the guide
 [here](https://developers.dhis2.org/docs/guides/spin-up-local-instance).
