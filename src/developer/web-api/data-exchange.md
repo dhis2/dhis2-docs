@@ -45,6 +45,52 @@ POST /api/aggregateDataExchanges
 Content-Type: application/json
 ```
 
-```
-```
+Example payload for internal data exchange:
 
+```json
+{
+  "name": "Internal data exchange",
+  "source": {
+    "requests": [
+      {
+        "name": "ANC",
+        "visualization": null,
+        "dx": [
+          "fbfJHSPpUQD",
+          "cYeuwXTCPkU",
+          "Jtf34kNZhzP"
+        ],
+        "pe": [
+          "LAST_12_MONTHS",
+          "202201"
+        ],
+        "ou": [
+          "ImspTQPwCqd"
+        ],
+        "filters": [
+          {
+            "dimension": "Bpx0589u8y0",
+            "items": [
+              "oRVt7g429ZO", 
+              "MAs88nJc9nL"
+            ]
+          }
+        ],
+        "inputIdScheme": "UID",
+        "outputDataElementIdScheme": "UID",
+        "outputOrgUnitIdScheme": "UID",
+        "outputIdScheme": "UID"
+      }
+    ]
+  },
+  "target": {
+    "type": "INTERNAL",
+    "request": {
+      "dataElementIdScheme": null,
+      "orgUnitIdScheme": null,
+      "categoryOptionComboIdScheme": null,
+      "idScheme": null
+    }
+  }
+}
+```
