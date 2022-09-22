@@ -342,7 +342,7 @@ The aggregate data exchange data model / payload is described in the following s
 | source.requests                                   | Array (Object) | Yes         | Source requests.                                             |
 | source.requests.name                              | String         | Yes         | Name of source request.                                      |
 | source.requests.visualization                     | String         | No          | Identifier of associated visualization object.               |
-| source.requests.dx                                | Array (String) | Yes         | Identifiers of data elements, indicators, data sets and program indicators for the source request |
+| source.requests.dx                                | Array (String) | Yes         | Identifiers of data elements, indicators, data sets and program indicators for the source request. |
 | source.requests.pe                                | Array (String) | Yes         | Identifiers of fixed and relative periods for the source request. |
 | source.requests.ou                                | Array (String) | Yes         | Identifiers of organisation units for the source request.    |
 | source.requests.filters                           | Array (Object) | No          | Filters for the source request.                              |
@@ -364,8 +364,6 @@ The aggregate data exchange data model / payload is described in the following s
 | source.target.request.orgUnitIdScheme             | String         | No          | Input organisation unit ID scheme, can be `UID`, `CODE`.     |
 | source.target.request.categoryOptionComboIdScheme | String         | No          | Input category option combo ID scheme, can be `UID`, `CODE`. |
 | source.target.request.idScheme                    | String         | No          | Input general ID scheme, can be `UID`, `CODE`.               |
-
-
 
 ### Metadata mapping
 
