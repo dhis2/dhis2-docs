@@ -55,6 +55,12 @@ Example internal data exchange payload, where event data is computed with progra
 {
   "name": "Internal data exchange",
   "source": {
+    "params": {
+      "periodTypes": [
+        "MONTHLY",
+        "QUARTERLY"
+      ]
+    },
     "requests": [
       {
         "name": "ANC",
