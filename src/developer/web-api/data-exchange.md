@@ -242,7 +242,7 @@ Accept: application/json
 
 The retrieval endpoints follow the regular metadata endpoint field filtering and object filtering semantics. JSON is the only supported response format.
 
-**Response**
+Response
 
 ```
 200 OK
@@ -324,7 +324,7 @@ The response payload format is identical with the analytics API endpoint in data
 
 ### Data model
 
-TODO: insert table
+TODO: field table
 
 ### Metadata mapping
 
