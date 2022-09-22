@@ -49,11 +49,7 @@ POST /api/aggregateDataExchanges
 Content-Type: application/json
 ```
 
-```
-201 Created
-```
-
-Example of an internal data exchange payload, where event data is computed with program indicators and saved as aggregate data values: 
+Example internal data exchange payload, where event data is computed with program indicators and saved as aggregate data values: 
 
 ```json
 {
@@ -103,7 +99,7 @@ Example of an internal data exchange payload, where event data is computed with 
 }
 ```
 
-Example external data exchange payload with basic authentication, where data is pushed to external DHIS 2 instance:
+Example external data exchange payload with basic authentication and ID scheme *code*, where data is pushed to an external DHIS 2 instance:
 
 ```json
 {
@@ -126,7 +122,7 @@ Example external data exchange payload with basic authentication, where data is 
           "ImspTQPwCqd"
         ],
         "inputIdScheme": "UID",
-        "outputIdScheme": "UID"
+        "outputIdScheme": "CODE"
       }
     ]
   },
@@ -137,13 +133,13 @@ Example external data exchange payload with basic authentication, where data is 
         "accessToken": "d2pat_XIrqgAGjW935LLPuSP2hXSZwpTxTW2pg3580716988"
     },
     "request": {
-      "idScheme": "UID"
+      "idScheme": "CODE"
     }
   }
 }
 ```
 
-Example external data exchange payload with access token (PAT) authentication:
+Example external data exchange payload with PAT authentication and ID scheme *code*, where data is pushed to an external DHIS 2 instance:
 
 ```json
 {
@@ -163,7 +159,9 @@ Example external data exchange payload with access token (PAT) authentication:
         ],
         "ou": [
           "ImspTQPwCqd"
-        ]
+        ],
+        "inputIdScheme": "UID",
+        "outputIdScheme": "CODE"
       }
     ]
   },
@@ -172,7 +170,30 @@ Example external data exchange payload with access token (PAT) authentication:
     "api": {
         "url": "https://play.dhis2.org/2.38.1.1",
         "accessToken": "d2pat_XIrqgAGjW935LLPuSP2hXSZwpTxTW2pg3580716988"
+    },
+    "request": {
+      "idScheme": "CODE"
     }
+  }
+}
+```
+
+**Response**
+
+```
+201 Created
+```
+
+```json
+{
+  "httpStatus": "Created",
+  "httpStatusCode": 201,
+  "status": "OK",
+  "response": {
+    "responseType": "ObjectReport",
+    "uid": "pG4bBTMiCqO",
+    "klass": "org.hisp.dhis.dataexchange.aggregate.AggregateDataExchange",
+    "errorReports": []
   }
 }
 ```
@@ -187,11 +208,27 @@ PUT /api/aggregateDataExchanges/{id}
 Content-Type: application/json
 ```
 
+The request payload is identical to the create operation.
+
+**Response**
+
 ```
 200 OK
 ```
 
-The payload is identical with the create operation.
+```json
+{
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "response": {
+    "responseType": "ObjectReport",
+    "uid": "pG4bBTMiCqO",
+    "klass": "org.hisp.dhis.dataexchange.aggregate.AggregateDataExchange",
+    "errorReports": []
+  }
+}
+```
 
 #### Get aggregate data exchange
 
@@ -199,11 +236,17 @@ The payload is identical with the create operation.
 GET /api/aggregateDataExchanges/{id}
 ```
 
+``` 
+Accept: application/json
+```
+
+The retrieval endpoints follow the regular metadata endpoint field filtering and object filtering semantics. JSON is the only supported response format.
+
+**Response**
+
 ```
 200 OK
 ```
-
-The retrieval endpoints follow the regular metadata endpoint field filtering and object filtering semantics. Response paylads in JSON format only is supported.
 
 #### Delete aggregate data exchange
 
@@ -211,8 +254,24 @@ The retrieval endpoints follow the regular metadata endpoint field filtering and
 DELETE /api/aggregateDataExchanges/{id}
 ```
 
+**Response**
+
 ```
 204 No Content
+```
+
+```json
+{
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "response": {
+    "responseType": "ObjectReport",
+    "uid": "pG4bBTMiCqO",
+    "klass": "org.hisp.dhis.dataexchange.aggregate.AggregateDataExchange",
+    "errorReports": []
+  }
+}
 ```
 
 #### Run aggregate data exchange
@@ -223,11 +282,25 @@ An aggregate data exchange can be run directly with a POST request to the follow
 POST /api/aggregateDataExchanges/{id}/exchange
 ```
 
+**Response**
+
 ```
 200 OK
 ```
 
-An import summary describing the outcome of the data exchange will be returned.
+```json
+{
+  "responseType": "ImportSummaries",
+  "status": "SUCCESS",
+  "imported": 36,
+  "updated": 0,
+  "deleted": 0,
+  "ignored": 0,
+  "importSummaries": ["<import summaries here>"]
+}
+```
+
+An import summary describing the outcome of the data exchange will be returned, including the number of data values which were imported, updated, deleted and ignored.
 
 #### Get source data
 
@@ -238,7 +311,21 @@ GET /api/aggregateDataExchanges/{id}/sourceData
 ```
 
 ```
+Accept: application/json
+```
+
+**Response**
+
+```
 200 OK
 ```
 
-The response payload format is identical with the analytics API endpoint. This endpoint is useful for debugging purposes. 
+The response payload format is identical with the analytics API endpoint in data value set format. This endpoint is useful for debugging purposes. Consult the analytics API guide for additional details.
+
+### Data model
+
+TODO: insert table
+
+### Metadata mapping
+
+TODO: example with ID schemes
