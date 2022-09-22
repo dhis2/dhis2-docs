@@ -55,6 +55,12 @@ Example internal data exchange payload, where event data is computed with progra
 {
   "name": "Internal data exchange",
   "source": {
+    "params": {
+      "periodTypes": [
+        "MONTHLY",
+        "QUARTERLY"
+      ]
+    },
     "requests": [
       {
         "name": "ANC",
@@ -130,7 +136,8 @@ Example external data exchange payload with basic authentication and ID scheme *
     "type": "EXTERNAL",
     "api": {
         "url": "https://play.dhis2.org/2.38.1.1",
-        "accessToken": "d2pat_XIrqgAGjW935LLPuSP2hXSZwpTxTW2pg3580716988"
+        "username": "admin",
+        "password": "district"
     },
     "request": {
       "idScheme": "CODE"
@@ -324,7 +331,39 @@ The response payload format is identical with the analytics API endpoint in data
 
 ### Data model
 
-TODO: field table
+The aggregate data exchange data model / payload is described in the following section.
+
+| Field                                             | Data type      | Mandatory   | Description                                                  |
+| ------------------------------------------------- | -------------- | ----------- | ------------------------------------------------------------ |
+| name                                              | String         | Yes         | Name of aggregate data exchange.                             |
+| source                                            | Object         | Yes         | Source for aggregate data exchange.                          |
+| source.params                                     | Object         | No          | Parameters for source request.                               |
+| source.params.periodTypes                         | Array (String) | No          | Allowed period types for overriding periods in source request. |
+| source.requests                                   | Array (Object) | Yes         | Source requests.                                             |
+| source.requests.name                              | String         | Yes         | Name of source request.                                      |
+| source.requests.visualization                     | String         | No          | Identifier of associated visualization object.               |
+| source.requests.dx                                | Array (String) | Yes         | Identifiers of data elements, indicators, data sets and program indicators for the source request. |
+| source.requests.pe                                | Array (String) | Yes         | Identifiers of fixed and relative periods for the source request. |
+| source.requests.ou                                | Array (String) | Yes         | Identifiers of organisation units for the source request.    |
+| source.requests.filters                           | Array (Object) | No          | Filters for the source request.                              |
+| source.requests.filters.dimension                 | String         | No          | Dimension identifier for the filter.                         |
+| source.requests.filters.items                     | Array (String) | No          | Item identifiers for the filter.                             |
+| source.requests.inputIdScheme                     | String         | No          | Input ID scheme, can be `UID`, `CODE`.                       |
+| source.requests.outputDataElementIdScheme         | String         | No          | Output data element ID scheme, can be `UID`, `CODE`.         |
+| source.requests.outputOrgUnitIdScheme             | String         | No          | Output organisation unit ID scheme, can be `UID`, `CODE`.    |
+| source.requests.outputIdScheme                    | String         | No          | Output general ID scheme, can be `UID`, `CODE`.              |
+| source.target                                     | Object         | Yes         | Target for  aggregate data exchange.                         |
+| source.target.type                                | String         | Yes         | Type of target, can be `EXTERNAL`, `INTERNAL`.               |
+| source.target.api                                 | Object         | Conditional | Target API information, only mandatory for type `EXTERNAL`.  |
+| source.target.api.url                             | String         | Conditional | Base URL of target DHIS 2 instance, do not include the `/api` part. |
+| source.target.api.accessToken                     | String         | Conditional | Access token (PAT) for target DHIS 2 instance, used for PAT authentication. |
+| source.target.api.username                        | String         | Conditional | Username for target DHIS 2 instance, used for basic authentication. |
+| source.target.api.password                        | String         | Conditional | Password for target DHIS 2 instance, used for basic authentication. |
+| source.target.request                             | Object         | No          | Target request information.                                  |
+| source.target.request.dataElementIdScheme         | String         | No          | Input data element ID scheme, can be `UID`, `CODE`.          |
+| source.target.request.orgUnitIdScheme             | String         | No          | Input organisation unit ID scheme, can be `UID`, `CODE`.     |
+| source.target.request.categoryOptionComboIdScheme | String         | No          | Input category option combo ID scheme, can be `UID`, `CODE`. |
+| source.target.request.idScheme                    | String         | No          | Input general ID scheme, can be `UID`, `CODE`.               |
 
 ### Metadata mapping
 
