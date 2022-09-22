@@ -130,7 +130,8 @@ Example external data exchange payload with basic authentication and ID scheme *
     "type": "EXTERNAL",
     "api": {
         "url": "https://play.dhis2.org/2.38.1.1",
-        "accessToken": "d2pat_XIrqgAGjW935LLPuSP2hXSZwpTxTW2pg3580716988"
+        "username": "admin",
+        "password": "district"
     },
     "request": {
       "idScheme": "CODE"
