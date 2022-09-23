@@ -4,7 +4,7 @@
 
 This section describes the aggregate data exchange service and API.
 
-### Overview
+### Introduction
 
 The aggregate data exchange service offers the ability to exchange data between instances of DHIS 2, and possibly other software which supports the DHIS 2 data value set JSON format. It also allows for data exchange within a single instance of DHIS 2, for instance for aggregation of tracker data and saving the result as aggregate data. 
 
@@ -14,6 +14,8 @@ The aggregate data exchange service is suitable for use-cases such as:
 * Data exchange between a DHIS 2 tracker instance with individual data to an aggregate HMIS instance.
 * Pre-computation of tracker data with program indicators saved as aggregate data values.
 * Data reporting from a national HMIS to a global donor.
+
+### Overview
 
 The aggregate data exchange service allows for data exchange between a *source* instance of DHIS 2 and a *target* instance of DHIS 2. A data exchange can be *external*, for which the target instance is different/external to the source instance. A data exchange can also be *internal*, for which the target is the same as the source instance. The aggregate data exchange source can contain multiple source requests, where a source request corresponds roughly to an analytics API request.
 
@@ -185,7 +187,7 @@ Example external data exchange payload with PAT authentication and ID scheme *co
 }
 ```
 
-**Response**
+*Response*
 
 ```
 201 Created
@@ -217,7 +219,7 @@ Content-Type: application/json
 
 The request payload is identical to the create operation.
 
-**Response**
+*Response*
 
 ```
 200 OK
@@ -249,7 +251,7 @@ Accept: application/json
 
 The retrieval endpoints follow the regular metadata endpoint field filtering and object filtering semantics. JSON is the only supported response format.
 
-Response
+*Response*
 
 ```
 200 OK
@@ -261,7 +263,7 @@ Response
 DELETE /api/aggregateDataExchanges/{id}
 ```
 
-**Response**
+*Response*
 
 ```
 204 No Content
@@ -289,7 +291,7 @@ An aggregate data exchange can be run directly with a POST request to the follow
 POST /api/aggregateDataExchanges/{id}/exchange
 ```
 
-**Response**
+*Response*
 
 ```
 200 OK
@@ -321,7 +323,7 @@ GET /api/aggregateDataExchanges/{id}/sourceData
 Accept: application/json
 ```
 
-**Response**
+*Response*
 
 ```
 200 OK
@@ -365,6 +367,3 @@ The aggregate data exchange data model / payload is described in the following s
 | source.target.request.categoryOptionComboIdScheme | String         | No          | Input category option combo ID scheme, can be `UID`, `CODE`. |
 | source.target.request.idScheme                    | String         | No          | Input general ID scheme, can be `UID`, `CODE`.               |
 
-### Metadata mapping
-
-TODO: example with ID schemes
