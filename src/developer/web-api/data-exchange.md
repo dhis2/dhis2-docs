@@ -189,7 +189,7 @@ Example external data exchange payload with PAT authentication and ID scheme *co
 }
 ```
 
-*Response*
+Response
 
 ```
 201 Created
@@ -221,7 +221,7 @@ Content-Type: application/json
 
 The request payload is identical to the create operation.
 
-*Response*
+Response
 
 ```
 200 OK
@@ -253,7 +253,7 @@ Accept: application/json
 
 The retrieval endpoints follow the regular metadata endpoint field filtering and object filtering semantics. JSON is the only supported response format.
 
-*Response*
+Response
 
 ```
 200 OK
@@ -265,7 +265,7 @@ The retrieval endpoints follow the regular metadata endpoint field filtering and
 DELETE /api/aggregateDataExchanges/{id}
 ```
 
-*Response*
+Response
 
 ```
 204 No Content
@@ -293,7 +293,7 @@ An aggregate data exchange can be run directly with a POST request to the follow
 POST /api/aggregateDataExchanges/{id}/exchange
 ```
 
-*Response*
+Response
 
 ```
 200 OK
@@ -325,7 +325,7 @@ GET /api/aggregateDataExchanges/{id}/sourceData
 Accept: application/json
 ```
 
-*Response*
+Response
 
 ```
 200 OK
@@ -342,16 +342,16 @@ The aggregate data exchange data model / payload is described in the following s
 | name                                              | String         | Yes         | Name of aggregate data exchange.                             |
 | source                                            | Object         | Yes         | Source for aggregate data exchange.                          |
 | source.params                                     | Object         | No          | Parameters for source request.                               |
-| source.params.periodTypes                         | Array (String) | No          | Allowed period types for overriding periods in source request. |
-| source.requests                                   | Array (Object) | Yes         | Source requests.                                             |
+| source.params.periodTypes                         | Array/String   | No          | Allowed period types for overriding periods in source request. |
+| source.requests                                   | Array/Object   | Yes         | Source requests.                                             |
 | source.requests.name                              | String         | Yes         | Name of source request.                                      |
 | source.requests.visualization                     | String         | No          | Identifier of associated visualization object.               |
-| source.requests.dx                                | Array (String) | Yes         | Identifiers of data elements, indicators, data sets and program indicators for the source request. |
-| source.requests.pe                                | Array (String) | Yes         | Identifiers of fixed and relative periods for the source request. |
-| source.requests.ou                                | Array (String) | Yes         | Identifiers of organisation units for the source request.    |
+| source.requests.dx                                | Array/String   | Yes         | Identifiers of data elements, indicators, data sets and program indicators for the source request. |
+| source.requests.pe                                | Array/String   | Yes         | Identifiers of fixed and relative periods for the source request. |
+| source.requests.ou                                | Array/String   | Yes         | Identifiers of organisation units for the source request.    |
 | source.requests.filters                           | Array (Object) | No          | Filters for the source request.                              |
 | source.requests.filters.dimension                 | String         | No          | Dimension identifier for the filter.                         |
-| source.requests.filters.items                     | Array (String) | No          | Item identifiers for the filter.                             |
+| source.requests.filters.items                     | Array/String   | No          | Item identifiers for the filter.                             |
 | source.requests.inputIdScheme                     | String         | No          | Input ID scheme, can be `UID`, `CODE`.                       |
 | source.requests.outputDataElementIdScheme         | String         | No          | Output data element ID scheme, can be `UID`, `CODE`.         |
 | source.requests.outputOrgUnitIdScheme             | String         | No          | Output organisation unit ID scheme, can be `UID`, `CODE`.    |
@@ -369,3 +369,6 @@ The aggregate data exchange data model / payload is described in the following s
 | source.target.request.categoryOptionComboIdScheme | String         | No          | Input category option combo ID scheme, can be `UID`, `CODE`. |
 | source.target.request.idScheme                    | String         | No          | Input general ID scheme, can be `UID`, `CODE`.               |
 
+### Error handlng
+
+TODO: Write section. Test, fix and document invalid references in source request, target server being unavailable, import errors in target instance
