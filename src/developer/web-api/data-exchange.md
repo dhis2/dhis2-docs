@@ -339,7 +339,7 @@ The aggregate data exchange data model / payload is described in the following s
 
 | Field                                             | Data type      | Mandatory   | Description                                                  |
 | ------------------------------------------------- | -------------- | ----------- | ------------------------------------------------------------ |
-| name                                              | String         | Yes         | Name of aggregate data exchange.                             |
+| name                                              | String         | Yes         | Name of aggregate data exchange. Unique.                     |
 | source                                            | Object         | Yes         | Source for aggregate data exchange.                          |
 | source.params                                     | Object         | No          | Parameters for source request.                               |
 | source.params.periodTypes                         | Array/String   | No          | Allowed period types for overriding periods in source request. |
@@ -371,7 +371,7 @@ The aggregate data exchange data model / payload is described in the following s
 
 ### Error handlng
 
-TODO: Write section. Test, fix and document invalid references in source request, target server being unavailable, import errors in target instance.
+When running a data exchange by identifier, information about the outcome of the operation will be available in the response payload. The response will contain a list of import summaries, i.e. one import summary per source request. The import summary will indicate any potential conflicts as a result of data retrieval from the source instance and data import in the target instance. 
 
 ### Example
 
