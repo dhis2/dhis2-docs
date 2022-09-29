@@ -339,7 +339,7 @@ The aggregate data exchange data model / payload is described in the following s
 
 | Field                                             | Data type      | Mandatory   | Description                                                  |
 | ------------------------------------------------- | -------------- | ----------- | ------------------------------------------------------------ |
-| name                                              | String         | Yes         | Name of aggregate data exchange.                             |
+| name                                              | String         | Yes         | Name of aggregate data exchange. Unique.                     |
 | source                                            | Object         | Yes         | Source for aggregate data exchange.                          |
 | source.params                                     | Object         | No          | Parameters for source request.                               |
 | source.params.periodTypes                         | Array/String   | No          | Allowed period types for overriding periods in source request. |
@@ -371,4 +371,101 @@ The aggregate data exchange data model / payload is described in the following s
 
 ### Error handlng
 
-TODO: Write section. Test, fix and document invalid references in source request, target server being unavailable, import errors in target instance
+When running a data exchange by identifier, information about the outcome of the operation will be available in the response payload. The response will contain a list of import summaries, i.e. one import summary per source request. The import summary will indicate any potential conflicts as a result of data retrieval from the source instance and data import in the target instance. 
+
+### Example
+
+This example will demonstrate how to exchange data based on program indicators in the source DHIS 2 instance and data elements in the target instance. The `code` identifier scheme, which means the data exchange will use the `code` property on the metadata to map/reference the data. Using codes is useful when the ID properties don't match across DHIS 2 instances. The example will demonstrate how data can be aggregated in the source instance, including aggregation in time and the unit hierarchy, before being exchanged with the target instance.
+
+The example will exchange data using the DHIS 2 play environment, and refer to the 2.39 version at `https://play.dhis2.org/2.39` as the *source instance*, and the 2.38 version at `https://play.dhis2.org/2.38.1.1` as the *target instance*. Note that the URLs might change over time as new patch versions are released.
+
+* Log in to the **source** instance, navigate to the Maintenance app and observe that three program indicators exist.
+
+  * _BCG doses_ with code `BCG_DOSE`
+  * _Measles doses_ with code `MEASLES_DOSE` 
+  * _Yellow fever doses_ with code `YELLOW_FEVER_DOSE`
+
+* Observe that the root org unit is `Sierra Leone` with code `OU_525`.
+
+* Log in to the **target** instance and navigate to the Maintenance app. Create three data elements, where the codes match the previously mentioned program indicators:
+
+  * Name _BCG doses_ and code `BCG_DOSE`
+  * Name _Measles doses_ and code `MEASLES_DOSE`
+  * Name _Yellow fever doses_ with code `YELLOW_FEVER_DOSE`
+
+* In the **target** instance, create a new data set with any name, e.g. _Data exchange_, select the tree newly created data elements, and assign the data set to the root org unit _Sierra Leone_.
+
+* Observe that the root org unit `Sierra Leone` has the code `OU_525`.
+
+* Open an HTTP tool such as _Postman_ and put together the following aggregate data exchange payload in JSON.
+  ```
+  POST /api/aggregateDataExchanges
+  ```
+
+  ```
+  Content-Type: application/json
+  ```
+
+  ```json
+  {
+    "name": "Immunization doses program indicators to data elements",
+    "source": {
+      "requests": [
+        {
+          "name": "Immunization doses",
+          "dx": [
+            "BCG_DOSE",
+            "MEASLES_DOSE",
+            "YELLOW_FEVER_DOSE"
+          ],
+          "pe": [
+            "202201"
+          ],
+          "ou": [
+            "OU_525"
+          ],
+          "inputIdScheme": "code",
+          "outputIdScheme": "code"
+        }
+      ]
+    },
+    "target": {
+      "type": "EXTERNAL",
+      "api": {
+        "url": "https://play.dhis2.org/2.38.1.1",
+        "username": "admin",
+        "password": "district"
+      },
+      "request": {
+        "idScheme": "code"
+      }
+    }
+  }
+  ```
+
+* In this payload, observe that for the source request, program indicators are referred to using codes. The `inputIdScheme` is set to `code`, which implies that the DHIS 2 analytics engine will use the `code` property to reference metadata/program indicators. The `outputIdScheme` is set to `code`, which implies that the `code` property will be used for referencing metadata in the output. For the target request, the `idScheme` is set to `code`, which implies that the `code` property will be used to reference metadata during the data value import. Note that ID schemes can be specified per entity type, such as `dataElementIdScheme` and `orgUnitIdScheme`. 
+
+* Observe that the period is `202201` or _January 2022_. Note that the period might have to be updated over time.
+
+* Run the POST request to create the aggregate data exchange metadata. Confirm that the API response status code is 201. Note that the name of the data exchange is unique. Take a note of the ID of the newly created object by looking at `response` > `uid` in the response body.
+
+* Run the newly created data exchange with a POST request (replace `{id}` with the ID of the data exchange):
+  ```
+  POST /api/aggregateDataExchanges/{id}/exchange
+  ```
+  
+* Confirm that the API response indicates that three data values were successfully imported. 
+  ```json
+  {
+    "responseType": "ImportSummaries",
+    "status": "SUCCESS",
+    "imported": 3,
+    "updated": 0,
+    "deleted": 0,
+    "ignored": 0
+  }
+  ```
+  
+* In the **target** instance, navigate to the Data entry app, select org unit _Sierra Leone_, data set _Data exchange_ and period _January 2022_. Observe that the exchanged data values are visible in the form.
+
+To summarize, in this example, event data records were aggregated using program indicators from facility level to national level, monthly data values. The data values were exchanged with a target DHIS 2 instance by using the `code` property to reference metadata.
