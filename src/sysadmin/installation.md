@@ -122,8 +122,8 @@ locate the DHIS2 configuration directory. This directory will be
 referred to as *DHIS2\_HOME* in this installation guide. We will define
 the environment variable in a later step in the installation process.
 
-Alternatively, you can also use a context variable to point to the home directory,
-like this example using Tomcat's context.xml:
+Alternatively, a context variable can be used to point to the home directory,
+for instance using the Tomcat context.xml configuration file:
 
 ```xml
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
