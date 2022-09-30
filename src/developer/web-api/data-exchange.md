@@ -12,7 +12,7 @@ The aggregate data exchange service is suitable for use-cases such as:
 
 * Data exchange between an HMIS instance to a data portal or data warehouse instance of DHIS 2.
 * Data exchange between a DHIS 2 tracker instance with individual data to an aggregate HMIS instance.
-* Pre-computation of tracker data with program indicators saved as aggregate data values.
+* Precomputation of tracker data with program indicators saved as aggregate data values.
 * Data reporting from a national HMIS to a global donor.
 
 ### Overview
@@ -189,7 +189,7 @@ Example external data exchange payload with PAT authentication and ID scheme *co
 }
 ```
 
-Response
+##### Response
 
 ```
 201 Created
@@ -221,7 +221,7 @@ Content-Type: application/json
 
 The request payload is identical to the create operation.
 
-Response
+##### Response
 
 ```
 200 OK
@@ -253,7 +253,7 @@ Accept: application/json
 
 The retrieval endpoints follow the regular metadata endpoint field filtering and object filtering semantics. JSON is the only supported response format.
 
-Response
+##### Response
 
 ```
 200 OK
@@ -265,7 +265,7 @@ Response
 DELETE /api/aggregateDataExchanges/{id}
 ```
 
-Response
+##### Response
 
 ```
 204 No Content
@@ -293,7 +293,7 @@ An aggregate data exchange can be run directly with a POST request to the follow
 POST /api/aggregateDataExchanges/{id}/exchange
 ```
 
-Response
+##### Response
 
 ```
 200 OK
@@ -325,7 +325,7 @@ GET /api/aggregateDataExchanges/{id}/sourceData
 Accept: application/json
 ```
 
-Response
+##### Response
 
 ```
 200 OK
