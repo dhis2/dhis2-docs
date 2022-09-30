@@ -375,7 +375,7 @@ When running a data exchange by identifier, information about the outcome of the
 
 ### Example
 
-This example will demonstrate how to exchange data based on program indicators in the source DHIS 2 instance and data elements in the target instance. The `code` identifier scheme, which means the data exchange will use the `code` property on the metadata to map/reference the data. Using codes is useful when the ID properties don't match across DHIS 2 instances. The example will demonstrate how data can be aggregated in the source instance, including aggregation in time and the unit hierarchy, before being exchanged with the target instance.
+This example will demonstrate how to exchange data based on program indicators in the source DHIS 2 instance and data elements in the target instance. The `code` identifier scheme, which means the data exchange will use the `code` property on the metadata to reference the data. Using codes is useful when the ID properties don't match across DHIS 2 instances. The example will demonstrate how data can be aggregated in the source instance, including aggregation in time and the unit hierarchy, before being exchanged with the target instance.
 
 The example will exchange data using the DHIS 2 play environment, and refer to the 2.39 version at `https://play.dhis2.org/2.39` as the *source instance*, and the 2.38 version at `https://play.dhis2.org/2.38.1.1` as the *target instance*. Note that the URLs might change over time as new patch versions are released.
 
@@ -387,7 +387,7 @@ The example will exchange data using the DHIS 2 play environment, and refer to t
 
 * Observe that the root org unit is `Sierra Leone` with code `OU_525`.
 
-* Log in to the **target** instance and navigate to the Maintenance app. Create three data elements, where the codes match the previously mentioned program indicators:
+* Log in to the **target** instance and navigate to the *Maintenance* app. Create three data elements, where the codes match the previously mentioned program indicators:
 
   * Name _BCG doses_ and code `BCG_DOSE`
   * Name _Measles doses_ and code `MEASLES_DOSE`
@@ -395,7 +395,7 @@ The example will exchange data using the DHIS 2 play environment, and refer to t
 
 * In the **target** instance, create a new data set with any name, e.g. _Data exchange_, select the tree newly created data elements, and assign the data set to the root org unit _Sierra Leone_.
 
-* Observe that the root org unit `Sierra Leone` has the code `OU_525`.
+* Observe that the root org unit `Sierra Leone` has the code `OU_525`, which is equal to the source instance.
 
 * Open an HTTP tool such as _Postman_ and put together the following aggregate data exchange payload in JSON.
   ```
@@ -443,11 +443,11 @@ The example will exchange data using the DHIS 2 play environment, and refer to t
   }
   ```
 
-* In this payload, observe that for the source request, program indicators are referred to using codes. The `inputIdScheme` is set to `code`, which implies that the DHIS 2 analytics engine will use the `code` property to reference metadata/program indicators. The `outputIdScheme` is set to `code`, which implies that the `code` property will be used for referencing metadata in the output. For the target request, the `idScheme` is set to `code`, which implies that the `code` property will be used to reference metadata during the data value import. Note that ID schemes can be specified per entity type, such as `dataElementIdScheme` and `orgUnitIdScheme`. 
+* In this payload, observe that for the source request, program indicators are referred to using codes. The `inputIdScheme` is set to `code`, which means that the DHIS 2 analytics engine will use the `code` property to reference metadata, such as program indicators. The `outputIdScheme` is set to `code`, which means that the `code` property will be used to reference metadata in the output. For the target request, the `idScheme` is also set to `code`, which means that the `code` property will be used to reference metadata during the data value import. Note that ID schemes can be specified per entity type, such as `dataElementIdScheme` and `orgUnitIdScheme`. 
 
-* Observe that the period is `202201` or _January 2022_. Note that the period might have to be updated over time.
+* Note that the period is `202201` or _January 2022_. Note that the period might have to be updated over time.
 
-* Run the POST request to create the aggregate data exchange metadata. Confirm that the API response status code is 201. Note that the name of the data exchange is unique. Take a note of the ID of the newly created object by looking at `response` > `uid` in the response body.
+* Run the POST request to create the aggregate data exchange definition. Confirm that the API response status code is 201. Note that the name of the data exchange is unique. Take a note of the ID of the newly created object by looking at `response` > `uid` in the response body.
 
 * Run the newly created data exchange with a POST request (replace `{id}` with the ID of the data exchange):
   ```
@@ -466,6 +466,6 @@ The example will exchange data using the DHIS 2 play environment, and refer to t
   }
   ```
   
-* In the **target** instance, navigate to the Data entry app, select org unit _Sierra Leone_, data set _Data exchange_ and period _January 2022_. Observe that the exchanged data values are visible in the form.
+* In the **target** instance, navigate to the *Data entry* app, select org unit _Sierra Leone_, data set _Data exchange_ and period _January 2022_. Observe that the exchanged data values are visible in the form.
 
-To summarize, in this example, event data records were aggregated using program indicators from facility level to national level, monthly data values. The data values were exchanged with a target DHIS 2 instance by using the `code` property to reference metadata.
+To summarize, in this example, event data records were aggregated from the facility level to the national level in the org unit hierarchy and from event data to monthly data values using program indicators. The data values were exchanged with a target DHIS 2 instance by using the `code` property to reference metadata.
