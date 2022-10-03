@@ -4209,6 +4209,8 @@ sampled. For example:
         | orgUnit.group(ouGroupUid [, ouGroupUid ...]) | Returns true if the organisation unit is a member of any of the (1 or more) organisation unit groups, otherwise false. |
         | orgUnit.program(programUid [, programUid ...]) | Returns true if the organisation unit is assigned to any of the (1 or more) programs, otherwise false. |
         | removeZeros(expression) | Returns nothing if the expression value is 0, otherwise returns the expression value. |
+        | .maxDate(yyyy-mm-dd) | For a data element (not program data), value from periods ending on or before a maximum date. |
+        | .minDate(yyyy-mm-dd) | For a data element (not program data), value from periods starting on or after a minimum date. |
 
         **Boolean expression notes:** A boolean expression must evaluate
         to **true** or **false**. The following operators may be used to
@@ -4231,6 +4233,9 @@ sampled. For example:
         | if(isNull(#{T7OyqQpUpNd}), 0, 1) | If the data element T7OyqQpUpNd is null in the period being predicted, then 0, otherwise 1. |
         | percentileCont(0.5, #{T7OyqQpUpNd}) | Continuous 50th percentile of the sampled values for data element T7OyqQpUpNd. Note that this is the same as median(#{T7OyqQpUpNd}) |
         | if(count(#{T7OyqQpUpNd}) == 1, 0, stddevSamp(#{T7OyqQpUpNd})) | If there is one sample value present for data element T7OyqQpUpNd, then 0, otherwise the sample standard deviation of these sample values. (Note that if no samples are present then the stddevSamp returns no value, so no value is predicted.) |
+        | #{T7OyqQpUpNd}.minDate(2022-10-1) | Value on or after 1-Oct-2022 |
+        | #{T7OyqQpUpNd}.maxDate(2022-12-31) | Value on or before 31-Dec-2022 |
+        | #{T7OyqQpUpNd}.minDate(2022-10-1).maxDate(2022-12-31) | Value bewteen 1-Oct-2022 and 31-Dec-2022 |
 
 12. (Optional) Create a **Sample skip test**. The sample skip test tells
     which previous periods if any to exclude from the sample.
