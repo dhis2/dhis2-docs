@@ -170,29 +170,27 @@ Import.
 Google Earth Engine (WorldPop) data is fetched using the Google Earth Engine API. A Google
 EarthEngine account is required to use this importer.
 
-![](resources/images/import_export/ee-import.png)
+![](resources/images/import_export/ee_import.png)
 
 #### Select which Earth Engine data should be imported
 
 The first section of the form is used to configure the Earth Engine data to import.
 
-First select which Earth Engine dataset should be imported. Currently the choices are **Population** and **Population age groups**.
+1. Select which Earth Engine dataset should be imported. Currently the choices are _Population_ and _Population age groups_.
 
-After a dataset has been selected, a period must be selected. Only one period can be imported at a time.
+2. After a dataset has been selected, a period must be selected. Only one period can be imported at a time.
 
-Choose how the data should be rounded. By default data is not rounded.
+3. Choose how the data should be rounded. By default data is not rounded.
 
-Select which organisation units to import data for. If you select facility level organisation units,
-then you must choose an associated geometry for the facilities. Without an associated geometry for facilities, the Earth Engine cannot determine the population.
+4. Select which organisation units to import data for. If you select facility level organisation units, then you must choose an associated geometry for the facilities. Without an associated geometry for facilities, the Earth Engine cannot determine the population.
 
-![](resources/images/import_export/ou-associated-geometry.png)
+![](resources/images/import_export/ee_ou_associated_geometry.png)
 
 #### Select the data elements to import the Earth Engine data into
 
-Once you have configured the Earth Engine dataset, you need to select which data element to import the data into.
-For datasets with disaggregation groups, such as "Population age groups", the DHIS2 data element must have disaggregations in the form of category option combos that match the Earth Engine dataset disaggregation groups.
+Once you have configured the Earth Engine dataset, you need to select which data element to import the data into. For datasets with disaggregation groups, such as "Population age groups", the DHIS2 data element must have disaggregations in the form of category option combos that match the Earth Engine dataset disaggregation groups.
 
-![](resources/images/import_export/ee-group-coc-mapping.png)
+![](resources/images/import_export/ee_group_coc_mapping.png)
 
 > **Configuring data elements for Earth Engine import**
 >
@@ -206,18 +204,29 @@ For datasets with disaggregation groups, such as "Population age groups", the DH
 
 Once the data element and category option combos have been selected, The Preview button is enabled. After reviewing the data you want to import, you can do a dry run first, or proceed with the actual import.
 
-![](resources/images/import_export/ee-data-preview.png)
+![](resources/images/import_export/ee_data_preview.png)
 
-### GML Import { #gml_import }
+### Organisation Unit Geometry import { #gml_import }
 
-GML Import can be accessed from the sidebar by clicking on GML
-Import.
+Organisation Unit Geometry import can be accessed from the sidebar by clicking on Org unit geometry import.
 
-![](resources/images/import_export/gml_import.png)
+![](resources/images/import_export/orgunit_geometry_import.png)
 
-1.  Upload a file using the _GML_ (Geographic Markup Language) format.
+1.  Select the data format of your file: _GeoJSON_ or _GML_ (Geographic Markup Language).
 
-2.  Click on the **Import** button which will upload the file and start the
+2.  Select the file to upload.
+
+If you selected to import as GeoJSON then you have additional options:
+
+3.  Select whether to match GeoJSON property to organisation unit scheme
+
+![](resources/images/import_export/orgunit_match_prop_to_scheme.png)
+
+4. Select whether data should be imported as associated geometry
+
+![](resources/images/import_export/orgunit_import_as_associated_geometry.png)
+
+5.  Click on the **Import** button which will upload the file and start the
     importing process.
 
 ### Tracked Entity Instances Import { #tei_import }
