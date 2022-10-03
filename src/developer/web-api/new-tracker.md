@@ -1167,7 +1167,7 @@ Tracker export endpoints deal with the following Tracker objects:
 
 > **NOTE**
 >
-> - All these endpoints currently support `JSON`, `CSV` os only supported by only Tracked Entities and Events.
+> - All these endpoints currently support `JSON`, `CSV` is only supported by Tracked Entities and Events.
 >
 > - These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)**
 >
