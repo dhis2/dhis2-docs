@@ -1167,7 +1167,7 @@ Tracker export endpoints deal with the following Tracker objects:
 
 > **NOTE**
 >
-> - These endpoints currently only support `JSON`, but `CSV` will be supported in the near future.
+> - All these endpoints currently support `JSON`, `CSV` os only supported by only Tracked Entities and Events.
 >
 > - These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)**
 >
@@ -1459,8 +1459,24 @@ A query for a Tracked Entity Instance:
 
 ##### Response format
 
-This endpoint supports returning sub-objects when the `fields` request parameter is passed.
+This endpoint supports returning sub-objects when the `fields` request parameter is passed when json format is requested. In case of csv the `fields` request parameter has no effect and the response will always contain the same fields, which are:
+  - trackedEntity (Identifier)
+  - trackedEntityType (Identifier)
+  - createdAt (Datetime)
+  - createdAtClient (Datetime)
+  - updatedAt (Datetime)
+  - updatedAtClient (Datetime)
+  - orgUnit (Identifier)
+  - inactive (boolean)
+  - deleted (boolean)
+  - potentialDuplicate (boolean)
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry)
+  - storedBy (String)
+  - createdBy (Username of user)
+  - updatedBy (Username of user)
+  - attributes (each valid attribute listed as another column)
 
+An example of a json response:
 ```json
 {
     "trackedEntity": "IzHblRD2sDH",
