@@ -1342,7 +1342,7 @@ Table: Custom functions to use in a program rule expression
 |---|---|---|
 | d2:ceil | (number) | Rounds the input argument **up** to the nearest whole number. <br>Example:<br> `d2:ceil(#{hemoglobinValue})` |
 | d2:floor | (number) | Rounds the input argument **down** to the nearest whole number. <br>An example producing the number of weeks the woman is pregnant. Notice that the sub-expression #{gestationalAgeDays}/7 is evaluated before the floor function is executed:<br> `d2:floor(#{gestationalAgeDays}/7)` |
-| d2:round | (number, [, decimals]) | Rounds the input argument to the nearest integer. The optional second argument specifies a number of decimal places which the number should be rounded off to. Example: d2:round(1.25, 1) = 1.3. |
+| d2:round | (number, [, decimals]) | Rounds the input argument to the nearest integer. An optional second argument can be provided to specify a number of decimal places which the number will be rounded off to. Example: d2:round(1.25, 1) = 1.3. |
 | d2:modulus | (number,number) | Produces the modulus when dividing the first with the second argument. <br>An example producing the number of days the woman is into her current pregnancy week:<br> `d2:modulus(#{gestationalAgeDays},7)` |
 | d2:zing | (number) | Evaluates the argument of type number to zero if the value is negative, otherwise to the value itself. |
 | d2:oizp | (number) | Evaluates the argument of type number to one if the value is zero or positive, otherwise to zero. |
