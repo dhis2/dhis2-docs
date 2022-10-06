@@ -167,8 +167,8 @@ Import.
 Earth Engine Import can be access from the sidebar by clicking on Earth Engine
 Import.
 
-Google Earth Engine (WorldPop) data is fetched using the Google Earth Engine API. A Google
-EarthEngine account is required to use this importer.
+Import high resolution population data from WorldPop using Google Earth Engine. A [Google
+Earth Engine account](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html) is required to use this importer.
 
 ![](resources/images/import_export/ee_import.png)
 
@@ -182,13 +182,13 @@ The first section of the form is used to configure the Earth Engine data to impo
 
 3. Choose how the data should be rounded. By default data is not rounded.
 
-4. Select which organisation units to import data for. If you select facility level organisation units, then you must choose an associated geometry for the facilities. Without an associated geometry for facilities, the Earth Engine cannot determine the population.
+4. Select which organisation units to import data to. If you select facility level organisation units, then you must choose an associated geometry for the facilities. Without an associated geometry for facilities, the Earth Engine cannot determine the population.
 
 ![](resources/images/import_export/ee_ou_associated_geometry.png)
 
 #### Select the data elements to import the Earth Engine data into
 
-Once you have configured the Earth Engine dataset, you need to select which data element to import the data into. For datasets with disaggregation groups, such as "Population age groups", the DHIS2 data element must have disaggregations in the form of category option combos that match the Earth Engine dataset disaggregation groups.
+Once you have configured the Earth Engine dataset, you need to select which data element to import the data to. For datasets with disaggregation groups, such as "Population age groups", the DHIS2 data element must have disaggregations in the form of category option combos that match the Earth Engine dataset disaggregation groups.
 
 ![](resources/images/import_export/ee_group_coc_mapping.png)
 
