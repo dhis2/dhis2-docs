@@ -164,7 +164,7 @@ Import.
 
 ### Earth Engine Import { #ee_import }
 
-Earth Engine Import can be access from the sidebar by clicking on Earth Engine
+Earth Engine Import can be accessed from the sidebar by clicking on Earth Engine
 Import.
 
 Import high resolution population data from WorldPop using Google Earth Engine. A [Google
