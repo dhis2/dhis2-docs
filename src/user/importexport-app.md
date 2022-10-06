@@ -290,14 +290,14 @@ Table: Object types and their dependencies
 | Programs | Data entry form<br> <br>Tracked entity<br> <br>Program stages<br> <br>Program attributes<br> <br>Program indicators<br> <br>Program rules<br> <br>Program rule actions<br> <br>Program rule variables<br> <br>Program attributes<br> <br>Data elements<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets |
 | Category combination | Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Attributes |
 | Dashboard | Dashboard items<br> <br>Charts<br> <br>Event charts<br> <br>Pivot tables<br> <br>Event reports<br> <br>Maps<br> <br>Reports<br> <br>Resources |
-| Data element | Data elements<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets<br> <br>Attributes<br> <br>Legend sets<br> <br>Legends |
+| Data element groups | Data elements<br> <br>Category combinations<br> <br>Categories<br> <br>Category options<br> <br>Category option combinations<br> <br>Option sets<br> <br>Attributes<br> <br>Legend sets<br> <br>Legends |
 | OptionSets | Option |
 
 ![](resources/images/import_export/metadata_dependency_export.png)
 
 ![](resources/images/import_export/metadata_dependency_export_object_types.png)
 
-1.  Select an object type: *Data sets*, *Programs*, *Category combination*,
+1.  Select an object type: *Data sets*, *Programs*, *Category combination*, 
     *Dashboard*, *Data element groups* or *OptionSets*.
 
 2.  Select an object.
@@ -355,14 +355,14 @@ You can export event or tracker data in JSON, CSV, or XML formats.
 
 2.  Select the inclusion:
 
-    * *Selected*: Export event data only for the selected
+    - *Selected*: Export event data only for the selected
       organisation unit
 
-    * *Directly below*: Export event data including the first
+    - *Directly below*: Export event data including the first
       level of the organisation units inside the selections as well
       as the selected organisation unit itself.
 
-    * *All below*: Export event data for all organisation units
+    - *All below*: Export event data for all organisation units
       inside the selections as well as the selected organisation
       unit itself.
 
