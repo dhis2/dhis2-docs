@@ -1677,7 +1677,7 @@ http {
 > * Android_XX refers to the Android API level i.e. the Android version as listed [here](https://developer.android.com/studio/releases/platforms).
 > * nginx uses [PCRE](http://www.pcre.org/) for Regular Expression matching .
 
-## DHIS2 configuration reference { #install_dhis2_configuration_reference } 
+## DHIS2 configuration reference (dhis.conf) { #install_dhis2_configuration_reference } 
 
 The following describes the full set of configuration options for the *dhis.conf* configuration file. The configuration file should be placed in a directory which is pointed to by a *DHIS2\_HOME* environment variable.
 
