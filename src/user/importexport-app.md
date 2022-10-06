@@ -206,27 +206,16 @@ Once the data element and category option combos have been selected, The Preview
 
 ![](resources/images/import_export/ee_data_preview.png)
 
-### Organisation Unit Geometry import { #gml_import }
+### GML Import { #gml_import }
 
-Organisation Unit Geometry import can be accessed from the sidebar by clicking on Org unit geometry import.
+GML Import can be accessed from the sidebar by clicking on GML
+Import.
 
-![](resources/images/import_export/orgunit_geometry_import.png)
+![](resources/images/import_export/gml_import.png)
 
-1.  Select the data format of your file: _GeoJSON_ or _GML_ (Geographic Markup Language).
+1.  Upload a file using the _GML_ (Geographic Markup Language) format.
 
-2.  Select the file to upload.
-
-If you selected to import as GeoJSON then you have additional options:
-
-3.  Select whether to match GeoJSON property to organisation unit scheme
-
-![](resources/images/import_export/orgunit_match_prop_to_scheme.png)
-
-4. Select whether data should be imported as associated geometry
-
-![](resources/images/import_export/orgunit_import_as_associated_geometry.png)
-
-5.  Click on the **Import** button which will upload the file and start the
+2.  Click on the **Import** button which will upload the file and start the
     importing process.
 
 ### Tracked Entity Instances Import { #tei_import }
