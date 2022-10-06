@@ -194,7 +194,9 @@ Once you have configured the Earth Engine dataset, you need to select which data
 
 > **Configuring data elements for Earth Engine import**
 >
-> When an Earth Engine dataset contains disaggregation groups, the DHIS2 data element must be configured with corresponding category option combos. For example the "Population age groups" dataset is disaggregated by gender (Male, Female) and 5-year age groups.
+> When configuring the DHIS2 data elements that will contain Earth Engine data, if you plan to import data to multiple org unit levels, ensure that those levels are added as Aggregation Levels in the data element configuration.
+>
+> Some Earth Engine datasets contain disaggregation groups, the DHIS2 data element must be configured with corresponding category option combos. For example the "Population age groups" dataset is disaggregated by gender (Male, Female) and 5-year age groups.
 >
 > In DHIS2 this means that you must have a Male/Female category, and a 5-year age group category (<1yr, 1-4yr, 5-9yr, 10-14yr... 80+yr). These are combined into a category combination.
 >
