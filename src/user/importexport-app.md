@@ -48,25 +48,25 @@ Metadata Import.
 
 1.  Choose a file to upload
 
-2.  Select a format: _JSON_ , _CSV_, or _XML_
+2.  Select a format: *JSON* , *CSV*, or *XML*
 
 3.  Select the appropriate settings for:
 
-    - Identifier
-    - Import report mode
-    - Preheat mode
-    - Import strategy
-    - Atomic mode
-    - Merge mode
+    * Identifier
+    * Import report mode
+    * Preheat mode
+    * Import strategy
+    * Atomic mode
+    * Merge mode
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Flush mode
-    - Skip sharing
-    - Skip validation
-    - Async
-    - Inclusive strategy
+    * Flush mode
+    * Skip sharing
+    * Skip validation
+    * Async
+    * Inclusive strategy
 
 5.  Click on the **Import** button which will upload the file and start the
     importing process.
@@ -107,20 +107,20 @@ Import.
 
 1.  Choose a file to upload
 
-2.  Select a format: _JSON_, _CSV_, _XML_, _ADX_, or _PDF_
+2.  Select a format: *JSON*, *CSV*, *XML*, *ADX*, or *PDF*
 
 3.  Select the appropriate settings for:
 
-    - Strategy
-    - Preheat cache
+    * Strategy
+    * Preheat cache
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Data element ID scheme
-    - Org unit ID scheme
-    - ID scheme
-    - Skip existing check
+    * Data element ID scheme
+    * Org unit ID scheme
+    * ID scheme
+    * Skip existing check
 
 5.  Click on the **Import** button which will upload the file and start the
     importing process.
@@ -139,8 +139,8 @@ import data produced by off-line PDF data entry forms. Please refer to
 the section **Data set management** for details on how to produce a PDF
 form which can be used for off-line data entry.
 
-To import a PDF data file, navigate to the _PDF Data Import_ item in the
-side menu. Upload the completed PDF file and click _Import_.
+To import a PDF data file, navigate to the *PDF Data Import* item in the
+side menu. Upload the completed PDF file and click *Import*.
 
 ### Event Import { #event_import }
 
@@ -149,15 +149,15 @@ Import.
 
 ![](resources/images/import_export/event_import.png)
 
-1.  Select a format: _JSON_ , _CSV_, or _XML_
+1.  Select a format: *JSON* , *CSV*, or *XML*
 
 2.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Event ID scheme
-    - Data element ID scheme
-    - Org unit ID scheme
-    - ID scheme
+    * Event ID scheme
+    * Data element ID scheme
+    * Org unit ID scheme
+    * ID scheme
 
 3.  Click on the **Import** button which will upload the file and start the
     importing process.
@@ -176,7 +176,7 @@ Earth Engine account](https://docs.dhis2.org/en/topics/tutorials/google-earth-en
 
 The first section of the form is used to configure the Earth Engine data to import.
 
-1. Select which Earth Engine dataset should be imported. Currently the choices are _Population_ and _Population age groups_.
+1. Select which Earth Engine dataset should be imported. Currently the choices are *Population* and *Population age groups*.
 
 2. After a dataset has been selected, a period must be selected. Only one period can be imported at a time.
 
@@ -213,7 +213,7 @@ Import.
 
 ![](resources/images/import_export/gml_import.png)
 
-1.  Upload a file using the _GML_ (Geographic Markup Language) format.
+1.  Upload a file using the *GML* (Geographic Markup Language) format.
 
 2.  Click on the **Import** button which will upload the file and start the
     importing process.
@@ -227,24 +227,24 @@ clicking on TEI Import.
 
 1.  Choose a file to upload
 
-2.  Select a format: _JSON_ or _XML_
+2.  Select a format: *JSON* or *XML*
 
 3.  Select the appropriate settings for:
 
-    - Identifier
-    - Import report mode
-    - Preheat mode
-    - Import strategy
-    - Atomic mode
-    - Merge mode
+    * Identifier
+    * Import report mode
+    * Preheat mode
+    * Import strategy
+    * Atomic mode
+    * Merge mode
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
-    - Flush mode
-    - Skip sharing
-    - Skip validation
-    - Inclusive strategy
+    * Flush mode
+    * Skip sharing
+    * Skip validation
+    * Inclusive strategy
 
 5.  Click on the **Import** button which will upload the file and start the
     importing process.
@@ -266,11 +266,11 @@ Metadata export.
 
 1.  Choose the list of objects you would like to export.
 
-2.  Select a format: _JSON_, _CSV_ or _XML_
+2.  Select a format: *JSON*, *CSV* or *XML*
 
-3.  Select a compression type: _zip_, _gzip_ or _uncompressed_
+3.  Select a compression type: *zip*, *gzip* or *uncompressed*
 
-4.  Decide whether to check _Skip sharing and access settings_
+4.  Decide whether to check *Skip sharing and access settings*
 
 5.  Click **Export metadata** which will open a new web-browser window
     that will give you a file to download to your local computer.
@@ -297,14 +297,14 @@ Table: Object types and their dependencies
 
 ![](resources/images/import_export/metadata_dependency_export_object_types.png)
 
-1.  Select an object type: _Data sets_, _Programs_, _Category combination_,
-    _Dashboard_, _Data element groups_ or _OptionSets_.
+1.  Select an object type: *Data sets*, *Programs*, *Category combination*,
+    *Dashboard*, *Data element groups* or *OptionSets*.
 
 2.  Select an object.
 
-3.  Select a format: _JSON_ or _XML_
+3.  Select a format: *JSON* or *XML*
 
-4.  Select a compression type: _Zip_ , _GZip_ or _Uncompressed_
+4.  Select a compression type: *Zip* , *GZip* or *Uncompressed*
 
 5.  Click **Export metadata dependencies** which will open a new
     web-browser window that will give you a file to download to your
@@ -327,17 +327,17 @@ export.
 
 4.  Set the start and end date.
 
-5.  Select a format: _JSON_, _CSV_, _XML_, or _ADX_
+5.  Select a format: *JSON*, *CSV*, *XML*, or *ADX*
 
 6.  Select a compression mode: **Zip** , **GZip** or **Uncompressed**
 
 7.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
 
-    - Include deleted
-    - Data element ID scheme
-    - Organisation unit ID scheme
-    - ID scheme
+    * Include deleted
+    * Data element ID scheme
+    * Organisation unit ID scheme
+    * ID scheme
 
 8.  Click **Export data** which will open a new web-browser window
     that will give you a file to download to your local computer.
@@ -355,14 +355,14 @@ You can export event or tracker data in JSON, CSV, or XML formats.
 
 2.  Select the inclusion:
 
-    - _Selected_: Export event data only for the selected
+    * *Selected*: Export event data only for the selected
       organisation unit
 
-    - _Directly below_: Export event data including the first
+    * *Directly below*: Export event data including the first
       level of the organisation units inside the selections as well
       as the selected organisation unit itself.
 
-    - _All below_: Export event data for all organisation units
+    * *All below*: Export event data for all organisation units
       inside the selections as well as the selected organisation
       unit itself.
 
@@ -370,17 +370,17 @@ You can export event or tracker data in JSON, CSV, or XML formats.
 
 4.  Set the start date and end date.
 
-5.  Select a format: _JSON_, _CSV_, or _XML_.
+5.  Select a format: *JSON*, *CSV*, or *XML*.
 
-6.  Select a compression mode: _Zip_, _GZip_ or _Uncompressed_.
+6.  Select a compression mode: *Zip*, *GZip* or *Uncompressed*.
 
 7.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
 
-    - Include deleted
-    - Data element ID scheme
-    - Organisation unit ID scheme
-    - ID scheme
+    * Include deleted
+    * Data element ID scheme
+    * Organisation unit ID scheme
+    * ID scheme
 
 8.  Click **Export events** which will open a new web-browser window
     that will give you a file to download to your local computer.
@@ -398,19 +398,19 @@ You can export event or tracker data in JSON, CSV, or XML format.
 
 2.  Decide whether you want to filter by program or tracked entity type.
 
-3.  Select a format: _JSON_, _CSV_, or _XML_.
+3.  Select a format: *JSON*, *CSV*, or *XML*.
 
 4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
 
-    - Filter by last updated date
-    - Assigned user mode
-    - Include deleted
-    - Include all attributes
-    - Data element ID scheme
-    - Event ID scheme
-    - Organisation unit ID scheme
-    - ID scheme
+    * Filter by last updated date
+    * Assigned user mode
+    * Include deleted
+    * Include all attributes
+    * Data element ID scheme
+    * Event ID scheme
+    * Organisation unit ID scheme
+    * ID scheme
 
 5.  Click **Export tracked entity instances** which will open a new
     web-browser window that will give you a file to download to your
@@ -419,7 +419,7 @@ You can export event or tracker data in JSON, CSV, or XML format.
 ## Job Overview { #job_overview }
 
 The job overview page can be accessed from the sidebar by clicking on
-_Job Overview_.
+*Job Overview*.
 
 ![](resources/images/import_export/job_overview.png)
 
@@ -440,7 +440,7 @@ type filters above the job list.
 ![](resources/images/import_export/job_overview_recreate.png)
 
 You can recreate previously run import jobs by clicking on the
-_Recreate job_ button at the bottom of the page, assuming you have
+*Recreate job* button at the bottom of the page, assuming you have
 selected a job from the list. This will take you to the correct import
 page and fill in all the form details exactly as the job you chose to
 recreate.
@@ -458,8 +458,8 @@ Table: Available values
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ID, UID      | Match on DHIS2 stable Identifier, this is the default id scheme.                                                                                                                                                                                                                                                                                                    |
 | CODE         | Match on DHIS2 Code, mainly used to exchange data with an external system.                                                                                                                                                                                                                                                                                          |
-| NAME         | Match on DHIS2 Name, please note that this uses what is available as _object.name_, and not the translated name. Also note that names are not always unique, and in that case, they can not be used.                                                                                                                                                                |
-| ATTRIBUTE:ID | Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to _true_. The main usage of this is also to exchange data with external systems, it has some advantages over _CODE_ since multiple attributes can be added, so it can be used to synchronize with more than one system. |
+| NAME         | Match on DHIS2 Name, please note that this uses what is available as *object.name*, and not the translated name. Also note that names are not always unique, and in that case, they can not be used.                                                                                                                                                                |
+| ATTRIBUTE:ID | Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to *true*. The main usage of this is also to exchange data with external systems, it has some advantages over *CODE* since multiple attributes can be added, so it can be used to synchronize with more than one system. |
 
 ### ID scheme
 
