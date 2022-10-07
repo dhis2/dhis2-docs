@@ -1,4 +1,4 @@
-# Import/Export App { #import_export } 
+# Import/Export App { #import_export }
 
 In a primary health system, the HMIS typically involves a distributed
 application, where the same application is running in different
@@ -23,15 +23,15 @@ which can be found below.
 
 ![](resources/images/import_export/overview.png)
 
-## Importing data { #importing_data } 
+## Importing data { #importing_data }
 
-### Import progress logger { #import_progress_logger } 
+### Import progress logger { #import_progress_logger }
 
 No matter what you import ("Data", "Events", "GML", "Metadata" or
 "Tracked Entity Instances" data), you can always view the progress of
 the import by looking at the "Job Summary" at the top of the page.
 
-### Import Summaries { #metadata_import_summaries } 
+### Import Summaries { #metadata_import_summaries }
 
 On import request completion, we show import summaries above the
 import form. Any conflicts or errors are shown in the table under the
@@ -39,7 +39,7 @@ main summary for the import.
 
 ![](resources/images/import_export/import_summary.png)
 
-### Metadata Import { #metadata_import } 
+### Metadata Import { #metadata_import }
 
 Metadata Import can be accessed from the sidebar by clicking on
 Metadata Import.
@@ -78,14 +78,13 @@ Metadata Import.
 > Metadata, and to check for problems with out-of-sync data elements or
 > organisation unit names
 
-
 > **Note**
 >
 > If an organisation unit e.g. `Nduvuibu MCHP` had a unknown reference to an object with ID `aaaU6Kr7Gtpidn`, it means that the object with ID `aaaU6Kr7Gtpidn` was not present in your imported file, and it was not found in the existing database.
 >
 > You can control this using **Identifier** option, to indicate if you want to allow objects with such invalid references to be imported or not. If you choose to import invalid references you will have to correct the reference manually in DHIS2 later.
 
-#### Matching Identifiers in DXF2 { #matching_identifiers_in_dxf2 } 
+#### Matching Identifiers in DXF2 { #matching_identifiers_in_dxf2 }
 
 The DXF2 format currently support matching for two identifiers, the
 internal DHIS2 identifier (known as a UID), and also using an external
@@ -99,7 +98,7 @@ legacy system's own identifiers in the code field, this identifier is
 required to be unique. This not only works for organisation units, but
 for all kinds of meta-data, allowing for easy import from other systems.
 
-### Data Import { #import } 
+### Data Import { #import }
 
 Data Import can be accessed from the sidebar by clicking on Data
 Import.
@@ -133,7 +132,7 @@ Import.
 > Metadata, and to check for problems with out-of-sync data elements or
 > organisation unit names
 
-#### PDF Data { #importPDFdata } 
+#### PDF Data { #importPDFdata }
 
 DHIS2 supports import of data in the PDF format. This can be used to
 import data produced by off-line PDF data entry forms. Please refer to
@@ -143,10 +142,10 @@ form which can be used for off-line data entry.
 To import a PDF data file, navigate to the *PDF Data Import* item in the
 side menu. Upload the completed PDF file and click *Import*.
 
-### Event Import { #event_import } 
+### Event Import { #event_import }
 
-Event can be access from the sidebar by clicking on Event
-import.
+Event Import can be accessed from the sidebar by clicking on Event
+Import.
 
 ![](resources/images/import_export/event_import.png)
 
@@ -163,7 +162,53 @@ import.
 3.  Click on the **Import** button which will upload the file and start the
     importing process.
 
-### GML Import { #gml_import } 
+### Earth Engine Import { #ee_import }
+
+Earth Engine Import can be accessed from the sidebar by clicking on Earth Engine
+Import.
+
+Import high resolution population data from WorldPop using Google Earth Engine. A [Google
+Earth Engine account](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html) is required to use this importer.
+
+![](resources/images/import_export/ee_import.png)
+
+#### Select which Earth Engine data should be imported
+
+The first section of the form is used to configure the Earth Engine data to import.
+
+1. Select which Earth Engine dataset should be imported. Currently the choices are *Population* and *Population age groups*.
+
+2. After a dataset has been selected, a period must be selected. Only one period can be imported at a time.
+
+3. Choose how the data should be rounded. By default data is not rounded.
+
+4. Select which organisation units to import data to. If you select facility level organisation units, then you must choose an associated geometry for the facilities. Without an associated geometry for facilities, the Earth Engine cannot determine the population.
+
+![](resources/images/import_export/ee_ou_associated_geometry.png)
+
+#### Select the data elements to import the Earth Engine data into
+
+Once you have configured the Earth Engine dataset, you need to select which data element to import the data to. For datasets with disaggregation groups, such as "Population age groups", the DHIS2 data element must have disaggregations in the form of category option combos that match the Earth Engine dataset disaggregation groups.
+
+![](resources/images/import_export/ee_group_coc_mapping.png)
+
+> **Configuring data elements for Earth Engine import**
+>
+> When configuring the DHIS2 data elements that will contain Earth Engine data, if you plan to import data to multiple org unit levels, ensure that those levels are added as Aggregation Levels in the data element configuration.
+>
+> Some Earth Engine datasets contain disaggregation groups, the DHIS2 data element must be configured with corresponding category option combos. For example the "Population age groups" dataset is disaggregated by gender (Male, Female) and 5-year age groups.
+>
+> In DHIS2 this means that you must have a Male/Female category, and a 5-year age group category (<1yr, 1-4yr, 5-9yr, 10-14yr... 80+yr). These are combined into a category combination.
+>
+> Pro-tip: To automatically match the category option combo to the Earth Engine disaggregation group, add a Code to each category option combo that matches the earth engine group name. For example, with "Population age groups", the groups are named: F_0, F_1, F_5..., M_0, M_1, M_5...
+
+#### Run the import
+
+Once the data element and category option combos have been selected, the Preview button is enabled. After reviewing the data you want to import, you can do a dry run first, or proceed with the actual import.
+
+![](resources/images/import_export/ee_data_preview.png)
+
+### GML Import { #gml_import }
 
 GML Import can be accessed from the sidebar by clicking on GML
 Import.
@@ -175,7 +220,7 @@ Import.
 2.  Click on the **Import** button which will upload the file and start the
     importing process.
 
-### Tracked Entity Instances Import { #tei_import } 
+### Tracked Entity Instances Import { #tei_import }
 
 Tracked Entity Instances Import can be accessed from the sidebar by
 clicking on TEI Import.
@@ -214,7 +259,7 @@ clicking on TEI Import.
 
 ## Exporting data
 
-### Metadata Export { #metadata_export } 
+### Metadata Export { #metadata_export }
 
 Metadata export can be accessed from the sidebar by clicking on
 Metadata export.
@@ -232,14 +277,12 @@ Metadata export.
 5.  Click **Export metadata** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Metadata Export with Dependencies { #metadata_export_dependencies } 
+### Metadata Export with Dependencies { #metadata_export_dependencies }
 
 Metadata export with dependencies lets you create canned exports for
 metadata objects. This type of export will include the metadata objects
 and the metadata object's related objects; that is, the metadata which
 belong together with the main object.
-
-
 
 Table: Object types and their dependencies
 
@@ -269,7 +312,7 @@ Table: Object types and their dependencies
     web-browser window that will give you a file to download to your
     local computer.
 
-### Data export { #data_export } 
+### Data export { #data_export }
 
 Data export can be accessed from the sidebar by clicking on Data
 export.
@@ -301,7 +344,7 @@ export.
 8.  Click **Export data** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Event export { #event_export } 
+### Event export { #event_export }
 
 Event export can be accessed from the sidebar by clicking on Event
 export.
@@ -314,16 +357,16 @@ You can export event or tracker data in JSON, CSV, or XML formats.
 
 2.  Select the inclusion:
 
-      - *Selected*: Export event data only for the selected
-        organisation unit
+    - *Selected*: Export event data only for the selected
+      organisation unit
 
-      - *Directly below*: Export event data including the first
-        level of the organisation units inside the selections as well
-        as the selected organisation unit itself.
+    - *Directly below*: Export event data including the first
+      level of the organisation units inside the selections as well
+      as the selected organisation unit itself.
 
-      - *All below*: Export event data for all organisation units
-        inside the selections as well as the selected organisation
-        unit itself.
+    - *All below*: Export event data for all organisation units
+      inside the selections as well as the selected organisation
+      unit itself.
 
 3.  Select a program and a program stage (if applicable).
 
@@ -344,7 +387,7 @@ You can export event or tracker data in JSON, CSV, or XML formats.
 8.  Click **Export events** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Tracked Entity Instances export { #tei_export } 
+### Tracked Entity Instances export { #tei_export }
 
 Tracked entity instances export can be accessed from the sidebar by
 clicking on TEI export.
@@ -357,9 +400,9 @@ You can export event or tracker data in JSON, CSV, or XML format.
 
 2.  Decide whether you want to filter by program or tracked entity type.
 
-6.  Select a format: *JSON*, *CSV*, or *XML*.
+3.  Select a format: *JSON*, *CSV*, or *XML*.
 
-7.  Click **Advanced options** if you want to adjust one or more of
+4.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
 
     * Filter by last updated date
@@ -371,11 +414,11 @@ You can export event or tracker data in JSON, CSV, or XML format.
     * Organisation unit ID scheme
     * ID scheme
 
-8.  Click **Export tracked entity instances** which will open a new
+5.  Click **Export tracked entity instances** which will open a new
     web-browser window that will give you a file to download to your
     local computer.
 
-## Job Overview { #job_overview } 
+## Job Overview { #job_overview }
 
 The job overview page can be accessed from the sidebar by clicking on
 *Job Overview*.
@@ -405,12 +448,11 @@ page and fill in all the form details exactly as the job you chose to
 recreate.
 
 ## Schemes
+
 The various schemes used in many of the import and export pages are
 also known as identifier schemes and are used to map metadata objects
 to other metadata during import, and to render metadata as part of
 exports.
-
-
 
 Table: Available values
 
@@ -422,5 +464,6 @@ Table: Available values
 | ATTRIBUTE:ID | Match on metadata attribute, this attribute needs to be assigned to the type you are matching on, and also that the unique property is set to *true*. The main usage of this is also to exchange data with external systems, it has some advantages over *CODE* since multiple attributes can be added, so it can be used to synchronize with more than one system. |
 
 ### ID scheme
+
 The ID scheme applies to all types of objects, but can be overwritten
 by more specific object types.
