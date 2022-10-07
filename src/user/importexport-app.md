@@ -204,7 +204,7 @@ Once you have configured the Earth Engine dataset, you need to select which data
 
 #### Run the import
 
-Once the data element and category option combos have been selected, The Preview is enabled. After reviewing the data you want to import, you can do a dry run first, or proceed with the actual import.
+Once the data element and category option combos have been selected, the Preview button is enabled. After reviewing the data you want to import, you can do a dry run first, or proceed with the actual import.
 
 ![](resources/images/import_export/ee_data_preview.png)
 
