@@ -193,6 +193,20 @@ want to, you may also enter the user name that the account will have. If
 you leave the user name empty, then the user may choose their own user
 name when they respond to the invitation (as long as it is not taken
 already for another user.)<br/><br/>
+
+#### Username requirements
+
+The following rules apply when you create a new username. The username must:
+
+  - Contain at least 4 characters.
+  
+  - Not contain more than 255 characters.
+
+  - Contain lowercase and UPPERCASE latin characters and numbers (`a-z`,`A-Z`,`0-9`).
+
+  - These characters are also allowed `. _ @` and `#`, but these may only be used as a separator, and not as a leading or trailing character, and should not be repeated (i.e. `user@@name` is not allowed).<br/><br/>
+  
+
 After you've created the user, the system sends an email to the address
 you provided. It contains a unique web link by which the user can return
 to the system and activate their account by entering the rest of their
@@ -366,23 +380,18 @@ To change a user's password:
 
 The following rules apply when you create a new password. The password must:
 
-  - Contain at least 8 characters. Note that this number is configurable through the system setting "Minium characters in password", which can be up to 14 characters. 
+  - Contain at least 8 characters. Note that this number is configurable through the system setting "Minimum characters in password", which can be up to 14 characters. 
   
-  - Not contain more than 40 characters.
+  - Not contain more than 34 characters.
 
   - Contain at least one special character (non-alphanumeric character).
 
-  - Contain at least one upper-case character.
+  - Contain at least one UPPERCASE character.
   
-  - Contain at least one lower-case character.
+  - Contain at least one lowercase character.
 
   - Contain at least one digit (number).
 
-  - Not contain the username or email address of the user account.
-
-  - Not contain generic words such as *system*, *admin*, *user*, *login*, and *manager*.
-
-  - Not be one of the previous 24 passwords the user has used. This does not apply in case when a super user resets the password for another user.
 
 ### Reset user password by email { #reset_user_password_by_email } 
 
