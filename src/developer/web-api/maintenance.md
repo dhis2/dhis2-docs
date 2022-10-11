@@ -32,6 +32,7 @@ Table: Analytics tables optional query parameters
 | skipAggregate | false &#124; true | Skip generation of aggregate data and completeness data |
 | skipEvents | false &#124; true | Skip generation of event data |
 | skipEnrollment | false &#124; true | Skip generation of enrollment data |
+| skipOrgUnitOwnership | false &#124; true | Skip generation of organization unit ownership data |
 | lastYears | integer | Number of last years of data to include |
 
 "Data Quality" and "Data Surveillance" can be run through the monitoring
