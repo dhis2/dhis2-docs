@@ -95,7 +95,7 @@ In order to show a form, the following information is required:
       - When clicking on "Options" and then on "Help", you will see the cell
         reference which contains a legend of the different cell states.
 
-6.  When you've filled in the form, click **Run validation** in the bottom
+6.  When you have filled in the form, click **Run validation** in the bottom
     left corner in the bottom bar.
     
     All validation rules which involves data elements in the current
