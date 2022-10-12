@@ -175,17 +175,18 @@ the new user such as username, password, etc. Under these conditions, the fields
 name, and roles are mandatory.<br/><br/>
 After you've created the user, the account is ready for the user to use
 with the user name and password that you provide.<br/><br/>
-#### Username requirements
 
-The following rules apply when you create a new username. The username must:
+    #### Username requirements
+    
+    The following rules apply when you create a new username. The username must:
 
-  - Contain at least 4 characters.
-  
-  - Not contain more than 255 characters.
+    - Contain at least 4 characters.
+    
+    - Not contain more than 255 characters.
 
-  - Contain lowercase and UPPERCASE latin characters and numbers (`a-z`,`A-Z`,`0-9`).
+    - Contain lowercase and UPPERCASE latin characters and numbers (`a-z`,`A-Z`,`0-9`).
 
-  - These characters are also allowed `. _ @` and `#`, but these may only be used as a separator, and not as a leading or trailing character, and should not be repeated (i.e. `user@@name` is not allowed).<br/><br/>
+    - These characters are also allowed `. _ @` and `#`, but these may only be used as a separator, and not as a leading or trailing character, and should not be repeated (i.e. `user@@name` is not allowed).
 
  - **Email invitation to create account**
 ![](resources/images/dhis2UserManual/user_management_invite.png)
