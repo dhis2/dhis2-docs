@@ -83,7 +83,7 @@ In order to show a form, the following information is required:
         Arrow key.
     
       - If you type in an invalid value, for example a character in a field
-        that only accepts numeric values, you'll get a tooltip that explains
+        that only accepts numeric values, you will get a tooltip that explains
         the problem and the field will be coloured red until you have corrected
         the value.
     
