@@ -207,6 +207,10 @@ correct all marked values.
     If values don't fall within the new value range the next time you enter
     data, the data entry cell will appear with a red background.
 
+    > **Note**
+    >
+    > Only users with the relevant privileges are able to edit the value ranges.
+    
 ## Display a data value's history { #aggregate_data_entry_app.display_data_value_history } 
 
 You can display the last 12 values registered for a field.
