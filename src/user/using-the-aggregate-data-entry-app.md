@@ -229,7 +229,7 @@ You can display the last 12 values registered for a field.
 
 The audit log allows you to view other data values which have been entered
 prior to the current value. The audit trail also shows when the data value was
-altered and which user who made the changes.
+altered and which user made the changes.
 
 1.  Open the **Data Entry** app (beta).
 
