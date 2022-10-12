@@ -136,7 +136,7 @@ Each field in a form (a particular data value) can have additional information:
 
 *   A comment
 
-*   Min- anx max limits
+*   Min (minimum) and max (maximum) limits
 
 *   History
 
