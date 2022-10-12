@@ -276,12 +276,9 @@ units!
 
 ## See also { #aggregate_data_entry_app.data_entry_app_see_also } 
 
-  - [Control data
-    quality](https://docs.dhis2.org/master/en/user/html/control_data_quality.html)
-
   - [Manage data sets and data entry
-    forms](https://docs.dhis2.org/master/en/user/html/manage_data_set.html)
-
-  - [Using the Maintenance
-    app](https://docs.dhis2.org/master/en/user/html/maintenance_app.html)
+    forms](#manage_data_set)
+    
+  - [Control data
+    quality](#control_data_quality)
 
