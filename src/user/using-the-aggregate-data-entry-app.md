@@ -11,7 +11,7 @@ paper-based data collection tool. You configure the data sets in the
 > **Note**
 > 
 > If a data set has both a section form and a custom form, the system
-> displays the custom form during data entry. Users who enter data can't
+> displays the custom form during data entry. Users who enter data cannot
 > select which form they want to use. In web-based data entry the order
 > of display preference is:
 > 
