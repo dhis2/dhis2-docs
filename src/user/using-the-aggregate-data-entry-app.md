@@ -88,7 +88,7 @@ In order to show a form, the following information is required:
         the value.
     
       - If you have defined a minimum maximum value range for the field and you
-        enter a value that is outside this range, you'll get a pop-up message
+        enter a value that is outside this range, you will get a pop-up message
         that says the value is out of range. The field will be coloured red
         until you have corrected the value.
 
