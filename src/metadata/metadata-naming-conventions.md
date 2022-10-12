@@ -86,7 +86,7 @@ As plain language this makes sense, however when combined in an ordered list (su
 
 ### Favorites
 * Favorite names: Prefix favorite names with health area/program name and
-colon, e.g. TB: Case notifications…, MAL: Incidence rate… 
+hyphen, e.g. TB - Case notifications…, MAL - Incidence rate… 
 * Favourite titles: Titles do not need prefixes, as they are not used for searching.
 
 ### Option sets
