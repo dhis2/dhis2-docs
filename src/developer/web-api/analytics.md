@@ -402,17 +402,6 @@ use the following URL:
     /api/analytics.xml?dimension=dx:fbfJHSPpUQD
       &dimension=pe:2016&dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
-The analytics responses must be retrieved using the HTTP *GET* method.
-This allows for direct linking to analytics responses from Web pages as
-well as other HTTP-enabled clients. To do functional testing we can use
-the cURL library. By executing this command against the demo database
-you will get an analytics response in JSON format:
-
-```bash
-curl "play.dhis2.org/demo/api/analytics.json?dimension=dx:eTDtyyaSA7f;FbKK4ofIv5R
-  &dimension=pe:2016Q1;2016Q2&filter=ou:ImspTQPwCqd" -u admin:district
-```
-
 The JSON response will look like this:
 
 ```json
@@ -2465,15 +2454,9 @@ available formats and content types are:
 
   - html (text/html)
 
-API query that requests a usage analytics response in XML
-    format:
+API query that requests a usage analytics response in XML format:
 
     /api/dataStatistics.xml?startDate=2014-01-01&endDate=2016-01-01&interval=WEEK
-
-You must retrieve the aggregated usage analytics response with the HTTP
-GET method. This allows you to link directly from Web pages and other
-HTTP-enabled clients to usage analytics responses. To do functional
-testing use the cURL library.
 
 To get an usage analytics response in JSON format:
 
@@ -2710,10 +2693,10 @@ Table: Phases, table types and temporary tables
 
 ### Creating hooks { #webapi_create_analytics_table_hook } 
 
-To create a hook which should run after the resource tables have been populated you can do a *POST* request like this using *JSON* format:
+To create a hook which should run after the resource tables have been populated you can do a *POST* request like this using *JSON* as content type:
 
-```bash
-curl -d @hooks.json "localhost/api/analyticsTableHooks" -H "Content-Type:application/json" -u admin:district
+```
+POST /api/analyticsTableHooks
 ```
 
 ```json
