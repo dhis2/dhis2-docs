@@ -250,7 +250,7 @@ Internet connection is back, the app will push the data to the server.
 
 > **Note**
 > 
-> To use this functionality, you must login to the server while you've
+> To use this functionality, you must login to the server while you have
 > an Internet connection.
 
 -   When you're connected to the Internet, the app displays this message
