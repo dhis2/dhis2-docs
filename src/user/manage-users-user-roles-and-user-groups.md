@@ -186,6 +186,7 @@ The following rules apply when you create a new username. The username must:
   - Contain lowercase and UPPERCASE latin characters and numbers (`a-z`,`A-Z`,`0-9`).
 
   - These characters are also allowed `. _ @` and `#`, but these may only be used as a separator, and not as a leading or trailing character, and should not be repeated (i.e. `user@@name` is not allowed).<br/><br/>
+
  - **Email invitation to create account**
 ![](resources/images/dhis2UserManual/user_management_invite.png)
 Choose this option if you want to send an invitation by email to the
