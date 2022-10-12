@@ -2753,8 +2753,6 @@ content-type `application/x-www-form-urlencoded`.
 
     api/svg.pdf
 
-
-
 Table: Query parameters
 
 | Query parameter | Required | Description |
@@ -2763,21 +2761,22 @@ Table: Query parameters
 | filename | No | The file name for the returned attachment without file extension |
 
 ## Analytics query execution plan and costs including execution time estimation
-The Web Api provides entry point for the investigation of analytics database issues. 
-It is implemented as a part of all analytics controllers:
+
+The analytics API provides endpoints for investigation of query performance issues. It is implemented as part of all analytics endpoints:
+
 - analytics/explain
 - analytics/event/explain
 - analytics/enrollment/explain
 
 **Example**
 
-Request:
-
-http://localhost:8080/dhis/api/29/analytics/explain?displayProperty=NAME&dimension=dx:Uvn6LCg7dVU;sB79w2hiLp8,ou:USER_ORGUNIT&filter=pe:THIS_YEAR&includeNumDen=false&skipMeta=false&skipData=true&includeMetadataDetails=true
-
-Response:
-
 ```
+GET /api/analytics/explain?displayProperty=NAME&dimension=dx:Uvn6LCg7dVU;sB79w2hiLp8,ou:USER_ORGUNIT&filter=pe:THIS_YEAR&includeNumDen=false&skipMeta=false&skipData=true&includeMetadataDetails=true
+```
+
+The response looks like this.
+
+```json
 {
     "headers": [
         {
@@ -3045,16 +3044,14 @@ All entry points are secured by authorization. The `F_PERFORM_ANALYTICS_EXPLAIN`
 
 ## Analytics explain { #webapi_analytics_explain }
 
-**Endpoints:**
-- /api/analytics/explain
+	/api/analytics/explain
 
 ## Event analytics explain { #webapi_event_analytics_explain }
 
-**Endpoints:**
-- /api/analytics/event/aggregate/{program}/explain
-- /api/analytics/event/query/{program}/explain
+	/api/analytics/event/aggregate/{program}/explain
+
+	/api/analytics/event/query/{program}/explain
 
 ## Enrollment analytics explain { #webapi_enrollment_analytics_explain }
 
-**Endpoints:**
-- /api/analytics/enrollment/query/{program}/explain
+	/api/analytics/enrollment/query/{program}/explain
