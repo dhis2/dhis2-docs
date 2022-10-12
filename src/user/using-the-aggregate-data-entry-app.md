@@ -28,7 +28,7 @@ paper-based data collection tool. You configure the data sets in the
 > 
 > 2.  Default form
 
-When you close an organisation unit, you can't register or edit data to
+When you close an organisation unit, you can no longer register or edit data to
 this organisation unit in the **Data Entry** app (beta).
 
 ## Selecting a form { #aggregate_data_entry_app.selecting_a_form }
