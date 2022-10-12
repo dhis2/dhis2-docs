@@ -41,7 +41,7 @@ In order to show a form, the following information is required:
 
 1.  A data set
 
-    As selectable the organisation unit and period depend on the data set, the
+    As the organisation unit and period depend on the data set, the
     data set has to be chosen first.
 
 1.  An organisation unit
