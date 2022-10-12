@@ -73,7 +73,7 @@ In order to show a form, the following information is required:
         the system has saved the value.
     
       - A grey field with a "not allowed" mouse cursor means that the field is
-        disabled and you can't enter a value. The keyboard cursor will
+        disabled and you cannot enter a value. The keyboard cursor will
         automatically jump to the next open field.
     
       - To move to the next field, press the Tab key or the Down Arrow
