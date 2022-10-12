@@ -142,7 +142,7 @@ Each field in a form (a particular data value) can have additional information:
 
 *   Audit log
 
-These information can be viewed by opening the details for a particular field.
+This information can be viewed by opening the details for a particular field.
 
 1.  Open the **Data Entry** app (beta).
 
