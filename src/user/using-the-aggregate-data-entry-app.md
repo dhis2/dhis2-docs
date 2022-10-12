@@ -111,7 +111,7 @@ In order to show a form, the following information is required:
     > Zero (0) will delete the value if the data element has been
     > configured to not store zeros.
 
-8.  When you've corrected errors and you're done with data entry, click
+8.  When you have corrected errors and you have finished entering data for the entire form, click
     **Complete**.
 
     Passing validation is not required when completing a form unless the data
