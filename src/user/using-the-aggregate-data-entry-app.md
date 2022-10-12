@@ -98,7 +98,7 @@ In order to show a form, the following information is required:
 6.  When you have filled in the form, click **Run validation** in the bottom
     left corner in the bottom bar.
     
-    All validation rules which involves data elements in the current
+    All validation rules related to data elements in the current
     data entry form (data set) are then run against the new data. A sidebar
     will open on the right side and display all violations (or none).
     
