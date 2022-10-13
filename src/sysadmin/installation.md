@@ -1027,8 +1027,6 @@ making the system inaccessible to users.
 There are a few aspects to configure in order to run DHIS 2
 in a cluster.
 
-* Each DHIS 2 instance must have enabled Hibernate cache invalidation.
-
 * A Redis data store must be installed and connection information must 
 be provided for each DHIS 2 application instance in *dhis.conf*.
 
@@ -1036,103 +1034,54 @@ be provided for each DHIS 2 application instance in *dhis.conf*.
 apps and file uploads, either through the *AWS S3 cloud filestorage* option 
 or a shared network drive.
 
-* A load balancer such as nginx must be configured to distribute Web requests
+* DHIS 2 instance cache invalidation must be enabled.
+
+* A load balancer such as nginx should be configured to distribute Web requests
 across the cluster instances.
 
-### DHIS 2 instance cache invalidation { #install_cluster_configuration }
+### DHIS 2 instance cache invalidation with Redis { #install_cluster_cache_invalidation_redis }
 
-DHIS2 can invalidate the application cache by listening for replication events emitted by the PostgreSQL database. This allows for adding new DHIS2 instances without having to configure a unique ID for each "instance" in `dhis.conf`. 
+DHIS 2 can invalidate the various instance's caches by listening for events sent and emitted from a Redis server, when configured to do so.
 
-Cache invalidation is based on the open-source project [Debezium](https://debezium.io/), which works by listening to the replication stream from a PostgreSQL database to detect updates made by other instances.
+This is considered the easiest and preferred way to enable cache invalidation, if you already plan to use Redis for
+shared data store cluster configuration { #install_cluster_configuration_redis }, it will share this Redis server for both purposes.
 
 #### Prerequisites
 
-* PostgreSQL version 10 or later.
-* Logical replication enabled in PostgreSQL.
-* PostgreSQL user must have replication authority.
+* Redis server
 
-#### PostgreSQL configuration
+#### Redis configuration
 
-The following properties must be specified in the PostgreSQL configuration file:
+No specific configuration in Redis is needed for DHIS 2 cache invalidation to work.
 
-```
-wal_level = logical
+When you chose to enable shared data store cluster configuration with Redis, you will share the Redis host/port
+configuration with the cache invalidation system. In other words you can only have **one** shared Redis server configured.
 
-# This number has to be the same or bigger as the total number of 
-# DHIS2 instances you intend to run at the same time.  
-max_replication_slots = 10
-max_wal_senders = 10              
-
-```
-
-#### DHIS2 configuration
+#### DHIS 2 configuration
 
 The following properties must be specified in the DHIS 2 `dhis.conf` configuration file:
 
-```
-debezium.enabled = on 
-debezium.db.hostname = DHIS2_DATABASE_HOSTNAME
-debezium.db.port = DHIS2_DATABASE_PORT_NUMBER
-debezium.db.name = DHIS2_DATABASE_NAME
-debezium.connection.username = DHIS2_DATABASE_USER 
-debezium.connection.password = DHIS2_DATABASE_PASSWORD
+```properties
+# Cache invalidation config
 
-# [Optional] If you want the server to shutdown if the replication connection is lost (default is off)
-debezium.shutdown_on.connector_stop = on
-```
+redis.cache.invalidation.enabled = on
 
-#### Enable replication access on the database user
-
-Execute the following statement with a PostgreSQL superuser to give replication access to your database user:
-
-```
-alter role {db-user} with replication;
-```
-
-#### Troubleshooting
-
-**Running out of available replication slots**
-
-Every time a DHIS2 instance is started, a new replication slot is created in the database. On every normal shutdown of
-the instance, the slot is automatically removed. However, if the server has not shut down normally, like for example on
-a power outage, the replication slot will remain in the database until it is manually removed. Each replication slot
-name includes the date it was created and a random string, such that no replication slot will ever have the same name.
-The number of available replication slots is fixed and is determined by the Postgres config variables: 
-'max_wal_senders' and 'max_replication_slots'.
-
-To manually remove old stale replication slots, you can use the following SQL statement:
-
-```
-select * from pg_replication_slots;
-```
-
-To remove a stale replication slot, you can use the following SQL statement (replace the slot ID):
-
-```
-select pg_drop_replication_slot('dhis2_1624530654__a890ba555e634f50983d4d6ad0fd63f1');
-```
-
-**Debezium engine losing connection to the database**
-
-If the replication connection fails and can not recover, the node will eventually be out of sync. To prevent this from
-happening, you can enable the server to shut down if it detects it has lost connection. This feature is disabled by
-default, since it will shut down the instance without warning. If however you have several instances in a typical load
-balanced setup and can tolerate that some instances are down, and you have adequate monitoring and alerting set up, you
-might consider enabling this. It can be enabled by setting this dhis.conf variable:
-
-```
-debezium.shutdown_on.connector_stop = on
+# Shared Redis configuration
+redis.host = REDIS_HOST
+redis.port = REDIS_PORT
+redis.password = PASSWORD (Optional, only if enabled on Redis server)
+redis.use.ssl = true (Optional, only if enabled on Redis server) 
 ```
 
 ### Redis shared data store cluster configuration { #install_cluster_configuration_redis } 
 
-In a cluster setup, a *Redis* instance is required and will handle
+In a cluster setup, a Redis server is required and will handle
 shared user sessions, application cache and cluster node leadership.
 
 For optimum performance, *Redis Keyspace events* for _generic commands_ 
 and _expired events_ need to be enabled in the Redis Server. If you are 
 using a cloud platform-managed Redis server (like *AWS ElastiCache for Redis* 
-or *Azure Cache for Redis*) you will have to enable keyspace event notifications 
+or *Azure Cache for Redis*), you will have to enable keyspace event notifications 
 using the respective cloud console interfaces. If you are setting up a standalone 
 Redis server, enabling keyspace event notifications can be done in the 
 *redis.conf* file by adding or uncommenting the following line:
@@ -1170,13 +1119,11 @@ configured is shown below.
 
 redis.enabled = on
 
-redis.host = 193.158.100.111
-
-redis.port = 6379
-
-redis.password = <your password>
-
-redis.use.ssl = false
+# Shared Redis configuration
+redis.host = REDIS_HOST
+redis.port = REDIS_PORT
+redis.password = PASSWORD (Optional, only if enabled on Redis server)
+redis.use.ssl = true (Optional, only if enabled on Redis server)
 
 # Optional, defaults to 2 minutes
 leader.time.to.live.minutes=4 
