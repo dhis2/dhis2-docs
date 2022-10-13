@@ -460,6 +460,7 @@ number of days to wait for starting the program stage.
  | **Pre-generate event UID** | Select check box to pre-generate unique event id numbers. |
  | **Description of report date** | Type a description of the report date.<br>  <br>This description is displayed in the data entry form. |
  | **Description of due date** | Type a description of the due date. |
+ | **Referral*** | Flag to indicate if program stage is referral or not. |
 
 5.  Assign data elements to program stage:
 
