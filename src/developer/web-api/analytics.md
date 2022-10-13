@@ -2770,9 +2770,10 @@ The analytics API provides endpoints for investigation of query performance issu
 
 **Example**
 
-```
-GET /api/analytics/explain?displayProperty=NAME&dimension=dx:Uvn6LCg7dVU;sB79w2hiLp8,ou:USER_ORGUNIT&filter=pe:THIS_YEAR&includeNumDen=false&skipMeta=false&skipData=true&includeMetadataDetails=true
-```
+    GET /api/analytics/explain?displayProperty=NAME
+      &dimension=dx:Uvn6LCg7dVU;sB79w2hiLp8,ou:USER_ORGUNIT
+      &filter=pe:THIS_YEAR&includeNumDen=false&skipMeta=false
+      &skipData=true&includeMetadataDetails=true
 
 The response looks like this.
 
