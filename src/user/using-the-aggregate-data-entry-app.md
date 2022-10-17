@@ -52,12 +52,13 @@ In order to show a form, the following information is required:
     set (reporting frequency). You can jump a year back or forward by
     clicking **Prev year** or **Next year**.
 
-1.  Attribute options (in case the data set has an attribute option combo)
+1.  Additional selections (dependent on previous choices)
 
-    The attribute option combo also depends on the period and organisation
-    unit, so the input will be hidden until all required values have been
-    selected. If a data set does not have an attribute option combo, then no
-    selector will appear.
+    If there are any other selections available, they’ll be shown as the last
+    controls in the top bar. Additional selections depend on the chosen data
+    set, organisation unit, and period, so they won’t be shown until those
+    first three selections are made. If there aren’t any additional selections,
+    the control won’t be shown.
 
 ## Enter data in a data entry form { #aggregate_data_entry_app.enter_data_in_data_entry_form } 
 
