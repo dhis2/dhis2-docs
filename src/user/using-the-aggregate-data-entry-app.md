@@ -168,7 +168,13 @@ To print a data entry form, click the *Options* button in the top bar. From the 
 
 ## Working offline
 
-==WIP==
+You don't need to be connected to the internet or DHIS2 server to enter data. Data entered into forms while you are offline is saved to your local computer. When you reconnect to the internet/server your locally saved data automatically syncs with your DHIS2 server.
+
+To work offline, you need to open the Data Entry (beta) app while you are connected to the internet so the data entry forms can be downloaded and stored on your local computer. Downloading of forms happens automatically in the background.
+
+The badge in the header bar at the top of the screen shows your connection status. If you are not connected to the internet or DHIS2 server, the badge shows *offline*. As well as the offline badge, forms cells you enter data will show the *waiting to sync* status.
+
+![](resources/images/data_entry_beta/offline.png)
 
 
 ## Features not supported in the beta version
