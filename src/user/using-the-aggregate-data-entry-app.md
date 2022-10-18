@@ -39,8 +39,8 @@ After you've made the selections in the top bar, the data entry form will open i
 ### Entering data { #aggregate_data_entry_app.entering_data }
 
 Once you've opened a form, you can start entering data into the form cells. The active cell, the cell that you're entering data into, is always highlighted with a blue border. To work quickly, you can move around using your keyboard:
-- to move on to the next cell, press `tab` or `↓`.
-- to go back to the previous cell, press `shift + tab` or `↑`.
+- to move on to the next cell, press ++tab++ or ++arrow-down++.
+- to go back to the previous cell, press ++shift+tab++ or ++arrow-up++.
 
 #### Cell status { #aggregate_data_entry_app.cell_status }
 Cells look different depending on what their status is:
@@ -99,7 +99,7 @@ The basic data entry functionality is covered above, but the Data Entry (beta) a
 
 There are different ways to open the data details sidebar:
 - **Click the *View details* button**. With a data entry cell selected, you can click the *View details* button in the bottom bar.
-- **Use the *ctrl+enter* or *cmd+enter* keyboard shortcut**. With a data entry cell selected, use one of these keyboard shortcuts.
+- **Use the ++ctrl+enter++ or ++cmd+enter++ keyboard shortcut**. With a data entry cell selected, use one of these keyboard shortcuts.
 
 The data details sidebar will stay open until you close it so that you can keep it open for reference as you work through a data entry form.
 
