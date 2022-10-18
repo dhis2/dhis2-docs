@@ -2,7 +2,7 @@
 
 ## About the Data Entry (beta) app { #about-data-entry-beta-app }
 
-The Data Entry (beta) app is used to enter aggregate data in DHIS2. Aggregate data is collected at a group level and doesn't belong to any one individual. Looking to enter individual-level data? Check out the Tracker Capture app.   
+The Data Entry (beta) app is used to enter aggregate data in DHIS2. Aggregate data is collected at a group level and doesn't belong to any one individual. Looking to enter individual-level data? Check out the [Tracker Capture app](#tracker_capture_app).   
 
 ## What makes a data entry form? { #what-makes-data-entry-form }
 
@@ -59,13 +59,13 @@ Filtering is useful if you're looking for a certain cell in a form. You can filt
 
 #### Filtering the whole form form { #filtering-whole-data-entry-form }
 
-![](resources/images/data_entry_beta/filter-form.png) 
+![](resources/images/data_entry_beta/filter-form.png) { width=60% }
 
 To filter the whole data entry form, enter a value into the input at the top of the form.
 
 #### Filtering a section { #filtering-section-data-entry-form }
 
-![](resources/images/data_entry_beta/filter-section.png) 
+![](resources/images/data_entry_beta/filter-section.png) { width=60% }
 
 For section form you can filter only inside a single section. Enter a value into the input at the top of a section.
 
@@ -74,7 +74,7 @@ When you're done entering data you can run validation on the data values. Valida
 
 To run validation, click the *Run validation* button in the bottom bar. 
 
-![](resources/images/data_entry_beta/validation-button.png) 
+![](resources/images/data_entry_beta/validation-button.png) { width=60% }
 
 The validation results are shown in the details sidebar, grouped into high, medium, and low priority results. Once you've fixed validation issues, click the *Run validation again* button to recheck data values.
 
@@ -85,7 +85,7 @@ The validation results are shown in the details sidebar, grouped into high, medi
 
 After entering data and running validation, the last step is completing a form. Mark a form as complete by clicking the *Mark complete* button in the bottom bar.
 
-![](resources/images/data_entry_beta/complete-button.png) 
+![](resources/images/data_entry_beta/complete-button.png) { width=60% }
 
 If a form is complete but shouldn't be, you can mark it as incomplete by clicking the *Mark incomplete* button in the bottom bar.
 
@@ -109,11 +109,11 @@ Marking data values for follow-up can be a useful way of highlighting suspicious
 
 To mark a data value for follow-up, [make sure the data details sidebar is open](#opening-the-data-details-sidebar), then click the *Mark for follow-up* button in the top section.
 
-![](resources/images/data_entry_beta/followup-button.png) 
+![](resources/images/data_entry_beta/followup-button.png) { width=60% }
 
 To unmark a data value, click the *Unmark for follow-up* button.
 
-![](resources/images/data_entry_beta/followup-unmark-button.png) 
+![](resources/images/data_entry_beta/followup-unmark-button.png) { width=60% }
 
 #### Comment on a data value { #comment-data-entry-values }
 
@@ -121,13 +121,13 @@ You can add a comment to any data value. Comments can be useful to add more info
 
 To add a comment to a data value, [make sure the data details sidebar is open](#opening-the-data-details-sidebar), then click the *Add comment* button in the *Comment* section.
 
-![](resources/images/data_entry_beta/comment-add-button.png) 
+![](resources/images/data_entry_beta/comment-add-button.png) { width=50% }
 
 Once you've written a comment, click the *Save comment* button.
 
 If a data value already has a comment, you can edit it by clicking the *Edit comment* button below the comment.
 
-![](resources/images/data_entry_beta/comment-edit-button.png) 
+![](resources/images/data_entry_beta/comment-edit-button.png) { width=50% }
 
 #### Minimum and maximum limits { #data-entry-value-limits }
 
@@ -135,19 +135,19 @@ A data value can have a minimum and maximum limit. These limits won't allow some
 
 To add limits to a data value, [make sure the data details sidebar is open](#opening-the-data-details-sidebar), then click the *Add limits* button in the *Min and max limits* section. If possible, an average value will be shown to help you create reasonable limits.
 
-![](resources/images/data_entry_beta/limits-add-button.png) 
+![](resources/images/data_entry_beta/limits-add-button.png) { width=50% }
 
 Once you've added a minimum and maximum limit, click the *Save limits* button.
 
 If a data value already has limits set up, you can change them or remove them. To change the limits, click the *Edit limits* button. To remove the limits, click the *Delete limits* button.
 
-![](resources/images/data_entry_beta/limits-edit-button.png) 
+![](resources/images/data_entry_beta/limits-edit-button.png) { width=50% }
 
 #### Historical data { #data-entry-value-history }
 
 To learn more about a data value, you can see the last twelve values in the *History* section of the data details sidebar. [Make sure the data details sidebar is open](#opening-the-data-details-sidebar), then open the *History* section
 
-![](resources/images/data_entry_beta/value-history.png) 
+![](resources/images/data_entry_beta/value-history.png) { width=60% }
 
 When working through a data entry form, the *History* section is closed by default to prevent too much network data from being sent for every value.
 
@@ -164,7 +164,7 @@ When working through a data entry form, the *Audit log* section is closed by def
 
 To print a data entry form, click the *Options* button in the top bar. From the dropdown menu, you can choose to print the form including cell data values, or an empty form.
 
-![](resources/images/data_entry_beta/print.png) 
+![](resources/images/data_entry_beta/print.png) { width=80% }
 
 ## Working offline { #data-entry-working-offline }
 
@@ -174,7 +174,7 @@ To work offline, you need to open the Data Entry (beta) app while you are connec
 
 The badge in the header bar at the top of the screen shows your connection status. If you are not connected to the internet or DHIS2 server, the badge shows *offline*. As well as the offline badge, forms cells you enter data will show the *waiting to sync* status.
 
-![](resources/images/data_entry_beta/offline.png)
+![](resources/images/data_entry_beta/offline.png) { width=60% }
 
 
 ## Features not supported in the beta version { #data-entry-beta-unsupported }
@@ -185,9 +185,6 @@ The **Data Entry (beta) app** is constantly evolving and new features are being 
 
 ## Related information { #data-entry-related-links }
 
-- [Control data
-    quality](https://docs.dhis2.org/master/en/user/html/control_data_quality.html)
-- [Manage data sets and data entry
-    forms](https://docs.dhis2.org/master/en/user/html/manage_data_set.html)
-- [Using the Maintenance
-    app](https://docs.dhis2.org/master/en/user/html/maintenance_app.html)
+- [Control data quality](#control_data_quality)
+- [Manage data sets and data entry forms](#manage_data_set)
+- [Using the Maintenance app](#maintenance_app)
