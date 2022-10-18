@@ -174,7 +174,7 @@ To print a data entry form, click the *Options* button in the top bar. From the 
 ## Features not supported in the beta version
 
 The **Data Entry (beta) app** is constantly evolving and new features are being added. There are some features that the previous Data Entry app offered that are supported yet:
-- **Custom forms** aren't supported yet, but we're learning more about how custom forms are used to build a sustainable, flexible solution.
+- **Custom forms** don't support CSS/JS yet. Custom forms that use CSS/JS won't be loaded. We're learning more about how custom forms are used to build a sustainable, flexible solution.
 - **Multi-organisation unit entry** isn't supported.
 
 ## Related information
