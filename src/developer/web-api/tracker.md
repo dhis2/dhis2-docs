@@ -1068,7 +1068,7 @@ Table: Entity Query Criteria definition
 | assignedUserMode | To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered. | "assignedUserMode": "PROVIDED" |
 | assignedUsers | To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"] |
 | displayColumnOrder | To specify the output ordering of columns | "displayOrderColumns": ["enrollmentDate", "program"] |
-| order | To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "orderDimension:direction". | "order"="a3kGcGDCuk6:desc,eventDate:asc" |
+| order | To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "orderDimension:direction". | "order"="a3kGcGDCuk6:desc" |
 | eventStatus | Any valid EventStatus | "eventStatus": "COMPLETED" |
 | programStage | To specify a programStage uid to filter on. TEIs will be filtered based on presence of enrollment in the specified program stage.| "programStage"="a3kGcGDCuk6" |
 | trackedEntityType | To specify a trackedEntityType filter TEIs on. | "trackedEntityType"="a3kGcGDCuk6" |
