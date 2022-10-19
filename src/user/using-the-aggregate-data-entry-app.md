@@ -67,7 +67,7 @@ To filter the whole data entry form, enter a value into the input at the top of 
 
 ![](resources/images/data_entry_beta/filter-section.png) { width=60% }
 
-For section form you can filter only inside a single section. Enter a value into the input at the top of a section.
+For section forms you can also filter inside a single section. Enter a value into the input at the top of a section.
 
 ### Validation { #aggregate_data_entry_app.validation }
 When you're done entering data you can run validation on the data values. Validation checks the values against rules set up by your DHIS2 instance. 
@@ -83,7 +83,7 @@ The validation results are shown in the details sidebar, grouped into high, medi
 
 ### Completing a form { #aggregate_data_entry_app.completing }
 
-After entering data and running validation, the last step is completing a form. Mark a form as complete by clicking the *Mark complete* button in the bottom bar.
+After entering data and running validation, the last step is completing a form. Completing a form means that all the intended data has been entered and empty cells are intentionally left empty. Mark a form as complete by clicking the *Mark complete* button in the bottom bar.
 
 ![](resources/images/data_entry_beta/complete-button.png) { width=60% }
 
@@ -142,6 +142,8 @@ Once you've added a minimum and maximum limit, click the *Save limits* button.
 If a data value already has limits set up, you can change them or remove them. To change the limits, click the *Edit limits* button. To remove the limits, click the *Delete limits* button.
 
 ![](resources/images/data_entry_beta/limits-edit-button.png) { width=50% }
+
+Adding, changing, or removing limits requires the correct user privileges.
 
 #### Historical data { #aggregate_data_entry_app.history }
 
