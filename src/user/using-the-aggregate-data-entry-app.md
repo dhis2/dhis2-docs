@@ -6,7 +6,7 @@ The Data Entry (beta) app is used to enter aggregate data in DHIS2. Aggregate da
 
 ## What makes a data entry form? { #aggregate_data_entry_app.what_makes_a_form }
 
-Data entry forms are made from different choices, which make up the *context*:
+Data entry forms are filled in for a specific context, which is made up of the following choices:
 1. **Data set** is a collection of data elements that represent the data you want to collect.
 2. **Organisation unit** is where the data is being registered, which is often a location like a clinic, hospital, or classroom.
 3. **Period** is when the data is from.
