@@ -184,7 +184,7 @@ Some features aren't available when offline because they need contact with a DHI
 ## Features not supported in the beta version { #aggregate_data_entry_app.unsupported_features }
 
 The **Data Entry (beta) app** is constantly evolving and new features are being added. There are some features that the previous Data Entry app offered that are supported yet:
-- **Custom forms** don't support CSS/JS yet. Custom forms that use CSS/JS won't be loaded. We're learning more about how custom forms are used to build a sustainable, flexible solution.
+- **Custom forms** don't support CSS/JS yet. We are currently examining the different ways custom forms are used in order to build a more sustainable, flexible solution.
 - **Multi-organisation unit entry** isn't supported.
 
 ## Related information { #aggregate_data_entry_app.related_info }
