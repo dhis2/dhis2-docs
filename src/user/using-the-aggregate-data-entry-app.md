@@ -143,7 +143,9 @@ If a data value already has limits set up, you can change them or remove them. T
 
 ![](resources/images/data_entry_beta/limits-edit-button.png) { width=50% }
 
-Adding, changing, or removing limits requires the correct user privileges.
+> **Caution**
+>
+> Adding, changing, or removing limits requires the correct user privileges. When limits are applied to a data value, the same limits apply for everyone using same data set.
 
 #### Historical data { #aggregate_data_entry_app.history }
 
