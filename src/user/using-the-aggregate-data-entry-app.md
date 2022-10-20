@@ -178,6 +178,8 @@ The badge in the header bar at the top of the screen shows your connection statu
 
 ![](resources/images/data_entry_beta/offline.png) { width=60% }
 
+Some features aren't available when offline because they need contact with a DHIS2 server to work. Validation, data value history, and data value audit logs aren't available offline.
+
 
 ## Features not supported in the beta version { #aggregate_data_entry_app.unsupported_features }
 
