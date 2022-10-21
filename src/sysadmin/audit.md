@@ -177,7 +177,7 @@ The application ships a [log4j2 default configuration file](https://github.com/d
 
 From 2.36 to 2.38, audit log file `dhis-audit.log` is rotated [every day at midnight](https://github.com/dhis2/dhis2-core/blob/2.38/dhis-2/dhis-support/dhis-support-system/src/main/java/org/hisp/dhis/system/log/Log4JLogConfigInitializer.java#L171).
 
-An example of custom log4j2 configuration can be found [here](): it shows how to configure DHIS2 to save all logs into an external storage location, rotate them on a weekly basis and retain them for 30 days. Please read the [application logging section](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-master/installation.html#install_application_logging) on how to use it.
+An example of custom log4j2 configuration can be found [here](): it shows how to configure DHIS2 to save all logs into an external storage location, rotate them on a weekly basis and retain them for 30 days. Please read the [application logging section](#install_application_logging) on how to use it.
 
 ## Examples
 
