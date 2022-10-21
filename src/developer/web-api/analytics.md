@@ -185,15 +185,9 @@ The `/dimensions` API also provides an endpoint where the clients can get the *r
 
     /api/33/dimensions/recommendations?fields=id&dimension=dx:fbfJHSPpUQD
 
-In the example above, the client will receive back all the *Categories* that has `Data dimension` set to `true`.
-The *Categories*, in this case, will be the ones associated (through data sets and category combos) with the data element `fbfJHSPpUQD`.
-In addition, all *Organization Unit Group Set* that have `Data dimension` set to `true` will also (and always) be returned as part of the response.
+In the example above, the client will receive back all the *Categories* that are configured as `Data dimension`s and associated (through data sets and category combos) with the data element `fbfJHSPpUQD`.
+In addition, all *Organization Unit Group Set*s that are configured as `Data dimension`s will also (and always) be returned as part of the response.
 
-In other words, in a more technical approach, behind the scenes it does:
-
-1) For each data element (`dx`) provided in the URL as dimension do
-
-   `dx` -> GET category combos -> GET categories -> CHECK if `Data dimension` is true -> THEN include the `Category` in the response list.
 
    `dx` -> GET data sets -> GET category combos -> GET categories -> CHECK `Data dimension` is true ->  THEN include the `Category` in the response list.
 
