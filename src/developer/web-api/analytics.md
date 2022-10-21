@@ -189,10 +189,6 @@ In the example above, the client will receive back all the *Categories* that are
 In addition, all *Organization Unit Group Set*s that are configured as `Data dimension`s will also (and always) be returned as part of the response.
 
 
-   `dx` -> GET data sets -> GET category combos -> GET categories -> CHECK `Data dimension` is true ->  THEN include the `Category` in the response list.
-
-2) Find all *Organization Unit Group Set* which has `Data dimension` set to `true` -> THEN include the *Organization Unit Group Set* in the response list.
-
 The endpoint supports multiple data elements. If one wishes to send multiple data elements, they should be separated by `;`. For example:
 
     /api/33/dimensions/recommendations?fields=id&dimension=dx:fbfJHSPpUQD;JuTpJ2Ywq5b
