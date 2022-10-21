@@ -83,7 +83,7 @@ Operations on tracked entities like instances, attributes and values are stored,
 | audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
 | comment | text | The code of the audited object. |
 
-This data can be retrieved via [API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/audit.html#webapi_tracked_entity_instance_audits).
+This data can be retrieved via [API](#webapi_tracked_entity_instance_audits).
 
 ### trackedentityattributevalueaudit
 
