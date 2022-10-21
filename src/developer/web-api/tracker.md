@@ -459,6 +459,18 @@ and will be furnished upon request based on the value of the `dimension` paramet
 curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=MEDIUM"
 ```
 
+#### File attributes
+
+Working with file attributes is a lot like working with image data
+values. The value of an attribute with the file value type is the id of
+the associated file resource. A GET request to the
+`/api/trackedEntityInstances/<entityId>/<attributeId>/file`
+endpoint will return the actual file content. 
+
+```bash
+curl "http://server/api/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/file
+```
+
 #### Tracked entity instance query { #webapi_tracked_entity_instance_query } 
 
 To query for tracked entity instances you can interact with the
