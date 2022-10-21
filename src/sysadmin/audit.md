@@ -114,7 +114,7 @@ This data can be retrieved via [API](#webapi_tracked_entity_attribute_value_audi
 | value | text | The value of the audited object. |
 | providedelsewhere | bool | Indicates whether the user provided the value elsewhere or not. |
 
-This data can be retrieved via [API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/audit.html#webapi_tracked_entity_data_value_audits).
+This data can be retrieved via [API](#webapi_tracked_entity_data_value_audits).
 
 ## Breaking the glass
 Breaking the glass features allows to access records a DHIS2 user doesn't have access in special circumstances. As a result of such, users must enter a reason to access such records.
