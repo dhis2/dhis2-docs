@@ -168,7 +168,7 @@ The audit can be configured using the _audit matrix_. The audit matrix represent
 
 By default, DHIS2 will start an embedded Artemis server, which is used internally by the application to store and access audit events.
 
-However, if you have already an Artemis server, you can connect to it from DHIS2 to send audit events, as described in our [official documentation](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-master/installation.html#webapi_amqp_configuration): in this setup, audit events will flow from DHIS2 to the external Artemis system.
+However, if you have already an Artemis server, you can connect to it from DHIS2 to send audit events, as described in our [official documentation](#webapi_amqp_configuration): in this setup, audit events will flow from DHIS2 to the external Artemis system.
 
 ### log4j2
 [log4j2](https://logging.apache.org/log4j/2.x/index.html) is the default DHIS2 logging library used to handle output messages. It's used to control what events are recored in which file.
