@@ -99,7 +99,7 @@ This data can be retrieved via [API](#webapi_tracked_entity_instance_audits).
 | encryptedvalue | text | The encrypted value if confidentiality flag is set. |
 
 
-This data can be retrieved via [API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/audit.html#webapi_tracked_entity_attribute_value_audits).
+This data can be retrieved via [API](#webapi_tracked_entity_attribute_value_audits).
 
 ### trackedentitydatavalueaudit
 
