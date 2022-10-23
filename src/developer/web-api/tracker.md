@@ -945,7 +945,7 @@ To query for instances which have events of a given status within a
 given time span:
 
     /api/33/trackedEntityInstances/query.json?ou=O6uvpzGd5pu
-      &program=ur1Edk5Oe2n&eventStatus=LATE_VISIT
+      &program=ur1Edk5Oe2n&eventStatus=COMPLETED
       &eventStartDate=2014-01-01&eventEndDate=2014-09-01
 
 You can use a range of operators for the filtering:
