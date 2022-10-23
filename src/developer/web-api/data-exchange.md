@@ -331,7 +331,7 @@ Accept: application/json
 200 OK
 ```
 
-The response payload format is identical with the analytics API endpoint in data value set format. This endpoint is useful for debugging purposes. Consult the analytics API guide for additional details.
+The response payload format is identical with the analytics API endpoint. This endpoint is useful for debugging purposes. Consult the analytics API guide for additional details.
 
 ### Data model
 
