@@ -23,7 +23,7 @@ This is the list of operations we log as part of the audit system:
 
 ## Single Audit table { #audit_table } 
 
-All audit entries, excepts the ones related to tracked entities, will be saved into one single table named `audit`
+All audit entries, except the ones related to tracked entities, will be saved into one single table named `audit`
 
 | Column     | Type                        | Description |
 |------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
