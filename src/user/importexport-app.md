@@ -299,7 +299,7 @@ Metadata export.
 
 1.  Choose the list of objects you would like to export.
 
-2.  Select a format: _JSON_, _CSV_ or _XML_
+2.  Select a format: *JSON*
 
 3.  Select a compression type: _zip_, _gzip_ or _uncompressed_
 
@@ -335,7 +335,7 @@ Table: Object types and their dependencies
 
 2.  Select an object.
 
-3.  Select a format: _JSON_ or _XML_
+3.  Select a format: *JSON*
 
 4.  Select a compression type: _Zip_ , _GZip_ or _Uncompressed_
 
