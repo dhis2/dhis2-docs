@@ -2135,11 +2135,11 @@ Data elements and tracked entity attributes are considered *supported types* if 
 
 The `/analytics/teis/query/dimensions?trackedEntityType=TET` resource accepts a mandatory id of a tracked entity type `TET` and returns the following data dimensions:
 
-for each program `P` such that a Tracked Entity Instance of type `TET` can register in program `P` :
-- **Program indicators** connected to `P`
+for each program `P` associated with a tracked entity instance of type `TET`:
+- **Program indicators** associated to `P`
 - **Data elements** of *supported types* in `P`, with program stage for each data element
 - **Tracked entity attributes** of *supported types* associated with the program that are not confidential
-- **Program Attribute** of `P`
+- **Program attributes** of `P`
 
 All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
 
