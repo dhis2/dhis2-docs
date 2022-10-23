@@ -11,7 +11,7 @@ organisation units. Also, you can retrieve the aggregated data for a
 combination of any number of dimensions based on data elements and
 organisation unit group sets.
 
-    /api/33/analytics
+    /api/analytics
 
 ### Request query parameters { #webapi_analytics_query_parameters } 
 
@@ -75,7 +75,7 @@ will not be included as dimensions in the actual response. As an
 example, to query for certain data elements filtered by the periods and
 organisation units you can use the following URL:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&filter=pe:2014Q1;2014Q2
+    /api/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&filter=pe:2014Q1;2014Q2
       &filter=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 The *aggregationType* query parameter lets you define which aggregation
@@ -88,7 +88,7 @@ undefined. This query parameter allows you to override the default and
 specify a specific aggregation operator. As an example, you can set the
 aggregation operator to "count" with the following URL:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2014Q1&dimension=ou:O6uvpzGd5pu
+    /api/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2014Q1&dimension=ou:O6uvpzGd5pu
       &aggregationType=COUNT
 
 The *measureCriteria* query parameter lets you filter out ranges of data
@@ -98,12 +98,12 @@ equal, less than or less or equal to certain values. You can specify any
 number of criteria on the following format, where *criteria* and
 *value* should be substituted with real values:
 
-    /api/33/analytics?measureCriteria=criteria:value;criteria:value
+    /api/analytics?measureCriteria=criteria:value;criteria:value
 
 As an example, the following query will return only records where the
 data value is greater or equal to 6500 and less than 33000:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
+    /api/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
       &dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw&measureCriteria=GE:6500;LT:33000
 
 Similar to *measureCriteria*, the *preAggregationMeasureCriteria* query
@@ -111,7 +111,7 @@ parameter lets you filter out data, only before aggregation is
 performed. For example, the following query only aggregates data where
 the original value is within the criteria defined:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
+    /api/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014
       &dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw&preAggregationMeasureCriteria=GE:10;LT:100
 
 The *startDate* and *endDate* parameters can be used to specify a custom
@@ -119,7 +119,7 @@ date range to aggregate over. When specifying a date range you can not
 specify relative nor fixed periods as dimension or filter. The date range
 will filter the analytics response. You can use it like this:
 
-    /api/33/analytics.json?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/analytics.json?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=ou:ImspTQPwCqd&startDate=2018-01-01&endDate=2018-06-01
 
 In order to have the analytics resource generate the data in the shape
@@ -132,7 +132,7 @@ table columns and rows. The column and rows dimensions must be present
 as a data dimension in the query (not a filter). Such a request can look
 like this:
 
-    /api/33/analytics.html?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014Q1;2014Q2
+    /api/analytics.html?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU&dimension=pe:2014Q1;2014Q2
       &dimension=ou:O6uvpzGd5pu&tableLayout=true&columns=dx;ou&rows=pe
 
 The *order* parameter can be used for analytics resource to generate
@@ -140,7 +140,7 @@ ordered data. The data will be ordered in ascending (or descending) order
 of values. An example request for ordering the values in descending
 order is:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:LAST_12_MONTHS
+    /api/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:LAST_12_MONTHS
       &dimension=ou:O6uvpzGd5pu&order=DESC
 
 ### Dimensions and items { #webapi_analytics_dimensions_and_items } 
@@ -173,79 +173,96 @@ It is not necessary to be aware of which objects are used for the
 various dynamic dimensions when designing analytics queries. You can get
 a complete list of dynamic dimensions by visiting this URL in the Web API:
 
-    /api/33/dimensions
+    /api/dimensions
 
 If you want to retrieve only the dimensional items for a given dynamic dimension you can
 use the example below. Pagination is disabled by default. It can be enabled by adding
 the pagination parameter `paging=true` to the URL.
 
-    /api/33/dimensions/J5jldMd8OHv/items?paging=true
+    /api/dimensions/J5jldMd8OHv/items?paging=true
+
+The `/dimensions` API also provides an endpoint where the clients can get the *recomendations* for a given set of *dimensions*. For example:
+
+    /api/33/dimensions/recommendations?fields=id&dimension=dx:fbfJHSPpUQD
+
+In the example above, the client will receive back all the *Categories* that are configured as `Data dimension`s and associated (through data sets and category combos) with the data element `fbfJHSPpUQD`.
+In addition, all *Organization Unit Group Set*s that are configured as `Data dimension`s will also (and always) be returned as part of the response.
+
+
+The endpoint supports multiple data elements. If one wishes to send multiple data elements, they should be separated by `;`. For example:
+
+    /api/33/dimensions/recommendations?fields=id&dimension=dx:fbfJHSPpUQD;JuTpJ2Ywq5b
+
+> Note
+>
+> This endpoint returns only dimensions that can be read by the current logged user. It will check if the current user can read the data or the metadata of the respective recommended dimension. Non-authorized dimensions are omitted from the list.
+
 
 The base URL to the analytics resource is `/api/analytics`. To request
 specific dimensions and dimension items you can use a query string on
 the following format, where `dim-id` and `dim-item` should be substituted with real values:
 
-    /api/33/analytics?dimension=dim-id:dim-item;dim-item&dimension=dim-id:dim-item;dim-item
+    /api/analytics?dimension=dim-id:dim-item;dim-item&dimension=dim-id:dim-item;dim-item
 
 As illustrated above, the dimension identifier is followed by a colon
 while the dimension items are separated by semi-colons. As an example, a
 query for two data elements, two periods and two organisation units can
 be done with the following URL:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=pe:2016Q1;2016Q2&dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 To query for data broken down by category option combinations instead of
 data element totals you can include the category dimension in the query
 string, for instance like this:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=co&dimension=pe:201601&dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw
 
 When selecting data elements you can also select all data elements in a
-group as items by using the DE_GROUP-<id> syntax:
+group as items by using the `DE_GROUP-<id>` syntax:
 
-    /api/33/analytics?dimension=dx:DE_GROUP-h9cuJOkOwY2
+    /api/analytics?dimension=dx:DE_GROUP-h9cuJOkOwY2
       &dimension=pe:201601&dimension=ou:O6uvpzGd5pu
 
 When selecting data set reporting rates, the syntax contains a data
 set identifier followed by a reporting rate metric:
 
-    /api/33/analytics?dimension=dx:BfMAe6Itzgt.REPORTING_RATE;BfMAe6Itzgt.ACTUAL_REPORTS
+    /api/analytics?dimension=dx:BfMAe6Itzgt.REPORTING_RATE;BfMAe6Itzgt.ACTUAL_REPORTS
       &dimension=pe:201601&dimension=ou:O6uvpzGd5pu
 
 To query for program data elements (of tracker domain type) you can get
 those by specifying the program for each data element using the
-<program-id>.<dataelement-id> syntax:
+`<program-id>.<dataelement-id>` syntax:
 
-    /api/33/analytics.json?dimension=dx:eBAyeGv0exc.qrur9Dvnyt5;eBAyeGv0exc.GieVkTxp4HH
+    /api/analytics.json?dimension=dx:eBAyeGv0exc.qrur9Dvnyt5;eBAyeGv0exc.GieVkTxp4HH
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
 To query for program attributes (tracked entity attributes) you can get
 those by specifying the program for each attribute using the
-<program.id>.<attribute-id> syntax:
+`<program.id>.<attribute-id>` syntax:
 
-    /api/33/analytics.json?dimension=dx:IpHINAT79UW.a3kGcGDCuk6;IpHINAT79UW.UXz7xuGCEhU
+    /api/analytics.json?dimension=dx:IpHINAT79UW.a3kGcGDCuk6;IpHINAT79UW.UXz7xuGCEhU
       &dimension=pe:LAST_4_QUARTERS&dimension=ou:ImspTQPwCqd
 
 To query for organisation unit group sets and data elements you can use
 the following URL. Notice how the group set identifier is used as
 a dimension identifier and the groups as dimension items:
 
-    /api/33/analytics?dimension=Bpx0589u8y0:oRVt7g429ZO;MAs88nJc9nL
+    /api/analytics?dimension=Bpx0589u8y0:oRVt7g429ZO;MAs88nJc9nL
       &dimension=pe:2016&dimension=ou:ImspTQPwCqd
 
 To query for data elements and categories you can use this URL. Use the
 category identifier as a dimension identifier and the category options as
 dimension items:
 
-    /api/33/analytics?dimension=dx:s46m5MS0hxu;fClA2Erf6IO&dimension=pe:2016
+    /api/analytics?dimension=dx:s46m5MS0hxu;fClA2Erf6IO&dimension=pe:2016
       &dimension=YNZyaJHiHYq:btOyqprQ9e8;GEqzEKCHoGA&filter=ou:ImspTQPwCqd
 
 To query using relative periods and organisation units associated with
 the current user you can use a URL like this:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=pe:LAST_12_MONTHS&dimension=ou:USER_ORGUNIT
 
 When selecting organisation units for a dimension you can select an
@@ -257,29 +274,29 @@ will be included in the response, and is provided as regular organisation unit
 dimension items. The level value can either be a numerical level or refer to the identifier
 of the organisation unit level entity. A simple query for all org units at level three:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016&dimension=ou:LEVEL-3
+    /api/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016&dimension=ou:LEVEL-3
 
 A query for level three and four with two boundary org units can be
 specified like this:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016
+    /api/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016
       &dimension=ou:LEVEL-3;LEVEL-4;O6uvpzGd5pu;lc3eMKXaEf
 
 When selecting organisation units you can also select all organisation
 units in an organisation unit group to be included as dimension items
-using the OU_GROUP-<id> syntax. The organisation units in the groups
+using the `OU_GROUP-<id>` syntax. The organisation units in the groups
 can optionally be constrained by any number of boundary organisation
 units. Both the level and the group items can be repeated any number of
 times:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016
+    /api/analytics?dimension=dx:fbfJHSPpUQD&dimension=pe:2016
       &dimension=ou:OU_GROUP-w0gFTTmsUcF;OU_GROUP-EYbopBOJWsW;O6uvpzGd5pu;lc3eMKXaEf
 
 You can utilize identifier schemes for the metadata part of the
 analytics response with the outputIdScheme property like this. You can
 use ID, code and attributes as identifier scheme:
 
-    /api/33/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
+    /api/analytics?dimension=dx:fbfJHSPpUQD;cYeuwXTCPkU
       &dimension=pe:2017Q1;2017Q2&dimension=ou:O6uvpzGd5pu&outputIdScheme=CODE
 
 A few things to be aware of when using the analytics resource are listed
@@ -346,14 +363,14 @@ Table: Data dx dimension types
 Items from all of the various `dx` types can be combined in an analytics
 request. An example looks like this:
 
-    /api/33/analytics.json
+    /api/analytics.json
       ?dimension=dx:Uvn6LCg7dVU;BfMAe6Itzgt.REPORTING_RATE;IpHINAT79UW.a3kGcGDCuk6
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
 The group syntax can be used together with any other item as well. An
 example looks like this:
 
-    /api/33/analytics.json
+    /api/analytics.json
       ?dimension=dx:DE_GROUP-qfxEYY9xAl6;IN_GROUP-oehv9EO3vP7;BfMAe6Itzgt.REPORTING_RATE
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
@@ -361,17 +378,17 @@ Data element operands can optionally specify attribute option
 combinations and use wildcards e.g. to specify all category option
 combination values:
 
-    /api/33/analytics.json
+    /api/analytics.json
       ?dimension=dx:Uvn6LCg7dVU.*.j8vBiBqGf6O;Uvn6LCg7dVU.Z4oQs46iTeR
       &dimension=pe:LAST_12_MONTHS&filter=ou:ImspTQPwCqd
 
 > **Tip**
 >
 > A great way to learn how to use the analytics API is to use the DHIS2
-> *pivot table* app. You can play around with pivot tables using the
-> various dimensions and items and click Download > Plain data source > JSON
-> to see the resulting analytics API calls in the address bar of
-> your Web browser.
+> Data Visualizer web app and create a pivot table. You can play around 
+> with pivot tables using the various dimensions and items and click 
+> **Download** > **Plain data source** > **JSON** to see the resulting analytics 
+> API calls in the address bar of your web browser.
 
 ### Response formats { #webapi_analytics_response_formats } 
 
@@ -399,19 +416,8 @@ listed below.
 As an example, to request an analytics response in XML format you can
 use the following URL:
 
-    /api/33/analytics.xml?dimension=dx:fbfJHSPpUQD
+    /api/analytics.xml?dimension=dx:fbfJHSPpUQD
       &dimension=pe:2016&dimension=ou:O6uvpzGd5pu;lc3eMKXaEfw
-
-The analytics responses must be retrieved using the HTTP *GET* method.
-This allows for direct linking to analytics responses from Web pages as
-well as other HTTP-enabled clients. To do functional testing we can use
-the cURL library. By executing this command against the demo database
-you will get an analytics response in JSON format:
-
-```bash
-curl "play.dhis2.org/demo/api/analytics.json?dimension=dx:eTDtyyaSA7f;FbKK4ofIv5R
-  &dimension=pe:2016Q1;2016Q2&filter=ou:ImspTQPwCqd" -u admin:district
-```
 
 The JSON response will look like this:
 
@@ -585,7 +591,7 @@ system to level 2 and import that data in the destination system.
 You can retrieve data in the raw data value set format from the
 dataValueSet resource:
 
-    /api/33/analytics/dataValueSet
+    /api/analytics/dataValueSet
 
 The following resource representations are supported:
 
@@ -745,7 +751,7 @@ The event analytics API lets you access aggregated event data and query
 on a program and optionally a program stage, and lets you retrieve and
 filter events on any event dimensions.
 
-    /api/33/analytics/events
+    /api/analytics/events
 
 ### Dimensions and items { #webapi_event_analytics_dimensions_items } 
 
@@ -853,7 +859,7 @@ The *analytics/events/query* resource lets you query for captured
 events. This resource does not perform any aggregation, rather it lets
 you query and filter for information about events.
 
-    /api/33/analytics/events/query
+    /api/analytics/events/query
 
 You can specify any number of dimensions and any number of filters in a
 query. Dimension item identifiers can refer to any of data elements,
@@ -862,7 +868,7 @@ organisation units. Dimensions can optionally have a query operator and
 a filter. Event queries should be on the format described
     below.
 
-    /api/33/analytics/events/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
+    /api/analytics/events/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
       &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
 For example, to retrieve events from the "Inpatient morbidity and
@@ -871,7 +877,7 @@ and "Age" data elements are included and the "Age" dimension is filtered
 on "18", you can use the following
     query:
 
-    /api/33/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu;fdc6uOvgoji&dimension=oZg33kd9taw&dimension=qrur9Dvnyt5:EQ:18
 
 To retrieve events for the "Birth" program stage of the "Child
@@ -879,7 +885,7 @@ programme" program between March and December 2016, where the "Weight"
 data element, filtered for values larger than
     2000:
 
-    /api/33/analytics/events/query/IpHINAT79UW?stage=A03MvHHogjR&startDate=2016-03-01
+    /api/analytics/events/query/IpHINAT79UW?stage=A03MvHHogjR&startDate=2016-03-01
       &endDate=2016-12-31&dimension=ou:O6uvpzGd5pu&dimension=UXz7xuGCEhU:GT:2000
 
 Sorting can be applied to the query for the event date of the event and
@@ -887,7 +893,7 @@ any dimensions. To sort descending on the event date and ascending on
 the "Age" data element dimension you can
     use:
 
-    /api/33/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=qrur9Dvnyt5&desc=EVENTDATE&asc=qrur9Dvnyt5
 
 Paging can be applied to the query by specifying the page number and the
@@ -897,7 +903,7 @@ number is not, a page number of 1 will be used. To get the third page of
 the response with a page size of 20 you can use a query like
     this:
 
-    /api/33/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=qrur9Dvnyt5&page=3&pageSize=20
 
 #### Filtering
@@ -992,14 +998,14 @@ supported.
 As an example, to get a response in Excel format you can use a file
 extension in the request URL like this:
 
-    /api/33/analytics/events/query/eBAyeGv0exc.xls?startDate=2016-01-01&endDate=2016-10-31
+    /api/analytics/events/query/eBAyeGv0exc.xls?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=oZg33kd9taw&dimension=qrur9Dvnyt5
 
 You can set the hierarchyMeta query parameter to true in order to
 include names of all ancestor organisation units in the meta-section of
 the response:
 
-    /api/33/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/analytics/events/query/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:YuQRtpLP10I&dimension=qrur9Dvnyt5:EQ:50&hierarchyMeta=true
 
 The default response JSON format will look similar to this:
@@ -1205,7 +1211,7 @@ analytics resource will now generate the data in table layout. The
 column and rows dimensions must be present as a data dimension in the
 query (not a filter). Such a request can look like this:
 
-    /api/33/analytics.html+css?dimension=dx:cYeuwXTCPkU;fbfJHSPpUQD&dimension=pe:WEEKS_THIS_YEAR
+    /api/analytics.html+css?dimension=dx:cYeuwXTCPkU;fbfJHSPpUQD&dimension=pe:WEEKS_THIS_YEAR
       &filter=ou:ImspTQPwCqd&displayProperty=SHORTNAME&columns=dx&rows=pe
 
 ### Event aggregate analytics { #webapi_event_aggregate_analytics } 
@@ -1215,7 +1221,7 @@ numbers* of events captured in DHIS2. This resource lets you retrieve
 aggregate data based on a program and optionally a program stage, and
 lets you filter on any event dimension.
 
-    /api/33/analytics/events/aggregate
+    /api/analytics/events/aggregate
 
 The events aggregate resource does not return the event information
 itself, rather the aggregate numbers of events matching the request
@@ -1223,7 +1229,7 @@ query. Event dimensions include data elements, person attributes, person
 identifiers, periods and organisation units. Aggregate event queries
 should be on the format described below.
 
-    /api/33/analytics/events/aggregate/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
+    /api/analytics/events/aggregate/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
       &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
 For example, to retrieve aggregate numbers for events from the
@@ -1232,34 +1238,34 @@ For example, to retrieve aggregate numbers for events from the
 dimension item is filtered on "18" and the "Gender" item is filtered on
 "Female", you can use the following query:
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/analytics/events/aggregate/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:O6uvpzGd5pu&dimension=oZg33kd9taw:EQ:Female&dimension=qrur9Dvnyt5:GT:50
 
 To retrieve data for fixed and relative periods instead of start and end
 date, in this case, May 2016 and last 12 months, and the organisation
 unit associated with the current user, you can use the following query:
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:201605;LAST_12_MONTHS
+    /api/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:201605;LAST_12_MONTHS
       &dimension=ou:USER_ORGUNIT;fdc6uOvgo7ji&dimension=oZg33kd9taw
 
 In order to specify "Female" as a filter for "Gender" for the data
 response, meaning "Gender" will not be part of the response but will
 filter the aggregate numbers in it, you can use the following syntax:
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:2016;
+    /api/analytics/events/aggregate/eBAyeGv0exc?dimension=pe:2016;
       &dimension=ou:O6uvpzGd5pu&filter=oZg33kd9taw:EQ:Female
 
 To specify the "Bo" organisation unit and the period "2016" as filters,
 and the "Mode of discharge" and Gender" as dimensions, where "Gender" is
 filtered on the "Male" item, you can use a query like this:
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
+    /api/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
       &dimension=fWIAEtYVEGk&dimension=oZg33kd9taw:EQ:Male
 
 To create a "Top 3 report" for _Mode of discharge_ you can use the limit
 and sortOrder query parameters similar to this:
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
+    /api/analytics/events/aggregate/eBAyeGv0exc?filter=pe:2016&filter=ou:O6uvpzGd5pu
       &dimension=fWIAEtYVEGk&limit=3&sortOrder=DESC
 
 To specify a value dimension with a corresponding aggregation type you
@@ -1268,21 +1274,21 @@ value dimension will make the analytics engine return aggregate values
 for the values of that dimension in the response as opposed to counts of
 events.
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
+    /api/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
       &dimension=ou:ImspTQPwCqd&dimension=pe:LAST_12_MONTHS&dimension=fWIAEtYVEGk
       &value=qrur9Dvnyt5&aggregationType=AVERAGE
 
 To base event analytics aggregation on a specific data element or attribute
 of value type date or date time you can use the `timeField` parameter:
 
-    /api/33/analytics/events/aggregate/IpHINAT79UW.json?dimension=ou:ImspTQPwCqd
+    /api/analytics/events/aggregate/IpHINAT79UW.json?dimension=ou:ImspTQPwCqd
       &dimension=pe:LAST_12_MONTHS&dimension=cejWyOfXge6&stage=A03MvHHogjR
       &timeField=ENROLLMENT_DATE
 
 To base event analytics aggregation on a specific data element or attribute
 of value type organisation unit you can use the `orgUnitField` parameter:
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
+    /api/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
       &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk
       &orgUnitField=S33cRBsnXPo
 
@@ -1300,7 +1306,7 @@ described below:
 
 An example looks like this:
 
-    /api/33/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
+    /api/analytics/events/aggregate/eBAyeGv0exc.json?stage=Zj7UnCAulEk
       &dimension=qrur9Dvnyt5-Yf6UHoPkdS6&dimension=ou:ImspTQPwCqd&dimension=pe:LAST_MONTH
 
 #### Response formats
@@ -1405,7 +1411,7 @@ will be returned.
 The *analytics/events/cluster* resource provides clustered geospatial
 event data. A request looks like this:
 
-    /api/33/analytics/events/cluster/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
+    /api/analytics/events/cluster/eBAyeGv0exc?startDate=2016-01-01&endDate=2016-10-31
       &dimension=ou:LEVEL-2&clusterSize=100000
       &bbox=-13.2682125,7.3721619,-10.4261178,9.904012&includeClusterPoints=false
 
@@ -1478,10 +1484,9 @@ of the underlying events is included. A sample response looks like this:
 The *analytics/events/count* resource is suitable for geometry-related
 requests for retrieving the count and extent (bounding box) of events
 for a specific query. The query syntax is equal to the *events/query*
-resource. A request looks like
-    this:
+resource. A request looks like this:
 
-    /api/33/analytics/events/count/eBAyeGv0exc?startDate=2016-01-01
+    /api/analytics/events/count/eBAyeGv0exc?startDate=2016-01-01
       &endDate=2016-10-31&dimension=ou:O6uvpzGd5pu
 
 The response will provide the count and extent in JSON format:
@@ -1586,38 +1591,38 @@ Warning: Indexing of non-repeatable program stage leads to parameter validation 
 
 ### Enrollment query analytics { #webapi_enrollment_query_analytics } 
 
-The *analytics/enrollments/query* resource lets you query for captured enrollments. This resource does not perform any aggregation, rather it lets you query and filter for information about enrollments.
+The `analytics/enrollments/query` resource lets you query for captured enrollments. This resource does not perform any aggregation, rather it lets you query and filter for information about enrollments.
 
-    /api/33/analytics/enrollments/query
+    /api/analytics/enrollments/query
 
 You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of the data elements in program stages, tracked entity attributes, fixed and relative periods and organisation units. Dimensions can optionally have a query operator and a filter. Enrollment queries should be on the format described below.
 
-    /api/33/analytics/enrollments/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
+    /api/analytics/enrollments/query/<program-id>?startDate=yyyy-MM-dd&endDate=yyyy-MM-dd
       &dimension=ou:<ou-id>;<ou-id>&dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
 For example, to retrieve enrollments in the from the "Antenatal care" program from January 2019, where the "First name" is picked up from attributes, "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the following program stage, and only women that have "Cronic conditions" would be included, you can use the following query:
 
-    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
       &dimension=w75KJ2mc4zz&dimension=WZbXY0S00lP.de0FEHSIoxh:eq:1&dimension=w75KJ2mc4zz
       &dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=edqlbukwRfQ.vANAXwtLwcT
       &startDate=2019-01-01&endDate=2019-01-31
 
 To retrieve enrollments in the from the "Antenatal care" program from last month (relative to the point in time the query is executed), where the "Chronic conditions" and "Smoking" data elements are included from the first program stage, and "Hemoglobin value" from the followup program stage, only including smoking women with hemoglobin less than 20:
 
-    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
       &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz
       &dimension=WZbXY0S00lP.sWoqcoByYmD:eq:1&dimension=edqlbukwRfQ.vANAXwtLwcT:lt:20
       &dimension=pe:LAST_MONTH
 
 Sorting can be applied to the query for the enrollment and incident dates of the enrollment:
 
-    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
       &columns=w75KJ2mc4zz&dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH
       &stage=WZbXY0S00lP&pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
 
 Paging can be applied to the query by specifying the page number and the page size parameters. If page number is specified but page size is not, a page size of 50 will be used. If page size is specified but page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
 
-    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=ou:ImspTQPwCqd
       &dimension=WZbXY0S00lP.de0FEHSIoxh&dimension=w75KJ2mc4zz&dimension=pe:LAST_MONTH
       &dimension=WZbXY0S00lP.sWoqcoByYmD&pageSize=10&page=2
 
@@ -1719,7 +1724,7 @@ The default response representation format is JSON. The requests must be using t
 
 As an example, to get a response in Excel format you can use a file extension in the request URL like this:
 
-    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.xls?dimension=ou:ImspTQPwCqd
       &dimension=WZbXY0S00lP.de0FEHSIoxh&columns=w75KJ2mc4zz
       &dimension=WZbXY0S00lP.sWoqcoByYmD&dimension=pe:LAST_MONTH&stage=WZbXY0S00lP
       &pageSize=10&page=1&asc=ENROLLMENTDATE&ouMode=DESCENDANTS
@@ -1997,26 +2002,27 @@ The non-aggregation enrollment analytics API also supports linking Program Indic
 
 ![](resources/images/enrollments/enrollments-pi-relationship.jpg)
 
-For the Program Indicator/Relationship Type link to work, the `/api/33/analytics/enrollments/query` API requires an additional dimension which must include the chosen Relationship Type UID and the chosen Program Indicator UID:
+For the Program Indicator/Relationship Type link to work, the `/api/analytics/enrollments/query` API requires an additional dimension which must include the chosen Relationship Type UID and the chosen Program Indicator UID:
 
-    /api/33/analytics/enrollments/query/<program-id>
+    /api/analytics/enrollments/query/<program-id>
       ?dimension=<relationshiptype-id>.<programindicator-id>
 
 For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" program for January 2019 and display the count of Malaria Cases linked to that Enrollment by "Malaria case linked to person" type of relationship, you can use the following query
 
-    /api/33/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=mxZDvSZYxlw.nFICjJluo74
+    /api/analytics/enrollments/query/WSGAb5XwJ3Y.json?dimension=mxZDvSZYxlw.nFICjJluo74
       &startDate=2019-01-01&endDate=2019-01-31    
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
 
 ## Dimensions { #webapi_dimensions }
 
-Four resources allow to easily retrieve data dimensions:
+Five resources allow to easily retrieve data dimensions:
 
 - [Event Query data dimensions](#webapi_event_query_analytics_dimension)`/analytics/events/query/dimensions` 
 - [Event Aggregate data dimensions](#webapi_event_aggregate_analytics_dimension) `/analytics/events/aggregate/dimensions`
 - [Enrollment Query data dimensions](#webapi_enrollment_query_analytics_dimension) `/analytics/enrollments/query/dimensions`
 - [Enrollment Aggregate data dimensions](#webapi_enrollment_aggregate_analytics_dimension) `/analytics/enrollments/aggregate/dimensions`
+- [Tracked Entities query data dimensions](#webapi_teis_query_analytics_dimensions)) `/analytics/teis/query/dimensions`
 
 Resources mentioned above share the following request parameter:
 
@@ -2127,6 +2133,20 @@ Data elements and tracked entity attributes are considered *supported types* if 
 - `INTEGER_ZERO_OR_POSITIVE`
 - `BOOLEAN`
 - `TRUE_ONLY`
+
+### Tracked Entities analytics dimensions
+
+#### Tracked Entities query analytics dimensions { #webapi_teis_query_analytics_dimensions }
+
+The `/analytics/teis/query/dimensions?trackedEntityType=TET` resource accepts a mandatory id of a tracked entity type `TET` and returns the following data dimensions:
+
+for each program `P` associated with a tracked entity instance of type `TET`:
+- **Program indicators** associated to `P`
+- **Data elements** of *supported types* in `P`, with program stage for each data element
+- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
+- **Program attributes** of `P`
+
+All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
 
 ### Sample request and response
 
@@ -2259,7 +2279,7 @@ Data set reports can be generated through the web api using the
 `/dataSetReport` resource. This resource generates reports on data set
 and returns the result in the form of an HTML table.
 
-    /api/33/dataSetReport
+    /api/dataSetReport
 
 ### Request query parameters
 
@@ -2281,15 +2301,15 @@ The data set report resource accepts `GET` requests only. The response content t
 
 An example request to retrieve a report for a monthly data set and org unit for October 2018 looks like this:
 
-    GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
+    GET /api/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd&selectedUnitOnly=false
 
 An example request to retrieve a report for a monthly data set and org unit for October, November, and December 2018 looks like this:
 
-    GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810,201811,201812&ou=ImspTQPwCqd&selectedUnitOnly=false
+    GET /api/dataSetReport?ds=BfMAe6Itzgt&pe=201810,201811,201812&ou=ImspTQPwCqd&selectedUnitOnly=false
 
 To get a data set report with a filter you can use the `filter` parameter. In this case, the filter is based on an org unit group set and two org unit groups:
 
-    GET /api/33/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd
+    GET /api/dataSetReport?ds=BfMAe6Itzgt&pe=201810&ou=ImspTQPwCqd
       &filter=J5jldMd8OHv:RXL3lPSK8oG;tDZVQ1WtwpA
 
 ### Response formats
@@ -2304,11 +2324,11 @@ The data set report endpoint supports output in the following formats. You can r
 
 A dedicated endpoint is available for data sets with custom HTML forms. This endpoint returns the HTML form content with content type `text/html` with data inserted into it. Note that you can use the general data set report endpoint also for data sets with custom forms; however, that will return the report in JSON format as a grid. This endpoint only works for data sets with custom HTML forms.
 
-    GET /api/33/dataSetReport/custom
+    GET /api/dataSetReport/custom
 
 The syntax for this endpoint is otherwise equal to the general data set report endpoint. To retrieve a custom HTML data set report you can issue a request like this:
 
-    GET /api/33/dataSetReport/custom?ds=lyLU2wR22tC&pe=201810&ou=ImspTQPwCqd
+    GET /api/dataSetReport/custom?ds=lyLU2wR22tC&pe=201810&ou=ImspTQPwCqd
 
 
 ## Push Analysis { #webapi_push_analysis } 
@@ -2325,12 +2345,12 @@ in the future.
 To get an HTML preview of an existing push analysis, you can do a GET
 request to the following endpoint:
 
-    /api/33/pushAnalysis/<id>/render
+    /api/pushAnalysis/<id>/render
 
 To manually trigger a push analysis job, you can do a POST request to
 this endpoint:
 
-    /api/33/pushAnalysis/<id>/run
+    /api/pushAnalysis/<id>/run
 
 A push analysis consists of the following properties, where some are
 required to automatically run push analysis jobs:
@@ -2356,7 +2376,7 @@ event is recorded. The event consists of the user name, the UID of the
 favorite, when the event took place, and the type of event. The
 different types of events are listed in the table.
 
-    /api/33/dataStatistics
+    /api/dataStatistics
 
 The usage analytics API lets you retrieve aggregated snapshots of usage
 analytics based on time intervals. The API captures user views (for
@@ -2380,10 +2400,9 @@ dataStatisticsEventType parameter describes what type of item was
 viewed. The favorite parameter indicates the identifier of the relevant
 favorite.
 
-URL that creates a new event view of
-    charts:
+URL that creates a new event view of charts:
 
-    POST /api/33/dataStatistics?eventType=CHART_VIEW&favorite=LW0O27b7TdD
+    POST /api/dataStatistics?eventType=CHART_VIEW&favorite=LW0O27b7TdD
 
 A successful save operation returns an HTTP status code 201. The table
 below shows the supported types of events.
@@ -2427,7 +2446,7 @@ type of aggregation will be done.
 API query that creates a query for a monthly
     aggregation:
 
-    GET /api/33/dataStatistics?startDate=2014-01-02&endDate=2016-01-01&interval=MONTH
+    GET /api/dataStatistics?startDate=2014-01-02&endDate=2016-01-01&interval=MONTH
 
 ### Retrieve top favorites { #webapi_usage_analytics_top_favorites } 
 
@@ -2448,11 +2467,11 @@ Table: Query parameters for top favorites
 The API query can be used without a username, and will then find the top
 favorites of the system.
 
-    /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC
+    /api/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25&sortOrder=ASC
 
 If the username is specified, the response will only contain the top favorites of that user.
 
-    /api/33/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25
+    /api/dataStatistics/favorites?eventType=CHART_VIEW&pageSize=25
       &sortOrder=ASC&username=admin
 
 ### Response format { #webapi_usage_analytics_response_format } 
@@ -2467,19 +2486,13 @@ available formats and content types are:
 
   - html (text/html)
 
-API query that requests a usage analytics response in XML
-    format:
+API query that requests a usage analytics response in XML format:
 
-    /api/33/dataStatistics.xml?startDate=2014-01-01&endDate=2016-01-01&interval=WEEK
-
-You must retrieve the aggregated usage analytics response with the HTTP
-GET method. This allows you to link directly from Web pages and other
-HTTP-enabled clients to usage analytics responses. To do functional
-testing use the cURL library.
+    /api/dataStatistics.xml?startDate=2014-01-01&endDate=2016-01-01&interval=WEEK
 
 To get an usage analytics response in JSON format:
 
-    /api/33/dataStatistics?startDate=2016-02-01&endDate=2016-02-14&interval=WEEK
+    /api/dataStatistics?startDate=2016-02-01&endDate=2016-02-14&interval=WEEK
 
 The JSON response looks like this:
 
@@ -2555,7 +2568,7 @@ You can retrieve the number of view for a specific favorite by using the
 *favorites* resource, where *{favorite-id}* should be substituted with
 the identifier of the favorite of interest:
 
-    /api/33/dataStatistics/favorites/{favorite-id}.json
+    /api/dataStatistics/favorites/{favorite-id}.json
 
 The response will contain the number of views for the given favorite and
 look like this:
@@ -2580,12 +2593,12 @@ As an example, to retrieve geo features for all organisation units at
 level 3 in the organisation unit hierarchy you can use a GET request
 with the following URL:
 
-    /api/33/geoFeatures.json?ou=ou:LEVEL-3
+    /api/geoFeatures.json?ou=ou:LEVEL-3
 
 To retrieve geo features for organisation units at a level within the
 boundary of an organisation unit (e.g. at level 2) you can use this URL:
 
-    /api/33/geoFeatures.json?ou=ou:LEVEL-4;O6uvpzGd5pu
+    /api/geoFeatures.json?ou=ou:LEVEL-4;O6uvpzGd5pu
 
 The response coordinates value can be read from two properties which is decided by the parameter `coordinateField`.
   - The `geometry` property of the OrganisationUnit: this is the default behaviour which is applied when parameter `coordinateField` is not provided.
@@ -2593,7 +2606,7 @@ The response coordinates value can be read from two properties which is decided 
 
 For example, to retrieve geo features for all organisation units at level 3 as above but get the coordinates from OrganisationUnit attribute `tJqtSV4quLb`
 
-    /api/33/geoFeatures.json?ou=ou:LEVEL-3&coordinateField=tJqtSV4quLb
+    /api/geoFeatures.json?ou=ou:LEVEL-3&coordinateField=tJqtSV4quLb
 
 The semantics of the response properties are described in the following
 table.
@@ -2712,10 +2725,10 @@ Table: Phases, table types and temporary tables
 
 ### Creating hooks { #webapi_create_analytics_table_hook } 
 
-To create a hook which should run after the resource tables have been populated you can do a *POST* request like this using *JSON* format:
+To create a hook which should run after the resource tables have been populated you can do a *POST* request like this using *JSON* as content type:
 
-```bash
-curl -d @hooks.json "localhost/api/analyticsTableHooks" -H "Content-Type:application/json" -u admin:district
+```
+POST /api/analyticsTableHooks
 ```
 
 ```json
@@ -2772,8 +2785,6 @@ content-type `application/x-www-form-urlencoded`.
 
     api/svg.pdf
 
-
-
 Table: Query parameters
 
 | Query parameter | Required | Description |
@@ -2782,21 +2793,23 @@ Table: Query parameters
 | filename | No | The file name for the returned attachment without file extension |
 
 ## Analytics query execution plan and costs including execution time estimation
-The Web Api provides entry point for the investigation of analytics database issues. 
-It is implemented as a part of all analytics controllers:
+
+The analytics API provides endpoints for investigation of query performance issues. It is implemented as part of all analytics endpoints:
+
 - analytics/explain
 - analytics/event/explain
 - analytics/enrollment/explain
 
 **Example**
 
-Request:
+    GET /api/analytics/explain?displayProperty=NAME
+      &dimension=dx:Uvn6LCg7dVU;sB79w2hiLp8,ou:USER_ORGUNIT
+      &filter=pe:THIS_YEAR&includeNumDen=false&skipMeta=false
+      &skipData=true&includeMetadataDetails=true
 
-http://localhost:8080/dhis/api/29/analytics/explain?displayProperty=NAME&dimension=dx:Uvn6LCg7dVU;sB79w2hiLp8,ou:USER_ORGUNIT&filter=pe:THIS_YEAR&includeNumDen=false&skipMeta=false&skipData=true&includeMetadataDetails=true
+The response looks like this.
 
-Response:
-
-```
+```json
 {
     "headers": [
         {
@@ -3044,96 +3057,34 @@ Response:
                         }
                     ]
                 }
-            },
-            {
-                "timeInMillis": 40.23,
-                "planningTime": 5.153,
-                "executionTime": 35.077,
-                "query": "select ax.\"dx\",ax.\"uidlevel1\", sum(value) as value from analytics_2022 as ax where ax.\"dx\" in ('fbfJHSPpUQD') and ax.\"uidlevel1\" in ('ImspTQPwCqd') and ( ax.\"yearly\" in ('2022') ) and ax.\"year\" in (2022) group by ax.\"dx\",ax.\"uidlevel1\"",
-                "plan": {
-                    "Node Type": "Aggregate",
-                    "Strategy": "Sorted",
-                    "Partial Mode": "Simple",
-                    "Parallel Aware": false,
-                    "Async Capable": false,
-                    "Startup Cost": 207.21,
-                    "Total Cost": 49892.62,
-                    "Plan Rows": 261,
-                    "Plan Width": 32,
-                    "Actual Startup Time": 35.034,
-                    "Actual Total Time": 35.034,
-                    "Actual Rows": 1,
-                    "Actual Loops": 1,
-                    "Group Key": [
-                        "dx",
-                        "uidlevel1"
-                    ],
-                    "Plans": [
-                        {
-                            "Node Type": "Bitmap Heap Scan",
-                            "Parent Relationship": "Outer",
-                            "Parallel Aware": false,
-                            "Async Capable": false,
-                            "Relation Name": "analytics_2022",
-                            "Alias": "ax",
-                            "Startup Cost": 207.21,
-                            "Total Cost": 49751.83,
-                            "Plan Rows": 18423,
-                            "Plan Width": 32,
-                            "Actual Startup Time": 1.688,
-                            "Actual Total Time": 30.32,
-                            "Actual Rows": 18542,
-                            "Actual Loops": 1,
-                            "Recheck Cond": "(dx = 'fbfJHSPpUQD'::bpchar)",
-                            "Rows Removed by Index Recheck": 0,
-                            "Filter": "((uidlevel1 = 'ImspTQPwCqd'::bpchar) AND (yearly = '2022'::text) AND (year = 2022))",
-                            "Rows Removed by Filter": 0,
-                            "Exact Heap Blocks": 1239,
-                            "Lossy Heap Blocks": 0,
-                            "Plans": [
-                                {
-                                    "Node Type": "Bitmap Index Scan",
-                                    "Parent Relationship": "Outer",
-                                    "Parallel Aware": false,
-                                    "Async Capable": false,
-                                    "Index Name": "in_dx_ax_2022_Eb64F",
-                                    "Startup Cost": 0.0,
-                                    "Total Cost": 202.6,
-                                    "Plan Rows": 18423,
-                                    "Plan Width": 0,
-                                    "Actual Startup Time": 1.324,
-                                    "Actual Total Time": 1.325,
-                                    "Actual Rows": 18542,
-                                    "Actual Loops": 1,
-                                    "Index Cond": "(dx = 'fbfJHSPpUQD'::bpchar)"
-                                }
-                            ]
-                        }
-                    ]
-                }
             }
         ]
     },
     "width": 0,
     "rows": [],
     "height": 0,
-    "headerWidth": 3
+    "headerWidth": 2
 }
 ```
 
-This response displays the execution plan that the PostgreSQL planner generates for the supplied statement. The execution plan shows how the table(s) referenced by the statement will be scanned — by plain sequential scan, index scan, etc. — and if multiple tables are referenced, what join algorithms will be used to bring together the required rows from each input table.
+This response displays the execution plan that the PostgreSQL planner generates for the supplied statement.
 
-The most critical part of the display is the estimated statement execution cost, which is the planner's guess at how long it will take to run the statement.
+The execution plan shows how the table(s) referenced by the statement will be scanned: by plain sequential scan, index scan,and if multiple tables are referenced, what joins will be used to bring together the required rows from each input table.
 
-All entry points are secured by authorization. The user has to be in  **ALL** or **F_PERFORM_ANALYTICS_EXPLAIN** role.
+The most critical part of the display is the estimated statement execution cost, which is the query planner's estimate at how long it will take to run the statement.
+
+All entry points are secured by authorization. The `F_PERFORM_ANALYTICS_EXPLAIN` role is required.
 
 ## Analytics explain { #webapi_analytics_explain }
-**Entry points:**
-- analytics/explain
+
+	/api/analytics/explain
+
 ## Event analytics explain { #webapi_event_analytics_explain }
-**Entry points:**
-- analytics/event/aggregate/{program}/explain
-- analytics/event/query/{program}/explain
+
+	/api/analytics/event/aggregate/{program}/explain
+
+	/api/analytics/event/query/{program}/explain
+
 ## Enrollment analytics explain { #webapi_enrollment_analytics_explain }
-**Entry points:**
-- analytics/enrollment/query/{program}/explain
+
+	/api/analytics/enrollment/query/{program}/explain
