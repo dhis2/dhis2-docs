@@ -58,12 +58,12 @@ detailed reference of geographic coordinates, please refer to this
 the geographic data to the geographic latitude/longitude (EPSG:4326) system,
 there is no need to explicitly define the output coordinate system, assuming
 that `ogr2ogr` can determine the input spatial reference system. Note that
-most GeoJSON files are using the EPSG:4326 system. You can determine the
+most GeoJSON files use the EPSG:4326 system. You can determine the
 spatial reference system by executing the following command.
 
     ogrinfo -al -so filename.shp
 
-These command assumes your geospatial data is in ESRI Shapefile (.shp) format,
+This command assumes your geospatial data is in ESRI Shapefile (.shp) format,
 but [several other formats are supported](https://gdal.org/drivers/vector/).
 
 Assuming that the projection is reported to be EPSG:27700 by `ogrinfo`,
