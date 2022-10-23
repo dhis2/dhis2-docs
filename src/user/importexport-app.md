@@ -144,8 +144,8 @@ side menu. Upload the completed PDF file and click _Import_.
 
 ### Event Import { #event_import }
 
-Event can be access from the sidebar by clicking on Event
-import.
+Event Import can be accessed from the sidebar by clicking on Event
+Import.
 
 ![](resources/images/import_export/event_import.png)
 
@@ -161,6 +161,52 @@ import.
 
 3.  Click on the **Import** button which will upload the file and start the
     importing process.
+
+### Earth Engine Import { #ee_import }
+
+Earth Engine Import can be accessed from the sidebar by clicking on Earth Engine
+Import.
+
+Import high resolution population data from WorldPop using Google Earth Engine. A [Google
+Earth Engine account](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html) is required to use this importer.
+
+![](resources/images/import_export/ee_import.png)
+
+#### Select which Earth Engine data should be imported
+
+The first section of the form is used to configure the Earth Engine data to import.
+
+1. Select which Earth Engine dataset should be imported. Currently the choices are *Population* and *Population age groups*.
+
+2. After a dataset has been selected, a period must be selected. Only one period can be imported at a time.
+
+3. Choose how the data should be rounded. By default data is not rounded.
+
+4. Select which organisation units to import data to. If you select facility level organisation units, then you must choose an associated geometry for the facilities. Without an associated geometry for facilities, the Earth Engine cannot determine the population.
+
+![](resources/images/import_export/ee_ou_associated_geometry.png)
+
+#### Select the data elements to import the Earth Engine data into
+
+Once you have configured the Earth Engine dataset, you need to select which data element to import the data to. For datasets with disaggregation groups, such as "Population age groups", the DHIS2 data element must have disaggregations in the form of category option combos that match the Earth Engine dataset disaggregation groups.
+
+![](resources/images/import_export/ee_group_coc_mapping.png)
+
+> **Configuring data elements for Earth Engine import**
+>
+> When configuring the DHIS2 data elements that will contain Earth Engine data, if you plan to import data to multiple org unit levels, ensure that those levels are added as Aggregation Levels in the data element configuration.
+>
+> Some Earth Engine datasets contain disaggregation groups, the DHIS2 data element must be configured with corresponding category option combos. For example the "Population age groups" dataset is disaggregated by gender (Male, Female) and 5-year age groups.
+>
+> In DHIS2 this means that you must have a Male/Female category, and a 5-year age group category (<1yr, 1-4yr, 5-9yr, 10-14yr... 80+yr). These are combined into a category combination.
+>
+> Pro-tip: To automatically match the category option combo to the Earth Engine disaggregation group, add a Code to each category option combo that matches the earth engine group name. For example, with "Population age groups", the groups are named: F_0, F_1, F_5..., M_0, M_1, M_5...
+
+#### Run the import
+
+Once the data element and category option combos have been selected, the Preview button is enabled. After reviewing the data you want to import, you can do a dry run first, or proceed with the actual import.
+
+![](resources/images/import_export/ee_data_preview.png)
 
 ### Organisation Unit Geometry Import { #geometry_import }
 

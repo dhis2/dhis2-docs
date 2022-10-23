@@ -1,4 +1,4 @@
-# About demo server, live package and database design { #moare_about_dhis2_server_database } 
+# About demo server, D2 cluster and database design { #moare_about_dhis2_server_database } 
 
 ## Using the DHIS2 demo server
 
@@ -13,59 +13,19 @@ DHIS2. Simply open the link in your web browser and login with username
 > important work on this server. It is strictly for demonstration
 > purposes on only\!
 
-## Using the DHIS2 live package { #mod2_1 } 
+## Spinning up a local DHIS2 instance using D2 Cluster  { #mod2_1 } 
 
-### Starting the DHIS2 Live package
+### Running D2 Cluster
 
-The DHIS2 Live package is the easiest way to get started with DHIS2 on
-your local computer. DHIS2 Live is appropriate for a stand-alone
-installation and demos. Simply download the application from
-[here](http://www.dhis2.org/downloads). Once the file is downloaded, you
-can simply double-click the downloaded file, and get started using
-DHIS2.
+Using Docker containers to run a d2 cluster is an easy way to get started with DHIS2 on
+your local computer. This approach is appropriate for a stand-alone
+installation and demos. Simply follow the guide
+[here](https://developers.dhis2.org/docs/guides/spin-up-local-instance).
 
-#### Prerequisites for DHIS2 Live
+#### Prerequisites to running D2 Cluster
 
-You must be sure that you have a current version of the Java Runtime
-installed on your machine. Depending on your operating system, there are
-different ways of installing Java. The reader is referred to this
-[website](http://java.sun.com/javase/downloads/index.jsp) for detailed
-information on getting Java installed.
-
-#### Starting up with a blank database
-
-The live package comes with a demo database just like what you see on
-the [online demo](http://apps.dhis2.org/demo/) (which is based on the
-national Sierra Leone HMIS), and if you want to start with a blank
-system/database and build up your own system then you need to do the
-following:
-
-1\) Stop DHIS2 live if it is already running. Right click on the tray
-icon and select Exit. The tray icon is the green symbol on the bottom
-right of your screen (on Windows) which should say' DHIS2 Server
-running' when you hover your mouse pointer over the icon.
-
-2\) Open the folder where the DHIS2 live package is installed and locate
-the folder called "conf".
-
-3\) In conf/ open the file called 'hibernate.properties' in a text
-editor (notepad or similar) and do the following modification: locate
-the string 'jdbc:h2:./database/dhis2' and replace the 'dhis2' part with
-any name that you want to give to your database (e.g. dhis2\_test).
-
-4\) Save and close the hibernate.properties file.
-
-5\) Start DHIS2 Live by double-clicking on the file dhis2-live.exe in
-the DHIS2 Live installation folder or by using a desktop shortcut or
-menu link that you might have set up.
-
-6\) Wait for the browser window to open and the login screen to show,
-and then log in with username: admin and password: district
-
-7\) Now you will see a completely empty DHIS2 system and you should
-start by adding your users, organisational hierarchy, data elements, and
-datasets etc. Please refer to the other sections of the user manual for
-instructions on how to do this.
+You must be sure that you have installed [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [Nodejs](https://nodejs.org/en/). A current version of [Docker](https://www.docker.com/) must be
+installed on your machine as well. Please refer to the [guide](https://developers.dhis2.org/docs/guides/spin-up-local-instance) for detailed information.
 
 ### Downloading and installing the server version
 
@@ -76,8 +36,7 @@ implementation manual.
 
 ## Logging on to DHIS2 { #mod2_2 } 
 
-Regardless of whether you have installed the server version or the
-desktop Live version, you will use a web-browser to log on to the
+Regardless of whether you have installed the server version or ran a DHIS2 instance locally, you will use a web-browser to log on to the
 application. DHIS2 should be compatible with most modern web-browsers,
 although you will need to ensure that Java Script is enabled.
 

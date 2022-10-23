@@ -459,6 +459,18 @@ and will be furnished upon request based on the value of the `dimension` paramet
 curl "http://server/api/33/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/image?dimension=MEDIUM"
 ```
 
+#### File attributes
+
+Working with file attributes is a lot like working with image data
+values. The value of an attribute with the file value type is the id of
+the associated file resource. A GET request to the
+`/api/trackedEntityInstances/<entityId>/<attributeId>/file`
+endpoint will return the actual file content. 
+
+```bash
+curl "http://server/api/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/file
+```
+
 #### Tracked entity instance query { #webapi_tracked_entity_instance_query } 
 
 To query for tracked entity instances you can interact with the
@@ -490,7 +502,7 @@ Table: Tracked entity instances query parameters
 | lastUpdatedStartDate | Filter for teis which were updated after this date. Cannot be used together with *lastUpdatedDuration*. |
 | lastUpdatedEndDate | Filter for teis which were updated up until this date. Cannot be used together with *lastUpdatedDuration*. |
 | lastUpdatedDuration | Include only items which are updated within the given duration. The format is , where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with *lastUpdatedStartDate* and/or *lastUpdatedEndDate*. |
-| assignedUserMode | Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT &#124; PROVIDED &#124; NONE &#124; ANY. |
+| assignedUserMode | Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT &#124; PROVIDED &#124; NONE &#124; ANY. See table below "Assigned user modes" for explanations. |
 | assignedUser | Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using *assignedUser=id1;id2*.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId |
 | trackedEntityInstance | Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using *trackedEntityInstance=id1;id2*. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. |
 | includeDeleted | Indicates whether to include soft deleted teis or not. It is false by default. |
@@ -510,6 +522,19 @@ Table: Organisation unit selection modes
 | ACCESSIBLE | The data view organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy. Will fall back to data capture organisation units associated with the current user if the former is not defined. |
 | CAPTURE | The data capture organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy. |
 | ALL | All organisation units in the system. Requires the ALL authority. |
+
+The available assigned user modes are explained in the following table.
+
+
+
+Table: Assigned user modes
+
+| Mode | Description |
+|---|---|
+| CURRENT | Includes events assigned to the current logged in user. |
+| PROVIDED | Includes events assigned to the user provided in the request. |
+| NONE | Includes unassigned events only. |
+| ANY | Includes all assigned events, doesn't matter who are they assigned to as long as they assigned to someone. |
 
 The query is case insensitive. The following rules apply to the query
 parameters.
@@ -767,7 +792,7 @@ Table: Tracked entity instances query parameters
 | programStartDate | Start date of enrollment in the given program for the tracked entity instance. |
 | programEndDate | End date of enrollment in the given program for the tracked entity instance. |
 | trackedEntity | Tracked entity identifier. Restricts instances to the given tracked instance type. |
-| eventStatus | Status of any event associated with the given program and the tracked entity instance. Can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULED &#124; OVERDUE &#124; SKIPPED. |
+| eventStatus | Status of any event associated with the given program and the tracked entity instance. Can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED. |
 | eventStartDate | Start date of event associated with the given program and event status. |
 | eventEndDate | End date of event associated with the given program and event status. |
 | programStage | The programStage for which the event related filters should be applied to. If not provided all stages will be considered. |
@@ -1048,7 +1073,7 @@ Table: Entity Query Criteria definition
 ||||
 |---|---|---|
 | attributeValueFilters | A list of attributeValueFilters. This is used to specify filters for attribute values when listing tracked entity instances | "attributeValueFilters"=[{       "attribute": "abcAttributeUid",       "le": "20",       "ge": "10",       "lt": "20",       "gt": "10",       "in": ["India", "Norway"],       "like": "abc",       "sw": "abc",       "ew": "abc",       "dateFilter": {         "startDate": "2014-05-01",         "endDate": "2019-03-20",         "startBuffer": -5,         "endBuffer": 5,         "period": "LAST_WEEK",         "type": "RELATIVE"       }     }] |
-| enrollmentStatus | The TEIs enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELED ||
+| enrollmentStatus | The TEIs enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELLED ||
 | followup | When this parameter is true, the filter only returns TEIs that have an enrollment with status followup. ||
 | organisationUnit | To specify the uid of the organisation unit | "organisationUnit": "a3kGcGDCuk7" |
 | ouMode | To specify the OU selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL | "ouMode": "SELECTED" |
@@ -1070,7 +1095,7 @@ Table: Event filters definition
 ||||
 |---|---|---|
 | programStage | Which programStage the TEI needs an event in to be returned. | "eaDH9089uMp" |
-| eventStatus | The events status. Can be none(any event status) or ACTIVE&#124;COMPLETED&#124;SCHEDULED&#124;OVERDUE | ACTIVE |
+| eventStatus | The events status. Can be none(any event status) or ACTIVE&#124;COMPLETED&#124;SCHEDULE&#124;OVERDUE | ACTIVE |
 | eventCreatedPeriod | Period object containing a period in which the event must be created. See *Period* definition below. | { "periodFrom": -15, "periodTo": 15} |
 | assignedUserMode | To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)&#124; PROVIDED (events assigned to users provided in "assignedUsers" list) &#124; NONE (events assigned to no one) &#124; ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered. | "assignedUserMode": "PROVIDED" |
 | assignedUsers | To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"] |
@@ -1136,6 +1161,12 @@ This payload should be used in a *POST* request to the enrollments
 resource identified by the following URL:
 
     /api/33/enrollments
+
+The different status of an enrollment are:
+
+* **ACTIVE**: It is used meanwhile when the tracked entity participates on the program.
+* **COMPLETED**: It is used when the tracked entity finished its participation on the program.
+* **CANCELLED**: "Deactivated" in the web UI. It is used when the tracked entity cancelled its participation on the program.
 
 For cancelling or completing an enrollment, you can make a *PUT*
 request to the `enrollments` resource, including the identifier and the
@@ -1294,6 +1325,16 @@ a full view, you might want to add `fields=*` to the query:
 This section is about sending and reading events.
 
     /api/33/events
+
+The different status of an event are:
+
+* **ACTIVE**: If a event has ACTIVE status, it is possible to edit the event details. COMPLETED events can be turned ACTIVE again and vice versa.
+* **COMPLETED**: An event change the status to COMPLETED only when a user clicks the complete button. If a event has COMPLETED status, it is not possible to edit the event details. ACTIVE events can be turned COMPLETED again and vice versa.
+* **SKIPPED**: Scheduled events that no longer need to happen. In Tracker Capture, there is a button for that.
+* **SCHEDULE**: If an event has no event date (but it has an due date) then the event status is saved as SCHEDULE.
+* **OVERDUE**: If the due date of a scheduled event (no event date) has expired, it can be interpreted as OVERDUE.
+* **VISITED**: (Removed since 2.38. VISITED migrate to ACTIVE). In Tracker Capture its possible to reach VISITED by adding a new event with an event date, and then leave before adding any data to the event - but it is not known to the tracker product team that anyone uses the status for anything. The VISITED status is not visible in the UI, and in all means treated in the same way as an ACTIVE event.
+
 
 #### Sending events { #webapi_sending_events } 
 
@@ -1597,7 +1638,7 @@ Table: Events resource query parameters
 | ouMode | enum | false | Org unit selection mode, can be SELECTED &#124; CHILDREN &#124; DESCENDANTS |
 | startDate | date | false | Only events newer than this date |
 | endDate | date | false | Only events older than this date |
-| status | enum | false | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULED &#124; OVERDUE &#124; SKIPPED |
+| status | enum | false | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED |
 | lastUpdatedStartDate | date | false | Filter for events which were updated after this date. Cannot be used together with *lastUpdatedDuration*. |
 | lastUpdatedEndDate | date | false | Filter for events which were updated up until this date. Cannot be used together with *lastUpdatedDuration*. |
 | lastUpdatedDuration | string | false | Include only items which are updated within the given duration. The format is , where the supported time units are “d” (days), “h” (hours), “m” (minutes) and “s” (seconds). Cannot be used together with *lastUpdatedStartDate* and/or *lastUpdatedEndDate*. |
@@ -2122,7 +2163,7 @@ Table: CSV column
 | Index | Key | Type | Description |
 |---|---|---|---|
 | 1 | event | identifier | Identifier of event |
-| 2 | status | enum | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULED &#124; OVERDUE &#124; SKIPPED |
+| 2 | status | enum | Status of event, can be ACTIVE &#124; COMPLETED &#124; VISITED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED |
 | 3 | program | identifier | Identifier of program |
 | 4 | programStage | identifier | Identifier of program stage |
 | 5 | enrollment | identifier | Identifier of enrollment (program instance) |

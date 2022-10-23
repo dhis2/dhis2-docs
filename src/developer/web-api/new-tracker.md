@@ -1167,7 +1167,7 @@ Tracker export endpoints deal with the following Tracker objects:
 
 > **NOTE**
 >
-> - These endpoints currently only support `JSON`, but `CSV` will be supported in the near future.
+> - All these endpoints currently support `JSON`, `CSV` is only supported by only Tracked Entities and Events.
 >
 > - These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)**
 >
@@ -1250,8 +1250,8 @@ The endpoint returns a list of tracked entities that match the request parameter
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`query`|`String`|`{operator}:{filter-value}`|Creates a filter over tracked entity attributes. Only the filter value is mandatory. The `EQ` operator is used if `operator` is not specified.|
-|`attribute`|`String`|Comma separated values of attribute `UID` | For each tracked entity in the response, only returns specified attributes |
-|`filter`|`String`|Comma separated values of filters|Filter is properties or attributes with operator and value.<br>Example: `filter=updatedAfter:lt:2000-01-01`<br>Multiple filters are allowed. User needs access to attribute to being able to have a filter on it|
+|`attribute`|`String`|Comma separated values of attribute `UID`s |For each tracked entity in the response, only returns specified attributes |
+|`filter`|`String`|Comma separated values of attribute filters|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
 |`orgUnit`|`String`|semicolon-delimited list of organisational unit `UID`|Only return tracked entity instances belonging to provided organisational units|
 |`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
 |`program`|`String`|Program `UID`| a Program `UID` for which instances in the response must be enrolled into|
@@ -1261,13 +1261,13 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`updatedAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Start date for last updated|
 |`updatedBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | End date for last updated|
 |`updatedWithin`|`Duration`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) | Returns TEIs not older than specified Duration|
-|`enrollmentEnrolledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for incident in the given program|
-|`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for incident in the given program|
+|`enrollmentEnrolledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for enrollment in the given program|
+|`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for enrollment in the given program|
 |`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for incident in the given program|
 |`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for incident in the given program|
 |`trackedEntityType`|`String`|UID of tracked entity type|Only returns Tracked Entity Instances of given type|
 |`trackedEntity`|`String`|semicolon-delimited list of tracked entity instance `UID`|Filter the result down to a limited set of tracked entities using explicit uids of the tracked entity instances by using `trackedEntity=id1;id2`. This parameter will, at the very least, create the outer boundary of the results, forming the list of all tracked entities using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
-|`assignedUserMode`|`String`|`CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`|Restricts result to tracked entities with events assigned based on the assigned user selection mode|
+|`assignedUserMode`|`String`|`CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. |
 |`assignedUser`|`String`|Semicolon-delimited list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1;id2`.This parameter will only be considered if assignedUserMode is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`|
 |`eventStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED`|Status of any events in the specified program|
 |`eventOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for Event for the given Program|
@@ -1277,6 +1277,17 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`includeAllAttributes`|`Boolean`|`true`&#124;`false`|Indicates whether to include all TEI attributes|
 |`attachment`|`String`| |The file name in case of exporting as a file|
 
+The available assigned user modes are explained in the following table.
+
+
+Table: Assigned user modes
+
+| Mode | Description |
+|---|---|
+| CURRENT | Includes events assigned to the current logged in user. |
+| PROVIDED | Includes events assigned to the user provided in the request. |
+| NONE | Includes unassigned events only. |
+| ANY | Includes all assigned events, doesn't matter who are they assigned to as long as they assigned to someone. |
 
 The query is case insensitive. The following rules apply to the query
 parameters.
@@ -1334,7 +1345,7 @@ To query on an attribute using multiple values in an *IN* filter:
 To constrain the response to instances which are part of a specific
 program you can include a program query parameter:
 
-    GET GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
+    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
         &orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS
         &program=ur1Edk5Oe2n
 
@@ -1447,8 +1458,24 @@ A query for a Tracked Entity Instance:
 
 ##### Response format
 
-This endpoint supports returning sub-objects when the `fields` request parameter is passed.
+This endpoint supports returning sub-objects when the `fields` request parameter is passed when json format is requested. In case of csv the `fields` request parameter has no effect and the response will always contain the same fields, which are:
+  - trackedEntity (Identifier)
+  - trackedEntityType (Identifier)
+  - createdAt (Datetime)
+  - createdAtClient (Datetime)
+  - updatedAt (Datetime)
+  - updatedAtClient (Datetime)
+  - orgUnit (Identifier)
+  - inactive (boolean)
+  - deleted (boolean)
+  - potentialDuplicate (boolean)
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry)
+  - storedBy (String)
+  - createdBy (Username of user)
+  - updatedBy (Username of user)
+  - attributes (each valid attribute listed as another column)
 
+An example of a json response:
 ```json
 {
     "trackedEntity": "IzHblRD2sDH",
@@ -1549,6 +1576,8 @@ Returns a list of events based on the provided filters.
 |`program`|`String`|`uid`| Identifier of program|
 |`programStage`|`String`|`uid`| Identifier of program stage|
 |`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Status of event in program | 
+|`filter`|`String`|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. Multiple operator/value pairs for the same property/data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. Repeating the same data element UID is not allowed. User needs access to the data element to filter on it.|
+|`filterAttributes`|`String`|Comma separated values of attribute filters|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
 |`followUp`|`boolean`| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
 |`trackedEntityInstance`|`String`|`uid`| Identifier of tracked entity instance|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
@@ -1561,6 +1590,10 @@ Returns a list of events based on the provided filters.
 |`updatedAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which were updated after this date. Cannot be used together with `updatedWithin`.|
 |`updatedBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were updated up until this date. Cannot be used together with `updatedWithin`.|
 |`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations)| Include only items which are updated within the given duration.<br><br> The format is [ISO-8601#Duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)|
+|`enrollmentEnrolledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for enrollment in the given program|
+|`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for enrollment in the given program|
+|`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for incident in the given program|
+|`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for incident in the given program|
 |`skipMeta`|`Boolean`| `true`&#124;`false` | Exclude the meta data part of response (improves performance)|
 |`dataElementIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Data element ID scheme to use for export.|
 |`categoryOptionComboIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Category Option Combo ID scheme to use for export|
@@ -1568,7 +1601,7 @@ Returns a list of events based on the provided filters.
 |`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
 |`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
 |`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
-|`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
+|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `storedBy, attributeCategoryOptions, dueDate, assignedUserUsername, createdAtClient, program, lastUpdated, href, event, assignedUser, programStage, programType, occurredAt, created, createdAt, orgUnit, completedDate, enrollment, trackedEntityInstance, followup, deleted, enrollmentStatus, attributeOptionCombo, assignedUserDisplayName, completedBy, orgUnitName, eventDate, lastUpdatedAtClient, status, enrolledAt`.|
 |`event`|`String`|comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using event=id1;id2.|
 |`skipEventId`|`Boolean`| | Skips event identifiers in the response|
 |`attributeCc` (see note)|`String`| Attribute category combo identifier (must be combined with attributeCos)|

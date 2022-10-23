@@ -240,6 +240,9 @@ translations for the specific object and not just for a single locale
 (if not you will potentially overwrite existing locales for other
 locales).
 
+The status code will be `204 No Content` if the data value was successfully saved or updated, or `404 Not Found` if there was a validation error (e.g. more than one `SHORT_NAME` for the same `locale`).
+
+
 ### Web API versions { #webapi_api_versions } 
 
 The Web API is versioned starting from DHIS 2.25. The API versioning
@@ -943,6 +946,36 @@ Response
     "status": "ERROR",
     "message": "Invalid path /test"
 }
+```
+
+### Metadata CSV export { #webapi_metadata_csv_export } 
+
+Field filtering works almost the same for CSV (please note that using CSV on the `/api/metadata` endpoint is not supported), but not that
+field fransformations are not yet supported.
+
+For endpoints that support CSV (our metadata endpoints like `/api/dataElements` `/api/organisationUnits`) you can either use the `Accept` header with
+value `text/csv` or you can use the extension `.csv`. Be aware that complex objects are not supported, and we only support id-object collections (so a list of UIDs
+will be returned).
+
+| Name | Options | Description |
+|---|---|---|
+| fields | Same as metadata field filter (with the caveats mentioned above) | Default filter is `id,displayName` |
+| skipHeader | false/true | Should the header (with column names) be included or not
+| separator | Default: `.` | Column separator
+| arraySeparator | Default: `;` | If one of the field is a collection of id-objects this separator will separate all the UIDs
+
+#### Examples
+
+#### Get all data elements including their group associations
+
+```
+/api/dataElements.csv?fields=id,displayName,dataElementGroups
+```
+
+#### Get all org units including geometry (which will get ignored)
+
+```
+/api/organisationUnits.csv?fields=id,displayName,organisationUnitGroups,geometry
 ```
 
 ## Metadata export { #webapi_metadata_export } 
@@ -2464,6 +2497,11 @@ POST to the endpoint `/api/fileResources` with a multipart upload:
 
 ```bash
 curl "https://server/api/fileResources" -X POST
+  -F "file=@/path/to/file/name-of-file.png"
+```
+The `uid` of a file resource can be provided when it is created, for example:
+```bash
+curl "https://server/api/fileResources?uid=0123456789x" -X POST
   -F "file=@/path/to/file/name-of-file.png"
 ```
 

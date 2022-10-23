@@ -30,6 +30,7 @@ Table: User query parameters
 | includeChildren | false &#124; true | Includes users from all children organisation units of the ou parameter. |
 | page | Number | The page number. |
 | pageSize | Number | The page size. |
+| orgUnitBoundary | data_capture &#124; data_output &#124; tei_search | Restrict search to users having a common organisation unit with the current user for the given boundary        |
 
 A query for max 10 users with "konan" as first name or surname (case
 in-sensitive) who have a subset of authorities compared to the current
@@ -120,6 +121,9 @@ against the following user properties:
 - Email
 - Username
 
+In addition to the `query` parameter the search can be restricted by the
+`orgUnitBoundary` parameter as described in table of parameters for users above.
+
 An example request looks like this:
 
 ```
@@ -208,6 +212,21 @@ user groups whereby user groups is the owner of the relationship. To update
 or create mulitple users and their user groups, consider a program to *POST*
 one at a time, or *POST* all users followed by another action to
 update their user groups while specifiying the new user's identifiers.
+
+When creating a user the payload may also contain user settings.
+These are added as `settings` object to the root object.
+Each key-value pair becomes a member in the `settings` object, for example:
+```json
+{
+    "id": "Mj8balLULKp",
+    "firstName": "John",
+    "surname": "Doe",
+    "settings": {
+        "keyUiLocale": "de"
+    },
+    //...
+}
+```
 
 After the user is created, a *Location* header is sent back with the
 newly generated ID (you can also provide your own using the `/api/system/id`
