@@ -189,6 +189,8 @@ Example external data exchange payload with PAT authentication and ID scheme *co
 }
 ```
 
+The syntax for the source requests follow the analytics endpoint API syntax. This means that for the `dx` part, data elements, indicators, data set reporting rates, program data elements and program indicators are supported. Note that for program data elements, the data element must be prefixed with the program identifier. For the `pe` part, relative periods as well as fixed periods are supported. For the `ou` part, user org units, org unit levels and org unit groups as well as individual org units are supported. Consult the *Analytics* chapter > the *Dimensions and items* and *The dx dimension* sections for a full explanation.
+
 ##### Response
 
 ```
@@ -373,7 +375,9 @@ The aggregate data exchange data model / payload is described in the following s
 
 When running a data exchange by identifier, information about the outcome of the operation will be available in the response payload. The response will contain a list of import summaries, i.e. one import summary per source request. The import summary will indicate any potential conflicts as a result of data retrieval from the source instance and data import in the target instance. 
 
-### Example
+### Examples
+
+#### External data exchange
 
 This example will demonstrate how to exchange data based on program indicators in the source DHIS 2 instance and data elements in the target instance. The `code` identifier scheme, which means the data exchange will use the `code` property on the metadata to reference the data. Using codes is useful when the ID properties don't match across DHIS 2 instances. The example will demonstrate how data can be aggregated in the source instance, including aggregation in time and the unit hierarchy, before being exchanged with the target instance.
 
