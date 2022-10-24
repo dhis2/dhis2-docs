@@ -2016,13 +2016,12 @@ The API supports using program indicators which are not associated to the "main"
 
 ## Dimensions { #webapi_dimensions }
 
-Five resources allow to easily retrieve data dimensions:
+Four resources allow to easily retrieve data dimensions:
 
 - [Event Query data dimensions](#webapi_event_query_analytics_dimension)`/analytics/events/query/dimensions` 
 - [Event Aggregate data dimensions](#webapi_event_aggregate_analytics_dimension) `/analytics/events/aggregate/dimensions`
 - [Enrollment Query data dimensions](#webapi_enrollment_query_analytics_dimension) `/analytics/enrollments/query/dimensions`
 - [Enrollment Aggregate data dimensions](#webapi_enrollment_aggregate_analytics_dimension) `/analytics/enrollments/aggregate/dimensions`
-- [Tracked Entities query data dimensions](#webapi_teis_query_analytics_dimensions)) `/analytics/teis/query/dimensions`
 
 Resources mentioned above share the following request parameter:
 
@@ -2133,20 +2132,6 @@ Data elements and tracked entity attributes are considered *supported types* if 
 - `INTEGER_ZERO_OR_POSITIVE`
 - `BOOLEAN`
 - `TRUE_ONLY`
-
-### Tracked Entities analytics dimensions
-
-#### Tracked Entities query analytics dimensions { #webapi_teis_query_analytics_dimensions }
-
-The `/analytics/teis/query/dimensions?trackedEntityType=TET` resource accepts a mandatory id of a tracked entity type `TET` and returns the following data dimensions:
-
-for each program `P` associated with a tracked entity instance of type `TET`:
-- **Program indicators** associated to `P`
-- **Data elements** of *supported types* in `P`, with program stage for each data element
-- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
-- **Program attributes** of `P`
-
-All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
 
 ### Sample request and response
 
