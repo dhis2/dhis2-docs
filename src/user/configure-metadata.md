@@ -1749,11 +1749,13 @@ Table: Indicator functions
 | null | | Returns no result. For example, _if( #{FH8ab5Rog83}<0, null, 1 )_ returns nothing if the data element value is less than 0, otherwise 1. |
 | removeZeros | (expression) | Returns nothing if the expression value is 0, otherwise returns the expression value. |
 | subExpression | (expression) | Evaluates part of an expression before aggregating. See Indicator SubExpressions below. |
+| [periodInYear] | | The number of this period within the year (1, 2, 3, ...) For examples, see the Indicator Year-to-date section below. |
+| [yearlyPeriodCount] | | The count of periods of this type within the year. For examples, see the Indicator Year-to-date section below. |
 | .aggregationType | (aggregation type) | Overrides the default data element aggregation type for aggregate data (not for program data). |
 | .maxDate | (yyyy-mm-dd) | For a data element (not program data), value from periods ending on or before a maximum date. |
 | .minDate | (yyyy-mm-dd) | For a data element (not program data), value from periods starting on or after a minimum date. |
 | .periodOffset | (integer constant) | Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below. |
-
+| .yearToDate() | | Summs the values of all periods from the start of the yaer through the current period. Note that any weekly period is considered to be part of the current year if it has four or more days in the year. For examples, see the Indicator Year-to-date section below. |
 Valid aggregation types:
 
 | Aggregation type | Description |
@@ -1820,6 +1822,49 @@ SubExpression notes:
        subExpression( if( #{nYahlae7fe6.beec4Dewah8} > 10 && #{nYahlae7fe6.beec4Dewah8} <= 20, 1, 0 ) )
 
 4. If you wish to evaluate an expression before aggregating that involves other types of data such as program data, or that involves more than one data element, category option combination or attribute option combination, you can use a Predictor to do so and store the result as a different data element. Then you can reference the predicted data element in an indicator or directly in analytics.
+
+### Indicator Year-to-date { #indicator_yeartodate }
+
+Indicators can compute year-to-date values using the expression elements _yearToDate()_, _[periodInYear]_, and _[yearlyPeriodCount]_.
+
+In the examples below, #{a} can be: #{dataElementUID}, or any valid indicator expression item that returns a data value such as  #{dataElementUID.catOptionComboUid}, I{programIndicatorUID}, N{indicatorUID}, etc.
+
+| Indicator expression | Means |
+| --- | --- |
+| #{a} | current period value |
+| #{a}.yearToDate() | sum of values year to date. For example if the period is March gives the value for Jan+Feb+Mar  |
+| #{a}.yearToDate() / [periodInYear] | average year-to-date value. For example if the period is March gives the value for Jan+Feb+Mar / 3 |
+| #{a} - <nobr>#{a}.yearToDate()</nobr> / [periodInYear] | difference between current period and average year to date |
+| #{b} * [periodInYear] / [yearlyPeriodCount] | If #{b} represents the annual target population (for example, the number of people who should be vaccinated during this year), then this can show the number of people who should be vaccinated by the current period. For example in February this gives #{b} * 2 / 12.
+
+#### Notes on [yearlyPeriodCount]
+
+For monthly periods, [yearlyPeriodCount] is always 12, for quarters is always 4, etc. There are two advantages of using [yearlyPeriodCount] rather than hard-coding numbers like 12 or 4:
+
+1. For weekly periods [yearlyPeriodCount] will be 52 or 53 depending on the year. For biweekly periods it will be 26 or 27.
+
+2. If the user chooses a different period type in analytics, [periodInYear] and [yearlyPeriodCount] will adjust accordingly. For example if monthly data is collected, the user can choose to report monthly where [periodInYear] is 1: Jan, 2: Feb, ..., and [yearlyPeriodCount] is 12; or the user can report quarterly where [periodInYear] is 1: Q1, 2: Q2, ..., and [yearlyPeriodCount] is 4.
+
+#### Notes on missing data
+
+.yearToDate() returns a value if there is any data in the year before or during the period.
+For example, if the values of #{a} are:
+
+    Jan: (no data)
+    Feb: 1
+    Mar: 2
+    Apr: (no data)
+    May: 3
+    Jun: (no data)
+
+then the values of #{a}.yearToDate() are:
+
+    Jan: (no data)
+    Feb: 1
+    Mar: 3
+    Apr: 3
+    May: 6
+    Jun: 6
 
 <br />
 
