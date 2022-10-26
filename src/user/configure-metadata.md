@@ -1836,7 +1836,7 @@ In the examples below, #{a} can be: #{dataElementUID}, or any valid indicator ex
 | #{a}.yearToDate() | sum of values year to date. For example, if the period is March gives the value for Jan+Feb+Mar  |
 | #{a}.yearToDate() / [periodInYear] | average year-to-date value. For example, if the period is March gives the value for Jan+Feb+Mar / 3 |
 | #{a} - <nobr>#{a}.yearToDate()</nobr> / [periodInYear] | difference between current period and average year to date |
-| #{b} * [periodInYear] / [yearlyPeriodCount] | If #{b} represents the annual target population (for example, the number of people who should be vaccinated during this year), then this can show the number of people who should be vaccinated by the current period. For example in February this gives #{b} * 2 / 12.
+| #{b} * [periodInYear] / [yearlyPeriodCount] | If #{b} represents the annual target population (for example, the number of people who should be vaccinated during this year), then this can show the number of people who should be vaccinated by the current period. For example, in February this gives #{b} * 2 / 12.
 
 #### Notes on [yearlyPeriodCount]
 
