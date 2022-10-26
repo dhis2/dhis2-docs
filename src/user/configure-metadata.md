@@ -1749,7 +1749,7 @@ Table: Indicator functions
 | null | | Returns no result. For example, _if( #{FH8ab5Rog83}<0, null, 1 )_ returns nothing if the data element value is less than 0, otherwise 1. |
 | removeZeros | (expression) | Returns nothing if the expression value is 0, otherwise returns the expression value. |
 | subExpression | (expression) | Evaluates part of an expression before aggregating. See Indicator SubExpressions below. |
-| [periodInYear] | | The number of this period within the year (1, 2, 3, ...) For examples, see the Indicator Year-to-date section below. |
+| [periodInYear] | | The number of this period within the year (1, 2, 3, ...). For examples, see the Indicator Year-to-date section below. |
 | [yearlyPeriodCount] | | The count of periods of this type within the year. For examples, see the Indicator Year-to-date section below. |
 | .aggregationType | (aggregation type) | Overrides the default data element aggregation type for aggregate data (not for program data). |
 | .maxDate | (yyyy-mm-dd) | For a data element (not program data), value from periods ending on or before a maximum date. |
