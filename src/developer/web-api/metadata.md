@@ -3140,3 +3140,35 @@ The `fields` parameter can be used to narrow the fields included for the shown o
 
     GET /api/metadata/proposals/<uid>?fields=id,type,status,change
 
+## Metadata Attribute Value Type and validations
+| Type | Validation
+|---| --- |
+| TEXT | None
+| LONG_TEXT | None
+| LETTER | Value length = 1 AND is a letter
+| PHONE_NUMBER  | Validation is based on this regex `^[0-9+\\(\\)#\\.\\s\\/ext-]{6,50}$`. Max length is 50.  <br /> Examples: +4733987937, (+47) 3398 7937, (47) 3398 7937.123
+| EMAIL | General email format abc@email.com
+| BOOLEAN | `true` or `false`
+| TRUE_ONLY | Only accept `true`
+| DATE | Use format `yyyy-MM-dd`
+| DATETIME | Use format `yyyy-MM-dd HH:mm:ssZ` or `yyyy-MM-dd'T'HH:mm:ss`
+| TIME | Use fornat `HH:mm`
+| NUMBER | Value must be numberic with max length = 250
+| UNIT_INTERVAL | Value is numeric and inclusive between 0 and 1
+| PERCENTAGE | Value is a number in the inclusive range of 0 to 100
+| INTEGER | Value is an integer
+| INTEGER_POSITIVE | Value is a positive integer
+| INTEGER_NEGATIVE | Value is a negative integer
+| INTEGER_ZERO_OR_POSITIVE | Value is an positive or zero integer
+| TRACKER_ASSOCIATE | None
+| USERNAME | Value is a username of an existing `User`
+| COORDINATE | None
+| ORGANISATION_UNIT | Value is a valid UID of an existing `OrganisationUnit`
+| REFERENCE | None
+| AGE | Value is date of birth. Use format as in DATE type.
+| URL | Value is a valid URL
+| FILE_RESOURCE | Value is a valid UID of existing `FileResource`
+| IMAGE | Value is a valid UID of existing `FileResource`
+| GEOJSON |Follow [GeoJson Specification](https://geojson.org)
+| MULTI_TEXT | None
+    
