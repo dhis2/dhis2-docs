@@ -1167,7 +1167,7 @@ Tracker export endpoints deal with the following Tracker objects:
 
 > **NOTE**
 >
-> - These endpoints currently only support `JSON`, but `CSV` will be supported in the near future.
+> - All these endpoints currently support `JSON`, `CSV` is only supported by only Tracked Entities and Events.
 >
 > - These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)**
 >
@@ -1458,8 +1458,24 @@ A query for a Tracked Entity Instance:
 
 ##### Response format
 
-This endpoint supports returning sub-objects when the `fields` request parameter is passed.
+This endpoint supports returning sub-objects when the `fields` request parameter is passed when json format is requested. In case of csv the `fields` request parameter has no effect and the response will always contain the same fields, which are:
+  - trackedEntity (Identifier)
+  - trackedEntityType (Identifier)
+  - createdAt (Datetime)
+  - createdAtClient (Datetime)
+  - updatedAt (Datetime)
+  - updatedAtClient (Datetime)
+  - orgUnit (Identifier)
+  - inactive (boolean)
+  - deleted (boolean)
+  - potentialDuplicate (boolean)
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry)
+  - storedBy (String)
+  - createdBy (Username of user)
+  - updatedBy (Username of user)
+  - attributes (each valid attribute listed as another column)
 
+An example of a json response:
 ```json
 {
     "trackedEntity": "IzHblRD2sDH",
@@ -1566,7 +1582,7 @@ Returns a list of events based on the provided filters.
 |`trackedEntityInstance`|`String`|`uid`| Identifier of tracked entity instance|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
 |`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|  Org unit selection mode| 
-|`status`|`String`|`COMPLETED`&#124;`VISITED`&#124;`SCHEDULED`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
+|`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
 |`occurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which occurred after this date.|
 |`occurredBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which occurred up until this date.|
 |`scheduledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were scheduled after this date.|

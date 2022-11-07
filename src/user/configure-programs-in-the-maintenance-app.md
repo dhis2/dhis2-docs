@@ -460,6 +460,7 @@ number of days to wait for starting the program stage.
  | **Pre-generate event UID** | Select check box to pre-generate unique event id numbers. |
  | **Description of report date** | Type a description of the report date.<br>  <br>This description is displayed in the data entry form. |
  | **Description of due date** | Type a description of the due date. |
+ | **Referral*** | Flag to indicate if program stage is referral or not. |
 
 5.  Assign data elements to program stage:
 
@@ -1342,7 +1343,7 @@ Table: Custom functions to use in a program rule expression
 |---|---|---|
 | d2:ceil | (number) | Rounds the input argument **up** to the nearest whole number. <br>Example:<br> `d2:ceil(#{hemoglobinValue})` |
 | d2:floor | (number) | Rounds the input argument **down** to the nearest whole number. <br>An example producing the number of weeks the woman is pregnant. Notice that the sub-expression #{gestationalAgeDays}/7 is evaluated before the floor function is executed:<br> `d2:floor(#{gestationalAgeDays}/7)` |
-| d2:round | (number) | Rounds the input argument to the nearest whole number. |
+| d2:round | (number [, decimals]) | Rounds the input argument to the nearest integer. An optional second argument can be provided to specify a number of decimal places to which the number is to be rounded. <br>Example: d2:round(1.25, 1) = 1.3 |
 | d2:modulus | (number,number) | Produces the modulus when dividing the first with the second argument. <br>An example producing the number of days the woman is into her current pregnancy week:<br> `d2:modulus(#{gestationalAgeDays},7)` |
 | d2:zing | (number) | Evaluates the argument of type number to zero if the value is negative, otherwise to the value itself. |
 | d2:oizp | (number) | Evaluates the argument of type number to one if the value is zero or positive, otherwise to zero. |
@@ -1370,8 +1371,197 @@ Table: Custom functions to use in a program rule expression
 | d2:zScoreWFH | Z-Score weight for height indicator | Calculates z-score based on data derived from the WHO weight-for-length and weight-for-height indicators. The data used for girls can be found [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-girls-table.txt) and for boys [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-boys-table.txt). Its value varies between -3.5 to 3.5 depending upon the value of the weight. <br>Example expression:<br> `d2:zScoreWFH( height, weight, gender )` |
 | d2:minValue | Get minimum value for provided item | Function gets minimum value of provided data element across entire enrollment. <br>Example expression:<br> `d2:minValue( 'blood-pressure' )` |
 | d2:maxValue | Get maximum value for provided item | Function gets maximum value of provided data element across entire enrollment. <br>Example expression:<br> `d2:maxValue( 'blood-pressure' )` |
-| d2:extractDataMatrixValue | Given a field value formatted with the gs1 data matrix standard and a string key from the GS1 application identifiers. The function looks and returns the value linked to the provided key. <br>Example expression:<br> `d2:extractDataMatrixValue( 'grin', A{GS1 Value} )` |
+| d2:extractDataMatrixValue | Get GS1 value based on application identifier |  Given a field value formatted with the gs1 data matrix standard and a string key from the GS1 application identifiers. The function looks and returns the value linked to the provided key. <br>Example expression:<br> `d2:extractDataMatrixValue( 'gtin', A{GS1 Value} )` |
 
+
+Table: Data matrix codes
+
+| AI    | Data Title | Description | Fixed Length |
+|----|----|----|----|
+|  00   | SSCC                      | SSCC (Serial Shipping Container Code)                                                                                                      | 20           |
+|  01   | GTIN                      | Global Trade Item Number                                                                                                                   | 16           |
+|  02   | CONTENT                   | GTIN of Trade Items Contained in a logistic unit                                                                                          | 16           |
+|  10   | LOT_NUMBER                | Batch or lot number                                                                                                                       | Variable     |
+|  11   | PROD_DATE                 | Production date (YYMMDD)                                                                                                                   | 8            |
+|  12   | DUE_DATE                  | Due date (YYMMDD)                                                                                                                         | 8            |
+|  13   | PACK_DATE                 | Packaging date (YYMMDD)                                                                                                                   | 8            |
+|  15   | BEST_BEFORE_DATE          | Best before date (YYMMDD)                                                                                                                  | 8            |
+|  16   | SELL_BY                   | Sell by date (YYMMDD)                                                                                                                     | 8            |
+|  17   | EXP_DATE                  | Expiration date (YYMMDD)                                                                                                                   | 8            |
+|  20   | VARIANT                   | Internal Product variant                                                                                                                  | 4            |
+|  21   | SERIAL_NUMBER             | Serial number                                                                                                                             | Variable     |
+|  22   | CPV                       | Consumer product variant                                                                                                                   | Variable     |
+|  235  | TPX                       | Third Party Controlled, Serialised Extension of Global Trade Item Number (GTIN) (TPX)                                                      | Variable     |
+|  240  | ADDITIONAL_ID             | Additional product identification assigned by the manufacturer                                                                             | Variable     |
+|  241  | CUSTOMER_PART_NUMBER      | Customer part number                                                                                                                       | Variable     |
+|  242  | MTO_VARIANT_NUMBER        | Made-to-Order Variation Number                                                                                                             | Variable     |
+|  243  | PCN                       | Packaging component number                                                                                                                 | Variable     |
+|  250  | SECONDARY_SERIAL          | Secondary serial number                                                                                                                   | Variable     |
+|  251  | REF_TO_SOURCE             | Reference to source entity                                                                                                                | Variable     |
+|  253  | GDTI                      | Global Document Type Identifier                                                                                                           | Variable     |
+|  254  | GLN_EXTENSION_COMPONENT   | GLN Extension component                                                                                                                    | Variable     |
+|  255  | GCN                       | Global Coupon Number (GCN)                                                                                                                 | Variable     |
+|  30   | VAR_COUNT                 | Variable count                                                                                                                            | Variable     |
+|  310* | NET_WEIGHT_KG             | Net weight, kilograms (variable measure trade item                                                                                         | Variable     |
+|  311* | LENGTH_M                  | Length or first dimension, metres (variable measure trade item)                                                                            | Variable     |
+|  312* | WIDTH_M                   | Width, diameter, or second dimension, metres (variable measure trade item)                                                                 | Variable     |
+|  313* | HEIGHT_M                  | Depth, thickness, height, or third dimension, metres (variable measure trade item)                                                        | Variable     |
+|  314* | AREA_M2                   | Area, square metres (variable measure  trade item)                                                                                         | Variable     |
+|  315* | NET_VOLUME_L              | Net volume, litres (variable measure trade item)                                                                                           | Variable     |
+|  316* | NET_VOLUME_M3             | Net volume, cubic metres (variable measure trade item)                                                                                     | Variable     |
+|  320* | NET_WEIGHT_LB             | Net weight, pounds (variable measure trade item)                                                                                           | Variable     |
+|  321* | LENGTH_I                  | Length or first dimension, inches (variable measure trade item)                                                                            | Variable     |
+|  322* | LENGTH_F                  | Length or first dimension, feet (variable measure trade item)                                                                              | Variable     |
+|  323* | LENGTH_Y                  | Length or first dimension, yards (variable measure trade item)                                                                             | Variable     |
+|  324* | WIDTH_I                   | Width, diameter, or second dimension, inches (variable measure trade item)                                                                 | Variable     |
+|  325* | WIDTH_F                   | Width, diameter, or second dimension, feet (variable measure trade item)                                                                   | Variable     |
+|  326* | WIDTH_Y                   | Width, diameter, or second dimension, yards(variable measure trade item)                                                                   | Variable     |
+|  327* | HEIGHT_I                  | Depth, thickness, height, or third dimension, inches (variable measure trade item)                                                         | Variable     |
+|  328* | HEIGHT_F                  | Depth, thickness, height, or third dimension, feet (variable measure trade item)                                                           | Variable     |
+|  329* | HEIGHT_Y                  | Depth, thickness, height, or third dimension, yards (variable measure trade item)                                                          | Variable     |
+|  330* | GROSS_WEIGHT_GF           | Logistic weight, kilograms                                                                                                                 | Variable     |
+|  331* | LENGTH_M_LOG              | Length or first dimension, metres                                                                                                          | Variable     |
+|  332* | WIDTH_M_LOG               | Width, diameter, or second dimension, metres                                                                                               | Variable     |
+|  333* | HEIGHT_M_LOG              | Depth, thickness, height, or third dimension, metres                                                                                       | Variable     |
+|  334* | AREA_M2_LOG               | Area, square metres                                                                                                                       | Variable     |
+|  335* | VOLUME_L_LOG              | Logistic volume, litres                                                                                                                    | Variable     |
+|  336* | VOLUME_M3_LOG             | Logistic volume, cubic metres                                                                                                              | Variable     |
+|  337* | KG_PER_M2                 | Kilograms per square metre                                                                                                                | Variable     |
+|  340* | GROSS_WHEIGHT_LB          | Logistic weight, pounds                                                                                                                    | Variable     |
+|  341* | LENGTH_I_LOG              | Length or first dimension, inches                                                                                                          | Variable     |
+|  342* | LENGTH_F_LOG              | Length or first dimension, feet                                                                                                            | Variable     |
+|  343* | LENGTH_Y_LOG              | Length or first dimension, yards                                                                                                           | Variable     |
+|  344* | WIDTH_I_LOG               | Width, diameter, or second dimension, inches                                                                                               | Variable     |
+|  345* | WIDTH_F_LOG               | Width, diameter, or second dimension, feet                                                                                                 | Variable     |
+|  346* | WIDTH_Y_LOG               | Width, diameter, or second dimension, yards                                                                                               | Variable     |
+|  347* | HEIGHT_I_LOG              | Depth, thickness, height, or third dimension, inches                                                                                       | Variable     |
+|  348* | HEIGHT_F_LOG              | Depth, thickness, height, or third dimension, feet                                                                                         | Variable     |
+|  349* | HEIGHT_Y_LOG              | Depth, thickness, height, or third dimension, yards                                                                                        | Variable     |
+|  350* | AREA_I2                   | Area, square inches (variable measure trade item)                                                                                          | Variable     |
+|  351* | AREA_F2                   | Area, square feet (variable measure trade item)                                                                                            | Variable     |
+|  352* | AREA_Y2                   | Area, square yards (variable measure trade item)                                                                                          | Variable     |
+|  353* | AREA_I2_LOG               | Area, square inches                                                                                                                        | Variable     |
+|  354* | AREA_F2_LOG               | Area, square feet                                                                                                                          | Variable     |
+|  355* | AREA_Y2_LOG               | Area, square yards                                                                                                                         | Variable     |
+|  356* | NET_WEIGHT_T              | Net weight, troy ounces (variable measure trade item)                                                                                      | Variable     |
+|  357* | NET_VOLUME_OZ             | Net weight (or volume), ounces (variable measure trade item)                                                                               | Variable     |
+|  360* | NET_VOLUME_Q              | Net volume, quarts (variable measure trade item)                                                                                           | Variable     |
+|  361* | NET_VOLUME_G              | Net volume, gallons U.S. (variable measure trade item)                                                                                     | Variable     |
+|  362* | VOLUME_Q_LOG              | Logistic volume, quarts                                                                                                                    | Variable     |
+|  363* | VOLUME_G_LOG              | Logistic volume, gallons U.S.                                                                                                              | Variable     |
+|  364* | VOLUME_I3                 | Net volume, cubic inches (variable measure trade item)                                                                                     | Variable     |
+|  365* | VOLUME_F3                 | Net volume, cubic feet (variable measure trade item)                                                                                       | Variable     |
+|  366* | VOLUME_Y3                 | Net volume, cubic yards (variable measure trade item)                                                                                      | Variable     |
+|  367* | VOLUME_I3_LOG             | Logistic volume, cubic inches                                                                                                               | Variable     |
+|  368* | VOLUME_F3_LOG             | Logistic volume, cubic feet                                                                                                                 | Variable     |
+|  369* | VOLUME_Y3_LOG             | Logistic volume, cubic yards                                                                                                                | Variable     |
+|  37   | COUNT                     | Count of trade items or trade item pieces contained in a logistic unit                                                                     | Variable     |
+|  390* | AMOUNT                    | Applicable amount payable or Coupon value, local currency                                                                                  | Variable     |
+|  391* | AMOUNT_ISO                | Applicable amount payable with ISO currency code                                                                                           | Variable     |
+|  392* | PRICE                     | Applicable amount payable, single monetary area (variable measure trade item)                                                              | Variable     |
+|  393* | PRICE_ISO                 | Applicable amount payable with ISO currency code (variable measure trade item)                                                             | Variable     |
+|  394* | PRCNT_OFF                 | Percentage discount of a coupon                                                                                                            | Variable     |
+|  395* | PRICE_UOM                 | Amount Payable per unit of measure single monetary area (variable measure trade item)                                                      | N4+N6        | Variable     |
+|  400  | ORDER_NUMBER              | Customers purchase order number                                                                                                            | Variable     |
+|  401  | GINC                      | Global Identification Number for Consignment (GINC)                                                                                        | Variable     |
+|  403  | ROUTE                     | Routing code                                                                                                                               | Variable     |
+|  410  | SHIP_TO_GLOB_LOC          | Ship to / Deliver to Global Location Number (GLN)                                                                                          | Variable     |
+|  411  | BILL_TO_LOC               | Bill to / Invoice to Global Location Number (GLN)                                                                                          | Variable     |
+|  412  | PURCHASED_FROM            | Purchased from Global Location Number (GLN)                                                                                                | Variable     |
+|  413  | SHIP_FOR_LOG              | Ship for / Deliver for - Forward to Global Location Number (GLN)                                                                           | Variable     |
+|  414  | LOC_NUMBER                | Identification of a physical location - Global Location Number (GLN)                                                                       | Variable     |
+|  415  | PAY_TO                    | Global Location Number (GLN) of the invoicing party                                                                                        | Variable     |
+|  416  | PROD_SERV_LOC             | Global Location Number (GLN) of the production or service location                                                                         | Variable     |
+|  417  | PARTY                     | Party Global Location Number (GLN)                                                                                                         | Variable     |
+|  420  | SHIP_TO_POST              | Ship to / Deliver to postal code within a single postal authority                                                                          | Variable     |
+|  421  | SHIP_TO_POST_ISO          | Ship to / Deliver to postal code with ISO country code                                                                                     | Variable     |
+|  422  | ORIGIN                    | Country of origin of a trade item                                                                                                          | Variable     |
+|  423  | COUNTRY_INITIAL_PROCESS   | Country of initial processing                                                                                                              | Variable     |
+|  424  | COUNTRY_PROCESS           | Country of processing                                                                                                                      | Variable     |
+|  425  | COUNTRY_DISASSEMBLY       | Country of disassembly                                                                                                                     | Variable     |
+|  426  | COUNTRY_FULL_PROCESS      | Country covering full process chain                                                                                                        | Variable     |
+|  427  | ORIGIN_SUBDIVISION        | Country subdivision Of origin                                                                                                              | Variable     |
+|  4300 | SHIP_TO_COMP              | Ship-to / Deliver-to company name                                                                                                          | Variable     |
+|  4301 | SHIP_TO_NAME              | Ship-to / Deliver-to contact                                                                                                               | Variable     |
+|  4302 | SHIP_TO_ADD1              | Ship-to / Deliver-to address line 1                                                                                                        | Variable     |
+|  4303 | SHIP_TO_ADD2              | Ship-to / Deliver-to address line 2                                                                                                        | Variable     |
+|  4304 | SHIP_TO_SUB               | Ship-to / Deliver-to suburb                                                                                                                 | Variable     |
+|  4305 | SHIP_TO_LOCALITY          | Ship-to / Deliver-to locality                                                                                                               | Variable     |
+|  4306 | SHIP_TO_REG               | Ship-to / Deliver-to region                                                                                                                 | Variable     |
+|  4307 | SHIP_TO_COUNTRY           | Ship-to / Deliver-to country code                                                                                                          | Variable     |
+|  4308 | SHIP_TO_PHONE             | Ship-to / Deliver-to telephone number                                                                                                      | Variable     |
+|  4310 | RTN_TO_COMP               | Return-to company name                                                                                                                     | Variable     |
+|  4311 | RTN_TO_NAME               | Return-to contact                                                                                                                          | Variable     |
+|  4312 | RTN_TO_ADD1               | Return-to address line 1                                                                                                                   | Variable     |
+|  4313 | RTN_TO_ADD2               | Return-to address line 2                                                                                                                   | Variable     |
+|  4314 | RTN_TO_SUB                | Return-to suburb                                                                                                                           | Variable     |
+|  4315 | RTN_TO_LOCALITY           | Return-to locality                                                                                                                         | Variable     |
+|  4316 | RTN_TO_REG                | Return-to region                                                                                                                           | Variable     |
+|  4317 | RTN_TO_COUNTRY            | Return-to country code                                                                                                                     | Variable     |
+|  4318 | RTN_TO_POST               | Return-to postal code                                                                                                                      | Variable     |
+|  4319 | RTN_TO_PHONE              | Return-to telephone number                                                                                                                 | Variable     |
+|  4320 | SRV_DESCRIPTION           | Service code description                                                                                                                   | Variable     |
+|  4321 | DANGEROUS_GOODS           | Dangerous goods flag                                                                                                                      | Variable     |
+|  4322 | AUTH_LEAV                 | Authority to leave                                                                                                                         | Variable     |
+|  4323 | SIG_REQUIRED              | Signature required flag                                                                                                                    | Variable     |
+|  4324 | NBEF_DEL_DT               | Not before delivery date time                                                                                                              | Variable     |
+|  4325 | NAFT_DEL_DT               | Not after delivery date time                                                                                                               | Variable     |
+|  4326 | REL_DATE                  | Release date                                                                                                                               | Variable     |
+|  7001 | NSN                       | NATO Stock Number (NSN)                                                                                                                   | Variable     |
+|  7002 | MEAT_CUT                  | UN/ECE meat carcasses and cuts classification                                                                                              | Variable     |
+|  7003 | EXP_TIME                  | Expiration date and time                                                                                                                   | Variable     |
+|  7004 | ACTIVE_POTENCY            | Active potency                                                                                                                             | Variable     |
+|  7005 | CATCH_AREA                | Catch area                                                                                                                                 | Variable     |
+|  7006 | FIRST_FREEZE_DATE         | First freeze date                                                                                                                          | Variable     |
+|  7007 | HARVEST_DATE              | Harvest date                                                                                                                               | Variable     |
+|  7008 | AQUATIC_SPECIES           | Species for fishery purposes                                                                                                               | Variable     |
+|  7009 | FISHING_GEAR_TYPE         | Fishing gear type                                                                                                                          | Variable     |
+|  7010 | PROD_METHID               | Production method                                                                                                                          | Variable     |
+|  7020 | REFURB_LOT                | Refurbishment lot ID                                                                                                                       | Variable     |
+|  7021 | FUNC_STAT                 | Functional status                                                                                                                          | Variable     |
+|  7022 | REV_STAT                  | Revision status                                                                                                                            | Variable     |
+|  7023 | GIAI_ASSEMBLY             | Global Individual Asset Identifier (GIAI) of an assembly                                                                                   | Variable     |
+|  703* | PROCESSOR_NUMBER          | Number of processor with ISO Country Code                                                                                                  | Variable     |
+|  7040 | UIC_EXT                   | GS1 UIC with Extension 1 and Importer index                                                                                                | Variable     |
+|  710  | NHRN_PZN                  | National Healthcare Reimbursement Number (NHRN) - Germany PZN                                                                              | Variable     |
+|  711  | NHRN_CIP                  | National Healthcare Reimbursement Number (NHRN) - France CIP                                                                               | Variable     |
+|  712  | NHRN_CN                   | National Healthcare Reimbursement Number (NHRN) - Spain CN                                                                                 | Variable     |
+|  713  | NHRN_DRN                  | National Healthcare Reimbursement Number (NHRN) - Brasil DRN                                                                               | Variable     |
+|  714  | NHRN_AIM                  | National Healthcare Reimbursement Number (NHRN) - Portugal AIM                                                                             | Variable     |
+|  723* | CERT_NUMBER               | Certification reference                                                                                                                    | Variable     |
+|  7240 | PROTOCOL                  | Protocol ID                                                                                                                                | Variable     |
+|  8001 | DIMENSIONS                | Roll products (width, length, core diameter, direction, splices)                                                                           | Variable     |
+|  8002 | CMT_NUMBER                | Cellular mobile telephone identifier                                                                                                       | Variable     |
+|  8003 | GRAI                      | Global Returnable Asset Identifier (GRAI)                                                                                                  | Variable     |
+|  8004 | GIAI                      | Global Individual Asset Identifier (GIAI)                                                                                                  | Variable     |
+|  8005 | PRICE_PER_UNIT            | Price per unit of measure                                                                                                                  | Variable     |
+|  8006 | ITIP                      | Identification of an individual trade item piece (ITIP)                                                                                    | Variable     |
+|  8007 | IBAN                      | International Bank Account Number (IBAN)                                                                                                   | Variable     |
+|  8008 | PROD_TIME                 | Date and time of production                                                                                                                | Variable     |
+|  8009 | OPTSEN                    | Optically Readable Sensor Indicator                                                                                                        | Variable     |
+|  8010 | CPID                      | Component/Part Identifier (CPID)                                                                                                           | Variable     |
+|  8011 | CPID_SERIAL               | Component/Part Identifier serial number (CPID SERIAL)                                                                                      | Variable     |
+|  8012 | VERSION                   | Software version                                                                                                                           | Variable     |
+|  8013 | GMN                       | Global Model Number (GMN)                                                                                                                  | Variable     |
+|  8017 | GSRN_PROVIDER             | Global Service Relation Number (GSRN) to identify the relationship between an organisation offering services and the provider of services  | Variable     |
+|  8018 | GSRN_RECIPIENT            | Global Service Relation Number (GSRN) to identify the relationship between an organisation offering services and the recipient of services | Variable     |
+|  8019 | SRIN                      | Service Relation Instance Number (SRIN)                                                                                                    | Variable     |
+|  8020 | REF_NUMBER                | Payment slip reference number                                                                                                              | Variable     |
+|  8026 | ITIP_CONTENT              | Identification of pieces of a trade item (ITIP) contained in a logistic unit                                                               | Variable     |
+|  8110 | COUPON_USA                | Coupon code identification for use in North America                                                                                        | Variable     |
+|  8111 | POINTS                    | Loyalty points of a coupon                                                                                                                 | Variable     |
+|  8121 | POSITIVE_OFFER_COUPON_USA | Paperless coupon code identification for use in North America                                                                              | Variable     |
+|  8200 | PRODUCT_URL               | Extended Packaging URL                                                                                                                     | Variable     |
+|  90   | AGREEMENT_INTERNAL        | Information mutually agreed between trading partners                                                                                       | Variable     |
+|  91   | COMPANY_INTERNAL_1        | Company internal information                                                                                                              | Variable     |
+|  92   | COMPANY_INTERNAL_2        | Company internal information                                                                                                              | Variable     |
+|  93   | COMPANY_INTERNAL_3        | Company internal information                                                                                                              | Variable     |
+|  94   | COMPANY_INTERNAL_4        | Company internal information                                                                                                              | Variable     |
+|  95   | COMPANY_INTERNAL_5        | Company internal information                                                                                                              | Variable     |
+|  96   | COMPANY_INTERNAL_6        | Company internal information                                                                                                              | Variable     |
+|  97   | COMPANY_INTERNAL_7        | Company internal information                                                                                                              | Variable     |
+|  98   | COMPANY_INTERNAL_8        | Company internal information                                                                                                              | Variable     |
+|  99   | COMPANY_INTERNAL_9        | Company internal information                                                                                                              | Variable     |
 
 Table: Standard variables to use in program rule expressions
 
