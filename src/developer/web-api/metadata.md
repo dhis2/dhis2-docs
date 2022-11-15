@@ -342,7 +342,11 @@ To get data elements with a particular attribute value for a metadata
 attribute, a filter for the attribute ID and the attribute value can be 
 specified using the same collection query syntax:
 
-	/api/dataElements.json?filter=attributeValues.attribute.id:eq:n2xYlNbsfko&filter=attributeValues.value:eq:AFP
+    /api/dataElements.json?filter=attributeValues.attribute.id:eq:n2xYlNbsfko&filter=attributeValues.value:eq:AFP
+
+Get data elements which have any option set:
+
+    /api/dataElements?filter=optionSet:!null
 
 Since all operators are *and* by default, you can't find a data
 element matching more than one id, for that purpose you can use the *in*
@@ -411,8 +415,9 @@ It is also possible to specify additional filters along with the indexableOnly p
 Example: Get all trackedEntityAttributes where *ANC* is found in any of the *name* property. The system returns the tracked entity attributes where the name matches the provided keyword as well as if the attribute is indexable
 
     /api/trackedEntityAttributtes.json?filter=name:like:ANC&indexableOnly=true
-      
-      
+
+
+​      
 ## Metadata field filter { #webapi_metadata_field_filter } 
 
 In many situations, the default views of the metadata can be too
