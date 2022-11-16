@@ -430,7 +430,7 @@ actions should be taken at each stage.
     2.  (Optional) select a **Color** and an **Icon** that will be used
 by the data capture apps to identify this program stage.
     3. Enter a **Description**.
-    4. In the **Scheduled days from start** field, enter the minimum
+    4. In the **Scheduled days from start** field: The first event scheduled in this  program stage will be this many days from the enrollment or the incident date - based on the configuration what date to use
 number of days to wait for starting the program stage.
 3. Enter repeatable program stage details.
     1. Specify if the program stage is **Repeatable** or not.
@@ -440,7 +440,7 @@ number of days to wait for starting the program stage.
     for a repeatable stage after you click *Complete* for an event
     of the stage in data entry form. This field is selected by
     default.
-    5. Enter **Standard interval days**. The number of days to repeat the repeatable program stage.  
+    5. Enter **Standard interval days**. When scheduling an event in a repeatable stage, and there are previous events in that stage, this fields value will be the suggested interval between the latest event in the repetable stage and the scheduled date of the new event.
     6. (Optional) Select a  **Default next scheduled date**. This will show a list of assigned data elements of type **date**. If an element is selected, the Tracker client will use this as the default starting date. The data element can be used by program rules to dynamically schedule intervals between events.
 4. Enter form details
 
