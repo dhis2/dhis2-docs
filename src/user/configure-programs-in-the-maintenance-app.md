@@ -440,7 +440,7 @@ by the data capture apps to identify this program stage.
     of the stage in data entry form. This field is selected by
     default.
     5. Enter **Standard interval days**. This value will be the suggested interval between the last event in a repeatable stage and the scheduled date of the next event.
-    6. (Optional) Select a  **Default next scheduled date**. This will show a list of assigned data elements of type **date**. If an element is selected, the Tracker client will use this as the default starting date. The data element can be used by program rules to dynamically schedule intervals between events.
+    6. (Optional) Select a  **Default next scheduled date**. This will show a list of assigned data elements of type **date**. If an element is selected, the Tracker client will use this as the default scheduled date. The data element can be used by program rules to dynamically schedule intervals between events.
 4. Enter form details
 
 
