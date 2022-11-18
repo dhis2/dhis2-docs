@@ -508,9 +508,12 @@ To update the ownership for a TEI/program combination, the user has to utilize t
 referral functionality and select the "Move permanently" option while referring.
 
 A user that has capture access to the organisation unit that is the current owner of the
-TEI/Program will have write access to all enrollments for that TEI/Program combination.
+TEI/Program will have write access to all enrollments for that TEI/Program combination. This is also true if the user has temporary access gained after breaking the glass?? or temporary referral??
 A user that has search access to the organisation unit that is the current owner will have
 access to search and find the TEI/Program combination.
+
+If there are no enrollments, it means there is no ownership for a TEI in a specific program. 
+In this case, any user with search scope access to the organisation unit, will be able to enroll the TEI in that program.
 
 ### Deactivate a TEI's enrollment { #deactivate_tracked_entity_instance_enrollment } 
 
