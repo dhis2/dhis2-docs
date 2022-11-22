@@ -1,4 +1,4 @@
-# General design principles for WHO metadata packages
+# General design principles integrated RHIS 
 
 This document describes in brief the overall design principles that have been followed when configuring the standard DHIS2 metadata packages for the WHO digital health data toolkit. In addition to this document outlining some general principles, an in-depth system design document is available for each health area/program package.
 
