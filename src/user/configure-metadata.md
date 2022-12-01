@@ -1514,10 +1514,7 @@ Table: Data entry events
 | dhis2.de.event.formReady | Triggered when the data entry form is completely rendered and loaded with all elements. | Event &#124; Data set ID |
 | dhis2.de.event.dataValueSaved | Triggered when a data value is saved successfully. | Event &#124; Data set ID &#124; Data value object |
 | dhis2.de.event.completed | Triggered when a data set is successfully marked as complete. | Event &#124; Data set ID &#124; Complete registration object |
-| dhis2.de.event.uncompleted | Triggered when a data set is successfully marked as incomplete. | Event &#124; Data set ID |
 | dhis2.de.event.validationSuccess | Triggered when validation is done and there were no violations. | Event &#124; Data set ID |
-| dhis2.de.event.validationError | Triggered when validation is done and there were one or more violations. | Event &#124; Data set ID |
-| dhis2.ou.event.orgUnitSelected | Triggered when one or more organisation units are selected in the org unit web tree. | Event &#124; Org unit IDs &#124; Org unit names &#124; Sub org unit IDs |
 
 To register for an event:
 
