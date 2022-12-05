@@ -1328,7 +1328,11 @@ section.
 8.  (Optional) To display totals for columns in the section form during
     data entry, select **Show column totals**.
 
-9.  Assign data elements to the section:
+9.  (Optional) To prevent automatic grouping of data of data elements with the same category combo, 
+    select **Disable automatic grouping of data elements**. This is useful if you want the order of the data elements
+    to be respected regardless of differing category combos.
+
+10.  Assign data elements to the section:
 
     1.  (Optional) Select a **Category combination filter**.
 
@@ -1344,12 +1348,12 @@ section.
 
     2.  Select data elements and assign them.
 
-10. (Optional) Sort the data elements within the section by using the up
+11. (Optional) Sort the data elements within the section by using the up
     and down arrows to the left of the assigned data elements field.
 
-11. Click **Save**.
+12. Click **Save**.
 
-12. Repeat add section steps for each section you want to have in your
+13. Repeat add section steps for each section you want to have in your
     section form.
 
     In the **Data Entry** app you can now use the section form. The
