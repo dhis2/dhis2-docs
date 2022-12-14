@@ -168,6 +168,9 @@ Table: System settings
 | keyDataImportStrictCategoryOptionCombos | Require category option combos to match category combo of data element. Default: "false" | No |
 | keyDataImportStrictOrganisationUnits | Require organisation units to match assignment of data set. Default: "false" | No |
 | keyDataImportStrictAttributeOptionsCombos | Require attribute option combis to match category combo of data set. Default: "false" | No |
+| keyDataImportStrictDataSetApproval | true: If an already approved dataset exists for a given data value entry is not permitted; false: If a not yet approved dataset exists for a given data value entry is permitted. Default: "true" | No |
+| keyDataImportStrictDataSetLocking | true: If a dataset exists for which entry expired without lock exception for a given data value entry is not permitted; false: If a dataset exists for which entry is not expired or a lock exception applies for a given data value entry is permitted. Default: "true" | No |
+| keyDataImportStrictDataSetInputPeriods | true: If a dataset exists for which the input period is closed for a given data value entry is not permitted; false: If a dataset exists for which data the input period is open for a given data value entry is permitted. Default: "true" | No |
 | keyDataImportRequireCategoryOptionCombo | Require category option combo to be specified. Default: "false" | No |
 | keyDataImportRequireAttributeOptionCombo | Require attribute option combo to be specified. Default: "false" | No |
 | keyCustomJs | Custom JavaScript to be used on the website | No |
