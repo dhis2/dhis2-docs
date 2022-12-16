@@ -1830,6 +1830,10 @@ monitoring.cpu.enabled = on
 # Analytics server-side cache expiration in seconds
 analytics.cache.expiration = 3600
 
+# Analytics unlogged tables. Accepts on/off. It's off by default. If enabled, this will boost the analytics table export process by over 40%.
+# This comes with a cost: "unlogged" tables cannot be replicated and will be automatically truncate if PostgreSQL is suddenly reset.
+analytics.table.unlogged = on
+
 # ----------------------------------------------------------------------
 # System telemetry [Optional]
 # ----------------------------------------------------------------------
