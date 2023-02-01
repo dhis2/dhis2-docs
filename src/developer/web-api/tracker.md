@@ -506,6 +506,7 @@ Table: Tracked entity instances query parameters
 | assignedUser | Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using *assignedUser=id1;id2*.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId |
 | trackedEntityInstance | Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using *trackedEntityInstance=id1;id2*. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. |
 | includeDeleted | Indicates whether to include soft deleted teis or not. It is false by default. |
+| potentialDuplicate | Filter the result based on the fact that a TEI is a Potential Duplicate. true: return TEIs flagged as Potential Duplicates. false: return TEIs NOT flagged as Potential Duplicates. If omitted, we don't check whether a TEI is a Potential Duplicate or not.|
 
 The available organisation unit selection modes are explained in the
 following table.
@@ -804,6 +805,7 @@ Table: Tracked entity instances query parameters
 | assignedUserMode | Restricts result to tei with events assigned based on the assigned user selection mode, can be CURRENT &#124; PROVIDED &#124; NONE &#124; ANY. |
 | assignedUser | Filter the result down to a limited set of teis with events that are assigned to the given user IDs by using *assignedUser=id1;id2*.This parameter will be considered only if assignedUserMode is either PROVIDED or null. The API will error out, if for example, assignedUserMode=CURRENT and assignedUser=someId |
 | trackedEntityInstance | Filter the result down to a limited set of teis using explicit uids of the tracked entity instances by using *trackedEntityInstance=id1;id2*. This parameter will at the very least create the outer boundary of the results, forming the list of all teis using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary. |
+| potentialDuplicate | Filter the result based on the fact that a TEI is a Potential Duplicate. true: return TEIs flagged as Potential Duplicates. false: return TEIs NOT flagged as Potential Duplicates. If omitted, we don't check whether a TEI is a Potential Duplicate or not.|
 
 The available organisation unit selection modes are explained in the
 following table.
@@ -945,7 +947,7 @@ To query for instances which have events of a given status within a
 given time span:
 
     /api/33/trackedEntityInstances/query.json?ou=O6uvpzGd5pu
-      &program=ur1Edk5Oe2n&eventStatus=LATE_VISIT
+      &program=ur1Edk5Oe2n&eventStatus=COMPLETED
       &eventStartDate=2014-01-01&eventEndDate=2014-09-01
 
 You can use a range of operators for the filtering:
@@ -1080,7 +1082,7 @@ Table: Entity Query Criteria definition
 | assignedUserMode | To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered. | "assignedUserMode": "PROVIDED" |
 | assignedUsers | To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"] |
 | displayColumnOrder | To specify the output ordering of columns | "displayOrderColumns": ["enrollmentDate", "program"] |
-| order | To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "orderDimension:direction". | "order"="a3kGcGDCuk6:desc,eventDate:asc" |
+| order | To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "orderDimension:direction". Note: Supported orderDimensions are trackedEntity, created, createdAt, createdAtClient, updatedAt, updatedAtClient, enrolledAt, inactive and the tracked entity attributes | "order"="a3kGcGDCuk6:desc" |
 | eventStatus | Any valid EventStatus | "eventStatus": "COMPLETED" |
 | programStage | To specify a programStage uid to filter on. TEIs will be filtered based on presence of enrollment in the specified program stage.| "programStage"="a3kGcGDCuk6" |
 | trackedEntityType | To specify a trackedEntityType filter TEIs on. | "trackedEntityType"="a3kGcGDCuk6" |

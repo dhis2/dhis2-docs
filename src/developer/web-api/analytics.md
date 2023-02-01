@@ -53,8 +53,8 @@ Table: Query parameters
 | rows | No | Dimensions to use as rows for table layout. | Any dimension (must be query dimension) |
 | order | No | Specify the ordering of rows based on value. | ASC &#124; DESC |
 | timeField | No | The time field to base event aggregation on. Applies to event data items only. Can be a predefined option or the ID of an attribute or data element with a time-based value type. | EVENT_DATE &#124; ENROLLMENT_DATE &#124; INCIDENT_DATE &#124; DUE_DATE &#124; COMPLETED_DATE &#124; CREATED &#124; LAST_UPDATED &#124; <Attribute ID\> &#124; <Data element ID\> |
-| orgUnitField | No | The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter. <Attribute ID\> &#124; <Data element ID\> | <Attribute ID\> &#124; <Data element ID\> |
-| enhancedConditions           | No       | Enable enhanced conditions for dimensions/filters | false&#124;true |
+| orgUnitField | No | The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter. | <Attribute ID\> &#124; <Data element ID\> &#124; REGISTRATION &#124; ENROLLMENT &#124; OWNER_AT_START &#124; OWNER_AT_END |
+| enhancedConditions           | No       | Enable enhanced conditions for dimensions/filters | false &#124; true |
 
 The *dimension* query parameter defines which dimensions should be
 included in the analytics query. Any number of dimensions can be
@@ -840,7 +840,8 @@ Table: Query parameters for aggregate event analytics only
 | skipData | No | Exclude the data part of the response. | false &#124; true |
 | skipRounding | No | Skip rounding of aggregate data values. | false &#124; true |
 | aggregateData | No | Produce aggregate values for the data dimensions (as opposed to dimension items). | false &#124; true |
-| orgUnitField | No | The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter. <Attribute ID\> &#124; <Data element ID\> | <Attribute ID\> &#124; <Data element ID\> |
+| orgUnitField | No | The organisation unit field to base event aggregation on. Applies to event data items only. Can be the ID of an attribute or data element with the Organisation unit value type. The default option is specified as omitting the query parameter. | <Attribute ID\> &#124; <Data element ID\> &#124; REGISTRATION &#124; ENROLLMENT &#124; OWNER_AT_START &#124; OWNER_AT_END |
+
 
 
 
@@ -1291,6 +1292,17 @@ of value type organisation unit you can use the `orgUnitField` parameter:
     /api/analytics/events/aggregate/eBAyeGv0exc.json?dimension=ou:ImspTQPwCqd
       &dimension=pe:THIS_YEAR&dimension=oZg33kd9taw&stage=Zj7UnCAulEk
       &orgUnitField=S33cRBsnXPo
+
+The `orgUnitField` parameter value may be one of the following:
+
+| orgUnitField | Description |
+| --- | --- |
+| <Attribute ID\> | ID of an attribute with the organisation unit value type |
+| <Data element ID\> | ID of a data element with the organisation unit value type |
+| REGISTRATION | The organization unit at which the tracked entity instance was registered (created) |
+| ENROLLMENT | The organization unit at which the tracked entity instance was enrolled in the program |
+| OWNER_AT_START | The tracked entity instance's owning organisation unit at the start of the reporting period |
+| OWNER_AT_END | The tracked entity instance's owning organisation unit at the end of the reporting period |
 
 #### Ranges / legend sets
 
@@ -2016,12 +2028,13 @@ The API supports using program indicators which are not associated to the "main"
 
 ## Dimensions { #webapi_dimensions }
 
-Four resources allow to easily retrieve data dimensions:
+Five resources allow to easily retrieve data dimensions:
 
 - [Event Query data dimensions](#webapi_event_query_analytics_dimension)`/analytics/events/query/dimensions` 
 - [Event Aggregate data dimensions](#webapi_event_aggregate_analytics_dimension) `/analytics/events/aggregate/dimensions`
 - [Enrollment Query data dimensions](#webapi_enrollment_query_analytics_dimension) `/analytics/enrollments/query/dimensions`
 - [Enrollment Aggregate data dimensions](#webapi_enrollment_aggregate_analytics_dimension) `/analytics/enrollments/aggregate/dimensions`
+- [Tracked Entities query data dimensions](#webapi_teis_query_analytics_dimensions)) `/analytics/teis/query/dimensions`
 
 Resources mentioned above share the following request parameter:
 
@@ -2132,6 +2145,20 @@ Data elements and tracked entity attributes are considered *supported types* if 
 - `INTEGER_ZERO_OR_POSITIVE`
 - `BOOLEAN`
 - `TRUE_ONLY`
+
+### Tracked Entities analytics dimensions
+
+#### Tracked Entities query analytics dimensions { #webapi_teis_query_analytics_dimensions }
+
+The `/analytics/teis/query/dimensions?trackedEntityType=TET` resource accepts a mandatory id of a tracked entity type `TET` and returns the following data dimensions:
+
+for each program `P` associated with a tracked entity instance of type `TET`:
+- **Program indicators** associated to `P`
+- **Data elements** of *supported types* in `P`, with program stage for each data element
+- **Tracked entity attributes** of *supported types* associated with the program that are not confidential
+- **Program attributes** of `P`
+
+All value types for data elements and tracked entity attributes are considered *supported types*, except `IMAGE`, `FILE_RESOURCE` and `TRACKER_ASSOCIATE`.
 
 ### Sample request and response
 
