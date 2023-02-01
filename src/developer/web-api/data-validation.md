@@ -636,6 +636,15 @@ No `percentage` will be returned in such cases.
 > requested is to compare the timestamp of when the request was made
 > with the `finishedTime` in the response.
 
+To get a list of the names of checks that are currently being performed by the 
+server use:
+
+    GET /api/dataIntegrity/summary/running
+
+To get a list of the names of checks for which results are available already use:
+
+    GET /api/dataIntegrity/summary/completed
+
 
 ### Running data integrity details { #webapi_data_integrity_run_details }
 
@@ -707,6 +716,12 @@ The cache will store the result of each completed check for one hour.
 > checks with _element_ in the name use `checks=*element*`. Like full names 
 > such patterns can be used in a comma-separated list and be mixed with full 
 > names as well. Duplicates will be eliminated. 
+
+Similar to the summary a set of names of the currently performed and the
+already completed details checks can be obtained using:
+
+    GET /api/dataIntegrity/details/running
+    GET /api/dataIntegrity/details/completed
 
 
 ## Complete data set registrations { #webapi_complete_data_set_registrations } 

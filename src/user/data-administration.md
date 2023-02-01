@@ -358,6 +358,8 @@ re-process.
 
       - **Skip generation of enrollment data**
 
+      - **Skip generation of organisation unit ownership data**
+
 3.  Select **Number of last years of data to include**.
 
 4.  Click **Start export**.
