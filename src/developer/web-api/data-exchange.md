@@ -354,10 +354,10 @@ The aggregate data exchange data model / payload is described in the following s
 | source.requests.filters                           | Array (Object) | No          | Filters for the source request.                              |
 | source.requests.filters.dimension                 | String         | No          | Dimension identifier for the filter.                         |
 | source.requests.filters.items                     | Array/String   | No          | Item identifiers for the filter.                             |
-| source.requests.inputIdScheme                     | String         | No          | Input ID scheme, can be `UID`, `CODE`.                       |
-| source.requests.outputDataElementIdScheme         | String         | No          | Output data element ID scheme, can be `UID`, `CODE`.         |
-| source.requests.outputOrgUnitIdScheme             | String         | No          | Output organisation unit ID scheme, can be `UID`, `CODE`.    |
-| source.requests.outputIdScheme                    | String         | No          | Output general ID scheme, can be `UID`, `CODE`.              |
+| source.requests.inputIdScheme                     | String         | No          | Input ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`.     |
+| source.requests.outputDataElementIdScheme         | String         | No          | Output data element ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
+| source.requests.outputOrgUnitIdScheme             | String         | No          | Output org unit ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
+| source.requests.outputIdScheme                    | String         | No          | Output general ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
 | source.target                                     | Object         | Yes         | Target for  aggregate data exchange.                         |
 | source.target.type                                | String         | Yes         | Type of target, can be `EXTERNAL`, `INTERNAL`.               |
 | source.target.api                                 | Object         | Conditional | Target API information, only mandatory for type `EXTERNAL`.  |
@@ -367,7 +367,7 @@ The aggregate data exchange data model / payload is described in the following s
 | source.target.api.password                        | String         | Conditional | Password for target DHIS 2 instance, used for basic authentication. |
 | source.target.request                             | Object         | No          | Target request information.                                  |
 | source.target.request.dataElementIdScheme         | String         | No          | Input data element ID scheme, can be `UID`, `CODE`.          |
-| source.target.request.orgUnitIdScheme             | String         | No          | Input organisation unit ID scheme, can be `UID`, `CODE`.     |
+| source.target.request.orgUnitIdScheme             | String         | No          | Input org unit ID scheme, can be `UID`, `CODE`.              |
 | source.target.request.categoryOptionComboIdScheme | String         | No          | Input category option combo ID scheme, can be `UID`, `CODE`. |
 | source.target.request.idScheme                    | String         | No          | Input general ID scheme, can be `UID`, `CODE`.               |
 
@@ -377,7 +377,7 @@ When running a data exchange by identifier, information about the outcome of the
 
 ### Examples
 
-#### External data exchange
+#### External data exchange with identifier scheme code
 
 This example will demonstrate how to exchange data based on program indicators in the source DHIS 2 instance and data elements in the target instance. The `code` identifier scheme, which means the data exchange will use the `code` property on the metadata to reference the data. Using codes is useful when the ID properties don't match across DHIS 2 instances. The example will demonstrate how data can be aggregated in the source instance, including aggregation in time and the unit hierarchy, before being exchanged with the target instance.
 
