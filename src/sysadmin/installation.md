@@ -1043,8 +1043,8 @@ across the cluster instances.
 
 DHIS 2 can invalidate the various instance's caches by listening for events sent and emitted from a Redis server, when configured to do so.
 
-This is considered the easiest and preferred way to enable cache invalidation, if you already plan to use Redis for
-shared data store cluster configuration { #install_cluster_configuration_redis }, it will share this Redis server for both purposes.
+This is considered the easiest and preferred way to enable cache invalidation, if you already plan to use [Redis for
+shared data store cluster configuration](#install_cluster_configuration_redis), it will share this Redis server for both purposes.
 
 #### Prerequisites
 
@@ -1240,7 +1240,7 @@ monitoring.cpu.enabled = on
 
 The recommended approach for collecting and visualizing these metrics is through Prometheus and Grafana. 
 
-For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](https://docs.dhis2.org/master/en/dhis2_system_administration_guide/monitoring.html) chapter.
+For more information, see the [monitoring infrastructure](https://github.com/dhis2/wow-backend/blob/master/guides/monitoring.md) page and the [Prometheus and Grafana install](#monitoring) chapter.
 
 ## System configuration { #install_system_configuration } 
 
