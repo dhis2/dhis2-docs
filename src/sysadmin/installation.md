@@ -177,6 +177,13 @@ with the following commands:
 sudo -u postgres psql -c "create extension postgis;" dhis2
 ```
 
+For adding trigram indexes and compounding it with primitive column types, two extensions have to be created in the database for DHIS 2 verision 2.38 and later. The extensions are already part of the default posgresql installation:
+
+```sh
+sudo -u postgres psql -c "create extension btree_gin;" dhis2
+sudo -u postgres psql -c "create extension pg_trgm;" dhis2
+```
+
 Exit the console and return to your previous user with *\\q* followed by
 *exit*.
 
