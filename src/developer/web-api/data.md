@@ -297,7 +297,8 @@ Table: Import parameters
 |---|---|---|
 | dataElementIdScheme | uid &#124; name &#124; code &#124; attribute:ID | Property of the data element object to use to map the data values. |
 | orgUnitIdScheme | uid &#124; name &#124; code &#124; attribute:ID | Property of the org unit object to use to map the data values. |
-| categoryOptionComboIdScheme | uid &#124; name &#124; code &#124; attribute:ID | Property of the category option combo and attribute option combo objects to use to map the data values. |
+| attributeOptionComboIdScheme | uid &#124; name &#124; code&#124; attribute:ID | Property of the attribute option combo object to use to map the data values. |
+| categoryOptionComboIdScheme | uid &#124; name &#124; code &#124; attribute:ID | Property of the category option combo object to use to map the data values. |
 | dataSetIdScheme | uid &#124; name &#124; code&#124; attribute:ID | Property of the data set object to use to map the data values. |
 | categoryIdScheme | uid &#124; name &#124; code&#124; attribute:ID | Property of the category object to use to map the data values (ADX only). |
 | categoryOptionIdScheme | uid &#124; name &#124; code&#124; attribute:ID | Property of the category option object to use to map the data values (ADX only). |
