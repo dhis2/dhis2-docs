@@ -189,6 +189,8 @@ Example external data exchange payload with PAT authentication and ID scheme *co
 }
 ```
 
+The syntax for the source requests follow the analytics endpoint API syntax. This means that for the `dx` part, data elements, indicators, data set reporting rates, program data elements and program indicators are supported. Note that for program data elements, the data element must be prefixed with the program identifier. For the `pe` part, relative periods as well as fixed periods are supported. For the `ou` part, user org units, org unit levels and org unit groups as well as individual org units are supported. Consult the *Analytics* chapter > the *Dimensions and items* and *The dx dimension* sections for a full explanation.
+
 ##### Response
 
 ```
@@ -315,7 +317,7 @@ An import summary describing the outcome of the data exchange will be returned, 
 
 #### Get source data
 
-The aggregate data for the source request of an aggregated data exchange can be retrieved with a GET request to the following endpoint:
+The aggregate data for the source request of an aggregated data exchange can be retrieved in the analytics data format with a GET request to the following endpoint:
 
 ```
 GET /api/aggregateDataExchanges/{id}/sourceData
@@ -331,7 +333,39 @@ Accept: application/json
 200 OK
 ```
 
+##### Query parameters
+
+| Query parameter | Required | Description                                                  | Options                       |
+| --------------- | -------- | ------------------------------------------------------------ | ----------------------------- |
+| outputIdScheme  | No       | Override the output identifier scheme for the data response. | UID \| CODE \| ATTRIBUTE:{ID} |
+
 The response payload format is identical with the analytics API endpoint. This endpoint is useful for debugging purposes. Consult the analytics API guide for additional details.
+
+#### Get source data value sets
+
+The aggregate data for the source request of an aggregated data exchange can be retrieved in the data value set format with a GET request to the following endpoint:
+
+```
+GET /api/aggregateDataExchanges/{id}/sourceDataValueSets
+```
+
+```
+Accept: application/json
+```
+
+##### Response
+
+```
+200 OK
+```
+
+##### Query parameters
+
+| Query parameter | Required | Description                                                  | Options                       |
+| --------------- | -------- | ------------------------------------------------------------ | ----------------------------- |
+| outputIdScheme  | No       | Override the output identifier scheme for the data response. | UID \| CODE \| ATTRIBUTE:{ID} |
+
+The response payload format is identical with the data value sets API endpoint. This endpoint is useful for debugging purposes. Consult the data value sets API guide for additional details.
 
 ### Data model
 
@@ -352,10 +386,10 @@ The aggregate data exchange data model / payload is described in the following s
 | source.requests.filters                           | Array (Object) | No          | Filters for the source request.                              |
 | source.requests.filters.dimension                 | String         | No          | Dimension identifier for the filter.                         |
 | source.requests.filters.items                     | Array/String   | No          | Item identifiers for the filter.                             |
-| source.requests.inputIdScheme                     | String         | No          | Input ID scheme, can be `UID`, `CODE`.                       |
-| source.requests.outputDataElementIdScheme         | String         | No          | Output data element ID scheme, can be `UID`, `CODE`.         |
-| source.requests.outputOrgUnitIdScheme             | String         | No          | Output organisation unit ID scheme, can be `UID`, `CODE`.    |
-| source.requests.outputIdScheme                    | String         | No          | Output general ID scheme, can be `UID`, `CODE`.              |
+| source.requests.inputIdScheme                     | String         | No          | Input ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`.     |
+| source.requests.outputDataElementIdScheme         | String         | No          | Output data element ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
+| source.requests.outputOrgUnitIdScheme             | String         | No          | Output org unit ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
+| source.requests.outputIdScheme                    | String         | No          | Output general ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
 | source.target                                     | Object         | Yes         | Target for  aggregate data exchange.                         |
 | source.target.type                                | String         | Yes         | Type of target, can be `EXTERNAL`, `INTERNAL`.               |
 | source.target.api                                 | Object         | Conditional | Target API information, only mandatory for type `EXTERNAL`.  |
@@ -365,7 +399,7 @@ The aggregate data exchange data model / payload is described in the following s
 | source.target.api.password                        | String         | Conditional | Password for target DHIS 2 instance, used for basic authentication. |
 | source.target.request                             | Object         | No          | Target request information.                                  |
 | source.target.request.dataElementIdScheme         | String         | No          | Input data element ID scheme, can be `UID`, `CODE`.          |
-| source.target.request.orgUnitIdScheme             | String         | No          | Input organisation unit ID scheme, can be `UID`, `CODE`.     |
+| source.target.request.orgUnitIdScheme             | String         | No          | Input org unit ID scheme, can be `UID`, `CODE`.              |
 | source.target.request.categoryOptionComboIdScheme | String         | No          | Input category option combo ID scheme, can be `UID`, `CODE`. |
 | source.target.request.idScheme                    | String         | No          | Input general ID scheme, can be `UID`, `CODE`.               |
 
@@ -373,7 +407,9 @@ The aggregate data exchange data model / payload is described in the following s
 
 When running a data exchange by identifier, information about the outcome of the operation will be available in the response payload. The response will contain a list of import summaries, i.e. one import summary per source request. The import summary will indicate any potential conflicts as a result of data retrieval from the source instance and data import in the target instance. 
 
-### Example
+### Examples
+
+#### External data exchange with identifier scheme code
 
 This example will demonstrate how to exchange data based on program indicators in the source DHIS 2 instance and data elements in the target instance. The `code` identifier scheme, which means the data exchange will use the `code` property on the metadata to reference the data. Using codes is useful when the ID properties don't match across DHIS 2 instances. The example will demonstrate how data can be aggregated in the source instance, including aggregation in time and the unit hierarchy, before being exchanged with the target instance.
 
