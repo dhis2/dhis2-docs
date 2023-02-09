@@ -701,7 +701,7 @@ template.
     | Parent OrgUnit Only | Send notification only to those users who belong to parent organisation unit. | - |
     | Data Element | Data Element associated with ProgramStage can be selected as recipient. | Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL. |
     | Tracked Entity Attribute | Tracked Entity Attribute associated with ProgramInstance/Enrollment can be selected as recipient. | Attribute will only be effective if it has value type PHONE_NUMBER/EMAIL. |
-    | Web Hook | Webhooks are automated http messages sent towards external url configured in web hook url field. Notificaiton template variables will be sent as key-value pairs in http Request. | - |
+    | Web Hook | Web hooks are automated HTTP messages sent to an external URL configured in web hook URL field. Notificaiton template variables will be sent as key-value pairs in the HTTP request. | - |
 
 
 10.  Click **Save**.
