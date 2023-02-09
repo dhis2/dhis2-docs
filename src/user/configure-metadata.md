@@ -141,18 +141,20 @@ option could be reused. This is important if particular category options
 
     1.  **Name**
 
-    2.  **Start date** (optional)
+    2.  **Short name** (optional)
 
-    3.  **End date** (optional)
+    3.  **Code** (optional)
 
-    4.  **Short name** (optional)
-
-    4.  **Code** (optional)
-
-    5.  **Form name** (optional)  
+    4.  **Form name** (optional)
         Category options can have a form name. These will be displayed in the
         data entry app as a column header instead of the display name for the
         respective category option.
+
+    5.  **Description**
+
+    6.  **Start date** (optional)
+
+    7.  **End date** (optional)
 
 4.  Select organisation units and assign them.
 
@@ -180,17 +182,21 @@ you can create that category.
 
     1.  **Name**
 
-    2.  **Code**
+    2.  **Short name**
 
-    3.  **Data dimension type**
+    3.  **Code**
 
-        A category either be of type "Disaggregation" or "Attribute".
+    4.  **Description**
+
+    5.  **Data dimension type**
+
+        A category can either be of type "Disaggregation" or "Attribute".
         For disaggregation of data elements, you select
         **Disaggregation**. The data dimension type "Attribute" allows
         the category to be used to assign a combination of categories to
         data recorded through a data set.
 
-    4.  **Data dimension**
+    6.  **Data dimension**
 
         If you select **Data dimension**, the category will be available
         to the analytics as another dimension, in addition to the
@@ -272,7 +278,9 @@ To create a category option group:
 
     3.  **Code**
 
-    4.  **Data dimension type**
+    4.  **Description**
+
+    5.  **Data dimension type**
 
 4.  Select **Category options** and assign them.
 
@@ -294,11 +302,13 @@ dimensionality to your captured data for analysis in for example the
 
     1.  **Name**
 
-    2.  **Description**
+    2.  **Short name**
 
-    3.  **Data dimension**
+    3.  **Description**
 
-    4.  **Data dimension type**
+    4.  **Data dimension**
+
+    5.  **Data dimension type**
 
 4.  Select **Category option groups** and assign them.
 
@@ -1325,7 +1335,11 @@ section.
 8.  (Optional) To display totals for columns in the section form during
     data entry, select **Show column totals**.
 
-9.  Assign data elements to the section:
+9.  (Optional) To prevent automatic grouping of data of data elements with the same category combo, 
+    select **Disable automatic grouping of data elements**. This is useful if you want the order of the data elements
+    to be respected regardless of differing category combos.
+
+10.  Assign data elements to the section:
 
     1.  (Optional) Select a **Category combination filter**.
 
@@ -1341,12 +1355,12 @@ section.
     
     2.  Select data elements and assign them.
 
-10. (Optional) Sort the data elements within the section by using the up
+11. (Optional) Sort the data elements within the section by using the up
     and down arrows to the left of the assigned data elements field.
 
-11. Click **Save**.
+12. Click **Save**.
 
-12. Repeat add section steps for each section you want to have in your
+13. Repeat add section steps for each section you want to have in your
     section form.
 
     In the **Data Entry** app you can now use the section form. The
@@ -1514,10 +1528,7 @@ Table: Data entry events
 | dhis2.de.event.formReady | Triggered when the data entry form is completely rendered and loaded with all elements. | Event &#124; Data set ID |
 | dhis2.de.event.dataValueSaved | Triggered when a data value is saved successfully. | Event &#124; Data set ID &#124; Data value object |
 | dhis2.de.event.completed | Triggered when a data set is successfully marked as complete. | Event &#124; Data set ID &#124; Complete registration object |
-| dhis2.de.event.uncompleted | Triggered when a data set is successfully marked as incomplete. | Event &#124; Data set ID |
 | dhis2.de.event.validationSuccess | Triggered when validation is done and there were no violations. | Event &#124; Data set ID |
-| dhis2.de.event.validationError | Triggered when validation is done and there were one or more violations. | Event &#124; Data set ID |
-| dhis2.ou.event.orgUnitSelected | Triggered when one or more organisation units are selected in the org unit web tree. | Event &#124; Org unit IDs &#124; Org unit names &#124; Sub org unit IDs |
 
 To register for an event:
 
@@ -2501,15 +2512,20 @@ easily filter, organise or aggregate data by groups within a group set.
     1.  **Name**: Provide a precise name for the organisation unit group
         set.
 
-    2.  **Code**
+    2.  **Short name**: Provide a short name for the organisation unit group
+        set.
 
-    3.  **Description**: Describe what the organisation unit group set
+    3.  **Code**
+
+    4.  **Description**: Describe what the organisation unit group set
         measures or captures.
 
 4.  If you want all organisation units to be members of a group within
     the group set, select **Compulsory**.
 
 5.  (Optional) Select **Data dimension**.
+
+        If you select **Data dimension**, the group set will be available to the analytics as another dimension, in addition to the standard dimensions of “Period” and “Organisation unit”.
 
 6.  (Optional) Select **Include subhierarchy in analytics**.
 
