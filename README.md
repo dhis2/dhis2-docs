@@ -154,4 +154,4 @@ Historically, the correct form is "DHIS 2" when referring to the software system
 
 # Building the documents
 
-See the build repository [dhis2-docs-builder](https://github.com/dhis2/dhis2-docs-builder) for information about biulding the documents
+See the build repository [dhis2-docs-builder](https://github.com/dhis2/dhis2-docs-builder) for information about building the documents
