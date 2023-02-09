@@ -430,8 +430,7 @@ actions should be taken at each stage.
     2.  (Optional) select a **Color** and an **Icon** that will be used
 by the data capture apps to identify this program stage.
     3. Enter a **Description**.
-    4. In the **Scheduled days from start** field, enter the minimum
-number of days to wait for starting the program stage.
+    4. Enter the required number of days into the **Scheduled days from start** field: The first event in this program stage will be scheduled this many days after the enrollment or the incident date, depending on the configuration. If **Show incident date** in **Enrollment details** is configured, the system will use incident date as start. If **Genereate events based on enrollment date** in **Program stage details** is configured the system will use enrollment date as start.
 3. Enter repeatable program stage details.
     1. Specify if the program stage is **Repeatable** or not.
     2. Select a **Period type**.
@@ -440,8 +439,8 @@ number of days to wait for starting the program stage.
     for a repeatable stage after you click *Complete* for an event
     of the stage in data entry form. This field is selected by
     default.
-    5. Enter **Standard interval days**. The number of days to repeat the repeatable program stage.  
-    6. (Optional) Select a  **Default next scheduled date**. This will show a list of assigned data elements of type **date**. If an element is selected, the Tracker client will use this as the default starting date. The data element can be used by program rules to dynamically schedule intervals between events.
+    5. Enter **Standard interval days**. This value will be the suggested interval between the last event in a repeatable stage and the scheduled date of the next event.
+    6. (Optional) Select a  **Default next scheduled date**. This will show a list of assigned data elements of type **date**. If an element is selected, the Tracker client will use this as the default scheduled date. The data element can be used by program rules to dynamically schedule intervals between events.
 4. Enter form details
 
 
@@ -701,6 +700,7 @@ template.
     | Parent OrgUnit Only | Send notification only to those users who belong to parent organisation unit. | - |
     | Data Element | Data Element associated with ProgramStage can be selected as recipient. | Data Element will only be effective if DataElement has value type PHONE_NUMBER/EMAIL. |
     | Tracked Entity Attribute | Tracked Entity Attribute associated with ProgramInstance/Enrollment can be selected as recipient. | Attribute will only be effective if it has value type PHONE_NUMBER/EMAIL. |
+    | Web Hook | Web hooks are automated HTTP messages sent to an external URL configured in web hook URL field. Notificaiton template variables will be sent as key-value pairs in the HTTP request. | - |
 
 
 10.  Click **Save**.
@@ -1371,6 +1371,7 @@ Table: Custom functions to use in a program rule expression
 | d2:zScoreWFH | Z-Score weight for height indicator | Calculates z-score based on data derived from the WHO weight-for-length and weight-for-height indicators. The data used for girls can be found [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-girls-table.txt) and for boys [here](https://github.com/dhis2/dhis2-docs/blob/master/src/commonmark/en/content/user/resources/txt-files/zScoreWFH-boys-table.txt). Its value varies between -3.5 to 3.5 depending upon the value of the weight. <br>Example expression:<br> `d2:zScoreWFH( height, weight, gender )` |
 | d2:minValue | Get minimum value for provided item | Function gets minimum value of provided data element across entire enrollment. <br>Example expression:<br> `d2:minValue( 'blood-pressure' )` |
 | d2:maxValue | Get maximum value for provided item | Function gets maximum value of provided data element across entire enrollment. <br>Example expression:<br> `d2:maxValue( 'blood-pressure' )` |
+| d2:lastEventDate | Get the last event date for entered data | Gets the event date when the underlying data element was entered in the previous event in a program stage |
 | d2:extractDataMatrixValue | Get GS1 value based on application identifier |  Given a field value formatted with the gs1 data matrix standard and a string key from the GS1 application identifiers. The function looks and returns the value linked to the provided key. <br>Example expression:<br> `d2:extractDataMatrixValue( 'gtin', A{GS1 Value} )` |
 
 

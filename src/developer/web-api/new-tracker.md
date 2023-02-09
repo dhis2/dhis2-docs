@@ -361,7 +361,7 @@ Currently, the tracker import endpoint supports the following parameters:
 |---|---|---|---|
 | async | Indicates whether the import should happen asynchronously or synchronously. | Boolean | `TRUE`, `FALSE` |
 | reportMode | Only when performing synchronous import. See importSummary for more info. | Enum | `FULL`, `ERRORS`, `WARNINGS` |
-| importMode | Indicates the mode of import. Can either be validate only or commit (Default) | Enum | `VALIDATE`, `COMMIT` |
+| importMode | Indicates the mode of import. Can either be validate only (dry run) or commit (Default) | Enum | `VALIDATE`, `COMMIT` |
 | idScheme | Indicates the overall idScheme to use for metadata references when importing. Default is UID. Can be overridden for specific metadata (Listed below) | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
 | dataElementIdScheme | Indicates the idScheme to use for data elements when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
 | orgUnitIdScheme | Indicates the idScheme to use for organisation units when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
