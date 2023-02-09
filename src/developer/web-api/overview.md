@@ -9,48 +9,29 @@ software clients, web portals and internal DHIS2 modules.
 ## Introduction { #webapi_introduction } 
 
 The Web API adheres to many of the principles behind the REST
-architectural style. To mention some few and important ones:
+architectural style. To mention some important ones:
 
 1.  The fundamental building blocks are referred to as *resources*. A
     resource can be anything exposed to the Web, from a document to a
     business process - anything a client might want to interact with.
     The information aspects of a resource can be retrieved or exchanged
     through resource *representations*. A representation is a view of a
-    resource's state at any given time. For instance, the *reportTable*
-    resource in DHIS2 represents a tabular report of aggregated data for
+    resource's state at any given time. For instance, the *visualizations*
+    resource in DHIS2 represents visualizations of aggregated data for
     a certain set of parameters. This resource can be retrieved in a
-    variety of representation formats including HTML, PDF, and MS Excel.
-
+    variety of representation formats including JSON and CSV.
 2.  All resources can be uniquely identified by a *URI* (also referred
     to as *URL*). All resources have a default representation. You can
     indicate that you are interested in a specific representation by
     supplying an *Accept* HTTP header, a file extension or a *format*
-    query parameter. So in order to retrieve the PDF representation of a
-    report table you can supply an *Accept: application/pdf* header or
-    append *.pdf* or *?format=pdf* to your request URL.
-
+    query parameter. So in order to retrieve a CSV representation of
+    an analytics data response you can supply an *Accept: application/csv* 
+    header or append *.csv* or *?format=csv* to your request URL.
 3.  Interactions with the API requires the correct use of HTTP *methods* or
     *verbs*. This implies that for a resource you must issue a *GET*
     request when you want to retrieve it, *POST* request when you want
     to create one, *PUT* when you want to update it and *DELETE* when
-    you want to remove it. So if you want to retrieve the default
-    representation of a report table you can send a GET request to e.g.
-    */reportTable/iu8j/hYgF6t*, where the last part is the report table
-    identifier.
-
-4.  Resource representations are *linkable*, meaning that
-    representations advertise other resources which are relevant to the
-    current one by embedding links into itself (please be aware that you
-    need to request *href* in your field filter to have this working.
-    This feature greatly improves the usability and robustness of the
-    API as we will see later. For instance, you can easily navigate to
-    the indicators which are associated with a report table from the
-    *reportTable* resource through the embedded links using your
-    preferred representation format.
-
-While all of this might sound complicated, the Web API is actually very
-simple to use. We will proceed with a few practical examples in a
-minute.
+    you want to remove it.
 
 ## Authentication { #webapi_authentication } 
 
@@ -122,7 +103,7 @@ the roles/authorities you want it to have access to.**
 ### Creating a token
 To create a new PAT, you have two choices:
 * A. Create a token in the UI on your account's profile page.
-* B. Create a token via the API
+* B. Create a token via the API.
 
 ### A. Creating a token on the account's page
 Log in with your username and password, go to your profile page
@@ -459,9 +440,7 @@ informational messages:
 
 Here we can see from the message that the user tried to access a
 resource I did not have access to. It uses the http status code 403, the
-http status message *forbidden* and a descriptive message.
-
-
+HTTP status message *forbidden* and a descriptive message.
 
 Table: WebMessage properties
 
@@ -472,7 +451,7 @@ Table: WebMessage properties
 | status | DHIS2 status, possible values are *OK* &#124; *WARNING* &#124; *ERROR*, where `OK` means everything was successful, `ERROR` means that operation did not complete and `WARNING` means the operation was partially successful, if the message contains a `response` property, please look there for more information. |
 | message | A user-friendly message telling whether the operation was a success or not. |
 | devMessage | A more technical, developer-friendly message (not currently in use). |
-| response | Extension point for future extension to the WebMessage format. This will be documented when it starts being used. |
+| response | Extension point for future extensions of the `WebMessage` format. |
 
 ## Date and period format { #webapi_date_perid_format } 
 
@@ -486,8 +465,6 @@ For instance, if you want to express March 20, 2014, you must use
 
 The period format is described in the following table (also available on
 the API endpoint `/api/periodTypes`)
-
-
 
 Table: Period format
 
@@ -530,12 +507,12 @@ for creating dynamic reports. The available relative period values are:
 
 Analytics `query` resources support extra parameters to express periods.
 
-Default `pe` dimension fallbacks to:
+Default `pe` dimension will fall back to:
 
 - `eventDate` for `/analytics/events/query`
 - `enrollmentDate` for `/analytics/enrollments/query`
 
-It is, however, possible to add conditions on one or more date fields and combine them.
+Adding conditions on one or more date fields and combining them are allowed.
 
 #### Usage of custom date periods
 
@@ -585,7 +562,6 @@ It returns the following format:
       "id": "F_ACCEPT_DATA_LOWER_LEVELS",
       "name": "Accept data at lower levels"
     }
-    //...
   ]
 }
 ```
