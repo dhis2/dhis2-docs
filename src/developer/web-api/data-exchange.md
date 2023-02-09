@@ -317,7 +317,7 @@ An import summary describing the outcome of the data exchange will be returned, 
 
 #### Get source data
 
-The aggregate data for the source request of an aggregated data exchange can be retrieved with a GET request to the following endpoint:
+The aggregate data for the source request of an aggregated data exchange can be retrieved in the analytics data format with a GET request to the following endpoint:
 
 ```
 GET /api/aggregateDataExchanges/{id}/sourceData
@@ -333,7 +333,39 @@ Accept: application/json
 200 OK
 ```
 
+##### Query parameters
+
+| Query parameter | Required | Description                                                  | Options                       |
+| --------------- | -------- | ------------------------------------------------------------ | ----------------------------- |
+| outputIdScheme  | No       | Override the output identifier scheme for the data response. | UID \| CODE \| ATTRIBUTE:{ID} |
+
 The response payload format is identical with the analytics API endpoint. This endpoint is useful for debugging purposes. Consult the analytics API guide for additional details.
+
+#### Get source data value sets
+
+The aggregate data for the source request of an aggregated data exchange can be retrieved in the data value set format with a GET request to the following endpoint:
+
+```
+GET /api/aggregateDataExchanges/{id}/sourceDataValueSets
+```
+
+```
+Accept: application/json
+```
+
+##### Response
+
+```
+200 OK
+```
+
+##### Query parameters
+
+| Query parameter | Required | Description                                                  | Options                       |
+| --------------- | -------- | ------------------------------------------------------------ | ----------------------------- |
+| outputIdScheme  | No       | Override the output identifier scheme for the data response. | UID \| CODE \| ATTRIBUTE:{ID} |
+
+The response payload format is identical with the data value sets API endpoint. This endpoint is useful for debugging purposes. Consult the data value sets API guide for additional details.
 
 ### Data model
 
