@@ -430,8 +430,7 @@ actions should be taken at each stage.
     2.  (Optional) select a **Color** and an **Icon** that will be used
 by the data capture apps to identify this program stage.
     3. Enter a **Description**.
-    4. In the **Scheduled days from start** field, enter the minimum
-number of days to wait for starting the program stage.
+    4. Enter the required number of days into the **Scheduled days from start** field: The first event in this program stage will be scheduled this many days after the enrollment or the incident date, depending on the configuration. If **Show incident date** in **Enrollment details** is configured, the system will use incident date as start. If **Genereate events based on enrollment date** in **Program stage details** is configured the system will use enrollment date as start.
 3. Enter repeatable program stage details.
     1. Specify if the program stage is **Repeatable** or not.
     2. Select a **Period type**.
@@ -440,8 +439,8 @@ number of days to wait for starting the program stage.
     for a repeatable stage after you click *Complete* for an event
     of the stage in data entry form. This field is selected by
     default.
-    5. Enter **Standard interval days**. The number of days to repeat the repeatable program stage.  
-    6. (Optional) Select a  **Default next scheduled date**. This will show a list of assigned data elements of type **date**. If an element is selected, the Tracker client will use this as the default starting date. The data element can be used by program rules to dynamically schedule intervals between events.
+    5. Enter **Standard interval days**. This value will be the suggested interval between the last event in a repeatable stage and the scheduled date of the next event.
+    6. (Optional) Select a  **Default next scheduled date**. This will show a list of assigned data elements of type **date**. If an element is selected, the Tracker client will use this as the default scheduled date. The data element can be used by program rules to dynamically schedule intervals between events.
 4. Enter form details
 
 
