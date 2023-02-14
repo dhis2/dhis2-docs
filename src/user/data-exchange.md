@@ -1,4 +1,4 @@
-# Using the Data Exchange app { #using_data_exchange }
+# Using the Data Exchange app { #data_exchange }
 
 ## About the Data Exchange app { #about_data_exchange }
 
@@ -6,7 +6,7 @@ The data exchange app allows for exchanging data between the DHIS 2 instance whe
 
 To exchange data, one or many _aggregate data exchanges_ must be configured in the system. A data exchange defines the data elements, indicators, periods and organisation units to exchange data with the target instance. Please consult the _Aggregate data exchange_ section in the _Data exchange_ chapter in the Developer guide for a detailed explanation.
 
-## Overview
+## Overview { #overview_data_exchange }
 
 The Data Exchange app offers different sections:
 
@@ -16,7 +16,7 @@ The Data Exchange app offers different sections:
 2. **Data preview:** The data preview section will display the data to be exchanged with the target instance.
 3. **Submit data:** Clicking the **Submit data** button will exchange data defined by the currently selected data exchange.
 
-## Exchanging data
+## Exchanging data { #exchanging_data }
 
 To get started with data exchange:
 
@@ -28,6 +28,6 @@ To get started with data exchange:
 
 ![](resources/images/data_exchange/data-exchange-submit.png)
 
-The submission summary indicates the outcome, i.e. whether the operation was a success or failure, and how many data values were imported, updated and ignored as part of the data exchange.
+The submission summary indicates the outcome, meaning whether the operation was a success or failure, and how many data values were imported, updated and ignored as part of the data exchange.
 
 ![](resources/images/data_exchange/data-exchange-submission-success.png)
