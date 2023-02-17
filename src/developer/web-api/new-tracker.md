@@ -336,9 +336,17 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 
 > One between `uid` or `username` field must be provided. If both are provided, only username is considered.
 
-### Program stage working lists
 
-If you want to make changes to a program stage working list, such as creating, updating, or deleting it, you'll have to utilize the endpoint called *programStageWorkingLists*. These lists are used in the Capture app to present predetermined working lists that are relevant a specific program stage in the tracker user interface.
+### Program stage working lists { #webapi_working_list_filters } 
+
+The program stage working lists are used in the Capture app to present predetermined working lists that are relevant to a specific program stage in the tracker user interface. To interact with them, you'll need to use the */api/trackedEntityInstanceFilters* resource. These lists can be shared and follow the same sharing pattern as any other metadata object. When using the */api/sharing* the type parameter will be *programStageWorkingLists*.
+
+    /api/40/programStageWorkingLists
+
+
+##### Payload on CRUD operations to program stage working lists
+
+If you want to fetch or make changes to a program stage working list, besides the endpoint mentioned above, you'll need to provide a payload in the following format: 
 
 
 
