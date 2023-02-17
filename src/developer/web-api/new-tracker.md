@@ -336,6 +336,37 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 
 > One between `uid` or `username` field must be provided. If both are provided, only username is considered.
 
+### Program stage working lists
+
+If you want to make changes to a program stage working list, such as creating, updating, or deleting it, you'll have to utilize the endpoint called *programStageWorkingLists*. These lists are used in the Capture app to present predetermined working lists that are relevant a specific program stage in the tracker user interface.
+
+
+
+Table: Payload
+
+| Payload values | Description | Example |
+|---|---|---|
+| name | Name of the working list. Required. ||
+| description | A description of the working list. ||
+| program | Object containing the id of the program. Required. | { "id" : "uy2gU8kTjF"} |
+| programStage | Object containing the id of the program stage. Required. | { "id" : "oRySG82BKE6"} |
+| programStageQueryCriteria | An object representing various possible filtering values. See *Program Stage Query Criteria* definition table below.
+
+Table: Program Stage  
+| status | The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED | "status":"VISITED" |
+| eventCreatedAt | DateFilterPeriod object filtering based on the event creation date. | {"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"} |
+| scheduledAt | DateFilterPeriod object filtering based on the event scheduled date. | {"type":"RELATIVE","period":"TODAY"} |
+| enrollmentStatus | Any valid ProgramStatus. Possible values are ACTIVE, COMPLETED and CANCELLED. | "enrollmentStatus": "COMPLETED" |
+| enrolledAt | DateFilterPeriod object filtering based on the event enrollment date. | "enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"} |
+| enrollmentOccurredAt | DateFilterPeriod object filtering based on the event incident date. | {"type":"RELATIVE","period":"THIS_MONTH"} |
+| orgUnit | A valid organisation unit UID | "orgUnit": "Rp268JB6Ne4" |
+| ouMode | A valid OU selection mode | "ouMode": "SELECTED" |
+| assignedUserMode | A valid user selection mode for events. Possible values are CURRENT, PROVIDED, NONE, ANY and ALL. If PROVIDED (or null), non-empty assignedUsers in the payload will be expected. | "assignedUserMode":"PROVIDED" |
+| assignedUsers | A list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers":["DXyJmlo9rge"] |
+| order | List of fields and its directions in comma separated values, the results will be sorted according to it. A single item in order is of the form "orderDimension:direction". | "order": "w75KJ2mc4zz:asc" |
+| displayColumnOrder | Output ordering of columns | "displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"] |
+| dataFilters | A list of items that contains the filters to be used when querying events | "dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}] |
+| attributeValueFilters | A list of attribute value filters. This is used to specify filters for attribute values when listing tracked entity instances | "attributeValueFilters":[{"attribute": "ruQQnf6rswq","eq": "15"}] |
 
 ## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
 
