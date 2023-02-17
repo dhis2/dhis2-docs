@@ -139,7 +139,7 @@ Example external data exchange payload with basic authentication and ID scheme *
   "target": {
     "type": "EXTERNAL",
     "api": {
-        "url": "https://play.dhis2.org/2.38.1.1",
+        "url": "https://play.dhis2.org/2.38.2.1",
         "username": "admin",
         "password": "district"
     },
@@ -179,7 +179,7 @@ Example external data exchange payload with PAT authentication and ID scheme *co
   "target": {
     "type": "EXTERNAL",
     "api": {
-        "url": "https://play.dhis2.org/2.38.1.1",
+        "url": "https://play.dhis2.org/2.38.2.1",
         "accessToken": "d2pat_XIrqgAGjW935LLPuSP2hXSZwpTxTW2pg3580716988"
     },
     "request": {
@@ -413,7 +413,7 @@ When running a data exchange by identifier, information about the outcome of the
 
 This example will demonstrate how to exchange data based on program indicators in the source DHIS 2 instance and data elements in the target instance. The `code` identifier scheme, which means the data exchange will use the `code` property on the metadata to reference the data. Using codes is useful when the ID properties don't match across DHIS 2 instances. The example will demonstrate how data can be aggregated in the source instance, including aggregation in time and the unit hierarchy, before being exchanged with the target instance.
 
-The example will exchange data using the DHIS 2 play environment, and refer to the 2.39 version at `https://play.dhis2.org/2.39` as the *source instance*, and the 2.38 version at `https://play.dhis2.org/2.38` as the *target instance*. Note that the URLs will change over time as new patch versions are released, so make sure to update the target URLs.
+The example will exchange data using the DHIS 2 play environment, and refer to the 2.39 version at `https://play.dhis2.org/2.39` as the *source instance*, and the 2.38 version at `https://play.dhis2.org/2.38.2.1` as the *target instance*. Note that the URLs will change over time as new patch versions are released, so make sure to update the target URLs.
 
 * Log in to the **source** instance, navigate to the Maintenance app and observe that three program indicators exist.
 
@@ -468,7 +468,7 @@ The example will exchange data using the DHIS 2 play environment, and refer to t
     "target": {
       "type": "EXTERNAL",
       "api": {
-        "url": "https://play.dhis2.org/2.38.1.1",
+        "url": "https://play.dhis2.org/2.38.2.1",
         "username": "admin",
         "password": "district"
       },
