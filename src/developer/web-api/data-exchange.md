@@ -398,14 +398,14 @@ The aggregate data exchange data model / payload is described in the following s
 | source.target.api.username                        | String         | Conditional | Username for target DHIS 2 instance, used for basic authentication. |
 | source.target.api.password                        | String         | Conditional | Password for target DHIS 2 instance, used for basic authentication. |
 | source.target.request                             | Object         | No          | Target request information.                                  |
-| source.target.request.dataElementIdScheme         | String         | No          | Input data element ID scheme, can be `UID`, `CODE`.          |
-| source.target.request.orgUnitIdScheme             | String         | No          | Input org unit ID scheme, can be `UID`, `CODE`.              |
-| source.target.request.categoryOptionComboIdScheme | String         | No          | Input category option combo ID scheme, can be `UID`, `CODE`. |
-| source.target.request.idScheme                    | String         | No          | Input general ID scheme, can be `UID`, `CODE`.               |
+| source.target.request.dataElementIdScheme         | String         | No          | Input data element ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
+| source.target.request.orgUnitIdScheme             | String         | No          | Input org unit ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
+| source.target.request.categoryOptionComboIdScheme | String         | No          | Input category option combo ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
+| source.target.request.idScheme                    | String         | No          | Input general ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
 
-### Error handlng
+### Error handling
 
-When running a data exchange by identifier, information about the outcome of the operation will be available in the response payload. The response will contain a list of import summaries, i.e. one import summary per source request. The import summary will indicate any potential conflicts as a result of data retrieval from the source instance and data import in the target instance. 
+When running a data exchange by identifier, information about the outcome of the operation will be available in the response payload. The response will contain a list of import summaries, i.e. one import summary per source request. The import summary will indicate any potential conflicts as a result of data retrieval from the source instance and data import in the target instance.
 
 ### Examples
 
@@ -413,7 +413,7 @@ When running a data exchange by identifier, information about the outcome of the
 
 This example will demonstrate how to exchange data based on program indicators in the source DHIS 2 instance and data elements in the target instance. The `code` identifier scheme, which means the data exchange will use the `code` property on the metadata to reference the data. Using codes is useful when the ID properties don't match across DHIS 2 instances. The example will demonstrate how data can be aggregated in the source instance, including aggregation in time and the unit hierarchy, before being exchanged with the target instance.
 
-The example will exchange data using the DHIS 2 play environment, and refer to the 2.39 version at `https://play.dhis2.org/2.39` as the *source instance*, and the 2.38 version at `https://play.dhis2.org/2.38.1.1` as the *target instance*. Note that the URLs might change over time as new patch versions are released.
+The example will exchange data using the DHIS 2 play environment, and refer to the 2.39 version at `https://play.dhis2.org/2.39` as the *source instance*, and the 2.38 version at `https://play.dhis2.org/2.38` as the *target instance*. Note that the URLs will change over time as new patch versions are released, so make sure to update the target URLs.
 
 * Log in to the **source** instance, navigate to the Maintenance app and observe that three program indicators exist.
 
