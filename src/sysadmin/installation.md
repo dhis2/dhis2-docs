@@ -37,13 +37,13 @@ exact measures. DHIS2 scales linearly on the amount of RAM and number of
 CPU cores so the more you can afford, the better the application will perform.
 
 - *RAM:* At least 2 GB for a small instance, 12 GB for a medium instance, 64 GB or more for a large instance.
-- *CPU cores:* 4 CPU cores for a small instance, 8 CPU cores or more for a medium or large instance.
+- *CPU cores:* 4 CPU cores for a small instance, 8 CPU cores for a medium instance, 16 CPU cores or more for a large instance.
 - *Disk:* SSD is recommeded as storage device. Minimum
   read speed is 150 Mb/s, 200 Mb/s is good, 350 Mb/s or better is
-  ideal. In terms of disk space, at least 100 GB is recommended, but
+  ideal. At least 100 GB storage space is recommended, but
   will depend entirely on the amount of data which is contained in the
   data value tables. Analytics tables require a significant amount of
-  disk space. Plan ahead and ensure that your server can be upgraded
+  storage space. Plan ahead and ensure that your server can be upgraded
   with more disk space as needed.
 
 ## Software requirements { #install_software_requirements } 
@@ -55,7 +55,7 @@ Later DHIS2 versions require the following software versions to operate.
     - For DHIS 2 version 2.38 and later, JDK 11 is required.
     - For DHIS 2 version 2.35 and later, JDK 11 is recommended and JDK 8 or later is required. 
     - For DHIS 2 versions older than 2.35, JDK 8 is required.
-- PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 13 is recommended.
+- PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 14 is recommended.
 - PostGIS database extension version 2.2 or later.
 - Tomcat servlet container version 8.5.50 or later, or other Servlet API
   3.1 compliant servlet containers.
@@ -117,20 +117,13 @@ mkdir /home/dhis/config
 chown dhis:dhis /home/dhis/config
 ```
 
-DHIS2 will look for an environment variable called *DHIS2\_HOME* to
+DHIS2 will look for an environment variable called `DHIS2_HOME` to
 locate the DHIS2 configuration directory. This directory will be
-referred to as *DHIS2\_HOME* in this installation guide. We will define
+referred to as `DHIS2_HOME` in this installation guide. We will define
 the environment variable in a later step in the installation process.
 
-Alternatively, a context variable can be used to point to the home directory,
-for instance using the Tomcat context.xml configuration file:
-
-```xml
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<Context>
-  <Environment name="dhis2-home" value="/DHIS2_home/test" type="java.lang.String" override="true"/>
-</Context>
-```
+If no environment variable `DHIS2_HOME` is found, the default 
+configuration file location `/opt/dhis2` is used.
 
 ### Setting server time zone and locale { #install_setting_server_tz } 
 
@@ -199,7 +192,7 @@ Exit the console and return to your previous user with *\\q* followed by
 
 ### PostgreSQL performance tuning { #install_postgresql_performance_tuning } 
 
-Tuning PostgreSQL is necessary to achieve a high-performing system but
+Tuning PostgreSQL is required to achieve a high-performing system but
 is optional in terms of getting DHIS2 to run. PostgreSQL is configured
 and tuned through the *postgresql.conf* file which can be edited like
 this:
@@ -341,7 +334,7 @@ java -version
 
 The database connection information is provided to DHIS2 through a
 configuration file called `dhis.conf`. Create this file and save it in
-the `DHIS2\_HOME` directory. As an example this location could be:
+the `DHIS2_HOME` directory. As an example this location could be:
 
 ```sh
 /home/dhis/config/dhis.conf
@@ -514,12 +507,12 @@ DHIS2 instance at the following URL:
 
 DHIS2 is capable of capturing and storing files. By default, files will
 be stored on the local file system of the server which runs DHIS2 in a *files*
-directory under the *DHIS2\_HOME* external directory location. 
+directory under the `DHIS2_HOME` external directory location. 
 
 You can also configure DHIS2 to store files on cloud-based storage
 providers. AWS S3 is the only supported provider currently. To enable
 cloud-based storage you must define the following additional properties
-in your *dhis.conf* file:
+in your `dhis.conf` file:
 
 ```properties
 # File store provider. Currently 'filesystem' and 'aws-s3' are supported.
@@ -584,8 +577,8 @@ service account and create a private key:
 
   - Rename the JSON key to *dhis-google-auth.json*.
 
-After downloading the key file, put the *dhis-google-auth.json* file in
-the DHIS2\_HOME directory (the same location as the *dhis.conf* file).
+After downloading the key file, put the `dhis-google-auth.json` file in
+the `DHIS2_HOME` directory (the same location as the `dhis.conf` file).
 As an example this location could be:
 
     /home/dhis/config/dhis-google-auth.json
@@ -877,9 +870,9 @@ authorities / user roles.
 
 To set up LDAP authentication you need to configure the LDAP server URL,
 a manager user and an LDAP search base and search filter. This
-configuration should be done in the main DHIS 2 configuration file
-(dhis.conf). LDAP users, or entries, are identified by distinguished
-names (DN from now on). An example configuration looks like this:
+configuration should be done in the DHIS 2 configuration file `dhis.conf`. 
+LDAP users, or entries, are identified by distinguished names 
+(DN from now on). An example configuration looks like this:
 
 ```properties
 # LDAP server URL
@@ -944,7 +937,7 @@ is not suitable or cannot for some reason be used as a DHIS2 username.
 
 DHIS2 allows for encryption of data. Enabling it requires some extra
 setup. To provide security to the encryption algorithm you will have to set a
-password in the *dhis.conf* configuration file through the
+password in the `dhis.conf` configuration file through the
 *encryption.password* property:
 
 ```properties
@@ -980,14 +973,14 @@ instances of the master DHIS 2 database. PostgreSQL achieves this
 through a concept referred to as *streaming replication*. Configuring
 read replicas for PostgreSQL is not covered in this guide.
 
-Read replicas can be defined in the *dhis.conf* configuration file. You
+Read replicas can be defined in the `dhis.conf` configuration file. You
 can specify up to 5 read replicas per DHIS 2 instance. Each read replica
 is denoted with a number between 1 and 5. The JDBC connection URL must
 be defined per replica. The username and password can be specified; if
 not, the username and password for the master database will be used
 instead.
 
-The configuration for read replicas in *dhis.conf* looks like the below.
+The configuration for read replicas in `dhis.conf` looks like the below.
 Each replica is specified with the configuration key *readN* prefix,
 where N refers to the replica number.
 
@@ -1035,7 +1028,7 @@ There are a few aspects to configure in order to run DHIS 2
 in a cluster.
 
 * A Redis data store must be installed and connection information must 
-be provided for each DHIS 2 application instance in *dhis.conf*.
+be provided for each DHIS 2 application instance in`dhis.conf`.
 
 * DHIS 2 instances and servers must share the same *files* folder used for 
 apps and file uploads, either through the *AWS S3 cloud filestorage* option 
@@ -1098,7 +1091,7 @@ notify-keyspace-events Egx
 ```
 
 DHIS2 will connect to Redis if the *redis.enabled* configuration
-property in *dhis.conf* is set to *on* along with the following properties:
+property in `dhis.conf` is set to *on* along with the following properties:
 
 - *redis.host*: Specifies where the redis server is running. Defaults to *localhost*. Mandatory.
 
@@ -1112,12 +1105,12 @@ When Redis is enabled, DHIS2 will automatically assign one of the
 running instances as the leader of the cluster. The leader instance will
 be used to execute jobs or scheduled tasks that should be run
 exclusively by one instance. Optionally you can configure the
-*leader.time.to.live.minutes* property in *dhis.conf* to set up how
+*leader.time.to.live.minutes* property in `dhis.conf` to set up how
 frequently the leader election needs to occur. It also gives an
 indication of how long it would take for another instance to take over
 as the leader after the previous leader has become unavailable. The
 default value is 2 minutes. Note that assigning a leader in the cluster
-is only done if Redis is enabled. An example snippet of the *dhis.conf*
+is only done if Redis is enabled. An example snippet of the `dhis.conf`
 configuration file with Redis enabled and leader election time
 configured is shown below.
 
@@ -1633,7 +1626,7 @@ http {
 
 ## DHIS2 configuration reference (dhis.conf) { #install_dhis2_configuration_reference } 
 
-The following describes the full set of configuration options for the *dhis.conf* configuration file. The configuration file should be placed in a directory which is pointed to by a *DHIS2\_HOME* environment variable.
+The following describes the full set of configuration options for the `dhis.conf` configuration file. The configuration file should be placed in a directory which is pointed to by a `DHIS2_HOME` environment variable.
 
 > **Note**
 >
@@ -1864,7 +1857,7 @@ The DHIS2 application log output is directed to multiple files and locations. Fi
 
     <tomcat-dir>/logs/catalina.out
 
-Second, log output is written to a "logs" directory under the DHIS2 home directory as defined by the DHIS2\_HOME environment variables. There is a main log file for all output, and separate log files for various
+Second, log output is written to a "logs" directory under the DHIS2 home directory as defined by the `DHIS2_HOME` environment variables. There is a main log file for all output, and separate log files for various
 background processes. The main file includes the background process logs as well. The log files are capped at 50 Mb and log content is continuously appended.
 
     <DHIS2_HOME>/logs/dhis.log    
@@ -1885,7 +1878,7 @@ configuration file at the file system like this:
 
 Java system properties can be set e.g. through the *JAVA\_OPTS* environment variable or in the tomcat startup script.
 
-A second approach to overriding the log configuration is to specify logging properties in the *dhis.conf* configuration file. The supported properties are:
+A second approach to overriding the log configuration is to specify logging properties in the `dhis.conf` configuration file. The supported properties are:
 
 ```properties
 # Max size for log files, default is '100MB'
@@ -1895,7 +1888,7 @@ logging.file.max_size = 250MB
 logging.file.max_archives = 2
 ```
 
-DHIS2 will eventually phase out logging to standard out / catalina.out and as a result it is recommended to rely on the logs under DHIS2\_HOME.
+DHIS2 will eventually phase out logging to standard out / catalina.out and as a result it is recommended to rely on the logs under `DHIS2_HOME`.
 
 DHIS2 will provide the following context values:
 
