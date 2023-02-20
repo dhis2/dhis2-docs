@@ -583,9 +583,9 @@ template.
 
 2.  Click on add button and select **Program notification**.
 
-	![](resources/images/program/what_to_send.png)
-![](resources/images/program/where_to_send.png)
-	![](resources/images/program/who_to_send.png)
+    ![](resources/images/program/what_to_send.png)
+    ![](resources/images/program/where_to_send.png)
+    ![](resources/images/program/who_to_send.png)
 
 3.  Enter a **Name**.
 
@@ -636,10 +636,6 @@ template.
 
 
 ### Create a program stage notification
-
-![](resources/images/program/what_to_send-psnt.png)
-
-![](resources/images/program/what_to_send-psnt.png)
 
 ![](resources/images/program/what_to_send-psnt.png)
 
