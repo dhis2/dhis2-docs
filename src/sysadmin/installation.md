@@ -937,7 +937,7 @@ is not suitable or cannot for some reason be used as a DHIS2 username.
 
 DHIS2 allows for encryption of data. Enabling it requires some extra
 setup. To provide security to the encryption algorithm you will have to set a
-password in the `dhis.conf` configuration file through the
+password (key) in the `dhis.conf` configuration file through the
 *encryption.password* property:
 
 ```properties
@@ -945,9 +945,13 @@ encryption.password = xxxx
 ```
 
 The *encryption.password* property is the password (key) used when encrypting
-and decrypting data in the database. Note that the password must not be
-changed once it has been set and data has been encrypted, as the data can
-then no longer be decrypted. 
+and decrypting data in the database.
+
+If an encryption password is not defined in `dhis.conf`, a default password will be
+used. Note that using the default password does not offer any added security due to 
+the open source nature of DHIS 2.
+
+Note that the password must not be changed once it has been set and data has been encrypted, as the data can then no longer be decrypted by the application.
 
 The password must be at least **24 characters long**. A mix of numbers 
 and lower- and uppercase letters is recommended. The encryption password 
@@ -958,7 +962,11 @@ must be kept secret.
 > It is not possible to recover encrypted data if the encryption password is lost or changed. If the password is lost, so is the encrypted data. Conversely, the encryption provides no security if 
 > the password is compromised. Hence, great consideration should be given to storing the password in a safe place.
 
-Note that encryption support depends on the *Java Cryptography Extension* (JCE) policy files to be available.  These are included in all versions of OpenJDK and Oracle JDK 8 Update 144 or later.
+Note that since the encryption key is stored in the `dhis.conf` configuration file and not
+within the database, when moving a database between server environments thorugh a dump and restore, the encryption key must be the same across environments to allow DHIS 2 to
+decrypt database content.
+
+Note that encryption support depends on the *Java Cryptography Extension* (JCE) policy files to be available. These are included in all versions of OpenJDK and Oracle JDK 8 Update 144 or later.
 
 ## Read replica database configuration { #install_read_replica_configuration } 
 
