@@ -1673,7 +1673,6 @@ The `JSON` response can look like the following.
 {
     "instances": [
         {
-            "href": "https://play.dhis2.org/dev/api/tracker/events/rgWr86qs0sI",
             "event": "rgWr86qs0sI",
             "status": "ACTIVE",
             "program": "kla3mAPgvCH",
@@ -1739,7 +1738,6 @@ A query for an Event:
 
 ```json
 {
-  "href": "https://play.dhis2.org/dev/api/tracker/events/rgWr86qs0sI",
   "event": "rgWr86qs0sI",
   "status": "ACTIVE",
   "program": "kla3mAPgvCH",
