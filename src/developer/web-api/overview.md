@@ -166,7 +166,7 @@ e.g. on a PC or server, you don't have 100% control over, or "embedded" in a web
 
 #### The different constraint types are as follows:
 * Expiry time
-* Allowed UP addresses
+* Allowed IP addresses
 * Allowed HTTP methods
 * Allowed HTTP referrers
 
