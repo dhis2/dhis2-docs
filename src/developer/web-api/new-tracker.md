@@ -1177,10 +1177,6 @@ Tracker export endpoints deal with the following Tracker objects:
 > - All these endpoints currently support `JSON`, `CSV` is only supported by only Tracked Entities and Events.
 >
 > - These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)**
->
-> - The following functionalities are still missing but available in older endpoints:
->
->     - field filtering
 
 ### Common request parameters
 
@@ -1221,21 +1217,20 @@ following table.
 
 #### Request parameter to filter responses { #webapi_nti_field_filter }
 
-All new export endpoints support a `fields` parameter which allows to filter the response based on a simple grammar.
-
-`fields` parameter accepts a comma separated list of field names or patterns and responses are filtered based on it
-
-See [Metadata field filter](#webapi_metadata_field_filter) for more information on field filtering.
+All export endpoints accept a `fields` parameter which controls which fields will be returned in the
+JSON response. `fields` parameter accepts a comma separated list of field names or patterns. A few
+possible `fields` filters are shown below. Refer to [Metadata field
+filter](#webapi_metadata_field_filter) for a more complete guide on how to use `fields`.
 
 ##### Examples
 
 |Parameter example|Meaning|
 |:---|:---|
-|`fields=*`| returns all fields|
-|`fields=createdAt,uid`| only returns `createdAt` and `uid` fields for the requested object|
-|`fields=enrollments[*,!uid]`| return all fields of nested `enrollments` field except its `uid`|
-|`fields=enrollments[uid]`| only returns `uid` field for nested `enrollments`|
-|`fields=enrollments[uid,enrolledAt]`| only returns `uid` and `enrolledAt` fields for nested `enrollments`|
+|`fields=*`|returns all fields|
+|`fields=createdAt,uid`|only returns fields `createdAt` and `uid`|
+|`fields=enrollments[*,!uid]`|returns all fields of `enrollments` except `uid`|
+|`fields=enrollments[uid]`|only returns `enrollments` field `uid`|
+|`fields=enrollments[uid,enrolledAt]`|only returns `enrollments` fields `uid` and `enrolledAt`|
 
 ### Tracked Entities (`GET /api/tracker/trackedEntities`)
 
@@ -1609,7 +1604,7 @@ Returns a list of events based on the provided filters.
 |`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
 |`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
 |`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
-|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `storedBy, attributeCategoryOptions, dueDate, assignedUserUsername, createdAtClient, program, lastUpdated, href, event, assignedUser, programStage, programType, occurredAt, created, createdAt, orgUnit, completedDate, enrollment, trackedEntityInstance, followup, deleted, enrollmentStatus, attributeOptionCombo, assignedUserDisplayName, completedBy, orgUnitName, eventDate, lastUpdatedAtClient, status, enrolledAt`.|
+|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `storedBy, attributeCategoryOptions, dueDate, assignedUserUsername, createdAtClient, program, lastUpdated, event, assignedUser, programStage, programType, occurredAt, created, createdAt, orgUnit, completedDate, enrollment, trackedEntityInstance, followup, deleted, enrollmentStatus, attributeOptionCombo, assignedUserDisplayName, completedBy, orgUnitName, eventDate, lastUpdatedAtClient, status, enrolledAt`.|
 |`event`|`String`|comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using event=id1;id2.|
 |`skipEventId`|`Boolean`| | Skips event identifiers in the response|
 |`attributeCc` (see note)|`String`| Attribute category combo identifier (must be combined with attributeCos)|
@@ -1688,7 +1683,6 @@ The `JSON` response can look like the following.
 {
     "instances": [
         {
-            "href": "https://play.dhis2.org/dev/api/tracker/events/rgWr86qs0sI",
             "event": "rgWr86qs0sI",
             "status": "ACTIVE",
             "program": "kla3mAPgvCH",
@@ -1742,7 +1736,6 @@ The purpose of this endpoint is to retrieve one Event given its uid.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Event with specified `uid`|
-|`fields`|`String`| **Not implemented yet**|Include specified properties in the response| 
 |`fields`|`String`| Any valid field filter (default `*,!relationships`) |Include specified sub-objects in the response| 
 
 ##### Example requests
@@ -1755,7 +1748,6 @@ A query for an Event:
 
 ```json
 {
-  "href": "https://play.dhis2.org/dev/api/tracker/events/rgWr86qs0sI",
   "event": "rgWr86qs0sI",
   "status": "ACTIVE",
   "program": "kla3mAPgvCH",
