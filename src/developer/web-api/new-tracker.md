@@ -336,13 +336,11 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 
 > One between `uid` or `username` field must be provided. If both are provided, only username is considered.
 
-
 ### Program stage working lists { #webapi_working_list_filters } 
 
-The program stage working lists are used in the Capture app to present predetermined working lists that are relevant to a specific program stage in the tracker user interface. To interact with them, you'll need to use the */api/trackedEntityInstanceFilters* resource. These lists can be shared and follow the same sharing pattern as any other metadata object. When using the */api/sharing* the type parameter will be *programStageWorkingLists*.
+The program stage working lists feature within the Capture app is designed to display pre-established working lists relevant to a particular program stage in the tracker user interface. This functionality enables users to save standard filters and sorting preferences that are related to program stages, facilitating the organization and management of their workflow. To interact with them, you'll need to use the */api/trackedEntityInstanceFilters* resource. These lists can be shared and follow the same sharing pattern as any other metadata object. When using the */api/sharing* the type parameter will be *programStageWorkingLists*.
 
     /api/40/programStageWorkingLists
-
 
 ##### Payload on CRUD operations to program stage working lists
 
@@ -376,6 +374,40 @@ Table: Program Stage
 | dataFilters | A list of items that contains the filters to be used when querying events | "dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}] |
 | attributeValueFilters | A list of attribute value filters. This is used to specify filters for attribute values when listing tracked entity instances | "attributeValueFilters":[{"attribute": "ruQQnf6rswq","eq": "15"}] |
 
+See an example payload below:
+
+```json
+{   
+    "name":"Test WL",
+    "program":{"id":"uy2gU8kT1jF"},
+    "programStage":{"id":"oRySG82BKE6"},
+    "description": "Test WL definition",
+    "programStageQueryCriteria":
+        {
+            "status":"VISITED",
+            "eventCreatedAt":{"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"},
+            "scheduledAt": {"type":"RELATIVE","period":"TODAY"},
+            "enrollmentStatus": "COMPLETED",
+            "enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"},
+            "enrollmentOccurredAt": {"type":"RELATIVE","period":"THIS_MONTH"},
+            "orgUnit": "Rp268JB6Ne4",
+            "ouMode": "SELECTED",
+            "assignedUserMode":"PROVIDED",
+            "assignedUsers":["DXyJmlo9rge"],
+            "order": "w75KJ2mc4zz:asc",
+            "displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"],
+            "dataFilters":[{
+                "dataItem": "GXNUsigphqK",
+                "ge": "10",
+                "le": "20"
+            }],
+            "attributeValueFilters":[{
+                "attribute": "ruQQnf6rswq",
+                "eq": "15"
+            }]
+        }
+}
+```
 ## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
 
 The `POST /api/tracker` endpoint allows clients to import the following tracker objects into DHIS2:
