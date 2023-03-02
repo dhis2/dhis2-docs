@@ -357,7 +357,7 @@ Table: Payload
 | name | Name of the working list. Required. ||
 | description | A description of the working list. ||
 | program | Object containing the id of the program. Required. | {"id" : "uy2gU8kTjF"} |
-| programStage | Object containing the id of the program stage. Required. | { "id" : "oRySG82BKE6"} |
+| programStage | Object containing the id of the program stage. Required. | {"id" : "oRySG82BKE6"} |
 | programStageQueryCriteria | An object representing various possible filtering values. See *Program Stage Query Criteria* definition table below.
 
 Table: Program Stage  
