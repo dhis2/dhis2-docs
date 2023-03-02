@@ -17,8 +17,8 @@ Table: Program types
 | Program type | Description | Examples of use |
 |---|---|---|
 | Event program | Single event *without* registration program (anonymous program or SEWoR)<br> <br>Anonymous, individual events are tracked through the health system. No person or entity is attached to these individual transactions.<br> <br>Has only one program stage. | To record health cases without registering any information into the system.<br> <br>To record survey data or surveillance line-listing. |
-| Tracker program | Single event *with* registration program (SEWR)<br> <br>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system<br> <br>Has only one program stage.<br> <br>A tracked entity instance (TEI) can only enroll in the program once. | To record birth certificate and death certificate. |
-|| Multi events *with* registration program (MEWR)<br> <br>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system<br> <br>Has multiple program stages. | Mother Health Program with stages as ANC Visit (2-4+), Delivery, PNC Visit. |
+| Single stage Tracker program | Single event *with* registration program (SEWR)<br> <br>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system<br> <br>Has only one program stage.<br> <br>A tracked entity instance (TEI) can only enroll in the program once. | To record birth certificate and death certificate. |
+| Multi-stage Tracker program | Multi events *with* registration program (MEWR)<br> <br>An entity (person, commodity, etc.) is tracked through each individual transaction with the health system<br> <br>Has multiple program stages. | Mother Health Program with stages as ANC Visit (2-4+), Delivery, PNC Visit. |
 
 To create a program, you must first configure several types of metadata
 objects. You create these metadata objects in the **Maintenance** app.
