@@ -81,6 +81,12 @@ Table: `PREDICTOR` job parameters
 | `predictors` | array of string | `[]` | Predictors (UIDs) to include in job                                                      |
 | `predictorGroups` | array of string | `[]` | Predictor groups (UIDs) to include in job                                                |
 
+Table: `MATERIALIZED_SQL_VIEW_UPDATE` job parameters
+
+| Name          | Type          | Default | Description                                      |
+|---------------|---------------|---------|--------------------------------------------------|
+| `sqlViews`    | array of string | `[]` | The UIDs of the SQL views that are updated by the job |
+
 
 ### Get available job types
 
