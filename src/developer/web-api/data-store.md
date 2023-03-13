@@ -108,9 +108,14 @@ Example response:
   "created": "...",
   "user": {...},
   "namespace": "foo",
-  "key": "key_1"
+  "key": "key_1",
+  "access": {...}  
 }
 ```
+The `access` property reflects the capabilities of the current user for the
+target entry. As usual this information is about the entry sharing.
+Namespace wide protection might still apply and render a user incapable to
+perform certain changes.
 
 
 ### Query API
