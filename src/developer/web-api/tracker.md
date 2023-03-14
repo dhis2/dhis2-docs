@@ -574,11 +574,15 @@ and one attribute is used as a filter:
     /api/33/trackedEntityInstances.json?filter=zHXD5Ve1Efw:EQ:A
       &filter=AMpUYgxuCaE:LIKE:Road&ou=DiszpKrYNg8
 
-A query where multiple operand and filters are specified for a filter
-item:
+A query where multiple operand and item filters are specified for digits interval:
 
     api/33/trackedEntityInstances.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
       &filter=lw1SqmMlnfh:GT:150:LT:190
+
+A query where multiple operand and item filters are specified for dates interval (also support milliseconds and time zone):
+
+    api/33/trackedEntityInstances.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
+      &filter=lw1SqmMlnfh:GT:01-01-2000 12:00:00:LT:01-01-2001 12:00:00
 
 To query on an attribute using multiple values in an *IN* filter:
 
