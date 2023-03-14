@@ -579,10 +579,10 @@ A query where multiple operand and item filters are specified for digits interva
     api/33/trackedEntityInstances.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
       &filter=lw1SqmMlnfh:GT:150:LT:190
 
-A query where multiple operand and item filters are specified for dates interval (also support milliseconds and time zone):
+A query where multiple operand and item filters are specified for dates interval:
 
     api/33/trackedEntityInstances.json?ou=DiszpKrYNg8&program=ur1Edk5Oe2n
-      &filter=lw1SqmMlnfh:GT:01-01-2000 12:00:00:LT:01-01-2001 12:00:00
+      &filter=lw1SqmMlnfh:GT:01-01-2000:LT:01-01-2001
 
 To query on an attribute using multiple values in an *IN* filter:
 
