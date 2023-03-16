@@ -2028,105 +2028,105 @@ The API supports using program indicators which are not associated to the "main"
 
 ## Tracked entity instance analytics { #webapi_tei_analytics } 
 
-The tracked entity instance (TEI) analytics API lets you query *TEIs with their enrollments and event data* captured in DHIS2. This resource lets you retrieve data from Tei, enrollments, events and data elements across multiple programs, for a given tracked entity type.
+The tracked entity instance (TEI) analytics API allows querying *TEIs with their enrollments and event data* captured in DHIS2. This resource retrieves data from TEI, enrollments, events and data elements across multiple programs, for a given tracked entity type.
 
 ### Dimensions and items { #webapi_tei_analytics_dimensions } 
 
-Tracked entity instance dimensions include program attributes, data elements, attributes, organisation units and different kind of periods. 
-The query analytics resource will simply return TEIs matching a set of criteria and does not perform any aggregation.
+Tracked entity instance dimensions include program attributes, data elements, attributes, organisation units and different kinds of periods. 
+The analytics query will simply return TEIs matching a set of criteria. It does not perform any aggregation.
 
 Table: TEI dimensions
 
 | Dimension | Dimension id | Description |
 |---|---|---|
-| Program attributes | `<program id>.<attribute id>` | Program attribute identifier
-| Data elements in program stages | `<program id>.<program stage id>.<data element id>` | Data element identifiers must include the program and program stage.`dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO` |
-| Periods | N.A. | There's no direct support for `period` dimension. Periods are supported through several different specific parameters |
-| TEI Organisation units | `ou` | Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\> |
-| Enrollment Organisation units | `<program id>.ou` | Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\> |
-| Event Organisation units | `<program id><program stage id>.ou` | Organisation unit identifiers and keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\> |
+| Program attributes | `<program id>.<attribute id>` | The identifier of the program attribute.
+| Data elements in program stages | `<program id>.<program stage id>.<data element id>` | Data element identifiers must include the program and program stage. ie: `dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO` |
+| Periods | N.A. | There's no direct support for `period` dimension. Periods are supported through several different specific parameters. See the *Periods* section below. |
+| TEI Organisation units | `ou` | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
+| Enrollment Organisation units | `<program id>.ou` | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
+| Event Organisation units | `<program id><program stage id>.ou` | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
 
 ### Tracked entity instance query analytics { #webapi_tei_query_analytics } 
 
-The *analytics/tei/query* resource lets you query for captured TEIs. This resource does not perform any aggregation, rather it lets you query and filter for information about TEIs, along with their enrollments and events.
+The *analytics/tei/query* endpoint provides queries for captured TEIs, allowing querying and filtering for information related to TEIs, along with their respective enrollments and events. It does not perform any aggregation.
 
-    /api/33/analytics/enrollments/query
+    /api/41/analytics/enrollments/query
 
 You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of the data elements in program stages, program attributes, tracked entity attributes, fixed and relative periods and organisation units. Dimensions can optionally have a query operator and a filter. TEIs queries should be on the format described below.
 
-    /api/33/analytics/tei/query/<tracked-entity-type-id>?dimension=ou:<ou-id>;<ou-id>&
+    /api/41/analytics/tei/query/<tracked-entity-type-id>?dimension=ou:<ou-id>;<ou-id>&
     	dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
 For example, to retrieve TEIs of type `Person` from the "Child Program" and ""Antenatal care" programs, where the "First name" is "James":
 
-    /api/33/analytics/tei/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
+    /api/41/analytics/tei/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
 
 Paging can be applied to the query by specifying the page number and the page size parameters. If page number is specified but page size is not, a page size of 50 will be used. If page size is specified but page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
 
-    /api/33/analytics/tei/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
+    /api/41/analytics/tei/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
     	&pageSize=10&page=2
 
 #### Filtering
 
-Filters can be applied to data elements, person attributes and person identifiers. The filtering is done through the query parameter value on the following format:
+Filters can be applied to data elements, tracked entity attributes and tracked entity identifiers. The filtering is done through a query parameter on the following format:
 
     &dimension=<item-id>:<operator>:<filter-value>
 
-As an example, you can filter the "MCH Infant Weight  (g)" dataelement, in the "Child Program" and stage "Baby Postnatal" for values greater than 2000 and lower than 4000 like this:
+For example, you can filter the "MCH Infant Weight (g)" data element, of the program "Child Program" and program stage "Baby Postnatal" looking for values greater than 2000 and lower than 4000. The filter is defined like this:
 
     &dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO:GT:2000&dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO:LT:4000
 
 #### Periods 
 
-Unlike enrollment and event query endpoints, TEI endpoint supports multiple ways to specify the period the data belongs to:
+Unlike enrollment and event query endpoints, the TEI endpoint supports multiple ways to specify the period the data belongs to. They are based on different *date* params as showed below:
 
 | Parameter | Description | 
 |---|---|
-| eventDate | TEIs will be filtered based on the event dates |
-| enrollmentDate | TEIs will be filtered based on the enrollment dates |
-| scheduledDate | TEIs will be filtered based on event "scheduled date" |
-| incidentDate | TEIs will be filtered based on enrollment "incident date" |
-| lastUpdated | TEIs will be filtered based on last updated |
+| eventDate | TEIs will be filtered based on the date the event occurred. |
+| enrollmentDate | TEIs will be filtered based on the date of enrollment. |
+| scheduledDate | TEIs will be filtered based on date the event was scheduled. |
+| incidentDate | TEIs will be filtered based on enrollment's incident date. |
+| lastUpdated | TEIs will be filtered based on date the event/enrollment was updated updated by the last time. |
 
-Some of the above mentioned periods can be applicated to TEIs, Enrollment, and Event, depending on the way they are expressed:
+Some periods, mentioned above, can be applicated to TEIs, Enrollment or Event, depending on the way they are expressed.
 
 Examples:
 
-* to filter on TEIs that have been updated during the last year:
+* filtering TEIs that have been updated during the last year:
 
 `lastUpdated=LAST_YEAR`
 
-* to filter on TEIs whose latest enrollment in "Child Program" has been updated during the last year:
+* filtering TEIs whose latest enrollment in the program "Child Program" has been updated during the last year:
 
 `lastUpdated=IpHINAT79UW.LAST_YEAR`
 
-* to filter on TEIs whose latest event in the stage "Baby Postnatal", in the latest enrollment in child program has been updated during the last year:
+* filtering TEIs whose latest event in the program stage "Baby Postnatal", in the latest enrollment in the program "Child Program" has been updated during the last year:
 
 `lastUpdated=IpHINAT79UW.ZzYYXq4fJie.LAST_YEAR`
 
-* to filter on TEIs whose latest enrollment in "Child Program" occurred in last year:
+* filtering TEIs whose latest enrollment in the "Child Program" occurred in the last year:
 
 `enrollmentDate=IpHINAT79UW.LAST_YEAR`
 
 ### Request query parameters { #webapi_tei_analytics_query_parameters } 
 
-The analytics TEI query API lets you specify a range of query parameters.
+The analytics TEI query API supports a range of query parameters.
 
 Table: Query parameters for TEI query endpoint
 
 | Query parameter | Required | Description | Options (default first) |
 |---|---|---|---|
-| trackedEntityType | Yes | Tracked entity type identifier. | Any tracked entity type identifier |
-| program | Yes | Program identifiers. | Any program identifier, accepts multiple comma separated identifiers |
-| dimension | No | Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. | Operators can be EQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; IN |
-| filter | No | Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. ||
-| relativePeriodDate | string | No | Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
-| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. | DESCENDANTS, CHILDREN, SELECTED |
-| asc | No | Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
-| desc | No | Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
-| headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma |
-| page | No | The page number. Default page is 1. | Numeric positive value |
-| pageSize | No | The page size. Default size is 50 items per page. | Numeric zero or positive value |
+| trackedEntityType | Yes | Tracked entity type identifier. | Any tracked entity type identifier. |
+| program | Yes | Program identifiers. | Any program identifier. Accepts multiple comma separated identifiers. |
+| dimension | No | Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. This parameter can be specified multiple times. Dimension filters can be applied to a dimension on the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator). | Operators supported: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN |
+| filter | No | Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. This parameter can be specified multiple times. Dimension filters can be applied to a dimension on the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator). | Operators supported: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN |
+| relativePeriodDate | No | Overrides the start date, so relative periods will use this date as starting date. | Example: "2016-01-01" |
+| ouMode | No | The mode for the selection of organisation units. The default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. | DESCENDANTS, CHILDREN, SELECTED |
+| asc | No | Dimensions to be sorted ascending. Can reference to enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; `<dimension identifier>` |
+| desc | No | Dimensions to be sorted descending, can reference to enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; `<dimension identifier>` |
+| headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma. |
+| page | No | The page number. The default value is 1. | Numeric positive value. |
+| pageSize | No | The page size. The defult vqlue is 50 (which means 50 items per page). | Numeric zero or positive value. |
 
 ## Dimensions { #webapi_dimensions }
 
