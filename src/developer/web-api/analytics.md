@@ -2057,7 +2057,7 @@ You can specify any number of dimensions and any number of filters in a query. D
     /api/41/analytics/tei/query/<tracked-entity-type-id>?dimension=ou:<ou-id>;<ou-id>&
     	dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
-For example, to retrieve TEIs of type `Person` from the "Child Program" and ""Antenatal care" programs, where the "First name" is "James":
+For example, to retrieve TEIs of type `Person` from the "Child Program" and "Antenatal care" programs, where the "First name" is "James":
 
     /api/41/analytics/tei/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
 
@@ -2086,7 +2086,7 @@ Unlike enrollment and event query endpoints, the TEI endpoint supports multiple 
 | enrollmentDate | TEIs will be filtered based on the date of enrollment. |
 | scheduledDate | TEIs will be filtered based on date the event was scheduled. |
 | incidentDate | TEIs will be filtered based on enrollment's incident date. |
-| lastUpdated | TEIs will be filtered based on date the event/enrollment was updated updated by the last time. |
+| lastUpdated | TEIs will be filtered based on date the event/enrollment was updated by the last time. |
 
 Some periods, mentioned above, can be applicated to TEIs, Enrollment or Event, depending on the way they are expressed.
 
