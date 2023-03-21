@@ -29,3 +29,17 @@ selectors.
     GET /api/openapi/openapi.json?path=/users&path=/dataElements
     GET /api/openapi/openapi.yaml?tag=system&tag=metadata
 
+Available tags are:
+
+* `user`
+* `data`
+* `metadata`
+* `ui`
+* `analytics`
+* `system`
+* `messaging`
+* `tracker`
+* `integration`
+* `login`
+* `query`
+* `management`
