@@ -344,9 +344,9 @@ The program stage working lists feature within the Capture app is designed to di
 
 ##### Payload on CRUD operations to program stage working lists
 
-If you want to fetch or make changes to a program stage working list, besides the endpoint mentioned above, you'll need to provide a payload in the following format: 
-
-
+The endpoint above can be used to get all program stage working lists. 
+To get a single one, just add at the end the id of the one you are interested in. This is the same in case you want to delete it.
+On the other hand, if you are looking to create or update a program stage working list, besides the endpoint mentioned above, you'll need to provide a payload in the following format: 
 
 Table: Payload
 
@@ -358,7 +358,7 @@ Table: Payload
 | programStage | Object containing the id of the program stage. Required. | {"id" : "oRySG82BKE6"} |
 | programStageQueryCriteria | An object representing various possible filtering values. See *Program Stage Query Criteria* definition table below.
 
-Table: Program Stage  
+Table: Program Stage Query Criteria
 | status | The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED | "status":"VISITED" |
 | eventCreatedAt | DateFilterPeriod object filtering based on the event creation date. | {"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"} |
 | scheduledAt | DateFilterPeriod object filtering based on the event scheduled date. | {"type":"RELATIVE","period":"TODAY"} |
