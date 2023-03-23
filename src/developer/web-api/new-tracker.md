@@ -338,7 +338,7 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 
 ### Program stage working lists { #webapi_working_list_filters } 
 
-The program stage working lists feature within the Capture app is designed to display pre-established working lists relevant to a particular program stage in the tracker user interface. This functionality enables users to save standard filters and sorting preferences that are related to program stages, facilitating the organization and management of their workflow. To interact with them, you'll need to use the */api/programStageWorkingLists* resource. These lists can be shared and follow the same sharing pattern as any other metadata object. When using the */api/sharing* the type parameter will be *programStageWorkingLists*.
+The program stage working lists feature within the Capture app is designed to display pre-established working lists relevant to a particular program stage. This functionality enables users to save filters and sorting preferences that are related to program stages, facilitating the organization and management of their workflow. To interact with them, you'll need to use the */api/programStageWorkingLists* resource. These lists can be shared and follow the same sharing pattern as any other metadata. When using the */api/sharing* the type parameter will be *programStageWorkingLists*.
 
     /api/40/programStageWorkingLists
 
