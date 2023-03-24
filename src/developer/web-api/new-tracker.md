@@ -336,7 +336,78 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 
 > One between `uid` or `username` field must be provided. If both are provided, only username is considered.
 
+### Program stage working lists { #webapi_working_list_filters } 
 
+The program stage working lists feature within the Capture app is designed to display pre-established working lists relevant to a particular program stage. This functionality enables users to save filters and sorting preferences that are related to program stages, facilitating the organization and management of their workflow. To interact with them, you'll need to use the */api/programStageWorkingLists* resource. These lists can be shared and follow the same sharing pattern as any other metadata. When using the */api/sharing* the type parameter will be *programStageWorkingLists*.
+
+    /api/40/programStageWorkingLists
+
+##### Payload on CRUD operations to program stage working lists
+
+The endpoint above can be used to get all program stage working lists. 
+To get a single one, just add at the end the id of the one you are interested in. This is the same in case you want to delete it.
+On the other hand, if you are looking to create or update a program stage working list, besides the endpoint mentioned above, you'll need to provide a payload in the following format: 
+
+Table: Payload
+
+| Payload values | Description | Example |
+|---|---|---|
+| name | Name of the working list. Required. ||
+| description | A description of the working list. ||
+| program | Object containing the id of the program. Required. | {"id" : "uy2gU8kTjF"} |
+| programStage | Object containing the id of the program stage. Required. | {"id" : "oRySG82BKE6"} |
+| programStageQueryCriteria | An object representing various possible filtering values. See *Program Stage Query Criteria* definition table below.
+
+Table: Program Stage Query Criteria
+| status | The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED | "status":"VISITED" |
+| eventCreatedAt | DateFilterPeriod object filtering based on the event creation date. | {"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"} |
+| scheduledAt | DateFilterPeriod object filtering based on the event scheduled date. | {"type":"RELATIVE","period":"TODAY"} |
+| enrollmentStatus | Any valid ProgramStatus. Possible values are ACTIVE, COMPLETED and CANCELLED. | "enrollmentStatus": "COMPLETED" |
+| enrolledAt | DateFilterPeriod object filtering based on the event enrollment date. | "enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"} |
+| enrollmentOccurredAt | DateFilterPeriod object filtering based on the event incident date. | {"type":"RELATIVE","period":"THIS_MONTH"} |
+| orgUnit | A valid organisation unit UID | "orgUnit": "Rp268JB6Ne4" |
+| ouMode | A valid OU selection mode | "ouMode": "SELECTED" |
+| assignedUserMode | A valid user selection mode for events. Possible values are CURRENT, PROVIDED, NONE, ANY and ALL. If PROVIDED (or null), non-empty assignedUsers in the payload will be expected. | "assignedUserMode":"PROVIDED" |
+| assignedUsers | A list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers":["DXyJmlo9rge"] |
+| order | List of fields and its directions in comma separated values, the results will be sorted according to it. A single item in order is of the form "orderDimension:direction". | "order": "w75KJ2mc4zz:asc" |
+| displayColumnOrder | Output ordering of columns | "displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"] |
+| dataFilters | A list of items that contains the filters to be used when querying events | "dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}] |
+| attributeValueFilters | A list of attribute value filters. This is used to specify filters for attribute values when listing tracked entity instances | "attributeValueFilters":[{"attribute": "ruQQnf6rswq","eq": "15"}] |
+
+See an example payload below:
+
+```json
+{   
+    "name":"Test WL",
+    "program":{"id":"uy2gU8kT1jF"},
+    "programStage":{"id":"oRySG82BKE6"},
+    "description": "Test WL definition",
+    "programStageQueryCriteria":
+        {
+            "status":"VISITED",
+            "eventCreatedAt":{"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"},
+            "scheduledAt": {"type":"RELATIVE","period":"TODAY"},
+            "enrollmentStatus": "COMPLETED",
+            "enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"},
+            "enrollmentOccurredAt": {"type":"RELATIVE","period":"THIS_MONTH"},
+            "orgUnit": "Rp268JB6Ne4",
+            "ouMode": "SELECTED",
+            "assignedUserMode":"PROVIDED",
+            "assignedUsers":["DXyJmlo9rge"],
+            "order": "w75KJ2mc4zz:asc",
+            "displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"],
+            "dataFilters":[{
+                "dataItem": "GXNUsigphqK",
+                "ge": "10",
+                "le": "20"
+            }],
+            "attributeValueFilters":[{
+                "attribute": "ruQQnf6rswq",
+                "eq": "15"
+            }]
+        }
+}
+```
 ## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
 
 The `POST /api/tracker` endpoint allows clients to import the following tracker objects into DHIS2:
