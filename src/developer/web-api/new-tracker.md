@@ -1342,6 +1342,11 @@ A query where multiple operand and item filters are specified for dates interval
     GET api/tracker/trackedEntities?orgUnit=DiszpKrYNg8&program=ur1Edk5Oe2n
       &filter=lw1SqmMlnfh:GT:01-01-2000 12:00:00:LT:01-01-2001 12:00:00
 
+Multiple operands do not apply to words. In that case, we can use multiple filters:
+
+    GET api/tracker/trackedEntities?orgUnit=DiszpKrYNg8&program=ur1Edk5Oe2n
+      &filter=lw1SqmMlnfh:SW:hello&filter=lw1SqmMlnfh:EW:world
+
 To query on an attribute using multiple values in an *IN* filter:
 
     GET /api/tracker/trackedEntities?orgUnit=DiszpKrYNg8
