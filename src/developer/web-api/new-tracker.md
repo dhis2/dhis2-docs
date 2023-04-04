@@ -922,7 +922,6 @@ For example, `TRACKED_ENTITY`:
 ```json
 {
   "bundleReport": {
-    "status": "OK",
     "typeReportMap": {
       "TRACKED_ENTITY": {
         "trackerType": "TRACKED_ENTITY",
