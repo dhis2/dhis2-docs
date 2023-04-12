@@ -2127,6 +2127,15 @@ Table: Query parameters for TEI query endpoint
 | headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma. |
 | page | No | The page number. The default value is 1. | Numeric positive value. |
 | pageSize | No | The page size. The defult vqlue is 50 (which means 50 items per page). | Numeric zero or positive value. |
+| displayProperty | No | Property to display for metadata. | NAME &#124; SHORTNAME |
+| includeMetadataDetails | No | Include metadata details to raw data response. | false &#124; true |
+| outputIdScheme | No | Identifier scheme used for metadata items in the query response. It accepts identifier, code or attributes. | UID &#124; UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
+| dataIdScheme | No | Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response. | NAME &#124; CODE &#124; UID |
+| programStatus | No | Specify enrollment status of events to include. *DEPRECATED, prefer `enrollmentStatus`* | ACTIVE &#124; COMPLETED &#124; CANCELLED. Can be comma separated (*for query only*). |
+| enrollmentStatus | No | Specify enrollment status of events to include. | ACTIVE &#124; COMPLETED &#124; CANCELLED. Can be comma separated (*for query only*). |
+| eventStatus | No | Specify status of events to include. | ACTIVE &#124; COMPLETED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED. Can be comma separated (*for query only*). |
+| coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
+| geometryOnly | No | Whether to only return events which have geometries. | false &#124; true |
 
 ## Dimensions { #webapi_dimensions }
 
