@@ -53,6 +53,12 @@ DHIS2 documentation is organised into four broad categories. Choose the category
     
     [Explore tutorials](topics/tutorials/tutorials.html)
 
+!!! Training Documents
+    
+    Here you will find general guidance for planning and conducting training on DHIS2, as well as complete course materials for a selection of DHIS2 Academy courses which you can adapt to your local context.
+
+    [Explore Training Docs](topics/training-docs/training-docs.html)
+
 !!! User Stories
 
     Read some stories from users and implementers in the field and learn how they are using DHIS2 to solve a variety of problems.
