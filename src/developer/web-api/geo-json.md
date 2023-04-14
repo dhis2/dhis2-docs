@@ -65,6 +65,9 @@ would have this structure:
   ]
 }
 ```
+The `coordinates` in a `geometry` may be pairs or triplets. 
+If a third dimension is present it is stripped during the import.
+
 A `geometry` may also be `null` to effectively clear or delete the geometry 
 for specific organisation units. There is a special bulk deletion API that is
 described in the next section.
