@@ -163,6 +163,7 @@ Table: Data import settings
 | Setting | Description |
 |---|---|
 | **Require periods to match period type of data set** | Require period of data value to be of the same period type as the data sets for which the data element of data value is assigned to. |
+| **Require data elements to be part of data set** | Require data element of a data value to be assigned to a data set. If a specific data set is specified on import, the system will check that data values are associated with the specified data set. |
 | **Require category option combos to match category combo of data element** | Require category option combination of data value to be part of the category combination of the data element of the data value. |
 | **Require organisation units to match assignment of data set** | Require organisation unit of data value to be assigned to one or more of the data sets which the data element of data value is assigned to. |
 | **Require attribute option combos to match category combo of data set** | Require attribute option combination of data value to be part of the category combination of the data set which the data element of data value is assigned to. |

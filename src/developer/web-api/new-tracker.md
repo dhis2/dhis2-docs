@@ -336,7 +336,78 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 
 > One between `uid` or `username` field must be provided. If both are provided, only username is considered.
 
+### Program stage working lists { #webapi_working_list_filters } 
 
+The program stage working lists feature within the Capture app is designed to display pre-established working lists relevant to a particular program stage. This functionality enables users to save filters and sorting preferences that are related to program stages, facilitating the organization and management of their workflow. To interact with them, you'll need to use the */api/programStageWorkingLists* resource. These lists can be shared and follow the same sharing pattern as any other metadata. When using the */api/sharing* the type parameter will be *programStageWorkingLists*.
+
+    /api/40/programStageWorkingLists
+
+##### Payload on CRUD operations to program stage working lists
+
+The endpoint above can be used to get all program stage working lists. 
+To get a single one, just add at the end the id of the one you are interested in. This is the same in case you want to delete it.
+On the other hand, if you are looking to create or update a program stage working list, besides the endpoint mentioned above, you'll need to provide a payload in the following format: 
+
+Table: Payload
+
+| Payload values | Description | Example |
+|---|---|---|
+| name | Name of the working list. Required. ||
+| description | A description of the working list. ||
+| program | Object containing the id of the program. Required. | {"id" : "uy2gU8kTjF"} |
+| programStage | Object containing the id of the program stage. Required. | {"id" : "oRySG82BKE6"} |
+| programStageQueryCriteria | An object representing various possible filtering values. See *Program Stage Query Criteria* definition table below.
+
+Table: Program Stage Query Criteria
+| status | The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED | "status":"VISITED" |
+| eventCreatedAt | DateFilterPeriod object filtering based on the event creation date. | {"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"} |
+| scheduledAt | DateFilterPeriod object filtering based on the event scheduled date. | {"type":"RELATIVE","period":"TODAY"} |
+| enrollmentStatus | Any valid ProgramStatus. Possible values are ACTIVE, COMPLETED and CANCELLED. | "enrollmentStatus": "COMPLETED" |
+| enrolledAt | DateFilterPeriod object filtering based on the event enrollment date. | "enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"} |
+| enrollmentOccurredAt | DateFilterPeriod object filtering based on the event incident date. | {"type":"RELATIVE","period":"THIS_MONTH"} |
+| orgUnit | A valid organisation unit UID | "orgUnit": "Rp268JB6Ne4" |
+| ouMode | A valid OU selection mode | "ouMode": "SELECTED" |
+| assignedUserMode | A valid user selection mode for events. Possible values are CURRENT, PROVIDED, NONE, ANY and ALL. If PROVIDED (or null), non-empty assignedUsers in the payload will be expected. | "assignedUserMode":"PROVIDED" |
+| assignedUsers | A list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers":["DXyJmlo9rge"] |
+| order | List of fields and its directions in comma separated values, the results will be sorted according to it. A single item in order is of the form "orderDimension:direction". | "order": "w75KJ2mc4zz:asc" |
+| displayColumnOrder | Output ordering of columns | "displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"] |
+| dataFilters | A list of items that contains the filters to be used when querying events | "dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}] |
+| attributeValueFilters | A list of attribute value filters. This is used to specify filters for attribute values when listing tracked entity instances | "attributeValueFilters":[{"attribute": "ruQQnf6rswq","eq": "15"}] |
+
+See an example payload below:
+
+```json
+{   
+    "name":"Test WL",
+    "program":{"id":"uy2gU8kT1jF"},
+    "programStage":{"id":"oRySG82BKE6"},
+    "description": "Test WL definition",
+    "programStageQueryCriteria":
+        {
+            "status":"VISITED",
+            "eventCreatedAt":{"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"},
+            "scheduledAt": {"type":"RELATIVE","period":"TODAY"},
+            "enrollmentStatus": "COMPLETED",
+            "enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"},
+            "enrollmentOccurredAt": {"type":"RELATIVE","period":"THIS_MONTH"},
+            "orgUnit": "Rp268JB6Ne4",
+            "ouMode": "SELECTED",
+            "assignedUserMode":"PROVIDED",
+            "assignedUsers":["DXyJmlo9rge"],
+            "order": "w75KJ2mc4zz:asc",
+            "displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"],
+            "dataFilters":[{
+                "dataItem": "GXNUsigphqK",
+                "ge": "10",
+                "le": "20"
+            }],
+            "attributeValueFilters":[{
+                "attribute": "ruQQnf6rswq",
+                "eq": "15"
+            }]
+        }
+}
+```
 ## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
 
 The `POST /api/tracker` endpoint allows clients to import the following tracker objects into DHIS2:
@@ -851,7 +922,6 @@ For example, `TRACKED_ENTITY`:
 ```json
 {
   "bundleReport": {
-    "status": "OK",
     "typeReportMap": {
       "TRACKED_ENTITY": {
         "trackerType": "TRACKED_ENTITY",
@@ -1177,10 +1247,6 @@ Tracker export endpoints deal with the following Tracker objects:
 > - All these endpoints currently support `JSON`, `CSV` is only supported by only Tracked Entities and Events.
 >
 > - These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)**
->
-> - The following functionalities are still missing but available in older endpoints:
->
->     - field filtering
 
 ### Common request parameters
 
@@ -1221,21 +1287,20 @@ following table.
 
 #### Request parameter to filter responses { #webapi_nti_field_filter }
 
-All new export endpoints support a `fields` parameter which allows to filter the response based on a simple grammar.
-
-`fields` parameter accepts a comma separated list of field names or patterns and responses are filtered based on it
-
-See [Metadata field filter](#webapi_metadata_field_filter) for more information on field filtering.
+All export endpoints accept a `fields` parameter which controls which fields will be returned in the
+JSON response. `fields` parameter accepts a comma separated list of field names or patterns. A few
+possible `fields` filters are shown below. Refer to [Metadata field
+filter](#webapi_metadata_field_filter) for a more complete guide on how to use `fields`.
 
 ##### Examples
 
 |Parameter example|Meaning|
 |:---|:---|
-|`fields=*`| returns all fields|
-|`fields=createdAt,uid`| only returns `createdAt` and `uid` fields for the requested object|
-|`fields=enrollments[*,!uid]`| return all fields of nested `enrollments` field except its `uid`|
-|`fields=enrollments[uid]`| only returns `uid` field for nested `enrollments`|
-|`fields=enrollments[uid,enrolledAt]`| only returns `uid` and `enrolledAt` fields for nested `enrollments`|
+|`fields=*`|returns all fields|
+|`fields=createdAt,uid`|only returns fields `createdAt` and `uid`|
+|`fields=enrollments[*,!uid]`|returns all fields of `enrollments` except `uid`|
+|`fields=enrollments[uid]`|only returns `enrollments` field `uid`|
+|`fields=enrollments[uid,enrolledAt]`|only returns `enrollments` fields `uid` and `enrolledAt`|
 
 ### Tracked Entities (`GET /api/tracker/trackedEntities`)
 
@@ -1609,7 +1674,7 @@ Returns a list of events based on the provided filters.
 |`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
 |`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
 |`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
-|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `storedBy, attributeCategoryOptions, dueDate, assignedUserUsername, createdAtClient, program, lastUpdated, href, event, assignedUser, programStage, programType, occurredAt, created, createdAt, orgUnit, completedDate, enrollment, trackedEntityInstance, followup, deleted, enrollmentStatus, attributeOptionCombo, assignedUserDisplayName, completedBy, orgUnitName, eventDate, lastUpdatedAtClient, status, enrolledAt`.|
+|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `storedBy, attributeCategoryOptions, dueDate, assignedUserUsername, createdAtClient, program, lastUpdated, event, assignedUser, programStage, programType, occurredAt, created, createdAt, orgUnit, completedDate, enrollment, trackedEntityInstance, followup, deleted, enrollmentStatus, attributeOptionCombo, assignedUserDisplayName, completedBy, orgUnitName, eventDate, lastUpdatedAtClient, status, enrolledAt`.|
 |`event`|`String`|comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using event=id1;id2.|
 |`skipEventId`|`Boolean`| | Skips event identifiers in the response|
 |`attributeCc` (see note)|`String`| Attribute category combo identifier (must be combined with attributeCos)|
@@ -1688,7 +1753,6 @@ The `JSON` response can look like the following.
 {
     "instances": [
         {
-            "href": "https://play.dhis2.org/dev/api/tracker/events/rgWr86qs0sI",
             "event": "rgWr86qs0sI",
             "status": "ACTIVE",
             "program": "kla3mAPgvCH",
@@ -1742,7 +1806,6 @@ The purpose of this endpoint is to retrieve one Event given its uid.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Event with specified `uid`|
-|`fields`|`String`| **Not implemented yet**|Include specified properties in the response| 
 |`fields`|`String`| Any valid field filter (default `*,!relationships`) |Include specified sub-objects in the response| 
 
 ##### Example requests
@@ -1755,7 +1818,6 @@ A query for an Event:
 
 ```json
 {
-  "href": "https://play.dhis2.org/dev/api/tracker/events/rgWr86qs0sI",
   "event": "rgWr86qs0sI",
   "status": "ACTIVE",
   "program": "kla3mAPgvCH",

@@ -898,6 +898,7 @@ Table: Functions to use in a program indicator expression or filter
 | d2:countIfValue | (dataElement, value) | Useful only for enrollment program indicators. Counts the number of data values that matches the given literal value for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The value can be a hard coded text or number, for example 'No_anemia' if only the values containing this text should be counted. |
 | d2:countIfCondition | (dataElement, condition) | Useful only for enrollment program indicators. Counts the number of data values that matches the given condition criteria for the given program stage and data element in the course of the enrollment. The argument data element is supplied with the #{programStage.dataElement} syntax. The condition is supplied as a expression in single quotes, for example '<10' if only the values less than 10 should be counted. |
 | if | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. This is identical to the d2:condition function except that the boolean-expr is not quoted. |
+| is | (expr1 in expression [, expression ...]) | Returns true if expr1 is equal to any of the following expressions, otherwise false. |
 | isNull | (object) | Returns true if the object value is missing (null), otherwise false. |
 | isNotNull | (object) | Returns true if the object value is not missing (not null), otherwise false. |
 | firstNonNull | (object [, object ...]) | Returns the value of the first object that is not missing (not null). Can be provided any number of arguments. Any argument may also be a numeric or string literal, which will be returned if all the previous objects have missing values. |
@@ -913,6 +914,10 @@ A filter that uses the "hasValue" function looks like this:
 A filter that uses the "relationshipCount(relationshipTypeUid)" function looks like this:
 
     d2:relationshipCount('KLkjshoQ90U')
+
+A filter that uses the "is( x in y, z )" function looks like this:
+
+    is(#{oahc9ooVema} in 'New', 'Relapse')
 
 An expression that uses the "zing" and "oizp" functions looks like this:
 
