@@ -152,7 +152,7 @@ sudo locale-gen nb_NO.UTF-8
 Install PostgreSQL by invoking:
 
 ```sh
-sudo apt-get install postgresql-12 postgresql-12-postgis-3
+sudo apt-get install -y postgresql-12 postgresql-12-postgis-3
 ```
 
 Create a non-privileged user called *dhis* by invoking:
@@ -193,15 +193,16 @@ Exit the console and return to your previous user with *\\q* followed by
 ### PostgreSQL performance tuning { #install_postgresql_performance_tuning } 
 
 Tuning PostgreSQL is required to achieve a high-performing system but
-is optional in terms of getting DHIS2 to run. PostgreSQL is configured
-and tuned through the *postgresql.conf* file which can be edited like
-this:
+is optional in terms of getting DHIS2 to run. The various settings can be
+specified in the `postgresql.conf` configuration file or, preferably, in a specific
+file in the `conf.d` directory. The settings is based on allocating 8 GB RAM to
+PostgreSQL and should be adjusted accordingly to the environment.
 
 ```sh
 sudo nano /etc/postgresql/12/main/postgresql.conf
 ```
 
-and set the following properties:
+Set the following properties.
 
 ```properties
 max_connections = 200
@@ -210,7 +211,7 @@ max_connections = 200
 Determines maximum number of connections which PostgreSQL will allow.
 
 ```properties
-shared_buffers = 3200MB
+shared_buffers = 3GB
 ```
 
 Determines how much memory should be allocated exclusively for
@@ -228,7 +229,7 @@ may be consumed if raising this too high. Setting this value correctly
 is essential for DHIS2 aggregation performance.
 
 ```properties
-maintenance_work_mem = 1024MB
+maintenance_work_mem = 1GB
 ```
 
 Determines the amount of memory PostgreSQL can use for maintenance
@@ -245,19 +246,19 @@ session. These are session-local buffers used only for access to temporary
 tables. 
 
 ```properties
-effective_cache_size = 8000MB
+effective_cache_size = 8GB
 ```
 
 An estimate of how much memory is available for disk caching by the
-operating system (not an allocation) and isdb.no used by PostgreSQL to
+operating system (not an allocation) and is used by PostgreSQL to
 determine whether a query plan will fit into memory or not. Setting it
 to a higher value than what is really available will result in poor
-performance. This value should be inclusive of the shared\_buffers
+performance. This value should be inclusive of the `shared_buffers`
 setting. PostgreSQL has two layers of caching: The first layer uses the
 kernel shared memory and is controlled by the shared\_buffers setting.
 PostgreSQL delegates the second layer to the operating system disk cache
 and the size of available memory can be given with the
-effective\_cache\_size setting.
+`effective_cache_size` setting.
 
 ```properties
 checkpoint_completion_target = 0.8
@@ -279,7 +280,7 @@ corrupted and this is a good alternative for performance-intensive and
 write-heavy systems like DHIS2.
 
 ```properties
-wal_writer_delay = 10000ms
+wal_writer_delay = 10s
 ```
 
 Specifies the delay between WAL write operations. Setting this to a high
@@ -315,13 +316,13 @@ sudo systemctl restart postgresql
 The recommended Java JDK for DHIS 2 is OpenJDK 11 (for version 2.35 and later). You can install it with the following command:
 
 ```
-sudo apt-get install openjdk-11-jdk
+sudo apt-get install -y openjdk-11-jdk
 ```
 
 If you prefer OpenJDK 8 (for versions older than 2.35) you can install it with this command:
 
 ```
-sudo apt-get install openjdk-8-jdk
+sudo apt-get install -y openjdk-8-jdk
 ```
 
 Verify that your installation is correct by invoking:
@@ -398,7 +399,7 @@ To install the Tomcat servlet container we will utilize the Tomcat user
 package by invoking:
 
 ```sh
-sudo apt-get install tomcat8-user
+sudo apt-get install -y tomcat8-user
 ```
 
 This package lets us easily create a new Tomcat instance. The instance
@@ -1304,7 +1305,7 @@ We recommend using [nginx](http://www.nginx.org) as a reverse proxy due to
 its low memory footprint and ease of use. To install invoke the
 following:
 
-    sudo apt-get install nginx
+    sudo apt-get install -y nginx
 
 nginx can now be started, reloaded and stopped with the following
 commands:
@@ -1377,7 +1378,7 @@ and to identify itself to clients using a trusted certificate. This can
 be achieved through SSL which is a cryptographic communication protocol
 running on top of TCP/IP. First, install the required *openssl* library:
 
-    sudo apt-get install openssl
+    sudo apt-get install -y openssl
 
 To configure nginx to use SSL you will need a proper SSL certificate
 from an SSL provider. The cost of a certificate varies a lot depending
