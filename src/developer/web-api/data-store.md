@@ -112,7 +112,6 @@ Example response:
 }
 ```
 
-
 ### Query API
 The query API is allows you to query and filter values over all keys in a namespace. The `fields` parameter is used to specify the query. This is useful for retrieving specific values of keys across a namespace in a single request. 
 
@@ -497,6 +496,11 @@ To get sharing settings for a specific data store key:
 Where the id for the data store key comes from the `/metaData` endpoint for that key:
 
     GET /api/33/dataStore/<namespace>/<key>/metaData
+
+As usual the `access` property in the response reflects the capabilities of the 
+current user for the target entry.
+Namespace wide protection might still apply and render a user incapable to
+perform certain changes.
 
 To modify sharing settings for a specific data store key:
 
