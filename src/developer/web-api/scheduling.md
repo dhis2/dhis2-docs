@@ -1,8 +1,40 @@
 # Scheduling { #webapi_scheduling }
 
+## Get available job types { #types }
+
+To get a list of all available job types you can use the following endpoint:
+
+	GET /api/jobConfigurations/jobTypes
+
+The response contains information about each job type including name, job type, key, scheduling type and available parameters. The scheduling type can either be `CRON`, meaning jobs can be scheduled using a cron expression with the `cronExpression` field, or `FIXED_DELAY`, meaning jobs can be scheduled to run with a fixed delay in between with the `delay` field. The field delay is given in seconds.
+
+A response will look similar to this:
+
+```json
+{
+  "jobTypes": [
+    {
+      "name": "Data integrity",
+      "jobType": "DATA_INTEGRITY",
+      "key": "dataIntegrityJob",
+      "schedulingType": "CRON"
+    }, {
+      "name": "Resource table",
+      "jobType": "RESOURCE_TABLE",
+      "key": "resourceTableJob",
+      "schedulingType": "CRON"
+    }, {
+      "name": "Continuous analytics table",
+      "jobType": "CONTINUOUS_ANALYTICS_TABLE",
+      "key": "continuousAnalyticsTableJob",
+      "schedulingType": "FIXED_DELAY"
+    }
+  ]
+}
+```
+
+## Job Configurations 
 DHIS2 allows for scheduling of jobs of various types. Each type of job has different properties for configuration, giving you finer control over how jobs are run. In addition, you can configure the same job to run with different configurations and at different intervals if required.
-
-
 
 Table: Main properties
 
@@ -16,7 +48,7 @@ Table: Main properties
 
 
 
-### Job Parameters
+### Job Parameters { #job-parameters }
 
 Table: `DATA_INTEGRITY` job parameters
 
@@ -81,39 +113,6 @@ Table: `PREDICTOR` job parameters
 | `predictors` | array of string | `[]` | Predictors (UIDs) to include in job                                                      |
 | `predictorGroups` | array of string | `[]` | Predictor groups (UIDs) to include in job                                                |
 
-
-### Get available job types
-
-To get a list of all available job types you can use the following endpoint:
-
-	GET /api/jobConfigurations/jobTypes
-
-The response contains information about each job type including name, job type, key, scheduling type and available parameters. The scheduling type can either be `CRON`, meaning jobs can be scheduled using a cron expression with the `cronExpression` field, or `FIXED_DELAY`, meaning jobs can be scheduled to run with a fixed delay in between with the `delay` field. The field delay is given in seconds.
-
-A response will look similar to this:
-
-```json
-{
-  "jobTypes": [
-    {
-      "name": "Data integrity",
-      "jobType": "DATA_INTEGRITY",
-      "key": "dataIntegrityJob",
-      "schedulingType": "CRON"
-    }, {
-      "name": "Resource table",
-      "jobType": "RESOURCE_TABLE",
-      "key": "resourceTableJob",
-      "schedulingType": "CRON"
-    }, {
-      "name": "Continuous analytics table",
-      "jobType": "CONTINUOUS_ANALYTICS_TABLE",
-      "key": "continuousAnalyticsTableJob",
-      "schedulingType": "FIXED_DELAY"
-    }
-  ]
-}
-```
 
 ### Create a Job Configuration
 
@@ -256,14 +255,20 @@ Note that some jobs with custom configuration parameters may not be added if the
 required system settings are not configured. An example of this is data
 synchronization, which requires remote server configuration.
 
-### Run Jobs Manually
+### Run Jobs Manually { #execute }
 
 Jobs can be run manually using:
 
     POST /api/jobConfiguration/{id}/execute
 
 
-### Observe Running Jobs
+
+## Scheduler API
+While `/api/jobConfigurations` is centered around the job configuration objects
+the `/api/scheduler` API reflects the state of the scheduler 
+and the `/api/scheduling` API provides job progress tracking information.  
+
+### Observe Running Jobs { #running}
 The execution steps and state can be observed while the job is running.
 A list of all types of jobs that are currently running is provided by:
 
@@ -299,7 +304,7 @@ Each of the nodes in the process-stage-item tree has a status that is either
 * `ERROR`: when completed with errors or when an exception has occurred
 * `CANCELLED`: when cancellation was requested and the item will not complete
 
-### See Completed Job Runs
+### See Completed Job Runs { #completed }
 Once a job has completed successful or with a failure as a consequence of an
 exception or cancellation the status moves from the set of running states to
 the completed job states. This set keeps only the most recent execution
@@ -315,7 +320,7 @@ In case of the `ANALYTICS_TABLE` job this would be:
 
     GET /api/scheduling/completed/ANALYTICS_TABLE
 
-### Request Cancelling a Running Jobs
+### Request Cancelling a Running Jobs { #cancel }
 Once a job is started it works through a sequence of steps. Each step might
 in turn have collections of items that are processed. While jobs usually
 cannot be stopped at any point in time we can request cancellation and the
@@ -345,3 +350,160 @@ immediately when check using
 Only jobs that have been split into processes, stages and items can be
 cancelled effectively. Not all jobs have been split yet. These will run till
 completion even if cancellation has been requested.
+
+
+## Job Queues { #queues }
+Sequences of jobs (configurations) can be created using job queues.
+The queue always uses a unique name and a CRON expression trigger. 
+Once a queue is started it runs all jobs in the queue in the given sequence.
+The second in sequence starts when the first is finished and so forth.
+
+### List Names of Job Queues { #queues-list } 
+To list the unique names of existing queues use:
+
+    GET /api/scheduler/queues
+
+The response is a array of the names:
+```json
+["queue_a", "queue_b"]
+```
+
+### Get A Job Queue { #queues-info }
+To get all details of a specific queue use:
+
+    GET /api/scheduler/queues/{name}
+
+The details include its name, CRON expression and job sequence:
+
+```json
+{
+  "name": "myQ",
+  "cronExpression": "0 0 1 ? * *",
+  "sequence": ["FgAxa6eRSzQ", "BeclVERfWbg" ]
+}
+```
+
+### Create a new Job Queue { #queues-add }
+To create a new queue send a POST request with a payload object having name, 
+CRON expression and the job sequence:
+
+    POST /api/scheduler/queues/{name}
+
+To create a queue with name `myQ` use a POST to `/api/scheduler/queues/myQ`:
+
+```json
+{
+  "cronExpression": "0 0 1 ? * *",
+  "sequence": ["FgAxa6eRSzQ", "BeclVERfWbg" ]
+}
+```
+A `name` can be present in the payload as well but name specified in the URL
+path takes precedence. 
+
+> **NOTE**
+>
+> The cron expression of all job configurations but the first in a queue is
+> cleared as they do not have a trigger on their own any longer. It needs to
+> be restored manually once a job is removed from a queue.
+
+### Update a Job Queue { #queues-update }
+To update an existing queue CRON expression or sequence use a PUT request   
+
+    PUT /api/scheduler/queues/{name}
+
+The payload has to state both new CRON expression and job sequence like in 
+the example above to create a new queue.
+
+### Delete a Job Queue { #queues-delete }
+To delete a job queue send a DELETE request to its resource URL:
+
+    DELETE /api/scheduler/queues/{name}
+
+> **NOTE**
+>
+> Deleting a queue does not delete any referenced job configurations. Any job
+> configuration that is removed from a queue either by changing the sequence or
+> deleting the queue is disabled. To use it individually supply a CRON 
+> expression and enable the configuration again.
+
+
+## Job Scheduler { #scheduler }
+The schedule within the scheduler is a list that is based on job configurations
+and job queues. Either an entry in the schedule is a simple job configuration,
+or it is a job queue. Both are represented using the same entry format.
+
+To get the scheduler listing use: 
+
+    GET /api/scheduler
+
+A job configuration in this list looks like this:
+
+```json
+  {
+    "name": "User account expiry alert",
+    "type": "ACCOUNT_EXPIRY_ALERT",
+    "cronExpression": "0 0 2 ? * *",
+    "nextExecutionTime": "2023-03-15T02:00:00.000",
+    "status": "SCHEDULED",
+    "enabled": true,
+    "configurable": false,
+    "sequence": [
+      {
+        "id": "fUWM1At1TUx",
+        "name": "User account expiry alert",
+        "type": "ACCOUNT_EXPIRY_ALERT",
+        "cronExpression": "0 0 2 ? * *",
+        "nextExecutionTime": "2023-03-15T02:00:00.000",
+        "status": "SCHEDULED"
+      }
+    ]
+  }
+```
+Most notably the `sequence` has only a single item. Information on top level
+object and the object in the `sequence` both originate from the job configuration.
+
+A job queue in the list looks like this:
+
+```json
+  {
+    "name": "myQ",
+    "type": "Sequence",
+    "cronExpression": "0 0 1 ? * *",
+    "nextExecutionTime": "2023-03-15T01:00:00.000",
+    "status": "SCHEDULED",
+    "enabled": true,
+    "configurable": true,
+    "sequence": [
+      {
+        "id": "FgAxa6eRSzQ",
+        "name": "test Q1",
+        "type": "ANALYTICS_TABLE",
+        "cronExpression": "0 0 1 ? * *",
+        "nextExecutionTime": "2023-03-15T01:00:00.000",
+        "status": "SCHEDULED"
+      },
+      {
+        "id": "BeclVERfWbg",
+        "name": "est Q2",
+        "type": "DATA_INTEGRITY",
+        "status": "SCHEDULED"
+      }
+    ]
+  }
+```
+The top level object originates from the queue and aggregate information.
+The objects within the sequence originate from the job configurations that are
+part of the sequence.
+
+### List Jobs Entries addable to a Job Queue { #queueable }
+Not all jon configurations can be added to a queue. 
+System jobs and jobs that are already part of a queue cannot be used in another 
+queue. To list job configurations that can be part of any queue use:
+
+    GET /api/scheduler/queueable
+
+To list job configurations that can be part of a particular queue use:
+
+    GET /api/scheduler/queueable?name={queue}
+
+This will also exclude all jobs that are already part the named queue.
