@@ -559,6 +559,9 @@ To trigger a summary analysis for a set of checks run:
 This triggers a job that runs the check(s) asynchronously. Individual check results
 will be returned to the application cache as soon as the check has completed.
 
+Alternatively the list of checks can also be given as BODY of the POST request.
+This can be useful if the list becomes to long to be used in the URL.
+
 To fetch the data integrity summary of the triggered check(s) use:
 
     GET /api/dataIntegrity/summary?checks=<name1>,<name2>
@@ -652,6 +655,8 @@ To run a selection of details checks first trigger them using a  `POST` request:
 
     POST /api/dataIntegrity/details?checks=<name1>,<name2>
 
+Similar to the summary the list of checks can also be given as the POST body.
+
 Then fetch the results from the cache using:
 
     GET /api/dataIntegrity/details?checks=<name1>,<name2>&timeout=500
@@ -716,6 +721,9 @@ The cache will store the result of each completed check for one hour.
 > checks with _element_ in the name use `checks=*element*`. Like full names 
 > such patterns can be used in a comma-separated list and be mixed with full 
 > names as well. Duplicates will be eliminated. 
+> Also a check can be given by its code. A code consists of the first letters
+> of each word in the name as upper case letter. 
+> For example, `orgunits_invalid_geometry` has the code `OIG`.
 
 Similar to the summary a set of names of the currently performed and the
 already completed details checks can be obtained using:
