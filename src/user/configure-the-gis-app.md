@@ -46,38 +46,13 @@ Step 1 - Convert geospatial data to GeoJSON format
 Skip this step if your data is already in GeoJSON format using geographic
 longitude/latitude.
 
-The recommended tool for geographical format conversions is called
-"ogr2ogr". This should be available for most Linux distributions
-`sudo apt-get install gdal-bin`. For Windows, go to
-<http://fwtools.maptools.org/>and download "FWTools", install it and open
-up the FWTools command shell. During the format conversion we also want
-to ensure that the output has the correct coordinate projection
-(called EPSG:4326 with geographic longitude and latitude). For a more
-detailed reference of geographic coordinates, please refer to this
-[site](http://www.epsg-registry.org/). If you have already reprojected
-the geographic data to the geographic latitude/longitude (EPSG:4326) system,
-there is no need to explicitly define the output coordinate system, assuming
-that `ogr2ogr` can determine the input spatial reference system. Note that
-most GeoJSON files use the EPSG:4326 system. You can determine the
-spatial reference system by executing the following command.
+Open the files dbf, prj, shp, shx with https://mapshaper.org/
 
-    ogrinfo -al -so filename.shp
-
-This command assumes your geospatial data is in ESRI Shapefile (.shp) format,
-but [several other formats are supported](https://gdal.org/drivers/vector/).
-
-Assuming that the projection is reported to be EPSG:27700 by `ogrinfo`,
-we can transform it to EPSG:4326 by executing the following
-command.
-
-    ogr2ogr -s_srs EPSG:27700 -t_srs EPSG:4326 -f GeoJSON filename.geojson filename.shp
-
-If the geographic data is already in EPSG:4326, you can simply transform
-the shapefile to GeoJSON by executing the following command.
-
-    ogr2ogr -f GeoJSON filename.geojson filename.shp
-
-You will find the created GeoJSON file in the same folder as the shapefile.
+Click on _Console_ and enter the following command "-prj wgs84", then press 
+enter. This ensures that the coordinates are in WGS84 format. It could be
+the case that the current coordinates are in a format which cannot be processed
+by DHIS2, giving you the following error when trying to display a map (the import
+will be successful though)
 
 Step 2 - Simplify/generalize your geographical data
 
@@ -95,14 +70,12 @@ removing some of the line points. This generalization will
 lead to degradation of the polygon. However, after
 a bit of experimentation, an optimal level of generalization can be
 found, where the accuracy of the polygon is visually acceptable, and the
-performance is optimal. Make a backup of your files
-before you start. One possible method is the use of
-[MapShaper](http://www.mapshaper.org/) which is an online tool which can
-be used to generalize geographical data. To use MapShaper, simply upload
-your files to the site. Then, click on _Simplify_ in the top menu and
+performance is optimal. 
+
+In https://mapshaper.org/, click on _Simplify_ in the top menu and
 select a simplification method. A slider will show at the top of the screen
 that starts at 100%. It is usually acceptable to drag it up to about 30%.
-When you are happy with the result, click "Export" in the top right
+When you are happy with the result, click _Export_ in the top right
 corner. Select the "GeoJSON" file format and click the Export button to
 download the file. Move on to the next step with your new simplified
 GeoJSON file.
@@ -166,66 +139,16 @@ has a too small varchar definition. Increase it to 100.
 \- Wrongly formatted input GeoJSON, use [GeoJSONLint](https://geojsonlint.com/)
 to test the content.
 
-## Importing coordinates in GML format { #gis_creating_setup }
+Step 4 - Convert to GML format 
 
-Step 1 - Simplify/generalize your geographical data
+Go to https://mygeodata.cloud/converter/ and import the GeoJson file.
 
-The boundaries in geographical data files are usually very accurate, too
-much so for the needs of a web-based GIS. This usually does not affect
-the performance when using GIS files on a local system, but it is
-usually necessary to optimize the geographical data for the web-based
-GIS system of DHIS2. All geographical data needs to be downloaded from
-the server and rendered in a browser, so if the data is overly complex,
-the performance of the DHIS2 Maps will be negatively impacted. This
-optimization process can be described as follows:
+Select GML as output data and click on “Convert now”.
 
-For polygons, we can make the boundary lines less detailed by
-removing some of the line points. This generalization will
-lead to degradation of the polygon. However, after
-a bit of experimentation, an optimal level of generalization can be
-found, where the accuracy of the polygon is visually acceptable, and the
-performance is optimal. Make a backup of your shapefiles
-before you start. One possible method is the use of
-[MapShaper](http://www.mapshaper.org/) which is an online tool which can
-be used to generalize geographical data. To use MapShaper, simply upload your files to the site. Then, click on Simplify in the top menu and select a simplification method. A slider will show at the top of the screen that starts at 100%. It is usually acceptable to drag it up to about 30%. When you are happy with the result, click "Export" in the top right corner. Select GeoJSON file format and click the Export button to download the file to your computer.
-
-Step 2 - Convert to GML
-
-The recommended tool for geographical format conversions is called
-"ogr2ogr". This should be available for most Linux distributions `sudo apt-get install gdal-bin`. For Windows, go to <http://fwtools.maptools.org/> and download
-"FWTools", install it and open up the FWTools command shell. During the
-format conversion we also want to ensure that the output has the correct
-coordinate projection (called EPSG:4326 with geographic longitude and
-latitude). For a more detailed reference of geographic coordinates,
-please refer to this [site](http://www.epsg-registry.org/). If you have
-already reprojected the geographic data to the geographic
-latitude/longitude (EPSG:4326) system, there is no need to explicitly
-define the output coordinate system, assuming that `ogr2ogr` can
-determine the input spatial reference system. Note that most shapefiles
-are using the EPSG:4326 system. You can determine the spatial reference
-system by executing the following command.
-
-    ogrinfo -al -so filename.json
-
-Assuming that the projection is reported to be EPSG:27700 by `ogrinfo`,
-we can transform it to EPSG:4326 by executing the following
-command.
-
-    ogr2ogr -s_srs EPSG:27700 -t_srs EPSG:4326 -f GML filename.gml filename.json
-
-If the geographic data is already in EPSG:4326, you can simply transform
-the shapefile to GML by executing the following command.
-
-    ogr2ogr -f GML filename.gml filename.json
-
-You will find the created GML file in the same folder as the shapefile.
-
-Step 3 - Prepare the GML file
-
-Unfortunately, the GML file is not ready for importation yet. Open it in
-a robust text editor like Geany (Linux) or Notepad++ (Windows). GML is
-an XML based format which means that you will recognize the regular XML
-tag hierarchy. In the GML file an organisation unit is represented as a
+If you haven't added a UID identifier in the GeoJSON file, you can still do it
+in the GML file. Open it in a robust text editor like Geany (Linux) or 
+Notepad++ (Windows). GML is an XML based format which means that you will recognize 
+the regular XML tag hierarchy. In the GML file an organisation unit is represented as a
 \<gml:featureMember\>. Inside the feature members we usually find a lot
 of attributes, but we are just going to import their coordinates.
 
