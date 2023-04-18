@@ -686,7 +686,7 @@ oidc.provider.google.client_secret = my client secret
 # [Optional] Authorized redirect URI, the same as set in the Google developer console 
 # If your public hostname is different from what the server sees internally, 
 # you need to provide your full public url, like the example below.
-oidc.provider.google.redirect_url = https://mydhis2-server.org/oauth2/code/goole
+oidc.provider.google.redirect_url = https://mydhis2-server.org/oauth2/code/google
 
 # [Optional] Where to redirect after logging out.
 # If your public hostname is different from what the server sees internally, 
