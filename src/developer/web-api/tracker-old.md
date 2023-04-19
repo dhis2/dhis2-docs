@@ -1,4 +1,4 @@
-# Tracker (Old)
+# Tracker (old)
 
 > **Note**
 >Tracker has been re-implemented in [New Tracker - DHIS2 Documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/new-tracker.html).

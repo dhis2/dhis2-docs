@@ -1,4 +1,4 @@
-# New Tracker
+# Tracker
 
 Version 2.36 of DHIS2 introduced a set of new tracker endpoints dedicated to importing and querying tracker objects (including tracked entities, enrollments, events, and relationships).
 These new endpoints set a discontinuity with earlier implementations. Re-engineering the endpoints allowed developers to improve, redesign, and formalize the API's behavior to improve the tracker services.
