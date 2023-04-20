@@ -1,13 +1,13 @@
-# Tracker (old)
+# Tracker (deprecated APIs)
 
 > **Note**
->Tracker has been re-implemented in [New Tracker - DHIS2 Documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/new-tracker.html).
+>Tracker has been re-implemented in [Tracker - DHIS2 Documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html).
 >
 >This version of the endpoints is in maintenance mode and does not receive any
 >new features. Important bugs on the endpoints will still be fixed.
 >
 >* If you are using the tracker endpoints in your implementation, it is
->  advisable to use the new version at [New Tracker - DHIS2 Documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/new-tracker.html)
+>  advisable to use the new version at [Tracker - DHIS2 Documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html)
 >* If you already use the tracker endpoints in production, please plan to
 >  migrate over to the new version. Reach out on the [community of practice](https://community.dhis2.org)
 >  if you need any assistance. NOTE: The feature for data sync(importMode=SYNC)
