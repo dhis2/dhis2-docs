@@ -976,7 +976,7 @@ Table: Variables to use in a program indicator expression or filter
 | current_date | The current date. |
 | value_count | The number of non-null values in the expression part of the event. |
 | zero_pos_value_count | The number of numeric positive values in the expression part of the event. |
-| event_count | The count of events (useful in combination with filters). |
+| event_count | The count of events (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
 | enrollment_count | The count of enrollments (useful in combination with filters). Aggregation type for the program indicator must be COUNT.  |
 | tei_count | The count of tracked entity instances (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
 | org_unit_count | The count of organisation units (useful in combination with filters). Aggregation type for the program indicator must be COUNT. |
@@ -985,6 +985,8 @@ Table: Variables to use in a program indicator expression or filter
 | analytics_period_start | Can be used in filters or expressions for comparing any date to the first date in each reporting period.<br> `d2:daysBetween(#{WZbXY0S00lP.w4ky6EkVahL}, V{analytics_period_start})` |
 | analytics_period_end | Can be used in filters or expressions for comparing any date to the last inclusive date in each reporting period. |
 | event_status | Can be used in filters or expressions for comparing event status.<br> `V{event_status} == 'COMPLETED'` |
+| completed_date | Contains completion date of the event. If the event is not yet complete, then "completed_date" contains nothing. |
+
 
 A filter that uses the "Analytics period end" variable to only include
 women who has an LMP that would be in the first
