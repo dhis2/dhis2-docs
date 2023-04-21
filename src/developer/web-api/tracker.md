@@ -1,90 +1,31 @@
 # Tracker
 
-Version 2.36 of DHIS2 introduced a set of new tracker endpoints dedicated to importing and querying tracker objects (including tracked entities, enrollments, events, and relationships).
-These new endpoints set a discontinuity with earlier implementations. Re-engineering the endpoints allowed developers to improve, redesign, and formalize the API's behavior to improve the tracker services.
-
-The newly introduced endpoints consist of:
-
-* `POST /api/tracker`
-* `GET  /api/tracker/enrollments`
-* `GET  /api/tracker/events`
-* `GET  /api/tracker/trackedEntities`
-* `GET  /api/tracker/relationships`
-
-> **NOTE**
->
-> - The old endpoints are marked as deprecated but still work as before.
-> - Tracker sync is not yet implemented and currently only supported by the old endpoints. All other
->   functionality is production ready.
-
-## Changes in the API
-
-Property names used in the API have changed to use consistent naming across all the new endpoints.
-
-### Tracker Import changelog (`POST`)
-
-The following table highlights the differences between the previous tracker import endpoints (/api/trackedEntityInstance, /api/enrollments, /api/events and /api/relatiosnhips) and the new endpoint (/api/tracker). All endpoints are still currently available.
-
-|Tracker Object|Previously|Now|
-|---|---|---|
-|**Attribute**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
-|**DataValue**|`created`<br>`lastUpdated`<br>`createByUserInfo`<br>`lastUpdatedByUserInfo`|`createdAt`<br>`updatedAt`<br>`createdBy`<br>`updatedBy`|
-|**Enrollment**|`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`trackedEntityInstance`<br>`enrollmentDate`<br>`incidentDate`<br>`completedDate`<br>`createByUserInfo`<br>`lastUpdatedByUserInfo`|`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`trackedEntity`<br>`enrolledAt`<br>`occurredAt`<br>`completedAt`<br>`createdBy`<br>`updatedBy`|
-|**Event**|`trackedEntityInstance`<br>`eventDate`<br>`dueDate`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`completedDate`<br>`createByUserInfo`<br>`lastUpdatedByUserInfo`<br>`assignedUser`*|`trackedEntity`<br>`occurredAt`<br>`scheduledAt`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`completedAt`<br>`createdBy`<br>`updatedBy`<br>`assignedUser`*|
-|**Note**|`storedDate`<br>`lastUpdatedBy`|`storedAt`<br>`createdBy`|
-|**ProgramOwner**|`ownerOrgUnit`<br>`trackedEntityInstance`|`orgUnit`<br>`trackedEntity`|
-|**RelationshipItem**|`trackedEntityInstance.trackedEntityInstance`<br>`enrollment.enrollment`<br>`event.event`|`trackedEntity`<br>`enrollment`<br>`event`|
-|**Relationship**|`created`<br>`lastUpdated`|`createdAt`<br>`updatedAt`|
-|**TrackedEntity**|`trackedEntityInstance`<br>`created`<br>`createdAtClient`<br>`lastUpdated`<br>`lastUpdatedAtClient`<br>`createByUserInfo`<br>`lastUpdatedByUserInfo`|`trackedEntity`<br>`createdAt`<br>`createdAtClient`<br>`updatedAt`<br>`updatedAtClient`<br>`createdBy`<br>`updatedBy`|
-
 > **Note**
+>Tracker has been re-implemented in DHIS2 2.36. This document describes the new tracker endpoints
 >
->Field `assignedUser` was a String before, now it is of type User:
->```json
->{
->   "assignedUser": {
->     "uid": "ABCDEF12345",
->     "username": "username",
->     "firstName": "John",
->     "surname": "Doe"
->   }
->}
->```
-
-### Tracker Export changelog (`GET`)
-
-The `GET` endpoints all conform to the same naming conventions reported in the previous paragraph. Additionally, we made some changes regarding the request parameters to respect the same naming conventions here as well.
-
-These tables highlight the old endpoint differences in request parameters for `GET` endpoints compared to the new
-
-#### Request parameter changes for `GET /api/tracker/enrollments`
-|Previously|Now|
-|---|---|
-|`ou`|`orgUnit`|
-|`lastUpdated`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedWithin`|
-|`programStartDate`<br>`programEndDate`|`enrolledAfter`<br>`enrolledBefore`|
-|`trackedEntityInstance`|`trackedEntity`|
-
-#### Request parameter changes for `GET /api/tracker/events`
-|Previously|Now|
-|---|---|
-|`trackedEntityInstance`|`trackedEntity`|
-|`startDate`<br>`endDate`|`occurredAfter`<br>`occurredBefore`|
-|`dueDateStart`<br>`dueDateEnd`|`scheduledAfter`<br>`scheduledBefore`|
-|`lastUpdated`|Removed - obsolete, see: <br><ul><li>`updatedAfter`</li><li>`updatedBefore`</li></ul>|
-|`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
-
-#### Request parameter changes for `GET /api/tracker/trackedEntities`
-|Previously|Now|
-|---|---|
-|`trackedEntityInstance`|`trackedEntity`|
-|`ou`|`orgUnit`|
-|`programStartDate`<br>`programEndDate`|Removed - obsolete, see <br><ul><li>`enrollmentEnrolledAfter`</li><li>`enrollmentEnrolledBefore`</li></ul>|
-|`programEnrollmentStartDate`<br>`programEnrollmentEndDate`|`enrollmentEnrolledAfter`<br>`enrollmentEnrolledBefore`|
-|`programIncidentStartDate`<br>`programIncidentEndDate`|`enrollmentOccurredAfter`<br>`enrollmentOccurredBefore`|
-|`eventStartDate`<br>`eventEndDate`|`eventOccurredAfter`<br>`eventOccurredBefore`|
-|`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
-
+> * `POST /api/tracker`
+> * `GET  /api/tracker/enrollments`
+> * `GET  /api/tracker/events`
+> * `GET  /api/tracker/trackedEntities`
+> * `GET  /api/tracker/relationships`
+>
+>[Tracker
+>(deprecated)](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-old.html)
+>describes the deprecated endpoints
+>
+> * `GET/POST/PUT/DELETE /api/trackedEntityInstance`
+> * `GET/POST/PUT/DELETE /api/enrollments`
+> * `GET/POST/PUT/DELETE /api/events`
+> * `GET/POST/PUT/DELETE /api/relationships`
+>
+>* If you already use the tracker endpoints in production, please plan to migrate over to the new
+>  version. [Migrating to new tracker
+>  endpoints](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-old.html#webapi_tracker_migration)
+>  should help you get started. Reach out on the [community of
+>  practice](https://community.dhis2.org) if you need further assistance. NOTE: The feature for data
+>  sync(importMode=SYNC) is not implemented in the
+>  new tracker endpoints, and if you are using this feature you will have to postpone the migration
+>  until a new SYNC feature is in place.
 
 ## Tracker Objects { #webapi_nti_tracker_objects }
 
