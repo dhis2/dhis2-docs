@@ -10,7 +10,7 @@
 > * `GET  /api/tracker/relationships`
 >
 >[Tracker
->(deprecated)](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-old.html)
+>(deprecated)](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-deprecated.html)
 >describes the deprecated endpoints
 >
 > * `GET/POST/PUT/DELETE /api/trackedEntityInstance`
@@ -18,14 +18,13 @@
 > * `GET/POST/PUT/DELETE /api/events`
 > * `GET/POST/PUT/DELETE /api/relationships`
 >
->* If you already use the tracker endpoints in production, please plan to migrate over to the new
->  version. [Migrating to new tracker
->  endpoints](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-old.html#webapi_tracker_migration)
+>* If your are still using the deprecated tracker endpoints in production, please plan to migrate
+>  over to the new endpoints. [Migrating to new tracker
+>  endpoints](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-deprecated.html#webapi_tracker_migration)
 >  should help you get started. Reach out on the [community of
 >  practice](https://community.dhis2.org) if you need further assistance. NOTE: The feature for data
->  sync(importMode=SYNC) is not implemented in the
->  new tracker endpoints, and if you are using this feature you will have to postpone the migration
->  until a new SYNC feature is in place.
+>  sync(importMode=SYNC) is not implemented in the new tracker endpoints, and if you are using this
+>  feature you will have to postpone the migration until a new SYNC feature is in place.
 
 ## Tracker Objects { #webapi_nti_tracker_objects }
 
@@ -1170,25 +1169,16 @@ To use this feature, the relevant program stage needs to have user assignment en
 
 ## Tracker Export { #webapi_nti_export }
 
-Tracker export endpoints are a set of services that allow clients to query and retrieve objects stored using the import endpoint.
+Tracker export endpoints allow you to retrieve the previously imported objects which are:
 
-Besides differences highlighted in **[Changes in the API](#Changes-in-the-API)**, request parameters for these endpoints match older ones.
-
-These endpoints are still being developed and are subject to change. However, 
-the `request` and `response` interfaces will most likely not undergo significant changes.
-
-Tracker export endpoints deal with the following Tracker objects:
-
-- **Tracked Entities**
-- **Events**
-- **Enrollments**
-- **Relationships**
+- **tracked entities**
+- **events**
+- **enrollments**
+- **relationships**
 
 > **NOTE**
 >
-> - All these endpoints currently support `JSON`, `CSV` is only supported by only Tracked Entities and Events.
->
-> - These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)**
+> - All these endpoints currently support `JSON`. `CSV` is only supported by tracked entities and events.
 
 ### Common request parameters
 
