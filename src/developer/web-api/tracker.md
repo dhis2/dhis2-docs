@@ -1169,25 +1169,16 @@ To use this feature, the relevant program stage needs to have user assignment en
 
 ## Tracker Export { #webapi_nti_export }
 
-Tracker export endpoints are a set of services that allow clients to query and retrieve objects stored using the import endpoint.
+Tracker export endpoints allow you to retrieve the previously imported objects which are:
 
-Besides differences highlighted in **[Changes in the API](#Changes-in-the-API)**, request parameters for these endpoints match older ones.
-
-These endpoints are still being developed and are subject to change. However, 
-the `request` and `response` interfaces will most likely not undergo significant changes.
-
-Tracker export endpoints deal with the following Tracker objects:
-
-- **Tracked Entities**
-- **Events**
-- **Enrollments**
-- **Relationships**
+- **tracked entities**
+- **events**
+- **enrollments**
+- **relationships**
 
 > **NOTE**
 >
-> - All these endpoints currently support `JSON`, `CSV` is only supported by only Tracked Entities and Events.
->
-> - These endpoints adopt the new naming convention documented in **[Changes in the API](#Changes-in-the-API)**
+> - All these endpoints currently support `JSON`. `CSV` is only supported by tracked entities and events.
 
 ### Common request parameters
 
