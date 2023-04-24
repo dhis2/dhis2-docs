@@ -9,12 +9,12 @@
 >
 >* If you plan to use the tracker endpoints use the new version described in
 >  [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html)
->* If you already use the tracker endpoints in production, please plan to migrate over to the new
->  version. [Migrating to new tracker endpoints](#webapi_tracker_migration) should help you get
->  started. Reach out on the [community of practice](https://community.dhis2.org) if you need
->  further assistance. NOTE: The feature for data sync(importMode=SYNC) is not implemented in the
->  new tracker endpoints, and if you are using this feature you will have to postpone the migration
->  until a new SYNC feature is in place.
+>* If you are still using the deprecated tracker endpoints in production, please plan to migrate
+>  over to the new endpoints. [Migrating to new tracker endpoints](#webapi_tracker_migration) should
+>  help you get started. Reach out on the [community of practice](https://community.dhis2.org) if
+>  you need further assistance. NOTE: The feature for data sync(importMode=SYNC) is not implemented
+>  in the new tracker endpoints, and if you are using this feature you will have to postpone the
+>  migration until a new SYNC feature is in place.
 
 ## Migrating to new tracker endpoints { #webapi_tracker_migration }
 
