@@ -300,6 +300,9 @@ Table: Payload
 | programStageQueryCriteria | An object representing various possible filtering values. See *Program Stage Query Criteria* definition table below.
 
 Table: Program Stage Query Criteria
+
+| Criteria values | Description | Example |
+|---|---|---|
 | status | The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED | "status":"VISITED" |
 | eventCreatedAt | DateFilterPeriod object filtering based on the event creation date. | {"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"} |
 | scheduledAt | DateFilterPeriod object filtering based on the event scheduled date. | {"type":"RELATIVE","period":"TODAY"} |
