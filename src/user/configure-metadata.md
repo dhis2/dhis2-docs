@@ -4268,6 +4268,8 @@ sampled. For example:
         | least(expression [, expression ...]) | Returns the least (lowest) value of the expressions given. Can be provided any number of arguments. |
         | log(expression [, base ]) | Returns the natural logarithm (base e) of the numeric expression. If an integer is given as a second argument, returns the logarithm using that base. |
         | log10(expression) | Returns the common logarithm (base 10) of the numeric expression. |
+        | normDistCum(x [,mean [,stddev]]) | Returns the cumulative distribution function (CDF) value for x given the normalized distribution described by the mean and stddev. Equivalent to Excel NORM.DIST(x,mean,stddev,TRUE) or LibreOffice NORMDIST(x,mean,stddev,1). If stddev is not given, it is computed from past sampled values of x. If neither mean nor stddev are given, they are computed from past sampled valeus of x. See examples. |
+        | normDistDen(x [,mean [,stddev]]) | Returns the probability density function (PDF) value for x given the normalized distribution described by the mean and stddev. Equivalent to Excel NORM.DIST(x,mean,stddev,FALSE) or LibreOffice NORMDIST(x,mean,stddev,0). If stddev is not given, it is computed from past sampled values of x. If neither mean nor stddev are given, they are computed from past sampled valeus of x. See examples. |
         | null | Returns no result. For example, _if( #{FH8ab5Rog83}<0, null, 1 )_ returns nothing if the data element value is less than 0, otherwise 1. |
         | orgUnit.ancestor(orgUnitUid [, orgUnitUid ...]) | Returns true if the organisation unit is a descendant of any of the (1 or more) organisation units, otherwise false. |
         | orgUnit.dataSet(dataSetUid [, dataSetUid ...]) | Returns true if the organisation unit is assigned to any of the (1 or more) data sets, otherwise false. |
@@ -4281,11 +4283,11 @@ sampled. For example:
         to **true** or **false**. The following operators may be used to
         compare two values resulting in a boolean expression: \<, \>,
         \!=, ==, \>=, and \<=. The following operators may be used to
-        combine two boolean expressions: && (logical and), and ||
-        (logical or). The unary operator \! may be used to negate a
+        combine two boolean expressions: && or the keyword _and_ (logical and), and || or the keyword _or_
+        (logical or). The unary operator \! or the keyword _not_ may be used to negate a
         boolean expression.
     
-        Generator expression examples:
+        **Generator expression examples:**
 
 
         | Generator expression | Means |
@@ -4299,6 +4301,12 @@ sampled. For example:
         | if(is(#{jeiTh8ahyae} in 'NEGATIVE','UNKNOWN'), 0, 1) | If the data element jeiTh8ahyae has value 'NEGATIVE' or 'UNKNOWN' then 0, otherwise 1 |
         | percentileCont(0.5, #{T7OyqQpUpNd}) | Continuous 50th percentile of the sampled values for data element T7OyqQpUpNd. Note that this is the same as median(#{T7OyqQpUpNd}) |
         | if(count(#{T7OyqQpUpNd}) == 1, 0, stddevSamp(#{T7OyqQpUpNd})) | If there is one sample value present for data element T7OyqQpUpNd, then 0, otherwise the sample standard deviation of these sample values. (Note that if no samples are present then the stddevSamp returns no value, so no value is predicted.) |
+        | normDistCum(#{T7OyqQpUpNd}) | The cumulative distribution function for the current period value of data element T7OyqQpUpNd based on the normalized distribution defined by the mean and standard deviation of past sampled periods of data element T7OyqQpUpNd |
+        | normDistCum( #{T7OyqQpUpNd}, median(#{T7OyqQpUpNd}) ) | The cumulative distribution function for the current period value of data element T7OyqQpUpNd based on the distribution defined by the median (instead of the mean) and standard deviation of past sampled periods of data element T7OyqQpUpNd |
+        | normDistCum( #{T7OyqQpUpNd}, median(#{T7OyqQpUpNd}) ) | The cumulative distribution function for the current period value of data element T7OyqQpUpNd based on the distribution defined by the median (instead of the mean) and standard deviation of past sampled periods of data element T7OyqQpUpNd |
+        | normDistCum( #{T7OyqQpUpNd}, avg(#{T7OyqQpUpNd}), stddev(#{T7OyqQpUpNd}) ) | Same as normDistCum( #{T7OyqQpUpNd} ) |
+        | normDistDen( #{T7OyqQpUpNd}, avg(#{IKahz1Quie3}), stddev(#{IKahz1Quie3}) ) | The probability density function for the current period value of data element T7OyqQpUpNd based on the distribution defined by the mean and standard deviation of past sampled periods of the different data element IKahz1Quie3 |
+        | normDistDen( median(#{T7OyqQpUpNd}), avg(#{IKahz1Quie3}), stddev(#{IKahz1Quie3}) ) | The probability density function for the median of past sampled values of data element T7OyqQpUpNd based on the distribution defined by the mean and standard deviation of past sampled periods of the different data element IKahz1Quie3 |
         | #{T7OyqQpUpNd}.minDate(2022-10-1) | Value on or after 1-Oct-2022 |
         | #{T7OyqQpUpNd}.maxDate(2022-12-31) | Value on or before 31-Dec-2022 |
         | #{T7OyqQpUpNd}.minDate(2022-10-1).maxDate(2022-12-31) | Value bewteen 1-Oct-2022 and 31-Dec-2022 |
