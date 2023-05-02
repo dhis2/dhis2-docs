@@ -4357,9 +4357,9 @@ sampled. For example:
 
 ### Predictions by Data Element Group { #predictions_by_data_element_group }
 
-You can use a special generator syntax to run a predictor independently for each data element in a data element group.
-This can be used, for example, in logistics management when a data element is used for each commodity and a category option combination is used for each count related to that commodity.
-This allows one predictor to operate on all the data elements in a group instead of requiring a different predictor for each data element. The syntax is:
+You can use a single predictor to operate on all the data elements in a group instead of a different predictor for each data element. This can be used, for example, in logistics management when a data element is used for each commodity and a category option combination is used for each count related to that commodity.
+
+The syntax is:
 
 <pre><code>forEach ?de in :DEG:degUid --> main expression</code></pre>
 
@@ -4368,11 +4368,11 @@ where:
 | part | means |
 |---|---|
 | forEach | required keyword at the start of the expression |
-| ?de | a variable name starting with '?', then one letter, then optionally any number of additional letters or digits (case sensitive) |
+| ?_de_ | any variable name starting with '?', then one letter, then optionally any number of additional letters or digits (case sensitive). Examples: ?de, ?X, ?dataElement, etc. |
 | in | required keyword |
-| :DEG:degUid | the notation :DEG: followed by the UID of the data element group containing the data elements to be processed |
+| :DEG:_degUid_ | the notation :DEG: followed by the UID of the data element group containing the data elements to be processed |
 | --> | required before the main expression |
-| main expression | the expression to operate on each data element in the group. Within this expression you can use the variable name (such as ?de) as a placeholder for each data element |
+| _main expression_ | the expression to operate on each data element in the group. Within this expression use the variable name (such as ?de) as a placeholder for each data element |
 
 The predictor will execute once for each data element in the data element group.
 For each data element, instances of the variable in the main expression are replaced by that data element. The same data element is also used as the predictor output data element.
