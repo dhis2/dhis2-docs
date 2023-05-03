@@ -1615,9 +1615,13 @@ For more information about configuration and the meaning of 'From constraint' an
 
 8. (Optional) Provide **Relationship name seen from receiving entity**. This is the name of the relationship that will be shown at the 'right' side of the relationship in the Data Entry app. E.g. in a Mother-child relationship this could be 'Mother'.
 
-9.  Select a 'From constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](#relationship_model_relationship_type).
+9.  Select a 'From constraint'. This limits what kind of entities can be included in the relationship. [Relationship model](#relationship_model_relationship_type). After selecting a 'From constraint', you have the option to choose which attributes or data elements should be shown in the relationship widget in Tracker Capture and Capture for the "From constraint". The list will vary based on the constraint:
+    * When selecting “Tracked Entity Instance”, then a Tracked Entity Type only, choose between the configured Tracked Entity Type Attributes
+    * When selecting “Tracked Entity Instance”, then a Tracked Entity Type and a Program, choose between the the attributes that have been configured for both the Tracked Entity Type and for the Program
+    * When selecting “Enrollment in program”, choose between the attributes that have been configured for the Program
+    * When selecting “Event in program or program stage”, choose between the data elements that have been configured for that Event program or Program stage
 
-10. Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](#relationship_model_relationship_type).
+10. Select a 'To constraint'. This limits what kind of entities that can be included in the relationship. [Relationship model](#relationship_model_relationship_type). Repeat the selection of attributes or data elements that should be shown in the relationship widget for the "To constraint".
 
 11. Click **Save**.
 
