@@ -10,7 +10,7 @@ key `event_hooks.enabled = on` to work.
 There are 2 main concept for event hooks, you need to configure the source (which includes the path,
 and the field filters to apply) and one or multiple targets (webhooks, JMS etc).
 
-To illustrate some of these points we will go through a simple webhook that listens on metadata changes for dataElements. And havd a webhook target enabled.
+To illustrate some of these points we will go through a simple webhook that listens on metadata changes for dataElements. And have a webhook target enabled.
 
 ```json
 {
