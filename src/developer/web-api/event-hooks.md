@@ -55,7 +55,7 @@ payloads themselves will look different basdd on that.
 
 #### Console
 
-The `console` target is the simplest target we have, it has no parameter and all it does it to print the events to the system log (can be nice when testing)
+The `console` target is the simplest target we have, it has no parameter and all it does is to print the events to the system log (can be nice when testing)
 
 ```json
 {
