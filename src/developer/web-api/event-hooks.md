@@ -65,7 +65,7 @@ The `console` target is the simplest target we have, it has no parameter and all
 
 #### Webhook
 
-The `webhook` target send a outgoing http requuest the your target `url`.
+The `webhook` target send a outgoing http request the your target `url`.
 Optionally it can include authentication (both `api-token` and `http-basic`) supported out of the box. But you can also add any headers you want if you have any custom needs. The payload will be sent as `application/json` and the content
 will depend on your field filters you set in the source.
 
