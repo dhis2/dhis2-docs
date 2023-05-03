@@ -51,7 +51,7 @@ want. To keep things light it's not recommended to request too big of a payload 
 
 After you have `source` prepared (including path and filters) you must now
 setup one or more targets. All targets require the `type` property, and then the
-payloads themselves will look different basdd on that.
+payloads themselves will look different based on that.
 
 #### Console
 
