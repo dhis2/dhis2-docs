@@ -16,7 +16,7 @@ is not reserved, no specific access is required to use it.
 Note that there are reserved namespaces used by the system that require 
 special authority to be able to read or write entries. 
 For example the namespace for the android settings app `ANDROID_SETTINGS_APP`
-will require `F_METADATA_MANAGE` authority.
+will require the `M_androidsettingsapp` authority.
 
 ### Data store structure { #webapi_data_store_structure } 
 
