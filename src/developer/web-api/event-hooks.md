@@ -13,7 +13,7 @@ and the field filters to apply) and one or multiple targets (webhooks, JMS etc).
 To illustrate some of these points we will go through a simple webhook that listens on metadata changes for dataElements. And have a webhook target enabled.
 
 Outside of `source` and `target` there are 2 properties that you should be aware of, the `name` which is used for a visual hint when looking in the UI, and `disabled` which by default
-is enabled but does temporarily allow you to disable certain event hooks that might not be relevant right now.
+is enabled but does temporarily allow you to disable certain event hooks that might not be relevant in the moment.
 
 ```json
 {
