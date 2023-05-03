@@ -165,6 +165,7 @@ you want the token to have if you plan on using PAT tokens in a non-secure and/o
 e.g. on a PC or server, you don't have 100% control over, or "embedded" in a webpage on another server.
 
 #### The different constraint types are as follows:
+
 * Expiry time
 * Allowed IP addresses
 * Allowed HTTP methods
