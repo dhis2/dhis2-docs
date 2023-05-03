@@ -95,7 +95,7 @@ will depend on your field filters you set in the source.
 
 #### Apache Artemis JMS
 
-The `jms` target allows you to send JMS message to your Apache Artemis instance (JMS 2/3 supported). This target is great for doing async handling of these events, and to not have the server block while processing. If you prefer using a `queue` instead you can set `useQueue` to `true`.
+The `jms` target allows you to send JMS messages to your Apache Artemis instance (JMS 2/3 supported). This target is great for doing async handling of these events, and to not have the server block while processing. If you prefer using a `queue` instead you can set `useQueue` to `true`.
 
 ```json
 {
