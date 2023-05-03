@@ -109,7 +109,7 @@ The `jms` target allows you to send JMS messages to your Apache Artemis instance
 
 #### Apache Kafka
 
-Simlar to the `jms` target, using the `kafka` target allows you to these events into a Apache Kafka instance. Authentication is not yet supported.
+Simlar to the `jms` target, using the `kafka` target allows you to send these events into an Apache Kafka instance. Authentication is not yet supported.
 
 ```json
 {
