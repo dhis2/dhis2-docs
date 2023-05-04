@@ -4361,7 +4361,7 @@ You can use a single predictor to operate on all the data elements in a group in
 
 The syntax is:
 
-<pre><code>forEach ?de in :DEG:degUid --> main expression</code></pre>
+    forEach ?de in :DEG:degUid --> main expression
 
 where:
 
@@ -4382,7 +4382,7 @@ The predictor must be configured with an output data element, but it is effectiv
 It is suggested that you configure the predictor with one of the data elements in the data element group that the predictor will use.
 That way you can select a valid output category option combination for that data element.
 
-At the time you create the predictor, the data element group must contain at least one data element of the type that you will use. (The data type of the data element is used during syntax checking of the predictor.)
+At the time the predictor is created, the data element group must contain at least one data element of the type that you will use. (The data type of the data element is used during syntax checking of the predictor.)
 
 #### Example 1
 
