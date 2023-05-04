@@ -4194,9 +4194,9 @@ sampled. For example:
     more than four digits to the left of the decimal place, they are not
     replaced with zeros.)
 
-7.  (Optional) Select an **Output category combo**. This dropdown will only show
-    if the selected data element has categoryCombos attached to it. If this is
-    the case, you can select which categoryCombo you would like to use.
+7.  (Optional) Select an **Output category option combo**. This dropdown will only show
+    if the selected data element has a non-default category combination.
+    If so, you can select which category option combo (disaggregation) you would like to output to.
 
 8.  Select a **Period type**.
 
@@ -4354,6 +4354,88 @@ sampled. For example:
     predicted value period, should be skipped before sampling the data.
 
 16. Click **Save**.
+
+### Predictions by Data Element Group { #predictions_by_data_element_group }
+
+You can use a single predictor to operate on all the data elements in a group instead of a different predictor for each data element. This can be used, for example, in logistics management when a data element is used for each commodity and a category option combination is used for each count related to that commodity.
+
+The syntax is:
+
+    forEach ?de in :DEG:degUid --> main expression
+
+where:
+
+| part | means |
+|---|---|
+| forEach | required keyword at the start of the expression |
+| ?_de_ | any variable name starting with '?', then one letter, then optionally any number of additional letters or digits (case sensitive). Examples: ?de, ?X, ?dataElement, etc. |
+| in | required keyword |
+| :DEG:_degUid_ | the notation :DEG: followed by the UID of the data element group containing the data elements to be processed |
+| --> | required before the main expression |
+| _main expression_ | the expression to operate on each data element in the group. Within this expression use the variable name (such as ?de) as a placeholder for each data element |
+
+The predictor will execute once for each data element in the data element group.
+For each data element, instances of the variable in the main expression are replaced by that data element. The same data element is also used as the predictor output data element.
+The predicted value will be written to that data element using the configured output category option combination.
+
+The predictor must be configured with an output data element, but it is effectively ignored when the predictor is run.
+It is suggested that you configure the predictor with one of the data elements in the data element group that the predictor will use.
+That way you can select a valid output category option combination for that data element.
+
+At the time the predictor is created, the data element group must contain at least one data element of the type that you will use. (The data type of the data element is used during syntax checking of the predictor.)
+
+#### Example 1
+
+You have data elements that represent various commodities, all belonging to a data element group with UID <code>aIMu0nieph7</code>.
+
+You have category option combinations with the following UIDs:
+
+| category option combo | means |
+|---|---|
+| <code>Gvoecom5muL</code> | Stock balance at start of period |
+| <code>CWa6eew5uco</code> | Restock during period |
+| <code>nthohhie8Ba</code> | Used during period |
+| <code>Faey8Iphooy</code> | Lost, damaged, expired, or stolen during period |
+
+The following predictor generator expression will compute the stock balance at the beginning of the next period as ( starting balance + restock - used - lost ):
+
+<pre><code>forEach ?de in :DEG:aIMu0nieph7 -->
+sum( #{?de.Gvoecom5muL} + #{?de.CWa6eew5uco} - #{?de.nthohhie8Ba} - #{?de.Faey8Iphooy} )</code></pre>
+
+The predictor configuration includes:
+
+| property | value |
+|---|---|
+| Output data element | one of the data elements in the group |
+| Output category option combo | Stock balance at start of period (<code>Gvoecom5muL</code>) |
+| Organisation units providing data | At selected level(s) only |
+| Sequential sample count | 1 |
+| Annual sample count | 0 |
+
+The predictor will execute once for each data element in the data element group. Because the aggregation function <code>sum()</code> is used in the predictor generator expression, all the values in the expression will be fetched from the previous period (since the sequential sample count is 1). The predictor will write out the starting balance for each data element for the periods within the predictor run start and end date, for organisation units at the selected level(s).
+
+Predictions are always made forward through time. The starting balance predicted for one period can be used as an input to compute the starting balance of the following period.
+
+#### Example 2
+
+If you want to make predictions for the same period as the input data, just omit the aggregation function such as <code>sum()</code>. Adding to the previous example, say you have another category option combination that computes the net inventory change during the period:
+
+| category option combo | means |
+|---|---|
+| <code>Hpiek8IefoS</code> | Stock change during the period |
+
+You can use the following expression to compute the inventory change as ( restock - used - lost ):
+
+<pre><code>forEach ?de in :DEG:aIMu0nieph7 -->
+#{?de.CWa6eew5uco} - #{?de.nthohhie8Ba} - #{?de.Faey8Iphooy}</code></pre>
+
+The output category option combo is:
+
+| property | value |
+|---|---|
+| Output category option combo | Stock change during the period (<code>Hpiek8IefoS</code>) |
+
+Since there is no aggregation function such as <code>sum()</code> around the expression elements, the input data is taken from the same period as the predictor output.
 
 ### Create or edit a predictor group { #create_predictor_group } 
 
