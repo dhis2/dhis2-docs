@@ -44,7 +44,7 @@ If you are starting from v2.29 or below, you must first upgrade to v2.30 version
 If you are starting from at least v2.30:
 
 1. **Read all of the upgrade notes from your current version up to the target version on [our releases site](https://github.com/dhis2/dhis2-releases).** Make sure your environment meets all of the requirements
-2. Stop th server
+2. Stop the server
 3. Make a final copy of your database (and ensure it is not corrupted)
 4. Drop any materialized SQL views from your database
 5. Replace the war file with the target version (There is no need to upgrade to intermediate versions; in fact, it is not recommended)
