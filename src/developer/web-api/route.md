@@ -79,7 +79,7 @@ For completeness here is an example with `api-token`, here we have also add in s
 
 ### POST Route with authentication and custom authority
 
-In this example we are using the postman service to allow for POSTs, we have added `http-basic` and also support what is called custom authorities.
+In this example we are using the postman service to allow for POSTs, we have added `http-basic` and also support what are called custom authorities.
 Custom authorities allows users that don't have the metadata access to manage the route to still be able to run it (so it can be used for your custom apps).
 
 ```json
