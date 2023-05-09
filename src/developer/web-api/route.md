@@ -2,7 +2,7 @@
 
 ## Route { #webapi_route }
 
-The route API allows users to communicate bi-directionally to external http gateways/proxies. It's meant as a simple way
+The route API allows users to communicate with external http gateways/proxies. It's meant as a simple way
 to extend your apps to get and post from services that you use to extend your apps functionality.
 
 The endpoint can be found at `/api/routes` and the routes themselves can be run with `GET` or `POST` to `/api/routes/ID/run`
