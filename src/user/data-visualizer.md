@@ -83,7 +83,28 @@ To select items for a dimension, open the dimension modal window by clicking on 
 
 When selecting data items, there are different ways to filter the displayed items. By using the search field at the top, a global search by item name is performed across the currently selected **Data Type**. By selecting a **Data Type** from the dropdown, items can be filtered by type and subtype, where the subtype available depends on the selected data type. The name search and the type/subtype filtering can be combined as well for a more detailed filter. The type of each displayed item is indicated by a corresponding icon on the item. By hovering over an item, the name of the type can be viewed as well.
 
-![](resources/images/data-visualizer/data-visualizer-dimension-modal.png)
+![](resources/images/data-visualizer/data-visualizer-cc-data-modal.png)
+
+#### Using custom calculations
+
+
+A new personal indicator, also known as a custom calculation, can be created by clicking the **+ Calculation** button at the bottom-left of the Data modal. This will open the Calculation modal.
+
+![](resources/images/data-visualizer/data-visualizer-cc-data-type.jpg)
+
+Previously created custom calculations can be found in the list of dimensions in the Data modal, either by scrolling, searching or using the **Data Type** filter **Calculations**. To edit a custom calculation, click the edit button (indicated by a pen icon) on the item itself.
+
+![](resources/images/data-visualizer/data-visualizer-cc-calculation-modal.png)
+
+The Calculation modal has similar data element filters as seen in the Data modal, where items can be found by either scrolling, searching or filtering by groups. To add a data element or a math operator to the formula field (seen on the right), either double-click the item or drag it to the formula field. 
+
+Items in the forumula field can be rearranged by drag-and-drop and removed by either double-click or by selecting an item and clicking the **Remove item** button.
+
+All calculations require a name before saving.
+
+The formula will be validated on save. Note that only valid formulas can be saved. The formula can also be validated on request by clicking the **Check formula** button.
+
+
 
 #### Select periods
 
