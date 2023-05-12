@@ -85,7 +85,7 @@ When selecting data items, there are different ways to filter the displayed item
 
 ![](resources/images/data-visualizer/data-visualizer-cc-data-modal.png)
 
-#### Using custom calculations
+#### Using custom calculations { #data-visualizer-custom-calculations }
 
 
 A new personal indicator, also known as a custom calculation, can be created by clicking the **+ Calculation** button at the bottom-left of the Data modal. This will open the Calculation modal.
