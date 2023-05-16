@@ -1214,14 +1214,16 @@ To get JSON schema for a specific class:
 ## Icons { #webapi_icons } 
 
 DHIS2 includes a collection of icons that can be used to give visual
-context to metadata. These icons can be accessed through the icons
-resource.
+context to metadata. There are two different kind of icons:
+  - Default icons: they are pre-installed in the application and are not possible to modify nor delete.
+  - Custom icons: can be created, updated and deleted at will.
+
+Both of them be accessed through the icons resource.
 
     GET /api/icons
 
 This endpoint returns a list of information about the available icons.
-Each entry contains information about the icon, and a reference to the
-actual icon.
+In case of default icons, each entry contains information about the icon, and a reference to the actual icon.
 
 ```json
 {
@@ -1235,16 +1237,73 @@ actual icon.
   href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
 }
 ```
+When it comes to custom icons, the response also includes the referenced file resource and the user who created the icon:
 
-The keywords can be used to filter which icons to return. Passing a list
-of keywords with the request will only return icons that match all the
-keywords:
+```json
+{
+  key: "custom key",
+  description: "description",
+  keywords: [
+    "keyword 1",
+    "keyword 2"
+  ],
+  fileResourceUid: "ohUVXsOZ8qp",
+  userUid: "AIK2aQOJIbj",
+  href: "<dhis server>/api/fileResources/ohUVXsOZ8qp/data"
+}
+```
+
+It's also possible to get a particular icon direcly by filtering by the its key, in the example below, the key is mosquito_outline.
+
+    GET /api/icons/mosquito_outline
+
+Keywords can be used to filter which icons to return. Passing a list
+of keywords with the request will only return icons (both default and custom) that match all the keywords:
 
     GET /api/icons?keywords=shape,small
 
 A list of all unique keywords can be found at the keywords resource:
 
     GET /api/icons/keywords
+
+### Custom icon operations { #webapi_icons_custom }
+
+Custom icons can be created, modified and deleted.
+To create a custom icon, use the resource below.
+
+    POST /api/icons
+
+It expects a payload containing the icon key, description, keywords and the file resource to be linked to the data.
+
+```json
+{
+    "key": "iconKey",
+    "description": "description",
+    "keywords": ["keyword 1","keyword 2"],
+    "fileResourceUid": "ARsqBjfB2cf"
+}
+```
+
+Two of these properties are possible to update, which are the description and keywords, using the resource below.
+
+    PUT /api/icons
+
+With the following payload, the icon's description and keywords would be updated.
+
+```json
+{
+    "key": "iconKey",
+    "description": "new description",
+    "keywords": ["new keyword 1", "new keyword 2"] 
+}
+```
+
+Please notice that's also possible to just update one of the two. That means in case we would like to update the description while keeping the keywords, we would just need to provide the icon key and the descripton json field. Same would work to update the keywords and leave the original description untouched.
+
+To delete a custom icon we use the resource
+
+    DELETE /api/icons/{icon_key}
+
 
 ## Render type { #webapi_render_type } 
 
