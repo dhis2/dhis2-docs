@@ -1223,7 +1223,7 @@ Both of them be accessed through the icons resource.
     GET /api/icons
 
 This endpoint returns a list of information about the available icons.
-In case of default icons, each entry contains information about the icon, and a reference to the actual icon.
+In case of default icons, each entry contains the icon's metadata, and a reference to the actual file resource.
 
 ```json
 {
@@ -1273,7 +1273,7 @@ To create a custom icon, use the resource below.
 
     POST /api/icons
 
-It expects a payload containing the icon key, description, keywords and the file resource to be linked to the data.
+It expects a payload containing the icon key, description, list of keywords and the file resource uid to be linked to the data.
 
 ```json
 {
@@ -1284,7 +1284,7 @@ It expects a payload containing the icon key, description, keywords and the file
 }
 ```
 
-Two of these properties are possible to update, which are the description and keywords, using the resource below.
+Two of these properties are possible to update, they are the description and keywords, using the resource below.
 
     PUT /api/icons
 
@@ -1298,7 +1298,7 @@ With the following payload, the icon's description and keywords would be updated
 }
 ```
 
-Please notice that's also possible to just update one of the two. That means in case we would like to update the description while keeping the keywords, we would just need to provide the icon key and the descripton json field. Same would work to update the keywords and leave the original description untouched.
+Please notice that's also possible to just update one of the two. That means in case we would like to update the description while keeping the keywords, we would just need to provide the icon key and the descripton json field. Same would work the other way around, to update the keywords and leave the original description untouched.
 
 To delete a custom icon we use the resource
 
