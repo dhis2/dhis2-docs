@@ -217,7 +217,7 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 
 ```json
 {
-  "trackedEntityInstance": "oi3PMIGYJH8",
+  "trackedEntity": "oi3PMIGYJH8",
   <entity_details>,
   ],
   "enrollments": [
@@ -1587,7 +1587,7 @@ Returns a list of events based on the provided filters.
 |`filter`|`String`|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. Multiple operator/value pairs for the same property/data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. Repeating the same data element UID is not allowed. User needs access to the data element to filter on it.|
 |`filterAttributes`|`String`|Comma separated values of attribute filters|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
 |`followUp`|`boolean`| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
-|`trackedEntityInstance`|`String`|`uid`| Identifier of tracked entity instance|
+|`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
 |`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|  Org unit selection mode| 
 |`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
@@ -1654,7 +1654,7 @@ Query for all events with a certain program and organisation unit for a
 specific tracked entity instance:
 
     GET /api/tracker/events?orgUnit=DiszpKrYNg8
-      &program=eBAyeGv0exc&trackedEntityInstance=gfVxE3ALA9m
+      &program=eBAyeGv0exc&trackedEntity=gfVxE3ALA9m
 
 Query for all events with a certain program and organisation unit older
 or equal to
@@ -1666,7 +1666,7 @@ Query for all events with a certain program stage, organisation unit and
 tracked entity instance in the year 2014:
 
     GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
-      &trackedEntityInstance=gfVxE3ALA9m&occurredAfter=2014-01-01&occurredBefore=2014-12-31
+      &trackedEntity=gfVxE3ALA9m&occurredAfter=2014-01-01&occurredBefore=2014-12-31
 
 Retrieve events with specified Organisation unit and Program, and use `Attribute:Gq0oWTf2DtN` as
 identifier scheme
