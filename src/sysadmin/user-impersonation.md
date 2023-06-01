@@ -10,7 +10,7 @@ This feature is built upon the `SwitchUserFilter` from Spring Security, but with
 
 > **Note**
 >
-> The feature is **disabled** by default, to enable it, you must set the `switch_user_feature.enabled` property
+> The feature is **disabled** by default. To enable it, you must set the `switch_user_feature.enabled` property
 > to `true` in
 > your `dhis.conf` file.
 >
