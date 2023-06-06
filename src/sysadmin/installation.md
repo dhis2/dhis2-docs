@@ -113,8 +113,8 @@ files. This directory will also be used for apps, files and log files.
 An example directory could be:
 
 ```sh
-mkdir /home/dhis/config
-chown dhis:dhis /home/dhis/config
+sudo mkdir /home/dhis/config
+sudo chown dhis:dhis /home/dhis/config
 ```
 
 DHIS2 will look for an environment variable called `DHIS2_HOME` to
@@ -407,9 +407,8 @@ will be created in the current directory. An appropriate location is the
 home directory of the `dhis` user:
 
 ```sh
-cd /home/dhis/
-sudo tomcat8-instance-create tomcat-dhis
-sudo chown -R dhis:dhis tomcat-dhis/
+sudo tomcat8-instance-create /home/dhis/tomcat-dhis
+sudo chown -R dhis:dhis /home/dhis/tomcat-dhis/
 ```
 
 This will create an instance in a directory called `tomcat-dhis`. Note
