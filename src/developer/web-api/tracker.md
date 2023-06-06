@@ -1282,7 +1282,6 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`skipMeta`|`Boolean`|`true`&#124;`false`|Indicates whether not to include metadata in the response.|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`|Indicates whether to include soft-deleted elements|
 |`includeAllAttributes`|`Boolean`|`true`&#124;`false`|Indicates whether to include all TEI attributes|
-|`attachment`|`String`| |The file name in case of exporting as a file|
 |`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a TEI is a Potential Duplicate. true: return TEIs flagged as Potential Duplicates. false: return TEIs NOT flagged as Potential Duplicates. If omitted, we don't check whether a TEI is a Potential Duplicate or not. |
 
 The available assigned user modes are explained in the following table.
