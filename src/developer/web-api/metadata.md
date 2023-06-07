@@ -1253,7 +1253,7 @@ When it comes to custom icons, the response also includes the referenced file re
 }
 ```
 
-It's also possible to get a particular icon direcly by filtering by the its key, in the example below, the key is mosquito_outline.
+It's also possible to get a particular icon directly by filtering by its key, in the example below, the key is mosquito_outline.
 
     GET /api/icons/mosquito_outline
 
