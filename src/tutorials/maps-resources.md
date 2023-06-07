@@ -4,7 +4,7 @@ title: DHIS2 Maps & GIS resources
 
 # DHIS2 Maps & GIS resources
 
-**This page countains useful tutorials and resources about DHIS2 Maps and .**
+**This page countains useful tutorials and resources about DHIS2 Maps and geograhical information systems (GIS).**
 
 ### Getting help
 
@@ -27,10 +27,7 @@ Videos:
   3. [Interpreting legends and data tables](https://youtu.be/RQngcSHtEx0)
 - [High-level overview of DHIS2 Maps](https://youtu.be/LdhV_kAt-IE): Presents all the layer types and map tools.
 - [Extending DHIS2 Maps](https://youtu.be/6XjThKinFcE): Earth Engine layers, downloading data for QGIS/ArcGIS, adding external layers.
-
-### DHIS2 Maps vs QGIS/ArcGIS
-
-Use DHIS2 Maps to visualise and monitor the data stored in your DHIS2 instance. If you would like to combine your DHIS2 data with external datasets, or do advanced analysis we recommend you to use a GIS application like [QGIS](https://qgis.org) or [ArcGIS](https://esri.com). QGIS is open source, free to use and has a big community similar to DHIS2.
+- [A Guide to Using DHIS2 Maps for Sierra Leone](https://youtu.be/TmrN7xKJPyM): Demonstrates facility, org unit and thematic layers, and different basemaps.
 
 ### Configuring DHIS2 Maps
 
@@ -56,4 +53,6 @@ A series of short videos showing you how to calculate the population within your
 5.  [Calculating population living within buffers](https://youtu.be/R82aleC5k2E)
 6.  [Population living within walking and driving distances](https://youtu.be/X6Du8qB8xEA)
 
-### Creating catchment areas using the Microplanning app
+### DHIS2 Maps vs QGIS/ArcGIS
+
+Use DHIS2 Maps to visualise and monitor the data stored in your DHIS2 instance. If you would like to combine your DHIS2 data with external datasets, or do advanced analysis we recommend you to use a GIS application like [QGIS](https://qgis.org) or [ArcGIS](https://esri.com). QGIS is open source, free to use and has a big community similar to DHIS2.
