@@ -314,8 +314,8 @@ layer** selection. This opens the Events layer configuration dialog.
       point facilities. The circles will be scaled between low and high radius according
       to the data value. The radius needs to be between 0 and 50 px.
 
-    - **Show labels**: Allows org unit names to be shown on the layer. Font size, weight,
-      style and color can be modified here.
+    - **Show labels**: Allows org unit names and values to be shown on the layer.
+      Select between "Name", "Name and value" and "Value" only. Font size, weight, style and color can also be modified.
 
     - **Show no data**: By default org units with missing data values will not show on the map.
       Check this box if you want to show them with a color. Click the color to change it.
@@ -1610,16 +1610,24 @@ You can download your map as an image by clicking on the Download button in the 
 
 ![](resources/images/maps/maps_download.png)
 
+You will enter a "download mode" where you can adjust the map layout before you download the image. The left column gives you the following options:
+
+- **Show map name**: Select if you want to include the map name or not. This option
+  is only available if the map is saved. To change the name, exit download mode and select _File_ > _Rename_.
+- **Show map description**: Select if you want to include the map description or not.
+  This option is only available if a map description was added when the map was saved. To change the map description, exit download mode and select _File_ > _Rename_.
+- **Show legend**: Select if you want to include the map legend. If the map includes
+  more than one layer, you can select the visibility for each legend.
+- **Show overview map**: Select if you want to include an overview map (often named
+  inset map). This option will be disabled if there is not enough room for it in the right column.
+- **Show north arrow**: Select to include a north arrow on the map. The default
+  position is the lower right corner of the map, but you can change it to another corner.
+- Click **Download** to download your map.
+
+Resize your browser window to change the map dimensions. You can also reposition both the main map and the overview map.
+
 Map download is not supported in Internet Explorer or Safari, we recommend to
 use Google Chrome or Firefox.
-
-1.  Select if you want to include the map name or not. This option is only
-    available if the map is saved.
-
-2.  Select if you want to include the map legend. You can position the legend
-    in one of the 4 corners of your map.
-
-3.  Click **Download** to download your map.
 
 ## Search for a location { #using_maps_search }
 
