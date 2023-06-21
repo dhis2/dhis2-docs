@@ -1359,7 +1359,7 @@ program you can include a program query parameter:
 
 To specify program enrollment dates as part of the query:
 
-    GET /API/tracker/trackedEntities?
+    GET /api/tracker/trackedEntities?
         &orgUnit=O6uvpzGd5pu&program=ur1Edk5Oe2n
         &enrollmentEnrolledAfter=2013-01-01
         &enrollmentEnrolledBefore=2013-09-01
@@ -1907,7 +1907,7 @@ In this case, we have restricted it to available enrollments viewable for
 current
 user:
 
-    GET /API/tracker/enrollments?ouMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
+    GET /api/tracker/enrollments?ouMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
 
 ##### Response format
 
@@ -2128,7 +2128,7 @@ It is not possible to gain temporary access to a program that has been
 configured with an access level of *CLOSED*. To break the glass for a
 TrackedEntity-Program combination, the following POST request can be used:
 
-    /API/33/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
+    /api/33/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
       &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
 #### Tracker Ownership Transfer { #webapi_nti_tracker_ownership_transfer }
@@ -2137,7 +2137,7 @@ It is possible to transfer the ownership of a TrackedEntity-Program
 from one organisation unit to another. This will be useful in case of patient
 referrals or migrations. Only a user who has Ownership access (or temporary access by breaking the glass) can transfer the ownership. To transfer ownership of a TrackedEntity-Program to another organisation unit, the following PUT request can be used:
 
-    /API/33/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8
+    /api/33/tracker/ownership/transfer?trackedEntityInstance=DiszpKrYNg8
       &program=eBAyeGv0exc&ou=EJNxP3WreNP
 
 
