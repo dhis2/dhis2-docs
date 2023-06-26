@@ -3299,7 +3299,7 @@ The API does allow the optional supplying of a custom prefix, which will be pref
 | ProgramIndicator | name      | Database constraint - needs to be unique |
 | ProgramIndicator | shortName | Database constraint - needs to be unique |
 
-In this example when a custom prefix is supplied, an original `Program` with a name of `My Simple Program` would be copied to a new `Program` with the name `my_prefixMySimpleProgram` 
+In this example when a custom prefix is supplied, an original `Program` with a name of `My Simple Program` would be copied to a new `Program` with the name `my prefix My Simple Program` 
 
 If no copy options are sent in the API call then the default `Copy of ` prefix will be used for the above properties.  
 To send a custom prefix just add a HTTP request param `prefix` like so:  
