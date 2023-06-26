@@ -3265,4 +3265,133 @@ The `fields` parameter can be used to narrow the fields included for the shown o
 | IMAGE | Value is a valid UID of existing `FileResource`
 | GEOJSON |Follow [GeoJson Specification](https://geojson.org)
 | MULTI_TEXT | None
-    
+
+## Copy Program
+### Introduction
+A user will often want to create many `Program`s which share many of the same characteristics, and instead of having to create a new `Program` from scratch, it is efficient and beneficial to copy an existing `Program` and make modifications to it.  
+A template `Program` could theoretically be setup as a base to copy from, which may help with the consistency of `Program` setups also.
+### API info
+#### Endpoint 
+
+    POST /api/programs/{uid}/copy
+
+Example with a `Program` with a `UID` of `Program123a`
+
+    POST /api/programs/Program123a/copy
+
+Successful response will include the new `Program` `UID` and will look like this:
+
+```json
+{
+    "httpStatus": "Created",
+    "httpStatusCode": 201,
+    "status": "OK",
+    "message": "Program created: 'Program456b'"
+}
+```
+The response will also contain a `Location` header with a link to the newly-created `Program`. e.g. when run locally the `Location` value would be `http://localhost:9090/api/programs/Program456b  `
+#### Copy options
+The API does allow the optional supplying of a custom prefix, which will be prefixed to the following properties.
+
+| Object           | Property  | Info                                     |
+|------------------|-----------|------------------------------------------|
+| Program          | name      | Help identify the new Program            |
+| ProgramIndicator | name      | Database constraint - needs to be unique |
+| ProgramIndicator | shortName | Database constraint - needs to be unique |
+
+In this example when a custom prefix is supplied, an original `Program` with a name of `My Simple Program` would be copied to a new `Program` with the name `my_prefixMySimpleProgram` 
+
+If no copy options are sent in the API call then the default `Copy of ` prefix will be used for the above properties.  
+To send a custom prefix just add a HTTP request param `prefix` like so:  
+
+     POST /api/programs/{uid}/copy?prefix=my_prefix 
+
+**Note**
+The database does have limits for the number of characters allowed for properties. At the time of writing these limits are noted in the table below. Bear these in mind.
+
+| Property  | character limit |
+|-----------|-----------------|
+| name      | 230             |
+| shortName | 50              |
+
+If a property has exceeded its character limit, then an error will be returned like so:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "ERROR",
+    "message": "ERROR: value too long for type character varying(230)",
+    "errorCode": "E1004"
+}
+```
+
+If trying to copy a Program that is not found, a response like this will be returned:
+```json
+{
+    "httpStatus": "Not Found",
+    "httpStatusCode": 404,
+    "status": "ERROR",
+    "message": "Program with id {uid} could not be found.",
+    "errorCode": "E1005"
+}
+```
+
+### Authorisation
+#### Authorities
+A `User` will need the following authorities to be able to copy a `Program`:
+- F_PROGRAM_PUBLIC_ADD
+- F_PROGRAM_INDICATOR_PUBLIC_ADD
+
+#### Access
+A `Program` needs one of the following states for it to be able to be copied:
+- Public `read` & `write` access
+- A specific `User` to have sharing `read` & `write` access
+- A `User` is part of a `UserGroup` that has sharing `read` & `write` access
+
+If a `User` does not have the correct permissions, a `Forbidden` response is returned like so:  
+```json
+{
+    "httpStatus": "Forbidden",
+    "httpStatusCode": 403,
+    "status": "ERROR",
+    "message": "You don't have write permissions for Program Program123a",
+    "errorCode": "E1006"
+}
+```
+
+
+### Points to note
+#### Deep and shallow copy
+When a `Program` is copied, certain properties of the `Program` need different kinds of copying. It is important to be aware of what has been deep-copied and what has been shallow-copied.  
+First of all let's explain the difference between deep and shallow copying in this context.  
+##### Deep copy
+A deep copy in this context means that a completely new instance of a `Program` or `Program` property has been created with its own unique identifiers. These include amongst others:
+- id
+- uid  
+
+Deep copies of `Program` properties will all belong to the newly-created `Program` copy.
+##### Shallow copy
+A shallow copy in this context means that an existing `Program` property will be reused by the newly-created `Program` or `Program` property.
+#### Properties that get deep copied
+All properties below have been deep copied. Anything not in included in this table means that it has been shallow copied.
+
+| Object                         | Property of  |
+|--------------------------------|--------------|
+| Program                        |              |
+| ProgramSection                 | Program      |
+| ProgramIndicator               | Program      |
+| ProgramRuleVariable            | Program      |
+| ProgramStage                   | Program      |
+| ProgramStageSection            | ProgramStage |
+| ProgramStageSectionDataElement | ProgramStage |
+| Enrollment                     |              |
+
+**Note**
+The following properties have been set as empty as an initial approach. This approach should keep things simple to start off with.  
+
+| Object                        | Property          |
+|-------------------------------|-------------------|
+| ProgramIndicator              | groups            |
+| ProgramStageSection           | programIndicators |
+| Enrollment                    | events            |
