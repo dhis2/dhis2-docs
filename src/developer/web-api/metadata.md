@@ -3304,7 +3304,7 @@ In this example when a custom prefix is supplied, an original `Program` with a n
 If no copy options are sent in the API call then the default `Copy of ` prefix will be used for the above properties.  
 To send a custom prefix just add a HTTP request param `prefix` like so:  
 
-     POST /api/programs/{uid}/copy?prefix=my_prefix 
+     POST /api/programs/{uid}/copy?prefix=my prefix 
 
 **Note**
 The database does have limits for the number of characters allowed for properties. At the time of writing these limits are noted in the table below. Bear these in mind.
