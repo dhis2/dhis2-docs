@@ -3267,10 +3267,14 @@ The `fields` parameter can be used to narrow the fields included for the shown o
 | MULTI_TEXT | None
 
 ## Copy Program
+
 ### Introduction
+
 A user will often want to create many `Program`s which share many of the same characteristics, and instead of having to create a new `Program` from scratch, it is efficient and beneficial to copy an existing `Program` and make modifications to it.  
 A template `Program` could theoretically be setup as a base to copy from, which may help with the consistency of `Program` setups also.
+
 ### API info
+
 #### Endpoint 
 
     POST /api/programs/{uid}/copy
@@ -3289,8 +3293,11 @@ Successful response will include the new `Program` `UID` and will look like this
     "message": "Program created: 'Program456b'"
 }
 ```
-The response will also contain a `Location` header with a link to the newly-created `Program`. e.g. when run locally the `Location` value would be `http://localhost:9090/api/programs/Program456b  `
+
+The response will also contain a `Location` header with a link to the newly-created `Program`. e.g. when run locally the `Location` value would be `http://localhost:9090/api/programs/Program456b`
+
 #### Copy options
+
 The API does allow the optional supplying of a custom prefix, which will be prefixed to the following properties.
 
 | Object           | Property  | Info                                     |
@@ -3306,8 +3313,9 @@ To send a custom prefix just add a HTTP request param `prefix` like so:
 
      POST /api/programs/{uid}/copy?prefix=my prefix 
 
-**Note**
-The database does have limits for the number of characters allowed for properties. At the time of writing these limits are noted in the table below. Bear these in mind.
+> **Note**
+>
+> The database does have limits for the number of characters allowed for properties. At the time of writing these limits are noted in the table below. Bear these in mind.
 
 | Property  | character limit |
 |-----------|-----------------|
@@ -3338,18 +3346,24 @@ If trying to copy a Program that is not found, a response like this will be retu
 ```
 
 ### Authorisation
+
 #### Authorities
+
 A `User` will need the following authorities to be able to copy a `Program`:
+
 - F_PROGRAM_PUBLIC_ADD
 - F_PROGRAM_INDICATOR_PUBLIC_ADD
 
 #### Access
+
 A `Program` needs one of the following states for it to be able to be copied:
+
 - Public `read` & `write` access
 - A specific `User` to have sharing `read` & `write` access
 - A `User` is part of a `UserGroup` that has sharing `read` & `write` access
 
-If a `User` does not have the correct permissions, a `Forbidden` response is returned like so:  
+If a `User` does not have the correct permissions, a `Forbidden` response is returned like so:
+
 ```json
 {
     "httpStatus": "Forbidden",
@@ -3360,20 +3374,28 @@ If a `User` does not have the correct permissions, a `Forbidden` response is ret
 }
 ```
 
-
 ### Points to note
+
 #### Deep and shallow copy
+
 When a `Program` is copied, certain properties of the `Program` need different kinds of copying. It is important to be aware of what has been deep-copied and what has been shallow-copied.  
 First of all let's explain the difference between deep and shallow copying in this context.  
+
 ##### Deep copy
+
 A deep copy in this context means that a completely new instance of a `Program` or `Program` property has been created with its own unique identifiers. These include amongst others:
+
 - id
 - uid  
 
 Deep copies of `Program` properties will all belong to the newly-created `Program` copy.
+
 ##### Shallow copy
+
 A shallow copy in this context means that an existing `Program` property will be reused by the newly-created `Program` or `Program` property.
+
 #### Properties that get deep copied
+
 All properties below have been deep copied. Anything not in included in this table means that it has been shallow copied.
 
 | Object                         | Property of  |
@@ -3387,8 +3409,9 @@ All properties below have been deep copied. Anything not in included in this tab
 | ProgramStageSectionDataElement | ProgramStage |
 | Enrollment                     |              |
 
-**Note**
-The following properties have been set as empty as an initial approach. This approach should keep things simple to start off with.  
+> **Note**
+>
+> The following properties have been set as empty as an initial approach. This approach should keep things simple to start off with.  
 
 | Object                        | Property          |
 |-------------------------------|-------------------|
