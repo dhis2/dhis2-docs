@@ -305,6 +305,12 @@ track_activity_query_size = 8192
 
 Specifies the number of bytes reserved to track the currently executing command for each active session. Useful to view the full query string for monitoring of currently running queries.
 
+```properties
+jit = off
+```
+
+This setting turns the jit optimizer off.  It should be set to off for postgresql versions 12 and upwards.  Many queries, particularly program indicator queries, perform very badly with the default enabled jit setting.  Turning it off can improve response times by up to 100x with resulting significant improvement in dashboard performance.
+
 Restart PostgreSQL by invoking the following command:
 
 ```sh
