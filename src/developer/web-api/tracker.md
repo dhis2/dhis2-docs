@@ -1344,11 +1344,11 @@ item:
         &filter=lw1SqmMlnfh:GT:150
         &filter=lw1SqmMlnfh:LT:190
 
-A query with characters in the filter value that need escaping:
+A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
     GET /api/tracker/trackedEntities?orgUnit=DiszpKrYNg8
         &program=ur1Edk5Oe2n
-        &filter=lw1SqmMlnfh:EQ:value/:/,//
+        &filter=lw1SqmMlnfh:EQ:/:/,//
 
 To query on an attribute using multiple values in an *IN* filter:
 
@@ -1692,11 +1692,11 @@ A query where multiple operand and filters are specified for a data element UID:
         &filter=lw1SqmMlnfh:GT:150
         &filter=lw1SqmMlnfh:LT:190
 
-A query with characters in the filter value that need escaping:
+A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
     GET /api/tracker/events?orgUnit=DiszpKrYNg8
         &program=lxAQ7Zs9VYR
-        &filter=lw1SqmMlnfh:EQ:value/:/,//
+        &filter=lw1SqmMlnfh:EQ:/:/,//
 
 ##### Response format
 
