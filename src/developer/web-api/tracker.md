@@ -1878,6 +1878,7 @@ Returns a list of events based on filters.
 |`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
 |`enrollment`|`String`|Comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using enrollment=id1;id2.|
 |`includeDeleted`|`Boolean`| |  When true, soft deleted events will be included in your query result.|
+|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `created:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `created, lastupdated, enrollmentdate, incidentdate, status, `.|
 
 The query is case-insensitive. The following rules apply to the query parameters.
 
