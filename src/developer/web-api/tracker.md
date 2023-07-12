@@ -1281,7 +1281,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`includeDeleted`|`Boolean`|`true`&#124;`false`|Indicates whether to include soft-deleted elements|
 |`includeAllAttributes`|`Boolean`|`true`&#124;`false`|Indicates whether to include all TEI attributes|
 |`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a TEI is a Potential Duplicate. true: return TEIs flagged as Potential Duplicates. false: return TEIs NOT flagged as Potential Duplicates. If omitted, we don't check whether a TEI is a Potential Duplicate or not. |
-|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `trackedEntity, createdAt, createdAtClient, updatedAt, updatedAtClient and enrollmentDate`.|
+|`order`|`String`|comma-delimited list of property name or attribute and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `trackedEntity, createdAt, createdAtClient, updatedAt, updatedAtClient and enrollmentDate`.|
 
 
 The available assigned user modes are explained in the following table.
@@ -1878,7 +1878,7 @@ Returns a list of events based on filters.
 |`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
 |`enrollment`|`String`|Comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using enrollment=id1;id2.|
 |`includeDeleted`|`Boolean`| |  When true, soft deleted events will be included in your query result.|
-|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `created:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `created, lastupdated, enrollmentdate, incidentdate, status, trackedentityinstanceid, organisationunitid, storedby, programinstanceid, enddate, programid, completedby, createdbyuserinfo and lastupdatedbyuserinfo`.|
+|`order`|`String`|comma-delimited list of property name or attribute and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `created:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `created, lastupdated, enrollmentdate, incidentdate, status, trackedentityinstanceid, organisationunitid, storedby, programinstanceid, enddate, programid, completedby, createdbyuserinfo and lastupdatedbyuserinfo`.|
 
 The query is case-insensitive. The following rules apply to the query parameters.
 
