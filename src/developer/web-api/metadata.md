@@ -286,34 +286,35 @@ objects, is supported as well.
 
 Table: Available Operators
 
-| Operator | Types | Value required | Description |
-|---|---|---|---|
-| eq | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true | Equality |
-| !eq | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true | Inequality |
-| ne | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true | Inequality |
-| like | string | true | Case sensitive string, match anywhere |
-| !like | string | true | Case sensitive string, not match anywhere |
-| $like | string | true | Case sensitive string, match start |
-| !$like | string | true | Case sensitive string, not match start |
-| like$ | string | true | Case sensitive string, match end |
-| !like$ | string | true | Case sensitive string, not match end |
-| ilike | string | true | Case insensitive string, match anywhere |
-| !ilike | string | true | Case insensitive string, not match anywhere |
-| $ilike | string | true | Case insensitive string, match start |
-| !$ilike | string | true | Case insensitive string, not match start |
-| ilike$ | string | true | Case insensitive string, match end |
-| !ilike$ | string | true | Case insensitive string, not match end |
-| gt | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date | true | Greater than |
-| ge | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date | true | Greater than or equal |
-| lt | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date | true | Less than |
-| le | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date | true | Less than or equal |
-| null | all | false | Property is null |
-| !null | all | false | Property is not null |
-| empty | collection | false | Collection is empty |
-| token | string | true | Match on multiple tokens in search property |
-| !token | string | true | Not match on multiple tokens in search property |
-| in | string &#124; boolean &#124; integer &#124; float &#124; date | true | Find objects matching 1 or more values |
-| !in | string &#124; boolean &#124; integer &#124; float &#124; date | true | Find objects not matching 1 or more values |
+| Operator | Types                                                                                                         | Value required | Description                                     |
+|----------|---------------------------------------------------------------------------------------------------------------|----------------|-------------------------------------------------|
+| eq       | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true           | Equality                                        |
+| !eq      | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true           | Inequality                                      |
+| ieq      | string                                                                                                        | true           | Case insensitive string, match exact            |
+| ne       | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true           | Inequality                                      |
+| like     | string                                                                                                        | true           | Case sensitive string, match anywhere           |
+| !like    | string                                                                                                        | true           | Case sensitive string, not match anywhere       |
+| $like    | string                                                                                                        | true           | Case sensitive string, match start              |
+| !$like   | string                                                                                                        | true           | Case sensitive string, not match start          |
+| like$    | string                                                                                                        | true           | Case sensitive string, match end                |
+| !like$   | string                                                                                                        | true           | Case sensitive string, not match end            |
+| ilike    | string                                                                                                        | true           | Case insensitive string, match anywhere         |
+| !ilike   | string                                                                                                        | true           | Case insensitive string, not match anywhere     |
+| $ilike   | string                                                                                                        | true           | Case insensitive string, match start            |
+| !$ilike  | string                                                                                                        | true           | Case insensitive string, not match start        |
+| ilike$   | string                                                                                                        | true           | Case insensitive string, match end              |
+| !ilike$  | string                                                                                                        | true           | Case insensitive string, not match end          |
+| gt       | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date             | true           | Greater than                                    |
+| ge       | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date             | true           | Greater than or equal                           |
+| lt       | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date             | true           | Less than                                       |
+| le       | string &#124; boolean &#124; integer &#124; float &#124; collection (checks for size) &#124; date             | true           | Less than or equal                              |
+| null     | all                                                                                                           | false          | Property is null                                |
+| !null    | all                                                                                                           | false          | Property is not null                            |
+| empty    | collection                                                                                                    | false          | Collection is empty                             |
+| token    | string                                                                                                        | true           | Match on multiple tokens in search property     |
+| !token   | string                                                                                                        | true           | Not match on multiple tokens in search property |
+| in       | string &#124; boolean &#124; integer &#124; float &#124; date                                                 | true           | Find objects matching 1 or more values          |
+| !in      | string &#124; boolean &#124; integer &#124; float &#124; date                                                 | true           | Find objects not matching 1 or more values      |
 
 Operators will be applied as logical *and* query. If you need a *or*
 query, you can have a look at the *in* filter and the section below.
@@ -322,6 +323,10 @@ The filtering mechanism allows for recursion. See below for some examples.
 Get data elements with id property ID1 or ID2:
 
     /api/dataElements?filter=id:eq:ID1&filter=id:eq:ID2
+
+Get data elements, ignoring case, with name property Data Element:
+
+    /api/dataElements?filter=name:ieq:data element one
 
 Get all data elements which have a data set with id ID1:
 
