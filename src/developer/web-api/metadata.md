@@ -324,7 +324,7 @@ Get data elements with id property ID1 or ID2:
 
     /api/dataElements?filter=id:eq:ID1&filter=id:eq:ID2
 
-Get data elements, ignoring case, with name property Data Element:
+Get data elements, ignoring case, with name property Data Element One:
 
     /api/dataElements?filter=name:ieq:data element one
 
