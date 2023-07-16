@@ -290,6 +290,7 @@ Table: Available Operators
 |---|---|---|---|
 | eq | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true | Equality |
 | !eq | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true | Inequality |
+| ieq | string  | true  | Case insensitive string, match exact |
 | ne | string &#124; boolean &#124; integer &#124; float &#124; enum &#124; collection (checks for size) &#124; date | true | Inequality |
 | like | string | true | Case sensitive string, match anywhere |
 | !like | string | true | Case sensitive string, not match anywhere |
@@ -322,6 +323,10 @@ The filtering mechanism allows for recursion. See below for some examples.
 Get data elements with id property ID1 or ID2:
 
     /api/dataElements?filter=id:eq:ID1&filter=id:eq:ID2
+
+Get data elements, ignoring case, with name property MyDataElement:
+
+    /api/dataElements?filter=name:ieq:mydataelement
 
 Get all data elements which have a data set with id ID1:
 
