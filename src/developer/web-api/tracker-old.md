@@ -2513,7 +2513,7 @@ Program Notification Template lets you create message templates which can be sen
 Message and Subject templates will be translated into actual values and can be sent to the configured destination. Each program notification template will be
 transformed to either MessageConversation object or ProgramMessage object based on external or internal notificationRecipient. These intermediate objects will
 only contain translated message and subject text.
-There are multiple configuraiton parameters in Program Notification Tempalte which are critical for correct working of notifications.
+There are multiple configuraiton parameters in Program Notification Template which are critical for correct working of notifications.
 All those are explained in the table below.
 
     POST /api/programNotificationTemplates
@@ -2543,7 +2543,7 @@ Table: Program Notification Template payload
 
 | Field | Required | Description | Values |
 |---|---|---|---|
-| name | Yes | name of Program Notification Tempalte | case-notification-alert |
+| name | Yes | name of Program Notification Template | case-notification-alert |
 | notificationTrigger | Yes | When notification should be triggered. Possible values are ENROLLMENT, COMPLETION, PROGRAM_RULE, SCHEDULED_DAYS_DUE_DATE| ENROLLMENT |
 | subjectTemplate | No | Subject template string | Case notification V{org_unit_name} |
 | messageTemplate | Yes | Message template string | Case notification A{h5FuguPFF2j} |
