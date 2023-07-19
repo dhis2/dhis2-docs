@@ -1273,6 +1273,12 @@ system.sql_view_table_protection = on | off
 Enables or disables the sensitive database table protection for SQL views. This will prohibit database tables with sensitive data to be queried through SQL views. Disabling is not recommended. Can be `on` or `off`. Default is `on`.
 
 ```properties
+system.system.sql_view_write_enabled = on | off
+```
+
+Enables or disables write permissions for SQL views. This will prohibit SQL view performing underlying writes (query can be a select which requires write permission). Enabling is not recommended. Can be `on` or `off`. Default is `off`.
+
+```properties
 system.program_rule.server_execution = on | off
 ```
 
@@ -1720,6 +1726,9 @@ system.session.timeout = 3600
 
 # SQL view protected tables, can be 'on', 'off'
 system.sql_view_table_protection = on
+
+# SQL view write enabled, can be 'on', 'off'
+system.sql_view_write_enabled = off
 
 # Disable server-side program rule execution, can be 'on', 'off'
 system.program_rule.server_execution = on
