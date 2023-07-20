@@ -3318,7 +3318,7 @@ cultural region.
 
 ### About constants { #about_constant } 
 
-Constants are static values which can be made available to users for use
+Constants are static **numerical** values which can be made available to users for use
 in data elements and indicators. Some indicators, such as "Couple year
 protection rate" depend on constants which usually do not change over
 time.
