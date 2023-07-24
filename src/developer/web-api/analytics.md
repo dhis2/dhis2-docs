@@ -148,7 +148,8 @@ order is:
 DHIS2 features a multi-dimensional data model with several fixed and
 dynamic data dimensions. The fixed dimensions are the data element,
 period (time) and organisation unit dimension. You can dynamically add
-dimensions through categories, data element group sets and organisation
+dimensions through categories, category option group sets, 
+organisation unit group sets, data element group sets and organisation
 unit group sets. The table below displays the available data dimensions
 in DHIS2. Each data dimension has a corresponding *dimension
 identifier*, and each dimension can have a set of *dimension items*:
