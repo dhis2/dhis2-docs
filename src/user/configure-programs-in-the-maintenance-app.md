@@ -1093,7 +1093,7 @@ objects:
 
 2.  Click the add button.
 
-3.  Select a **Program** and enter a **Name**.
+3.  Select a **Program** and enter a **Name** (name MUST not contains forbidden keywords: `and` , `or` , `not`).
 
 4.  Select if you want to **Use code for option set**.
 
