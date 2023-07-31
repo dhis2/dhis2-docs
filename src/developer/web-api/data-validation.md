@@ -731,6 +731,133 @@ already completed details checks can be obtained using:
     GET /api/dataIntegrity/details/running
     GET /api/dataIntegrity/details/completed
 
+### Custom Data Integrity Checks { #custom_data_integrity_checks } 
+
+Users of DHIS2 can now create and supply their own Data Integrity Checks. This can be useful if users 
+want to avail of this functionality and extend upon the supplied set of core data integrity checks.  
+
+An example of a custom check could be for determining if certain users are members of specific user groups. This 
+type of check would be very specific to an implementation, and not generally applicable across all installs.  
+
+Custom checks can be implemented by satisfying the following requirements, each of which we will go into detail:  
+- Supplying your own list of custom data integrity checks in a list file named `custom-data-integrity-checks.yaml`
+ in your `DHIS2_HOME` directory
+- Having a directory named `custom-data-integrity-checks` in your `DHIS2_HOME` directory 
+- Supplying your valid custom data integrity check yaml files
+
+#### Custom Data Integrity Check List File
+
+DHIS2 will only try to load data integrity files when they are needed. e.g. when making a call to view all
+data integrity checks:
+
+    GET /api/dataIntegrity
+
+DHIS2 will look for a file named `custom-data-integrity-checks.yaml` in your `DHIS2_HOME` directory when loading
+data integrity files. If you are not using custom checks and the file is not present, a warning log like this will 
+be present:
+
+```text
+08:29:57.729  WARN o.h.d.d.DataIntegrityYamlReader: Failed to load data integrity check from YAML. Error message `{DHIS2_HOME}/custom-data-integrity-checks.yaml (No such file or directory)
+```
+
+If you are implementing custom data integrity checks then this file must be present. To see what the core data integrity checks
+file looks like as an example, check out [this file](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks.yaml). 
+
+
+The `custom-data-integrity-checks.yaml` file should list all of your custom data integrity checks.
+As an example, it could look something like this: 
+
+```yaml
+checks:
+  - categories/my_custom_check.yaml
+  - users/my_user_group_check.yaml
+  - base_check.yaml
+```
+
+Check names in this file can be preceded with a directory name for logical grouping. From the 3 example checks listed 
+above, the directory structure should look like this:
+
+```
+├── DHIS2_HOME
+│   ├── dhis.conf
+│   ├── custom-data-integrity-checks.yaml
+│   ├── custom-data-integrity-checks
+│   │   ├── categories
+│   │   │   ├── my_custom_check.yaml
+│   │   ├── users
+│   │   │   ├── my_user_group_check.yaml
+│   │   ├── base_check.yaml
+```
+
+#### Name and Code constraints
+
+Each data integrity check `name` and `code` must be unique. If there are any clashes then the violating custom
+check will not be loaded.
+
+> **Note**
+>
+> System data integrity checks are always loaded first. Any name or code clashes resulting from
+> custom checks will not affect these core system checks.
+
+An example data integrity check yaml file is located [here](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks/orgunits/orgunits_orphaned.yaml)
+for reference. Note the `name` property.  
+
+The data integrity `code` is calculated dynamically by using the first letter of each word in the `name`. Some examples:
+
+| Name                   | Code |
+|------------------------|------|
+| my_custom_check        | MCC  |
+| my_second_custom_check | MSCC |
+| another_custom_check   | ACC  |
+
+If there is a `name` clash, a warning log like this will be present:
+```text
+09:48:43.138  WARN o.h.d.d.DefaultDataIntegrityService: Data Integrity Check `my_custom_check` not added as a check with that name already exists
+```
+
+If there is a `code` clash, a warning log like this will be present:
+```text
+09:48:43.138  WARN o.h.d.d.DefaultDataIntegrityService: Data Integrity Check `my_custom_check` not added as a check with the code `MCC` already exists
+```
+
+#### Data Integrity Check Schema
+
+A data integrity check file must comply with this [JSON schema](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks/integrity_check_schema.json).
+If a check does not comply with the schema then a warning like this will be present:
+```text
+09:48:43.136  WARN o.h.d.d.DataIntegrityYamlReader: JsonSchema validation errors found for Data Integrity Check `categories/my_custom_check.yaml`. Errors: [$.name: is missing but it is required]
+```
+
+Any schema violations must be fixed before that check can be loaded and used.
+
+If a data integrity check file contains invalid yaml then a warning log like this could be present:
+```text
+10:30:37.858  WARN o.h.d.d.DataIntegrityYamlReader: JsonSchema validation errors found for Data Integrity Check `my_custom_check.yaml`. Errors: [$: string found, object expected]
+```
+
+To view and use the custom checks please refer to the main [Data Integrity section](#webapi_data_integrity)
+
+> **Note**
+>
+> It is recommended to follow any naming and format conventions seen in the provided examples above when implementing
+> your own custom checks to help avoid any issues
+
+#### Data Integrity File
+
+Details of the data integrity check yaml file, taken from the JSON schema file
+
+| property        | required | info                                                                                                                          |
+|-----------------|----------|-------------------------------------------------------------------------------------------------------------------------------|
+| name            | yes      | unique name of the check                                                                                                      |
+| description     | yes      | description                                                                                                                   |
+| section         | yes      | used for logical grouping of checks e.g. categories, users                                                                    |
+| section_order   | yes      | the order of the check when displayed in the UI                                                                               |
+| summary_sql     | yes      | an SQL query which should return a single result which represents the total count of issues                                   |
+| details_sql     | yes      | an SQL query which should return a list of identified objects from this particular issue. Should return at least uid and name |
+| details_id_type | yes      | a short string which identifies the section of the details SQL                                                                |
+| severity        | yes      | level of severity of the issue. One of [INFO, WARNING, SEVERE, CRITICAL]                                                      |
+| introduction    | yes      | outlining the objective of the check                                                                                          |
+| recommendation  | yes      | outlining how to resolve identified issues                                                                                    |
 
 ## Complete data set registrations { #webapi_complete_data_set_registrations } 
 
