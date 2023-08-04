@@ -1801,19 +1801,24 @@ JSON payload sample is given below:
 ```json
 {
   "name": "dataSetNotificationTemplate1",
-  "notificationTrigger": "COMPLETION",
+  "dataSetNotificationTrigger": "DATA_SET_COMPLETION",
   "relativeScheduledDays": 0,
   "notificationRecipient": "ORGANISATION_UNIT_CONTACT",
   "dataSets": [{
     "id": "eZDhcZi6FLP"
   }],
-  "deliveryChannels": ["SMS"],
-  "subjectTemplate": "V{data_name}",
-  "messageTemplate": "V{data_name}V{complete_registration_period}",
+  "deliveryChannels": ["SMS","EMAIL"],
+  "subjectTemplate": "V{data_set_name}",
+  "messageTemplate": "V{data_set_name}V{registration_period}",
   "sendStrategy": "SINGLE_NOTIFICATION"
 }
 
 ```
+
+`notificationRecipient` can be one of:
+- `USER_GROUP` for internal messages
+- `ORGANISATION_UNIT_CONTACT` for external messages
+
 
 ## Filled organisation unit levels { #webapi_filled_organisation_unit_levels } 
 
