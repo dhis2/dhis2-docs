@@ -65,11 +65,11 @@ DHIS2 documentation is organised into four broad categories. Choose the category
     
     [Explore user stories](topics/user-stories/user-stories.html)
 
-!!! Single Page documents and previous versions
+!!! Complete Manuals
 
     Here you will find links to our documentation as single-page html and pdf documents for easier sharing. You will also find documentation for previous versions of DHIS2.
     
-    [View Single Page index](topics/single-page/current-documentation.html)
+    [View complete manuals](topics/complete-manuals/user-manuals.html)
 
 !!!!
 
