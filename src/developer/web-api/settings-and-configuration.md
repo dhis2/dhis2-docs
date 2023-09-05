@@ -134,11 +134,11 @@ Table: System settings
 | keyCustomLoginPageLogo | Logo for custom login page | No |
 | keyCustomTopMenuLogo | Logo for custom top menu | No |
 | keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
-| keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
 | analyticsFinancialYearStart | Set financial year start. Default: October | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
 | keyAnalyticsMaxLimit | Maximum number of analytics recors. Default: "50000" | No |
 | keyAnalyticsMaintenanceMode | Put analytics in maintenance mode. Default: "false" | No |
+| keyAnalyticsPeriodYearsOffset | Defines the years' offset to be used in the analytics export process. If the year of a respective date is out of the offset the system sends back a warning message and also aborts the export process. ie.: suppose the user/admin sets the offset value to `5`, and we are in the year 2023. It means that analytics will accept exporting dates from 2018 (inclusive) to 2028 (inclusive). Which translates to: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028]. NOTE: The offset will have a significant influence on resource usage. Higher values will trigger higher usage of memory RAM/HEAP and CPU. Default: 22 | No |
 | keyDatabaseServerCpus | Number of database server CPUs. Default: "0" (Automatic) | No |
 | keyLastSuccessfulAnalyticsTablesRuntime | Keeps timestamp of last successful analytics tables run | No |
 | keyLastSuccessfulLatestAnalyticsPartitionRuntime | Keeps timestamp of last successful latest analytics partition run | No |
