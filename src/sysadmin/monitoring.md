@@ -366,7 +366,7 @@ global:
 
 scrape_configs:
   - job_name: 'dhis2'
-    metrics_path: '/dhis/api/metrics'
+    metrics_path: '/api/metrics'
     basic_auth:
       username: admin
       password: district
