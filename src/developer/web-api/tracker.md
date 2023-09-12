@@ -73,7 +73,6 @@ Tracker consists of a few different types of objects that are nested together to
 | trackedEntityType | Only for reading data. The type of tracked entity enrolled | No | Yes | String:Uid | ABCDEF12345 |
 | status | Status of the enrollment. ACTIVE if not supplied. | No | No | Enum | ACTIVE, COMPLETED, CANCELLED |
 | orgUnit | The organisation unit where the user enrolled the tracked entity. | Yes | No | String:Uid | ABCDEF12345 |
-| orgUnitName | Only for reading data. The name of the organisation unit where the enrollment took place. | No | No | String:Any | Sierra Leone |
 | createdAt | Timestamp when the user created the object. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | createdAtClient | Timestamp when the user created the object on client | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the object was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
@@ -115,7 +114,6 @@ In the API, the significant difference is that all events are either connected t
 | status | Status of the event. ACTIVE if not supplied. | No | No | Enum | ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED |
 | enrollmentStatus | Only for reading data. The status of the enrollment which owns the event. ***Not applicable for `EVENT PROGRAM`*** | No | No | Enum | ACTIVE, COMPLETED, CANCELLED |
 | orgUnit | The organisation unit where the user registered the event. | Yes | No | String:Uid | ABCDEF12345 |
-| orgUnitName | Only for reading data. The name of the organisation unit where the user registered the event. | No | No | String:Any | Sierra Leone |
 | createdAt | Timestamp when the user created the event. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | createdAtClient | Timestamp when the user created the event on client | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the event was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
@@ -1528,7 +1526,6 @@ An example of a json response:
             "program": "ur1Edk5Oe2n",
             "status": "ACTIVE",
             "orgUnit": "g8upMTyEZGZ",
-            "orgUnitName": "Njandama MCHP",
             "enrolledAt": "2020-11-10T12:28:17.532",
             "occurredAt": "2020-10-12T12:28:17.532",
             "followUp": false,
@@ -1613,7 +1610,7 @@ Returns a list of events based on the provided filters.
 |`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
 |`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
 |`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
-|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followup, occurredAt, orgUnit, orgUnitName, program, programStage, scheduleAt, status, storedBy, trackedEntity, updatedAt, updatedBy`.|
+|`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followup, occurredAt, orgUnit, program, programStage, scheduleAt, status, storedBy, trackedEntity, updatedAt, updatedBy`.|
 |`event`|`String`|comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using event=id1;id2.|
 |`skipEventId`|`Boolean`| | Skips event identifiers in the response|
 |`attributeCc` (see note)|`String`| Attribute category combo identifier (must be combined with attributeCos)|
@@ -1710,7 +1707,6 @@ The `JSON` response can look like the following.
             "program": "kla3mAPgvCH",
             "programStage": "aNLq9ZYoy9W",
             "orgUnit": "DiszpKrYNg8",
-            "orgUnitName": "Ngelehun CHC",
             "relationships": [],
             "occurredAt": "2021-10-12T00:00:00.000",
             "followup": false,
@@ -1777,7 +1773,6 @@ A query for an Event:
   "enrollment": "Lo3SHzCnMSm",
   "enrollmentStatus": "ACTIVE",
   "orgUnit": "DiszpKrYNg8",
-  "orgUnitName": "Ngelehun CHC",
   "relationships": [],
   "occurredAt": "2021-10-12T00:00:00.000",
   "followup": false,
@@ -1943,7 +1938,6 @@ The `JSON` response can look like the following.
       "program": "ur1Edk5Oe2n",
       "status": "ACTIVE",
       "orgUnit": "NnQpISrLYWZ",
-      "orgUnitName": "Govt. Hosp. Bonthe",
       "enrolledAt": "2020-10-23T12:28:19.805",
       "occurredAt": "2020-10-07T12:28:19.805",
       "followUp": false,
@@ -1992,7 +1986,6 @@ A query for a Enrollment:
   "program": "ur1Edk5Oe2n",
   "status": "ACTIVE",
   "orgUnit": "NnQpISrLYWZ",
-  "orgUnitName": "Govt. Hosp. Bonthe",
   "enrolledAt": "2020-10-23T12:28:19.805",
   "occurredAt": "2020-10-07T12:28:19.805",
   "followUp": false,
