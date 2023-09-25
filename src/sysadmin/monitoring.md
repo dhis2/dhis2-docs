@@ -64,7 +64,7 @@ cp -R consoles/ console_libraries/ prometheus.yml /etc/prometheus
 Create a data folder at the root directory, with a prometheus folder inside.
 
 ```
-mkdir -p data/prometheus
+mkdir -p /data/prometheus
 chown -R prometheus:prometheus /data/prometheus /etc/prometheus/*
 ```
 
@@ -366,7 +366,7 @@ global:
 
 scrape_configs:
   - job_name: 'dhis2'
-    metrics_path: '/dhis/api/metrics'
+    metrics_path: '/api/metrics'
     basic_auth:
       username: admin
       password: district
