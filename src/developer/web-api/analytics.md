@@ -2084,7 +2084,19 @@ Supported `op`values are:
 ### Event analytics dimensions
 #### Event query analytics dimensions { #webapi_event_query_analytics_dimension }
 
-The `/analytics/events/query/dimensions?programStageId=...` resource accepts a mandatory tracker program stage and returns the following data dimensions:
+The `/analytics/events/query/dimensions?programId={programId}&programStageId={programStageId}` resource accepts:
+
+- a tracker `program`
+- a tracker `programStage`
+- both `program` and `programStage`
+
+There are constraints on the combination of program and programStage:
+
+- If only `program` is specified, the resource returns data dimensions for each program stage in the provided program
+- If only `programStage` is specified, the resource returns data dimensions for the provided `programStage`
+- If both `program` and `programStage` are specified, the resource returns data dimensions for the provided `programStage` if it belongs to the provided `program`. Returns an error otherwise.
+
+the returned data dimensions are:
 
 - **Program indicators** associated with the program (derived from programStageId)
 - **Data elements** of *supported types* in the program stage
@@ -2162,7 +2174,7 @@ All value types for data elements and tracked entity attributes are considered *
 
 ### Sample request and response
 
-    GET /api/analytics/events/query/dimensions?programStageId=A03MvHHogjR&order=code&filter=name:ilike:weight
+    GET /api/analytics/teis/query/dimensions?programStageId=A03MvHHogjR&order=code&filter=name:ilike:weight
 
 ```json
 {
