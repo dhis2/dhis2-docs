@@ -29,7 +29,7 @@ To create and manipulate aggregate data exchanges, the `F_AGGREGATE_DATA_EXCHANG
 
 The aggregate data exchange definitions are regular metadata in DHIS 2, meaning that the definitions can be imported and exported between instances of DHIS 2. The exception is credentials (usernames and access tokens) which will not be exposed in metadata exports. Credentials are encrypted in storage to provide an additional layer of security.
 
-The aggregate data exchange service was introduced in version 2.39, which means that the source instance of DHIS 2 must be version 2.39 or later. The target instance of DHIS 2 must be version 2.38 or later. Earlier versions might be supported later.
+The aggregate data exchange service was introduced in version 2.39, which means that the source instance of DHIS 2 must be version 2.39 or later. The target instance of DHIS 2 must be version 2.38 or later.
 
 ### Authentication
 
@@ -39,7 +39,7 @@ It is recommended to either specify basic authentication or PAT authentication. 
 
 Note that PAT support was introduced in version 2.38.1, which means that in order to use PAT authentication, the target DHIS 2 instance must be version 2.38.1 or later.
 
- ### API
+### API
 
 The aggregate data exchange API is covered in the following section.
 
