@@ -861,6 +861,19 @@ oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
 > See link for a separate tutorial for setting up Okta as a generic OIDC provider. 
 > [link](../tutorials/configure-oidc-with-okta.md)
 
+### Connecting a single identity provider account to multiple DHIS2 accounts
+
+DHIS2 has the ability to map a single identity provider account to multiple DHIS2 accounts. API calls are available to list the linked accounts and also switch between then.
+
+When this option is selected, the `openid` database field in the `userinfo` table does not need to be unique.  When presented with an `openid` value from the identity provider, DHIS2 will log in the user that most recently logged in.
+
+The following `dhis.conf` section shows how to enable linked accounts.
+
+```properties
+# Enable a single OIDC accounts to log in as one of several DHIS2 accounts
+linked_accounts.enabled = on
+```
+
 ## LDAP configuration { #install_ldap_configuration } 
 
 DHIS2 is capable of using an LDAP server for authentication of users.
