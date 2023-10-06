@@ -138,7 +138,8 @@ Table: System settings
 | keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
 | analyticsFinancialYearStart | Set financial year start. Default: October | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
-| keyAnalyticsMaxLimit | Maximum number of analytics recors. Default: "50000" | No |
+| keyAnalyticsMaxLimit | Maximum number of analytics records. Default: "50000" | No |
+| KeyTrackedEntityMaxLimit | Maximum number of tracked entities. Default: "50000" | No |
 | keyAnalyticsMaintenanceMode | Put analytics in maintenance mode. Default: "false" | No |
 | keyDatabaseServerCpus | Number of database server CPUs. Default: "0" (Automatic) | No |
 | keyLastSuccessfulAnalyticsTablesRuntime | Keeps timestamp of last successful analytics tables run | No |
