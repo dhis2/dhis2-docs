@@ -205,6 +205,14 @@ sudo nano /etc/postgresql/12/main/postgresql.conf
 Set the following properties.
 
 ```properties
+jit = off
+```
+
+This is important to set for postgresql versions 12 and greater.  The jit compiler 
+functionality causes a significant slowdown on many DHIS2 specific queries, eg 
+Program Indicator queries.  For versions 11 and below, the setting is off by default.
+
+```properties
 max_connections = 200
 ```
 
