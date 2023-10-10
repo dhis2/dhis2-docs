@@ -869,7 +869,7 @@ When this option is selected, the `openid` database field in the `userinfo` tabl
 The following `dhis.conf` section shows how to enable linked accounts.
 
 ```properties
-# Enable a single OIDC accounts to log in as one of several DHIS2 accounts
+# Enable a single OIDC account to log in as one of several DHIS2 accounts
 linked_accounts.enabled = on
 ```
 
