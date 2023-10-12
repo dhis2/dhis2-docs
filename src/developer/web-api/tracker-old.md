@@ -2352,8 +2352,8 @@ The payload of a potential duplicate looks like this:
 
 ```json
 {
-  "teiA": "<id>",
-  "teiB": "<id>",
+  "original": "<id>",
+  "duplicate": "<id>",
   "status": "OPEN|INVALID|MERGED"
 }
 ```
@@ -2397,21 +2397,21 @@ To create a new potential duplicate, you can use this endpoint:
 
     POST /api/potentialDuplicates
 
-The payload you provide must include both teiA and teiB
+The payload you provide must include IDs of Original and Duplicate TEIs.
 
 ```json
 {
-  "teiA": "<id>",
-  "teiB": "<id>"
+  "original": "<id>",
+  "duplicate": "<id>"
 }
 ```
 
 | Status code | Description
 |---|---|
-| 400 | Input teiA or teiB is null or has invalid id
-| 403 | User do not have access to read teiA or teiB
-| 404 | Tei not found
-| 409 | Pair of teiA and teiB already existing
+| 400 | Input original or duplicate is null or has invalid id
+| 403 | User do not have access to read origianl or duplicate TEIs
+| 404 | TEI not found
+| 409 | Pair of original and duplicate TEIs already existing
 
 To update a potential duplicate status:
 
@@ -2449,7 +2449,7 @@ will move data from the duplicate tracked entity instance to the original tracke
 
 To merge a Potential Duplicate, or the two tracked entity instances the Potential Duplicate represents, the following endpoint can be used:
 
-    POST /potentialDuplicates/<id>/merge
+    POST /api/potentialDuplicates/<id>/merge
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
