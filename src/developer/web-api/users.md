@@ -429,6 +429,8 @@ GET /dhis-web-commons-security/logout.action?current={current_username}&switch={
 
 This has the effect of signing the current user out and signing in the new user, but it looks seamless as it is happening.
 
+Note that this API call will likely change in the future, but its general function will remain the same.
+
 To see a list of users that can be switched to, use this API call:
 
 ```
