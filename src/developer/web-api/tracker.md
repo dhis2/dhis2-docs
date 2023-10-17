@@ -147,6 +147,7 @@ In the API, the significant difference is that all events are either connected t
 | relationshipName | Only for reading data. The name of the relationship type of this relationship | No | No | String:Any | Sibling |
 | createdAt | Timestamp when the user created the relationship. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAt | Timestamp when the relationship was last updated. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| createdAtClient | Timestamp when the user created the relationship on the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | bidirectional | Only for reading data. Indicated whether the relationship type is bidirectional or not. | No | No | Boolean | True or False |
 | from, to | A reference to each side of the relationship. Must conform to the constraints set in the relationship type | Yes | Yes | RelationshipItem | {"trackedEntity": {"trackedEntity": "ABCEF12345"}}, {"enrollment": {"enrollment": "ABCDEF12345"}} or {"event": {"event": "ABCDEF12345" }} |
 
@@ -2009,7 +2010,8 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 |`trackedEntity`|`String`|`uid`| Identifier of a Tracked Entity Instance|
 |`enrollment`|`String`|`uid`| Identifier of an Enrollment |
 |`event`|`String`|`uid`| Identifier of an Event|
-|`fields`|`String`| Any valid field filter (default `relationship,relationshipType,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
+|`fields`|`String`| Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
+|`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Supported fields: `created` and `createdAtClient`|
 
 The following rules apply to the query parameters.
 
