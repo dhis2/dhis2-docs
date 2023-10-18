@@ -79,7 +79,7 @@ Table: Query parameters
 | paging | true &#124; false | true | Indicates whether to return lists of elements in pages. |
 | page | number | 1 | Defines which page number to return. |
 | pageSize | number | 50 | Defines the number of elements to return for each page. |
-| order | property:asc/iasc/desc/idesc || Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting. |
+| order | property:asc/iasc/desc/idesc || Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting. If it is wanted to sort for more than one property, separate them using a comma.  |
 
 An example of how these parameters can be used to get a full list of
 data element groups in XML response format is:
@@ -103,6 +103,10 @@ You can completely disable paging like this:
 To order the result based on a specific property:
 
     /api/indicators.json?order=shortName:desc
+
+To order the result based on created datetime property first (descending order) and then by name property (ascending order):
+
+    /api/indicators.json?order=created:desc,name:asc
 
 You can find an object based on its ID across all object types through
 the *identifiableObjects* resource:
