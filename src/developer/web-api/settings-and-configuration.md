@@ -45,6 +45,18 @@ Alternatively, you can specify the key as a query parameter:
 
     /api/33/systemSettings?key=my-key
 
+If a key is not found or marked confidential then a `404` response will be returned like so:
+
+```json
+{
+    "httpStatus": "Not Found",
+    "httpStatusCode": 404,
+    "status": "ERROR",
+    "message": "Setting does not exist or is marked as confidential",
+    "errorCode": "E1005"
+}
+```
+
 You can retrieve specific system settings as JSON by repeating the key
 query parameter:
 
