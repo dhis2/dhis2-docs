@@ -2026,16 +2026,16 @@ For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" prog
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
 
-## Tracked entity instance analytics { #webapi_tei_analytics } 
+## Tracked entity analytics { #webapi_tei_analytics } 
 
-The tracked entity instance (TEI) analytics API allows querying *TEIs with their enrollments and event data* captured in DHIS2. This resource retrieves data from TEI, enrollments, events and data elements across multiple programs, for a given tracked entity type.
+The tracked entity (TE) analytics API allows querying *TEs with their enrollments and event data* captured in DHIS2. This resource retrieves data from TE, enrollments, events, and data elements across multiple programs, for a given tracked entity type.
 
 ### Dimensions and items { #webapi_tei_analytics_dimensions } 
 
-Tracked entity instance dimensions include program attributes, data elements, attributes, organisation units and different kinds of periods. 
-The analytics query will simply return TEIs matching a set of criteria. It does not perform any aggregation.
+Tracked entity instance dimensions include program attributes, data elements, attributes, organization units, and different kinds of periods. 
+The analytics query will simply return TEs matching a set of criteria. It does not perform any aggregation.
 
-Table: TEI dimensions
+Table: TE dimensions
 
 | Dimension | Dimension id | Description |
 |---|---|---|
@@ -2046,29 +2046,29 @@ Table: TEI dimensions
 | Enrollment Organisation units | `<program id>.ou` | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
 | Event Organisation units | `<program id><program stage id>.ou` | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
 
-### Tracked entity instance query analytics { #webapi_tei_query_analytics } 
+### Tracked entity (TE) query analytics { #webapi_te_query_analytics } 
 
-The *analytics/tei/query* endpoint provides queries for captured TEIs, allowing querying and filtering for information related to TEIs, along with their respective enrollments and events. It does not perform any aggregation.
+The *analytics/trackedEntities/query* endpoint provides queries for captured TEs, allowing querying and filtering for information related to TEs, along with their respective enrollments and events. It does not perform any aggregation.
 
     /api/41/analytics/enrollments/query
 
-You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of the data elements in program stages, program attributes, tracked entity attributes, fixed and relative periods and organisation units. Dimensions can optionally have a query operator and a filter. TEIs queries should be on the format described below.
+You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of the data elements in program stages, program attributes, tracked entity attributes, fixed and relative periods, and organization units. Dimensions can optionally have a query operator and a filter. TEs queries should be in the format described below.
 
-    /api/41/analytics/tei/query/<tracked-entity-type-id>?dimension=ou:<ou-id>;<ou-id>&
+    /api/41/analytics/trackedEntities/query/<tracked-entity-type-id>?dimension=ou:<ou-id>;<ou-id>&
     	dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
 
-For example, to retrieve TEIs of type `Person` from the "Child Program" and "Antenatal care" programs, where the "First name" is "James":
+For example, to retrieve TEs of type `Person` from the "Child Program" and "Antenatal care" programs, where the "First name" is "James":
 
-    /api/41/analytics/tei/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
+    /api/41/analytics/trackedEntities/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
 
-Paging can be applied to the query by specifying the page number and the page size parameters. If page number is specified but page size is not, a page size of 50 will be used. If page size is specified but page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
+Paging can be applied to the query by specifying the page number and the page size parameters. If the page number is specified but the page size is not, a page size of 50 will be used. If the page size is specified but the page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
 
-    /api/41/analytics/tei/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
+    /api/41/analytics/trackedEntities/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
     	&pageSize=10&page=2
 
 #### Filtering
 
-Filters can be applied to data elements, tracked entity attributes and tracked entity identifiers. The filtering is done through a query parameter on the following format:
+Filters can be applied to data elements, tracked entity attributes, and tracked entity identifiers. The filtering is done through a query parameter in the following format:
 
     &dimension=<item-id>:<operator>:<filter-value>
 
@@ -2078,64 +2078,64 @@ For example, you can filter the "MCH Infant Weight (g)" data element, of the pro
 
 #### Periods 
 
-Unlike enrollment and event query endpoints, the TEI endpoint supports multiple ways to specify the period the data belongs to. They are based on different *date* params as showed below:
+Unlike enrollment and event query endpoints, the TE endpoint supports multiple ways to specify the period the data belongs to. They are based on different *date* params as shown below:
 
 | Parameter | Description | 
 |---|---|
-| eventDate | TEIs will be filtered based on the date the event occurred. |
-| enrollmentDate | TEIs will be filtered based on the date of enrollment. |
-| scheduledDate | TEIs will be filtered based on date the event was scheduled. |
-| incidentDate | TEIs will be filtered based on enrollment's incident date. |
-| lastUpdated | TEIs will be filtered based on date the event/enrollment was updated by the last time. |
+| eventDate | TEs will be filtered based on the date the event occurred. |
+| enrollmentDate | TEs will be filtered based on the date of enrollment. |
+| scheduledDate | TEs will be filtered based on the date the event was scheduled. |
+| incidentDate | TEs will be filtered based on enrollment's incident date. |
+| lastUpdated | TEs will be filtered based on the date the event/enrollment was updated by the last time. |
 
-Some periods, mentioned above, can be applicated to TEIs, Enrollment or Event, depending on the way they are expressed.
+Some periods, mentioned above, can be applied to Trecked Entities, Enrollments, or Events, depending on the way they are expressed.
 
 Examples:
 
-* filtering TEIs that have been updated during the last year:
+* filtering TEs that have been updated during the last year:
 
 `lastUpdated=LAST_YEAR`
 
-* filtering TEIs whose latest enrollment in the program "Child Program" has been updated during the last year:
+* filtering TEs whose latest enrollment in the program "Child Program" has been updated during the last year:
 
 `lastUpdated=IpHINAT79UW.LAST_YEAR`
 
-* filtering TEIs whose latest event in the program stage "Baby Postnatal", in the latest enrollment in the program "Child Program" has been updated during the last year:
+* filtering TEs whose latest event in the program stage "Baby Postnatal", in the latest enrollment in the program "Child Program" has been updated during the last year:
 
 `lastUpdated=IpHINAT79UW.ZzYYXq4fJie.LAST_YEAR`
 
-* filtering TEIs whose latest enrollment in the "Child Program" occurred in the last year:
+* filtering TEs whose latest enrollment in the "Child Program" occurred in the last year:
 
 `enrollmentDate=IpHINAT79UW.LAST_YEAR`
 
 ### Request query parameters { #webapi_tei_analytics_query_parameters } 
 
-The analytics TEI query API supports a range of query parameters.
+The analytics TE query API supports a range of query parameters.
 
-Table: Query parameters for TEI query endpoint
+Table: Query parameters for the TE query endpoint
 
 | Query parameter | Required | Description | Options (default first) |
 |---|---|---|---|
 | trackedEntityType | Yes | Tracked entity type identifier. | Any tracked entity type identifier. |
-| program | Yes | Program identifiers. | Any program identifier. Accepts multiple comma separated identifiers. |
-| dimension | No | Dimension identifier including data elements, attributes, program indicators, periods, organisation units and organisation unit group sets. This parameter can be specified multiple times. Dimension filters can be applied to a dimension on the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator). | Operators supported: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN |
-| filter | No | Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. This parameter can be specified multiple times. Dimension filters can be applied to a dimension on the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator). | Operators supported: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN |
-| relativePeriodDate | No | Overrides the start date, so relative periods will use this date as starting date. | Example: "2016-01-01" |
-| ouMode | No | The mode for the selection of organisation units. The default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. | DESCENDANTS, CHILDREN, SELECTED |
-| asc | No | Dimensions to be sorted ascending. Can reference to enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; `<dimension identifier>` |
+| program | Yes | Program identifiers. | Any program identifier. Accepts multiple comma-separated identifiers. |
+| dimension | No | Dimension identifier including data elements, attributes, program indicators, periods, organization units and organization unit group sets. This parameter can be specified multiple times. Dimension filters can be applied to a dimension in the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator). | Operators supported: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN |
+| filter | No | Dimension identifier including data elements, attributes, periods, organization units and organization unit group sets. This parameter can be specified multiple times. Dimension filters can be applied to a dimension in the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator). | Operators supported: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN |
+| relativePeriodDate | No | Overrides the start date, so relative periods will use this date as the starting date. | Example: "2016-01-01" |
+| ouMode | No | The mode for the selection of organization units. The default is DESCENDANTS, meaning all subunits in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organization units only. | DESCENDANTS, CHILDREN, SELECTED |
+| asc | No | Dimensions to be sorted ascending. Can reference to enrollment date, incident date, org unit name, and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; `<dimension identifier>` |
 | desc | No | Dimensions to be sorted descending, can reference to enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; `<dimension identifier>` |
-| headers | No | The name of the headers to be returned as part of the response. | One or more headers name separated by comma. |
+| headers | No | The name of the headers to be returned as part of the response. | One or more header names (separated by a comma). |
 | page | No | The page number. The default value is 1. | Numeric positive value. |
-| pageSize | No | The page size. The defult vqlue is 50 (which means 50 items per page). | Numeric zero or positive value. |
+| pageSize | No | The page size. The default value is 50 (which means 50 items per page). | Numeric zero or positive value. |
 | displayProperty | No | Property to display for metadata. | NAME &#124; SHORTNAME |
 | includeMetadataDetails | No | Include metadata details to raw data response. | false &#124; true |
-| outputIdScheme | No | Identifier scheme used for metadata items in the query response. It accepts identifier, code or attributes. | UID &#124; UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
-| dataIdScheme | No | Id scheme to be used for data, more specifically data elements and attributes which have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response. | NAME &#124; CODE &#124; UID |
+| outputIdScheme | No | Identifier scheme used for metadata items in the query response. It accepts identifiers, codes, or attributes. | UID &#124; UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\> |
+| dataIdScheme | No | Id scheme to be used for data, more specifically data elements and attributes that have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response. | NAME &#124; CODE &#124; UID |
 | programStatus | No | Specify enrollment status of events to include. *DEPRECATED, prefer `enrollmentStatus`* | ACTIVE &#124; COMPLETED &#124; CANCELLED. Can be comma separated (*for query only*). |
 | enrollmentStatus | No | Specify enrollment status of events to include. | ACTIVE &#124; COMPLETED &#124; CANCELLED. Can be comma separated (*for query only*). |
-| eventStatus | No | Specify status of events to include. | ACTIVE &#124; COMPLETED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED. Can be comma separated (*for query only*). |
-| coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
-| geometryOnly | No | Whether to only return events which have geometries. | false &#124; true |
+| eventStatus | No | Specify the status of events to include. | ACTIVE &#124; COMPLETED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED. Can be comma separated (*for query only*). |
+| coordinatesOnly | No | Whether to only return events that have coordinates. | false &#124; true |
+| geometryOnly | No | Whether to only return events that have geometries. | false &#124; true |
 
 ## Dimensions { #webapi_dimensions }
 
