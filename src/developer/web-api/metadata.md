@@ -1274,7 +1274,7 @@ A list of all unique keywords can be found at the keywords resource:
 ### Custom icon operations { #webapi_icons_custom }
 
 
-Custom icon resource can be downloaded by providing icon key:
+A custom icon resource can be downloaded by providing the icon key:
 
     GET /api/icons/{key}/icon
         
