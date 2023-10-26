@@ -2050,7 +2050,7 @@ Table: TE dimensions
 
 The *analytics/trackedEntities/query* endpoint provides queries for captured TEs, allowing querying and filtering for information related to TEs, along with their respective enrollments and events. It does not perform any aggregation.
 
-    /api/41/analytics/enrollments/query
+    /api/41/analytics/trackedEntities/query
 
 You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of the data elements in program stages, program attributes, tracked entity attributes, fixed and relative periods, and organization units. Dimensions can optionally have a query operator and a filter. TEs queries should be in the format described below.
 
