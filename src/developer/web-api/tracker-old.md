@@ -2379,20 +2379,6 @@ You can inspect individual potential duplicate records:
 |---|---|
 | 404 | Potential duplicate not found
 
-You can also filter potential duplicates by Tracked Entity Instance (referred as tei) :
-
-    GET /api/potentialDuplicates/tei/<tei>
-
-| Parameter name | Description | Type | Allowed values |
-|---|---|---|---|
-| status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL <default>` |
-
-| Status code | Description
-|---|---|
-| 400 | Invalid input status
-| 403 | User do not have access to read tei
-| 404 | Tei not found
-
 To create a new potential duplicate, you can use this endpoint:
 
     POST /api/potentialDuplicates
@@ -2425,23 +2411,6 @@ To update a potential duplicate status:
 |---|---|
 | 400 | You can't update a potential duplicate to MERGED as this is possible only by a merging request
 | 400 | You can't update a potential duplicate that is already in a MERGED status
-
-## Flag Tracked Entity Instance as Potential Duplicate
-
-To flag as potential duplicate a Tracked Entity Instance (referred as tei)
-
- `PUT /api/trackedEntityInstances/{tei}/potentialDuplicate`
-
-| Parameter name | Description | Type | Allowed values |
-|---|---|---|---|
-| flag | either flag or unflag a tei as potential duplicate | string | `true`, `false` |
-
-
-| Status code | Description
-|---|---|
-| 400 | Invalid flag must be true of false
-| 403 | User do not have access to update tei
-| 404 | Tei not found
 
 ## Merging Tracked Entity Instances
 Tracked entity instances can now be merged together if they are viable. To initiate a merge, the first step is to define two tracked entity instances as a Potential Duplicate. The merge endpoint
