@@ -398,6 +398,8 @@ expiry period of the data set has passed.
 In the example above, a data lock exception would be created for "Bo" for the
 "ART monthly summary" dataset for "February 2014".
 
+In order to run this function, the user no extra authority is needed.
+
 ## Min-Max Value Generation { #data_admin_min_max_value_generation }
 
 This administrative function can be used to generate min-max values,
@@ -407,7 +409,8 @@ from the left hand frame, and then select the required organisation
 units to generate the min-max values for from the organisational units
 selector on the right. Press the "Generate" button to generate or
 regenerate all min-max values. Press "Remove" to remove all min-max
-values which are currently stored in the database.
+values which are currently stored in the database. In order to run this
+function, the user MUST have the authority `F_GENERATE_MIN_MAX_VALUES`.
 
 ![](resources/images/maintenance/min_max_value_generation.png)
 
