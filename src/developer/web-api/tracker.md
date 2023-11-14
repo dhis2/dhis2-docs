@@ -2104,7 +2104,6 @@ When fetching Tracker objects, depending on the context, the organisation unit s
 
 For example, when retrieving TrackedEntities without the context of a program, the organisation unit scope is applied to the registration organisation unit of the TrackedEntity. Whereas, when retrieving TrackedEntities, including specific program data, the organisation unit scope is applied to the Owner organisation unit.
 
-
 ### Tracker Program Ownership { #webapi_nti_ownership }
 
 A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation unit association for a TrackedEntity - Program combination.
