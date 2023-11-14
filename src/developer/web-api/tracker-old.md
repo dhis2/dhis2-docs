@@ -624,9 +624,9 @@ Table: Organisation unit selection modes
 | SELECTED | Organisation units defined in the request. |
 | CHILDREN | The selected organisation units and the immediate children, i.e. the organisation units at the level below. |
 | DESCENDANTS | The selected organisation units and all children, i.e. all organisation units in the sub-hierarchy. |
-| ACCESSIBLE | technically, returns everything in the user's tracker search organization units. In practice, if a user lacks search organization units, the system defaults to the data capture scope. As the capture scope is mandatory, we ensure that a user always has at least one universe. |
-| CAPTURE | The data capture organization units associated with the current user and all descendants, encompassing all organization units in the sub-hierarchy. |
-| ALL | The term "ALL" logically refers to the entire organization unit available in the system for super users. However, for non-superusers, "ALL" is equivalent to "ACCESSIBLE" organization units. |
+| ACCESSIBLE | technically, returns everything in the user's tracker search organisation units. In practice, if a user lacks search organisation units, the system defaults to the data capture scope. As the capture scope is mandatory, we ensure that a user always has at least one universe. |
+| CAPTURE | The data capture organisation units associated with the current user and all descendants, encompassing all organisation units in the sub-hierarchy. |
+| ALL | The term "ALL" logically refers to the entire organisation unit available in the system for super users. However, for non-superusers, "ALL" is equivalent to "ACCESSIBLE" organisation units. |
 
 The available assigned user modes are explained in the following table.
 
