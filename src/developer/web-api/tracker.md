@@ -2104,11 +2104,6 @@ When fetching Tracker objects, depending on the context, the organisation unit s
 
 For example, when retrieving TrackedEntities without the context of a program, the organisation unit scope is applied to the registration organisation unit of the TrackedEntity. Whereas, when retrieving TrackedEntities, including specific program data, the organisation unit scope is applied to the Owner organisation unit.
 
- - explain a request will validate always against the user search scope when an org unit is present, and then it will return everything available to the user depending on the combination of program access level and org unit. In case program is not specified, it will check the program access level of the possible result.
-
- - if org unit requested not in search scope, request will fail unless superuser and mode ALL
-
-  * **Explain how they relate to ownership - Link to Program Ownership**
 
 ### Tracker Program Ownership { #webapi_nti_ownership }
 
