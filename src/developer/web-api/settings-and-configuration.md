@@ -208,7 +208,7 @@ Table: System settings
 | keyDashboardContextMenuItemOpenInRelevantApp | Allow users to open dashboard favorites in relevant apps | Yes |
 | keyDashboardContextMenuItemShowInterpretationsAndDetails | Allow users to show dashboard favorites' interpretations and details | Yes |
 | keyDashboardContextMenuItemViewFullscreen | Allow users to view dashboard favorites in fullscreen | Yes |
-
+| keyParallelJobsInAnalyticsTableExport | Returns the number of parallel jobs to use for processing analytics tables. It takes priority over "keyDatabaseServerCpus". Default: -1 | No |
 
 ## User settings { #webapi_user_settings } 
 
