@@ -1626,6 +1626,112 @@ description of the expression.
 }
 ```
 
+## Indicator Types { #webapi_indicator_types}
+
+### Merge indicator types { #webapi_indicator_type_merge}
+
+The indicator type merge endpoint allows you to merge a number of indicator types into a target indicator type.
+
+#### Authorisation
+
+The authority `F_MERGE_INDICATOR_TYPES` is required to perform indicator type merges.
+#### Request
+
+Merge indicator types with a POST request:
+
+```
+POST /api/indicatorTypes/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                                   |
+|---------------|----------|-----------------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the indicator types to merge (the source indicator types).      |
+| target        | Yes      | Identifier of the indicator type to merge the sources into (the target indicator type). |
+| deleteSources | No       | Whether to delete the source indicator types after the operation. Default is false.     |
+
+The merge operation will merge the source indicator types into the target indicator type. One or many source indicator types can be specified. Only one target should be specified.
+
+The merge operation will transfer all of the indicator metadata associations to the source indicator types over to the target indicator type.
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                             |
+|------------|---------------------------------------------------------|
+| E1530      | At least one source indicator type must be specified    |
+| E1531      | Target indicator type must be specified                 |
+| E1532      | Target indicator type cannot be a source indicator type |
+| E1533      | Source/Target indicator type does not exist: `{uid}`    |
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "INDICATOR_TYPE",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "INDICATOR_TYPE merge complete"
+        }
+    }
+}
+```
+
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Bad Request",
+    "httpStatusCode": 400,
+    "status": "ERROR",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "Source indicator type does not exist: `abcdefg1222`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Source",
+                        "abcdefg1222"
+                    ]
+                }
+            ],
+            "mergeType": "INDICATOR_TYPE",
+            "sourcesDeleted": [],
+            "message": "INDICATOR_TYPE merge has errors"
+        }
+    }
+}
+```
+
 ## Organisation units { #webapi_organisation_units } 
 
 The *organisationUnits* resource follows the standard conventions as
