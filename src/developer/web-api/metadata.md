@@ -1710,18 +1710,24 @@ Sample error response looks like:
 
 ```json
 {
-    "httpStatus": "Bad Request",
-    "httpStatusCode": 400,
-    "status": "ERROR",
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
     "response": {
         "mergeReport": {
             "mergeErrors": [
                 {
-                    "message": "Source indicator type does not exist: `abcdefg1222`",
+                    "message": "At least one source indicator type must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target indicator type does not exist: `abcdefg1221`",
                     "errorCode": "E1533",
                     "args": [
-                        "Source",
-                        "abcdefg1222"
+                        "Target",
+                        "abcdefg1221"
                     ]
                 }
             ],
