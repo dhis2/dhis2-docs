@@ -198,7 +198,7 @@
 | Manage Tracked Entity Instance Reminders                             | F_TRACKED_ENTITY_INSTANCE_REMINDER_MANAGEMENT    |
 | Map External Access                                                  | F_MAP_EXTERNAL                                   |
 | Merge organisation units                                             | F_MERGE_ORGANISATION_UNITS                       |
-| Merge indicator types                                                | F_MERGE_INDICATOR_TYPES                          |
+| Merge indicator types                                                | F_INDICATOR_TYPE_MERGE                           |
 | Move Organisation Unit                                               | F_ORGANISATIONUNIT_MOVE                          |
 | Multiple Individual Data Entry                                       | F_NAME_BASED_DATA_ENTRY                          |
 | Option Set Management                                                | F_OPTIONSET_MANAGEMENT                           |
