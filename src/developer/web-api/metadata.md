@@ -1634,7 +1634,7 @@ The indicator type merge endpoint allows you to merge a number of indicator type
 
 #### Authorisation
 
-The authority `F_MERGE_INDICATOR_TYPES` is required to perform indicator type merges.
+The authority `F_INDICATOR_TYPE_MERGE` is required to perform indicator type merges.
 #### Request
 
 Merge indicator types with a POST request:
