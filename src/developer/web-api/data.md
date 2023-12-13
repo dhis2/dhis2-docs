@@ -89,6 +89,13 @@ CSV is supported in this format:
 >
 > Please refer to the date and period section above for time formats.
 
+> **Note**
+>
+> Any imported data value which is seen as unchanged will be ignored and the import summary will reflect this. An unchanged data value is classed as one which has the same value for all 3 of these properties:
+> - value
+> - comment
+> - followUp
+
 From the example, we can see that we need to identify the period, the
 data set, the org unit (facility) and the data elements for which to
 report.
