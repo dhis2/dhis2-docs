@@ -594,8 +594,8 @@ Table: Data element objects in the Maintenance app
     
     | Value type | Description |
     |---|---|
-    | Age | - |
-    | Coordinate | A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format "-19.23 , 56.42" with a comma separating the longitude and latitude. |
+    | Age | Dates rendered as calendar widget OR by entering number of years, months and/or days which calculates the date value based on current date. The date will be saved in the backend. |
+    | Coordinate | A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format [-19.23 , 56.42] with brackets and a comma separating the longitude and latitude. |
     | Date | Dates rendered as calendar widget in data entry. |
     | Date & time | Is a combination of the **DATE** and **TIME** data elements. |
     | Email | Email. |
