@@ -278,7 +278,7 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 
 ### Program stage working lists { #webapi_working_list_filters }
 
-The program stage working lists feature within the Capture app is designed to display pre-established working lists relevant to a particular program stage. This functionality enables users to save filters and sorting preferences that are related to program stages, facilitating the organization and management of their workflow. To interact with them, you'll need to use the */api/programStageWorkingLists* resource. These lists can be shared and follow the same sharing pattern as any other metadata. When using the */api/sharing* the type parameter will be *programStageWorkingLists*.
+The program stage working lists feature within the Capture app is designed to display pre-established working lists relevant to a particular program stage. This functionality enables users to save filters and sorting preferences that are related to program stages, facilitating the organisation and management of their workflow. To interact with them, you'll need to use the */api/programStageWorkingLists* resource. These lists can be shared and follow the same sharing pattern as any other metadata. When using the */api/sharing* the type parameter will be *programStageWorkingLists*.
 
     /api/40/programStageWorkingLists
 
@@ -1206,17 +1206,7 @@ The following endpoint supports standard parameters for pagination.
 
 #### Request parameters for Organisational Unit selection mode
 
-The available organisation unit selection modes are explained in the
-following table.
-
-|Mode|Description|
-|---|---|
-|`SELECTED`|  Organisation units defined in the request.|
-|`CHILDREN`|  The selected organisation units and the immediate children, i.e., the organisation units at the level below.|
-|`DESCENDANTS`| The selected organisation units and all children, i.e., all organisation units in the sub-hierarchy.|
-|`ACCESSIBLE`|  The data view organisation units associated with the current user and all children, i.e., all organisation units in the sub-hierarchy. Will fall back to data capture organisation units associated with the current user if the former is not defined.|
-|`CAPTURE`| The data capture organisation units associated with the current user and all children, i.e., all organisation units in the sub-hierarchy.|
-|`ALL`| All organisation units in the system. Requires the ALL authority.|
+The available organisation unit selection modes are `SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE` and `ALL`. Each mode is explained in detail in [this section](#webapi_nti_ou_scope).
 
 #### Request parameter to filter responses { #webapi_nti_field_filter }
 
@@ -2087,7 +2077,7 @@ For more detailed information about data sharing, check out [Data sharing](https
 
 ### Organisation Unit Scopes { #webapi_nti_ou_scope }
 
-Organisation units are one of the most fundamental objects in DHIS2. They define a universe under which a user is allowed to record and/or read data. There are three types of organisation units that can be assigned to a user. These are data capture, data view, and tracker search. As the name implies, these organisation units define a scope under which a user is allowed to conduct the respective operations.
+Organisation units are one of the most fundamental objects in DHIS2. They define a universe under which a user is allowed to record and/or read data. There are three types of organisation units that can be assigned to a user. These are data capture, data view (not used in tracker), and tracker search. As the name implies, these organisation units define a scope under which a user is allowed to conduct the respective operations.
 
 However, to further fine-tune the scope, DHIS2 Tracker introduces a concept that we call **OrganisationUnitSelectionMode**. Such a mode is often used at the time exporting tracker objects. For example, given that a user has a particular tracker search scope, does it mean that we have to use this scope every time a user tries to search for a tracker, Enrollment, or Event object? Or is the user interested in limiting the searching just to the selected org unit, or the entire capture org unit scope, and so on.
 
@@ -2097,12 +2087,16 @@ Users can do the fine-tuning by passing a specific value of ouMode in their API 
 
 Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCENDANTS, CAPTURE, ACCESSIBLE, and ALL*.
 
-1. **SELECTED**: as the name implies, all operations intended by the requesting API narrow down to the selected organisation unit.
-2. **CHILDREN**: under this mode, the organisation unit scope will be constructed using the selected organisation unit and its immediate children.
-3. **DESCENDANTS**: here, the selected organisation unit and everything underneath it, not just the immediate children, constitute the data operation universe.
-4. **CAPTURE**: as the name implies, organisation units assigned as the user's data capture constitute the universe. Note that, of the three organisation units that can be assigned to a user data capture is the mandatory one. If a user does not have data view and tracker search organisation units, the system will fall back to data capture. This way, we are always sure that a user has at least one universe.
-5. **ACCESSIBLE**: technically, this is the same scope as the user's tracker search organisation units.
-6. **ALL**: the name ALL makes perfect sense if we are dealing with a superuser. For super users, this scope means the entire organisation unit available in the system. However, for non-superusers, ALL boils down to ACCESSIBLE organisation units.
+1. **SELECTED**: As the name implies, this mode narrows down all operations initiated by the requesting API to the specified organisation unit in the request.
+2. **CHILDREN**: Under this mode, the organisation unit scope is constructed using the selected organisation unit and its immediate children, i.e., the organisation units at the level below.
+3. **DESCENDANTS**: In this mode, the selected organisation unit and everything underneath it, encompassing not only the immediate children but all descendants, constitute the data operation universe.
+4. **CAPTURE**: This mode includes the data capture organization units associated with the current user and all descendants. It encompasses all organization units in the sub-hierarchy.
+5. **ACCESSIBLE**: This mode is designed to retrieve data within the user's search scope organization units. This encompasses everything visible to the user, including open and audited programs within its search scope, as well as data in protected and closed programs within the user's capture scope. If a user lacks search organization units, the system defaults to capture scope, ensuring that the user always has access to at least one universe. The capture scope, being mandatory, serves as a foundational element in guaranteeing a data environment for the user.
+6. **ALL**: This mode is reserved for authorized users, specifically those with the authority ALL (super users). Users with the authority F_TRACKED_ENTITY_INSTANCE_SEARCH_IN_ALL_ORGUNITS can also search system-wide but need sharing access to the returned program, program stage, and/or tracked entity type. For non-authorized users, an exception will be raised.
+
+The first three modes, *SELECTED*, *CHILDREN* and *DESCENDANTS* expect an organisation unit to be supplied in the request, while the last three, *CAPTURE*, *ACCESSIBLE* and *ALL* do not expect it and in fact the request will fail if an organisation unit is provided.
+
+The organisation unit mode will be one of the ones listed above when it's explicitly provided in the API request. Since it's not a mandatory field, in case it's not specified, then the default value will be *SELECTED* if an organisation unit is present, and *ACCESSIBLE* otherwise.
 
 It makes little sense to pass these modes at the time of tracker import operations. Because when writing tracker data, each of the objects needs to have a specific organisation unit attached to them. The system will then ensure if each of the mentioned organisation units falls under the CAPTURE scope. If not, the system will simply reject the write operation.
 
@@ -2112,8 +2106,6 @@ When fetching Tracker objects, depending on the context, the organisation unit s
 
 For example, when retrieving TrackedEntities without the context of a program, the organisation unit scope is applied to the registration organisation unit of the TrackedEntity. Whereas, when retrieving TrackedEntities, including specific program data, the organisation unit scope is applied to the Owner organisation unit.
 
-  * **Explain how they relate to ownership - Link to Program Ownership**
-
 ### Tracker Program Ownership { #webapi_nti_ownership }
 
 A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation unit association for a TrackedEntity - Program combination.
@@ -2121,7 +2113,7 @@ We call this the Owner (or Owning) Organisation unit of a TrackedEntity in
 the context of a Program. The Owner organisation unit is used to decide access privileges when reading and writing tracker data related to a program.
 This, along with the Program's [Access Level](#webapi_nti_access_level) configuration, decides the access behavior for Program-related data (Enrollments and Events).
 A user can access a TrackedEntity's Program data if the corresponding Owner OrganisationUnit for that TrackedEntity-Program combination falls under the user's organisation unit scope (Search/Capture). For Programs that are configured with access level  *OPEN* or *AUDITED* , the Owner OrganisationUnit has to be in the user's search scope.
-For Programs that are configured with access level  *PROTECTED* or *CLOSED* , the Owner OrganisationUnit has to be in the user's capture scope to be able to access the corresponding program data for the specific tracked entity.
+For Programs that are configured with access level  *PROTECTED* or *CLOSED* , the Owner OrganisationUnit has to be in the user's capture scope to be able to access the corresponding program data for the specific tracked entity. Irrespective of the program access level, to access Tracker objects, the requested organisation unit must always be within the user's search scope. A user cannot request objects outside its search scope unless it's using the organisation unit mode ALL and has enough privileges to use that mode.
 
 #### Tracker Ownership Override: Break the Glass { #webapi_nti_tracker_ownership_override }
 
