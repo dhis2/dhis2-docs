@@ -1182,6 +1182,7 @@ Table: Enrollment query parameters
 | totalPages | Indicates whether to include the total number of pages in the paging response (implies higher response time). |
 | skipPaging | Indicates whether paging should be ignored and all rows should be returned. |
 | includeDeleted | Indicates whether to include soft deleted enrollments or not. It is false by default. |
+| order | Comma-delimited list in the form of `propName:sortDirection`.<br>Available properties are: `completedAt`, `createdAt`, `createdAtClient`, `enrolledAt`, `updatedAt` and `updatedAtClient`.<br> Example: `createdAt:desc`<br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. `sortDirection` defaults to `asc` when non provided.|
 
 The available organisation unit selection modes are explained in the
 following table.
