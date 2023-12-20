@@ -326,8 +326,8 @@ resources:
     
     GET POST /api/facilityOrgUnitLevel
 
-For the CORS whitelist configuration you can make a POST request with an
-array of URLs to whitelist as payload using "application/json" as
+For the CORS allowlist configuration you can make a POST request with an
+array of URLs to allowlist as payload using "application/json" as
 content-type, for instance:
 
 ```json
