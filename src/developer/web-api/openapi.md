@@ -51,7 +51,7 @@ request parameters:
 When set to `true`, two or more types of same simple (unqualified) name are considered clashing and the generation fails with an error. 
 
 When set `false` (default), name clashes are resolved by adding numbers to the simple name to make each of them unique.
-As a result the names are not predictable or stable. Merging with documentation based on name will be broken. 
+As a result the names are not predictable or stable. Merging simple names with their intended markdown documentation based on name will be broken. 
 This option is meant as a preview feature which should only be used during development.
 
 ### `failOnInconsistency`
