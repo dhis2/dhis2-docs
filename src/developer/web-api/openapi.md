@@ -43,3 +43,20 @@ Available tags are:
 * `login`
 * `query`
 * `management`
+
+All endpoints that generate a OpenAPI document support the following optional 
+request parameters:
+
+### `failOnNameClash`
+When set to `true`, two or more types of same simple (unqualified) name are considered clashing and the generation fails with an error. 
+
+When set `false` (default), name clashes are resolved by adding numbers to the simple name to make each of them unique.
+As a result the names are not predictable or stable. Merging simple names with their intended markdown documentation based on name will be broken. 
+This option is meant as a preview feature which should only be used during development.
+
+### `failOnInconsistency`
+When set to `true`, a semantic inconsistency in the declaration causes the generation to fail with an error.
+Usually this indicates a programming mistake. For example, declaring a field both as required and having a default value.
+
+When set to `false`, a semantic inconsistency is logged as warning but the generation proceeds.
+This might produce a document that contradicts itself semantically but is valid formally.
