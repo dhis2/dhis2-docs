@@ -52,8 +52,7 @@ When set to `true`, two or more types of same simple (unqualified) name are cons
 
 When set `false` (default), name clashes are resolved by adding numbers to the simple name to make each of them unique.
 As a result the names are not predictable or stable. Merging with documentation based on name will be broken. 
-This option is meant as a preview feature. 
-Request made to produce a document that is used further should be generated with the parameter set to `true`.
+This option is meant as a preview feature which should only be used during development.
 
 ### `failOnInconsistency`
 When set to `true`, a semantic inconsistency in the declaration causes the generation to fail with an error.
