@@ -60,4 +60,4 @@ When set to `true`, a semantic inconsistency in the declaration causes the gener
 Usually this indicates a programming mistake. For example, declaring a field both as required and having a default value.
 
 When set to `false`, a semantic inconsistency is logged as warning but the generation proceeds.
-This might produce a document that contratics itself semantically but is valid formally.
+This might produce a document that contradicts itself semantically but is valid formally.
