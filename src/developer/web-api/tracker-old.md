@@ -2488,13 +2488,13 @@ potentialDuplicate MERGED. This might be valid in a lot of cases where the track
 Otherwise, if a manual merge is requested with a payload, the payload refers to what data should be moved from the duplicate to the original. The payload looks like this:
 ```json
 {
-  "attributes": ["B58KFJ45L9D"],
+  "trackedEntityAttributes": ["B58KFJ45L9D"],
   "enrollments": ["F61SJ2DhINO"],
   "relationships": ["ETkkZVSNSVw"]
 }
 ```
 
-This payload contains three lists, one for each of the types of data that can be moved. Attributes is a list of uids for Tracked Entity Attributes, enrollments is a list of uids for enrollments and relationships 
+This payload contains three lists, one for each of the types of data that can be moved. TrackedEntityAttributes is a list of uids for Tracked Entity Attributes, enrollments is a list of uids for enrollments and relationships 
 a list of uids for relationships. The uids in this payload have to refer to data that actually exists on the duplicate. There is no way to add new data or change data using the merge endpoint - Only moving data.
 
 
