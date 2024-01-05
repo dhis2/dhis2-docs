@@ -119,7 +119,7 @@ The following tables list the differences in old and new request parameters for 
 |`eventStartDate`<br>`eventEndDate`|`eventOccurredAfter`<br>`eventOccurredBefore`|
 |`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
 
-## Tracker Web API { #webapi_tracker_api } 
+## Tracker Web API { #webapi_tracker_api }
 
 Tracker Web API consists of 3 endpoints that have full CRUD (create,
 read, update, delete) support. The 3 endpoints are
@@ -127,7 +127,7 @@ read, update, delete) support. The 3 endpoints are
 `/api/events` and they are responsible for tracked entity instance,
 enrollment and event items.
 
-### Tracked entity instance management { #webapi_tracked_entity_instance_management } 
+### Tracked entity instance management { #webapi_tracked_entity_instance_management }
 
 Tracked entity instances have full CRUD support in the API. Together
 with the API for enrollment most operations needed for working with
@@ -135,7 +135,7 @@ tracked entity instances and programs are supported.
 
     /api/33/trackedEntityInstances
 
-#### Creating a new tracked entity instance { #webapi_creating_tei } 
+#### Creating a new tracked entity instance { #webapi_creating_tei }
 
 For creating a new person in the system, you will be working with the
 *trackedEntityInstances* resource. A template payload can be seen below:
@@ -242,7 +242,7 @@ The system does not allow the creation of a tracked entity instance
 (as well as enrollment and event) with a UID that was already used in
 the system. That means that UIDs cannot be reused.
 
-#### Updating a tracked entity instance { #webapi_updating_tei } 
+#### Updating a tracked entity instance { #webapi_updating_tei }
 
 For updating a tracked entity instance, the payload is equal to the
 previous section. The difference is that you must use the HTTP *PUT*
@@ -268,13 +268,13 @@ It is not allowed to update an already deleted tracked entity instance.
 Also, it is not allowed to mark a tracked entity instance as deleted via
 an update request. The same rules apply to enrollments and events.
 
-#### Deleting a tracked entity instance { #webapi_deleting_tei } 
+#### Deleting a tracked entity instance { #webapi_deleting_tei }
 
 In order to delete a tracked entity instance, make a request to the URL
 identifying the tracked entity instance with the *DELETE*
 method. The URL is equal to the one above used for update.
 
-#### Create and enroll tracked entity instances { #webapi_create_enroll_tei } 
+#### Create and enroll tracked entity instances { #webapi_create_enroll_tei }
 
 It is also possible to both create (and update) a tracked entity
 instance and at the same time enroll into a program.
@@ -309,7 +309,7 @@ curl -X POST -d @tei.json -H "Content-Type: application/json"
   -u user:pass "http://server/api/33/trackedEntityInstances"
 ```
 
-#### Complete example of payload including: tracked entity instance, enrollment and event { #webapi_create_enroll_tei_create_event } 
+#### Complete example of payload including: tracked entity instance, enrollment and event { #webapi_create_enroll_tei_create_event }
 
 It is also possible to create (and update) a tracked entity instance, at
 the same time enroll into a program and create an event.
@@ -397,7 +397,7 @@ curl -X POST -d @tei.json -H "Content-Type: application/json"
   -u user:pass "http://server/api/33/trackedEntityInstances"
 ```
 
-#### Generated tracked entity instance attributes { #webapi_generate_tei_attributes } 
+#### Generated tracked entity instance attributes { #webapi_generate_tei_attributes }
 
 Tracked entity instance attributes that are using automatic generation of
 unique values have three endpoints that are used by apps. The endpoints
@@ -441,7 +441,7 @@ variables should only be supplied if you know what you are doing.
 }
 ```
 
-##### Generate value endpoint { #webapi_generate_values } 
+##### Generate value endpoint { #webapi_generate_values }
 
 Online web apps and other clients that want to generate a value that
 will be used right away can use the simple generate endpoint. This
@@ -468,7 +468,7 @@ adding the `?expiration=<number-of-days>` to the request.
 }
 ```
 
-##### Generate and reserve value endpoint { #webapi_generate_reserve_values } 
+##### Generate and reserve value endpoint { #webapi_generate_reserve_values }
 
 The generate and reserve endpoint is used by offline clients that need
 to be able to register tracked entities with unique ids. They will
@@ -569,20 +569,20 @@ Working with file attributes is a lot like working with image data
 values. The value of an attribute with the file value type is the id of
 the associated file resource. A GET request to the
 `/api/trackedEntityInstances/<entityId>/<attributeId>/file`
-endpoint will return the actual file content. 
+endpoint will return the actual file content.
 
 ```bash
 curl "http://server/api/trackedEntityInstances/ZRyCnJ1qUXS/zDhUuAYrxNC/file
 ```
 
-#### Tracked entity instance query { #webapi_tracked_entity_instance_query } 
+#### Tracked entity instance query { #webapi_tracked_entity_instance_query }
 
 To query for tracked entity instances you can interact with the
 `/api/trackedEntityInstances` resource.
 
     /api/33/trackedEntityInstances
 
-##### Request syntax { #webapi_tei_query_request_syntax } 
+##### Request syntax { #webapi_tei_query_request_syntax }
 
 
 
@@ -731,7 +731,7 @@ Table: Filter operators
 | EW | Ends with |
 | IN | Equal to one of multiple values separated by ";" |
 
-##### Response format { #webapi_tei_query_response_format } 
+##### Response format { #webapi_tei_query_response_format }
 
 This resource supports JSON, JSONP, XLS and CSV resource
 representations.
@@ -867,7 +867,7 @@ a full view, you might want to add `fields=*` to the query:
 }
 ```
 
-#### Tracked entity instance grid query { #webapi_tracked_entity_instance_grid_query } 
+#### Tracked entity instance grid query { #webapi_tracked_entity_instance_grid_query }
 
 To query for tracked entity instances you can interact with the
 */api/trackedEntityInstances/grid* resource. There are two types of
@@ -878,7 +878,7 @@ and is an alternative to the query in the previous section.
 
     /api/33/trackedEntityInstances/query
 
-##### Request syntax { #webapi_tei_grid_query_request_syntax } 
+##### Request syntax { #webapi_tei_grid_query_request_syntax }
 
 
 
@@ -1073,7 +1073,7 @@ Table: Filter operators
 | EW | Ends with |
 | IN | Equal to one of multiple values separated by ";" |
 
-##### Response format { #webapi_tei_grid_query_response_format } 
+##### Response format { #webapi_tei_grid_query_response_format }
 
 This resource supports JSON, JSONP, XLS and CSV resource
 representations.
@@ -1145,10 +1145,10 @@ instance.
 }
 ```
 
-#### Tracked entity instance filters { #webapi_tei_filters } 
+#### Tracked entity instance filters { #webapi_tei_filters }
 
 To create, read, update and delete tracked entity instance filters you
-can interact with the */api/trackedEntityInstanceFilters* resource. Tracked entity instance filters are shareable and follows the same pattern of sharing as any other metadata object. When using the */api/sharing* the type parameter will be *trackedEntityInstanceFilter*. 
+can interact with the */api/trackedEntityInstanceFilters* resource. Tracked entity instance filters are shareable and follows the same pattern of sharing as any other metadata object. When using the */api/sharing* the type parameter will be *trackedEntityInstanceFilter*.
 
     /api/33/trackedEntityInstanceFilters
 
@@ -1238,7 +1238,7 @@ Table: Tracked entity instance filters query parameters
 |---|---|
 | program | Program identifier. Restricts filters to the given program. |
 
-### Enrollment management { #webapi_enrollment_management } 
+### Enrollment management { #webapi_enrollment_management }
 
 Enrollments have full CRUD support in the API. Together with the API
 for tracked entity instances most operations needed for working with
@@ -1246,7 +1246,7 @@ tracked entity instances and programs are supported.
 
     /api/33/enrollments
 
-#### Enrolling a tracked entity instance into a program { #webapi_enrolling_tei } 
+#### Enrolling a tracked entity instance into a program { #webapi_enrolling_tei }
 
 For enrolling persons into a program, you will need to first get the
 identifier of the person from the *trackedEntityInstances* resource.
@@ -1291,14 +1291,14 @@ following URL:
 
     /api/33/enrollments/<enrollment-id>
 
-#### Enrollment instance query { #webapi_enrollment_instance_query } 
+#### Enrollment instance query { #webapi_enrollment_instance_query }
 
 To query for enrollments you can interact with the */api/enrollments*
 resource.
 
     /api/33/enrollments
 
-##### Request syntax { #webapi_enrollment_query_request_syntax } 
+##### Request syntax { #webapi_enrollment_query_request_syntax }
 
 
 
@@ -1391,7 +1391,7 @@ this you can use the page and pageSize query
 
     /api/33/enrollments.json?ou=O6uvpzGd5pu&ouMode=DESCENDANTS&page=2&pageSize=3
 
-##### Response format { #webapi_enrollment_query_response_format } 
+##### Response format { #webapi_enrollment_query_response_format }
 
 This resource supports JSON, JSONP, XLS and CSV resource
 representations.
@@ -1426,7 +1426,7 @@ a full view, you might want to add `fields=*` to the query:
 }
 ```
 
-### Events { #webapi_events } 
+### Events { #webapi_events }
 
 This section is about sending and reading events.
 
@@ -1442,7 +1442,7 @@ The different status of an event are:
 * **VISITED**: (Removed since 2.38. VISITED migrate to ACTIVE). In Tracker Capture its possible to reach VISITED by adding a new event with an event date, and then leave before adding any data to the event - but it is not known to the tracker product team that anyone uses the status for anything. The VISITED status is not visible in the UI, and in all means treated in the same way as an ACTIVE event.
 
 
-#### Sending events { #webapi_sending_events } 
+#### Sending events { #webapi_sending_events }
 
 DHIS2 supports three kinds of events: single events with no registration
 (also referred to as anonymous events), single event with registration
@@ -1666,7 +1666,7 @@ parameter orgUnitIdScheme=SCHEME, where the options are: *ID*, *UID*,
 *UUID*, *CODE*, and *NAME*. There is also the *ATTRIBUTE:* scheme, which
 matches on a *unique* metadata attribute value.
 
-#### Updating events { #webapi_updating_events } 
+#### Updating events { #webapi_updating_events }
 
 To update an existing event, the format of the payload is the same, but
 the URL you are posting to must add the identifier to the end of the URL
@@ -1689,7 +1689,7 @@ curl -X PUT -d @updated_event.json "localhost/api/33/events/ID"
   -H "Content-Type: application/json" -u admin:district
 ```
 
-#### Deleting events { #webapi_deleting_events } 
+#### Deleting events { #webapi_deleting_events }
 
 To delete an existing event, all you need is to send a DELETE request
 with an identifier reference to the server you are using.
@@ -1698,7 +1698,7 @@ with an identifier reference to the server you are using.
 curl -X DELETE "localhost/api/33/events/ID" -u admin:district
 ```
 
-#### Assigning user to events { #webapi_user_assign_event } 
+#### Assigning user to events { #webapi_user_assign_event }
 
 A user can be assigned to an event. This can be done by including the appropriate property in the payload when updating or creating the event.
 
@@ -1707,7 +1707,7 @@ A user can be assigned to an event. This can be done by including the appropriat
 The id refers to the if of the user. Only one user can be assigned to an event at a time.
 
 User assignment must be enabled in the program stage before users can be assigned to events.
-#### Getting events { #webapi_getting_events } 
+#### Getting events { #webapi_getting_events }
 
 To get an existing event you can issue a GET request including the
 identifier like this:
@@ -1716,7 +1716,7 @@ identifier like this:
 curl "http://localhost/api/33/events/ID" -H "Content-Type: application/xml" -u admin:district
 ```
 
-#### Querying and reading events { #webapi_querying_reading_events } 
+#### Querying and reading events { #webapi_querying_reading_events }
 
 This section explains how to read out the events that have been stored
 in the DHIS2 instance. For more advanced uses of the event data, please
@@ -1892,7 +1892,7 @@ based on data element
     /api/33/events/query.json?orgUnit=DiszpKrYNg8&programStage=Zj7UnCAulEk
       &filter=qrur9Dvnyt5:GT:20:LT:50&order=qrur9Dvnyt5:desc
 
-#### Event filters { #webapi_event_filters } 
+#### Event filters { #webapi_event_filters }
 
 To create, read, update and delete event filters you
 can interact with the `/api/eventFilters` resource.
@@ -2126,7 +2126,7 @@ In our example payloads, we use a relationship between trackedEntityInstances. B
 }
 ```
 
-### Update strategies { #webapi_tei_update_strategies } 
+### Update strategies { #webapi_tei_update_strategies }
 
 Two update strategies for all 3 tracker endpoints are supported:
 enrollment and event creation. This is useful when you have generated an
@@ -2146,7 +2146,7 @@ To change the parameter, please use the strategy parameter:
 
     POST /api/33/trackedEntityInstances?strategy=CREATE_AND_UPDATE
 
-### Tracker bulk deletion { #webapi_tracker_bulk_deletion } 
+### Tracker bulk deletion { #webapi_tracker_bulk_deletion }
 
 Bulk deletion of tracker objects work in a similar fashion to adding and
 updating tracker objects, the only difference is that the
@@ -2215,7 +2215,7 @@ curl -X POST -d @data.json -H "Content-Type: application/json"
   "http://server/api/33/events?strategy=DELETE"
 ```
 
-### Identifier reuse and item deletion via POST and PUT methods { #webapi_updating_and_deleting_items } 
+### Identifier reuse and item deletion via POST and PUT methods { #webapi_updating_and_deleting_items }
 
 Tracker endpoints */trackedEntityInstances*, */enrollments*, */events*
 support CRUD operations. The system keeps track of used identifiers.
@@ -2229,7 +2229,7 @@ create (*POST*) method. Therefore, an attribute *deleted* is ignored in
 both *PUT* and *POST* methods, and in *POST* method it is by default set
 to *false*.
 
-### Import parameters { #webapi_import_parameters } 
+### Import parameters { #webapi_import_parameters }
 
 The import process can be customized using a set of import parameters:
 
@@ -2248,7 +2248,7 @@ Table: Import parameters
 | skipFirst | true &#124; false | Relevant for CSV import only. Indicates whether CSV file contains a header row which should be skipped. |
 | importReportMode | FULL, ERRORS, DEBUG | Sets the `ImportReport` mode, controls how much is reported back after the import is done. `ERRORS` only includes *ObjectReports* for object which has errors. `FULL` returns an *ObjectReport* for all objects imported, and `DEBUG` returns the same plus a name for the object (if available). |
 
-#### CSV Import / Export { #webapi_events_csv_import_export } 
+#### CSV Import / Export { #webapi_events_csv_import_export }
 
 In addition to XML and JSON for event import/export, in DHIS2.17 we
 introduced support for the CSV format. Support for this format builds on
@@ -2295,14 +2295,14 @@ qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,
 qPEdI1xn7k0,COMPLETED,<pid>,<psid>,<enrollment-id>,<ou>,2016-01-01,2016-01-01,,,<de>,4,,
 ```
 
-#### Import strategy: SYNC { #webapi_sync_import_strategy } 
+#### Import strategy: SYNC { #webapi_sync_import_strategy }
 
 The import strategy SYNC should be used only by internal synchronization
 task and not for regular import. The SYNC strategy allows all 3
 operations: CREATE, UPDATE, DELETE to be present in the payload at the
 same time.
 
-### Tracker Ownership Management { #webapi_tracker_ownership_management } 
+### Tracker Ownership Management { #webapi_tracker_ownership_management }
 
 A new concept called Tracker Ownership is introduced from 2.30. There
 will now be one owner organisation unit for a tracked entity instance in
@@ -2312,7 +2312,7 @@ privileges. Only those users belonging to the owning org unit for a
 tracked entity-program combination will be able to access the data
 related to that program for that tracked entity.
 
-#### Tracker Ownership Override : Break the Glass { #webapi_tracker_ownership_override_api } 
+#### Tracker Ownership Override : Break the Glass { #webapi_tracker_ownership_override_api }
 
 It is possible to temporarily override this ownership privilege for a
 program that is configured with an access level of *PROTECTED*. Any user
@@ -2329,7 +2329,7 @@ shown:
     /api/33/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
       &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
-#### Tracker Ownership Transfer { #webapi_tracker_ownership_transfer_api } 
+#### Tracker Ownership Transfer { #webapi_tracker_ownership_transfer_api }
 
 It is possible to transfer the ownership of a tracked entity-program
 from one org unit to another. This will be useful in case of patient
@@ -2475,14 +2475,14 @@ When requesting an automatic merge like this, a payload is not required and will
 
 ### Merge Strategy MANUAL
 The manual merge is suitable when the merge has resolvable conflicts, or when not all the data is required to be moved over during a merge. For example, if an attribute has different values in both tracked
-entity instances, the user can specify whether to keep the original value, or move over the duplicate's value. Since the manual merge is the user explicitly requesting to move data, there are some different 
+entity instances, the user can specify whether to keep the original value, or move over the duplicate's value. Since the manual merge is the user explicitly requesting to move data, there are some different
 checks being done here:
 - Relationship cannot be between the original and the duplicate (This results in an invalid self-referencing relationship)
 - Relationship cannot be of the same type and to the same object in both tracked entity instances (IE. between original and other, and duplicate and other; This would result in a duplicate relationship)
 
 There are two ways to do a manual merge: With and without a payload.
 
-When a manual merge is requested without a payload, we are telling the API to merge the two tracked entity instances without moving any data. In other words, we are just removing the duplicate and marking the 
+When a manual merge is requested without a payload, we are telling the API to merge the two tracked entity instances without moving any data. In other words, we are just removing the duplicate and marking the
 potentialDuplicate MERGED. This might be valid in a lot of cases where the tracked entity instance was just created, but not enrolled for example.
 
 Otherwise, if a manual merge is requested with a payload, the payload refers to what data should be moved from the duplicate to the original. The payload looks like this:
@@ -2494,7 +2494,7 @@ Otherwise, if a manual merge is requested with a payload, the payload refers to 
 }
 ```
 
-This payload contains three lists, one for each of the types of data that can be moved. TrackedEntityAttributes is a list of uids for Tracked Entity Attributes, enrollments is a list of uids for enrollments and relationships 
+This payload contains three lists, one for each of the types of data that can be moved. `trackedEntityAttributes` is a list of uids for tracked entity attributes, `enrollments` is a list of uids for enrollments and `relationships` 
 a list of uids for relationships. The uids in this payload have to refer to data that actually exists on the duplicate. There is no way to add new data or change data using the merge endpoint - Only moving data.
 
 
