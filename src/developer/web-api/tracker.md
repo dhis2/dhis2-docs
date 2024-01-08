@@ -2025,6 +2025,7 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 |`enrollment`|`String`|`uid`| Identifier of an Enrollment |
 |`event`|`String`|`uid`| Identifier of an Event|
 |`fields`|`String`| Any valid field filter (default `relationship,relationshipType,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response| 
+|`order`|`String`|comma-delimited list of property name and sort direction pairs in format `propName:sortDirection`.|Supported fields: `createdAt`.|
 
 The following rules apply to the query parameters.
 
