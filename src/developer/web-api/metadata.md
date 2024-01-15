@@ -1626,6 +1626,131 @@ description of the expression.
 }
 ```
 
+### Merge indicators{ #webapi_indicator_merge}
+
+The indicator merge endpoint allows you to merge a number of indicators (sources) into a target indicator.
+
+#### Authorisation
+
+The authority `F_INDICATOR_MERGE` is required to perform indicator merges.
+
+#### Request
+
+Merge indicators with a POST request:
+
+```
+POST /api/indicators/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                         |
+|---------------|----------|-------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the indicators to merge (the source indicators)       |
+| target        | Yes      | Identifier of the indicator to merge the sources into (the target indicator)  |
+| deleteSources | No       | Whether to delete the source indicators after the operation. Default is false |
+
+The merge operation will merge the source indicators into the target indicator. One or many source indicators can be specified. Only one target should be specified.
+
+The merge operation will transfer all source indicator metadata associations to the target indicator. 
+The following metadata get updated:
+
+
+| Metadata            | Property                                   | Action taken                                                                |
+|---------------------|--------------------------------------------|-----------------------------------------------------------------------------|
+| IndicatorGroup      | members                                    | Source indicator removed, target indicator added                            |
+| DataSet             | indicators                                 | Source indicator removed, target indicator added                            |
+| DataDimensionalItem | n/a                                        | Any linked data items with sources will be linked with the target           |
+| Section             | indicators                                 | Source indicator removed, target indicator added                            |
+| Configuration       | infrastructuralIndicators (IndicatorGroup) | Source indicator removed, target indicator added                            |
+| Indicator           | numerator / denominator                    | Replace any source reference with the target reference                      |
+| DataEntryForm       | htmlCode                                   | Replace any source reference with the target reference                      |
+| Visualization       | sorting                                    | Replace any source reference with the target reference as Sorting dimension |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                     |
+|------------|-------------------------------------------------|
+| E1540      | At least one source indicator must be specified |
+| E1541      | Target indicator must be specified              |
+| E1542      | Target indicator cannot be a source indicator   |
+| E1543      | Source/Target indicator does not exist: `{uid}` |
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "INDICATOR",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "INDICATOR merge complete"
+        }
+    }
+}
+```
+
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source indicator must be specified",
+                    "errorCode": "E1540",
+                    "args": []
+                },
+                {
+                    "message": "Target indicator does not exist: `abcdefg1221`",
+                    "errorCode": "E1543",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "INDICATOR",
+            "sourcesDeleted": [],
+            "message": "INDICATOR merge has errors"
+        }
+    }
+}
+```
+
 ## Indicator Types { #webapi_indicator_types}
 
 ### Merge indicator types { #webapi_indicator_type_merge}
