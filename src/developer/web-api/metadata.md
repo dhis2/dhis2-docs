@@ -1626,7 +1626,7 @@ description of the expression.
 }
 ```
 
-### Merge indicators{ #webapi_indicator_merge}
+### Merge indicators { #webapi_indicator_merge }
 
 The indicator merge endpoint allows you to merge a number of indicators (sources) into a target indicator.
 
