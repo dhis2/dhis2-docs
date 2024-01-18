@@ -1200,7 +1200,6 @@ The following endpoint supports standard parameters for pagination.
 |`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
 |`totalPages`|`Boolean`| `true`&#124;`false` |Indicates whether to return the total number of pages in the response |
 |`skipPaging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `false`, meaning that by default all requests are paginated, unless `skipPaging=true`|
-|`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br>Available properties are: `completedAt`, `createdAt`, `createdAtClient`, `enrolledAt`, `updatedAt` and `updatedAtClient` <br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. `sortDirection` defaults to `asc` when non provided.|Sort the response based on given `OrderCriteria`|
 
 > **Caution**
 >
@@ -1880,6 +1879,7 @@ Returns a list of events based on filters.
 |`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
 |`enrollment`|`String`|Comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using enrollment=id1;id2.|
 |`includeDeleted`|`Boolean`| |  When true, soft deleted events will be included in your query result.|
+|`order`|`String`|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|Comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|
 
 The query is case-insensitive. The following rules apply to the query parameters.
 
