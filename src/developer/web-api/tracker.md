@@ -1879,7 +1879,7 @@ Returns a list of events based on filters.
 |`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
 |`enrollment`|`String`|Comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using enrollment=id1;id2.|
 |`includeDeleted`|`Boolean`| |  When true, soft deleted events will be included in your query result.|
-|`order`|`String`|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|Comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.
+|`order`|`String`|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|Comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|
 
 The query is case-insensitive. The following rules apply to the query parameters.
 
