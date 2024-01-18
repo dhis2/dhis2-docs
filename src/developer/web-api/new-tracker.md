@@ -1272,7 +1272,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`includeAllAttributes`|`Boolean`|`true`&#124;`false`|Indicates whether to include all TEI attributes|
 |`attachment`|`String`| |The file name in case of exporting as a file|
 |`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a tei is a Potential Duplicate. true: return teis flagged as Potential Duplicates. false: return teis NOT flagged as Potential Duplicates. If omitted, we don't check whether a tei is a Potential Duplicate or not. |
-|`order`|`String`|comma-delimited list of property name or attribute UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `createdAtClient`, `createdAt`, `enrolledAt`, `inactive`, `trackedEntity`, `updatedAtClient`, `updatedAt`.|
+|`order`|`String`|Supported fields are: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followup, occurredAt, orgUnit, orgUnitName, program, programStage, scheduleAt, status, storedBy, trackedEntity, updatedAt, updatedBy`.|Comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. |
 
 The available assigned user modes are explained in the following table.
 
