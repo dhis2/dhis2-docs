@@ -3084,7 +3084,7 @@ available formats and content types are:
     "height": 3
 }
 ```
-### Statistics in response
+### Statistics in response { #webapi_analytics_outlier_detection_stats_in_response }
 
 | Statistical Measure | Header name | Description | Link |
 |---|---|---|---|
