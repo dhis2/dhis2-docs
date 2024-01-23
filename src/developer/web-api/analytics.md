@@ -3095,6 +3095,8 @@ available formats and content types are:
 | Z Score | zscore | A standardized score that represents how many standard deviations a data value is from the mean. | https://www.statisticshowto.com/probability-and-statistics/z-score/ |
 | Modified Z Score | modifiedzscore | Similar to the Z score but robust to outliers. It uses the median and median absolute deviation. | https://www.statisticshowto.com/modified-z-scores/ |
 | Median Absolute Deviation | medianabsdeviation | A robust measure of the spread of data values, calculated as the median of the absolute deviations from the median. | https://math.stackexchange.com/questions/2232309/median-absolute-deviation-mad-formula |
+| Minimum | lowerbound | The minimum is the smallest value in a dataset. It represents the lowest observed value among all the data values. | |
+| Maximum| upperbound | The maximum is the largest value in a dataset. It represents the highest observed value among all the data values. | |
 
 
 ### Error messages { #webapi_analytics_outlier_detection_error_messages } 
