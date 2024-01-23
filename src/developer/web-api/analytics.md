@@ -2818,7 +2818,7 @@ Table: Query parameters
 
 ## Analytics outlier detection { #webapi_analytics_outlier_detection } 
 
-The analytics API provides endpoints for investigation of the data quality based on Z Score and Modified Z Score. Both scores are statistical measures that help analyze and interpret data in the context of deviations from the middle value. They are particularly useful in identifying outliers or extreme values in a dataset. The API is implemented as a single analytics endpoint:
+The analytics outliert API provides endpoints for investigation of the data quality based on Z Score and Modified Z Score. Both scores are statistical measures that help analyze and interpret data in the context of deviations from the middle value. They are particularly useful in identifying outliers or extreme values in a dataset. The API is implemented as a single analytics endpoint:
 
 - /api/analytics/outlierDetection
 
@@ -3084,6 +3084,18 @@ available formats and content types are:
     "height": 3
 }
 ```
+### Statistics in response
+
+| Statistical Measure | Header name | Description | Link |
+|---|---|---|---|
+| Value | value | The data set/ data element numeric value (Penta1 doses given, Measles doses given, etc.) | |
+| Mean | mean |The average value of a set of numbers. Calculated by summing all values and dividing by the count.| https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data |
+| Standard Deviation | stddev | A measure of the amount of variation or dispersion in a set of values. | https://www.statisticshowto.com/probability-and-statistics/standard-deviation/ |
+| Absolute Deviation | absdev | The absolute difference between each data value and the middle value. | https://www.mathsisfun.com/data/mean-absolute-deviation.html |
+| Z Score | zscore | A standardized score that represents how many standard deviations a data value is from the mean. | https://www.statisticshowto.com/probability-and-statistics/z-score/ |
+| Modified Z Score | modifiedzscore | Similar to the Z score but robust to outliers. It uses the median and median absolute deviation. | https://www.statisticshowto.com/modified-z-scores/ |
+| Median Absolute Deviation | medianabsdeviation | A robust measure of the spread of data values, calculated as the median of the absolute deviations from the median. | https://math.stackexchange.com/questions/2232309/median-absolute-deviation-mad-formula |
+
 
 ### Error messages { #webapi_analytics_outlier_detection_error_messages } 
 
@@ -3091,22 +3103,22 @@ available formats and content types are:
 
 | Code | Message |
 |---|---|
-| E2200 | At least one data element must be specified |
-| E2201 | Start date and end date or relative period must be specified |
-| E2202 | Start date must be before end date |
-| E2203 | At least one organisation unit must be specified | 
-| E2204 | Threshold must be a positive number |
-| E2205 | Max results must be a positive number |
-| E2206 | Max results exceeds the allowed max limit: *500* |
-| E2207 | Data start date must be before data end date |
-| E2208 | Non-numeric data values encountered during outlier value detection |
-| E2209 | Data start date not allowed |
-| E2210 | Data end date not allowed |
-| E2211 | Algorithm min-max values not allowed |
-| E2212 | Specifying both a start date/end date and a relative period is not allowed |
-| E2213 | Value of param orderBy is not compatible with algorithm *Z_SCORE* |
-| E7180 | The analytics outliers data does not exist. Please ensure analytics job was run and did not skip the outliers |
-| E7181 | Column *dxname* specified in orderBy, is not eligible for orderBy or does not exist |
+| E2200 | At least one data element must be specified. |
+| E2201 | Start date and end date or relative period must be specified. |
+| E2202 | Start date must be before end date. |
+| E2203 | At least one organisation unit must be specified. | 
+| E2204 | Threshold must be a positive number. |
+| E2205 | Max results must be a positive number. |
+| E2206 | Max results exceeds the allowed max limit: *500*. |
+| E2207 | Data start date must be before data end date. |
+| E2208 | Non-numeric data values encountered during outlier value detection. |
+| E2209 | Data start date not allowed. |
+| E2210 | Data end date not allowed. |
+| E2211 | Algorithm min-max values not allowed. |
+| E2212 | Specifying both a start date/end date and a relative period is not allowed. |
+| E2213 | Value of param orderBy is not compatible with algorithm *Z_SCORE*. |
+| E7180 | The analytics outliers data does not exist. Please ensure analytics job was run and did not skip the outliers. |
+| E7181 | Column *dxname* specified in orderBy, is not eligible for orderBy or does not exist. |
 
 **_NOTE:_** *The values in error messages are examples only*
 
