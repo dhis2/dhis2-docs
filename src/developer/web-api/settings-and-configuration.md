@@ -45,6 +45,18 @@ Alternatively, you can specify the key as a query parameter:
 
     /api/33/systemSettings?key=my-key
 
+If a key is not found or marked confidential then a `404` response will be returned like so:
+
+```json
+{
+    "httpStatus": "Not Found",
+    "httpStatusCode": 404,
+    "status": "ERROR",
+    "message": "Setting does not exist or is marked as confidential",
+    "errorCode": "E1005"
+}
+```
+
 You can retrieve specific system settings as JSON by repeating the key
 query parameter:
 
@@ -135,11 +147,10 @@ Table: System settings
 | keyCustomLoginPageLogo | Logo for custom login page | No |
 | keyCustomTopMenuLogo | Logo for custom top menu | No |
 | keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
-| keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
 | analyticsFinancialYearStart | Set financial year start. Default: October | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
-| keyAnalyticsMaxLimit | Maximum number of analytics recors. Default: "50000" | No |
-| keyAnalyticsMaintenanceMode | Put analytics in maintenance mode. Default: "false" | No |
+| keyAnalyticsMaxLimit | Maximum number of analytics records. Default: "50000" | No |
+| keyAnalyticsPeriodYearsOffset | Defines the years' offset to be used in the analytics export process. If the year of a respective date is out of the offset the system sends back a warning message during the process. At this point, the period generation step is skipped. ie.: suppose the system user sets the offset value to `5`, and we are in the year 2023. It means that analytics will accept exporting dates from 2018 (inclusive) to 2028 (inclusive). Which translates to: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028]. NOTE: The offset will have a significant influence on resource usage. Higher values will trigger higher usage of memory RAM/HEAP and CPU. Setting negative numbers to this key will disable any kind of validation (which means no warnings) and the internal range of years will be used (1970 to current year plus 10) Default: 22 | No |
 | keyDatabaseServerCpus | Number of database server CPUs. Default: "0" (Automatic) | No |
 | keyLastSuccessfulAnalyticsTablesRuntime | Keeps timestamp of last successful analytics tables run | No |
 | keyLastSuccessfulLatestAnalyticsPartitionRuntime | Keeps timestamp of last successful latest analytics partition run | No |
@@ -212,6 +223,7 @@ Table: System settings
 | jobsCleanupAfterMinutes | A "run once" job is deleted when this amount of minutes has passed since it finished successful or unsuccessful | No |                                                                                                                                                                                                                        
 | jobsMaxCronDelayHours | A CRON expression triggered job will only trigger in the window between its target time of the day and this amount of hours later. If it wasn't able to run in that window the execution is skipped and next execution according to the CRON expression is the next target execution | No |
 | jobsLogDebugBelowSeconds | A job with an execution interval below this number of seconds logs its information on debug rather than info | No |
+| keyParallelJobsInAnalyticsTableExport | Returns the number of parallel jobs to use for processing analytics tables. It takes priority over "keyDatabaseServerCpus". Default: -1 | No |
 
 ## User settings { #webapi_user_settings } 
 

@@ -1273,6 +1273,11 @@ A list of all unique keywords can be found at the keywords resource:
 
 ### Custom icon operations { #webapi_icons_custom }
 
+
+A custom icon resource can be downloaded by providing the icon key:
+
+    GET /api/icons/{key}/icon
+        
 Custom icons can be created, modified and deleted.
 To create a custom icon, use the resource below.
 
@@ -1618,6 +1623,244 @@ description of the expression.
   "status": "OK",
   "message": "Valid",
   "description": "Acute Flaccid Paralysis"
+}
+```
+
+### Merge indicators { #webapi_indicator_merge }
+
+The indicator merge endpoint allows you to merge a number of indicators (sources) into a target indicator.
+
+#### Authorisation
+
+The authority `F_INDICATOR_MERGE` is required to perform indicator merges.
+
+#### Request
+
+Merge indicators with a POST request:
+
+```
+POST /api/indicators/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                         |
+|---------------|----------|-------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the indicators to merge (the source indicators)       |
+| target        | Yes      | Identifier of the indicator to merge the sources into (the target indicator)  |
+| deleteSources | No       | Whether to delete the source indicators after the operation. Default is false |
+
+The merge operation will merge the source indicators into the target indicator. One or many source indicators can be specified. Only one target should be specified.
+
+The merge operation will transfer all source indicator metadata associations to the target indicator. 
+The following metadata get updated:
+
+
+| Metadata            | Property                                   | Action taken                                                                |
+|---------------------|--------------------------------------------|-----------------------------------------------------------------------------|
+| IndicatorGroup      | members                                    | Source indicator removed, target indicator added                            |
+| DataSet             | indicators                                 | Source indicator removed, target indicator added                            |
+| DataDimensionalItem | n/a                                        | Any linked data items with sources will be linked with the target           |
+| Section             | indicators                                 | Source indicator removed, target indicator added                            |
+| Configuration       | infrastructuralIndicators (IndicatorGroup) | Source indicator removed, target indicator added                            |
+| Indicator           | numerator / denominator                    | Replace any source reference with the target reference                      |
+| DataEntryForm       | htmlCode                                   | Replace any source reference with the target reference                      |
+| Visualization       | sorting                                    | Replace any source reference with the target reference as Sorting dimension |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                     |
+|------------|-------------------------------------------------|
+| E1540      | At least one source indicator must be specified |
+| E1541      | Target indicator must be specified              |
+| E1542      | Target indicator cannot be a source indicator   |
+| E1543      | Source/Target indicator does not exist: `{uid}` |
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "INDICATOR",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "INDICATOR merge complete"
+        }
+    }
+}
+```
+
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source indicator must be specified",
+                    "errorCode": "E1540",
+                    "args": []
+                },
+                {
+                    "message": "Target indicator does not exist: `abcdefg1221`",
+                    "errorCode": "E1543",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "INDICATOR",
+            "sourcesDeleted": [],
+            "message": "INDICATOR merge has errors"
+        }
+    }
+}
+```
+
+## Indicator Types { #webapi_indicator_types}
+
+### Merge indicator types { #webapi_indicator_type_merge}
+
+The indicator type merge endpoint allows you to merge a number of indicator types into a target indicator type.
+
+#### Authorisation
+
+The authority `F_INDICATOR_TYPE_MERGE` is required to perform indicator type merges.
+
+#### Request
+
+Merge indicator types with a POST request:
+
+```
+POST /api/indicatorTypes/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                                   |
+|---------------|----------|-----------------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the indicator types to merge (the source indicator types).      |
+| target        | Yes      | Identifier of the indicator type to merge the sources into (the target indicator type). |
+| deleteSources | No       | Whether to delete the source indicator types after the operation. Default is false.     |
+
+The merge operation will merge the source indicator types into the target indicator type. One or many source indicator types can be specified. Only one target should be specified.
+
+The merge operation will transfer all of the indicator metadata associations to the source indicator types over to the target indicator type.
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                             |
+|------------|---------------------------------------------------------|
+| E1530      | At least one source indicator type must be specified    |
+| E1531      | Target indicator type must be specified                 |
+| E1532      | Target indicator type cannot be a source indicator type |
+| E1533      | Source/Target indicator type does not exist: `{uid}`    |
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "INDICATOR_TYPE",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "INDICATOR_TYPE merge complete"
+        }
+    }
+}
+```
+
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source indicator type must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target indicator type does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "INDICATOR_TYPE",
+            "sourcesDeleted": [],
+            "message": "INDICATOR_TYPE merge has errors"
+        }
+    }
 }
 ```
 
@@ -2484,11 +2727,19 @@ Table: Collection membership CSV Format
 | 1 | UID | Yes | UID | The UID of the collection to add an object to |
 | 2 | UID | Yes | UID | The UID of the object to add to the collection |
 
+### Category Option Group
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | Name | Yes || Name. Max 230 characters. Unique. |
+| 2 | UID | No | UID | Stable identifier. Max 11 chars. Will be generated by system if not specified. |
+| 3 | Code | No || Stable code. Max 50 char. |
+| 4 | Short name | No || Short name. Max 50 characters. |
+| 5 | Data Dimension Type | Yes || Data Dimension Type, can be either DISAGGREGATION or ATTRIBUTE |
+
 ### Other objects { #webapi_csv_other_objects } 
 
-
-
-Table: Data Element Group, Category Option, Category Option Group, Organisation Unit Group CSV Format
+Table: Data Element Group, Category Option, Organisation Unit Group CSV Format
 
 | Index | Column | Required | Value (default first) | Description |
 |---|---|---|---|---|
