@@ -219,6 +219,10 @@ Table: System settings
 | keyDashboardContextMenuItemOpenInRelevantApp | Allow users to open dashboard favorites in relevant apps | Yes |
 | keyDashboardContextMenuItemShowInterpretationsAndDetails | Allow users to show dashboard favorites' interpretations and details | Yes |
 | keyDashboardContextMenuItemViewFullscreen | Allow users to view dashboard favorites in fullscreen | Yes |
+| jobsRescheduleAfterMinutes | If a job is in state `RUNNING` for this amount of minutes or longer without making progress in form of updating its `lastAlive` timestamp the job is considered stale and reset to `SCHEDULED` state | No |
+| jobsCleanupAfterMinutes | A "run once" job is deleted when this amount of minutes has passed since it finished successful or unsuccessful | No |                                                                                                                                                                                                                        
+| jobsMaxCronDelayHours | A CRON expression triggered job will only trigger in the window between its target time of the day and this amount of hours later. If it wasn't able to run in that window the execution is skipped and next execution according to the CRON expression is the next target execution | No |
+| jobsLogDebugBelowSeconds | A job with an execution interval below this number of seconds logs its information on debug rather than info | No |
 | keyParallelJobsInAnalyticsTableExport | Returns the number of parallel jobs to use for processing analytics tables. It takes priority over "keyDatabaseServerCpus". Default: -1 | No |
 
 ## User settings { #webapi_user_settings } 
