@@ -7,7 +7,7 @@ network or standalone application.
 
 ## Introduction { #install_introduction } 
 
-DHIS2 runs on all platforms for which there exists a Java JDK, which includes most popular operating
+DHIS2 runs on all platforms for which there exists a Java JRE, which includes most popular operating
 systems such as Windows, Linux and Mac. DHIS2 runs on the PostgreSQL
 database system. DHIS2 is packaged as a standard Java Web Archive
 (WAR-file) and thus runs on any Servlet containers such as Tomcat and
@@ -66,10 +66,14 @@ So a minimal installation of DHIS2 would consist just of the tomcat server (with
 ## Types of installation
 There are many ways to get DHIS2 up and running.  How you choose to install will depend on which skills and tools you are familiar with and whether the installation is for production or experimental use.  We have a number of different guides which emphasise different styles of implementation.
 
-Regardless of the implementation approach you adopt, you will want to familarize yourself with the additional reference material we provide. .....
+Regardless of the implementation approach you adopt, you will want to familarize yourself with the additional reference material we provide regarding database management, reverse proxy setup, system monitoring, upgrades etc.
 
  ### The [simple step-by-step](installation.md) installation  
  This guide takes you through the individual commands to install DHIS2 on an ubuntu operating system using apache tomcat and postgresql. It is not aimed at production deployments, but is useful for people to work through to in order to understand the interconnections between the different parts.
 
 ### ansible [server tools](https://github.com/dhis2/dhis2-server-tools) 
 This toolset provides a set of ansible playbooks to automate the installation and management of DHIS2 and supporting components. It is geared towards production environments with the aim of addressing the most critical security and monitoring considerations out-of-the-box..
+
+### Running DHIS2 in docker containers
+
+### Running DHIS2 on Kubernetes
