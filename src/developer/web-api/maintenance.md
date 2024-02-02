@@ -35,6 +35,12 @@ Table: Analytics tables optional query parameters
 | skipOrgUnitOwnership | false &#124; true | Skip generation of organization unit ownership data |
 | lastYears | integer | Number of last years of data to include |
 
+> **Note**
+>
+> lastYears=0 means latest or continuous analytics, as defined in
+[Continuous analytics table](../../../use/user-guides/dhis-core-version-master/scheduling.html#scheduling_continuous_analytics_table).
+
+
 "Data Quality" and "Data Surveillance" can be run through the monitoring
 task, triggered with the following endpoint:
 
