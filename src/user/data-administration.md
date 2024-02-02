@@ -361,7 +361,7 @@ re-process.
       - **Skip generation of organisation unit ownership data**
 
 3.  Select **Number of last years of data to include**.  (If 0 is selected,
-then that will run latest or continuous analytics, as defined in
+then you will run latest or continuous analytics, as defined in
 [Continuous analytics table](scheduling.html#scheduling_continuous_analytics_table).)
 
 4.  Click **Start export**.
