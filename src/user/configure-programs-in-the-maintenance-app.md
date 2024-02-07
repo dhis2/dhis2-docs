@@ -372,8 +372,9 @@ program. A program needs several types of metadata that you create in the **Main
 | **Allow future incident dates** |Select checkbox if you want to allow the incident date in the program to be on a future date.|
 | **Only enroll once (per tracked entity instance lifetime)** |Select checkbox if you want a tracked entity to be able to enroll only once in a program. This setting is useful for example in child vaccination or post-mortem examination programs where it wouldn’t make sense to enroll a tracked entity more than once.|
 | **Show incident date** |This setting allows you to show or hide the incident date field when a tracked entity enroll in the program.|
-| **Description of incident date** | Type a description of the incident date<br> <br>For example:<br> <br>In an immunization program for child under 1 year old, the incident date is the child's birthday. <br> <br>In a maternal program, the incident date is the date of last menstrual period.  |
-| **Type a description of the enrollment date** |The date when the tracked entity is enrolled into the program|
+| **Custom label for incident date** | Type a description of the incident date<br> <br>For example:<br> <br>In an immunization program for child under 1 year old, the incident date is the child's birthday. <br> <br>In a maternal program, the incident date is the date of last menstrual period.  |
+| **Custom label for enrollment date** |The date when the tracked entity is enrolled into the program|
+| **Custom label for:**<br> - **enrollment** <br> - **follow-up** <br> - **registering unit** <br> - **relationship** <br> - **note** <br> - **tracked entity attribute** | These custom labels will, on a program-specific level, replace these terms in certain DHIS2 apps. It is important to note that this configuration does not distinguish between singular and plural, so the label should consider this. These labels are currently only consumed in the DHIS2 Android app. |
 | **Ignore overdue events** |When a tracked entity enrolls into the program, the events corresponding to the program stages are created. If you select this checkbox, the system will not generate overdue events.|
 | **Feature type** |Sets whether the program is going to capture a geographical feature type or not. <br> * **None:** Nothing is captured.<br> * **Polygon:** An area is captured. For single event programs the area will be the area representing the event being captured. For tracker programs, the area will represent the area of the enrollment. <br> * **Point:** A point/coordinate is captured. For single event programs the point will be representing the event being captured. For tracker programs, the point will represent the enrollment. |
 | **Related program** |Choose a Tracker program which is related to the program you are creating, for example an ANC and a Child program.|
@@ -457,9 +458,9 @@ by the data capture apps to identify this program stage.
  | **Hide due dates** | Select checkbox to hide due dates for events. |
  | **Feature type** |  Sets whether the program is going to capture a geographical  feature type or not.  <br>  * **None:** Nothing is captured.<br> * **Polygon:** An area is captured. For single  event programs the area will be the area representing the  event being captured. For tracker programs, the area will  represent the area of the enrollment. <br> * **Point:** A point/coordinate is captured. For  single event programs the point will be representing the  event being captured. For tracker programs, the point will  represent the enrollment. |
  | **Pre-generate event UID** | Select check box to pre-generate unique event id numbers. |
- | **Description of report date** | Type a description of the report date.<br>  <br>This description is displayed in the data entry form. |
- | **Description of due date** | Type a description of the due date. |
- | **Referral*** | Flag to indicate if program stage is referral or not. |
+ | **Custom label for report date** | Type a description of the report date.<br>  <br>This description is displayed in the data entry form. |
+ | **Custom label for due date** | Type a description of the due date. |
+ | **Custom label for:**<br> - **program stage** <br> - **event** | These custom labels will, on a program-specific level, replace these terms in certain DHIS2 apps. It is important to note that this configuration does not distinguish between singular and plural, so the label should consider this. These labels are currently only consumed in the DHIS2 Android app. |
 
 5.  Assign data elements to program stage:
 
