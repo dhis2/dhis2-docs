@@ -2004,6 +2004,7 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 |`event`|`String`|`uid`| Identifier of an Event|
 |`fields`|`String`| Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
 |`order`|`String`|comma-delimited list of `OrderCriteria` in the in format `propName:sortDirection`.|Supported fields: `created, createdAtClient`.|
+|`includeDeleted`|`Boolean`|`true`&#124;`false`| whether to include soft-deleted elements in your query result|
 
 The following rules apply to the query parameters.
 
