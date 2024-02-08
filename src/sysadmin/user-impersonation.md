@@ -58,9 +58,9 @@ The user impersonation feature configuration options.
 
 ## Security restrictions
 * Feature must be enabled in the `dhis.conf` configuration file, default value is; `disabled`.
-* Users trying to imperonate needs to send requests from an allowed IP.
-* Users withouth the `ALL` authority can not impersonate another user that has the `ALL` authority.
-* Users can not impersonate them self.
+* Users trying to impersonate need to send requests from an allowed IP.
+* Users without the `ALL` authority can not impersonate another user that has the `ALL` authority.
+* Users can not impersonate themselves.
 
 ## Security Implications
 
