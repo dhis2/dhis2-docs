@@ -3330,7 +3330,11 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
 > **Note**
 >
 > The supplied URL will be checked against the config property `system.remote_servers_allowed` in the `dhis.conf` file.
-> If the URL is not one of the configured servers allowed then the operation will not be allowed. See failure example below.
+> If the base URL is not one of the configured servers allowed then the operation will not be allowed. See failure example below.  
+> Some examples where the config set is `system.remote_servers_allowed=https://server1.org/,https://server2.org/`
+> - supply `https://server1.org/path/to/resource` -> this will be accepted
+> - supply `https://server2.org/resource/path` -> this will be accepted
+> - supply `https://oldserver.org/resource/path` -> this will be rejected
 >
 Sample failure response
 
