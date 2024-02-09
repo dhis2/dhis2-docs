@@ -3330,8 +3330,7 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
 > **Note**
 >
 > The supplied URL will be checked against the config property `system.remote_servers_allowed` in the `dhis.conf` file.
-> If the URL is not one of the configured servers allowed then the operation will not be allowed. Here is a sample failed
-> response:
+> If the URL is not one of the configured servers allowed then the operation will not be allowed. See failure example below.
 >
 Sample failure response
 
