@@ -3329,16 +3329,21 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
 
 > **Note**
 >
-> The supplied URL will be checked against the config property `system.remote_servers_allowed` in the `dhis.conf` file. If the URL is not one of the configured servers allowed then the operation will not be allowed. Here is a sample failed response:
-> ```json
-> {
->  "httpStatus": "Conflict",
->  "httpStatusCode": 409,
->  "status": "ERROR",
->  "message": "Provided URL is not in the remote servers allowed list",
->  "errorCode": "E1004"
-> }
-> ```
+> The supplied URL will be checked against the config property `server.remote_servers_allowed` in the `dhis.conf` file.
+> If the URL is not one of the configured servers allowed then the operation will not be allowed. Here is a sample failed
+> response:
+>
+Sample failure response
+
+```json
+ {
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "Provided URL is not in the remote servers allowed list",
+  "errorCode": "E1004"
+}
+```
 
 
 ## Reference to created by user
