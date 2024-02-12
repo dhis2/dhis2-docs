@@ -3326,6 +3326,29 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
   -H "Content-Type:text/plain" -u admin:district
 ```
 
+
+> **Note**
+>
+> The supplied URL will be checked against the config property `system.remote_servers_allowed` in the `dhis.conf` file.
+> If the base URL is not one of the configured servers allowed then the operation will not be allowed. See failure example below.  
+> Some examples where the config set is `system.remote_servers_allowed=https://server1.org/,https://server2.org/`
+> - supply `https://server1.org/path/to/resource` -> this will be accepted
+> - supply `https://server2.org/resource/path` -> this will be accepted
+> - supply `https://oldserver.org/resource/path` -> this will be rejected
+>
+Sample failure response
+
+```json
+ {
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "Provided URL is not in the remote servers allowed list",
+  "errorCode": "E1004"
+}
+```
+
+
 ## Reference to created by user
 
 Each object created in DHIS2 will have a property named `user` which is linked to `User` who created the object.
