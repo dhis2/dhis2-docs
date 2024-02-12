@@ -1739,6 +1739,9 @@ connection.pool.preferred.test.query=select 1
 #Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads=3
 
+#Database datasource pool type. Supported pool types are: c3p0 or hikari or unpooled. (default: c3p0)
+db.pool.type=c3p0
+
 # ----------------------------------------------------------------------
 # Server [Mandatory]
 # ----------------------------------------------------------------------
