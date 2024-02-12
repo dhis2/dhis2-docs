@@ -306,6 +306,7 @@ Table: Program Stage Query Criteria
 | eventCreatedAt | DateFilterPeriod object filtering based on the event creation date. | {"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"} |
 | scheduledAt | DateFilterPeriod object filtering based on the event scheduled date. | {"type":"RELATIVE","period":"TODAY"} |
 | enrollmentStatus | Any valid ProgramStatus. Possible values are ACTIVE, COMPLETED and CANCELLED. | "enrollmentStatus": "COMPLETED" |
+| followUp | Indicates whether to filter enrollments marked for follow up or not | "followUp":true |
 | enrolledAt | DateFilterPeriod object filtering based on the event enrollment date. | "enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"} |
 | enrollmentOccurredAt | DateFilterPeriod object filtering based on the event occurred date. | {"type":"RELATIVE","period":"THIS_MONTH"} |
 | orgUnit | A valid organisation unit UID | "orgUnit": "Rp268JB6Ne4" |
@@ -331,6 +332,7 @@ See an example payload below:
             "eventCreatedAt":{"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"},
             "scheduledAt": {"type":"RELATIVE","period":"TODAY"},
             "enrollmentStatus": "COMPLETED",
+            "followUp" : true,
             "enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"},
             "enrollmentOccurredAt": {"type":"RELATIVE","period":"THIS_MONTH"},
             "orgUnit": "Rp268JB6Ne4",
