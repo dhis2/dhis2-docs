@@ -1189,6 +1189,7 @@ The following endpoint supports standard parameters for pagination.
 |`totalPages`|`Boolean`| `true`&#124;`false` |Indicates whether to return the total number of pages in the response |
 |`skipPaging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `false`, meaning that by default all requests are paginated, unless `skipPaging=true`|
 |`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
+|`includeDeleted`|`Boolean`|`true`&#124;`false`| whether to include soft-deleted elements in your query result|
 
 > **Caution**
 >
