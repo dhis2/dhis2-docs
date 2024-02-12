@@ -1227,7 +1227,7 @@ Both of them be accessed through the icons resource.
 
     GET /api/icons
 
-This endpoint returns a list of information about the available icons.
+This endpoint returns a list of information about the available default and custom icons.
 In case of default icons, each entry contains the icon's metadata, and a reference to the actual file resource.
 
 ```json
@@ -1239,6 +1239,8 @@ In case of default icons, each entry contains the icon's metadata, and a referen
     "mosquito",
     "dengue"
   ],
+  "created": "2024-02-12T09:50:11.794",
+  "lastUpdated": "2024-02-12T09:50:11.794",
   href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
 }
 ```
@@ -1254,6 +1256,8 @@ When it comes to custom icons, the response also includes the referenced file re
   ],
   fileResourceUid: "ohUVXsOZ8qp",
   userUid: "AIK2aQOJIbj",
+  "created": "2024-02-12T09:50:11.794",
+  "lastUpdated": "2024-02-12T09:50:11.794",
   href: "<dhis server>/api/fileResources/ohUVXsOZ8qp/data"
 }
 ```
@@ -1273,11 +1277,41 @@ A list of all unique keywords can be found at the keywords resource:
 
 ### Custom icon operations { #webapi_icons_custom }
 
+A list of custom icons can be fetched retrieved certain request parameters
+
+    GET /api/icons?type=CUSTOM
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`type`|`Text`| DEDAULT,CUSTOM,ALL |What type of icons should be retrieved. Default is ALL|
+|`keys`|`Text`| List of keys custom icons should be retrieved for | |
+|`keywords`|`Text`| List of keywords custom icons should be retrieved for| |
+|`createdStartDate`|`Date`| Starting point of created date| |
+|`createdEndDate`|`Date`| End point of created date| |
+|`lastUpdatedStartDate`|`Date`| Starting point of last updated date| |
+|`lastUpdatedEndDate`|`Date`| End point of last updated date| |
+
+
+#### Request parameters for pagination
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
+|`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
+|`totalPages`|`Boolean`| `true`&#124;`false` |Indicates whether to return the total number of pages in the response |
+|`paging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`|
+
+#### Request parameter to filter responses
+
+The endpoints accept a `fields` parameter which controls which fields will be returned in the
+JSON response. `fields` parameter accepts a comma separated list of field names. If nothing is specified, default fields will be used and those are 
+
+`key,keywords,description,fileResourceUid,createdByUserUid,href`
 
 A custom icon resource can be downloaded by providing the icon key:
 
     GET /api/icons/{key}/icon
-        
+
 Custom icons can be created, modified and deleted.
 To create a custom icon, use the resource below.
 
