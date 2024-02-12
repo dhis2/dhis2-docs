@@ -2048,11 +2048,10 @@ There are multiple endpoints that allow you to see, create, delete and update re
 
 The standard endpoint for relationships is, however, /api/relationships. This endpoint provides all the normal CRUD operations for relationships.
 
-List all relationships require you to provide the UID of the trackedEntityInstance, Enrollment or event that you want to list all the relationships for:  
+You can view a list of relationships by trackedEntityInstance, enrollment or event:
 
-    GET /api/relationships?tei=ABCDEF12345
-    GET /api/relationships?enrollment=ABCDEF12345
-    GET /api/relationships?event=ABCDEF12345
+    GET /api/relationships?[tei={teiUID}|enrollment={enrollmentUID}|event={eventUID}]
+
 
 This request will return a list of any relationship you have access to see that includes the trackedEntityInstance, enrollment or event you specified. Each relationship is represented with the following JSON:
 
@@ -2125,6 +2124,9 @@ In our example payloads, we use a relationship between trackedEntityInstances. B
   }
 }
 ```
+
+Relationship can be soft deleted. In that case, you can use the `includeDeleted` request parameter to see the relationship.
+    GET /api/relationships?tei=pybd813kIWx?includeDeleted=true
 
 ### Update strategies { #webapi_tei_update_strategies }
 
