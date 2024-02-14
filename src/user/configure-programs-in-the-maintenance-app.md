@@ -1093,9 +1093,14 @@ objects:
 
 2.  Click the add button.
 
-3.  Select a **Program** and enter a **Name** (name MUST not contains forbidden keywords: `and` , `or` , `not`).
+3.  Select a **Program** and enter a **Name**
 
-4.  Select if you want to **Use code for option set**.
+    Please note that the name of the program may not contain any of the following exlcuded keywords:
+    - `and`
+    - `or`
+    - `not`
+      
+5.  Select if you want to **Use code for option set**.
 
     This option is only effective when the data element or tracked
     entity attribute is connected to an option set. If you don't select
@@ -1103,7 +1108,7 @@ objects:
     option set's name. If you select the option, the program rule
     variable will be populated with the option set's code instead.
 
-5.  Select a **Source type** and enter the required information.
+6.  Select a **Source type** and enter the required information.
 
     Depending on the source type, you'll have to select, for example, a
     **Program stage,** **Data element** or **Tracked entity attribute**.
@@ -1121,7 +1126,7 @@ objects:
     | **Calculated value** | Program rule variable with this source type is not connected directly to any form data - but will be populated as a result of some other program rules **ASSIGN** action.<br>     <br>This variable will be used for making preliminary calculations, having a **ASSIGN** program rule action and assigning a value, this value can be used by other program rules - potentially making the expressions simpler and more maintanable.<br>     <br>These variables will not be persisted and will stay in memory only during the exectution of the set of program rules. Any program rule that assigns a data value to a preliminary calculated value would normally also have a **priority** assigned - to make sure that the preliminary caculation is done before the rule that consumes the calculated value. |
     | **Tracked entity attribute** | Populates the program rule variable with a specified tracked entity attribute for the current enrollment.<br>     <br>Use this is the source type to create program rules that evaluate data values entered during registration.<br>     <br>This source type is also useful when you create program rules that compare data in events to data entered during registration.<br>     <br>This source type is only used for tracker programs (programs with registration). |
 
-6.  Click **Save**.
+7.  Click **Save**.
 
 ### Create or edit a program rule { #create_program_rule } 
 
