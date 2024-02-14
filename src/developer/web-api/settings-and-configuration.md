@@ -329,15 +329,15 @@ resources:
     
     GET POST /api/facilityOrgUnitLevel
 
-For the CORS whitelist configuration you can make a POST request with an
-array of URLs to whitelist as payload using "application/json" as
+For the CORS allowlist configuration you can make a POST request with an
+array of URLs to allowlist as payload using "application/json" as
 content-type, for instance:
 
 ```json
 ["www.google.com", "www.dhis2.org", "www.who.int"]
 ```
 
-    GET POST /api/33/configuration/corsWhitelist
+    GET POST /api/33/configuration/corsAllowlist
 
 For POST requests, the configuration value should be sent as the request
 payload as text. The following table shows appropriate configuration
@@ -360,7 +360,7 @@ Table: Configuration values
 | remoteServerUrl | URL to remote server |
 | remoteServerUsername | Username for remote server authentication |
 | remoteServerPassword | Password for remote server authentication |
-| corsWhitelist | JSON list of URLs |
+| corsAllowlist | JSON list of URLs |
 
 As an example, to set the feedback recipients user group you can invoke
 the following curl command:
