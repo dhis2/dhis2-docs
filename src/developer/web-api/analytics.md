@@ -2432,7 +2432,6 @@ A successful save operation returns an HTTP status code 201. The table
 below shows the supported types of events.
 
 
-
 Table: Supported event types
 
 | Key | Description |
@@ -2476,7 +2475,6 @@ API query that creates a query for a monthly
 
 The usage analytics API lets you retrieve the top favorites used in
 DHIS2, and by user.
-
 
 
 Table: Query parameters for top favorites
@@ -2586,7 +2584,9 @@ The JSON response looks like this:
 ]
 ```
 
-### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics } 
+Note that the number of `activeUsers` indicates the number of distinct users who had any events during the requested time period. The number of `users` represents the total number of users in the system (both enabled and disabled).
+
+### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics }
 
 You can retrieve the number of view for a specific favorite by using the
 *favorites* resource, where *{favorite-id}* should be substituted with
