@@ -1093,8 +1093,13 @@ objects:
 
 2.  Click the add button.
 
-3.  Select a **Program** and enter a **Name**.
+3.  Select a **Program** and enter a **Name**
 
+    Please note that the name of the program may not contain any of the following exlcuded keywords:
+    - `and`
+    - `or`
+    - `not`
+      
 4.  Select if you want to **Use code for option set**.
 
     This option is only effective when the data element or tracked
