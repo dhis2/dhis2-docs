@@ -1002,7 +1002,7 @@ one can be used. For example, it doesn't make sense to both set the start/end da
 An example request looks like this:
 
 ```bash
-GET /api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX&dataSet=pBOMPrpg1QX
+GET /api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX
   &startDate=2014-01-01&endDate=2014-01-31&orgUnit=YuQRtpLP10I
   &orgUnit=vWbkYPRmKyS&children=true
 ```
