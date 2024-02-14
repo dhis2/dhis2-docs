@@ -1298,7 +1298,6 @@ A list of custom icons can be fetched retrieved certain request parameters
 |---|---|---|---|
 |`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
 |`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
-|`totalPages`|`Boolean`| `true`&#124;`false` |Indicates whether to return the total number of pages in the response |
 |`paging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`|
 
 #### Request parameter to filter responses
