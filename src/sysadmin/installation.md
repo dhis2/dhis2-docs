@@ -1705,6 +1705,17 @@ connection.pool.preferred.test.query=select 1
 #Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads=3
 
+# Database datasource pool type. Supported pool types are: 
+#
+# * c3p0 (default): For information see https://www.mchange.com/projects/c3p0/
+# 
+# * hikari: For information see https://github.com/brettwooldridge/HikariCP
+#
+# * unpooled: Some implementations might want to have more control over the pooling and database cluster architecture 
+# (e.g., using PgBouncer as pool manager behind HAProxy for load balancing). In these cases, the internal pool is un-necessary 
+# and gets in the way.
+db.pool.type=c3p0
+
 # ----------------------------------------------------------------------
 # Server [Mandatory]
 # ----------------------------------------------------------------------
