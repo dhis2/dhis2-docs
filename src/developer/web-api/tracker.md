@@ -133,7 +133,7 @@ In the API, the significant difference is that all events are either connected t
 | attributeOptionCombo | Attribute option combo for the event. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
 | attributeCategoryOptions | Attribute category option for the event. Default if not supplied or configured. | No | No | String:Uid | ABCDEF12345
 | assignedUser | A reference to a user who has been assigned to the event. | No | No | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
-| dataValues | A list of data values connected to the event. | No | No | List of TrackedEntityAttributeValue | See Attribute |
+| dataValues | A list of data values connected to the event. | No | No | List of DataElementValue | See Data Values |
 | relationships | A list of relationships connected to the event. | No | No | List of Relationship | See Relationship |
 | notes | Notes connected to the event. It can only be created. | No | Yes | List of Note | See Note |
 
