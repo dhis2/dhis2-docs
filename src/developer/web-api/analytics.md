@@ -2841,7 +2841,7 @@ The analytics outliert API provides endpoints for investigation of the data qual
 | threshold        | Threshold for outlier values Z_SCORE or MODIFIED_Z_SCORE                                                    | No | Numeric, greater than zero. Default: 3.0                                                         |
 | inputIdScheme    | Identifier scheme to use for metadata items in the query request, can be an identifier, code or attributes. | No | UID, ID, CODE, NAME                                                                              |
 | maxResults       | Maximum rows (responses)                                                                                    | No | 500                                                                                              |
-| skipRounding     | Skip rounding of data values, i.e. provide fine precision (scale 10).                                       | No | false                                                                                         |
+| skipRounding     | Skip rounding of data values, i.e. provide fine precision (scale 10).                                       | No | false, true                                                                                      |
 
 **Request example**
     
