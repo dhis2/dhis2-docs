@@ -714,7 +714,7 @@ For example, to add a value to `Peter`'s datastore an admin uses:
 
     POST /api/userDataStore/<namespace>/<key>?username=Peter
 
-## Partial Update
+## Partial Update (Experimental)
 Both the datastore and user datastore allow partial updating of entry values.  
 
 All the subsequent examples operate on the basis that the following JSON entry is in the namespace `pets` with key `whiskers`.  
@@ -771,7 +771,7 @@ We can update an array element at a specific path.
 - smaller payloads required for small changes
 - less error-prone (no copy-pasting large entries to change 1 property)
 
-## Roll
+## Roll (Experimental)
 The `roll` request param enables the user to have a 'rolling' number of elements in an array. In our example we have the `favFood` array. If we wanted to update this array previously, we'd have to supply the whole payload like so:  
 `PUT` `/api/{store}/pets/whiskers` with body
 
