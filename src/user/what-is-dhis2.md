@@ -224,7 +224,7 @@ that:
     protocols involved - just the well-tested, well-understood HTTP
     protocol which is the main building block of the Web today. This
     implies that third-party developers can develop software using the
-    DHIS2 data model and data without knowing the DHIS2 2specific
+    DHIS2 data model and data without knowing the DHIS2 specific
     technology or complying with the DHIS2 design constraints.
 
   - All data including meta-data, reports, maps and charts, known as
