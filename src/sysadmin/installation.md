@@ -50,8 +50,9 @@ CPU cores so the more you can afford, the better the application will perform.
 
 Later DHIS2 versions require the following software versions to operate.
 
-- An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
+- An operating system for which a Java JDK or JRE version 17 exists. Linux is recommended.
 - Java JDK. OpenJDK is recommended.  
+    - For DHIS 2 version 2.41, JDK 17 is required.
     - For DHIS 2 version 2.38 and later, JDK 11 is required.
     - For DHIS 2 version 2.35 and later, JDK 11 is recommended and JDK 8 or later is required. 
     - For DHIS 2 versions older than 2.35, JDK 8 is required.
@@ -327,16 +328,10 @@ sudo systemctl restart postgresql
 
 ### Java installation { #install_java_installation } 
 
-The recommended Java JDK for DHIS 2 is OpenJDK 11 (for version 2.35 and later). You can install it with the following command:
+The recommended Java JDK for DHIS 2 is OpenJDK 17 (for version 2.41). You can install it with the following command:
 
 ```
-sudo apt-get install -y openjdk-11-jdk
-```
-
-If you prefer OpenJDK 8 (for versions older than 2.35) you can install it with this command:
-
-```
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get install -y openjdk-17-jdk
 ```
 
 Verify that your installation is correct by invoking:
