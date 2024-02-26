@@ -328,7 +328,7 @@ sudo systemctl restart postgresql
 
 ### Java installation { #install_java_installation } 
 
-The recommended Java JDK for DHIS 2 is OpenJDK 17 (for version 2.41). You can install it with the following command:
+The recommended Java JDK for DHIS 2 is OpenJDK 17 (for version 2.40 and later). You can install it with the following command:
 
 ```
 sudo apt-get install -y openjdk-17-jdk
