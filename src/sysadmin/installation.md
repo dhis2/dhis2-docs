@@ -52,10 +52,19 @@ Later DHIS2 versions require the following software versions to operate.
 
 - An operating system for which a Java JDK or JRE version 17 exists. Linux is recommended.
 - Java JDK. OpenJDK is recommended.  
-    - For DHIS 2 version 2.41, JDK 17 is required.
-    - For DHIS 2 version 2.38 and later, JDK 11 is required.
-    - For DHIS 2 version 2.35 and later, JDK 11 is recommended and JDK 8 or later is required. 
-    - For DHIS 2 versions older than 2.35, JDK 8 is required.
+
+
+Table: DHIS2 JDK compatibility
+
+| DHIS2 version | JDK recommended | JDK required |
+|---------------|-----------------|--------------|
+| 2.41          | 17              | 17           |
+| 2.40          | 17              | 11           |
+| 2.38          | 11              | 11           |
+| 2.35          | 11              | 8            |
+| pre 2.35      | 8               | 8            |
+
+
 - PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 14 is recommended.
 - PostGIS database extension version 2.2 or later.
 - Tomcat servlet container version 8.5.50 or later, or other Servlet API
