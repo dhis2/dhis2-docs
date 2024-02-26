@@ -1027,7 +1027,7 @@ Export id and displayName for all data elements, ordered by displayName:
 
 Export data elements and indicators where name starts with "ANC":
 
-    /api/metadata?filter=name:^like:ANC&dataElements=true&indicators=true
+    /api/metadata?filter=name:startsWith:ANC&dataElements=true&indicators=true
 
 ### Metadata export with dependencies { #webapi_dataset_program_export_dependencies } 
 
