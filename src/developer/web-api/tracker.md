@@ -217,11 +217,9 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 ```json
 {
   "trackedEntity": "oi3PMIGYJH8",
-  "_comment" : "tracked entity details ...",
   "enrollments": [
     {
       "enrollment": "EbRsJr8LSSO",
-      "_comment" : "enrolmment details ...",
       "notes": [
         {
           "note": "vxmCvYcPdaW",
@@ -234,7 +232,6 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
       "events": [
         {
           "event": "zfzS9WeO0uM",
-          "_comment" : "event details ...",
           "notes": [
             {
               "note": "MAQFb7fAggS",
@@ -244,9 +241,6 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
               "value": "Event Note 2."
             }
           ]
-        },
-        {
-          "_comment" : "another event ..."
         }
       ]
     }
