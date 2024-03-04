@@ -217,38 +217,30 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
 ```json
 {
   "trackedEntity": "oi3PMIGYJH8",
-  <entity_details>,
-  ],
   "enrollments": [
     {
       "enrollment": "EbRsJr8LSSO",
-      <enrollment_details>
       "notes": [
         {
           "note": "vxmCvYcPdaW",
-          "value": "Enrollment note 2.",
+          "value": "Enrollment note 2."
         },
         {
-          "value": "Enrollment note 1",
+          "value": "Enrollment note 1"
         }
       ],
-
       "events": [
         {
           "event": "zfzS9WeO0uM",
-          <event_details>,
           "notes": [
             {
               "note": "MAQFb7fAggS",
-              "value": "Event Note 1.",
+              "value": "Event Note 1."
             },
             {
-              "value": "Event Note 2.",
+              "value": "Event Note 2."
             }
-          ],
-        },
-        {
-          ...
+          ]
         }
       ]
     }
@@ -438,7 +430,7 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
       "occurredAt": "2019-08-19T00:00:00.000",
       "status": "ACTIVE",
       "notes": [],
-      "attributes": [],
+      "attributes": []
     }
   ],
   "events": [
@@ -1248,7 +1240,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |---|---|---|---|
 |`filter`|`String`|Comma separated values of attribute filters|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
 |`orgUnit`|`String`|semicolon-delimited list of organisational unit `UID`|Only return tracked entity instances belonging to provided organisational units|
-|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`ouMode` see [ouModes](#webapi_nti_ou_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
 |`program`|`String`|Program `UID`| a Program `UID` for which instances in the response must be enrolled into|
 |`programStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The ProgramStatus of the Tracked Entity Instance in the given program|
 |`programStage`|`String`|`UID`|a Program Stage `UID` for which instances in the response must have events for|
@@ -1580,7 +1572,7 @@ Returns a list of events based on the provided filters.
 |`followUp`|`boolean`| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
 |`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
-|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|  Org unit selection mode|
+|`ouMode` see [ouModes](#webapi_nti_ou_scope)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|  Org unit selection mode|
 |`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
 |`occurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which occurred after this date.|
 |`occurredBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which occurred up until this date.|
@@ -1848,7 +1840,7 @@ Returns a list of events based on filters.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
-|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL| Org unit selection mode|
+|`ouMode` see [ouModes](#webapi_nti_ou_scope)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL| Org unit selection mode|
 |`program`|`String`|`uid`| Identifier of program|
 |`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Program Status |
 |`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the instance for the given program. Can be `true`&#124;`false` or omitted.|
