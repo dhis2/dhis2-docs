@@ -1305,8 +1305,10 @@ These operations follow the standard *REST* semantics. A new EventVisualization 
 }
 ```
 
-For multi-program support, The root `program` should not be specified. This will turn the `eventVisualization` a multi-program.Consequently, we have to specify the `program` and `programStage` (when applicable) for each `dimension` in `rows`, `columns` and `filters`.
+For multi-program support, the root `program` should not be specified. This will turn the `eventVisualization` into a multi-program. Consequently, we have to specify the `program` and `programStage` (when applicable) for each `dimension` in `rows`, `columns`, and `filters`.
+
 Example:
+
 ```json
 "program": null,
 "columns": [
