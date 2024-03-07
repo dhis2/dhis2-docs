@@ -342,6 +342,72 @@ out:
 If any of these requirements are not met the invite resource will return
 with a *409 Conflict* status code together with a descriptive message.
 
+### User account confirm invite (Experimental) { #webapi_user_confirm_invite }
+
+> **Important**  
+> Before confirming an invitation, an admin user should have set up the User and sent an invitation link. That prerequisite also adds some required data in the `userinfo` database table (`idToken`, `restoreToken`, `restoreExpiry`) for that user, in order to complete the invite.
+
+A user can confirm an invitation through the following endpoint:  
+`POST` `/api/auth/invite`  
+with `JSON` body:
+
+```json
+{
+    "username": "TestUser",
+    "firstName": "Test",
+    "surname": "User",
+    "password": "Test123!",
+    "email": "test@test.com",
+    "phoneNumber": "123456789",
+    "g-recaptcha-response": "recaptchaResponse",
+    "token": "aWRUb2tlbjpJRHJlc3RvcmVUb2tlbg=="
+}
+```
+
+> **Note**  
+> The `g-recaptcha-response` value would be populated through the use of the core Login App UI normally.  
+> The `token` field expects a Base64-encoded value. In this example, decoded, it's `idToken:IDrestoreToken`. This would be sent by the new Login App (it is actually created internally (and populated in the database) during the `/api/users/invite` operation).
+
+Successful response looks like:  
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "message": "Account updated"
+}
+```
+
+### User account registration (Experimental) { #webapi_user_registration }
+A user can register directly through the following endpoint:  
+`POST` `/api/auth/registration` with `JSON` body:  
+
+```json
+{
+    "username": "testSelfReg",
+    "firstName": "test",
+    "surname": "selfReg",
+    "password": "P@ssword123",
+    "email": "test@test.com",
+    "phoneNumber": "12345oooo",
+    "g-recaptcha-response": "recap response"
+}
+
+```
+
+A successful response looks like:  
+
+```json
+{
+    "httpStatus": "Created",
+    "httpStatusCode": 201,
+    "status": "OK",
+    "message": "Account created"
+}
+```
+
+
 ### User replication { #webapi_user_replication } 
 
 To replicate a user you can use the *replica* resource. Replicating a
