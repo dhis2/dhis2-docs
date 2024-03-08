@@ -366,7 +366,7 @@ with `JSON` body:
 
 > **Note**  
 > The `g-recaptcha-response` value would be populated through the use of the core Login App UI normally.  
-> The `token` field expects a Base64-encoded value. In this example, decoded, it's `idToken:IDrestoreToken`. This would be sent by the new Login App (it is actually created internally (and populated in the database) during the `/api/users/invite` operation).
+> The `token` field expects a Base64-encoded value. In this example, decoded, it's `idToken:IDrestoreToken`. This would be sent by email to the invited user (it is actually created internally (and populated in the database) during the `/api/users/invite` operation).
 
 Successful response looks like:  
 
@@ -407,8 +407,35 @@ A successful response looks like:
 }
 ```
 
+### User forgot password (Experimental) { #webapi_user_forgot_password }
 
-### User replication { #webapi_user_replication } 
+This endpoint is used to trigger the forgotten password flow. It can be triggered by supplying the username or email of the user whose password needs resetting.  
+`POST` `/api/auth/forgotPassword` with `JSON` body:  
+
+```json
+{
+    "emailOrUsername": "testUsername1"
+}
+```
+
+A successful response returns an empty `200 OK`. This should trigger an email to be sent to the user which allows them to reset their password.
+
+### User password reset (Experimental) { #webapi_user_password_reset }
+
+Once a user has received an email with a link to reset their password, it will contain a token which can be used to reset their password.  
+`POST` `/api/auth/passwordReset` with `JSON` body:  
+
+```json
+{
+    "newPassword": "ChangeMe123!",
+    "resetToken": "token-value-from-email-link"
+}
+```
+
+A successful response returns an empty `200 OK`. The user should now be able to log in using the new password.
+
+
+### User replication { #webapi_user_replication }
 
 To replicate a user you can use the *replica* resource. Replicating a
 user can be useful when debugging or reproducing issues reported by a
