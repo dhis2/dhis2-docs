@@ -418,3 +418,20 @@ order of their names (comparing Unicode character values).
 
 If both individual predictors and predictor groups are selected in the same
 job, the individual predictors run first, followed by the predictor groups.
+
+### Data integrity { #scheduling_data_integrity }
+
+The Data Integrity job type is responsible for scheduling data integrity checks. DHIS2 can perform a wide range of data integrity checks on the data contained in the database. Identifying and correcting data integrity issues is extremely important for ensuring that the data used for analysis purposes is valid. Each of the data integrity checks that are performed by the system will be described, along with general procedures that can be performed to resolve these issues.
+
+The result of the data integrity checks can be viewed in the Data Administration app. As of 2.41 the result of the data integrity checks are only available for up to *one hour* after the job has completed.
+
+Some data integrity checks are marked as *slow*. Users should be cautious about running these checks on production systems as they could lead to decreased performance. It's generally not recommended to run more than one of these at the same time.
+
+The following parameters are available:
+
+- **Report type** the level of specificity of the result. The available options are:
+  - **Summary** - a summary of the number of issues will be available.
+  - **Details** - a list of issues pointing to individual data integrity violations will be available for each integrity check.
+- **Checks to run** specify the data integrity checks to run. If *only run selected checks* is selected, a list of checks where you will be able to select only the checks to run will be displayed. If *run all standard checks* is selected, all *standard* checks will be executed. Note that this will not run checks that are marked as *slow* - these checks must be selected manually using *only run selected checks*.
+
+See [Data Administration](#data_admin_data_integrity) for more information about the available data integrity checks.
