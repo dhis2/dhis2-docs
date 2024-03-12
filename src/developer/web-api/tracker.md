@@ -22,9 +22,7 @@
 >  over to the new endpoints. [Migrating to new tracker
 >  endpoints](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-deprecated.html#webapi_tracker_migration)
 >  should help you get started. Reach out on the [community of
->  practice](https://community.dhis2.org) if you need further assistance. NOTE: The feature for data
->  sync(importMode=SYNC) is not implemented in the new tracker endpoints, and if you are using this
->  feature you will have to postpone the migration until a new SYNC feature is in place.
+>  practice](https://community.dhis2.org) if you need further assistance.
 
 ## Tracker Objects { #webapi_nti_tracker_objects }
 
