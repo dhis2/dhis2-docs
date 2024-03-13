@@ -546,6 +546,18 @@ Additional results can be filtered using a `section` parameter.
 
 The `section` filter will return all exact matches which have the specified section. 
 
+Furthermore, to filter (select) only checks marked as `isSlow` use `slow=true`,
+
+    GET /api/dataIntegrity?slow=true
+
+or to filter (select) only checks that are not performed via database query 
+(programmed checks) use `programmatic=true`:
+
+    GET /api/dataIntegrity?programmatic=true
+
+The `slow`, `programmatic` and `section` filters can be combined in which case
+all conditions must be met.
+
 ### Running data integrity summaries { #webapi_data_integrity_run_summary }
 
 Since version 2.38, data integrity checks have two levels of specificity: 
