@@ -1175,7 +1175,7 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 
 The following endpoint supports standard parameters for pagination.
 
-- **Tracked Entities** `GET /api/tracker/trackedEntities`
+- **Tracked entities** `GET /api/tracker/trackedEntities`
 - **Events** `GET /api/tracker/events`
 - **Enrollments** `GET /api/tracker/enrollments`
 - **Relationships** `GET /api/tracker/relationships`
@@ -1184,11 +1184,12 @@ The following endpoint supports standard parameters for pagination.
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
-|`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
-|`totalPages`|`Boolean`| `true`&#124;`false` |Indicates whether to return the total number of pages in the response |
-|`skipPaging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `false`, meaning that by default all requests are paginated, unless `skipPaging=true`|
-|`order`|`String`|Comma-separated list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
+|`page`|`Integer`|Any positive integer|Page number to return. Defaults to 1.|
+|`pageSize`|`Integer`|Any positive integer|Page size. Defaults to 50.|
+|`totalPages`|`Boolean`|`true`&#124;`false`|Indicates whether to return the total number of elements and pages. Defaults to `false` as getting the totals is an expensive operation.|
+|`paging`|`Boolean`|`true`&#124;`false`|Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`.|
+|`skipPaging` **deprecated for removal in version 42 use `paging`**|`Boolean`|`true`&#124;`false`|Indicates whether paging should be ignored and all rows should be returned. Defaults to `false`, meaning that by default all requests are paginated, unless `skipPaging=true`.|
+|`order`|`String`|Comma-separated list of property name and sort direction pairs in format `propName:sortDirection`.<br><br>Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive. Valid `sortDirections` are `asc` and `desc`. `sortDirection` is case-insensitive. `sortDirection` defaults to `asc` for properties or UIDs without explicit `sortDirection`.||
 
 > **Caution**
 >
