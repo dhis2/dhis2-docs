@@ -6,7 +6,7 @@ After reading this chapter you will be able to understand:
     information systems (HIS)?
 
   - What are the major technological considerations when it comes to
-    deploying DHIS2, and what are the options are for extending DHIS2
+    deploying DHIS2, and what are the options for extending DHIS2
     with new modules?
 
   - What is the difference between patient based and aggregate data?
