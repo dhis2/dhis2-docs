@@ -1279,7 +1279,7 @@ The query is case insensitive. The following rules apply to the query
 parameters.
 
 - At least one organisation unit must be specified using the `orgUnit`
-  parameter (one or many), or `ouMode=ALL` must be specified.
+  parameter (one or many), or `orgUnitMode=ALL` must be specified.
 
 - Only one of the `program` and `trackedEntity` parameters can be
   specified (zero or one).
@@ -1338,7 +1338,7 @@ To constrain the response to tracked entities which are part of a specific
 program you can include a program query parameter:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS
+        &orgUnit=O6uvpzGd5pu&orgUnitMode=DESCENDANTS
         &program=ur1Edk5Oe2n
 
 To specify program enrollment dates as part of the query:
@@ -1353,7 +1353,7 @@ can include a tracked entity query parameter:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
         &orgUnit=O6uvpzGd5pu
-        &ouMode=DESCENDANTS
+        &orgUnitMode=DESCENDANTS
         &trackedEntity=cyl5vuJ5ETQ
 
 By default the tracked entities are returned in pages of size 50, to change
@@ -1361,7 +1361,7 @@ this you can use the page and pageSize query parameters:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
         &orgUnit=O6uvpzGd5pu
-        &ouMode=DESCENDANTS
+        &orgUnitMode=DESCENDANTS
         &page=2&pageSize=3
 
 You can use a range of operators for the filtering:
@@ -1613,12 +1613,12 @@ Returns a list of events based on the provided filters.
 
 The query for all events with children of a particular organisation unit:
 
-    GET /api/tracker/events?orgUnit=YuQRtpLP10I&ouMode=CHILDREN
+    GET /api/tracker/events?orgUnit=YuQRtpLP10I&orgUnitMode=CHILDREN
 
 The query for all events with all descendants of a particular organisation
 unit, implying all organisation units in the sub-hierarchy:
 
-    GET /api/tracker/events?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS
+    GET /api/tracker/events?orgUnit=O6uvpzGd5pu&orgUnitMode=DESCENDANTS
 
 Query for all events with a certain program and organisation unit:
 
@@ -1865,7 +1865,7 @@ Returns a list of events based on filters.
 The query is case-insensitive. The following rules apply to the query parameters.
 
 - At least one organisation unit must be specified using the `orgUnit`
-  parameter (one or many), or *ouMode=ALL* must be specified.
+  parameter (one or many), or *orgUnitMode=ALL* must be specified.
 
 - Only one of the *program* and *trackedEntity* parameters can be
   specified (zero or one).
@@ -1886,7 +1886,7 @@ A query for all enrollments associated with a specific organisation unit can loo
 To constrain the response to enrollments which are part of a specific program you can include a
 program query parameter:
 
-    GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS&program=ur1Edk5Oe2n
+    GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&program=ur1Edk5Oe2n
 
 To specify program enrollment dates as part of the query:
 
@@ -1896,13 +1896,13 @@ To specify program enrollment dates as part of the query:
 To constrain the response to enrollments of a specific tracked entity you can include a tracked
 entity query parameter:
 
-    GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
+    GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
 
 To constrain the response to enrollments of a specific tracked entity you can include a tracked
 entity query parameter, in In this case, we have restricted it to available enrollments viewable for
 current user:
 
-    GET /API/tracker/enrollments?ouMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
+    GET /API/tracker/enrollments?orgUnitMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
 
 ##### Response format
 
@@ -2078,9 +2078,9 @@ Organisation units are one of the most fundamental objects in DHIS2. They define
 
 However, to further fine-tune the scope, DHIS2 Tracker introduces a concept that we call **OrganisationUnitSelectionMode**. Such a mode is often used at the time exporting tracker objects. For example, given that a user has a particular tracker search scope, does it mean that we have to use this scope every time a user tries to search for a tracker, Enrollment, or Event object? Or is the user interested in limiting the searching just to the selected org unit, or the entire capture org unit scope, and so on.
 
-Users can do the fine-tuning by passing a specific value of ouMode in their API request:
+Users can do the fine-tuning by passing a specific value of `orgUnitMode` in their API request:
 
-*api/tracker/trackedEntities?orgUnit=UID&ouMode=specific_organisation_unit_selection_mode*
+*api/tracker/trackedEntities?orgUnit=UID&orgUnitMode=specific_organisation_unit_selection_mode*
 
 Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCENDANTS, CAPTURE, ACCESSIBLE, and ALL*.
 
