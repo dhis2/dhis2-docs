@@ -1301,52 +1301,52 @@ parameters.
 A query for all tracked entities associated with a specific organisation unit
 can look like this:
 
-    GET /api/tracker/trackedEntities?orgUnit=DiszpKrYNg8
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
 
 To query for tracked entities using one attribute with a filter and one
 attribute without a filter, with one organisation unit using the
 descendant organisation unit query mode:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &attribure=AMpUYgxuCaE&orgUnit=DiszpKrYNg8;yMCshbaVExv
+        &attribute=AMpUYgxuCaE&orgUnits=DiszpKrYNg8,yMCshbaVExv
 
 A query for tracked entities where attributes are included in the response
 and one attribute is used as a filter:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
         &filter=AMpUYgxuCaE:LIKE:Road
-        &orgUnit=DiszpKrYNg8
+        &orgUnits=DiszpKrYNg8
 
 A query where multiple operand and filters are specified for a filter
 item:
 
-    GET /api/tracker/trackedEntities?orgUnit=DiszpKrYNg8
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
         &program=ur1Edk5Oe2n
         &filter=lw1SqmMlnfh:GT:150
         &filter=lw1SqmMlnfh:LT:190
 
 A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
-    GET /api/tracker/trackedEntities?orgUnit=DiszpKrYNg8
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
         &program=ur1Edk5Oe2n
         &filter=lw1SqmMlnfh:EQ:/:/,//
 
 To query on an attribute using multiple values in an *IN* filter:
 
-    GET /api/tracker/trackedEntities?orgUnit=DiszpKrYNg8
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
         &filter=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
 
 To constrain the response to tracked entities which are part of a specific
 program you can include a program query parameter:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnit=O6uvpzGd5pu&orgUnitMode=DESCENDANTS
+        &orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS
         &program=ur1Edk5Oe2n
 
 To specify program enrollment dates as part of the query:
 
     GET /API/tracker/trackedEntities?
-        &orgUnit=O6uvpzGd5pu&program=ur1Edk5Oe2n
+        &orgUnits=O6uvpzGd5pu&program=ur1Edk5Oe2n
         &enrollmentEnrolledAfter=2013-01-01
         &enrollmentEnrolledBefore=2013-09-01
 
@@ -1354,7 +1354,7 @@ To constrain the response to tracked entities of a specific tracked entity you
 can include a tracked entity query parameter:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnit=O6uvpzGd5pu
+        &orgUnits=O6uvpzGd5pu
         &orgUnitMode=DESCENDANTS
         &trackedEntity=cyl5vuJ5ETQ
 
@@ -1362,7 +1362,7 @@ By default the tracked entities are returned in pages of size 50, to change
 this you can use the page and pageSize query parameters:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnit=O6uvpzGd5pu
+        &orgUnits=O6uvpzGd5pu
         &orgUnitMode=DESCENDANTS
         &page=2&pageSize=3
 
@@ -1883,22 +1883,22 @@ The query is case-insensitive. The following rules apply to the query parameters
 
 A query for all enrollments associated with a specific organisation unit can look like this:
 
-    GET /api/tracker/enrollments?orgUnit=DiszpKrYNg8
+    GET /api/tracker/enrollments?orgUnits=DiszpKrYNg8
 
 To constrain the response to enrollments which are part of a specific program you can include a
 program query parameter:
 
-    GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&program=ur1Edk5Oe2n
+    GET /api/tracker/enrollments?orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&program=ur1Edk5Oe2n
 
 To specify program enrollment dates as part of the query:
 
-    GET /api/tracker/enrollments?&orgUnit=O6uvpzGd5pu&program=ur1Edk5Oe2n
+    GET /api/tracker/enrollments?&orgUnits=O6uvpzGd5pu&program=ur1Edk5Oe2n
       &enrolledAfter=2013-01-01&enrolledBefore=2013-09-01
 
 To constrain the response to enrollments of a specific tracked entity you can include a tracked
 entity query parameter:
 
-    GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
+    GET /api/tracker/enrollments?orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
 
 To constrain the response to enrollments of a specific tracked entity you can include a tracked
 entity query parameter, in In this case, we have restricted it to available enrollments viewable for
