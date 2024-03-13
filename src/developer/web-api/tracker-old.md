@@ -1,24 +1,25 @@
 # Tracker (deprecated APIs)
 
 > **Caution**
->Tracker has been re-implemented in DHIS2 2.36. The new endpoints are documented at
->[Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html).
 >
->Endpoints
+> Tracker has been re-implemented in DHIS2 2.36. The new endpoints are documented at
+> [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html).
+>
+> Endpoints
 >
 > * `GET/POST/PUT/DELETE /api/trackedEntityInstance`
 > * `GET/POST/PUT/DELETE /api/enrollments`
 > * `GET/POST/PUT/DELETE /api/events`
 > * `GET/POST/PUT/DELETE /api/relationships`
 >
->will be removed in version **42**!
+> will be removed in version **42**!
 >
->* If you plan to use the tracker endpoints use the new endpoints described in
->  [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html)
->* If you are still using the deprecated tracker endpoints in production, please migrate over to the
->  new endpoints. [Migrating to new tracker endpoints](#webapi_tracker_migration) should help you
->  get started. Reach out on the [community of practice](https://community.dhis2.org) if you need
->  further assistance.
+> * If you plan to use the tracker endpoints use the new endpoints described in
+>   [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html)
+> * If you are still using the deprecated tracker endpoints in production, please migrate over to the
+>   new endpoints. [Migrating to new tracker endpoints](#webapi_tracker_migration) should help you
+>   get started. Reach out on the [community of practice](https://community.dhis2.org) if you need
+>   further assistance.
 
 ## Migrating to new tracker endpoints { #webapi_tracker_migration }
 
