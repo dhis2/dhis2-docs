@@ -1189,9 +1189,7 @@ The following endpoint supports standard parameters for pagination.
 |`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
 |`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
 |`totalPages`|`Boolean`| `true`&#124;`false` |Indicates whether to return the total number of pages in the response |
-|`skipPaging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `false`, meaning that by default all requests are paginated, unless `skipPaging=true`|
-|`order`|`String`|comma-delimited list of `OrderCriteria` in the form of `propName:sortDirection`.<br><br> Example: `createdAt:desc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive|Sort the response based on given `OrderCriteria`|
-
+|`skipPaging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `false`, meaning that by default all requests are paginated, unless `skipPaging=true`|	
 > **Caution**
 >
 > Be aware that the performance is directly related to the amount of data requested. Larger pages will take more time to return.
@@ -1260,6 +1258,8 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`eventOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for Event for the given Program|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`|Indicates whether to include soft-deleted elements|
 |`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a TEI is a Potential Duplicate. true: return TEIs flagged as Potential Duplicates. false: return TEIs NOT flagged as Potential Duplicates. If omitted, we don't check whether a TEI is a Potential Duplicate or not. |
+|`order`|`String`|comma-delimited list of property name or attribute and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `trackedEntity, createdAt, createdAtClient, updatedAt, updatedAtClient and enrollmentDate`.|
+
 
 The available assigned user modes are explained in the following table.
 
@@ -1851,6 +1851,7 @@ Returns a list of events based on filters.
 |`order`|`String`|comma-delimited list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `completedAt, createdAt, createdAtClient, enrolledAt, updatedAt, updatedAtClient`.|
 |`enrollment`|`String`|Comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using enrollment=id1;id2.|
 |`includeDeleted`|`Boolean`| |  When true, soft deleted events will be included in your query result.|
+|`order`|`String`|comma-delimited list of property name or attribute and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `created:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `created, lastupdated, enrollmentdate, incidentdate, status, trackedentityinstanceid, organisationunitid, storedby, programinstanceid, enddate, programid, completedby, createdbyuserinfo and lastupdatedbyuserinfo`.|
 
 The query is case-insensitive. The following rules apply to the query parameters.
 
