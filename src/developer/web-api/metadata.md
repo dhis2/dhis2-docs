@@ -578,6 +578,8 @@ for _data elements_ is:
 
     /api/dataElements
 
+> **_NOTE:_**  When updating objects, all existing property values will be overwritten, even if the new value is null. Please use [JSON Patch API](#webapi_partial_updates) in case you want do partial update to an object.
+
 ### Create / update parameters { #webapi_metadata_create_update } 
 
 The following request query parameters are available across all metadata endpoints.
@@ -588,7 +590,6 @@ Table: Available Query Filters
 |---|---|---|---|---|
 | preheatCache | boolean | false | true &#124; false | Turn cache-map preheating on/off. This is on by default, turning this off will make initial load time for importer much shorter (but will make the import itself slower). This is mostly used for cases where you have a small XML/JSON file you want to import, and don't want to wait for cache-map preheating. |
 | importStrategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
-| mergeMode | enum | false | REPLACE, MERGE | Strategy for merging of objects when doing updates. REPLACE will just overwrite the property with the new value provided, MERGE will only set the property if it is not null (only if the property was provided). |
 
 ### Creating and updating objects { #webapi_creating_updating_objects } 
 
@@ -1089,7 +1090,6 @@ Table: Import Parameter
 | preheatMode | REFERENCE, ALL, NONE | Sets the preheater mode, used to signal if preheating should be done for `ALL` (as it was before with *preheatCache=true*) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to `NONE` is not recommended. |
 | importStrategy | CREATE_AND_UPDATE, CREATE, UPDATE, DELETE | Sets import strategy, `CREATE_AND_UPDATE` will try and match on identifier, if it doesn't exist, it will create the object. |
 | atomicMode | ALL, NONE | Sets atomic mode, in the old importer we always did a *best effort* import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the `NONE` mode emulated the old behavior. |
-| ~~mergeMode~~ | ~~REPLACE, MERGE~~ | ~~Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not.~~ (*) |
 | flushMode | AUTO, OBJECT | Sets the flush mode, which controls when to flush the internal cache. It is *strongly* recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues). | 
 | skipSharing | false, true | Skip sharing properties, does not merge sharing when doing updates, and does not add user group access when creating new objects. |
 | skipValidation | false, true | Skip validation for import. `NOT RECOMMENDED`. |
@@ -1098,7 +1098,7 @@ Table: Import Parameter
 | userOverrideMode | NONE, CURRENT, SELECTED | Allows you to override the user property of every object you are importing, the options are NONE (do nothing), CURRENT (use import user), SELECTED (select a specific user using overrideUser=X) |
 | overrideUser | User ID | If userOverrideMode is SELECTED, use this parameter to select the user you want override with. |
 
-> (*) Currently the `mergeMode=MERGE` option of the import service has limitations and doesn't support all objects. It doesn't work with some object types such as Embedded objects, or objects which are saved as JSONB format in database ( sharing, attributeValues, etc...). Fixing those issues are complicated and would just cause new issues. Therefore, this `mergedMode=MERGE` is deprecated and currently is not recommended to use. The update mode should always be mergedMode=REPLACE. We have developed a new [JSON Patch API](#webapi_partial_updates) which can be used as an alternative approach. This feature is introduced in 2.37 release.
+> **NOTE** When updating objects, all property values will be overwritten even if the new values are `null`. Please use [JSON Patch API](#webapi_partial_updates) in case you want do partial update to an object.
 
 
 An example of a metadata payload to be imported looks like this. Note how
@@ -1153,7 +1153,6 @@ ignored:
     "preheatMode": "REFERENCE",
     "importStrategy": "CREATE_AND_UPDATE",
     "atomicMode": "ALL",
-    "mergeMode": "REPLACE",
     "flushMode": "AUTO",
     "skipSharing": false,
     "skipTranslation": false,
