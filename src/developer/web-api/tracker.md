@@ -59,10 +59,8 @@ Tracker consists of a few different types of objects that are nested together to
 >
 > The "attributes" referred to in the `Tracked Entity` are `Tracked Entity Type Attributes`.
 
-
 ### Enrollment
 `Tracked Entities` can enroll into `Programs` for which they are eligible. Tracked entities are eligible as long as the program is configured with the same `Tracked Entity Type` as the tracked entity. We represent the enrollment with the `Enrollment` object, which we describe in this section.
-
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
@@ -96,7 +94,6 @@ Tracker consists of a few different types of objects that are nested together to
 > `Tracked Entities` "owns" all `Tracked Entity Attribute Values` (Or "attributes" as described in the previous table). However, `Tracked Entity Attributes` are either connected to a `Tracked Entity` through its `Tracked Entity Type` or a `Program`. We often refer to this separation as `Tracked Entity Type Attributes` and `Tracked Entity Program Attributes`. The importance of this separation is related to access control and limiting what information the user can see.
 >
 > The "attributes" referred to in the `Enrollment` are `Tracked Entity Program Attributes`.
-
 
 ### Events
 `Events` are either part of an `EVENT PROGRAM` or `TRACKER PROGRAM`. For `TRACKER PROGRAM`, events belong to an `Enrollment`, which again belongs to a `Tracked Entity`. On the other hand, `EVENT PROGRAM` is `Events` not connected to a specific `Enrollment` or `Tracked Entity`. The difference is related to whether we track a specific `Tracked Entity` or not. We sometimes refer to `EVENT PROGRAM` events as "anonymous events" or "single events" since they only represent themselves and not another `Tracked Entity`.
@@ -307,7 +304,7 @@ Table: Program Stage Query Criteria
 | order | List of fields and its directions in comma separated values, the results will be sorted according to it. A single item in order is of the form "orderDimension:direction". | "order": "w75KJ2mc4zz:asc" |
 | displayColumnOrder | Output ordering of columns | "displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"] |
 | dataFilters | A list of items that contains the filters to be used when querying events | "dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}] |
-| attributeValueFilters | A list of attribute value filters. This is used to specify filters for attribute values when listing tracked entity instances | "attributeValueFilters":[{"attribute": "ruQQnf6rswq","eq": "15"}] |
+| attributeValueFilters | A list of attribute value filters. This is used to specify filters for attribute values when listing tracked entities | "attributeValueFilters":[{"attribute": "ruQQnf6rswq","eq": "15"}] |
 
 See an example payload below:
 
@@ -1042,7 +1039,7 @@ Some of the properties of tracker objects require a specific format. When import
 - Geometry (The coordinates must match the format as specified by its type)
 
 #### User access
-All data imported will be validated based on the metadata  ([Sharing](#webapi_nti_metadata_sharing)) and the organisation units ([Organisation Unit Scopes](#webapi_nti_ou_scope)) referenced in the data. You can find more information about sharing and organisation unit scopes in the following sections.
+All data imported will be validated based on the metadata  ([Sharing](#webapi_nti_metadata_sharing)) and the organisation units ([Organisation Unit Scopes](#webapi_nti_orgunit_scope)) referenced in the data. You can find more information about sharing and organisation unit scopes in the following sections.
 
 Sharing is validated at the same time as references are looked up in the database. Metadata outside of the user's access will be treated as if it doesn't exist. The import will validate any metadata referenced in the data.
 
@@ -1199,7 +1196,7 @@ The following endpoint supports standard parameters for pagination.
 
 #### Request parameters for Organisational Unit selection mode
 
-The available organisation unit selection modes are `SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE` and `ALL`. Each mode is explained in detail in [this section](#webapi_nti_ou_scope).
+The available organisation unit selection modes are `SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE` and `ALL`. Each mode is explained in detail in [this section](#webapi_nti_orgunit_scope).
 
 #### Request parameter to filter responses { #webapi_nti_field_filter }
 
@@ -1237,13 +1234,15 @@ The endpoint returns a list of tracked entities that match the request parameter
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`filter`|`String`|Comma separated values of attribute filters|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
-|`orgUnit`|`String`|semicolon-delimited list of organisational unit `UID`|Only return tracked entity instances belonging to provided organisational units|
-|`ouMode` see [ouModes](#webapi_nti_ou_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`program`|`String`|Program `UID`| a Program `UID` for which instances in the response must be enrolled into|
-|`programStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The ProgramStatus of the Tracked Entity Instance in the given program|
-|`programStage`|`String`|`UID`|a Program Stage `UID` for which instances in the response must have events for|
-|`followUp`|`Boolean`|`true`&#124;`false`|Indicates whether the Tracked Entity Instance is marked for follow up for the specified Program|
+|`filter`|`String`|Comma separated values of attribute filters.|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
+|`orgUnits`|`String`|Comma-delimited list of organisation unit `UID`s.|Only return tracked entities belonging to provided organisation units|
+|`orgUnit` **Deprecated for removal in 42: use `orgUnits`**|`String`|Semicolon-delimited list of organisation units `UID`s.|Only return tracked entities belonging to provided organisation units.|
+|`orgUnitMode` see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`ouMode` **Deprecated for removal in 42: use `orgUnitMode`** see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`program`|`String`|Program `UID`|A program `UID` for which tracked entities in the response must be enrolled into.|
+|`programStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The ProgramStatus of the tracked entity in the given program|
+|`programStage`|`String`|`UID`|a Program Stage `UID` for which tracked entities in the response must have events for|
+|`followUp`|`Boolean`|`true`&#124;`false`|Indicates whether the tracked entity is marked for follow up for the specified program|
 |`updatedAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Start date and time for last updated|
 |`updatedBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | End date and time for last updated|
 |`updatedWithin`|`Duration`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) | Returns TEIs not older than specified Duration|
@@ -1251,8 +1250,8 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
 |`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time and time and time for occurred in the given program|
 |`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time and time for occurred in the given program|
-|`trackedEntityType`|`String`|UID of tracked entity type|Only returns Tracked Entity Instances of given type|
-|`trackedEntity`|`String`|semicolon-delimited list of tracked entity instance `UID`|Filter the result down to a limited set of tracked entities using explicit uids of the tracked entity instances by using `trackedEntity=id1;id2`. This parameter will, at the very least, create the outer boundary of the results, forming the list of all tracked entities using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
+|`trackedEntityType`|`String`|UID of tracked entity type|Only returns tracked entitys of given type|
+|`trackedEntity`|`String`|semicolon-delimited list of tracked entity `UID`|Filter the result down to a limited set of tracked entities using explicit uids of the tracked entities by using `trackedEntity=id1;id2`. This parameter will, at the very least, create the outer boundary of the results, forming the list of all tracked entities using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
 |`assignedUserMode`|`String`|`CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. |
 |`assignedUser`|`String`|Semicolon-delimited list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1;id2`.This parameter will only be considered if assignedUserMode is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`|
 |`order`|`String`|comma-delimited list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported values are `trackedEntity, createdAt, createdAtClient, updatedAt, updatedAtClient, enrolledAt, inactive`.|
@@ -1295,19 +1294,19 @@ parameters.
 
 ##### Example requests
 
-A query for all instances associated with a specific organisation unit
+A query for all tracked entities associated with a specific organisation unit
 can look like this:
 
     GET /api/tracker/trackedEntities?orgUnit=DiszpKrYNg8
 
-To query for instances using one attribute with a filter and one
+To query for tracked entities using one attribute with a filter and one
 attribute without a filter, with one organisation unit using the
 descendant organisation unit query mode:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
         &attribure=AMpUYgxuCaE&orgUnit=DiszpKrYNg8;yMCshbaVExv
 
-A query for instances where attributes are included in the response
+A query for tracked entities where attributes are included in the response
 and one attribute is used as a filter:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
@@ -1333,7 +1332,7 @@ To query on an attribute using multiple values in an *IN* filter:
     GET /api/tracker/trackedEntities?orgUnit=DiszpKrYNg8
         &filter=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
 
-To constrain the response to instances which are part of a specific
+To constrain the response to tracked entities which are part of a specific
 program you can include a program query parameter:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
@@ -1347,7 +1346,7 @@ To specify program enrollment dates as part of the query:
         &enrollmentEnrolledAfter=2013-01-01
         &enrollmentEnrolledBefore=2013-09-01
 
-To constrain the response to instances of a specific tracked entity you
+To constrain the response to tracked entities of a specific tracked entity you
 can include a tracked entity query parameter:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
@@ -1355,7 +1354,7 @@ can include a tracked entity query parameter:
         &ouMode=DESCENDANTS
         &trackedEntity=cyl5vuJ5ETQ
 
-By default the instances are returned in pages of size 50, to change
+By default the tracked entities are returned in pages of size 50, to change
 this you can use the page and pageSize query parameters:
 
     GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
@@ -1384,7 +1383,7 @@ Responses can be filtered on desired fields, see [Request parameter to filter re
 
 ```json
 {
-  "instances": [
+  "trackedEntities": [
     {
       "trackedEntity": "IzHblRD2sDH",
       "trackedEntityType": "nEenWmSyUEp",
@@ -1437,13 +1436,13 @@ The purpose of this endpoint is to retrieve one tracked entity given its uid.
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`uid`|`String`|`uid`|Return the Tracked Entity Instance with specified `uid`|
+|`uid`|`String`|`uid`|Return the tracked entity with specified `uid`|
 |`program`|`String`|`uid`| Include program attributes in the response (only the ones user has access to) |
 |`fields`|`String`| Any valid field filter (default `*,!relationships,!enrollments,!events,!programOwners`) |Include specified sub-objects in the response|
 
 ##### Example requests
 
-A query for a Tracked Entity Instance:
+A query for a tracked entity:
 
     GET /api/tracker/trackedEntities/IzHblRD2sDH?program=ur1Edk5Oe2n&fields=*
 
@@ -1569,9 +1568,9 @@ Returns a list of events based on the provided filters.
 |`filter`|`String`|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. Repeating the same data element UID is not allowed. User needs access to the data element to filter on it.|
 |`filterAttributes`|`String`|Comma separated values of attribute filters|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
 |`followUp`|`boolean`| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
-|`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
+|`trackedEntity`|`String`|`uid`| Identifier of tracked entity|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
-|`ouMode` see [ouModes](#webapi_nti_ou_scope)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|  Org unit selection mode|
+|`ouMode` see [ouModes](#webapi_nti_orgunit_scope)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|  Org unit selection mode|
 |`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
 |`occurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which occurred after this date.|
 |`occurredBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which occurred up until this date.|
@@ -1631,7 +1630,7 @@ and organisation unit - by paging and ordering by occurred date descending:
       &order=occurredAt:desc&pageSize=10&page=1
 
 Query for all events with a certain program and organisation unit for a
-specific tracked entity instance:
+specific tracked entity:
 
     GET /api/tracker/events?orgUnit=DiszpKrYNg8
       &program=eBAyeGv0exc&trackedEntity=gfVxE3ALA9m
@@ -1643,7 +1642,7 @@ or equal to
     GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&endDate=2014-02-03
 
 Query for all events with a certain program stage, organisation unit and
-tracked entity instance in the year 2014:
+tracked entity in the year 2014:
 
     GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
       &trackedEntity=gfVxE3ALA9m&occurredAfter=2014-01-01&occurredBefore=2014-12-31
@@ -1679,7 +1678,7 @@ The `JSON` response can look like the following.
 
 ```json
 {
-    "instances": [
+    "trackedEntities": [
         {
             "event": "rgWr86qs0sI",
             "status": "ACTIVE",
@@ -1839,16 +1838,16 @@ Returns a list of events based on filters.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
-|`ouMode` see [ouModes](#webapi_nti_ou_scope)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL| Org unit selection mode|
+|`ouMode` see [ouModes](#webapi_nti_orgunit_scope)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL| Org unit selection mode|
 |`program`|`String`|`uid`| Identifier of program|
 |`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Program Status |
-|`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the instance for the given program. Can be `true`&#124;`false` or omitted.|
+|`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the tracked entity for the given program. Can be `true`&#124;`false` or omitted.|
 |`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Only enrollments updated after this date|
 |`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments updated since given duration |
 |`enrolledAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|  Only enrollments newer than this date|
 |`enrolledBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments older than this date|
 |`trackedEntityType`|`String`|`uid`| Identifier of tracked entity type|
-|`trackedEntity`|`String`|`uid`| Identifier of tracked entity instance|
+|`trackedEntity`|`String`|`uid`| Identifier of tracked entity|
 |`order`|`String`|comma-delimited list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `completedAt, createdAt, createdAtClient, enrolledAt, updatedAt, updatedAtClient`.|
 |`enrollment`|`String`|Comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using enrollment=id1;id2.|
 |`includeDeleted`|`Boolean`| |  When true, soft deleted events will be included in your query result.|
@@ -1870,34 +1869,28 @@ The query is case-insensitive. The following rules apply to the query parameters
 
 ##### Example requests
 
-A query for all enrollments associated with a specific organisation unit
-can look like this:
+A query for all enrollments associated with a specific organisation unit can look like this:
 
     GET /api/tracker/enrollments?orgUnit=DiszpKrYNg8
 
-To constrain the response to enrollments which are part of a specific
-program you can include a program query
-parameter:
+To constrain the response to enrollments which are part of a specific program you can include a
+program query parameter:
 
     GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS&program=ur1Edk5Oe2n
 
-To specify program enrollment dates as part of the
-query:
+To specify program enrollment dates as part of the query:
 
     GET /api/tracker/enrollments?&orgUnit=O6uvpzGd5pu&program=ur1Edk5Oe2n
       &enrolledAfter=2013-01-01&enrolledBefore=2013-09-01
 
-To constrain the response to enrollments of a specific tracked entity
-you can include a tracked entity query
-parameter:
+To constrain the response to enrollments of a specific tracked entity you can include a tracked
+entity query parameter:
 
     GET /api/tracker/enrollments?orgUnit=O6uvpzGd5pu&ouMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
 
-To constrain the response to enrollments of a specific tracked entity
-you can include a tracked entity instance query parameter, in
-In this case, we have restricted it to available enrollments viewable for
-current
-user:
+To constrain the response to enrollments of a specific tracked entity you can include a tracked
+entity query parameter, in In this case, we have restricted it to available enrollments viewable for
+current user:
 
     GET /API/tracker/enrollments?ouMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
 
@@ -1907,7 +1900,7 @@ The `JSON` response can look like the following.
 
 ```json
 {
-  "instances": [
+  "trackedEntities": [
     {
       "enrollment": "iKaBMOyq7QQ",
       "createdAt": "2017-03-28T12:28:19.812",
@@ -1980,7 +1973,7 @@ A query for a Enrollment:
 ### Relationships (`GET /api/tracker/relationships`)
 
 Relationships are links between two entities in the Tracker.
-These entities can be tracked entity instances, enrollments, and events.
+These entities can be tracked entities, enrollments, and events.
 
 The purpose of this endpoint is to retrieve relationships between objects.
 
@@ -1992,11 +1985,11 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`trackedEntity`|`String`|`uid`| Identifier of a Tracked Entity Instance|
-|`enrollment`|`String`|`uid`| Identifier of an Enrollment |
-|`event`|`String`|`uid`| Identifier of an Event|
-|`fields`|`String`| Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
-|`order`|`String`|comma-delimited list of `OrderCriteria` in the in format `propName:sortDirection`.|Supported fields: `created, createdAtClient`.|
+|`trackedEntity`|`String`|`uid`|Identifier of a tracked entity|
+|`enrollment`|`String`|`uid`|Identifier of an Enrollment |
+|`event`|`String`|`uid`|Identifier of an Event|
+|`fields`|`String`|Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
+|`order`|`String`|Comma-delimited list of `OrderCriteria` in the in format `propName:sortDirection`.|Supported fields: `created, createdAtClient`.|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`| whether to include soft-deleted elements in your query result|
 
 The following rules apply to the query parameters.
@@ -2013,7 +2006,7 @@ The following rules apply to the query parameters.
 
 ```json
 {
-  "instances": [
+  "trackedEntities": [
     {
       "relationship": "SSfIicJKbh5",
       "relationshipType": "Mv8R4MPcNcX",
@@ -2069,7 +2062,7 @@ In summary, DHIS2 has a fine-grained sharing setting that we can use to implemen
 
 For more detailed information about data sharing, check out [Data sharing](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/configuring-the-system/about-sharing-of-objects.html#data-sharing-for-event-based-programs).
 
-### Organisation Unit Scopes { #webapi_nti_ou_scope }
+### Organisation Unit Scopes { #webapi_nti_orgunit_scope }
 
 Organisation units are one of the most fundamental objects in DHIS2. They define a universe under which a user is allowed to record and/or read data. There are three types of organisation units that can be assigned to a user. These are data capture, data view (not used in tracker), and tracker search. As the name implies, these organisation units define a scope under which a user is allowed to conduct the respective operations.
 
