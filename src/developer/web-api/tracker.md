@@ -765,8 +765,7 @@ summary will only be available after the import has completed:
 
 #### ***RESPONSE*** example
 
-The [response payload](#sample-responses) is the same as the one returned after a sync import
-request.
+The response payload is the same as the one returned after a sync import request.
 
 > **Note**
 >
@@ -1477,83 +1476,44 @@ parameters.
 
 ##### Example requests
 
-A query for all tracked entities associated with a specific organisation unit can look like this:
+A query for all tracked entities associated with a specific organisation unit and program can look
+like this:
 
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
+    GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8
 
 To query for tracked entities using one attribute with a filter and one attribute without a filter,
 with one organisation unit using the descendant organisation unit query mode:
 
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &attribute=AMpUYgxuCaE&orgUnits=DiszpKrYNg8,yMCshbaVExv
-
-A query for tracked entities where attributes are included in the response and one attribute is used
-as a filter:
-
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &filter=AMpUYgxuCaE:LIKE:Road
-        &orgUnits=DiszpKrYNg8
+    GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:EQ:John
 
 A query where multiple operand and filters are specified for a filter item:
 
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
-        &program=ur1Edk5Oe2n
-        &filter=lw1SqmMlnfh:GT:150
-        &filter=lw1SqmMlnfh:LT:190
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:GT:150&filter=lw1SqmMlnfh:LT:190
 
 A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
-        &program=ur1Edk5Oe2n
-        &filter=lw1SqmMlnfh:EQ:/:/,//
-
-To query on an attribute using multiple values in an *IN* filter:
-
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
-        &filter=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
-
-To constrain the response to tracked entities which are part of a specific program you can include a
-program query parameter:
-
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS
-        &program=ur1Edk5Oe2n
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:EQ:/:/,//
 
 To specify program enrollment dates as part of the query:
 
-    GET /API/tracker/trackedEntities?
-        &orgUnits=O6uvpzGd5pu&program=ur1Edk5Oe2n
-        &enrollmentEnrolledAfter=2013-01-01
-        &enrollmentEnrolledBefore=2013-09-01
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=IpHINAT79UW&fields=trackedEntity,enrollments[enrolledAt]&enrollmentEnrolledAfter=2024-01-01
 
-To constrain the response to tracked entities of a specific tracked entity you can include a tracked
-entity query parameter:
+To query on an attribute using multiple values in an *IN* filter:
 
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnits=O6uvpzGd5pu
-        &orgUnitMode=DESCENDANTS
-        &trackedEntity=cyl5vuJ5ETQ
-
-By default the tracked entities are returned in pages of size 50, to change this you can use the
-page and pageSize query parameters:
-
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnits=O6uvpzGd5pu
-        &orgUnitMode=DESCENDANTS
-        &page=2&pageSize=3
+    GET /api/tracker/trackedEntities?trackedEntityType=nEenWmSyUEp&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:IN:Scott;Jimmy;Santiago
 
 You can use a range of operators for the filtering:
 
 |Operator|  Description|
 |---|---|
-|`EQ`|  Equal to|
-|`GT`|  Greater than|
-|`GE`|  Greater than or equal to|
-|`LT`|  Less than|
-|`LE`|  Less than or equal to|
-|`NE`|  Not equal to|
-|`LIKE`|  Like (free text match)|
-|`IN`|  Equal to one of the multiple values separated by ";"|
+|`EQ`|Equal to|
+|`GE`|Greater than or equal to|
+|`GT`|Greater than|
+|`IN`|Equal to one of the multiple values separated by ";"|
+|`LE`|Less than or equal to|
+|`LIKE`|Like (free text match)|
+|`LT`|Less than|
+|`NE`|Not equal to|
 
 ##### Response format
 
@@ -1564,46 +1524,42 @@ responses](#webapi_nti_field_filter)
 
 ```json
 {
+  "pager": {
+    "page": 1,
+    "pageSize": 1
+  },
   "trackedEntities": [
     {
-      "trackedEntity": "IzHblRD2sDH",
+      "trackedEntity": "PQfMcpmXeFE",
       "trackedEntityType": "nEenWmSyUEp",
-      "createdAt": "2014-03-26T15:40:36.669",
-      "createdAtClient": "2014-03-26T15:40:36.669",
-      "updatedAt": "2014-03-28T12:28:17.544",
-      "orgUnit": "g8upMTyEZGZ",
+      "createdAt": "2014-03-06T05:49:28.256",
+      "createdAtClient": "2014-03-06T05:49:28.256",
+      "updatedAt": "2016-08-03T23:49:43.309",
+      "orgUnit": "DiszpKrYNg8",
       "inactive": false,
       "deleted": false,
-      "relationships": [],
+      "potentialDuplicate": false,
       "attributes": [
         {
-          "attribute": "VqEFza8wbwA",
-          "code": "MMD_PER_ADR1",
-          "displayName": "Address",
-          "createdAt": "2016-01-12T00:00:00.000",
-          "updatedAt": "2016-01-12T00:00:00.000",
+          "attribute": "w75KJ2mc4zz",
+          "code": "MMD_PER_NAM",
+          "displayName": "First name",
+          "createdAt": "2016-08-03T23:49:43.308",
+          "updatedAt": "2016-08-03T23:49:43.308",
           "valueType": "TEXT",
-          "value": "1061 Marconi St"
+          "value": "John"
         },
         {
-          "attribute": "RG7uGl4w5Jq",
-          "code": "Longitude",
-          "displayName": "Longitude",
-          "createdAt": "2016-01-12T00:00:00.000",
-          "updatedAt": "2016-01-12T00:00:00.000",
+          "attribute": "zDhUuAYrxNC",
+          "displayName": "Last name",
+          "createdAt": "2016-08-03T23:49:43.309",
+          "updatedAt": "2016-08-03T23:49:43.309",
           "valueType": "TEXT",
-          "value": "27.866613"
-        },
-        ...,
-        ...,
-      ],
-      "enrollments": [],
-      "programOwners": []
+          "value": "Kelly"
+        }
+      ]
     }
-  ],
-  "page": 1,
-  "total": 39,
-  "pageSize": 1
+  ]
 }
 ```
 
@@ -1625,7 +1581,7 @@ The purpose of this endpoint is to retrieve one tracked entity given its uid.
 
 A query for a tracked entity:
 
-    GET /api/tracker/trackedEntities/IzHblRD2sDH?program=ur1Edk5Oe2n&fields=*
+    GET /api/tracker/trackedEntities/PQfMcpmXeFE
 
 ##### Response format
 
@@ -1653,82 +1609,283 @@ An example of a json response:
 
 ```json
 {
-    "trackedEntity": "IzHblRD2sDH",
-    "trackedEntityType": "nEenWmSyUEp",
-    "createdAt": "2014-03-26T15:40:36.669",
-    "updatedAt": "2014-03-28T12:28:17.544",
-    "orgUnit": "g8upMTyEZGZ",
-    "inactive": false,
-    "deleted": false,
-    "relationships": [],
-    "attributes": [
+  "trackedEntity": "PQfMcpmXeFE",
+  "trackedEntityType": "nEenWmSyUEp",
+  "createdAt": "2014-03-06T05:49:28.256",
+  "createdAtClient": "2014-03-06T05:49:28.256",
+  "updatedAt": "2016-08-03T23:49:43.309",
+  "orgUnit": "DiszpKrYNg8",
+  "inactive": false,
+  "deleted": false,
+  "potentialDuplicate": false,
+  "attributes": [
+    {
+      "attribute": "w75KJ2mc4zz",
+      "code": "MMD_PER_NAM",
+      "displayName": "First name",
+      "createdAt": "2016-08-03T23:49:43.308",
+      "updatedAt": "2016-08-03T23:49:43.308",
+      "valueType": "TEXT",
+      "value": "John"
+    },
+    {
+      "attribute": "zDhUuAYrxNC",
+      "displayName": "Last name",
+      "createdAt": "2016-08-03T23:49:43.309",
+      "updatedAt": "2016-08-03T23:49:43.309",
+      "valueType": "TEXT",
+      "value": "Kelly"
+    }
+  ],
+  "enrollments": [
+    {
+      "enrollment": "JMgRZyeLWOo",
+      "createdAt": "2017-03-06T05:49:28.340",
+      "createdAtClient": "2016-03-06T05:49:28.340",
+      "updatedAt": "2017-03-06T05:49:28.357",
+      "trackedEntity": "PQfMcpmXeFE",
+      "program": "IpHINAT79UW",
+      "status": "ACTIVE",
+      "orgUnit": "DiszpKrYNg8",
+      "enrolledAt": "2024-03-06T00:00:00.000",
+      "occurredAt": "2024-03-04T00:00:00.000",
+      "followUp": false,
+      "deleted": false,
+      "events": [
         {
-            "attribute": "w75KJ2mc4zz",
-            "code": "MMD_PER_NAM",
-            "displayName": "First name",
-            "createdAt": "2016-01-12T09:10:26.986",
-            "updatedAt": "2016-01-12T09:10:35.884",
-            "valueType": "TEXT",
-            "value": "Wegahta"
+          "event": "Zq2dg6pTNoj",
+          "status": "ACTIVE",
+          "program": "IpHINAT79UW",
+          "programStage": "ZzYYXq4fJie",
+          "enrollment": "JMgRZyeLWOo",
+          "trackedEntity": "PQfMcpmXeFE",
+          "relationships": [],
+          "scheduledAt": "2023-03-10T00:00:00.000",
+          "followUp": false,
+          "deleted": false,
+          "createdAt": "2017-03-06T05:49:28.353",
+          "createdAtClient": "2016-03-06T05:49:28.353",
+          "updatedAt": "2017-03-06T05:49:28.353",
+          "attributeOptionCombo": "HllvX50cXC0",
+          "attributeCategoryOptions": "xYerKDKCefk",
+          "dataValues": [],
+          "notes": [],
+          "followup": false
+        }
+      ],
+      "relationships": [],
+      "attributes": [
+        {
+          "attribute": "w75KJ2mc4zz",
+          "code": "MMD_PER_NAM",
+          "displayName": "First name",
+          "createdAt": "2016-08-03T23:49:43.308",
+          "updatedAt": "2016-08-03T23:49:43.308",
+          "valueType": "TEXT",
+          "value": "John"
         },
         {
-            "attribute": "zDhUuAYrxNC",
-            "displayName": "Last name",
-            "createdAt": "2016-01-12T09:10:26.986",
-            "updatedAt": "2016-01-12T09:10:35.884",
-            "valueType": "TEXT",
-            "value": "Goytiom"
-        }
-    ],
-    "enrollments": [
+          "attribute": "zDhUuAYrxNC",
+          "displayName": "Last name",
+          "createdAt": "2016-08-03T23:49:43.309",
+          "updatedAt": "2016-08-03T23:49:43.309",
+          "valueType": "TEXT",
+          "value": "Kelly"
+        },
         {
-            "enrollment": "uT5ZysTES7j",
-            "createdAt": "2017-03-28T12:28:17.539",
-            "createdAtClient": "2016-03-28T12:28:17.539",
-            "updatedAt": "2017-03-28T12:28:17.544",
-            "trackedEntity": "IzHblRD2sDH",
-            "trackedEntityType": "nEenWmSyUEp",
-            "program": "ur1Edk5Oe2n",
-            "status": "ACTIVE",
-            "orgUnit": "g8upMTyEZGZ",
-            "enrolledAt": "2020-11-10T12:28:17.532",
-            "occurredAt": "2020-10-12T12:28:17.532",
-            "followUp": false,
-            "deleted": false,
-            "events": [
-                {
-                    "event": "ixDYEGrNQeH",
-                    "status": "ACTIVE",
-                    "program": "ur1Edk5Oe2n",
-                    "programStage": "ZkbAXlQUYJG",
-                    "enrollment": "uT5ZysTES7j",
-                    "enrollmentStatus": "ACTIVE",
-                    "trackedEntity": "IzHblRD2sDH",
-                    "relationships": [],
-                    "scheduledAt": "2019-10-12T12:28:17.532",
-                    "followUp": false,
-                    "deleted": false,
-                    "createdAt": "2017-03-28T12:28:17.542",
-                    "createdAtClient": "2016-03-28T12:28:17.542",
-                    "updatedAt": "2017-03-28T12:28:17.542",
-                    "attributeOptionCombo": "HllvX50cXC0",
-                    "attributeCategoryOptions": "xYerKDKCefk",
-                    "dataValues": [],
-                    "notes": []
-                }
-            ],
-            "relationships": [],
-            "attributes": [],
-            "notes": []
-        }
-    ],
-    "programOwners": [
+          "attribute": "AuPLng5hLbE",
+          "code": "National identifier",
+          "displayName": "National identifier",
+          "createdAt": "2016-08-03T23:49:43.301",
+          "updatedAt": "2016-08-03T23:49:43.301",
+          "valueType": "TEXT",
+          "value": "245435245"
+        },
         {
-            "orgUnit": "g8upMTyEZGZ",
-            "trackedEntity": "IzHblRD2sDH",
-            "program": "ur1Edk5Oe2n"
+          "attribute": "ruQQnf6rswq",
+          "displayName": "TB number",
+          "createdAt": "2016-08-03T23:49:43.308",
+          "updatedAt": "2016-08-03T23:49:43.308",
+          "valueType": "TEXT",
+          "value": "1Z 1F2 A84 59 4464 173 6"
+        },
+        {
+          "attribute": "cejWyOfXge6",
+          "displayName": "Gender",
+          "createdAt": "2016-08-03T23:49:43.307",
+          "updatedAt": "2016-08-03T23:49:43.307",
+          "valueType": "TEXT",
+          "value": "Male"
+        },
+        {
+          "attribute": "VqEFza8wbwA",
+          "code": "MMD_PER_ADR1",
+          "displayName": "Address",
+          "createdAt": "2016-08-03T23:49:43.307",
+          "updatedAt": "2016-08-03T23:49:43.307",
+          "valueType": "TEXT",
+          "value": "Main street 2"
         }
-    ]
+      ],
+      "notes": []
+    }
+  ],
+  "programOwners": [
+    {
+      "orgUnit": "DiszpKrYNg8",
+      "trackedEntity": "PQfMcpmXeFE",
+      "program": "ur1Edk5Oe2n"
+    },
+    {
+      "orgUnit": "DiszpKrYNg8",
+      "trackedEntity": "PQfMcpmXeFE",
+      "program": "IpHINAT79UW"
+    }
+  ]
+}
+```
+
+### Enrollments (`GET /api/tracker/enrollments`)
+
+Two endpoints are dedicated to enrollments:
+
+- `GET /api/tracker/enrollments`
+    - retrieves enrollments matching given criteria
+- `GET /api/tracker/enrollments/{id}`
+    - retrieves an enrollment given the provided id
+
+#### Enrollment Collection endpoint `GET /api/tracker/enrollments`
+
+Returns a list of events based on filters.
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return enrollments belonging to provided organisation units.|
+|`orgUnit` **deprecated for removal in version 42 use `orgUnits`**|`String`|Semicolon-separated list of organisation units `UID`s.|Only return enrollments belonging to provided organisation units.|
+|`orgUnitMode` see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`program`|`String`|`uid`| Identifier of program|
+|`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Program Status |
+|`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the tracked entity for the given program. Can be `true`&#124;`false` or omitted.|
+|`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Only enrollments updated after this date|
+|`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments updated since given duration |
+|`enrolledAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|  Only enrollments newer than this date|
+|`enrolledBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments older than this date|
+|`trackedEntityType`|`String`|`uid`| Identifier of tracked entity type|
+|`trackedEntity`|`String`|`uid`| Identifier of tracked entity|
+|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `completedAt, createdAt, createdAtClient, enrolledAt, updatedAt, updatedAtClient`.|
+|`enrollments`|`String`|Comma-separated list of enrollment `UID`s.|Filter the result down to a limited set of IDs by using `enrollments=id1,id2`.|
+|`enrollment` **deprecated for removal in version 42 use `enrollments`**|`String`|Semicolon-separated list of `uid`|Filter the result down to a limited set of IDs by using `enrollment=id1;id2`.|
+|`includeDeleted`|`Boolean`| |When true, soft deleted events will be included in your query result.|
+
+The query is case-insensitive. The following rules apply to the query parameters.
+
+- At least one organisation unit must be specified using the `orgUnit` parameter (one or many), or
+*orgUnitMode=ALL* must be specified.
+
+- Only one of the *program* and *trackedEntity* parameters can be specified (zero or one).
+
+- If *programStatus* is specified, then *program* must also be specified.
+
+- If *followUp* is specified, then *program* must also be specified.
+
+- If *enrolledAfter* or *enrolledBefore* is specified, then *program* must also be specified.
+
+##### Example requests
+
+A query for all enrollments associated with a specific organisation unit can look like this:
+
+    GET /api/tracker/enrollments?orgUnits=DiszpKrYNg8
+
+To constrain the response to enrollments which are part of a specific program you can include a
+program query parameter:
+
+    GET /api/tracker/enrollments?orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&program=ur1Edk5Oe2n
+
+To specify program enrollment dates as part of the query:
+
+    GET /api/tracker/enrollments?orgUnits=DiszpKrYNg8&program=M3xtLkYBlKI&enrolledAfter=2023-11-14&enrolledBefore=2024-02-07
+
+To constrain the response to enrollments of a specific tracked entity you can include a tracked
+entity query parameter:
+
+    GET /api/tracker/enrollments?trackedEntity=ClJ3fn47c4s
+
+To constrain the response to enrollments of a specific tracked entity you can include a tracked
+entity query parameter, in In this case, we have restricted it to available enrollments viewable for
+current user:
+ 
+    GET /api/tracker/enrollments?orgUnitMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
+
+##### Response format
+
+The `JSON` response can look like the following.
+
+```json
+{
+  "pager": {
+    "page": 1,
+    "pageSize": 1
+  },
+  "enrollments": [
+    {
+      "enrollment": "TRE0GT7eh7Q",
+      "createdAt": "2019-08-21T13:28:00.056",
+      "createdAtClient": "2018-11-13T15:06:49.009",
+      "updatedAt": "2019-08-21T13:29:44.942",
+      "updatedAtClient": "2019-08-21T13:29:44.942",
+      "trackedEntity": "s4NfKOuayqG",
+      "program": "M3xtLkYBlKI",
+      "status": "COMPLETED",
+      "orgUnit": "DiszpKrYNg8",
+      "enrolledAt": "2023-11-13T00:00:00.000",
+      "occurredAt": "2023-11-13T00:00:00.000",
+      "followUp": false,
+      "deleted": false,
+      "storedBy": "healthworker1",
+      "notes": []
+    }
+  ]
+}
+```
+
+#### Enrollments single object endpoint `GET /api/tracker/enrollments/{uid}`
+
+The purpose of this endpoint is to retrieve one Enrollment given its uid.
+
+##### Request syntax
+
+`GET /api/tracker/enrollment/{uid}`
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`uid`|`String`|`uid`|Return the Enrollment with specified `uid`|
+|`fields`|`String`| Any valid field filter (default `*,!relationships,!events,!attributes`) |Include
+specified sub-objects in the response|
+
+##### Example requests
+
+A query for an enrollment:
+
+    GET /api/tracker/enrollments/JMgRZyeLWOo
+
+##### Response format
+
+```json
+{
+  "enrollment": "JMgRZyeLWOo",
+  "createdAt": "2017-03-06T05:49:28.340",
+  "createdAtClient": "2016-03-06T05:49:28.340",
+  "updatedAt": "2017-03-06T05:49:28.357",
+  "trackedEntity": "PQfMcpmXeFE",
+  "program": "IpHINAT79UW",
+  "status": "ACTIVE",
+  "orgUnit": "DiszpKrYNg8",
+  "enrolledAt": "2024-03-06T00:00:00.000",
+  "occurredAt": "2024-03-04T00:00:00.000",
+  "followUp": false,
+  "deleted": false,
+  "notes": []
 }
 ```
 
@@ -1815,48 +1972,24 @@ ascending:
 Query for the 10 events with the newest occurred date in a certain program and organisation unit -
 by paging and ordering by occurred date descending:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
-      &order=occurredAt:desc&pageSize=10&page=1
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&order=occurredAt:desc&pageSize=10&page=1
 
 Query for all events with a certain program and organisation unit for a specific tracked entity:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8
-      &program=eBAyeGv0exc&trackedEntity=gfVxE3ALA9m
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=M3xtLkYBlKI&trackedEntity=dNpxRu1mWG5
 
-Query for all events with a certain program and organisation unit older or equal to 2014-02-03:
+Query for all events older or equal to 2024-02-03 and associated with a program and organisation
+unit:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&endDate=2014-02-03
-
-Query for all events with a certain program stage, organisation unit and tracked entity in the year
-2014:
-
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
-      &trackedEntity=gfVxE3ALA9m&occurredAfter=2014-01-01&occurredBefore=2014-12-31
-
-Retrieve events with specified Organisation unit and Program, and use `Attribute:Gq0oWTf2DtN` as
-identifier scheme
-
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
-
-Retrieve events with specified Organisation unit and Program, and use UID as identifier scheme for
-organisation units, Code as identifier scheme for Program stages, and _Attribute:Gq0oWTf2DtN_ as the
-identifier scheme for the rest of the metadata with assigned attributes.
-
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
-      &orgUnitIdScheme=UID&programStageIdScheme=Code
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&occurredBefore=2024-02-03
 
 A query where multiple operand and filters are specified for a data element UID:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8
-        &program=lxAQ7Zs9VYR
-        &filter=lw1SqmMlnfh:GT:150
-        &filter=lw1SqmMlnfh:LT:190
+    GET /api/tracker/events?orgUnit=g8upMTyEZGZ&program=M3xtLkYBlKI&filter=rFQNCGMYud2:GT:35&filter=rFQNCGMYud2:LT:50
 
 A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8
-        &program=lxAQ7Zs9VYR
-        &filter=lw1SqmMlnfh:EQ:/:/,//
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&filter=DanTR5x0WDK:EQ:/:/,//
 
 ##### Response format
 
@@ -1864,37 +1997,52 @@ The `JSON` response can look like the following.
 
 ```json
 {
-    "trackedEntities": [
-        {
-            "event": "rgWr86qs0sI",
-            "status": "ACTIVE",
-            "program": "kla3mAPgvCH",
-            "programStage": "aNLq9ZYoy9W",
-            "orgUnit": "DiszpKrYNg8",
-            "relationships": [],
-            "occurredAt": "2021-10-12T00:00:00.000",
-            "followUp": false,
-            "deleted": false,
-            "createdAt": "2018-10-20T12:09:19.492",
-            "updatedAt": "2018-10-20T12:09:19.492",
-            "attributeOptionCombo": "amw2rQP6r6M",
-            "attributeCategoryOptions": "RkbOhHwiOgW",
-            "dataValues": [
-                {
-                    "createdAt": "2015-10-20T12:09:19.640",
-                    "updatedAt": "2015-10-20T12:09:19.640",
-                    "storedBy": "system",
-                    "providedElsewhere": false,
-                    "dataElement": "HyJL2Lt37jN",
-                    "value": "12"
-                },
-              ...
-            ],
-            "notes": []
-        }
-    ],
+  "pager": {
     "page": 1,
     "pageSize": 1
+  },
+  "events": [
+    {
+      "event": "uup8whjPHyH",
+      "status": "ACTIVE",
+      "program": "M3xtLkYBlKI",
+      "programStage": "CWaAcQYKVpq",
+      "enrollment": "aOc1W0Xb7Yj",
+      "trackedEntity": "neR4cmMY22o",
+      "orgUnit": "g8upMTyEZGZ",
+      "occurredAt": "2023-11-12T00:00:00.000",
+      "scheduledAt": "2023-11-12T00:00:00.000",
+      "storedBy": "josemp10",
+      "followUp": false,
+      "deleted": false,
+      "createdAt": "2019-08-21T13:27:49.280",
+      "createdAtClient": "2018-11-12T04:20:51.016",
+      "updatedAt": "2019-08-21T13:29:37.255",
+      "updatedAtClient": "2019-08-21T13:29:37.255",
+      "attributeOptionCombo": "HllvX50cXC0",
+      "attributeCategoryOptions": "xYerKDKCefk",
+      "dataValues": [
+        {
+          "createdAt": "2019-08-21T13:27:49.328",
+          "updatedAt": "2019-08-21T13:29:37.234",
+          "storedBy": "healthworker2",
+          "providedElsewhere": false,
+          "dataElement": "DanTR5x0WDK",
+          "value": "RESIDENT_IN_THE_FOCUS"
+        },
+        {
+          "createdAt": "2019-08-21T13:27:49.328",
+          "updatedAt": "2019-08-21T13:29:37.234",
+          "storedBy": "healthworker2",
+          "providedElsewhere": false,
+          "dataElement": "rFQNCGMYud2",
+          "value": "45"
+        }
+      ],
+      "notes": [],
+      "followup": false
+    }
+  ]
 }
 ```
 
@@ -1935,10 +2083,8 @@ A query for an Event:
   "program": "kla3mAPgvCH",
   "programStage": "aNLq9ZYoy9W",
   "enrollment": "Lo3SHzCnMSm",
-  "enrollmentStatus": "ACTIVE",
   "orgUnit": "DiszpKrYNg8",
-  "relationships": [],
-  "occurredAt": "2021-10-12T00:00:00.000",
+  "occurredAt": "2024-10-12T00:00:00.000",
   "followUp": false,
   "deleted": false,
   "createdAt": "2018-10-20T12:09:19.492",
@@ -1954,207 +2100,10 @@ A query for an Event:
       "providedElsewhere": false,
       "dataElement": "HyJL2Lt37jN",
       "value": "12"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.514",
-      "updatedAt": "2015-10-20T12:09:19.514",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "b6dOUjAarHD",
-      "value": "213"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.626",
-      "updatedAt": "2015-10-20T12:09:19.626",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "UwCXONyUtGs",
-      "value": "3"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.542",
-      "updatedAt": "2015-10-20T12:09:19.542",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "fqnXmRYo5Cz",
-      "value": "123"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.614",
-      "updatedAt": "2015-10-20T12:09:19.614",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "Qz3kfeKgLgL",
-      "value": "23"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.528",
-      "updatedAt": "2015-10-20T12:09:19.528",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "W7aC8jLASW8",
-      "value": "12"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.599",
-      "updatedAt": "2015-10-20T12:09:19.599",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "HrJmqlBqTFG",
-      "value": "3"
     }
   ],
-  "notes": []
-}
-```
-
-### Enrollments (`GET /api/tracker/enrollments`)
-
-Two endpoints are dedicated to enrollments:
-
-- `GET /api/tracker/enrollments`
-    - retrieves enrollments matching given criteria
-- `GET /api/tracker/enrollments/{id}`
-    - retrieves an enrollment given the provided id
-
-#### Enrollment Collection endpoint `GET /api/tracker/enrollments`
-
-Returns a list of events based on filters.
-
-|Request parameter|Type|Allowed values|Description|
-|---|---|---|---|
-|`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return enrollments belonging to provided organisation units.|
-|`orgUnit` **deprecated for removal in version 42 use `orgUnits`**|`String`|Semicolon-separated list of organisation units `UID`s.|Only return enrollments belonging to provided organisation units.|
-|`orgUnitMode` see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`program`|`String`|`uid`| Identifier of program|
-|`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Program Status |
-|`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the tracked entity for the given program. Can be `true`&#124;`false` or omitted.|
-|`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Only enrollments updated after this date|
-|`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments updated since given duration |
-|`enrolledAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|  Only enrollments newer than this date|
-|`enrolledBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments older than this date|
-|`trackedEntityType`|`String`|`uid`| Identifier of tracked entity type|
-|`trackedEntity`|`String`|`uid`| Identifier of tracked entity|
-|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `completedAt, createdAt, createdAtClient, enrolledAt, updatedAt, updatedAtClient`.|
-|`enrollments`|`String`|Comma-separated list of enrollment `UID`s.|Filter the result down to a limited set of IDs by using `enrollments=id1,id2`.|
-|`enrollment` **deprecated for removal in version 42 use `enrollments`**|`String`|Semicolon-separated list of `uid`|Filter the result down to a limited set of IDs by using `enrollment=id1;id2`.|
-|`includeDeleted`|`Boolean`| |When true, soft deleted events will be included in your query result.|
-
-The query is case-insensitive. The following rules apply to the query parameters.
-
-- At least one organisation unit must be specified using the `orgUnit` parameter (one or many), or
-*orgUnitMode=ALL* must be specified.
-
-- Only one of the *program* and *trackedEntity* parameters can be specified (zero or one).
-
-- If *programStatus* is specified, then *program* must also be specified.
-
-- If *followUp* is specified, then *program* must also be specified.
-
-- If *enrolledAfter* or *enrolledBefore* is specified, then *program* must also be specified.
-
-##### Example requests
-
-A query for all enrollments associated with a specific organisation unit can look like this:
-
-    GET /api/tracker/enrollments?orgUnits=DiszpKrYNg8
-
-To constrain the response to enrollments which are part of a specific program you can include a
-program query parameter:
-
-    GET /api/tracker/enrollments?orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&program=ur1Edk5Oe2n
-
-To specify program enrollment dates as part of the query:
-
-    GET /api/tracker/enrollments?&orgUnits=O6uvpzGd5pu&program=ur1Edk5Oe2n
-      &enrolledAfter=2013-01-01&enrolledBefore=2013-09-01
-
-To constrain the response to enrollments of a specific tracked entity you can include a tracked
-entity query parameter:
-
-    GET /api/tracker/enrollments?orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
-
-To constrain the response to enrollments of a specific tracked entity you can include a tracked
-entity query parameter, in In this case, we have restricted it to available enrollments viewable for
-current user:
- 
-    GET /API/tracker/enrollments?orgUnitMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
-
-##### Response format
-
-The `JSON` response can look like the following.
-
-```json
-{
-  "trackedEntities": [
-    {
-      "enrollment": "iKaBMOyq7QQ",
-      "createdAt": "2017-03-28T12:28:19.812",
-      "createdAtClient": "2016-03-28T12:28:19.812",
-      "updatedAt": "2017-03-28T12:28:19.817",
-      "trackedEntity": "PpqV8ytvW5i",
-      "trackedEntityType": "nEenWmSyUEp",
-      "program": "ur1Edk5Oe2n",
-      "status": "ACTIVE",
-      "orgUnit": "NnQpISrLYWZ",
-      "enrolledAt": "2020-10-23T12:28:19.805",
-      "occurredAt": "2020-10-07T12:28:19.805",
-      "followUp": false,
-      "deleted": false,
-      "events": [],
-      "relationships": [],
-      "attributes": [],
-      "notes": []
-    }
-  ],
-  "page": 1,
-  "total": 1,
-  "pageSize": 5
-}
-```
-
-#### Enrollments single object endpoint `GET /api/tracker/enrollments/{uid}`
-
-The purpose of this endpoint is to retrieve one Enrollment given its uid.
-
-##### Request syntax
-
-`GET /api/tracker/enrollment/{uid}`
-
-|Request parameter|Type|Allowed values|Description|
-|---|---|---|---|
-|`uid`|`String`|`uid`|Return the Enrollment with specified `uid`|
-|`fields`|`String`| Any valid field filter (default `*,!relationships,!events,!attributes`) |Include
-specified sub-objects in the response|
-
-##### Example requests
-
-A query for an enrollment:
-
-    GET /api/tracker/enrollments/iKaBMOyq7QQ
-
-##### Response format
-
-```json
-{
-  "enrollment": "iKaBMOyq7QQ",
-  "createdAt": "2017-03-28T12:28:19.812",
-  "createdAtClient": "2016-03-28T12:28:19.812",
-  "updatedAt": "2017-03-28T12:28:19.817",
-  "trackedEntity": "PpqV8ytvW5i",
-  "trackedEntityType": "nEenWmSyUEp",
-  "program": "ur1Edk5Oe2n",
-  "status": "ACTIVE",
-  "orgUnit": "NnQpISrLYWZ",
-  "enrolledAt": "2020-10-23T12:28:19.805",
-  "occurredAt": "2020-10-07T12:28:19.805",
-  "followUp": false,
-  "deleted": false,
-  "events": [],
-  "relationships": [],
-  "attributes": [],
-  "notes": []
+  "notes": [],
+  "followup": false
 }
 ```
 
@@ -2174,8 +2123,8 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`trackedEntity`|`String`|`uid`|Identifier of a tracked entity|
-|`enrollment`|`String`|`uid`|Identifier of an Enrollment |
-|`event`|`String`|`uid`|Identifier of an Event|
+|`enrollment`|`String`|`uid`|Identifier of an enrollment|
+|`event`|`String`|`uid`|Identifier of an event|
 |`fields`|`String`|Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
 |`order`|`String`|Comma-separated list of `OrderCriteria` in the in format `propName:sortDirection`.|Supported fields: `created, createdAtClient`.|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`| whether to include soft-deleted elements in your query result|
@@ -2186,7 +2135,7 @@ The following rules apply to the query parameters.
 
 > **NOTE**
 >
-> Using tracked entity, Enrollment or Event params, will return any relationship where the
+> Using tracked entity, enrollment or event params, will return any relationship where the
 > trackedEntity, enrollment or event is part of the relationship (either from or to). As long as
 > user has access, that is.
 
@@ -2194,7 +2143,25 @@ The following rules apply to the query parameters.
 
 ```json
 {
-  "trackedEntities": [
+  "pager": {
+    "page": 1,
+    "pageSize": 2
+  },
+  "relationships": [
+    {
+      "relationship": "oGtgtJpp6fG",
+      "relationshipType": "Mv8R4MPcNcX",
+      "from": {
+        "trackedEntity": {
+          "trackedEntity": "neR4cmMY22o"
+        }
+      },
+      "to": {
+        "trackedEntity": {
+          "trackedEntity": "DsSlC54GNXy"
+        }
+      }
+    },
     {
       "relationship": "SSfIicJKbh5",
       "relationshipType": "Mv8R4MPcNcX",
@@ -2208,24 +2175,8 @@ The following rules apply to the query parameters.
           "trackedEntity": "rEYUGH97Ssd"
         }
       }
-    },
-    {
-      "relationship": "S9kZGYPKk3x",
-      "relationshipType": "Mv8R4MPcNcX",
-      "from": {
-        "trackedEntity": {
-          "trackedEntity": "neR4cmMY22o"
-        }
-      },
-      "to": {
-        "trackedEntity": {
-          "trackedEntity": "k8TU70vWtnP"
-        }
-      }
     }
-  ],
-  "page": 1,
-  "pageSize": 2
+  ]
 }
 ```
 
@@ -2379,8 +2330,7 @@ is not possible to gain temporary access to a program that has been configured w
 of *CLOSED*. To break the glass for a TrackedEntity-Program combination, the following POST request
 can be used:
 
-    /API/33/tracker/ownership/override?trackedEntity=DiszpKrYNg8
-      &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
+    /api/tracker/ownership/override?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
 #### Tracker Ownership Transfer { #webapi_nti_tracker_ownership_transfer }
 
@@ -2390,8 +2340,7 @@ Ownership access (or temporary access by breaking the glass) can transfer the ow
 ownership of a TrackedEntity-Program to another organisation unit, the following PUT request can be
 used:
 
-    /API/33/tracker/ownership/transfer?trackedEntity=DiszpKrYNg8
-      &program=eBAyeGv0exc&ou=EJNxP3WreNP
+    /api/tracker/ownership/transfer?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
 
 ### Access Level { #webapi_nti_access_level }
 
