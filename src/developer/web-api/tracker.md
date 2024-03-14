@@ -1972,48 +1972,24 @@ ascending:
 Query for the 10 events with the newest occurred date in a certain program and organisation unit -
 by paging and ordering by occurred date descending:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
-      &order=occurredAt:desc&pageSize=10&page=1
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&order=occurredAt:desc&pageSize=10&page=1
 
 Query for all events with a certain program and organisation unit for a specific tracked entity:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8
-      &program=eBAyeGv0exc&trackedEntity=gfVxE3ALA9m
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=M3xtLkYBlKI&trackedEntity=dNpxRu1mWG5
 
-Query for all events with a certain program and organisation unit older or equal to 2014-02-03:
+Query for all events older or equal to 2024-02-03 and associated with a program and organisation
+unit:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&endDate=2014-02-03
-
-Query for all events with a certain program stage, organisation unit and tracked entity in the year
-2014:
-
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
-      &trackedEntity=gfVxE3ALA9m&occurredAfter=2014-01-01&occurredBefore=2014-12-31
-
-Retrieve events with specified Organisation unit and Program, and use `Attribute:Gq0oWTf2DtN` as
-identifier scheme
-
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
-
-Retrieve events with specified Organisation unit and Program, and use UID as identifier scheme for
-organisation units, Code as identifier scheme for Program stages, and _Attribute:Gq0oWTf2DtN_ as the
-identifier scheme for the rest of the metadata with assigned attributes.
-
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
-      &orgUnitIdScheme=UID&programStageIdScheme=Code
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&occurredBefore=2024-02-03
 
 A query where multiple operand and filters are specified for a data element UID:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8
-        &program=lxAQ7Zs9VYR
-        &filter=lw1SqmMlnfh:GT:150
-        &filter=lw1SqmMlnfh:LT:190
+    GET /api/tracker/events?orgUnit=g8upMTyEZGZ&program=M3xtLkYBlKI&filter=rFQNCGMYud2:GT:35&filter=rFQNCGMYud2:LT:50
 
 A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8
-        &program=lxAQ7Zs9VYR
-        &filter=lw1SqmMlnfh:EQ:/:/,//
+    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&filter=DanTR5x0WDK:EQ:/:/,//
 
 ##### Response format
 
@@ -2021,37 +1997,52 @@ The `JSON` response can look like the following.
 
 ```json
 {
-    "trackedEntities": [
-        {
-            "event": "rgWr86qs0sI",
-            "status": "ACTIVE",
-            "program": "kla3mAPgvCH",
-            "programStage": "aNLq9ZYoy9W",
-            "orgUnit": "DiszpKrYNg8",
-            "relationships": [],
-            "occurredAt": "2021-10-12T00:00:00.000",
-            "followUp": false,
-            "deleted": false,
-            "createdAt": "2018-10-20T12:09:19.492",
-            "updatedAt": "2018-10-20T12:09:19.492",
-            "attributeOptionCombo": "amw2rQP6r6M",
-            "attributeCategoryOptions": "RkbOhHwiOgW",
-            "dataValues": [
-                {
-                    "createdAt": "2015-10-20T12:09:19.640",
-                    "updatedAt": "2015-10-20T12:09:19.640",
-                    "storedBy": "system",
-                    "providedElsewhere": false,
-                    "dataElement": "HyJL2Lt37jN",
-                    "value": "12"
-                },
-              ...
-            ],
-            "notes": []
-        }
-    ],
+  "pager": {
     "page": 1,
     "pageSize": 1
+  },
+  "events": [
+    {
+      "event": "uup8whjPHyH",
+      "status": "ACTIVE",
+      "program": "M3xtLkYBlKI",
+      "programStage": "CWaAcQYKVpq",
+      "enrollment": "aOc1W0Xb7Yj",
+      "trackedEntity": "neR4cmMY22o",
+      "orgUnit": "g8upMTyEZGZ",
+      "occurredAt": "2023-11-12T00:00:00.000",
+      "scheduledAt": "2023-11-12T00:00:00.000",
+      "storedBy": "josemp10",
+      "followUp": false,
+      "deleted": false,
+      "createdAt": "2019-08-21T13:27:49.280",
+      "createdAtClient": "2018-11-12T04:20:51.016",
+      "updatedAt": "2019-08-21T13:29:37.255",
+      "updatedAtClient": "2019-08-21T13:29:37.255",
+      "attributeOptionCombo": "HllvX50cXC0",
+      "attributeCategoryOptions": "xYerKDKCefk",
+      "dataValues": [
+        {
+          "createdAt": "2019-08-21T13:27:49.328",
+          "updatedAt": "2019-08-21T13:29:37.234",
+          "storedBy": "healthworker2",
+          "providedElsewhere": false,
+          "dataElement": "DanTR5x0WDK",
+          "value": "RESIDENT_IN_THE_FOCUS"
+        },
+        {
+          "createdAt": "2019-08-21T13:27:49.328",
+          "updatedAt": "2019-08-21T13:29:37.234",
+          "storedBy": "healthworker2",
+          "providedElsewhere": false,
+          "dataElement": "rFQNCGMYud2",
+          "value": "45"
+        }
+      ],
+      "notes": [],
+      "followup": false
+    }
+  ]
 }
 ```
 
@@ -2092,10 +2083,8 @@ A query for an Event:
   "program": "kla3mAPgvCH",
   "programStage": "aNLq9ZYoy9W",
   "enrollment": "Lo3SHzCnMSm",
-  "enrollmentStatus": "ACTIVE",
   "orgUnit": "DiszpKrYNg8",
-  "relationships": [],
-  "occurredAt": "2021-10-12T00:00:00.000",
+  "occurredAt": "2024-10-12T00:00:00.000",
   "followUp": false,
   "deleted": false,
   "createdAt": "2018-10-20T12:09:19.492",
@@ -2111,60 +2100,12 @@ A query for an Event:
       "providedElsewhere": false,
       "dataElement": "HyJL2Lt37jN",
       "value": "12"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.514",
-      "updatedAt": "2015-10-20T12:09:19.514",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "b6dOUjAarHD",
-      "value": "213"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.626",
-      "updatedAt": "2015-10-20T12:09:19.626",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "UwCXONyUtGs",
-      "value": "3"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.542",
-      "updatedAt": "2015-10-20T12:09:19.542",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "fqnXmRYo5Cz",
-      "value": "123"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.614",
-      "updatedAt": "2015-10-20T12:09:19.614",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "Qz3kfeKgLgL",
-      "value": "23"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.528",
-      "updatedAt": "2015-10-20T12:09:19.528",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "W7aC8jLASW8",
-      "value": "12"
-    },
-    {
-      "createdAt": "2015-10-20T12:09:19.599",
-      "updatedAt": "2015-10-20T12:09:19.599",
-      "storedBy": "system",
-      "providedElsewhere": false,
-      "dataElement": "HrJmqlBqTFG",
-      "value": "3"
     }
   ],
-  "notes": []
+  "notes": [],
+  "followup": false
 }
 ```
-
 
 ### Relationships (`GET /api/tracker/relationships`)
 
