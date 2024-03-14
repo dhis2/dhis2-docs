@@ -1476,83 +1476,44 @@ parameters.
 
 ##### Example requests
 
-A query for all tracked entities associated with a specific organisation unit can look like this:
+A query for all tracked entities associated with a specific organisation unit and program can look
+like this:
 
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
+    GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8
 
 To query for tracked entities using one attribute with a filter and one attribute without a filter,
 with one organisation unit using the descendant organisation unit query mode:
 
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &attribute=AMpUYgxuCaE&orgUnits=DiszpKrYNg8,yMCshbaVExv
-
-A query for tracked entities where attributes are included in the response and one attribute is used
-as a filter:
-
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &filter=AMpUYgxuCaE:LIKE:Road
-        &orgUnits=DiszpKrYNg8
+    GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:EQ:John
 
 A query where multiple operand and filters are specified for a filter item:
 
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
-        &program=ur1Edk5Oe2n
-        &filter=lw1SqmMlnfh:GT:150
-        &filter=lw1SqmMlnfh:LT:190
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:GT:150&filter=lw1SqmMlnfh:LT:190
 
 A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
-        &program=ur1Edk5Oe2n
-        &filter=lw1SqmMlnfh:EQ:/:/,//
-
-To query on an attribute using multiple values in an *IN* filter:
-
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8
-        &filter=dv3nChNSIxy:IN:Scott;Jimmy;Santiago
-
-To constrain the response to tracked entities which are part of a specific program you can include a
-program query parameter:
-
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS
-        &program=ur1Edk5Oe2n
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:EQ:/:/,//
 
 To specify program enrollment dates as part of the query:
 
-    GET /API/tracker/trackedEntities?
-        &orgUnits=O6uvpzGd5pu&program=ur1Edk5Oe2n
-        &enrollmentEnrolledAfter=2013-01-01
-        &enrollmentEnrolledBefore=2013-09-01
+    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=IpHINAT79UW&fields=trackedEntity,enrollments[enrolledAt]&enrollmentEnrolledAfter=2024-01-01
 
-To constrain the response to tracked entities of a specific tracked entity you can include a tracked
-entity query parameter:
+To query on an attribute using multiple values in an *IN* filter:
 
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnits=O6uvpzGd5pu
-        &orgUnitMode=DESCENDANTS
-        &trackedEntity=cyl5vuJ5ETQ
-
-By default the tracked entities are returned in pages of size 50, to change this you can use the
-page and pageSize query parameters:
-
-    GET /api/tracker/trackedEntities?filter=zHXD5Ve1Efw:EQ:A
-        &orgUnits=O6uvpzGd5pu
-        &orgUnitMode=DESCENDANTS
-        &page=2&pageSize=3
+    GET /api/tracker/trackedEntities?trackedEntityType=nEenWmSyUEp&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:IN:Scott;Jimmy;Santiago
 
 You can use a range of operators for the filtering:
 
 |Operator|  Description|
 |---|---|
-|`EQ`|  Equal to|
-|`GT`|  Greater than|
-|`GE`|  Greater than or equal to|
-|`LT`|  Less than|
-|`LE`|  Less than or equal to|
-|`NE`|  Not equal to|
-|`LIKE`|  Like (free text match)|
-|`IN`|  Equal to one of the multiple values separated by ";"|
+|`EQ`|Equal to|
+|`GE`|Greater than or equal to|
+|`GT`|Greater than|
+|`IN`|Equal to one of the multiple values separated by ";"|
+|`LE`|Less than or equal to|
+|`LIKE`|Like (free text match)|
+|`LT`|Less than|
+|`NE`|Not equal to|
 
 ##### Response format
 
@@ -1563,46 +1524,42 @@ responses](#webapi_nti_field_filter)
 
 ```json
 {
+  "pager": {
+    "page": 1,
+    "pageSize": 1
+  },
   "trackedEntities": [
     {
-      "trackedEntity": "IzHblRD2sDH",
+      "trackedEntity": "PQfMcpmXeFE",
       "trackedEntityType": "nEenWmSyUEp",
-      "createdAt": "2014-03-26T15:40:36.669",
-      "createdAtClient": "2014-03-26T15:40:36.669",
-      "updatedAt": "2014-03-28T12:28:17.544",
-      "orgUnit": "g8upMTyEZGZ",
+      "createdAt": "2014-03-06T05:49:28.256",
+      "createdAtClient": "2014-03-06T05:49:28.256",
+      "updatedAt": "2016-08-03T23:49:43.309",
+      "orgUnit": "DiszpKrYNg8",
       "inactive": false,
       "deleted": false,
-      "relationships": [],
+      "potentialDuplicate": false,
       "attributes": [
         {
-          "attribute": "VqEFza8wbwA",
-          "code": "MMD_PER_ADR1",
-          "displayName": "Address",
-          "createdAt": "2016-01-12T00:00:00.000",
-          "updatedAt": "2016-01-12T00:00:00.000",
+          "attribute": "w75KJ2mc4zz",
+          "code": "MMD_PER_NAM",
+          "displayName": "First name",
+          "createdAt": "2016-08-03T23:49:43.308",
+          "updatedAt": "2016-08-03T23:49:43.308",
           "valueType": "TEXT",
-          "value": "1061 Marconi St"
+          "value": "John"
         },
         {
-          "attribute": "RG7uGl4w5Jq",
-          "code": "Longitude",
-          "displayName": "Longitude",
-          "createdAt": "2016-01-12T00:00:00.000",
-          "updatedAt": "2016-01-12T00:00:00.000",
+          "attribute": "zDhUuAYrxNC",
+          "displayName": "Last name",
+          "createdAt": "2016-08-03T23:49:43.309",
+          "updatedAt": "2016-08-03T23:49:43.309",
           "valueType": "TEXT",
-          "value": "27.866613"
-        },
-        ...,
-        ...,
-      ],
-      "enrollments": [],
-      "programOwners": []
+          "value": "Kelly"
+        }
+      ]
     }
-  ],
-  "page": 1,
-  "total": 39,
-  "pageSize": 1
+  ]
 }
 ```
 
@@ -1624,7 +1581,7 @@ The purpose of this endpoint is to retrieve one tracked entity given its uid.
 
 A query for a tracked entity:
 
-    GET /api/tracker/trackedEntities/IzHblRD2sDH?program=ur1Edk5Oe2n&fields=*
+    GET /api/tracker/trackedEntities/PQfMcpmXeFE
 
 ##### Response format
 
@@ -1652,82 +1609,139 @@ An example of a json response:
 
 ```json
 {
-    "trackedEntity": "IzHblRD2sDH",
-    "trackedEntityType": "nEenWmSyUEp",
-    "createdAt": "2014-03-26T15:40:36.669",
-    "updatedAt": "2014-03-28T12:28:17.544",
-    "orgUnit": "g8upMTyEZGZ",
-    "inactive": false,
-    "deleted": false,
-    "relationships": [],
-    "attributes": [
+  "trackedEntity": "PQfMcpmXeFE",
+  "trackedEntityType": "nEenWmSyUEp",
+  "createdAt": "2014-03-06T05:49:28.256",
+  "createdAtClient": "2014-03-06T05:49:28.256",
+  "updatedAt": "2016-08-03T23:49:43.309",
+  "orgUnit": "DiszpKrYNg8",
+  "inactive": false,
+  "deleted": false,
+  "potentialDuplicate": false,
+  "attributes": [
+    {
+      "attribute": "w75KJ2mc4zz",
+      "code": "MMD_PER_NAM",
+      "displayName": "First name",
+      "createdAt": "2016-08-03T23:49:43.308",
+      "updatedAt": "2016-08-03T23:49:43.308",
+      "valueType": "TEXT",
+      "value": "John"
+    },
+    {
+      "attribute": "zDhUuAYrxNC",
+      "displayName": "Last name",
+      "createdAt": "2016-08-03T23:49:43.309",
+      "updatedAt": "2016-08-03T23:49:43.309",
+      "valueType": "TEXT",
+      "value": "Kelly"
+    }
+  ],
+  "enrollments": [
+    {
+      "enrollment": "JMgRZyeLWOo",
+      "createdAt": "2017-03-06T05:49:28.340",
+      "createdAtClient": "2016-03-06T05:49:28.340",
+      "updatedAt": "2017-03-06T05:49:28.357",
+      "trackedEntity": "PQfMcpmXeFE",
+      "program": "IpHINAT79UW",
+      "status": "ACTIVE",
+      "orgUnit": "DiszpKrYNg8",
+      "enrolledAt": "2024-03-06T00:00:00.000",
+      "occurredAt": "2024-03-04T00:00:00.000",
+      "followUp": false,
+      "deleted": false,
+      "events": [
         {
-            "attribute": "w75KJ2mc4zz",
-            "code": "MMD_PER_NAM",
-            "displayName": "First name",
-            "createdAt": "2016-01-12T09:10:26.986",
-            "updatedAt": "2016-01-12T09:10:35.884",
-            "valueType": "TEXT",
-            "value": "Wegahta"
+          "event": "Zq2dg6pTNoj",
+          "status": "ACTIVE",
+          "program": "IpHINAT79UW",
+          "programStage": "ZzYYXq4fJie",
+          "enrollment": "JMgRZyeLWOo",
+          "trackedEntity": "PQfMcpmXeFE",
+          "relationships": [],
+          "scheduledAt": "2023-03-10T00:00:00.000",
+          "followUp": false,
+          "deleted": false,
+          "createdAt": "2017-03-06T05:49:28.353",
+          "createdAtClient": "2016-03-06T05:49:28.353",
+          "updatedAt": "2017-03-06T05:49:28.353",
+          "attributeOptionCombo": "HllvX50cXC0",
+          "attributeCategoryOptions": "xYerKDKCefk",
+          "dataValues": [],
+          "notes": [],
+          "followup": false
+        }
+      ],
+      "relationships": [],
+      "attributes": [
+        {
+          "attribute": "w75KJ2mc4zz",
+          "code": "MMD_PER_NAM",
+          "displayName": "First name",
+          "createdAt": "2016-08-03T23:49:43.308",
+          "updatedAt": "2016-08-03T23:49:43.308",
+          "valueType": "TEXT",
+          "value": "John"
         },
         {
-            "attribute": "zDhUuAYrxNC",
-            "displayName": "Last name",
-            "createdAt": "2016-01-12T09:10:26.986",
-            "updatedAt": "2016-01-12T09:10:35.884",
-            "valueType": "TEXT",
-            "value": "Goytiom"
-        }
-    ],
-    "enrollments": [
+          "attribute": "zDhUuAYrxNC",
+          "displayName": "Last name",
+          "createdAt": "2016-08-03T23:49:43.309",
+          "updatedAt": "2016-08-03T23:49:43.309",
+          "valueType": "TEXT",
+          "value": "Kelly"
+        },
         {
-            "enrollment": "uT5ZysTES7j",
-            "createdAt": "2017-03-28T12:28:17.539",
-            "createdAtClient": "2016-03-28T12:28:17.539",
-            "updatedAt": "2017-03-28T12:28:17.544",
-            "trackedEntity": "IzHblRD2sDH",
-            "trackedEntityType": "nEenWmSyUEp",
-            "program": "ur1Edk5Oe2n",
-            "status": "ACTIVE",
-            "orgUnit": "g8upMTyEZGZ",
-            "enrolledAt": "2020-11-10T12:28:17.532",
-            "occurredAt": "2020-10-12T12:28:17.532",
-            "followUp": false,
-            "deleted": false,
-            "events": [
-                {
-                    "event": "ixDYEGrNQeH",
-                    "status": "ACTIVE",
-                    "program": "ur1Edk5Oe2n",
-                    "programStage": "ZkbAXlQUYJG",
-                    "enrollment": "uT5ZysTES7j",
-                    "enrollmentStatus": "ACTIVE",
-                    "trackedEntity": "IzHblRD2sDH",
-                    "relationships": [],
-                    "scheduledAt": "2019-10-12T12:28:17.532",
-                    "followUp": false,
-                    "deleted": false,
-                    "createdAt": "2017-03-28T12:28:17.542",
-                    "createdAtClient": "2016-03-28T12:28:17.542",
-                    "updatedAt": "2017-03-28T12:28:17.542",
-                    "attributeOptionCombo": "HllvX50cXC0",
-                    "attributeCategoryOptions": "xYerKDKCefk",
-                    "dataValues": [],
-                    "notes": []
-                }
-            ],
-            "relationships": [],
-            "attributes": [],
-            "notes": []
-        }
-    ],
-    "programOwners": [
+          "attribute": "AuPLng5hLbE",
+          "code": "National identifier",
+          "displayName": "National identifier",
+          "createdAt": "2016-08-03T23:49:43.301",
+          "updatedAt": "2016-08-03T23:49:43.301",
+          "valueType": "TEXT",
+          "value": "245435245"
+        },
         {
-            "orgUnit": "g8upMTyEZGZ",
-            "trackedEntity": "IzHblRD2sDH",
-            "program": "ur1Edk5Oe2n"
+          "attribute": "ruQQnf6rswq",
+          "displayName": "TB number",
+          "createdAt": "2016-08-03T23:49:43.308",
+          "updatedAt": "2016-08-03T23:49:43.308",
+          "valueType": "TEXT",
+          "value": "1Z 1F2 A84 59 4464 173 6"
+        },
+        {
+          "attribute": "cejWyOfXge6",
+          "displayName": "Gender",
+          "createdAt": "2016-08-03T23:49:43.307",
+          "updatedAt": "2016-08-03T23:49:43.307",
+          "valueType": "TEXT",
+          "value": "Male"
+        },
+        {
+          "attribute": "VqEFza8wbwA",
+          "code": "MMD_PER_ADR1",
+          "displayName": "Address",
+          "createdAt": "2016-08-03T23:49:43.307",
+          "updatedAt": "2016-08-03T23:49:43.307",
+          "valueType": "TEXT",
+          "value": "Main street 2"
         }
-    ]
+      ],
+      "notes": []
+    }
+  ],
+  "programOwners": [
+    {
+      "orgUnit": "DiszpKrYNg8",
+      "trackedEntity": "PQfMcpmXeFE",
+      "program": "ur1Edk5Oe2n"
+    },
+    {
+      "orgUnit": "DiszpKrYNg8",
+      "trackedEntity": "PQfMcpmXeFE",
+      "program": "IpHINAT79UW"
+    }
+  ]
 }
 ```
 
