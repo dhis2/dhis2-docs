@@ -765,8 +765,7 @@ summary will only be available after the import has completed:
 
 #### ***RESPONSE*** example
 
-The [response payload](#sample-responses) is the same as the one returned after a sync import
-request.
+The response payload is the same as the one returned after a sync import request.
 
 > **Note**
 >

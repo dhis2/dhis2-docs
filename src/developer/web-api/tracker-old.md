@@ -78,7 +78,7 @@ DHIS2 endpoints.
 The following fields are affected
 
 * `event.attributeCategoryOptions` (as well as an event returned as part of a relationship
-`from`/`to`).
+`from`/`to`)
 
 ### Tracker import changelog (`POST`)
 
