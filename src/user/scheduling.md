@@ -474,9 +474,7 @@ the individual predictors run first, followed by the predictor groups.
 1.  Select a cron schedule for the queue. Queues can be scheduled using the
     [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
     syntax, just like jobs. You can also select a predefined **Cron expression**
-    by clicking "Choose from preset times". This schedule will only start a new
-    queue run if the previous queue run has finished, to prevent the system from
-    spawning too many queues.
+    by clicking "Choose from preset times".
 
 1.  Select the jobs that should be part of the queue. The available jobs can be
     added to the queue with the arrow buttons. The queue will run the jobs in
