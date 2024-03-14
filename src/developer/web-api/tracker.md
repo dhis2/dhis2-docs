@@ -1745,6 +1745,150 @@ An example of a json response:
 }
 ```
 
+### Enrollments (`GET /api/tracker/enrollments`)
+
+Two endpoints are dedicated to enrollments:
+
+- `GET /api/tracker/enrollments`
+    - retrieves enrollments matching given criteria
+- `GET /api/tracker/enrollments/{id}`
+    - retrieves an enrollment given the provided id
+
+#### Enrollment Collection endpoint `GET /api/tracker/enrollments`
+
+Returns a list of events based on filters.
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return enrollments belonging to provided organisation units.|
+|`orgUnit` **deprecated for removal in version 42 use `orgUnits`**|`String`|Semicolon-separated list of organisation units `UID`s.|Only return enrollments belonging to provided organisation units.|
+|`orgUnitMode` see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`program`|`String`|`uid`| Identifier of program|
+|`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Program Status |
+|`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the tracked entity for the given program. Can be `true`&#124;`false` or omitted.|
+|`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Only enrollments updated after this date|
+|`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments updated since given duration |
+|`enrolledAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|  Only enrollments newer than this date|
+|`enrolledBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments older than this date|
+|`trackedEntityType`|`String`|`uid`| Identifier of tracked entity type|
+|`trackedEntity`|`String`|`uid`| Identifier of tracked entity|
+|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `completedAt, createdAt, createdAtClient, enrolledAt, updatedAt, updatedAtClient`.|
+|`enrollments`|`String`|Comma-separated list of enrollment `UID`s.|Filter the result down to a limited set of IDs by using `enrollments=id1,id2`.|
+|`enrollment` **deprecated for removal in version 42 use `enrollments`**|`String`|Semicolon-separated list of `uid`|Filter the result down to a limited set of IDs by using `enrollment=id1;id2`.|
+|`includeDeleted`|`Boolean`| |When true, soft deleted events will be included in your query result.|
+
+The query is case-insensitive. The following rules apply to the query parameters.
+
+- At least one organisation unit must be specified using the `orgUnit` parameter (one or many), or
+*orgUnitMode=ALL* must be specified.
+
+- Only one of the *program* and *trackedEntity* parameters can be specified (zero or one).
+
+- If *programStatus* is specified, then *program* must also be specified.
+
+- If *followUp* is specified, then *program* must also be specified.
+
+- If *enrolledAfter* or *enrolledBefore* is specified, then *program* must also be specified.
+
+##### Example requests
+
+A query for all enrollments associated with a specific organisation unit can look like this:
+
+    GET /api/tracker/enrollments?orgUnits=DiszpKrYNg8
+
+To constrain the response to enrollments which are part of a specific program you can include a
+program query parameter:
+
+    GET /api/tracker/enrollments?orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&program=ur1Edk5Oe2n
+
+To specify program enrollment dates as part of the query:
+
+    GET /api/tracker/enrollments?orgUnits=DiszpKrYNg8&program=M3xtLkYBlKI&enrolledAfter=2023-11-14&enrolledBefore=2024-02-07
+
+To constrain the response to enrollments of a specific tracked entity you can include a tracked
+entity query parameter:
+
+    GET /api/tracker/enrollments?trackedEntity=ClJ3fn47c4s
+
+To constrain the response to enrollments of a specific tracked entity you can include a tracked
+entity query parameter, in In this case, we have restricted it to available enrollments viewable for
+current user:
+ 
+    GET /api/tracker/enrollments?orgUnitMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
+
+##### Response format
+
+The `JSON` response can look like the following.
+
+```json
+{
+  "pager": {
+    "page": 1,
+    "pageSize": 1
+  },
+  "enrollments": [
+    {
+      "enrollment": "TRE0GT7eh7Q",
+      "createdAt": "2019-08-21T13:28:00.056",
+      "createdAtClient": "2018-11-13T15:06:49.009",
+      "updatedAt": "2019-08-21T13:29:44.942",
+      "updatedAtClient": "2019-08-21T13:29:44.942",
+      "trackedEntity": "s4NfKOuayqG",
+      "program": "M3xtLkYBlKI",
+      "status": "COMPLETED",
+      "orgUnit": "DiszpKrYNg8",
+      "enrolledAt": "2023-11-13T00:00:00.000",
+      "occurredAt": "2023-11-13T00:00:00.000",
+      "followUp": false,
+      "deleted": false,
+      "storedBy": "healthworker1",
+      "notes": []
+    }
+  ]
+}
+```
+
+#### Enrollments single object endpoint `GET /api/tracker/enrollments/{uid}`
+
+The purpose of this endpoint is to retrieve one Enrollment given its uid.
+
+##### Request syntax
+
+`GET /api/tracker/enrollment/{uid}`
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`uid`|`String`|`uid`|Return the Enrollment with specified `uid`|
+|`fields`|`String`| Any valid field filter (default `*,!relationships,!events,!attributes`) |Include
+specified sub-objects in the response|
+
+##### Example requests
+
+A query for an enrollment:
+
+    GET /api/tracker/enrollments/JMgRZyeLWOo
+
+##### Response format
+
+```json
+{
+  "enrollment": "JMgRZyeLWOo",
+  "createdAt": "2017-03-06T05:49:28.340",
+  "createdAtClient": "2016-03-06T05:49:28.340",
+  "updatedAt": "2017-03-06T05:49:28.357",
+  "trackedEntity": "PQfMcpmXeFE",
+  "program": "IpHINAT79UW",
+  "status": "ACTIVE",
+  "orgUnit": "DiszpKrYNg8",
+  "enrolledAt": "2024-03-06T00:00:00.000",
+  "occurredAt": "2024-03-04T00:00:00.000",
+  "followUp": false,
+  "deleted": false,
+  "notes": []
+}
+```
+
 ### Events (`GET /api/tracker/events`)
 
 Two endpoints are dedicated to events:
@@ -2021,155 +2165,6 @@ A query for an Event:
 }
 ```
 
-### Enrollments (`GET /api/tracker/enrollments`)
-
-Two endpoints are dedicated to enrollments:
-
-- `GET /api/tracker/enrollments`
-    - retrieves enrollments matching given criteria
-- `GET /api/tracker/enrollments/{id}`
-    - retrieves an enrollment given the provided id
-
-#### Enrollment Collection endpoint `GET /api/tracker/enrollments`
-
-Returns a list of events based on filters.
-
-|Request parameter|Type|Allowed values|Description|
-|---|---|---|---|
-|`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return enrollments belonging to provided organisation units.|
-|`orgUnit` **deprecated for removal in version 42 use `orgUnits`**|`String`|Semicolon-separated list of organisation units `UID`s.|Only return enrollments belonging to provided organisation units.|
-|`orgUnitMode` see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`program`|`String`|`uid`| Identifier of program|
-|`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Program Status |
-|`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the tracked entity for the given program. Can be `true`&#124;`false` or omitted.|
-|`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Only enrollments updated after this date|
-|`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments updated since given duration |
-|`enrolledAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|  Only enrollments newer than this date|
-|`enrolledBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments older than this date|
-|`trackedEntityType`|`String`|`uid`| Identifier of tracked entity type|
-|`trackedEntity`|`String`|`uid`| Identifier of tracked entity|
-|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `completedAt, createdAt, createdAtClient, enrolledAt, updatedAt, updatedAtClient`.|
-|`enrollments`|`String`|Comma-separated list of enrollment `UID`s.|Filter the result down to a limited set of IDs by using `enrollments=id1,id2`.|
-|`enrollment` **deprecated for removal in version 42 use `enrollments`**|`String`|Semicolon-separated list of `uid`|Filter the result down to a limited set of IDs by using `enrollment=id1;id2`.|
-|`includeDeleted`|`Boolean`| |When true, soft deleted events will be included in your query result.|
-
-The query is case-insensitive. The following rules apply to the query parameters.
-
-- At least one organisation unit must be specified using the `orgUnit` parameter (one or many), or
-*orgUnitMode=ALL* must be specified.
-
-- Only one of the *program* and *trackedEntity* parameters can be specified (zero or one).
-
-- If *programStatus* is specified, then *program* must also be specified.
-
-- If *followUp* is specified, then *program* must also be specified.
-
-- If *enrolledAfter* or *enrolledBefore* is specified, then *program* must also be specified.
-
-##### Example requests
-
-A query for all enrollments associated with a specific organisation unit can look like this:
-
-    GET /api/tracker/enrollments?orgUnits=DiszpKrYNg8
-
-To constrain the response to enrollments which are part of a specific program you can include a
-program query parameter:
-
-    GET /api/tracker/enrollments?orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&program=ur1Edk5Oe2n
-
-To specify program enrollment dates as part of the query:
-
-    GET /api/tracker/enrollments?&orgUnits=O6uvpzGd5pu&program=ur1Edk5Oe2n
-      &enrolledAfter=2013-01-01&enrolledBefore=2013-09-01
-
-To constrain the response to enrollments of a specific tracked entity you can include a tracked
-entity query parameter:
-
-    GET /api/tracker/enrollments?orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&trackedEntity=cyl5vuJ5ETQ
-
-To constrain the response to enrollments of a specific tracked entity you can include a tracked
-entity query parameter, in In this case, we have restricted it to available enrollments viewable for
-current user:
- 
-    GET /API/tracker/enrollments?orgUnitMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
-
-##### Response format
-
-The `JSON` response can look like the following.
-
-```json
-{
-  "trackedEntities": [
-    {
-      "enrollment": "iKaBMOyq7QQ",
-      "createdAt": "2017-03-28T12:28:19.812",
-      "createdAtClient": "2016-03-28T12:28:19.812",
-      "updatedAt": "2017-03-28T12:28:19.817",
-      "trackedEntity": "PpqV8ytvW5i",
-      "trackedEntityType": "nEenWmSyUEp",
-      "program": "ur1Edk5Oe2n",
-      "status": "ACTIVE",
-      "orgUnit": "NnQpISrLYWZ",
-      "enrolledAt": "2020-10-23T12:28:19.805",
-      "occurredAt": "2020-10-07T12:28:19.805",
-      "followUp": false,
-      "deleted": false,
-      "events": [],
-      "relationships": [],
-      "attributes": [],
-      "notes": []
-    }
-  ],
-  "page": 1,
-  "total": 1,
-  "pageSize": 5
-}
-```
-
-#### Enrollments single object endpoint `GET /api/tracker/enrollments/{uid}`
-
-The purpose of this endpoint is to retrieve one Enrollment given its uid.
-
-##### Request syntax
-
-`GET /api/tracker/enrollment/{uid}`
-
-|Request parameter|Type|Allowed values|Description|
-|---|---|---|---|
-|`uid`|`String`|`uid`|Return the Enrollment with specified `uid`|
-|`fields`|`String`| Any valid field filter (default `*,!relationships,!events,!attributes`) |Include
-specified sub-objects in the response|
-
-##### Example requests
-
-A query for an enrollment:
-
-    GET /api/tracker/enrollments/iKaBMOyq7QQ
-
-##### Response format
-
-```json
-{
-  "enrollment": "iKaBMOyq7QQ",
-  "createdAt": "2017-03-28T12:28:19.812",
-  "createdAtClient": "2016-03-28T12:28:19.812",
-  "updatedAt": "2017-03-28T12:28:19.817",
-  "trackedEntity": "PpqV8ytvW5i",
-  "trackedEntityType": "nEenWmSyUEp",
-  "program": "ur1Edk5Oe2n",
-  "status": "ACTIVE",
-  "orgUnit": "NnQpISrLYWZ",
-  "enrolledAt": "2020-10-23T12:28:19.805",
-  "occurredAt": "2020-10-07T12:28:19.805",
-  "followUp": false,
-  "deleted": false,
-  "events": [],
-  "relationships": [],
-  "attributes": [],
-  "notes": []
-}
-```
 
 ### Relationships (`GET /api/tracker/relationships`)
 
