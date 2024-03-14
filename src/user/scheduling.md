@@ -487,6 +487,8 @@ the individual predictors run first, followed by the predictor groups.
     newly created queue will now be listed. The queue will have a dropdown arrow
     that can be clicked to show the jobs that are part of the queue.
 
+![Creating a new scheduler queue](resources/images/scheduler/add_new_queue.png)
+
 Newly created queues are enabled by default.
 
 ## Editing a queue { #scheduling_configure_queue }
