@@ -5,19 +5,25 @@ Background jobs can do a number of tasks, such as running analytics,
 synchronizing data and meta data, or sending a push analysis report. The
 application provides the ability to create, modify and delete such jobs.
 
+Jobs can be scheduled to run in a specific order with a job queue.
+A job queue consists of two or more jobs and can be scheduled according to a cron
+schedule. At the specified time the queue will start the first job and
+wait for it to finish before it starts the second job. It
+will continue running jobs in sequence until they have all been executed.
+
 The Scheduler comes bundled with DHIS2 and is accessed through the App
 Menu.
 
 ![The start page of the Scheduler app](resources/images/scheduler/overview.png)
 
-The start page of the Scheduler app shows an overview of existing jobs.
+The start page of the Scheduler app shows an overview of existing jobs and queues.
 By default, pre-defined system jobs are hidden. To view these, click
 *Include system jobs in list* in the top right corner.
 
-When you create or modify a job, it will be scheduled according to
-the selected schedule. To run a job on demand, go to the job list,
-click the "Actions" button of the job you want to run and click
-"Run manually". This action is only available for enabled jobs.
+When you create or modify a job or queue, it will be scheduled according to
+the selected schedule. To run a job or queue on demand, go to the overview,
+click the "Actions" button of the job or queue you want to run and click
+"Run manually". This action is only available for enabled jobs and queues.
 
 ## Creating a job { #scheduling_create_job } 
 
@@ -418,3 +424,55 @@ order of their names (comparing Unicode character values).
 
 If both individual predictors and predictor groups are selected in the same
 job, the individual predictors run first, followed by the predictor groups.
+
+## Creating a queue { #scheduling_create_queue } 
+
+1.  Open the **Scheduler** app and click the "New queue" button in the top
+    right corner.
+
+1.  Choose a suitable **Name** for the new queue.
+
+1.  Select a cron schedule for the queue. Queues can be scheduled
+    using the [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html) 
+        syntax, just like jobs. You can also select a predefined **Cron expression** by clicking
+        "Choose from preset times". This schedule will only start a new queue run
+        if the previous queue run has finished, to prevent the system from spawning
+        too many queues.
+
+1.  Select the jobs that should be part of the queue. The available jobs can be
+    added to the queue with the arrow buttons. The queue will run the jobs in the
+    order specified here.
+
+1.  Press the **Save** button to confirm the queue creation. On successful queue
+    creation you will be redirected to the jobs and queue overview, where the newly
+    created queue will now be listed. The queue will have a dropdown arrow that can
+    be clicked to show the jobs that are part of the queue.
+
+Newly created queues are enabled by default.
+
+## Editing a queue { #scheduling_configure_queue } 
+
+With the proper permissions, you can modify the details of queues. To quickly enable or disable a queue from running, use the
+switches in the **On/off** column on the landing page of the Scheduler app.
+
+Further editing of queues:
+
+1.  Click the "Actions" button of the queue you want to edit and click "Edit".
+
+1.  When done editing, press the **Save** button to persist the changes.
+
+1. If jobs were removed from the queue, they will be displayed again in the overview. But since they were part of a queue, they
+will be disabled and without a schedule.
+
+## Deleting a queue { #scheduling_delete_queue } 
+
+1.  Click the "Actions" button of the queue you want to delete and click "Delete".
+
+1.  Confirm by pressing **Delete** again in the pop-up window.
+
+1. All jobs that were part of the queue will be displayed again in the overview. But since they were part of a queue, they
+will be disabled and without a schedule.
+
+Queues can also be deleted from the editing screen.
+
+![Deleting a scheduler queue](resources/images/scheduler/delete_queue.png)
