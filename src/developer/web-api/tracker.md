@@ -2123,8 +2123,8 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`trackedEntity`|`String`|`uid`|Identifier of a tracked entity|
-|`enrollment`|`String`|`uid`|Identifier of an Enrollment |
-|`event`|`String`|`uid`|Identifier of an Event|
+|`enrollment`|`String`|`uid`|Identifier of an enrollment|
+|`event`|`String`|`uid`|Identifier of an event|
 |`fields`|`String`|Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
 |`order`|`String`|Comma-separated list of `OrderCriteria` in the in format `propName:sortDirection`.|Supported fields: `created, createdAtClient`.|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`| whether to include soft-deleted elements in your query result|
@@ -2135,7 +2135,7 @@ The following rules apply to the query parameters.
 
 > **NOTE**
 >
-> Using tracked entity, Enrollment or Event params, will return any relationship where the
+> Using tracked entity, enrollment or event params, will return any relationship where the
 > trackedEntity, enrollment or event is part of the relationship (either from or to). As long as
 > user has access, that is.
 
@@ -2143,7 +2143,25 @@ The following rules apply to the query parameters.
 
 ```json
 {
-  "trackedEntities": [
+  "pager": {
+    "page": 1,
+    "pageSize": 2
+  },
+  "relationships": [
+    {
+      "relationship": "oGtgtJpp6fG",
+      "relationshipType": "Mv8R4MPcNcX",
+      "from": {
+        "trackedEntity": {
+          "trackedEntity": "neR4cmMY22o"
+        }
+      },
+      "to": {
+        "trackedEntity": {
+          "trackedEntity": "DsSlC54GNXy"
+        }
+      }
+    },
     {
       "relationship": "SSfIicJKbh5",
       "relationshipType": "Mv8R4MPcNcX",
@@ -2157,24 +2175,8 @@ The following rules apply to the query parameters.
           "trackedEntity": "rEYUGH97Ssd"
         }
       }
-    },
-    {
-      "relationship": "S9kZGYPKk3x",
-      "relationshipType": "Mv8R4MPcNcX",
-      "from": {
-        "trackedEntity": {
-          "trackedEntity": "neR4cmMY22o"
-        }
-      },
-      "to": {
-        "trackedEntity": {
-          "trackedEntity": "k8TU70vWtnP"
-        }
-      }
     }
-  ],
-  "page": 1,
-  "pageSize": 2
+  ]
 }
 ```
 
@@ -2328,8 +2330,7 @@ is not possible to gain temporary access to a program that has been configured w
 of *CLOSED*. To break the glass for a TrackedEntity-Program combination, the following POST request
 can be used:
 
-    /API/33/tracker/ownership/override?trackedEntity=DiszpKrYNg8
-      &program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
+    /api/tracker/ownership/override?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
 #### Tracker Ownership Transfer { #webapi_nti_tracker_ownership_transfer }
 
@@ -2339,8 +2340,7 @@ Ownership access (or temporary access by breaking the glass) can transfer the ow
 ownership of a TrackedEntity-Program to another organisation unit, the following PUT request can be
 used:
 
-    /API/33/tracker/ownership/transfer?trackedEntity=DiszpKrYNg8
-      &program=eBAyeGv0exc&ou=EJNxP3WreNP
+    /api/tracker/ownership/transfer?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
 
 ### Access Level { #webapi_nti_access_level }
 
