@@ -57,17 +57,17 @@ lists the old and new property names.
 
 > **Note**
 >
->Property `assignedUser` was a string before and is now an object of the following shape (type `User`):
->```json
->{
->   "assignedUser": {
->     "uid": "ABCDEF12345",
->     "username": "username",
->     "firstName": "John",
->     "surname": "Doe"
->   }
->}
->```
+> Property `assignedUser` was a string before and is now an object of the following shape (type `User`):
+> ```json
+> {
+>    "assignedUser": {
+>      "uid": "ABCDEF12345",
+>      "username": "username",
+>      "firstName": "John",
+>      "surname": "Doe"
+>    }
+> }
+> ```
 
 ### Semicolon as separator for identifiers (UID)
 
