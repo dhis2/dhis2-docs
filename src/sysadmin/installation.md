@@ -50,11 +50,21 @@ CPU cores so the more you can afford, the better the application will perform.
 
 Later DHIS2 versions require the following software versions to operate.
 
-- An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
+- An operating system for which a Java JDK or JRE version 17 exists. Linux is recommended.
 - Java JDK. OpenJDK is recommended.  
-    - For DHIS 2 version 2.38 and later, JDK 11 is required.
-    - For DHIS 2 version 2.35 and later, JDK 11 is recommended and JDK 8 or later is required. 
-    - For DHIS 2 versions older than 2.35, JDK 8 is required.
+
+
+Table: DHIS2 JDK compatibility
+
+| DHIS2 version | JDK recommended | JDK required |
+|---------------|-----------------|--------------|
+| 2.41          | 17              | 17           |
+| 2.40          | 17              | 11           |
+| 2.38          | 11              | 11           |
+| 2.35          | 11              | 8            |
+| pre 2.35      | 8               | 8            |
+
+
 - PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 14 is recommended.
 - PostGIS database extension version 2.2 or later.
 - Tomcat servlet container version 8.5.50 or later, or other Servlet API
@@ -327,16 +337,10 @@ sudo systemctl restart postgresql
 
 ### Java installation { #install_java_installation } 
 
-The recommended Java JDK for DHIS 2 is OpenJDK 11 (for version 2.35 and later). You can install it with the following command:
+The recommended Java JDK for DHIS 2 is OpenJDK 17 (for version 2.40 and later). You can install it with the following command:
 
 ```
-sudo apt-get install -y openjdk-11-jdk
-```
-
-If you prefer OpenJDK 8 (for versions older than 2.35) you can install it with this command:
-
-```
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get install -y openjdk-17-jdk
 ```
 
 Verify that your installation is correct by invoking:
@@ -1312,6 +1316,13 @@ system.program_rule.server_execution = on | off
 
 Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
 
+```properties
+system.remote_servers_allowed = https://server1.org/,https://server2.org/
+```
+
+Sets the allowed list of servers to be called in relation to the [metadata pull](../developer/web-api/synchronization.md#webapi_sync_metadata_pull) functionality. It accepts comma-separated values, and it's recommended that each server end with a `/` for enhanced security. Default value is empty.
+
+
 ## Reverse proxy configuration { #install_reverse_proxy_configuration } 
 
 A reverse proxy is a proxy server that acts on behalf of a server. Using
@@ -1732,6 +1743,17 @@ connection.pool.preferred.test.query=select 1
 #Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads=3
 
+# Database datasource pool type. Supported pool types are: 
+#
+# * c3p0 (default): For information see https://www.mchange.com/projects/c3p0/
+# 
+# * hikari: For information see https://github.com/brettwooldridge/HikariCP
+#
+# * unpooled: Some implementations might want to have more control over the pooling and database cluster architecture 
+# (e.g., using PgBouncer as pool manager behind HAProxy for load balancing). In these cases, the internal pool is un-necessary 
+# and gets in the way.
+db.pool.type=c3p0
+
 # ----------------------------------------------------------------------
 # Server [Mandatory]
 # ----------------------------------------------------------------------
@@ -1760,6 +1782,12 @@ system.sql_view_write_enabled = off
 
 # Disable server-side program rule execution, can be 'on', 'off'
 system.program_rule.server_execution = on
+
+# Remote servers which the server is allowed to call
+# Accepts comma-separated values
+# Servers should end with '/' for enhanced security
+# Default is empty
+system.remote_servers_allowed = https://server1.org/,https://server2.org/
 
 # ----------------------------------------------------------------------
 # Encryption [Optional]
@@ -1841,6 +1869,10 @@ monitoring.cpu.enabled = on
 
 # Analytics server-side cache expiration in seconds
 analytics.cache.expiration = 3600
+
+# Analytics unlogged tables. Accepts on/off. It's `on` by default. If enabled, this will boost the analytics table export process significantly.
+# But this comes with a cost: "unlogged" tables cannot be replicated. It means that clustering won't be possible. Also, analytics tables will be automatically truncated if PostgreSQL is suddenly reset (abrupt reset/crash). If PostgreSQL is reset gracefully, it won't impact any table. In this case, the analytics tables will remain in place accordingly. If you cannot afford the costs mentioned above, you should disable it (set to `off`).
+analytics.table.unlogged = on
 
 # ----------------------------------------------------------------------
 # System telemetry [Optional]

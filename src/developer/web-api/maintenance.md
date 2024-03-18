@@ -397,7 +397,6 @@ The response will look similar to this:
     "dryRun": false,
     "async": true,
     "importStrategy": "CREATE_AND_UPDATE",
-    "mergeMode": "REPLACE",
     "reportMode": "FULL",
     "skipExistingCheck": false,
     "sharing": false,

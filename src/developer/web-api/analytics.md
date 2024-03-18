@@ -148,7 +148,8 @@ order is:
 DHIS2 features a multi-dimensional data model with several fixed and
 dynamic data dimensions. The fixed dimensions are the data element,
 period (time) and organisation unit dimension. You can dynamically add
-dimensions through categories, data element group sets and organisation
+dimensions through categories, category option group sets, 
+organisation unit group sets, data element group sets and organisation
 unit group sets. The table below displays the available data dimensions
 in DHIS2. Each data dimension has a corresponding *dimension
 identifier*, and each dimension can have a set of *dimension items*:
@@ -2432,7 +2433,6 @@ A successful save operation returns an HTTP status code 201. The table
 below shows the supported types of events.
 
 
-
 Table: Supported event types
 
 | Key | Description |
@@ -2476,7 +2476,6 @@ API query that creates a query for a monthly
 
 The usage analytics API lets you retrieve the top favorites used in
 DHIS2, and by user.
-
 
 
 Table: Query parameters for top favorites
@@ -2586,7 +2585,9 @@ The JSON response looks like this:
 ]
 ```
 
-### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics } 
+Note that the number of `activeUsers` indicates the number of distinct users who had any events during the requested time period. The number of `users` represents the total number of users in the system (both enabled and disabled).
+
+### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics }
 
 You can retrieve the number of view for a specific favorite by using the
 *favorites* resource, where *{favorite-id}* should be substituted with
@@ -2826,21 +2827,22 @@ The analytics outliert API provides endpoints for investigation of the data qual
 
 **Query parameters**
 
-| Query parameter | Description | Required | Options (default first)
-|---|---|---|---|
-| ds | Data set | Yes | Data set identifier |
-| startDate | Start date for interval tocheck for outliers | No (relative date period is mandatory in this case) | Date (yyyy-MM-dd) |
-| endDate |End date for interval to check for outliers | No (relative date period is mandatory in this case) | Date (yyyy-MM-dd) |
-| pe | ISO periods and relative periods | No (start and end date is mandatory in this case) | see "date and period format"  |
-| relativePeriodDate | Date used as basis for relative periods. | No| Date (yyyy-MM-dd) |
-| ou | Organisation unit, organiosation unit level or groups (can be combined) | Yes |Organisation unit (level, group) identifier |
-| headers | The name of the headers to be returned as part of the response. One or more headers name separated by comma |  No | (NULL), dx, dxname, pename, pe ... |
-| orderBy | Sort the records on the value column | No | absdev, zscore, modifiedzscore, median, mean, stddev, medianabsdeviation, lowerbound, upperbound |
-| sortOrder | Sort the records on the value column in ascending or descending order | No |ASC, DESC |
-| algorithm |Algorithm to use for outlier detection | No | Z_SCORE, MODIFIED_Z_SCORE |
-| threshold | Threshold for outlier values Z_SCORE or MODIFIED_Z_SCORE| No |Numeric, greater than zero. Default: 3.0|
-| inputIdScheme | Identifier scheme to use for metadata items in the query request, can be an identifier, code or attributes. | No | UID, ID, CODE, NAME |
-| maxResults | Maximum rows (responses) | No | 500 |
+| Query parameter    | Description                                                                                                 | Required                                            | Options (default first)                                                                          |                                                                          
+|--------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| ds                 | Data set                                                                                                    | Yes                                                 | Data set identifier                                                                              |
+| startDate          | Start date for interval tocheck for outliers                                                                | No (relative date period is mandatory in this case) | Date (yyyy-MM-dd)                                                                                |
+| endDate            | End date for interval to check for outliers                                                                 | No (relative date period is mandatory in this case) | Date (yyyy-MM-dd)                                                                                |
+| pe                 | ISO periods and relative periods                                                                            | No (start and end date is mandatory in this case)   | see "date and period format"                                                                     |
+| relativePeriodDate | Date used as basis for relative periods.                                                                    | No                                                  | Date (yyyy-MM-dd)                                                                                |
+| ou                 | Organisation unit, organisation unit level or groups (can be combined)                                      | No                                                  | Organisation unit (level, group) identifier                                                      |
+| headers            | The name of the headers to be returned as part of the response. One or more headers name separated by comma | No                                                  | (NULL), dx, dxname, pename, pe ...                                                               |
+| orderBy            | Sort the records on the value column                                                                        | No                                                  | absdev, zscore, modifiedzscore, median, mean, stddev, medianabsdeviation, lowerbound, upperbound |
+| sortOrder          | Sort the records on the value column in ascending or descending order                                       | No                                                  | ASC, DESC                                                                                        |
+| algorithm          | Algorithm to use for outlier detection                                                                      | No                                                  | Z_SCORE, MODIFIED_Z_SCORE                                                                        |
+| threshold          | Threshold for outlier values Z_SCORE or MODIFIED_Z_SCORE                                                    | No                                                  | Numeric, greater than zero. Default: 3.0                                                         |
+| inputIdScheme      | Identifier scheme to use for metadata items in the query request, can be an identifier, code or attributes. | No                                                  | UID, ID, CODE, NAME                                                                              |
+| maxResults         | Maximum rows (responses)                                                                                    | No                                                  | 500                                                                                              |
+| skipRounding       | Skip rounding of data values, i.e. provide fine precision (scale 10).                                       | No                                                  | false, true                                                                                      |
 
 **Request example**
     
@@ -3032,12 +3034,12 @@ available formats and content types are:
             "default",
             "default",
             "105.0",
-            "18.26357",
-            "28.70554",
-            "86.73643",
-            "3.02159",
-            "-67.85306",
-            "104.38019"
+            "18.3",
+            "28.7",
+            "86.7",
+            "3.0",
+            "-67.9",
+            "104.4"
         ],
         [
             "DE_359706",
@@ -3052,12 +3054,12 @@ available formats and content types are:
             "default",
             "default",
             "220.0",
-            "41.64407",
-            "57.44954",
-            "178.35593",
-            "3.10457",
-            "-130.70455",
-            "213.99269"
+            "41.6",
+            "57.4",
+            "178.3",
+            "3.1",
+            "-130.7",
+            "213.9"
         ],
         [
             "DE_35",
@@ -3072,12 +3074,12 @@ available formats and content types are:
             "default",
             "default",
             "466.0",
-            "48.18605",
-            "114.27966",
-            "417.81395",
-            "3.65607",
-            "-294.65294",
-            "391.02504"
+            "48.1",
+            "114.2",
+            "417.8",
+            "3.6",
+            "-294.6",
+            "391.0"
         ]
     ],
     "headerWidth": 18,
