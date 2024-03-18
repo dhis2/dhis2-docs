@@ -1259,7 +1259,7 @@ A list of custom icons can be fetched retrieved certain request parameters
 |`type`|`Text`| DEFAULT,CUSTOM,ALL |What type of icons should be retrieved. Default is ALL|
 |`keys`|`Text`| | List of keys custom icons should be retrieved for | 
 |`keywords`|`Text`| | List of keywords custom icons should be retrieved for| 
-|`search`|`Text`| | Provided text will be search across icon keys and keywords and all icons containing this text will be returned in response| 
+|`search`|`Text`| | Search for a given text across icon keys and keywords, and retrieve all icons that contain this text in their key or keywords.| 
 |`createdStartDate`|`Date`| | Starting point of created date|
 |`createdEndDate`|`Date`| | End point of created date| 
 |`lastUpdatedStartDate`|`Date`| | Starting point of last updated date| 
