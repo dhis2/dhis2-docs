@@ -1227,7 +1227,7 @@ Both of them be accessed through the icons resource.
     GET /api/icons
 
 This endpoint returns a list of information about the available default and custom icons.
-In case of default icons, each entry contains the icon's metadata, and a reference to the actual file resource.
+By default key, description, keywords and href will be included in response. But fields parameter can be used to change this behaviour.
 
 ```json
 {
@@ -1243,36 +1243,10 @@ In case of default icons, each entry contains the icon's metadata, and a referen
   href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
 }
 ```
-When it comes to custom icons, the response also includes the referenced file resource and the user who created the icon:
-
-```json
-{
-  key: "custom key",
-  description: "description",
-  keywords: [
-    "keyword 1",
-    "keyword 2"
-  ],
-  fileResourceUid: "ohUVXsOZ8qp",
-  userUid: "AIK2aQOJIbj",
-  "created": "2024-02-12T09:50:11.794",
-  "lastUpdated": "2024-02-12T09:50:11.794",
-  href: "<dhis server>/api/fileResources/ohUVXsOZ8qp/data"
-}
-```
 
 It's also possible to get a particular icon directly by filtering by its key, in the example below, the key is mosquito_outline.
 
     GET /api/icons/mosquito_outline
-
-Keywords can be used to filter which icons to return. Passing a list
-of keywords with the request will only return icons (both default and custom) that match all the keywords:
-
-    GET /api/icons?keywords=shape,small
-
-A list of all unique keywords can be found at the keywords resource:
-
-    GET /api/icons/keywords
 
 ### Custom icon operations { #webapi_icons_custom }
 
@@ -1282,13 +1256,14 @@ A list of custom icons can be fetched retrieved certain request parameters
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`type`|`Text`| DEDAULT,CUSTOM,ALL |What type of icons should be retrieved. Default is ALL|
-|`keys`|`Text`| List of keys custom icons should be retrieved for | |
-|`keywords`|`Text`| List of keywords custom icons should be retrieved for| |
-|`createdStartDate`|`Date`| Starting point of created date| |
-|`createdEndDate`|`Date`| End point of created date| |
-|`lastUpdatedStartDate`|`Date`| Starting point of last updated date| |
-|`lastUpdatedEndDate`|`Date`| End point of last updated date| |
+|`type`|`Text`| DEFAULT,CUSTOM,ALL |What type of icons should be retrieved. Default is ALL|
+|`keys`|`Text`| | List of keys custom icons should be retrieved for | 
+|`keywords`|`Text`| | List of keywords custom icons should be retrieved for| 
+|`search`|`Text`| | Provided text will be search across icon keys and keywords and all icons containing this text will be returned in response| 
+|`createdStartDate`|`Date`| | Starting point of created date|
+|`createdEndDate`|`Date`| | End point of created date| 
+|`lastUpdatedStartDate`|`Date`| | Starting point of last updated date| 
+|`lastUpdatedEndDate`|`Date`| | End point of last updated date| 
 
 
 #### Request parameters for pagination
@@ -1298,6 +1273,13 @@ A list of custom icons can be fetched retrieved certain request parameters
 |`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
 |`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
 |`paging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`|
+
+#### Request parameters for ordering
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`order`|`Text`| created:desc | Comma-separated list of property name and sort direction pairs in format propName:sortDirection. By default icons will be ordered based on key:asc|
+
 
 #### Request parameter to filter responses
 
@@ -1326,7 +1308,7 @@ It expects a payload containing the icon key, description, list of keywords and 
 }
 ```
 
-Two of these properties are possible to update, they are the description and keywords, using the resource below.
+Only custom icons can be updated using below resource. 
 
     PUT /api/icons
 
@@ -1342,7 +1324,7 @@ With the following payload, the icon's description and keywords would be updated
 
 Please notice that's also possible to just update one of the two. That means in case we would like to update the description while keeping the keywords, we would just need to provide the icon key and the descripton json field. Same would work the other way around, to update the keywords and leave the original description untouched.
 
-To delete a custom icon we use the resource
+Only custom icon can be deleted using below resource.
 
     DELETE /api/icons/{icon_key}
 
