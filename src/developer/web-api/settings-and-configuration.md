@@ -527,6 +527,43 @@ DHIS2 web application. This can be particularly useful in certain situations:
   - Including CSS styles which are used in custom data entry forms and
     HTML-based reports.
 
+## Login App customisation { #login_app_customisation }
+
+The Settings App allows users to define a variety of elements (text, logo, flag) that can be used to customise the login page of DHIS2. Additionally, it is possible to choose between two preconfigured layouts (the default and a sidebar layout).
+
+If needed, the login app's styling and layout can be further customised by uploading an HTML template (also available in the settings app). This HTML template replaces certain elements (based on ID); the reserved IDs are listed in the table below. In this way, it is possible to combine custom styling (using css) and custom layout (using HTML) to change the look of the login app. The custom template does not support custom scripts, and script tags will be removed from any uploaded template.
+
+To create a custom template, it is recommended to start with one of the existing templates (these are available for download from within the login app at the extension dhis-web-login/#download).
+
+ID | Replaced by |
+|---|---|
+| **login-box** | The main login dialog, which prompts the user to enter their username/password. **This must be included for the login app to work as intended.**  |
+| **application-title** | Text for the application title.  |
+| **application-introduction** | Text for the application introduction. |
+| **flag** | The selected flag. |
+| **logo** | The logo (DHIS2 logo is used if custom logo is not defined). |
+| **powered-by** | A link to DHIS2.org. |
+| **application-left-footer** | Text for the left-side footer. |
+| **application-right-footer** | Text for the right-side footer. |
+| **language-select** | Selection to control the language of the login app. |
+
+The appearance of the login dialog can also be modified by defining css variables within the HTML template. The following css variables are available for customisation:
+```
+--form-container-margin-block-start
+--form-container-margin-block-end
+--form-container-margin-inline-start, auto
+--form-container-margin-inline-end
+--form-container-default-width
+--form-container-padding
+--form-container-background-color
+--form-container-box-border-radius
+--form-container-box-shadow
+--form-container-font-color
+--form-title-font-size
+--form-title-font-weight
+--form-container-title-color
+```
+
 ### Javascript { #webapi_customization_javascript } 
 
 To insert Javascript from a file called *script.js* you can interact
