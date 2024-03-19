@@ -626,15 +626,14 @@ section](#webapi_nti_import_summary).
 
 ```json
 {
-    "httpStatus": "OK",
-    "httpStatusCode": 200,
-    "status": "OK",
-    "message": "Tracker job added",
-    "response": {
-        "responseType": "TrackerJob",
-        "id": "LkXBUdIgbe3",
-        "location": "https://play.dhis2.org/dev/api/tracker/jobs/LkXBUdIgbe3"
-    }
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Tracker job added",
+  "response": {
+    "id": "cHh2OCTJvRw",
+    "location": "https://play.im.dhis2.org/dev/api/tracker/jobs/cHh2OCTJvRw"
+  }
 }
 ```
 
@@ -677,74 +676,163 @@ the job progress based on logs:
 
 #### ***REQUEST*** example
 
-`GET /tracker/jobs/mEfEaFSCKCC`
+`GET /tracker/jobs/PQK63sMwjQp`
 
 #### ***RESPONSE*** example
 
 ```json
 [
   {
-    "uid": "mEfEaFSCKCC",
+    "uid": "PQK63sMwjQp",
     "level": "INFO",
     "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:06.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) finished in 6.00000 sec. Import:Done",
+    "time": "2024-03-19T13:18:16.370",
+    "message": "Import complete with status OK, 0 created, 0 updated, 0 deleted, 0 ignored",
     "completed": true,
-    "id": "mEfEaFSCKCC"
+    "id": "PQK63sMwjQp"
   },
   {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:05.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) commit completed in 1.00000 sec. Import:commit",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:04.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) programruleValidation completed in 1.00000 sec. Import:programruleValidation",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:03.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) programrule completed in 1.00000 sec. Import:programrule",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:02.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) validation completed in 1.00000 sec. Import:validation",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:01.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) preheat completed in 1.00000 sec. Import:preheat",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
+    "uid": "XIfTJ1UUNcd",
     "level": "INFO",
     "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:00.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) started by admin ( xE7jOejl9FI ) Import:Start",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
+    "time": "2024-03-19T13:18:16.369",
+    "message": "PostCommit",
+    "completed": false,
+    "id": "XIfTJ1UUNcd"
+  },
+  {
+    "uid": "uCG4FNJLLBJ",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.364",
+    "message": "Commit Transaction",
+    "completed": false,
+    "id": "uCG4FNJLLBJ"
+  },
+  {
+    "uid": "xfOUv2Lk2MC",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.361",
+    "message": "Running Rule Engine Validation",
+    "completed": false,
+    "id": "xfOUv2Lk2MC"
+  },
+  {
+    "uid": "cSPfA776obb",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.325",
+    "message": "Running Rule Engine",
+    "completed": false,
+    "id": "cSPfA776obb"
+  },
+  {
+    "uid": "mru3HJrFGKA",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.313",
+    "message": "Running Validation",
+    "completed": false,
+    "id": "mru3HJrFGKA"
+  },
+  {
+    "uid": "oTbCUJ2RnA6",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.312",
+    "message": "Running PreProcess",
+    "completed": false,
+    "id": "oTbCUJ2RnA6"
+  },
+  {
+    "uid": "lcUNbWTn6uh",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.312",
+    "message": "Calculating Payload Size",
+    "completed": false,
+    "id": "lcUNbWTn6uh"
+  },
+  {
+    "uid": "l4jQiSS9qdK",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:15.903",
+    "message": "Running PreHeat",
+    "completed": false,
+    "id": "l4jQiSS9qdK"
+  },
+  {
+    "uid": "qGbiuqgwPX5",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:15.850",
+    "message": "Loading file content",
+    "completed": false,
+    "id": "qGbiuqgwPX5"
+  },
+  {
+    "uid": "eWNHzVf7iAj",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:15.838",
+    "message": "Loading file resource",
+    "completed": false,
+    "id": "eWNHzVf7iAj"
+  },
+  {
+    "uid": "t9gOjotekQt",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:15.837",
+    "message": "Tracker import started",
+    "completed": false,
+    "dataType": "PARAMETERS",
+    "data": {
+      "userId": "xE7jOejl9FI",
+      "importMode": "VALIDATE",
+      "idSchemes": {
+        "dataElementIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "orgUnitIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "programIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "programStageIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "idScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "categoryOptionComboIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "categoryOptionIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        }
+      },
+      "importStrategy": "CREATE_AND_UPDATE",
+      "atomicMode": "ALL",
+      "flushMode": "AUTO",
+      "validationMode": "FULL",
+      "skipPatternValidation": false,
+      "skipSideEffects": false,
+      "skipRuleEngine": false,
+      "filename": null,
+      "reportMode": "ERRORS"
+    },
+    "id": "t9gOjotekQt"
   }
 ]
 ```
@@ -1436,7 +1524,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`assignedUserMode`|`String`|`CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. |
 |`assignedUsers`|`String`|Comma-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1,id2`. This parameter will only be considered if `assignedUserMode` is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`.|
 |`assignedUser` **deprecated for removal in version 42 use `assignedUsers`**|`String`|Semicolon-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1;id2`.This parameter will only be considered if assignedUserMode is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`|
-|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported values are `trackedEntity, createdAt, createdAtClient, updatedAt, updatedAtClient, enrolledAt, inactive`.|
+|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported values are `createdAt, createdAtClient, enrolledAt, inactive, trackedEntity, updatedAt, updatedAtClient`.|
 |`eventStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED`|Status of any events in the specified program|
 |`eventOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for Event for the given Program|
 |`eventOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for Event for the given Program|
@@ -1932,7 +2020,7 @@ Returns a list of events based on the provided filters.
 |`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
 |`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
 |`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
-|`order`|`String`|Comma-separated list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|
+|`order`|`String`|Comma-separated list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, followup (deprecated), occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|
 |`events`|`String`|Comma-separated list of event `UID`s.|Filter the result down to a limited set of IDs by using `event=id1,id2`.|
 |`event` **deprecated for removal in version 42 use `events`**|`String`|Semicolon-separated list of `uid`| Filter the result down to a limited set of IDs by using `event=id1;id2`.|
 |`attributeCategoryCombo` (see note)|`String`|Attribute category combo identifier. Must be combined with `attributeCategoryOptions`.|
@@ -2126,7 +2214,7 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 |`enrollment`|`String`|`uid`|Identifier of an enrollment|
 |`event`|`String`|`uid`|Identifier of an event|
 |`fields`|`String`|Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
-|`order`|`String`|Comma-separated list of `OrderCriteria` in the in format `propName:sortDirection`.|Supported fields: `created, createdAtClient`.|
+|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `createdAt, createdAtClient`.|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`| whether to include soft-deleted elements in your query result|
 
 The following rules apply to the query parameters.
