@@ -626,15 +626,14 @@ section](#webapi_nti_import_summary).
 
 ```json
 {
-    "httpStatus": "OK",
-    "httpStatusCode": 200,
-    "status": "OK",
-    "message": "Tracker job added",
-    "response": {
-        "responseType": "TrackerJob",
-        "id": "LkXBUdIgbe3",
-        "location": "https://play.dhis2.org/dev/api/tracker/jobs/LkXBUdIgbe3"
-    }
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Tracker job added",
+  "response": {
+    "id": "cHh2OCTJvRw",
+    "location": "https://play.im.dhis2.org/dev/api/tracker/jobs/cHh2OCTJvRw"
+  }
 }
 ```
 
@@ -677,74 +676,163 @@ the job progress based on logs:
 
 #### ***REQUEST*** example
 
-`GET /tracker/jobs/mEfEaFSCKCC`
+`GET /tracker/jobs/PQK63sMwjQp`
 
 #### ***RESPONSE*** example
 
 ```json
 [
   {
-    "uid": "mEfEaFSCKCC",
+    "uid": "PQK63sMwjQp",
     "level": "INFO",
     "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:06.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) finished in 6.00000 sec. Import:Done",
+    "time": "2024-03-19T13:18:16.370",
+    "message": "Import complete with status OK, 0 created, 0 updated, 0 deleted, 0 ignored",
     "completed": true,
-    "id": "mEfEaFSCKCC"
+    "id": "PQK63sMwjQp"
   },
   {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:05.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) commit completed in 1.00000 sec. Import:commit",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:04.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) programruleValidation completed in 1.00000 sec. Import:programruleValidation",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:03.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) programrule completed in 1.00000 sec. Import:programrule",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:02.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) validation completed in 1.00000 sec. Import:validation",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
-    "level": "DEBUG",
-    "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:01.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) preheat completed in 1.00000 sec. Import:preheat",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
-  },
-  {
-    "uid": "mEfEaFSCKCC",
+    "uid": "XIfTJ1UUNcd",
     "level": "INFO",
     "category": "TRACKER_IMPORT_JOB",
-    "time": "2021-01-01T00:00:00.00",
-    "message": "TRACKER_IMPORT_JOB ( mEfEaFSCKCC ) started by admin ( xE7jOejl9FI ) Import:Start",
-    "completed": true,
-    "id": "mEfEaFSCKCC"
+    "time": "2024-03-19T13:18:16.369",
+    "message": "PostCommit",
+    "completed": false,
+    "id": "XIfTJ1UUNcd"
+  },
+  {
+    "uid": "uCG4FNJLLBJ",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.364",
+    "message": "Commit Transaction",
+    "completed": false,
+    "id": "uCG4FNJLLBJ"
+  },
+  {
+    "uid": "xfOUv2Lk2MC",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.361",
+    "message": "Running Rule Engine Validation",
+    "completed": false,
+    "id": "xfOUv2Lk2MC"
+  },
+  {
+    "uid": "cSPfA776obb",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.325",
+    "message": "Running Rule Engine",
+    "completed": false,
+    "id": "cSPfA776obb"
+  },
+  {
+    "uid": "mru3HJrFGKA",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.313",
+    "message": "Running Validation",
+    "completed": false,
+    "id": "mru3HJrFGKA"
+  },
+  {
+    "uid": "oTbCUJ2RnA6",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.312",
+    "message": "Running PreProcess",
+    "completed": false,
+    "id": "oTbCUJ2RnA6"
+  },
+  {
+    "uid": "lcUNbWTn6uh",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:16.312",
+    "message": "Calculating Payload Size",
+    "completed": false,
+    "id": "lcUNbWTn6uh"
+  },
+  {
+    "uid": "l4jQiSS9qdK",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:15.903",
+    "message": "Running PreHeat",
+    "completed": false,
+    "id": "l4jQiSS9qdK"
+  },
+  {
+    "uid": "qGbiuqgwPX5",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:15.850",
+    "message": "Loading file content",
+    "completed": false,
+    "id": "qGbiuqgwPX5"
+  },
+  {
+    "uid": "eWNHzVf7iAj",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:15.838",
+    "message": "Loading file resource",
+    "completed": false,
+    "id": "eWNHzVf7iAj"
+  },
+  {
+    "uid": "t9gOjotekQt",
+    "level": "INFO",
+    "category": "TRACKER_IMPORT_JOB",
+    "time": "2024-03-19T13:18:15.837",
+    "message": "Tracker import started",
+    "completed": false,
+    "dataType": "PARAMETERS",
+    "data": {
+      "userId": "xE7jOejl9FI",
+      "importMode": "VALIDATE",
+      "idSchemes": {
+        "dataElementIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "orgUnitIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "programIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "programStageIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "idScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "categoryOptionComboIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        },
+        "categoryOptionIdScheme": {
+          "idScheme": "UID",
+          "attributeUid": null
+        }
+      },
+      "importStrategy": "CREATE_AND_UPDATE",
+      "atomicMode": "ALL",
+      "flushMode": "AUTO",
+      "validationMode": "FULL",
+      "skipPatternValidation": false,
+      "skipSideEffects": false,
+      "skipRuleEngine": false,
+      "filename": null,
+      "reportMode": "ERRORS"
+    },
+    "id": "t9gOjotekQt"
   }
 ]
 ```
