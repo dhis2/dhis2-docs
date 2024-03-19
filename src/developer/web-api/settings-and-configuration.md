@@ -531,7 +531,7 @@ DHIS2 web application. This can be particularly useful in certain situations:
 
 The Settings App allows users to define a variety of elements (text, logo, flag) that can be used to customise the login page of DHIS2. Additionally, it is possible to choose between two preconfigured layouts (the default and a sidebar layout).
 
-If needed, the login app's styling and layout can be further customised by uploading an HTML template (also available in the settings app). This HTML template replaces certain elements (based on ID); the reserved IDs are listed in the table below. In this way, it is possible to combine custom styling (using css) and custom layout (using HTML) to change the look of the login app. The custom template does not support custom scripts, and script tags will be removed from any uploaded template.
+If needed, the login app's styling and layout can be further customised by uploading an HTML template (also definable in the settings app). This HTML template replaces certain elements (based on ID); the reserved IDs are listed in the table below. In this way, it is possible to combine custom styling (using css) and custom layout (using HTML) to change the look of the login app. The custom template does not support custom scripts, and script tags will be removed from any uploaded template.
 
 To create a custom template, it is recommended to start with one of the existing templates (these are available for download from within the login app at the extension dhis-web-login/#download).
 
