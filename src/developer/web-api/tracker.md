@@ -1436,7 +1436,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`assignedUserMode`|`String`|`CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. |
 |`assignedUsers`|`String`|Comma-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1,id2`. This parameter will only be considered if `assignedUserMode` is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`.|
 |`assignedUser` **deprecated for removal in version 42 use `assignedUsers`**|`String`|Semicolon-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1;id2`.This parameter will only be considered if assignedUserMode is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`|
-|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported values are `trackedEntity, createdAt, createdAtClient, updatedAt, updatedAtClient, enrolledAt, inactive`.|
+|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported values are `createdAt, createdAtClient, enrolledAt, inactive, trackedEntity, updatedAt, updatedAtClient`.|
 |`eventStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED`|Status of any events in the specified program|
 |`eventOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for Event for the given Program|
 |`eventOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for Event for the given Program|
@@ -1932,7 +1932,7 @@ Returns a list of events based on the provided filters.
 |`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
 |`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
 |`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
-|`order`|`String`|Comma-separated list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|
+|`order`|`String`|Comma-separated list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, followup (deprecated), occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|
 |`events`|`String`|Comma-separated list of event `UID`s.|Filter the result down to a limited set of IDs by using `event=id1,id2`.|
 |`event` **deprecated for removal in version 42 use `events`**|`String`|Semicolon-separated list of `uid`| Filter the result down to a limited set of IDs by using `event=id1;id2`.|
 |`attributeCategoryCombo` (see note)|`String`|Attribute category combo identifier. Must be combined with `attributeCategoryOptions`.|
@@ -2126,7 +2126,7 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 |`enrollment`|`String`|`uid`|Identifier of an enrollment|
 |`event`|`String`|`uid`|Identifier of an event|
 |`fields`|`String`|Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
-|`order`|`String`|Comma-separated list of `OrderCriteria` in the in format `propName:sortDirection`.|Supported fields: `created, createdAtClient`.|
+|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `createdAt, createdAtClient`.|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`| whether to include soft-deleted elements in your query result|
 
 The following rules apply to the query parameters.
