@@ -1,8 +1,5 @@
 # Installation { #installation } 
-
-
 ## Server setup { #install_server_setup } 
-
 This section describes how to set up a server instance of DHIS2 on
 Ubuntu 18.04 64 bit with PostgreSQL as database system and Tomcat as
 Servlet container. This guide is not meant to be a step-by-step guide
@@ -25,7 +22,6 @@ perform its tasks, for instance around 2 GB. The steps marked as
 stage.
 
 ### Creating a user to run DHIS2 { #install_creating_user } 
-
 You should create a dedicated user for running DHIS2.
 
 > **Important**
@@ -53,8 +49,7 @@ files. This directory will also be used for apps, files and log files.
 An example directory could be:
 
 ```sh
-sudo mkdir /home/dhis/config
-sudo chown dhis:dhis /home/dhis/config
+sudo -u dhis mkdir /home/dhis/config
 ```
 
 DHIS2 will look for an environment variable called `DHIS2_HOME` to
@@ -92,27 +87,50 @@ sudo locale-gen nb_NO.UTF-8
 Install PostgreSQL by invoking:
 
 ```sh
-sudo apt-get install -y postgresql-12 postgresql-12-postgis-3
+# Create the file repository configuration:
+sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+# Import the repository signing key:
+curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+
+# Update the package lists:
+sudo apt update -y 
+
+# install postgresql
+sudo apt-get install -y postgresql-16 postgresql-16-postgis-3
+
+# Ensure postgresql is started and enabled
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+
 ```
 
-Create a non-privileged user called *dhis* by invoking:
+Create a non-privileged database user called *dhis* by invoking:
 
 ```sh
 sudo -u postgres createuser -SDRP dhis
 ```
 
-Enter a secure password at the prompt. Create a database by invoking:
+Enter a secure password at the prompt.
+
+> Note
+>
+> This database user and password will be used by your DHIS2 application to
+> connect to the database. You will need to write down this user and password
+> in the  `dhis.conf`  file at a later stage.
+
+Create a database called `dhis2` owned by `dhis` by invoking:
 
 ```sh
 sudo -u postgres createdb -O dhis dhis2
 ```
 
-Return to your session by invoking `exit` You now have a PostgreSQL user
-called *dhis* and a database called *dhis2*.
+<!-- Return to your session by invoking `exit` You now have a PostgreSQL user -->
+<!-- called *dhis* and a database called *dhis2*. -->
 
 The *PostGIS* extension is needed for several GIS/mapping features to
-work. DHIS 2 will attempt to install the PostGIS extension during
-startup. If the DHIS 2 database user does not have permission to create
+work. DHIS2 will attempt to install the PostGIS extension during
+startup. If the DHIS2 database user does not have permission to create
 extensions you can create it from the console using the *postgres* user
 with the following commands:
 
@@ -120,15 +138,17 @@ with the following commands:
 sudo -u postgres psql -c "create extension postgis;" dhis2
 ```
 
-For adding trigram indexes and compounding it with primitive column types, two extensions have to be created in the database for DHIS 2 verision 2.38 and later. The extensions are already part of the default posgresql installation:
+For adding trigram indexes and compounding it with primitive column types, two
+extensions have to be created in the database for DHIS 2 verision 2.38 and
+later. The extensions are already part of the default posgresql installation:
 
 ```sh
 sudo -u postgres psql -c "create extension btree_gin;" dhis2
 sudo -u postgres psql -c "create extension pg_trgm;" dhis2
 ```
 
-Exit the console and return to your previous user with *\\q* followed by
-*exit*.
+<!-- Exit the console and return to your previous user with *\\q* followed by -->
+<!-- *exit*. -->
 
 ### DHIS2 configuration { #install_database_configuration } 
 
@@ -137,12 +157,18 @@ configuration file called `dhis.conf`. Create this file and save it in
 the `DHIS2_HOME` directory. As an example this location could be:
 
 ```sh
-/home/dhis/config/dhis.conf
+sudo -u dhis touch /home/dhis/config/dhis.conf
 ```
 
 A configuration file for PostgreSQL corresponding to the above setup has
 these properties:
 
+Edit the file and add the content looking like below, 
+
+```
+sudo -u dhis vim /home/dhis/config/dhis.conf
+```
+ 
 ```properties
 # ----------------------------------------------------------------------
 # Database connection
@@ -159,35 +185,42 @@ connection.username = dhis
 
 # Database password
 connection.password = xxxx
-
+```
 
 ### Java installation { #install_java_installation } 
 
-The recommended Java JDK for DHIS 2 is OpenJDK 11 (for version 2.35 and later). You can install it with the following command:
+| DHIS2 version | JDK recommended | JDK required |
+|---------------|-----------------|--------------|
+| 2.41          | 17              | 17           |
+| 2.40          | 17              | 11           |
+| 2.38          | 11              | 11           |
+| 2.35          | 11              | 8            |
+| pre 2.35      | 8               | 8            |
 
+The recommended Java JDK for DHIS2 2.40 and above is OpenJDK 17, its required for 2.41. 
+```
+sudo apt-get install -y openjdk-17-jdk
+```
+The recommended Java JDK for DHIS2 2.35 - 2.40 is OpenJDK 11. You can install it with the following command:
 ```
 sudo apt-get install -y openjdk-11-jdk
 ```
-
-If you prefer OpenJDK 8 (for versions older than 2.35) you can install it with this command:
-
+For dhis2 versions below  v2.35, OpenJDK 8 is required. Install it with this command:
 ```
 sudo apt-get install -y openjdk-8-jdk
 ```
-
 Verify that your installation is correct by invoking:
-
 ```
 java -version
 ```
-		
+
 ### Tomcat and DHIS2 installation { #install_tomcat_dhis2_installation } 
 
 To install the Tomcat servlet container we will utilize the Tomcat user
 package by invoking:
 
 ```sh
-sudo apt-get install -y tomcat8-user
+sudo apt-get install -y tomcat9-user
 ```
 
 This package lets us easily create a new Tomcat instance. The instance
@@ -195,15 +228,23 @@ will be created in the current directory. An appropriate location is the
 home directory of the `dhis` user:
 
 ```sh
-sudo tomcat8-instance-create /home/dhis/tomcat-dhis
+sudo tomcat9-instance-create /home/dhis/tomcat-dhis
 sudo chown -R dhis:dhis /home/dhis/tomcat-dhis/
 ```
 
-This will create an instance in a directory called `tomcat-dhis`. Note
-that the `tomcat8-user` package allows for creating any number of DHIS2
+This will create an instance in a directory called `/home/dhis/tomcat-dhis`. Note
+that the `tomcat9-user` package allows for creating any number of DHIS2
 instances if that is desired.
 
-Next edit the file `tomcat-dhis/bin/setenv.sh` and add the lines below.
+Next edit the file `/home/dhis/tomcat-dhis/bin/setenv.sh` and add the lines below.
+
+`sudo -u dhis vim /home/dhis/tomcat-dhis/bin/setenv.sh`
+
+```sh
+export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
+export JAVA_OPTS='-Xms4000m -Xmx7000m'
+export DHIS2_HOME='/home/dhis/config'
+```
 
 * `JAVA_HOME` sets the location of the JDK installation.
 * `JAVA_OPTS` passes parameters to the JVM.
@@ -214,14 +255,9 @@ Next edit the file `tomcat-dhis/bin/setenv.sh` and add the lines below.
 Check that the path the Java binaries are correct as they might vary from system to system, e.g. on AMD systems you might see
 `/java-11-openjdk-amd64`. Note that you should adjust these values to your environment.
 
-```sh
-JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64/'
-JAVA_OPTS='-Xms4000m -Xmx7000m'
-DHIS2_HOME='/home/dhis/config'
-```
 
 The Tomcat configuration file is located in
-`tomcat-dhis/conf/server.xml`. The element which defines the connection
+`/home/dhis/tomcat-dhis/conf/server.xml`. The element which defines the connection
 to DHIS is the *Connector* element with port 8080. You can change the
 port number in the Connector element to a desired port if necessary. 
 The `relaxedQueryChars` attribute is necessary to allow certain characters 
@@ -240,18 +276,25 @@ _webapps_ directory of Tomcat. You can download DHIS2 WAR files from the followi
 ```sh
 https://releases.dhis2.org/
 ```
+An example of how do download dhis2 version v40.3.0
+```
+wget https://releases.dhis2.org/40/dhis2-stable-40.3.0.war
+```
 
 Move the WAR file into the Tomcat `webapps` directory. We want to call the
 WAR file `ROOT.war` in order to make it available at `localhost` directly
 without a context path:
+Using war file downloaded with above wget example: 
 
 ```sh
-mv dhis.war tomcat-dhis/webapps/ROOT.war
+sudo mv dhis2-stable-40.3.0.war /home/dhis/tomcat-dhis/webapps/ROOT.war
 ```
 
-DHIS2 should never be run as a privileged user. After you have modified
-the `setenv.sh file`, modify the startup script to check and verify that the
-script has not been invoked as root.
+DHIS2 should never be run as a privileged user.
+After you have modified the `setenv.sh` file, modify the `startup.sh` script to
+check and verify that the script has not been invoked as root.
+
+`sudo -u dhis vim  /home/dhis/tomcat-dhis/bin/startup.sh`
 
 ```sh
 #!/bin/sh
@@ -263,7 +306,7 @@ if [ "$(id -u)" -eq "0" ]; then
 fi
 
 export CATALINA_BASE="/home/dhis/tomcat-dhis"
-/usr/share/tomcat8/bin/startup.sh
+/usr/share/tomcat9/bin/startup.sh
 echo "Tomcat started"
 ```
 
@@ -271,7 +314,7 @@ echo "Tomcat started"
 
 DHIS2 can now be started by invoking:
 
-    sudo -u dhis tomcat-dhis/bin/startup.sh
+    sudo -u dhis /home/dhis/tomcat-dhis/bin/startup.sh
 
 > **Important**
 > 
@@ -279,22 +322,17 @@ DHIS2 can now be started by invoking:
 
 DHIS2 can be stopped by invoking:
 
-    sudo -u dhis tomcat-dhis/bin/shutdown.sh
+    sudo -u dhis /home/dhis/tomcat-dhis/bin/shutdown.sh
 
 To monitor the behavior of Tomcat the log is the primary source of
 information. The log can be viewed with the following command:
 
-    tail -f tomcat-dhis/logs/catalina.out
+    tail -f /home/dhis/tomcat-dhis/logs/catalina.out
 
 Assuming that the WAR file is called ROOT.war, you can now access your
 DHIS2 instance at the following URL:
 
     http://localhost:8080
-
-
-
-
-
 
 ## File store configuration { #install_file_store_configuration } 
 
@@ -375,5 +413,4 @@ the `DHIS2_HOME` directory (the same location as the `dhis.conf` file).
 As an example this location could be:
 
     /home/dhis/config/dhis-google-auth.json
-
 

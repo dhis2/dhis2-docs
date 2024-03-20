@@ -37,7 +37,7 @@ shared data store cluster configuration](#install_cluster_configuration_redis), 
 
 ### Prerequisites
 
-* Redis server
+* [ Install ](https://docs.kipkurgat.com/server-admin/how-to-guides/installing-redis.html) Redis server
 
 ### Redis configuration
 
