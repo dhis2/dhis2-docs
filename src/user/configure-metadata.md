@@ -1766,7 +1766,7 @@ Table: Indicator functions
 | .aggregationType | (aggregation type) | Overrides the default data element aggregation type for aggregate data (not for program data). |
 | .maxDate | (yyyy-mm-dd) | For a data element (not program data), value from periods ending on or before a maximum date. |
 | .minDate | (yyyy-mm-dd) | For a data element (not program data), value from periods starting on or after a minimum date. |
-| .periodOffset | (integer constant) | Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below. |
+| .periodOffset | (integer constant) | Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. Note that this shifts data only for aggregate data, not tracker or event data. See examples below. |
 | .yearToDate() | | Summs the values of all periods from the start of the yaer through the current period. Note that any weekly period is considered to be part of the current year if it has four or more days in the year. For examples, see the Indicator Year-to-date section below. |
 
 Valid aggregation types:
@@ -1805,6 +1805,7 @@ Examples of .aggregationType, .maxDate, .minDate, and .periodOffset functions:
 | ( #{FH8ab5Rog83} - <br /> #{QOlfIKgNJ3D2} ).periodOffset(-2) | data element FH8ab5Rog83 from 2 periods before minus data element QOlfIKgNJ3D2 from 2 periods before |
 | #{FH8ab5Rog83}.periodOffset(-2) + <br /> #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before |
 | ( #{FH8ab5Rog83}.periodOffset(-1) + <br /> #{FH8ab5Rog83} ).periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before (note that the functions are nested) |
+| N{IndicatorID}.periodOffset(-1) | indicator value from the period before (applies to aggregate data in the indicator) |
 
 ### Indicator SubExpressions { #indicator_subexpressions }
 
