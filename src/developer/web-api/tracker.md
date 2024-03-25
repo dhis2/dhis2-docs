@@ -1545,7 +1545,7 @@ See [Tracked Entities](#tracked-entities) and [Attributes](#attributes) for more
 
 #### GZIP
 
-The response is `trackedEntities.csv.gz` file containing the `trackedEntities.csv` file.
+The response is file `trackedEntities.csv.gz` containing the `trackedEntities.csv` file.
 
 #### ZIP
 
