@@ -1448,8 +1448,8 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 >   - JSON and CSV for Events
 > - You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV 
 > or ***application/json+gzip*** for JSON.
-> You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV 
-> or ***application/json+zip*** for JSON.
+> - You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or  
+> ***application/json+zip*** for JSON.
 
 ### Common request parameters
 
@@ -1909,8 +1909,8 @@ An example of a json response:
 
 ###### CSV
 
-The response will be the same as the collection endpoint but referring to a single tracked entity, 
-although it might have multiple rows for each attribute.
+The response will be the same as the collection endpoint but referring to a single tracked 
+entity, although it might have multiple rows for each attribute.
 
 ### Enrollments (`GET /api/tracker/enrollments`)
 
@@ -2065,7 +2065,7 @@ Two endpoints are dedicated to events:
 - `GET /api/tracker/events/{id}`
     - retrieves an event given the provided id
 
-If not otherwise specified, JSON is the default response for the `GET` method. 
+If not otherwise specified, JSON is the default response for the `GET` method.
 The API also supports CSV export for single and collection endpoints. Furthermore, it supports 
 compressed JSON and CSV for the collection endpoint.
 
