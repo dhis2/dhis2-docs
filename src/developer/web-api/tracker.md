@@ -172,21 +172,21 @@ of the relationship must conform to are based on the `Relationship Type` of the 
 
 > **Note**
 >
->`Relationship item` represents a link to an object. Since a `relationship` can be between any
->tracker object like `tracked entity`, `enrollment`, and `event`, the value depends on the
->`relationship type`. For example, if the `relationship type` connects from an `event` to a `tracked
->entity`, the format is strict:
+> `Relationship item` represents a link to an object. Since a `relationship` can be between any
+> tracker object like `tracked entity`, `enrollment`, and `event`, the value depends on the
+> `relationship type`. For example, if a `relationship type` connects from an `event` to a `tracked
+> entity`, the format is strict:
 
->```json
->{
+> ```json
+> {
 >   "from": {
 >     "event": { "event": "ABCDEF12345" }
 >   },
 >   "to": {
 >     "trackedEntity": { "trackedEntity": "FEDCBA12345" }
 >   }
->}
->```
+> }
+> ```
 
 ### Attributes
 
@@ -212,7 +212,7 @@ both a `tracked entity` and an `enrollment`.
 >
 > In the context of tracker objects, we refer to `Tracked Entity Attributes` and `Tracked Entity
 > Attribute Values` as "attributes". However, attributes are also their own thing, related to
-> metadata. Therefore it's vital to separate Tracker attributes and metadata attributes. In the
+> metadata. Therefore, it's vital to separate Tracker attributes and metadata attributes. In the
 > tracker API, it is possible to reference the metadata attributes when specifying `idScheme` (See
 > request parameters for more information).
 
@@ -640,12 +640,14 @@ section](#webapi_nti_import_summary).
 
 ### CSV import
 
-The API also allows imports based on a CSV definition. You can make a `POST` request with the body as the CSV input file. The request's `Content-Type` must be set to ***application/csv*** or ***text/csv***.
+To import events using CSV make a `POST` request with CSV body file and the `Content-Type` set to 
+***application/csv*** or ***text/csv***.
 
 #### Events
 
-Every row of the CSV payload represents an event and a data value. So, for events with multiple data values, the CSV file will
-have `x` rows per event, where `x` is the number of data values in that event. Other fields listed as ***relationships*** and ***notes*** are not supported.
+Every row of the CSV payload represents an event and a data value. So, for events with multiple 
+data values, the CSV file will have `x` rows per event, where `x` is the number of data values 
+in that event.
 
 ##### ***CSV PAYLOAD*** example
 
@@ -1437,11 +1439,17 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 
 > **NOTE**
 >
-> - All these endpoints default to a `JSON` response content. `CSV` is only supported by tracked entities and events. 
-> - You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv*** to the request. 
-> - Compression support is also available in zip and gzip formats for some endpoints. 
-> You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV or ***application/json+gzip*** for JSON.
-> You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or ***application/json+zip*** for JSON.
+> - All tracker export endpoints default to a `JSON` response content. `CSV` is only supported 
+>   by tracked entities and events.
+> - You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv*** 
+>   to the request. 
+> - You can download in zip and gzip formats:
+>   - CSV for Tracked entities 
+>   - JSON and CSV for Events
+> - You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV 
+> or ***application/json+gzip*** for JSON.
+> You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV 
+> or ***application/json+zip*** for JSON.
 
 ### Common request parameters
 
@@ -1500,14 +1508,14 @@ Two endpoints are dedicated to tracked entities:
 - `GET /api/tracker/trackedEntities/{id}`
   - retrieves a tracked entity given the provided id
 
-#### Response content types
-
 If not otherwise specified, JSON is the default response for the `GET` method. 
-The API also supports CSV export for single and collection endpoints. Furthermore, compressed CSV types is an option for the collection endpoint.
+The API also supports CSV export for single and collection endpoints. Furthermore, compressed 
+CSV types is an option for the collection endpoint.
 
-###### CSV
+#### CSV
 
-In the case of CSV, the `fields` request parameter has no effect, and the response will always contain the following fields:
+In the case of CSV, the `fields` request parameter has no effect, and the response will always 
+contain the following fields:
 
   - trackedEntity (UID)
   - trackedEntityType (UID)
@@ -1519,7 +1527,8 @@ In the case of CSV, the `fields` request parameter has no effect, and the respon
   - inactive (boolean)
   - deleted (boolean)
   - potentialDuplicate (boolean)
-  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. 
+    You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
   - attribute (UID)
@@ -1536,19 +1545,17 @@ See [Tracked Entities](#tracked-entities) and [Attributes](#attributes) for more
 
 #### GZIP
 
-The response is a default `trackedEntities.csv.gz` file containing the `trackedEntities.csv` file.
+The response is `trackedEntities.csv.gz` file containing the `trackedEntities.csv` file.
 
 #### ZIP
 
-The response is a default `trackedEntities.csv.zip` file containing the `trackedEntities.csv` file.
+The response is `trackedEntities.csv.zip` file containing the `trackedEntities.csv` file.
 
 #### Tracked Entities Collection endpoint `GET /api/tracker/trackedEntities`
 
 The purpose of this endpoint is to retrieve tracked entities matching client-provided criteria.
 
 The endpoint returns a list of tracked entities that match the request parameters.
-
-##### Request syntax
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
@@ -1668,10 +1675,8 @@ A JSON response can look like the following:
 {
   "pager": {
     "page": 1,
-    "pageSize": 50
+    "pageSize": 1
   },
-  "page": 1,
-  "pageSize": 50,
   "trackedEntities": [
     {
       "trackedEntity": "F8yKM85NbxW",
@@ -1720,47 +1725,6 @@ A JSON response can look like the following:
           "value": "Johnson"
         }
       ]
-    },
-    {
-      "trackedEntity": "WWwwbGoAdw9",
-      "trackedEntityType": "Zy2SEgA61ys",
-      "createdAt": "2019-08-21T13:25:34.059",
-      "createdAtClient": "2019-03-19T01:12:17.310",
-      "updatedAt": "2019-08-21T13:31:30.790",
-      "updatedAtClient": "2019-03-19T01:12:17.310",
-      "orgUnit": "DiszpKrYNg8",
-      "inactive": false,
-      "deleted": false,
-      "potentialDuplicate": false,
-      "attributes": [
-        {
-          "attribute": "TfdH5KvFmMy",
-          "displayName": "First Name",
-          "createdAt": "2019-08-21T13:25:34.258",
-          "updatedAt": "2019-08-21T13:25:34.258",
-          "storedBy": "belen_test",
-          "valueType": "TEXT",
-          "value": "Helen"
-        },
-        {
-          "attribute": "vTKipVM0GsX",
-          "displayName": "GPS attribute",
-          "createdAt": "2019-08-21T13:25:34.233",
-          "updatedAt": "2019-08-21T13:25:34.233",
-          "storedBy": "belen_test",
-          "valueType": "COORDINATE",
-          "value": "[41.45946,2.04361]"
-        },
-        {
-          "attribute": "aW66s2QSosT",
-          "displayName": "Last Name",
-          "createdAt": "2019-08-21T13:25:34.145",
-          "updatedAt": "2019-08-21T13:25:34.145",
-          "storedBy": "belen_test",
-          "valueType": "TEXT",
-          "value": "Rupel"
-        }
-      ]
     }
   ]
 }
@@ -1775,10 +1739,6 @@ trackedEntity,trackedEntityType,createdAt,createdAtClient,updatedAt,updatedAtCli
 F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.477Z,2019-08-21T11:25:38.477Z,B6TnnFMgmCk,"Age (years)",30,INTEGER_ZERO_OR_POSITIVE
 F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.066Z,2019-08-21T11:25:38.067Z,TfdH5KvFmMy,"First Name",Sarah,TEXT
 F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.388Z,2019-08-21T11:25:38.388Z,aW66s2QSosT,"Last Name",Johnson,TEXT
-WWwwbGoAdw9,Zy2SEgA61ys,2019-08-21T11:25:34.059Z,2019-03-19T00:12:17.310Z,2019-08-21T11:31:30.790Z,2019-03-19T00:12:17.310Z,DiszpKrYNg8,false,false,false,,,,,,,2019-08-21T11:25:34.404Z,2019-08-21T11:25:34.404Z,h5FuguPFF2j,"Local Case ID",gft,TEXT
-WWwwbGoAdw9,Zy2SEgA61ys,2019-08-21T11:25:34.059Z,2019-03-19T00:12:17.310Z,2019-08-21T11:31:30.790Z,2019-03-19T00:12:17.310Z,DiszpKrYNg8,false,false,false,,,,,,,2019-08-21T11:25:34.258Z,2019-08-21T11:25:34.258Z,TfdH5KvFmMy,"First Name",Helen,TEXT
-WWwwbGoAdw9,Zy2SEgA61ys,2019-08-21T11:25:34.059Z,2019-03-19T00:12:17.310Z,2019-08-21T11:31:30.790Z,2019-03-19T00:12:17.310Z,DiszpKrYNg8,false,false,false,,,,,,,2019-08-21T11:25:34.233Z,2019-08-21T11:25:34.233Z,vTKipVM0GsX,"GPS attribute","[41.45946,2.04361]",COORDINATE
-WWwwbGoAdw9,Zy2SEgA61ys,2019-08-21T11:25:34.059Z,2019-03-19T00:12:17.310Z,2019-08-21T11:31:30.790Z,2019-03-19T00:12:17.310Z,DiszpKrYNg8,false,false,false,,,,,,,2019-08-21T11:25:34.145Z,2019-08-21T11:25:34.145Z,aW66s2QSosT,"Last Name",Rupel,TEXT
 ```
 
 #### Tracked Entities single object endpoint `GET /api/tracker/trackedEntities/{uid}`
@@ -1949,7 +1909,8 @@ An example of a json response:
 
 ###### CSV
 
-The response will be the same as the collection endpoint but referring to a single tracked entity, although it might have multiple rows for each attribute.
+The response will be the same as the collection endpoint but referring to a single tracked entity, 
+although it might have multiple rows for each attribute.
 
 ### Enrollments (`GET /api/tracker/enrollments`)
 
@@ -2104,14 +2065,14 @@ Two endpoints are dedicated to events:
 - `GET /api/tracker/events/{id}`
     - retrieves an event given the provided id
 
-#### Response content types
-
 If not otherwise specified, JSON is the default response for the `GET` method. 
-The API also supports CSV export for single and collection endpoints. Furthermore, it supports compressed JSON and CSV for the collection endpoint.
+The API also supports CSV export for single and collection endpoints. Furthermore, it supports 
+compressed JSON and CSV for the collection endpoint.
 
-##### Events CSV
+#### Events CSV
 
-In the case of CSV, the `fields` request parameter has no effect, and the response will always contain the following fields:
+In the case of CSV, the `fields` request parameter has no effect, and the response will always 
+contain the following fields:
 
   - event (UID)
   - status (String)
@@ -2121,7 +2082,8 @@ In the case of CSV, the `fields` request parameter has no effect, and the respon
   - orgUnit (UID)
   - occurredAt (DateTime)
   - scheduledAt (DateTime)
-  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. 
+    You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
   - followUp (boolean)
@@ -2148,11 +2110,13 @@ See [Events](#events) and [Data Values](#data-values) for more field description
 
 #### Events GZIP
 
-The response is a default `events.json.gz` or `events.csv.gzip` file containing the `events.json` or `events.csv` file.
+The response is `events.json.gz` or `events.csv.gzip` file containing the `events.json` 
+or `events.csv` file.
 
 #### Events ZIP
 
-The response is a default `events.json.gz` or `events.json.zip` file containing the `events.json` or `events.csv` file.
+The response is `events.json.gz` or `events.json.zip` file containing the `events.json` 
+or `events.csv` file.
 
 #### Events Collection endpoint `GET /api/tracker/events`
 
@@ -2259,10 +2223,8 @@ The JSON response can look like the following:
 {
   "pager": {
     "page": 1,
-    "pageSize": 50
+    "pageSize": 1
   },
-  "page": 1,
-  "pageSize": 50,
   "events": [
     {
       "event": "A7rzcnZTe2T",
@@ -2315,58 +2277,6 @@ The JSON response can look like the following:
       ],
       "notes": [],
       "followup": false
-    },
-    {
-      "event": "Fa6Kw1CuXZa",
-      "status": "ACTIVE",
-      "program": "eBAyeGv0exc",
-      "programStage": "Zj7UnCAulEk",
-      "enrollment": "RiLEKhWHlxZ",
-      "orgUnit": "DwpbWkiqjMy",
-      "occurredAt": "2023-12-10T00:00:00.000",
-      "scheduledAt": "2023-12-10T00:00:00.000",
-      "followUp": false,
-      "deleted": false,
-      "createdAt": "2017-09-08T21:40:22.000",
-      "createdAtClient": "2016-09-08T21:40:22.000",
-      "updatedAt": "2017-09-08T21:40:22.000",
-      "attributeOptionCombo": "HllvX50cXC0",
-      "attributeCategoryOptions": "xYerKDKCefk",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -11.488254375430568,
-          7.535199993962422
-        ]
-      },
-      "dataValues": [
-        {
-          "createdAt": "2016-12-06T18:22:34.438",
-          "updatedAt": "2016-12-06T18:22:34.438",
-          "storedBy": "bjorn",
-          "providedElsewhere": false,
-          "dataElement": "F3ogKBuviRA",
-          "value": "[-11.4902729694907,7.55312785935402]"
-        },
-        {
-          "createdAt": "2013-12-30T14:23:58.482",
-          "updatedAt": "2013-12-30T14:23:58.482",
-          "storedBy": "lars",
-          "providedElsewhere": false,
-          "dataElement": "fWIAEtYVEGk",
-          "value": "MODDIED"
-        },
-        {
-          "createdAt": "2013-12-30T14:23:58.401",
-          "updatedAt": "2013-12-30T14:23:58.401",
-          "storedBy": "lars",
-          "providedElsewhere": false,
-          "dataElement": "eMyVanycQSC",
-          "value": "2018-12-04"
-        }
-      ],
-      "notes": [],
-      "followup": false
     }
   ]
 }
@@ -2381,9 +2291,6 @@ event,status,program,programStage,enrollment,orgUnit,occurredAt,scheduledAt,geom
 A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,F3ogKBuviRA,"[-11.4880220438585,7.50978830548003]",admin,false,,2016-12-06T17:22:34.438Z,2016-12-06T17:22:34.438Z
 A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,eMyVanycQSC,2018-02-07,admin,false,,2013-12-30T13:23:57.423Z,2013-12-30T13:23:57.423Z
 A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23:00:00Z,2023-02-12T23:00:00Z,"POINT (-11.468912037323042 7.515913998868316)",7.515913998868316,-11.468912037323042,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,msodh3rEMJa,2018-02-13,admin,false,,2013-12-30T13:23:57.467Z,2013-12-30T13:23:57.467Z
-Fa6Kw1CuXZa,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-12-09T23:00:00Z,2023-12-09T23:00:00Z,"POINT (-11.488254375430568 7.535199993962422)",7.535199993962422,-11.488254375430568,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,F3ogKBuviRA,"[-11.4902729694907,7.55312785935402]",admin,false,,2016-12-06T17:22:34.438Z,2016-12-06T17:22:34.438Z
-Fa6Kw1CuXZa,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-12-09T23:00:00Z,2023-12-09T23:00:00Z,"POINT (-11.488254375430568 7.535199993962422)",7.535199993962422,-11.488254375430568,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,fWIAEtYVEGk,MODDIED,admin,false,,2013-12-30T13:23:58.482Z,2013-12-30T13:23:58.482Z
-Fa6Kw1CuXZa,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-12-09T23:00:00Z,2023-12-09T23:00:00Z,"POINT (-11.488254375430568 7.535199993962422)",7.535199993962422,-11.488254375430568,false,false,2017-09-08T19:40:22Z,,2017-09-08T19:40:22Z,,,,,HllvX50cXC0,xYerKDKCefk,,msodh3rEMJa,2018-12-10,admin,false,,2013-12-30T13:23:58.444Z,2013-12-30T13:23:58.444Z
 ```
 
 #### Events single object endpoint `GET /api/tracker/events/{uid}`
@@ -2444,7 +2351,8 @@ The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
 
 ###### CSV
 
-The response will be the same as the collection endpoint but referring to a single event, although it might have multiple rows for each data element value.
+The response will be the same as the collection endpoint but referring to a single event, 
+although it might have multiple rows for each data element value.
 
 ### Relationships (`GET /api/tracker/relationships`)
 
