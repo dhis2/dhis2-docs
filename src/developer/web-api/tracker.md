@@ -1448,16 +1448,16 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 
 > **NOTE**
 >
-> - All tracker export endpoints default to a `JSON` response content. `CSV` is only supported 
+> * All tracker export endpoints default to a `JSON` response content. `CSV` is only supported 
 >   by tracked entities and events.
-> - You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv*** 
+> * You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv*** 
 >   to the request. 
-> - You can download in zip and gzip formats:
->   - CSV for Tracked entities 
->   - JSON and CSV for Events
-> - You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV 
+> * You can download in zip and gzip formats:
+>     *  CSV for Tracked entities 
+>     *  JSON and CSV for Events
+> * You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV 
 > or ***application/json+gzip*** for JSON.
-> - You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or  
+> * You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or  
 > ***application/json+zip*** for JSON.
 
 ### Common request parameters
@@ -1558,7 +1558,7 @@ The response is file `trackedEntities.csv.gz` containing the `trackedEntities.cs
 
 #### ZIP
 
-The response is `trackedEntities.csv.zip` file containing the `trackedEntities.csv` file.
+The response is file `trackedEntities.csv.zip` containing the `trackedEntities.csv` file.
 
 #### Tracked Entities Collection endpoint `GET /api/tracker/trackedEntities`
 
@@ -2119,12 +2119,12 @@ See [Events](#events) and [Data Values](#data-values) for more field description
 
 #### Events GZIP
 
-The response is `events.json.gz` or `events.csv.gzip` file containing the `events.json` 
+The response is file `events.json.gz` or `events.csv.gzip` containing the `events.json` 
 or `events.csv` file.
 
 #### Events ZIP
 
-The response is `events.json.gz` or `events.json.zip` file containing the `events.json` 
+The response is file`events.json.gz` or `events.json.zip` containing the `events.json` 
 or `events.csv` file.
 
 #### Events Collection endpoint `GET /api/tracker/events`
