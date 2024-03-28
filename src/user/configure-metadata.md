@@ -4171,6 +4171,74 @@ sampled. For example:
 
 ![](resources/images/maintenance/predictor_sample_skip_test.png){.center width=66% }
 
+### Predictors and category option combinations (disaggregations)
+
+The category option combination (disaggregation) for predictor output data
+is chosen in one of three ways:
+
+1. Default category option combination.
+
+   If the predictor's output data element has no disaggregations (category combination "None",
+also known as the default category combination), then all predictor output data will be made in
+the default category option combination. In this case, predictor output data is not disaggregated.
+
+2. Fixed category option combination
+
+   If the predictor's output data element has a category combination other than "None", you can
+choose a fixed disaggregation for the predictor "Output category option combo". If you do so,
+all output from this predictor will have this category option combination.
+
+   For example, if the output data element has a category combination of "Sex and Age", you can
+decide that all predictor output will go to a category option combination such as "Female under 5",
+"Male 5 - 10", or any other.
+
+3. Use the input category option combo (available in v40.1 and following)
+
+   If the predictor's output data element has a category combination other than "None", you can choose
+"Predict according to input category option combo" as the value for "Output category option combo".
+If you do so, a different prediction is made for each category option combo in the output data element's
+category combination (that is, one prediction for "Female under 5", a second for "Male under 5",
+a third for "Female 5 - 10", and so on).
+
+   (In v40.1, this feature is enabled by selecting the choice "\<no value\>" for "Output category option combo".)
+
+    > **Tip**
+    >
+    > In some installations, the options in a category may have changed over time.
+    For example, a category "Age" may have had three options "1-5", "6-10", and "over 10",
+    but then was changed to only have two options "10 and under" and "over 10".
+    Historical data may have values with any of these options.
+    To use a predictor with such data, you can define another category
+    such as "Reporting Age" with all the options ever used, such as "1-5", "6-10",
+    "10 and under", and "over 10". Use this category in the category combination
+    for the predictor's output data element. This means that all the input category
+    options will be reflected in the output.
+    >
+    > If you then want a single report for the output data that covers
+    all the disaggregations, you can use category option groups
+    in a category option group set. For example use a category option group
+    "10 and under" that contains category options "1-5", "6-10", and "10 and under".
+
+### Predictors and attribute option combinations
+
+If the input data to a prediction has attribute option combinations, a different prediction 
+will be made for each attribute option combination where there is data.
+
+For example, you could use attribute option combinations to represent different projects
+on your system. The predictor will generate a value with the attribute option combination
+for Project A when it finds input data for Project A; it will generate a value with the 
+attribute option combination for Project B when it finds input data for Project B; and so on.
+
+For any input data without attribute option combinations (in other words, with the
+default attribute option combination), predictions are generated using the default
+attribute option combination. If you don't use attribute option combinations in the data,
+they will not be used in predictor output data.
+
+If you use attribute option combinations and also "Predict according to input category option combo",
+there will be a separate prediction for each combination of disaggregation and attribute option combination.
+For example, there could be a prediction for Project A data for "Female under 5", a prediction for 
+Project A data for "Male under 5", a prediction for Project B data for "Female under 5", and so on.
+
 ### Create or edit a predictor { #create_predictor } 
 
 1.  Open the **Maintenance** app and click **Other** \> **Predictor**.
@@ -4195,8 +4263,9 @@ sampled. For example:
     replaced with zeros.)
 
 7.  (Optional) Select an **Output category option combo**. This dropdown will only show
-    if the selected data element has a non-default category combination.
-    If so, you can select which category option combo (disaggregation) you would like to output to.
+    if the selected data element has a category combination other than "None".
+    If so, you can select which disaggregation category option combo you would like to output to,
+    or you can select "Predict according to input category option combo" (see the discussion above).
 
 8.  Select a **Period type**.
 
@@ -4208,6 +4277,7 @@ sampled. For example:
     organisation unit.
 
 10. **Organisation units providing data** controls where the input values comes from for **aggregate** data. If "at selected levels only", only organisation units at the selected levels are included. If "At selected levels and all levels below" is selected, organisation units at the selected level(s) and all organisation units below are also included.
+
 11. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
 
     1.  Type a **Description** of the generator expression.
