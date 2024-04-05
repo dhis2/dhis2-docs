@@ -604,7 +604,7 @@ As an example this location could be:
 
     /home/dhis/config/dhis-google-auth.json
 
-### Set up the Google Earth Engine API key
+### Send an email to set up the Google Earth Engine API key
 
 If you only intend to using the key for the Google Earth Engine map layers,
 you can simply send an email. See the [Google Earth Engine API key documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html).
