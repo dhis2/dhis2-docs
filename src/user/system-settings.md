@@ -62,8 +62,8 @@ Table: Server settings
 | **Number of database server CPUs** | Sets the number of CPU cores of your database server.<br> <br>This allows the system to perform optimally when the database is hosted on a different server than the application server, since analytics in DHIS2 scales linearly with the number of available cores. |
 | **System notifications email address** | Defines the email address which will receive system notifications.<br> <br>Notifications about failures in processes such as analytics table generation will be sent here. This is useful for application monitoring. |
 | **Google Analytics (Universal Analytics) key** | Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.<br> <br>You can read more about Google Analytics at [google.com/analytics](https://google.com/analytics). |
-| **Google Maps API key** | Defines the API key for the Google Maps API. This is used to display maps within DHIS2. |
-| **Bing Maps API key** | Defines the API key for the Bing Maps API. This is used to display maps within DHIS2. |
+| **Google Maps API key** | Defines the API key for the Google Maps API. Use this key to view Google map layers in DHIS2. Note that there is a different key setup for enabling Google Earth Engine layers in the DHIS2 Maps app. See [documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html). |
+| **Bing Maps API key** | Defines the API key for the Bing Maps API. Add this key to enable use of Bing basemaps in the DHIS2 Maps app. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key) for information on setting up the key. |
 
 Table: Limit settings
 

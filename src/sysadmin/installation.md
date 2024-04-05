@@ -580,9 +580,12 @@ implementation.
 ## Google service account configuration { #install_google_service_account_configuration } 
 
 DHIS2 can connect to various Google service APIs. For instance, the
-DHIS2 GIS component can utilize the Google Earth Engine API to load map
-layers. In order to provide API access tokens you must set up a Google
-service account and create a private key:
+DHIS2 Maps app can utilize the Google Earth Engine API to load Earth Engine map
+layers. There are 2 ways to obtain the Google API key.
+
+### Set it up yourself
+
+Set up a Google service account and create a private key:
 
   - Create a Google service account. Please consult the [Google identify
     platform](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#overview)
@@ -600,6 +603,15 @@ the `DHIS2_HOME` directory (the same location as the `dhis.conf` file).
 As an example this location could be:
 
     /home/dhis/config/dhis-google-auth.json
+
+### Send an email to set up the Google Earth Engine API key
+
+If you only intend to use the key for the Google Earth Engine map layers,
+you can simply send an email. See the [Google Earth Engine API key documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html).
+
+## Bing Maps API key { #install_bing_maps_api_key }
+
+To enable use of Bing Maps basemap layers, you need to set up the Bing Maps API key. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key) for information on setting up the key.
 
 ## OpenID Connect (OIDC) configuration { #install_oidc_configuration } 
 
