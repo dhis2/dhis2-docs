@@ -606,7 +606,7 @@ As an example this location could be:
 
 ### Send an email to set up the Google Earth Engine API key
 
-If you only intend to using the key for the Google Earth Engine map layers,
+If you only intend to use the key for the Google Earth Engine map layers,
 you can simply send an email. See the [Google Earth Engine API key documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html).
 
 ## Bing Maps API key { #install_bing_maps_api_key }
