@@ -1469,6 +1469,21 @@ You can control in which order sections are displayed in a section form.
 
 6.  Click **Close**.
 
+#### Form Configuration options
+
+In version 41, we have add extra form configuration options that changes how a section form is displayed in the new **Data Entry App (beta)**. These options allow users to apply functionality that  was not possible before without custom forms. We will be adding more options in the future releases.
+
+![](resources/images/datasets/section_edit_form_configuration.png)
+
+The options available in v41 are:
+
+##### Transpose (pivot) functionality
+Users are able to choose to transpose (pivot) a form when displayed in the new Data Entry (beta) app. They are able to either fully transpose the form, i.e. move categories to be displayed as rows and data elements as columns, or move a certain category to be displayed as rows. The default display mode is for data elements to be displayed as rows and categories as columns.
+
+##### Content before and after a section
+Users are able to display custom text before, or after a section. This is helpful for adding help text for example. For security reasons, only basic styling and HTML links are allowed, specifically these tags: `a` (for adding a link), `u` for underlining a text, `b`, `strong` or `em` for styling text in bold format.
+
+
 ### Manage custom forms { #manage_customform } 
 
 #### Create a custom form
