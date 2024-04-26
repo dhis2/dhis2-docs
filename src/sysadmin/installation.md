@@ -1927,6 +1927,18 @@ analytics.connection.password = xxxx
 # Use unlogged analytics tables
 analytics.table.unlogged = on
 
+# Analytics database connection URL
+analytics.connection.url = jdbc:postgresql:analytics
+
+# Analytics database username
+analytics.connection.username = analytics
+
+# Analytics database password
+analytics.connection.password = xxxx
+
+# Use unlogged analytics tables
+analytics.table.unlogged = on
+
 # Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
 analytics.table.unlogged = on
 
