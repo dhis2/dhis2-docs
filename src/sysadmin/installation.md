@@ -1741,7 +1741,7 @@ connection.password = xxxx
 connection.pool.max_size = 40
 
 # ----------------------------------------------------------------------
-# Database connection for PostgreSQL [Optional]
+# Database connection pool [Optional]
 # ----------------------------------------------------------------------
 
 # Minimum number of Connections a pool will maintain at any given time (default: 5).
@@ -1774,16 +1774,8 @@ connection.pool.preferred.test.query = select 1
 #Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads = 3
 
-# Database datasource pool type. Supported pool types are: 
-#
-# * c3p0 (default): For information see https://www.mchange.com/projects/c3p0/
-# 
-# * hikari: For information see https://github.com/brettwooldridge/HikariCP
-#
-# * unpooled: Some implementations might want to have more control over the pooling and database cluster architecture 
-# (e.g., using PgBouncer as pool manager behind HAProxy for load balancing). In these cases, the internal pool is un-necessary 
-# and gets in the way.
-db.pool.type=c3p0
+# Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
+db.pool.type = c3p0
 
 # ----------------------------------------------------------------------
 # Server [Mandatory]
@@ -1817,10 +1809,7 @@ system.sql_view_write_enabled = off
 # Disable server-side program rule execution, can be 'on', 'off'
 system.program_rule.server_execution = on
 
-# Remote servers which the server is allowed to call
-# Accepts comma-separated values
-# Servers should end with '/' for enhanced security
-# Default is empty
+# Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
 system.remote_servers_allowed = https://server1.org/,https://server2.org/
 
 # ----------------------------------------------------------------------
@@ -1901,6 +1890,25 @@ monitoring.uptime.enabled = on
 monitoring.cpu.enabled = on
 
 # ----------------------------------------------------------------------
+# Redis
+# ----------------------------------------------------------------------
+
+# Redis enabled
+redis.enabled = true
+
+# Redis host name
+redis.host = localhost
+
+# Redis port
+redis.port = 6379
+
+# Redis password
+redis.password = xxxx
+
+# Use SSL for connections to Redis, can be 'on', 'off' (default)
+redis.use.ssl = off
+
+# ----------------------------------------------------------------------
 # Analytics [Optional]
 # ----------------------------------------------------------------------
 
@@ -1919,8 +1927,19 @@ analytics.connection.password = xxxx
 # Use unlogged analytics tables
 analytics.table.unlogged = on
 
-# Analytics unlogged tables. Accepts on/off. It's `on` by default. If enabled, this will boost the analytics table export process significantly.
-# But this comes with a cost: "unlogged" tables cannot be replicated. It means that clustering won't be possible. Also, analytics tables will be automatically truncated if PostgreSQL is suddenly reset (abrupt reset/crash). If PostgreSQL is reset gracefully, it won't impact any table. In this case, the analytics tables will remain in place accordingly. If you cannot afford the costs mentioned above, you should disable it (set to `off`).
+# Analytics database connection URL
+analytics.connection.url = jdbc:postgresql:analytics
+
+# Analytics database username
+analytics.connection.username = analytics
+
+# Analytics database password
+analytics.connection.password = xxxx
+
+# Use unlogged analytics tables
+analytics.table.unlogged = on
+
+# Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
 analytics.table.unlogged = on
 
 # ----------------------------------------------------------------------
@@ -1944,7 +1963,7 @@ system.monitoring.password = xxxx
 system.update_notifications_enabled = on
 
 # ----------------------------------------------------------------------
-# Logging
+# Logging [Optional]
 # ----------------------------------------------------------------------
 
 # Max size for log files, default is 100MB
@@ -1952,6 +1971,16 @@ logging.file.max_size = 200MB
 
 # Max number of rolling log archive files, default is 0
 logging.file.max_archives = 1
+
+# ----------------------------------------------------------------------
+# Log levels [Optional]
+# ----------------------------------------------------------------------
+
+# DHIS 2 log level (level can be TRACE, DEBUG, INFO, WARN, ERROR)
+logging.level.org.hisp.dhis = INFO
+
+# Spring log level (refers to Java class package names)
+logging.level.org.springframework = INFO
 
 # ----------------------------------------------------------------------
 # App Hub [Optional]
@@ -1967,7 +1996,7 @@ apphub.api.url = https://apps.dhis2.org/api
 # Sessions [Optional]
 # ----------------------------------------------------------------------
 
-# Number of possible concurrent sessions across different computers/clients per user
+# Number of possible concurrent sessions across different clients per user
 max.sessions.per_user = 10
 ```
 
