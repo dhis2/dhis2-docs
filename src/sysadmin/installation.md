@@ -1745,35 +1745,34 @@ connection.pool.max_size = 40
 # ----------------------------------------------------------------------
 
 # Minimum number of Connections a pool will maintain at any given time (default: 5).
-connection.pool.min_size=5
+connection.pool.min_size = 5
 
-# Initial size of connection pool (default : 5)
-#Number of Connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize
-connection.pool.initial_size=5
+# Number of connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize.
+connection.pool.initial_size = 5
 
-#Determines how many connections at a time will try to acquire when the pool is exhausted.
-connection.pool.acquire_incr=5
+# Determines how many connections at a time will try to acquire when the pool is exhausted.
+connection.pool.acquire_incr = 5
 
-#Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. (default: 7200)
-connection.pool.max_idle_time=7200
+# Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. (default: 7200)
+connection.pool.max_idle_time = 7200
 
-#Number of seconds that Connections in excess of minPoolSize should be permitted to remain idle in the pool before being culled (default: 0)
-connection.pool.max_idle_time_excess_con=0
+# Number of seconds that connections in excess of minPoolSize is permitted to remain idle in the pool before being culled (default: 0)
+connection.pool.max_idle_time_excess_con = 0
 
-#If this is a number greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
-connection.pool.idle.con.test.period=0
+# If greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
+connection.pool.idle.con.test.period = 0
 
-#If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
-connection.pool.test.on.checkout=false
+# If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
+connection.pool.test.on.checkout = false
 
-#If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
-connection.pool.test.on.checkin=on
+# If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
+connection.pool.test.on.checkin = on
 
-#Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
-connection.pool.preferred.test.query=select 1
+# Defines the query that will be executed for all connection tests
+connection.pool.preferred.test.query = select 1
 
 #Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
-connection.pool.num.helper.threads=3
+connection.pool.num.helper.threads = 3
 
 # Database datasource pool type. Supported pool types are: 
 #
@@ -1799,6 +1798,9 @@ server.https = off
 # ----------------------------------------------------------------------
 # System [Optional]
 # ----------------------------------------------------------------------
+
+# System identifier
+system.id = hmis1.country.org
 
 # System mode for database read operations only, can be 'off', 'on'
 system.read_only_mode = off
@@ -1902,8 +1904,20 @@ monitoring.cpu.enabled = on
 # Analytics [Optional]
 # ----------------------------------------------------------------------
 
-# Analytics server-side cache expiration in seconds
-analytics.cache.expiration = 3600
+# Analytics database JDBC driver class
+analytics.connection.driver_class = org.postgresql.Driver
+
+# Analytics database connection URL
+analytics.connection.url = jdbc:postgresql:analytics
+
+# Analytics database username
+analytics.connection.username = analytics
+
+# Analytics database password
+analytics.connection.password = xxxx
+
+# Use unlogged analytics tables
+analytics.table.unlogged = on
 
 # Analytics unlogged tables. Accepts on/off. It's `on` by default. If enabled, this will boost the analytics table export process significantly.
 # But this comes with a cost: "unlogged" tables cannot be replicated. It means that clustering won't be possible. Also, analytics tables will be automatically truncated if PostgreSQL is suddenly reset (abrupt reset/crash). If PostgreSQL is reset gracefully, it won't impact any table. In this case, the analytics tables will remain in place accordingly. If you cannot afford the costs mentioned above, you should disable it (set to `off`).
@@ -1917,7 +1931,7 @@ analytics.table.unlogged = on
 system.monitoring.url = 
 
 # System monitoring username
-system.monitoring.username = 
+system.monitoring.username = dhis
 
 # System monitoring password (sensitive)
 system.monitoring.password = xxxx
@@ -1926,20 +1940,34 @@ system.monitoring.password = xxxx
 # System update notifications [Optional]
 # ----------------------------------------------------------------------
 
+# System update notifications, such as new DHIS 2 releases becoming available
 system.update_notifications_enabled = on
+
+# ----------------------------------------------------------------------
+# Logging
+# ----------------------------------------------------------------------
+
+# Max size for log files, default is 100MB
+logging.file.max_size = 200MB
+
+# Max number of rolling log archive files, default is 0
+logging.file.max_archives = 1
 
 # ----------------------------------------------------------------------
 # App Hub [Optional]
 # ----------------------------------------------------------------------
 
 # Base URL to the DHIS2 App Hub service
-apphub.base.url = https://apps.dhis2.org"
+apphub.base.url = https://apps.dhis2.org
+
 # Base API URL to the DHIS2 App Hub service, used for app updates
 apphub.api.url = https://apps.dhis2.org/api
 
+# ----------------------------------------------------------------------
+# Sessions [Optional]
+# ----------------------------------------------------------------------
 
-# Number of possible concurrent sessions on different computers or browsers for each user. If configured to 1, the
-# user will be logged out from any other session when a new session is started.
+# Number of possible concurrent sessions across different computers/clients per user
 max.sessions.per_user = 10
 ```
 
