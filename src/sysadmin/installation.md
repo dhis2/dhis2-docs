@@ -50,11 +50,21 @@ CPU cores so the more you can afford, the better the application will perform.
 
 Later DHIS2 versions require the following software versions to operate.
 
-- An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
+- An operating system for which a Java JDK or JRE version 17 exists. Linux is recommended.
 - Java JDK. OpenJDK is recommended.  
-    - For DHIS 2 version 2.38 and later, JDK 11 is required.
-    - For DHIS 2 version 2.35 and later, JDK 11 is recommended and JDK 8 or later is required. 
-    - For DHIS 2 versions older than 2.35, JDK 8 is required.
+
+
+Table: DHIS2 JDK compatibility
+
+| DHIS2 version | JDK recommended | JDK required |
+|---------------|-----------------|--------------|
+| 2.41          | 17              | 17           |
+| 2.40          | 17              | 11           |
+| 2.38          | 11              | 11           |
+| 2.35          | 11              | 8            |
+| pre 2.35      | 8               | 8            |
+
+
 - PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 14 is recommended.
 - PostGIS database extension version 2.2 or later.
 - Tomcat servlet container version 8.5.50 or later, or other Servlet API
@@ -313,6 +323,12 @@ track_activity_query_size = 8192
 
 Specifies the number of bytes reserved to track the currently executing command for each active session. Useful to view the full query string for monitoring of currently running queries.
 
+```properties
+jit = off
+```
+
+This setting turns the jit optimizer off.  It should be set to off for postgresql versions 12 and upwards.  Many queries, particularly program indicator queries, perform very badly with the default enabled jit setting.  Turning it off can improve response times by up to 100x with resulting significant improvement in dashboard performance.
+
 Restart PostgreSQL by invoking the following command:
 
 ```sh
@@ -321,16 +337,10 @@ sudo systemctl restart postgresql
 
 ### Java installation { #install_java_installation } 
 
-The recommended Java JDK for DHIS 2 is OpenJDK 11 (for version 2.35 and later). You can install it with the following command:
+The recommended Java JDK for DHIS 2 is OpenJDK 17 (for version 2.40 and later). You can install it with the following command:
 
 ```
-sudo apt-get install -y openjdk-11-jdk
-```
-
-If you prefer OpenJDK 8 (for versions older than 2.35) you can install it with this command:
-
-```
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get install -y openjdk-17-jdk
 ```
 
 Verify that your installation is correct by invoking:
@@ -513,46 +523,67 @@ DHIS2 instance at the following URL:
 
 ## File store configuration { #install_file_store_configuration } 
 
-DHIS2 is capable of capturing and storing files. By default, files will
-be stored on the local file system of the server which runs DHIS2 in a *files*
-directory under the `DHIS2_HOME` external directory location. 
+DHIS2 is capable of capturing and storing files. By default, files will be stored on the local file
+system of the server which runs DHIS2 in a *files* directory under the `DHIS2_HOME` external
+directory location. The directory *files* can be changed via the `filestore.container` property in
+the `dhis.conf`.
 
-You can also configure DHIS2 to store files on cloud-based storage
-providers. AWS S3 is the only supported provider currently. To enable
-cloud-based storage you must define the following additional properties
-in your `dhis.conf` file:
+You can also configure DHIS2 to store files on cloud-based storage providers. AWS S3 or S3
+compatible object stores are currently supported.
+
+To enable storage in AWS S3 you must define the following additional properties in your `dhis.conf`
+file:
 
 ```properties
-# File store provider. Currently 'filesystem' and 'aws-s3' are supported.
+# File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
 filestore.provider = 'aws-s3'
 
-# Directory in external directory on local file system and bucket on AWS S3
+# Directory in external directory on local file system or bucket in AWS S3 or S3 API
 filestore.container = files
 
-# The following configuration is applicable to cloud storage only (AWS S3)
+# The following configuration is applicable to cloud storage only (provider 'aws-s3' or 's3')
 
 # Datacenter location. Optional but recommended for performance reasons.
 filestore.location = eu-west-1
 
-# Username / Access key on AWS S3
+# Username / Access key for AWS S3 or S3 APIs
 filestore.identity = xxxx
 
-# Password / Secret key on AWS S3 (sensitive)
+# Password / Secret key for AWS S3 or S3 APIs (sensitive)
 filestore.secret = xxxx
 ```
 
-This configuration is an example reflecting the defaults and should be
-changed to fit your needs. In other words, you can omit it entirely if
-you plan to use the default values. If you want to use an external
-provider the last block of properties needs to be defined, as well as the
-*provider* property is set to a supported provider (currently only
-AWS S3).
+To enable storage in an S3 compatible object store you must define the following additional
+properties in your `dhis.conf` file:
+
+```properties
+# File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
+filestore.provider = 's3'
+
+# Directory in external directory on local file system or bucket in AWS S3
+filestore.container = files
+
+# The following configuration is applicable to cloud storage only (provider 'aws-s3' or 's3')
+
+# URL where the S3 compatible API can be accessed (only for provider 's3')
+filestore.endpoint = http://minio:9000 
+
+# Datacenter location. Optional but recommended for performance reasons.
+filestore.location = eu-west-1
+
+# Username / Access key for AWS S3 or S3 APIs
+filestore.identity = xxxx
+
+# Password / Secret key for AWS S3 or S3 APIs (sensitive)
+filestore.secret = xxxx
+```
 
 > **Note**
 > 
 > If you’ve configured cloud storage in dhis.conf, all files you upload
 > or the files the system generates will use cloud storage.
 
+These configurations are examples and should be changed to fit your needs.
 For a production system the initial setup of the file store should be
 carefully considered as moving files across storage providers while
 keeping the integrity of the database references could be complex. Keep
@@ -563,16 +594,18 @@ implementation.
 
 > **Note**
 > 
-> AWS S3 is the only supported provider but more providers are likely to 
-> be added in the future, such as Google Cloud Store and Azure Blob Storage.
-> Let us know if you have a use case for additional providers.
+> AWS S3 and S3 compatible object stores are the only supported cloud providers but more providers
+> could be added. Let us know if you have a use case for additional providers.
 
 ## Google service account configuration { #install_google_service_account_configuration } 
 
 DHIS2 can connect to various Google service APIs. For instance, the
-DHIS2 GIS component can utilize the Google Earth Engine API to load map
-layers. In order to provide API access tokens you must set up a Google
-service account and create a private key:
+DHIS2 Maps app can utilize the Google Earth Engine API to load Earth Engine map
+layers. There are 2 ways to obtain the Google API key.
+
+### Set it up yourself
+
+Set up a Google service account and create a private key:
 
   - Create a Google service account. Please consult the [Google identify
     platform](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#overview)
@@ -590,6 +623,15 @@ the `DHIS2_HOME` directory (the same location as the `dhis.conf` file).
 As an example this location could be:
 
     /home/dhis/config/dhis-google-auth.json
+
+### Send an email to set up the Google Earth Engine API key
+
+If you only intend to use the key for the Google Earth Engine map layers,
+you can simply send an email. See the [Google Earth Engine API key documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html).
+
+## Bing Maps API key { #install_bing_maps_api_key }
+
+To enable use of Bing Maps basemap layers, you need to set up the Bing Maps API key. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key) for information on setting up the key.
 
 ## OpenID Connect (OIDC) configuration { #install_oidc_configuration } 
 
@@ -866,8 +908,22 @@ oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
 
 > **Note**
 >
-> See link for a separate tutorial for setting up Okta as a generic OIDC provider. 
-> [link](../tutorials/configure-oidc-with-okta.md)
+> [Check out our tutorial for setting up Okta as a generic OIDC provider.](../../../topics/tutorials/configure-oidc-with-okta.md)
+
+### Connecting a single identity provider account to multiple DHIS2 accounts
+
+DHIS2 has the ability to map a single identity provider account to multiple DHIS2 accounts. API calls are available to list the linked accounts and also switch between then.
+
+When this option is selected, the `openid` database field in the `userinfo` table does not need to be unique.  When presented with an `openid` value from the identity provider, DHIS2 will log in the user that most recently logged in.
+
+The following `dhis.conf` section shows how to enable linked accounts.
+
+```properties
+# Enable a single OIDC account to log in as one of several DHIS2 accounts
+linked_accounts.enabled = on
+```
+
+For instructions on how to list linked accounts and switch between them, see [*Switching between user accounts connected to the same identity provider account* in the Users chapter of the developer documentation.](../../../develop/using-the-api/dhis-core-version-master/users.html#switching-between-user-accounts-connected-to-the-same-identity-provider-account)
 
 ## LDAP configuration { #install_ldap_configuration } 
 
@@ -1292,6 +1348,13 @@ system.program_rule.server_execution = on | off
 
 Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
 
+```properties
+system.remote_servers_allowed = https://server1.org/,https://server2.org/
+```
+
+Sets the allowed list of servers to be called in relation to the [metadata pull](../developer/web-api/synchronization.md#webapi_sync_metadata_pull) functionality. It accepts comma-separated values, and it's recommended that each server end with a `/` for enhanced security. Default value is empty.
+
+
 ## Reverse proxy configuration { #install_reverse_proxy_configuration } 
 
 A reverse proxy is a proxy server that acts on behalf of a server. Using
@@ -1711,6 +1774,17 @@ connection.pool.preferred.test.query = select 1
 #Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads = 3
 
+# Database datasource pool type. Supported pool types are: 
+#
+# * c3p0 (default): For information see https://www.mchange.com/projects/c3p0/
+# 
+# * hikari: For information see https://github.com/brettwooldridge/HikariCP
+#
+# * unpooled: Some implementations might want to have more control over the pooling and database cluster architecture 
+# (e.g., using PgBouncer as pool manager behind HAProxy for load balancing). In these cases, the internal pool is un-necessary 
+# and gets in the way.
+db.pool.type=c3p0
+
 # ----------------------------------------------------------------------
 # Server [Mandatory]
 # ----------------------------------------------------------------------
@@ -1743,6 +1817,12 @@ system.sql_view_write_enabled = off
 # Disable server-side program rule execution, can be 'on', 'off'
 system.program_rule.server_execution = on
 
+# Remote servers which the server is allowed to call
+# Accepts comma-separated values
+# Servers should end with '/' for enhanced security
+# Default is empty
+system.remote_servers_allowed = https://server1.org/,https://server2.org/
+
 # ----------------------------------------------------------------------
 # Encryption [Optional]
 # ----------------------------------------------------------------------
@@ -1754,11 +1834,14 @@ encryption.password = xxxx
 # File store [Optional]
 # ----------------------------------------------------------------------
 
-# File store provider, currently 'filesystem' and 'aws-s3' are supported
+# File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
 filestore.provider = filesystem
 
-# Directory / bucket name, folder below DHIS2_HOME on file system, 'bucket' on AWS S3
+# Directory / bucket name, folder below DHIS2_HOME on file system, 'bucket' in AWS S3
 filestore.container = files
+
+# URL where the S3 compatible API can be accessed (only for provider 's3')
+filestore.endpoint = http://minio:9000 
 
 # Datacenter location (not required)
 filestore.location = eu-west-1
@@ -1834,6 +1917,10 @@ analytics.connection.username = analytics
 analytics.connection.password = xxxx
 
 # Use unlogged analytics tables
+analytics.table.unlogged = on
+
+# Analytics unlogged tables. Accepts on/off. It's `on` by default. If enabled, this will boost the analytics table export process significantly.
+# But this comes with a cost: "unlogged" tables cannot be replicated. It means that clustering won't be possible. Also, analytics tables will be automatically truncated if PostgreSQL is suddenly reset (abrupt reset/crash). If PostgreSQL is reset gracefully, it won't impact any table. In this case, the analytics tables will remain in place accordingly. If you cannot afford the costs mentioned above, you should disable it (set to `off`).
 analytics.table.unlogged = on
 
 # ----------------------------------------------------------------------

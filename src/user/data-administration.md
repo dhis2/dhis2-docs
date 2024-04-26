@@ -215,7 +215,7 @@ Report will highlight all the **Program rule variables** not configured with **T
 
 ### ProgramRuleActions with no data Objects.
 
-Report will highlight all the **Program rule actions** not configured with any Data object. Data object can be either **DataElement** of **TrackedEntityAttribute**. There are certain ProgramRuleActions which are responsible for assinging values to either dataElement or trackedEntityAttribute.
+Report will highlight all the **Program rule actions** not configured with any Data object. Data object can be either **DataElement** of **TrackedEntityAttribute**. There are certain ProgramRuleActions which are responsible for assigning values to either dataElement or trackedEntityAttribute.
 
 ### ProgramRuleActions with no notification
 
@@ -360,7 +360,9 @@ re-process.
 
       - **Skip generation of organisation unit ownership data**
 
-3.  Select **Number of last years of data to include**.
+3.  Select **Number of last years of data to include**.  (If 0 is selected,
+then you will run latest or continuous analytics, as defined in
+[Continuous analytics table](scheduling.html#scheduling_continuous_analytics_table).)
 
 4.  Click **Start export**.
 

@@ -148,7 +148,8 @@ order is:
 DHIS2 features a multi-dimensional data model with several fixed and
 dynamic data dimensions. The fixed dimensions are the data element,
 period (time) and organisation unit dimension. You can dynamically add
-dimensions through categories, data element group sets and organisation
+dimensions through categories, category option group sets, 
+organisation unit group sets, data element group sets and organisation
 unit group sets. The table below displays the available data dimensions
 in DHIS2. Each data dimension has a corresponding *dimension
 identifier*, and each dimension can have a set of *dimension items*:
@@ -807,7 +808,7 @@ Table: Query parameters for event query analytics only
 
 | Query parameter | Required | Description | Options |
 |---|---|---|---|
-| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. | DESCENDANTS, CHILDREN, SELECTED |
+| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. More details [here].(https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html#webapi_nti_ou_scope) | DESCENDANTS, CHILDREN, SELECTED |
 | asc | No | Dimensions to be sorted ascending, can reference event date, org unit name and code and any item identifiers. | `ouname` &#124; `programstatus` &#124; `eventstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `eventdate` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | desc | No | Dimensions to be sorted descending, can reference event date, org unit name and code and any item identifiers. | `ouname` &#124; `programstatus` &#124; `eventstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `eventdate` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | coordinatesOnly | No | Whether to only return events which have coordinates. | false &#124; true |
@@ -1714,7 +1715,7 @@ Table: Query parameters for enrollment query endpoint
 | filter | No | Dimension identifier including data elements, attributes, periods, organisation units and organisation unit group sets. Parameter can be repeated any number of times. Item filters can be applied to a dimension on the format <item-id\>:<operator\>:<filter\>. Filter values are case-insensitive. ||
 | programStatus | No | Specify enrollment status of enrollments to include. | ACTIVE &#124; COMPLETED &#124; CANCELLED |
 | relativePeriodDate | string | No | Date identifier e.g: "2016-01-01". Overrides the start date of the relative period |
-| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. | DESCENDANTS, CHILDREN, SELECTED |
+| ouMode | No | The mode of selecting organisation units. Default is DESCENDANTS, meaning all sub units in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organisation units only. More details [here].(https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html#webapi_nti_ou_scope) | DESCENDANTS, CHILDREN, SELECTED |
 | asc | No | Dimensions to be sorted ascending, can reference enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | desc | No | Dimensions to be sorted descending, can reference enrollment date, incident date, org unit name and code. | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; item identifier |
 | coordinatesOnly | No | Whether to only return enrollments which have coordinates. | false &#124; true |
@@ -2432,7 +2433,6 @@ A successful save operation returns an HTTP status code 201. The table
 below shows the supported types of events.
 
 
-
 Table: Supported event types
 
 | Key | Description |
@@ -2476,7 +2476,6 @@ API query that creates a query for a monthly
 
 The usage analytics API lets you retrieve the top favorites used in
 DHIS2, and by user.
-
 
 
 Table: Query parameters for top favorites
@@ -2586,7 +2585,9 @@ The JSON response looks like this:
 ]
 ```
 
-### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics } 
+Note that the number of `activeUsers` indicates the number of distinct users who had any events during the requested time period. The number of `users` represents the total number of users in the system (both enabled and disabled).
+
+### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics }
 
 You can retrieve the number of view for a specific favorite by using the
 *favorites* resource, where *{favorite-id}* should be substituted with
@@ -2816,6 +2817,325 @@ Table: Query parameters
 | svg | Yes | The SVG content |
 | filename | No | The file name for the returned attachment without file extension |
 
+## Analytics outlier detection { #webapi_analytics_outlier_detection } 
+
+The analytics outliert API provides endpoints for investigation of the data quality based on Z Score and Modified Z Score. Both scores are statistical measures that help analyze and interpret data in the context of deviations from the middle value. They are particularly useful in identifying outliers or extreme values in a dataset. The API is implemented as a single analytics endpoint:
+
+- /api/analytics/outlierDetection
+
+### Request  { #webapi_analytics_outlier_detection_request } 
+
+**Query parameters**
+
+| Query parameter    | Description                                                                                                 | Required                                            | Options (default first)                                                                          |                                                                          
+|--------------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| ds                 | Data set                                                                                                    | Yes                                                 | Data set identifier                                                                              |
+| startDate          | Start date for interval tocheck for outliers                                                                | No (relative date period is mandatory in this case) | Date (yyyy-MM-dd)                                                                                |
+| endDate            | End date for interval to check for outliers                                                                 | No (relative date period is mandatory in this case) | Date (yyyy-MM-dd)                                                                                |
+| pe                 | ISO periods and relative periods                                                                            | No (start and end date is mandatory in this case)   | see "date and period format"                                                                     |
+| relativePeriodDate | Date used as basis for relative periods.                                                                    | No                                                  | Date (yyyy-MM-dd)                                                                                |
+| ou                 | Organisation unit, organisation unit level or groups (can be combined)                                      | No                                                  | Organisation unit (level, group) identifier                                                      |
+| headers            | The name of the headers to be returned as part of the response. One or more headers name separated by comma | No                                                  | (NULL), dx, dxname, pename, pe ...                                                               |
+| orderBy            | Sort the records on the value column                                                                        | No                                                  | absdev, zscore, modifiedzscore, median, mean, stddev, medianabsdeviation, lowerbound, upperbound |
+| sortOrder          | Sort the records on the value column in ascending or descending order                                       | No                                                  | ASC, DESC                                                                                        |
+| algorithm          | Algorithm to use for outlier detection                                                                      | No                                                  | Z_SCORE, MODIFIED_Z_SCORE                                                                        |
+| threshold          | Threshold for outlier values Z_SCORE or MODIFIED_Z_SCORE                                                    | No                                                  | Numeric, greater than zero. Default: 3.0                                                         |
+| inputIdScheme      | Identifier scheme to use for metadata items in the query request, can be an identifier, code or attributes. | No                                                  | UID, ID, CODE, NAME                                                                              |
+| maxResults         | Maximum rows (responses)                                                                                    | No                                                  | 500                                                                                              |
+| skipRounding       | Skip rounding of data values, i.e. provide fine precision (scale 10).                                       | No                                                  | false, true                                                                                      |
+
+**Request example**
+    
+    GET api/analytics/outlierDetection?ds=BfMAe6Itzgt&ou=ImspTQPwCqd&startDate=2022-07-26&endDate=2022-10-26&algorithm=Z_SCORE&maxResults=30&orderBy=value&threshold=3.0&sortOrder=asc&outputIdScheme=code
+
+
+### Response { #webapi_analytics_outlier_detection_response } 
+
+Response is delivered in several representation formats. The default format is JSON. The
+available formats and content types are:
+
+  - json (application/json)
+  - xml (application/xml)
+  - xsl (application/vnd.ms-excel)
+  - csv (application/csv)
+  - html (text/html)
+  - html+css (text/html)
+
+**Response example**
+
+```json
+{
+    "headers": [
+        {
+            "name": "dx",
+            "column": "Data",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "dxname",
+            "column": "Data name",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "pe",
+            "column": "Period",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "pename",
+            "column": "Period name",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "ou",
+            "column": "Organisation unit",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "ouname",
+            "column": "Organisation unit name",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "ounamehierarchy",
+            "column": "Organisation unit name hierarchy",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "coc",
+            "column": "Category option combo",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "cocname",
+            "column": "Category option combo name",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "aoc",
+            "column": "Attribute option combo",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "aocname",
+            "column": "Attribute option combo name",
+            "valueType": "TEXT",
+            "type": "java.lang.String",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "value",
+            "column": "Value",
+            "valueType": "NUMBER",
+            "type": "java.lang.Double",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "mean",
+            "column": "Mean",
+            "valueType": "NUMBER",
+            "type": "java.lang.Double",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "stddev",
+            "column": "Standard deviation",
+            "valueType": "NUMBER",
+            "type": "java.lang.Double",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "absdev",
+            "column": "Absolute deviation",
+            "valueType": "NUMBER",
+            "type": "java.lang.Double",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "zscore",
+            "column": "zScore",
+            "valueType": "NUMBER",
+            "type": "java.lang.Double",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "lowerbound",
+            "column": "Lower boundary",
+            "valueType": "NUMBER",
+            "type": "java.lang.Double",
+            "hidden": false,
+            "meta": false
+        },
+        {
+            "name": "upperbound",
+            "column": "Upper boundary",
+            "valueType": "NUMBER",
+            "type": "java.lang.Double",
+            "hidden": false,
+            "meta": false
+        }
+    ],
+    "metaData": {
+        "maxResults": 30,
+        "count": 3,
+        "orderBy": "VALUE",
+        "threshold": 3.0,
+        "algorithm": "Z_SCORE"
+    },
+    "rowContext": {},
+    "width": 18,
+    "rows": [
+        [
+            "DE_22",
+            "Q_Early breastfeeding (within 1 hr after delivery) at BCG",
+            "202209",
+            "September 2022",
+            "OU_204860",
+            "Sandaru CHC",
+            "/Sierra Leone/Kailahun/Penguia/Sandaru CHC",
+            "COC_292",
+            "Fixed, <1y",
+            "default",
+            "default",
+            "105.0",
+            "18.3",
+            "28.7",
+            "86.7",
+            "3.0",
+            "-67.9",
+            "104.4"
+        ],
+        [
+            "DE_359706",
+            "BCG doses given",
+            "202208",
+            "August 2022",
+            "OU_595",
+            "Ngalu CHC",
+            "/Sierra Leone/Bo/Bargbe/Ngalu CHC",
+            "COC_292",
+            "Fixed, <1y",
+            "default",
+            "default",
+            "220.0",
+            "41.6",
+            "57.4",
+            "178.3",
+            "3.1",
+            "-130.7",
+            "213.9"
+        ],
+        [
+            "DE_35",
+            "Yellow Fever doses given",
+            "202209",
+            "September 2022",
+            "OU_1027",
+            "Yemoh Town CHC",
+            "/Sierra Leone/Bo/Kakua/Yemoh Town CHC",
+            "COC_292",
+            "Fixed, <1y",
+            "default",
+            "default",
+            "466.0",
+            "48.1",
+            "114.2",
+            "417.8",
+            "3.6",
+            "-294.6",
+            "391.0"
+        ]
+    ],
+    "headerWidth": 18,
+    "height": 3
+}
+```
+### Statistics in response { #webapi_analytics_outlier_detection_stats_in_response }
+
+| Statistical Measure | Header name | Description | Link |
+|---|---|---|---|
+| Value | value | The data set/ data element numeric value (Penta1 doses given, Measles doses given, etc.) | |
+| Mean | mean |The average value of a set of numbers. Calculated by summing all values and dividing by the count.| https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data |
+| Standard Deviation | stddev | A measure of the amount of variation or dispersion in a set of values. | https://www.statisticshowto.com/probability-and-statistics/standard-deviation/ |
+| Absolute Deviation | absdev | The absolute difference between each data value and the middle value. | https://www.mathsisfun.com/data/mean-absolute-deviation.html |
+| Z Score | zscore | A standardized score that represents how many standard deviations a data value is from the mean. | https://www.statisticshowto.com/probability-and-statistics/z-score/ |
+| Modified Z Score | modifiedzscore | Similar to the Z score but robust to outliers. It uses the median and median absolute deviation. | https://www.statisticshowto.com/modified-z-scores/ |
+| Median Absolute Deviation | medianabsdeviation | A robust measure of the spread of data values, calculated as the median of the absolute deviations from the median. | https://math.stackexchange.com/questions/2232309/median-absolute-deviation-mad-formula |
+| Minimum | lowerbound | The minimum is the smallest value in a dataset. It represents the lowest observed value among all the data values. | |
+| Maximum| upperbound | The maximum is the largest value in a dataset. It represents the highest observed value among all the data values. | |
+
+
+### Error messages { #webapi_analytics_outlier_detection_error_messages } 
+
+**_NOTE:_** *All messages are delivered with http status code 409.*
+
+| Code | Message |
+|---|---|
+| E2200 | At least one data element must be specified. |
+| E2201 | Start date and end date or relative period must be specified. |
+| E2202 | Start date must be before end date. |
+| E2203 | At least one organisation unit must be specified. | 
+| E2204 | Threshold must be a positive number. |
+| E2205 | Max results must be a positive number. |
+| E2206 | Max results exceeds the allowed max limit: *500*. |
+| E2207 | Data start date must be before data end date. |
+| E2208 | Non-numeric data values encountered during outlier value detection. |
+| E2209 | Data start date not allowed. |
+| E2210 | Data end date not allowed. |
+| E2211 | Algorithm min-max values not allowed. |
+| E2212 | Specifying both a start date/end date and a relative period is not allowed. |
+| E2213 | Value of param orderBy is not compatible with algorithm *Z_SCORE*. |
+| E7180 | The analytics outliers data does not exist. Please ensure analytics job was run and did not skip the outliers. |
+| E7181 | Column *dxname* specified in orderBy, is not eligible for orderBy or does not exist. |
+
+**_NOTE:_** *The values in error messages are examples only*
+
+**Error message example**
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "ERROR",
+    "message": "Start date and end date or relative period must be specified",
+    "errorCode": "E2201"
+}
+```
 ## Analytics query execution plan and costs including execution time estimation
 
 The analytics API provides endpoints for investigation of query performance issues. It is implemented as part of all analytics endpoints:
@@ -3112,3 +3432,7 @@ All entry points are secured by authorization. The `F_PERFORM_ANALYTICS_EXPLAIN`
 ## Enrollment analytics explain { #webapi_enrollment_analytics_explain }
 
 	/api/analytics/enrollment/query/{program}/explain
+
+## Outliers analytics explain  { #webapi_analytics_outlier_detection_explain } 
+
+	/api/analytics/outlierDetection/explain

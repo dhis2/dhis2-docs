@@ -578,6 +578,8 @@ for _data elements_ is:
 
     /api/dataElements
 
+> **_NOTE:_**  When updating objects, all existing property values will be overwritten, even if the new value is null. Please use [JSON Patch API](#webapi_partial_updates) in case you want do partial update to an object.
+
 ### Create / update parameters { #webapi_metadata_create_update } 
 
 The following request query parameters are available across all metadata endpoints.
@@ -588,7 +590,6 @@ Table: Available Query Filters
 |---|---|---|---|---|
 | preheatCache | boolean | false | true &#124; false | Turn cache-map preheating on/off. This is on by default, turning this off will make initial load time for importer much shorter (but will make the import itself slower). This is mostly used for cases where you have a small XML/JSON file you want to import, and don't want to wait for cache-map preheating. |
 | importStrategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
-| mergeMode | enum | false | REPLACE, MERGE | Strategy for merging of objects when doing updates. REPLACE will just overwrite the property with the new value provided, MERGE will only set the property if it is not null (only if the property was provided). |
 
 ### Creating and updating objects { #webapi_creating_updating_objects } 
 
@@ -1089,7 +1090,6 @@ Table: Import Parameter
 | preheatMode | REFERENCE, ALL, NONE | Sets the preheater mode, used to signal if preheating should be done for `ALL` (as it was before with *preheatCache=true*) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to `NONE` is not recommended. |
 | importStrategy | CREATE_AND_UPDATE, CREATE, UPDATE, DELETE | Sets import strategy, `CREATE_AND_UPDATE` will try and match on identifier, if it doesn't exist, it will create the object. |
 | atomicMode | ALL, NONE | Sets atomic mode, in the old importer we always did a *best effort* import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the `NONE` mode emulated the old behavior. |
-| ~~mergeMode~~ | ~~REPLACE, MERGE~~ | ~~Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not.~~ (*) |
 | flushMode | AUTO, OBJECT | Sets the flush mode, which controls when to flush the internal cache. It is *strongly* recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues). | 
 | skipSharing | false, true | Skip sharing properties, does not merge sharing when doing updates, and does not add user group access when creating new objects. |
 | skipValidation | false, true | Skip validation for import. `NOT RECOMMENDED`. |
@@ -1098,7 +1098,7 @@ Table: Import Parameter
 | userOverrideMode | NONE, CURRENT, SELECTED | Allows you to override the user property of every object you are importing, the options are NONE (do nothing), CURRENT (use import user), SELECTED (select a specific user using overrideUser=X) |
 | overrideUser | User ID | If userOverrideMode is SELECTED, use this parameter to select the user you want override with. |
 
-> (*) Currently the `mergeMode=MERGE` option of the import service has limitations and doesn't support all objects. It doesn't work with some object types such as Embedded objects, or objects which are saved as JSONB format in database ( sharing, attributeValues, etc...). Fixing those issues are complicated and would just cause new issues. Therefore, this `mergedMode=MERGE` is deprecated and currently is not recommended to use. The update mode should always be mergedMode=REPLACE. We have developed a new [JSON Patch API](#webapi_partial_updates) which can be used as an alternative approach. This feature is introduced in 2.37 release.
+> **NOTE** When updating objects, all property values will be overwritten even if the new values are `null`. Please use [JSON Patch API](#webapi_partial_updates) in case you want do partial update to an object.
 
 
 An example of a metadata payload to be imported looks like this. Note how
@@ -1153,7 +1153,6 @@ ignored:
     "preheatMode": "REFERENCE",
     "importStrategy": "CREATE_AND_UPDATE",
     "atomicMode": "ALL",
-    "mergeMode": "REPLACE",
     "flushMode": "AUTO",
     "skipSharing": false,
     "skipTranslation": false,
@@ -1273,6 +1272,11 @@ A list of all unique keywords can be found at the keywords resource:
 
 ### Custom icon operations { #webapi_icons_custom }
 
+
+A custom icon resource can be downloaded by providing the icon key:
+
+    GET /api/icons/{key}/icon
+        
 Custom icons can be created, modified and deleted.
 To create a custom icon, use the resource below.
 
@@ -1618,6 +1622,244 @@ description of the expression.
   "status": "OK",
   "message": "Valid",
   "description": "Acute Flaccid Paralysis"
+}
+```
+
+### Merge indicators { #webapi_indicator_merge }
+
+The indicator merge endpoint allows you to merge a number of indicators (sources) into a target indicator.
+
+#### Authorisation
+
+The authority `F_INDICATOR_MERGE` is required to perform indicator merges.
+
+#### Request
+
+Merge indicators with a POST request:
+
+```
+POST /api/indicators/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                         |
+|---------------|----------|-------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the indicators to merge (the source indicators)       |
+| target        | Yes      | Identifier of the indicator to merge the sources into (the target indicator)  |
+| deleteSources | No       | Whether to delete the source indicators after the operation. Default is false |
+
+The merge operation will merge the source indicators into the target indicator. One or many source indicators can be specified. Only one target should be specified.
+
+The merge operation will transfer all source indicator metadata associations to the target indicator. 
+The following metadata get updated:
+
+
+| Metadata            | Property                                   | Action taken                                                                |
+|---------------------|--------------------------------------------|-----------------------------------------------------------------------------|
+| IndicatorGroup      | members                                    | Source indicator removed, target indicator added                            |
+| DataSet             | indicators                                 | Source indicator removed, target indicator added                            |
+| DataDimensionalItem | n/a                                        | Any linked data items with sources will be linked with the target           |
+| Section             | indicators                                 | Source indicator removed, target indicator added                            |
+| Configuration       | infrastructuralIndicators (IndicatorGroup) | Source indicator removed, target indicator added                            |
+| Indicator           | numerator / denominator                    | Replace any source reference with the target reference                      |
+| DataEntryForm       | htmlCode                                   | Replace any source reference with the target reference                      |
+| Visualization       | sorting                                    | Replace any source reference with the target reference as Sorting dimension |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                     |
+|------------|-------------------------------------------------|
+| E1540      | At least one source indicator must be specified |
+| E1541      | Target indicator must be specified              |
+| E1542      | Target indicator cannot be a source indicator   |
+| E1543      | Source/Target indicator does not exist: `{uid}` |
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "INDICATOR",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "INDICATOR merge complete"
+        }
+    }
+}
+```
+
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source indicator must be specified",
+                    "errorCode": "E1540",
+                    "args": []
+                },
+                {
+                    "message": "Target indicator does not exist: `abcdefg1221`",
+                    "errorCode": "E1543",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "INDICATOR",
+            "sourcesDeleted": [],
+            "message": "INDICATOR merge has errors"
+        }
+    }
+}
+```
+
+## Indicator Types { #webapi_indicator_types}
+
+### Merge indicator types { #webapi_indicator_type_merge}
+
+The indicator type merge endpoint allows you to merge a number of indicator types into a target indicator type.
+
+#### Authorisation
+
+The authority `F_INDICATOR_TYPE_MERGE` is required to perform indicator type merges.
+
+#### Request
+
+Merge indicator types with a POST request:
+
+```
+POST /api/indicatorTypes/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                                   |
+|---------------|----------|-----------------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the indicator types to merge (the source indicator types).      |
+| target        | Yes      | Identifier of the indicator type to merge the sources into (the target indicator type). |
+| deleteSources | No       | Whether to delete the source indicator types after the operation. Default is false.     |
+
+The merge operation will merge the source indicator types into the target indicator type. One or many source indicator types can be specified. Only one target should be specified.
+
+The merge operation will transfer all of the indicator metadata associations to the source indicator types over to the target indicator type.
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                             |
+|------------|---------------------------------------------------------|
+| E1530      | At least one source indicator type must be specified    |
+| E1531      | Target indicator type must be specified                 |
+| E1532      | Target indicator type cannot be a source indicator type |
+| E1533      | Source/Target indicator type does not exist: `{uid}`    |
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "INDICATOR_TYPE",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "INDICATOR_TYPE merge complete"
+        }
+    }
+}
+```
+
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source indicator type must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target indicator type does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "INDICATOR_TYPE",
+            "sourcesDeleted": [],
+            "message": "INDICATOR_TYPE merge has errors"
+        }
+    }
 }
 ```
 
@@ -2484,11 +2726,19 @@ Table: Collection membership CSV Format
 | 1 | UID | Yes | UID | The UID of the collection to add an object to |
 | 2 | UID | Yes | UID | The UID of the object to add to the collection |
 
+### Category Option Group
+
+| Index | Column | Required | Value (default first) | Description |
+|---|---|---|---|---|
+| 1 | Name | Yes || Name. Max 230 characters. Unique. |
+| 2 | UID | No | UID | Stable identifier. Max 11 chars. Will be generated by system if not specified. |
+| 3 | Code | No || Stable code. Max 50 char. |
+| 4 | Short name | No || Short name. Max 50 characters. |
+| 5 | Data Dimension Type | Yes || Data Dimension Type, can be either DISAGGREGATION or ATTRIBUTE |
+
 ### Other objects { #webapi_csv_other_objects } 
 
-
-
-Table: Data Element Group, Category Option, Category Option Group, Organisation Unit Group CSV Format
+Table: Data Element Group, Category Option, Organisation Unit Group CSV Format
 
 | Index | Column | Required | Value (default first) | Description |
 |---|---|---|---|---|
@@ -3074,6 +3324,29 @@ curl "localhost:8080/api/synchronization/metadataPull" -X POST
   -d "https://dhis2.org/metadata-repo/221/trainingland-org-units/metadata.json"
   -H "Content-Type:text/plain" -u admin:district
 ```
+
+
+> **Note**
+>
+> The supplied URL will be checked against the config property `system.remote_servers_allowed` in the `dhis.conf` file.
+> If the base URL is not one of the configured servers allowed then the operation will not be allowed. See failure example below.  
+> Some examples where the config set is `system.remote_servers_allowed=https://server1.org/,https://server2.org/`
+> - supply `https://server1.org/path/to/resource` -> this will be accepted
+> - supply `https://server2.org/resource/path` -> this will be accepted
+> - supply `https://oldserver.org/resource/path` -> this will be rejected
+>
+Sample failure response
+
+```json
+ {
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "Provided URL is not in the remote servers allowed list",
+  "errorCode": "E1004"
+}
+```
+
 
 ## Reference to created by user
 
