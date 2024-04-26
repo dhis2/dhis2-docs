@@ -46,12 +46,12 @@ taken to ensure that only authorized users have access to actually submit data w
 The following table summarizes how sharing can be used with aggregate data exchanges.
 
 
-|Sharing | Effective permissions                                                             |
-|--------|-----------------------------------------------------------------------------------|
-|"r-------"| Can view metadata of exchange. |
-|"rw------"| Can view and edit metadata of the data exchange. |
-|"rwr-----"| Can view and edit metadata of the data exchange. Can view data which is part of the exchange. |
-|"rwrw----"| Can view and edit metadata of the data exchange. Can view and submit data which is part of the exchange. |
+| Sharing | Effective permissions                                                              |
+| -------- |-----------------------------------------------------------------------------------|
+| "r-------" | Can view metadata of the data exchange. |
+| "-w------" | Can edit metadata of the data exchange. |
+| "--r-----" | Can view data which is part of the exchange. |
+| "---w----" | Can submit data which is part of the exchange. |
 
 ### API
 
