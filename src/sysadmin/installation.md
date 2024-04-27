@@ -1698,21 +1698,13 @@ connection.pool.test.on.checkout = false
 # If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
 connection.pool.test.on.checkin = on
 
-# Defines the query that will be executed for all connection tests
+# Determines the query that will be executed for all connection tests
 connection.pool.preferred.test.query = select 1
 
-#Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
+# Determines the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads = 3
 
-# Database datasource pool type. Supported pool types are: 
-#
-# * c3p0 (default): For information see https://www.mchange.com/projects/c3p0/
-# 
-# * hikari: For information see https://github.com/brettwooldridge/HikariCP
-#
-# * unpooled: Some implementations might want to have more control over the pooling and database cluster architecture 
-# (e.g., using PgBouncer as pool manager behind HAProxy for load balancing). In these cases, the internal pool is un-necessary 
-# and gets in the way.
+# Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
 db.pool.type=c3p0
 
 # ----------------------------------------------------------------------
@@ -1837,11 +1829,7 @@ analytics.connection.username = analytics
 # Analytics database password
 analytics.connection.password = xxxx
 
-# Use unlogged analytics tables
-analytics.table.unlogged = on
-
-# Analytics unlogged tables. Accepts on/off. It's `off` by default. If enabled, this will boost the analytics table export process significantly.
-# But this comes with a cost: "unlogged" tables cannot be replicated. It means that clustering won't be possible. Also, analytics tables will be automatically truncated if PostgreSQL is suddenly reset (abrupt reset/crash). If PostgreSQL is reset gracefully, it won't impact any table. The analytics tables will remain in place accordingly.
+# Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
 analytics.table.unlogged = on
 
 # ----------------------------------------------------------------------
@@ -1865,7 +1853,7 @@ system.monitoring.password = xxxx
 system.update_notifications_enabled = on
 
 # ----------------------------------------------------------------------
-# Logging
+# Logging [Optional]
 # ----------------------------------------------------------------------
 
 # Max size for log files, default is 100MB
