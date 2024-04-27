@@ -1768,10 +1768,10 @@ connection.pool.test.on.checkout = false
 # If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
 connection.pool.test.on.checkin = on
 
-# Defines the query that will be executed for all connection tests
+# Determines the query that will be executed for all connection tests
 connection.pool.preferred.test.query = select 1
 
-#Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
+# Determines the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads = 3
 
 # Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
@@ -1890,7 +1890,7 @@ monitoring.uptime.enabled = on
 monitoring.cpu.enabled = on
 
 # ----------------------------------------------------------------------
-# Redis
+# Redis [Optional]
 # ----------------------------------------------------------------------
 
 # Redis enabled
@@ -1923,21 +1923,6 @@ analytics.connection.username = analytics
 
 # Analytics database password
 analytics.connection.password = xxxx
-
-# Use unlogged analytics tables
-analytics.table.unlogged = on
-
-# Analytics database connection URL
-analytics.connection.url = jdbc:postgresql:analytics
-
-# Analytics database username
-analytics.connection.username = analytics
-
-# Analytics database password
-analytics.connection.password = xxxx
-
-# Use unlogged analytics tables
-analytics.table.unlogged = on
 
 # Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
 analytics.table.unlogged = on
