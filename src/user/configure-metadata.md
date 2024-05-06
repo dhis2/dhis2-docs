@@ -1481,8 +1481,7 @@ The options available in v41 are:
 Users are able to choose to transpose (pivot) a form when displayed in the new Data Entry (beta) app. They are able to either fully transpose the form, i.e. move categories to be displayed as rows and data elements as columns, or move a certain category to be displayed as rows. The default display mode is for data elements to be displayed as rows and categories as columns.
 
 ##### Content before and after a section
-Users are able to display custom text before and/or after a section. This is helpful for adding help text, for example. For security reasons, only basic styling and HTML link elements are allowed, specifically these tags: `a` for adding a link, `u` for underlining a text, and `b`, `strong` or `em` for styling text in bold format.
-
+Users are able to display custom text before and/or after a section. This is helpful for adding help text, for example. For security reasons, only basic styling and HTML link elements are allowed, specifically these tags: `a` for adding a link, `u` for underlining a text, `b`, `strong` for styling text in bold format, or `em` to style it in italic.
 
 ### Manage custom forms { #manage_customform } 
 
