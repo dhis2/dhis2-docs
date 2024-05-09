@@ -139,9 +139,12 @@ The audit system is enabled by default for the following scopes and types.
 
 Scopes (case sensitive):
 
+- `READ`
 - `CREATE`
 - `UPDATE`
 - `DELETE`
+- `SEARCH`
+- `DISABLED`
 
 Types:
 
