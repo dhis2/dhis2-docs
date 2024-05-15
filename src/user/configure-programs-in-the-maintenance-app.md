@@ -874,12 +874,21 @@ inline aggregation types looks like
 Note how the "sum" aggregation operator is used inside the expression
 itself.
 
+#### Adding comments in program indicator expression or filter
+Uniform syntax is supported for both singleline and multiline comments
+
+    d2:hasValue(#{mCXR7u4kNBW.NFkjsNiQ9PH}) /* this is comment */
+    
+    d2:hasValue(#{mCXR7u4kNBW.NFkjsNiQ9PH}) && /* this is 
+    comment */
+    d2:daysBetween(V{enrollment_date},PS_EVENTDATE:mCXR7u4kNBW)
+    
 #### Functions to use in a program indicator expression or filter
 
 The program indicator expression and filter support a range of
 functions. The functions can be applied to data elements and attributes:
 
-
+ 
 
 Table: Functions to use in a program indicator expression or filter
 
