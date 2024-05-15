@@ -53,7 +53,7 @@ Most clients will automatically follow this redirect, sending a follow-up GET re
 
 ### An example of client code which automatically falls back to query aliasing
 
-The following short code snippet (in javascript) takes the target path of an API endpoint and attempts to access it.  If the URI is too long (either over some arbitrary length limit or returning a `414 URI Too Long` error) then a query alias will be created, and used whenever that target is accessed by this client again.  If the query alias has expired it will be automatically recreated.
+The following short code snippet (in typescript) takes the target path of an API endpoint and attempts to access it.  If the URI is too long (either over some arbitrary length limit or returning a `414 URI Too Long` error) then a query alias will be created, and used whenever that target is accessed by this client again.  If the query alias has expired it will be automatically recreated.
 
 Note that this is a very contrived example and **should not be used in a production application**.  In the future, the App Runtime query engine will automatically perform this fallback logic so that the application developer doesn't need to worry about constructing too-long URIs.
 
