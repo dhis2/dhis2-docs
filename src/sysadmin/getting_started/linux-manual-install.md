@@ -102,7 +102,6 @@ sudo apt-get install -y postgresql-16 postgresql-16-postgis-3
 # Ensure postgresql is started and enabled
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
-
 ```
 
 Create a non-privileged database user called *dhis* by invoking:
@@ -190,7 +189,7 @@ connection.password = xxxx
 ### Java installation { #install_java_installation } 
 
 | DHIS2 version | JDK recommended | JDK required |
-|---------------|-----------------|--------------|
+|:--------------|:---------------:|:-------------|
 | 2.41          | 17              | 17           |
 | 2.40          | 17              | 11           |
 | 2.38          | 11              | 11           |
@@ -314,9 +313,11 @@ echo "Tomcat started"
 
 DHIS2 can now be started by invoking:
 
-    sudo -u dhis /home/dhis/tomcat-dhis/bin/startup.sh
+```sh
+sudo -u dhis /home/dhis/tomcat-dhis/bin/startup.sh
+```
 
-> **Important**
+> :bulb: **Important**
 > 
 > The DHIS2 server should never be run as root or other privileged user.
 
