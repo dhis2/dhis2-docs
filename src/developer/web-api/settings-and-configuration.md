@@ -595,4 +595,4 @@ You can fetch the CSS content with a GET-request:
 
     /api/33/files/style
 
-To remove the JavaScript content you can use a DELETE request.
+To remove the CSS content you can use a DELETE request.
