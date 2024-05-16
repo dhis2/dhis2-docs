@@ -527,11 +527,11 @@ DHIS2 web application. This can be particularly useful in certain situations:
   - Including CSS styles which are used in custom data entry forms and
     HTML-based reports.
 
-## Login App customisation { #login_app_customisation }
+## Login App customization { #login_app_customization }
 
-The Settings App allows users to define a variety of elements (text, logo, flag) that can be used to customise the login page of DHIS2. Additionally, it is possible to choose between two preconfigured layouts (the default and a sidebar layout).
+The Settings App allows users to define a variety of elements (text, logo, flag) that can be used to customize the login page of DHIS2. Additionally, it is possible to choose between two preconfigured layouts (the default and a sidebar layout).
 
-If needed, the login app's styling and layout can be further customised by uploading an HTML template (also definable in the settings app). This HTML template replaces certain elements (based on ID); the reserved IDs are listed in the table below. In this way, it is possible to combine custom styling (using css) and custom layout (using HTML) to change the look of the login app. The custom template does not support custom scripts, and script tags will be removed from any uploaded template.
+If needed, the login app's styling and layout can be further customized by uploading an HTML template (also definable in the settings app). This HTML template replaces certain elements (based on ID); the reserved IDs are listed in the table below. In this way, it is possible to combine custom styling (using css) and custom layout (using HTML) to change the look of the login app. The custom template does not support custom scripts, and script tags will be removed from any uploaded template.
 
 To create a custom template, it is recommended to start with one of the existing templates (these are available for download from within the login app at the extension dhis-web-login/#download).
 
@@ -547,7 +547,7 @@ ID | Replaced by |
 | **application-right-footer** | Text for the right-side footer. |
 | **language-select** | Selection to control the language of the login app. |
 
-The appearance of the login dialog can also be modified by defining css variables within the HTML template. The following css variables are available for customisation:
+The appearance of the login dialog can also be modified by defining css variables within the HTML template. The following css variables are available for customization:
 ```
 --form-container-margin-block-start
 --form-container-margin-block-end
@@ -563,36 +563,3 @@ The appearance of the login dialog can also be modified by defining css variable
 --form-title-font-weight
 --form-container-title-color
 ```
-
-### Javascript { #webapi_customization_javascript } 
-
-To insert Javascript from a file called *script.js* you can interact
-with the *files/script* resource with a POST request:
-
-```bash
-curl --data-binary @script.js "localhost/api/33/files/script"
-  -H "Content-Type:application/javascript" -u admin:district
-```
-
-Note that we use the `--data-binary` option to preserve formatting of the
-file content. You can fetch the JavaScript content with a GET request:
-
-    /api/33/files/script
-
-To remove the JavaScript content you can use a DELETE request.
-
-### CSS { #webapi_customization_css } 
-
-To insert CSS from a file called *style.css* you can interact with the
-*files/style* resource with a POST-request:
-
-```bash
-curl --data-binary @style.css "localhost/api/33/files/style"
-  -H "Content-Type:text/css" -u admin:district
-```
-
-You can fetch the CSS content with a GET-request:
-
-    /api/33/files/style
-
-To remove the CSS content you can use a DELETE request.
