@@ -46,8 +46,15 @@ https://172.16.0.1/dhis
 ```
 
 ## Set fully qualified domain name (fqdn)
-Add fully qualified domain name (fqdn). 
-Edit your inventory hosts file and add fqdn variable, 
+
+> **Important**
+> 
+> Before setting fqdn, its has to be mapped to your servers public ip address
+> for letsencrypt to work. Otherwise, you can use your own customssl
+> certificate. 
+
+Edit your inventory hosts file and add fqdn variable, use your favourited
+editor, common are `vim` or `nano` 
      ```
      vim inventory/hosts 
      fqdn=dhis.example.com
@@ -68,17 +75,16 @@ Add another line under `[instances]` section. e.g
 ```
 hmis    ansible_host=172.19.1.12   database_host=postgres
 ```
-> Important
+
+> **Note**
 > 
 > The name `hmis` and ansible_host `172.19.1.12` should be unique. 
-
-## 
 
 ## You have your own TLS certificate.
 In some occasions, you could be having your own TLS certificate and you are not using letsencrypt. 
 Here is how you can instruct the tools to use your own TLS certificate. 
 
-> Important
+> **Note**
 >
 > You'll need to have your TLS certificate pem file and its corresponding key.
 
