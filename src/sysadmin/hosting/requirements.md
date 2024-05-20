@@ -1,74 +1,89 @@
 # Requirements
-## DHIS2 Architecture
-DHIS2 software needs to be hosted some server. Setting up dhis2 involever
-integrating at least theree components. A single dhis2 system can involve more
-than one servers, an examople is whene you use dedicated servers/Virtual
-servers for Database and/or proxy. 
 
-For a production system, there is more factors to conside, i.e
+### DHIS2 Architecture
+DHIS2 needs servers to work. It has different parts: the web app, database,
+and proxy. You can install DHIS2 on one or more servers. For instance, you can
+use separate servers for the database and proxy.
 
-- Reliability  - The application will typically need to be continuously available 24x7 with very little scheduled or unscheduled downtime
-- Data Security - The data it will hold is valuable and potentially sensitive
-- Perfomance and scalability -  Large sites may have tens of thousands of users and millions of records
-- Maintainability - The system will need to be actively maintained and updated over many years
+While the architecture itself may seem straightforward, running it in a
+real-world environment (production) requires more thought.
 
-All of the above give rise to quite complex requirements regarding physical
-infrastructure, security and performance constraints and a broad range of
-technical skill, none of which are immediately visible when viewing the simple
-software architecture above. 
-It is essential that the server implementation is properly planned for when an implementation is in its planning stage in order to be able to mobilize the physical and human resources to meet these requirements.
+Here's what we need to consider
+
+- **Reliability:**  - the application should strive for 24/7 availability with
+  clearly defined windows for scheduled maintenance and minimal potential for
+  unscheduled downtime.
+- **Data Security:** - f the application handles sensitive information (like PII),
+  robust security measures are crucial
+- **Performance and scalability:** -  Large sites may have tens of thousands of
+  users and millions of records
+- **Maintainability:** - The system will need to be actively maintained and updated
+  over many years
+- **Scalability:** - Whether the system must be scalable to accommodate future
+  growth in data volume, user base, or functionality. This may involve
+  implementing features like horizontal scaling or using distributed
+  architectures.
+
+These requirements translate into needing the right hardware (physical
+infrastructure), strong security practices, and good overall performance. It
+also means the people maintaining the system need a wide range of technical
+skills. This complexity might not be obvious from just looking at the simple
+dhis2 architecture. 
+
+Therefore, it's vital to plan for the server implementation early on. This way,
+we can secure the necessary resources (hardware and skilled personnel) to meet
+these demands and ensure the smooth running of the application in a production
+environment.
 
 
-### Components
+### DHIS2 application Components
 A DHIS2 application requires a minimum of three components to run:
-1. A servlet container (usually tomcat, but others such as jetty are also
-   used). This is required to run the java DHIS2 web application and host
-   additional apps.
-2. A database server. Recent versions of DHIS2 require a postgresql database
+
+-  **Servlet container (Required):** Like tomcat (or jetty). Runs the java DHIS2
+   web application and host additional apps.
+-  **A database server (Required):**  Recent versions of DHIS2 require a postgresql database
    with version greater than 9.6.
-3. A web proxy front-end. The primary function of this is for SSL termination
-   and potentially load sharing. nginx and apache2 are commonly used.
+-  **A web proxy front-end (Optional):**  The primary function of this is for SSL termination
+   and potentially load sharing. Nginx and apache2 are commonly used.
+- **Monitoring (Optional):** For real-world use (production), keeping an eye on
+  both the application and server health is crucial. This can be done with
+  tools like Prometheus (modern and likely to be directly integrated with the
+  dhis2 system ) or Munin/Zabbix. Alerts can be sent via email or integrated
+  with messaging apps like Telegram or Slack.
 
-In production it is also necessary to include some form of monitoring solution
-as well as an alerting mechanism. Popular solutions for m nitoring include
-munin and Prometheus/grafana. Prometheus is more modern and is likely to be
-directly integrated into dhis2 in the near future so might be a better long
-term option than munin. A minimal alerting system can be implemented using a
-send-only mail system. It is also possible to integrate the alerting into
-messaging systems such as Telegram or Slack.
-
-
-It has been common practice to setup all three components on a single machine
-(or virtual machine). This might be called the "boombox" approach and should no
-longer be considered good practice except for very simple aggregate setups.
+It's been common to set up all four components on one machine or a virtual
+machine, This might be called the "boombox" approach and should no longer be
+considered good practice except for very basic aggregate setups.
 There are a number of good reasons to isolate these components:
 
-1. Security. This is an important reason, particularly if you have a number of
-   web applications running. If your web application gets hacked you want to be
-   sure that the potential damage is limited.
-2. Monitoring and performance. When all components are running together it can
-   be hard to determine the underlying culprit in memory or cpu exhaustion and
-   to provision each appropriately.
-3. Scalability. In order to be able to scale the web application or database
-   horizontally, replicas need to be allocated their own resources.
-
-
+- **Security:**- This is an important reason, particularly if you have a number of
+  web applications running. If your web application gets hacked you want to be
+  sure that the potential damage is limited.
+- **Monitoring and performance:**-  When all components are running together it can
+  be hard to determine the underlying culprit in memory or cpu exhaustion and
+  to provision each appropriately.
+- **Scalability:**- In order to be able to scale the web application or database
+  horizontally, replicas need to be allocated their own resources.
+- **Easier Maintenance:**- Updating or maintaining individual components becomes
+  simpler when they're not intertwined.
+- **Improved Stability:**- Isolating components prevents issues in one area from
+  crashing everything else.
 
 Isolation can be done with different levels of granularity:
 
-1. Separate physical machines. This provides isolation but is a bit of an
+- **Separate physical machines:** -  This provides isolation but is a bit of an
    inflexible (and expensive) solution to the problem. The only exception to
    this might be the postgresql database server, where there can be some
    performance advantage to running on bare metal with direct access to disk
    array, but it is a costly choice.
-2. Separate virtual machines. This can be a very sensible solution, where you
+- **Separate virtual machines:** - This can be a very sensible solution, where you
    dedicate an in-house VM or a cloud hosted VPS to each of the proxy,
    application server and database. There is a security concern that might need
    to be taken into account as, by default, traffic will pass unencrypted on
    the network between the various components. This might be considered OK if
    the network is trusted, but in many cases you might need to implement SSL on
    tomcat and postgres to ensure adequate encryption in transit.
-2. Separate containers. This can be an elegant and lightweight solution to
+- **Separate containers:** -  This can be an elegant and lightweight solution to
    provide isolation between components. It is particularly attractive where
    you might be renting a single VPS server from a cloud provider. There are
    different Linux containerization solutions with different advantages and
@@ -76,27 +91,34 @@ Isolation can be done with different levels of granularity:
    two. This guide will describe a solution using lxc, but we will also add
    documentation on docker.
 
-Whichever of the different isolation approaches you adopt it is important to
-ensure that the components are configured with minimum access to one another.
-So, for example, the tomcat containers need to be accessed via their http port
-from the proxy server. No more than that is required and so the host based
-firewall should restrict to that. Similarly, containers should not normally be
-allowed to access one another by ssh. Nor should the proxy container be able to
-access the postgresql server etc.
-## Things that are often overlooked
+No matter how you isolate the system components (web server, app server,
+database, etc.), they should have limited access to each other. Below are few examples of what
+that means:
+
+- **Proxy Server (e.g., Nginx):** Only the proxy server can access Tomcat containers through the HTTP port.
+- **Application Server (e.g., Tomcat):** Shouldn't allow direct access via SSH from other components.
+- **Database Server (e.g., PostgreSQL):** Shouldn't be accessible by the proxy server directly.
+
+**Lock it it Down:**  Firewalls on your servers (physical or virtual) and
+containers should be enabled and only allow connections from authorized
+sources.
+This minimizes the risk of one compromised component affecting others.
+
+## Other Important considerations
 Budget for: 
+
 - Backups and archiving of data (this requires additional server resources)
 - Systems for testing, staging and training (to test DHIS2 version updates and
   other major changes with lower risk to the system)
 - Major operating system/database server upgrades (every 2-3 years)
 
-> Note:
+> **Note**:
+>
 > Countries typically run each DHIS2 system (HMIS, HIV Tracker, TB Tracker,
 > COVID-19) on separate servers, each of which need to be provisioned. These
 > should be managed and budgeted holistically.
 > With cloud/virtual systems, test servers do not need to be permanently on,
 > but can be spun up on demand as long as sufficient resources are available.
-
 
 ## Conclusion
 Decisions on hosting are not final. Countries may begin with one hosting option
