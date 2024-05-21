@@ -420,6 +420,9 @@ To update an existing queue CRON expression or sequence use a PUT request
 The payload has to state both new CRON expression and job sequence like in 
 the example above to create a new queue.
 
+To rename a queue the new name can be stated in the payload, while the old name 
+is used in the URL path.  
+
 ### Delete a Job Queue { #queues-delete }
 To delete a job queue send a DELETE request to its resource URL:
 

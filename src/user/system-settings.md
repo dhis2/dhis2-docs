@@ -45,7 +45,6 @@ Table: Analytics settings
 | **Max number of years to hide unapproved data in analytics** | Sets whether and for how long back in time analytics should respect the approval level of the data. Typically, data which is several years old would be considered to be approved by default. In order to speed up analytics requests, you can choose to ignore the actual approval level of historical data.<br> <br>**Never check approval**: no data will be hidden, irrespective of its data approval status.<br> <br>**Check approval for all data**: approval status will always be checked.<br> <br>Other options, for example **Last 3 years**: approval status will be checked for data which is newer than 3 years old; older data will not be checked. |
 | **Threshold for analytics data caching** | Sets whether to enable caching data older than the specified number of years only.<br> <br>This allows for returning the most recent data directly with no caching, while serving cached version of older data for performance concerns. |
 | **Respect category option start and end date in analytics table export** | This setting controls whether analytics should filter data which is associated with a category option with a start and end date, but which is not associated with a period within the category options interval of validity. |
-| **Put analytics in maintenance mode** | Places the analytics and web API of DHIS2 in maintenance mode. This means that "503 Service Unavailable" will be returned for all requests. <br>This is useful when you need to perform maintenance on the server, for example rebuilding indexes while the server is running in production, in order to reduce load and more efficiently carry out the maintenance. |
 | **Allow users to switch dashboard favorite view type** | Allows users to switch dashboard favorites' view between charts, pivot tables and maps, using the dashboard item menu. |
 | **Allow users to open dashboard favorite in relevant app** | Allows users to open dashboard items in the app for that type of item, using the dashboard item menu. |
 | **Allow users to show dashboard favorite interpretations and details** | Allows users to see dashboard favorites' interpretations and details, using the dashboard item menu. |
@@ -63,8 +62,8 @@ Table: Server settings
 | **Number of database server CPUs** | Sets the number of CPU cores of your database server.<br> <br>This allows the system to perform optimally when the database is hosted on a different server than the application server, since analytics in DHIS2 scales linearly with the number of available cores. |
 | **System notifications email address** | Defines the email address which will receive system notifications.<br> <br>Notifications about failures in processes such as analytics table generation will be sent here. This is useful for application monitoring. |
 | **Google Analytics (Universal Analytics) key** | Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.<br> <br>You can read more about Google Analytics at [google.com/analytics](https://google.com/analytics). |
-| **Google Maps API key** | Defines the API key for the Google Maps API. This is used to display maps within DHIS2. |
-| **Bing Maps API key** | Defines the API key for the Bing Maps API. This is used to display maps within DHIS2. |
+| **Google Maps API key** | Defines the API key for the Google Maps API. Use this key to view Google map layers in DHIS2. Note that there is a different key setup for enabling Google Earth Engine layers in the DHIS2 Maps app. See [documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html). |
+| **Bing Maps API key** | Defines the API key for the Bing Maps API. Add this key to enable use of Bing basemaps in the DHIS2 Maps app. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key) for information on setting up the key. |
 
 Table: Limit settings
 
@@ -88,8 +87,8 @@ Table: Appearance settings
 | **Application title** | Sets the application title on the top menu. |
 | **Application introduction** | Sets an introduction of the system which will be visible on the top-left part of the login page. |
 | **Application notification** | Sets a notification which will be visible on the front page under the login area. |
-| **Application left-side footer** | Sets a text in the left-side footer area of the login page. |
-| **Application right-side footer** | Sets a text in the right-side footer area of the login page. |
+| **Application left-side footer** | Sets a text in the left-side footer area of the login page. (When using a language written in a right-to-left script, such as Arabic, this will be in the right-footer area of the login page.) |
+| **Application right-side footer** | Sets a text in the right-side footer area of the login page. ((When using a language written in a right-to-left script, such as Arabic, this will be in the left-footer area of the login page.) |
 | **Style** | Sets the style (look-and-feel) of the system.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Style**.<br>      <br>    **Note**<br>     <br>    Due to technical reasons, it's not possible to change the color of the newest version of the header bar. The apps with the newest header bar will retain the blue header bar. |
 | **Start page** | Sets the page or app which the user will be redirected to after log in.<br> <br>Recommended setting: the **Dashboard** app. |
 | **Enable light-weight start page** | Instructs apps to render a light-weight and fast landing page. Recommended in low-bandwidth environments. |
@@ -99,7 +98,8 @@ Table: Appearance settings
 | **Database language** | Sets the language used in the database.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Database language**. |
 | **Require authority to add to view object lists** | If you select this option, you'll hide menu and index page items and links to lists of objects if the current user doesn't have the authority to create the type of objects (privately or publicly). |
 | **Custom login page logo** | Select this option and upload an image to add your logo to the login page. |
-| **Custom top menu logo** | Select this option and upload an image to add your logo to the left in the top menu. |
+| **Login page theme** | This lets you select between the default layout, the sidebar layout, or a custom layout for the login app. If you select a custom layout, you need to provide a custom template in the "Login page template" section. |
+| **Login page template** | Here you can paste the HTML to define the layout  and style of the login page. More details for how to define the template are available in the developer documentation. |
 
 ## Email settings { #system_email_settings } 
 
@@ -135,7 +135,7 @@ Table: Access settings
 | **Require user account password change** | Defines whether users should be forced to change their passwords every 3, 6 or 12 months.<br> <br>If you don't want to force users to change password, select **Never**. |
 | **Enable password expiry alerts** | When set, users will receive a notification when their password is about to expire. |
 | **Minimum characters in password** | Defines the minimum number of characters users must have in their passwords.<br> <br>You can select 8 (default), 10, 12 or 14. |
-| **CORS whitelist** | Whitelists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
+| **CORS allowlist** | allowlists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
 
 ## Calendar settings { #system_calendar_settings } 
 
