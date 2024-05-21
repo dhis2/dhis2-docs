@@ -1701,28 +1701,28 @@ programs.
 
     | Value type | Description |
     |---|---|
-    | Age | - |
+    | Age | Dates rendered as calendar widget OR by entering number of years, months and/or days which calculates the date value based on current date. The date will be saved in the backend. |
     | Coordinate | A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format "-19.23 , 56.42" with a comma separating the longitude and latitude. |
     | Date | Dates render as calendar widget in data entry. |
-    | Date & time | - |
-    | E-mail | - |
+    | Date & time | Is a combination of the **DATE** and **TIME** data elements.  |
+    | E-mail | Valid email address. |
     | File | A file resource where you can store external files, for example documents and photos. |
-    | Image | Similar to File, but restricted to images. |
+    | Image | A file resource where you can store photos.<br>     <br>Unlike the **FILE** data element, the **IMAGE** data element can display the uploaded image directly in forms. |
     | Integer | Any whole number (positive and negative), including zero. |
-    | Letter | - |
-    | Long text | Textual value. Renders as text area in forms. |
+    | Letter | A single letter. |
+    | Long text | Textual value. Renders as text area with no length constraint in forms. |
     | Negative integer | Any whole number less than (but not including) zero. |
     | Number | Any real numeric value with a single decimal point. Thousands separators and scientific notation is not supported. |
     | Percentage | Whole numbers inclusive between 0 and 100. |
-    | Phone number ||
+    | Phone number | Phone number.|
     | Positive integer | Any whole number greater than (but not including) zero. |
     | Positive of zero integer | Any positive whole number, including zero. |
-    | Organisation unit | - |
+    | Organisation unit | Organisation units rendered as a hierarchy tree widget.<br>     <br>If the user has assigned "search organisation units", these will be displayed instead of the assigned organisation units.  |
     | Unit interval | Any real number greater than or equal to 0 and less than or equal to 1. |
     | Text | Textual value. The maximum number of allowed characters per value is 50,000. |
     | Time | Time is stored in HH:mm format.<br>     <br>HH is a number between 0 and 23<br>     <br>mm is a number between 00 and 59 |
     | Tracker associate | - |
-    | Username |  Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type |
+    | Username |  DHIS2 user. Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type. |
     | Yes/No | Boolean values, renders as drop-down lists in data entry. |
     | Yes only | True values, renders as check-boxes in data entry. |
 
