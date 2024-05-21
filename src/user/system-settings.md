@@ -64,8 +64,8 @@ Table: Server settings
 | **Number of database server CPUs** | Sets the number of CPU cores of your database server.<br> <br>This allows the system to perform optimally when the database is hosted on a different server than the application server, since analytics in DHIS2 scales linearly with the number of available cores. |
 | **System notifications email address** | Defines the email address which will receive system notifications.<br> <br>Notifications about failures in processes such as analytics table generation will be sent here. This is useful for application monitoring. |
 | **Google Analytics (Universal Analytics) key** | Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.<br> <br>You can read more about Google Analytics at [google.com/analytics](https://google.com/analytics). |
-| **Google Maps API key** | Defines the API key for the Google Maps API. This is used to display maps within DHIS2. |
-| **Bing Maps API key** | Defines the API key for the Bing Maps API. This is used to display maps within DHIS2. |
+| **Google Maps API key** | Defines the API key for the Google Maps API. Use this key to view Google map layers in DHIS2. Note that there is a different key setup for enabling Google Earth Engine layers in the DHIS2 Maps app. See [documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html). |
+| **Bing Maps API key** | Defines the API key for the Bing Maps API. Add this key to enable use of Bing basemaps in the DHIS2 Maps app. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key) for information on setting up the key. |
 
 Table: Limit settings
 
@@ -89,8 +89,8 @@ Table: Appearance settings
 | **Application title** | Sets the application title on the top menu. |
 | **Application introduction** | Sets an introduction of the system which will be visible on the top-left part of the login page. |
 | **Application notification** | Sets a notification which will be visible on the front page under the login area. |
-| **Application left-side footer** | Sets a text in the left-side footer area of the login page. |
-| **Application right-side footer** | Sets a text in the right-side footer area of the login page. |
+| **Application left-side footer** | Sets a text in the left-side footer area of the login page. (When using a language written in a right-to-left script, such as Arabic, this will be in the right-footer area of the login page.) |
+| **Application right-side footer** | Sets a text in the right-side footer area of the login page. ((When using a language written in a right-to-left script, such as Arabic, this will be in the left-footer area of the login page.) |
 | **Style** | Sets the style (look-and-feel) of the system.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Style**.<br>      <br>    **Note**<br>     <br>    Due to technical reasons, it's not possible to change the color of the newest version of the header bar. The apps with the newest header bar will retain the blue header bar. |
 | **Start page** | Sets the page or app which the user will be redirected to after log in.<br> <br>Recommended setting: the **Dashboard** app. |
 | **Enable light-weight start page** | Instructs apps to render a light-weight and fast landing page. Recommended in low-bandwidth environments. |
@@ -100,7 +100,8 @@ Table: Appearance settings
 | **Database language** | Sets the language used in the database.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Database language**. |
 | **Require authority to add to view object lists** | If you select this option, you'll hide menu and index page items and links to lists of objects if the current user doesn't have the authority to create the type of objects (privately or publicly). |
 | **Custom login page logo** | Select this option and upload an image to add your logo to the login page. |
-| **Custom top menu logo** | Select this option and upload an image to add your logo to the left in the top menu. |
+| **Login page theme** | This lets you select between the default layout, the sidebar layout, or a custom layout for the login app. If you select a custom layout, you need to provide a custom template in the "Login page template" section. |
+| **Login page template** | Here you can paste the HTML to define the layout  and style of the login page. More details for how to define the template are available in the developer documentation. |
 
 ## Email settings { #system_email_settings } 
 
@@ -136,7 +137,7 @@ Table: Access settings
 | **Require user account password change** | Defines whether users should be forced to change their passwords every 3, 6 or 12 months.<br> <br>If you don't want to force users to change password, select **Never**. |
 | **Enable password expiry alerts** | When set, users will receive a notification when their password is about to expire. |
 | **Minimum characters in password** | Defines the minimum number of characters users must have in their passwords.<br> <br>You can select 8 (default), 10, 12 or 14. |
-| **CORS whitelist** | Whitelists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
+| **CORS allowlist** | allowlists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
 
 ## Calendar settings { #system_calendar_settings } 
 

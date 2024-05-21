@@ -122,7 +122,7 @@ attributes and program parameters.
     | **Feature type** | Sets whether the program is going to capture a geographical feature type or not. <br>- **None**   Nothing is captured. <br>- **Polygon**   An area is captured. For single event programs the area will be the area representing the event being captured. For tracker programs, the area will represent the area of the enrollment. <br>- **Point**   A point/coordinate is captured. For single event programs the point will be representing the event being captured. For tracker programs, the point will represent the enrollment.      |
     | **Validation strategy** | Sets the server and client side validation requirement. <br><br>Data type validation is always performed regardless of the validation strategy. An integer field is never stored containing text, for example. <br>- **On complete**  This option will enforce required field and error messages to be fixed when completing the event, but the event can be saved to the server without passing these validation requirements. For legacy reasons, this is always the validation strategy for tracker programs, where each data value in the event is stored to the server while entering data. <br>- **On update and insert**   This option will enforce required field validation when saving the event to the server regardless of the completion status. When using this option no events can be stored without passing validations. |
     | **Pre-generate event UID** | Select checkbox to pre-generate unique event id numbers. |
-    | **Description of report date** | Type a description of the report date.<br>     <br>This description is displayed in the case entry form. |
+    | **Custom label for report date** | Type a description of the report date.<br>     <br>This description is displayed in the case entry form. |
 
 1.  Click next.
 
@@ -372,8 +372,9 @@ program. A program needs several types of metadata that you create in the **Main
 | **Allow future incident dates** |Select checkbox if you want to allow the incident date in the program to be on a future date.|
 | **Only enroll once (per tracked entity instance lifetime)** |Select checkbox if you want a tracked entity to be able to enroll only once in a program. This setting is useful for example in child vaccination or post-mortem examination programs where it wouldn’t make sense to enroll a tracked entity more than once.|
 | **Show incident date** |This setting allows you to show or hide the incident date field when a tracked entity enroll in the program.|
-| **Description of incident date** | Type a description of the incident date<br> <br>For example:<br> <br>In an immunization program for child under 1 year old, the incident date is the child's birthday. <br> <br>In a maternal program, the incident date is the date of last menstrual period.  |
-| **Type a description of the enrollment date** |The date when the tracked entity is enrolled into the program|
+| **Custom label for incident date** | Type a description of the incident date<br> <br>For example:<br> <br>In an immunization program for child under 1 year old, the incident date is the child's birthday. <br> <br>In a maternal program, the incident date is the date of last menstrual period.  |
+| **Custom label for enrollment date** |The date when the tracked entity is enrolled into the program|
+| **Custom label for:**<br> - **enrollment** <br> - **event** <br> - **program stage** <br> - **follow-up** <br> - **registering unit** <br> - **relationship** <br> - **note** <br> - **tracked entity attribute** | These custom labels will, on a program-specific level, replace these terms in certain DHIS2 apps. It is important to note that this configuration does not distinguish between singular and plural, so the label should consider this. Currently, these custom labels are only used by the DHIS2 Android app.
 | **Ignore overdue events** |When a tracked entity enrolls into the program, the events corresponding to the program stages are created. If you select this checkbox, the system will not generate overdue events.|
 | **Feature type** |Sets whether the program is going to capture a geographical feature type or not. <br> * **None:** Nothing is captured.<br> * **Polygon:** An area is captured. For single event programs the area will be the area representing the event being captured. For tracker programs, the area will represent the area of the enrollment. <br> * **Point:** A point/coordinate is captured. For single event programs the point will be representing the event being captured. For tracker programs, the point will represent the enrollment. |
 | **Related program** |Choose a Tracker program which is related to the program you are creating, for example an ANC and a Child program.|
@@ -457,9 +458,9 @@ by the data capture apps to identify this program stage.
  | **Hide due dates** | Select checkbox to hide due dates for events. |
  | **Feature type** |  Sets whether the program is going to capture a geographical  feature type or not.  <br>  * **None:** Nothing is captured.<br> * **Polygon:** An area is captured. For single  event programs the area will be the area representing the  event being captured. For tracker programs, the area will  represent the area of the enrollment. <br> * **Point:** A point/coordinate is captured. For  single event programs the point will be representing the  event being captured. For tracker programs, the point will  represent the enrollment. |
  | **Pre-generate event UID** | Select check box to pre-generate unique event id numbers. |
- | **Description of report date** | Type a description of the report date.<br>  <br>This description is displayed in the data entry form. |
- | **Description of due date** | Type a description of the due date. |
- | **Referral*** | Flag to indicate if program stage is referral or not. |
+ | **Custom label for report date** | Type a description of the report date.<br>  <br>This description is displayed in the data entry form. |
+ | **Custom label for due date** | Type a description of the due date. |
+ | **Custom label for:**<br> - **program stage** <br> - **event** | These custom labels will, on a program-specific level, replace these terms in certain DHIS2 apps. It is important to note that this configuration does not distinguish between singular and plural, so the label should consider this. Currently, these custom labels are only used by the DHIS2 Android app. |
 
 5.  Assign data elements to program stage:
 
@@ -873,12 +874,21 @@ inline aggregation types looks like
 Note how the "sum" aggregation operator is used inside the expression
 itself.
 
+#### Adding comments in program indicator expression or filter
+Uniform syntax is supported for both singleline and multiline comments
+
+    d2:hasValue(#{mCXR7u4kNBW.NFkjsNiQ9PH}) /* this is comment */
+    
+    d2:hasValue(#{mCXR7u4kNBW.NFkjsNiQ9PH}) && /* this is 
+    comment */
+    d2:daysBetween(V{enrollment_date},PS_EVENTDATE:mCXR7u4kNBW)
+    
 #### Functions to use in a program indicator expression or filter
 
 The program indicator expression and filter support a range of
 functions. The functions can be applied to data elements and attributes:
 
-
+ 
 
 Table: Functions to use in a program indicator expression or filter
 
@@ -1093,8 +1103,13 @@ objects:
 
 2.  Click the add button.
 
-3.  Select a **Program** and enter a **Name**.
+3.  Select a **Program** and enter a **Name**
 
+    Please note that the name of the program may not contain any of the following exlcuded keywords:
+    - `and`
+    - `or`
+    - `not`
+      
 4.  Select if you want to **Use code for option set**.
 
     This option is only effective when the data element or tracked
@@ -1686,28 +1701,28 @@ programs.
 
     | Value type | Description |
     |---|---|
-    | Age | - |
+    | Age | Dates rendered as calendar widget OR by entering number of years, months and/or days which calculates the date value based on current date. The date will be saved in the backend. |
     | Coordinate | A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format "-19.23 , 56.42" with a comma separating the longitude and latitude. |
     | Date | Dates render as calendar widget in data entry. |
-    | Date & time | - |
-    | E-mail | - |
+    | Date & time | Is a combination of the **DATE** and **TIME** data elements.  |
+    | E-mail | Valid email address. |
     | File | A file resource where you can store external files, for example documents and photos. |
-    | Image | Similar to File, but restricted to images. |
+    | Image | A file resource where you can store photos.<br>     <br>Unlike the **FILE** data element, the **IMAGE** data element can display the uploaded image directly in forms. |
     | Integer | Any whole number (positive and negative), including zero. |
-    | Letter | - |
-    | Long text | Textual value. Renders as text area in forms. |
+    | Letter | A single letter. |
+    | Long text | Textual value. Renders as text area with no length constraint in forms. |
     | Negative integer | Any whole number less than (but not including) zero. |
     | Number | Any real numeric value with a single decimal point. Thousands separators and scientific notation is not supported. |
     | Percentage | Whole numbers inclusive between 0 and 100. |
-    | Phone number ||
+    | Phone number | Phone number.|
     | Positive integer | Any whole number greater than (but not including) zero. |
     | Positive of zero integer | Any positive whole number, including zero. |
-    | Organisation unit | - |
+    | Organisation unit | Organisation units rendered as a hierarchy tree widget.<br>     <br>If the user has assigned "search organisation units", these will be displayed instead of the assigned organisation units.  |
     | Unit interval | Any real number greater than or equal to 0 and less than or equal to 1. |
     | Text | Textual value. The maximum number of allowed characters per value is 50,000. |
     | Time | Time is stored in HH:mm format.<br>     <br>HH is a number between 0 and 23<br>     <br>mm is a number between 00 and 59 |
     | Tracker associate | - |
-    | Username |  Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type |
+    | Username |  DHIS2 user. Rendered as a dialog with a list of users and a search field. The user will need the "View User" authority to be able to utilise this data type. |
     | Yes/No | Boolean values, renders as drop-down lists in data entry. |
     | Yes only | True values, renders as check-boxes in data entry. |
 

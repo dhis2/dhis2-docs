@@ -6,7 +6,7 @@ After reading this chapter you will be able to understand:
     information systems (HIS)?
 
   - What are the major technological considerations when it comes to
-    deploying DHIS2, and what are the options are for extending DHIS2
+    deploying DHIS2, and what are the options for extending DHIS2
     with new modules?
 
   - What is the difference between patient based and aggregate data?
@@ -224,7 +224,7 @@ that:
     protocols involved - just the well-tested, well-understood HTTP
     protocol which is the main building block of the Web today. This
     implies that third-party developers can develop software using the
-    DHIS2 data model and data without knowing the DHIS2 2specific
+    DHIS2 data model and data without knowing the DHIS2 specific
     technology or complying with the DHIS2 design constraints.
 
   - All data including meta-data, reports, maps and charts, known as
