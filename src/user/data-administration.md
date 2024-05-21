@@ -398,7 +398,7 @@ expiry period of the data set has passed.
 In the example above, a data lock exception would be created for "Bo" for the
 "ART monthly summary" dataset for "February 2014".
 
-In order to run this function, the user no extra authority is needed.
+In order to run this function, no extra authority is needed.
 
 ## Min-Max Value Generation { #data_admin_min_max_value_generation }
 
