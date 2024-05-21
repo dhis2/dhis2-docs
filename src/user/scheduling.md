@@ -464,7 +464,26 @@ You can select which predictors and predictor groups will run during the job:
 If both individual predictors and predictor groups are selected in the same job,
 the individual predictors run first, followed by the predictor groups.
 
-## Creating a queue { #scheduling_create_queue }
+### Data integrity { #scheduling_data_integrity }
+
+The Data Integrity job type is responsible for scheduling data integrity checks. DHIS2 can perform a wide range of data integrity checks on the data contained in the database. Identifying and correcting data integrity issues is extremely important for ensuring that the data used for analysis purposes is valid. Each of the data integrity checks that are performed by the system will be described, along with general procedures that can be performed to resolve these issues.
+
+The result of the data integrity checks can be viewed in the Data Administration app. As of 2.41 the result of the data integrity checks are only available for up to *one hour* after the job has completed.
+
+Some data integrity checks are marked as *slow*. Users should be cautious about running these checks on production systems as they could lead to decreased performance. It's generally not recommended to run more than one of these at the same time.
+
+The following parameters are available:
+
+- **Report type** the level of specificity of the result. The available options are:
+  - **Summary** - a summary of the number of issues will be available.
+  - **Details** - a list of issues pointing to individual data integrity violations will be available for each integrity check.
+- **Checks to run** specify the data integrity checks to run. If *only run selected checks* is selected, a list of checks where you will be able to select only the checks to run will be displayed. If *run all standard checks* is selected, all *standard* checks will be executed. Note that this will not run checks that are marked as *slow* - these checks must be selected manually using *only run selected checks*.
+
+See [Data Administration](#data_admin_data_integrity) for more information about the available data integrity checks.
+
+## Schedule Queues { #schedule_queues }
+
+### Creating a queue { #scheduling_create_queue }
 
 1.  Open the **Scheduler** app and click the "New queue" button in the top right
     corner.
@@ -489,7 +508,7 @@ the individual predictors run first, followed by the predictor groups.
 
 Newly created queues are enabled by default.
 
-## Editing a queue { #scheduling_configure_queue }
+### Editing a queue { #scheduling_configure_queue }
 
 With the proper permissions, you can modify the details of queues. To quickly
 enable or disable a queue from running, use the switches in the **On/off**
@@ -505,7 +524,7 @@ Further editing of queues:
     overview. But since they were part of a queue, they will be disabled and
     without a schedule.
 
-## Deleting a queue { #scheduling_delete_queue }
+### Deleting a queue { #scheduling_delete_queue }
 
 1.  Click the "Actions" button of the queue you want to delete and click
     "Delete".
@@ -519,3 +538,4 @@ Further editing of queues:
 Queues can also be deleted from the editing screen.
 
 ![Deleting a scheduler queue](resources/images/scheduler/delete_queue.png)
+
