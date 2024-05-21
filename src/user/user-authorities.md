@@ -14,7 +14,6 @@
 | Add Relationship Type                                                | F_RELATIONSHIPTYPE_ADD                           |
 | Add/Remove Members In Read-Only User Groups                          | F_USER_GROUPS_READ_ONLY_ADD_MEMBERS              |
 | Add SQL View                                                         | F_SQLVIEW_ADD                                    |
-| Add Tracked Entities                                                 | F_TRACKED_ENTITY_ADD                             |
 | Add Tracked Entity Attribute Value                                   | F_TRACKED_ENTITY_ATTRIBUTEVALUE_ADD              |
 | Add Tracked Entity Form                                              | F_TRACKED_ENTITY_FORM_ADD                        |
 | Add Tracked Entity Instance Comment                                  | F_TRACKED_ENTITY_COMMENT_ADD                     |
