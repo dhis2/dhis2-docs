@@ -34,7 +34,7 @@ if you need to update polygon geometries, you should use the automatic
 >
 > The only coordinate reference system (CRS) supported by DHIS2 is EPSG:4326,
 > also known as geographic longitude/latitude. Coordinates must be
-> stored with the longitude (east/west position) proceeding the latitude
+> stored with the longitude (east/west position) preceding the latitude
 > (north/south position). If your vector data is in a different CRS than
 > EPSG 4326, you will need to reproject the data first before importing
 > into DHIS2.

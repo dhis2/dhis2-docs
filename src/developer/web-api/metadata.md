@@ -79,7 +79,7 @@ Table: Query parameters
 | paging | true &#124; false | true | Indicates whether to return lists of elements in pages. |
 | page | number | 1 | Defines which page number to return. |
 | pageSize | number | 50 | Defines the number of elements to return for each page. |
-| order | property:asc/iasc/desc/idesc || Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting. |
+| order | property:asc/iasc/desc/idesc || Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting. If it is wanted to sort for more than one property, separate them using a comma.  |
 
 An example of how these parameters can be used to get a full list of
 data element groups in XML response format is:
@@ -103,6 +103,10 @@ You can completely disable paging like this:
 To order the result based on a specific property:
 
     /api/indicators.json?order=shortName:desc
+
+To order the result based on created datetime property first (descending order) and then by name property (ascending order):
+
+    /api/indicators.json?order=created:desc,name:asc
 
 You can find an object based on its ID across all object types through
 the *identifiableObjects* resource:
@@ -578,6 +582,8 @@ for _data elements_ is:
 
     /api/dataElements
 
+> **_NOTE:_**  When updating objects, all existing property values will be overwritten, even if the new value is null. Please use [JSON Patch API](#webapi_partial_updates) in case you want do partial update to an object.
+
 ### Create / update parameters { #webapi_metadata_create_update } 
 
 The following request query parameters are available across all metadata endpoints.
@@ -588,7 +594,6 @@ Table: Available Query Filters
 |---|---|---|---|---|
 | preheatCache | boolean | false | true &#124; false | Turn cache-map preheating on/off. This is on by default, turning this off will make initial load time for importer much shorter (but will make the import itself slower). This is mostly used for cases where you have a small XML/JSON file you want to import, and don't want to wait for cache-map preheating. |
 | importStrategy | enum | false | CREATE_AND_UPDATE &#124; CREATE &#124; UPDATE &#124; DELETE | Import strategy to use, see below for more information. |
-| mergeMode | enum | false | REPLACE, MERGE | Strategy for merging of objects when doing updates. REPLACE will just overwrite the property with the new value provided, MERGE will only set the property if it is not null (only if the property was provided). |
 
 ### Creating and updating objects { #webapi_creating_updating_objects } 
 
@@ -1089,7 +1094,6 @@ Table: Import Parameter
 | preheatMode | REFERENCE, ALL, NONE | Sets the preheater mode, used to signal if preheating should be done for `ALL` (as it was before with *preheatCache=true*) or do a more intelligent scan of the objects to see what to preheat (now the default), setting this to `NONE` is not recommended. |
 | importStrategy | CREATE_AND_UPDATE, CREATE, UPDATE, DELETE | Sets import strategy, `CREATE_AND_UPDATE` will try and match on identifier, if it doesn't exist, it will create the object. |
 | atomicMode | ALL, NONE | Sets atomic mode, in the old importer we always did a *best effort* import, which means that even if some references did not exist, we would still import (i.e. missing data elements on a data element group import). Default for new importer is to not allow this, and similar reject any validation errors. Setting the `NONE` mode emulated the old behavior. |
-| ~~mergeMode~~ | ~~REPLACE, MERGE~~ | ~~Sets the merge mode, when doing updates we have two ways of merging the old object with the new one, `MERGE` mode will only overwrite the old property if the new one is not-null, for `REPLACE` mode all properties are overwritten regardless of null or not.~~ (*) |
 | flushMode | AUTO, OBJECT | Sets the flush mode, which controls when to flush the internal cache. It is *strongly* recommended to keep this to `AUTO` (which is the default). Only use `OBJECT` for debugging purposes, where you are seeing hibernate exceptions and want to pinpoint the exact place where the stack happens (hibernate will only throw when flushing, so it can be hard to know which object had issues). | 
 | skipSharing | false, true | Skip sharing properties, does not merge sharing when doing updates, and does not add user group access when creating new objects. |
 | skipValidation | false, true | Skip validation for import. `NOT RECOMMENDED`. |
@@ -1098,7 +1102,7 @@ Table: Import Parameter
 | userOverrideMode | NONE, CURRENT, SELECTED | Allows you to override the user property of every object you are importing, the options are NONE (do nothing), CURRENT (use import user), SELECTED (select a specific user using overrideUser=X) |
 | overrideUser | User ID | If userOverrideMode is SELECTED, use this parameter to select the user you want override with. |
 
-> (*) Currently the `mergeMode=MERGE` option of the import service has limitations and doesn't support all objects. It doesn't work with some object types such as Embedded objects, or objects which are saved as JSONB format in database ( sharing, attributeValues, etc...). Fixing those issues are complicated and would just cause new issues. Therefore, this `mergedMode=MERGE` is deprecated and currently is not recommended to use. The update mode should always be mergedMode=REPLACE. We have developed a new [JSON Patch API](#webapi_partial_updates) which can be used as an alternative approach. This feature is introduced in 2.37 release.
+> **NOTE** When updating objects, all property values will be overwritten even if the new values are `null`. Please use [JSON Patch API](#webapi_partial_updates) in case you want do partial update to an object.
 
 
 An example of a metadata payload to be imported looks like this. Note how
@@ -1153,7 +1157,6 @@ ignored:
     "preheatMode": "REFERENCE",
     "importStrategy": "CREATE_AND_UPDATE",
     "atomicMode": "ALL",
-    "mergeMode": "REPLACE",
     "flushMode": "AUTO",
     "skipSharing": false,
     "skipTranslation": false,
@@ -1227,8 +1230,8 @@ Both of them be accessed through the icons resource.
 
     GET /api/icons
 
-This endpoint returns a list of information about the available icons.
-In case of default icons, each entry contains the icon's metadata, and a reference to the actual file resource.
+This endpoint returns a list of information about the available default and custom icons.
+By default key, description, keywords and href will be included in response. But fields parameter can be used to change this behaviour.
 
 ```json
 {
@@ -1239,22 +1242,9 @@ In case of default icons, each entry contains the icon's metadata, and a referen
     "mosquito",
     "dengue"
   ],
+  "created": "2024-02-12T09:50:11.794",
+  "lastUpdated": "2024-02-12T09:50:11.794",
   href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
-}
-```
-When it comes to custom icons, the response also includes the referenced file resource and the user who created the icon:
-
-```json
-{
-  key: "custom key",
-  description: "description",
-  keywords: [
-    "keyword 1",
-    "keyword 2"
-  ],
-  fileResourceUid: "ohUVXsOZ8qp",
-  userUid: "AIK2aQOJIbj",
-  href: "<dhis server>/api/fileResources/ohUVXsOZ8qp/data"
 }
 ```
 
@@ -1262,22 +1252,50 @@ It's also possible to get a particular icon directly by filtering by its key, in
 
     GET /api/icons/mosquito_outline
 
-Keywords can be used to filter which icons to return. Passing a list
-of keywords with the request will only return icons (both default and custom) that match all the keywords:
-
-    GET /api/icons?keywords=shape,small
-
-A list of all unique keywords can be found at the keywords resource:
-
-    GET /api/icons/keywords
-
 ### Custom icon operations { #webapi_icons_custom }
 
+A list of custom icons can be fetched retrieved certain request parameters
+
+    GET /api/icons?type=CUSTOM
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`type`|`Text`| DEFAULT,CUSTOM,ALL |What type of icons should be retrieved. Default is ALL|
+|`keys`|`Text`| | List of keys custom icons should be retrieved for | 
+|`keywords`|`Text`| | List of keywords custom icons should be retrieved for| 
+|`search`|`Text`| | Search for a given text across icon keys and keywords, and retrieve all icons that contain this text in their key or keywords.| 
+|`createdStartDate`|`Date`| | Starting point of created date|
+|`createdEndDate`|`Date`| | End point of created date| 
+|`lastUpdatedStartDate`|`Date`| | Starting point of last updated date| 
+|`lastUpdatedEndDate`|`Date`| | End point of last updated date| 
+
+
+#### Request parameters for pagination
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
+|`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
+|`paging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`|
+
+#### Request parameters for ordering
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`order`|`Text`| created:desc | Comma-separated list of property name and sort direction pairs in format propName:sortDirection. By default icons will be ordered based on key:asc|
+
+
+#### Request parameter to filter responses
+
+The endpoints accept a `fields` parameter which controls which fields will be returned in the
+JSON response. `fields` parameter accepts a comma separated list of field names. If nothing is specified, default fields will be used and those are 
+
+`key,keywords,description,fileResourceUid,createdByUserUid,href`
 
 A custom icon resource can be downloaded by providing the icon key:
 
     GET /api/icons/{key}/icon
-        
+
 Custom icons can be created, modified and deleted.
 To create a custom icon, use the resource below.
 
@@ -1294,7 +1312,7 @@ It expects a payload containing the icon key, description, list of keywords and 
 }
 ```
 
-Two of these properties are possible to update, they are the description and keywords, using the resource below.
+Only custom icons can be updated using below resource. 
 
     PUT /api/icons
 
@@ -1310,7 +1328,7 @@ With the following payload, the icon's description and keywords would be updated
 
 Please notice that's also possible to just update one of the two. That means in case we would like to update the description while keeping the keywords, we would just need to provide the icon key and the descripton json field. Same would work the other way around, to update the keywords and leave the original description untouched.
 
-To delete a custom icon we use the resource
+Only custom icon can be deleted using below resource.
 
     DELETE /api/icons/{icon_key}
 

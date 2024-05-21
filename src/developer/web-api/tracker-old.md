@@ -1,20 +1,25 @@
 # Tracker (deprecated APIs)
 
-> **Note**
->Tracker has been re-implemented in DHIS2 2.36. The new endpoints are documented at
->[Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html).
+> **Caution**
 >
->The endpoints described in this document are in maintenance mode and do not receive any new
->features. Important bugs will still be fixed.
+> Tracker has been re-implemented in DHIS2 2.36. The new endpoints are documented at
+> [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html).
 >
->* If you plan to use the tracker endpoints use the new version described in
->  [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html)
->* If you are still using the deprecated tracker endpoints in production, please plan to migrate
->  over to the new endpoints. [Migrating to new tracker endpoints](#webapi_tracker_migration) should
->  help you get started. Reach out on the [community of practice](https://community.dhis2.org) if
->  you need further assistance. NOTE: The feature for data sync(importMode=SYNC) is not implemented
->  in the new tracker endpoints, and if you are using this feature you will have to postpone the
->  migration until a new SYNC feature is in place.
+> Endpoints
+>
+> * `GET/POST/PUT/DELETE /api/trackedEntityInstance`
+> * `GET/POST/PUT/DELETE /api/enrollments`
+> * `GET/POST/PUT/DELETE /api/events`
+> * `GET/POST/PUT/DELETE /api/relationships`
+>
+> will be removed in version **42**!
+>
+> * If you plan to use the tracker endpoints use the new endpoints described in
+>   [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html)
+> * If you are still using the deprecated tracker endpoints in production, please migrate over to the
+>   new endpoints. [Migrating to new tracker endpoints](#webapi_tracker_migration) should help you
+>   get started. Reach out on the [community of practice](https://community.dhis2.org) if you need
+>   further assistance.
 
 ## Migrating to new tracker endpoints { #webapi_tracker_migration }
 
@@ -28,9 +33,9 @@ The following sections highlight the important differences between the deprecate
 and the newly introduced endpoints
 
 * `POST /api/tracker`
+* `GET  /api/tracker/trackedEntities`
 * `GET  /api/tracker/enrollments`
 * `GET  /api/tracker/events`
-* `GET  /api/tracker/trackedEntities`
 * `GET  /api/tracker/relationships`
 
 ### Property names { #webapi_tracker_migration_names }
@@ -52,17 +57,28 @@ lists the old and new property names.
 
 > **Note**
 >
->Property `assignedUser` was a string before and is now an object of the following shape (type `User`):
->```json
->{
->   "assignedUser": {
->     "uid": "ABCDEF12345",
->     "username": "username",
->     "firstName": "John",
->     "surname": "Doe"
->   }
->}
->```
+> Property `assignedUser` was a string before and is now an object of the following shape (type `User`):
+> ```json
+> {
+>    "assignedUser": {
+>      "uid": "ABCDEF12345",
+>      "username": "username",
+>      "firstName": "John",
+>      "surname": "Doe"
+>    }
+> }
+> ```
+
+### Semicolon as separator for identifiers (UID)
+
+Fields or query parameter accepting multiple values like UIDs are now consistently separated by
+comma instead of semicolon. This is to ensure UIDs are consistently separated by comma across all
+DHIS2 endpoints.
+
+The following fields are affected
+
+* `event.attributeCategoryOptions` (as well as an event returned as part of a relationship
+`from`/`to`)
 
 ### Tracker import changelog (`POST`)
 
@@ -86,38 +102,66 @@ describes how to use this new endpoint.
 In addition to the changed names shown in [Property names](#webapi_tracker_migration_names) some
 request parameters have been changed as well.
 
-The following tables list the differences in old and new request parameters for `GET` enpoints.
+The following tables list the differences in old and new request parameters for `GET` endpoints.
+
+#### Request parameter changes for `GET /api/tracker/trackedEntities`
+
+|Previously|Now|
+|---|---|
+|`assignedUser`|`assignedUsers`<br>Values are now separated by comma instead of semicolon.|
+|`attachment`|Removed|
+|`attribute`|Removed - use `filter` instead|
+|`eventStartDate`<br>`eventEndDate`|`eventOccurredAfter`<br>`eventOccurredBefore`|
+|`includeAllAttributes`|Removed|
+|`lastUpdatedStartDate`<br>`lastUpdatedEndDate`<br>`lastUpdatedDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
+|`ouMode`|`orgUnitMode`|
+|`ou`|`orgUnits`<br>Values are now separated by comma instead of semicolon.|
+|`programEnrollmentStartDate`<br>`programEnrollmentEndDate`|`enrollmentEnrolledAfter`<br>`enrollmentEnrolledBefore`|
+|`programIncidentStartDate`<br>`programIncidentEndDate`|`enrollmentOccurredAfter`<br>`enrollmentOccurredBefore`|
+|`programStartDate`<br>`programEndDate`|Removed - obsolete, see <br><ul><li>`enrollmentEnrolledAfter`</li><li>`enrollmentEnrolledBefore`</li></ul>|
+|`query`|Removed - use `filter` instead|
+|`skipMeta`|Removed|
+|`skipPaging`|`paging`<br>Is the inverse so `paging=false` replaces `skipPaging=true`.|
+|`trackedEntityInstance`|`trackedEntities`<br>Values are now separated by comma instead of semicolon.|
 
 #### Request parameter changes for `GET /api/tracker/enrollments`
 
 |Previously|Now|
 |---|---|
-|`ou`|`orgUnit`|
-|`lastUpdated`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedWithin`|
+|`enrollment`|`enrollments`<br>Values are now separated by comma instead of semicolon.|
+|`lastUpdated`<br>`lastUpdatedDuration`|`updatedAfter`<br>`updatedWithin`|
+|`ouMode`|`orgUnitMode`|
+|`ou`|`orgUnits`<br>Values are now separated by comma instead of semicolon.|
 |`programStartDate`<br>`programEndDate`|`enrolledAfter`<br>`enrolledBefore`|
+|`skipPaging`|`paging`<br>Is the inverse so `paging=false` replaces `skipPaging=true`.|
 |`trackedEntityInstance`|`trackedEntity`|
 
 #### Request parameter changes for `GET /api/tracker/events`
 
 |Previously|Now|
 |---|---|
-|`trackedEntityInstance`|`trackedEntity`|
-|`startDate`<br>`endDate`|`occurredAfter`<br>`occurredBefore`|
+|`assignedUser`|`assignedUsers`<br>Values are now separated by comma instead of semicolon.|
+|`attachment`|Removed|
+|`attributeCc`|`attributeCategoryCombo`|
+|`attributeCos`|`attributeCategoryOptions`<br>Values are now separated by comma instead of semicolon.|
 |`dueDateStart`<br>`dueDateEnd`|`scheduledAfter`<br>`scheduledBefore`|
+|`event`|`events`<br>Values are now separated by comma instead of semicolon.|
+|`lastUpdatedStartDate`<br>`lastUpdatedEndDate`<br>`lastUpdatedDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
 |`lastUpdated`|Removed - obsolete, see: <br><ul><li>`updatedAfter`</li><li>`updatedBefore`</li></ul>|
-|`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
+|`ouMode`|`orgUnitMode`|
+|`skipEventId`|Removed|
+|`skipMeta`|Removed|
+|`skipPaging`|`paging`<br>Is the inverse so `paging=false` replaces `skipPaging=true`.|
+|`startDate`<br>`endDate`|`occurredAfter`<br>`occurredBefore`|
+|`startDate`<br>`endDate`|`occurredAfter`<br>`occurredBefore`|
+|`trackedEntityInstance`|`trackedEntity`|
 
-#### Request parameter changes for `GET /api/tracker/trackedEntities`
+#### Request parameter changes for `GET /api/tracker/relationships`
 
 |Previously|Now|
 |---|---|
-|`trackedEntityInstance`|`trackedEntity`|
-|`ou`|`orgUnit`|
-|`programStartDate`<br>`programEndDate`|Removed - obsolete, see <br><ul><li>`enrollmentEnrolledAfter`</li><li>`enrollmentEnrolledBefore`</li></ul>|
-|`programEnrollmentStartDate`<br>`programEnrollmentEndDate`|`enrollmentEnrolledAfter`<br>`enrollmentEnrolledBefore`|
-|`programIncidentStartDate`<br>`programIncidentEndDate`|`enrollmentOccurredAfter`<br>`enrollmentOccurredBefore`|
-|`eventStartDate`<br>`eventEndDate`|`eventOccurredAfter`<br>`eventOccurredBefore`|
-|`lastUpdatedStartDate`<br>`lastUpdateEndDate`<br>`lastUpdateDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
+|`skipPaging`|`paging`<br>Is the inverse so `paging=false` replaces `skipPaging=true`.|
+|`tei`|`trackedEntity`|
 
 ## Tracker Web API { #webapi_tracker_api }
 
