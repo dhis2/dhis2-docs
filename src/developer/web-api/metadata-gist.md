@@ -133,8 +133,9 @@ Parameters in alphabetical order:
 | `pageSize`     | 1-1000                | 50                                 | number of items on a page |
 | `pageListName` | `<text>` | (object type plural) | overrides the property name of the result entry list | 
 | `rootJunction` | `AND` or `OR`         | `AND`                              | logical combination of `filter`s, `AND`= all must match, `OR`= at least one must match |
-| `total`        | `true` or `false`     | `false`                            | `true` add total number of matches to the pager, `false` skip counting total number of matches |
+| `total`/`totalPages`        | `true` or `false`     | `false`                            | `true` add total number of matches to the pager, `false` skip counting total number of matches |
 | `translate`    | `true` or `false`     | `true`                             | `true` translate all translatable properties, `false` skip translation of translatable properties (no effect on synthetic display names) |
+
 
 
 ### The `absoluteUrls` Parameter { #gist_parameters_absoluteUrls } 
@@ -589,7 +590,8 @@ response root object with the format:
 (details of the pager and matches are omitted here)
 
 
-### The `total` Parameter { #gist_parameters_total } 
+### The `total` or `totalPages` Parameter { #gist_parameters_total } 
+
 <!--DHIS2-SECTION-ID:gist_parameters_total-->
 
 By default, a gist query will **not** count the total number of matches should 
