@@ -14,7 +14,7 @@ This feature of exporting and importing is thus a crucial function of a HMIS.
 This feature also helps us overcome the dependency on the Internet to some
 degree, as data updates can be transferred via USB key where there is no
 connectivity, or through email where there is limited Internet
-connectivity. DHIS2 provides robust export-import functionality to
+connectivity. DHIS2 provides robust import-export functionality to
 fulfil these needs.
 
 To access the Import/Export app, search in the top header bar for
@@ -23,13 +23,12 @@ which can be found below.
 
 ![](resources/images/import_export/overview.png)
 
+
 ## Importing data { #importing_data }
 
 ### Import progress logger { #import_progress_logger }
 
-No matter what you import ("Data", "Events", "Org unit geometry", "Metadata" or
-"Tracked Entity Instances" data), you can always view the progress of
-the import by looking at the "Job Summary" at the top of the page.
+No matter what you import ("Data", "Events", "Org unit geometry", "Metadata" or "Tracked entity" data), you can always view the progress of the import by looking at the "Job Summary" at the top of the page.
 
 ### Import Summaries { #metadata_import_summaries }
 
@@ -149,7 +148,7 @@ Import.
 
 ![](resources/images/import_export/event_import.png)
 
-1.  Select a format: _JSON_ , _CSV_, or _XML_
+1.  Select a format: _JSON_ or _CSV_.
 
 2.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
@@ -251,18 +250,16 @@ recommended format and can also be used to import associated geometries
 2.  Click on the **Import** button which will upload the file and start the
     importing process.
 
-### Tracked Entity Instances Import { #tei_import }
+### Tracked Entities Import { #tei_import }
 
-Tracked Entity Instances Import can be accessed from the sidebar by
-clicking on TEI Import.
+Tracked entities import can be accessed from the sidebar by
+clicking on Tracked entity import.
 
 ![](resources/images/import_export/tei_import.png)
 
-1.  Choose a file to upload
+1.  Choose a JSON file to upload
 
-2.  Select a format: _JSON_ or _XML_
-
-3.  Select the appropriate settings for:
+1.  Select the appropriate settings for:
 
     - Identifier
     - Import report mode
@@ -271,22 +268,26 @@ clicking on TEI Import.
     - Atomic mode
     - Merge mode
 
-4.  Click **Advanced options** if you want to adjust one or more of
+1.  Click **Advanced options** if you want to adjust one or more of
     the following settings before importing:
 
     - Flush mode
     - Skip sharing
     - Skip validation
-    - Inclusive strategy
+    - Inclusion strategy
+    - Data element ID scheme
+    - Event ID scheme
+    - Org unit ID scheme
+    - ID scheme
 
-5.  Click on the **Import** button which will upload the file and start the
+1.  Click on the **Import** button which will upload the file and start the
     importing process.
 
 > **Tip**
 >
 > **It is highly recommend to use the Dry run option** to test before
 > importing data; to make sure you keep control over any changes to
-> your Tracked Entity Instances.
+> your tracked entities.
 
 ## Exporting data
 
@@ -382,11 +383,11 @@ export.
 
 ![](resources/images/import_export/event_export.png)
 
-You can export event or tracker data in JSON, CSV, or XML formats.
+You can export event or tracker data in JSON or CSV.
 
 1.  Select an organisation unit.
 
-2.  Select the inclusion:
+1.  Select the inclusion:
 
     - _Selected_: Export event data only for the selected
       organisation unit
@@ -399,15 +400,15 @@ You can export event or tracker data in JSON, CSV, or XML formats.
       inside the selections as well as the selected organisation
       unit itself.
 
-3.  Select a program and a program stage (if applicable).
+1.  Select a program and a program stage (if applicable).
 
-4.  Set the start date and end date.
+1.  Set the start date and end date.
 
-5.  Select a format: _JSON_, _CSV_, or _XML_.
+1.  Select a format: _JSON_ or _CSV_.
 
-6.  Select a compression mode: _Zip_, _GZip_ or _Uncompressed_.
+1.  Select a compression mode: _Zip_, _GZip_ or _Uncompressed_.
 
-7.  Click **Advanced options** if you want to adjust one or more of
+1.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
 
     - Include deleted
@@ -415,39 +416,73 @@ You can export event or tracker data in JSON, CSV, or XML formats.
     - Organisation unit ID scheme
     - ID scheme
 
-8.  Click **Export events** which will open a new web-browser window
+1.  Click **Export events** which will open a new web-browser window
     that will give you a file to download to your local computer.
 
-### Tracked Entity Instances export { #tei_export }
+### Tracked entities export { #tei_export }
 
-Tracked entity instances export can be accessed from the sidebar by
-clicking on TEI export.
+Tracked entities export can be accessed from the sidebar by
+clicking on tracked entities export.
 
 ![](resources/images/import_export/tei_export.png)
 
-You can export event or tracker data in JSON, CSV, or XML format.
+You can export tracked entities in JSON, or CSV format.
 
-1.  Select the organisation units that should be included.
+1.  Select the organisation units that should be included. There are three modes for selecting organisation units:
 
-2.  Decide whether you want to filter by program or tracked entity type.
 
-3.  Select a format: _JSON_, _CSV_, or _XML_.
+    - _Accessible_: to select data view organisation units associated with the current user
 
-4.  Click **Advanced options** if you want to adjust one or more of
+    - _Capture_: to select data view organisation units associated with the current user.
+
+    - _Manually select organisation units_: to manually select the organisation units.
+
+1. If you choose to _manually select organisation units_ then you will be presented with further options:
+
+    - _Selected_: Export data only for the selected
+      organisation unit
+
+    - _Directly below_: Export data including the first
+      level of the organisation units inside the selections as well
+      as the selected organisation unit itself.
+
+    - _All below_: Export event data for all organisation units
+      inside the selections as well as the selected organisation
+      unit itself.
+
+1.  Decide whether you want to filter by _program_ or _tracked entity type_.
+
+1. Decide what statuses to include in the export
+
+1. Decide which follow-up statuses to include in the export
+
+1.  Select a format: _JSON_ or _CSV_.
+
+1.  Click **Advanced options** if you want to adjust one or more of
     the following settings before exporting:
 
     - Filter by last updated date
-    - Assigned user mode
+    - Filter by assigned user
     - Include deleted
-    - Include all attributes
     - Data element ID scheme
     - Event ID scheme
     - Organisation unit ID scheme
     - ID scheme
 
-5.  Click **Export tracked entity instances** which will open a new
+1.  Click **Export tracked entity** which will open a new
     web-browser window that will give you a file to download to your
     local computer.
+
+## Changes to Tracker import/export in v41+ { #v41_tracker_changes }
+
+The import/export app was upgraded to use the [new tracker API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html) for importing and exporting tracked entities and events. The [deprecated tracker API](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-deprecated.html) will be removed in v42 hence all applications are advised to upgrade as soon as possible.
+
+This brings a lot of benefits in terms of the consistency and reliability of the import/export experience for tracked entities and events, such as better validation, error reporting and the use of a more reliable job scheduling workflow.
+
+These benefits come with a couple of important caveats. First, the new format of the exported files is incompatible with previous versions of the app, so exports from v41 can not be imported in previous versions, and exports from previous versions can not be imported in v41. We also dropped support for XML format, and only support JSON and CSV. More context for these changes can be found in the [Tracker API documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html).
+
+![Improved error reports in v41+](resources/images/import_export/v41_error_reports.png)
+
 
 ## Job Overview { #job_overview }
 

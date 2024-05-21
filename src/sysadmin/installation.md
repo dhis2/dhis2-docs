@@ -523,46 +523,67 @@ DHIS2 instance at the following URL:
 
 ## File store configuration { #install_file_store_configuration } 
 
-DHIS2 is capable of capturing and storing files. By default, files will
-be stored on the local file system of the server which runs DHIS2 in a *files*
-directory under the `DHIS2_HOME` external directory location. 
+DHIS2 is capable of capturing and storing files. By default, files will be stored on the local file
+system of the server which runs DHIS2 in a *files* directory under the `DHIS2_HOME` external
+directory location. The directory *files* can be changed via the `filestore.container` property in
+the `dhis.conf`.
 
-You can also configure DHIS2 to store files on cloud-based storage
-providers. AWS S3 is the only supported provider currently. To enable
-cloud-based storage you must define the following additional properties
-in your `dhis.conf` file:
+You can also configure DHIS2 to store files on cloud-based storage providers. AWS S3 or S3
+compatible object stores are currently supported.
+
+To enable storage in AWS S3 you must define the following additional properties in your `dhis.conf`
+file:
 
 ```properties
-# File store provider. Currently 'filesystem' and 'aws-s3' are supported.
+# File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
 filestore.provider = 'aws-s3'
 
-# Directory in external directory on local file system and bucket on AWS S3
+# Directory in external directory on local file system or bucket in AWS S3 or S3 API
 filestore.container = files
 
-# The following configuration is applicable to cloud storage only (AWS S3)
+# The following configuration is applicable to cloud storage only (provider 'aws-s3' or 's3')
 
 # Datacenter location. Optional but recommended for performance reasons.
 filestore.location = eu-west-1
 
-# Username / Access key on AWS S3
+# Username / Access key for AWS S3 or S3 APIs
 filestore.identity = xxxx
 
-# Password / Secret key on AWS S3 (sensitive)
+# Password / Secret key for AWS S3 or S3 APIs (sensitive)
 filestore.secret = xxxx
 ```
 
-This configuration is an example reflecting the defaults and should be
-changed to fit your needs. In other words, you can omit it entirely if
-you plan to use the default values. If you want to use an external
-provider the last block of properties needs to be defined, as well as the
-*provider* property is set to a supported provider (currently only
-AWS S3).
+To enable storage in an S3 compatible object store you must define the following additional
+properties in your `dhis.conf` file:
+
+```properties
+# File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
+filestore.provider = 's3'
+
+# Directory in external directory on local file system or bucket in AWS S3
+filestore.container = files
+
+# The following configuration is applicable to cloud storage only (provider 'aws-s3' or 's3')
+
+# URL where the S3 compatible API can be accessed (only for provider 's3')
+filestore.endpoint = http://minio:9000 
+
+# Datacenter location. Optional but recommended for performance reasons.
+filestore.location = eu-west-1
+
+# Username / Access key for AWS S3 or S3 APIs
+filestore.identity = xxxx
+
+# Password / Secret key for AWS S3 or S3 APIs (sensitive)
+filestore.secret = xxxx
+```
 
 > **Note**
 > 
 > If you’ve configured cloud storage in dhis.conf, all files you upload
 > or the files the system generates will use cloud storage.
 
+These configurations are examples and should be changed to fit your needs.
 For a production system the initial setup of the file store should be
 carefully considered as moving files across storage providers while
 keeping the integrity of the database references could be complex. Keep
@@ -573,16 +594,18 @@ implementation.
 
 > **Note**
 > 
-> AWS S3 is the only supported provider but more providers are likely to 
-> be added in the future, such as Google Cloud Store and Azure Blob Storage.
-> Let us know if you have a use case for additional providers.
+> AWS S3 and S3 compatible object stores are the only supported cloud providers but more providers
+> could be added. Let us know if you have a use case for additional providers.
 
 ## Google service account configuration { #install_google_service_account_configuration } 
 
 DHIS2 can connect to various Google service APIs. For instance, the
-DHIS2 GIS component can utilize the Google Earth Engine API to load map
-layers. In order to provide API access tokens you must set up a Google
-service account and create a private key:
+DHIS2 Maps app can utilize the Google Earth Engine API to load Earth Engine map
+layers. There are 2 ways to obtain the Google API key.
+
+### Set it up yourself
+
+Set up a Google service account and create a private key:
 
   - Create a Google service account. Please consult the [Google identify
     platform](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#overview)
@@ -600,6 +623,15 @@ the `DHIS2_HOME` directory (the same location as the `dhis.conf` file).
 As an example this location could be:
 
     /home/dhis/config/dhis-google-auth.json
+
+### Send an email to set up the Google Earth Engine API key
+
+If you only intend to use the key for the Google Earth Engine map layers,
+you can simply send an email. See the [Google Earth Engine API key documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html).
+
+## Bing Maps API key { #install_bing_maps_api_key }
+
+To enable use of Bing Maps basemap layers, you need to set up the Bing Maps API key. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key) for information on setting up the key.
 
 ## OpenID Connect (OIDC) configuration { #install_oidc_configuration } 
 
@@ -1709,50 +1741,41 @@ connection.password = xxxx
 connection.pool.max_size = 40
 
 # ----------------------------------------------------------------------
-# Database connection for PostgreSQL [Optional]
+# Database connection pool [Optional]
 # ----------------------------------------------------------------------
 
 # Minimum number of Connections a pool will maintain at any given time (default: 5).
-connection.pool.min_size=5
+connection.pool.min_size = 5
 
-# Initial size of connection pool (default : 5)
-#Number of Connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize
-connection.pool.initial_size=5
+# Number of connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize.
+connection.pool.initial_size = 5
 
-#Determines how many connections at a time will try to acquire when the pool is exhausted.
-connection.pool.acquire_incr=5
+# Determines how many connections at a time will try to acquire when the pool is exhausted.
+connection.pool.acquire_incr = 5
 
-#Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. (default: 7200)
-connection.pool.max_idle_time=7200
+# Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. (default: 7200)
+connection.pool.max_idle_time = 7200
 
-#Number of seconds that Connections in excess of minPoolSize should be permitted to remain idle in the pool before being culled (default: 0)
-connection.pool.max_idle_time_excess_con=0
+# Number of seconds that connections in excess of minPoolSize is permitted to remain idle in the pool before being culled (default: 0)
+connection.pool.max_idle_time_excess_con = 0
 
-#If this is a number greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
-connection.pool.idle.con.test.period=0
+# If greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
+connection.pool.idle.con.test.period = 0
 
-#If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
-connection.pool.test.on.checkout=false
+# If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
+connection.pool.test.on.checkout = false
 
-#If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
-connection.pool.test.on.checkin=on
+# If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
+connection.pool.test.on.checkin = on
 
-#Defines the query that will be executed for all connection tests. Ideally this config is not needed as postgresql driver already provides an efficient test query. The config is exposed simply for evaluation, do not use it unless there is a reason to.
-connection.pool.preferred.test.query=select 1
+# Determines the query that will be executed for all connection tests
+connection.pool.preferred.test.query = select 1
 
-#Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
-connection.pool.num.helper.threads=3
+# Determines the number of helper threads used by dhis2 for jdbc operations. (default: 3)
+connection.pool.num.helper.threads = 3
 
-# Database datasource pool type. Supported pool types are: 
-#
-# * c3p0 (default): For information see https://www.mchange.com/projects/c3p0/
-# 
-# * hikari: For information see https://github.com/brettwooldridge/HikariCP
-#
-# * unpooled: Some implementations might want to have more control over the pooling and database cluster architecture 
-# (e.g., using PgBouncer as pool manager behind HAProxy for load balancing). In these cases, the internal pool is un-necessary 
-# and gets in the way.
-db.pool.type=c3p0
+# Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
+db.pool.type = c3p0
 
 # ----------------------------------------------------------------------
 # Server [Mandatory]
@@ -1767,6 +1790,9 @@ server.https = off
 # ----------------------------------------------------------------------
 # System [Optional]
 # ----------------------------------------------------------------------
+
+# System identifier
+system.id = hmis1.country.org
 
 # System mode for database read operations only, can be 'off', 'on'
 system.read_only_mode = off
@@ -1783,10 +1809,7 @@ system.sql_view_write_enabled = off
 # Disable server-side program rule execution, can be 'on', 'off'
 system.program_rule.server_execution = on
 
-# Remote servers which the server is allowed to call
-# Accepts comma-separated values
-# Servers should end with '/' for enhanced security
-# Default is empty
+# Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
 system.remote_servers_allowed = https://server1.org/,https://server2.org/
 
 # ----------------------------------------------------------------------
@@ -1800,11 +1823,14 @@ encryption.password = xxxx
 # File store [Optional]
 # ----------------------------------------------------------------------
 
-# File store provider, currently 'filesystem' and 'aws-s3' are supported
+# File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
 filestore.provider = filesystem
 
-# Directory / bucket name, folder below DHIS2_HOME on file system, 'bucket' on AWS S3
+# Directory / bucket name, folder below DHIS2_HOME on file system, 'bucket' in AWS S3
 filestore.container = files
+
+# URL where the S3 compatible API can be accessed (only for provider 's3')
+filestore.endpoint = http://minio:9000 
 
 # Datacenter location (not required)
 filestore.location = eu-west-1
@@ -1864,14 +1890,41 @@ monitoring.uptime.enabled = on
 monitoring.cpu.enabled = on
 
 # ----------------------------------------------------------------------
+# Redis [Optional]
+# ----------------------------------------------------------------------
+
+# Redis enabled
+redis.enabled = true
+
+# Redis host name
+redis.host = localhost
+
+# Redis port
+redis.port = 6379
+
+# Redis password
+redis.password = xxxx
+
+# Use SSL for connections to Redis, can be 'on', 'off' (default)
+redis.use.ssl = off
+
+# ----------------------------------------------------------------------
 # Analytics [Optional]
 # ----------------------------------------------------------------------
 
-# Analytics server-side cache expiration in seconds
-analytics.cache.expiration = 3600
+# Analytics database JDBC driver class
+analytics.connection.driver_class = org.postgresql.Driver
 
-# Analytics unlogged tables. Accepts on/off. It's `on` by default. If enabled, this will boost the analytics table export process significantly.
-# But this comes with a cost: "unlogged" tables cannot be replicated. It means that clustering won't be possible. Also, analytics tables will be automatically truncated if PostgreSQL is suddenly reset (abrupt reset/crash). If PostgreSQL is reset gracefully, it won't impact any table. In this case, the analytics tables will remain in place accordingly. If you cannot afford the costs mentioned above, you should disable it (set to `off`).
+# Analytics database connection URL
+analytics.connection.url = jdbc:postgresql:analytics
+
+# Analytics database username
+analytics.connection.username = analytics
+
+# Analytics database password
+analytics.connection.password = xxxx
+
+# Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
 analytics.table.unlogged = on
 
 # ----------------------------------------------------------------------
@@ -1882,7 +1935,7 @@ analytics.table.unlogged = on
 system.monitoring.url = 
 
 # System monitoring username
-system.monitoring.username = 
+system.monitoring.username = dhis
 
 # System monitoring password (sensitive)
 system.monitoring.password = xxxx
@@ -1891,20 +1944,44 @@ system.monitoring.password = xxxx
 # System update notifications [Optional]
 # ----------------------------------------------------------------------
 
+# System update notifications, such as new DHIS 2 releases becoming available
 system.update_notifications_enabled = on
+
+# ----------------------------------------------------------------------
+# Logging [Optional]
+# ----------------------------------------------------------------------
+
+# Max size for log files, default is 100MB
+logging.file.max_size = 200MB
+
+# Max number of rolling log archive files, default is 0
+logging.file.max_archives = 1
+
+# ----------------------------------------------------------------------
+# Log levels [Optional]
+# ----------------------------------------------------------------------
+
+# DHIS 2 log level (level can be TRACE, DEBUG, INFO, WARN, ERROR)
+logging.level.org.hisp.dhis = INFO
+
+# Spring log level (refers to Java class package names)
+logging.level.org.springframework = INFO
 
 # ----------------------------------------------------------------------
 # App Hub [Optional]
 # ----------------------------------------------------------------------
 
 # Base URL to the DHIS2 App Hub service
-apphub.base.url = https://apps.dhis2.org"
+apphub.base.url = https://apps.dhis2.org
+
 # Base API URL to the DHIS2 App Hub service, used for app updates
 apphub.api.url = https://apps.dhis2.org/api
 
+# ----------------------------------------------------------------------
+# Sessions [Optional]
+# ----------------------------------------------------------------------
 
-# Number of possible concurrent sessions on different computers or browsers for each user. If configured to 1, the
-# user will be logged out from any other session when a new session is started.
+# Number of possible concurrent sessions across different clients per user
 max.sessions.per_user = 10
 ```
 

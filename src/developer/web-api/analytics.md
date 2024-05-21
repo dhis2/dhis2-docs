@@ -148,7 +148,8 @@ order is:
 DHIS2 features a multi-dimensional data model with several fixed and
 dynamic data dimensions. The fixed dimensions are the data element,
 period (time) and organisation unit dimension. You can dynamically add
-dimensions through categories, data element group sets and organisation
+dimensions through categories, category option group sets, 
+organisation unit group sets, data element group sets and organisation
 unit group sets. The table below displays the available data dimensions
 in DHIS2. Each data dimension has a corresponding *dimension
 identifier*, and each dimension can have a set of *dimension items*:
@@ -2026,6 +2027,142 @@ For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" prog
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
 
+## Tracked entity analytics { #webapi_tei_analytics } 
+
+The tracked entity (TE) analytics API allows querying *TEs with their enrollments and event data* captured in DHIS2. 
+This resource retrieves data from TE, enrollments, events, and data elements across multiple programs, for a given tracked entity type.
+
+### Dimensions and items { #webapi_tei_analytics_dimensions } 
+
+Tracked entity instance dimensions include program attributes (TE attributes), data elements, 
+organization units, and different kinds of periods. The analytics query will simply return TEs matching a set of criteria.
+It does not perform any aggregation.
+
+Table: TE dimensions
+
+| Dimension                          | Dimension id                                                | Description |
+|------------------------------------|-------------------------------------------------------------|---|
+| Program attributes (TE attributes) | `<attribute id>`                                            | The identifier of the program attribute.
+| Data elements in program stages    | `<program id>.<program stage id>[offset].<data element id>` | Data element identifiers must include the program and program stage. ie: `dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO` |
+| Periods                            | N.A.                                                        | There's no direct support for `period` dimension. Periods are supported through several different specific parameters. See the *Periods* section below. |
+| TEI Organisation units             | `ou`                                                        | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
+| Enrollment Organisation units      | `<program id>.ou`                                           | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
+| Event Organisation units           | `<program id><program stage id>.ou`                         | Organisation unit identifiers, and also the keywords USER_ORGUNIT, USER_ORGUNIT_CHILDREN, USER_ORGUNIT_GRANDCHILDREN, LEVEL-<level\> and OU_GROUP-<group-id\>. |
+
+#### Offset
+
+Dimensions referring to items in repeatable events can include an optional offset.
+The offset is used to specify which repetition of the event to use.
+The order of the repetitions is based on the occurred date, with the most recent event being the latest repetition.
+The offset is an integer value, where 0 refers to the last repetition, -1 to the second last, and so on.
+Positive values refer to the first (oldest) repetition, second repetition, and so on.
+The offset is enclosed in square brackets [ ].
+
+Example:
+
+    IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO -- refers to the last repetition
+    IpHINAT79UW.ZzYYXq4fJie[-1].GQY2lXrypjO -- refers to the second last repetition
+    IpHINAT79UW.ZzYYXq4fJie[2].GQY2lXrypjO -- refers to the second repetition 
+
+### Tracked entity (TE) query analytics { #webapi_te_query_analytics } 
+
+The *analytics/trackedEntities/query* endpoint provides queries for captured TEs, allowing querying and filtering for information related to TEs, along with their respective enrollments and events. It does not perform any aggregation.
+
+    /api/41/analytics/trackedEntities/query
+
+You can specify any number of dimensions and any number of filters in a query. Dimension item identifiers can refer to any of the data elements in program stages, program attributes, tracked entity attributes, fixed and relative periods, and organization units. Dimensions can optionally have a query operator and a filter. TEs queries should be in the format described below.
+
+    /api/41/analytics/trackedEntities/query/<tracked-entity-type-id>?dimension=ou:<ou-id>;<ou-id>&
+    	dimension=<item-id>&dimension=<item-id>:<operator>:<filter>
+
+For example, to retrieve TEs of type `Person` from the "Child Program" and "Antenatal care" programs, where the "First name" is "James":
+
+    /api/41/analytics/trackedEntities/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
+
+Paging can be applied to the query by specifying the page number and the page size parameters. If the page number is specified but the page size is not, a page size of 50 will be used. If the page size is specified but the page number is not, a page number of 1 will be used. To get the second page of the response with a page size of 10 you can use a query like this:
+
+    /api/41/analytics/trackedEntities/query/nEenWmSyUEp?program=IpHINAT79UW,WSGAb5XwJ3Y&dimension=IpHINAT79UW.w75KJ2mc4zz:eq:James
+    	&pageSize=10&page=2
+
+#### Filtering
+
+Filters can be applied to data elements, tracked entity attributes, and tracked entity identifiers. The filtering is done through a query parameter in the following format:
+
+    &dimension=<item-id>:<operator>:<filter-value>
+
+For example, you can filter the "MCH Infant Weight (g)" data element, of the program "Child Program" and program stage "Baby Postnatal" looking for values greater than 2000 and lower than 4000. The filter is defined like this:
+
+    &dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO:GT:2000&dimension=IpHINAT79UW.ZzYYXq4fJie.GQY2lXrypjO:LT:4000
+
+#### Periods 
+
+Unlike enrollment and event query endpoints, the TE endpoint supports multiple ways to specify the period the data belongs to. They are based on different *date* params as shown below:
+
+| Parameter      | Description                                                                      | 
+|----------------|----------------------------------------------------------------------------------|
+| eventDate      | TEs will be filtered based on the date the event occurred.                       |
+| enrollmentDate | TEs will be filtered based on the date of enrollment.                            |
+| scheduledDate  | TEs will be filtered based on the date the event was scheduled.                  |
+| incidentDate   | TEs will be filtered based on enrollment's incident date.                        |
+| lastUpdated    | TEs will be filtered based on the date the TE/enrollment/event was last updated. |
+| created        | TEs will be filtered based on the date the TE/enrollment/event was created.      |
+
+Some periods, mentioned above, can be applied to Tracked Entities, Enrollments, or Events, depending on the way they are expressed.
+
+Examples:
+
+* filtering TEs that have been updated during the last year:
+
+`lastUpdated=LAST_YEAR`
+
+* filtering TEs whose latest enrollment in the program "Child Program" has been updated during the last year:
+
+`lastUpdated=IpHINAT79UW.LAST_YEAR`
+
+* filtering TEs whose latest event in the program stage "Baby Postnatal", in the latest enrollment in the program "Child Program" has been updated during the last year:
+
+`lastUpdated=IpHINAT79UW.ZzYYXq4fJie.LAST_YEAR`
+
+* filtering TEs whose latest enrollment in the "Child Program" occurred in the last year:
+
+`enrollmentDate=IpHINAT79UW.LAST_YEAR`
+
+### Request query parameters { #webapi_tei_analytics_query_parameters } 
+
+The analytics TE query API supports a range of query parameters.
+
+Table: Query parameters for the TE query endpoint
+
+| Query parameter         | Required | Description                                                                                                                                                                                                                                                                                                                                                               | Options (default first)                                                                                                                                                                              |
+|-------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| trackedEntityType       | Yes      | Tracked entity type identifier.                                                                                                                                                                                                                                                                                                                                           | Any tracked entity type identifier.                                                                                                                                                                  |
+| program                 | No       | Program identifiers.                                                                                                                                                                                                                                                                                                                                                      | Any program identifier. Accepts multiple comma-separated identifiers.                                                                                                                                |
+| dimension               | No       | Dimension identifier including data elements, attributes, program indicators, periods, organization units and organization unit group sets. This parameter can be specified multiple times. Dimension filters can be applied to a dimension in the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator). | Operators supported: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN                                                                              |
+| filter                  | No       | Dimension identifier including data elements, attributes, periods, organization units and organization unit group sets. This parameter can be specified multiple times. Dimension filters can be applied to a dimension in the format <dimension-id\>:<operator\>:<filter-value\>. Filter values can be case-insensitive (depending on the operator).                     | Operators supported: EQ &#124; IEQ &#124; GT &#124; GE &#124; LT &#124; LE &#124; NE &#124; LIKE &#124; ILIKE &#124; IN                                                                              |
+| headers                 | No       | The name of the headers to be returned as part of the response.                                                                                                                                                                                                                                                                                                           | One or more header names (separated by a comma).                                                                                                                                                     |
+| relativePeriodDate      | No       | Overrides the start date, so relative periods will use this date as the starting date.                                                                                                                                                                                                                                                                                    | Example: "2016-01-01"                                                                                                                                                                                |
+| ouMode                  | No       | The mode for the selection of organization units. The default is DESCENDANTS, meaning all subunits in the hierarchy. CHILDREN refers to immediate children in the hierarchy; SELECTED refers to the selected organization units only.                                                                                                                                     | DESCENDANTS, CHILDREN, SELECTED                                                                                                                                                                      |
+| asc                     | No       | Dimensions to be sorted ascending. Can reference to enrollment date, incident date, org unit name, and code.                                                                                                                                                                                                                                                              | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; `<dimension identifier>`   |
+| desc                    | No       | Dimensions to be sorted descending, can reference to enrollment date, incident date, org unit name and code.                                                                                                                                                                                                                                                              | `ouname` &#124; `programstatus` &#124; `createdbydisplayname` &#124; `lastupdatedbydisplayname` &#124; `enrollmentdate` &#124; `incidentdate` &#124; `lastupdated` &#124; `<dimension identifier>`   |
+| page                    | No       | The page number. The default value is 1.                                                                                                                                                                                                                                                                                                                                  | Numeric positive value.                                                                                                                                                                              |
+| pageSize                | No       | The page size. The default value is 50 (which means 50 items per page).                                                                                                                                                                                                                                                                                                   | Numeric zero or positive value.                                                                                                                                                                      |
+| displayProperty         | No       | Property to display for metadata.                                                                                                                                                                                                                                                                                                                                         | NAME &#124; SHORTNAME                                                                                                                                                                                |
+| includeMetadataDetails  | No       | Include metadata details to raw data response.                                                                                                                                                                                                                                                                                                                            | false &#124; true                                                                                                                                                                                    |
+| outputIdScheme          | No       | Identifier scheme used for metadata items in the query response. It accepts identifiers, codes, or attributes.                                                                                                                                                                                                                                                            | UID &#124; UUID &#124; CODE &#124; NAME &#124; ATTRIBUTE:<ID\>                                                                                                                                       |
+| dataIdScheme            | No       | Id scheme to be used for data, more specifically data elements and attributes that have an option set or legend set, e.g. return the name of the option instead of the code, or the name of the legend instead of the legend ID, in the data response.                                                                                                                    | NAME &#124; CODE &#124; UID                                                                                                                                                                          |
+| programStatus           | No       | Specify enrollment status of events to include. *DEPRECATED, prefer `enrollmentStatus`*                                                                                                                                                                                                                                                                                   | ACTIVE &#124; COMPLETED &#124; CANCELLED. Can be comma separated (*for query only*).                                                                                                                 |
+| enrollmentStatus        | No       | Specify enrollment status of events to include.                                                                                                                                                                                                                                                                                                                           | ACTIVE &#124; COMPLETED &#124; CANCELLED. Can be comma separated (*for query only*).                                                                                                                 |
+| eventStatus             | No       | Specify the status of events to include.                                                                                                                                                                                                                                                                                                                                  | ACTIVE &#124; COMPLETED &#124; SCHEDULE &#124; OVERDUE &#124; SKIPPED. Can be comma separated (*for query only*).                                                                                    |
+| coordinatesOnly         | No       | Whether to only return events that have coordinates.                                                                                                                                                                                                                                                                                                                      | false &#124; true                                                                                                                                                                                    |
+| geometryOnly            | No       | Whether to only return events that have geometries.                                                                                                                                                                                                                                                                                                                       | false &#124; true                                                                                                                                                                                    |
+| userOrgUnit             | No       | User organization unit identifier.                                                                                                                                                                                                                                                                                                                                        | Any organization unit identifier.                                                                                                                                                                    | 
+| skipMeta                | No       | Skip metadata in the response.                                                                                                                                                                                                                                                                                                                                            | false &#124; true                                                                                                                                                                                    |
+| skipData                | No       | Skip data in the response.                                                                                                                                                                                                                                                                                                                                                | false &#124; true                                                                                                                                                                                    |
+| skipRounding            | No       | Skip rounding of data values.                                                                                                                                                                                                                                                                                                                                             | false &#124; true                                                                                                                                                                                    |
+| skipHeaders             | No       | Skip headers in the response.                                                                                                                                                                                                                                                                                                                                             | false &#124; true                                                                                                                                                                                    |
+| totalPages              | No       | Include the total number of pages in the response.                                                                                                                                                                                                                                                                                                                        | false &#124; true                                                                                                                                                                                    |
+| displayProperty         | No       | Property to display for metadata.                                                                                                                                                                                                                                                                                                                                         | NAME &#124; SHORTNAME                                                                                                                                                                                |
+
 ## Dimensions { #webapi_dimensions }
 
 Five resources allow to easily retrieve data dimensions:
@@ -2432,7 +2569,6 @@ A successful save operation returns an HTTP status code 201. The table
 below shows the supported types of events.
 
 
-
 Table: Supported event types
 
 | Key | Description |
@@ -2476,7 +2612,6 @@ API query that creates a query for a monthly
 
 The usage analytics API lets you retrieve the top favorites used in
 DHIS2, and by user.
-
 
 
 Table: Query parameters for top favorites
@@ -2586,7 +2721,9 @@ The JSON response looks like this:
 ]
 ```
 
-### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics } 
+Note that the number of `activeUsers` indicates the number of distinct users who had any events during the requested time period. The number of `users` represents the total number of users in the system (both enabled and disabled).
+
+### Retrieve statistics for a favorite { #webapi_usage_analytics_retrieve_favorite_statistics }
 
 You can retrieve the number of view for a specific favorite by using the
 *favorites* resource, where *{favorite-id}* should be substituted with
