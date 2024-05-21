@@ -77,7 +77,6 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 | enrollment | The identifier of the enrollment. Generated if not supplied | No | Yes | String:Uid | ABCDEF12345 |
 | program | The program the enrollment represents. | Yes | No | String:Uid | ABCDEF12345 |
 | trackedEntity | A reference to the tracked entity enrolled. | Yes | Yes | String:Uid | ABCDEF12345 |
-| trackedEntityType | Only for reading data. The type of tracked entity enrolled | No | Yes | String:Uid | ABCDEF12345 |
 | status | Status of the enrollment. ACTIVE if not supplied. | No | No | Enum | ACTIVE, COMPLETED, CANCELLED |
 | orgUnit | The organisation unit where the user enrolled the tracked entity. | Yes | No | String:Uid | ABCDEF12345 |
 | createdAt | Timestamp when the user created the object. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
@@ -640,13 +639,13 @@ section](#webapi_nti_import_summary).
 
 ### CSV import
 
-To import events using CSV make a `POST` request with CSV body file and the `Content-Type` set to 
+To import events using CSV make a `POST` request with CSV body file and the `Content-Type` set to
 ***application/csv*** or ***text/csv***.
 
 #### Events
 
-Every row of the CSV payload represents an event and a data value. So, for events with multiple 
-data values, the CSV file will have `x` rows per event, where `x` is the number of data values 
+Every row of the CSV payload represents an event and a data value. So, for events with multiple
+data values, the CSV file will have `x` rows per event, where `x` is the number of data values
 in that event.
 
 ##### ***CSV PAYLOAD*** example
@@ -1448,14 +1447,14 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 
 > **NOTE**
 >
-> * All tracker export endpoints default to a `JSON` response content. `CSV` is only supported 
+> * All tracker export endpoints default to a `JSON` response content. `CSV` is only supported
 >   by tracked entities and events.
-> * You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv*** 
->   to the request. 
+> * You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv***
+>   to the request.
 > * You can download in zip and gzip formats:
->     *  CSV for Tracked entities 
+>     *  CSV for Tracked entities
 >     *  JSON and CSV for Events
-> * You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV 
+> * You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV
 > or ***application/json+gzip*** for JSON.
 > * You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or  
 > ***application/json+zip*** for JSON.
@@ -1517,13 +1516,13 @@ Two endpoints are dedicated to tracked entities:
 - `GET /api/tracker/trackedEntities/{id}`
   - retrieves a tracked entity given the provided id
 
-If not otherwise specified, JSON is the default response for the `GET` method. 
-The API also supports CSV export for single and collection endpoints. Furthermore, compressed 
+If not otherwise specified, JSON is the default response for the `GET` method.
+The API also supports CSV export for single and collection endpoints. Furthermore, compressed
 CSV types is an option for the collection endpoint.
 
 #### CSV
 
-In the case of CSV, the `fields` request parameter has no effect, and the response will always 
+In the case of CSV, the `fields` request parameter has no effect, and the response will always
 contain the following fields:
 
   - trackedEntity (UID)
@@ -1536,7 +1535,7 @@ contain the following fields:
   - inactive (boolean)
   - deleted (boolean)
   - potentialDuplicate (boolean)
-  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. 
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry.
     You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
@@ -1671,7 +1670,7 @@ You can use a range of operators for the filtering:
 
 ##### Tracked Entities response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`. 
+The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`.
 
 ##### JSON
 
@@ -1772,7 +1771,7 @@ A query for a tracked entity:
 
 ##### Tracked Entity response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities/{uid}` 
+The API supports CSV and JSON response for `GET /api/tracker/trackedEntities/{uid}`
 
 ###### JSON
 
@@ -1918,7 +1917,7 @@ An example of a json response:
 
 ###### CSV
 
-The response will be the same as the collection endpoint but referring to a single tracked 
+The response will be the same as the collection endpoint but referring to a single tracked
 entity, although it might have multiple rows for each attribute.
 
 ### Enrollments (`GET /api/tracker/enrollments`)
@@ -1990,7 +1989,7 @@ entity query parameter:
 To constrain the response to enrollments of a specific tracked entity you can include a tracked
 entity query parameter, in In this case, we have restricted it to available enrollments viewable for
 current user:
- 
+
     GET /api/tracker/enrollments?orgUnitMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
 
 ##### Response format
@@ -2075,12 +2074,12 @@ Two endpoints are dedicated to events:
     - retrieves an event given the provided id
 
 If not otherwise specified, JSON is the default response for the `GET` method.
-The API also supports CSV export for single and collection endpoints. Furthermore, it supports 
+The API also supports CSV export for single and collection endpoints. Furthermore, it supports
 compressed JSON and CSV for the collection endpoint.
 
 #### Events CSV
 
-In the case of CSV, the `fields` request parameter has no effect, and the response will always 
+In the case of CSV, the `fields` request parameter has no effect, and the response will always
 contain the following fields:
 
   - event (UID)
@@ -2091,7 +2090,7 @@ contain the following fields:
   - orgUnit (UID)
   - occurredAt (DateTime)
   - scheduledAt (DateTime)
-  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. 
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry.
     You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
@@ -2119,12 +2118,12 @@ See [Events](#events) and [Data Values](#data-values) for more field description
 
 #### Events GZIP
 
-The response is file `events.json.gz` or `events.csv.gzip` containing the `events.json` 
+The response is file `events.json.gz` or `events.csv.gzip` containing the `events.json`
 or `events.csv` file.
 
 #### Events ZIP
 
-The response is file`events.json.gz` or `events.json.zip` containing the `events.json` 
+The response is file`events.json.gz` or `events.json.zip` containing the `events.json`
 or `events.csv` file.
 
 #### Events Collection endpoint `GET /api/tracker/events`
@@ -2323,7 +2322,7 @@ A query for an Event:
 
 ##### Event response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities` 
+The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
 
 ###### JSON
 
@@ -2360,7 +2359,7 @@ The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
 
 ###### CSV
 
-The response will be the same as the collection endpoint but referring to a single event, 
+The response will be the same as the collection endpoint but referring to a single event,
 although it might have multiple rows for each data element value.
 
 ### Relationships (`GET /api/tracker/relationships`)
@@ -2642,4 +2641,3 @@ scope. It is also not possible to break the glass or gain temporary ownership in
 Note that it is still possible to transfer the ownership to another organisation unit. Only a user
 who has access to the data can transfer the ownership of a TrackedEntity-Program combination to
 another Organisation Unit. If ownership is transferred, the Owner Organisation Unit is updated.
-
