@@ -969,7 +969,7 @@ Table: Organisation unit selection modes
 | DESCENDANTS | All children, i.e. at only levels below, e.g. including children of children, of the organisation units defined in the request. |
 | ACCESSIBLE | All descendants of the data view organisation units associated with the current user. Will fall back to data capture organisation units associated with the current user if the former is not defined. |
 | CAPTURE | The data capture organisation units associated with the current user and all children, i.e. all organisation units in the sub-hierarchy. |
-| ALL | All organisation units in the system. Requires authority. |
+| ALL | All organisation units in the system. Requires `ALL` authority. |
 
 Note that you can specify "attribute" with filters or directly using the "filter" params for constraining the
 instances to return.
@@ -1379,7 +1379,7 @@ Table: Organisation unit selection modes
 | CHILDREN | Immediate children, i.e. only the first level below, of the organisation units defined in the request. |
 | DESCENDANTS | All children, i.e. at only levels below, e.g. including children of children, of the organisation units defined in the request. |
 | ACCESSIBLE | All descendants of the data view organisation units associated with the current user. Will fall back to data capture organisation units associated with the current user if the former is not defined. |
-| ALL | All organisation units in the system. Requires authority. |
+| ALL | All organisation units in the system. Requires `ALL` authority. |
 
 The query is case insensitive. The following rules apply to the query
 parameters.
