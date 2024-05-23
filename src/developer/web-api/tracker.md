@@ -13,7 +13,7 @@
 >(deprecated)](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-deprecated.html)
 >describes the deprecated endpoints
 >
-> * `GET/POST/PUT/DELETE /api/trackedEntityInstance`
+> * `GET/POST/PUT/DELETE /api/trackedEntityInstances`
 > * `GET/POST/PUT/DELETE /api/enrollments`
 > * `GET/POST/PUT/DELETE /api/events`
 > * `GET/POST/PUT/DELETE /api/relationships`
