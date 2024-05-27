@@ -326,8 +326,7 @@ These are the steps to enable meta data synchronization:
 - Go to Settings \> Synchronization, enter the remote server URL, username and
   password and click Save.
 
-- Go to Metadata administration \> Scheduling. Under Metadata synchronization
-  set strategy to Enabled, select the time-period and click Start.
+- Using the Scheduler app, create a new job using the "Metadata synchronization" job type. 
 
 Some aspects of the meta data synchronization feature to be aware of:
 
