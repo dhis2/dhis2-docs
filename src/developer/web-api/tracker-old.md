@@ -12,7 +12,10 @@
 > * `GET/POST/PUT/DELETE /api/events`
 > * `GET/POST/PUT/DELETE /api/relationships`
 >
-> will be removed in version **42**!
+> have been removed in version **42**!
+>
+> We also removed the ability to sync Tracker data via [metadata
+> sync](../../user/configure-metadata-synchronizing.md).
 >
 > * If you plan to use the tracker endpoints use the new endpoints described in
 >   [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html)
