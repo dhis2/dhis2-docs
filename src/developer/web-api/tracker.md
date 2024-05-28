@@ -19,7 +19,7 @@
 > * `GET/POST/PUT/DELETE /api/events`
 > * `GET/POST/PUT/DELETE /api/relationships`
 >
-> The deprecated endpoints will be removed in version **42**!
+> which have been removed in version **42**!
 >
 > [Migrating to new tracker
 > endpoints](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-deprecated.html#webapi_tracker_migration)
