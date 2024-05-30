@@ -74,7 +74,7 @@ lists the old and new property names.
 
 ### Semicolon as separator for identifiers (UID)
 
-Fields or query parameter accepting multiple values like UIDs are now consistently separated by
+Fields or query parameters accepting multiple values like UIDs are now consistently separated by
 comma instead of semicolon. This is to ensure UIDs are consistently separated by comma across all
 DHIS2 endpoints.
 
@@ -122,6 +122,7 @@ The following tables list the differences in old and new request parameters for 
 |`programEnrollmentStartDate`<br>`programEnrollmentEndDate`|`enrollmentEnrolledAfter`<br>`enrollmentEnrolledBefore`|
 |`programIncidentStartDate`<br>`programIncidentEndDate`|`enrollmentOccurredAfter`<br>`enrollmentOccurredBefore`|
 |`programStartDate`<br>`programEndDate`|Removed - obsolete, see <br><ul><li>`enrollmentEnrolledAfter`</li><li>`enrollmentEnrolledBefore`</li></ul>|
+|`programStatus`|`enrollmentStatus`|
 |`query`|Removed - use `filter` instead|
 |`skipMeta`|Removed|
 |`skipPaging`|`paging`<br>Is the inverse so `paging=false` replaces `skipPaging=true`.|
@@ -136,6 +137,7 @@ The following tables list the differences in old and new request parameters for 
 |`ouMode`|`orgUnitMode`|
 |`ou`|`orgUnits`<br>Values are now separated by comma instead of semicolon.|
 |`programStartDate`<br>`programEndDate`|`enrolledAfter`<br>`enrolledBefore`|
+|`programStatus`|`status`|
 |`skipPaging`|`paging`<br>Is the inverse so `paging=false` replaces `skipPaging=true`.|
 |`trackedEntityInstance`|`trackedEntity`|
 
@@ -152,6 +154,7 @@ The following tables list the differences in old and new request parameters for 
 |`lastUpdatedStartDate`<br>`lastUpdatedEndDate`<br>`lastUpdatedDuration`|`updatedAfter`<br>`updatedBefore`<br>`updatedWithin`|
 |`lastUpdated`|Removed - obsolete, see: <br><ul><li>`updatedAfter`</li><li>`updatedBefore`</li></ul>|
 |`ouMode`|`orgUnitMode`|
+|`programStatus`|`enrollmentStatus`|
 |`skipEventId`|Removed|
 |`skipMeta`|Removed|
 |`skipPaging`|`paging`<br>Is the inverse so `paging=false` replaces `skipPaging=true`.|

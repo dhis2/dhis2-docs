@@ -399,17 +399,18 @@ See an example payload below:
 
 ## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
 
-The `POST /api/tracker` endpoint allows clients to import the following tracker objects
+The endpoint `POST /api/tracker` is also called the tracker importer. This endpoint allows clients
+to import i.e. create, update and delete
 
 * **Tracked entities**
 * **Enrollments**
 * **Events**
 * **Relationships**
-* Data embedded in other [tracker objects](#webapi_nti_tracker_objects)
+* and data embedded in other [tracker objects](#webapi_nti_tracker_objects)
 
 ### Request parameters
 
-Currently, the tracker import endpoint supports the following parameters:
+The tracker importer supports the following parameters:
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
@@ -431,38 +432,47 @@ Currently, the tracker import endpoint supports the following parameters:
 | skipSideEffects | If true, it will skip running any side effects for the import | Boolean | `TRUE`, `FALSE` |
 | skipRuleEngine | If true, it will skip running any program rules for the import | Boolean | `TRUE`, `FALSE` |
 
-**NOTE**: idScheme and its metadata specific idScheme parameters like
-orgUnitIdScheme, programIdScheme, ... used to allow and use the default `AUTO`.
-`AUTO` has been removed. The default idScheme has already been `UID`. Any
-requests sent with idScheme `AUTO` will see the same behavior as before, namely
-matching done using `UID`.
+**NOTE**: idScheme and its metadata specific idScheme parameters like orgUnitIdScheme,
+programIdScheme, ... used to allow and use the default `AUTO`. `AUTO` has been removed. The default
+idScheme has already been `UID`. Any requests sent with idScheme `AUTO` will see the same behavior
+as before, namely matching done using `UID`.
 
-### Flat and nested payloads
+#### SYNC and ASYNC
 
-The importer support both flat and nested payloads.
+For the user, the main difference between importing synchronously rather than asynchronously is the
+immediate response from the API. Synchronous imports return an [import
+summary](#webapi_nti_import_summary) when the import finished. However, asynchronous imports
+immediately return a reference to the import job. The import jobs progress can be queried using this
+`response.location`. This is an example of an async import
 
-**Flat**
-:   The flat payload can contain collections for each of the core tracker objects we have at the
-:   top level. This works seamlessly with existing data, which already have UIDs assigned. However,
-:   for new data, the client will have to provide new UIDs for any references between objects. For
-:   example, if you import a new tracked entity with a new enrollment, the tracked entity requires
-:   the client to provide a UID so that the enrollment can be linked to that UID.
+```json
+{
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Tracker job added",
+  "response": {
+    "id": "cHh2OCTJvRw",
+    "location": "https://play.im.dhis2.org/dev/api/tracker/jobs/cHh2OCTJvRw"
+  }
+}
+```
 
-**Nested**
-:   Nested payloads are the most commonly used structure. Here, tracker objects are embedded within
-:   their parent object. For example, an enrollment within a tracked entity. The advantage of this
-:   structure is that the client does not need to provide UIDs for these references as this is done
-:   automatically.
+For significant imports, it might be beneficial for the client to use the asynchronous import to
+avoid waiting too long for a response.
 
-> **NOTE**
->
-> While nested payloads might prove simpler for clients to deal with, the payload will always be
-> flattened before the import. This means that for large imports, providing a flat structured
-> payload will provide both more control and lower overhead for the import process itself.
+### Payload
 
-Examples for the **FLAT** and the **NESTED** versions of the payload are listed below.
+The importer supports both flat and nested payloads.
 
 #### ***FLAT*** payload
+
+The flat payload can contain collections for each of the core tracker objects `trackedEntities`,
+`enrollments`, `events` and `relationships`. This works seamlessly with existing data, which already
+has UIDs assigned. However, for new data, the client will have to provide new UIDs for any
+references between objects. For example, if you import a new tracked entity with a new enrollment,
+the tracked entity requires the client to provide a UID so that the enrollment can be linked to that
+UID.
 
 ```json
 {
@@ -550,6 +560,21 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
 
 #### ***NESTED*** payload
 
+Nested payloads are the most commonly used structure. Here, tracker objects are embedded within
+their parent object. For example, an enrollment within a tracked entity. The advantage of this
+structure is that the client does not need to provide UIDs for these references as this is done
+automatically.
+
+> **NOTE**
+>
+> While nested payloads might prove simpler for clients to deal with, the payload will always be
+> flattened before the import. This means that for large imports, providing a flat structured
+> payload will provide both more control and lower overhead for the import process itself.
+>
+> You cannot to use the nested payload to create relationships. This is because it is not valid to
+> also create the relationship items whether its a tracked entity, enrollment or event as part of a
+> new relationship.
+
 ```json
 {
   "trackedEntities": [
@@ -611,31 +636,55 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
 }
 ```
 
-### SYNC and ASYNC
+### Create
 
-For the user, the main difference between importing synchronously rather than asynchronously is the
-immediate response from the API. For the synchronous import, the response will be returned as soon
-as the import finishes with the importSummary. However, for asynchronous imports, the response will
-be immediate and contain a reference where the client can poll for updates to the import.
+Make a `POST` to `/api/tracker` with the `importStrategy` set to `CREATE` or `CREATE_AND_UPDATE` and
+a payload as described [here](#payload). 
 
-For significant imports, it might be beneficial for the client to use the asynchronous import to
-avoid waiting too long for a response.
+### Update
 
-Examples of the **ASYNC** response is shown below. For **SYNC** response, look at the [importSummary
-section](#webapi_nti_import_summary).
+Make a `POST` to `/api/tracker` with the `importStrategy` set to `UPDATE` or `CREATE_AND_UPDATE` and
+a payload as described [here](#payload).
+
+### Delete
+
+Make a `POST` to `/api/tracker` with `importStrategy` set to `DELETE`. The payload should only
+include the UIDs of `trackedEntities`, `enrollments`, `events` or `relationships` you want to
+delete.
+
+The following would delete the events created with [this payload](#payload).
 
 ```json
 {
-  "httpStatus": "OK",
-  "httpStatusCode": 200,
-  "status": "OK",
-  "message": "Tracker job added",
-  "response": {
-    "id": "cHh2OCTJvRw",
-    "location": "https://play.im.dhis2.org/dev/api/tracker/jobs/cHh2OCTJvRw"
-  }
+  "events": [
+    {
+      "event": "ZwwuwNp6gVd",
+    },
+    {
+      "event": "XwwuwNp6gVE",
+    }
+  ]
 }
 ```
+
+The following would delete the tracked entities and all its child tracker objects which are
+enrollments, events and relationships.
+
+```json
+{
+  "trackedEntities": [
+    {
+      "trackedEntity": "Kj6vYde4LHh",
+    },
+    {
+      "trackedEntity": "Gjaiu3ea38E",
+    }
+  ]
+}
+```
+
+All the children of a tracker object will be deleted if the user making the request has the
+`DELETE_CASCADE` authority.
 
 ### CSV import
 
