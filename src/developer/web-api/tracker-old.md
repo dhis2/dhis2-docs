@@ -1,9 +1,9 @@
-# Tracker (deprecated APIs)
+# Tracker (deprecated APIs) { #webapi_deprecated_tracker }
 
 > **Caution**
 >
 > Tracker has been re-implemented in DHIS2 2.36. The new endpoints are documented at
-> [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html).
+> [Tracker](#webapi_tracker).
 >
 > Endpoints
 >
@@ -14,11 +14,10 @@
 >
 > have been removed in version **42**!
 >
-> We also removed the ability to sync Tracker data via [metadata
-> sync](../../user/configure-metadata-synchronizing.md).
+> We also removed the ability to sync Tracker data via [metadata sync](#metadata_sync).
 >
 > * If you plan to use the tracker endpoints use the new endpoints described in
->   [Tracker](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html)
+>   [Tracker](#webapi_tracker)
 > * If you are still using the deprecated tracker endpoints in production, please migrate over to the
 >   new endpoints. [Migrating to new tracker endpoints](#webapi_tracker_migration) should help you
 >   get started. Reach out on the [community of practice](https://community.dhis2.org) if you need
