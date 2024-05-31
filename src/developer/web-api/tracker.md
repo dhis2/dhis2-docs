@@ -464,7 +464,7 @@ The importer supports both flat and nested payloads.
 
 #### ***FLAT*** payload
 
-The flat payload can include collections for each of the core tracker objects: trackedEntities,
+The flat payload can include collections for each of the core tracker objects: tracked entities,
 enrollments, events, and relationships. This format integrates well with existing data that already
 has UIDs assigned. However, for new data, the client must provide new UIDs for any references
 between objects. For instance, if you import a new tracked entity with a new enrollment, the client
@@ -2825,4 +2825,4 @@ scope. It is also not possible to break the glass or gain temporary ownership in
 Note that it is still possible to transfer the ownership to another organisation unit. Only a user
 who has access to the data can transfer the ownership of a TrackedEntity-Program combination to
 another Organisation Unit. If ownership is transferred, the Owner Organisation Unit is updated.
-
+trackedEntities
