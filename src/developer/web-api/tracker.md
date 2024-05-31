@@ -1,4 +1,4 @@
-# Tracker
+# Tracker { #webapi_tracker }
 
 > **Caution**
 >
@@ -10,9 +10,7 @@
 > * `GET  /api/tracker/events`
 > * `GET  /api/tracker/relationships`
 >
-> [Tracker
-> (deprecated)](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-deprecated.html)
-> describes the deprecated endpoints
+> [Tracker (deprecated)](#webapi_deprecated_tracker) describes the deprecated endpoints
 >
 > * `GET/POST/PUT/DELETE /api/trackedEntityInstance`
 > * `GET/POST/PUT/DELETE /api/enrollments`
@@ -21,8 +19,7 @@
 >
 > which have been removed in version **42**!
 >
-> [Migrating to new tracker
-> endpoints](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker-deprecated.html#webapi_tracker_migration)
+> [Migrating to new tracker endpoints](#webapi_tracker_migration)
 > should help you get started with your migration. Reach out on the [community of
 > practice](https://community.dhis2.org) if you need further assistance.
 
@@ -399,17 +396,18 @@ See an example payload below:
 
 ## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
 
-The `POST /api/tracker` endpoint allows clients to import the following tracker objects
+The endpoint `POST /api/tracker` is also called the tracker importer. This endpoint allows clients
+to import i.e. create, update and delete
 
 * **Tracked entities**
 * **Enrollments**
 * **Events**
 * **Relationships**
-* Data embedded in other [tracker objects](#webapi_nti_tracker_objects)
+* and data embedded in other [tracker objects](#webapi_nti_tracker_objects)
 
 ### Request parameters
 
-Currently, the tracker import endpoint supports the following parameters:
+The tracker importer supports the following parameters:
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
@@ -431,38 +429,46 @@ Currently, the tracker import endpoint supports the following parameters:
 | skipSideEffects | If true, it will skip running any side effects for the import | Boolean | `TRUE`, `FALSE` |
 | skipRuleEngine | If true, it will skip running any program rules for the import | Boolean | `TRUE`, `FALSE` |
 
-**NOTE**: idScheme and its metadata specific idScheme parameters like
-orgUnitIdScheme, programIdScheme, ... used to allow and use the default `AUTO`.
-`AUTO` has been removed. The default idScheme has already been `UID`. Any
-requests sent with idScheme `AUTO` will see the same behavior as before, namely
-matching done using `UID`.
+**NOTE**: idScheme and its metadata specific idScheme parameters like orgUnitIdScheme,
+programIdScheme, ... used to allow and use the default `AUTO`. `AUTO` has been removed. The default
+idScheme has already been `UID`. Any requests sent with idScheme `AUTO` will see the same behavior
+as before, namely matching done using `UID`.
 
-### Flat and nested payloads
+#### SYNC and ASYNC
 
-The importer support both flat and nested payloads.
+The main difference for the user between synchronous and asynchronous imports is the timing of the
+API's response. Synchronous imports provide an immediate [import
+summary](#webapi_nti_import_summary) once the import is finished. In contrast, asynchronous imports
+return a reference to the import job right away. The progress of the import job can be tracked using
+this `response.location`. Here is an example of an asynchronous import response:
 
-**Flat**
-:   The flat payload can contain collections for each of the core tracker objects we have at the
-:   top level. This works seamlessly with existing data, which already have UIDs assigned. However,
-:   for new data, the client will have to provide new UIDs for any references between objects. For
-:   example, if you import a new tracked entity with a new enrollment, the tracked entity requires
-:   the client to provide a UID so that the enrollment can be linked to that UID.
+```json
+{
+  "httpStatus": "OK",
+  "httpStatusCode": 200,
+  "status": "OK",
+  "message": "Tracker job added",
+  "response": {
+    "id": "cHh2OCTJvRw",
+    "location": "https://play.im.dhis2.org/dev/api/tracker/jobs/cHh2OCTJvRw"
+  }
+}
+```
 
-**Nested**
-:   Nested payloads are the most commonly used structure. Here, tracker objects are embedded within
-:   their parent object. For example, an enrollment within a tracked entity. The advantage of this
-:   structure is that the client does not need to provide UIDs for these references as this is done
-:   automatically.
+For large imports, opting for asynchronous import can be advantageous for clients, as it prevents
+prolonged waiting periods for a response.
 
-> **NOTE**
->
-> While nested payloads might prove simpler for clients to deal with, the payload will always be
-> flattened before the import. This means that for large imports, providing a flat structured
-> payload will provide both more control and lower overhead for the import process itself.
+### Payload
 
-Examples for the **FLAT** and the **NESTED** versions of the payload are listed below.
+The importer supports both flat and nested payloads.
 
 #### ***FLAT*** payload
+
+The flat payload can include collections for each of the core tracker objects: tracked entities,
+enrollments, events, and relationships. This format integrates well with existing data that already
+has UIDs assigned. However, for new data, the client must provide new UIDs for any references
+between objects. For instance, if you import a new tracked entity with a new enrollment, the client
+must provide a UID for the tracked entity so that the enrollment can be linked to it.
 
 ```json
 {
@@ -550,6 +556,19 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
 
 #### ***NESTED*** payload
 
+Nested payloads are the most commonly used structure, where tracker objects are embedded within
+their parent objects, such as an enrollment within a tracked entity. The advantage of this structure
+is that the client does not need to provide UIDs for these references, as this is handled
+automatically.
+
+> **NOTE**
+>
+> Although nested payloads can be easier for clients to manage, the payload will always be flattened
+> before the import. For large imports, using a flat structured payload offers more control and
+> reduces overhead during the import process.
+> 
+> That being said, you cannot nest new tracked entities, enrollments or events in a relationship.
+
 ```json
 {
   "trackedEntities": [
@@ -611,31 +630,191 @@ Examples for the **FLAT** and the **NESTED** versions of the payload are listed 
 }
 ```
 
-### SYNC and ASYNC
+### Create
 
-For the user, the main difference between importing synchronously rather than asynchronously is the
-immediate response from the API. For the synchronous import, the response will be returned as soon
-as the import finishes with the importSummary. However, for asynchronous imports, the response will
-be immediate and contain a reference where the client can poll for updates to the import.
+Make a `POST` to `/api/tracker` with the `importStrategy` set to `CREATE` or `CREATE_AND_UPDATE` and
+a payload as described [here](#payload). 
 
-For significant imports, it might be beneficial for the client to use the asynchronous import to
-avoid waiting too long for a response.
+### Update
 
-Examples of the **ASYNC** response is shown below. For **SYNC** response, look at the [importSummary
-section](#webapi_nti_import_summary).
+Make a `POST` to `/api/tracker` with the `importStrategy` set to `UPDATE` or `CREATE_AND_UPDATE` and
+a payload as described [here](#payload).
+
+The payload must include all fields of the object you are updating, even if they have not been
+modified. The only exception is collections. Items in a collection that should not be changed can be
+omitted, as demonstrated in [update attribute values](#update-data-values) and [update data
+values](#update-data-values).
+
+> **Note**
+> 
+> * Deleted tracker objects cannot be updated.
+> * Relationships cannot be updated.
+
+#### Update attribute values
+
+The following updates one of the attribute values of a [tracked entity](#payload):
+
+    POST /api/tracker?async=false
 
 ```json
 {
-  "httpStatus": "OK",
-  "httpStatusCode": 200,
-  "status": "OK",
-  "message": "Tracker job added",
-  "response": {
-    "id": "cHh2OCTJvRw",
-    "location": "https://play.im.dhis2.org/dev/api/tracker/jobs/cHh2OCTJvRw"
-  }
+  "trackedEntities": [
+    {
+      "trackedEntity": "PQfMcpmXeFE",
+      "trackedEntityType": "nEenWmSyUEp",
+      "orgUnit": "DiszpKrYNg8",
+      "attributes": [
+        {
+          "attribute": "w75KJ2mc4zz",
+          "code": "MMD_PER_NAM",
+          "displayName": "First name",
+          "createdAt": "2016-08-03T23:49:43.308",
+          "updatedAt": "2016-08-03T23:49:43.308",
+          "valueType": "TEXT",
+          "value": "Johnny"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+Note that it is not necessary to specify the tracked entity's enrollments. However, you must specify
+the non-collection fields of the tracked entity, even if you are not changing them.
+
+#### Delete attribute values
+
+The following deletes one of the attribute values of a [tracked entity](#payload):
+
+    POST /api/tracker?async=false
+
+```json
+{
+  "trackedEntities": [
+    {
+      "trackedEntity": "PQfMcpmXeFE",
+      "trackedEntityType": "nEenWmSyUEp",
+      "orgUnit": "DiszpKrYNg8",
+      "attributes": [
+        {
+          "attribute": "w75KJ2mc4zz",
+          "value": null
+        }
+      ]
+    }
+  ]
+}
+```
+
+#### Update data values
+
+The following updates one of the data values of an [event](#payload):
+
+    POST /api/tracker?async=false
+
+```json
+{
+  "events": [
+    {
+      "event": "ZwwuwNp6gVd",
+      "dataValues": [
+        {
+          "dataElement": "bx6fsa0t90x",
+          "value": "true"
+        }
+      ],
+      "attributeOptionCombo": "HllvX50cXC0",
+      "attributeCategoryOptions": "xYerKDKCefk",
+      "enrollment": "MNWZ6hnuhSw",
+      "enrollmentStatus": "ACTIVE",
+      "occurredAt": "2019-08-01T00:00:00.000",
+      "orgUnit": "y77LiPqLMoq",
+      "program": "IpHINAT79UW",
+      "programStage": "A03MvHHogjR",
+      "scheduledAt": "2019-08-19T13:59:13.688",
+      "status": "ACTIVE",
+      "trackedEntity": "Kj6vYde4LHh"
+    }
+  ]
+}
+```
+
+#### Delete data values
+
+The following deletes one of the data values of an [event](#payload):
+
+    POST /api/tracker?async=false
+
+```json
+{
+  "events": [
+    {
+      "event": "ZwwuwNp6gVd",
+      "dataValues": [
+        {
+          "dataElement": "bx6fsa0t90x",
+          "value": null
+        }
+      ],
+      "attributeOptionCombo": "HllvX50cXC0",
+      "attributeCategoryOptions": "xYerKDKCefk",
+      "enrollment": "MNWZ6hnuhSw",
+      "enrollmentStatus": "ACTIVE",
+      "occurredAt": "2019-08-01T00:00:00.000",
+      "orgUnit": "y77LiPqLMoq",
+      "program": "IpHINAT79UW",
+      "programStage": "A03MvHHogjR",
+      "scheduledAt": "2019-08-19T13:59:13.688",
+      "status": "ACTIVE",
+      "trackedEntity": "Kj6vYde4LHh"
+    }
+  ]
+}
+```
+
+### Delete
+
+Make a `POST` to `/api/tracker` with `importStrategy` set to `DELETE`. The payload should include
+only the UIDs of the `trackedEntities`, `enrollments`, `events` or `relationships` you wish to
+delete.
+
+The following deletes the events created with [this payload](#payload):
+
+    POST /api/tracker?async=false&importStrategy=delete
+
+```json
+{
+  "events": [
+    {
+      "event": "ZwwuwNp6gVd",
+    },
+    {
+      "event": "XwwuwNp6gVE",
+    }
+  ]
+}
+```
+
+The following deletes the tracked entities and all its child tracker objects which are enrollments,
+events and relationships:
+
+    POST /api/tracker?async=false&importStrategy=delete
+
+```json
+{
+  "trackedEntities": [
+    {
+      "trackedEntity": "Kj6vYde4LHh",
+    },
+    {
+      "trackedEntity": "Gjaiu3ea38E",
+    }
+  ]
+}
+```
+
+All the children of a tracker object will be deleted if the user making the request has the
+authorities `F_TEI_CASCADE_DELETE` and `F_ENROLLMENT_CASCADE_DELETE`.
 
 ### CSV import
 
@@ -1215,7 +1394,7 @@ otherwise specified.
 | E1307 | Generated by program rule (`{0}`) - Unable to assign value to data element `{1}`. The provided value must be empty or match the calculated value `{2}` | |
 | E1308 | Generated by program rule (`{0}`) - DataElement `{1}` is being replaced in event `{2}` | |
 | E1309 | Generated by program rule (`{0}`) - Unable to assign value to attribute `{1}`. The provided value must be empty or match the calculated value `{2}` | |
-| E1310 | Generated by program rule (`{0}`) - Attribute `{1}` is being replaced in tei `{2}` | |
+| E1310 | Generated by program rule (`{0}`) - Attribute `{1}` is being replaced in te `{2}` | |
 | E1311 | Referral events need to have at least one complete relationship | |
 | E1312 | Referral events need to have both sides of a relationship | |
 | E1313 | Event {0} of an enrollment does not point to an existing tracked entity. The data in your system might be corrupted | Indicates an anomaly in the existing data whereby enrollments might not reference a tracked entity |
@@ -1567,7 +1746,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`filter`|`String`|Comma-separated values of attribute filters.|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
+|`filter`|`String`|Comma-separated values of attribute filters.|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
 |`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return tracked entities belonging to provided organisation units|
 |`orgUnit` **deprecated for removal in version 42 use `orgUnits`**|`String`|Semicolon-separated list of organisation units `UID`s.|Only return tracked entities belonging to provided organisation units.|
 |`orgUnitMode` see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
@@ -1578,7 +1757,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`followUp`|`Boolean`|`true`&#124;`false`|Indicates whether the tracked entity is marked for follow up for the specified program.|
 |`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Start date and time for last updated|
 |`updatedBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | End date and time for last updated|
-|`updatedWithin`|`Duration`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) | Returns TEIs not older than specified Duration|
+|`updatedWithin`|`Duration`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) | Returns tracked entities not older than specified Duration|
 |`enrollmentStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the tracked entities enrollment in the given program.|
 |`enrollmentEnrolledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for enrollment in the given program|
 |`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
@@ -1595,10 +1774,9 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`eventOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for Event for the given Program|
 |`eventOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for Event for the given Program|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`|Indicates whether to include soft-deleted elements|
-|`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a TEI is a Potential Duplicate. true: return TEIs flagged as Potential Duplicates. false: return TEIs NOT flagged as Potential Duplicates. If omitted, we don't check whether a TEI is a Potential Duplicate or not. |
+|`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a tracked entities is a Potential Duplicate. true: return tracked entities flagged as Potential Duplicates. false: return tracked entities NOT flagged as Potential Duplicates. If omitted, we don't check whether a tracked entities is a Potential Duplicate or not. |
 
 The available assigned user modes are explained in the following table.
-
 
 Table: Assigned user modes
 
@@ -2140,7 +2318,7 @@ Returns a list of events based on the provided filters.
 |`programStage`|`String`|`uid`| Identifier of program stage|
 |`programStatus` **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the events enrollment.|
 |`filter`|`String`|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. Repeating the same data element UID is not allowed. User needs access to the data element to filter on it.|
-|`filterAttributes`|`String`|Comma separated values of attribute filters|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
+|`filterAttributes`|`String`|Comma separated values of attribute filters|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
 |`followUp`|`boolean`| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
 |`trackedEntity`|`String`|`uid`|Identifier of tracked entity|
 |`orgUnit`|`String`|`uid`|Identifier of organisation unit|
@@ -2646,4 +2824,4 @@ scope. It is also not possible to break the glass or gain temporary ownership in
 Note that it is still possible to transfer the ownership to another organisation unit. Only a user
 who has access to the data can transfer the ownership of a TrackedEntity-Program combination to
 another Organisation Unit. If ownership is transferred, the Owner Organisation Unit is updated.
-
+trackedEntities
