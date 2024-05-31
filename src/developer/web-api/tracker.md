@@ -680,8 +680,8 @@ The following updates one of the attribute values of a [tracked entity](#payload
 }
 ```
 
-Note that it is not necessary to specify the tracked entity's enrollments and events. However, you
-must specify the non-collection fields of the tracked entity, even if you are not changing them.
+Note that it is not necessary to specify the tracked entity's enrollments. However, you must specify
+the non-collection fields of the tracked entity, even if you are not changing them.
 
 #### Delete attribute values
 
