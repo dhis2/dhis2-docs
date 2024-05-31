@@ -436,11 +436,11 @@ as before, namely matching done using `UID`.
 
 #### SYNC and ASYNC
 
-For the user, the main difference between importing synchronously rather than asynchronously is the
-immediate response from the API. Synchronous imports return an [import
-summary](#webapi_nti_import_summary) when the import finished. However, asynchronous imports
-immediately return a reference to the import job. The import jobs progress can be queried using this
-`response.location`. This is an example of an async import
+The main difference for the user between synchronous and asynchronous imports is the timing of the
+API's response. Synchronous imports provide an immediate [import
+summary](#webapi_nti_import_summary) once the import is finished. In contrast, asynchronous imports
+return a reference to the import job right away. The progress of the import job can be tracked using
+this `response.location`. Here is an example of an asynchronous import response:
 
 ```json
 {
@@ -455,8 +455,8 @@ immediately return a reference to the import job. The import jobs progress can b
 }
 ```
 
-For significant imports, it might be beneficial for the client to use the asynchronous import to
-avoid waiting too long for a response.
+For large imports, opting for asynchronous import can be advantageous for clients, as it prevents
+prolonged waiting periods for a response.
 
 ### Payload
 
@@ -464,12 +464,11 @@ The importer supports both flat and nested payloads.
 
 #### ***FLAT*** payload
 
-The flat payload can contain collections for each of the core tracker objects `trackedEntities`,
-`enrollments`, `events` and `relationships`. This works seamlessly with existing data, which already
-has UIDs assigned. However, for new data, the client will have to provide new UIDs for any
-references between objects. For example, if you import a new tracked entity with a new enrollment,
-the tracked entity requires the client to provide a UID so that the enrollment can be linked to that
-UID.
+The flat payload can include collections for each of the core tracker objects: trackedEntities,
+enrollments, events, and relationships. This format integrates well with existing data that already
+has UIDs assigned. However, for new data, the client must provide new UIDs for any references
+between objects. For instance, if you import a new tracked entity with a new enrollment, the client
+must provide a UID for the tracked entity so that the enrollment can be linked to it.
 
 ```json
 {
@@ -557,20 +556,20 @@ UID.
 
 #### ***NESTED*** payload
 
-Nested payloads are the most commonly used structure. Here, tracker objects are embedded within
-their parent object. For example, an enrollment within a tracked entity. The advantage of this
-structure is that the client does not need to provide UIDs for these references as this is done
+Nested payloads are the most commonly used structure, where tracker objects are embedded within
+their parent objects, such as an enrollment within a tracked entity. The advantage of this structure
+is that the client does not need to provide UIDs for these references, as this is handled
 automatically.
 
 > **NOTE**
 >
-> While nested payloads might prove simpler for clients to deal with, the payload will always be
-> flattened before the import. This means that for large imports, providing a flat structured
-> payload will provide both more control and lower overhead for the import process itself.
->
-> You cannot to use the nested payload to create relationships. This is because it is not valid to
-> also create the relationship items whether its a tracked entity, enrollment or event as part of a
-> new relationship.
+> Although nested payloads can be easier for clients to manage, the payload will always be flattened
+> before the import. For large imports, using a flat structured payload offers more control and
+> reduces overhead during the import process.
+> 
+> That being said, you cannot use nested payloads to create relationships. This is because it is not
+> valid to create relationship items — whether it's a tracked entity, enrollment, or event — as part
+> of a new relationship.
 
 ```json
 {
@@ -644,8 +643,8 @@ Make a `POST` to `/api/tracker` with the `importStrategy` set to `UPDATE` or `CR
 a payload as described [here](#payload).
 
 The payload must include all fields of the object you are updating, even if they have not been
-modified. The only exception are collections. Items in a collection that should not be changed can
-be omitted as shown in [update attribute values](#update-data-values) and [update data
+modified. The only exception is collections. Items in a collection that should not be changed can be
+omitted, as demonstrated in [update attribute values](#update-data-values) and [update data
 values](#update-data-values).
 
 Updating is not permitted in the following cases:
@@ -654,9 +653,7 @@ Updating is not permitted in the following cases:
 
 #### Update attribute values
 
-The following updates one of the [tracked entities](#payload) attribute values. Note that we do not
-have to specify the tracked entities enrollments and events. We do have to specify the tracked
-entities non collection fields even though we are not changing them.
+The following updates one of the attribute values of a [tracked entity](#payload):
 
     POST /api/tracker?async=false
 
@@ -683,9 +680,12 @@ entities non collection fields even though we are not changing them.
 }
 ```
 
+Note that it is not necessary to specify the tracked entity's enrollments and events. However, you
+must specify the non-collection fields of the tracked entity, even if you are not changing them.
+
 #### Delete attribute values
 
-The following deletes one of the [tracked entities](#payload) attribute values.
+The following deletes one of the attribute values of a [tracked entity](#payload):
 
     POST /api/tracker?async=false
 
@@ -709,7 +709,7 @@ The following deletes one of the [tracked entities](#payload) attribute values.
 
 #### Update data values
 
-The following updates one of the [events](#payload) data values.
+The following updates one of the data values of an [event](#payload):
 
     POST /api/tracker?async=false
 
@@ -742,7 +742,7 @@ The following updates one of the [events](#payload) data values.
 
 #### Delete data values
 
-The following deletes one of the [events](#payload) data values.
+The following deletes one of the data values of an [event](#payload):
 
     POST /api/tracker?async=false
 
@@ -775,11 +775,11 @@ The following deletes one of the [events](#payload) data values.
 
 ### Delete
 
-Make a `POST` to `/api/tracker` with `importStrategy` set to `DELETE`. The payload should only
-include the UIDs of `trackedEntities`, `enrollments`, `events` or `relationships` you want to
+Make a `POST` to `/api/tracker` with `importStrategy` set to `DELETE`. The payload should include
+only the UIDs of the `trackedEntities`, `enrollments`, `events` or `relationships` you wish to
 delete.
 
-The following would delete the events created with [this payload](#payload).
+The following deletes the events created with [this payload](#payload):
 
     POST /api/tracker?async=false&importStrategy=delete
 
@@ -796,8 +796,8 @@ The following would delete the events created with [this payload](#payload).
 }
 ```
 
-The following would delete the tracked entities and all its child tracker objects which are
-enrollments, events and relationships.
+The following deletes the tracked entities and all its child tracker objects which are enrollments,
+events and relationships:
 
     POST /api/tracker?async=false&importStrategy=delete
 
