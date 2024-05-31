@@ -648,17 +648,70 @@ modified. The only exception are collections. Items in a collection that should 
 be omitted as shown in [update attribute values](#update-data-values) and [update data
 values](#update-data-values).
 
-It is not allowed to update an already deleted tracker object.
+Updating is not permitted in the following cases:
+* when the tracker object has already been deleted.
+* when dealing with a relationship.
 
 #### Update attribute values
 
+The following updates one of the [tracked entities](#payload) attribute values. Note that we do not
+have to specify the tracked entities enrollments and events. We do have to specify the tracked
+entities non collection fields even though we are not changing them.
+
+    POST /api/tracker?async=false
+
+```json
+{
+  "trackedEntities": [
+    {
+      "trackedEntity": "PQfMcpmXeFE",
+      "trackedEntityType": "nEenWmSyUEp",
+      "orgUnit": "DiszpKrYNg8",
+      "attributes": [
+        {
+          "attribute": "w75KJ2mc4zz",
+          "code": "MMD_PER_NAM",
+          "displayName": "First name",
+          "createdAt": "2016-08-03T23:49:43.308",
+          "updatedAt": "2016-08-03T23:49:43.308",
+          "valueType": "TEXT",
+          "value": "Johnny"
+        }
+      ]
+    }
+  ]
+}
+```
+
 #### Delete attribute values
+
+The following deletes one of the [tracked entities](#payload) attribute values.
+
+    POST /api/tracker?async=false
+
+```json
+{
+  "trackedEntities": [
+    {
+      "trackedEntity": "PQfMcpmXeFE",
+      "trackedEntityType": "nEenWmSyUEp",
+      "orgUnit": "DiszpKrYNg8",
+      "attributes": [
+        {
+          "attribute": "w75KJ2mc4zz",
+          "value": null
+        }
+      ]
+    }
+  ]
+}
+```
 
 #### Update data values
 
 The following updates one of the [events](#payload) data values.
 
-    POST /api/tracker?async=false&importStrategy=update
+    POST /api/tracker?async=false
 
 ```json
 {
@@ -691,7 +744,7 @@ The following updates one of the [events](#payload) data values.
 
 The following deletes one of the [events](#payload) data values.
 
-    POST /api/tracker?async=false&importStrategy=update
+    POST /api/tracker?async=false
 
 ```json
 {
@@ -728,6 +781,8 @@ delete.
 
 The following would delete the events created with [this payload](#payload).
 
+    POST /api/tracker?async=false&importStrategy=delete
+
 ```json
 {
   "events": [
@@ -743,6 +798,8 @@ The following would delete the events created with [this payload](#payload).
 
 The following would delete the tracked entities and all its child tracker objects which are
 enrollments, events and relationships.
+
+    POST /api/tracker?async=false&importStrategy=delete
 
 ```json
 {
