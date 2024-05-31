@@ -567,9 +567,7 @@ automatically.
 > before the import. For large imports, using a flat structured payload offers more control and
 > reduces overhead during the import process.
 > 
-> That being said, you cannot use nested payloads to create relationships. This is because it is not
-> valid to create relationship items — whether it's a tracked entity, enrollment, or event — as part
-> of a new relationship.
+> That being said, you cannot nest new tracked entities, enrollments or events in a relationship.
 
 ```json
 {
@@ -646,7 +644,6 @@ The payload must include all fields of the object you are updating, even if they
 modified. The only exception is collections. Items in a collection that should not be changed can be
 omitted, as demonstrated in [update attribute values](#update-data-values) and [update data
 values](#update-data-values).
-
 
 > **Note**
 > 
