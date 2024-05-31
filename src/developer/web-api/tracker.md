@@ -815,7 +815,7 @@ events and relationships:
 ```
 
 All the children of a tracker object will be deleted if the user making the request has the
-`DELETE_CASCADE` authority.
+authorities `F_TEI_CASCADE_DELETE` and `F_ENROLLMENT_CASCADE_DELETE`.
 
 ### CSV import
 
