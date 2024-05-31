@@ -643,12 +643,82 @@ a payload as described [here](#payload).
 Make a `POST` to `/api/tracker` with the `importStrategy` set to `UPDATE` or `CREATE_AND_UPDATE` and
 a payload as described [here](#payload).
 
-The payload must include all attributes and data values, even if they have not been modified. Any children that were previously present but
-are missing from the current payload will be removed from the system. Therefore, if for example any
-attributes or data values are empty in the current payload, all existing ones will be deleted from
-the system.
+The payload must include all fields of the object you are updating, even if they have not been
+modified. The only exception are collections. Items in a collection that should not be changed can
+be omitted as shown in [update attribute values](#update-data-values) and [update data
+values](#update-data-values).
 
 It is not allowed to update an already deleted tracker object.
+
+#### Update attribute values
+
+#### Delete attribute values
+
+#### Update data values
+
+The following updates one of the [events](#payload) data values.
+
+    POST /api/tracker?async=false&importStrategy=update
+
+```json
+{
+  "events": [
+    {
+      "event": "ZwwuwNp6gVd",
+      "dataValues": [
+        {
+          "dataElement": "bx6fsa0t90x",
+          "value": "true"
+        }
+      ],
+      "attributeOptionCombo": "HllvX50cXC0",
+      "attributeCategoryOptions": "xYerKDKCefk",
+      "enrollment": "MNWZ6hnuhSw",
+      "enrollmentStatus": "ACTIVE",
+      "occurredAt": "2019-08-01T00:00:00.000",
+      "orgUnit": "y77LiPqLMoq",
+      "program": "IpHINAT79UW",
+      "programStage": "A03MvHHogjR",
+      "scheduledAt": "2019-08-19T13:59:13.688",
+      "status": "ACTIVE",
+      "trackedEntity": "Kj6vYde4LHh"
+    }
+  ]
+}
+```
+
+#### Delete data values
+
+The following deletes one of the [events](#payload) data values.
+
+    POST /api/tracker?async=false&importStrategy=update
+
+```json
+{
+  "events": [
+    {
+      "event": "ZwwuwNp6gVd",
+      "dataValues": [
+        {
+          "dataElement": "bx6fsa0t90x",
+          "value": null
+        }
+      ],
+      "attributeOptionCombo": "HllvX50cXC0",
+      "attributeCategoryOptions": "xYerKDKCefk",
+      "enrollment": "MNWZ6hnuhSw",
+      "enrollmentStatus": "ACTIVE",
+      "occurredAt": "2019-08-01T00:00:00.000",
+      "orgUnit": "y77LiPqLMoq",
+      "program": "IpHINAT79UW",
+      "programStage": "A03MvHHogjR",
+      "scheduledAt": "2019-08-19T13:59:13.688",
+      "status": "ACTIVE",
+      "trackedEntity": "Kj6vYde4LHh"
+    }
+  ]
+}
+```
 
 ### Delete
 
