@@ -10,16 +10,17 @@
 > * `GET  /api/tracker/events`
 > * `GET  /api/tracker/relationships`
 >
-> [Tracker (deprecated)](#webapi_deprecated_tracker) describes the deprecated endpoints
+> The deprecated tracker endpoints
 >
 > * `GET/POST/PUT/DELETE /api/trackedEntityInstance`
 > * `GET/POST/PUT/DELETE /api/enrollments`
 > * `GET/POST/PUT/DELETE /api/events`
 > * `GET/POST/PUT/DELETE /api/relationships`
 >
-> which have been removed in version **42**!
+> have been removed in version **42**!
 >
-> [Migrating to new tracker endpoints](#webapi_tracker_migration)
+> [Migrating to new tracker
+> endpoints](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-241/tracker-deprecated.html#webapi_tracker_migration)
 > should help you get started with your migration. Reach out on the [community of
 > practice](https://community.dhis2.org) if you need further assistance.
 
