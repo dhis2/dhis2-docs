@@ -647,9 +647,11 @@ modified. The only exception is collections. Items in a collection that should n
 omitted, as demonstrated in [update attribute values](#update-data-values) and [update data
 values](#update-data-values).
 
-Updating is not permitted in the following cases:
-* when the tracker object has already been deleted.
-* when dealing with a relationship.
+
+> **Note**
+> 
+> * Deleted tracker objects cannot be updated.
+> * Relationships cannot be updated.
 
 #### Update attribute values
 
