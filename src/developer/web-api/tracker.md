@@ -154,7 +154,6 @@ point out any exceptional cases between these two.
 `Relationships` are objects that link together two other tracker objects. The constraints each side
 of the relationship must conform to are based on the `Relationship Type` of the `Relationship`.
 
-
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
 | relationship | The identifier of the relationship. Generated if not supplied. | No | Yes | String:Uid | ABCDEF12345 |
@@ -2858,71 +2857,138 @@ trackedEntities
 
 ## Working Lists
 
-Working lists allows users to efficiently organizate their workflow. Users can save filters and
-sorting preferences for working with tracked entities, enrollments and events. Tracked entities,
-enrollments and events each have a dedicated API to manage working lists.
+Working lists allow users to efficiently organize their workflow by saving filters and sorting
+preferences for tracked entities, enrollments, and events. Each type of working list—tracked
+entities, enrollments, and events—has a dedicated API for management.
+
+Working lists are [metadata](#webapi_metadata), making them shareable and subject to the same
+[sharing](#webapi_sharing) patterns as other metadata. When using the
+[`/api/sharing`](#webapi_sharing) endpoint, the type parameter should be set to the name of the
+working list API. For example, use trackedEntityInstanceFilter for [tracked entity working
+lists](#tracked-entity-instance-filters).
+
+Since working lists are metadata refer to [metadata](#webapi_metadata) on how to create, update and
+delete metadata. The following sections describe the payloads of each of the working lists
+endpoints.
+
+### Tracked entity working lists
+
+Create, update and delete tracked entity working lists using
+
+    /api/trackedEntityInstanceFilters
+
+#### Payload
+
+Table: Payload
+
+| Property | Description | Example |
+|---|---|---|
+|name|Name of the working list. Required.||
+|description|A description of the working list.||
+|sortOrder|The sort order of the working list.||
+|style|Object containing css style.|`{"color": "blue", "icon": "fa fa-calendar"}`|
+|program|Object containing the id of the program. Required.|`{ "id" : "uy2gU8kTjF"}`|
+|entityQueryCriteria|An object representing various possible filtering values. See *Entity Query Criteria* definition table below.
+|eventFilters|A list of eventFilters. See *Event filters* definition table below.|`[{"programStage": "eaDH9089uMp", "eventStatus": "OVERDUE", "eventCreatedPeriod": {"periodFrom": -15, "periodTo": 15}}]`|
+
+Table: Entity Query Criteria definition
+
+| Property | Description | Example |
+|---|---|---|
+|attributeValueFilters|A list of attributeValueFilters. This is used to specify filters for attribute values when listing tracked entity instances|`"attributeValueFilters"=[{"attribute": "abcAttributeUid","le": "20","ge": "10","lt": "20","gt": "10","in": ["India", "Norway"],"like": "abc","sw": "abc","ew": "abc","dateFilter": {"startDate": "2014-05-01","endDate": "2019-03-20","startBuffer": -5,"endBuffer": 5,"period": "LAST_WEEK","type": "RELATIVE"}}]`|
+|enrollmentStatus|The tracked entities enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELLED||
+|followUp|When this parameter is true, the working list only returns tracked entities that have an enrollment with `folloWup=true`.||
+|organisationUnit|To specify the uid of the organisation unit|`{"organisationUnit": "a3kGcGDCuk7"}`|
+|ouMode|To specify the organisation unit selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL|`"ouMode": "SELECTED"`|
+|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
+|assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|`"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]`|
+|displayColumnOrder|To specify the output ordering of columns|`"displayOrderColumns": ["enrollmentDate", "program"]`|
+|order|To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "orderDimension:direction". Note: Supported orderDimensions are trackedEntity, created, createdAt, createdAtClient, updatedAt, updatedAtClient, enrolledAt, inactive and the tracked entity attributes|`"order"="a3kGcGDCuk6:desc"`|
+|programStage|To specify a programStage uid to filter on. tracked entities will be filtered based on presence of enrollment in the specified program stage.|`"programStage"="a3kGcGDCuk6"`|
+|trackedEntityType|To specify a trackedEntityType filter tracked entities on.|`{"trackedEntityType"="a3kGcGDCuk6"}`|
+|trackedEntities|To specify a list of trackedEntityInstances to use when querying tracked entities.|`"trackedEntityInstances"=["a3kGcGDCuk6","b4jGcGDCuk7"]`|
+|enrollmentCreatedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on enrollment created date.|`"enrollmentCreatedDate": {     "period": "LAST_WEEK",     "type": "RELATIVE"   }`|
+|enrollmentIncidentDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on enrollment incident date.|`"enrollmentIncidentDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "startBuffer": -5,     "endBuffer": 5,     "period": "LAST_WEEK",     "type": "RELATIVE"   }`|
+|eventStatus|The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED|`"status":"VISITED"`|
+|eventDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on event date.|`"eventDate": {"startBuffer": -5,"endBuffer": 5,     "type": "RELATIVE"   }`|
+|lastUpdatedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on last updated date.|`"lastUpdatedDate": {"startDate": "2014-05-01",     "endDate": "2019-03-20",     "type": "ABSOLUTE"   }`|
+
+Table: Event filters definition
+
+| Property | Description | Example |
+|---|---|---|
+|programStage|Which programStage the tracked entity needs an event in to be returned.|`"eaDH9089uMp"`|
+|eventStatus|The events status. Can be none(any event status) or ACTIVE&#124;COMPLETED&#124;SCHEDULE&#124;OVERDUE|`ACTIVE`|
+|eventCreatedPeriod|FilterPeriod object containing a period in which the event must be created. See *Period* definition below.|`{ "periodFrom": -15, "periodTo": 15}`|
+|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)&#124; PROVIDED (events assigned to users provided in "assignedUsers" list) &#124; NONE (events assigned to no one) &#124; ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|`"assignedUserMode": "PROVIDED"`|
+|assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|`"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]`|
+
+Table: FilterPeriod definition
+
+| Property | Description | Example |
+|---|---|---|
+|periodFrom|Number of days from current day. Can be positive or negative integer.|-15|
+|periodTo|Number of days from current day. Must be bigger than periodFrom. Can be positive or negative integer.|15|
+
+#### Query Request Parameters
+
+Table: Tracked entity instance filters query parameters
+
+| Query parameter | Description |
+|---|---|
+|program|Program identifier. Restricts filters to the given program.|
 
 ### Program stage working lists
 
-Program stage working lists pre-established working lists relevant to a particular program stage. This functionality enables
-users to save filters and sorting preferences that are related to program stages, facilitating the
-organisation and management of their workflow. To interact with them, you'll need to use the
-*/api/programStageWorkingLists* resource. These lists can be shared and follow the same sharing
-pattern as any other metadata. When using the */api/sharing* the type parameter will be
-*programStageWorkingLists*.
+Create, update and delete program stage working lists using
 
     /api/programStageWorkingLists
 
 #### Payload
 
-The endpoint above can be used to get all program stage working lists. To get a single one, append
-the working list id. This is the same in case you want to delete it. On the other hand, if you are
-looking to create or update a program stage working list, besides the endpoint mentioned above,
-you'll need to provide a payload in the following format:
-
 Table: Payload
 
 | Payload values | Description | Example |
 |---|---|---|
-| name | Name of the working list. Required. ||
-| description | A description of the working list. ||
-| program | Object containing the id of the program. Required. | {"id" : "uy2gU8kTjF"} |
-| programStage | Object containing the id of the program stage. Required. | {"id" : "oRySG82BKE6"} |
-| programStageQueryCriteria | An object representing various possible filtering values. See *Program Stage Query Criteria* definition table below.
+|name|Name of the working list. Required.||
+|description|A description of the working list.||
+|program|Object containing the id of the program. Required.|`{"id" : "uy2gU8kTjF"}`|
+|programStage|Object containing the id of the program stage. Required.|`{"id" : "oRySG82BKE6"}`|
+|programStageQueryCriteria|An object representing various possible filtering values. See *Program Stage Query Criteria* definition table below.
 
 Table: Program Stage Query Criteria
 
 | Criteria values | Description | Example |
 |---|---|---|
-| eventStatus | The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED | "status":"VISITED" |
-| eventCreatedAt | DateFilterPeriod object filtering based on the event creation date. | {"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"} |
-| eventOccurredAt | DateFilterPeriod object filtering based on the event occurred date. | {"type":"RELATIVE","period":"TODAY"} |
-| eventScheduledAt | DateFilterPeriod object filtering based on the event scheduled date. | {"type":"RELATIVE","period":"TODAY"} |
-| enrollmentStatus | Any valid EnrollmentStatus. Possible values are ACTIVE, COMPLETED and CANCELLED. | "enrollmentStatus": "COMPLETED" |
-| followUp | Indicates whether to filter enrollments marked for follow up or not | "followUp":true |
-| enrolledAt | DateFilterPeriod object filtering based on the event enrollment date. | "enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"} |
-| enrollmentOccurredAt | DateFilterPeriod object filtering based on the event occurred date. | {"type":"RELATIVE","period":"THIS_MONTH"} |
-| orgUnit | A valid organisation unit UID | "orgUnit": "Rp268JB6Ne4" |
-| ouMode | A valid OU selection mode | "ouMode": "SELECTED" |
-| assignedUserMode | A valid user selection mode for events. Possible values are CURRENT, PROVIDED, NONE, ANY and ALL. If PROVIDED (or null), non-empty assignedUsers in the payload will be expected. | "assignedUserMode":"PROVIDED" |
-| assignedUsers | A list of assigned users for events. To be used along with PROVIDED assignedUserMode above. | "assignedUsers":["DXyJmlo9rge"] |
-| order | List of fields and its directions in comma separated values, the results will be sorted according to it. A single item in order is of the form "orderDimension:direction". | "order": "w75KJ2mc4zz:asc" |
-| displayColumnOrder | Output ordering of columns | "displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"] |
-| dataFilters | A list of items that contains the filters to be used when querying events | "dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}] |
-| attributeValueFilters | A list of attribute value filters. This is used to specify filters for attribute values when listing tracked entities | "attributeValueFilters":[{"attribute": "ruQQnf6rswq","eq": "15"}] |
+|eventStatus|The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED|`"status":"VISITED"`|
+|eventCreatedAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event creation date.|`{"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"}`|
+|eventOccurredAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event occurred date.|`{"type":"RELATIVE","period":"TODAY"}`|
+|eventScheduledAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event scheduled date.|`{"type":"RELATIVE","period":"TODAY"}`|
+|enrollmentStatus|Any valid EnrollmentStatus. Possible values are ACTIVE, COMPLETED and CANCELLED.|`"enrollmentStatus": "COMPLETED"`|
+|followUp|Indicates whether to filter enrollments marked for follow up or not|`"followUp":true`|
+|enrolledAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event enrollment date.|`"enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"}`|
+|enrollmentOccurredAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event occurred date.|`{"type":"RELATIVE","period":"THIS_MONTH"}`|
+|orgUnit|A valid organisation unit UID|`"orgUnit": "Rp268JB6Ne4"`|
+|ouMode|A valid OU selection mode|`"ouMode": "SELECTED"`|
+|assignedUserMode|A valid user selection mode for events. Possible values are CURRENT, PROVIDED, NONE, ANY and ALL. If PROVIDED (or null), non-empty assignedUsers in the payload will be expected.|"assignedUserMode":"PROVIDED"|
+|assignedUsers|A list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|"assignedUsers":["DXyJmlo9rge"]|
+|order|List of fields and its directions in comma separated values, the results will be sorted according to it. A single item in order is of the form "orderDimension:direction".|"order": "w75KJ2mc4zz:asc"|
+|displayColumnOrder|Output ordering of columns|"displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"]|
+|dataFilters|A list of items that contains the filters to be used when querying events|"dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}]|
+|attributeValueFilters|A list of attribute value filters. This is used to specify filters for attribute values when listing tracked entities|"attributeValueFilters":[{"attribute": "ruQQnf6rswq","eq": "15"}]|
 
 See an example payload below:
 
 ```json
 {
   "name": "Test WL",
+  "description": "Test WL definition",
   "program": {
     "id": "uy2gU8kT1jF"
   },
   "programStage": {
     "id": "oRySG82BKE6"
   },
-  "description": "Test WL definition",
   "programStageQueryCriteria": {
     "eventStatus": "VISITED",
     "eventCreatedAt": {
@@ -3090,3 +3156,90 @@ Currently it is not possible to merge tracked entities that are enrolled in the 
 
 All merging is based on data already persisted in the database, which means the current merging service is not validating that data again. This means if data was already invalid, it will not be reported during the merge.
 The only validation done in the service relates to relationships, as mentioned in the previous section.
+
+### Event working lists
+
+Create, update and delete event working lists using
+
+    /api/eventFilters
+
+#### Payload
+
+Table: Payload
+
+| Property | Description | Example |
+|---|---|---|
+|name|Name of the working list.|"name":"My working list"|
+|description|A description of the working list.|"description":"for listing all events assigned to me".|
+|program|The uid of the program.|"program" : "a3kGcGDCuk6"|
+|programStage|The uid of the program stage.|"programStage" : "a3kGcGDCuk6"|
+|eventQueryCriteria|Object containing parameters for querying, sorting and filtering events.|"eventQueryCriteria": {     "organisationUnit":"a3kGcGDCuk6",     "status": "COMPLETED",     "createdDate": {       "from": "2014-05-01",       "to": "2019-03-20"     },     "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],     "filters": ["a3kGcGDCuk6:EQ:1"],     "programStatus": "ACTIVE",     "ouMode": "SELECTED",     "assignedUserMode": "PROVIDED",     "assignedUsers" : ["a3kGcGDCuk7", "a3kGcGDCuk8"],     "followUp": false,     "trackedEntityInstance": "a3kGcGDCuk6",     "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],     "fields": "eventDate,dueDate",     "order": "dueDate:asc,createdDate:desc"   }|
+
+Table: Event Query Criteria definition
+
+| Property | Description | Example |
+|---|---|---|
+|followUp|Used to filter events based on enrollment followUp flag. Possible values are true&#124;false.|"followUp": true|
+|organisationUnit|To specify the uid of the organisation unit|"organisationUnit": "a3kGcGDCuk7"|
+|ouMode|To specify the OU selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL|"ouMode": "SELECTED"|
+|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
+|assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]|
+|displayColumnOrder |To specify the output ordering of columns|"displayOrderColumns": ["eventDate", "dueDate", "program"]|
+|order|To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "dataItem:direction".|"order"="a3kGcGDCuk6:desc,eventDate:asc"|
+|dataFilters|To specify filters to be applied when listing events|"dataFilters"=[{       "dataItem": "abcDataElementUid",       "le": "20",       "ge": "10",       "lt": "20",       "gt": "10",       "in": ["India", "Norway"],       "like": "abc",       "dateFilter": {         "startDate": "2014-05-01",         "endDate": "2019-03-20",         "startBuffer": -5,         "endBuffer": 5,         "period": "LAST_WEEK",         "type": "RELATIVE"       }     }]|
+|status|Any valid EventStatus|"eventStatus": "COMPLETED"|
+|events|To specify list of events|"events"=["a3kGcGDCuk6"]|
+|completedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on completed date.|"completedDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "startBuffer": -5,     "endBuffer": 5,     "period": "LAST_WEEK",     "type": "RELATIVE"   }|
+|eventDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on event date.|"eventDate": {     "startBuffer": -5,     "endBuffer": 5,     "type": "RELATIVE"   }|
+|dueDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on due date.|"dueDate": {     "period": "LAST_WEEK",     "type": "RELATIVE"   }|
+|lastUpdatedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on last updated date.|"lastUpdatedDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "type": "ABSOLUTE"   }|
+
+See an example payload below:
+
+```json
+{
+  "name": "event working list",
+  "program": "VBqh0ynB2wv",
+  "eventQueryCriteria": {
+    "eventDate": {
+      "period": "LAST_WEEK",
+      "type": "RELATIVE"
+    },
+    "dataFilters": [
+      {
+        "ge": "35",
+        "le": "70",
+        "dataItem": "qrur9Dvnyt5"
+      }
+    ],
+    "assignedUserMode": "PROVIDED",
+    "assignedUsers": [
+      "CotVI2NX0rI",
+      "xE7jOejl9FI"
+    ],
+    "status": "ACTIVE",
+    "order": "occurredAt:desc",
+    "displayColumnOrder": [
+      "occurredAt",
+      "status",
+      "assignedUser",
+      "qrur9Dvnyt5",
+      "oZg33kd9taw"
+    ]
+  }
+}
+```
+
+### Common Objects { #webapi_tracker_workinglists_common_objects }
+
+Table: DateFilterPeriod object definition
+
+| Property | Description | Example |
+|---|---|---|
+|type|Specify whether the date period type is ABSOLUTE &#124; RELATIVE|`"type" : "RELATIVE"`|
+|period|Specify if a relative system defined period is to be used. Applicable only when `type` is RELATIVE. (see [Relative Periods](#webapi_date_relative_period_values) for supported relative periods)|`"period" : "THIS_WEEK"`|
+|startDate|Absolute start date. Applicable only when `type` is ABSOLUTE|`"startDate":"2014-05-01"`|
+|endDate|Absolute end date. Applicable only when `type` is ABSOLUTE|`"startDate":"2014-05-01"`|
+|startBuffer|Relative custom start date. Applicable only when `type` is RELATIVE|`"startBuffer":-10`|
+|endBuffer|Relative custom end date. Applicable only when `type` is RELATIVE|`"startDate":+10`|
+
