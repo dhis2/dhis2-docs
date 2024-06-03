@@ -186,10 +186,11 @@ of the relationship must conform to are based on the `Relationship Type` of the 
 
 ### Attributes
 
-Attributes can be associated either through a tracked entity type or a program. This implies that
-attributes can be part of both a tracked entity and an enrollment. Importantly, an attribute can
-only have one value, even if a tracked entity has multiple enrollments that define that attribute.
-This is because the tracked entity ultimately owns the attribute value.
+Attributes are the values describing the tracked entities. Attributes can be associated either
+through a tracked entity type or a program. This implies that attributes can be part of both a
+tracked entity and an enrollment. Importantly, an attribute can only have one value, even if a
+tracked entity has multiple enrollments that define that attribute. This is because the tracked
+entity ultimately owns the attribute value.
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
@@ -217,7 +218,7 @@ This is because the tracked entity ultimately owns the attribute value.
 
 ### Data Values
 
-While attributes describe a tracked entity, data values describes an event.
+While attributes describe a tracked entity, data values describe an event.
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
