@@ -127,7 +127,6 @@ point out any exceptional cases between these two.
 | program | Only for reading data. The type of program the enrollment which owns the event has. | No | Yes | String:Uid | ABCDEF12345 |
 | trackedEntity | Only for reading data. The tracked entity which owns the event. ***Not applicable for `EVENT PROGRAM`*** | No | No | String:Uid | ABCDEF12345 |
 | status | Status of the event. ACTIVE if not supplied. | No | No | Enum | ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED |
-| enrollmentStatus | Only for reading data. The status of the enrollment which owns the event. ***Not applicable for `EVENT PROGRAM`*** | No | No | Enum | ACTIVE, COMPLETED, CANCELLED |
 | orgUnit | The organisation unit where the user registered the event. | Yes | No | String:Uid | ABCDEF12345 |
 | createdAt | Only for reading data. Timestamp when the user created the event. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | createdAtClient | Timestamp when the user created the event on client | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
@@ -187,9 +186,11 @@ of the relationship must conform to are based on the `Relationship Type` of the 
 
 ### Attributes
 
-`Attributes` are the actual values describing the `tracked entities`. They can either be connected
-through a `tracked entity type` or a `program`. Implicitly this means `attributes` can be part of
-both a `tracked entity` and an `enrollment`.
+Attributes are the values describing the tracked entities. Attributes can be associated either
+through a tracked entity type or a program. This implies that attributes can be part of both a
+tracked entity and an enrollment. Importantly, an attribute can only have one value, even if a
+tracked entity has multiple enrollments that define that attribute. This is because the tracked
+entity ultimately owns the attribute value.
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
@@ -204,18 +205,20 @@ both a `tracked entity` and an `enrollment`.
 
 > **Note**
 >
-> For `attributes` only the "attribute" and "value" properties are required when adding data.
-> "value" can be null, which implies the user should remove the value.
+> When adding or updating an attribute, only the `attribute` and `value` properties are required. To
+> remove an attribute from a tracked entity or enrollment, set the `value` to `null` [see
+> example](#delete-attribute-values).
 >
-> In the context of tracker objects, we refer to `Tracked Entity Attributes` and `Tracked Entity
-> Attribute Values` as "attributes". However, attributes are also their own thing, related to
-> metadata. Therefore, it's vital to separate Tracker attributes and metadata attributes. In the
-> tracker API, it is possible to reference the metadata attributes when specifying `idScheme` (See
-> request parameters for more information).
+> In the context of the tracker, we refer to `Tracked Entity Attributes` and `Tracked Entity
+> Attribute Values` simply as attributes. However, it's important to note that attributes and
+> attribute values are also concepts within metadata. Therefore, distinguishing between tracker
+> attributes and metadata attributes is essential. In the tracker API, you can reference metadata
+> attributes by specifying the `idScheme` (see [request
+> parameters](#webapi_tracker_import_request_parameters) for more information).
 
 ### Data Values
 
-While `Attributes` describes a `tracked entity` or an `enrollment`, `data values` describes an `event`. The major difference is that `attributes` can only have a single value for a given `tracked entity`. In contrast, `data values` can have many different values across different `events` - even if the `events` all belong to the same `enrollment` or `tracked entity`.
+While attributes describe a tracked entity, data values describe an event.
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
@@ -230,31 +233,31 @@ While `Attributes` describes a `tracked entity` or an `enrollment`, `data values
 
 > **Note**
 >
-> For `data elements` only the "dataElement" and "value" properties are required when adding data.
-> "value" can be null, which implies the user should remove the value.
+> When adding or updating a data value, only the `dataElement` and `value` properties are required. To
+> remove a data value from an event, set the `value` to `null` [see example](#delete-data-values).
 
 ### Notes
 
-DHIS2 tracker allows for capturing of data using data elements and tracked entity attributes.
-However, sometimes there could be a situation where it is necessary to record additional information
-or comment about the issue at hand. Such additional information can be captured using notes.
-Notes are equivalent to data value comments from the Aggregate DHIS2 side.
+The Tracker system enables the capture of data using data elements and tracked entity attributes.
+However, there are situations where additional information or notes about specific issues need to be
+recorded. These additional details can be captured using notes, similar to data value notes in the
+DHIS2 aggregate side.
 
-There are two types of notes - notes recorded at the event level and those recorded at the
-enrollment level. An enrollment can have one or more events. Comments about each of the events - for
-example, why an event was missed, rescheduled, or why only a few data elements were filled and the
-like - can be documented using event notes. Each of the events within an enrollment can have its own
-story/notes. One can then record, for example, an overall observation of these events using the
-parent enrollment note. Enrollment notes are also helpful to document, for example, why an
-enrollment is canceled. It is the user's imagination and use-case when and how to use notes.
+There are two types of notes: enrollment-level notes and event-level notes. An enrollment can
+consist of one or more events, and notes can be recorded for each event to document reasons such as
+why an event was missed, rescheduled, or partially completed. Each event within an enrollment can
+have its own notes. Additionally, overall observations of these events can be recorded using a
+parent enrollment note. Enrollment notes are useful for documenting reasons such as why an
+enrollment was canceled. The use of notes is flexible and can be tailored to the user's needs and
+specific use cases.
 
-Both enrollment and event can have as many notes as needed - there is no limit. However, it is not
-possible to delete or update neither of these notes. They are like a logbook. If one wants to amend
-a note, one can do so by creating another note. The only way to delete a note is by deleting the
-parent object - either event or enrollment.
+Both enrollment and event notes can have an unlimited number of entries; there is no limit to the
+number of notes that can be added. However, it is not possible to delete or update these notes once
+they are created. They function like a logbook. To amend a note, a new note can be created. The only
+way to delete a note is by deleting the parent object, either the event or the enrollment.
 
-Notes do not have their dedicated endpoint; they are exchanged as part of the parent event
-and/or enrollment payload. Below is a sample payload.
+Notes do not have a dedicated endpoint; they are exchanged as part of the parent event and/or
+enrollment payload. Below is a sample payload:
 
 ```json
 {
@@ -265,10 +268,10 @@ and/or enrollment payload. Below is a sample payload.
       "notes": [
         {
           "note": "vxmCvYcPdaW",
-          "value": "Enrollment note 2."
+          "value": "Enrollment note 1"
         },
         {
-          "value": "Enrollment note 1"
+          "value": "Enrollment note 2."
         }
       ],
       "events": [
@@ -321,7 +324,7 @@ to import i.e. create, update and delete
 * **Relationships**
 * and data embedded in other [tracker objects](#webapi_tracker_objects)
 
-### Request parameters
+### Request parameters { #webapi_tracker_import_request_parameters }
 
 The tracker importer supports the following parameters:
 
