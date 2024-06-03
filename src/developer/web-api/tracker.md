@@ -10,20 +10,21 @@
 > * `GET  /api/tracker/events`
 > * `GET  /api/tracker/relationships`
 >
-> [Tracker (deprecated)](#webapi_deprecated_tracker) describes the deprecated endpoints
+> The deprecated tracker endpoints
 >
 > * `GET/POST/PUT/DELETE /api/trackedEntityInstance`
 > * `GET/POST/PUT/DELETE /api/enrollments`
 > * `GET/POST/PUT/DELETE /api/events`
 > * `GET/POST/PUT/DELETE /api/relationships`
 >
-> which have been removed in version **42**!
+> have been removed in version **42**!
 >
-> [Migrating to new tracker endpoints](#webapi_tracker_migration)
+> [Migrating to new tracker
+> endpoints](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-241/tracker-deprecated.html#webapi_tracker_migration)
 > should help you get started with your migration. Reach out on the [community of
 > practice](https://community.dhis2.org) if you need further assistance.
 
-## Tracker Objects { #webapi_nti_tracker_objects }
+## Tracker Objects { #webapi_tracker_objects }
 
 Tracker consists of a few different types of objects that are nested together to represent the data.
 In this section, we will show and describe each of the objects used in the Tracker API.
@@ -394,7 +395,7 @@ See an example payload below:
 }
 ```
 
-## Tracker Import (`POST /api/tracker`) { #webapi_nti_import }
+## Tracker Import (`POST /api/tracker`) { #webapi_tracker_import }
 
 The endpoint `POST /api/tracker` is also called the tracker importer. This endpoint allows clients
 to import i.e. create, update and delete
@@ -403,7 +404,7 @@ to import i.e. create, update and delete
 * **Enrollments**
 * **Events**
 * **Relationships**
-* and data embedded in other [tracker objects](#webapi_nti_tracker_objects)
+* and data embedded in other [tracker objects](#webapi_tracker_objects)
 
 ### Request parameters
 
@@ -438,7 +439,7 @@ as before, namely matching done using `UID`.
 
 The main difference for the user between synchronous and asynchronous imports is the timing of the
 API's response. Synchronous imports provide an immediate [import
-summary](#webapi_nti_import_summary) once the import is finished. In contrast, asynchronous imports
+summary](#webapi_tracker_import_summary) once the import is finished. In contrast, asynchronous imports
 return a reference to the import job right away. The progress of the import job can be tracked using
 this `response.location`. Here is an example of an asynchronous import response:
 
@@ -838,7 +839,7 @@ A7rzcnZTe2T,ACTIVE,eBAyeGv0exc,Zj7UnCAulEk,RiLEKhWHlxZ,DwpbWkiqjMy,2023-02-12T23
 
 See [Events CSV](#events-csv) in the export section for a more detailed definition of the CSV fields.
 
-### Import Summary { #webapi_nti_import_summary }
+### Import Summary { #webapi_tracker_import_summary }
 
 The Tracker API has two primary endpoints for consumers to acquire feedback from their imports.
 These endpoints are most relevant for async import jobs but are available for sync jobs as well.
@@ -1284,7 +1285,7 @@ As previously stated, `GET /tracker/jobs/{uid}/report` can be retrieved using a 
 In addition, all `reportModes` will return `status`, `stats`, `bundleReport` and `message` when
 applicable.
 
-### Error Codes { #webapi_nti_error_codes }
+### Error Codes { #webapi_tracker_error_codes }
 
 There are various error codes for different error scenarios. The following table has the list of
 error codes thrown from the new Tracker API, along with the error messages and some additional
@@ -1414,7 +1415,7 @@ otherwise specified.
 | E5001 | "{0}" `{1}` cannot be deleted because "{2}" `{3}` referenced by it cannot be deleted. | The importer can't deleted a tracker object because a reference cannot be deleted. |
 | E9999 | N/A | Undefined error message. |
 
-### Validation { #webapi_nti_validation }
+### Validation { #webapi_tracker_validation }
 
 While importing data using the tracker importer, a series of validations are performed to ensure the
 validity of the data. This section will describe some of the different types of validation performed
@@ -1424,7 +1425,7 @@ to provide a better understanding if validation fails for your import.
 
 Each of the tracker objects has a few required properties that need to be present when importing
 data. For an exhaustive list of required properties, have a look at the [Tracker Object
-section](#webapi_nti_tracker_objects).
+section](#webapi_tracker_objects).
 
 When validating required properties, we are usually talking about references to other data or
 metadata. In these cases, there are three main criteria:
@@ -1449,8 +1450,8 @@ on which property has a wrong format. Some examples of properties that are valid
 
 #### User access
 
-All data imported will be validated based on the metadata  ([Sharing](#webapi_nti_metadata_sharing))
-and the organisation units ([Organisation Unit Scopes](#webapi_nti_orgunit_scope)) referenced in the
+All data imported will be validated based on the metadata  ([Sharing](#webapi_tracker_metadata_sharing))
+and the organisation units ([Organisation Unit Scopes](#webapi_tracker_orgunit_scope)) referenced in the
 data. You can find more information about sharing and organisation unit scopes in the following
 sections.
 
@@ -1503,7 +1504,7 @@ Some examples of configurable validations:
 
 These configurations will further change how validation is performed during import.
 
-### Program Rules { #webapi_nti_program_rules }
+### Program Rules { #webapi_tracker_program_rules }
 
 Users can configure [Program Rules](#webapi_program_rules), which adds conditional behavior to
 tracker forms. In addition to running these rules in the tracker apps, the tracker importer will
@@ -1559,7 +1560,7 @@ information about side effects can be found in the following section.
 >
 > Program rules can be skipped during import using the `skipProgramRules` parameter.
 
-### Side Effects { #webapi_nti_side_effects }
+### Side Effects { #webapi_tracker_side_effects }
 
 After an import has been completed, specific tasks might be triggered as a result of the import.
 These tasks are what we refer to as "Side effects". These tasks perform operations that do not
@@ -1581,7 +1582,7 @@ The following side effects are currently supported:
 >
 > Certain configurations can control the execution of side effects. `skipSideEffects` flag can be set during the import to skip side effects entirely. This parameter can be useful if you import something you don't want to trigger notifications for, as an example.
 
-### Assign user to events { #webapi_nti_user_event_assignment }
+### Assign user to events { #webapi_tracker_user_event_assignment }
 
 Specific workflows benefit from treating events like tasks, and for this reason, you can assign a
 user to an event.
@@ -1615,7 +1616,7 @@ In this example, the user with uid `M0fCOxtkURr` will be assigned to the Event w
 To use this feature, the relevant program stage needs to have user assignment enabled, and the uid
 provided for the user must refer to a valid, existing user.
 
-## Tracker Export { #webapi_nti_export }
+## Tracker Export { #webapi_tracker_export }
 
 Tracker export endpoints allow you to retrieve the previously imported objects which are:
 
@@ -1667,9 +1668,9 @@ The following endpoint supports standard parameters for pagination.
 
 The available organisation unit selection modes are `SELECTED`, `CHILDREN`, `DESCENDANTS`,
 `ACCESSIBLE`, `CAPTURE` and `ALL`. Each mode is explained in detail in [this
-section](#webapi_nti_orgunit_scope).
+section](#webapi_tracker_orgunit_scope).
 
-#### Request parameter to filter responses { #webapi_nti_field_filter }
+#### Request parameter to filter responses { #webapi_tracker_field_filter }
 
 All export endpoints accept a `fields` parameter which controls which fields will be returned in the
 JSON response. `fields` parameter accepts a comma separated list of field names or patterns. A few
@@ -1749,8 +1750,8 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`filter`|`String`|Comma-separated values of attribute filters.|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
 |`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return tracked entities belonging to provided organisation units|
 |`orgUnit` **deprecated for removal in version 42 use `orgUnits`**|`String`|Semicolon-separated list of organisation units `UID`s.|Only return tracked entities belonging to provided organisation units.|
-|`orgUnitMode` see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
 |`program`|`String`|Program `UID`|A program `UID` for which tracked entities in the response must be enrolled into.|
 |`programStatus` **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the tracked entities enrollment in the given program.|
 |`programStage`|`String`|`UID`|A program stage `UID` for which tracked entities in the response must have events for.|
@@ -1855,7 +1856,7 @@ The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`.
 ##### JSON
 
 Responses can be filtered on desired fields, see [Request parameter to filter
-responses](#webapi_nti_field_filter)
+responses](#webapi_tracker_field_filter)
 
 A JSON response can look like the following:
 
@@ -2117,8 +2118,8 @@ Returns a list of events based on filters.
 |---|---|---|---|
 |`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return enrollments belonging to provided organisation units.|
 |`orgUnit` **deprecated for removal in version 42 use `orgUnits`**|`String`|Semicolon-separated list of organisation units `UID`s.|Only return enrollments belonging to provided organisation units.|
-|`orgUnitMode` see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
 |`program`|`String`|`uid`| Identifier of program|
 |`programStatus` **deprecated for removal in version 43 use `status`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the enrollment.|
 |`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the enrollment.|
@@ -2322,8 +2323,8 @@ Returns a list of events based on the provided filters.
 |`followUp`|`boolean`| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
 |`trackedEntity`|`String`|`uid`|Identifier of tracked entity|
 |`orgUnit`|`String`|`uid`|Identifier of organisation unit|
-|`orgUnitMode` see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_nti_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
 |`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
 |`occurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which occurred after this date.|
 |`occurredBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which occurred up until this date.|
@@ -2618,13 +2619,13 @@ The following rules apply to the query parameters.
 }
 ```
 
-## Tracker Access Control { #webapi_nti_access_control }
+## Tracker Access Control { #webapi_tracker_access_control }
 
 Tracker has a few different concepts in regards to access control, like sharing, organisation unit
 scopes, ownership, and access levels. The following sections provide a short introduction to the
 different topics.
 
-### Metadata Sharing { #webapi_nti_metadata_sharing }
+### Metadata Sharing { #webapi_tracker_metadata_sharing }
 
 Sharing setting is standard DHIS2 functionality that applies to both Tracker and Aggregate
 metadata/data as well as dashboards and visualization items. At the core of sharing is the ability
@@ -2670,7 +2671,7 @@ at hand.
 For more detailed information about data sharing, check out [Data
 sharing](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/configuring-the-system/about-sharing-of-objects.html#data-sharing-for-event-based-programs).
 
-### Organisation Unit Scopes { #webapi_nti_orgunit_scope }
+### Organisation Unit Scopes { #webapi_tracker_orgunit_scope }
 
 Organisation units are one of the most fundamental objects in DHIS2. They define a universe under
 which a user is allowed to record and/or read data. There are three types of organisation units that
@@ -2739,13 +2740,13 @@ scope is applied to the registration organisation unit of the TrackedEntity. Whe
 retrieving TrackedEntities, including specific program data, the organisation unit scope is applied
 to the Owner organisation unit.
 
-### Tracker Program Ownership { #webapi_nti_ownership }
+### Tracker Program Ownership { #webapi_tracker_ownership }
 
 A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation
 unit association for a TrackedEntity - Program combination. We call this the Owner (or Owning)
 Organisation unit of a TrackedEntity in the context of a Program. The Owner organisation unit is
 used to decide access privileges when reading and writing tracker data related to a program. This,
-along with the Program's [Access Level](#webapi_nti_access_level) configuration, decides the access
+along with the Program's [Access Level](#webapi_tracker_access_level) configuration, decides the access
 behavior for Program-related data (Enrollments and Events). A user can access a TrackedEntity's
 Program data if the corresponding Owner OrganisationUnit for that TrackedEntity-Program combination
 falls under the user's organisation unit scope (Search/Capture). For Programs that are configured
@@ -2757,7 +2758,7 @@ Tracker objects, the requested organisation unit must always be within the user'
 user cannot request objects outside its search scope unless it's using the organisation unit mode
 ALL and has enough privileges to use that mode.
 
-#### Tracker Ownership Override: Break the Glass { #webapi_nti_tracker_ownership_override }
+#### Tracker Ownership Override: Break the Glass { #webapi_tracker_ownership_override }
 
 It is possible to temporarily override this ownership privilege for a program that is configured
 with an access level of *PROTECTED*. Any user will be able to temporarily gain access to the Program
@@ -2770,7 +2771,7 @@ can be used:
 
     /api/tracker/ownership/override?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
 
-#### Tracker Ownership Transfer { #webapi_nti_tracker_ownership_transfer }
+#### Tracker Ownership Transfer { #webapi_tracker_ownership_transfer }
 
 It is possible to transfer the ownership of a TrackedEntity-Program from one organisation unit to
 another. This will be useful in case of patient referrals or migrations. Only a user who has
@@ -2780,7 +2781,7 @@ used:
 
     /api/tracker/ownership/transfer?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
 
-### Access Level { #webapi_nti_access_level }
+### Access Level { #webapi_tracker_access_level }
 
 DHIS2 treats Tracker data with an extra level of protection. In addition to the standard feature of
 metadata and data protection through sharing settings, Tracker data are shielded with additional
@@ -2810,7 +2811,7 @@ add an audit log entry on the data being accessed by the specific user.
 This access level is slightly more restricted. Data inside a PROTECTED program can only be accessed
 by users if the Owner organisation unit falls under the user's capture scope. However, a user who
 only has the Owner organisation unit in the search scope can gain temporary ownership by [breaking
-the glass](#webapi_nti_tracker_ownership_override). The user has to provide a justification of why
+the glass](#webapi_tracker_ownership_override). The user has to provide a justification of why
 they are accessing the data at hand. The system will then put a log of both the justification and
 access audit and provide temporary access for 3 hours to the user. Note that when breaking the
 glass, the Owner Organisation Unit remains unchanged, and only the user who has broken the glass
