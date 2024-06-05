@@ -2931,7 +2931,7 @@ To update the status of a potential duplicate, use the following endpoint:
 ### Merging Tracked Entities
 Tracked entities can be merged together if they are deemed viable. To initiate a merge, the first step is to define two tracked entities as a Potential Duplicate. The merge endpoint moves data from the duplicate tracked entity to the original tracked entity and deletes the remaining data of the duplicate.
 
-To merge a Potential Duplicate, or the two tracked entities the Potential Duplicate represents, use the following endpoint:
+To merge a Potential Duplicate, i.e. the two tracked entities the Potential Duplicate represents, use the following endpoint:
     POST /api/potentialDuplicates/<id>/merge
 
 | Parameter name | Description | Type | Allowed values |
