@@ -2968,3 +2968,125 @@ See an example payload below:
   }
 }
 ```
+<<<<<<< HEAD
+=======
+
+## Potential Duplicates  
+
+Potential duplicates are records identified by the data deduplication feature as possibly being duplicates. Due to the nature of this feature, the API endpoint has certain restrictions.
+
+A potential duplicate represents a pair of records suspected to be duplicates.
+
+To retrieve a list of potential duplicates, use the following endpoint:
+
+    GET /api/potentialDuplicates
+
+The response payload for a potential duplicate looks like this:
+
+```json
+{
+  "created": "2024-06-04T10:11:29.110",
+  "lastUpdated": "2024-06-04T10:11:29.110",
+  "original": "<UID>",
+  "duplicate": "<UID>",
+  "status": "OPEN|INVALID|MERGED",
+  "id": "<id>"
+}
+```
+
+These are the parameters this endpoint accepts:
+
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| trackedEntities | List of tracked entities | List of string (separated by comma)| existing tracked entity UIDs |
+| status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL` |
+
+To inspect individual potential duplicate records, use the following endpoint:
+
+    GET /api/potentialDuplicates/<id>
+
+To create a new potential duplicate, use this endpoint:
+
+    POST /api/potentialDuplicates
+
+The payload you provide must include the UIDs of the original and duplicate tracked entities. New potential duplicates are open by default.
+
+```json
+{
+  "original": "<UID>",
+  "duplicate": "<UID>"
+}
+```
+
+| Status code | Description
+|---|---|
+| 400 | Input original or duplicate is null or has invalid uid
+| 403 | User do not have access to read origianl or duplicate TEs
+| 404 | TE not found
+| 409 | Pair of original and duplicate TEs already existing
+
+To update the status of a potential duplicate, use the following endpoint:
+
+    PUT /api/potentialDuplicates/<id>
+
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| status | Potential duplicate status | string | `OPEN`, `INVALID` |
+
+| Status code | Description
+|---|---|
+| 400 | You can't update a potential duplicate to MERGED as this is possible only by a merging request
+| 400 | You can't update a potential duplicate that is already in a MERGED status
+
+### Merging Tracked Entities
+Tracked entities can be merged together if they are deemed viable. To initiate a merge, the first step is to define two tracked entities as a Potential Duplicate. The merge endpoint moves data from the duplicate tracked entity to the original tracked entity and deletes the remaining data of the duplicate.
+
+To merge a Potential Duplicate, i.e. the two tracked entities the Potential Duplicate represents, use the following endpoint:
+    POST /api/potentialDuplicates/<id>/merge
+
+| Parameter name | Description | Type | Allowed values |
+|---|---|---|---|
+| mergeStrategy | Strategy to use for merging the potentialDuplicate | string | AUTO(default) or MANUAL |
+
+The endpoint accepts a single parameter, `mergeStrategy`, which determines the strategy used when merging. For the `AUTO` strategy, the server will attempt to merge the two tracked entities automatically without user input. This strategy only allows merging tracked entities without conflicting data (see examples below). The `MANUAL` strategy requires the user to send in a payload describing how the merge should be done. For examples and rules for each strategy, see their respective sections below.
+
+#### Merge Strategy AUTO
+The automatic merge evaluates the mergability of the two tracked entities and merges them if they are deemed mergable. The mergability is based on whether the two tracked entities have any conflicts. Conflicts refer to data that cannot be merged automatically. Examples of possible conflicts include:
+- The same attribute has different values in each tracked entity.
+- Both tracked entities are enrolled in the same program.
+- Tracked entities have different types.
+
+If any conflict is encountered, an error message is returned to the user.
+
+When no conflicts are found, all data in the duplicate that is not already in the original will be moved to the original. This includes attribute values, enrollments (including events), and relationships. After the merge completes, the duplicate is deleted and the Potential Duplicate is marked as `MERGED`.
+
+When requesting an automatic merge, a payload is not required and will be ignored.
+
+#### Merge Strategy MANUAL
+The manual merge is suitable when there are resolvable conflicts or when not all the data needs to be moved during the merge. For example, if an attribute has different values in both tracked entity instances, the user can specify whether to keep the original value or move over the duplicate's value. Since the manual merge involves the user explicitly requesting to move data, there are some additional checks:
+- Relationship cannot be between the original and the duplicate (This results in an invalid self-referencing relationship)
+- Relationship cannot be of the same type and to the same object in both tracked entities (IE. between original and other, and duplicate and other; This would result in a duplicate relationship)
+
+There are two ways to do a manual merge: With and without a payload.
+
+When a manual merge is requested without a payload, we are telling the API to merge the two tracked entities without moving any data. In other words, we are just removing the duplicate and marking the
+potentialDuplicate MERGED. This might be valid in a lot of cases where the tracked entity was just created, but not enrolled for example.
+
+Otherwise, if a manual merge is requested with a payload, the payload refers to what data should be moved from the duplicate to the original. The payload looks like this:
+```json
+{
+  "trackedEntityAttributes": ["B58KFJ45L9D"],
+  "enrollments": ["F61SJ2DhINO"],
+  "relationships": ["ETkkZVSNSVw"]
+}
+```
+
+This payload contains three lists, one for each of the types of data that can be moved. `trackedEntityAttributes` is a list of uids for tracked entity attributes, `enrollments` is a list of uids for enrollments and `relationships` 
+a list of uids for relationships. The uids in this payload have to refer to data that actually exists on the duplicate. There is no way to add new data or change data using the merge endpoint - Only moving data.
+
+#### Additional information about merging
+Currently it is not possible to merge tracked entities that are enrolled in the same program, due to the added complexity. A workaround is to manually remove the enrollments from one of the tracked entities before starting the merge.
+
+All merging is based on data already persisted in the database, which means the current merging service is not validating that data again. This means if data was already invalid, it will not be reported during the merge.
+The only validation done in the service relates to relationships, as mentioned in the previous section.
+>>>>>>> origin/master
