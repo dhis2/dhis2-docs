@@ -2968,8 +2968,6 @@ See an example payload below:
   }
 }
 ```
-<<<<<<< HEAD
-=======
 
 ## Potential Duplicates  
 
