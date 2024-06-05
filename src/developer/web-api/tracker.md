@@ -2910,7 +2910,7 @@ The payload you provide must include the UIDs of the original and duplicate trac
 
 | Status code | Description
 |---|---|
-| 400 | Input original or duplicate is null or has invalid UID
+| 400 | Input original or duplicate is null or has invalid uid
 | 403 | User do not have access to read origianl or duplicate TEs
 | 404 | TE not found
 | 409 | Pair of original and duplicate TEs already existing
