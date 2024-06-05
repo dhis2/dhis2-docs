@@ -2888,7 +2888,7 @@ These are the parameters this endpoint accepts:
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
-| trackedEntities | List of tracked entities | List of string (separated by comma)| existing tracked entity IDs |
+| trackedEntities | List of tracked entities | List of string (separated by comma)| existing tracked entity UIDs |
 | status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL` |
 
 To inspect individual potential duplicate records, use the following endpoint:
