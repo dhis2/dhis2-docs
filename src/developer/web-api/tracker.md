@@ -485,7 +485,7 @@ automatically.
 > Although nested payloads can be easier for clients to manage, the payload will always be flattened
 > before the import. For large imports, using a flat structured payload offers more control and
 > reduces overhead during the import process.
-> 
+>
 > That being said, you cannot nest new tracked entities, enrollments or events in a relationship.
 
 ```json
@@ -552,7 +552,7 @@ automatically.
 ### Create
 
 Make a `POST` to `/api/tracker` with the `importStrategy` set to `CREATE` or `CREATE_AND_UPDATE` and
-a payload as described [here](#payload). 
+a payload as described [here](#payload).
 
 ### Update
 
@@ -565,7 +565,7 @@ omitted, as demonstrated in [update attribute values](#update-data-values) and [
 values](#update-data-values).
 
 > **Note**
-> 
+>
 > * Deleted tracker objects cannot be updated.
 > * Relationships cannot be updated.
 
@@ -737,13 +737,13 @@ authorities `F_TEI_CASCADE_DELETE` and `F_ENROLLMENT_CASCADE_DELETE`.
 
 ### CSV import
 
-To import events using CSV make a `POST` request with CSV body file and the `Content-Type` set to 
+To import events using CSV make a `POST` request with CSV body file and the `Content-Type` set to
 ***application/csv*** or ***text/csv***.
 
 #### Events
 
-Every row of the CSV payload represents an event and a data value. So, for events with multiple 
-data values, the CSV file will have `x` rows per event, where `x` is the number of data values 
+Every row of the CSV payload represents an event and a data value. So, for events with multiple
+data values, the CSV file will have `x` rows per event, where `x` is the number of data values
 in that event.
 
 ##### ***CSV PAYLOAD*** example
@@ -1422,6 +1422,114 @@ Some examples of configurable validations:
 
 These configurations will further change how validation is performed during import.
 
+### Generated tracked entity attributes { #webapi_generate_te_attributes }
+
+Tracked entity attributes that use automatic generation of unique values
+have three endpoints utilized by apps for generating and reserving these values.
+> More info on how TextPattern works can be found [here](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/additional-information/dhis2-tutorials.html#working-with-textpattern)
+
+#### Finding Required Values
+
+A TextPattern may include variables that change based on different factors. Some of these factors are unknown to the server;
+thus, the values for these variables must be supplied when generating and reserving values.
+
+This endpoint returns a map of required and optional values that the server will inject into the TextPattern when generating new values.
+Required variables must be supplied for generation, whereas optional variables should only be provided if necessary.
+
+  GET /api/33/trackedEntityAttributes/Gs1ICEQTPlG/requiredValues
+
+```json
+{
+  "REQUIRED": [
+    "ORG_UNIT_CODE"
+  ],
+  "OPTIONAL": [
+    "RANDOM"
+  ]
+}
+```
+
+####   Generate value endpoint { #webapi_generate_values }
+
+Online web apps and other clients can use this endpoint to generate a unique value for immediate use.
+The generated value is guaranteed to be unique at the time of generation and is reserved for 3 days.
+If your TextPattern includes required values, they can be passed as parameters.
+
+To override the expiration time, add `?expiration=<number-of-days>` to the request.
+
+    GET /api/33/trackedEntityAttributes/Gs1ICEQTPlG/generate?ORG_UNIT_CODE=OSLO
+
+```json
+{
+  "ownerObject": "TRACKEDENTITYATTRIBUTE",
+  "ownerUid": "Gs1ICEQTPlG",
+  "key": "RANDOM(X)-OSL",
+  "value": "C-OSL",
+  "created": "2018-03-02T12:01:36.680",
+  "expiryDate": "2018-03-05T12:01:36.678"
+}
+```
+
+#### Generate and reserve value endpoint { #webapi_generate_reserve_values }
+
+Offline clients can use this endpoint to reserve a number of unique IDs for later use when registering new tracked entity instances.
+The number of IDs to generate can be specified with the `numberToReserve` parameter (default is 1).
+
+To override the default expiration time of 60 days, add `?expiration=<number-of-days>` to the request.
+
+    GET /api/33/trackedEntityAttributes/Gs1ICEQTPlG/generateAndReserve?numberToReserve=3&ORG_UNIT_CODE=OSLO
+
+```json
+[
+  {
+    "ownerObject": "TRACKEDENTITYATTRIBUTE",
+    "ownerUid": "Gs1ICEQTPlG",
+    "key": "RANDOM(X)-OSL",
+    "value": "B-OSL",
+    "created": "2018-03-02T13:22:35.175",
+    "expiryDate": "2018-05-01T13:22:35.174"
+  },
+  {
+    "ownerObject": "TRACKEDENTITYATTRIBUTE",
+    "ownerUid": "Gs1ICEQTPlG",
+    "key": "RANDOM(X)-OSL",
+    "value": "Q-OSL",
+    "created": "2018-03-02T13:22:35.175",
+    "expiryDate": "2018-05-01T13:22:35.174"
+  },
+  {
+    "ownerObject": "TRACKEDENTITYATTRIBUTE",
+    "ownerUid": "Gs1ICEQTPlG",
+    "key": "RANDOM(X)-OSL",
+    "value": "S-OSL",
+    "created": "2018-03-02T13:22:35.175",
+    "expiryDate": "2018-05-01T13:22:35.174"
+  }
+]
+```
+
+#### Reserved values
+
+Reserved values are currently not accessible through the api, however, they
+are returned by the `generate` and `generateAndReserve` endpoints. The
+following table explains the properties of the reserved value object:
+
+Table: Reserved values
+
+| Property | Description |
+|---|---|
+| ownerObject | The metadata type referenced when generating and reserving the value. Currently only TRACKEDENTITYATTRIBUTE is supported. |
+| ownerUid | The uid of the metadata object referenced when generating and reserving the value. |
+| key | A partially generated value where generated segments are not yet added. |
+| value | The fully resolved value reserved. This is the value you send to the server when storing data. |
+| created | The timestamp when the reservation was made |
+| expiryDate | The timestamp when the reservation will no longer be reserved |
+
+Expired reservations are removed daily. If a pattern changes, values
+that were already reserved will be accepted when storing data, even if
+they don't match the new pattern, as long as the reservation has not
+expired.
+
 ### Program Rules { #webapi_tracker_program_rules }
 
 Users can configure [Program Rules](#webapi_program_rules), which adds conditional behavior to
@@ -1545,14 +1653,14 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 
 > **NOTE**
 >
-> * All tracker export endpoints default to a `JSON` response content. `CSV` is only supported 
+> * All tracker export endpoints default to a `JSON` response content. `CSV` is only supported
 >   by tracked entities and events.
-> * You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv*** 
->   to the request. 
+> * You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv***
+>   to the request.
 > * You can download in zip and gzip formats:
->     *  CSV for Tracked entities 
+>     *  CSV for Tracked entities
 >     *  JSON and CSV for Events
-> * You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV 
+> * You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV
 > or ***application/json+gzip*** for JSON.
 > * You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or  
 > ***application/json+zip*** for JSON.
@@ -1614,13 +1722,13 @@ Two endpoints are dedicated to tracked entities:
 - `GET /api/tracker/trackedEntities/{id}`
   - retrieves a tracked entity given the provided id
 
-If not otherwise specified, JSON is the default response for the `GET` method. 
-The API also supports CSV export for single and collection endpoints. Furthermore, compressed 
+If not otherwise specified, JSON is the default response for the `GET` method.
+The API also supports CSV export for single and collection endpoints. Furthermore, compressed
 CSV types is an option for the collection endpoint.
 
 #### CSV
 
-In the case of CSV, the `fields` request parameter has no effect, and the response will always 
+In the case of CSV, the `fields` request parameter has no effect, and the response will always
 contain the following fields:
 
   - trackedEntity (UID)
@@ -1633,7 +1741,7 @@ contain the following fields:
   - inactive (boolean)
   - deleted (boolean)
   - potentialDuplicate (boolean)
-  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. 
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry.
     You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
@@ -1769,7 +1877,7 @@ You can use a range of operators for the filtering:
 
 ##### Tracked Entities response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`. 
+The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`.
 
 ##### JSON
 
@@ -1870,7 +1978,7 @@ A query for a tracked entity:
 
 ##### Tracked Entity response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities/{uid}` 
+The API supports CSV and JSON response for `GET /api/tracker/trackedEntities/{uid}`
 
 ###### JSON
 
@@ -2016,7 +2124,7 @@ An example of a json response:
 
 ###### CSV
 
-The response will be the same as the collection endpoint but referring to a single tracked 
+The response will be the same as the collection endpoint but referring to a single tracked
 entity, although it might have multiple rows for each attribute.
 
 ### Enrollments (`GET /api/tracker/enrollments`)
@@ -2090,7 +2198,7 @@ entity query parameter:
 To constrain the response to enrollments of a specific tracked entity you can include a tracked
 entity query parameter, in In this case, we have restricted it to available enrollments viewable for
 current user:
- 
+
     GET /api/tracker/enrollments?orgUnitMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
 
 ##### Response format
@@ -2175,12 +2283,12 @@ Two endpoints are dedicated to events:
     - retrieves an event given the provided id
 
 If not otherwise specified, JSON is the default response for the `GET` method.
-The API also supports CSV export for single and collection endpoints. Furthermore, it supports 
+The API also supports CSV export for single and collection endpoints. Furthermore, it supports
 compressed JSON and CSV for the collection endpoint.
 
 #### Events CSV
 
-In the case of CSV, the `fields` request parameter has no effect, and the response will always 
+In the case of CSV, the `fields` request parameter has no effect, and the response will always
 contain the following fields:
 
   - event (UID)
@@ -2191,7 +2299,7 @@ contain the following fields:
   - orgUnit (UID)
   - occurredAt (DateTime)
   - scheduledAt (DateTime)
-  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. 
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry.
     You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
@@ -2219,12 +2327,12 @@ See [Events](#events) and [Data Values](#data-values) for more field description
 
 #### Events GZIP
 
-The response is file `events.json.gz` or `events.csv.gzip` containing the `events.json` 
+The response is file `events.json.gz` or `events.csv.gzip` containing the `events.json`
 or `events.csv` file.
 
 #### Events ZIP
 
-The response is file`events.json.gz` or `events.json.zip` containing the `events.json` 
+The response is file`events.json.gz` or `events.json.zip` containing the `events.json`
 or `events.csv` file.
 
 #### Events Collection endpoint `GET /api/tracker/events`
@@ -2424,7 +2532,7 @@ A query for an Event:
 
 ##### Event response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities` 
+The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
 
 ###### JSON
 
@@ -2461,7 +2569,7 @@ The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
 
 ###### CSV
 
-The response will be the same as the collection endpoint but referring to a single event, 
+The response will be the same as the collection endpoint but referring to a single event,
 although it might have multiple rows for each data element value.
 
 ### Relationships (`GET /api/tracker/relationships`)
