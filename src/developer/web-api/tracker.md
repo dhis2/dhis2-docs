@@ -2888,7 +2888,7 @@ These are the parameters this endpoint accepts:
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
-| trackedEntities | List of tracked entities | List of string (separated by comma)| existing tracked entity IDs |
+| trackedEntities | List of tracked entities | List of string (separated by comma)| existing tracked entity UIDs |
 | status | Potential duplicate status | string | `OPEN`, `INVALID`, `MERGED`, `ALL` |
 
 To inspect individual potential duplicate records, use the following endpoint:
@@ -2899,7 +2899,7 @@ To create a new potential duplicate, use this endpoint:
 
     POST /api/potentialDuplicates
 
-The payload you provide must include the IDs of the original and duplicate tracked entities. New potential duplicates are open by default.
+The payload you provide must include the UIDs of the original and duplicate tracked entities. New potential duplicates are open by default.
 
 ```json
 {
@@ -2910,7 +2910,7 @@ The payload you provide must include the IDs of the original and duplicate track
 
 | Status code | Description
 |---|---|
-| 400 | Input original or duplicate is null or has invalid id
+| 400 | Input original or duplicate is null or has invalid UID
 | 403 | User do not have access to read origianl or duplicate TEs
 | 404 | TE not found
 | 409 | Pair of original and duplicate TEs already existing
