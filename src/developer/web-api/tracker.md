@@ -2877,8 +2877,8 @@ The response payload for a potential duplicate looks like this:
 {
   "created": "2024-06-04T10:11:29.110",
   "lastUpdated": "2024-06-04T10:11:29.110",
-  "original": "<id>",
-  "duplicate": "<id>",
+  "original": "<UID>",
+  "duplicate": "<UID>",
   "status": "OPEN|INVALID|MERGED",
   "id": "<id>"
 }
@@ -2903,8 +2903,8 @@ The payload you provide must include the IDs of the original and duplicate track
 
 ```json
 {
-  "original": "<id>",
-  "duplicate": "<id>"
+  "original": "<UID>",
+  "duplicate": "<UID>"
 }
 ```
 
