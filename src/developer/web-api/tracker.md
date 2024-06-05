@@ -3089,4 +3089,3 @@ Currently it is not possible to merge tracked entities that are enrolled in the 
 
 All merging is based on data already persisted in the database, which means the current merging service is not validating that data again. This means if data was already invalid, it will not be reported during the merge.
 The only validation done in the service relates to relationships, as mentioned in the previous section.
->>>>>>> origin/master
