@@ -2899,7 +2899,7 @@ To create a new potential duplicate, use this endpoint:
 
     POST /api/potentialDuplicates
 
-The payload you provide must include the IDs of the original and duplicate tracked entities. New potential duplicates are open by default.
+The payload you provide must include the UIDs of the original and duplicate tracked entities. New potential duplicates are open by default.
 
 ```json
 {
