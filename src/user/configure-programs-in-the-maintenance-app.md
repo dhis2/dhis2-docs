@@ -1799,16 +1799,16 @@ programs.
     search**. This specifies the amount of attributes that need to be
     filled out in order to be able to search for this **tracked entity
     type** in a *global search*. See [Configure
-    Search](../search/search.xml#configure_search) for more information.
+    Search](#configure_search) for more information.
 
 7.  (Optional) Enter a **Maximum number of tracked entity instances to
     return in search**. This specifies the amount of tracked entity
     instances that will be returned in a *global search*. See [Configure
-    Search](../search/search.xml#configure_search) for more information.
+    Search](#configure_search) for more information.
 
 8.  (Optional) Add **Tracked entity type attributes**. This is used to
     configure search, see [Configure
-    Search](configure_search) for more information.
+    Search](#configure_search) for more information.
 
 9.  (Optional) Enter an **Alternative name** of the tracked entity.
 
