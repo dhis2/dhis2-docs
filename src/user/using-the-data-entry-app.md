@@ -273,7 +273,7 @@ case, you can enable multi-organisation unit data entry.
 
   - [Control data quality](#control_data_quality)
 
-  - [Manage data sets and data entry forms](#/manage_data_set)
+  - [Manage data sets and data entry forms](#manage_data_set)
 
   - [Using the Maintenance app](#maintenance_app)
 
