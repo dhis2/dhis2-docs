@@ -734,6 +734,7 @@ events and relationships:
 
 All the children of a tracker object will be deleted if the user making the request has the
 authorities `F_TEI_CASCADE_DELETE` and `F_ENROLLMENT_CASCADE_DELETE`.
+Relationships linked to an entity are always deleted, without the need of any authority.
 
 ### CSV import
 
@@ -3079,7 +3080,7 @@ Otherwise, if a manual merge is requested with a payload, the payload refers to 
 }
 ```
 
-This payload contains three lists, one for each of the types of data that can be moved. `trackedEntityAttributes` is a list of uids for tracked entity attributes, `enrollments` is a list of uids for enrollments and `relationships` 
+This payload contains three lists, one for each of the types of data that can be moved. `trackedEntityAttributes` is a list of uids for tracked entity attributes, `enrollments` is a list of uids for enrollments and `relationships`
 a list of uids for relationships. The uids in this payload have to refer to data that actually exists on the duplicate. There is no way to add new data or change data using the merge endpoint - Only moving data.
 
 #### Additional information about merging
