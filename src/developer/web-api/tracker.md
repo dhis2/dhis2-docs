@@ -1408,7 +1408,7 @@ be sent as one. Programs can be configured to either validate mandatory attribut
 
 The import will validate unique attributes at the time of import. That means as long as the provided
 value is unique for the attribute in the whole system, it will pass. However, if the unique value is
-found used by any other tracked entity other than the one being imported, it will fail.
+found to be used by any other tracked entity other than the one being imported, it will fail.
 
 #### Configuration
 
