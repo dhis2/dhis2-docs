@@ -1401,7 +1401,7 @@ related to a mismatch between a type and a value will result in the same error c
 specific message related to the type of violation.
 
 Mandatory attributes and data values are also checked on creation, on update mandatory attributes
-and data valuesare not required in the payload. Currently, removing mandatory attributes and data values is
+and data values are not required in the payload. Currently, removing mandatory attributes and data values is
 never allowed. Some use-cases require values to be sent separately, while others require all values to
 be sent as one. Programs can be configured to either validate mandatory attributes `ON_COMPLETE` or
 `ON_UPDATE_AND_INSERT` to accommodate these use-cases.
