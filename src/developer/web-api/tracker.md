@@ -2132,7 +2132,7 @@ entity, although it might have multiple rows for each attribute.
 
 #### Tracked entity attribute value change logs `GET /api/tracker/trackedEntities/{uid}/changeLogs`
 
-This endpoint retrieves change logs for the attributes of a specific tracked entity. It returns a list of all tracked entity attributes that have changed over time for that entity.
+This endpoint retrieves change logs for a tracked entity's attribute values, showing all changes over time.
 
 |Parameter|Type|Allowed values|
 |---|---|---|
@@ -2187,8 +2187,10 @@ An example of a json response:
 }
 ```
 
-The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
-`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
+The change log can be of three types:
+- `CREATE`: holds the single current value of the attribute.
+- `UPDATE`: shows the attribute's previous and current value.
+- `DELETE`: displays the attribute value before deletion.
 
 ### Enrollments (`GET /api/tracker/enrollments`)
 
@@ -2707,8 +2709,10 @@ An example of a json response:
 }
 ```
 
-The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
-`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
+The change log can be of three types:
+- `CREATE`: holds the single current value of the attribute.
+- `UPDATE`: shows the attribute's previous and current value.
+- `DELETE`: displays the attribute value before deletion.
 
 
 ### Relationships (`GET /api/tracker/relationships`)
