@@ -1482,6 +1482,153 @@ following payload to change the style:
 }
 ```
 
+## Data Elements
+
+### Merge data elements { #data_element_merge }
+
+The data element merge endpoint allows you to merge a number of data elements (sources) into a target data element.
+
+#### Authorisation
+
+The authority `F_DATA_ELEMENT_MERGE` is required to perform data element merges.
+
+#### Request
+
+Merge data elements with a POST request:
+
+```
+POST /api/dataElements/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field         | Required | Value                                                                              |
+|---------------|----------|------------------------------------------------------------------------------------|
+| sources       | Yes      | Array of identifiers of the data elements to merge (the source data elements)      |
+| target        | Yes      | Identifier of the data element to merge the sources into (the target data element) |
+| deleteSources | No       | Whether to delete the source data elements after the operation. Default is false   |
+
+The merge operation will merge the source data elements into the target data element. One or many source data elements can be specified. Only one target should be specified.
+
+The merge operation will transfer all source data element metadata associations to the target data element.
+The following metadata get updated:
+
+
+| Metadata | Property | Action taken                                           |
+|----------|----------|--------------------------------------------------------|
+| TODO     | TODO     | Source data element removed, target data element added |
+| 
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                     |
+|------------|-------------------------------------------------|
+| E1550      | At least one source data element must be specified |
+| E1551      | Target data element must be specified              |
+| E1552      | Target data element cannot be a source indicator   |
+| E1553      | Source/Target data element does not exist: `{uid}` |
+| E1554      | All source ValueTypes must match target ValueType: `ValueType`. Other ValueTypes found: `ValueType` |
+| E1555      | All source DataElementDomains must match target DataElementDomain: `DataElementDomain`. Other DataElementDomains found: `DataElementDomain` |
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "DATA_ELEMENT",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "DATA_ELEMENT merge complete"
+        }
+    }
+}
+```
+
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source data element must be specified",
+                    "errorCode": "E1550",
+                    "args": []
+                },
+                {
+                    "message": "Target data element does not exist: `abcdefg1221`",
+                    "errorCode": "E1553",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "DATA_ELEMENT",
+            "sourcesDeleted": [],
+            "message": "DATA_ELEMENT merge has errors"
+        }
+    }
+}
+```
+
+Another sample validation error response:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "All source ValueTypes must match target ValueType: `TEXT`. Other ValueTypes found: `NUMBER`",
+                    "errorCode": "E1554",
+                    "args": []
+                }
+            ],
+            "mergeType": "DATA_ELEMENT",
+            "sourcesDeleted": [],
+            "message": "DATA_ELEMENT merge has errors"
+        }
+    }
+}
+```
+
 ## Indicators { #webapi_indicators } 
 
 This section describes indicators and indicator expressions.
