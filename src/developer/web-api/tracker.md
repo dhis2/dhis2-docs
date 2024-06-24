@@ -2130,9 +2130,10 @@ An example of a json response:
 The response will be the same as the collection endpoint but referring to a single tracked
 entity, although it might have multiple rows for each attribute.
 
-#### Tracked entity attribute value change logs `GET /api/tracker/trackedEntities/{uid}/changeLogs`
+#### Tracked entity attribute value change logs { #webapi_tracker_attribute_change_logs }
+`GET /api/tracker/trackedEntities/{uid}/changeLogs`
 
-This endpoint retrieves change logs for a tracked entity's attribute values, showing all changes over time.
+This endpoint retrieves change logs for the attributes of a specific tracked entity. It returns a list of all tracked entity attributes that have changed over time for that entity.
 
 |Parameter|Type|Allowed values|
 |---|---|---|
@@ -2187,10 +2188,8 @@ An example of a json response:
 }
 ```
 
-The change log can be of three types:
-- `CREATE`: holds the single current value of the attribute.
-- `UPDATE`: shows the attribute's previous and current value.
-- `DELETE`: displays the attribute value before deletion.
+The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
+`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
 
 ### Enrollments (`GET /api/tracker/enrollments`)
 
@@ -2637,7 +2636,8 @@ The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
 The response will be the same as the collection endpoint but referring to a single event,
 although it might have multiple rows for each data element value.
 
-#### Event data value change logs `GET /api/tracker/events/{uid}/changeLogs`
+#### Event data value change logs { #webapi_event_data_value_change_logs }
+`GET /api/tracker/events/{uid}/changeLogs`
 
 This endpoint retrieves change logs for the data values of a specific event. It returns a list of all event data values that have changed over time for that particular event.
 
@@ -2709,10 +2709,8 @@ An example of a json response:
 }
 ```
 
-The change log can be of three types:
-- `CREATE`: holds the single current value of the attribute.
-- `UPDATE`: shows the attribute's previous and current value.
-- `DELETE`: displays the attribute value before deletion.
+The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
+`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
 
 
 ### Relationships (`GET /api/tracker/relationships`)
