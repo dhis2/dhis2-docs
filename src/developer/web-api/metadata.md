@@ -1529,10 +1529,42 @@ The merge operation will transfer all source data element metadata associations 
 The following metadata get updated:
 
 
-| Metadata | Property | Action taken                                           |
-|----------|----------|--------------------------------------------------------|
-| TODO     | TODO     | Source data element removed, target data element added |
-| 
+| Metadata                          | Property                  | Action taken               |
+|-----------------------------------|---------------------------|----------------------------|
+| DataDimensionItem                 | dataElement               | set to target              |
+| EventVisualization                | dataElementValueDimension | set to target              |
+| ProgramStageDataElement           | dataElement               | set to target              |
+| ProgramNotificationTemplate       | recipientDataElement      | set to target              |
+| ProgramRuleVariable               | dataElement               | set to target              |
+| ProgramRuleAction                 | dataElement               | set to target              |
+| TrackedEntityDataElementDimension | dataElement               | set to target              |
+| MinMaxDataElement                 | dataElement               | set to target              |
+| SMSCode                           | dataElement               | set to target              |
+| SMSCode                           | dataElement               | set to target              |
+| Predictor                         | output                    | set to target              |
+| DataSetElement                    | dataElement               | set to target              |
+| DataElementOperand                | dataElement               | set to target              |
+| ProgramStageDataElement           | dataElements              | remove sources, add target |
+| Section                           | dataElements              | remove sources, add target |
+| DataElementGroup                  | members                   | remove sources, add target |
+| Event                             | eventDataValues           | remove sources, add target |
+| Indicator                         | numerator                 | replace source with target |
+| Indicator                         | denominator               | replace source with target |
+| Predictor                         | generator                 | replace source with target |
+| Predictor                         | sampleSkipTest            | replace source with target |
+| DataEntryForm                     | htmlCode                  | replace source with target |
+| ProgramIndicator                  | expression                | replace source with target |
+| ProgramIndicator                  | filter                    | replace source with target |
+
+
+| Data                            | Property        | Action taken               |
+|---------------------------------|-----------------|----------------------------|
+| Event                           | eventDataValues | remove sources, add target |
+| TrackedEntityDataValueChangeLog | dataElement     | ???                        |
+| DataValue                       | dataElement     | ???                        |
+| DataValueAudit                  | dataElement     | ???                        |
+| DataApproval                    | ???             | ???                        |
+
 
 #### Validation
 
@@ -1540,13 +1572,13 @@ The following constraints and error codes apply.
 
 Table: Constraints and error codes
 
-| Error code | Description                                     |
-|------------|-------------------------------------------------|
-| E1550      | At least one source data element must be specified |
-| E1551      | Target data element must be specified              |
-| E1552      | Target data element cannot be a source indicator   |
-| E1553      | Source/Target data element does not exist: `{uid}` |
-| E1554      | All source ValueTypes must match target ValueType: `ValueType`. Other ValueTypes found: `ValueType` |
+| Error code | Description                                                                                                                                 |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| E1550      | At least one source data element must be specified                                                                                          |
+| E1551      | Target data element must be specified                                                                                                       |
+| E1552      | Target data element cannot be a source indicator                                                                                            |
+| E1553      | Source/Target data element does not exist: `{uid}`                                                                                          |
+| E1554      | All source ValueTypes must match target ValueType: `ValueType`. Other ValueTypes found: `ValueType`                                         |
 | E1555      | All source DataElementDomains must match target DataElementDomain: `DataElementDomain`. Other DataElementDomains found: `DataElementDomain` |
 
 #### Response
