@@ -1486,6 +1486,14 @@ following payload to change the style:
 
 ### Merge data elements { #data_element_merge }
 
+> **Caution**
+>
+> Merging DataElements should be carried out with the utmost care. Knowing
+> the potential side effects of a merge should be fully understood before performing
+> the merge. The merging of DataElements has far-reaching effects. The information below
+> will try to help show what's involved in a DataElement merge. A DataElement merge
+> touches all the major parts or the system (metadata, data, tracker and analytics).
+
 The data element merge endpoint allows you to merge a number of data elements (sources) into a target data element.
 
 #### Authorisation
