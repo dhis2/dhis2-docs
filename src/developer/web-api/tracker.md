@@ -3038,6 +3038,93 @@ See an example payload below:
 }
 ```
 
+### Event working lists
+
+Create, update and delete event working lists using
+
+    /api/eventFilters
+
+#### Payload
+
+Table: Payload
+
+| Property | Description | Example |
+|---|---|---|
+|name|Name of the working list.|"name":"My working list"|
+|description|A description of the working list.|"description":"for listing all events assigned to me".|
+|program|The uid of the program.|"program" : "a3kGcGDCuk6"|
+|programStage|The uid of the program stage.|"programStage" : "a3kGcGDCuk6"|
+|eventQueryCriteria|Object containing parameters for querying, sorting and filtering events.|"eventQueryCriteria": {     "organisationUnit":"a3kGcGDCuk6",     "status": "COMPLETED",     "createdDate": {       "from": "2014-05-01",       "to": "2019-03-20"     },     "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],     "filters": ["a3kGcGDCuk6:EQ:1"],     "programStatus": "ACTIVE",     "ouMode": "SELECTED",     "assignedUserMode": "PROVIDED",     "assignedUsers" : ["a3kGcGDCuk7", "a3kGcGDCuk8"],     "followUp": false,     "trackedEntityInstance": "a3kGcGDCuk6",     "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],     "fields": "eventDate,dueDate",     "order": "dueDate:asc,createdDate:desc"   }|
+
+Table: Event Query Criteria definition
+
+| Property | Description | Example |
+|---|---|---|
+|followUp|Used to filter events based on enrollment followUp flag. Possible values are true&#124;false.|"followUp": true|
+|organisationUnit|To specify the uid of the organisation unit|"organisationUnit": "a3kGcGDCuk7"|
+|ouMode|To specify the OU selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL|"ouMode": "SELECTED"|
+|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
+|assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]|
+|displayColumnOrder |To specify the output ordering of columns|"displayOrderColumns": ["eventDate", "dueDate", "program"]|
+|order|To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "dataItem:direction".|"order"="a3kGcGDCuk6:desc,eventDate:asc"|
+|dataFilters|To specify filters to be applied when listing events|"dataFilters"=[{       "dataItem": "abcDataElementUid",       "le": "20",       "ge": "10",       "lt": "20",       "gt": "10",       "in": ["India", "Norway"],       "like": "abc",       "dateFilter": {         "startDate": "2014-05-01",         "endDate": "2019-03-20",         "startBuffer": -5,         "endBuffer": 5,         "period": "LAST_WEEK",         "type": "RELATIVE"       }     }]|
+|status|Any valid EventStatus|"eventStatus": "COMPLETED"|
+|events|To specify list of events|"events"=["a3kGcGDCuk6"]|
+|completedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on completed date.|"completedDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "startBuffer": -5,     "endBuffer": 5,     "period": "LAST_WEEK",     "type": "RELATIVE"   }|
+|eventDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on event date.|"eventDate": {     "startBuffer": -5,     "endBuffer": 5,     "type": "RELATIVE"   }|
+|dueDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on due date.|"dueDate": {     "period": "LAST_WEEK",     "type": "RELATIVE"   }|
+|lastUpdatedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on last updated date.|"lastUpdatedDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "type": "ABSOLUTE"   }|
+
+See an example payload below:
+
+```json
+{
+  "name": "event working list",
+  "program": "VBqh0ynB2wv",
+  "eventQueryCriteria": {
+    "eventDate": {
+      "period": "LAST_WEEK",
+      "type": "RELATIVE"
+    },
+    "dataFilters": [
+      {
+        "ge": "35",
+        "le": "70",
+        "dataItem": "qrur9Dvnyt5"
+      }
+    ],
+    "assignedUserMode": "PROVIDED",
+    "assignedUsers": [
+      "CotVI2NX0rI",
+      "xE7jOejl9FI"
+    ],
+    "status": "ACTIVE",
+    "order": "occurredAt:desc",
+    "displayColumnOrder": [
+      "occurredAt",
+      "status",
+      "assignedUser",
+      "qrur9Dvnyt5",
+      "oZg33kd9taw"
+    ]
+  }
+}
+```
+
+### Common Objects { #webapi_tracker_workinglists_common_objects }
+
+Table: DateFilterPeriod object definition
+
+| Property | Description | Example |
+|---|---|---|
+|type|Specify whether the date period type is ABSOLUTE &#124; RELATIVE|`"type" : "RELATIVE"`|
+|period|Specify if a relative system defined period is to be used. Applicable only when `type` is RELATIVE. (see [Relative Periods](#webapi_date_relative_period_values) for supported relative periods)|`"period" : "THIS_WEEK"`|
+|startDate|Absolute start date. Applicable only when `type` is ABSOLUTE|`"startDate":"2014-05-01"`|
+|endDate|Absolute end date. Applicable only when `type` is ABSOLUTE|`"startDate":"2014-05-01"`|
+|startBuffer|Relative custom start date. Applicable only when `type` is RELATIVE|`"startBuffer":-10`|
+|endBuffer|Relative custom end date. Applicable only when `type` is RELATIVE|`"startDate":+10`|
+
+
 ## Potential Duplicates  
 
 Potential duplicates are records identified by the data deduplication feature as possibly being duplicates. Due to the nature of this feature, the API endpoint has certain restrictions.
@@ -3156,90 +3243,4 @@ Currently it is not possible to merge tracked entities that are enrolled in the 
 
 All merging is based on data already persisted in the database, which means the current merging service is not validating that data again. This means if data was already invalid, it will not be reported during the merge.
 The only validation done in the service relates to relationships, as mentioned in the previous section.
-
-### Event working lists
-
-Create, update and delete event working lists using
-
-    /api/eventFilters
-
-#### Payload
-
-Table: Payload
-
-| Property | Description | Example |
-|---|---|---|
-|name|Name of the working list.|"name":"My working list"|
-|description|A description of the working list.|"description":"for listing all events assigned to me".|
-|program|The uid of the program.|"program" : "a3kGcGDCuk6"|
-|programStage|The uid of the program stage.|"programStage" : "a3kGcGDCuk6"|
-|eventQueryCriteria|Object containing parameters for querying, sorting and filtering events.|"eventQueryCriteria": {     "organisationUnit":"a3kGcGDCuk6",     "status": "COMPLETED",     "createdDate": {       "from": "2014-05-01",       "to": "2019-03-20"     },     "dataElements": ["a3kGcGDCuk6:EQ:1", "a3kGcGDCuk6"],     "filters": ["a3kGcGDCuk6:EQ:1"],     "programStatus": "ACTIVE",     "ouMode": "SELECTED",     "assignedUserMode": "PROVIDED",     "assignedUsers" : ["a3kGcGDCuk7", "a3kGcGDCuk8"],     "followUp": false,     "trackedEntityInstance": "a3kGcGDCuk6",     "events": ["a3kGcGDCuk7", "a3kGcGDCuk8"],     "fields": "eventDate,dueDate",     "order": "dueDate:asc,createdDate:desc"   }|
-
-Table: Event Query Criteria definition
-
-| Property | Description | Example |
-|---|---|---|
-|followUp|Used to filter events based on enrollment followUp flag. Possible values are true&#124;false.|"followUp": true|
-|organisationUnit|To specify the uid of the organisation unit|"organisationUnit": "a3kGcGDCuk7"|
-|ouMode|To specify the OU selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL|"ouMode": "SELECTED"|
-|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
-|assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]|
-|displayColumnOrder |To specify the output ordering of columns|"displayOrderColumns": ["eventDate", "dueDate", "program"]|
-|order|To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "dataItem:direction".|"order"="a3kGcGDCuk6:desc,eventDate:asc"|
-|dataFilters|To specify filters to be applied when listing events|"dataFilters"=[{       "dataItem": "abcDataElementUid",       "le": "20",       "ge": "10",       "lt": "20",       "gt": "10",       "in": ["India", "Norway"],       "like": "abc",       "dateFilter": {         "startDate": "2014-05-01",         "endDate": "2019-03-20",         "startBuffer": -5,         "endBuffer": 5,         "period": "LAST_WEEK",         "type": "RELATIVE"       }     }]|
-|status|Any valid EventStatus|"eventStatus": "COMPLETED"|
-|events|To specify list of events|"events"=["a3kGcGDCuk6"]|
-|completedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on completed date.|"completedDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "startBuffer": -5,     "endBuffer": 5,     "period": "LAST_WEEK",     "type": "RELATIVE"   }|
-|eventDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on event date.|"eventDate": {     "startBuffer": -5,     "endBuffer": 5,     "type": "RELATIVE"   }|
-|dueDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on due date.|"dueDate": {     "period": "LAST_WEEK",     "type": "RELATIVE"   }|
-|lastUpdatedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on last updated date.|"lastUpdatedDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "type": "ABSOLUTE"   }|
-
-See an example payload below:
-
-```json
-{
-  "name": "event working list",
-  "program": "VBqh0ynB2wv",
-  "eventQueryCriteria": {
-    "eventDate": {
-      "period": "LAST_WEEK",
-      "type": "RELATIVE"
-    },
-    "dataFilters": [
-      {
-        "ge": "35",
-        "le": "70",
-        "dataItem": "qrur9Dvnyt5"
-      }
-    ],
-    "assignedUserMode": "PROVIDED",
-    "assignedUsers": [
-      "CotVI2NX0rI",
-      "xE7jOejl9FI"
-    ],
-    "status": "ACTIVE",
-    "order": "occurredAt:desc",
-    "displayColumnOrder": [
-      "occurredAt",
-      "status",
-      "assignedUser",
-      "qrur9Dvnyt5",
-      "oZg33kd9taw"
-    ]
-  }
-}
-```
-
-### Common Objects { #webapi_tracker_workinglists_common_objects }
-
-Table: DateFilterPeriod object definition
-
-| Property | Description | Example |
-|---|---|---|
-|type|Specify whether the date period type is ABSOLUTE &#124; RELATIVE|`"type" : "RELATIVE"`|
-|period|Specify if a relative system defined period is to be used. Applicable only when `type` is RELATIVE. (see [Relative Periods](#webapi_date_relative_period_values) for supported relative periods)|`"period" : "THIS_WEEK"`|
-|startDate|Absolute start date. Applicable only when `type` is ABSOLUTE|`"startDate":"2014-05-01"`|
-|endDate|Absolute end date. Applicable only when `type` is ABSOLUTE|`"startDate":"2014-05-01"`|
-|startBuffer|Relative custom start date. Applicable only when `type` is RELATIVE|`"startBuffer":-10`|
-|endBuffer|Relative custom end date. Applicable only when `type` is RELATIVE|`"startDate":+10`|
 
