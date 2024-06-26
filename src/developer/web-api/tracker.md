@@ -1920,6 +1920,66 @@ An example of a json response:
 The response will be the same as the collection endpoint but referring to a single tracked 
 entity, although it might have multiple rows for each attribute.
 
+#### Tracked entity attribute value change logs `GET /api/tracker/trackedEntities/{uid}/changeLogs`
+
+This endpoint retrieves change logs for the attributes of a specific tracked entity. It returns a list of all tracked entity attributes that have changed over time for that entity.
+
+|Parameter|Type|Allowed values|
+|---|---|---|
+|path `/{uid}`|`String`|Tracked entity `UID`.|
+|`program`|`String`|Program `UID` (optional).|
+
+##### Tracked entity attribute value change logs response example
+
+An example of a json response:
+
+```json
+{
+   "pager":{
+      "page":1,
+      "pageSize":10
+   },
+   "changeLogs":[
+      {
+         "createdBy":{
+            "uid":"AIK2aQOJIbj",
+            "username":"tracker",
+            "firstName":"Tracker demo",
+            "surname":"User"
+         },
+         "createdAt":"2024-06-20T14:51:16.433",
+         "type":"UPDATE",
+         "change":{
+            "dataValue":{
+               "dataElement":"bx6fsa0t90x",
+               "previousValue":"true",
+               "currentValue":"false"
+            }
+         }
+      },
+      {
+         "createdBy":{
+            "uid":"AIK2aQOJIbj",
+            "username":"tracker",
+            "firstName":"Tracker demo",
+            "surname":"User"
+         },
+         "createdAt":"2024-06-20T14:50:32.966",
+         "type":"CREATE",
+         "change":{
+            "dataValue":{
+               "dataElement":"ebaJjqltK5N",
+               "currentValue":"0"
+            }
+         }
+      }
+   ]
+}
+```
+
+The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
+`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
+
 ### Enrollments (`GET /api/tracker/enrollments`)
 
 Two endpoints are dedicated to enrollments:
@@ -2361,6 +2421,82 @@ The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
 
 The response will be the same as the collection endpoint but referring to a single event, 
 although it might have multiple rows for each data element value.
+
+#### Event data value change logs `GET /api/tracker/events/{uid}/changeLogs`
+
+This endpoint retrieves change logs for the data values of a specific event. It returns a list of all event data values that have changed over time for that particular event.
+
+|Parameter|Type|Allowed values|
+|---|---|---|
+|path `/{uid}`|`String`|Event `UID`.|
+
+##### Event data value change logs response example
+
+An example of a json response:
+
+```json
+{
+   "pager":{
+      "page":1,
+      "pageSize":10
+   },
+   "changeLogs":[
+      {
+         "createdBy":{
+            "uid":"AIK2aQOJIbj",
+            "username":"tracker",
+            "firstName":"Tracker demo",
+            "surname":"User"
+         },
+         "createdAt":"2024-06-20T15:43:36.342",
+         "type":"DELETE",
+         "change":{
+            "dataValue":{
+               "dataElement":"UXz7xuGCEhU",
+               "previousValue":"12"
+            }
+         }
+      },
+      {
+         "createdBy":{
+            "uid":"AIK2aQOJIbj",
+            "username":"tracker",
+            "firstName":"Tracker demo",
+            "surname":"User"
+         },
+         "createdAt":"2024-06-20T15:43:27.175",
+         "type":"CREATE",
+         "change":{
+            "dataValue":{
+               "dataElement":"UXz7xuGCEhU",
+               "currentValue":"12"
+            }
+         }
+      },
+      {
+         "createdBy":{
+            "uid":"AIK2aQOJIbj",
+            "username":"tracker",
+            "firstName":"Tracker demo",
+            "surname":"User"
+         },
+         "createdAt":"2024-06-20T14:51:16.433",
+         "type":"UPDATE",
+         "change":{
+            "dataValue":{
+               "dataElement":"bx6fsa0t90x",
+               "previousValue":"true",
+               "currentValue":"false"
+            }
+         }
+      }
+   ]
+}
+```
+
+The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
+`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
+
 
 ### Relationships (`GET /api/tracker/relationships`)
 
