@@ -388,6 +388,7 @@ The aggregate data exchange data model / payload is described in the following s
 | source.requests.filters.items                     | Array/String   | No          | Item identifiers for the filter.                             |
 | source.requests.inputIdScheme                     | String         | No          | Input ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`.     |
 | source.requests.outputDataElementIdScheme         | String         | No          | Output data element ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
+| source.requests.outputDataItemIdScheme         | String         | No          | Output data item ID scheme applies to data elements, indicators and program indicators, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
 | source.requests.outputOrgUnitIdScheme             | String         | No          | Output org unit ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
 | source.requests.outputIdScheme                    | String         | No          | Output general ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
 | source.target                                     | Object         | Yes         | Target for  aggregate data exchange.                         |
@@ -402,6 +403,9 @@ The aggregate data exchange data model / payload is described in the following s
 | source.target.request.orgUnitIdScheme             | String         | No          | Input org unit ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
 | source.target.request.categoryOptionComboIdScheme | String         | No          | Input category option combo ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
 | source.target.request.idScheme                    | String         | No          | Input general ID scheme, can be `UID`, `CODE`, `ATTRIBUTE:{ID}`. |
+| source.target.request.importStrategy                    | String         | No          | Import strategy, can be `CREATE_AND_UPDATE`, `CREATE`, `UPDATE`, `DELETE`. |
+| source.target.request.skipAudit                    | Boolean         | No          | Skip audit, meaning audit values will not be generated. Improves performance at the cost of ability to audit changes. Requires authority "F_SKIP_DATA_IMPORT_AUDIT". |
+| source.target.request.dryRun                    | Boolean         | No          | Whether to save changes on the server or just return the import summary. |
 
 ### Error handling
 
