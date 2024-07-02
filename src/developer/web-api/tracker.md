@@ -2210,6 +2210,10 @@ privileges. Only those users belonging to the owning org unit for a
 tracked entity-program combination will be able to access the data
 related to that program for that tracked entity.
 
+When requesting tracked entities without specifying a program, the response will include only tracked entities that satisfy [metadata sharing settings](#webapi_tracker_metadata_sharing) and one of the following criteria:
+- The tracked entity is enrolled in at least one program the user has data access to, and the user has access to the owner organisation unit.
+- The tracked entity is not enrolled in any program the user has data access to, but the user has access to the tracked entity registering organisation unit.
+
 #### Tracker Ownership Override : Break the Glass { #webapi_tracker_ownership_override_api }
 
 It is possible to temporarily override this ownership privilege for a
