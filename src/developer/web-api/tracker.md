@@ -2712,7 +2712,13 @@ Tracker objects, the requested organisation unit must always be within the user'
 user cannot request objects outside its search scope unless it's using the organisation unit mode
 ALL and has enough privileges to use that mode.
 
-#### Tracker Ownership Override: Break the Glass { #webapi_nti_tracker_ownership_override }
+When requesting tracked entities without specifying a program, the response will include only those tracked entities that satisfy one of the following criteria:
+- The tracked entity is enrolled in at least one program the user has data access to, and the user has access to the owner organisation unit.
+- The tracked entity is not enrolled in at least one program the user has data access to, and the user has access to the tracked entity registering organisation unit.
+
+In both scenarios, the validation process will consider the program access level, as detailed at the beginning of this section, and the sharing settings, as explained [here](#webapi_tracker_metadata_sharing).
+
+#### Tracker Ownership Override: Break the Glass { #webapi_tracker_ownership_override }
 
 It is possible to temporarily override this ownership privilege for a program that is configured
 with an access level of *PROTECTED*. Any user will be able to temporarily gain access to the Program
