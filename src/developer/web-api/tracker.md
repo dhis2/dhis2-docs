@@ -2712,11 +2712,9 @@ Tracker objects, the requested organisation unit must always be within the user'
 user cannot request objects outside its search scope unless it's using the organisation unit mode
 ALL and has enough privileges to use that mode.
 
-When requesting tracked entities without specifying a program, the response will include only those tracked entities that satisfy one of the following criteria:
+When requesting tracked entities without specifying a program, the response will include only tracked entities that satisfy [metadata sharing settings](#webapi_tracker_metadata_sharing) and one of the following criteria:
 - The tracked entity is enrolled in at least one program the user has data access to, and the user has access to the owner organisation unit.
-- The tracked entity is not enrolled in at least one program the user has data access to, and the user has access to the tracked entity registering organisation unit.
-
-In both scenarios, the validation process will consider the program access level, as detailed at the beginning of this section, and the sharing settings, as explained [here](#webapi_tracker_metadata_sharing).
+- The tracked entity is not enrolled in any program the user has data access to, and the user has access to the tracked entity registering organisation unit.
 
 #### Tracker Ownership Override: Break the Glass { #webapi_tracker_ownership_override }
 
