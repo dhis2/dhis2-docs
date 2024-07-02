@@ -2138,7 +2138,11 @@ This, along with the Program's [Access Level](#webapi_nti_access_level) configur
 A user can access a TrackedEntity's Program data if the corresponding Owner OrganisationUnit for that TrackedEntity-Program combination falls under the user's organisation unit scope (Search/Capture). For Programs that are configured with access level  *OPEN* or *AUDITED* , the Owner OrganisationUnit has to be in the user's search scope.
 For Programs that are configured with access level  *PROTECTED* or *CLOSED* , the Owner OrganisationUnit has to be in the user's capture scope to be able to access the corresponding program data for the specific tracked entity.
 
-#### Tracker Ownership Override: Break the Glass { #webapi_nti_tracker_ownership_override }
+When requesting tracked entities without specifying a program, the response will include only tracked entities that satisfy [metadata sharing settings](#webapi_tracker_metadata_sharing) and one of the following criteria:
+- The tracked entity is enrolled in at least one program the user has data access to, and the user has access to the owner organisation unit.
+- The tracked entity is not enrolled in any program the user has data access to, but the user has access to the tracked entity registering organisation unit.
+
+#### Tracker Ownership Override: Break the Glass { #webapi_tracker_ownership_override }
 
 It is possible to temporarily override this ownership privilege for a
 program that is configured with an access level of *PROTECTED*. Any user
