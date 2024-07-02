@@ -2924,6 +2924,10 @@ Tracker objects, the requested organisation unit must always be within the user'
 user cannot request objects outside its search scope unless it's using the organisation unit mode
 ALL and has enough privileges to use that mode.
 
+When requesting tracked entities without specifying a program, the response will include only tracked entities that satisfy [metadata sharing settings](#webapi_tracker_metadata_sharing) and one of the following criteria:
+- The tracked entity is enrolled in at least one program the user has data access to, and the user has access to the owner organisation unit.
+- The tracked entity is not enrolled in any program the user has data access to, but the user has access to the tracked entity registering organisation unit.
+
 #### Tracker Ownership Override: Break the Glass { #webapi_tracker_ownership_override }
 
 It is possible to temporarily override this ownership privilege for a program that is configured
@@ -3415,4 +3419,3 @@ All merging is based on data already persisted in the database, which means the 
 service is not validating that data again. This means if data was already invalid, it will not be
 reported during the merge. The only validation done in the service relates to relationships, as
 mentioned in the previous section.
-
