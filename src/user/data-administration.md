@@ -318,18 +318,31 @@ system.
     elements to be member of data sets with similar period types to have
     a defined behaviour.
 
-  - Period structure (\_dataperiodstructure)
+  - Date periods structure (\_dateperiodstructure)
 
     This table provides information about all periods and which period
     type they are associated with. For each period type with lower
     frequency than itself, it contains information about which period it
     will fall within.
 
+  - Periods structure (\_periodstructure)
+
+    Similar to `_dateperiodstructure`, containing a scoped set of
+    periods more adapted for aggregated analytics.
+    It's based on `period` and `periodtype` tables.
+
   - Data element category option combinations
     (\_dataelementcategoryoptioncombo)
 
     This table provides a mapping between data elements and all possible
     category option combinations.
+
+  - Data set organisation unit category (\_datasetorganisationunitcategory)
+
+    This table provides information related to data sets, organisation units
+    and its category option combinations associated. If no association is found,
+    it uses the default category option combo.
+
 
 ## Analytics tables management { #data_admin_analytics_tables }
 
