@@ -2906,6 +2906,23 @@ scope is applied to the registration organisation unit of the TrackedEntity. Whe
 retrieving TrackedEntities, including specific program data, the organisation unit scope is applied
 to the Owner organisation unit.
 
+In scenarios where the capture scope and search scope do not overlap, the system will grant the
+ user access by merging both scopes. This merged scope, or the effective search scope, allows the
+user to access data across all organisation units present in either their capture or search scope.
+
+Example:
+
+    Capture Scope: Org Units A, B
+    Search Scope: Org Units B, C
+
+Effective Search Scope: Org Units A, B, C
+
+In this configuration, the user will have access to data in organisation units A, B, and C,
+regardless of the separation between capture and search scopes.
+
+It is essential to carefully define and manage these scopes to ensure proper access control and
+data security within the organization.
+
 ### Tracker Program Ownership { #webapi_tracker_ownership }
 
 A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation
@@ -2925,8 +2942,11 @@ user cannot request objects outside its search scope unless it's using the organ
 ALL and has enough privileges to use that mode.
 
 When requesting tracked entities without specifying a program, the response will include only tracked entities that satisfy [metadata sharing settings](#webapi_tracker_metadata_sharing) and one of the following criteria:
-- The tracked entity is enrolled in at least one program the user has data access to, and the user has access to the owner organisation unit.
-- The tracked entity is not enrolled in any program the user has data access to, but the user has access to the tracked entity registering organisation unit.
+
+* The tracked entity is enrolled in at least one program the user has data access to, and the user
+ has access to the owner organisation unit.
+* The tracked entity is not enrolled in any program the user has data access to, but the user has
+ access to the tracked entity registering organisation unit.
 
 #### Tracker Ownership Override: Break the Glass { #webapi_tracker_ownership_override }
 
