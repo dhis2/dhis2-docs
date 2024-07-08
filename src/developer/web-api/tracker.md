@@ -2843,7 +2843,8 @@ Organisation units are one of the most fundamental objects in DHIS2. They define
 which a user is allowed to record and/or read data. There are three types of organisation units that
 can be assigned to a user. These are data capture, data view (not used in tracker), and tracker
 search. As the name implies, these organisation units define a scope under which a user is allowed
-to conduct the respective operations.
+to conduct the respective operations. A user can search for data in their search scope and capture 
+scope organisation units.
 
 However, to further fine-tune the scope, DHIS2 Tracker introduces a concept that we call
 **OrganisationUnitSelectionMode**. Such a mode is often used at the time exporting tracker objects.
@@ -2906,23 +2907,6 @@ scope is applied to the registration organisation unit of the TrackedEntity. Whe
 retrieving TrackedEntities, including specific program data, the organisation unit scope is applied
 to the Owner organisation unit.
 
-In scenarios where the capture scope and search scope do not overlap, the system will grant the
- user access by merging both scopes. This merged scope, or the effective search scope, allows the
-user to access data across all organisation units present in either their capture or search scope.
-
-Example:
-
-    Capture Scope: Org Units A, B
-    Search Scope: Org Units B, C
-
-Effective Search Scope: Org Units A, B, C
-
-In this configuration, the user will have access to data in organisation units A, B, and C,
-regardless of the separation between capture and search scopes.
-
-It is essential to carefully define and manage these scopes to ensure proper access control and
-data security within the organization.
-
 ### Tracker Program Ownership { #webapi_tracker_ownership }
 
 A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation
@@ -2936,12 +2920,14 @@ falls under the user's organisation unit scope (Search/Capture). For Programs th
 with access level  *OPEN* or *AUDITED* , the Owner OrganisationUnit has to be in the user's search
 scope. For Programs that are configured with access level  *PROTECTED* or *CLOSED* , the Owner
 OrganisationUnit has to be in the user's capture scope to be able to access the corresponding
-program data for the specific tracked entity. Irrespective of the program access level, to access
-Tracker objects, the requested organisation unit must always be within the user's search scope. A
-user cannot request objects outside its search scope unless it's using the organisation unit mode
-ALL and has enough privileges to use that mode.
+program data for the specific tracked entity. Irrespective of the program access level, to access 
+Tracker objects, the requested organisation unit must always be within either the user's search 
+scope or capture scope. A user cannot request objects outside these two scopes unless they are 
+using the organisation unit mode ALL and have sufficient privileges to use that mode.
 
-When requesting tracked entities without specifying a program, the response will include only tracked entities that satisfy [metadata sharing settings](#webapi_tracker_metadata_sharing) and one of the following criteria:
+When requesting tracked entities without specifying a program, the response will include only 
+tracked entities that satisfy [metadata sharing settings](#webapi_tracker_metadata_sharing) and 
+one of the following criteria:
 
 * The tracked entity is enrolled in at least one program the user has data access to, and the user
  has access to the owner organisation unit.
