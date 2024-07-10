@@ -1488,17 +1488,21 @@ following payload to change the style:
 
 > **Caution**
 >
-> Merging DataElements should be carried out with the utmost care. Knowing
-> the potential side effects of a merge should be fully understood before performing
+> Merging DataElements should be carried out with the utmost care. Particular attention
+> should be given to the merging of data values that have data element references involved in the
+> merge. Knowing the potential side effects of a merge should be fully understood before performing
 > the merge. The merging of DataElements has far-reaching effects. The information below
 > will try to help show what's involved in a DataElement merge. A DataElement merge
-> touches all the major parts or the system (metadata, data, tracker and analytics).
+> touches all the major parts of the system (metadata, data, tracker, analytics and audit).
+> 
+> System performance may be impacted if the source DataElements are linked to large amounts of Data/Audit records particularly.
 
 The data element merge endpoint allows you to merge a number of data elements (sources) into a target data element.
 
 #### Authorisation
 
-The authority `F_DATA_ELEMENT_MERGE` is required to perform data element merges.
+The main authority required to perform a data element merge is `F_DATA_ELEMENT_MERGE`.  
+Other authorities required relate to the general sharing and access of data elements, `F_DATAELEMENT_PUBLIC_ADD` and `F_DATAELEMENT_DELETE`.
 
 #### Request
 
@@ -1517,7 +1521,8 @@ The payload in JSON format looks like the following:
     "WAjjFMDJKcx"
   ],
   "target": "V9rfpjwHbYg",
-  "deleteSources": true
+  "deleteSources": true,
+  "dataMergeStrategy": "DISCARD"
 }
 ```
 
@@ -1525,11 +1530,12 @@ The JSON properties are described in the following table.
 
 Table: Merge payload fields
 
-| Field         | Required | Value                                                                              |
-|---------------|----------|------------------------------------------------------------------------------------|
-| sources       | Yes      | Array of identifiers of the data elements to merge (the source data elements)      |
-| target        | Yes      | Identifier of the data element to merge the sources into (the target data element) |
-| deleteSources | No       | Whether to delete the source data elements after the operation. Default is false   |
+| Field             | Required | Value                                                                                                                                                                                   |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the data elements to merge (the source data elements)                                                                                                           |
+| target            | Yes      | Identifier of the data element to merge the sources into (the target data element)                                                                                                      |
+| deleteSources     | No       | Whether to delete the source data elements after the operation. Default is false. If true is chosen, then all source audit records will also be deleted.                                |
+| dataMergeStrategy | Yes      | How to handle merging of data values. Options are 'DISCARD' or 'LAST_UPDATED'. DISCARD will delete all source data values. LAST_UPDATED will use the data value which was last updated. |
 
 The merge operation will merge the source data elements into the target data element. One or many source data elements can be specified. Only one target should be specified.
 
@@ -1563,15 +1569,15 @@ The following metadata get updated:
 | DataEntryForm                     | htmlCode                  | replace source with target |
 | ProgramIndicator                  | expression                | replace source with target |
 | ProgramIndicator                  | filter                    | replace source with target |
+| DataValue                         | dataElement               |                            |
 
 
-| Data                            | Property        | Action taken               |
-|---------------------------------|-----------------|----------------------------|
-| Event                           | eventDataValues | remove sources, add target |
-| TrackedEntityDataValueChangeLog | dataElement     | ???                        |
-| DataValue                       | dataElement     | ???                        |
-| DataValueAudit                  | dataElement     | ???                        |
-| DataApproval                    | ???             | ???                        |
+| Data                            | Property        | Action taken                                                                                                                                                                                             |
+|---------------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event                           | eventDataValues | action based on merge strategy (DISCARD / LAST_UPDATED). DISCARD will delete all source event data values. LAST_UPDATED will use the event data value which was last updated, when more than one exists. |
+| DataValue                       | dataElement     | action based on merge strategy (DISCARD / LAST_UPDATED). DISCARD will delete all source data values. LAST_UPDATED will use the data value which was last updated, when more than one exists.             |
+| TrackedEntityDataValueChangeLog |                 | deleted if sources are being deleted, otherwise no action.                                                                                                                                               |
+| DataValueAudit                  |                 | deleted if sources are being deleted, otherwise no action.                                                                                                                                               |
 
 
 #### Validation
@@ -1588,6 +1594,21 @@ Table: Constraints and error codes
 | E1553      | Source/Target data element does not exist: `{uid}`                                                                                          |
 | E1554      | All source ValueTypes must match target ValueType: `ValueType`. Other ValueTypes found: `ValueType`                                         |
 | E1555      | All source DataElementDomains must match target DataElementDomain: `DataElementDomain`. Other DataElementDomains found: `DataElementDomain` |
+| E1556      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED`                                                           |
+
+#### Database constraints
+If a database table has a unique key constraint, allowing only 1 unique data element as part of the constraint, then the merge will fail.  
+Below are a list of the known database unique key constraints at the time of writing. For example, you
+can only have 1 data set element with the same dataset and data element.
+
+Table: Database table unique key constraints
+
+| Table                   | Unique key constraint                     |
+|-------------------------|-------------------------------------------|
+| minmaxdataelement       | orgunit, dataelement, categoryoptioncombo |
+| programstagedataelement | programstage, dataelement                 |
+| datasetelement          | dataset, dataelement                      |
+
 
 #### Response
 ##### Success
@@ -1611,6 +1632,7 @@ Sample success response looks like:
 }
 ```
 
+##### Failure
 Sample error response looks like:
 
 ```json
@@ -1666,6 +1688,17 @@ Another sample validation error response:
             "message": "DATA_ELEMENT merge has errors"
         }
     }
+}
+```
+
+A database constraint sample error response:
+
+```json
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "ERROR: duplicate key value violates unique constraint \"minmaxdataelement_unique_key\"\n  Detail: Key (sourceid, dataelementid, categoryoptioncomboid)=(193236, 1148617, 167661) already exists."
 }
 ```
 
