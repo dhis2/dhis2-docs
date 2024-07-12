@@ -3425,3 +3425,156 @@ All merging is based on data already persisted in the database, which means the 
 service is not validating that data again. This means if data was already invalid, it will not be
 reported during the merge. The only validation done in the service relates to relationships, as
 mentioned in the previous section.
+
+### Program Messages
+
+The program message feature enables you to send messages to tracked entity instances, 
+contact addresses associated with organizational units, phone numbers, and email addresses. 
+Messages can be sent using the messages resource.
+
+    /api/messages
+
+### Sending program messages
+
+Program messages can be sent using two delivery channels:
+
+  - SMS (SMS)
+
+  - Email address (EMAIL)
+
+Program messages can be sent to various recipients:
+
+  - Tracked entity: The system will look up attributes of value
+    type PHONE_NUMBER or EMAIL (depending on the specified delivery
+    channels) and use the corresponding attribute values.
+
+  - Organisation unit: The system will use the phone number or email
+    information registered for the organisation unit.
+
+  - List of phone numbers: The system will use the explicitly defined
+    phone numbers.
+
+  - List of email addresses: The system will use the explicitly defined
+    email addresses.
+
+Below is a sample JSON payload for sending messages using POST requests.
+Note that message resource accepts a wrapper object named
+`programMessages` which can contain any number of program messages.
+
+    POST /api/33/messages
+
+```json
+{
+  "programMessages": [{
+    "recipients": {
+      "trackedEntity": {
+        "id": "UN810PwyVYO"
+      },
+      "organisationUnit": {
+        "id": "Rp268JB6Ne4"
+      },
+      "phoneNumbers": [
+        "55512345",
+        "55545678"
+      ],
+      "emailAddresses": [
+        "johndoe@mail.com",
+        "markdoe@mail.com"
+      ]
+    },
+    "enrollment": {
+      "id": "f3rg8gFag8j"
+    },
+    "event": {
+      "id": "pSllsjpfLH2"
+    },
+    "deliveryChannels": [
+      "SMS", "EMAIL"
+    ],
+    "notificationTemplate": "Zp268JB6Ne5",
+    "subject": "Outbreak alert",
+    "text": "An outbreak has been detected",
+    "storeCopy": false
+  }]
+}
+```
+
+The fields are explained in the following table.
+
+
+
+Table: Program message payload
+
+| Field | Required | Description | Values |
+|---|---|---|---|
+| recipients | Yes | Recipients of the program message. At least one recipient must be specified. Any number of recipients / types can be specified for a message. | Can be trackedEntity, organisationUnit, an array of phoneNumbers or an array of emailAddresses. |
+| enrollment | Enrollment which ProgramMessage is attached to | Enrollment. | Enrollment ID. |
+| event      | Event which ProgramMessage is attached to | Event. | Event ID. |
+| deliveryChannels | Yes | Array of delivery channels. | SMS &#124; EMAIL |
+| subject | No | The message subject. Not applicable for SMS delivery channel. | Text. |
+| text | Yes | The message text. | Text. |
+| storeCopy | No | Whether to store a copy of the program message in DHIS2. | false (default) &#124; true |
+
+A minimalistic example for sending a message over SMS to a tracked
+entity looks like this:
+
+```bash
+curl -d @message.json "https://play.dhis2.org/demo/api/messages"
+  -H "Content-Type:application/json" -u admin:district
+```
+
+```json
+{
+  "programMessages": [{
+    "recipients": {
+      "trackedEntity": {
+        "id": "PQfMcpmXeFE"
+      }
+    },
+    "enrollment": {
+      "id": "JMgRZyeLWOo"
+    },
+    "deliveryChannels": [
+      "SMS"
+    ],
+    "text": "Please make a visit on Thursday"
+  }]
+}
+```
+
+## Retrieving and deleting program messages
+
+The list of messages can be retrieved using GET.
+
+    GET /api/messages
+
+To get the list of sent tracker messages, the below endpoint can be used. Enrollment or Event uid has to be provided.
+
+	GET /api/messages/scheduled/sent?enrollment={uid}
+	GET /api/messages/scheduled/sent?event={uid}
+
+One particular message can also be retrieved using GET.
+
+    GET /api/messages/{uid}
+
+Message can be deleted using DELETE.
+
+    DELETE /api/messages/{uid}
+
+
+## Querying program messages
+
+The program message API supports querying messages using specific request parameters. 
+You can filter messages based on the parameters listed below. All requests should use the GET HTTP verb to retrieve information.
+
+
+
+Table: Query program messages API
+
+| Parameter | URL |
+|---|---|
+| enrollment | /api/messages?enrollment=6yWDMa0LP7 |
+| event | /api/messages?event=SllsjpfLH2 |
+| trackedEntity | /api/messages?trackedEntity=xdfejpfLH2 |
+| organisationUnit | /api/messages?ou=Sllsjdhoe3 |
+| processedDate | /api/messages?processedDate=2016-02-01 |
