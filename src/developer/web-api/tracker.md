@@ -3426,6 +3426,57 @@ service is not validating that data again. This means if data was already invali
 reported during the merge. The only validation done in the service relates to relationships, as
 mentioned in the previous section.
 
+### Program Notification Template
+
+The Program Notification Template allows you to create message templates that can be sent based on different types of events. 
+The message and subject templates are translated into actual values and sent to the configured destination. 
+Each program notification template is transformed into either a MessageConversation object or a ProgramMessage object, depending on whether the recipient is external or internal. 
+These intermediate objects will contain only the translated message and subject text.
+
+There are several configuration parameters in the Program Notification Template that are essential for the proper functioning of notifications.
+ These parameters are explained in the table below.
+
+    POST /api/programNotificationTemplates
+
+```json
+{
+	"name": "Case notification",
+	"notificationTrigger": "ENROLLMENT",
+	"subjectTemplate": "Case notification V{org_unit_name}",
+	"displaySubjectTemplate": "Case notification V{org_unit_name}",
+	"notifyUsersInHierarchyOnly": false,
+	"sendRepeatable": false,
+	"notificationRecipient": "ORGANISATION_UNIT_CONTACT",
+	"notifyParentOrganisationUnitOnly": false,
+	"displayMessageTemplate": "Case notification A{h5FuguPFF2j}",
+	"messageTemplate": "Case notification A{h5FuguPFF2j}",
+	"deliveryChannels": [
+		"EMAIL"
+	]
+}
+```
+
+The fields are explained in the following table.
+
+
+Table: Program Notification Template payload
+
+| Field | Required | Description | Values |
+|---|---|---|---|
+| name | Yes | name of Program Notification Tempalte | case-notification-alert |
+| notificationTrigger | Yes | When notification should be triggered. Possible values are ENROLLMENT, COMPLETION, PROGRAM_RULE, SCHEDULED_DAYS_DUE_DATE| ENROLLMENT |
+| subjectTemplate | No | Subject template string | Case notification V{org_unit_name} |
+| messageTemplate | Yes | Message template string | Case notification A{h5FuguPFF2j} |
+| notificationRecipient | YES | Who is going to receive notification. Possible values are USER_GROUP, ORGANISATION_UNIT_CONTACT, TRACKED_ENTITY_INSTANCE, USERS_AT_ORGANISATION_UNIT, DATA_ELEMENT, PROGRAM_ATTRIBUTE, WEB_HOOK  | USER_GROUP |
+| deliveryChannels | No | Which channel should be used for this notification. It can be either SMS, EMAIL or HTTP | SMS |
+| sendRepeatable | No | Whether notification should be sent multiple times | false |
+
+NOTE: WEB_HOOK notificationRecipient is used only to POST http request to an external system. Make sure to choose HTTP delivery channel when using WEB_HOOK.
+
+## Retrieving and deleting Program Notification Template
+
+As ProgramNotificationTemplate is a type of metadata, you can create, update, and delete it just like other metadata.
+
 ### Program Messages
 
 The program message feature enables you to send messages to tracked entity instances, 
