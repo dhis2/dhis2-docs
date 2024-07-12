@@ -1597,7 +1597,7 @@ Table: Constraints and error codes
 | E1556      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED`                                                           |
 
 #### Database constraints
-If a database table has a unique key constraint, allowing only 1 unique data element as part of the constraint, then the merge will fail.  
+There are unique constraints in place that can prevent a successful merge. These constraints are set by DHIS2 in order to maintain a logical domain model.    
 Below are a list of the known database unique key constraints at the time of writing. For example, you
 can only have 1 data set element with the same dataset and data element.
 
