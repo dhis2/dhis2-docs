@@ -3428,9 +3428,9 @@ mentioned in the previous section.
 
 ### Program Messages
 
-Program message lets you send messages to tracked entity instances,
-contact addresses associated with organisation units, phone numbers and
-email addresses. You can send messages through the `messages` resource.
+The program message feature enables you to send messages to tracked entity instances, 
+contact addresses associated with organizational units, phone numbers, and email addresses. 
+Messages can be sent using the messages resource.
 
     /api/messages
 
@@ -3564,10 +3564,8 @@ Message can be deleted using DELETE.
 
 ## Querying program messages
 
-The program message API supports program message queries based on
-request parameters. Messages can be filtered based on below mentioned
-query parameters. All requests should use the GET HTTP verb for
-retrieving information.
+The program message API supports querying messages using specific request parameters. 
+You can filter messages based on the parameters listed below. All requests should use the GET HTTP verb to retrieve information.
 
 
 
