@@ -1482,6 +1482,226 @@ following payload to change the style:
 }
 ```
 
+## Data Elements
+
+### Merge data elements { #data_element_merge }
+
+> **Caution**
+>
+> Merging DataElements should be carried out with the utmost care. Particular attention
+> should be given to the merging of data values that have data element references involved in the
+> merge. Knowing the potential side effects of a merge should be fully understood before performing
+> the merge. The merging of DataElements has far-reaching effects. The information below
+> will try to help show what's involved in a DataElement merge. A DataElement merge
+> touches all the major parts of the system (metadata, data, tracker, analytics and audit).
+> 
+> System performance may be impacted if the source DataElements are linked to large amounts of Data/Audit records particularly.
+
+The data element merge endpoint allows you to merge a number of data elements (sources) into a target data element.
+
+#### Authorisation
+
+The main authority required to perform a data element merge is `F_DATA_ELEMENT_MERGE`.  
+Other authorities required relate to the general sharing and access of data elements, `F_DATAELEMENT_PUBLIC_ADD` and `F_DATAELEMENT_DELETE`.
+
+#### Request
+
+Merge data elements with a POST request:
+
+```
+POST /api/dataElements/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true,
+  "dataMergeStrategy": "DISCARD"
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field             | Required | Value                                                                                                                                                                                   |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the data elements to merge (the source data elements)                                                                                                           |
+| target            | Yes      | Identifier of the data element to merge the sources into (the target data element)                                                                                                      |
+| deleteSources     | No       | Whether to delete the source data elements after the operation. Default is false. If true is chosen, then all source audit records will also be deleted.                                |
+| dataMergeStrategy | Yes      | How to handle merging of data values. Options are 'DISCARD' or 'LAST_UPDATED'. DISCARD will delete all source data values. LAST_UPDATED will use the data value which was last updated. |
+
+The merge operation will merge the source data elements into the target data element. One or many source data elements can be specified. Only one target should be specified.
+
+The merge operation will transfer all source data element metadata associations to the target data element.
+The following metadata get updated:
+
+
+| Metadata                          | Property                  | Action taken               |
+|-----------------------------------|---------------------------|----------------------------|
+| DataDimensionItem                 | dataElement               | set to target              |
+| EventVisualization                | dataElementValueDimension | set to target              |
+| ProgramStageDataElement           | dataElement               | set to target              |
+| ProgramNotificationTemplate       | recipientDataElement      | set to target              |
+| ProgramRuleVariable               | dataElement               | set to target              |
+| ProgramRuleAction                 | dataElement               | set to target              |
+| TrackedEntityDataElementDimension | dataElement               | set to target              |
+| MinMaxDataElement                 | dataElement               | set to target              |
+| SMSCode                           | dataElement               | set to target              |
+| SMSCode                           | dataElement               | set to target              |
+| Predictor                         | output                    | set to target              |
+| DataSetElement                    | dataElement               | set to target              |
+| DataElementOperand                | dataElement               | set to target              |
+| ProgramStageDataElement           | dataElements              | remove sources, add target |
+| Section                           | dataElements              | remove sources, add target |
+| DataElementGroup                  | members                   | remove sources, add target |
+| Event                             | eventDataValues           | remove sources, add target |
+| Indicator                         | numerator                 | replace source with target |
+| Indicator                         | denominator               | replace source with target |
+| Predictor                         | generator                 | replace source with target |
+| Predictor                         | sampleSkipTest            | replace source with target |
+| DataEntryForm                     | htmlCode                  | replace source with target |
+| ProgramIndicator                  | expression                | replace source with target |
+| ProgramIndicator                  | filter                    | replace source with target |
+| DataValue                         | dataElement               |                            |
+
+
+| Data                            | Property        | Action taken                                                                                                                                                                                             |
+|---------------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event                           | eventDataValues | action based on merge strategy (DISCARD / LAST_UPDATED). DISCARD will delete all source event data values. LAST_UPDATED will use the event data value which was last updated, when more than one exists. |
+| DataValue                       | dataElement     | action based on merge strategy (DISCARD / LAST_UPDATED). DISCARD will delete all source data values. LAST_UPDATED will use the data value which was last updated, when more than one exists.             |
+| TrackedEntityDataValueChangeLog |                 | deleted if sources are being deleted, otherwise no action.                                                                                                                                               |
+| DataValueAudit                  |                 | deleted if sources are being deleted, otherwise no action.                                                                                                                                               |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                                                                                                                 |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| E1550      | At least one source data element must be specified                                                                                          |
+| E1551      | Target data element must be specified                                                                                                       |
+| E1552      | Target data element cannot be a source indicator                                                                                            |
+| E1553      | Source/Target data element does not exist: `{uid}`                                                                                          |
+| E1554      | All source ValueTypes must match target ValueType: `ValueType`. Other ValueTypes found: `ValueType`                                         |
+| E1555      | All source DataElementDomains must match target DataElementDomain: `DataElementDomain`. Other DataElementDomains found: `DataElementDomain` |
+| E1556      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED`                                                           |
+
+#### Database constraints
+There are unique constraints in place that can prevent a successful merge. These constraints are set by DHIS2 in order to maintain a logical domain model.    
+Below are a list of the known database unique key constraints at the time of writing. For example, you
+can only have 1 data set element with the same dataset and data element.
+
+Table: Database table unique key constraints
+
+| Table                   | Unique key constraint                     |
+|-------------------------|-------------------------------------------|
+| minmaxdataelement       | orgunit, dataelement, categoryoptioncombo |
+| programstagedataelement | programstage, dataelement                 |
+| datasetelement          | dataset, dataelement                      |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "DATA_ELEMENT",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "DATA_ELEMENT merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source data element must be specified",
+                    "errorCode": "E1550",
+                    "args": []
+                },
+                {
+                    "message": "Target data element does not exist: `abcdefg1221`",
+                    "errorCode": "E1553",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "DATA_ELEMENT",
+            "sourcesDeleted": [],
+            "message": "DATA_ELEMENT merge has errors"
+        }
+    }
+}
+```
+
+Another sample validation error response:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "All source ValueTypes must match target ValueType: `TEXT`. Other ValueTypes found: `NUMBER`",
+                    "errorCode": "E1554",
+                    "args": []
+                }
+            ],
+            "mergeType": "DATA_ELEMENT",
+            "sourcesDeleted": [],
+            "message": "DATA_ELEMENT merge has errors"
+        }
+    }
+}
+```
+
+A database constraint sample error response:
+
+```json
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "ERROR: duplicate key value violates unique constraint \"minmaxdataelement_unique_key\"\n  Detail: Key (sourceid, dataelementid, categoryoptioncomboid)=(193236, 1148617, 167661) already exists."
+}
+```
+
 ## Indicators { #webapi_indicators } 
 
 This section describes indicators and indicator expressions.
