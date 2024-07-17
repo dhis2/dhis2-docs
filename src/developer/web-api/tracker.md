@@ -3511,6 +3511,7 @@ Table: Program message payload
 | enrollment | Enrollment which ProgramMessage is attached to | Enrollment. | Enrollment ID. |
 | event      | Event which ProgramMessage is attached to | Event. | Event ID. |
 | deliveryChannels | Yes | Array of delivery channels. | SMS &#124; EMAIL |
+| notificationTemplate | No | ProgramNotificationTemplate UID is used to cross-check which program message belongs to which notification template.| Text. |
 | subject | No | The message subject. Not applicable for SMS delivery channel. | Text. |
 | text | Yes | The message text. | Text. |
 | storeCopy | No | Whether to store a copy of the program message in DHIS2. | false (default) &#124; true |
