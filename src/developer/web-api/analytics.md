@@ -2027,12 +2027,12 @@ For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" prog
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
 
-## Tracked entity analytics { #webapi_tei_analytics } 
+## Tracked entity analytics { #webapi_te_analytics } 
 
 The tracked entity (TE) analytics API allows querying *TEs with their enrollments and event data* captured in DHIS2. 
 This resource retrieves data from TE, enrollments, events, and data elements across multiple programs, for a given tracked entity type.
 
-### Dimensions and items { #webapi_tei_analytics_dimensions } 
+### Dimensions and items { #webapi_te_analytics_dimensions } 
 
 Tracked entity instance dimensions include program attributes (TE attributes), data elements, 
 organization units, and different kinds of periods. The analytics query will simply return TEs matching a set of criteria.
@@ -2127,7 +2127,7 @@ Examples:
 
 `enrollmentDate=IpHINAT79UW.LAST_YEAR`
 
-### Request query parameters { #webapi_tei_analytics_query_parameters } 
+### Request query parameters { #webapi_te_analytics_query_parameters } 
 
 The analytics TE query API supports a range of query parameters.
 
