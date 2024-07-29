@@ -482,13 +482,13 @@ Table: Property operators
 
 Table: Field presets
 
-| Preset | Description                                                                                                                                      |
-|---|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| all | All fields of the object                                                                                                                         |
-| \* | Alias for all                                                                                                                                    |
-| identifiable | Includes id, name, code, created, lastUpdated and lastUpdatedBy fields                                                                           |
-| nameable | Includes id, name, shortName, code, description, created and lastUpdated fields                                                                  |
-| persisted | Returns all persisted property on an object, does not take into consideration if the object is the owner of the relation.                        |
+| Preset | Description |
+|---|---|
+| all | All fields of the object |
+| \* | Alias for all |
+| identifiable | Includes id, name, code, created and lastUpdated fields |
+| nameable | Includes id, name, shortName, code, description, created, lastUpdated and lastUpdatedBy fields |
+| persisted | Returns all persisted property on an object, does not take into consideration if the object is the owner of the relation. |
 | owner | Returns all persisted property on an object where the object is the owner of all properties, this payload can be used to update through the API. |
 
 **Example**: Include all fields from data sets except organisation units:
