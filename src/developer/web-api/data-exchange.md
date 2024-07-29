@@ -39,6 +39,20 @@ It is recommended to either specify basic authentication or PAT authentication. 
 
 Note that PAT support was introduced in version 2.38.1, which means that in order to use PAT authentication, the target DHIS 2 instance must be version 2.38.1 or later.
 
+### Sharing
+Like other metadata objects, fine-grained security can be associated with aggregate data exchanges. Each exchange can be shared with individual users and/or user groups to control which users have access to the specific exchange. External data exchanges contain authentication details of users on the target system, thus great care should be
+taken to ensure that only authorized users have access to actually submit data which results from the exchange.
+
+The following table summarizes how sharing can be used with aggregate data exchanges.
+
+
+| Sharing | Effective permissions                                                              |
+| -------- |-----------------------------------------------------------------------------------|
+| "r-------" | Can view metadata of the data exchange. |
+| "-w------" | Can edit metadata of the data exchange. |
+| "--r-----" | Can view data which is part of the exchange. |
+| "---w----" | Can submit data which is part of the exchange. |
+
 ### API
 
 The aggregate data exchange API is covered in the following section.
@@ -85,7 +99,7 @@ Example internal data exchange payload, where event data is computed with progra
           {
             "dimension": "Bpx0589u8y0",
             "items": [
-              "oRVt7g429ZO", 
+              "oRVt7g429ZO",
               "MAs88nJc9nL"
             ]
           }
