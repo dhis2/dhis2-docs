@@ -342,6 +342,33 @@ out:
 If any of these requirements are not met the invite resource will return
 with a *409 Conflict* status code together with a descriptive message.
 
+
+### User login (Experimental) { #webapi_user_login }
+
+This endpoint is not meant for external use, unless you are implmenting a custom login app, which you probably should not do, unless you have a very good reason.
+
+A user can log in and get a session cookie with the following example:  
+`POST` `/api/auth/login`  
+with `JSON` body:
+
+```json
+{
+    "username": "username",
+    "password": "password",
+    "twoFactorCode": "two_factor_code"
+}
+
+```
+Successful response looks like:  
+
+```json
+{
+    "loginStatus": "SUCCESS",
+    "redirectUrl": "/dhis-web-dashboard/"
+}
+```
+
+
 ### User account confirm invite (Experimental) { #webapi_user_confirm_invite }
 
 > **Important**  
