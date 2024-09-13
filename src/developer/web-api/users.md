@@ -345,7 +345,7 @@ with a *409 Conflict* status code together with a descriptive message.
 
 ### User login (Experimental) { #webapi_user_login }
 
-This is endpoint is not meant for external use, unless you are implmenting a custom login app, which you probably should not do, unless you have a very good reason.
+This endpoint is not meant for external use, unless you are implmenting a custom login app, which you probably should not do, unless you have a very good reason.
 
 A user can log in and get a session cookie with the following example:  
 `POST` `/api/auth/login`  
