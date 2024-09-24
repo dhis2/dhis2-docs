@@ -102,14 +102,14 @@ Custom authorities allows users that don't have the metadata access to manage th
 
 ### Wildcard Routes
 
-It is possible to create "wildcard routes" which support sub-path requests which are then passed through to the upstream service.  To do this, the route URL must end with `/*`.  Sub-paths can then be specified by appending them after `/run`.
+It is possible to create "wildcard routes" which support sub-path requests which are then passed through to the upstream service.  To do this, the route URL must end with `/**`.  Sub-paths can then be specified by appending them after `/run`.
 
 ```json
 {
   "name": "postman-wildcard",
   "code": "postman-wildcard",
   "disabled": false,
-  "url": "https://postman-echo.com/*"
+  "url": "https://postman-echo.com/**"
 }
 ```
 
