@@ -38,3 +38,7 @@ Which should I use?
 
 **A:** By default, the username will be "admin" and the password
 "district". Usernames and passwords are case sensitive.
+
+**Q:** I added a new dimension to the system, but I get errors when using it in analytics through the Data Visualizer or Line Listing app. The API returns HTTP 409 Conflict.
+
+**A:** When new dimensions are added to the system, a FULL analytics export is required (for all years preferable). Otherwise, the new dimensions won't be available to the analytics APIs.

@@ -79,7 +79,7 @@ Table: Query parameters
 | paging | true &#124; false | true | Indicates whether to return lists of elements in pages. |
 | page | number | 1 | Defines which page number to return. |
 | pageSize | number | 50 | Defines the number of elements to return for each page. |
-| order | property:asc/iasc/desc/idesc || Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting. |
+| order | property:asc/iasc/desc/idesc || Order the output using a specified order, only properties that are both persisted and simple (no collections, idObjects etc) are supported. iasc and idesc are case insensitive sorting. If it is wanted to sort for more than one property, separate them using a comma.  |
 
 An example of how these parameters can be used to get a full list of
 data element groups in XML response format is:
@@ -103,6 +103,10 @@ You can completely disable paging like this:
 To order the result based on a specific property:
 
     /api/indicators.json?order=shortName:desc
+
+To order the result based on created datetime property first (descending order) and then by name property (ascending order):
+
+    /api/indicators.json?order=created:desc,name:asc
 
 You can find an object based on its ID across all object types through
 the *identifiableObjects* resource:
@@ -1226,8 +1230,8 @@ Both of them be accessed through the icons resource.
 
     GET /api/icons
 
-This endpoint returns a list of information about the available icons.
-In case of default icons, each entry contains the icon's metadata, and a reference to the actual file resource.
+This endpoint returns a list of information about the available default and custom icons.
+By default key, description, keywords and href will be included in response. But fields parameter can be used to change this behaviour.
 
 ```json
 {
@@ -1238,22 +1242,9 @@ In case of default icons, each entry contains the icon's metadata, and a referen
     "mosquito",
     "dengue"
   ],
+  "created": "2024-02-12T09:50:11.794",
+  "lastUpdated": "2024-02-12T09:50:11.794",
   href: "<dhis server>/api/icons/mosquito_outline/icon.svg"
-}
-```
-When it comes to custom icons, the response also includes the referenced file resource and the user who created the icon:
-
-```json
-{
-  key: "custom key",
-  description: "description",
-  keywords: [
-    "keyword 1",
-    "keyword 2"
-  ],
-  fileResourceUid: "ohUVXsOZ8qp",
-  userUid: "AIK2aQOJIbj",
-  href: "<dhis server>/api/fileResources/ohUVXsOZ8qp/data"
 }
 ```
 
@@ -1261,22 +1252,50 @@ It's also possible to get a particular icon directly by filtering by its key, in
 
     GET /api/icons/mosquito_outline
 
-Keywords can be used to filter which icons to return. Passing a list
-of keywords with the request will only return icons (both default and custom) that match all the keywords:
-
-    GET /api/icons?keywords=shape,small
-
-A list of all unique keywords can be found at the keywords resource:
-
-    GET /api/icons/keywords
-
 ### Custom icon operations { #webapi_icons_custom }
 
+A list of custom icons can be fetched retrieved certain request parameters
+
+    GET /api/icons?type=CUSTOM
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`type`|`Text`| DEFAULT,CUSTOM,ALL |What type of icons should be retrieved. Default is ALL|
+|`keys`|`Text`| | List of keys custom icons should be retrieved for | 
+|`keywords`|`Text`| | List of keywords custom icons should be retrieved for| 
+|`search`|`Text`| | Search for a given text across icon keys and keywords, and retrieve all icons that contain this text in their key or keywords.| 
+|`createdStartDate`|`Date`| | Starting point of created date|
+|`createdEndDate`|`Date`| | End point of created date| 
+|`lastUpdatedStartDate`|`Date`| | Starting point of last updated date| 
+|`lastUpdatedEndDate`|`Date`| | End point of last updated date| 
+
+
+#### Request parameters for pagination
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`page`|`Integer`| Any positive integer |Page number to return. Defaults to 1 if missing|
+|`pageSize`|`Integer`| Any positive integer |Page size. Defaults to 50. |
+|`paging`|`Boolean`| `true`&#124;`false` |Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`|
+
+#### Request parameters for ordering
+
+|Request parameter|Type|Allowed values|Description|
+|---|---|---|---|
+|`order`|`Text`| created:desc | Comma-separated list of property name and sort direction pairs in format propName:sortDirection. By default icons will be ordered based on key:asc|
+
+
+#### Request parameter to filter responses
+
+The endpoints accept a `fields` parameter which controls which fields will be returned in the
+JSON response. `fields` parameter accepts a comma separated list of field names. If nothing is specified, default fields will be used and those are 
+
+`key,keywords,description,fileResourceUid,createdByUserUid,href`
 
 A custom icon resource can be downloaded by providing the icon key:
 
     GET /api/icons/{key}/icon
-        
+
 Custom icons can be created, modified and deleted.
 To create a custom icon, use the resource below.
 
@@ -1293,7 +1312,7 @@ It expects a payload containing the icon key, description, list of keywords and 
 }
 ```
 
-Two of these properties are possible to update, they are the description and keywords, using the resource below.
+Only custom icons can be updated using below resource. 
 
     PUT /api/icons
 
@@ -1309,7 +1328,7 @@ With the following payload, the icon's description and keywords would be updated
 
 Please notice that's also possible to just update one of the two. That means in case we would like to update the description while keeping the keywords, we would just need to provide the icon key and the descripton json field. Same would work the other way around, to update the keywords and leave the original description untouched.
 
-To delete a custom icon we use the resource
+Only custom icon can be deleted using below resource.
 
     DELETE /api/icons/{icon_key}
 

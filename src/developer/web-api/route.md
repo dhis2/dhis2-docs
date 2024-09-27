@@ -97,14 +97,17 @@ Custom authorities allows users that don't have the metadata access to manage th
 }
 ```
 
+    POST /api/routes/ID/run
+      { "answer": 42 }
+
 ### Wildcard Routes
 
 It is possible to create "wildcard routes" which support sub-path requests which are then passed through to the upstream service.  To do this, the route URL must end with `/*`.  Sub-paths can then be specified by appending them after `/run`.
 
 ```json
 {
-  "name": "postman-get-wildcard",
-  "code": "postman-get-wildcard",
+  "name": "postman-wildcard",
+  "code": "postman-wildcard",
   "disabled": false,
   "url": "https://postman-echo.com/*"
 }
@@ -112,8 +115,10 @@ It is possible to create "wildcard routes" which support sub-path requests which
 
 After you have sent this to `/api/routes` you now have your route available
 for you, and can run it with its returned ID or you can also use code.  Note that
-the sub-path `/get` is passed in the URL of the request, which will trigger a request
-to `https://postman-echo.com/get`
+the sub-paths `/get` and `/post` are passed in the URL of the request below, which will trigger requests to `https://postman-echo.com/get` and `https://postman-echo.com/post` respectively.
 
     GET /api/routes/ID/run/get
-    GET /api/routes/postman-get/run/get
+    GET /api/routes/postman-wildcard/run/get
+
+    POST /api/routes/ID/run/post
+    POST /api/routes/postman-wildcard/run/post
