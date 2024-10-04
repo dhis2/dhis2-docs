@@ -1553,7 +1553,6 @@ A complete list of the supported program rule actions is presented below.
   |**SHOWERROR**|**X**|
   |**WARNINGONCOMPLETION**|**X**|
   |**ERRORONCOMPLETION**|**X**|
-  |**CREATEEVENT**||
   |**SETMANDATORYFIELD**|**X**|
   |**SENDMESSAGE**|**X**|
   |**SCHEDULEMESSAGE**|**X**|
