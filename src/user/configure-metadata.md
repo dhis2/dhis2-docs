@@ -366,7 +366,7 @@ the category option combinations automatically.
 
 5.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_categories } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -772,7 +772,7 @@ group sets.
 
 5.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_data_elements } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -2118,7 +2118,7 @@ analysis of data to combine similar themes of indicators.
 
 5.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_indicators } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -2686,7 +2686,7 @@ Capture** apps.
 
 4.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_orgunit } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3080,7 +3080,7 @@ Table: Validation Rule functions
 
 9.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_validation } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3256,7 +3256,7 @@ Table: Attribute objects in the Maintenance app
     The dynamic attribute is now available for the objects you assigned
     it to.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_attributes } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3373,7 +3373,7 @@ Table: Constant objects in the Maintenance app
 
     The constant is now available for use.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_constants } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3609,7 +3609,7 @@ The main purpose of the option group set is to add more dimensionality to your c
 
 5. Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_option_sets } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3802,7 +3802,7 @@ maps in the **Maps** app.
 | High good | 80 | 100 |
 | Too high | 100 | 1000 |
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_legends } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4540,7 +4540,7 @@ Since there is no aggregation function such as <code>sum()</code> around the exp
 
 7.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_groups } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4734,7 +4734,7 @@ Table: Push reports objects in the Maintenance app
 
     The push report job runs immediately.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_push_reports } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4911,7 +4911,7 @@ Table: External map layer objects in the Maintenance app
 
 10. Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_map_layers } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
