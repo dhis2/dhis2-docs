@@ -81,7 +81,7 @@ experimental setup.  For a production deployment there are many other factors
 to take into account regarding maintenance, monitoring, security, scalability
 and performance.
 
-## Types of installation
+## Install Methods
 ---
 There are many ways to get DHIS2 up and running.  How you choose to install
 will depend on which skills and tools you are familiar with and whether the
@@ -92,8 +92,8 @@ Regardless of the implementation approach you adopt, you will want to
 familarize yourself with the additional reference material we provide regarding
 database management, reverse proxy setup, system monitoring, upgrades etc.
 
-#### Manual Install with  [simple step-by-step guide](./getting-started/manual-install-on-linux-server.html) 
- This guide takes you through the individual commands to install DHIS2 on an
+#### [Manual Install on Linux](#installation_on_linux_server)
+ This guide takes you through the individual commands to install DHIS2 on an [Manual Install on Linux](#installation_on_linux_server) 
  Ubuntu operating system using Apache Tomcat and PostgreSQL. It is not aimed at
  production deployments, but is useful for people to work through to in order
  to understand the interconnections between the different parts.

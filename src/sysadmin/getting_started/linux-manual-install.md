@@ -1,4 +1,4 @@
-# Installation { #installation } 
+# Installation { #installation_on_linux_server } 
 ## Server setup { #install_server_setup } 
 This section describes how to set up a server instance of DHIS2 on
 Ubuntu 18.04 64 bit with PostgreSQL as database system and Tomcat as
