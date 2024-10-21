@@ -536,7 +536,7 @@ file:
 
 ```properties
 # File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
-filestore.provider = 'aws-s3'
+filestore.provider = aws-s3
 
 # Directory in external directory on local file system or bucket in AWS S3 or S3 API
 filestore.container = files
@@ -558,7 +558,7 @@ properties in your `dhis.conf` file:
 
 ```properties
 # File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
-filestore.provider = 's3'
+filestore.provider = s3
 
 # Directory in external directory on local file system or bucket in AWS S3
 filestore.container = files
