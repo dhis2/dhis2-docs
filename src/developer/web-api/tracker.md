@@ -135,7 +135,7 @@ point out any exceptional cases between these two.
 | scheduledAt | Timestamp when the event was scheduled for. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | occurredAt | Timestamp when something occurred. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedAt | Timestamp when the user completed the event. Set on the server if not passed by the client | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| completedBy | Only for reading data. User that completed the enrollment. Set on the server | No | No | String:any | John Doe |
+| completedBy | Only for reading data. User that completed the event. Set on the server | No | No | String:any | John Doe |
 | followUp | Only for reading data. Indicates whether the event has been flagged for follow-up. | No | No | Boolean | False, True |
 | deleted | Only for reading data. Indicates whether the event has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the event. Based on the "featureType" of the Program Stage | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
