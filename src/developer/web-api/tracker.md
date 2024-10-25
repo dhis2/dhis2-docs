@@ -83,8 +83,8 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 | updatedAtClient | Timestamp when the object was last updated on client | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | enrolledAt | Timestamp when the user enrolled the tracked entity. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | occurredAt | Timestamp when enrollment occurred. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| completedAt | Timestamp when the user completed the enrollment. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| completedBy | Reference to who completed the enrollment | No | No | String:any | John Doe |
+| completedAt | Timestamp when the user completed the enrollment. Set on the server if not passed by the client | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| completedBy | Only for reading data. User that completed the enrollment. Set on the server | No | No | String:any | John Doe |
 | followUp | Indicates whether the enrollment requires follow-up. False if not supplied | No | No | Booelan | Default: False, True |
 | deleted | Indicates whether the enrollment has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the enrollment. Based on the "featureType" of the Program | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
@@ -134,8 +134,8 @@ point out any exceptional cases between these two.
 | updatedAtClient | Timestamp when the event was last updated on client | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | scheduledAt | Timestamp when the event was scheduled for. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | occurredAt | Timestamp when something occurred. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| completedAt | Timestamp when the user completed the event. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| completedBy | Reference to who completed the event | No | No | String:Any | John Doe |
+| completedAt | Timestamp when the user completed the event. Set on the server if not passed by the client | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| completedBy | Only for reading data. User that completed the event. Set on the server | No | No | String:any | John Doe |
 | followUp | Only for reading data. Indicates whether the event has been flagged for follow-up. | No | No | Boolean | False, True |
 | deleted | Only for reading data. Indicates whether the event has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the event. Based on the "featureType" of the Program Stage | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
@@ -1233,8 +1233,8 @@ otherwise specified.
 | E1020 | Enrollment date: `{0}`, can`t be future date. | Cannot enroll into a future date unless the Program allows for it in its configuration. |
 | E1021 | Incident date: `{0}`, can`t be future date. | Incident date cannot be a future date unless the Program allows for it in its configuration. |
 | E1022 | TrackedEntity: `{0}`, must have same TrackedEntityType as Program `{1}`. | The Program is configured to accept TrackedEntityType uid that is different from what is provided in the enrollment payload. |
-| E1023 | DisplayIncidentDate is true but property occurredAt is null or has an invalid format: `{0}`. | Program is configured with DisplayIncidentDate but its either null or an invalid date in the payload. |
-| E1025 | Property enrolledAt is null or has an invalid format: `{0}`. | EnrolledAt Date is mandatory for an Enrollment. Make sure it is not null and has a valid date format. |
+| E1023 | DisplayIncidentDate is true but property occurredAt is null. | Program is configured with DisplayIncidentDate but it is null in the payload. |
+| E1025 | Property enrolledAt is null. | EnrolledAt Date is mandatory for an Enrollment. Make sure it is not null. |
 | E1029 | Event OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Event payload uses a Program `{1}` which is not configured to be accessible by OrganisationUnit `{0}`. |
 | E1030 | Event: `{0}`, already exists. | This error is thrown when trying to add a new Event with an already existing uid. Make sure a new uid is used when adding a new Event. |
 | E1031 | Event OccurredAt date is missing. | OccuredAt property is either null or has an invalidate date format in the payload. |
@@ -1243,7 +1243,6 @@ otherwise specified.
 | E1035 | Event: `{0}`, ProgramStage value is NULL. | |
 | E1039 | ProgramStage: `{0}`, is not repeatable and an event already exists. | An Event already exists for the ProgramStage for the specific Enrollment. Since the ProgramStage is configured to be non-repeatable, another Event for the same ProgramStage cannot be added.  |
 | E1041 | Enrollment OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Enrollment payload contains a Program `{1}` which is not configured to be accessible by the OrganisationUnit  `{0}`. |
-| E1042 | Event: `{0}`, needs to have completed date. | If the program is configured to have completeExpiryDays, then CompletedDate is mandatory for a COMPLETED event payload. An Event with status as COMPLETED should have completedDate property as non-null and a valid date format. |
 | E1043 | Event: `{0}`, completeness date has expired. Not possible to make changes to this event. | A user without 'F_EDIT_EXPIRED' authority cannot update an Event that has passed its expiry days as configured in its Program. |
 | E1045 | Program: `{0}`, expiry date has passed. It is not possible to make changes to this event. | |
 | E1046 | Event: `{0}`, needs to have at least one (event or schedule) date. | Either of occuredAt or scheduledAt property should be present in the Event payload. |
@@ -1251,6 +1250,8 @@ otherwise specified.
 | E1048 | Object: `{0}`, uid: `{1}`, has an invalid uid format. | A valid uid has 11 characters. The first character has to be an alphabet (a-z or A-Z) and the remaining 10 characters can be alphanumeric (a-z or A-Z or 0-9). |
 | E1049 | Could not find OrganisationUnit: `{0}`, linked to Tracked Entity. | The system could not find an OrganisationUnit with uid `{0}`. |
 | E1050 | Event ScheduledAt date is missing. | ScheduledAt property in the Event payload is either missing or an invalid date format. |
+| E1051 | Event: `{0}`, completedAt must be null when status is `{1}`. | Event completedAt can only be passed in the payload if status is COMPLETED |
+| E1052 | Enrollment: `{0}`, completedAt must be null when status is `{1}`. | Enrollment completedAt can only be passed in the payload if status is COMPLETED |
 | E1054 | AttributeOptionCombo `{0}` is not in the event programs category combo `{1}`. |
 | E1055 | Default AttributeOptionCombo is not allowed since program has non-default CategoryCombo. | The Program is configured to contain non-default CategoryCombo but the request uses the Default AttributeOptionCombo. |
 | E1056 | Event date: `{0}`, is before start date: `{1}`, for AttributeOption: `{2}`. | The CategoryOption has a start date configured , the Event date in the payload cannot be earlier than this start date. |
@@ -2843,7 +2844,7 @@ Organisation units are one of the most fundamental objects in DHIS2. They define
 which a user is allowed to record and/or read data. There are three types of organisation units that
 can be assigned to a user. These are data capture, data view (not used in tracker), and tracker
 search. As the name implies, these organisation units define a scope under which a user is allowed
-to conduct the respective operations. A user can search for data in their search scope and capture 
+to conduct the respective operations. A user can search for data in their search scope and capture
 scope organisation units.
 
 However, to further fine-tune the scope, DHIS2 Tracker introduces a concept that we call
@@ -2920,13 +2921,13 @@ falls under the user's organisation unit scope (Search/Capture). For Programs th
 with access level  *OPEN* or *AUDITED* , the Owner OrganisationUnit has to be in the user's search
 scope. For Programs that are configured with access level  *PROTECTED* or *CLOSED* , the Owner
 OrganisationUnit has to be in the user's capture scope to be able to access the corresponding
-program data for the specific tracked entity. Irrespective of the program access level, to access 
-Tracker objects, the requested organisation unit must always be within either the user's search 
-scope or capture scope. A user cannot request objects outside these two scopes unless they are 
+program data for the specific tracked entity. Irrespective of the program access level, to access
+Tracker objects, the requested organisation unit must always be within either the user's search
+scope or capture scope. A user cannot request objects outside these two scopes unless they are
 using the organisation unit mode ALL and have sufficient privileges to use that mode.
 
-When requesting tracked entities without specifying a program, the response will include only 
-tracked entities that satisfy [metadata sharing settings](#webapi_tracker_metadata_sharing) and 
+When requesting tracked entities without specifying a program, the response will include only
+tracked entities that satisfy [metadata sharing settings](#webapi_tracker_metadata_sharing) and
 one of the following criteria:
 
 * The tracked entity is enrolled in at least one program the user has data access to, and the user
