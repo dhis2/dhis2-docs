@@ -1481,6 +1481,133 @@ following payload to change the style:
   }
 }
 ```
+## Category Option
+
+### Merge category options { #category_option_merge }
+
+The category option merge endpoint allows you to merge a number of category options (sources) into a target category option.
+
+#### Authorisation
+
+The main authority required to perform a category option merge is `F_CATEGORY_OPTION_MERGE`.  
+Other authorities required relate to the general sharing and access of category options, `F_CATEGORY_OPTION_PUBLIC_ADD` and `F_CATEGORY_OPTION_DELETE`.
+
+#### Request
+
+Merge category options with a POST request:
+
+```
+POST /api/categoryOptions/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "FbLZS3ueWbQ",
+    "dPSWsKeAZNw"
+  ],
+  "target": "rEq3Hkd3XXH",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field             | Required | Value                                                                                                                                                                                   |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the category options to merge (the source category options)                                                                                                     |
+| target            | Yes      | Identifier of the category option to merge the sources into (the target category option)                                                                                                |
+| deleteSources     | No       | Whether to delete the source category options after the operation. Default is false.                                                                                                    |
+
+The merge operation will merge the source category options into the target category option. One or many source category options can be specified. Only one target should be specified.
+
+The merge operation will transfer all source category option metadata associations to the target category option.
+The following metadata get updated:
+
+
+| Metadata            | Property        | Action taken               |
+|---------------------|-----------------|----------------------------|
+| Category            | categoryOptions | remove sources, add target |
+| CategoryDimension   | items           | remove sources, add target |
+| CategoryOptionCombo | categoryOptions | remove sources, add target |
+| CategoryOptionGroup | members         | remove sources, add target |
+| OrganisationUnit    | categoryOptions | remove sources, add target |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                               |
+|------------|-----------------------------------------------------------|
+| E1650      | At least one source category option must be specified     |
+| E1651      | Target category option must be specified                  |
+| E1652      | Target category option cannot be a source category option |
+| E1653      | Source/Target category option does not exist: `{uid}`     |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "CATEGORY_OPTION",
+            "sourcesDeleted": [
+                "FbLZS3ueWbQ", "dPSWsKeAZNw"
+            ],
+            "message": "CATEGORY_OPTION merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source category options must be specified",
+                    "errorCode": "E1650",
+                    "args": []
+                },
+                {
+                    "message": "Target category option does not exist: `abcdefg1221`",
+                    "errorCode": "E1653",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "CATEGORY_OPTION",
+            "sourcesDeleted": [],
+            "message": "CATEGORY_OPTION merge has errors"
+        }
+    }
+}
+```
+
 
 ## Data Elements
 
