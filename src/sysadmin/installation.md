@@ -1,9 +1,8 @@
 # Installation { #installation } 
 
 The installation chapter provides information on how to install DHIS2 in
-various contexts, including online central server, offline local
-network, standalone application and self-contained package called DHIS2
-Live.
+various contexts, including online central server, and offline local
+network.
 
 ## Introduction { #install_introduction } 
 
