@@ -1,28 +1,31 @@
 # Installation { #installation_on_linux_server } 
 ## Server setup { #install_server_setup } 
-This section describes how to set up a server instance of DHIS2 on
-Ubuntu 18.04 64 bit with PostgreSQL as database system and Tomcat as
-Servlet container. This guide is not meant to be a step-by-step guide
-per se, but rather to serve as a reference to how DHIS2 can be deployed
-on a server. There are many possible deployment strategies, which will
-differ depending on the operating system and database you are using, and
-other factors. The term *invoke* refers to executing a given command in
-a terminal.
+This guide covers manual DHIS2 installation on Ubuntu 22.04 or 24.04. DHIS2
+uses PostgreSQL for data storage and runs on a Tomcat server. Additional
+components like a proxy server (nginx or Apache) and monitoring tools (Munin or
+Zabbix) are recommended for a more robust setup. While these components can run
+on separate servers, this guide assumes a single-server configuration for
+simplicity.
+
+This guide provides a detailed outline for DHIS2 deployment, intended mainly as
+a reference for general installation practices. Setup steps can vary depending
+on factors like operating system, database choice, and other configurations.
+Here, the term `invoke` refers to running a command directly in the terminal.
 
 For this guide we assume that 8 Gb RAM is allocated for PostgreSQL and 8
 GB RAM is allocated for Tomcat/JVM, and that a 64-bit operating system
 is used. *If you are running a different configuration please adjust the
 suggested values accordingly\!*
 
-We recommend that the available memory
-is split roughly equally between the database and the JVM. Remember to
-leave some of the physical memory to the operating system for it to
-perform its tasks, for instance around 2 GB. The steps marked as
-*optional*, like the step for performance tuning, can be done at a later
-stage.
+We recommend that the available memory is split roughly equally between the
+database and the JVM. Remember to leave some of the physical memory to the
+operating system for it to perform its tasks, for instance around 2 GB. The
+steps marked as *optional*, like the step for performance tuning, can be done
+at a later stage.
 
 ### Creating a user to run DHIS2 { #install_creating_user } 
-You should create a dedicated user for running DHIS2.
+DHIS2 on Tomcat should never be run as the `root` user. Instead, create a
+standard user and use it to run the Tomcat instance to enhance security.,
 
 > **Important**
 >
@@ -60,7 +63,7 @@ the environment variable in a later step in the installation process.
 If no environment variable `DHIS2_HOME` is found, the default 
 configuration file location `/opt/dhis2` is used.
 
-### Setting server time zone and locale { #install_setting_server_tz } 
+### Setting server timezone and locale { #install_setting_server_tz } 
 
 It may be necessary to reconfigure the time zone of the server to match
 the time zone of the location which the DHIS2 server will be covering.
@@ -84,7 +87,7 @@ sudo locale-gen nb_NO.UTF-8
 
 ### PostgreSQL installation { #install_postgresql_installation } 
 
-Install PostgreSQL by invoking:
+Install PostgreSQL with below steps
 
 ```sh
 # Create the file repository configuration:

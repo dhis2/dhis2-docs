@@ -2,7 +2,7 @@
 Manage: '@github(dhis2/dhis2-docs, src/sysadmin/index.md, new_install_docs)'
 Getting Started:
   # alt__DHIS core version new_install_docs:
-  - Quick Start: '@github(dhis2/dhis2-docs, src/sysadmin/getting_started/quick-start.md, new_install_docs)'
+  - Quickstart: '@github(dhis2/dhis2-docs, src/sysadmin/getting_started/quick-start.md, new_install_docs)'
   - Automated Install on Linux Server: '@github(dhis2/dhis2-docs, src/sysadmin/getting_started/dhis2-tools.md, new_install_docs)'
   - Manual install on Linux Server: '@github(dhis2/dhis2-docs, src/sysadmin/getting_started/linux-manual-install.md, new_install_docs)'
   - Manual Install on Windows Server: '@github(dhis2/dhis2-docs, src/sysadmin/getting_started/windows-manual-install.md, new_install_docs)'
@@ -21,12 +21,13 @@ How-To Guides:
   - DHIS2 High Availability: '@github(dhis2/dhis2-docs, src/sysadmin/how_to/tomcat-clustering.md, new_install_docs)'
   - Installing Redis: '@github(dhis2/dhis2-docs, src/sysadmin/how_to/installing-redis.md, new_install_docs)'
 Concepts:
-  - SMS Reporting: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/SMS-reporting.md, new_install_docs)'
+  - Using Gateways for SMS reporting: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/SMS-reporting.md, new_install_docs)'
   - Upgrading: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/upgrading.md, new_install_docs)'
   - Audit: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/audit.md, new_install_docs)'
   - Architecture: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/architecture.md, new_install_docs)'
   - Dependencies: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/dependencies.md, new_install_docs)'
   - Upgrade Guide: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/Upgrade-Guide.md, new_install_docs)'
+  - Debugging as another user: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/user-impersonation.md, new_install_docs)'
 Reference:
   - Authentication: '@github(dhis2/dhis2-docs, src/sysadmin/reference/authentication.md, new_install_docs)'
   - Databases: '@github(dhis2/dhis2-docs, src/sysadmin/reference/database.md, new_install_docs)'

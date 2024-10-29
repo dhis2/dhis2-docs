@@ -2,7 +2,7 @@
 
 DHIS2 supports accepting data via [SMS](https://docs.dhis2.org/master/en/dhis2_user_manual_en/mobile.html), however, the SMS needs to be compressed. The DHIS2 Android App acts as a transparent layer to send the information via SMS where the user does not have to worry about writing the SMS. To send SMSs with the Android App the SMS gateway need to be properly configured. This section explains the different options available and how to achieve that.
 
-## Sending SMS { #sms_report_sening } 
+## Sending SMS { #sms_report_sending } 
 
 It is important to clarify firstly, that this section mainly concerns the set up of **receiving SMS** (from mobile devices to the DHIS2 server), which is necessary when considering using the App to send (sync) information recorded in the app to the DHIS2 server via SMS. In the App this can be set-up under the *Settings* > *SMS Settings*
 

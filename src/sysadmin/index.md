@@ -9,14 +9,10 @@ network or standalone application.
 ## Introduction { #install_introduction } 
 
 DHIS2 runs on all platforms for which there exists a Java JRE, which includes
-most popular operating systems such as Windows, Linux and Mac. DHIS2 runs on
-the PostgreSQL database system. DHIS2 is packaged as a standard Java Web
-Archive (WAR-file) and thus runs on any Servlet containers such as Tomcat and
-Jetty.
-
-The DHIS2 team recommends running on a Supported Ubuntu LTS operating system,
-PostgreSQL database and Tomcat Servlet container as the preferred environment
-for server installations.
+most popular operating systems such as Linux, Windows and Mac. DHIS2 is
+packaged as a standard Java Web Archive (WAR-file) and thus runs on any Servlet
+containers such as Tomcat and Jetty. Its writes its data on PostgreSQL
+database. Its recommended that you run it on a  Supported Ubuntu LTS system,
 
 This chapter provides a guide for setting up the above technology stack.
 It should however be read as a guide for getting up and running and not
@@ -68,18 +64,16 @@ Table: DHIS2 JDK compatibility
 | pre 2.35      | 8               | 8            |
 
 
-- PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 16 is recommended.
-- PostGIS database extension version 2.2 or later.
-- Tomcat servlet container version 8.5.50 or later, or other Servlet API
-  3.1 compliant servlet containers.
+- PostgreSQL database version 13 or later. A later PostgreSQL 16 is recommended.
+- PostGIS database extension version 2.2 or later, 3 is recommended.
+- Tomcat servlet container version 8.5.50 or 9, 9 is recommended.
 - Cluster setup only (optional): Redis data store version 4 or later.
 
 So a minimal installation of DHIS2 would consist just of the tomcat server
-(with DHIS2 war file deployed) and a postgresql database server for persistent
-storage.  This type of minimal setup can be suitable for a developer or
-experimental setup.  For a production deployment there are many other factors
-to take into account regarding maintenance, monitoring, security, scalability
-and performance.
+(with DHIS2 war file deployed) and a PostgreSQL database. This type of minimal
+setup can be suitable for a developer or experimental setup.  For a production
+deployment there are many other factors to take into account regarding
+maintenance, monitoring, security, scalability and performance.
 
 ## Install Methods
 ---
@@ -87,24 +81,24 @@ There are many ways to get DHIS2 up and running.  How you choose to install
 will depend on which skills and tools you are familiar with and whether the
 installation is for production or experimental use.  We have a number of
 different guides which emphasize different styles of implementation.
-
 Regardless of the implementation approach you adopt, you will want to
-familarize yourself with the additional reference material we provide regarding
+familiarize yourself with the additional reference material we provide regarding
 database management, reverse proxy setup, system monitoring, upgrades etc.
 
-#### [Manual Install on Linux](#installation_on_linux_server)
- This guide takes you through the individual commands to install DHIS2 on an [Manual Install on Linux](#installation_on_linux_server) 
- Ubuntu operating system using Apache Tomcat and PostgreSQL. It is not aimed at
- production deployments, but is useful for people to work through to in order
- to understand the interconnections between the different parts.
-
-#### Automated Install with  [dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools)
+### [Automated Install on Linux Server](https://github.com/dhis2/dhis2-server-tools)
 These tools are ansible based
-[dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools)
-This tool set provides a set of ansible playbooks to automate the installation
-and management of DHIS2 and supporting components. It is geared towards
-production environments with the aim of addressing the most critical security
-and monitoring considerations out-of-the-box..
+[dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools) This tool set
+provides a set of ansible playbooks to automate the installation and management
+of DHIS2 and supporting components. It is geared towards production
+environments with the aim of addressing the most critical security and
+monitoring considerations out-of-the-box..
+
+### [Manual Install on Linux](#installation_on_linux_server)
+ This guide provides step-by-step instructions for setting up DHIS2 on Ubuntu
+ 22.04. For production environments, however, we highly recommend using an
+ automated installation to ensure consistency and ease of management. Manual
+ setup is ideal for learning and understanding how different DHIS2 components
+ are setup and how they interconnect.
 
 ### Running DHIS2 on docker
 ---
