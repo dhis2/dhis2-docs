@@ -34,6 +34,12 @@ need to collect and analyze data:
 
   - External map layers
 
+  - SQL views
+
+  - Locales
+
+  - Analytics table hooks
+
 > **Note**
 >
 > The functions you have access to depend on your user role's access
@@ -4984,7 +4990,7 @@ cultural region.
 
 5.  Click **Save**.
 
-## Manage SQL Views { #maintenance_sql_view } 
+## Manage SQL views { #maintenance_sql_view } 
 
 The SQL View functionality of DHIS2 will store the SQL view definition
 internally, and then materialize the view when requested.
@@ -5086,7 +5092,7 @@ View".
 > appears after view B in alphabetical order, analytics may fail, as the
 > view with dependencies will not be dropped in the correct order.
 
-## Manage Analytics Table Hooks { #maintenance_analytics_table_hooks } 
+## Manage analytics table hooks { #maintenance_analytics_table_hooks } 
 
 The Analytics Table Hooks functionality of DHIS2 stores SQL code that
 is run during different phases of the analytics table generation process.

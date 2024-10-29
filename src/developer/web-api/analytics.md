@@ -2886,6 +2886,8 @@ Table: Phases, table types and temporary tables
 
 ### Creating hooks { #webapi_create_analytics_table_hook } 
 
+You can create hooks with the Maintenance app or with the API.
+
 To create a hook which should run after the resource tables have been populated you can do a *POST* request like this using *JSON* as content type:
 
 ```
