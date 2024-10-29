@@ -5086,6 +5086,20 @@ View".
 > appears after view B in alphabetical order, analytics may fail, as the
 > view with dependencies will not be dropped in the correct order.
 
+## Manage Analytics Table Hooks { #maintenance_analytics_table_hooks } 
+
+The Analytics Table Hooks functionality of DHIS2 stores SQL code that
+is run during different phases of the analytics table generation process.
+
+See also [the documentation on <code>/api/analyticsTableHooks</code>](../../../develop/using-the-api/dhis-core-version-master/analytics.html#webapi_analytics_table_hooks).
+
+### Creating a new analytics table hook
+
+To create a new analytics table hook, click **Apps** \> **Maintenance**
+\> **Other** \> **Analytics table hooks** and click the Add **+** button.
+
+Press "Save" to store the analytics table hook.
+
 ## Manage Locales { #maintenance_locale_management } 
 
 It is possible to create custom locales in DHIS2. In addition to the
