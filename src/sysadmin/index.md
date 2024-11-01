@@ -1,4 +1,4 @@
-# Install Guide
+# Installation
 
 This section contains information related to the installation, management and 
 maintenance of DHIS2 systems. It provides information on how to install DHIS2 in
@@ -20,16 +20,18 @@ as an exhaustive documentation for the mentioned environment. We refer
 to the official Ubuntu, PostgreSQL and Tomcat documentation for in-depth
 reading.
 
-The `dhis2-server-tools` ansible based tools, automates many of the tasks
-described in the guide below and is recommended for most users, especially
-those who are not familiar with the command line or administration of servers.
-It is described in detail in a separate chapter in this guide.
+The [dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools) automates
+many of the tasks described in the guide below and is recommended for most
+users, especially those who are not familiar with the command line or
+administration of servers. It is described in detail in a separate chapter in
+this guide.
 
 ---
 ## Server specifications { #install_server_specifications } 
 
 DHIS2 is a database intensive application and requires that your server
-has an appropriate amount of RAM, number of CPU cores and a fast disk.
+has an appropriate amount of RAM, a good number of CPU cores and a fast disk,
+preferably an solid state disk (ssd).
 These recommendations should be considered as rules-of-thumb and not
 exact measures. DHIS2 scales linearly on the amount of RAM and number of
 CPU cores so the more you can afford, the better the application will perform.
@@ -45,12 +47,22 @@ CPU cores so the more you can afford, the better the application will perform.
   data value tables. Analytics tables require a significant amount of
   storage space. Plan ahead and ensure that your server can be upgraded
   with more disk space as needed.
+  On linux, you can test disk latency and throughput with below commands
+  ```
+  # disk latency
+  dd if=/dev/zero of=/tmp/test2.img bs=512 count=1000 oflag=dsync
 
+  # disk throughput
+  dd if=/dev/zero of=/tmp/test1.img bs=1G count=1 oflag=dsync
+
+  # remove /tmp/test1.img after testing
+  rm -v -i /tmp/test1.img
+  ```
 ## Software requirements { #install_software_requirements } 
 
 Later DHIS2 versions require the following software versions to operate.
 
-- An operating system for which a Java JDK or JRE version 8,11 or 17 exists. Linux is recommended.
+- An operating system for which a Java JDK or JRE version 8 ,11 or 17 exists. Ubuntu LTS release is recommended.
 - Java JDK. OpenJDK is recommended.
 
 Table: DHIS2 JDK compatibility
@@ -75,7 +87,7 @@ setup can be suitable for a developer or experimental setup.  For a production
 deployment there are many other factors to take into account regarding
 maintenance, monitoring, security, scalability and performance.
 
-## Install Methods
+## Install Methods { #install_install_methods }
 ---
 There are many ways to get DHIS2 up and running.  How you choose to install
 will depend on which skills and tools you are familiar with and whether the
@@ -85,7 +97,7 @@ Regardless of the implementation approach you adopt, you will want to
 familiarize yourself with the additional reference material we provide regarding
 database management, reverse proxy setup, system monitoring, upgrades etc.
 
-### [Automated Install on Linux Server](https://github.com/dhis2/dhis2-server-tools)
+### [Automated Install on Linux](#getting_started_quick_start) { #install_automated_install_on_linux }
 These tools are ansible based
 [dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools) This tool set
 provides a set of ansible playbooks to automate the installation and management

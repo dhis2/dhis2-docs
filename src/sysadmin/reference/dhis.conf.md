@@ -1,14 +1,21 @@
-# DHIS2 system configuration reference 
+# DHIS2 configuration reference (dhis.conf) {#install_dhis2_configuration_reference}
 
-This section describes the configuration of the DHIS2 system through the `dhis.conf` configuration file, followed by the configuration parameters stored in the database (system settings).
+This section describes the configuration of the DHIS2 system through the
+`dhis.conf` configuration file, followed by the configuration parameters stored
+in the database (system settings).
 
-## dhis.conf { #install_dhis2_configuration_reference } 
 
-The following describes the full set of configuration options for the `dhis.conf` configuration file. The configuration file should be placed in a directory which is pointed to by a `DHIS2_HOME` environment variable.  On linux systems, if the `DHIS2_HOME` environment variable is not explicitly set, it defaults to the directory `/opt/dhis2`.
+The following describes the full set of configuration options for the
+`dhis.conf` configuration file. The configuration file should be placed in a
+directory which is pointed to by a `DHIS2_HOME` environment variable.  On linux
+systems, if the `DHIS2_HOME` environment variable is not explicitly set, it
+defaults to the directory `/opt/dhis2/`.
 
 > **Note**
 >
-> You should not attempt to use this configuration file directly, rather use it as a reference for the available configuration options. Many of the properties are optional.
+> You should not attempt to use this configuration file directly, rather use it
+> as a reference for the available configuration options. Many of the
+> properties are optional.
 
 ```properties
 # ----------------------------------------------------------------------
@@ -40,8 +47,7 @@ connection.pool.max_size = 40
 # Minimum number of Connections a pool will maintain at any given time (default: 5).
 connection.pool.min_size=5
 
-# Initial size of connection pool (default : 5)
-#Number of Connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize
+# Number of Connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize
 connection.pool.initial_size=5
 
 #Determines how many connections at a time will try to acquire when the pool is exhausted.
@@ -68,19 +74,27 @@ connection.pool.preferred.test.query=select 1
 #Configure the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads=3
 
+# Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
+db.pool.type = c3p0
+
 # ----------------------------------------------------------------------
 # Server [Mandatory]
 # ----------------------------------------------------------------------
 
 # Base URL to the DHIS 2 instance
+# The server.base.url setting refers to the URL at which the system is accessed by end users over the network.
 server.base.url = https://play.dhis2.org/dev 
 
 # Enable secure settings if system is deployed on HTTPS, can be 'off', 'on'
 server.https = off
+# It is strongly recommended to enable the `server.https` setting and deploying DHIS 2 with an encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when this setting is enabled
 
 # ----------------------------------------------------------------------
 # System [Optional]
 # ----------------------------------------------------------------------
+
+# System identifier
+system.id = hmis1.country.org
 
 # System mode for database read operations only, can be 'off', 'on'
 system.read_only_mode = off
@@ -96,6 +110,9 @@ system.sql_view_write_enabled = off
 
 # Disable server-side program rule execution, can be 'on', 'off'
 system.program_rule.server_execution = on
+
+# Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
+system.remote_servers_allowed = https://server1.org/,https://server2.org/
 
 # ----------------------------------------------------------------------
 # Encryption [Optional]
@@ -113,6 +130,9 @@ filestore.provider = filesystem
 
 # Directory / bucket name, folder below DHIS2_HOME on file system, 'bucket' on AWS S3
 filestore.container = files
+
+# URL where the S3 compatible API can be accessed (only for provider 's3')
+filestore.endpoint = http://minio:9000 
 
 # Datacenter location (not required)
 filestore.location = eu-west-1
@@ -172,11 +192,42 @@ monitoring.uptime.enabled = on
 monitoring.cpu.enabled = on
 
 # ----------------------------------------------------------------------
+# Redis [Optional]
+# ----------------------------------------------------------------------
+
+# Redis enabled
+redis.enabled = true
+
+# Redis host name
+redis.host = localhost
+
+# Redis port
+redis.port = 6379
+
+# Redis password
+redis.password = xxxx
+
+# Use SSL for connections to Redis, can be 'on', 'off' (default)
+redis.use.ssl = off
+
+# ----------------------------------------------------------------------
 # Analytics [Optional]
 # ----------------------------------------------------------------------
 
-# Analytics server-side cache expiration in seconds
-analytics.cache.expiration = 3600
+# Analytics database JDBC driver class
+analytics.connection.driver_class = org.postgresql.Driver
+
+# Analytics database connection URL
+analytics.connection.url = jdbc:postgresql:analytics
+
+# Analytics database username
+analytics.connection.username = analytics
+
+# Analytics database password
+analytics.connection.password = xxxx
+
+# Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
+analytics.table.unlogged = on
 
 # ----------------------------------------------------------------------
 # System telemetry [Optional]
@@ -195,7 +246,28 @@ system.monitoring.password = xxxx
 # System update notifications [Optional]
 # ----------------------------------------------------------------------
 
+# System update notifications, such as new DHIS 2 releases becoming available
 system.update_notifications_enabled = on
+
+# ----------------------------------------------------------------------
+# Logging [Optional]
+# ----------------------------------------------------------------------
+
+# Max size for log files, default is 100MB
+logging.file.max_size = 200MB
+
+# Max number of rolling log archive files, default is 0
+logging.file.max_archives = 1
+
+# ----------------------------------------------------------------------
+# Log levels [Optional]
+# ----------------------------------------------------------------------
+
+# DHIS 2 log level (level can be TRACE, DEBUG, INFO, WARN, ERROR)
+logging.level.org.hisp.dhis = INFO
+
+# Spring log level (refers to Java class package names)
+logging.level.org.springframework = INFO
 
 # ----------------------------------------------------------------------
 # App Hub [Optional]
@@ -206,26 +278,13 @@ apphub.base.url = https://apps.dhis2.org"
 # Base API URL to the DHIS2 App Hub service, used for app updates
 apphub.api.url = https://apps.dhis2.org/api
 
+# ----------------------------------------------------------------------
+# Sessions [Optional]
+# ----------------------------------------------------------------------
 
-# Number of possible concurrent sessions on different computers or browsers for each user. If configured to 1, the
-# user will be logged out from any other session when a new session is started.
+# Number of possible concurrent sessions across different clients per user
 max.sessions.per_user = 10
 ```
-
-# ----------------------------------------------------------------------
-# Server
-# ----------------------------------------------------------------------
-
-# Enable secure settings if deployed on HTTPS, default 'off', can be 'on'
-# server.https = on
-
-# Server base URL
-# server.base.url = https://server.com
-```
-
-It is strongly recommended to enable the `server.https` setting and deploying DHIS 2 with an encrypted HTTPS protocol. This setting will enable e.g. secure cookies. HTTPS deployment is required when this setting is enabled.
-
-The `server.base.url` setting refers to the URL at which the system is accessed by end users over the network.
 
 Note that the configuration file supports environment variables. This
 means that you can set certain properties as environment variables and

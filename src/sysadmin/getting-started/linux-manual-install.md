@@ -1,27 +1,26 @@
 # Installation { #installation_on_linux_server } 
 ## Server setup { #install_server_setup } 
-This guide covers manual DHIS2 installation on Ubuntu 22.04 or 24.04. DHIS2
-uses PostgreSQL for data storage and runs on a Tomcat server. Additional
-components like a proxy server (nginx or Apache) and monitoring tools (Munin or
-Zabbix) are recommended for a more robust setup. While these components can run
-on separate servers, this guide assumes a single-server configuration for
-simplicity.
+This guide explains how to manually install DHIS2 on Ubuntu 22.04 or 24.04,
+using PostgreSQL for data storage and Tomcat as the server. It also suggests
+using a proxy (like nginx or Apache) and monitoring tools (like Munin or
+Zabbix) for enhanced performance. Although all components can be hosted
+separately, this guide focuses on a simple, single-server setup.
 
-This guide provides a detailed outline for DHIS2 deployment, intended mainly as
-a reference for general installation practices. Setup steps can vary depending
-on factors like operating system, database choice, and other configurations.
-Here, the term `invoke` refers to running a command directly in the terminal.
-
-For this guide we assume that 8 Gb RAM is allocated for PostgreSQL and 8
-GB RAM is allocated for Tomcat/JVM, and that a 64-bit operating system
-is used. *If you are running a different configuration please adjust the
-suggested values accordingly\!*
+This guide is intended mainly as a reference for general installation
+practices. Setup steps can vary depending on factors like operating system,
+database choice, and other configurations. Here, the term `invoke` refers to
+running a command directly in the terminal.
 
 We recommend that the available memory is split roughly equally between the
 database and the JVM. Remember to leave some of the physical memory to the
 operating system for it to perform its tasks, for instance around 2 GB. The
 steps marked as *optional*, like the step for performance tuning, can be done
 at a later stage.
+
+The [dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools) automates
+installation described in the guide and is recommended for production setups. 
+It is described in detail in [QuickStart Section](#getting_started_quick_start)
+section.
 
 ### Creating a user to run DHIS2 { #install_creating_user } 
 DHIS2 on Tomcat should never be run as the `root` user. Instead, create a

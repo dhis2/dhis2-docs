@@ -1,24 +1,39 @@
 # Requirements
+<!-- 1. A server --> 
+<!-- 2. Good Power supply --> 
+<!-- 3. Good internet -->
+<!-- 4. Good storage -->
+<!-- 5. Fast Iinterconnect network --> 
+## Hardware
+Hardware requirements depend on your database size, with larger databases
+needing more resources. It’s important to monitor system performance to
+understand usage. If you're managing your own infrastructure (not cloud-based),
+ensure your network connections are solid, using nothing below 1 Gbps between
+hosts. Fast SSDs are critical, particularly for PostgreSQL databases, as they
+provide better read/write speeds and lower disk latencies, which improve
+overall performance.
+
+## Operating System 
+DHIS2 have been widely tested on Ubuntu 22.04 and 24.04 host. It is recommended that
+you run it on latest LTS release of an Ubuntu Server.
 
 ### DHIS2 Architecture
-DHIS2 needs servers to work. It has different parts: the web app, database,
-and proxy. You can install DHIS2 on one or more servers. For instance, you can
-use separate servers for the database and proxy.
+DHIS2 needs servers to run. It has different parts: DHIS2 war file, PostgreSQL
+database, Monitoring Server and Proxy. You can install all these components on
+single or distributed on multiple servers. While the architecture itself may
+seem straightforward, running it in a real-world environment (production)
+requires more thought.
 
-While the architecture itself may seem straightforward, running it in a
-real-world environment (production) requires more thought.
-
-Here's what we need to consider
+Hosting Consideration factors
 
 - **Reliability:**  - the application should strive for 24/7 availability with
   clearly defined windows for scheduled maintenance and minimal potential for
   unscheduled downtime.
-- **Data Security:** - f the application handles sensitive information (like PII),
-  robust security measures are crucial
+- **Data Security:** - If the data is sensitive, E. Personal Identifier
+  Information (PII) robust security measures are crucial.
 - **Performance and scalability:** -  Large sites may have tens of thousands of
   users and millions of records
 - **Maintainability:** - The system will need to be actively maintained and updated
-  over many years
 - **Scalability:** - Whether the system must be scalable to accommodate future
   growth in data volume, user base, or functionality. This may involve
   implementing features like horizontal scaling or using distributed

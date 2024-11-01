@@ -1,11 +1,10 @@
-# architecture
 # Deployment Architectures
 ## Introduction
 DHIS2 application can be deployed using different architectures, including
 single-server, distributed, hybrid, Docker, and Docker with Kubernetes. The
 choice of architecture depends on various factors such as simplicity,
 management complexity, scalability, maintainability, and performance.
-## The Architecures
+## The Architectures
 1. single server <br> 
     Uses lxd containers, you'll set `ansible_connection` variable to `lxd`, 
 2. distributed <br> 
