@@ -14,6 +14,7 @@ Reference:
   - dhis.conf: '@github(dhis2/dhis2-docs, src/sysadmin/reference/dhis.conf.md, new_install_docs)'
   - File Storage: '@github(dhis2/dhis2-docs, src/sysadmin/reference/file-storage.md, new_install_docs)'
   - OpenID Connect (OIDC): '@github(dhis2/dhis2-docs, src/sysadmin/reference/oauth.md, new_install_docs)'
+  - Google service account configuration: '@github(dhis2/dhis2-docs, src/sysadmin/reference/google-service-account-config.md, new_install_docs)'
   # - Oauth: '@github(dhis2/dhis2-docs, src/sysadmin/reference/oauth.md, new_install_docs)'
   - Ldap: '@github(dhis2/dhis2-docs, src/sysadmin/reference/ldap.md, new_install_docs)'
   - Logging: '@github(dhis2/dhis2-docs, src/sysadmin/reference/logging.md, new_install_docs)'
