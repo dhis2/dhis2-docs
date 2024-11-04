@@ -1,15 +1,32 @@
 # DHIS2  upgrade guide
 ## Introduction
-This document serves as a comprehensive guide outlining the process of upgrading DHIS2. It is designed to facilitate the smooth transition from one version to another by breaking down the upgrade process into manageable action items. Additionally, it provides detailed considerations for crucial aspects such as backups, ensuring that no essential steps are overlooked.
+This document serves as a comprehensive guide outlining the process of
+upgrading DHIS2. It is designed to facilitate the smooth transition from one
+version to another by breaking down the upgrade process into manageable action
+items. Additionally, it provides detailed considerations for crucial aspects
+such as backups, ensuring that no essential steps are overlooked.
 
-While DHIS2 upgrading may appear straightforward on the surface, it is indeed a complex process requiring careful planning and execution. While a simple replacement of the war file with the latest release may seem sufficient, the reality is that unforeseen complications can and do arise. Therefore, it is imperative to anticipate and prepare for potential challenges that may arise during the upgrade process.
+While DHIS2 upgrading may appear straightforward on the surface, it is indeed a
+complex process requiring careful planning and execution. While a simple
+replacement of the war file with the latest release may seem sufficient, the
+reality is that unforeseen complications can and do arise. Therefore, it is
+imperative to anticipate and prepare for potential challenges that may arise
+during the upgrade process.
 
-The manual nature of both DHIS2 installation and upgrade underscores the importance of having a well-defined strategy in place. While automation tools such as `apt` exist to streamline certain aspects of the upgrade process, the responsibility ultimately lies with the user to manage dependencies and address any issues that may arise.
+The manual nature of both DHIS2 installation and upgrade underscores the
+importance of having a well-defined strategy in place. While automation tools
+such as `apt` exist to streamline certain aspects of the upgrade process, the
+responsibility ultimately lies with the user to manage dependencies and address
+any issues that may arise.
 
-To increase the likelihood of a successful upgrade, thorough preparation and strategic planning are essential. This includes identifying potential risks and developing strategies to mitigate them effectively. By following this general guide and implementing best practices, organizations can minimize disruptions and ensure a smooth transition to the latest version of DHIS2.
+To increase the likelihood of a successful upgrade, thorough preparation and
+strategic planning are essential. This includes identifying potential risks and
+developing strategies to mitigate them effectively. By following this general
+guide and implementing best practices, organizations can minimize disruptions
+and ensure a smooth transition to the latest version of DHIS2.
 
 
-### Who is this document for ?.
+### Who is this document for?
 - Short answer, Whoever is managing and maintaining DHIS2. In most cases,
    System Administrator, - Generally anyone running a not up-to-date dhis2
    instance, and planning to do an upgrade. <br>
@@ -24,19 +41,19 @@ To increase the likelihood of a successful upgrade, thorough preparation and str
   process is a bit manual.
 
 ### Why do we need to upgrade
-Or asked differently, are there problems running outdated software ?. There
+Or asked differently, are there problems running outdated software? There
 surely are lots of problems with outdated software. Only 3 dhis2 major releases
 are supported, you want to always run actively supported version. Some of the
 reasons listed below. 
 
-   - to be withing supported verssg  of dhis2, usually the latest three versions. 
+   - to be withing supported version  of dhis2, usually the latest three versions. 
    - to get latest security fixes
    - to get latest bug fixes
    - latest version might be having performance improvement
    - new features could be shipped with the latest releases.  
    - To meet  required dependencies.
    - Unlike other software systems, like Linux OSes, dhis2 upgrade process is not automated, this is an hands on task. You will need to to the upgrade yourself. You will need to plan better, know prior required and recommended dependencies.
-   - It it advisable to upgrade to bleeding version ?. Sometimes the upgrades introduces new problems, regressions, breaking changes, issues never envisaged. That is why we develop this plan.
+   - It it advisable to upgrade to bleeding version? Sometimes the upgrades introduces new problems, regressions, breaking changes, issues never envisaged. That is why we develop this plan.
 
 ### Types of upgrade
 It depends on the scope really, upgrades can have many forms, it can be
@@ -122,14 +139,14 @@ Your infrastructure should have -:
     intensive, it needs fast disks, preferably SSD disks.  
 
 #### Upgrade Schedule
-When is the best time to do upgrades ?. 
+When is the best time to do upgrades? 
 
-      - Friday, -- Monday ?. 
+      - Friday, -- Monday? 
       - Ensure your have all hands on deck 
       - DHIS2 release schedule
 - Your plan should be scheduled - You tasks should have timelines 
-- Is your plan Realistic - Is your plan feasible ?. Is it achievable ?. It should take account of the available resources, constraints and potential challenges. 
-- Know more on who does what ?. - The upgrade process in most cases is a
+- Is your plan Realistic - Is your plan feasible? Is it achievable? It should take account of the available resources, constraints and potential challenges. 
+- Know more on who does what? - The upgrade process in most cases is a
   collaborating project. Know your team prior. 
 - Continuous Monitoring and Evaluation: - Contently review you plan while executing it, identify issues arising, make necessary changes if need be. Your plan should be flexible. 
 - Plan for a test bed resource requirements. 
@@ -190,7 +207,7 @@ most commonly is with pg_dump utility.
 - application backup
 
 
-#### What do your need to backup ?. 
+#### What do your need to backup? 
 - databases
 - dhis.conf, and sometime it has database encryption password
 - application static files e.g custom logos etc
@@ -307,7 +324,7 @@ problems with the upgrade.
 <li>Custom Applications
 <li>Software versions (java,tomcat, dhis2,PostgreSQL, nginx/apache2 proxy etc )
 <li>Resources - Test server availability. 
-<li>Scope - Does it include OS and the database ?.
+<li>Scope - Does it include OS and the database?
 </li> </ul> </td>
 <td style="vertical-align: top; text-align: left;">
 <ul>

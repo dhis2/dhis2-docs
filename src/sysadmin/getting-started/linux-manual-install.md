@@ -78,76 +78,78 @@ sudo dpkg-reconfigure tzdata
 
 PostgreSQL is sensitive to locales so you might have to install your
 locale first. To check existing locales and install new ones (e.g.
-Norwegian):
+English US):
 
 ```sh
 locale -a
-sudo locale-gen nb_NO.UTF-8
+sudo locale-gen en_US.utf8
 ```
 
 ### PostgreSQL installation { #install_postgresql_installation } 
 
 Install PostgreSQL with below steps
 
-```bash
-# Create the file repository configuration:
+1. Add PostgreSQL repository
+```
 sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-
-# Import the repository signing key:
+```
+2. Import the PostgreSQL repository signing key:
+```
 curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+```
+3.  Update the package lists 
+```
+sudo apt update -y && sudo apt upgrade -y 
+```
 
-# Update the package lists:
-sudo apt update -y 
-
-# install postgresql
+4. Install PostgreSQL 16
+```
 sudo apt-get install -y postgresql-16 postgresql-16-postgis-3
+```
 
-# Ensure postgresql is started and enabled
+5.  Ensure postgresql is started and enabled
+```
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
 ```
 
-Create a non-privileged database user called *dhis* by invoking:
+6. Create a non-privileged database user `dhis` with the `command` below:
+   ```sh
+   sudo -u postgres createuser -SDRP dhis
+   ```
+   Enter a secure password at the prompt:
+   > **Note**
+   >
+   > This database user and password will be used by your DHIS2 application to
+   > connect to the database. You will need to write down this user and password
+   > in the  `dhis.conf`  file at a later stage.
 
-```sh
-sudo -u postgres createuser -SDRP dhis
-```
+7. Create a database named `dhis` owned by `dhis` database user by invoking:
+   ```sh
+   sudo -u postgres createdb -O dhis dhis;
+   ```
 
-Enter a secure password at the prompt.
+    <!-- Return to your session by invoking `exit` You now have a PostgreSQL user -->
+    <!-- called *dhis* and a database called *dhis2*. -->
 
-> **Note**
->
-> This database user and password will be used by your DHIS2 application to
-> connect to the database. You will need to write down this user and password
-> in the  `dhis.conf`  file at a later stage.
+8. The *PostGIS* extension is needed for several GIS/mapping features to work.
+   DHIS2 will attempt to install the PostGIS extension during startup, but its
+   not gonna work because dhis user is not superuser. 
+   For adding trigram indexes and compounding it with primitive column types,
+   two extensions have to be created in the database for DHIS 2 verision 2.38
+   and later. The extensions are already part of the default posgresql
+   installation:
 
-Create a database called `dhis2` owned by `dhis` by invoking:
+   Since DHIS2 database user does not have permission to create extensions, 
+   create them from the console using the `postgres` user with the following
+   commands:
 
-```sh
-sudo -u postgres createdb -O dhis dhis2
-```
+   ```sh
+   sudo -u postgres psql -c "create extension postgis;" dhis
+   sudo -u postgres psql -c "create extension btree_gin;" dhis
+   sudo -u postgres psql -c "create extension pg_trgm;" dhis
+   ```
 
-<!-- Return to your session by invoking `exit` You now have a PostgreSQL user -->
-<!-- called *dhis* and a database called *dhis2*. -->
-
-The *PostGIS* extension is needed for several GIS/mapping features to
-work. DHIS2 will attempt to install the PostGIS extension during
-startup. If the DHIS2 database user does not have permission to create
-extensions you can create it from the console using the *postgres* user
-with the following commands:
-
-```sh
-sudo -u postgres psql -c "create extension postgis;" dhis2
-```
-
-For adding trigram indexes and compounding it with primitive column types, two
-extensions have to be created in the database for DHIS 2 verision 2.38 and
-later. The extensions are already part of the default posgresql installation:
-
-```sh
-sudo -u postgres psql -c "create extension btree_gin;" dhis2
-sudo -u postgres psql -c "create extension pg_trgm;" dhis2
-```
 Check [PostgreSQL Performance Tuning](#install_postgresql_performance_tuning) for optimization parameters.
 
 <!-- Exit the console and return to your previous user with *\\q* followed by -->
