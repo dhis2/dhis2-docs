@@ -1,4 +1,4 @@
-# Quick Start { #getting_started_quick_start }
+# Introduction { #getting_started_linux_automated_install }
 DHIS2 stands as a freely accessible, open-source, and adaptable software
 platform. It serves the purpose of collecting, managing, visualizing, and
 analyzing health data derived from diverse sources and programs.
@@ -7,72 +7,76 @@ and optional APM and Server monitoring tools.
 This quick start shows you how to install dhis2 and its components and a
 single sever with dhis2-server tools. 
 
-## Prerequisites 
+## Prerequisites {#getting_started_prerequisites } 
 1. Server running Ubuntu 22.04 or 24.04
 2. SSH Access with `non-root` user with `sudo` privileges
 
 ## Installing DHIS2 
-1. Ensure your server has firewall running and ssh port allowed. 
+1. Make sure your server’s firewall is active and the SSH port is allowed.
+   Replace `{ssh_port}` with your actual SSH port number.
    ```
    sudo ufw limit {ssh_port}/tcp
    sudo ufw enable
    ```
-2. Use SSH to access your server and clone "https://github.com/dhis2/dhis2-server-tools" repository
+2. Connect to your server via SSH and clone the repository from
+   "https://github.com/dhis2/dhis2-server-tools".
    ```
    git clone https://github.com/dhis2/dhis2-server-tools.git
    ```
 
-3. The install
+3. Run the installation
    ```
    cd dhis2-server-tools/deploy
    cp inventory/hosts.template inventory/hosts
    sudo ./deploy.sh
    ```
 
-4. Access the DHIS2 web interface with https://{server_ip}/dhis and with username: `admin` and Password: `district` default credentials. 
+4. Open the DHIS2 web interface at `https://{server_ip}/dhis,` replacing
+   `{server_ip}` with your actual IP address. Use the default credentials:
+   `admin` for the username and `district` for the password.
    ```
    https://{server_ip}/dhis
    ```
 
 ## Next steps 
-### Set fully qualified domain name (fqdn)
+### Configure fully qualified domain name
 
-Edit your inventory hosts file and add `fqdn` variable, use an editor of your choice.   
+- Edit your inventory hosts file and set `fqdn` variable, use an editor of your choice.   
+  ```
+  vim inventory/hosts 
+  fqdn=dhis.example.com
+  ```
+- Save the your changes and run the install again, 
+  ```
+  sudo ./deploy.sh
+  ```
 
- ```
- vim inventory/hosts 
- fqdn=dhis.example.com
- ```
-Save the your changes and run the install again, 
-
-```
-sudo ./deploy.sh
-```
-
-> **Important**
-> 
-> To use Let's Encrypt, ensure the domain is mapped to your server's public IP
-> address before setting `fqdn`. Alternatively, you can use a custom TLS
-> certificate.
+  > **Important**
+  > 
+  > To use Let's Encrypt, ensure the domain is mapped to your server's public IP
+  > address before setting `fqdn`. Alternatively, you can use a custom TLS
+  > certificate.
 
 ### Adding an instance
-
 You can run multiple instances on a single server. Adding an instance will
 create a separate lxd container.
-Edit your inventory/hosts file located in `dhis2-server-tools/deploy/inventory/hosts`
-```
-vim inventory/hosts
-```
-Add another line under `[instances]` section. E.g 
-```
-hmis    ansible_host=172.19.1.12   database_host=postgres
-```
+
+- Edit  `dhis2-server-tools/deploy/inventory/hosts` file  in 
+  ```
+  vim dhis2-server-tools/deploy/inventory/hosts
+  ```
+- Add a new line line under `[instances]` section, should look like the line below, 
+  ```
+  [instances]
+  dhis    ansible_host=172.19.1.11   database_host=postgres # your first insance
+  hmis    ansible_host=172.19.1.12   database_host=postgres # your second intance
+  ```
 
 > **Note**
 > 
 > The name `hmis` and ansible_host `172.19.1.12` should be unique. 
 
-### Deploying custom TLS certificate on reverse proxy
+### Deploying custom TLS certificate to the reverse proxy
 In some occasions, you could be having your own TLS certificate and you are not
 using LetsEncrypt. Here is how you can instruct the tools to use your own TLS
 certificate. 
@@ -81,11 +85,13 @@ certificate.
 >
 > You'll need to have your TLS certificate file and its corresponding key.
 
-Copy TLS certificate and key to `dhis2-server-tools/deploy/roles/proxy/files/`
-They should be named `customssl.crt` and `customssl.key` respectively.
+- Copy TLS certificate and key to
+  `dhis2-server-tools/deploy/roles/proxy/files/` They should be named
+  `customssl.crt` and `customssl.key` respectively.
 
-Instruct your tools to use these TLS parameters by editing your `inventory/hosts`
-file and setting `SSL_TYPE` parameter to `customssl` , see below, 
+- Configure the tools to use just copied  TLS certificate and key by editing
+  your `inventory/hosts` file and setting `SSL_TYPE` parameter to `customssl` ,
+  see below, 
 
 ```
 SSL_TYPE=customssl

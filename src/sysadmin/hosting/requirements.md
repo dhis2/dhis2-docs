@@ -3,7 +3,7 @@
 <!-- 2. Good Power supply --> 
 <!-- 3. Good internet -->
 <!-- 4. Good storage -->
-<!-- 5. Fast Iinterconnect network --> 
+<!-- 5. Fast Interconnect network --> 
 ## Hardware
 Hardware requirements depend on your database size, with larger databases
 needing more resources. It’s important to monitor system performance to
@@ -120,8 +120,7 @@ sources.
 This minimizes the risk of one compromised component affecting others.
 
 ## Other Important considerations
-Budget for: 
-
+### Budget: 
 - Backups and archiving of data (this requires additional server resources)
 - Systems for testing, staging and training (to test DHIS2 version updates and
   other major changes with lower risk to the system)

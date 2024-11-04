@@ -91,7 +91,7 @@ Regardless of the implementation approach you adopt, you will want to
 familiarize yourself with the additional reference material we provide regarding
 database management, reverse proxy setup, system monitoring, upgrades etc.
 
-#### [Automated Install](#getting_started_quick_start) { #install_automated_install_on_linux }
+#### [Automated Install](#getting_started_linux_automated_install) { #install_automated_install_on_linux }
 These tools are ansible based
 [dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools) This tool set
 provides a set of ansible playbooks to automate the installation and management
