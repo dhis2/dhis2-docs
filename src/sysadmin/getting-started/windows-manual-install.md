@@ -1,2 +1,3 @@
 # Manual Installation on Windows
-Coming soon !.
+
+Coming soon!
