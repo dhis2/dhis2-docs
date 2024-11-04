@@ -88,7 +88,7 @@ sudo locale-gen nb_NO.UTF-8
 
 Install PostgreSQL with below steps
 
-```sh
+```bash
 # Create the file repository configuration:
 sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 
@@ -114,7 +114,7 @@ sudo -u postgres createuser -SDRP dhis
 
 Enter a secure password at the prompt.
 
-> Note
+> **Note**
 >
 > This database user and password will be used by your DHIS2 application to
 > connect to the database. You will need to write down this user and password
@@ -147,9 +147,36 @@ later. The extensions are already part of the default posgresql installation:
 sudo -u postgres psql -c "create extension btree_gin;" dhis2
 sudo -u postgres psql -c "create extension pg_trgm;" dhis2
 ```
+Check [PostgreSQL Performance Tuning](#install_postgresql_performance_tuning) for optimization parameters.
 
 <!-- Exit the console and return to your previous user with *\\q* followed by -->
 <!-- *exit*. -->
+### Java installation { #install_java_installation } 
+
+| DHIS2 version | JDK recommended | JDK required | Installation
+|:--------------|:---------------:|:-------------|:----------------------------------------| 
+| 2.41          | 17              | 17           |`sudo apt-get install -y openjdk-17-jdk` |
+| 2.40          | 17              | 11           |`sudo apt-get install -y openjdk-11-jdk` |
+| 2.38          | 11              | 11           |`sudo apt-get install -y openjdk-11-jdk` |
+| 2.35          | 11              | 8            |`sudo apt-get install -y openjdk-11-jdk` |
+| pre 2.35      | 8               | 8            |` sudo apt-get install -y openjdk-8-jdk` |
+
+The recommended Java JDK for DHIS2 2.40 and above is OpenJDK 17, its required for 2.41. 
+```
+sudo apt-get install -y openjdk-17-jdk
+```
+The recommended Java JDK for DHIS2 2.35 - 2.40 is OpenJDK 11. Install it by invoking command below, 
+```
+sudo apt-get install -y openjdk-11-jdk
+```
+For dhis2 versions below 2.35, OpenJDK 8 is required. Install it by invoking command below, 
+```
+sudo apt-get install -y openjdk-8-jdk
+```
+Verify that your installation is correct by invoking:
+```
+java -version
+```
 
 ### DHIS2 configuration { #install_database_configuration } 
 
@@ -186,33 +213,6 @@ connection.username = dhis
 
 # Database password
 connection.password = xxxx
-```
-
-### Java installation { #install_java_installation } 
-
-| DHIS2 version | JDK recommended | JDK required |
-|:--------------|:---------------:|:-------------|
-| 2.41          | 17              | 17           |
-| 2.40          | 17              | 11           |
-| 2.38          | 11              | 11           |
-| 2.35          | 11              | 8            |
-| pre 2.35      | 8               | 8            |
-
-The recommended Java JDK for DHIS2 2.40 and above is OpenJDK 17, its required for 2.41. 
-```
-sudo apt-get install -y openjdk-17-jdk
-```
-The recommended Java JDK for DHIS2 2.35 - 2.40 is OpenJDK 11. You can install it with the following command:
-```
-sudo apt-get install -y openjdk-11-jdk
-```
-For dhis2 versions below  v2.35, OpenJDK 8 is required. Install it with this command:
-```
-sudo apt-get install -y openjdk-8-jdk
-```
-Verify that your installation is correct by invoking:
-```
-java -version
 ```
 
 ### Tomcat and DHIS2 installation { #install_tomcat_dhis2_installation } 
@@ -337,68 +337,15 @@ DHIS2 instance at the following URL:
 
     http://localhost:8080
 
-## File store configuration { #install_file_store_configuration } 
-
-DHIS2 is capable of capturing and storing files. By default, files will
-be stored on the local file system of the server which runs DHIS2 in a *files*
-directory under the `DHIS2_HOME` external directory location. 
-
-You can also configure DHIS2 to store files on cloud-based storage
-providers. AWS S3 is the only supported provider currently. To enable
-cloud-based storage you must define the following additional properties
-in your `dhis.conf` file:
-
-```properties
-# File store provider. Currently 'filesystem' and 'aws-s3' are supported.
-filestore.provider = 'aws-s3'
-
-# Directory in external directory on local file system and bucket on AWS S3
-filestore.container = files
-
-# The following configuration is applicable to cloud storage only (AWS S3)
-
-# Datacenter location. Optional but recommended for performance reasons.
-filestore.location = eu-west-1
-
-# Username / Access key on AWS S3
-filestore.identity = xxxx
-
-# Password / Secret key on AWS S3 (sensitive)
-filestore.secret = xxxx
-```
-
-This configuration is an example reflecting the defaults and should be
-changed to fit your needs. In other words, you can omit it entirely if
-you plan to use the default values. If you want to use an external
-provider the last block of properties needs to be defined, as well as the
-*provider* property is set to a supported provider (currently only
-AWS S3).
-
-> **Note**
-> 
-> If you’ve configured cloud storage in dhis.conf, all files you upload
-> or the files the system generates will use cloud storage.
-
-For a production system the initial setup of the file store should be
-carefully considered as moving files across storage providers while
-keeping the integrity of the database references could be complex. Keep
-in mind that the contents of the file store might contain both sensitive
-and integral information and protecting access to the folder as well as
-making sure a backup plan is in place is recommended on a production
-implementation.
-
-> **Note**
-> 
-> AWS S3 is the only supported provider but more providers are likely to 
-> be added in the future, such as Google Cloud Store and Azure Blob Storage.
-> Let us know if you have a use case for additional providers.
-
 ## Google service account configuration { #install_google_service_account_configuration } 
 
 DHIS2 can connect to various Google service APIs. For instance, the
-DHIS2 GIS component can utilize the Google Earth Engine API to load map
-layers. In order to provide API access tokens you must set up a Google
-service account and create a private key:
+DHIS2 Maps app can utilize the Google Earth Engine API to load Earth Engine map
+layers. There are 2 ways to obtain the Google API key.
+
+### Set it up yourself
+
+Set up a Google service account and create a private key:
 
   - Create a Google service account. Please consult the [Google identify
     platform](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#overview)
@@ -416,4 +363,15 @@ the `DHIS2_HOME` directory (the same location as the `dhis.conf` file).
 As an example this location could be:
 
     /home/dhis/config/dhis-google-auth.json
+
+### Send an email to set up the Google Earth Engine API key
+
+If you only intend to use the key for the Google Earth Engine map layers, you
+can simply send an email. See the [Google Earth Engine API key documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html).
+
+## Bing Maps API key { #install_bing_maps_api_key }
+
+To enable use of Bing Maps basemap layers, you need to set up the Bing Maps API
+key. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key)
+for information on setting up the key.
 

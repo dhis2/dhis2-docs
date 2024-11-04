@@ -20,12 +20,6 @@ as an exhaustive documentation for the mentioned environment. We refer
 to the official Ubuntu, PostgreSQL and Tomcat documentation for in-depth
 reading.
 
-The [dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools) automates
-many of the tasks described in the guide below and is recommended for most
-users, especially those who are not familiar with the command line or
-administration of servers. It is described in detail in a separate chapter in
-this guide.
-
 ---
 ## Server specifications { #install_server_specifications } 
 
@@ -36,7 +30,7 @@ These recommendations should be considered as rules-of-thumb and not
 exact measures. DHIS2 scales linearly on the amount of RAM and number of
 CPU cores so the more you can afford, the better the application will perform.
 
-- *RAM:* At least 2 GB for a small instance, 12 GB for a medium instance, 64 GB
+- *RAM:* At least 8 GB for a small instance, 16 GB for a medium instance, 64 GB
   or more for a large instance.
 - *CPU cores:* 4 CPU cores for a small instance, 8 CPU cores for a medium
   instance, 16 CPU cores or more for a large instance.
@@ -87,7 +81,7 @@ setup can be suitable for a developer or experimental setup.  For a production
 deployment there are many other factors to take into account regarding
 maintenance, monitoring, security, scalability and performance.
 
-## Install Methods { #install_install_methods }
+## Install approaches { #install_install_approaches }
 ---
 There are many ways to get DHIS2 up and running.  How you choose to install
 will depend on which skills and tools you are familiar with and whether the
@@ -97,7 +91,7 @@ Regardless of the implementation approach you adopt, you will want to
 familiarize yourself with the additional reference material we provide regarding
 database management, reverse proxy setup, system monitoring, upgrades etc.
 
-### [Automated Install on Linux](#getting_started_quick_start) { #install_automated_install_on_linux }
+#### [Automated Install](#getting_started_quick_start) { #install_automated_install_on_linux }
 These tools are ansible based
 [dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools) This tool set
 provides a set of ansible playbooks to automate the installation and management
@@ -105,7 +99,7 @@ of DHIS2 and supporting components. It is geared towards production
 environments with the aim of addressing the most critical security and
 monitoring considerations out-of-the-box..
 
-### [Manual Install on Linux](#installation_on_linux_server)
+#### [Manual Install](#installation_on_linux_server)
  This guide provides step-by-step instructions for setting up DHIS2 on Ubuntu
  22.04. For production environments, however, we highly recommend using an
  automated installation to ensure consistency and ease of management. Manual

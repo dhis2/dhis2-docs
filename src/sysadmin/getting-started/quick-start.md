@@ -12,16 +12,14 @@ single sever with dhis2-server tools.
 2. SSH Access with `non-root` user with `sudo` privileges
 
 ## Installing DHIS2 
-1. Use SSH to access your server and clone "https://github.com/dhis2/dhis2-server-tools" repository
-   
-   ```
-   git clone https://github.com/dhis2/dhis2-server-tools.git
-   ```
-
-2. Ensure your server has firewall running and ssh port allowed. 
+1. Ensure your server has firewall running and ssh port allowed. 
    ```
    sudo ufw limit {ssh_port}/tcp
    sudo ufw enable
+   ```
+2. Use SSH to access your server and clone "https://github.com/dhis2/dhis2-server-tools" repository
+   ```
+   git clone https://github.com/dhis2/dhis2-server-tools.git
    ```
 
 3. The install
@@ -32,18 +30,12 @@ single sever with dhis2-server tools.
    ```
 
 4. Access the DHIS2 web interface with https://{server_ip}/dhis and with username: `admin` and Password: `district` default credentials. 
-
-```
-https://{server_ip}/dhis
-```
+   ```
+   https://{server_ip}/dhis
+   ```
 
 ## Next steps 
 ### Set fully qualified domain name (fqdn)
-
-> **Important**
-> 
-> Before setting `fqdn`, its has to be mapped to your servers public ip address
-> for LetsEncrypt to work. Otherwise, you can use your own custom TLS Certificate.
 
 Edit your inventory hosts file and add `fqdn` variable, use an editor of your choice.   
 
@@ -56,6 +48,12 @@ Save the your changes and run the install again,
 ```
 sudo ./deploy.sh
 ```
+
+> **Important**
+> 
+> To use Let's Encrypt, ensure the domain is mapped to your server's public IP
+> address before setting `fqdn`. Alternatively, you can use a custom TLS
+> certificate.
 
 ### Adding an instance
 
@@ -93,9 +91,27 @@ file and setting `SSL_TYPE` parameter to `customssl` , see below,
 SSL_TYPE=customssl
 ```
 
-### PostgreSQL Optimization
---- 
+### [PostgreSQL Optimization](#install_postgresql_performance_tuning)
+The tools provide options to configure certain PostgreSQL variables for
+improved performance. These variables can be defined in your inventory file,
+in-line with your host line in `key=value` format.
+For more details, refer to [Ansible host variables documentation.](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#assigning-a-variable-to-one-machine-host-variables)
+Alternatively, if your host is named `postgres` in the hosts file, you can create
+a file named `postgres` in the `dhis2-server-tools/deploy/inventory/host_vars/`
+directory and define the variables, in `key: value` format . Templates are available
+in the directory to help you get started.
 
-### Setting tomcat heap Memory
----
+[PostgreSQL Optimization Variables](#dhis2_server_tools_postgresql_variables)
+
+### [DHIS2 Instance variables](#dhis2_server_tools_instance_variables)
+These are variables specific to the dhis2 instance, like PostgreSQL variables,
+you can either define them in inventory host or in the file you create in
+`dhis2-server-tools/deploy/inventory/host_vars/`, there is `dhis.template` that
+ships with the tools, create a file from the template with the i.e 
+```
+cp dhis2-server-tools/deploy/inventory/host_vars/dhis.template dhis2-server-tools/deploy/inventory/host_vars/dhis
+
+```
+
+[Instance Config variables](#dhis2_server_tools_instance_variables)
 
