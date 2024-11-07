@@ -50,7 +50,7 @@ Table: Tracked entity data value query parameters
 | de | Data element ID | One or more data element identifiers |
 | ou | Organisation unit ID | One or more organisation unit identifiers of the audited event |
 | events | Events ID | One or more event identifiers of the audited event (comma separated) |
-| ps | Program stage ID | One or more program sages of the audit event program |
+| ps | Program stage ID | One or more program stages of the audit event program |
 | startDate | Start date | Return only audit records created after date |
 | endDate | End date | Return only audit records created before date |
 | ouMode | Organisation unit selection mode | SELECTED \| DESCENDANTS |
