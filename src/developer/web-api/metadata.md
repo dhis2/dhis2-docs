@@ -1544,12 +1544,12 @@ The following constraints and error codes apply.
 
 Table: Constraints and error codes
 
-| Error code | Description                                               |
-|------------|-----------------------------------------------------------|
-| E1650      | At least one source category option must be specified     |
-| E1651      | Target category option must be specified                  |
-| E1652      | Target category option cannot be a source category option |
-| E1653      | Source/Target category option does not exist: `{uid}`     |
+| Error code | Description                                              |
+|------------|----------------------------------------------------------|
+| E1530      | At least one source CategoryOption must be specified     |
+| E1531      | Target CategoryOption must be specified                  |
+| E1532      | Target CategoryOption cannot be a source category option |
+| E1533      | Source/Target CategoryOption does not exist: `{uid}`     |
 
 
 #### Response
@@ -1564,11 +1564,11 @@ Sample success response looks like:
     "response": {
         "mergeReport": {
             "mergeErrors": [],
-            "mergeType": "CATEGORY_OPTION",
+            "mergeType": "CategoryOption",
             "sourcesDeleted": [
                 "FbLZS3ueWbQ", "dPSWsKeAZNw"
             ],
-            "message": "CATEGORY_OPTION merge complete"
+            "message": "CategoryOption merge complete"
         }
     }
 }
@@ -1587,22 +1587,22 @@ Sample error response looks like:
         "mergeReport": {
             "mergeErrors": [
                 {
-                    "message": "At least one source category options must be specified",
-                    "errorCode": "E1650",
+                    "message": "At least one source CategoryOption must be specified",
+                    "errorCode": "E1530",
                     "args": []
                 },
                 {
-                    "message": "Target category option does not exist: `abcdefg1221`",
-                    "errorCode": "E1653",
+                    "message": "Target CategoryOption does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
                     "args": [
                         "Target",
                         "abcdefg1221"
                     ]
                 }
             ],
-            "mergeType": "CATEGORY_OPTION",
+            "mergeType": "CategoryOption",
             "sourcesDeleted": [],
-            "message": "CATEGORY_OPTION merge has errors"
+            "message": "CategoryOption merge has errors"
         }
     }
 }
@@ -1715,13 +1715,13 @@ Table: Constraints and error codes
 
 | Error code | Description                                                                                                                                 |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| E1550      | At least one source data element must be specified                                                                                          |
-| E1551      | Target data element must be specified                                                                                                       |
-| E1552      | Target data element cannot be a source indicator                                                                                            |
-| E1553      | Source/Target data element does not exist: `{uid}`                                                                                          |
-| E1554      | All source ValueTypes must match target ValueType: `ValueType`. Other ValueTypes found: `ValueType`                                         |
-| E1555      | All source DataElementDomains must match target DataElementDomain: `DataElementDomain`. Other DataElementDomains found: `DataElementDomain` |
-| E1556      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED`                                                           |
+| E1530      | At least one source DataElement must be specified                                                                                           |
+| E1531      | Target DataElement must be specified                                                                                                        |
+| E1532      | Target DataElement cannot be a source indicator                                                                                             |
+| E1533      | Source/Target DataElement does not exist: `{uid}`                                                                                           |
+| E1550      | All source ValueTypes must match target ValueType: `ValueType`. Other ValueTypes found: `ValueType`                                         |
+| E1551      | All source DataElementDomains must match target DataElementDomain: `DataElementDomain`. Other DataElementDomains found: `DataElementDomain` |
+| E1534      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED`                                                           |
 
 #### Database constraints
 There are unique constraints in place that can prevent a successful merge. These constraints are set by DHIS2 in order to maintain a logical domain model.    
@@ -1749,11 +1749,11 @@ Sample success response looks like:
     "response": {
         "mergeReport": {
             "mergeErrors": [],
-            "mergeType": "DATA_ELEMENT",
+            "mergeType": "DataElement",
             "sourcesDeleted": [
                 "vQ0dGV9EDrw"
             ],
-            "message": "DATA_ELEMENT merge complete"
+            "message": "DataElement merge complete"
         }
     }
 }
@@ -1772,22 +1772,22 @@ Sample error response looks like:
         "mergeReport": {
             "mergeErrors": [
                 {
-                    "message": "At least one source data element must be specified",
-                    "errorCode": "E1550",
+                    "message": "At least one source DataElement must be specified",
+                    "errorCode": "E1530",
                     "args": []
                 },
                 {
-                    "message": "Target data element does not exist: `abcdefg1221`",
-                    "errorCode": "E1553",
+                    "message": "Target DataElement does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
                     "args": [
                         "Target",
                         "abcdefg1221"
                     ]
                 }
             ],
-            "mergeType": "DATA_ELEMENT",
+            "mergeType": "DataElement",
             "sourcesDeleted": [],
-            "message": "DATA_ELEMENT merge has errors"
+            "message": "DataElement merge has errors"
         }
     }
 }
@@ -1806,13 +1806,13 @@ Another sample validation error response:
             "mergeErrors": [
                 {
                     "message": "All source ValueTypes must match target ValueType: `TEXT`. Other ValueTypes found: `NUMBER`",
-                    "errorCode": "E1554",
+                    "errorCode": "E1550",
                     "args": []
                 }
             ],
-            "mergeType": "DATA_ELEMENT",
+            "mergeType": "DataElement",
             "sourcesDeleted": [],
-            "message": "DATA_ELEMENT merge has errors"
+            "message": "DataElement merge has errors"
         }
     }
 }
@@ -2056,10 +2056,10 @@ Table: Constraints and error codes
 
 | Error code | Description                                     |
 |------------|-------------------------------------------------|
-| E1540      | At least one source indicator must be specified |
-| E1541      | Target indicator must be specified              |
-| E1542      | Target indicator cannot be a source indicator   |
-| E1543      | Source/Target indicator does not exist: `{uid}` |
+| E1530      | At least one source indicator must be specified |
+| E1531      | Target indicator must be specified              |
+| E1532      | Target indicator cannot be a source indicator   |
+| E1533      | Source/Target indicator does not exist: `{uid}` |
 
 #### Response
 ##### Success
@@ -2073,11 +2073,11 @@ Sample success response looks like:
     "response": {
         "mergeReport": {
             "mergeErrors": [],
-            "mergeType": "INDICATOR",
+            "mergeType": "Indicator",
             "sourcesDeleted": [
                 "vQ0dGV9EDrw"
             ],
-            "message": "INDICATOR merge complete"
+            "message": "Indicator merge complete"
         }
     }
 }
@@ -2095,22 +2095,22 @@ Sample error response looks like:
         "mergeReport": {
             "mergeErrors": [
                 {
-                    "message": "At least one source indicator must be specified",
-                    "errorCode": "E1540",
+                    "message": "At least one source Indicator must be specified",
+                    "errorCode": "E1530",
                     "args": []
                 },
                 {
-                    "message": "Target indicator does not exist: `abcdefg1221`",
-                    "errorCode": "E1543",
+                    "message": "Target Indicator does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
                     "args": [
                         "Target",
                         "abcdefg1221"
                     ]
                 }
             ],
-            "mergeType": "INDICATOR",
+            "mergeType": "Indicator",
             "sourcesDeleted": [],
-            "message": "INDICATOR merge has errors"
+            "message": "Indicator merge has errors"
         }
     }
 }
@@ -2167,12 +2167,12 @@ The following constraints and error codes apply.
 
 Table: Constraints and error codes
 
-| Error code | Description                                             |
-|------------|---------------------------------------------------------|
-| E1530      | At least one source indicator type must be specified    |
-| E1531      | Target indicator type must be specified                 |
-| E1532      | Target indicator type cannot be a source indicator type |
-| E1533      | Source/Target indicator type does not exist: `{uid}`    |
+| Error code | Description                                            |
+|------------|--------------------------------------------------------|
+| E1530      | At least one source IndicatorType must be specified    |
+| E1531      | Target IndicatorType must be specified                 |
+| E1532      | Target IndicatorType cannot be a source indicator type |
+| E1533      | Source/Target IndicatorType does not exist: `{uid}`    |
 
 #### Response
 ##### Success
@@ -2186,11 +2186,11 @@ Sample success response looks like:
     "response": {
         "mergeReport": {
             "mergeErrors": [],
-            "mergeType": "INDICATOR_TYPE",
+            "mergeType": "IndicatorType",
             "sourcesDeleted": [
                 "vQ0dGV9EDrw"
             ],
-            "message": "INDICATOR_TYPE merge complete"
+            "message": "IndicatorType merge complete"
         }
     }
 }
@@ -2208,12 +2208,12 @@ Sample error response looks like:
         "mergeReport": {
             "mergeErrors": [
                 {
-                    "message": "At least one source indicator type must be specified",
+                    "message": "At least one source IndicatorType must be specified",
                     "errorCode": "E1530",
                     "args": []
                 },
                 {
-                    "message": "Target indicator type does not exist: `abcdefg1221`",
+                    "message": "Target IndicatorType does not exist: `abcdefg1221`",
                     "errorCode": "E1533",
                     "args": [
                         "Target",
@@ -2221,9 +2221,9 @@ Sample error response looks like:
                     ]
                 }
             ],
-            "mergeType": "INDICATOR_TYPE",
+            "mergeType": "IndicatorType",
             "sourcesDeleted": [],
-            "message": "INDICATOR_TYPE merge has errors"
+            "message": "IndicatorType merge has errors"
         }
     }
 }
