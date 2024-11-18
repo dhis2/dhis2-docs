@@ -1137,15 +1137,20 @@ data entry forms.
 23. If applicable, select **Render sections as tabs**.
 
     This option is only applicable for section forms. The option allows
-    you to render each section as a tab horizontally above the data set.
+    you to render each section as a tab above the data set. You can choose whether to render the tabs horizontally or vertically. 
     This is useful for long data sets as it allows appropriate sections
     to be selected quickly without going through the entire form.
 
-24. If applicable, select **Render vertically**.
+24. If applicable, select **Add custom title/subtitle**.
+
+    This option allows you to add a title and/or subtitle to the dataset. You can choose whether to display the title and subtitle in the center, at line start or at line end.
+    For security reasons, only basic styling and HTML link elements are allowed, specifically these tags: `a` for adding a link, `u` for underlining a text, and `b`, `strong` or `em` for styling text in bold format.
+
+25. If applicable, select **Render vertically**.
 
     This option is only applicable for section forms.
 
-25. Select data elements and assign them.
+26. Select data elements and assign them.
 
     You can override the category combination for each selected data set
     by clicking on the gear icon above the list of selected data
@@ -1153,9 +1158,9 @@ data entry forms.
     (disaggregation) within the current data set instead of the category
     combination associated directly with the data element itself.
 
-26. Select indicators and assign them.
+27. Select indicators and assign them.
 
-27. In the organisation unit tree, select the organisation units you
+28. In the organisation unit tree, select the organisation units you
     want to assign the data set to.
 
     > **Tip**
@@ -1166,7 +1171,7 @@ data entry forms.
     >   - Click **Organisation unit group** to select all organisation
     >     units that belong to a certain organisation unit group.
 
-28. Click **Save**.
+29. Click **Save**.
 
 You can now use the data set in the **Data Entry** app for the
 organisation units that you have assigned to and for periods according
