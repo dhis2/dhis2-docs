@@ -1137,7 +1137,7 @@ data entry forms.
 
 24. If applicable, select **Render vertically**.
 
-    This option is only applicable for section forms.
+    This option is only applicable for section forms that are multi-organisation unit forms.
 
 25. Select data elements and assign them.
 
