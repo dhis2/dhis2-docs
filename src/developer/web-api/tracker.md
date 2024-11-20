@@ -1237,7 +1237,7 @@ otherwise specified.
 | E1025 | Property enrolledAt is null. | EnrolledAt Date is mandatory for an Enrollment. Make sure it is not null. |
 | E1029 | Event OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Event payload uses a Program `{1}` which is not configured to be accessible by OrganisationUnit `{0}`. |
 | E1030 | Event: `{0}`, already exists. | This error is thrown when trying to add a new Event with an already existing uid. Make sure a new uid is used when adding a new Event. |
-| E1031 | Event OccurredAt date is missing. | OccuredAt property is either null or has an invalidate date format in the payload. |
+| E1031 | Event OccurredAt date is missing. | OccurredAt property is either null or has an invalidate date format in the payload. |
 | E1032 | Event: `{0}`, do not exist. | |
 | E1033 | Event: `{0}`, Enrollment value is NULL. | |
 | E1035 | Event: `{0}`, ProgramStage value is NULL. | |
@@ -1245,8 +1245,8 @@ otherwise specified.
 | E1041 | Enrollment OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Enrollment payload contains a Program `{1}` which is not configured to be accessible by the OrganisationUnit  `{0}`. |
 | E1043 | Event: `{0}`, completeness date has expired. Not possible to make changes to this event. | A user without 'F_EDIT_EXPIRED' authority cannot update an Event that has passed its expiry days as configured in its Program. |
 | E1045 | Program: `{0}`, expiry date has passed. It is not possible to make changes to this event. | |
-| E1046 | Event: `{0}`, needs to have at least one (event or schedule) date. | Either of occuredAt or scheduledAt property should be present in the Event payload. |
-| E1047 | Event: `{0}`, date belongs to an expired period. It is not possible to create such event. | Event occuredAt or scheduledAt has a value that is earlier than the PeriodType start date.  |
+| E1046 | Event: `{0}`, needs to have at least one (event or schedule) date. | Either of occurredAt or scheduledAt property should be present in the Event payload. |
+| E1047 | Event: `{0}`, date belongs to an expired period. It is not possible to create such event. | Event occurredAt or scheduledAt has a value that is earlier than the PeriodType start date.  |
 | E1048 | Object: `{0}`, uid: `{1}`, has an invalid uid format. | A valid uid has 11 characters. The first character has to be an alphabet (a-z or A-Z) and the remaining 10 characters can be alphanumeric (a-z or A-Z or 0-9). |
 | E1049 | Could not find OrganisationUnit: `{0}`, linked to Tracked Entity. | The system could not find an OrganisationUnit with uid `{0}`. |
 | E1050 | Event ScheduledAt date is missing. | ScheduledAt property in the Event payload is either missing or an invalid date format. |
