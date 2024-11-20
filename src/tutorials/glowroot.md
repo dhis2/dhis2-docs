@@ -76,7 +76,7 @@ The `Transactions` tabs gives various real time information on the different API
 
 ### Errors tab
 
-The `Errors` tab shows the exception stacktraces that has occured during execution of any part of the system. Usually information from other tabs is required to get the complete picture.
+The `Errors` tab shows the exception stacktraces that has occurred during execution of any part of the system. Usually information from other tabs is required to get the complete picture.
 
 ### JVM tab
 
