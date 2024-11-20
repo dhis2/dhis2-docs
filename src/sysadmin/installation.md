@@ -1911,7 +1911,7 @@ redis.password = xxxx
 redis.use.ssl = off
 
 # ----------------------------------------------------------------------
-# Analytics [Optional]
+# Analytics database [Optional]
 # ----------------------------------------------------------------------
 
 # Analytics database JDBC driver class
@@ -1926,8 +1926,22 @@ analytics.connection.username = analytics
 # Analytics database password
 analytics.connection.password = xxxx
 
-# Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
+# ----------------------------------------------------------------------
+# Analytics database [Optional]
+# ----------------------------------------------------------------------
+
+# Analytics unlogged tables. Can be 'on' (default), 'off'.
 analytics.table.unlogged = on
+
+# Dimensions to skip indexes for analytics tables
+# analytics.table.skip_index = EC40NXmsTVu,gtuVl6NbXQV,LFsZ8v5v7rq,\
+                yY2bQYqNt0o,eLwL77Z9E7R,WnouSiGrbgy,\
+                veGzholzPQm,qzsxBXFf5yb,SooXFOUnciJ
+
+# Period type columns to skip for analytics tables
+# analytics.table.skip_column = weeklywednesday,weeklythursday,weeklysaturday,\
+                weeklysunday,biweekly,quarterlynov,\
+                sixmonthlyapril,financialapril,financialjuly
 
 # ----------------------------------------------------------------------
 # System telemetry [Optional]

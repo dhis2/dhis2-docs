@@ -2,20 +2,21 @@
 
 ## Route { #webapi_route }
 
-The route API allows users to communicate with external http gateways/proxies. It's meant as a simple way
-to extend your apps to get and post from services that you use to extend your apps functionality.
+The route API allows users to communicate with external HTTP gateways and proxies. It is designed as a simple solution to extend your apps to get and post from services that you use to extend your apps functionality.'
 
-The endpoint can be found at `/api/routes` and the routes themselves can be run with `GET` or `POST` to `/api/routes/ID/run`
-given that the user has the rights to run it. Additional query parameters, and body (in the case of `POST`) will be passed
-along with the request.
+```
+/api/routes
+```
 
-To be able to externally react to the user which initiated the request from DHIS2
-every request has the header:
+The endpoint can be found at `/api/routes` and the routes can be run with `GET` or `POST` to `/api/routes/{id}/run`.
 
-    X-Forwarded-User: <username>
+To be able to externally react to the user which initiated the request from DHIS2 every request has the header:
 
-For the examples here we will be using the the [Echo API](https://learning.postman.com/docs/developer/echo-api/) from Postman
-which just returns what you send to it (including body in the case of `POST`).
+```properties
+X-Forwarded-User: <username>
+```
+
+For the examples here we will be using the the [Echo API](https://learning.postman.com/docs/developer/echo-api/) from Postman which just returns what you send to it (including body in the case of `POST`).
 
 ### GET Route without authentication
 
@@ -28,18 +29,18 @@ which just returns what you send to it (including body in the case of `POST`).
 }
 ```
 
-After you have sent this to `/api/routes` you now have your route available
-for you, and can run it either with its returned ID or you can also use code.
+After you have sent this to `/api/routes` you now have your route available for you, and can run it either with its returned ID or you can also use code.
 
-    GET /api/routes/ID/run
-    GET /api/routes/postman-get/run
+```
+GET /api/routes/{id}/run
+GET /api/routes/postman-get/run
+```
 
 ### GET Route with authentication
 
-We support 2 types of authentication out of the box, `http-basic` and `api-token` and in both cases they will simply add the required headers.
-In the case of `api-token` its meant to be used by our PAT (personal access token) so it might not be the right header for your purpose (the format is `ApiToken token`).
+Two types of authentication are supported: `http-basic` and `api-token`. In both cases they will simply add the required headers. In the case of `api-token` its meant to be used by our PAT (personal access token) so it might not be the right header for your purpose (the format is `ApiToken token`).
 
-We will use the same example as before, but this time with `http-basic` auth.
+We will use the same example as before, but this time with `http-basic` authentication.
 
 ```json
 {
@@ -97,12 +98,19 @@ Custom authorities allows users that don't have the metadata access to manage th
 }
 ```
 
-    POST /api/routes/ID/run
-      { "answer": 42 }
+```
+POST /api/routes/ID/run
+```
+
+```json      
+{
+  "answer": 42
+}
+```
 
 ### Wildcard Routes
 
-It is possible to create "wildcard routes" which support sub-path requests which are then passed through to the upstream service.  To do this, the route URL must end with `/**`.  Sub-paths can then be specified by appending them after `/run`.
+It is possible to create "wildcard routes" which support sub-path requests which are then passed through to the upstream service. To do this, the route URL must end with `/**`.  Sub-paths can then be specified by appending them after `/run`.
 
 ```json
 {
@@ -113,12 +121,11 @@ It is possible to create "wildcard routes" which support sub-path requests which
 }
 ```
 
-After you have sent this to `/api/routes` you now have your route available
-for you, and can run it with its returned ID or you can also use code.  Note that
-the sub-paths `/get` and `/post` are passed in the URL of the request below, which will trigger requests to `https://postman-echo.com/get` and `https://postman-echo.com/post` respectively.
+After you have sent this to `/api/routes` you now have your route available for you, and can run it with its returned ID or you can also use code. Note that the sub-paths `/get` and `/post` are passed in the URL of the request below, which will trigger requests to `https://postman-echo.com/get` and `https://postman-echo.com/post` respectively.
 
-    GET /api/routes/ID/run/get
-    GET /api/routes/postman-wildcard/run/get
-
-    POST /api/routes/ID/run/post
-    POST /api/routes/postman-wildcard/run/post
+```
+GET /api/routes/{id}/run/get
+GET /api/routes/postman-wildcard/run/get
+POST /api/routes/{id}/run/post
+POST /api/routes/postman-wildcard/run/post
+```
