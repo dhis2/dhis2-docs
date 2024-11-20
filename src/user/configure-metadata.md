@@ -15,9 +15,6 @@ need to collect and analyze data:
 
   - Organisation units
 
-  - Program metadata: tracked entity, tracked entity attribute and
-    relationship type
-
   - Validation rules
 
   - Attributes
