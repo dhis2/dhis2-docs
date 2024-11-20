@@ -35,6 +35,7 @@ Example: Get audits for data element `BOSZApCrBni`, org unit `DiszpKrYNg8` and c
     /api/33/audits/dataValue?de=BOSZApCrBni&ou=DiszpKrYNg8&co=TkDhg29x18A
 
 ### Tracked entity data value audits { #webapi_tracked_entity_data_value_audits }
+**deprecated for removal in version 43 use [tracked entity data value change log endpoint](https://github.com/dhis2/dhis2-docs/blob/master/src/developer/web-api/tracker.md#event-data-value-change-logs--webapi_event_data_value_change_logs-)**
 
 The endpoint for tracked entity data value audits is located at:
 
@@ -68,6 +69,8 @@ Example: Get audits for org unit `O6uvpzGd5pu` including descendant org units in
     /api/audits/trackedEntityDataValue?ou=O6uvpzGd5pu&ouMode=DESCENDANTS
 
 ### Tracked entity attribute value audits { #webapi_tracked_entity_attribute_value_audits }
+
+**deprecated for removal in version 43 use [tracked entity attribute change log endpoint](https://github.com/dhis2/dhis2-docs/blob/master/src/developer/web-api/tracker.md#tracked-entity-attribute-value-change-logs--webapi_tracker_attribute_change_logs-)**
 
 The endpoint for tracked entity attribute value audits is located at:
 

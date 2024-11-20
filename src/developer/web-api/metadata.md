@@ -1,4 +1,4 @@
-# Metadata
+# Metadata { #webapi_metadata }
 
 ## Identifier schemes { #webapi_identifier_schemes } 
 
@@ -486,7 +486,7 @@ Table: Field presets
 |---|---|
 | all | All fields of the object |
 | \* | Alias for all |
-| identifiable | Includes id, name, code, created and lastUpdated fields |
+| identifiable | Includes id, name, code, created, lastUpdated and lastUpdatedBy fields |
 | nameable | Includes id, name, shortName, code, description, created and lastUpdated fields |
 | persisted | Returns all persisted property on an object, does not take into consideration if the object is the owner of the relation. |
 | owner | Returns all persisted property on an object where the object is the owner of all properties, this payload can be used to update through the API. |
@@ -1481,6 +1481,353 @@ following payload to change the style:
   }
 }
 ```
+## Category Option
+
+### Merge category options { #category_option_merge }
+
+The category option merge endpoint allows you to merge a number of category options (sources) into a target category option.
+
+#### Authorisation
+
+The main authority required to perform a category option merge is `F_CATEGORY_OPTION_MERGE`.  
+Other authorities required relate to the general sharing and access of category options, `F_CATEGORY_OPTION_PUBLIC_ADD` and `F_CATEGORY_OPTION_DELETE`.
+
+#### Request
+
+Merge category options with a POST request:
+
+```
+POST /api/categoryOptions/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "FbLZS3ueWbQ",
+    "dPSWsKeAZNw"
+  ],
+  "target": "rEq3Hkd3XXH",
+  "deleteSources": true
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field             | Required | Value                                                                                                                                                                                   |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the category options to merge (the source category options)                                                                                                     |
+| target            | Yes      | Identifier of the category option to merge the sources into (the target category option)                                                                                                |
+| deleteSources     | No       | Whether to delete the source category options after the operation. Default is false.                                                                                                    |
+
+The merge operation will merge the source category options into the target category option. One or many source category options can be specified. Only one target should be specified.
+
+The merge operation will transfer all source category option metadata associations to the target category option.
+The following metadata get updated:
+
+
+| Metadata            | Property        | Action taken               |
+|---------------------|-----------------|----------------------------|
+| Category            | categoryOptions | remove sources, add target |
+| CategoryDimension   | items           | remove sources, add target |
+| CategoryOptionCombo | categoryOptions | remove sources, add target |
+| CategoryOptionGroup | members         | remove sources, add target |
+| OrganisationUnit    | categoryOptions | remove sources, add target |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                              |
+|------------|----------------------------------------------------------|
+| E1530      | At least one source CategoryOption must be specified     |
+| E1531      | Target CategoryOption must be specified                  |
+| E1532      | Target CategoryOption cannot be a source category option |
+| E1533      | Source/Target CategoryOption does not exist: `{uid}`     |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "CategoryOption",
+            "sourcesDeleted": [
+                "FbLZS3ueWbQ", "dPSWsKeAZNw"
+            ],
+            "message": "CategoryOption merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source CategoryOption must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target CategoryOption does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "CategoryOption",
+            "sourcesDeleted": [],
+            "message": "CategoryOption merge has errors"
+        }
+    }
+}
+```
+
+
+## Data Elements
+
+### Merge data elements { #data_element_merge }
+
+> **Caution**
+>
+> Merging DataElements should be carried out with the utmost care. Particular attention
+> should be given to the merging of data values that have data element references involved in the
+> merge. Knowing the potential side effects of a merge should be fully understood before performing
+> the merge. The merging of DataElements has far-reaching effects. The information below
+> will try to help show what's involved in a DataElement merge. A DataElement merge
+> touches all the major parts of the system (metadata, data, tracker, analytics and audit).
+> 
+> System performance may be impacted if the source DataElements are linked to large amounts of Data/Audit records particularly.
+
+The data element merge endpoint allows you to merge a number of data elements (sources) into a target data element.
+
+#### Authorisation
+
+The main authority required to perform a data element merge is `F_DATA_ELEMENT_MERGE`.  
+Other authorities required relate to the general sharing and access of data elements, `F_DATAELEMENT_PUBLIC_ADD` and `F_DATAELEMENT_DELETE`.
+
+#### Request
+
+Merge data elements with a POST request:
+
+```
+POST /api/dataElements/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "jNb63DIHuwU",
+    "WAjjFMDJKcx"
+  ],
+  "target": "V9rfpjwHbYg",
+  "deleteSources": true,
+  "dataMergeStrategy": "DISCARD"
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field             | Required | Value                                                                                                                                                                                   |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the data elements to merge (the source data elements)                                                                                                           |
+| target            | Yes      | Identifier of the data element to merge the sources into (the target data element)                                                                                                      |
+| deleteSources     | No       | Whether to delete the source data elements after the operation. Default is false. If true is chosen, then all source audit records will also be deleted.                                |
+| dataMergeStrategy | Yes      | How to handle merging of data values. Options are 'DISCARD' or 'LAST_UPDATED'. DISCARD will delete all source data values. LAST_UPDATED will use the data value which was last updated. |
+
+The merge operation will merge the source data elements into the target data element. One or many source data elements can be specified. Only one target should be specified.
+
+The merge operation will transfer all source data element metadata associations to the target data element.
+The following metadata get updated:
+
+
+| Metadata                          | Property                  | Action taken               |
+|-----------------------------------|---------------------------|----------------------------|
+| DataDimensionItem                 | dataElement               | set to target              |
+| EventVisualization                | dataElementValueDimension | set to target              |
+| ProgramStageDataElement           | dataElement               | set to target              |
+| ProgramNotificationTemplate       | recipientDataElement      | set to target              |
+| ProgramRuleVariable               | dataElement               | set to target              |
+| ProgramRuleAction                 | dataElement               | set to target              |
+| TrackedEntityDataElementDimension | dataElement               | set to target              |
+| MinMaxDataElement                 | dataElement               | set to target              |
+| SMSCode                           | dataElement               | set to target              |
+| SMSCode                           | dataElement               | set to target              |
+| Predictor                         | output                    | set to target              |
+| DataSetElement                    | dataElement               | set to target              |
+| DataElementOperand                | dataElement               | set to target              |
+| ProgramStageDataElement           | dataElements              | remove sources, add target |
+| Section                           | dataElements              | remove sources, add target |
+| DataElementGroup                  | members                   | remove sources, add target |
+| Event                             | eventDataValues           | remove sources, add target |
+| Indicator                         | numerator                 | replace source with target |
+| Indicator                         | denominator               | replace source with target |
+| Predictor                         | generator                 | replace source with target |
+| Predictor                         | sampleSkipTest            | replace source with target |
+| DataEntryForm                     | htmlCode                  | replace source with target |
+| ProgramIndicator                  | expression                | replace source with target |
+| ProgramIndicator                  | filter                    | replace source with target |
+| DataValue                         | dataElement               |                            |
+
+
+| Data                            | Property        | Action taken                                                                                                                                                                                             |
+|---------------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event                           | eventDataValues | action based on merge strategy (DISCARD / LAST_UPDATED). DISCARD will delete all source event data values. LAST_UPDATED will use the event data value which was last updated, when more than one exists. |
+| DataValue                       | dataElement     | action based on merge strategy (DISCARD / LAST_UPDATED). DISCARD will delete all source data values. LAST_UPDATED will use the data value which was last updated, when more than one exists.             |
+| TrackedEntityDataValueChangeLog |                 | deleted if sources are being deleted, otherwise no action.                                                                                                                                               |
+| DataValueAudit                  |                 | deleted if sources are being deleted, otherwise no action.                                                                                                                                               |
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                                                                                                                 |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| E1530      | At least one source DataElement must be specified                                                                                           |
+| E1531      | Target DataElement must be specified                                                                                                        |
+| E1532      | Target DataElement cannot be a source indicator                                                                                             |
+| E1533      | Source/Target DataElement does not exist: `{uid}`                                                                                           |
+| E1550      | All source ValueTypes must match target ValueType: `ValueType`. Other ValueTypes found: `ValueType`                                         |
+| E1551      | All source DataElementDomains must match target DataElementDomain: `DataElementDomain`. Other DataElementDomains found: `DataElementDomain` |
+| E1534      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED`                                                           |
+
+#### Database constraints
+There are unique constraints in place that can prevent a successful merge. These constraints are set by DHIS2 in order to maintain a logical domain model.    
+Below are a list of the known database unique key constraints at the time of writing. For example, you
+can only have 1 data set element with the same dataset and data element.
+
+Table: Database table unique key constraints
+
+| Table                   | Unique key constraint                     |
+|-------------------------|-------------------------------------------|
+| minmaxdataelement       | orgunit, dataelement, categoryoptioncombo |
+| programstagedataelement | programstage, dataelement                 |
+| datasetelement          | dataset, dataelement                      |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "DataElement",
+            "sourcesDeleted": [
+                "vQ0dGV9EDrw"
+            ],
+            "message": "DataElement merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source DataElement must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target DataElement does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "DataElement",
+            "sourcesDeleted": [],
+            "message": "DataElement merge has errors"
+        }
+    }
+}
+```
+
+Another sample validation error response:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "All source ValueTypes must match target ValueType: `TEXT`. Other ValueTypes found: `NUMBER`",
+                    "errorCode": "E1550",
+                    "args": []
+                }
+            ],
+            "mergeType": "DataElement",
+            "sourcesDeleted": [],
+            "message": "DataElement merge has errors"
+        }
+    }
+}
+```
+
+A database constraint sample error response:
+
+```json
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "ERROR: duplicate key value violates unique constraint \"minmaxdataelement_unique_key\"\n  Detail: Key (sourceid, dataelementid, categoryoptioncomboid)=(193236, 1148617, 167661) already exists."
+}
+```
 
 ## Indicators { #webapi_indicators } 
 
@@ -1709,10 +2056,10 @@ Table: Constraints and error codes
 
 | Error code | Description                                     |
 |------------|-------------------------------------------------|
-| E1540      | At least one source indicator must be specified |
-| E1541      | Target indicator must be specified              |
-| E1542      | Target indicator cannot be a source indicator   |
-| E1543      | Source/Target indicator does not exist: `{uid}` |
+| E1530      | At least one source indicator must be specified |
+| E1531      | Target indicator must be specified              |
+| E1532      | Target indicator cannot be a source indicator   |
+| E1533      | Source/Target indicator does not exist: `{uid}` |
 
 #### Response
 ##### Success
@@ -1726,11 +2073,11 @@ Sample success response looks like:
     "response": {
         "mergeReport": {
             "mergeErrors": [],
-            "mergeType": "INDICATOR",
+            "mergeType": "Indicator",
             "sourcesDeleted": [
                 "vQ0dGV9EDrw"
             ],
-            "message": "INDICATOR merge complete"
+            "message": "Indicator merge complete"
         }
     }
 }
@@ -1748,22 +2095,22 @@ Sample error response looks like:
         "mergeReport": {
             "mergeErrors": [
                 {
-                    "message": "At least one source indicator must be specified",
-                    "errorCode": "E1540",
+                    "message": "At least one source Indicator must be specified",
+                    "errorCode": "E1530",
                     "args": []
                 },
                 {
-                    "message": "Target indicator does not exist: `abcdefg1221`",
-                    "errorCode": "E1543",
+                    "message": "Target Indicator does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
                     "args": [
                         "Target",
                         "abcdefg1221"
                     ]
                 }
             ],
-            "mergeType": "INDICATOR",
+            "mergeType": "Indicator",
             "sourcesDeleted": [],
-            "message": "INDICATOR merge has errors"
+            "message": "Indicator merge has errors"
         }
     }
 }
@@ -1820,12 +2167,12 @@ The following constraints and error codes apply.
 
 Table: Constraints and error codes
 
-| Error code | Description                                             |
-|------------|---------------------------------------------------------|
-| E1530      | At least one source indicator type must be specified    |
-| E1531      | Target indicator type must be specified                 |
-| E1532      | Target indicator type cannot be a source indicator type |
-| E1533      | Source/Target indicator type does not exist: `{uid}`    |
+| Error code | Description                                            |
+|------------|--------------------------------------------------------|
+| E1530      | At least one source IndicatorType must be specified    |
+| E1531      | Target IndicatorType must be specified                 |
+| E1532      | Target IndicatorType cannot be a source indicator type |
+| E1533      | Source/Target IndicatorType does not exist: `{uid}`    |
 
 #### Response
 ##### Success
@@ -1839,11 +2186,11 @@ Sample success response looks like:
     "response": {
         "mergeReport": {
             "mergeErrors": [],
-            "mergeType": "INDICATOR_TYPE",
+            "mergeType": "IndicatorType",
             "sourcesDeleted": [
                 "vQ0dGV9EDrw"
             ],
-            "message": "INDICATOR_TYPE merge complete"
+            "message": "IndicatorType merge complete"
         }
     }
 }
@@ -1861,12 +2208,12 @@ Sample error response looks like:
         "mergeReport": {
             "mergeErrors": [
                 {
-                    "message": "At least one source indicator type must be specified",
+                    "message": "At least one source IndicatorType must be specified",
                     "errorCode": "E1530",
                     "args": []
                 },
                 {
-                    "message": "Target indicator type does not exist: `abcdefg1221`",
+                    "message": "Target IndicatorType does not exist: `abcdefg1221`",
                     "errorCode": "E1533",
                     "args": [
                         "Target",
@@ -1874,9 +2221,9 @@ Sample error response looks like:
                     ]
                 }
             ],
-            "mergeType": "INDICATOR_TYPE",
+            "mergeType": "IndicatorType",
             "sourcesDeleted": [],
-            "message": "INDICATOR_TYPE merge has errors"
+            "message": "IndicatorType merge has errors"
         }
     }
 }
