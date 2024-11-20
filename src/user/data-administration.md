@@ -266,7 +266,7 @@ all data integrity issues are resolved. The resource tables are also
 generated automatically, every time the analytics process is run by the
 system.
 
-  - Organisation unit structure (\_orgunitstructure)
+  - Organisation unit structure (analytics_rs_orgunitstructure)
 
     This table should be regenerated any time there have been any
     changes made to the organisational unit hierarchy. This table
@@ -275,14 +275,14 @@ system.
     unit level and the organisation unit identifiers for all parents in
     the lineage as values.
 
-  - Data element group set structure (\_dataelementgroupsetstructure)
+  - Data element group set structure (analytics_rs_dataelementgroupsetstructure)
 
     This table provides information about which data elements are
     members of which data element group sets. The table has one row for
     each data element, one column for each data element group set and
     the names of the data element group as values.
 
-  - Indicator group set structure (\_indicatorgroupsetstructure)
+  - Indicator group set structure (analytics_rs_indicatorgroupsetstructure)
 
     This table provides information about which indicators are members
     of which indicator group sets. The table has one row for each
@@ -290,27 +290,27 @@ system.
     the indicator group as values.
 
   - Organisation unit group set structure
-    (\_organisationunitgroupsetstructure)
+    (analytics_rs_organisationunitgroupsetstructure)
 
     This table provides information about which organisation units are
     members of which organisation unit group sets. The table has one row
     for each organisation unit, one column for each organisation unit
     group set and the names of the organisation unit groups as values.
 
-  - Category structure (\_categorystructure)
+  - Category structure (analytics_rs_categorystructure)
 
     This table provides information about which data elements are
     members of which categories. The table has one row for each data
     element, one column for each category and the names of the category
     options as values.
 
-  - Data element category option combo name (\_categoryoptioncomboname)
+  - Data element category option combo name (analytics_rs_categoryoptioncomboname)
 
     This table should be regenerated any time there have been changes
     made to the category combination names. It contains readable names
     for the various combinations of categories.
 
-  - Data element structure (\_dataelementstructure)
+  - Data element structure (analytics_rs_dataelementstructure)
 
     This table provides information about all data elements and which
     period type (frequency) they capture data at. The period type is
@@ -318,18 +318,31 @@ system.
     elements to be member of data sets with similar period types to have
     a defined behaviour.
 
-  - Period structure (\_dataperiodstructure)
+  - Date periods structure (analytics_rs_dateperiodstructure)
 
     This table provides information about all periods and which period
     type they are associated with. For each period type with lower
     frequency than itself, it contains information about which period it
     will fall within.
 
+  - Periods structure (analytics_rs_periodstructure)
+
+    Similar to `analytics_rs_dateperiodstructure`, containing a scoped set of
+    periods more adapted for aggregated analytics.
+    It's based on `period` and `periodtype` tables.
+
   - Data element category option combinations
-    (\_dataelementcategoryoptioncombo)
+    (analytics_rs_dataelementcategoryoptioncombo)
 
     This table provides a mapping between data elements and all possible
     category option combinations.
+
+  - Data set organisation unit category (analytics_rs_datasetorganisationunitcategory)
+
+    This table provides information related to data sets, organisation units
+    and its category option combinations associated. If no association is found,
+    it uses the default category option combo.
+  
 
 ## Analytics tables management { #data_admin_analytics_tables }
 
