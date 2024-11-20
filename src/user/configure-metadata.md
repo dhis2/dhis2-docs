@@ -34,6 +34,12 @@ need to collect and analyze data:
 
   - External map layers
 
+  - SQL views
+
+  - Locales
+
+  - Analytics table hooks
+
 > **Note**
 >
 > The functions you have access to depend on your user role's access
@@ -366,7 +372,7 @@ the category option combinations automatically.
 
 5.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_categories } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -772,7 +778,7 @@ group sets.
 
 5.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_data_elements } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -2118,7 +2124,7 @@ analysis of data to combine similar themes of indicators.
 
 5.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_indicators } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -2686,7 +2692,7 @@ Capture** apps.
 
 4.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_orgunit } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3080,7 +3086,7 @@ Table: Validation Rule functions
 
 9.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_validation } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3256,7 +3262,7 @@ Table: Attribute objects in the Maintenance app
     The dynamic attribute is now available for the objects you assigned
     it to.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_attributes } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3373,7 +3379,7 @@ Table: Constant objects in the Maintenance app
 
     The constant is now available for use.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_constants } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3609,7 +3615,7 @@ The main purpose of the option group set is to add more dimensionality to your c
 
 5. Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_option_sets } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3802,7 +3808,7 @@ maps in the **Maps** app.
 | High good | 80 | 100 |
 | Too high | 100 | 1000 |
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_legends } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4540,7 +4546,7 @@ Since there is no aggregation function such as <code>sum()</code> around the exp
 
 7.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_groups } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4734,7 +4740,7 @@ Table: Push reports objects in the Maintenance app
 
     The push report job runs immediately.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_push_reports } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4911,7 +4917,7 @@ Table: External map layer objects in the Maintenance app
 
 10. Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_map_layers } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4984,7 +4990,7 @@ cultural region.
 
 5.  Click **Save**.
 
-## Manage SQL Views { #maintenance_sql_view } 
+## Manage SQL views { #maintenance_sql_view } 
 
 The SQL View functionality of DHIS2 will store the SQL view definition
 internally, and then materialize the view when requested.
@@ -5085,6 +5091,20 @@ View".
 > on view B, it must appear before view B in alphabetical order. If it
 > appears after view B in alphabetical order, analytics may fail, as the
 > view with dependencies will not be dropped in the correct order.
+
+## Manage analytics table hooks { #maintenance_analytics_table_hooks } 
+
+The Analytics Table Hooks functionality of DHIS2 stores SQL code that
+is run during different phases of the analytics table generation process.
+
+See also [<code>/api/analyticsTableHooks</code> in the Developer documentation](../../../develop/using-the-api/dhis-core-version-master/analytics.html#webapi_analytics_table_hooks).
+
+### Creating a new analytics table hook
+
+To create a new analytics table hook, click **Apps** \> **Maintenance**
+\> **Other** \> **Analytics table hooks** and click the Add **+** button.
+
+Press "Save" to store the analytics table hook.
 
 ## Manage Locales { #maintenance_locale_management } 
 
