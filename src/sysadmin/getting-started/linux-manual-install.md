@@ -1,4 +1,4 @@
-# Manual Install on Ubuntu Server { #getting_started_linux_automated_install } 
+# Manual Install on Ubuntu Server { #getting_started_linux_manual_install } 
 ## Introduction { #install_server_setup } 
 This guide explains how to manually install DHIS2 on Ubuntu 22.04
 with PostgreSQL and Tomcat as the server. It also suggests
@@ -133,13 +133,13 @@ Install PostgreSQL with below steps
 <!-- *exit*. -->
 ## Java installation { #install_java_installation } 
 ---
-| DHIS2 version | JDK recommended | JDK required | Installation
-|:--------------|:---------------:|:------------:|:----------------------------------------| 
-| 2.41          | 17              | 17           |`sudo apt-get install -y openjdk-17-jdk` |
-| 2.40          | 17              | 11           |`sudo apt-get install -y openjdk-11-jdk` |
-| 2.38          | 11              | 11           |`sudo apt-get install -y openjdk-11-jdk` |
-| 2.35          | 11              | 8            |`sudo apt-get install -y openjdk-11-jdk` |
-| pre 2.35      | 8               | 8            |` sudo apt-get install -y openjdk-8-jdk` |
+| DHIS2 version | JDK recommended | JDK required | Tomcat Required | 
+|:--------------|:---------------:|:------------:|:---------------:|  
+| 2.41          | 17              | 17           | 8.5.50
+| 2.40          | 17              | 11           | 8.5.50
+| 2.38          | 11              | 11           | 8.5.50
+| 2.35          | 11              | 8            |
+| pre 2.35      | 8               | 8            |
 
 The recommended Java JDK for DHIS2 2.40 and above is OpenJDK 17, its required for 2.41. 
 ```

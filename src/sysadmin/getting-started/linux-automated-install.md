@@ -15,19 +15,15 @@ DHIS2 stands as a freely accessible, open-source, and adaptable software platfor
    sudo ufw enable
    ```
 2. Connect to your server via SSH and clone the repository from "https://github.com/dhis2/dhis2-server-tools".
-
    ```
    git clone https://github.com/dhis2/dhis2-server-tools.git
    ```
-
 3. Run the installation
-
    ```
    cd dhis2-server-tools/deploy
    cp inventory/hosts.template inventory/hosts
    sudo ./deploy.sh
    ```
-
 4. Open the DHIS2 web interface at `https://{server_ip}/dhis,` replacing `{server_ip}` with your actual IP address. Use the default credentials: `admin` for the username and `district` for the password.
    ```
    https://{server_ip}/dhis

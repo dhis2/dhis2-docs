@@ -70,7 +70,7 @@ There are many ways to get DHIS2 up and running. How you choose to install will 
 
 These tools are ansible based [dhis2-server-tools](https://github.com/dhis2/dhis2-server-tools). This tool set provides a set of ansible playbooks to automate the installation and management of DHIS2 and supporting components. It is geared towards production environments with the aim of addressing the most critical security and monitoring considerations out-of-the-box.
 
-#### [Manual Install](#installation_on_linux_server)
+#### [Manual Install](#getting_started_linux_manual_install)
 
 This guide provides step-by-step instructions for setting up DHIS2 on Ubuntu 22.04. For production environments, however, we highly recommend using an automated installation to ensure consistency and ease of management. Manual setup is ideal for learning and understanding how different DHIS2 components are setup and how they interconnect.
 
