@@ -38,7 +38,7 @@ Table: Analytics tables optional query parameters
 > **Note**
 >
 > lastYears=0 means latest or continuous analytics, as defined in
-[Continuous analytics table](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/maintaining-the-system/scheduling.html#scheduling_continuous_analytics_table).
+[Continuous analytics table](#scheduling_continuous_analytics_table).
 
 
 "Data Quality" and "Data Surveillance" can be run through the monitoring

@@ -1352,7 +1352,7 @@ Enables or disables execution of server-side program rules. This refers to progr
 system.remote_servers_allowed = https://server1.org/,https://server2.org/
 ```
 
-Sets the allowed list of servers to be called in relation to the [metadata pull](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/synchronization.html#webapi_sync_metadata_pull) functionality. It accepts comma-separated values, and it's recommended that each server end with a `/` for enhanced security. Default value is empty.
+Sets the allowed list of servers to be called in relation to the [metadata pull](#webapi_sync_metadata_pull) functionality. It accepts comma-separated values, and it's recommended that each server end with a `/` for enhanced security. Default value is empty.
 
 
 ## Reverse proxy configuration { #install_reverse_proxy_configuration } 

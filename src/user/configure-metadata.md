@@ -5097,7 +5097,7 @@ View".
 The Analytics Table Hooks functionality of DHIS2 stores SQL code that
 is run during different phases of the analytics table generation process.
 
-See also [<code>/api/analyticsTableHooks</code> in the Developer documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/analytics.html#webapi_analytics_table_hooks).
+See also [<code>/api/analyticsTableHooks</code> in the Developer documentation](#webapi_analytics_table_hooks).
 
 ### Creating a new analytics table hook
 

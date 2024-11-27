@@ -541,7 +541,7 @@ GET /api/users/{id}/dataApprovalWorkflows
 
 ### Switching between user accounts connected to the same identity provider account
 
-If [linked accounts are enabled in dhis.conf](https://docs.dhis2.org/en/manage/performing-system-administration/dhis-core-version-master/installation.html#connecting-a-single-identity-provider-account-to-multiple-dhis2-accounts) and a user has logged in via OIDC, then it is possible for the user to switch between DHIS2 accounts that are linked to the same identity provider account using this API call:
+If [linked accounts are enabled in dhis.conf](#connecting-a-single-identity-provider-account-to-multiple-dhis2-accounts) and a user has logged in via OIDC, then it is possible for the user to switch between DHIS2 accounts that are linked to the same identity provider account using this API call:
 
 ```
 GET /dhis-web-commons-security/logout.action?current={current_username}&switch={username_to_switch_to}
