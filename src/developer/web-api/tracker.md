@@ -106,7 +106,7 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 >
 > The "attributes" referred to in the `Enrollment` are `Tracked Entity Program Attributes`.
 
-### Events
+### Events { #webapi_tracker_objects_events }
 
 `Events` are either part of an `EVENT PROGRAM` or `TRACKER PROGRAM`. For `TRACKER PROGRAM`, events
 belong to an `Enrollment`, which again belongs to a `Tracked Entity`. On the other hand, `EVENT
@@ -208,14 +208,14 @@ entity ultimately owns the attribute value.
 > remove an attribute from a tracked entity or enrollment, set the `value` to `null` [see
 > example](#delete-attribute-values).
 >
-> In the context of the tracker, we refer to `Tracked Entity Attributes` and `Tracked Entity
-> Attribute Values` simply as attributes. However, it's important to note that attributes and
-> attribute values are also concepts within metadata. Therefore, distinguishing between tracker
-> attributes and metadata attributes is essential. In the tracker API, you can reference metadata
-> attributes by specifying the `idScheme` (see [request
-> parameters](#webapi_tracker_import_request_parameters) for more information).
+> In the context of tracker, we refer to `Tracked Entity Attributes` and `Tracked Entity Attribute
+> Values` simply as attributes. However, it's important to note that attributes and attribute values
+> are also concepts within metadata. Therefore, distinguishing between tracker attributes and
+> metadata attributes is essential. In the tracker API, you can reference metadata attributes by
+> specifying the `idScheme` on import (see [request
+> parameters](#webapi_tracker_import_request_parameters)) and event export.
 
-### Data Values
+### Data Values { #webapi_tracker_data_values }
 
 While attributes describe a tracked entity, data values describe an event.
 
@@ -332,13 +332,13 @@ The tracker importer supports the following parameters:
 | async | Indicates whether the import should happen asynchronously or synchronously. | Boolean | `TRUE`, `FALSE` |
 | reportMode | Only when performing synchronous import. See importSummary for more info. | Enum | `FULL`, `ERRORS`, `WARNINGS` |
 | importMode | Can either be `VALIDATE` which will report errors in the payload without making changes to the database or `COMMIT` (default) which will validate the payload and make changes to the database. | Enum | `VALIDATE`, `COMMIT` |
-| idScheme | Indicates the overall idScheme to use for metadata references when importing. Default is UID. Can be overridden for specific metadata (Listed below) | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
-| dataElementIdScheme | Indicates the idScheme to use for data elements when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
-| orgUnitIdScheme | Indicates the idScheme to use for organisation units when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
-| programIdScheme | Indicates the idScheme to use for programs when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
-| programStageIdScheme | Indicates the idScheme to use for program stages when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
-| categoryOptionComboIdScheme | Indicates the idScheme to use for category option combos when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
-| categoryOptionIdScheme | Indicates the idScheme to use for category options when importing. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
+| idScheme | IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
+| dataElementIdScheme | IdScheme used for data element references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
+| orgUnitIdScheme  | IdScheme used for organisation unit references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
+| programIdScheme  | IdScheme used for program references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
+| programStageIdScheme  | IdScheme used for program stage references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
+| categoryOptionComboIdScheme  | IdScheme used for category option combo references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
+| categoryOptionIdScheme  | IdScheme used for category option references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
 | importStrategy | Indicates the effect the import should have. Can either be `CREATE`, `UPDATE`, `CREATE_AND_UPDATE` and `DELETE`, which respectively only allows importing new data, importing changes to existing data, importing any new or updates to existing data, and finally deleting data. | Enum | `CREATE`, `UPDATE`, `CREATE_AND_UPDATE`, `DELETE` |
 | atomicMode | Indicates how the import responds to validation errors. If `ALL`, all data imported must be valid for any data to be committed. For `OBJECT`, only the data committed needs to be valid, while other data can be invalid. | Enum | `ALL`, `OBJECT` |
 | flushMode | Indicates the frequency of flushing. This is related to how often data is pushed into the database during the import. Primarily used for debugging reasons, and should not be changed in a production setting | Enum | `AUTO`, `OBJECT` |
@@ -346,11 +346,6 @@ The tracker importer supports the following parameters:
 | skipPatternValidation | If true, it will skip validating the pattern of generated attributes. | Boolean | `TRUE`, `FALSE` |
 | skipSideEffects | If true, it will skip running any side effects for the import | Boolean | `TRUE`, `FALSE` |
 | skipRuleEngine | If true, it will skip running any program rules for the import | Boolean | `TRUE`, `FALSE` |
-
-**NOTE**: idScheme and its metadata specific idScheme parameters like orgUnitIdScheme,
-programIdScheme, ... used to allow and use the default `AUTO`. `AUTO` has been removed. The default
-idScheme has already been `UID`. Any requests sent with idScheme `AUTO` will see the same behavior
-as before, namely matching done using `UID`.
 
 #### SYNC and ASYNC
 
@@ -1213,7 +1208,7 @@ otherwise specified.
 | Error Code | Error Message | Description |
 |:--|:----|:----|
 | E1000 | User: `{0}`, has no write access to OrganisationUnit: `{1}`. | This typically means that the OrganisationUnit `{1}` is not in the capture scope of the user `{0}` for the write operation to be authorized. |
-| E1001 | User: `{0}`, has no data write access to TrackedEntityType: `{1}`. | The error occurs when the user is not authorized to create or modify data of the TrackedEntityType `{1}`  
+| E1001 | User: `{0}`, has no data write access to TrackedEntityType: `{1}`. | The error occurs when the user is not authorized to create or modify data of the TrackedEntityType `{1}`
 | E1002 | TrackedEntity: `{0}`, already exists. | This error is thrown when trying to create a new TrackedEntity with an already existing uid. Make sure a new uid is used when adding a new TrackedEntity. |
 | E1003 | OrganisationUnit: `{0}` of TrackedEntity is outside search scope of User: `{1}`. | |
 | E1005 | Could not find TrackedEntityType: `{0}`. | Error thrown when trying to fetch a non existing TrackedEntityType with uid `{0}` . This might also mean that the user does not have read access to the TrackedEntityType. |
@@ -1665,7 +1660,7 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 >     *  JSON and CSV for Events
 > * You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV
 > or ***application/json+gzip*** for JSON.
-> * You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or  
+> * You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or
 > ***application/json+zip*** for JSON.
 
 ### Common request parameters
@@ -2357,10 +2352,10 @@ contain the following fields:
 
   - event (UID)
   - status (String)
-  - program (UID)
-  - programStage (UID)
+  - program (identifier in requested idScheme)
+  - programStage (identifier in requested idScheme)
   - enrollment (UID)
-  - orgUnit (UID)
+  - orgUnit (identifier in requested idScheme)
   - occurredAt (DateTime)
   - scheduledAt (DateTime)
   - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry.
@@ -2376,10 +2371,10 @@ contain the following fields:
   - completedBy (String)
   - completedAt (DateTime)
   - updatedBy (UserName of user)
-  - attributeOptionCombo (UID)
-  - attributeCategoryOptions (UID)
+  - attributeOptionCombo (identifier in requested idScheme)
+  - attributeCategoryOptions (identifier in requested idScheme)
   - assignedUser (UserName of user)
-  - dataElement (UID)
+  - dataElement (identifier in requested idScheme)
   - value (String)
   - storedBy (String)
   - providedElsewhere (boolean)
@@ -2387,7 +2382,8 @@ contain the following fields:
   - createAtDataValue (DateTime)
   - updatedAtDataValue (DateTime)
 
-See [Events](#events) and [Data Values](#data-values) for more field descriptions.
+See [Events](#webapi_tracker_objects_events) and [Data Values](#webapi_tracker_data_values) for more
+field descriptions.
 
 #### Events GZIP
 
@@ -2428,12 +2424,13 @@ Returns a list of events based on the provided filters.
 |`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
 |`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for occurred in the given program|
 |`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for occurred in the given program|
-|`dataElementIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Data element ID scheme to use for export.|
-|`categoryOptionComboIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Category Option Combo ID scheme to use for export|
-|`orgUnitIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Organisation Unit ID scheme to use for export|
-|`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
-|`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
-|`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
+|`idScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`.|
+|`dataElementIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for data element references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|`orgUnitIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|`programIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|`programStageIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program stage references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|`categoryOptionComboIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option combo references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|`categoryOptionIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
 |`order`|`String`|Comma-separated list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, followup (deprecated), occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|
 |`events`|`String`|Comma-separated list of event `UID`s.|Filter the result down to a limited set of IDs by using `event=id1,id2`.|
 |`event` **deprecated for removal in version 42 use `events`**|`String`|Semicolon-separated list of `uid`| Filter the result down to a limited set of IDs by using `event=id1;id2`.|
@@ -3274,7 +3271,7 @@ Table: DateFilterPeriod object definition
 |endBuffer|Relative custom end date. Applicable only when `type` is RELATIVE|`"startDate":+10`|
 
 
-## Potential Duplicates  
+## Potential Duplicates
 
 Potential duplicates are records identified by the data deduplication feature as possibly being
 duplicates. Due to the nature of this feature, the API endpoint has certain restrictions. A
@@ -3429,8 +3426,8 @@ mentioned in the previous section.
 
 ### Program Messages
 
-The program message feature enables you to send messages to tracked entity instances, 
-contact addresses associated with organizational units, phone numbers, and email addresses. 
+The program message feature enables you to send messages to tracked entity instances,
+contact addresses associated with organizational units, phone numbers, and email addresses.
 Messages can be sent using the messages resource.
 
     /api/messages
@@ -3566,7 +3563,7 @@ Message can be deleted using DELETE.
 
 ## Querying program messages
 
-The program message API supports querying messages using specific request parameters. 
+The program message API supports querying messages using specific request parameters.
 You can filter messages based on the parameters listed below. All requests should use the GET HTTP verb to retrieve information.
 
 
