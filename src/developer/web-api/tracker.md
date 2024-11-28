@@ -364,7 +364,7 @@ Table: Program Stage Query Criteria
 See an example payload below:
 
 ```json
-{   
+{
     "name":"Test WL",
     "program":{"id":"uy2gU8kT1jF"},
     "programStage":{"id":"oRySG82BKE6"},
@@ -639,13 +639,13 @@ section](#webapi_nti_import_summary).
 
 ### CSV import
 
-To import events using CSV make a `POST` request with CSV body file and the `Content-Type` set to 
+To import events using CSV make a `POST` request with CSV body file and the `Content-Type` set to
 ***application/csv*** or ***text/csv***.
 
 #### Events
 
-Every row of the CSV payload represents an event and a data value. So, for events with multiple 
-data values, the CSV file will have `x` rows per event, where `x` is the number of data values 
+Every row of the CSV payload represents an event and a data value. So, for events with multiple
+data values, the CSV file will have `x` rows per event, where `x` is the number of data values
 in that event.
 
 ##### ***CSV PAYLOAD*** example
@@ -1115,7 +1115,7 @@ otherwise specified.
 | Error Code | Error Message | Description |
 |:--|:----|:----|
 | E1000 | User: `{0}`, has no write access to OrganisationUnit: `{1}`. | This typically means that the OrganisationUnit `{1}` is not in the capture scope of the user `{0}` for the write operation to be authorized. |
-| E1001 | User: `{0}`, has no data write access to TrackedEntityType: `{1}`. | The error occurs when the user is not authorized to create or modify data of the TrackedEntityType `{1}`  
+| E1001 | User: `{0}`, has no data write access to TrackedEntityType: `{1}`. | The error occurs when the user is not authorized to create or modify data of the TrackedEntityType `{1}`
 | E1002 | TrackedEntity: `{0}`, already exists. | This error is thrown when trying to create a new TrackedEntity with an already existing uid. Make sure a new uid is used when adding a new TrackedEntity. |
 | E1003 | OrganisationUnit: `{0}` of TrackedEntity is outside search scope of User: `{1}`. | |
 | E1005 | Could not find TrackedEntityType: `{0}`. | Error thrown when trying to fetch a non existing TrackedEntityType with uid `{0}` . This might also mean that the user does not have read access to the TrackedEntityType. |
@@ -1447,16 +1447,16 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 
 > **NOTE**
 >
-> * All tracker export endpoints default to a `JSON` response content. `CSV` is only supported 
+> * All tracker export endpoints default to a `JSON` response content. `CSV` is only supported
 >   by tracked entities and events.
-> * You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv*** 
->   to the request. 
+> * You can export a CSV file by adding the `Accept` header ***text/csv*** or ***application/csv***
+>   to the request.
 > * You can download in zip and gzip formats:
->     *  CSV for Tracked entities 
+>     *  CSV for Tracked entities
 >     *  JSON and CSV for Events
-> * You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV 
+> * You can export a Gzip file by adding the `Accept` header ***application/csv+gzip*** for CSV
 > or ***application/json+gzip*** for JSON.
-> * You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or  
+> * You can export a Zip file by adding the `Accept` header ***application/csv+zip*** for CSV or
 > ***application/json+zip*** for JSON.
 
 ### Common request parameters
@@ -1516,13 +1516,13 @@ Two endpoints are dedicated to tracked entities:
 - `GET /api/tracker/trackedEntities/{id}`
   - retrieves a tracked entity given the provided id
 
-If not otherwise specified, JSON is the default response for the `GET` method. 
-The API also supports CSV export for single and collection endpoints. Furthermore, compressed 
+If not otherwise specified, JSON is the default response for the `GET` method.
+The API also supports CSV export for single and collection endpoints. Furthermore, compressed
 CSV types is an option for the collection endpoint.
 
 #### CSV
 
-In the case of CSV, the `fields` request parameter has no effect, and the response will always 
+In the case of CSV, the `fields` request parameter has no effect, and the response will always
 contain the following fields:
 
   - trackedEntity (UID)
@@ -1535,7 +1535,7 @@ contain the following fields:
   - inactive (boolean)
   - deleted (boolean)
   - potentialDuplicate (boolean)
-  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. 
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry.
     You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
@@ -1670,7 +1670,7 @@ You can use a range of operators for the filtering:
 
 ##### Tracked Entities response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`. 
+The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`.
 
 ##### JSON
 
@@ -1771,7 +1771,7 @@ A query for a tracked entity:
 
 ##### Tracked Entity response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities/{uid}` 
+The API supports CSV and JSON response for `GET /api/tracker/trackedEntities/{uid}`
 
 ###### JSON
 
@@ -1917,7 +1917,7 @@ An example of a json response:
 
 ###### CSV
 
-The response will be the same as the collection endpoint but referring to a single tracked 
+The response will be the same as the collection endpoint but referring to a single tracked
 entity, although it might have multiple rows for each attribute.
 
 #### Tracked entity attribute value change logs { #webapi_tracker_attribute_change_logs }
@@ -2050,7 +2050,7 @@ entity query parameter:
 To constrain the response to enrollments of a specific tracked entity you can include a tracked
 entity query parameter, in In this case, we have restricted it to available enrollments viewable for
 current user:
- 
+
     GET /api/tracker/enrollments?orgUnitMode=ACCESSIBLE&trackedEntity=tphfdyIiVL6
 
 ##### Response format
@@ -2135,12 +2135,12 @@ Two endpoints are dedicated to events:
     - retrieves an event given the provided id
 
 If not otherwise specified, JSON is the default response for the `GET` method.
-The API also supports CSV export for single and collection endpoints. Furthermore, it supports 
+The API also supports CSV export for single and collection endpoints. Furthermore, it supports
 compressed JSON and CSV for the collection endpoint.
 
 #### Events CSV
 
-In the case of CSV, the `fields` request parameter has no effect, and the response will always 
+In the case of CSV, the `fields` request parameter has no effect, and the response will always
 contain the following fields:
 
   - event (UID)
@@ -2151,7 +2151,7 @@ contain the following fields:
   - orgUnit (UID)
   - occurredAt (DateTime)
   - scheduledAt (DateTime)
-  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry. 
+  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry.
     You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
@@ -2179,12 +2179,12 @@ See [Events](#events) and [Data Values](#data-values) for more field description
 
 #### Events GZIP
 
-The response is file `events.json.gz` or `events.csv.gzip` containing the `events.json` 
+The response is file `events.json.gz` or `events.csv.gzip` containing the `events.json`
 or `events.csv` file.
 
 #### Events ZIP
 
-The response is file`events.json.gz` or `events.json.zip` containing the `events.json` 
+The response is file`events.json.gz` or `events.json.zip` containing the `events.json`
 or `events.csv` file.
 
 #### Events Collection endpoint `GET /api/tracker/events`
@@ -2215,12 +2215,6 @@ Returns a list of events based on the provided filters.
 |`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
 |`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for occurred in the given program|
 |`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for occurred in the given program|
-|`dataElementIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Data element ID scheme to use for export.|
-|`categoryOptionComboIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Category Option Combo ID scheme to use for export|
-|`orgUnitIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Organisation Unit ID scheme to use for export|
-|`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
-|`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
-|`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
 |`order`|`String`|Comma-separated list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, followup (deprecated), occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|
 |`events`|`String`|Comma-separated list of event `UID`s.|Filter the result down to a limited set of IDs by using `event=id1,id2`.|
 |`event` **deprecated for removal in version 42 use `events`**|`String`|Semicolon-separated list of `uid`| Filter the result down to a limited set of IDs by using `event=id1;id2`.|
@@ -2383,7 +2377,7 @@ A query for an Event:
 
 ##### Event response example
 
-The API supports CSV and JSON response for `GET /api/tracker/trackedEntities` 
+The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
 
 ###### JSON
 
@@ -2420,7 +2414,7 @@ The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`
 
 ###### CSV
 
-The response will be the same as the collection endpoint but referring to a single event, 
+The response will be the same as the collection endpoint but referring to a single event,
 although it might have multiple rows for each data element value.
 
 #### Event data value change logs { #webapi_event_data_value_change_logs }
