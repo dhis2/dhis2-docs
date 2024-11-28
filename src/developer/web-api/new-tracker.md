@@ -269,7 +269,7 @@ DHIS2 tracker allows for capturing of data using data elements and tracked entit
 
 There are two types of tracker notes - notes recorded at the event level and those recorded at the enrollment level. An enrollment can have one or more events. Comments about each of the events - for example, why an event was missed, rescheduled, or why only a few data elements were filled and the like - can be documented using event notes. Each of the events within an enrollment can have its own story/notes. One can then record, for example, an overall observation of these events using the parent enrollment note. Enrollment notes are also helpful to document, for example, why an enrollment is canceled. It is the user's imagination and use-case when and how to use notes.
 
-Both enrollment and event can have as many notes as needed - there is no limit. However, it is not possible to delete or update neither of these notes. They are like a logbook. If one wants to amend a note, one can do so by creating another note. The only way to delete a note is by deleting the parent object - either event or enrollment. 
+Both enrollment and event can have as many notes as needed - there is no limit. However, it is not possible to delete or update neither of these notes. They are like a logbook. If one wants to amend a note, one can do so by creating another note. The only way to delete a note is by deleting the parent object - either event or enrollment.
 
 Tracker notes do not have their dedicated endpoint; they are exchanged as part of the parent event and/or enrollment payload. Below is a sample payload.
 
@@ -291,7 +291,7 @@ Tracker notes do not have their dedicated endpoint; they are exchanged as part o
           "value": "Enrollment note 1",
         }
       ],
-      
+
       "events": [
         {
           "event": "zfzS9WeO0uM",
@@ -900,7 +900,7 @@ There are various error codes for different error scenarios. The following table
 | Error Code | Error Message | Description |
 |:--|:----|:----|
 | E1000 | User: `{0}`, has no write access to OrganisationUnit: `{1}`. | This typically means that the OrganisationUnit `{1}` is not in the capture scope of the user `{0}` for the write operation to be authorized. |
-| E1001 | User: `{0}`, has no data write access to TrackedEntityType: `{1}`. | The error occurs when the user is not authorized to create or modify data of the TrackedEntityType `{1}`  
+| E1001 | User: `{0}`, has no data write access to TrackedEntityType: `{1}`. | The error occurs when the user is not authorized to create or modify data of the TrackedEntityType `{1}`
 | E1002 | TrackedEntityInstance: `{0}`, already exists. | This error is thrown when trying to create a new TrackedEntity with an already existing uid. Make sure a new uid is used when adding a new TrackedEntity. |
 | E1005 | Could not find TrackedEntityType: `{0}`. | Error thrown when trying to fetch a non existing TrackedEntityType with uid `{0}` . This might also mean that the user does not have read access to the TrackedEntityType. |
 | E1006 | Attribute: `{0}`, does not exist. | Error thrown when the system was not able to find a matching TrackedEntityAttribute with uid `{0}`. This might also mean that the user does not have access to the TrackedEntityAttribute. |
@@ -1154,7 +1154,7 @@ Tracker export endpoints are a set of services that allow clients to query and r
 
 Besides differences highlighted in **[Changes in the API](#Changes-in-the-API)**, request parameters for these endpoints match older ones.
 
-These endpoints are still being developed and are subject to change. However, 
+These endpoints are still being developed and are subject to change. However,
 the `request` and `response` interfaces will most likely not undergo significant changes.
 
 Tracker export endpoints deal with the following Tracker objects:
@@ -1445,7 +1445,7 @@ The purpose of this endpoint is to retrieve one tracked entity given its uid.
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Tracked Entity Instance with specified `uid`|
 |`program`|`String`|`uid`| Include program attributes in the response (only the ones user has access to) |
-|`fields`|`String`| Any valid field filter (default `*,!relationships,!enrollments,!events,!programOwners`) |Include specified sub-objects in the response| 
+|`fields`|`String`| Any valid field filter (default `*,!relationships,!enrollments,!events,!programOwners`) |Include specified sub-objects in the response|
 
 ##### Example requests
 
@@ -1572,13 +1572,13 @@ Returns a list of events based on the provided filters.
 |---|---|---|---|
 |`program`|`String`|`uid`| Identifier of program|
 |`programStage`|`String`|`uid`| Identifier of program stage|
-|`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Status of event in program | 
+|`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Status of event in program |
 |`filter`|`String`|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. Multiple operator/value pairs for the same property/data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. Repeating the same data element UID is not allowed. User needs access to the data element to filter on it.|
 |`filterAttributes`|`String`|Comma separated values of attribute filters|Narrows response to TEIs matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. Special characters like `+` need to be percent-encoded so `%2B` instead of `+`. Multiple operator/value pairs for the same property/attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. Repeating the same attribute UID is not allowed. User needs access to the attribute to filter on it.|
 |`followUp`|`boolean`| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
 |`trackedEntityInstance`|`String`|`uid`| Identifier of tracked entity instance|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
-|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|  Org unit selection mode| 
+|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`|  Org unit selection mode|
 |`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
 |`occurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which occurred after this date.|
 |`occurredBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which occurred up until this date.|
@@ -1592,12 +1592,6 @@ Returns a list of events based on the provided filters.
 |`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date for incident in the given program|
 |`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date for incident in the given program|
 |`skipMeta`|`Boolean`| `true`&#124;`false` | Exclude the meta data part of response (improves performance)|
-|`dataElementIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Data element ID scheme to use for export.|
-|`categoryOptionComboIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Category Option Combo ID scheme to use for export|
-|`orgUnitIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Organisation Unit ID scheme to use for export|
-|`programIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program ID scheme to use for export|
-|`programStageIdScheme`|`String`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Program Stage ID scheme to use for export|
-|`idScheme`|`string`| `UID`&#124;`CODE`&#124;`ATTRIBUTE:{ID}`| Allows to set id scheme for data element, category option combo, orgUnit, program and program stage at once.|
 |`order`|`String`|comma-delimited list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Sort the response based on given order values.<br><br>Example: `createdAt:desc` or `SzVk2KvkSSd:asc`<br><br>**Note:** `propName` is case sensitive, `sortDirection` is case insensitive. Supported are `storedBy, attributeCategoryOptions, dueDate, assignedUserUsername, createdAtClient, program, lastUpdated, event, assignedUser, programStage, programType, occurredAt, created, createdAt, orgUnit, completedDate, enrollment, trackedEntityInstance, followup, deleted, enrollmentStatus, attributeOptionCombo, assignedUserDisplayName, completedBy, orgUnitName, eventDate, lastUpdatedAtClient, status, enrolledAt`.|
 |`event`|`String`|comma-delimited list of `uid`| Filter the result down to a limited set of IDs by using event=id1;id2.|
 |`skipEventId`|`Boolean`| | Skips event identifiers in the response|
@@ -1609,7 +1603,7 @@ Returns a list of events based on the provided filters.
 
 > **Note**
 >
-> If the query contains neither `attributeCC` nor `attributeCos`, 
+> If the query contains neither `attributeCC` nor `attributeCos`,
 > the server returns events for all attribute option combos where the user has read access.
 
 ##### Example requests
@@ -1661,13 +1655,6 @@ Retrieve events with specified Organisation unit and Program, and use `Attribute
 identifier scheme
 
     GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
-
-Retrieve events with specified Organisation unit and Program, and use UID as identifier scheme for
-organisation units, Code as identifier scheme for Program stages, and _Attribute:Gq0oWTf2DtN_ as the identifier
-scheme for the rest of the metadata with assigned attributes.
-
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&idScheme=Attribute:Gq0oWTf2DtN
-      &orgUnitIdScheme=UID&programStageIdScheme=Code
 
 ##### Response format
 
@@ -1730,7 +1717,7 @@ The purpose of this endpoint is to retrieve one Event given its uid.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Event with specified `uid`|
-|`fields`|`String`| Any valid field filter (default `*,!relationships`) |Include specified sub-objects in the response| 
+|`fields`|`String`| Any valid field filter (default `*,!relationships`) |Include specified sub-objects in the response|
 
 ##### Example requests
 
@@ -1837,7 +1824,7 @@ Returns a list of events based on filters.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`orgUnit`|`String`|`uid`| Identifier of organisation unit|
-|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL| Org unit selection mode| 
+|`ouMode` see [ouModes](#Request-parameters-for-Organisational-Unit-selection-mode)|`String`| `SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL| Org unit selection mode|
 |`program`|`String`|`uid`| Identifier of program|
 |`programStatus`|`enum`| `ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`| Program Status |
 |`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the instance for the given program. Can be `true`&#124;`false` or omitted.|
@@ -1943,7 +1930,7 @@ The purpose of this endpoint is to retrieve one Enrollment given its uid.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`uid`|`String`|`uid`|Return the Enrollment with specified `uid`|
-|`fields`|`String`| Any valid field filter (default `*,!relationships,!events,!attributes`) |Include specified sub-objects in the response| 
+|`fields`|`String`| Any valid field filter (default `*,!relationships,!events,!attributes`) |Include specified sub-objects in the response|
 
 ##### Example requests
 
@@ -1994,7 +1981,7 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 |`trackedEntity`|`String`|`uid`| Identifier of a Tracked Entity Instance|
 |`enrollment`|`String`|`uid`| Identifier of an Enrollment |
 |`event`|`String`|`uid`| Identifier of an Event|
-|`fields`|`String`| Any valid field filter (default `relationship,relationshipType,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response| 
+|`fields`|`String`| Any valid field filter (default `relationship,relationshipType,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
 |`order`|`String`|comma-delimited list of property name and sort direction pairs in format `propName:sortDirection`.|Supported fields: `createdAt`.|
 
 The following rules apply to the query parameters.
@@ -2071,7 +2058,7 @@ For more detailed information about data sharing, check out [Data sharing](https
 
 Organisation units are one of the most fundamental objects in DHIS2. They define a universe under which a user is allowed to record and/or read data. There are three types of organisation units that can be assigned to a user. These are data capture, data view, and tracker search. As the name implies, these organisation units define a scope under which a user is allowed to conduct the respective operations.
 
-However, to further fine-tune the scope, DHIS2 Tracker introduces a concept that we call **OrganisationUnitSelectionMode**. Such a mode is often used at the time exporting tracker objects. For example, given that a user has a particular tracker search scope, does it mean that we have to use this scope every time a user tries to search for a tracker, Enrollment, or Event object? Or is the user interested in limiting the searching just to the selected org unit, or the entire capture org unit scope, and so on. 
+However, to further fine-tune the scope, DHIS2 Tracker introduces a concept that we call **OrganisationUnitSelectionMode**. Such a mode is often used at the time exporting tracker objects. For example, given that a user has a particular tracker search scope, does it mean that we have to use this scope every time a user tries to search for a tracker, Enrollment, or Event object? Or is the user interested in limiting the searching just to the selected org unit, or the entire capture org unit scope, and so on.
 
 Users can do the fine-tuning by passing a specific value of ouMode in their API request:
 
@@ -2080,7 +2067,7 @@ Users can do the fine-tuning by passing a specific value of ouMode in their API 
 Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCENDANTS, CAPTURE, ACCESSIBLE, and ALL*.
 
 1. **SELECTED**: as the name implies, all operations intended by the requesting API narrow down to the selected organisation unit.
-2. **CHILDREN**: under this mode, the organisation unit scope will be constructed using the selected organisation unit and its immediate children. 
+2. **CHILDREN**: under this mode, the organisation unit scope will be constructed using the selected organisation unit and its immediate children.
 3. **DESCENDANTS**: here, the selected organisation unit and everything underneath it, not just the immediate children, constitute the data operation universe.
 4. **CAPTURE**: as the name implies, organisation units assigned as the user's data capture constitute the universe. Note that, of the three organisation units that can be assigned to a user data capture is the mandatory one. If a user does not have data view and tracker search organisation units, the system will fall back to data capture. This way, we are always sure that a user has at least one universe.
 5. **ACCESSIBLE**: technically, this is the same scope as the user's tracker search organisation units.
@@ -2088,11 +2075,11 @@ Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCEND
 
 It makes little sense to pass these modes at the time of tracker import operations. Because when writing tracker data, each of the objects needs to have a specific organisation unit attached to them. The system will then ensure if each of the mentioned organisation units falls under the CAPTURE scope. If not, the system will simply reject the write operation.
 
-Note that there is 4 type of organisation unit associations relevant for Tracker objects. A TrackedEntity has an organisation unit, commonly referred to as the Registration Organisation unit. Enrollments have an organisation unit associated with them. Events also have an organisation unit associated with them. There is also an Owner organisation unit for a TrackedEntity-Program combination. 
+Note that there is 4 type of organisation unit associations relevant for Tracker objects. A TrackedEntity has an organisation unit, commonly referred to as the Registration Organisation unit. Enrollments have an organisation unit associated with them. Events also have an organisation unit associated with them. There is also an Owner organisation unit for a TrackedEntity-Program combination.
 
-When fetching Tracker objects, depending on the context, the organisation unit scope is applied to one of the above four organisation unit associations. 
+When fetching Tracker objects, depending on the context, the organisation unit scope is applied to one of the above four organisation unit associations.
 
-For example, when retrieving TrackedEntities without the context of a program, the organisation unit scope is applied to the registration organisation unit of the TrackedEntity. Whereas, when retrieving TrackedEntities, including specific program data, the organisation unit scope is applied to the Owner organisation unit. 
+For example, when retrieving TrackedEntities without the context of a program, the organisation unit scope is applied to the registration organisation unit of the TrackedEntity. Whereas, when retrieving TrackedEntities, including specific program data, the organisation unit scope is applied to the Owner organisation unit.
 
   * **Explain how they relate to ownership - Link to Program Ownership**
 
@@ -2101,7 +2088,7 @@ For example, when retrieving TrackedEntities without the context of a program, t
 A new concept called Tracker Ownership is introduced from 2.30. This introduces a new organisation unit association for a TrackedEntity - Program combination.
 We call this the Owner (or Owning) Organisation unit of a TrackedEntity in
 the context of a Program. The Owner organisation unit is used to decide access privileges when reading and writing tracker data related to a program.
-This, along with the Program's [Access Level](#webapi_nti_access_level) configuration, decides the access behavior for Program-related data (Enrollments and Events). 
+This, along with the Program's [Access Level](#webapi_nti_access_level) configuration, decides the access behavior for Program-related data (Enrollments and Events).
 A user can access a TrackedEntity's Program data if the corresponding Owner OrganisationUnit for that TrackedEntity-Program combination falls under the user's organisation unit scope (Search/Capture). For Programs that are configured with access level  *OPEN* or *AUDITED* , the Owner OrganisationUnit has to be in the user's search scope.
 For Programs that are configured with access level  *PROTECTED* or *CLOSED* , the Owner OrganisationUnit has to be in the user's capture scope to be able to access the corresponding program data for the specific tracked entity.
 
@@ -2135,9 +2122,9 @@ referrals or migrations. Only a user who has Ownership access (or temporary acce
 
 DHIS2 treats Tracker data with an extra level of protection. In addition to the standard feature of metadata and data protection through sharing settings, Tracker data are shielded with additional access level protection mechanisms.  Currently, there are four access levels that can be configured for a Program: Open, Audited, Protected, and Closed.
 
-These access levels are only triggered when users try to interact with program data, namely Enrollments and Events data. The different Access Level configuration for Program is a degree of openness (or closedness) of program data. Note that all other sharing settings are still respected, and the access level is only an additional layer of access control. Here is a short description of the four access levels that can be configured for a Program. 
+These access levels are only triggered when users try to interact with program data, namely Enrollments and Events data. The different Access Level configuration for Program is a degree of openness (or closedness) of program data. Note that all other sharing settings are still respected, and the access level is only an additional layer of access control. Here is a short description of the four access levels that can be configured for a Program.
 
-1. Open: This access level is the least restricted among the access levels. Data inside an OPEN program can be accessed and modified by users if the Owner organisation unit falls under the user's search scope.  With this access level, accessing and modifying data outside the capture scope is possible without any justification or consequence. 
+1. Open: This access level is the least restricted among the access levels. Data inside an OPEN program can be accessed and modified by users if the Owner organisation unit falls under the user's search scope.  With this access level, accessing and modifying data outside the capture scope is possible without any justification or consequence.
 2.  Audited: This is the same as the Open access level. The difference here is that the system will automatically add an audit log entry on the data being accessed by the specific user.
-3.  Protected: This access level is slightly more restricted. Data inside a PROTECTED program can only be accessed by users if the Owner organisation unit falls under the user's capture scope. However, a user who only has the Owner organisation unit in the search scope can gain temporary ownership by [breaking the glass](#webapi_nti_tracker_ownership_override). The user has to provide a justification of why they are accessing the data at hand. The system will then put a log of both the justification and access audit and provide temporary access for 3 hours to the user. Note that when breaking the glass, the Owner Organisation Unit remains unchanged, and only the user who has broken the glass gains temporary access. 
+3.  Protected: This access level is slightly more restricted. Data inside a PROTECTED program can only be accessed by users if the Owner organisation unit falls under the user's capture scope. However, a user who only has the Owner organisation unit in the search scope can gain temporary ownership by [breaking the glass](#webapi_nti_tracker_ownership_override). The user has to provide a justification of why they are accessing the data at hand. The system will then put a log of both the justification and access audit and provide temporary access for 3 hours to the user. Note that when breaking the glass, the Owner Organisation Unit remains unchanged, and only the user who has broken the glass gains temporary access.
 4.  Closed: This is the most restricted access level. Data recorded under programs configured with access level CLOSED will not be accessible if the Owner Organisation Unit does not fall within the user's capture scope. It is also not possible to break the glass or gain temporary ownership in this configuration. Note that it is still possible to transfer the ownership to another organisation unit. Only a user who has access to the data can transfer the ownership of a TrackedEntity-Program combination to another Organisation Unit. If ownership is transferred, the Owner Organisation Unit is updated.
