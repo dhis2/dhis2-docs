@@ -2139,6 +2139,8 @@ This endpoint retrieves change logs for the attributes of a specific tracked ent
 |---|---|---|
 |path `/{uid}`|`String`|Tracked entity `UID`.|
 |`program`|`String`|Program `UID` (optional).|
+|`order`|`String`|Name and sort direction pair in the format `propName:sortDirection`.<br><br>Example: `createdAt:desc`<br><br>`propName` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `desc`. Supported properties are `attribute`, `createdAt`, and `username`.|
+|`filter`|`String`|Colon-separated field name with operator and value in the format `fieldName:operator:value`.<br><br>Example: `attribute:eq:w75KJ2mc4zz`<br><br>Filtering is supported for `attribute` and `username` fields. Only the `eq` (equals) operator is supported.|
 
 ##### Tracked entity attribute value change logs response example
 
@@ -2639,11 +2641,13 @@ although it might have multiple rows for each data element value.
 #### Event data value change logs { #webapi_event_data_value_change_logs }
 `GET /api/tracker/events/{uid}/changeLogs`
 
-This endpoint retrieves change logs for the data values of a specific event. It returns a list of all event data values that have changed over time for that particular event.
+This endpoint retrieves change logs for the data values of a specific event. It returns a list of all event data values and event properties (`occurredAt`, `scheduledAt`, and `geometry`) that have changed over time for the specified event.
 
 |Parameter|Type|Allowed values|
 |---|---|---|
 |path `/{uid}`|`String`|Event `UID`.|
+|`order`|`String`|Name and sort direction pair in the format `propName:sortDirection`.<br><br>Example: `createdAt:desc`<br><br>`propName` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `desc`. Supported properties are `createdAt`, `dataElement`, `property` and `username`.|
+|`filter`|`String`|Colon-separated field name with operator and value in the format `fieldName:operator:value`.<br><br>Example: `attribute:eq:w75KJ2mc4zz`<br><br>Filtering is supported for `property`, `dataElement` and `username` fields. Only the `eq` (equals) operator is supported.|
 
 ##### Event data value change logs response example
 
