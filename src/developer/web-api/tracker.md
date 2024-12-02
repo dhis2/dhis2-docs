@@ -2424,7 +2424,7 @@ Returns a list of events based on the provided filters.
 |`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
 |`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for occurred in the given program|
 |`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for occurred in the given program|
-|`idScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`.|
+|`idScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. **Note: metadata in `event.relationships` will always be exported using UIDs.**|
 |`dataElementIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for data element references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
 |`orgUnitIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
 |`programIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
