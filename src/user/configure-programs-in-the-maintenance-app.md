@@ -390,6 +390,7 @@ program. A program needs several types of metadata that you create in the **Main
 | Setting | Description |
 |---|---|
 | **Display in list** |                          Displays the value of this attribute in the list of tracked                         entity instances in Tracker capture.                      |
+| **Skip Individual Analytics** |                This attribute will not be included in the Tracker Analytics process; however, it will still be considered as part of the Aggregate Analytics process.                      |
 | **Mandatory** |                          The value of this attribute must be filled into data entry                         form before you can complete the event.                      |
 | **Date in future** |                          Will allow user to select a date in future for date                         attributes.                      |
 | **Mobile render type** |                          Can be used to select different render types for mobile                         devices. Available options vary depending on the attribute's                         value type. For example, for a numerical value you may                         select "Default", "Value",                         "Slider", "Linear scale", and                         "Spinner".                      |
