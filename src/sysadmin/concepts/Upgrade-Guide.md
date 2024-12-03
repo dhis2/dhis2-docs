@@ -40,9 +40,9 @@ It depends on the scope really, upgrades can have many forms, it can be categori
 
 - Dependency Upgrades - As discussed, dhis2 relies on other software to run, this software needs to be constantly upgrade for reasons already mentioned, lucky enough that can be simple if you are on Linux system, you use upgrade management software such as apt and yum. Its also important reading more on the dependency requirements/recommendations before doing upgrade.
 - DHIS2 application Upgrade
-  - **Major Upgrade** - Significant and potentially breaking changes, new features Major upgrades are often denoted by changes in the first version number (e.g., from version 2.38 to 2.39, or v41 to v42). does changes to the database schema to accommodate new structure.
-  - **Minor Upgrade (patch update)** - This is an upgrade with incremental, and potentially non-breaking changes. This upgrade usually come with improvements and bug-fixes. Historically, the DHIS2 team refer to these as patch updates.
-  - **Hot-fix** - These are minimal updates release to solve urgent, critical issues. They can be safely applied to systems already running the proceeding patch update.
+    - **Major Upgrade** - Significant and potentially breaking changes, new features Major upgrades are often denoted by changes in the first version number (e.g., from version 2.38 to 2.39, or v41 to v42). does changes to the database schema to accommodate new structure.
+    - **Minor Upgrade (patch update)** - This is an upgrade with incremental, and potentially non-breaking changes. This upgrade usually come with improvements and bug-fixes. Historically, the DHIS2 team refer to these as patch updates.
+    - **Hot-fix** - These are minimal updates release to solve urgent, critical issues. They can be safely applied to systems already running the proceeding patch update.
 
 > **Note**
 >
@@ -76,35 +76,35 @@ Your infrastructure should have:
 #### Upgrade Schedule
 
 - **Upgrade Schedule**
-  - Best timing: Friday or Monday?
-  - Ensure all necessary personnel are available
-  - Align with the DHIS2 release schedule
+    - Best timing: Friday or Monday?
+    - Ensure all necessary personnel are available
+    - Align with the DHIS2 release schedule
 
 - **Scheduling and Planning**
-  - Timelines: Schedule tasks with clear timelines
-  - Feasibility: Ensure the plan is realistic, considering resources, constraints, and challenges
+    - Timelines: Schedule tasks with clear timelines
+    - Feasibility: Ensure the plan is realistic, considering resources, constraints, and challenges
 
 - **Team Coordination**
-  - Roles and Responsibilities: Understand who is responsible for what
-  - Collaborative process: know your team
+    - Roles and Responsibilities: Understand who is responsible for what
+    - Collaborative process: know your team
 
 - **Continuous Monitoring and Evaluation**
-  - Flexibility: Regularly review and adjust the plan as needed
+    - Flexibility: Regularly review and adjust the plan as needed
 
 - **Resource Planning**
-  - Testing Environment: Plan for test bed resource requirements
-  - Training: Include a training phase for the team
-  - Changeover Phase: Optimal timing (e.g., Monday morning or Friday evening) and consider weekend work compensation
+    - Testing Environment: Plan for test bed resource requirements
+    - Training: Include a training phase for the team
+    - Changeover Phase: Optimal timing (e.g., Monday morning or Friday evening) and consider weekend work compensation
 
 - **Risk Management and Contingency Plans**
-  - Risk Management: Identify and mitigate potential risks
-  - Backups: Plan for backups with adequate storage, including off-site backups
+    - Risk Management: Identify and mitigate potential risks
+    - Backups: Plan for backups with adequate storage, including off-site backups
 
 - **Action Points**
-  - Detailed Breakdown: Break the plan into actionable steps
+    - Detailed Breakdown: Break the plan into actionable steps
 
 - **Post-Upgrade Activities**
-  - Post-Upgrade: Plan for post-upgrade activities, including monitoring and issue resolution
+    - Post-Upgrade: Plan for post-upgrade activities, including monitoring and issue resolution
 
 
 
@@ -116,9 +116,9 @@ Your infrastructure should have:
 - Infrastructure team- Responsible for creating virtual resources, e.g virtual machines, storage pools etc. You'll generally need a test environment, which they will provide.
 - person responsible for the DNS
 - stakeholders, Management. 
-  - system owners (the Government for example) 
-  - funders
-  - Managers etc
+    - system owners (the Government for example) 
+    - funders
+    - Managers etc
 
 ### Post Upgrade
 
@@ -184,10 +184,10 @@ Later DHIS2 versions require the following software versions to operate.
 
 1. An operating system for which a Java JDK or JRE version 8 or 11 exists. Linux is recommended.
 2. Java JDK. OpenJDK is recommended.
-   1. For DHIS2 version 2.38 and later, JDK 11 is required.
-   2. For DHIS2 version 2.35 and later, JDK 11 is recommended and JDK 8 or later is required.
-   3. For DHIS2 versions older than 2.35, JDK 8 is required.
-   4. For DHIS2 Versions 2.41 and later, JDK 17 is required.
+    1. For DHIS2 version 2.38 and later, JDK 11 is required.
+    2. For DHIS2 version 2.35 and later, JDK 11 is recommended and JDK 8 or later is required.
+    3. For DHIS2 versions older than 2.35, JDK 8 is required.
+    4. For DHIS2 Versions 2.41 and later, JDK 17 is required.
 3. PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 13 is recommended.
 4. PostGIS database extension version 2.2 or later.
 5. Tomcat servlet container version 8.5.50 or later, or other Servlet API 3.1 compliant servlet containers.
