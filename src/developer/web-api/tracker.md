@@ -1681,7 +1681,7 @@ The following endpoint supports standard parameters for pagination.
 |`totalPages`|`Boolean`|`true`&#124;`false`|Indicates whether to return the total number of elements and pages. Defaults to `false` as getting the totals is an expensive operation.|
 |`paging`|`Boolean`|`true`&#124;`false`|Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`.|
 |`skipPaging` **deprecated for removal in version 42 use `paging`**|`Boolean`|`true`&#124;`false`|Indicates whether paging should be ignored and all rows should be returned. Defaults to `false`, meaning that by default all requests are paginated, unless `skipPaging=true`.|
-|`order`|`String`|Comma-separated list of property name and sort direction pairs in format `propName:sortDirection`.<br><br>Example: `createdAt:desc`<br><br>Entities are ordered by newest (internal id desc) by default, meaning when no order parameter is provided.<br><br>**Note:** `propName` is case sensitive. Valid `sortDirections` are `asc` and `desc`. `sortDirection` is case-insensitive. `sortDirection` defaults to `asc` for properties or UIDs without explicit `sortDirection`.||
+|`order`|`String`||Comma-separated list of field and sort direction pairs in format `field:sortDirection`.<br><br>Example: `createdAt:desc`<br><br>Entities are ordered by newest (internal id in descending order) by default, when no order parameter is provided.<br><br>**Note:** `field` is case sensitive. Valid `sortDirections` are `asc` and `desc`. `sortDirection` is case-insensitive. `sortDirection` defaults to `asc` for fields or UIDs without explicit `sortDirection`.|
 
 > **Caution**
 >
@@ -2134,6 +2134,8 @@ This endpoint retrieves change logs for the attributes of a specific tracked ent
 |---|---|---|
 |path `/{uid}`|`String`|Tracked entity `UID`.|
 |`program`|`String`|Program `UID` (optional).|
+|`order`|`String`|Field and sort direction pair in the format `field:sortDirection`.<br><br>Change logs are ordered by newest (creation date in descending order) by default, when no order parameter is provided.<br><br>Example: `createdAt:desc`<br><br>`field` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `asc` for fields without explicit `sortDirection`. Supported fields are `attribute`, `createdAt`, and `username`, only one at a time.|
+|`filter`|`String`|Colon-separated field name with the `eq` operator and value in the format `field:eq:value`.<br><br>Example: `attribute:eq:w75KJ2mc4zz`<br><br>Filtering is supported for `attribute` and `username` fields, one at a time. Only the `eq` (equals) operator is supported.|
 
 ##### Tracked entity attribute value change logs response example
 
@@ -2636,11 +2638,13 @@ although it might have multiple rows for each data element value.
 #### Event data value change logs { #webapi_event_data_value_change_logs }
 `GET /api/tracker/events/{uid}/changeLogs`
 
-This endpoint retrieves change logs for the data values of a specific event. It returns a list of all event data values that have changed over time for that particular event.
+This endpoint retrieves change logs for the data values of a specific event. It returns a list of all event data values and event fields (`occurredAt`, `scheduledAt`, and `geometry`) that have changed over time for the specified event.
 
 |Parameter|Type|Allowed values|
 |---|---|---|
 |path `/{uid}`|`String`|Event `UID`.|
+|`order`|`String`|Field and sort direction pair in the format `field:sortDirection`.<br><br>Change logs are ordered by newest (creation date in descending order) by default, when no order parameter is provided.<br><br>Example: `createdAt:desc`<br><br>`field` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `asc` for fields without explicit `sortDirection`. Supported fields are `createdAt`, `dataElement`, `field` and `username`, only one at a time.|
+|`filter`|`String`|Colon-separated field name with the `eq` operator and value in the format `field:eq:value`.<br><br>Example: `dataElement:eq:w75KJ2mc4zz`<br><br>Filtering is supported for `field`, `dataElement` and `username` fields, one at a time. Only the `eq` (equals) operator is supported.|
 
 ##### Event data value change logs response example
 
