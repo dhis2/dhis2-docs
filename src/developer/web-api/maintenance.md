@@ -125,7 +125,7 @@ Data pruning will remove complete data set registrations, data approvals, data v
 
 Data pruning for data elements, which will remove data value audits and data values.
 
-    POST PUT /api/maintenance/dataPruning/dataElement/<data-element-uid>
+    POST PUT /api/maintenance/dataPruning/dataElements/<data-element-uid>
 
 Metadata validation will apply all metadata validation rules and return the result of the operation.
 
