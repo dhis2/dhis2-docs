@@ -179,6 +179,7 @@ Server requirements are typically influenced by factors like database size, anti
 ### Software Requirements for the New Version
 
 Newer DHIS2 versions require the following software versions:
+
 1. An operating system compatible with Java JDK or JRE version 8 or 11. Linux is recommended.
 2. Java JDK (OpenJDK is recommended).
     - DHIS2 version 2.38 and later: JDK 11 is required.
