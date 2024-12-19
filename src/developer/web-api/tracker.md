@@ -2646,7 +2646,7 @@ This endpoint retrieves change logs for the data values of a specific event. It 
 |Parameter|Type|Allowed values|
 |---|---|---|
 |path `/{uid}`|`String`|Event `UID`.|
-|`order`|`String`|Field and sort direction pair in the format `field:sortDirection`.<br><br>Change logs are ordered by newest (creation date in descending order) by default, when no order parameter is provided.<br><br>Example: `createdAt:desc`<br><br>`field` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `asc` for fields without explicit `sortDirection`. Supported fields are `createdAt`, `dataElement`, `field` and `username`, only one at a time.|
+|`order`|`String`|Field and sort direction pair in the format `field:sortDirection`.<br><br>Change logs are ordered by newest (creation date in descending order) by default, when no order parameter is provided.<br><br>Example: `createdAt:desc`<br><br>`field` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `asc` for fields without explicit `sortDirection`. Supported fields are `createdAt`, `change` and `username`, only one at a time. |
 |`filter`|`String`|Colon-separated field name with the `eq` operator and value in the format `field:eq:value`.<br><br>Example: `dataElement:eq:w75KJ2mc4zz`<br><br>Filtering is supported for `field`, `dataElement` and `username` fields, one at a time. Only the `eq` (equals) operator is supported.|
 
 ##### Event data value change logs response example
