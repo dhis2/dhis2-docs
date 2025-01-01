@@ -399,6 +399,13 @@ Only jobs that have been split into processes, stages and items can be
 cancelled effectively. Not all jobs have been split yet. These will run till
 completion even if cancellation has been requested.
 
+### Reset a Job stuck in RUNNING state
+When a server shuts down while a job is in `RUNNING` state the job 
+needs to be reverted back to its initial state manually.
+
+To revert a job that has `RUNNING` state but is not running use:
+
+    POST /api/jobConfigurations/{uid}/revert
 
 ## Job Queues { #queues }
 Sequences of jobs (configurations) can be created using job queues.
