@@ -1608,6 +1608,172 @@ Sample error response looks like:
 }
 ```
 
+## Category Option Combo
+
+### Merge category option combos { #category_option_combo_merge }
+
+The category option combo merge endpoint allows you to merge a number of category options (sources) into a target category option. This can be used to clean up the system, removing duplicates for instance.
+
+#### Authorisation
+
+The main authority required to perform a category option combo merge is `F_CATEGORY_OPTION_COMBO_MERGE`.  
+
+#### Request
+
+Merge category option combos with a POST request:
+
+```
+POST /api/categoryOptionCombos/merge
+```
+
+The payload in JSON format looks like the following:
+
+```json
+{
+  "sources": [
+    "FbLZS3ueWbQ",
+    "dPSWsKeAZNw"
+  ],
+  "target": "rEq3Hkd3XXH",
+  "deleteSources": true,
+  "dataMergeStrategy": "DISCARD"
+}
+```
+
+The JSON properties are described in the following table.
+
+Table: Merge payload fields
+
+| Field             | Required | Value                                                                                                                                                                                                                       |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the category option combos to merge (the source category option combos)                                                                                                                             |
+| target            | Yes      | Identifier of the category option combo to merge the sources into (the target category option combo)                                                                                                                        |
+| deleteSources     | No       | Whether to delete the source category option combos after the operation. Default is false.                                                                                                                                  |
+| dataMergeStrategy | Yes      | How to handle merging of data values. Options are 'DISCARD' or 'LAST_UPDATED'. DISCARD will delete all source data values. LAST_UPDATED will merge all data values and use the last updated value where duplicates are met. |
+
+The merge operation will merge the source category option combos into the target category option combo. One or many source category option combos can be specified. Only one target should be specified.
+
+The merge operation will transfer all source category option combo metadata associations to the target category option combo.
+The following metadata get updated:
+
+
+| Metadata           | Property             | Action taken               |
+|--------------------|----------------------|----------------------------|
+| CategoryOption     | categoryOptionCombos | remove sources, add target |
+| CategoryCombo      | optionCombos         | remove sources, add target |
+| DataElementOperand | categoryOptionCombo  | set as target              |
+| MinMaxDataElement  | optionCombo          | set as target              |
+| Predictor          | outputCombo          | set as target              |
+| SMSCode            | optionId             | set as target              |
+
+
+| Data                        | Property        | Action taken                                             |
+|-----------------------------|-----------------|----------------------------------------------------------|
+| DataValue                   | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataValue                   | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataApproval                | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataApprovalAudit           | categoryOptions | DISCARD or leave depending if sources are deleted or not |
+| Event                       | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataValueAudit              | categoryOptions | DISCARD or leave depending if sources are deleted or not |
+| DataValueAudit              | categoryOptions | DISCARD or leave depending if sources are deleted or not |
+| CompleteDataSetRegistration | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
+
+
+
+#### Validation
+
+The following constraints and error codes apply.
+
+Table: Constraints and error codes
+
+| Error code | Description                                                                       |
+|------------|-----------------------------------------------------------------------------------|
+| E1530      | At least one source CategoryOptionCombo must be specified                         |
+| E1531      | Target CategoryOptionCombo must be specified                                      |
+| E1532      | Target CategoryOptionCombo cannot be a source CategoryOptionCombo                 |
+| E1533      | Source/Target CategoryOptionCombo does not exist: `{uid}`                         |
+| E1534      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED` |
+
+#### Database constraints
+There are unique constraints in place that can prevent a successful merge. These constraints are set by DHIS2 in order to maintain a logical domain model.    
+Below are a list of the known database unique key constraints at the time of writing. For example, you
+can only have 1 min max data element with the same org unit, data element and category option combo.
+
+Table: Database table unique key constraints
+
+| Table                   | Unique key constraint                     |
+|-------------------------|-------------------------------------------|
+| minmaxdataelement       | orgunit, dataelement, categoryoptioncombo |
+
+
+#### Response
+##### Success
+Sample success response looks like:
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [],
+            "mergeType": "CategoryOptionCombo",
+            "sourcesDeleted": [
+                "FbLZS3ueWbQ", "dPSWsKeAZNw"
+            ],
+            "message": "CategoryOptionCombo merge complete"
+        }
+    }
+}
+```
+
+##### Failure
+Sample error response looks like:
+
+```json
+{
+    "httpStatus": "Conflict",
+    "httpStatusCode": 409,
+    "status": "WARNING",
+    "message": "One or more errors occurred, please see full details in merge report.",
+    "response": {
+        "mergeReport": {
+            "mergeErrors": [
+                {
+                    "message": "At least one source CategoryOptionCombo must be specified",
+                    "errorCode": "E1530",
+                    "args": []
+                },
+                {
+                    "message": "Target CategoryOptionCombo does not exist: `abcdefg1221`",
+                    "errorCode": "E1533",
+                    "args": [
+                        "Target",
+                        "abcdefg1221"
+                    ]
+                }
+            ],
+            "mergeType": "CategoryOptionCombo",
+            "sourcesDeleted": [],
+            "message": "CategoryOptionCombo merge has errors"
+        }
+    }
+}
+```
+
+A database constraint sample error response:
+
+```json
+{
+  "httpStatus": "Conflict",
+  "httpStatusCode": 409,
+  "status": "ERROR",
+  "message": "ERROR: duplicate key value violates unique constraint \"minmaxdataelement_unique_key\"\n  Detail: Key (sourceid, dataelementid, categoryoptioncomboid)=(193236, 1148617, 167661) already exists."
+}
+```
+
+
 
 ## Data Elements
 
@@ -1657,12 +1823,12 @@ The JSON properties are described in the following table.
 
 Table: Merge payload fields
 
-| Field             | Required | Value                                                                                                                                                                                   |
-|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| sources           | Yes      | Array of identifiers of the data elements to merge (the source data elements)                                                                                                           |
-| target            | Yes      | Identifier of the data element to merge the sources into (the target data element)                                                                                                      |
-| deleteSources     | No       | Whether to delete the source data elements after the operation. Default is false. If true is chosen, then all source audit records will also be deleted.                                |
-| dataMergeStrategy | Yes      | How to handle merging of data values. Options are 'DISCARD' or 'LAST_UPDATED'. DISCARD will delete all source data values. LAST_UPDATED will use the data value which was last updated. |
+| Field             | Required | Value                                                                                                                                                                                                                       |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sources           | Yes      | Array of identifiers of the data elements to merge (the source data elements)                                                                                                                                               |
+| target            | Yes      | Identifier of the data element to merge the sources into (the target data element)                                                                                                                                          |
+| deleteSources     | No       | Whether to delete the source data elements after the operation. Default is false. If true is chosen, then all source audit records will also be deleted.                                                                    |
+| dataMergeStrategy | Yes      | How to handle merging of data values. Options are 'DISCARD' or 'LAST_UPDATED'. DISCARD will delete all source data values. LAST_UPDATED will merge all data values and use the last updated value where duplicates are met. |
 
 The merge operation will merge the source data elements into the target data element. One or many source data elements can be specified. Only one target should be specified.
 
