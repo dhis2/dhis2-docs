@@ -1598,10 +1598,6 @@ Table: Possible indexing of repeatable stages
 | dqlbukwRfQ[-2].vANAXwtLwcT                 | -2                           | second from last execution date                                                            |
 | dqlbukwRfQ[1].vANAXwtLwcT                  | 1                            | first execution date                                                                       |
 | dqlbukwRfQ[3].vANAXwtLwcT                  | 3                            | third execution date                                                                       |
-| edqlbukwRfQ[*].vANAXwtLwcT                 | *                            | all repetitions                                                                            |
-| edqlbukwRfQ[-1~3].vANAXwtLwcT              | -1, 3                        | 3 repetitions starting with -1 (first after last execution date)                           |
-| edqlbukwRfQ[0~5~LAST_3_MONTHS ].vANAXwtLwcT | 0, 5, LAST_3_MONTHS          | 5 repetitions starting with last execution date down to the fifth one within last 3 months |
-| edqlbukwRfQ[-1~3~2021-01-01~2022-05-31].vANAXwtLwcT            | -1, 3, 2021-01-01,2022-05-31 | 3 repetitions starting with -1 (first after last execution date) within specified dates                                     |
 
 Warning: Indexing of non-repeatable program stage leads to parameter validation error.
 
