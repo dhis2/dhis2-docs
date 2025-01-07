@@ -1763,6 +1763,8 @@ Table: Indicator functions
 
 | Indicator Function | Arguments | Description |
 |---|---|---|
+| contains | (expr, sub1, ...) | Searches an expression for one or more substrings. Returns true if the expression contains all the substrings. For example, the following are all true: contains("abcd", "abcd"); contains("abcd", "b"); and contains("abcd", "ab", "bc"). Comparisons are case-sensitive. |
+| containsItems | (expr, item1, ...) | Searches an expression for one or more comma-separated items. Returns true if the expression contains all the items. For example, containsItems("abcd", "abcd") and containsItems("ab,cd", "ab", "cd") are true, but containsItems("abcd", "b") and containsItems("abcd", "ab", "bc") are false. Comparisons are case-sensitive. |
 | if | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression. |
 | is | (expr1 in expression [, expression ...]) | Returns true if expr1 is equal to any of the following expressions, otherwise false. |
 | isNull | (element) | Returns true if the element value is missing (null), otherwise false. |
@@ -2904,6 +2906,8 @@ Table: Validation Rule functions
 
 | Validation Rule Function | Arguments | Description |
 |---|---|---|
+| contains | (expr, sub1, ...) | Searches an expression for one or more substrings. Returns true if the expression contains all the substrings. For example, the following are all true: contains("abcd", "abcd"); contains("abcd", "b"); and contains("abcd", "ab", "bc"). Comparisons are case-sensitive. |
+| containsItems | (expr, item1, ...) | Searches an expression for one or more comma-separated items. Returns true if the expression contains all the items. For example, containsItems("abcd", "abcd") and containsItems("ab,cd", "ab", "cd") are true, but containsItems("abcd", "b") and containsItems("abcd", "ab", "bc") are false. Comparisons are case-sensitive. |
 | if | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression. |
 | is | (expr1 in expression [, expression ...]) | Returns true if expr1 is equal to any of the following expressions, otherwise false. |
 | isNull | (element) | Returns true if the element value is missing (null), otherwise false. |
@@ -4344,6 +4348,8 @@ Project A data for "Male under 5", a prediction for Project B data for "Female u
 
         | Function | Means |
         |---|---|
+        | contains(expr, sub1, ...) | Searches an expression for one or more substrings. Returns true if the expression contains all the substrings. For example, the following are all true: contains("abcd", "abcd"); contains("abcd", "b"); and contains("abcd", "ab", "bc"). Comparisons are case-sensitive. |
+        | containsItems(expr, item1, ...) | Searches an expression for one or more comma-separated items. Returns true if the expression contains all the items. For example, containsItems("abcd", "abcd") and containsItems("ab,cd", "ab", "cd") are true, but containsItems("abcd", "b") and containsItems("abcd", "ab", "bc") are false. Comparisons are case-sensitive. |
         | if(test, valueIfTrue, valueIfFalse) | Evaluates **test** which is an expression that evaluates to a boolean value -- see **Boolean expression notes** below. If the test is **true**, returns the **valueIfTrue** expression. If it is **false**, returns the **valueIfFalse** expression. |
         | is(expr1 in expression [, expression ...]) | Returns true if expr1 is equal to any of the following expressions, otherwise false. |
         | isNull(item) | Returns the boolean value **true** if the **item** is null (missing), otherwise returns **false**. The **item** can be any selected item from the right (data element, program data element, etc.). |
