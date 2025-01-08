@@ -561,6 +561,7 @@ all conditions must be met.
 ### Running data integrity summaries { #webapi_data_integrity_run_summary }
 
 Since version 2.38, data integrity checks have two levels of specificity: 
+
 - a `summary` level that provides an overview of the number of issues
 - a `details` level that provides a list of issues pointing to individual data integrity violations.
 
