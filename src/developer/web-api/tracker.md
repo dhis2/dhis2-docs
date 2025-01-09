@@ -1811,6 +1811,7 @@ Table: Assigned user modes
 | PROVIDED | Includes events assigned to the user provided in the request. |
 | NONE | Includes unassigned events only. |
 | ANY | Includes all assigned events, doesn't matter who are they assigned to as long as they assigned to someone. |
+| ALL | Includes all events irrespective of whether a user is assigned. If no mode is specified, this one is used by default.|
 
 The query is case insensitive. The following rules apply to the query
 parameters.
