@@ -1791,7 +1791,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`trackedEntityType`|`String`|UID of tracked entity type|Only returns tracked entities of given type.|
 |`trackedEntities`|`String`|Comma-separated list of tracked entity `UID`s.|Filter the result down to a limited set of tracked entities using explicit uids of the tracked entities by using `trackedEntity=id1,id2`. This parameter will, at the very least, create the outer boundary of the results, forming the list of all tracked entities using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
 |`trackedEntity` **deprecated for removal in version 42 use `trackedEntities`**|`String`|Semicolon-separated list of tracked entity `UID`s.|Filter the result down to a limited set of tracked entities using explicit uids of the tracked entities by using `trackedEntity=id1;id2`. This parameter will, at the very least, create the outer boundary of the results, forming the list of all tracked entities using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
-|`assignedUserMode`|`String`|`CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. |
+|`assignedUserMode`|`String`|`CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`&#124;`ALL`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. Default is `ALL`.|
 |`assignedUsers`|`String`|Comma-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1,id2`. This parameter will only be considered if `assignedUserMode` is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`.|
 |`assignedUser` **deprecated for removal in version 42 use `assignedUsers`**|`String`|Semicolon-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1;id2`.This parameter will only be considered if assignedUserMode is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`|
 |`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported values are `createdAt, createdAtClient, enrolledAt, inactive, trackedEntity, updatedAt, updatedAtClient`.|
@@ -1810,7 +1810,8 @@ Table: Assigned user modes
 | CURRENT | Includes events assigned to the current logged in user. |
 | PROVIDED | Includes events assigned to the user provided in the request. |
 | NONE | Includes unassigned events only. |
-| ANY | Includes all assigned events, doesn't matter who are they assigned to as long as they assigned to someone. |
+| ANY | Includes all assigned events, regardless of who they are assigned to, as long as they are assigned to someone. |
+| ALL | Includes all events irrespective of whether a user is assigned. This is the default mode. |
 
 The query is case insensitive. The following rules apply to the query
 parameters.
