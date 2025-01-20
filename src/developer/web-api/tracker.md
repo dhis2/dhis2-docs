@@ -2134,6 +2134,7 @@ This act of temporarily gaining access is termed *breaking the glass*.
 Currently, temporary access is granted for 3 hours. DHIS2 audits breaking the glass along with the
 reason specified by the user. It is not possible to gain temporary access to a program that has been
 configured with an access level of *CLOSED*.
+
 To break the glass for a TrackedEntity-Program combination, the following POST request can be used:
 
     /api/33/tracker/ownership/override?trackedEntityInstance=DiszpKrYNg8
