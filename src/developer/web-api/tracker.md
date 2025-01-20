@@ -2940,7 +2940,7 @@ one of the following criteria:
 #### Tracker Ownership Override: Break the Glass { #webapi_tracker_ownership_override }
 
 It is possible to temporarily override the ownership privilege for a program that is configured
-with an access level of *PROTECTED*. Any user with the org unit owner within their search scope can 
+with an access level of *PROTECTED*. Any user with the org unit owner within their search scope, can 
 temporarily access the program-related data by providing a reason for accessing it. 
 
 This act of temporarily gaining access is termed *breaking the glass*. 
