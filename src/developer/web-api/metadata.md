@@ -1662,6 +1662,9 @@ The following metadata get updated:
 | CategoryOption     | categoryOptionCombos | remove sources, add target |
 | CategoryCombo      | optionCombos         | remove sources, add target |
 | DataElementOperand | categoryOptionCombo  | set as target              |
+| Expression         | expression           | replace source with target |
+| Indicator          | numerator            | replace source with target |
+| Indicator          | denominator          | replace source with target |
 | MinMaxDataElement  | optionCombo          | set as target              |
 | Predictor          | outputCombo          | set as target              |
 | SMSCode            | optionId             | set as target              |
