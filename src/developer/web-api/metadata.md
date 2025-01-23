@@ -1685,9 +1685,9 @@ The following metadata get updated:
 >
 > The following properties haven been purposely excluded from the merge as these may use references for external systems. If you encounter issues with these fields, they may need to be updated. 
 >
-> Indicator fields: aggregateExportCategoryOptionCombo & aggregateExportAttributeOptionCombo
+> Indicator: aggregateExportCategoryOptionCombo & aggregateExportAttributeOptionCombo
 >
-> ProgramIndicator fields: aggregateExportCategoryOptionCombo & aggregateExportAttributeOptionCombo
+> ProgramIndicator: aggregateExportCategoryOptionCombo & aggregateExportAttributeOptionCombo
 
 
 #### Validation
