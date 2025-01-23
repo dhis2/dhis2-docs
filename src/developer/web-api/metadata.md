@@ -1681,6 +1681,13 @@ The following metadata get updated:
 | DataValueAudit              | categoryOptions | DISCARD or leave depending if sources are deleted or not |
 | CompleteDataSetRegistration | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
 
+> **Note**
+>
+> The following properties haven been purposely excluded from the merge as these may use references for external systems. If you encounter issues with these fields, they may need to be updated. 
+>
+> Indicator: aggregateExportCategoryOptionCombo & aggregateExportAttributeOptionCombo
+>
+> ProgramIndicator: aggregateExportCategoryOptionCombo & aggregateExportAttributeOptionCombo
 
 
 #### Validation
