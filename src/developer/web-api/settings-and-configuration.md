@@ -564,3 +564,9 @@ The appearance of the login dialog can also be modified by defining css variable
 --form-title-font-weight
 --form-container-title-color
 ```
+
+You can reset the login page theme using the API by making a *POST* request to ```/api/41/systemSettings/loginPageLayout``` including the loginPageLayout DEFAULT or SIDEBAR value in the request body, where content type is set to "text/plain". As an example, you can use curl like this:
+
+```bash
+curl "play.im.dhis2.org/stable-2-41-0/api/41/systemSettings/loginPageLayout" -d "DEFAULT" -H "Content-Type: text/plain" -u admin:district
+```
