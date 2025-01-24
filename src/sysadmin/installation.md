@@ -1998,6 +1998,19 @@ apphub.api.url = https://apps.dhis2.org/api
 
 # Number of possible concurrent sessions across different clients per user
 max.sessions.per_user = 10
+
+# ----------------------------------------------------------------------
+# Metadata Model Consistency [Optional]
+# ----------------------------------------------------------------------
+# The maximum number of category options in a single category
+metadata.categories.max_options = 31
+
+# The maximum number of categories per category combo
+metadata.categories.max_per_combo = 5
+
+# The maximum for the product of the number of options of the categories in a category combo
+# Must always be >= metadata.categories.max_options
+metadata.categories.max_combinations = 500
 ```
 
 ## Changelog { #install_changelog } 
