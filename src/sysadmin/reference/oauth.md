@@ -275,7 +275,7 @@ oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
 >
 > [Check out our tutorial for setting up Okta as a generic OIDC provider.](../../../topics/tutorials/configure-oidc-with-okta.md)
 
-## Connecting a single identity provider account to multiple DHIS2 accounts
+## Connecting a single identity provider account to multiple DHIS2 accounts { #connect_single_identity_to_multiple_accounts }
 
 DHIS2 has the ability to map a single identity provider account to multiple DHIS2 accounts. API calls are available to list the linked accounts and also switch between then.
 
