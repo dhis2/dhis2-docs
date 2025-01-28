@@ -312,6 +312,47 @@ enrollment payload. Below is a sample payload:
 > One between `uid` or `username` field must be provided. If both are provided, only username is
 > considered.
 
+## IdSchemes
+
+Tracker supports different [identifier schemes](#webapi_identifier_schemes), referred to as
+`idScheme`s. The default `idScheme` for import and export is `UID`.
+
+`idSchemes` are supported by:
+
+* [import](#webapi_tracker_import)
+* [tracked entity export](#webapi_tracker_export_tracked_entities)
+* [event export](#webapi_tracker_export_events)
+
+See each section for request parameters and their effects on the response.
+
+Only metadata fields directly on the entity are exported using the chosen `idScheme`. Metadata in
+collections are always exported using `UID`s, except for:
+
+* `TrackedEntity.attributes[].attribute`
+* `Event.dataValues[].dataElement`
+
+For example, metadata references in `TrackedEntity.relationships` or `enrollments` will always use
+`UID`s for import/export.
+
+The [import](#webapi_tracker_import) expects metadata identifiers to only use the chosen `idScheme`.
+Similarly, metadata is exported only using the chosen `idScheme`. If metadata lacks identifiers for
+the chosen `idScheme`, you'll receive an error like:
+
+```json
+{
+  "httpStatus": "Unprocessable Entity",
+  "httpStatusCode": 422,
+  "status": "ERROR",
+  "message": "Not all metadata has an identifier for the requested idScheme. Either change the requested idScheme or add the missing identifiers to the metadata.",
+  "devMessage": "Following metadata listed using their UIDs is missing identifiers for the requested idScheme:\nProgramStage[ATTRIBUTE:Y1LUDU8sWBR]=A03MvHHogjR\nCategoryOptionCombo[ATTRIBUTE:Y1LUDU8sWBR]=HllvX50cXC0\nCategoryOption[ATTRIBUTE:Y1LUDU8sWBR]=xYerKDKCefk\nProgram[ATTRIBUTE:Y1LUDU8sWBR]=IpHINAT79UW\nOrganisationUnit[ATTRIBUTE:Y1LUDU8sWBR]=DiszpKrYNg8"
+}
+```
+
+To resolve this, either:
+
+1. Add the missing identifiers
+2. Change the `idScheme` parameters to use a scheme with complete information
+
 ## Tracker Import (`POST /api/tracker`) { #webapi_tracker_import }
 
 The endpoint `POST /api/tracker` is also called the tracker importer. This endpoint allows clients
@@ -1711,7 +1752,7 @@ filter](#webapi_metadata_field_filter) for a more complete guide on how to use `
 |`fields=enrollments[uid]`|only returns `enrollments` field `uid`|
 |`fields=enrollments[uid,enrolledAt]`|only returns `enrollments` fields `uid` and `enrolledAt`|
 
-### Tracked Entities (`GET /api/tracker/trackedEntities`)
+### Tracked Entities (`GET /api/tracker/trackedEntities`) { #webapi_tracker_export_tracked_entities }
 
 Two endpoints are dedicated to tracked entities:
 
@@ -1730,12 +1771,12 @@ In the case of CSV, the `fields` request parameter has no effect, and the respon
 contain the following fields:
 
   - trackedEntity (UID)
-  - trackedEntityType (UID)
+  - trackedEntityType (identifier in requested idScheme)
   - createdAt (Datetime)
   - createdAtClient (Datetime)
   - updatedAt (Datetime)
   - updatedAtClient (Datetime)
-  - orgUnit (UID)
+  - orgUnit (identifier in requested idScheme)
   - inactive (boolean)
   - deleted (boolean)
   - potentialDuplicate (boolean)
@@ -1743,7 +1784,7 @@ contain the following fields:
     You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
-  - attribute (UID)
+  - attribute (identifier in requested idScheme)
   - displayName (String)
   - attrCreatedAt (Attribute creation Datetime)
   - attrUpdatedAt (Attribute last update Datetime)
@@ -1799,7 +1840,9 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`eventOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for Event for the given Program|
 |`eventOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for Event for the given Program|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`|Indicates whether to include soft-deleted elements|
-|`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a tracked entities is a Potential Duplicate. true: return tracked entities flagged as Potential Duplicates. false: return tracked entities NOT flagged as Potential Duplicates. If omitted, we don't check whether a tracked entities is a Potential Duplicate or not. |
+|`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a tracked entities is a Potential Duplicate. true: return tracked entities flagged as Potential Duplicates. false: return tracked entities NOT flagged as Potential Duplicates. If omitted, we don't check whether a tracked entities is a Potential Duplicate or not.|
+|`idScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. **Note: only metadata in fields `trackedEntity.trackedEntityType`, `orgUnit` and `attributes` is exported in this idScheme. All other fields will always be exported using UIDs.**|
+|`orgUnitIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|
 
 The available assigned user modes are explained in the following table.
 
@@ -2335,7 +2378,7 @@ A query for an enrollment:
 }
 ```
 
-### Events (`GET /api/tracker/events`)
+### Events (`GET /api/tracker/events`) { #webapi_tracker_export_events }
 
 Two endpoints are dedicated to events:
 
