@@ -1730,12 +1730,12 @@ In the case of CSV, the `fields` request parameter has no effect, and the respon
 contain the following fields:
 
   - trackedEntity (UID)
-  - trackedEntityType (UID)
+  - trackedEntityType (identifier in requested idScheme)
   - createdAt (Datetime)
   - createdAtClient (Datetime)
   - updatedAt (Datetime)
   - updatedAtClient (Datetime)
-  - orgUnit (UID)
+  - orgUnit (identifier in requested idScheme)
   - inactive (boolean)
   - deleted (boolean)
   - potentialDuplicate (boolean)
@@ -1743,7 +1743,7 @@ contain the following fields:
     You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
-  - attribute (UID)
+  - attribute (identifier in requested idScheme)
   - displayName (String)
   - attrCreatedAt (Attribute creation Datetime)
   - attrUpdatedAt (Attribute last update Datetime)
@@ -1799,7 +1799,9 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`eventOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for Event for the given Program|
 |`eventOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for Event for the given Program|
 |`includeDeleted`|`Boolean`|`true`&#124;`false`|Indicates whether to include soft-deleted elements|
-|`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a tracked entities is a Potential Duplicate. true: return tracked entities flagged as Potential Duplicates. false: return tracked entities NOT flagged as Potential Duplicates. If omitted, we don't check whether a tracked entities is a Potential Duplicate or not. |
+|`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a tracked entities is a Potential Duplicate. true: return tracked entities flagged as Potential Duplicates. false: return tracked entities NOT flagged as Potential Duplicates. If omitted, we don't check whether a tracked entities is a Potential Duplicate or not.|
+|`idScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. **Note: only metadata in fields `trackedEntity.trackedEntityType`, `orgUnit` and `attributes` is exported in this idScheme. All other fields will always be exported using UIDs.**|
+|`orgUnitIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|
 
 The available assigned user modes are explained in the following table.
 
