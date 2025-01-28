@@ -312,6 +312,50 @@ enrollment payload. Below is a sample payload:
 > One between `uid` or `username` field must be provided. If both are provided, only username is
 > considered.
 
+## IdSchemes
+
+Tracker supports different [identifier schemes](#webapi_identifier_schemes), referred to as
+`idScheme`s. The default `idScheme` for import and export is `UID`.
+
+`idSchemes` are supported by:
+
+* [import](#webapi_tracker_import)
+* [tracked entity export](#webapi_tracker_export_tracked_entities)
+* [event export](#webapi_tracker_export_events)
+
+See each section for request parameters and their effects on the response.
+
+Only metadata fields directly on the entity are exported using the chosen `idScheme`. Metadata in
+collections are always exported using `UID`s, except for:
+
+* `TrackedEntity.attributes[].attribute`
+* `Event.dataValues[].dataElement`
+
+For example, metadata references in `TrackedEntity.relationships` or `enrollments` will always use
+`UID`s for import/export.
+
+The [import](#webapi_tracker_import) expects metadata to use the chosen `idScheme`. There is no
+fallback - for example, trying `orgUnitIdScheme=CODE` first and then falling back to `UID` if not
+found. Similarly, metadata is exported only using the chosen `idScheme` without fallback. This
+prevents issues from mixing `idScheme`s.
+
+If metadata lacks identifiers for the chosen `idScheme`, you'll receive an error like:
+
+```json
+{
+  "httpStatus": "Unprocessable Entity",
+  "httpStatusCode": 422,
+  "status": "ERROR",
+  "message": "Not all metadata has an identifier for the requested idScheme. Either change the requested idScheme or add the missing identifiers to the metadata.",
+  "devMessage": "Following metadata listed using their UIDs is missing identifiers for the requested idScheme:\nProgramStage[ATTRIBUTE:Y1LUDU8sWBR]=A03MvHHogjR\nCategoryOptionCombo[ATTRIBUTE:Y1LUDU8sWBR]=HllvX50cXC0\nCategoryOption[ATTRIBUTE:Y1LUDU8sWBR]=xYerKDKCefk\nProgram[ATTRIBUTE:Y1LUDU8sWBR]=IpHINAT79UW\nOrganisationUnit[ATTRIBUTE:Y1LUDU8sWBR]=DiszpKrYNg8"
+}
+```
+
+To resolve this, either:
+
+1. Add the missing identifiers
+2. Change the `idScheme` parameters to use a scheme with complete information
+
 ## Tracker Import (`POST /api/tracker`) { #webapi_tracker_import }
 
 The endpoint `POST /api/tracker` is also called the tracker importer. This endpoint allows clients
@@ -1711,7 +1755,7 @@ filter](#webapi_metadata_field_filter) for a more complete guide on how to use `
 |`fields=enrollments[uid]`|only returns `enrollments` field `uid`|
 |`fields=enrollments[uid,enrolledAt]`|only returns `enrollments` fields `uid` and `enrolledAt`|
 
-### Tracked Entities (`GET /api/tracker/trackedEntities`)
+### Tracked Entities (`GET /api/tracker/trackedEntities`) { #webapi_tracker_export_tracked_entities }
 
 Two endpoints are dedicated to tracked entities:
 
@@ -2337,7 +2381,7 @@ A query for an enrollment:
 }
 ```
 
-### Events (`GET /api/tracker/events`)
+### Events (`GET /api/tracker/events`) { #webapi_tracker_export_events }
 
 Two endpoints are dedicated to events:
 
