@@ -334,12 +334,9 @@ collections are always exported using `UID`s, except for:
 For example, metadata references in `TrackedEntity.relationships` or `enrollments` will always use
 `UID`s for import/export.
 
-The [import](#webapi_tracker_import) expects metadata to use the chosen `idScheme`. There is no
-fallback - for example, trying `orgUnitIdScheme=CODE` first and then falling back to `UID` if not
-found. Similarly, metadata is exported only using the chosen `idScheme` without fallback. This
-prevents issues from mixing `idScheme`s.
-
-If metadata lacks identifiers for the chosen `idScheme`, you'll receive an error like:
+The [import](#webapi_tracker_import) expects metadata identifiers to only use the chosen `idScheme`.
+Similarly, metadata is exported only using the chosen `idScheme`. If metadata lacks identifiers for
+the chosen `idScheme`, you'll receive an error like:
 
 ```json
 {
