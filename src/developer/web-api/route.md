@@ -41,7 +41,7 @@ POST /api/routes/postman/run
 
 ### Running a route with authentication
 
-A number of authentication modes are supported when running routes. These authentication modes add headers or query parameters to the request being routed from DHIS2. DHIS2 encrypts at rest sensitive headers or query parameters when creating a route with an authentication mode. This means that the unencrypted secrets cannot be read from the database or the Web API. What follows are the supported authentication modes:
+A number of authentication modes are supported when running routes. These authentication modes add headers or query parameters to the request being routed from DHIS2. DHIS2 encrypts at rest sensitive headers or query parameters when creating a route with an authentication mode. This means that the clear text secrets cannot be read from the database or the Web API. What follows are the supported authentication modes:
 
 * `http-basic`: adds an _Authorization_ header to the route request for HTTP basic access authentication. Here is an example creating a route configured with `http-basic` authentication:
 
