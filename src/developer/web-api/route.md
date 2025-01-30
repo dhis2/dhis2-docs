@@ -24,10 +24,10 @@ The following is an example of a JSON request creating a route:
 
 ```json
 {
-  "name": "postman",
+  "name": "Postman Echo",
   "code": "postman",
   "disabled": false,
-  "url": "https://postman-echo.com/"
+  "url": "https://postman-echo.com/get"
 }
 ```
 
@@ -36,6 +36,11 @@ The route can be run from DHIS2 after the above request is sent to the `/api/rou
 ```
 GET /api/routes/{id}/run
 GET /api/routes/postman/run
+```
+
+If you want DHIS2 to _POST_ the request to the route target, use the _POST_ HTTP method when calling the `run` endpoint instead of the `GET` HTTP method:
+
+```
 POST /api/routes/postman/run
 ```
 
@@ -47,7 +52,7 @@ A number of authentication modes are supported when running routes. These authen
 
   ```json
   {
-    "name": "postman-get",
+    "name": "Postman Echo",
     "code": "postman-get",
     "disabled": false,
     "url": "https://postman-echo.com/get",
@@ -63,7 +68,7 @@ A number of authentication modes are supported when running routes. These authen
 
   ```json
   {
-    "name": "postman-get",
+    "name": "Postman Echo",
     "code": "postman-get",
     "disabled": false,
     "url": "https://postman-echo.com/get",
@@ -84,7 +89,7 @@ A number of authentication modes are supported when running routes. These authen
 
   ```json
   {
-    "name": "postman-get",
+    "name": "Postman Echo",
     "code": "postman-get",
     "disabled": false,
     "url": "https://postman-echo.com/get",
@@ -101,7 +106,7 @@ A number of authentication modes are supported when running routes. These authen
 
   ```json
   {
-    "name": "postman-get",
+    "name": "Postman Echo",
     "code": "postman-get",
     "disabled": false,
     "url": "https://postman-echo.com/get",
@@ -120,7 +125,7 @@ In the example shown below, we are configuring a route with `http-basic` authent
 
 ```json
 {
-  "name": "postman-post",
+  "name": "Postman Echo",
   "code": "postman-post",
   "disabled": false,
   "url": "https://postman-echo.com/post",
@@ -141,7 +146,7 @@ It is possible to create "wildcard routes" which support sub-path requests which
 
 ```json
 {
-  "name": "postman-wildcard",
+  "name": "Postman Wildcard",
   "code": "postman-wildcard",
   "disabled": false,
   "url": "https://postman-echo.com/**"
