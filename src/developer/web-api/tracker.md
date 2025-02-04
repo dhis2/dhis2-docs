@@ -66,14 +66,14 @@ In this section, we will show and describe each of the objects used in the Track
 
 ### Enrollments
 
-`Tracked Entities` can enroll into `Programs` for which they are eligible. Tracked entities are
-eligible as long as the program is configured with the same `Tracked Entity Type` as the tracked
+`Tracked Entities` can enroll into  `TRACKER PROGRAM` for which they are eligible. Tracked entities
+are eligible as long as the program is configured with the same `Tracked Entity Type` as the tracked
 entity. We represent the enrollment with the `Enrollment` object, which we describe in this section.
 
 | Property | Description | Required | Immutable | Type | Example |
 |---|---|---|---|---|---|
 | enrollment | The identifier of the enrollment. Generated if not supplied | No | Yes | String:Uid | ABCDEF12345 |
-| program | The program the enrollment represents. | Yes | No | String:Uid | ABCDEF12345 |
+| program | The tracker program the enrollment is enrolled into. | Yes | No | String:Uid | ABCDEF12345 |
 | trackedEntity | A reference to the tracked entity enrolled. | Yes | Yes | String:Uid | ABCDEF12345 |
 | status | Status of the enrollment. ACTIVE if not supplied. | No | No | Enum | ACTIVE, COMPLETED, CANCELLED |
 | orgUnit | The organisation unit where the user enrolled the tracked entity. | Yes | No | String:Uid | ABCDEF12345 |
@@ -87,7 +87,7 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 | completedBy | Only for reading data. User that completed the enrollment. Set on the server | No | No | String:any | John Doe |
 | followUp | Indicates whether the enrollment requires follow-up. False if not supplied | No | No | Booelan | Default: False, True |
 | deleted | Indicates whether the enrollment has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
-| geometry | A  geographical representation of the enrollment. Based on the "featureType" of the Program | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
+| geometry | A  geographical representation of the enrollment. Based on the "featureType" of the program | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
 | storedBy | Client reference for who stored/created the enrollment. | No | No | String:Any | John Doe |
 | createdBy | Only for reading data. User that created the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
@@ -1817,7 +1817,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |`orgUnit` **deprecated for removal in version 42 use `orgUnits`**|`String`|Semicolon-separated list of organisation units `UID`s.|Only return tracked entities belonging to provided organisation units.|
 |`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
 |`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`program`|`String`|Program `UID`|A program `UID` for which tracked entities in the response must be enrolled into.|
+|`program`|`String`|Program `UID`|A tracker program `UID` for which tracked entities in the response must be enrolled into.|
 |`programStatus` **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the tracked entities enrollment in the given program.|
 |`programStage`|`String`|`UID`|A program stage `UID` for which tracked entities in the response must have events for.|
 |`followUp`|`Boolean`|`true`&#124;`false`|Indicates whether the tracked entity is marked for follow up for the specified program.|
@@ -1878,8 +1878,8 @@ parameters.
 
 ##### Example requests
 
-A query for all tracked entities associated with a specific organisation unit and program can look
-like this:
+A query for all tracked entities associated with a specific organisation unit and tracker program
+can look like this:
 
     GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8
 
@@ -2251,7 +2251,7 @@ Returns a list of events based on filters.
 |`orgUnit` **deprecated for removal in version 42 use `orgUnits`**|`String`|Semicolon-separated list of organisation units `UID`s.|Only return enrollments belonging to provided organisation units.|
 |`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
 |`ouMode` **deprecated for removal in version 42 use `orgUnitMode`** see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`program`|`String`|`uid`| Identifier of program|
+|`program`|`String`|`uid`|Identifier of a tracker program the enrollment is enrolled into.|
 |`programStatus` **deprecated for removal in version 43 use `status`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the enrollment.|
 |`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the enrollment.|
 |`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the tracked entity for the given program. Can be `true`&#124;`false` or omitted.|
@@ -2286,8 +2286,8 @@ A query for all enrollments associated with a specific organisation unit can loo
 
     GET /api/tracker/enrollments?orgUnits=DiszpKrYNg8
 
-To constrain the response to enrollments which are part of a specific program you can include a
-program query parameter:
+To constrain the response to enrollments which are part of a specific tracker program you can
+include a program query parameter:
 
     GET /api/tracker/enrollments?orgUnits=O6uvpzGd5pu&orgUnitMode=DESCENDANTS&program=ur1Edk5Oe2n
 
@@ -2447,7 +2447,7 @@ Returns a list of events based on the provided filters.
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`program`|`String`|`uid`| Identifier of program|
+|`program`|`String`|`uid`| Identifier of a tracker or event program|
 |`programStage`|`String`|`uid`| Identifier of program stage|
 |`programStatus` **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the events enrollment.|
 |`filter`|`String`|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. Characters such as `:` (colon) or `,` (comma), as part of the filter value, need to be escaped by `/` (slash). Likewise, `/` needs to be escaped. Multiple operator/value pairs for the same property/data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. Repeating the same data element UID is not allowed. User needs access to the data element to filter on it.|
@@ -2848,10 +2848,9 @@ following metadata and their sharing setting is of particular importance: Data E
 Option, Program, Program Stage, Tracked Entity Type, Tracked Entity Attribute as well as Tracker
 related Dashboards and Dashboard Items.
 
-How sharing setting works is straightforward – the settings are enforced during Tracker data
-import/export processes. To read value, one needs to have data read access. If a user is expected to
-modify data, he/she needs to have data write access. Similarly, if a user is expected to modify
-metadata, it is essential to grant metadata write access.
+Sharing settings are enforced during Tracker data import/export. Data read/write access is needed to
+read and write respectively. Similarly, if a user is expected to modify metadata, it is essential to
+grant metadata write access.
 
 One critical point with Tracker data is the need to have a holistic approach. For example, a user
 won’t be able to see the Data Element value by having read access to just the Data Element. The user
