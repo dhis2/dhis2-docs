@@ -1612,7 +1612,10 @@ Sample error response looks like:
 
 ### Merge category option combos { #category_option_combo_merge }
 
-The category option combo merge endpoint allows you to merge a number of category options (sources) into a target category option. This can be used to clean up the system, removing duplicates for instance.
+The category option combo merge endpoint allows you to merge a number of category options (sources) into a target category option. This can be used to clean up the system, removing duplicates for instance. 
+> **Note**
+>
+> Only duplicate category option combos can be merged. There's more info about this in the validation section below.
 
 #### Authorisation
 
@@ -1657,29 +1660,30 @@ The merge operation will transfer all source category option combo metadata asso
 The following metadata get updated:
 
 
-| Metadata           | Property             | Action taken               |
-|--------------------|----------------------|----------------------------|
-| CategoryOption     | categoryOptionCombos | remove sources, add target |
-| CategoryCombo      | optionCombos         | remove sources, add target |
-| DataElementOperand | categoryOptionCombo  | set as target              |
-| Expression         | expression           | replace source with target |
-| Indicator          | numerator            | replace source with target |
-| Indicator          | denominator          | replace source with target |
-| MinMaxDataElement  | optionCombo          | set as target              |
-| Predictor          | outputCombo          | set as target              |
-| SMSCode            | optionId             | set as target              |
+| Metadata           | Property                                 | Action taken               |
+|--------------------|------------------------------------------|----------------------------|
+| CategoryOption     | categoryOptionCombos                     | remove sources             |
+| CategoryCombo      | optionCombos                             | remove sources             |
+| DataElementOperand | categoryOptionCombo                      | set as target              |
+| DataDimensionItem  | dataelementoperand_categoryoptioncomboid | set as target              |
+| Expression         | expression                               | replace source with target |
+| Indicator          | numerator                                | replace source with target |
+| Indicator          | denominator                              | replace source with target |
+| MinMaxDataElement  | optionCombo                              | set as target              |
+| Predictor          | outputCombo                              | set as target              |
+| SMSCode            | optionId                                 | set as target              |
 
 
-| Data                        | Property        | Action taken                                             |
-|-----------------------------|-----------------|----------------------------------------------------------|
-| DataValue                   | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
-| DataValue                   | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
-| DataApproval                | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
-| DataApprovalAudit           | categoryOptions | DISCARD or leave depending if sources are deleted or not |
-| Event                       | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
-| DataValueAudit              | categoryOptions | DISCARD or leave depending if sources are deleted or not |
-| DataValueAudit              | categoryOptions | DISCARD or leave depending if sources are deleted or not |
-| CompleteDataSetRegistration | categoryOptions | merge strategy (DISCARD or LAST_UPDATED)                 |
+| Data                        | Property             | Action taken                                             |
+|-----------------------------|----------------------|----------------------------------------------------------|
+| DataValue                   | categoryOptionCombo  | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataValue                   | attributeOptionCombo | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataApproval                | attributeOptionCombo | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataApprovalAudit           | attributeOptionCombo | DISCARD or leave depending if sources are deleted or not |
+| Event                       | attributeOptionCombo | merge strategy (DISCARD or LAST_UPDATED)                 |
+| DataValueAudit              | categoryOptionCombo  | DISCARD or leave depending if sources are deleted or not |
+| DataValueAudit              | attributeOptionCombo | DISCARD or leave depending if sources are deleted or not |
+| CompleteDataSetRegistration | attributeOptionCombo | merge strategy (DISCARD or LAST_UPDATED)                 |
 
 > **Note**
 >
@@ -1692,17 +1696,22 @@ The following metadata get updated:
 
 #### Validation
 
-The following constraints and error codes apply.
+The following constraints and error codes apply. One of the main validation points is regarding duplicate CategoryOptionCombos. 
+A duplicate CategoryOptionCombo is one which satisfies this criteria: 
+- has the same CategoryCombo
+- has the same CategoryOptions
+- has a different UID
 
 Table: Constraints and error codes
 
-| Error code | Description                                                                       |
-|------------|-----------------------------------------------------------------------------------|
-| E1530      | At least one source CategoryOptionCombo must be specified                         |
-| E1531      | Target CategoryOptionCombo must be specified                                      |
-| E1532      | Target CategoryOptionCombo cannot be a source CategoryOptionCombo                 |
-| E1533      | Source/Target CategoryOptionCombo does not exist: `{uid}`                         |
-| E1534      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED` |
+| Error code | Description                                                                                                 |
+|------------|-------------------------------------------------------------------------------------------------------------|
+| E1530      | At least one source CategoryOptionCombo must be specified                                                   |
+| E1531      | Target CategoryOptionCombo must be specified                                                                |
+| E1532      | Target CategoryOptionCombo cannot be a source CategoryOptionCombo                                           |
+| E1533      | Source/Target CategoryOptionCombo does not exist: `{uid}`                                                   |
+| E1534      | dataMergeStrategy field must be specified. With value `DISCARD` or `LAST_UPDATED`                           |
+| E1540      | CategoryOptionCombos must be duplicates (same cat combo, same cat options, different UID) in order to merge |
 
 #### Database constraints
 There are unique constraints in place that can prevent a successful merge. These constraints are set by DHIS2 in order to maintain a logical domain model.    
