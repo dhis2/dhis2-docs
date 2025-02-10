@@ -30,9 +30,9 @@ Table: Analytics settings
 
 | Setting | Description |
 |---|---|
-| **Default relative period for analysis** | Defines the relative period to use by default in analytics app: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. The relative period will be automatically selected when you open these apps.<br> <br>Recommended setting: the most commonly used relative period among your users. |
-| **Property to display in analysis modules** | Sets whether you want to display the metadata objects' names or short names in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Property to display in analysis modules**. |
-| **Default digit group separator to display in analysis modules** | Sets the default digit group separator in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. |
+| **Default relative period for analysis** | Defines the relative period to use by default in the bundled analytics apps such as the **Data Visualizer app**. The relative period will be automatically selected when you open these apps.<br> <br>Recommended setting: the most commonly used relative period among your users. |
+| **Property to display in analysis modules** | Sets whether you want to display the metadata objects' names or short names in the bundled analytics apps such as the **Data Visualizer app**.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Property to display in analysis modules**. |
+| **Default digit group separator to display in analysis modules** | Sets the default digit group separator in the bundled analytics apps such as the **Data Visualizer app**. |
 | **Hide daily periods** | Hide daily periods in the analysis tools |
 | **Hide weekly periods** | Hide weekly periods in the analysis tools |
 | **Hide monthly periods** | Hide monthly periods in the analysis tools |
