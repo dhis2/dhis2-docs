@@ -140,11 +140,11 @@ The pre-configured response timeout for the origin when running a route is 10 se
   "code": "postman-post",
   "disabled": false,
   "url": "https://postman-echo.com/post",
-  "responseTimeout": 5
+  "responseTimeoutSeconds": 5
 }
 ```
 
-The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeout` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance.
+The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeoutSeconds` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance.
 
 ### Wildcard Routes
 
