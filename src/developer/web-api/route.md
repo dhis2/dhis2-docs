@@ -150,7 +150,6 @@ The minimum permitted response timeout is 1 second while the maximum permitted t
 >* \>= 40.8
 >* \>= 41.4
 
-
 ### Wildcard Routes
 
 It is possible to create "wildcard routes" which support sub-path requests which are then passed through to the upstream service. To do this, the route URL must end with `/**`.  Sub-paths can then be specified by appending them after `/run`.
