@@ -146,6 +146,11 @@ The pre-configured response timeout for the origin when running a route is 5 sec
 
 The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeoutSeconds` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance.
 
+>IMPORTANT: The default route response timeout is 10 seconds for DHIS2 versions older than 42 except for the following versions which have the response timeout set to 30 seconds:
+>* \>= 40.8
+>* \>= 41.4
+
+
 ### Wildcard Routes
 
 It is possible to create "wildcard routes" which support sub-path requests which are then passed through to the upstream service. To do this, the route URL must end with `/**`.  Sub-paths can then be specified by appending them after `/run`.
