@@ -93,6 +93,9 @@ server.https = off
 # System [Optional]
 # ----------------------------------------------------------------------
 
+# System identifier
+system.id = hmis1.country.org
+
 # System mode for database read operations only, can be 'off', 'on'
 system.read_only_mode = off
 
@@ -104,9 +107,6 @@ system.sql_view_table_protection = on
 
 # SQL view write enabled, can be 'on', 'off'
 system.sql_view_write_enabled = off
-
-# Disable server-side program rule execution, can be 'on', 'off'
-system.program_rule.server_execution = on
 
 # Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
 system.remote_servers_allowed = https://server1.org/,https://server2.org/
@@ -363,12 +363,6 @@ system.system.sql_view_write_enabled = on | off
 ```
 
 Enables or disables write permissions for SQL views. This will prohibit SQL view performing underlying writes (query can be a select which requires write permission). Enabling is not recommended. Can be `on` or `off`. Default is `off`.
-
-```properties
-system.program_rule.server_execution = on | off
-```
-
-Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
 
 ### Enable TOTP (OTP-based) 2FA:
 
