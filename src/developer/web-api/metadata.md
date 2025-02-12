@@ -1638,7 +1638,6 @@ The payload in JSON format looks like the following:
     "dPSWsKeAZNw"
   ],
   "target": "rEq3Hkd3XXH",
-  "deleteSources": true,
   "dataMergeStrategy": "DISCARD"
 }
 ```
@@ -1651,12 +1650,16 @@ Table: Merge payload fields
 |-------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | sources           | Yes      | Array of identifiers of the category option combos to merge (the source category option combos)                                                                                                                             |
 | target            | Yes      | Identifier of the category option combo to merge the sources into (the target category option combo)                                                                                                                        |
-| deleteSources     | No       | Whether to delete the source category option combos after the operation. Default is false.                                                                                                                                  |
 | dataMergeStrategy | Yes      | How to handle merging of data values. Options are 'DISCARD' or 'LAST_UPDATED'. DISCARD will delete all source data values. LAST_UPDATED will merge all data values and use the last updated value where duplicates are met. |
 
 The merge operation will merge the source category option combos into the target category option combo. One or many source category option combos can be specified. Only one target should be specified.
 
 The merge operation will transfer all source category option combo metadata associations to the target category option combo.
+
+> **Note**
+>
+> All source category option combos will always be deleted during a merge. The is because after all source references have been handled, empty category option combos are left. These are not seen as valid by the system.
+
 The following metadata get updated:
 
 
@@ -1697,7 +1700,7 @@ The following metadata get updated:
 #### Validation
 
 The following constraints and error codes apply. One of the main validation points is regarding duplicate CategoryOptionCombos. 
-A duplicate CategoryOptionCombo is one which satisfies this criteria: 
+A duplicate CategoryOptionCombo is one which satisfies the criteria: 
 - has the same CategoryCombo
 - has the same CategoryOptions
 - has a different UID
