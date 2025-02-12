@@ -18,6 +18,12 @@ X-Forwarded-User: <username>
 
 For the examples here we will be using the the [Echo API](https://learning.postman.com/docs/developer/echo-api/) from Postman which just returns what you send to it (including body in the case of `POST`).
 
+### Required permissions
+
+In order to be able to configure and view the routes, the "Route" authority should be added to the user's role. This can be done in the User Management app -> User roles, then search for the "Route" authority, and assign the autorities to the user's role.
+
+![](resources/images/routes/route-authorities.png)
+
 ### Running a route
 
 The following is an example of a JSON request creating a route:
