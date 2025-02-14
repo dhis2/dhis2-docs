@@ -132,7 +132,7 @@ Custom authorities allows a DHIS2 client that does not have the rights to manage
 
 ### Running a route with custom response timeout
 
-The pre-configured response timeout for the origin when running a route is 5 seconds. A response taking longer than this will result in the DHIS2 server returning a gateway timeout error to the client. However, this timeout can be adjusted when creating or updating a route as demonstrated below:
+The pre-configured response timeout for the origin when running a route is 5 seconds. A network read taking longer than this will result in the DHIS2 server returning a gateway timeout error to the client. However, this timeout can be adjusted when creating or updating a route as demonstrated below:
 
 ```json
 {
