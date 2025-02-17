@@ -32,7 +32,7 @@ If you want DHIS2 to _POST_ the request to the route target, use the _POST_ HTTP
 POST /api/routes/postman/run
 ```
 
-For performance reasons, the maximum allowed size for a route response body is 256 kilobytes. A response body from the origin exceeding this limit will lead to the DHIS2 server returning a bad gateway error to the client.
+For performance reasons, the maximum transfer time for a route response is 5 minutes. A response body from the upstream server exceeding this limit will lead to the DHIS2 server returning a bad gateway error to the client.
 
 ### Running a route with authentication
 
@@ -132,7 +132,7 @@ Custom authorities allows a DHIS2 client that does not have the rights to manage
 
 ### Running a route with custom response timeout
 
-The pre-configured response timeout for the origin when running a route is 5 seconds. A network-level read taking longer than this duration will result in the DHIS2 server returning a gateway timeout error to the client. However, this timeout can be adjusted when creating or updating a route as demonstrated below:
+The pre-configured response timeout for the upstream server when running a route is 5 seconds. A network-level read taking longer than this duration will result in the DHIS2 server returning a gateway timeout error to the client. However, this timeout can be adjusted when creating or updating a route as demonstrated below:
 
 ```json
 {
