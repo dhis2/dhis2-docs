@@ -32,8 +32,6 @@ If you want DHIS2 to _POST_ the request to the route target, use the _POST_ HTTP
 POST /api/routes/postman/run
 ```
 
-For performance reasons, the maximum transfer time for a route response is 5 minutes. A response body from the upstream server exceeding this limit will lead to the DHIS2 server returning a bad gateway error to the client.
-
 ### Running a route with authentication
 
 A number of authentication modes are supported when running routes. These authentication modes add headers or query parameters to the request being routed from DHIS2. DHIS2 encrypts at rest sensitive headers or query parameters when creating a route with an authentication mode. This means that the clear text secrets cannot be read from the database or the Web API. What follows are the supported authentication modes:
@@ -132,7 +130,7 @@ Custom authorities allows a DHIS2 client that does not have the rights to manage
 
 ### Running a route with custom response timeout
 
-The pre-configured response timeout for the upstream server when running a route is 5 seconds. A network-level read taking longer than this duration will result in the DHIS2 server returning a gateway timeout error to the client. However, this timeout can be adjusted when creating or updating a route as demonstrated below:
+For performance reasons, the maximum transfer time for a route response is 5 minutes. When a transfer of the upstream server response body exceeds this limit, the DHIS2 server returns a bad gateway error to the client. On the other hand, the pre-configured timeout for the upstream server response when running a route is 5 seconds. This means that a network-level read taking longer than 5 seconds will result in the DHIS2 server returning a gateway timeout error to the client. However, this timeout can be adjusted when creating or updating a route as demonstrated below:
 
 ```json
 {
@@ -144,7 +142,7 @@ The pre-configured response timeout for the upstream server when running a route
 }
 ```
 
-The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeoutSeconds` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance.
+The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeoutSeconds` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance. 
 
 >IMPORTANT: The default route response timeout is 10 seconds for DHIS2 versions older than 42 except for the following versions which have the response timeout of 30 seconds:
 >* \>= 40.8
