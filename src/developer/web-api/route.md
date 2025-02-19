@@ -6,6 +6,12 @@ The route API permits DHIS2 web apps to communicate with external HTTP gateways 
 
 For the examples here we will be using the [Echo API](https://learning.postman.com/docs/developer/echo-api/) from Postman which just returns what you send to it (including body in the case of `POST`).
 
+### Required permissions
+
+In order to be able to configure and view the routes, the current user must either have "ALL" authority, or the "Route" authority should be added to the user's role. The authority can be added by heading to the User Management app -> User roles tab, then search for the word "Route" under Metadata authorities. Then you can assign the autorities to the user's role, and save the updates to the role.
+
+![](resources/images/routes/route-authorities.png)
+
 ### Running a route
 
 The following is an example of a JSON request creating a route:
