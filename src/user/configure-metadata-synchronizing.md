@@ -15,13 +15,12 @@ local instances.
 If metadata creation and update take place at the central system and if
 the metadata synchronisation task is enabled, the metadata gets
 synchronized down to all the local instances which are bound to the
-central instance. These local instances will in turn push data values,
-Event and Tracker program data and complete data registration sets to
-the central instance. Enabling or disabling versioning of metadata
-synchronization at local instance, will not hinder the metadata
-synchronization process. This is because the metadata synchronization
-interacts with versioning end points of the central instance and not
-with end points of the local instance.
+central instance. These local instances will in turn push data values
+and complete data registration sets to the central instance. Enabling or
+disabling versioning of metadata synchronization at local instance, will
+not hinder the metadata synchronization process. This is because the
+metadata synchronization interacts with versioning end points of the
+central instance and not with end points of the local instance.
 
 Each snapshot of metadata export generated is referred to a metadata
 version. A new metadata version contains only the changes between the

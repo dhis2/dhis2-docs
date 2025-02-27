@@ -31,8 +31,8 @@ Select the latest version of Glowroot from their [releases](https://github.com/g
 > # there should now be a file called /opt/glowroot/glowroot.jar
 
 > Note: make sure that the user who is running the DHIS2 service has write access to the glowroot install directory. E.g. If running DHIS2 under tomcat as `dhis` user:
-> ```
 > chown -R dhis: /opt/glowroot
+> ```
 
 ### Set your DHIS2 service to use glowroot
 
@@ -76,7 +76,7 @@ The `Transactions` tabs gives various real time information on the different API
 
 ### Errors tab
 
-The `Errors` tab shows the exception stacktraces that has occured during execution of any part of the system. Usually information from other tabs is required to get the complete picture.
+The `Errors` tab shows the exception stacktraces that has occurred during execution of any part of the system. Usually information from other tabs is required to get the complete picture.
 
 ### JVM tab
 

@@ -235,7 +235,7 @@ The response payload looks like this:
 
 Update a job with parameters using the following endpoint and JSON payload format:
 
-    PUT /api/jobConfiguration/{id}
+    PUT /api/jobConfigurations/{id}
 
 ```json
 {
@@ -255,7 +255,7 @@ Update a job with parameters using the following endpoint and JSON payload forma
 
 Delete a job using:
 
-    DELETE /api/jobConfiguration/{id}
+    DELETE /api/jobConfigurations/{id}
 
 Note that some jobs with custom configuration parameters may not be added if the
 required system settings are not configured. An example of this is data
@@ -265,8 +265,50 @@ synchronization, which requires remote server configuration.
 
 Jobs can be run manually using:
 
-    POST /api/jobConfiguration/{id}/execute
+    POST /api/jobConfigurations/{id}/execute
 
+
+### Searching for jobs with execution errors
+
+Since version 2.41 jobs can store errors of the job run to allow inspection
+at a later point in time. 
+
+> **Note** This feature is only accessible for administrator
+> with the `F_JOB_LOG_READ` authority and superusers.
+
+To view the errors associated with a specific job use:
+
+    GET /api/jobConfigurations/{id}/errors
+
+To search for jobs that match user specified search criteria use:
+
+    GET /api/jobConfigurations/errors
+
+with one or more of the following search parameters
+
+* `user`: include jobs ran by this user
+* `from`: include jobs that started after this point in time
+* `to`: include jobs that did not start later than this point in time
+* `code`: include jobs that have errors with one of the given error codes
+* `object`: include jobs that have errors linked to one of the given object IDs
+* `type`: include job with errors of the specified type(s)
+
+When multiple criteria are used all have to be met (AND logic).
+If multiple `code`, `object` or `type` parameters are given just one has to match (OR logic).
+
+For example, to find tracker import errors for the 1. of January 2024 with error code `E1002` 
+(tracked entity already exists) the following search is made:
+
+    GET /api/jobConfigurations/errors?type=TRACKER_IMPORT_JOB&code=E1002&from=2024-01-01&to=2024-01-02
+
+The results show the job run error details. By default, the `input` (the payload of the impport) 
+is excluded from the results. To include it add `includeInput=true`:
+
+    GET /api/jobConfigurations/errors?includeInput=true
+
+> **Note**
+> Not all job types do store their errors. Currently, this feature is mostly
+> supported by import jobs.
 
 
 ## Scheduler API
@@ -357,6 +399,13 @@ Only jobs that have been split into processes, stages and items can be
 cancelled effectively. Not all jobs have been split yet. These will run till
 completion even if cancellation has been requested.
 
+### Reset a Job stuck in RUNNING state
+When a server shuts down while a job is in `RUNNING` state the job 
+needs to be reverted back to its initial state manually.
+
+To revert a job that has `RUNNING` state but is not running use:
+
+    POST /api/jobConfigurations/{uid}/revert
 
 ## Job Queues { #queues }
 Sequences of jobs (configurations) can be created using job queues.
@@ -419,6 +468,9 @@ To update an existing queue CRON expression or sequence use a PUT request
 
 The payload has to state both new CRON expression and job sequence like in 
 the example above to create a new queue.
+
+To rename a queue the new name can be stated in the payload, while the old name 
+is used in the URL path.  
 
 ### Delete a Job Queue { #queues-delete }
 To delete a job queue send a DELETE request to its resource URL:

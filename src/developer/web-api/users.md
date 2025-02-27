@@ -342,7 +342,127 @@ out:
 If any of these requirements are not met the invite resource will return
 with a *409 Conflict* status code together with a descriptive message.
 
-### User replication { #webapi_user_replication } 
+
+### User login (Experimental) { #webapi_user_login }
+
+This endpoint is not meant for external use, unless you are implementing a custom login app, which you probably should not do, unless you have a very good reason.
+
+A user can log in and get a session cookie with the following example:  
+`POST` `/api/auth/login`  
+with `JSON` body:
+
+```json
+{
+    "username": "username",
+    "password": "password",
+    "twoFactorCode": "two_factor_code"
+}
+
+```
+Successful response looks like:  
+
+```json
+{
+    "loginStatus": "SUCCESS",
+    "redirectUrl": "/dhis-web-dashboard/"
+}
+```
+
+
+### User account confirm invite (Experimental) { #webapi_user_confirm_invite }
+
+> **Important**  
+> Before confirming an invitation, an admin user should have set up the User and sent an invitation link. That prerequisite also adds some required data in the `userinfo` database table (`idToken`, `restoreToken`, `restoreExpiry`) for that user, in order to complete the invite.
+
+A user can confirm an invitation through the following endpoint:  
+`POST` `/api/auth/invite`  
+with `JSON` body:
+
+```json
+{
+    "username": "TestUser",
+    "firstName": "Test",
+    "surname": "User",
+    "password": "Test123!",
+    "email": "test@test.com",
+    "phoneNumber": "123456789",
+    "g-recaptcha-response": "recaptchaResponse",
+    "token": "aWRUb2tlbjpJRHJlc3RvcmVUb2tlbg=="
+}
+```
+
+> **Note**  
+> The `g-recaptcha-response` value would be populated through the use of the core Login App UI normally.  
+> The `token` field expects a Base64-encoded value. In this example, decoded, it's `idToken:IDrestoreToken`. This would be sent by email to the invited user (it is actually created internally (and populated in the database) during the `/api/users/invite` operation).
+
+Successful response looks like:  
+
+```json
+{
+    "httpStatus": "OK",
+    "httpStatusCode": 200,
+    "status": "OK",
+    "message": "Account updated"
+}
+```
+
+### User account registration (Experimental) { #webapi_user_registration }
+A user can register directly through the following endpoint:  
+`POST` `/api/auth/registration` with `JSON` body:  
+
+```json
+{
+    "username": "testSelfReg",
+    "firstName": "test",
+    "surname": "selfReg",
+    "password": "P@ssword123",
+    "email": "test@test.com",
+    "phoneNumber": "12345oooo",
+    "g-recaptcha-response": "recap response"
+}
+
+```
+
+A successful response looks like:  
+
+```json
+{
+    "httpStatus": "Created",
+    "httpStatusCode": 201,
+    "status": "OK",
+    "message": "Account created"
+}
+```
+
+### User forgot password (Experimental) { #webapi_user_forgot_password }
+
+This endpoint is used to trigger the forgotten password flow. It can be triggered by supplying the username or email of the user whose password needs resetting.  
+`POST` `/api/auth/forgotPassword` with `JSON` body:  
+
+```json
+{
+    "emailOrUsername": "testUsername1"
+}
+```
+
+A successful response returns an empty `200 OK`. This should trigger an email to be sent to the user which allows them to reset their password.
+
+### User password reset (Experimental) { #webapi_user_password_reset }
+
+Once a user has received an email with a link to reset their password, it will contain a token which can be used to reset their password.  
+`POST` `/api/auth/passwordReset` with `JSON` body:  
+
+```json
+{
+    "newPassword": "ChangeMe123!",
+    "resetToken": "token-value-from-email-link"
+}
+```
+
+A successful response returns an empty `200 OK`. The user should now be able to log in using the new password.
+
+
+### User replication { #webapi_user_replication }
 
 To replicate a user you can use the *replica* resource. Replicating a
 user can be useful when debugging or reproducing issues reported by a
@@ -421,13 +541,13 @@ GET /api/users/{id}/dataApprovalWorkflows
 
 ### Switching between user accounts connected to the same identity provider account
 
-If [linked accounts are enabled in dhis.conf](../../../manage/performing-system-administration/dhis-core-version-master/installation.html#connecting-a-single-identity-provider-account-to-multiple-dhis2-accounts) and a user has logged in via OIDC, then it is possible for the user to switch between accounts that are linked to the same identity provider account using this API call:
+If [linked accounts are enabled in dhis.conf](#connect_single_identity_to_multiple_accounts) and a user has logged in via OIDC, then it is possible for the user to switch between DHIS2 accounts that are linked to the same identity provider account using this API call:
 
 ```
 GET /dhis-web-commons-security/logout.action?current={current_username}&switch={username_to_switch_to}
 ```
 
-This has the effect of signing the current user out and signing in the new user, but it looks seamless as it is happening.
+This has the effect of signing out the current user and signing in the new user. It looks seamless as it is happening, except that the new user ends up on the default page of the DHIS2 instance.
 
 Note that this API call will likely change in the future, but its general function will remain the same.
 

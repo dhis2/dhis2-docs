@@ -546,9 +546,22 @@ Additional results can be filtered using a `section` parameter.
 
 The `section` filter will return all exact matches which have the specified section. 
 
+Furthermore, to filter (select) only checks marked as `isSlow` use `slow=true`,
+
+    GET /api/dataIntegrity?slow=true
+
+or to filter (select) only checks that are not performed via database query 
+(programmed checks) use `programmatic=true`:
+
+    GET /api/dataIntegrity?programmatic=true
+
+The `slow`, `programmatic` and `section` filters can be combined in which case
+all conditions must be met.
+
 ### Running data integrity summaries { #webapi_data_integrity_run_summary }
 
 Since version 2.38, data integrity checks have two levels of specificity: 
+
 - a `summary` level that provides an overview of the number of issues
 - a `details` level that provides a list of issues pointing to individual data integrity violations.
 
@@ -733,16 +746,25 @@ already completed details checks can be obtained using:
 
 ### Custom Data Integrity Checks { #custom_data_integrity_checks } 
 
-Users of DHIS2 can now create and supply their own Data Integrity Checks. This can be useful if users 
-want to avail of this functionality and extend upon the supplied set of core data integrity checks.  
+Users of DHIS2 can now create and supply their own Data Integrity Checks. This can be useful if users
+want to avail of this functionality and extend upon the supplied set of core data integrity checks.
 
-An example of a custom check could be for determining if certain users are members of specific user groups. This 
-type of check would be very specific to an implementation, and not generally applicable across all installs.  
+> **Tip**
+> 
+> Users are also encouraged to share their custom checks with others by opening a pull request in the 
+> [dhis2-core](https://github.com/dhis2/dhis2-core) repository containing their `.yaml` file(s).
+> Please select `platform-backend` as reviewer to put the PR on our radar early on. The team will 
+> take care of checking and linking the check correctly, so it becomes part of the provided suite of 
+> checks with the next release. 
 
-Custom checks can be implemented by satisfying the following requirements, each of which we will go into detail:  
+An example of a custom check could be for determining if certain users are members of specific user groups.
+This type of check would be very specific to an implementation, and not generally applicable across all installs.
+These types of metadata checks can be used to extend the default checks which are included with DHIS2.
+
+Custom checks can be implemented by satisfying the following requirements, each of which we will go into detail:
 - Supplying your own list of custom data integrity checks in a list file named `custom-data-integrity-checks.yaml`
  in your `DHIS2_HOME` directory
-- Having a directory named `custom-data-integrity-checks` in your `DHIS2_HOME` directory 
+- Having a directory named `custom-data-integrity-checks` in your `DHIS2_HOME` directory
 - Supplying your valid custom data integrity check yaml files
 
 #### Custom Data Integrity Check List File
@@ -753,7 +775,7 @@ data integrity checks:
     GET /api/dataIntegrity
 
 DHIS2 will look for a file named `custom-data-integrity-checks.yaml` in your `DHIS2_HOME` directory when loading
-data integrity files. If you are not using custom checks and the file is not present, a warning log like this will 
+data integrity files. If you are not using custom checks and the file is not present, a warning log like this will
 be present:
 
 ```text
@@ -761,11 +783,11 @@ be present:
 ```
 
 If you are implementing custom data integrity checks then this file must be present. To see what the core data integrity checks
-file looks like as an example, check out [this file](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks.yaml). 
+file looks like as an example, check out [this file](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks.yaml).
 
 
 The `custom-data-integrity-checks.yaml` file should list all of your custom data integrity checks.
-As an example, it could look something like this: 
+As an example, it could look something like this:
 
 ```yaml
 checks:
@@ -800,7 +822,7 @@ check will not be loaded.
 > custom checks will not affect these core system checks.
 
 An example data integrity check yaml file is located [here](https://github.com/dhis2/dhis2-core/blob/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks/orgunits/orgunits_orphaned.yaml)
-for reference. Note the `name` property.  
+for reference. Note the `name` property.
 
 The data integrity `code` is calculated dynamically by using the first letter of each word in the `name`. Some examples:
 
@@ -859,12 +881,49 @@ Details of the data integrity check yaml file, taken from the JSON schema file
 | introduction    | yes      | outlining the objective of the check                                                                                          |
 | recommendation  | yes      | outlining how to resolve identified issues                                                                                    |
 
-## Complete data set registrations { #webapi_complete_data_set_registrations } 
+### Example custom data integrity check
+
+
+An example of a custom check could be for determining if users have an email. Emails are useful to be
+able to communicate with users and sent them notifications, as well as password recovery. So, in some
+instllations of DHIS2, it could be a policy that all users should have emails. An example of this type
+of custom check is shown below.
+
+```
+---
+name: users_should_have_emails
+description: Users should have emails.
+section: Users
+section_order: 6
+summary_sql: >-
+  WITH users_no_email as (
+  SELECT uid,username from
+  userinfo where email IS NULL)
+  SELECT COUNT(*) as value,
+  100*COUNT(*) / NULLIF( ( select COUNT(*) from userinfo), 0) as percent
+  from users_no_email;
+details_sql: >-
+  WITH users_no_email as (
+  SELECT uid,username from
+  userinfo where email IS NULL)
+  SELECT uid,username as from users_no_email;
+severity: WARNING
+introduction: >
+  Users should have defined emails. This is important for password recovery and to be able
+  to send notifications to users.
+recommendation: >
+  Make sure that all users have defined emails.
+details_id_type: users
+```
+
+More examples of different types of metadata integrity checks can be found in the DHIS2 source code [here](https://github.com/dhis2/dhis2-core/tree/master/dhis-2/dhis-services/dhis-service-administration/src/main/resources/data-integrity-checks).
+
+## Complete data set registrations { #webapi_complete_data_set_registrations }
 
 This section is about complete data set registrations for data sets. A
 registration marks as a data set as completely captured.
 
-### Completing data sets { #webapi_completing_data_sets } 
+### Completing data sets { #webapi_completing_data_sets }
 
 This section explains how to register data sets as complete. This is
 achieved by interacting with the *completeDataSetRegistrations*
@@ -964,7 +1023,7 @@ one can be used. For example, it doesn't make sense to both set the start/end da
 An example request looks like this:
 
 ```bash
-GET /api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX&dataSet=pBOMPrpg1QX
+GET /api/33/completeDataSetRegistrations?dataSet=pBOMPrpg1QX
   &startDate=2014-01-01&endDate=2014-01-31&orgUnit=YuQRtpLP10I
   &orgUnit=vWbkYPRmKyS&children=true
 ```

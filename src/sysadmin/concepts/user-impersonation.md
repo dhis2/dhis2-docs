@@ -57,10 +57,12 @@ The user impersonation feature configuration options.
 * `switch_user_allow_listed_ips` (Default allowed IP(s) are; `localhost,127.0.0.1,[0:0:0:0:0:0:0:1]`)
 
 ## Security restrictions
+
 * Feature must be enabled in the `dhis.conf` configuration file, default value is; `disabled`.
 * Users trying to impersonate need to send requests from an allowed IP.
 * Users without the `ALL` authority can not impersonate another user that has the `ALL` authority.
 * Users can not impersonate themselves.
+
 ## Security Implications
 
 This feature should be used with caution due to its inherent security implications. Only trusted administrators should

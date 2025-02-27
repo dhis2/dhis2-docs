@@ -15,9 +15,6 @@ need to collect and analyze data:
 
   - Organisation units
 
-  - Program metadata: tracked entity, tracked entity attribute and
-    relationship type
-
   - Validation rules
 
   - Attributes
@@ -33,6 +30,12 @@ need to collect and analyze data:
   - Push reports
 
   - External map layers
+
+  - SQL views
+
+  - Locales
+
+  - Analytics table hooks
 
 > **Note**
 >
@@ -366,7 +369,7 @@ the category option combinations automatically.
 
 5.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_categories } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -594,8 +597,8 @@ Table: Data element objects in the Maintenance app
     
     | Value type | Description |
     |---|---|
-    | Age | - |
-    | Coordinate | A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format "-19.23 , 56.42" with a comma separating the longitude and latitude. |
+    | Age | Dates rendered as calendar widget OR by entering number of years, months and/or days which calculates the date value based on current date. The date will be saved in the backend. |
+    | Coordinate | A point coordinate specified as longitude and latitude in decimal degrees. All coordinate should be specified in the format [-19.23 , 56.42] with brackets and a comma separating the longitude and latitude. |
     | Date | Dates rendered as calendar widget in data entry. |
     | Date & time | Is a combination of the **DATE** and **TIME** data elements. |
     | Email | Email. |
@@ -772,7 +775,7 @@ group sets.
 
 5.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_data_elements } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -1131,15 +1134,20 @@ data entry forms.
 23. If applicable, select **Render sections as tabs**.
 
     This option is only applicable for section forms. The option allows
-    you to render each section as a tab horizontally above the data set.
+    you to render each section as a tab above the data set. You can choose whether to render the tabs horizontally or vertically. 
     This is useful for long data sets as it allows appropriate sections
     to be selected quickly without going through the entire form.
 
-24. If applicable, select **Render vertically**.
+24. If applicable, select **Add custom title/subtitle**.
 
-    This option is only applicable for section forms.
+    This option allows you to add a title and/or subtitle to the dataset. You can choose whether to display the title and subtitle in the center, at line start or at line end.
+    For security reasons, only basic styling and HTML link elements are allowed, specifically these tags: `a` for adding a link, `u` for underlining a text, and `b`, `strong` or `em` for styling text in bold format.
 
-25. Select data elements and assign them.
+25. If applicable, select **Render vertically**.
+
+    This option is only applicable for section forms that are multi-organisation unit forms.
+
+26. Select data elements and assign them.
 
     You can override the category combination for each selected data set
     by clicking on the gear icon above the list of selected data
@@ -1147,9 +1155,9 @@ data entry forms.
     (disaggregation) within the current data set instead of the category
     combination associated directly with the data element itself.
 
-26. Select indicators and assign them.
+27. Select indicators and assign them.
 
-27. In the organisation unit tree, select the organisation units you
+28. In the organisation unit tree, select the organisation units you
     want to assign the data set to.
 
     > **Tip**
@@ -1160,7 +1168,7 @@ data entry forms.
     >   - Click **Organisation unit group** to select all organisation
     >     units that belong to a certain organisation unit group.
 
-28. Click **Save**.
+29. Click **Save**.
 
 You can now use the data set in the **Data Entry** app for the
 organisation units that you have assigned to and for periods according
@@ -1469,6 +1477,20 @@ You can control in which order sections are displayed in a section form.
 
 6.  Click **Close**.
 
+#### Form Configuration options
+
+In version 41, we have added extra form configuration options that change how a section form is displayed in the new **Data Entry App (beta)**. These options allow users to apply functionality that was not possible before without custom forms. We will be adding more options in the future releases.
+
+![](resources/images/datasets/section_edit_form_configuration.png)
+
+The options available in v41 are:
+
+##### Transpose (pivot) functionality
+Users are able to choose to transpose (pivot) a form when displayed in the new Data Entry (beta) app. They are able to either fully transpose the form, i.e. move categories to be displayed as rows and data elements as columns, or move a certain category to be displayed as rows. The default display mode is for data elements to be displayed as rows and categories as columns.
+
+##### Content before and after a section
+Users are able to display custom text before and/or after a section. This is helpful for adding help text, for example. For security reasons, only basic styling and HTML link elements are allowed, specifically these tags: `a` for adding a link, `u` for underlining a text, `b`, `strong` for styling text in bold format, or `em` to style it in italic.
+
 ### Manage custom forms { #manage_customform } 
 
 #### Create a custom form
@@ -1749,6 +1771,8 @@ Table: Indicator functions
 
 | Indicator Function | Arguments | Description |
 |---|---|---|
+| contains | (expr, sub1, ...) | Searches an expression for one or more substrings. Returns true if the expression contains all the substrings. For example, the following are all true: contains("abcd", "abcd"); contains("abcd", "b"); and contains("abcd", "ab", "bc"). Comparisons are case-sensitive. |
+| containsItems | (expr, item1, ...) | Searches an expression for one or more items. The expression is made up of comma-separated elements. containsItems returns true if every item exactly matches an element in the expression. For example, containsItems("abcd", "abcd") and containsItems("ab,cd", "ab", "cd") are true, but containsItems("abcd", "b") and containsItems("abcd", "ab", "bc") are false. Comparisons are case-sensitive. containsItems can be used for multi-valued data elements to see if an item is contained in the data element values. |
 | if | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression. |
 | is | (expr1 in expression [, expression ...]) | Returns true if expr1 is equal to any of the following expressions, otherwise false. |
 | isNull | (element) | Returns true if the element value is missing (null), otherwise false. |
@@ -1766,7 +1790,7 @@ Table: Indicator functions
 | .aggregationType | (aggregation type) | Overrides the default data element aggregation type for aggregate data (not for program data). |
 | .maxDate | (yyyy-mm-dd) | For a data element (not program data), value from periods ending on or before a maximum date. |
 | .minDate | (yyyy-mm-dd) | For a data element (not program data), value from periods starting on or after a minimum date. |
-| .periodOffset | (integer constant) | Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. See examples below. |
+| .periodOffset | (integer constant) | Placed after a data value or expression, returns the value from a period offset relative to the reported period. It can be nested. Note that this shifts data only for aggregate data, not tracker or event data. See examples below. |
 | .yearToDate() | | Summs the values of all periods from the start of the yaer through the current period. Note that any weekly period is considered to be part of the current year if it has four or more days in the year. For examples, see the Indicator Year-to-date section below. |
 
 Valid aggregation types:
@@ -1805,6 +1829,7 @@ Examples of .aggregationType, .maxDate, .minDate, and .periodOffset functions:
 | ( #{FH8ab5Rog83} - <br /> #{QOlfIKgNJ3D2} ).periodOffset(-2) | data element FH8ab5Rog83 from 2 periods before minus data element QOlfIKgNJ3D2 from 2 periods before |
 | #{FH8ab5Rog83}.periodOffset(-2) + <br /> #{FH8ab5Rog83}.periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before |
 | ( #{FH8ab5Rog83}.periodOffset(-1) + <br /> #{FH8ab5Rog83} ).periodOffset(-1) | data element FH8ab5Rog83 from 2 periods before plus the value from 1 period before (note that the functions are nested) |
+| N{IndicatorID}.periodOffset(-1) | indicator value from the period before (applies to aggregate data in the indicator) |
 
 ### Indicator SubExpressions { #indicator_subexpressions }
 
@@ -2103,7 +2128,7 @@ analysis of data to combine similar themes of indicators.
 
 5.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_indicators } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -2671,7 +2696,7 @@ Capture** apps.
 
 4.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_orgunit } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -2889,6 +2914,8 @@ Table: Validation Rule functions
 
 | Validation Rule Function | Arguments | Description |
 |---|---|---|
+| contains | (expr, sub1, ...) | Searches an expression for one or more substrings. Returns true if the expression contains all the substrings. For example, the following are all true: contains("abcd", "abcd"); contains("abcd", "b"); and contains("abcd", "ab", "bc"). Comparisons are case-sensitive. |
+| containsItems | (expr, item1, ...) | Searches an expression for one or more items. The expression is made up of comma-separated elements. containsItems returns true if every item exactly matches an element in the expression. For example, containsItems("abcd", "abcd") and containsItems("ab,cd", "ab", "cd") are true, but containsItems("abcd", "b") and containsItems("abcd", "ab", "bc") are false. Comparisons are case-sensitive. containsItems can be used for multi-valued data elements to see if an item is contained in the data element values. |
 | if | (boolean-expr, true-expr, false-expr) | Evaluates the boolean expression and if true returns the true expression value, if false returns the false expression value. The arguments must follow the rules for any indicator expression. |
 | is | (expr1 in expression [, expression ...]) | Returns true if expr1 is equal to any of the following expressions, otherwise false. |
 | isNull | (element) | Returns true if the element value is missing (null), otherwise false. |
@@ -3065,7 +3092,7 @@ Table: Validation Rule functions
 
 9.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_validation } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3241,7 +3268,7 @@ Table: Attribute objects in the Maintenance app
     The dynamic attribute is now available for the objects you assigned
     it to.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_attributes } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3358,7 +3385,7 @@ Table: Constant objects in the Maintenance app
 
     The constant is now available for use.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_constants } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3594,7 +3621,7 @@ The main purpose of the option group set is to add more dimensionality to your c
 
 5. Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_option_sets } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -3787,7 +3814,7 @@ maps in the **Maps** app.
 | High good | 80 | 100 |
 | Too high | 100 | 1000 |
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_legends } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4171,6 +4198,74 @@ sampled. For example:
 
 ![](resources/images/maintenance/predictor_sample_skip_test.png){.center width=66% }
 
+### Predictors and category option combinations (disaggregations)
+
+The category option combination (disaggregation) for predictor output data
+is chosen in one of three ways:
+
+1. Default category option combination.
+
+   If the predictor's output data element has no disaggregations (category combination "None",
+also known as the default category combination), then all predictor output data will be made in
+the default category option combination. In this case, predictor output data is not disaggregated.
+
+2. Fixed category option combination
+
+   If the predictor's output data element has a category combination other than "None", you can
+choose a fixed disaggregation for the predictor "Output category option combo". If you do so,
+all output from this predictor will have this category option combination.
+
+   For example, if the output data element has a category combination of "Sex and Age", you can
+decide that all predictor output will go to a category option combination such as "Female under 5",
+"Male 5 - 10", or any other.
+
+3. Use the input category option combo (available in v40.1 and following)
+
+   If the predictor's output data element has a category combination other than "None", you can choose
+"Predict according to input category option combo" as the value for "Output category option combo".
+If you do so, a different prediction is made for each category option combo in the output data element's
+category combination (that is, one prediction for "Female under 5", a second for "Male under 5",
+a third for "Female 5 - 10", and so on).
+
+   (In v40.1, this feature is enabled by selecting the choice "\<no value\>" for "Output category option combo".)
+
+    > **Tip**
+    >
+    > In some installations, the options in a category may have changed over time.
+    For example, a category "Age" may have had three options "1-5", "6-10", and "over 10",
+    but then was changed to only have two options "10 and under" and "over 10".
+    Historical data may have values with any of these options.
+    To use a predictor with such data, you can define another category
+    such as "Reporting Age" with all the options ever used, such as "1-5", "6-10",
+    "10 and under", and "over 10". Use this category in the category combination
+    for the predictor's output data element. This means that all the input category
+    options will be reflected in the output.
+    >
+    > If you then want a single report for the output data that covers
+    all the disaggregations, you can use category option groups
+    in a category option group set. For example use a category option group
+    "10 and under" that contains category options "1-5", "6-10", and "10 and under".
+
+### Predictors and attribute option combinations
+
+If the input data to a prediction has attribute option combinations, a different prediction 
+will be made for each attribute option combination where there is data.
+
+For example, you could use attribute option combinations to represent different projects
+on your system. The predictor will generate a value with the attribute option combination
+for Project A when it finds input data for Project A; it will generate a value with the 
+attribute option combination for Project B when it finds input data for Project B; and so on.
+
+For any input data without attribute option combinations (in other words, with the
+default attribute option combination), predictions are generated using the default
+attribute option combination. If you don't use attribute option combinations in the data,
+they will not be used in predictor output data.
+
+If you use attribute option combinations and also "Predict according to input category option combo",
+there will be a separate prediction for each combination of disaggregation and attribute option combination.
+For example, there could be a prediction for Project A data for "Female under 5", a prediction for 
+Project A data for "Male under 5", a prediction for Project B data for "Female under 5", and so on.
+
 ### Create or edit a predictor { #create_predictor } 
 
 1.  Open the **Maintenance** app and click **Other** \> **Predictor**.
@@ -4195,8 +4290,9 @@ sampled. For example:
     replaced with zeros.)
 
 7.  (Optional) Select an **Output category option combo**. This dropdown will only show
-    if the selected data element has a non-default category combination.
-    If so, you can select which category option combo (disaggregation) you would like to output to.
+    if the selected data element has a category combination other than "None".
+    If so, you can select which disaggregation category option combo you would like to output to,
+    or you can select "Predict according to input category option combo" (see the discussion above).
 
 8.  Select a **Period type**.
 
@@ -4208,6 +4304,7 @@ sampled. For example:
     organisation unit.
 
 10. **Organisation units providing data** controls where the input values comes from for **aggregate** data. If "at selected levels only", only organisation units at the selected levels are included. If "At selected levels and all levels below" is selected, organisation units at the selected level(s) and all organisation units below are also included.
+
 11. Create a **Generator**. The generator is the expression that is used to calculate the predicted value.
 
     1.  Type a **Description** of the generator expression.
@@ -4259,6 +4356,8 @@ sampled. For example:
 
         | Function | Means |
         |---|---|
+        | contains(expr, sub1, ...) | Searches an expression for one or more substrings. Returns true if the expression contains all the substrings. For example, the following are all true: contains("abcd", "abcd"); contains("abcd", "b"); and contains("abcd", "ab", "bc"). Comparisons are case-sensitive. |
+        | containsItems(expr, item1, ...) | Searches an expression for one or more items. The expression is made up of comma-separated elements. containsItems returns true if every item exactly matches an element in the expression. For example, containsItems("abcd", "abcd") and containsItems("ab,cd", "ab", "cd") are true, but containsItems("abcd", "b") and containsItems("abcd", "ab", "bc") are false. Comparisons are case-sensitive. containsItems can be used for multi-valued data elements to see if an item is contained in the data element values. |
         | if(test, valueIfTrue, valueIfFalse) | Evaluates **test** which is an expression that evaluates to a boolean value -- see **Boolean expression notes** below. If the test is **true**, returns the **valueIfTrue** expression. If it is **false**, returns the **valueIfFalse** expression. |
         | is(expr1 in expression [, expression ...]) | Returns true if expr1 is equal to any of the following expressions, otherwise false. |
         | isNull(item) | Returns the boolean value **true** if the **item** is null (missing), otherwise returns **false**. The **item** can be any selected item from the right (data element, program data element, etc.). |
@@ -4455,7 +4554,7 @@ Since there is no aggregation function such as <code>sum()</code> around the exp
 
 7.  Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_groups } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4649,7 +4748,7 @@ Table: Push reports objects in the Maintenance app
 
     The push report job runs immediately.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_push_reports } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4826,7 +4925,7 @@ Table: External map layer objects in the Maintenance app
 
 10. Click **Save**.
 
-### Clone metadata objects { #clone_metadata } 
+### Clone metadata objects { #clone_metadata_map_layers } 
 
 Cloning a data element or other objects can save time when you create
 many similar objects.
@@ -4899,7 +4998,7 @@ cultural region.
 
 5.  Click **Save**.
 
-## Manage SQL Views { #maintenance_sql_view } 
+## Manage SQL views { #maintenance_sql_view } 
 
 The SQL View functionality of DHIS2 will store the SQL view definition
 internally, and then materialize the view when requested.
@@ -5000,6 +5099,20 @@ View".
 > on view B, it must appear before view B in alphabetical order. If it
 > appears after view B in alphabetical order, analytics may fail, as the
 > view with dependencies will not be dropped in the correct order.
+
+## Manage analytics table hooks { #maintenance_analytics_table_hooks } 
+
+The Analytics Table Hooks functionality of DHIS2 stores SQL code that
+is run during different phases of the analytics table generation process.
+
+See also [<code>/api/analyticsTableHooks</code> in the Developer documentation](#webapi_analytics_table_hooks).
+
+### Creating a new analytics table hook
+
+To create a new analytics table hook, click **Apps** \> **Maintenance**
+\> **Other** \> **Analytics table hooks** and click the Add **+** button.
+
+Press "Save" to store the analytics table hook.
 
 ## Manage Locales { #maintenance_locale_management } 
 

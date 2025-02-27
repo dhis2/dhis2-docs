@@ -1297,12 +1297,51 @@ These operations follow the standard *REST* semantics. A new EventVisualization 
         "dimension": "pe",
         "items": [
           {
-              "id": "LAST_12_MONTHS"
+            "id": "LAST_12_MONTHS"
           }
         ]
       }
     ]
 }
+```
+
+For multi-program support, the root `program` should not be specified. This will turn the `eventVisualization` into a multi-program. Consequently, we have to specify the `program` and `programStage` (when applicable) for each `dimension` in `rows`, `columns`, and `filters`.
+
+Example:
+
+```json
+"program": null,
+"columns": [
+  {
+    "dimension": "ou",
+    "items": [
+        {
+            "id": "O6uvpzGd5pu"
+        }
+    ],
+    "program": {
+        "id": "IpHINAT79UW"
+    }
+  },
+  {
+    "dimensionType": "CATEGORY_OPTION_GROUP_SET",
+    "items": [
+      {
+          "id": "JLGV7lRQRAg"
+      },
+      {
+          "id": "p916ZCVGNyq"
+      }
+    ],
+    "dimension": "C31vHZqu0qU",
+    "program": {
+        "id": "kla3mAPgvCH"
+    },
+    "programStage": {
+        "id": "aNLq9ZYoy9W"
+    }
+  }
+]
 ```
 
 > **Note**

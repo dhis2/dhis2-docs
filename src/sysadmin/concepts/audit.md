@@ -44,11 +44,11 @@ The audit service makes use of two new concepts: _Audit Scope_ and _Audit Type_.
 
 An audit scope is a logical area of the application which can be audited. Currently there are three audit scopes.
 
-| Scope | Key | Audited objects |
-| --- | --- | --- |
-| Tracker | TRACKER | Tracked Entity Instance, Tracked Entity Attribute Value, Enrollment, Event. |
-| Metadata | METADATA | All metadata objects (e.g. Data Element, Organisation Unit). |
-| Aggregate | AGGREGATE | Aggregate Data Value. |
+| **Scope** | Key       | Audited objects                                              |
+| --------- | --------- | ------------------------------------------------------------ |
+| Tracker   | TRACKER   | Tracked Entity Instance, Tracked Entity Attribute Value, Enrollment, Event. |
+| Metadata  | METADATA  | All metadata objects (e.g. Data Element, Organisation Unit). |
+| Aggregate | AGGREGATE | Aggregate Data Value.                                        |
 
 ## Audit Type { #audit_type }
 
