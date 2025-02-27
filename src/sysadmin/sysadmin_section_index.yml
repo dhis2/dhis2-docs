@@ -31,10 +31,9 @@ Reference:
 Concepts:
   - Using Gateways for SMS reporting: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/SMS-reporting.md, new_install_docs)'
   - Debugging as another user: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/user-impersonation.md, new_install_docs)'
-  - Upgrading: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/upgrading.md, new_install_docs)'
   - Audit: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/audit.md, new_install_docs)'
   - Deployment Architectures: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/architecture.md, new_install_docs)'
-  - Upgrade Guide: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/Upgrade-Guide.md, new_install_docs)'
+  - Upgrade Guide: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/Upgrade-Guide.md, upgrade_initiative-01)'
 How To:
   - DHIS2 High Availability: '@github(dhis2/dhis2-docs, src/sysadmin/how-to/tomcat-clustering.md, new_install_docs)'
   - Installing Redis: '@github(dhis2/dhis2-docs, src/sysadmin/how-to/installing-redis.md, new_install_docs)'
