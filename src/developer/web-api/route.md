@@ -113,6 +113,24 @@ A number of authentication modes are supported when running routes. These authen
   }
   ```
 
+* `oauth2-client-credentials`: performs [OAuth2 Client Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) flow and adds the resulting access token to the upstream request. Here is an example to creating a route configured with `oauth2-client-credentials` authentication:
+
+  ```json
+  {
+    "name": "Postman Echo",
+    "code": "postman-get",
+    "disabled": false,
+    "url": "https://postman-echo.com/get",
+    "auth": {
+      "type": "oauth2-client-credentials",
+      "clientId": "alice",
+      "clientSecret": "passw0rd",
+      "tokenUri": "https://token-service/token"
+    }
+  }
+  ```
+
+
 ### Running a route with authentication and custom authority
 
 In the example shown below, we are configuring a route with `http-basic` authentication and assigning a custom authority it:
