@@ -120,8 +120,6 @@ Table: Email settings
 
 ## Access settings { #system_access_settings } 
 
-
-
 Table: Access settings
 
 | Setting | Description |
@@ -138,9 +136,21 @@ Table: Access settings
 | **Minimum characters in password** | Defines the minimum number of characters users must have in their passwords.<br> <br>You can select 8 (default), 10, 12 or 14. |
 | **CORS allowlist** | allowlists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
 
+
+## Notification settings { #system_notification_settings }
+
+Table: Notification settings
+
+| Setting                       | Description                                                             |
+|-------------------------------|-------------------------------------------------------------------------|
+| **notifierLogLevel**          | The level of messages to include in the log/list, default `DEBUG` (all) |
+| **notifierMaxMessagesPerJob** | Each job can at most have this amount of messages in its list (soft enforced allowing momentary exceeding the limit by a few); default is `500` |
+| **notifierMaxAgeDays**        | Job data older than this number of days is discarded (soft enforced, cleanup after 1 minute of idle); default is `7` |
+| **notifierMaxJobsPerType**    | If per job type there are more than this number of jobs with data the oldest are discarded to get below this limit (soft enforced, cleanup after 1 minute idle); default is `500` |
+| **notifierCleanAfterIdleTime** | The time in milliseconds the notifier has to be idle (not moving messages from queue to store) before an automatic store cleanup is run using the `notifierMaxAgeDays` and `notifierMaxJobsPerType` as caps; default is `60`sec |
+| **notifierGistOverview** | When `true` the overview pages will only show the first and last message of the list for each job; default `true` |
+
 ## Calendar settings { #system_calendar_settings } 
-
-
 
 Table: Calendar settings
 
