@@ -283,7 +283,7 @@ Some aspects of the data synchronization feature to be aware of:
 
 - The authority
   `Ignore validation of required fields in Tracker and Event Capture`
-  (`F\_IGNORE\_TRACKER\_REQUIRED\_VALUE\_VALIDATION`) should be used when there
+  (`F_IGNORE_TRACKER_REQUIRED_VALUE_VALIDATION`) should be used when there
   is a requirement that some mandatory attribute / data element has at the same
   time a "Skip synchronization" property turned on. Such a setting will lead to
   validation failure on the central server as the given attribute / data element
