@@ -1598,6 +1598,7 @@ Table: Standard variables to use in program rule expressions
 | V{enrollment_date} | (date) | Contains the enrollment date of the current enrollment. Will not have a value for single event programs. |
 | V{incident_date} | (date) | Contains the incident date of the current enrollment. Will not have a value for single event programs. |
 | V{enrollment_id} | (string) | Universial identifier string(UID) of the current enrollment. Will not have a value for single event programs. |
+| V{enrollment_status} | (string) | Contains status of the current enrollment. <br>It can be ACTIVE, COMPLETED or CANCELLED. Example expression to check status is:<br> `V{enrollment_status} == 'COMPLETED'` |
 | V{event_id} | (string) | Universial identifier string(UID) of the current event context. Will not have a value at the moment the rule is executed as part of the registration form. |
 | V{orgunit_code} | (string) | Contains the code of the orgunit that is linked to the current enrollment. For single event programs the code from the current event orgunit will be used instead. <br>Example expression to check whether orgunit code starts with WB_:<br> `d2:left(V{orgunit_code},3) == 'WB_'` |
 | V{environment} | (string) | Contains a code representing the current runtime environment for the rules. The possible values is "WebClient", "AndroidClient" and "Server". Can be used when a program rule is only supposed to run in one or more of the client types. |
