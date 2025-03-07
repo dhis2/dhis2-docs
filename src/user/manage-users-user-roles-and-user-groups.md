@@ -265,7 +265,7 @@ facilities within that district.<br/><br/>
 three fields will show. (Optional) <br/><br/>
 
 10. In the **Search organisation units** 
-select the organisation units you want the user to be able to search in.<br/><br/>
+select the organisation units you want the user to be able to search in. Searching is allowed by default for the data capture and maintenance organisation units (if no search organisation units are selected). If additional scope is provided using the search organisation units, the data capture and maintenance organisation units plus the search organisation units are the scope used during a search.<br/><br/>
 
 11. (Optional) In the **Available user groups** section, double-click the
 user groups you want to assign to the user.<br/><br/>
