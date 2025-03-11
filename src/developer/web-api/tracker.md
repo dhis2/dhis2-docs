@@ -2225,7 +2225,7 @@ An example of a json response:
 ```
 
 The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
-`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
+`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. `UPDATE` will hold two values: the previous and the current.
 
 ### Enrollments (`GET /api/tracker/enrollments`)
 
