@@ -2773,7 +2773,7 @@ The following rules apply to the query parameters.
 
 > **NOTE**
 >
-> Using trackedEntity, enrollment or event params, will return any relationship where the
+> Using `trackedEntity`, `enrollment` or `event` params, will return any relationship where the
 > trackedEntity, enrollment or event is part of the relationship (either from or to). As long as
 > user has access to it.
 

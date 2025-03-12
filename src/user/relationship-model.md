@@ -3,11 +3,11 @@
 
 A relationship represents a link between two entities in the Tracker-model. A
 relationship is considered data in DHIS2 and is based on a Relationship Type,
-similar to how a Tracked Entities are based on a Tracked Entity Type.
+similar to how a Tracked Entity is based on a Tracked Entity Type.
 
 Relationships always include two entities, and these entities can include Tracked
 Entities, Enrollments and Events, and any combination of these. Note
-that not all of these combinations are available in the current apps.
+that all of these combinations are not currently available through the User Interface.
 
 Relationships between entities can be classified as either unidirectional or bidirectional, with each type requiring different levels of access for creation.
 
