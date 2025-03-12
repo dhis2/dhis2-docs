@@ -413,7 +413,7 @@ Currently, the tracker import endpoint supports the following parameters:
 
 | Parameter name | Description | Type | Allowed values |
 |---|---|---|---|
-| async | Indicates whether the import should happen asynchronously or synchronously. | Boolean | `TRUE`, `FALSE` |
+| async | Indicates whether the import should happen asynchronously or synchronously. | Boolean | `true`, `false` |
 | reportMode | Only when performing synchronous import. See importSummary for more info. | Enum | `FULL`, `ERRORS`, `WARNINGS` |
 | importMode | Can either be `VALIDATE` which will report errors in the payload without making changes to the database or `COMMIT` (default) which will validate the payload and make changes to the database. | Enum | `VALIDATE`, `COMMIT` |
 | idScheme | Indicates the overall idScheme to use for metadata references when importing. Default is UID. Can be overridden for specific metadata (Listed below) | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE` |
@@ -427,9 +427,9 @@ Currently, the tracker import endpoint supports the following parameters:
 | atomicMode | Indicates how the import responds to validation errors. If `ALL`, all data imported must be valid for any data to be committed. For `OBJECT`, only the data committed needs to be valid, while other data can be invalid. | Enum | `ALL`, `OBJECT` |
 | flushMode | Indicates the frequency of flushing. This is related to how often data is pushed into the database during the import. Primarily used for debugging reasons, and should not be changed in a production setting | Enum | `AUTO`, `OBJECT` |
 | validationMode | Indicates the completeness of the validation step. It can be skipped, set to fail fast (Return on the first error), or full(Default), which will return any errors found | Enum | `FULL`, `FAIL_FAST`, `SKIP` |
-| skipPatternValidation | If true, it will skip validating the pattern of generated attributes. | Boolean | `TRUE`, `FALSE` |
-| skipSideEffects | If true, it will skip running any side effects for the import | Boolean | `TRUE`, `FALSE` |
-| skipRuleEngine | If true, it will skip running any program rules for the import | Boolean | `TRUE`, `FALSE` |
+| skipPatternValidation | If true, it will skip validating the pattern of generated attributes. | Boolean | `true`, `false` |
+| skipSideEffects | If true, it will skip running any side effects for the import | Boolean | `true`, `false` |
+| skipRuleEngine | If true, it will skip running any program rules for the import | Boolean | `true`, `false` |
 
 **NOTE**: idScheme and its metadata specific idScheme parameters like
 orgUnitIdScheme, programIdScheme, ... used to allow and use the default `AUTO`.
