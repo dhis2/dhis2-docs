@@ -345,6 +345,27 @@ organisation unit.
 The list of users will be filtered to only include users which have been
 assigned to the selected organisation units.
 
+### Filter users by email verification
+
+You can filter users based on whether their email address is verified or not.
+
+1. Open the **Users** app and click **Users**.
+  
+2. Above the user list, you will see a new dropdown filter labeled **Email verification**. This dropdown is located between **Time inactive** and **Invitation** filters.
+
+3. Click on the **Email verification** dropdown to see the available options:
+   - **All**: Displays all users, regardless of their email verification status.
+   - **Email verified**: Displays only users with a verified email address (**emailVerified: true**).
+   - **Email not verified**: Displays only users with an unverified email address (**emailVerified: false**).
+
+4. Select the desired option from the dropdown to filter the list of users accordingly.
+
+> **UI Changes (Version 42 and above)** 
+> **Email verification column**: If the system has email configured, a new column named **Email verification** will appear in the users list table, between **Status** and **Last login**. The two possible statuses are:
+>    - **Verified**: Indicates the user’s email is verified.
+>    - **Not verified**: Indicates the user’s email is not verified.
+
+
 ### Clone user { #clone_user } 
 
 1.  Open the **Users** app and click **User**.
