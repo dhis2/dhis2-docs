@@ -5,19 +5,21 @@ A relationship represents a link between two entities in the Tracker-model. A
 relationship is considered data in DHIS2 and is based on a Relationship Type,
 similar to how a Tracked Entity is based on a Tracked Entity Type.
 
-Relationships always include two entities, and these entities can include Tracked
+Relationships always connect two entities, and these entities can include Tracked
 Entities, Enrollments and Events, and any combination of these. Note
 that all of these combinations are not currently available through the User Interface.
 
-Relationships between entities can be classified as either unidirectional or bidirectional, with each type requiring different levels of access for creation.
+Relationships between entities can be classified as either unidirectional or bidirectional, with each type requiring 
+different levels of access for creation.
 
 * Unidirectional relationships require the user to have:
     * Write access to the "from" entity
     * Read access to the "to" entity
 * Bidirectional relationships require write access to both the "from" and "to" entities.
 
-When retrieving relationships from a [tracker exporter endpoint](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/tracker.html#webapi_tracker_export), only those originating from the requested entity are shown.
-This means that the entity is either part of a bidirectional relationship or the "from" entity in a unidirectional relationship.
+When retrieving relationships from a [tracker exporter endpoint](#webapi_tracker_export), only those originating from 
+the requested entity are shown. This means that the entity is either part of a bidirectional relationship 
+or the "from" entity in a unidirectional relationship.
 
 ## Relationship Type { #relationship_model_relationship_type }
 <!--DHIS2-SECTION-ID:relationship_model_relationship_type-->
@@ -57,13 +59,19 @@ Program and Child Program respectively. This way, only Tracked Entities
 who are of type Person and who is enrolled in the required program is allowed to
 be included in these relationships.
 
-In addition to the constraints defined by a Relationship Type, each relationship can be configured as bidirectional, true or false.
+In addition to the constraints defined by a Relationship Type, each relationship can be configured as bidirectional, 
+true or false.
 
-* If the property is set to false, the relationship is treated as unidirectional.
+* If the property is set to false, the relationship is unidirectional.
 * If set to true, the relationship is bidirectional.
-As mentioned earlier, this setting impacts the required access levels for creating the relationship, as well as the relationships displayed when exporting an entity that is part of the relationship.
+As mentioned earlier in [here](#relationship_model), this setting impacts the required access levels for creating 
+* the relationship, and the relationships displayed when exporting an entity that is part of the relationship.
 
 One important thing to note about bidirectional relationships, are that the
 "from" and "to" sides are still significant in the database, meaning each entity
 must match the constraint for that side. However, from a user perspective, which
 side each entity is stored as is insignificant.
+
+```dot
+digraph G { rankdir = LR; a -> b }
+```
