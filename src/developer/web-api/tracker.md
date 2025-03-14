@@ -41,7 +41,7 @@ In this section, we will show and describe each of the objects used in the Track
 | trackedEntityType | The type of tracked entity. | Yes | Yes | String:Uid | ABCDEF12345 |
 | createdAt | Timestamp when the user created the tracked entity. Set on the server. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | createdAtClient | Timestamp when the user created the tracked entity on the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| updatedAt | Timestamp when the object was last updated. Set on the server. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| updatedAt | Timestamp when the object or any enrollment, event, attribute or [originating relationship](#relationship_model), was last updated. Set on the server. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | updatedAtClient | Timestamp when the object was last updated on the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | orgUnit | The organisation unit where the user created the tracked entity. | Yes | Yes | String:Uid | ABCDEF12345 |
 | inactive | Indicates whether the tracked entity is inactive or not. | No | Yes | Boolean | Default: false, true |
@@ -2522,9 +2522,9 @@ The following rules apply to the query parameters.
 
 > **NOTE**
 >
-> Using tracked entity, enrollment or event params, will return any relationship where the
+> Using `trackedEntity`, `enrollment` or `event` params, will return any relationship where the
 > trackedEntity, enrollment or event is part of the relationship (either from or to). As long as
-> user has access, that is.
+> the user has access to it.
 
 #### Example response
 
