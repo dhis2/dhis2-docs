@@ -108,9 +108,9 @@ database, and less database storage used. It is recommended to enable
 changelog, and great care should be taken if disabling it.
 
 ```properties
-# Aggregate changelog, can be 'on', 'off'
+# Aggregate changelog, can be 'on' (default), 'off'
 changelog.aggregate = on
 
-# Tracker changelog, can be 'on', 'off'
+# Tracker changelog, can be 'on' (default), 'off'
 changelog.tracker = on
 ```
