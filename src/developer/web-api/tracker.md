@@ -3463,7 +3463,7 @@ Table: Program Notification Template payload
 
 | Field | Required | Description | Values |
 |---|---|---|---|
-| name | Yes | name of Program Notification Tempalte | case-notification-alert |
+| name | Yes | name of Program Notification Template | case-notification-alert |
 | notificationTrigger | Yes | When notification should be triggered. Possible values are ENROLLMENT, COMPLETION, PROGRAM_RULE, SCHEDULED_DAYS_DUE_DATE| ENROLLMENT |
 | subjectTemplate | No | Subject template string | Case notification V{org_unit_name} |
 | messageTemplate | Yes | Message template string | Case notification A{h5FuguPFF2j} |
