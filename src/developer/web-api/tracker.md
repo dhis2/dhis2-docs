@@ -3471,7 +3471,7 @@ Table: Program Notification Template payload
 | deliveryChannels | No | Which channel should be used for this notification. It can be either SMS, EMAIL or HTTP | SMS |
 | sendRepeatable | No | Whether notification should be sent multiple times | false |
 
-NOTE: WEB_HOOK notificationRecipient is used only to POST http request to an external system. Make sure to choose HTTP delivery channel when using WEB_HOOK.
+NOTE: The WEB_HOOK notificationRecipient is used exclusively for sending HTTP POST requests to external systems. Ensure that the HTTP delivery channel is selected when using this option.
 
 ## Retrieving and deleting Program Notification Template
 
