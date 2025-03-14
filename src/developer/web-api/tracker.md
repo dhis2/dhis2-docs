@@ -3467,7 +3467,7 @@ Table: Program Notification Template payload
 | notificationTrigger | Yes | When notification should be triggered. Possible values are ENROLLMENT, COMPLETION, PROGRAM_RULE, SCHEDULED_DAYS_DUE_DATE| ENROLLMENT |
 | subjectTemplate | No | Subject template string | Case notification V{org_unit_name} |
 | messageTemplate | Yes | Message template string | Case notification A{h5FuguPFF2j} |
-| notificationRecipient | YES | Who is going to receive notification. Possible values are USER_GROUP, ORGANISATION_UNIT_CONTACT, TRACKED_ENTITY_INSTANCE, USERS_AT_ORGANISATION_UNIT, DATA_ELEMENT, PROGRAM_ATTRIBUTE, WEB_HOOK  | USER_GROUP |
+| notificationRecipient | Yes | Who is going to receive notification. Possible values are USER_GROUP, ORGANISATION_UNIT_CONTACT, TRACKED_ENTITY_INSTANCE, USERS_AT_ORGANISATION_UNIT, DATA_ELEMENT, PROGRAM_ATTRIBUTE, WEB_HOOK  | USER_GROUP |
 | deliveryChannels | No | Which channel should be used for this notification. It can be either SMS, EMAIL or HTTP | SMS |
 | sendRepeatable | No | Whether notification should be sent multiple times | false |
 
