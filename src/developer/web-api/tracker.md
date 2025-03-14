@@ -1912,6 +1912,9 @@ You can use a range of operators for the filtering:
 |`LIKE`|Like (free text match)|
 |`LT`|Less than|
 |`NE`|Not equal to|
+|`NULL`|Attribute has no value|
+|`!NULL`|Attribute has a value|
+
 
 ##### Tracked Entities response example
 
@@ -1993,6 +1996,20 @@ F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-0
 F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.066Z,2019-08-21T11:25:38.067Z,TfdH5KvFmMy,"First Name",Sarah,TEXT
 F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.388Z,2019-08-21T11:25:38.388Z,aW66s2QSosT,"Last Name",Johnson,TEXT
 ```
+
+##### Tracked Entities Collection limits { #webapi_tracker_entity_requests_limit }
+
+There are several ways of limiting the number of results a user is able to retrieve from the collection endpoint:
+- System settings: The setting `KeyTrackedEntityMaxLimit` defines the maximum number of tracked entities that can be present in a single API response. It is intended to protect the database and server from processing/returning too many records. If this value is set to 0, no limit is established. This setting is not visible in the System Settings App UI but can be updated/retrieved using the api/systemSettings endpoint, as described in the [documentation](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-241/settings-and-configuration.html?h=system+settings+develop+2.41#webapi_system_settings).
+- Program or tracked entity type: The `maxTeiCountToReturn` configuration for programs and tracked entity types dictates the total number of results that can be retrieved when a program or tracked entity type is specified in the request. This limit applies only when the user is searching outside their capture scope. If set to 0, no limit is established. If the number of tracked entities matching the search parameters exceeds this configured limit, the API will throw an error. The purpose of this limit is data protection and preventing extensive traversal of tracked entity records outside the capture scope. Within the capture scope, users can retrieve as many tracked entities as needed.
+- Pagination: As explained [here](#request-parameters-for-pagination).
+
+When a program or tracked entity type is specified in the request, the `maxTeiCountToReturn` setting is always validated against the total number of results. This validation is independent of pagination and the system setting limit.
+
+However, when a request is paginated and the system setting `KeyTrackedEntityMaxLimit` different than zero, the following cases apply:
+- If pageSize ≤ KeyTrackedEntityMaxLimit, the request will enforce the pageSize limit.
+- If pageSize > KeyTrackedEntityMaxLimit, the API will throw an error.
+
 
 #### Tracked Entities single object endpoint `GET /api/tracker/trackedEntities/{uid}`
 
