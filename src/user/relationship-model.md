@@ -71,7 +71,3 @@ One important thing to note about bidirectional relationships, are that the
 "from" and "to" sides are still significant in the database, meaning each entity
 must match the constraint for that side. However, from a user perspective, which
 side each entity is stored as is insignificant.
-
-```dot
-digraph G { rankdir = LR; a -> b }
-```
