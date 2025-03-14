@@ -64,8 +64,8 @@ true or false.
 
 * If the property is set to false, the relationship is unidirectional.
 * If set to true, the relationship is bidirectional.
-As mentioned earlier in [here](#relationship_model), this setting impacts the required access levels for creating 
-* the relationship, and the relationships displayed when exporting an entity that is part of the relationship.
+As mentioned earlier in [here](#relationship_model), this setting impacts the required access levels for creating the relationship, 
+and the relationships displayed when exporting an entity that is part of the relationship.
 
 One important thing to note about bidirectional relationships, are that the
 "from" and "to" sides are still significant in the database, meaning each entity
