@@ -2977,7 +2977,9 @@ temporarily access the program-related data by providing a reason for accessing 
 
 This act of temporarily gaining access is termed *breaking the glass*.
 Currently, temporary access is granted for 3 hours. DHIS2 [audits](https://docs.dhis2.org/en/manage/concepts/audit.html) breaking the glass along with the
-reason specified by the user. It is not possible to gain temporary access to a program that has been
+reason specified by the user. This information is also stored in the database, but only if the tracked entity type is configured to allow auditing, which is disabled by default.
+
+It is not possible to gain temporary access to a program that has been
 configured with an access level of *CLOSED*.
 
 To break the glass for a TrackedEntity-Program combination, the following POST request can be used:
