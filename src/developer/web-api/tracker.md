@@ -734,7 +734,7 @@ delete.
 
 The following deletes the events created with [this payload](#payload):
 
-    POST /api/tracker?async=false&importStrategy=delete
+    POST /api/tracker?async=false&importStrategy=DELETE
 
 ```json
 {
@@ -752,7 +752,7 @@ The following deletes the events created with [this payload](#payload):
 The following deletes the tracked entities and all its child tracker objects which are enrollments,
 events and relationships:
 
-    POST /api/tracker?async=false&importStrategy=delete
+    POST /api/tracker?async=false&importStrategy=DELETE
 
 ```json
 {
