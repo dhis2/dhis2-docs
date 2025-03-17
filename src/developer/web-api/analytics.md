@@ -318,12 +318,15 @@ below.
     above called "Date and period format" for the period format and
     available relative periods.
 
-  - For the organisation unit dimension, you can specify the items to be
-    the organisation unit or sub-units of the organisation unit
-    associated with the user currently authenticated for the request
-    using the keys `USER_ORGUNIT` or `USER_ORGUNIT_CHILDREN` as items,
-    respectively. You can also specify organisation unit identifiers
-    directly, or a combination of both.
+  - For the organization unit dimension, you can specify items as either
+    the organization unit or its sub-units associated with the currently
+    authenticated user. Use the keys USER_ORGUNIT for the organization unit
+    itself or USER_ORGUNIT_CHILDREN for its sub-units. You may also specify
+    organization unit identifiers directly or use a combination of both.
+    The authenticated user must have permission to export and analyze data
+    for the designated organization units. If no organization unit permissions
+    are explicitly granted, data capture and maintenance rights
+    will be applied instead.
 
   - For the organisation unit dimension, you can specify the organisation
     hierarchy level and the boundary unit to use for the request on the
@@ -1595,10 +1598,6 @@ Table: Possible indexing of repeatable stages
 | dqlbukwRfQ[-2].vANAXwtLwcT                 | -2                           | second from last execution date                                                            |
 | dqlbukwRfQ[1].vANAXwtLwcT                  | 1                            | first execution date                                                                       |
 | dqlbukwRfQ[3].vANAXwtLwcT                  | 3                            | third execution date                                                                       |
-| edqlbukwRfQ[*].vANAXwtLwcT                 | *                            | all repetitions                                                                            |
-| edqlbukwRfQ[-1~3].vANAXwtLwcT              | -1, 3                        | 3 repetitions starting with -1 (first after last execution date)                           |
-| edqlbukwRfQ[0~5~LAST_3_MONTHS ].vANAXwtLwcT | 0, 5, LAST_3_MONTHS          | 5 repetitions starting with last execution date down to the fifth one within last 3 months |
-| edqlbukwRfQ[-1~3~2021-01-01~2022-05-31].vANAXwtLwcT            | -1, 3, 2021-01-01,2022-05-31 | 3 repetitions starting with -1 (first after last execution date) within specified dates                                     |
 
 Warning: Indexing of non-repeatable program stage leads to parameter validation error.
 
@@ -2027,12 +2026,12 @@ For example, to retrieve a list of enrollments from the "WHO RMNCH Tracker" prog
 
 The API supports using program indicators which are not associated to the "main" program (that is the program ID specified after `/query/`).
 
-## Tracked entity analytics { #webapi_tei_analytics } 
+## Tracked entity analytics { #webapi_te_analytics } 
 
 The tracked entity (TE) analytics API allows querying *TEs with their enrollments and event data* captured in DHIS2. 
 This resource retrieves data from TE, enrollments, events, and data elements across multiple programs, for a given tracked entity type.
 
-### Dimensions and items { #webapi_tei_analytics_dimensions } 
+### Dimensions and items { #webapi_te_analytics_dimensions } 
 
 Tracked entity instance dimensions include program attributes (TE attributes), data elements, 
 organization units, and different kinds of periods. The analytics query will simply return TEs matching a set of criteria.
@@ -2127,7 +2126,7 @@ Examples:
 
 `enrollmentDate=IpHINAT79UW.LAST_YEAR`
 
-### Request query parameters { #webapi_tei_analytics_query_parameters } 
+### Request query parameters { #webapi_te_analytics_query_parameters } 
 
 The analytics TE query API supports a range of query parameters.
 
@@ -2885,6 +2884,8 @@ Table: Phases, table types and temporary tables
 || VALIDATION_RESULT | analytics\_validationresult\_temp |
 
 ### Creating hooks { #webapi_create_analytics_table_hook } 
+
+You can create hooks with the Maintenance app or with the API.
 
 To create a hook which should run after the resource tables have been populated you can do a *POST* request like this using *JSON* as content type:
 

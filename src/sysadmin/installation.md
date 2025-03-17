@@ -1,9 +1,8 @@
 # Installation { #installation } 
 
 The installation chapter provides information on how to install DHIS2 in
-various contexts, including online central server, offline local
-network, standalone application and self-contained package called DHIS2
-Live.
+various contexts, including online central server, and offline local
+network.
 
 ## Introduction { #install_introduction } 
 
@@ -54,12 +53,14 @@ Later DHIS2 versions require the following software versions to operate.
 - Java JDK. OpenJDK is recommended.  
 
 
-Table: DHIS2 JDK compatibility
+Table: DHIS2 compatibility
 
-| DHIS2 version | JDK recommended | JDK required |
-|---------------|-----------------|--------------|
-| 2.41          | 17              | 17           |
-| 2.40          | 17              | 11           |
+| DHIS2 version | JDK recommended | JDK required | Tomcat required |
+|---------------|-----------------|--------------|-----------------|
+| 2.42          | 17              | 17           | 10              |
+| 2.41          | 17              | 17           | 8.5.50          |
+| 2.40          | 17              | 11           | 8.5.50          |
+| 2.39          | 11              | 11           | 8.5.50          |
 | 2.38          | 11              | 11           |
 | 2.35          | 11              | 8            |
 | pre 2.35      | 8               | 8            |
@@ -67,7 +68,7 @@ Table: DHIS2 JDK compatibility
 
 - PostgreSQL database version 9.6 or later. A later PostgreSQL version such as version 14 is recommended.
 - PostGIS database extension version 2.2 or later.
-- Tomcat servlet container version 8.5.50 or later, or other Servlet API
+- Tomcat servlet container version 10 for 2.42, 8.5.50 or later for lower versions, or other Servlet API
   3.1 compliant servlet containers.
 - Cluster setup only (optional): Redis data store version 4 or later. 
 
@@ -536,7 +537,7 @@ file:
 
 ```properties
 # File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
-filestore.provider = 'aws-s3'
+filestore.provider = aws-s3
 
 # Directory in external directory on local file system or bucket in AWS S3 or S3 API
 filestore.container = files
@@ -558,7 +559,7 @@ properties in your `dhis.conf` file:
 
 ```properties
 # File store provider. Currently 'filesystem' (default), 'aws-s3' and 's3' are supported.
-filestore.provider = 's3'
+filestore.provider = s3
 
 # Directory in external directory on local file system or bucket in AWS S3
 filestore.container = files
@@ -1352,7 +1353,7 @@ Enables or disables execution of server-side program rules. This refers to progr
 system.remote_servers_allowed = https://server1.org/,https://server2.org/
 ```
 
-Sets the allowed list of servers to be called in relation to the [metadata pull](../developer/web-api/synchronization.md#webapi_sync_metadata_pull) functionality. It accepts comma-separated values, and it's recommended that each server end with a `/` for enhanced security. Default value is empty.
+Sets the allowed list of servers to be called in relation to the [metadata pull](#webapi_sync_metadata_pull) functionality. It accepts comma-separated values, and it's recommended that each server end with a `/` for enhanced security. Default value is empty.
 
 
 ## Reverse proxy configuration { #install_reverse_proxy_configuration } 
@@ -1909,7 +1910,7 @@ redis.password = xxxx
 redis.use.ssl = off
 
 # ----------------------------------------------------------------------
-# Analytics [Optional]
+# Analytics database [Optional]
 # ----------------------------------------------------------------------
 
 # Analytics database JDBC driver class
@@ -1924,8 +1925,22 @@ analytics.connection.username = analytics
 # Analytics database password
 analytics.connection.password = xxxx
 
-# Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
+# ----------------------------------------------------------------------
+# Analytics database [Optional]
+# ----------------------------------------------------------------------
+
+# Analytics unlogged tables. Can be 'on' (default), 'off'.
 analytics.table.unlogged = on
+
+# Dimensions to skip indexes for analytics tables
+# analytics.table.skip_index = EC40NXmsTVu,gtuVl6NbXQV,LFsZ8v5v7rq,\
+                yY2bQYqNt0o,eLwL77Z9E7R,WnouSiGrbgy,\
+                veGzholzPQm,qzsxBXFf5yb,SooXFOUnciJ
+
+# Period type columns to skip for analytics tables
+# analytics.table.skip_column = weeklywednesday,weeklythursday,weeklysaturday,\
+                weeklysunday,biweekly,quarterlynov,\
+                sixmonthlyapril,financialapril,financialjuly
 
 # ----------------------------------------------------------------------
 # System telemetry [Optional]
@@ -1983,6 +1998,19 @@ apphub.api.url = https://apps.dhis2.org/api
 
 # Number of possible concurrent sessions across different clients per user
 max.sessions.per_user = 10
+
+# ----------------------------------------------------------------------
+# Metadata Model Consistency [Optional]
+# ----------------------------------------------------------------------
+# The maximum number of category options in a single category
+metadata.categories.max_options = 31
+
+# The maximum number of categories per category combo
+metadata.categories.max_per_combo = 5
+
+# The maximum for the product of the number of options of the categories in a category combo
+# Must always be >= metadata.categories.max_options
+metadata.categories.max_combinations = 500
 ```
 
 ## Changelog { #install_changelog } 

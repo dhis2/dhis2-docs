@@ -342,6 +342,33 @@ out:
 If any of these requirements are not met the invite resource will return
 with a *409 Conflict* status code together with a descriptive message.
 
+
+### User login (Experimental) { #webapi_user_login }
+
+This endpoint is not meant for external use, unless you are implementing a custom login app, which you probably should not do, unless you have a very good reason.
+
+A user can log in and get a session cookie with the following example:  
+`POST` `/api/auth/login`  
+with `JSON` body:
+
+```json
+{
+    "username": "username",
+    "password": "password",
+    "twoFactorCode": "two_factor_code"
+}
+
+```
+Successful response looks like:  
+
+```json
+{
+    "loginStatus": "SUCCESS",
+    "redirectUrl": "/dhis-web-dashboard/"
+}
+```
+
+
 ### User account confirm invite (Experimental) { #webapi_user_confirm_invite }
 
 > **Important**  
@@ -514,7 +541,7 @@ GET /api/users/{id}/dataApprovalWorkflows
 
 ### Switching between user accounts connected to the same identity provider account
 
-If [linked accounts are enabled in dhis.conf](../../../manage/performing-system-administration/dhis-core-version-master/installation.html#connecting-a-single-identity-provider-account-to-multiple-dhis2-accounts) and a user has logged in via OIDC, then it is possible for the user to switch between DHIS2 accounts that are linked to the same identity provider account using this API call:
+If [linked accounts are enabled in dhis.conf](#connect_single_identity_to_multiple_accounts) and a user has logged in via OIDC, then it is possible for the user to switch between DHIS2 accounts that are linked to the same identity provider account using this API call:
 
 ```
 GET /dhis-web-commons-security/logout.action?current={current_username}&switch={username_to_switch_to}

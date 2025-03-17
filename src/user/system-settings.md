@@ -8,7 +8,6 @@ Table: General settings
 
 | Setting | Description |
 |---|--|
-| **Cache strategy** | Decides for how long reports analytics responses should be cached.<br> <br>If you use the scheduled, nightly analytics update, you may want to select **Cache until 6 AM tomorrow**. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tables are updated.<br> <br>If you are loading data continuously into the analytics tables, select **No cache**.<br> <br>For other cases select the amount of time you want the data to be cached. |
 | **Infrastructural indicators** | Defines an indicator group where the member indicators should describe data about the organisation units' infrastructure.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
 | **Infrastructural data elements** | Defines a data element group where the member data elements should describe data about the organisation units' infrastructure.<br> <br>Infrastructural data elements can be population, doctors, beds, Internet connectivity and climate.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
 | **Infrastructural period type** | Sets the frequency for which the data elements in the infrastructural data elements group are captured.<br> <br>This will typically be yearly. When viewing the infrastructural data you will be able to select the time period of the data source.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
@@ -33,20 +32,20 @@ Table: Analytics settings
 |---|---|
 | **Default relative period for analysis** | Defines the relative period to use by default in analytics app: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. The relative period will be automatically selected when you open these apps.<br> <br>Recommended setting: the most commonly used relative period among your users. |
 | **Property to display in analysis modules** | Sets whether you want to display the metadata objects' names or short names in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Property to display in analysis modules**. |
-| **Default digit group separator to display in analysis modules** | Sets the default digit group separator in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. |
+| **Default digit group separator to display in analysis modules** | Sets the default digit group separator in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. Updating this system setting does not affect already saved visualizations. |
 | **Hide daily periods** | Hide daily periods in the analysis tools |
 | **Hide weekly periods** | Hide weekly periods in the analysis tools |
 | **Hide monthly periods** | Hide monthly periods in the analysis tools |
 | **Hide bimonthly periods** | Hide bimonthly periods in the analysis tools |
 | **Financial year relative start month** | Defines which month (April, July or October) the the relative financial year in the analytics apps should begin on. |
+| **Cache strategy** | Decides for how long reports analytics responses should be cached.<br> <br>If you use the scheduled, nightly analytics update, you may want to select **Cache until 6 AM tomorrow**. This is because data in reports change at that time, and you can safely cache data up to the moment when the analytics tables are updated.<br> <br>If you are loading data continuously into the analytics tables, select **No cache**.<br> <br>For other cases select the amount of time you want the data to be cached. |
 | **Cacheability** | Sets whether analytics data responses should be served with public or private visibility.<br> <br>**Private**: Any node or server between the DHIS2 server and the end user which has the ability to cache can NOT cache the web page. This is useful if the page served can or do contain sensitive information. This means that each time you want a web page, either you get a new page from the DHIS2 server, or the DHIS2 server caches the page. No other server than the DHIS2 server are allowed to cache the page.<br> <br>**Public**: Any node or server between the DHIS2 server and the end user which has the ability to cache can cache the web page. This relives the traffic to the DHIS2 server and potentially speeds up the subsequent page loading speed. |
 | **Analytics cache mode** | Support two different modes:<br> <br>**Progressive**: this relates to the new progressive caching feature for analytics. When enabled, it OVERRIDES the global caching strategy for analytics requests. This mode will trigger HTTP and data layer caching for all analytics requests. When enabling this mode, the *caching factor* is MANDATORY.<br> <br>**Fixed**: the requests will be cached based on the period of time defined in *cache strategy.* |
 | **Caching factor** | Select a value for the caching factor. This field is only available when the analytics cache mode has been set to *progressive*.<br> <br>It shows a list of integers where each integer represents an absolute caching factor. This integer will be used internally to calculate the final expiration time for each analytics request. Higher the caching factor, for longer the request will be cached. |
 | **Max number of years to hide unapproved data in analytics** | Sets whether and for how long back in time analytics should respect the approval level of the data. Typically, data which is several years old would be considered to be approved by default. In order to speed up analytics requests, you can choose to ignore the actual approval level of historical data.<br> <br>**Never check approval**: no data will be hidden, irrespective of its data approval status.<br> <br>**Check approval for all data**: approval status will always be checked.<br> <br>Other options, for example **Last 3 years**: approval status will be checked for data which is newer than 3 years old; older data will not be checked. |
-| **Threshold for analytics data caching** | Sets whether to enable caching data older than the specified number of years only.<br> <br>This allows for returning the most recent data directly with no caching, while serving cached version of older data for performance concerns. |
 | **Respect category option start and end date in analytics table export** | This setting controls whether analytics should filter data which is associated with a category option with a start and end date, but which is not associated with a period within the category options interval of validity. |
-| **Put analytics in maintenance mode** | Places the analytics and web API of DHIS2 in maintenance mode. This means that "503 Service Unavailable" will be returned for all requests. <br>This is useful when you need to perform maintenance on the server, for example rebuilding indexes while the server is running in production, in order to reduce load and more efficiently carry out the maintenance. |
-| **Include zero data values in analytics tables** | This setting allows for including zero values in analytics tables. This only applies to data elements where the **Store zero data values** property is enabled.|
+| **Include zero data values in analytics tables** | This setting allows for including zero values in analytics tables. This only applies to data elements where the **Store zero data values** property is enabled. Note that setting **Store zero data values** on large numbers of data elements is strongly discouraged, as it can fill the analytics tables with zeros and cause unnecessary performance overhead.|
+| **Enable embedded dashboards** | If enabled, users are presented with two modes of dashboard creation when creating a new dashboard: 1) Internal: the existing dashboard creation flow, based on data from the current instance. or 2) 2) External: Embed a dashboard built from data external to the instance.
 | **Allow users to switch dashboard favorite view type** | Allows users to switch dashboard favorites' view between charts, pivot tables and maps, using the dashboard item menu. |
 | **Allow users to open dashboard favorite in relevant app** | Allows users to open dashboard items in the app for that type of item, using the dashboard item menu. |
 | **Allow users to show dashboard favorite interpretations and details** | Allows users to see dashboard favorites' interpretations and details, using the dashboard item menu. |
@@ -121,8 +120,6 @@ Table: Email settings
 
 ## Access settings { #system_access_settings } 
 
-
-
 Table: Access settings
 
 | Setting | Description |
@@ -139,9 +136,21 @@ Table: Access settings
 | **Minimum characters in password** | Defines the minimum number of characters users must have in their passwords.<br> <br>You can select 8 (default), 10, 12 or 14. |
 | **CORS allowlist** | allowlists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
 
+
+## Notification settings { #system_notification_settings }
+
+Table: Notification settings
+
+| Setting                       | Description                                                             |
+|-------------------------------|-------------------------------------------------------------------------|
+| **notifierLogLevel**          | The level of messages to include in the log/list, default `DEBUG` (all) |
+| **notifierMaxMessagesPerJob** | Each job can at most have this amount of messages in its list (soft enforced allowing momentary exceeding the limit by a few); default is `500` |
+| **notifierMaxAgeDays**        | Job data older than this number of days is discarded (soft enforced, cleanup after 1 minute of idle); default is `7` |
+| **notifierMaxJobsPerType**    | If per job type there are more than this number of jobs with data the oldest are discarded to get below this limit (soft enforced, cleanup after 1 minute idle); default is `500` |
+| **notifierCleanAfterIdleTime** | The time in milliseconds the notifier has to be idle (not moving messages from queue to store) before an automatic store cleanup is run using the `notifierMaxAgeDays` and `notifierMaxJobsPerType` as caps; default is `60`sec |
+| **notifierGistOverview** | When `true` the overview pages will only show the first and last message of the list for each job; default `true` |
+
 ## Calendar settings { #system_calendar_settings } 
-
-
 
 Table: Calendar settings
 

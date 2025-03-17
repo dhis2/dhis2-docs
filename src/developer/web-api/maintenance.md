@@ -38,7 +38,7 @@ Table: Analytics tables optional query parameters
 > **Note**
 >
 > lastYears=0 means latest or continuous analytics, as defined in
-[Continuous analytics table](../../../use/user-guides/dhis-core-version-master/maintaining-the-system/scheduling.html#scheduling_continuous_analytics_table).
+[Continuous analytics table](#scheduling_continuous_analytics_table).
 
 
 "Data Quality" and "Data Surveillance" can be run through the monitoring
@@ -125,7 +125,7 @@ Data pruning will remove complete data set registrations, data approvals, data v
 
 Data pruning for data elements, which will remove data value audits and data values.
 
-    POST PUT /api/maintenance/dataPruning/dataElement/<data-element-uid>
+    POST PUT /api/maintenance/dataPruning/dataElements/<data-element-uid>
 
 Metadata validation will apply all metadata validation rules and return the result of the operation.
 
@@ -585,7 +585,7 @@ The JSON content is in similar format as above:
 }
 ```
 
-## Lock exceptions { #webapi_lock_exceptions } 
+## Lock exceptions { #webapi_lock_exceptions }
 
 The lock exceptions resource allows you to open otherwise locked data
 sets for data entry for a specific data set, period and organisation
@@ -603,3 +603,97 @@ DELETE request:
 
     DELETE /api/lockExceptions?ds=BfMAe6Itzgt&pe=201709&ou=DiszpKrYNg8
 
+## Data summary { #webapi_data_statistics}
+
+The data summary resource provides some metrics about the database and level of system usage. The metrics include: 
+
+    - Number of object types (dashboards, data elements, etc)
+    - Number of user account invitations
+    - Number of data values updated by day
+    - Number of events updated by day
+    - Number of users logged in by day
+
+Data statistics can be accessed with a GET request to :
+
+    GET /api/dataSummary
+
+A JSON response similar to the one below is provided:
+
+```json
+{
+    "objectCounts": {
+        "indicator": 77,
+        "trackedEntity": 73125,
+        "visualization": 292,
+        "period": 384,
+        "programStageInstance": 372987,
+        "organisationUnit": 1332,
+        "validationRule": 37,
+        "dataValue": 4934284,
+        "dataElement": 1037,
+        "program": 14,
+        "organisationUnitGroup": 18,
+        "enrollment": 73133,
+        "trackedEntityInstance": 73125,
+        "programInstance": 73133,
+        "indicatorType": 5,
+        "eventVisualization": 50,
+        "event": 372987,
+        "indicatorGroup": 17,
+        "map": 91,
+        "user": 131,
+        "userGroup": 34,
+        "dataSet": 26,
+        "dataElementGroup": 84,
+        "dashboard": 28
+    },
+    "activeUsers": {
+        "0": 2,
+        "1": 2,
+        "2": 2,
+        "7": 2,
+        "30": 3
+    }
+    ....
+}
+```
+As can been seen, various summary statistics are included in the response.Object counts refer to the current
+number of various metadata objects in the system. The `activeUsers`, `userInvitations`, `dataValueCount` and `eventCount` all represent
+values on various days. `userInvitations` provides the number
+of expired and all invitations currently in the system. The `system`
+object provides various information related to to the version, revision, build time, system ID (a UUID) and the current server date.
+
+## Data summary Prometheus metrics { #webapi_data_statistics_prometheus }
+
+In order to support the long-term monitoring of DHIS2 instances, a special endpoint is available
+which outputs the data summary information in the [Prometheus text exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/). This can be fetched from the server by making
+a GET request to :
+    GET api/dataSummary/metrics
+
+An example of the output is provided below
+
+```text
+# HELP data_summary_object_counts Count of metadata objects
+# TYPE data_summary_object_counts gauge
+data_summary_object_counts{type="indicator"} 77
+data_summary_object_counts{type="trackedEntity"} 73125
+data_summary_object_counts{type="visualization"} 292
+data_summary_object_counts{type="period"} 384
+data_summary_object_counts{type="programStageInstance"} 373597
+```
+
+This endpoint provides essentially the same information as the `api/dataSummary` endpoint, but in a format which
+Prometheus is capable of scraping and importing. Most of the metrics represent object counts, such as the current
+number of data elements, organization units, etc.
+
+The build information metric is explained in more detail below. 
+
+```
+# HELP data_summary_build_info Build information
+# TYPE data_summary_build_info gauge
+data_summary_build_info{version="2.42-SNAPSHOT", commit="932e552"} 1737621197
+```
+
+This metric represents the current version and commit hash of the server. The metric itself is an integer
+and represents the build time as seconds since the epoch. This metric can be easily converted or to
+an actual date when needed.
