@@ -2227,6 +2227,8 @@ An example of a json response:
 The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
 `CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
 
+Change logs are enabled by default and can be configured in `dhis.conf`, as explained [here](https://docs.dhis2.org/en/manage/reference/logging.html#install_changelog).
+
 ### Enrollments (`GET /api/tracker/enrollments`)
 
 Two endpoints are dedicated to enrollments:
@@ -2744,6 +2746,7 @@ An example of a json response:
 The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
 `CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
 
+Change logs are enabled by default and can be configured in `dhis.conf`, as explained [here](https://docs.dhis2.org/en/manage/reference/logging.html#install_changelog).
 
 ### Relationships (`GET /api/tracker/relationships`)
 
@@ -2973,7 +2976,7 @@ with an access level of *PROTECTED*. Any user with the org unit owner within the
 temporarily access the program-related data by providing a reason for accessing it.
 
 This act of temporarily gaining access is termed *breaking the glass*.
-Currently, temporary access is granted for 3 hours. DHIS2 audits breaking the glass along with the
+Currently, temporary access is granted for 3 hours. DHIS2 [audits](https://docs.dhis2.org/en/manage/concepts/audit.html) breaking the glass along with the
 reason specified by the user. It is not possible to gain temporary access to a program that has been
 configured with an access level of *CLOSED*.
 
