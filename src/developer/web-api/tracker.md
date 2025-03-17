@@ -368,25 +368,25 @@ to import i.e. create, update and delete
 
 The tracker importer supports the following parameters:
 
-| Parameter name | Description | Type | Allowed values |
-|---|---|---|---|
-| async | Indicates whether the import should happen asynchronously or synchronously. | Boolean | `true`, `false` |
-| reportMode | Only when performing synchronous import. See importSummary for more info. | Enum | `FULL`, `ERRORS`, `WARNINGS` |
-| importMode | Can either be `VALIDATE` which will report errors in the payload without making changes to the database or `COMMIT` (default) which will validate the payload and make changes to the database. | Enum | `VALIDATE`, `COMMIT` |
-| idScheme | IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
-| dataElementIdScheme | IdScheme used for data element references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
-| orgUnitIdScheme  | IdScheme used for organisation unit references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
-| programIdScheme  | IdScheme used for program references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
-| programStageIdScheme  | IdScheme used for program stage references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
-| categoryOptionComboIdScheme  | IdScheme used for category option combo references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
-| categoryOptionIdScheme  | IdScheme used for category option references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |
-| importStrategy | Indicates the effect the import should have. Can either be `CREATE`, `UPDATE`, `CREATE_AND_UPDATE` and `DELETE`, which respectively only allows importing new data, importing changes to existing data, importing any new or updates to existing data, and finally deleting data. | Enum | `CREATE`, `UPDATE`, `CREATE_AND_UPDATE`, `DELETE` |
-| atomicMode | Indicates how the import responds to validation errors. If `ALL`, all data imported must be valid for any data to be committed. For `OBJECT`, only the data committed needs to be valid, while other data can be invalid. | Enum | `ALL`, `OBJECT` |
-| flushMode | Indicates the frequency of flushing. This is related to how often data is pushed into the database during the import. Primarily used for debugging reasons, and should not be changed in a production setting | Enum | `AUTO`, `OBJECT` |
-| validationMode | Indicates the completeness of the validation step. It can be skipped, set to fail fast (Return on the first error), or full(Default), which will return any errors found | Enum | `FULL`, `FAIL_FAST`, `SKIP` |
-| skipPatternValidation | If true, it will skip validating the pattern of generated attributes. | Boolean | `true`, `false` |
-| skipSideEffects | If true, it will skip running any side effects for the import | Boolean | `true`, `false` |
-| skipRuleEngine | If true, it will skip running any program rules for the import | Boolean | `true`, `false` |
+| Parameter name | Description | Type | Allowed values | Default value |
+|---|---|---|---|---|
+| async | Indicates whether the import should happen asynchronously or synchronously. | Boolean | `true`, `false` | `true` |
+| reportMode | Only when performing synchronous import. See importSummary for more info. | Enum | `FULL`, `ERRORS`, `WARNINGS` | `ERRORS` |
+| importMode | Can either be `VALIDATE` which will report errors in the payload without making changes to the database or `COMMIT` (default) which will validate the payload and make changes to the database. | Enum | `VALIDATE`, `COMMIT` | `COMMIT` |
+| idScheme | IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` | `UID` |
+| dataElementIdScheme | IdScheme used for data element references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` | `idScheme` parameter |
+| orgUnitIdScheme  | IdScheme used for organisation unit references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` |`idScheme` parameter |
+| programIdScheme  | IdScheme used for program references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` | `idScheme` parameter |
+| programStageIdScheme  | IdScheme used for program stage references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` | `idScheme` parameter |
+| categoryOptionComboIdScheme  | IdScheme used for category option combo references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` | `idScheme` parameter |
+| categoryOptionIdScheme  | IdScheme used for category option references. Defaults to the `idScheme` parameter. | Enum | `UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}` | `idScheme` parameter |
+| importStrategy | Indicates the effect the import should have. Can either be `CREATE`, `UPDATE`, `CREATE_AND_UPDATE` and `DELETE`, which respectively only allows importing new data, importing changes to existing data, importing any new or updates to existing data, and finally deleting data. | Enum | `CREATE`, `UPDATE`, `CREATE_AND_UPDATE`, `DELETE` | `CREATE` |
+| atomicMode | Indicates how the import responds to validation errors. If `ALL`, all data imported must be valid for any data to be committed. For `OBJECT`, only the data committed needs to be valid, while other data can be invalid. | Enum | `ALL`, `OBJECT` | `ALL` |
+| flushMode | Indicates the frequency of flushing. This is related to how often data is pushed into the database during the import. Primarily used for debugging reasons, and should not be changed in a production setting | Enum | `AUTO`, `OBJECT` | `AUTO` |
+| validationMode | Indicates the completeness of the validation step. It can be skipped, set to fail fast (Return on the first error), or full (default), which will return any errors found | Enum | `FULL`, `FAIL_FAST`, `SKIP` | `FULL` |
+| skipPatternValidation | If true, it will skip validating the pattern of generated attributes. | Boolean | `true`, `false` | `false` |
+| skipSideEffects | If true, it will skip running any side effects for the import | Boolean | `true`, `false` | `false` |
+| skipRuleEngine | If true, it will skip running any program rules for the import | Boolean | `true`, `false` | `false` |
 
 #### SYNC and ASYNC
 
