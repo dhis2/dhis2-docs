@@ -135,6 +135,7 @@ Table: Access settings
 | **Enable password expiry alerts** | When set, users will receive a notification when their password is about to expire. |
 | **Minimum characters in password** | Defines the minimum number of characters users must have in their passwords.<br> <br>You can select 8 (default), 10, 12 or 14. |
 | **CORS allowlist** | allowlists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
+| **Enforce Verified Email** | Controls whether users must verify their email addresses before accessing the system. This setting can only be enabled if the system is configured to send emails (SMTP).<br> <br>**Note**:<br> If the **keyEmailHostName** or **keyEmailUserName** values are not set in the settings app, the **Enforce Verified Email** checkbox will be disabled and cannot be set to **true**. If these SMTP settings are missing, **Enforce Verified Email** can be set to **false** (if already set to **true**) but cannot be enabled until the required email settings are configured. |
 
 
 ## Notification settings { #system_notification_settings }

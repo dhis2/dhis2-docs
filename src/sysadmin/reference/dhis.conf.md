@@ -372,3 +372,19 @@ system.program_rule.server_execution = on | off
 ```
 
 Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
+
+### Enable TOTP (OTP-based) 2FA:
+
+TOTP (Time-Based One-Time Password) uses apps like **Google Authenticator** or **Authy** to generate a time-sensitive one-time password. To enable TOTP 2FA, set the following:
+
+```properties
+login.security.totp_2fa.enabled = on
+```
+
+### Enable Email-Based 2FA:
+
+Email-based 2FA sends a verification code to the user's email address during login. The user must enter this code to complete the login process. To enable email-based 2FA, set the following:
+
+```properties
+login.security.email_2fa.enabled = on
+```
