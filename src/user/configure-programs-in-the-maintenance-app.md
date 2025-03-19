@@ -1867,7 +1867,7 @@ the **Program details** configuration.
 
 <!-- end list -->
 
-  - Maximum number of tracked entity instances to return: This property defines how specific a search must be, by limiting the number of matching tracked entity instances a user is allowed to get for her search criteria. If the number of matching records is larger than this maximum, they will not be returned. The user must provide more specific search criteria, in order to reduce the number of matching records, before they are returned.
+  - Maximum number of tracked entity instances to return: This property defines how specific a search must be, by limiting the number of matching tracked entities a user is allowed to get for her search criteria. If the number of matching records is larger than this maximum, they will not be returned. The user must provide more specific search criteria, in order to reduce the number of matching records, before they are returned. More on limits [here](../developer/web-api/tracker.md#tracked-entities-collection-limits).
 
     > **NOTE**
     >

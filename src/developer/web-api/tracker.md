@@ -2005,8 +2005,7 @@ response, protecting database and server resources. No limit applies when set to
 `/api/systemSettings` as described in the [documentation](settings-and-configuration.md?#webapi_system_settings).
 - **Program or tracked entity type**: `maxTeiCountToReturn` limits results when searching **outside
 the capture scope** with a specified program or tracked entity type. The API returns an error if
-matches exceed this limit. No limit applies when searching within the capture scope or when set to
-0.
+matches exceed this limit. No limit applies when searching within the capture scope or when set to 0.
 - **Pagination**: As explained [here](#request-parameters-for-pagination).
 
 For requests specifying a program or tracked entity type, `maxTeiCountToReturn` is always validated
