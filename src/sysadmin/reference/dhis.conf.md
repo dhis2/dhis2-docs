@@ -109,7 +109,7 @@ system.sql_view_write_enabled = off
 system.program_rule.server_execution = on
 
 # Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
-system.remote_servers_allowed = https://server1.org/,https://server2.org/
+metadata.sync.remote_servers_allowed = https://server1.org/,https://server2.org/
 
 # ----------------------------------------------------------------------
 # Encryption [Optional]
@@ -281,6 +281,14 @@ apphub.api.url = https://apps.dhis2.org/api
 
 # Number of possible concurrent sessions across different clients per user
 max.sessions.per_user = 10
+
+# ----------------------------------------------------------------------
+# Route API [Optional]
+# ----------------------------------------------------------------------
+
+# Remote servers allowed to call from the route endpoint. Default is any HTTPS URL. Wildcards are allowed. 
+# e.g. route.remote_servers_allowed = https://server1.com/,https://server2.com/,https://192.168.*.*
+route.remote_servers_allowed = https://*
 ```
 
 Note that the configuration file supports environment variables. This

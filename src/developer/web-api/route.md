@@ -8,9 +8,23 @@ For the examples here we will be using the [Echo API](https://learning.postman.c
 
 ### Required permissions
 
-In order to be able to configure and view the routes, the current user must either have "ALL" authority, or the "Route" authority should be added to the user's role. The authority can be added by heading to the User Management app -> User roles tab, then search for the word "Route" under Metadata authorities. Then you can assign the autorities to the user's role, and save the updates to the role.
+In order to be able to configure and view the routes, the current user must either have `ALL` authority, or the `Route` authority should be added to the user's role. The authority can be added by heading to the User Management app -> User roles tab, then search for the word "Route" under Metadata authorities. Then you can assign the authorities to the user's role, and save the updates to the role.
 
 ![](resources/images/routes/route-authorities.png)
+
+In addition to authorities, route URLs can only be added or run when the URL has a corresponding entry `route.remote_servers_allowed` setting found in the `dhis.conf` as shown below:
+
+```properties
+route.remote_servers_allowed = https://server1.com/,https://server2.com/
+```
+
+`route.remote_servers_allowed` is a comma-separated URL pattern list which is set to `https://*` by default. The DHIS2 administrator should change the default value to a more restricted URL to prevent server-side request forgery (SSRF) attacks. While not recommended for security reasons, one can add wildcard entries to `route.remote_servers_allowed` which avoids having to enumerate each allowed remote server, for example:
+
+```properties
+route.remote_servers_allowed = https://*.server1.com/
+```
+
+Note that paths within the URLs are not accepted.
 
 ### Running a route
 
