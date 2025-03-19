@@ -2003,13 +2003,14 @@ The collection endpoint limits results in three ways:
 - **System settings**: `KeyTrackedEntityMaxLimit` defines the maximum tracked entities in an API 
 response, protecting database and server resources. No limit applies when set to 0. Configure it via
 `/api/systemSettings` as described in the [documentation](settings-and-configuration.md?#webapi_system_settings).
-- **Program or tracked entity type**: `maxTeiCountToReturn` limits results when searching **outside
+- **Program or tracked entity type**: it limits results when searching **outside
 the capture scope** with a specified program or tracked entity type. The API returns an error if
-matches exceed this limit. No limit applies when searching within the capture scope or when set to 0.
+matches exceed this limit. No limit applies when searching within the capture scope or when set to 
+0. This limit is configurable in the maintenance app.
 - **Pagination**: As explained [here](#request-parameters-for-pagination).
 
-For requests specifying a program or tracked entity type, `maxTeiCountToReturn` is always validated
-against the total result count, regardless of pagination or system setting limits.
+For requests specifying a program or tracked entity type, the limit is always validated against the 
+total result count, regardless of pagination or system settings.
 
 For paginated requests with non-zero `KeyTrackedEntityMaxLimit`:
 - If pageSize ≤ KeyTrackedEntityMaxLimit: `pageSize` is enforced
