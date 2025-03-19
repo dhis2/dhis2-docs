@@ -362,7 +362,7 @@ program. A program needs several types of metadata that you create in the **Main
 | **Completed events expiry days** |  Defines the number of days for which you can edit a completed event. This means that when an event is completed and the specified number of expiry days has passed, the event is locked. <br> <br> If you set "Completed events expiry days" to 10", an event is locked ten days after the completion date. After this date you can no longer edit the event.  |
 | **Expiry period type**<br> <br>**Expiry days** |  The expiry days defines for how many days after the end of the previous period, an event can be edited. The period type is defined by the expiry period type. This means that when the specified number of expiry days has passed since the end date of the previous period, the events from that period are locked. <br> <br> If you set the expiry type to "Monthly" and the expiry days to "10" and the month is October, then you can't add or edit an event to October after the 10th of November.  |
 | **Minimum number of attributes required to search** |  Specify the number of tracked entity attributes that needs to be filled in to search for Tracked Entities in the Program.  |
-| **Maximum number of tracked entity instances to return in search** |  Specify the maximum number of tracked entities that should be returned in a search. Enter 0 for no limit. More info [here](../developer/web-api/tracker.md#tracked-entities-collection-limits).|
+| **Maximum number of tracked entities to return in search** |  Specify the maximum number of tracked entities that should be returned in a search. Enter 0 for no limit. More info [here](../developer/web-api/tracker.md#tracked-entities-collection-limits).|
 
 #### Enter enrollment details { #enter_enrollment_details } 
 
@@ -1804,7 +1804,7 @@ programs.
     type** in a *global search*. See [Configure
     Search](#configure_search) for more information.
 
-7.  (Optional) Enter a **Maximum number of tracked entity instances to
+7.  (Optional) Enter a **Maximum number of tracked entities to
     return in search**. This specifies the amount of tracked entity
     instances that will be returned in a *global search*. See [Configure
     Search](#configure_search) for more information.
@@ -1867,7 +1867,7 @@ the **Program details** configuration.
 
 <!-- end list -->
 
-  - Maximum number of tracked entity instances to return: This property defines how specific a 
+  - Maximum number of tracked entities to return: This property defines how specific a 
   search must be, by limiting the number of matching tracked entities a user is allowed to get for 
   her search criteria. If the number of matching records is larger than this maximum, they will not 
   be returned. The user must provide more specific search criteria, in order to reduce the number 
