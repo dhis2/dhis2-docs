@@ -3,7 +3,7 @@
 The Datastore Manager is intended for advanced-level DHIS2 users. Before
 you use the Datastore Manager, you can read more about the Data store
 here: [DHIS2 data
-store](https://docs.dhis2.org/master/en/developer/html/webapi_data_store.html).
+store](https://docs.dhis2.org/en/develop/using-the-api/dhis-core-version-master/data-store.html).
 
 ## Using the Datastore Manager
 
