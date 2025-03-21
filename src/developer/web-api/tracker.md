@@ -3467,42 +3467,79 @@ service is not validating that data again. This means if data was already invali
 reported during the merge. The only validation done in the service relates to relationships, as
 mentioned in the previous section.
 
+### Program Notification Template
+
+The Program Notification Template allows you to create message templates that can be sent based on different types of events. 
+The message and subject templates are translated into actual values and sent to the configured destination. 
+Each program notification template is transformed into either a MessageConversation object or a ProgramMessage object, depending on whether the recipient is external or internal. 
+These intermediate objects will contain only the translated message and subject text.
+
+There are several configuration parameters in the Program Notification Template that are essential for the proper functioning of notifications.
+These parameters are explained in the table below.
+
+**POST /api/programNotificationTemplates**
+
+```json
+{
+	"name": "Case notification",
+	"notificationTrigger": "ENROLLMENT",
+	"subjectTemplate": "Case notification V{org_unit_name}",
+	"displaySubjectTemplate": "Case notification V{org_unit_name}",
+	"notifyUsersInHierarchyOnly": false,
+	"sendRepeatable": false,
+	"notificationRecipient": "ORGANISATION_UNIT_CONTACT",
+	"notifyParentOrganisationUnitOnly": false,
+	"displayMessageTemplate": "Case notification A{h5FuguPFF2j}",
+	"messageTemplate": "Case notification A{h5FuguPFF2j}",
+	"deliveryChannels": [
+		"EMAIL"
+	]
+}
+```
+
+#### Table: Program Notification Template payload
+
+| Field | Required | Description | Values |
+|---|---|---|---|
+| name | Yes | Name of the Program Notification Template | case-notification-alert |
+| notificationTrigger | Yes | When notification should be triggered. Possible values are ENROLLMENT, COMPLETION, PROGRAM_RULE, SCHEDULED_DAYS_DUE_DATE | ENROLLMENT |
+| subjectTemplate | No | Subject template string | Case notification V{org_unit_name} |
+| messageTemplate | Yes | Message template string | Case notification A{h5FuguPFF2j} |
+| notificationRecipient | Yes | Who is going to receive notification. Possible values are USER_GROUP, ORGANISATION_UNIT_CONTACT, TRACKED_ENTITY_INSTANCE, USERS_AT_ORGANISATION_UNIT, DATA_ELEMENT, PROGRAM_ATTRIBUTE, WEB_HOOK | USER_GROUP |
+| deliveryChannels | No | Which channel should be used for this notification. It can be either SMS, EMAIL, or HTTP | SMS |
+| sendRepeatable | No | Whether notification should be sent multiple times | false |
+
+**NOTE:** The `WEB_HOOK` notificationRecipient is used exclusively for sending HTTP POST requests to external systems. Ensure that the HTTP delivery channel is selected when using this option.
+
+## Retrieving and Deleting Program Notification Template
+
+As `ProgramNotificationTemplate` is a type of metadata, you can create, update, and delete it just like other metadata.
+
+---
+
 ### Program Messages
 
-The program message feature enables you to send messages to tracked entities, contact addresses
-associated with organizational units, phone numbers, and email addresses. Messages can be sent using
-the messages resource.
+The program message feature enables you to send messages to tracked entities, contact addresses associated with organizational units, phone numbers, and email addresses. Messages can be sent using the `messages` resource.
 
-    /api/messages
+**POST /api/messages**
 
-### Sending program messages
+#### Sending program messages
 
 Program messages can be sent using two delivery channels:
 
   - SMS (SMS)
-
   - Email address (EMAIL)
+
+#### Recipients
 
 Program messages can be sent to various recipients:
 
-  - Tracked entity: The system will look up attributes of value
-    type PHONE_NUMBER or EMAIL (depending on the specified delivery
-    channels) and use the corresponding attribute values.
-
-  - Organisation unit: The system will use the phone number or email
-    information registered for the organisation unit.
-
-  - List of phone numbers: The system will use the explicitly defined
-    phone numbers.
-
-  - List of email addresses: The system will use the explicitly defined
-    email addresses.
+  - **Tracked entity:** The system will look up attributes of value type `PHONE_NUMBER` or `EMAIL` (depending on the specified delivery channels) and use the corresponding attribute values.
+  - **Organisation unit:** The system will use the phone number or email information registered for the organisation unit.
+  - **List of phone numbers:** The system will use the explicitly defined phone numbers.
+  - **List of email addresses:** The system will use the explicitly defined email addresses.
 
 Below is a sample JSON payload for sending messages using POST requests.
-Note that message resource accepts a wrapper object named
-`programMessages` which can contain any number of program messages.
-
-    POST /api/33/messages
 
 ```json
 {
@@ -3540,76 +3577,50 @@ Note that message resource accepts a wrapper object named
 }
 ```
 
-The fields are explained in the following table.
-
-
-
-Table: Program message payload
+#### Table: Program Message Payload
 
 | Field | Required | Description | Values |
 |---|---|---|---|
-| recipients | Yes | Recipients of the program message. At least one recipient must be specified. Any number of recipients / types can be specified for a message. | Can be trackedEntity, organisationUnit, an array of phoneNumbers or an array of emailAddresses. |
-| enrollment | Enrollment which ProgramMessage is attached to | Enrollment. | Enrollment ID. |
-| event      | Event which ProgramMessage is attached to | Event. | Event ID. |
+| recipients | Yes | Recipients of the program message. At least one recipient must be specified. | Can be trackedEntity, organisationUnit, an array of phoneNumbers or an array of emailAddresses. |
+| enrollment | No | Enrollment which ProgramMessage is attached to. | Enrollment ID. |
+| event      | No | Event which ProgramMessage is attached to. | Event ID. |
 | deliveryChannels | Yes | Array of delivery channels. | SMS &#124; EMAIL |
-| notificationTemplate | No | ProgramNotificationTemplate UID is used to cross-check which program message belongs to which notification template.| Text. |
+| notificationTemplate | No | ProgramNotificationTemplate UID is used to cross-check which program message belongs to which notification template. | Text. |
 | subject | No | The message subject. Not applicable for SMS delivery channel. | Text. |
 | text | Yes | The message text. | Text. |
 | storeCopy | No | Whether to store a copy of the program message in DHIS2. | false (default) &#124; true |
 
-A minimalistic example for sending a message over SMS to a tracked
-entity looks like this:
+### Querying Program Messages
+
+The program message API supports querying messages using specific request parameters.
+
+**Retrieving Messages**
 
 ```bash
-curl -d @message.json "https://play.dhis2.org/demo/api/messages"
-  -H "Content-Type:application/json" -u admin:district
+GET /api/messages
 ```
 
-```json
-{
-  "programMessages": [{
-    "recipients": {
-      "trackedEntity": {
-        "id": "PQfMcpmXeFE"
-      }
-    },
-    "enrollment": {
-      "id": "JMgRZyeLWOo"
-    },
-    "deliveryChannels": [
-      "SMS"
-    ],
-    "text": "Please make a visit on Thursday"
-  }]
-}
+To get the list of sent tracker messages, the below endpoint can be used. Enrollment or Event UID has to be provided.
+
+```bash
+GET /api/messages/scheduled/sent?enrollment={uid}
+GET /api/messages/scheduled/sent?event={uid}
 ```
 
-## Retrieving and deleting program messages
+Retrieve a specific message:
 
-The list of messages can be retrieved using GET.
+```bash
+GET /api/messages/{uid}
+```
 
-    GET /api/messages
+Delete a message:
 
-To get the list of sent tracker messages, the below endpoint can be used. Enrollment or Event uid has to be provided.
-
-	GET /api/messages/scheduled/sent?enrollment={uid}
-	GET /api/messages/scheduled/sent?event={uid}
-
-One particular message can also be retrieved using GET.
-
-    GET /api/messages/{uid}
-
-Message can be deleted using DELETE.
-
-    DELETE /api/messages/{uid}
-
-
-## Querying program messages
+```bash
+DELETE /api/messages/{uid}
+```
 
 The program message API supports querying messages using specific request parameters.
 You can filter messages based on the parameters listed below. All requests should use the GET HTTP verb to retrieve information.
-
-
 
 Table: Query program messages API
 
