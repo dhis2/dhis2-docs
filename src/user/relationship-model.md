@@ -71,3 +71,15 @@ One important thing to note about bidirectional relationships, are that the
 "from" and "to" sides are still significant in the database, meaning each entity
 must match the constraint for that side. However, from a user perspective, which
 side each entity is stored as is insignificant.
+
+## Example { #relationship_model_example }
+
+<img src="resources/images/relationship_model/relationships.png" width="50%"/>
+
+* Bidirectional relationship *relA* connects *teA* to *teB* and connects *teB* to *teA*.
+* Unidirectional relationship *relB* connects *teA* to *teC* but DO NOT connect *teC* to *teA*.
+* *teA* originates relationships *relA* and *relB*.
+* *teB* originates relationships *relA*.
+* *teC* originates no relationships.
+* *relA* originates from *teA* and from *teB*, and points to *teA* and to *teB*.
+* *relB* originates from *teA* and points to *teC*.
