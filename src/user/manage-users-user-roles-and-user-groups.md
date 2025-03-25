@@ -360,7 +360,6 @@ You can filter users based on whether their email address is verified or not.
 
 4. Select the desired option from the dropdown to filter the list of users accordingly.
 
-> **UI Changes (Version 42 and above)** 
 > **Email verification column**: If the system has email configured, a new column named **Email verification** will appear in the users list table, between **Status** and **Last login**. The two possible statuses are:
 >    - **Verified**: Indicates the user’s email is verified.
 >    - **Not verified**: Indicates the user’s email is not verified.
