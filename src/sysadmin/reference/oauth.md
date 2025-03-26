@@ -33,13 +33,17 @@ The following IdPs are currently supported and tested:
 
 There is also a **generic provider** config which can support "any" OIDC compatible provider.
 
-### DHIS2 user account
+### DHIS2 user accounts
 
-You must explicitly create the users in the DHIS2 server before they can log in with the identity provider. Importing them from an external directory such as Active Directory is currently not supported. Provisioning and management of users with an external identity store is not supported by the OIDC standard.
+For Open ID Connect (OIDC) authentication in DHIS2, user accounts must be created in DHIS2 and mapped to the corresponding entries in the Identity Provider (IdP) platform. This mapping is achieved by configuring the *OIDC mapping value* property for each DHIS2 user account.
+
+Note that the mapping values are case sensitive. For example, if email addresses are used as claims in the IdP and the email addresses use upper and lower-case letters, make sure to take the capitalization into account when entering the DHIS2 user OIDC mapping value.
+
+Importing users from an external directory such as Active Directory is currently not supported. Provisioning and management of users with an external identity store is not supported by the OIDC standard.
 
 ### IdP claims and mapping of users
 
-To sign in to DHIS2 with OIDC, a given user must be provisioned in the IdP and then mapped to a pre created user account in DHIS2. OIDC uses a method that relies on claims to share user account attributes with other applications. Claims include user account attributes such as email, phone number, name, etc. DHIS2 relies on a IdP claim to map user accounts from the IdP to those in the DHIS2 server. By default, DHIS2 expects the IdP to pass the _email_ claim. Depending on your IdP, you may need to configure DHIS2 to use a different IdP claim.
+To sign in to DHIS2 with OIDC, a given user must be provisioned in the IdP and then mapped to a user account in DHIS2. OIDC uses a method that relies on claims to share user account attributes with other applications. Claims include user account attributes such as email, phone number, name, etc. DHIS2 relies on a IdP claim to map user accounts from the IdP to those in the DHIS2 server. By default, DHIS2 expects the IdP to pass the _email_ claim. Depending on your IdP, you may need to configure DHIS2 to use a different IdP claim.
 
 If you are using Google or Azure AD as an IdP, the default behavior is to use the _email_ claim to map IdP identities to DHIS2 user accounts.
 
