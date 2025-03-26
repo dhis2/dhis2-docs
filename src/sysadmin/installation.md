@@ -670,7 +670,11 @@ There is also a **generic provider** config which can support "any" OIDC compati
 
 #### DHIS2 user account
 
-You must explicitly create the users in the DHIS2 server before they can log in with the identity provider. Importing them from an external directory such as Active Directory is currently not supported. Provisioning and management of users with an external identity store is not supported by the OIDC standard.
+For Open ID Connect (OIDC) authentication in DHIS2, user accounts must be created in DHIS2 and mapped to the corresponding entries in the Identity Provider (IdP) platform. This mapping is achieved by configuring the *OIDC mapping value* property for each DHIS2 user account.
+
+Note that the mapping values are case sensitive. For example, if email addresses are used as claims in the IdP and the email addresses use upper and lower-case letters, make sure to take the capitalization into account when entering the DHIS2 user OIDC mapping value.
+
+Importing users from an external directory such as Active Directory is currently not supported. Provisioning and management of users with an external identity store is not supported by the OIDC standard.
 
 #### IdP claims and mapping of users
 
