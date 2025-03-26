@@ -87,15 +87,14 @@ External links to instructions for configuring your IdP:
 
 ### Google dhis.conf example:
 ```properties
-
 # Enables OIDC login
 oidc.oauth2.login.enabled = on
 
 # Client id, given to you in the Google developer console
-oidc.provider.google.client_id = my client id
+oidc.provider.google.client_id = <my-client-id>
 
 # Client secret, given to you in the Google developer console
-oidc.provider.google.client_secret = my client secret
+oidc.provider.google.client_secret = <my-client-secret>
 
 # [Optional] Authorized redirect URI, the same as set in the Google developer console 
 # If your public hostname is different from what the server sees internally, 
@@ -106,7 +105,6 @@ oidc.provider.google.redirect_url = https://mydhis2-server.org/oauth2/code/googl
 # If your public hostname is different from what the server sees internally, 
 # you need to provide your full public url, like the example below. 
 oidc.logout.redirect_url = https://mydhis2-server.org
-
 ```
 
 ## Example setup for Azure AD
@@ -128,29 +126,28 @@ To register your DHIS2 server as an "application" in the Azure portal, follow th
 
 ### Azure AD dhis.conf example:
 ```properties
-
 # Enables OIDC login
 oidc.oauth2.login.enabled = on
 
 # First provider (azure.0):
 
-# Alias, or name that will show on the login button in the DHIS2 login screen.
-oidc.provider.azure.0.tenant = organization name
+# Tenant ID, also called Directory ID, in UUID format
+oidc.provider.azure.0.tenant = <my-tenant-id>
 
-# Client id, given to you in the Azure portal
-oidc.provider.azure.0.client_id = my client id
+# Client id, given to you in the Azure portal, in UUID format
+oidc.provider.azure.0.client_id = <my-client-id>
 
 # Client secret, given to you in the Azure portal
-oidc.provider.azure.0.client_secret = my client secret
+oidc.provider.azure.0.client_secret =<my-client-secret>
 
 # [Optional] Authorized redirect URI, the as set in Azure portal 
 # If your public hostname is different from what the server sees internally, 
-# you need to provide your full public url, like the example below.
+# you need to provide your full public URL
 oidc.provider.azure.0.redirect_url = https://mydhis2-server.org/oauth2/code/azure.0
 
 # [Optional] Where to redirect after logging out.
 # If your public hostname is different from what the server sees internally, 
-# you need to provide your full public URL, like the example below.
+# you need to provide your full public URL
 oidc.logout.redirect_url = https://mydhis2-server.org
 
 # [Optional], defaults to 'email'
@@ -159,10 +156,10 @@ oidc.provider.azure.0.mapping_claim = email
 # [Optional], defaults to 'on'
 oidc.provider.azure.0.support_logout = on
 
-
 # Second provider (azure.1):
 
-oidc.provider.azure.1.tenant = other organization name
+# Tenant ID, also called Directory ID, in UUID format
+oidc.provider.azure.1.tenant = <my-client-id>
 ...
 ```
 
@@ -185,13 +182,12 @@ except for the reserved names used by the specific providers (`google`, `azure.0
 ### Generic (helseid) dhis.conf example:
 
 ```properties
-
 # Enables OIDC login
 oidc.oauth2.login.enabled = on
 
 # Required variables:
-oidc.provider.helseid.client_id = CLIENT_ID
-oidc.provider.helseid.client_secret = CLIENT_SECRET
+oidc.provider.helseid.client_id = <my-client-id>
+oidc.provider.helseid.client_secret = <my-client-secret>
 oidc.provider.helseid.mapping_claim = helseid://claims/identity/email
 oidc.provider.helseid.authorization_uri = https://helseid.no/connect/authorize
 oidc.provider.helseid.token_uri = https://helseid.no/connect/token
@@ -225,6 +221,7 @@ oidc.provider.helseid.display_alias = HelseID
 
 # [Optional] Link to an url for a logo. (Can use absolute or relative URLs)
 oidc.provider.helseid.logo_image = ../security/btn_helseid.svg
+
 # [Optional] CSS padding for the logo image
 oidc.provider.helseid.logo_image_padding = 0px 1px
 ```
@@ -251,24 +248,22 @@ The DHIS2 Android client is such a type of client and have to use JWT authentica
 The following `dhis.conf` section shows an example of how to enable JWT authentication for an API-based client.
 
 ```properties
-
 # Enables OIDC login
 oidc.oauth2.login.enabled = on
 
 # Minimum required config variables:
-oidc.provider.google.client_id = my_client_id
-oidc.provider.google.client_secret = my_client_secret
+oidc.provider.google.client_id = <my-client-id>
+oidc.provider.google.client_secret = <my-client-secret>
 
 # Enable JWT support
 oauth2.authorization.server.enabled = off
 oidc.jwt.token.authentication.enabled = on
 
 # Define client 1 using JWT tokens
-oidc.provider.google.ext_client.0.client_id = JWT_CLIENT_ID
+oidc.provider.google.ext_client.0.client_id = <my-jwt-client-id>
 
 # Define client 2 using JWT tokens
-oidc.provider.google.ext_client.1.client_id = JWT_CLIENT_ID
-
+oidc.provider.google.ext_client.1.client_id = <my-jwt-client-id>
 ```
 
 > **Note**
