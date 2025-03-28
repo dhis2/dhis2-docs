@@ -45,7 +45,7 @@ DHIS2 documentation is organised into four broad categories. Choose the category
 
     WHO Health Data Toolkit consists of DHIS2 metadata and tools to support adoption of WHO health data standards into national routine health management information systems. This section contains documentation for the available packages.
 
-    [Explore Metadata Packages](topics/metadata/dhis2-who-digital-health-data-toolkit/about-the-who-digital-health-data-toolkit.html)
+    [Explore Metadata Packages](implement/health/dhis2-health-data-toolkit/about-the-dhis2-health-data-toolkit.html)
 
 !!! Tutorials
 
