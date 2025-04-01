@@ -103,6 +103,7 @@ Table: Appearance settings
 | **Custom login page logo** | Select this option and upload an image to add your logo to the login page. |
 | **Login page theme** | This lets you select between the default layout, the sidebar layout, or a custom layout for the login app. If you select a custom layout, you need to provide a custom template in the "Login page template" section. |
 | **Login page template** | Here you can paste the HTML to define the layout  and style of the login page. More details for how to define the template are available in the developer documentation. |
+| **Enable Global Shell** | When this property is enabled (set to true, the default), the global shell provides a common interface and navigation tools across all DHIS2 web applications. |
 
 ## Email settings { #system_email_settings } 
 

@@ -144,6 +144,7 @@ Table: System settings
 | keySkipDataTypeValidationInAnalyticsTableExport | Skips data type validation in analytics table export | No |
 | keyCustomLoginPageLogo | Logo for custom login page | No |
 | keyCustomTopMenuLogo | Logo for custom top menu | No |
+| globalShellEnabled | When this property is enabled (set to true), apps will be displayed as iframes within a global shell. This global shell provides a consistent header bar across the system which has expanded functionalities compared to the original header bar. Default: true. | No |
 | keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
 | analyticsFinancialYearStart | Set financial year start. Default: October | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
