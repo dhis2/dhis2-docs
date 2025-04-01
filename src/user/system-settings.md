@@ -128,7 +128,8 @@ Table: Access settings
 | **Allow users to grant own user roles** | Defines whether users can grant user roles which they have themselves to others when creating new users. |
 | **Allow assigning object to related objects during add or update** | Defines whether users should be allowed to assign an object to a related object when they create or edit metadata objects.<br> <br>You can allow users to assign an organisation unit to data sets and organisation unit group sets when creating or editing the organisation unit. |
 | **Require user account password change** | Defines whether users should be forced to change their passwords every 3, 6 or 12 months.<br> <br>If you don't want to force users to change password, select **Never**. |
-| **Enable password expiry alerts** | When set, users will receive a notification when their password is about to expire. |
+| **Send reminders to users before their password expires** | When set, users will receive a notification when their password is about to expire. |
+| **Number of days before password expiry to send reminder** | This setting will be displayed if you choose to send reminders to users before their password expires. You can choose to send the email between 1 and 28 days before password expiry. |
 | **Minimum characters in password** | Defines the minimum number of characters users must have in their passwords.<br> <br>You can select 8 (default), 10, 12 or 14. |
 | **CORS allowlist** | allowlists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
 
