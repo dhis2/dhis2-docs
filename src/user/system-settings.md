@@ -53,7 +53,7 @@ Table: Analytics settings
 | **Allow users to show dashboard item interpretations and details** | Allows users to see dashboard items' interpretations and details, using the dashboard item menu. |
 | **Allow users to view dashboard item in fullscreen** | Allows users to view dashboard item in fullscreen, using the dashboard item menu. |
 | **Org unit group set in facility map layers** | Defines the default organisation unit group set which can be used to style facilities, with icons, when using the maps application. |
-| **Org unit level in facility map layers** | Defines the default level for facilities layer when using the maps application. Organisation units for the default level will be displayed, unless a user selects a different level for a given map. |
+| **Org unit level in facility map layers** | Defines the default level for Facility layers when using the maps application. Organisation units for the default level will be displayed, unless a user selects a different level for a given layer. |
 | **Default basemap** | Select which basemap will be selected by default in the **Maps** app. If no value is selected, then **OSM Light** will be used.|
 
 ## Server settings { #system_server_settings } 
