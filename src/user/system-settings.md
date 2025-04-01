@@ -8,6 +8,9 @@ Table: General settings
 
 | Setting | Description |
 |---|--|
+| **Maximum number of analytics records** | Increase this number to provide more records from the analytics.<br> <br>The default value is 50,000.<br>      <br>    **Warning**<br>     <br>    Use the setting **Unlimited** carefully, it might result in a very high load on your server. |
+| **Maximum number of SQL view records** | Set the maximum number of records in a SQL view.<br> <br>The default value is Unlimited. |
+| **Maximum number of Tracked Entity Instance that can be fetched from database** | Sets the limit on maximum tracked entity instance records that can be fetched from database. If user does not provide any value then default value which is 50,000 will be used.<br>Setting this to 0 or any negative integer will disable this setting. <br>**Warning**<br>Disabling this setting may result in high load on the server.|
 | **Infrastructural indicators** | Defines an indicator group where the member indicators should describe data about the organisation units' infrastructure.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
 | **Infrastructural data elements** | Defines a data element group where the member data elements should describe data about the organisation units' infrastructure.<br> <br>Infrastructural data elements can be population, doctors, beds, Internet connectivity and climate.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
 | **Infrastructural period type** | Sets the frequency for which the data elements in the infrastructural data elements group are captured.<br> <br>This will typically be yearly. When viewing the infrastructural data you will be able to select the time period of the data source.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
@@ -65,15 +68,6 @@ Table: Server settings
 | **Google Analytics (Universal Analytics) key** | Sets the Google UA key to provide usage analytics for your DHIS2 instance through the Google Analytics platform. It should be noted that currently, not all apps in DHIS2 support Google Analytics, so certain activity of your users may not appear in this platform.<br> <br>You can read more about Google Analytics at [google.com/analytics](https://google.com/analytics). |
 | **Google Maps API key** | Defines the API key for the Google Maps API. Use this key to view Google map layers in DHIS2. Note that there is a different key setup for enabling Google Earth Engine layers in the DHIS2 Maps app. See [documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html). |
 | **Bing Maps API key** | Defines the API key for the Bing Maps API. Add this key to enable use of Bing basemaps in the DHIS2 Maps app. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key) for information on setting up the key. |
-
-Table: Limit settings
-
-| Setting | Description |
-|---|---|
-| **Maximum number of analytics records** | Increase this number to provide more records from the analytics.<br> <br>The default value is 50,000.<br>      <br>    **Warning**<br>     <br>    Use the setting **Unlimited** carefully, it might result in a very high load on your server. |
-| **Maximum number of SQL view records** | Set the maximum number of records in a SQL view.<br> <br>The default value is Unlimited. |
-| **Maximum number of Tracked Entity Instance that can be fetched from database** | Sets the limit on maximum tracked entity instance records that can be fetched from database. If user does not provide any value then default value which is 50,000 will be used.<br>Setting this to 0 or any negative integer will disable this setting. <br>**Warning**<br>Disabling this setting may result in high load on the server.|
-
 
 
 ## Appearance settings { #system_appearance_settings } 
