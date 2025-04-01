@@ -219,14 +219,13 @@ app.
 
 2.  Click the add button.
 
-3.  Enter **Name**, **Client ID** and **Client secret**.
+3.  Enter **Client ID** and **Client secret**.
 
 4.  Select **Grant types**.
 
 
     | Grant type | Description |
     |---|---|
-    | **Password** | TBA |
     | **Refresh token** | TBA |
     | **Authorization code** | TBA |
 
