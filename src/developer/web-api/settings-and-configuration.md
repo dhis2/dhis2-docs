@@ -127,7 +127,6 @@ Table: System settings
 | keyCacheStrategy | Cache strategy. Default: "CACHE_6AM_TOMORROW" | No |
 | keyCacheability | PUBLIC or PRIVATE. Determines if proxy servers are allowed to cache data or not. | No |
 | phoneNumberAreaCode | Phonenumber area code | No |
-| multiOrganisationUnitForms | Enable multi-organisation unit forms. Default: "false" | No |
 | keyAccountRecovery | Enable user account recovery. Default: "false" | No |
 | keyLockMultipleFailedLogins | Enable locking access after multiple failed logins | No |
 | googleAnalyticsUA | Google Analytic UA key for tracking site-usage | No |
