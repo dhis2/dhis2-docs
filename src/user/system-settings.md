@@ -222,13 +222,7 @@ app.
 
 3.  Enter **Client ID** and **Client secret**.
 
-4.  Select **Grant types**.
-
-
-    | Grant type | Description |
-    |---|---|
-    | **Refresh token** | TBA |
-    | **Authorization code** | TBA |
+4.  Select **Grant types**: Refresh token, or Authorization code.
 
 5.  Enter **Redirect URIs**. If you've multiple URIs, separate them with
     a line.
