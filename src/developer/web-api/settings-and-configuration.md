@@ -189,7 +189,7 @@ Table: System settings
 | keyCustomCss | Custom CSS to be used on the website | No |
 | keyCalendar | The calendar type. Default: "iso8601". | No |
 | keyDateFormat | The format in which dates should be displayed. Default: "yyyy-MM-dd". | No |
-| keyStyle | The style used on the DHIS2 webpages. Default: "light_blue/light_blue.css". | No |
+| keyStyle | The style used by the DHIS2 Android app. Default: "light_blue/light_blue.css". | No |
 | keyRemoteInstanceUrl | Url used to connect to remote instance | No |
 | keyRemoteInstanceUsername | Username used to connect to remote DHIS2 instance | No |
 | keyRemoteInstancePassword | Password used to connect to remote DHIS2 instance | No |

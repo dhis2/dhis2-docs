@@ -92,7 +92,7 @@ Table: Appearance settings
 | **Application notification** | Sets a notification which will be visible on the front page under the login area. |
 | **Application left-side footer** | Sets a text in the left-side footer area of the login page. (When using a language written in a right-to-left script, such as Arabic, this will be in the right-footer area of the login page.) |
 | **Application right-side footer** | Sets a text in the right-side footer area of the login page. ((When using a language written in a right-to-left script, such as Arabic, this will be in the left-footer area of the login page.) |
-| **Style** | Sets the style (look-and-feel) of the system.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Style**.<br>      <br>    **Note**<br>     <br>    Due to technical reasons, it's not possible to change the color of the newest version of the header bar. The apps with the newest header bar will retain the blue header bar. |
+| **Style (Android)** | This setting influences the style (look and feel) of the DHIS2 android app. This style in general does not apply to web apps. |
 | **Start page** | Sets the page or app which the user will be redirected to after log in.<br> <br>Recommended setting: the **Dashboard** app. |
 | **Enable light-weight start page** | Instructs apps to render a light-weight and fast landing page. Recommended in low-bandwidth environments. |
 | **Help page link** | Defines the URL which users will see when they click **Profile** \>**Help**. |
