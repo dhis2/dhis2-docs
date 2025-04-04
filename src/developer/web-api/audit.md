@@ -34,7 +34,7 @@ Example: Get audits for data element `BOSZApCrBni`, org unit `DiszpKrYNg8` and c
 
     /api/33/audits/dataValue?de=BOSZApCrBni&ou=DiszpKrYNg8&co=TkDhg29x18A
 
-### Tracked entity instance audits { #webapi_tracked_entity_instance_audits }
+### Tracked entity audits { #webapi_tracked_entity_audits }
 
 Once auditing is enabled for tracked entities (by setting `allowAuditLog` of tracked entity types to `true`), all read and search operations are logged. The endpoint for accessing audit logs is located at:
 
