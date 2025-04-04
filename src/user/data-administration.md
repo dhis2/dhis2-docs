@@ -244,7 +244,7 @@ Table: Data maintenance functions in the Data Administration app
 | Function | Description |
 |---|---|
 | Clear analytics tables | Completely empties the analytics tables. These tables are used to generate aggregate data for the pivot tables, GIS and reports. |
-| Analyze analytics tables | Performs an PostgreSQL `analyze` operation on all analytics tables. |
+| Analyze analytics tables | Performs a PostgreSQL `analyze` operation on all analytics tables. |
 | Remove zero data values | Removes zero data values from the database. Values registered for data elements with aggregation operator average is not removed, as such values will be significant when aggregating the data, contrary to values registered for data elements with aggregation operator sum.<br> <br>Reducing the number of data values will improve system performance. |
 | Permanently remove soft deleted data values / events / enrollments / tracked entity instances | When a data value is deleted in DHIS2, the system will mark the corresponding database row as deleted, and not actually delete the row.<br> <br>Running this maintenance function will physically remove these data value rows from the database. |
 | Prune periods | Removes all periods which have no registered data values. Reducing the number of periods will improve system performance. |
