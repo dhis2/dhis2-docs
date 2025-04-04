@@ -1876,7 +1876,7 @@ the **Program details** configuration.
 
     > **NOTE**
     >
-    > This maximum is only applied to search results outside the users capture org unit. Within the 
+    > This maximum limit setting is only applied to search results when searching outside the users capture org unit. Within the 
     capture scope, the user can see any number of results.
 
 ### Configure search for tracked entity type
