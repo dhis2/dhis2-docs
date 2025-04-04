@@ -90,31 +90,6 @@ User jobs can also be deleted from the editing screen.
 
 The following section describes the various job types.
 
-### Disable Inactive Users { #scheduling_disable_inactive_users }
-
-Users that have not been active - not logged in - for a number of months can
-automatically be disabled. Select the number of inactive months as the job
-parameter. All users that have not logged in for that number of months or longer
-will be disabled by the job. Disabled users will no longer be able to log into
-the system.
-
-The _Reminder days before_ parameter can be set to send a reminder email to
-those users the specified number of days before their account is due to expire.
-If users do not log in further reminder emails are sent each halving the
-previous number of days. For example if the number of days is set to 7 the first
-email is sent 7 days in advance, the second 3 days and the third and last 1 day
-in advance. If the value is not set (blank) no reminder is sent.
-
-### Resource table { #scheduling_resource_table }
-
-The resource table job is responsible for generating and updating the resource
-database tables. These tables are used by various components in DHIS 2 and is
-meant to simplify queries against the database.
-
-Note that when specifying any of the analytics table jobs, resource tables can
-be part of the process and it is not necessary to also specify a resource table
-job.
-
 ### Analytics table { #scheduling_analytics_table }
 
 The analytics tables job is responsible for generating and updating the
@@ -178,31 +153,22 @@ elements. The following parameters are available:
   update process. This reduces the time the process takes to complete, but leads
   to changes in metadata not being reflected in the analytics data.
 
-### Tracker search optimization { #scheduling_tracker_search_optimization }
+### Data integrity { #scheduling_data_integrity }
 
-The tracker search optimization job is responsible for generating and updating
-the trigram indexes for relevant tracked entity attributes. Trigram indexes
-improve the performance of searching tracked entity instances based on specific
-tracked entity attribute values. The usefulness of trigram indexes depends on
-whether the tracked entity attribute is configured as unique or if they are
-configured as searchable (when connected to program/tracked entity type). You
-can configure the job to choose which tracked entity attributes should be
-trigram indexed. The job also takes care of deleting any obsolete indexes that
-have been created earlier but are no more required due to change in metadata
-configuration.
+The Data Integrity job type is responsible for scheduling data integrity checks. DHIS2 can perform a wide range of data integrity checks on the data contained in the database. Identifying and correcting data integrity issues is extremely important for ensuring that the data used for analysis purposes is valid. Each of the data integrity checks that are performed by the system will be described, along with general procedures that can be performed to resolve these issues.
+
+The result of the data integrity checks can be viewed in the Data Administration app. As of 2.41 the result of the data integrity checks are only available for up to *one hour* after the job has completed.
+
+Some data integrity checks are marked as *slow*. Users should be cautious about running these checks on production systems as they could lead to decreased performance. It's generally not recommended to run more than one of these at the same time.
 
 The following parameters are available:
 
-- **Attributes:** The list of attributes that needs a trigram index created. For
-  each attribute, a partial trigram index will be created. As an example, if you
-  specify "firstname" and "lastname" attribute, the process will create two
-  separate trigram indexes for the corresponding attributes "firstname" and
-  "lastname". Note that, if the attribute provided in this parameter is not
-  indexable (either because they are not unique or not searchable), such
-  attributes are simply ignored by the process and no trigram index will be
-  created for them.
-- **Skip index deletion:** Skip obsolete index deletion during the trigram index
-  process. If set to true, indexes that are deemed obsolete will not be deleted.
+- **Report type** the level of specificity of the result. The available options are:
+  - **Summary** - a summary of the number of issues will be available.
+  - **Details** - a list of issues pointing to individual data integrity violations will be available for each integrity check.
+- **Checks to run** specify the data integrity checks to run. If *only run selected checks* is selected, a list of checks where you will be able to select only the checks to run will be displayed. If *run all standard checks* is selected, all *standard* checks will be executed. Note that this will not run checks that are marked as *slow* - these checks must be selected manually using *only run selected checks*.
+
+See [Data Administration](#data_admin_data_integrity) for more information about the available data integrity checks.
 
 ### Data synchronization { #scheduling_data_sync }
 
@@ -314,7 +280,42 @@ Some aspects of the data synchronization feature to be aware of:
   If default values do not fit your purpose, own page size can be specified via
   parameter in particular sync job in Scheduler app.
 
-### Metadata Synchronization Scheduling { #scheduling_metadata_sync }
+### Disable Inactive Users { #scheduling_disable_inactive_users }
+
+Users that have not been active - not logged in - for a number of months can
+automatically be disabled. Select the number of inactive months as the job
+parameter. All users that have not logged in for that number of months or longer
+will be disabled by the job. Disabled users will no longer be able to log into
+the system.
+
+The _Reminder days before_ parameter can be set to send a reminder email to
+those users the specified number of days before their account is due to expire.
+If users do not log in further reminder emails are sent each halving the
+previous number of days. For example if the number of days is set to 7 the first
+email is sent 7 days in advance, the second 3 days and the third and last 1 day
+in advance. If the value is not set (blank) no reminder is sent.
+
+### Event programs data sync { #scheduling_event_programs_data_sync }
+
+TBD.
+
+### Exchange aggregate data { #scheduling_exchange_aggregate_data }
+
+TBD.
+
+### HTML push analytics { #scheduling_html_push_analytics }
+
+TBD.
+
+### Lock exception cleanup { #scheduling_lock_exception_cleanup }
+
+TBD.
+
+### Materialized sql view update { #scheduling_materialized_sql_view_update }
+
+TBD.
+
+### Metadata Synchronization { #scheduling_metadata_sync }
 
 DHIS2 provides a feature for synchronizing meta data from a remote instance to a
 local instance of DHIS2. This can be useful when you have deployed multiple
@@ -367,6 +368,10 @@ Some aspects of the meta data synchronization feature to be aware of:
 
 - You can see the time of last successful synchronization with remote server in
   the scheduling screen next to the "Last success" label.
+
+### Monitoring { #scheduling_monitoring }
+
+TBD.
 
 ### Predictor { #scheduling_predictor }
 
@@ -463,22 +468,63 @@ You can select which predictors and predictor groups will run during the job:
 If both individual predictors and predictor groups are selected in the same job,
 the individual predictors run first, followed by the predictor groups.
 
-### Data integrity { #scheduling_data_integrity }
+### Program notifications { #scheduling_program_notifications }
 
-The Data Integrity job type is responsible for scheduling data integrity checks. DHIS2 can perform a wide range of data integrity checks on the data contained in the database. Identifying and correcting data integrity issues is extremely important for ensuring that the data used for analysis purposes is valid. Each of the data integrity checks that are performed by the system will be described, along with general procedures that can be performed to resolve these issues.
+TBD.
 
-The result of the data integrity checks can be viewed in the Data Administration app. As of 2.41 the result of the data integrity checks are only available for up to *one hour* after the job has completed.
+### Push Analysis { #scheduling_push_analysis }
 
-Some data integrity checks are marked as *slow*. Users should be cautious about running these checks on production systems as they could lead to decreased performance. It's generally not recommended to run more than one of these at the same time.
+TBD.
+
+### Resource table { #scheduling_resource_table }
+
+The resource table job is responsible for generating and updating the resource
+database tables. These tables are used by various components in DHIS 2 and is
+meant to simplify queries against the database.
+
+Note that when specifying any of the analytics table jobs, resource tables can
+be part of the process and it is not necessary to also specify a resource table
+job.
+
+### Send scheduled message { #scheduling_send_scheduled_message }
+
+TBD.
+
+### Tes t{ #scheduling_test }
+
+TBD.
+
+### Tracker program data sync { #scheduling_tracker_program_data_sync }
+
+TBD.
+
+### Tracker search optimization { #scheduling_tracker_search_optimization }
+
+The tracker search optimization job is responsible for generating and updating
+the trigram indexes for relevant tracked entity attributes. Trigram indexes
+improve the performance of searching tracked entity instances based on specific
+tracked entity attribute values. The usefulness of trigram indexes depends on
+whether the tracked entity attribute is configured as unique or if they are
+configured as searchable (when connected to program/tracked entity type). You
+can configure the job to choose which tracked entity attributes should be
+trigram indexed. The job also takes care of deleting any obsolete indexes that
+have been created earlier but are no more required due to change in metadata
+configuration.
 
 The following parameters are available:
 
-- **Report type** the level of specificity of the result. The available options are:
-  - **Summary** - a summary of the number of issues will be available.
-  - **Details** - a list of issues pointing to individual data integrity violations will be available for each integrity check.
-- **Checks to run** specify the data integrity checks to run. If *only run selected checks* is selected, a list of checks where you will be able to select only the checks to run will be displayed. If *run all standard checks* is selected, all *standard* checks will be executed. Note that this will not run checks that are marked as *slow* - these checks must be selected manually using *only run selected checks*.
+- **Attributes:** The list of attributes that needs a trigram index created. For
+  each attribute, a partial trigram index will be created. As an example, if you
+  specify "firstname" and "lastname" attribute, the process will create two
+  separate trigram indexes for the corresponding attributes "firstname" and
+  "lastname". Note that, if the attribute provided in this parameter is not
+  indexable (either because they are not unique or not searchable), such
+  attributes are simply ignored by the process and no trigram index will be
+  created for them.
+- **Skip index deletion:** Skip obsolete index deletion during the trigram index
+  process. If set to true, indexes that are deemed obsolete will not be deleted.
 
-See [Data Administration](#data_admin_data_integrity) for more information about the available data integrity checks.
+
 
 ## Schedule Queues { #schedule_queues }
 
