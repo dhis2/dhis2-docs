@@ -127,7 +127,6 @@ Table: System settings
 | keyCacheStrategy | Cache strategy. Default: "CACHE_6AM_TOMORROW" | No |
 | keyCacheability | PUBLIC or PRIVATE. Determines if proxy servers are allowed to cache data or not. | No |
 | phoneNumberAreaCode | Phonenumber area code | No |
-| multiOrganisationUnitForms | Enable multi-organisation unit forms. Default: "false" | No |
 | keyAccountRecovery | Enable user account recovery. Default: "false" | No |
 | keyLockMultipleFailedLogins | Enable locking access after multiple failed logins | No |
 | googleAnalyticsUA | Google Analytic UA key for tracking site-usage | No |
@@ -145,6 +144,7 @@ Table: System settings
 | keySkipDataTypeValidationInAnalyticsTableExport | Skips data type validation in analytics table export | No |
 | keyCustomLoginPageLogo | Logo for custom login page | No |
 | keyCustomTopMenuLogo | Logo for custom top menu | No |
+| globalShellEnabled | When this property is enabled (set to true), apps will be displayed as iframes within a global shell. This global shell provides a consistent header bar across the system which has expanded functionalities compared to the original header bar. Default: true. | No |
 | keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
 | analyticsFinancialYearStart | Set financial year start. Default: October | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
@@ -189,7 +189,7 @@ Table: System settings
 | keyCustomCss | Custom CSS to be used on the website | No |
 | keyCalendar | The calendar type. Default: "iso8601". | No |
 | keyDateFormat | The format in which dates should be displayed. Default: "yyyy-MM-dd". | No |
-| keyStyle | The style used on the DHIS2 webpages. Default: "light_blue/light_blue.css". | No |
+| keyStyle | The style used by the DHIS2 Android app. Default: "light_blue/light_blue.css". | No |
 | keyRemoteInstanceUrl | Url used to connect to remote instance | No |
 | keyRemoteInstanceUsername | Username used to connect to remote DHIS2 instance | No |
 | keyRemoteInstancePassword | Password used to connect to remote DHIS2 instance | No |
