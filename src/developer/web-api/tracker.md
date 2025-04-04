@@ -1912,6 +1912,9 @@ You can use a range of operators for the filtering:
 |`LIKE`|Like (free text match)|
 |`LT`|Less than|
 |`NE`|Not equal to|
+|`NULL`|Attribute has no value|
+|`!NULL`|Attribute has a value|
+
 
 ##### Tracked Entities response example
 
@@ -1993,6 +1996,24 @@ F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-0
 F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.066Z,2019-08-21T11:25:38.067Z,TfdH5KvFmMy,"First Name",Sarah,TEXT
 F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.388Z,2019-08-21T11:25:38.388Z,aW66s2QSosT,"Last Name",Johnson,TEXT
 ```
+
+##### Tracked Entities Collection limits
+
+The collection endpoint limits results in three ways:
+- KeyTrackedEntityMaxLimit **in System settings**: `KeyTrackedEntityMaxLimit` defines the maximum 
+tracked entities in an API response, protecting database and server resources. No limit applies 
+when set to 0. Configure it via `/api/systemSettings` as described in the 
+[documentation](settings-and-configuration.md?#webapi_system_settings).
+- Max number of TEs to return in **Program or tracked entity type**: it limits results when searching **outside
+the capture scope** with a specified program or tracked entity type. The API returns an error if
+matches exceed this limit. No limit applies when searching within the capture scope 
+or when set to 0.
+ This limit is configurable in the maintenance app.
+- **Pagination**: As explained [here](#request-parameters-for-pagination).
+
+For paginated requests with non-zero `KeyTrackedEntityMaxLimit`:
+- If pageSize ≤ KeyTrackedEntityMaxLimit: `pageSize` is enforced
+- If pageSize > KeyTrackedEntityMaxLimit: The API returns an error
 
 #### Tracked Entities single object endpoint `GET /api/tracker/trackedEntities/{uid}`
 
