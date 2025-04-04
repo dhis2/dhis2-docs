@@ -1805,7 +1805,7 @@ programs.
     Search](#configure_search) for more information.
 
 7.  (Optional) Enter a **Maximum number of tracked entities to
-    return in search**. This specifies the amount of tracked entity
+    return in search**. This specifies the number of tracked entities
     instances that will be returned in a *global search*. See [Configure
     Search](#configure_search) for more information.
 
