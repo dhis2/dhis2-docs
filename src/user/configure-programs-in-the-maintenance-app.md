@@ -1610,9 +1610,15 @@ Table: Standard variables to use in program rule expressions
 
 ### About relationship types { #about_relationship_types } 
 
-A relationship represents a link between two entities in the Tracker-model. A relationship is considered data in DHIS2 and is based on a Relationship Type, similar to how a Tracked Entity Instance is based on a Tracked Entity Type.
+A relationship represents a link between two entities in the Tracker-model. A relationship is considered data in DHIS2 and is based on a Relationship Type, similar to how a Tracked Entity is based on a Tracked Entity Type.
 
-Relationships always include two entities, and these entities can include Tracked Entity Instances, Enrollments and Events, and any combination of these. Note that not all of these combinations are available in the current apps.
+Relationships always include two entities, and these entities can include Tracked Entities, Enrollments and Events, and any combination of these. 
+
+> [!NOTE]
+> Note that not all of these combinations are available in the current apps. Currently in the Capture app, you can create:
+> * Tracked Entity to Tracked Entity Relationships
+> * Event in Event Programs to Tracked Entity Relationships (Only from the Event side)
+> * Event in one Program Stage to Event in another Program Stage in the same Program (Related stages - see more information [here](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-241/tracking-individual-level-data/capture.html#related-stages-and-linked-events-for-tracker-programs))
 
 In addition, relationships can be defined as unidirectional or bidirectional. The only functional difference is currently that these requires different levels of access to create. Unidirectional relationships requires the user to have data write access to the “from” entity and data read access for the “to” entity, while bidirectional relationships require data write access for both sides.
 
