@@ -111,6 +111,9 @@ system.sql_view_write_enabled = off
 # Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
 metadata.sync.remote_servers_allowed = https://server1.org/,https://server2.org/
 
+# Set the maximum size for the cache instance to be built. If set to 0, no caching will take place. Cannot be a negative value. (default: 0.5).
+system.cache.max_size.factor = 0.5
+
 # ----------------------------------------------------------------------
 # Encryption [Optional]
 # ----------------------------------------------------------------------
