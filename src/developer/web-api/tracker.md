@@ -1900,21 +1900,34 @@ To query on an attribute using multiple values in an *IN* filter:
 
     GET /api/tracker/trackedEntities?trackedEntityType=nEenWmSyUEp&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:IN:Scott;Jimmy;Santiago
 
-You can use a range of operators for the filtering:
+All of the following operators are supported regardless of the value type. Values are compared using
+text comparison unless stated otherwise. Integer and decimal value types are treated as Postgres
+integer and numeric data types for the specified operators.
 
-|Operator|  Description|
-|---|---|
-|`EQ`|Equal to|
-|`GE`|Greater than or equal to|
-|`GT`|Greater than|
-|`IN`|Equal to one of the multiple values separated by ";"|
-|`LE`|Less than or equal to|
-|`LIKE`|Like (free text match)|
-|`LT`|Less than|
-|`NE`|Not equal to|
-|`NULL`|Attribute has no value|
-|`!NULL`|Attribute has a value|
+Valid binary operators are:
+- `eq` - equal to (uses integer/numeric semantics for integer/decimal value types)
+- `ieq` - equal to
+- `ge` - greater than or equal to (uses integer/number semantics for integer/decimal value types)
+- `gt` - greater than (uses integer/number semantics for integer/decimal value types)
+- `le` - less than or equal to (uses integer/number semantics for integer/decimal value types)
+- `lt` - less than (uses integer/number semantics for integer/decimal value types)
+- `ne` - not equal to (uses integer/number semantics for integer/decimal value types)
+- `neq` - not equal to (uses integer/number semantics for integer/decimal value types)
+- `nieq` - not equal to
+- `in` - equal to one of the multiple values separated by semicolon ";" (uses integer/number semantics for integer/decimal value types)
+- `ilike` - is like
+- `like` - like (free text match)
+- `nilike` - not like
+- `nlike` - not like
+- `sw` - starts with
+- `ew` - ends with
 
+Right now all matches are case-insensitive so for example `eq` and `ieq` (`i` for `insensitive`)
+behave in the same way.
+
+Valid unary operators are:
+- `null` - has no value
+- `!null` - has a value
 
 ##### Tracked Entities response example
 
@@ -2000,13 +2013,13 @@ F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-0
 ##### Tracked Entities Collection limits
 
 The collection endpoint limits results in three ways:
-- KeyTrackedEntityMaxLimit **in System settings**: `KeyTrackedEntityMaxLimit` defines the maximum 
-tracked entities in an API response, protecting database and server resources. No limit applies 
-when set to 0. Configure it via `/api/systemSettings` as described in the 
+- KeyTrackedEntityMaxLimit **in System settings**: `KeyTrackedEntityMaxLimit` defines the maximum
+tracked entities in an API response, protecting database and server resources. No limit applies
+when set to 0. Configure it via `/api/systemSettings` as described in the
 [documentation](settings-and-configuration.md?#webapi_system_settings).
 - Max number of TEs to return in **Program or tracked entity type**: it limits results when searching **outside
 the capture scope** with a specified program or tracked entity type. The API returns an error if
-matches exceed this limit. No limit applies when searching within the capture scope 
+matches exceed this limit. No limit applies when searching within the capture scope
 or when set to 0.
  This limit is configurable in the maintenance app.
 - **Pagination**: As explained [here](#request-parameters-for-pagination).
@@ -2997,9 +3010,9 @@ with an access level of *PROTECTED*. Any user with the org unit owner within the
 temporarily access the program-related data by providing a reason for accessing it.
 
 This act of temporarily gaining access is termed *breaking the glass*.
-Currently, temporary access is granted for 3 hours. DHIS2 
+Currently, temporary access is granted for 3 hours. DHIS2
 [audit](../../sysadmin/concepts/audit.md) breaking the glass along with the
-reason specified by the user. This information is also stored in the database, but only if the 
+reason specified by the user. This information is also stored in the database, but only if the
 tracked entity type is configured to allow auditing, which is disabled by default.
 
 It is not possible to gain temporary access to a program that has been
@@ -3490,9 +3503,9 @@ mentioned in the previous section.
 
 ### Program Notification Template
 
-The Program Notification Template allows you to create message templates that can be sent based on different types of events. 
-The message and subject templates are translated into actual values and sent to the configured destination. 
-Each program notification template is transformed into either a MessageConversation object or a ProgramMessage object, depending on whether the recipient is external or internal. 
+The Program Notification Template allows you to create message templates that can be sent based on different types of events.
+The message and subject templates are translated into actual values and sent to the configured destination.
+Each program notification template is transformed into either a MessageConversation object or a ProgramMessage object, depending on whether the recipient is external or internal.
 These intermediate objects will contain only the translated message and subject text.
 
 There are several configuration parameters in the Program Notification Template that are essential for the proper functioning of notifications.
