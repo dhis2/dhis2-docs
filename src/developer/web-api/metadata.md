@@ -249,27 +249,12 @@ The status code will be `204 No Content` if the data value was successfully save
 
 ### Web API versions { #webapi_api_versions } 
 
-The Web API is versioned starting from DHIS 2.25. The API versioning
-follows the DHIS2 major version numbering. As an example, the API
-version for DHIS 2.33 is `33`.
+The Web API `/api` can be used with a DHIS2 version number, example:
 
-You can access a specific API version by including the version number
-after the `/api` component, as an example like this:
+    /api/42/dataElements
 
-    /api/33/dataElements
-
-If you omit the version part of the URL, the system will use the current
-API version. As an example, for DHIS 2.25, when omitting the API part,
-the system will use API version 25. When developing API clients it is
-recommended to use explicit API versions (rather than omitting the API
-version), as this will protect the client from unforeseen API changes.
-
-The last three API versions will be supported. As an example, DHIS
-version 2.27 will support API version 27, 26 and 25.
-
-Note that the metadata model is not versioned and that you might
-experience changes e.g. in associations between objects. These changes
-will be documented in the DHIS2 major version release notes.
+Versions `28`-`43` are supported. Calling an endpoint with or without a version does not change the behaviour of the API. The behaviour is the same no matter which approach is used. We aim to remove supporting API calls with versions, so please use API calls without the use of a version number.  
+The support for using versions is due to legacy behaviour, which never materialized how we intended. 
 
 ## Metadata object filter { #webapi_metadata_object_filter } 
 
