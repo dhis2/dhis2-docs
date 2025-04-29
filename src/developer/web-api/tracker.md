@@ -1306,8 +1306,6 @@ otherwise specified.
 | E1081 | Enrollment: `{0}`, do not exist. | Error thrown when trying to fetch a non existing Enrollment with uid `{0}` . This might also mean that the user does not have read access to the Enrollment. |
 | E1082 | Event: `{0}`, is already deleted and can't be modified. | If the event is soft deleted, no modifications on it are allowed. |
 | E1083 | User: `{0}`, is not authorized to modify completed events. | Only a super user or a user with the authority "F_UNCOMPLETE_EVENT" can modify completed events. Completed Events are those Events with status as COMPLETED. |
-| E1084 | File resource: `{0}`, reference could not be found. | |
-| E1085 | Attribute: `{0}`, value does not match value type: `{1}`. | Mismatch between value type of an attribute and its provided attribute value. |
 | E1086 | Event: `{0}`, has a program: `{1}`, that is a registration but its ProgramStage is not valid or missing. | |
 | E1087 | Event: `{0}`, could not find DataElement: `{1}`, linked to a data value. | |
 | E1088 | Event: `{0}`, program: `{1}`, and ProgramStage: `{2}`, could not be found. | |
