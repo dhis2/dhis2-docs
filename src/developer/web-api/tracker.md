@@ -918,6 +918,7 @@ There are various error codes for different error scenarios. The following table
 | E1000 | User: `{0}`, has no write access to OrganisationUnit: `{1}`. | This typically means that the OrganisationUnit `{1}` is not in the capture scope of the user `{0}` for the write operation to be authorized. |
 | E1001 | User: `{0}`, has no data write access to TrackedEntityType: `{1}`. | The error occurs when the user is not authorized to create or modify data of the TrackedEntityType `{1}`
 | E1002 | TrackedEntityInstance: `{0}`, already exists. | This error is thrown when trying to create a new TrackedEntity with an already existing uid. Make sure a new uid is used when adding a new TrackedEntity. |
+| E1003 | User: `{0}`, has no write access to TrackedEntity: `{1}`. | |
 | E1005 | Could not find TrackedEntityType: `{0}`. | Error thrown when trying to fetch a non existing TrackedEntityType with uid `{0}` . This might also mean that the user does not have read access to the TrackedEntityType. |
 | E1006 | Attribute: `{0}`, does not exist. | Error thrown when the system was not able to find a matching TrackedEntityAttribute with uid `{0}`. This might also mean that the user does not have access to the TrackedEntityAttribute. |
 | E1007 | Error validating attribute value type: `{0}`; Error: `{1}`. | Mismatch between value type of a TrackedEntityAttribute and its provided attribute value. The actual validation error will be displayed in `{1}`. |
@@ -938,7 +939,7 @@ There are various error codes for different error scenarios. The following table
 | E1025 | Property enrolledAt is null or has an invalid format: `{0}`. | EnrolledAt Date is mandatory for an Enrollment. Make sure it is not null and has a valid date format. |
 | E1029 | Event OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Event payload uses a Program `{1}` which is not configured to be accessible by OrganisationUnit `{0}`. |
 | E1030 | Event: `{0}`, already exists. | This error is thrown when trying to add a new Event with an already existing uid. Make sure a new uid is used when adding a new Event. |
-| E1031 | Event OccurredAt date is missing. | OccuredAt property is either null or has an invalidate date format in the payload. |
+| E1031 | Event occurredAt date is missing. | OccurredAt property is either null or has an invalidate date format in the payload. |
 | E1032 | Event: `{0}`, do not exist. | |
 | E1033 | Event: `{0}`, Enrollment value is NULL. | |
 | E1035 | Event: `{0}`, ProgramStage value is NULL. | |
@@ -946,6 +947,9 @@ There are various error codes for different error scenarios. The following table
 | E1039 | ProgramStage: `{0}`, is not repeatable and an event already exists. | An Event already exists for the ProgramStage for the specific Enrollment. Since the ProgramStage is configured to be non-repeatable, another Event for the same ProgramStage cannot be added.  |
 | E1041 | Enrollment OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Enrollment payload contains a Program `{1}` which is not configured to be accessible by the OrganisationUnit  `{0}`. |
 | E1042 | Event: `{0}`, needs to have completed date. | If the program is configured to have completeExpiryDays, then CompletedDate is mandatory for a COMPLETED event payload. An Event with status as COMPLETED should have completedDate property as non-null and a valid date format. |
+| E1043 | Event: `{0}`, completeness date has expired. Not possible to make changes to this event. | A user without 'F_EDIT_EXPIRED' authority cannot update an Event that has passed its expiry days as configured in its Program. |
+| E1046 | Event: `{0}`, needs to have at least one (event or schedule) date. | Either of occuredAt or scheduledAt property should be present in the Event payload. |
+| E1047 | Event: `{0}`, date belongs to an expired period. It is not possible to create such event. | Event occuredAt or scheduledAt has a value that is earlier than the PeriodType start date.  |
 | E1048 | Object: `{0}`, uid: `{1}`, has an invalid uid format. | A valid uid has 11 characters. The first character has to be an alphabet (a-z or A-Z) and the remaining 10 characters can be alphanumeric (a-z or A-Z or 0-9). |
 | E1049 | Could not find OrganisationUnit: `{0}`, linked to Tracked Entity. | The system could not find an OrganisationUnit with uid `{0}`. |
 | E1050 | Event ScheduledAt date is missing. | ScheduledAt property in the Event payload is either missing or an invalid date format. |
@@ -991,40 +995,35 @@ There are various error codes for different error scenarios. The following table
 | E1123 | Missing required event property: `{0}`. | |
 | E1124 | Missing required relationship property: `{0}`. | |
 | E1125 | Value `{0}` is not a valid option for `{1}` `{2}` in option set `{3}` | |
-| E1017 | Attribute: `{0}`, does not exist. | |
-| E1093 | User: `{0}`, has no search access to OrganisationUnit: `{1}`. | |
-| E1094 | Not allowed to update Enrollment: `{0}`, existing Program `{1}`. | The Enrollment payload for an existing Enrollment has a different Program uid than the one it was originally enrolled with. |
-| E1110 | Not allowed to update Event: `{0}`, existing Program `{1}`. | The Event payload for an existing Event has a different Program uid than the one it was originally created with.  |
-| E1111 | We have a generated attribute: `{0}`, but no pattern. | |
-| E1043 | Event: `{0}`, completeness date has expired. Not possible to make changes to this event. | A user without 'F_EDIT_EXPIRED' authority cannot update an Event that has passed its expiry days as configured in its Program. |
-| E1046 | Event: `{0}`, needs to have at least one (event or schedule) date. | Either of occuredAt or scheduledAt property should be present in the Event payload. |
-| E1047 | Event: `{0}`, date belongs to an expired period. It is not possible to create such event. | Event occuredAt or scheduledAt has a value that is earlier than the PeriodType start date.  |
 | E1300 | Generated by program rule (`{0}`) - `{1}` | |
-| E1302 | Generated by program rule (`{0}`) - DataElement `{1}` is not valid: `{2}` | |
-| E1303 | Generated by program rule (`{0}`) - Mandatory DataElement `{1}` is not present | |
-| E1304 | Generated by program rule (`{0}`) - DataElement `{1}` is not a valid data element | |
-| E1305 | Generated by program rule (`{0}`) - DataElement `{1}` is not part of `{2}` program stage | |
+| E1301 | Generated by program rule (`{0}`) - Mandatory DataElement `{1}` is not present | |
+| E1302 | DataElement `{0}` is not valid: `{1}` | |
+| E1303 | Mandatory DataElement `{0}` is not present | |
+| E1304 | DataElement `{0}` is not a valid data element | |
+| E1305 | DataElement `{0}` is not part of `{1}` program stage | |
 | E1306 | Generated by program rule (`{0}`) - Mandatory Attribute `{1}` is not present | |
 | E1307 | Generated by program rule (`{0}`) - Unable to assign value to data element `{1}`. The provided value must be empty or match the calculated value `{2}` | |
 | E1308 | Generated by program rule (`{0}`) - DataElement `{1}` is being replaced in event `{2}` | |
 | E1309 | Generated by program rule (`{0}`) - Unable to assign value to attribute `{1}`. The provided value must be empty or match the calculated value `{2}` | |
-| E1310 | Generated by program rule (`{0}`) - Attribute `{1}` is being replaced in tei `{2}` | |
+| E1310 | Generated by program rule (`{0}`) - Attribute `{1}` is being replaced in te `{2}` | |
+| E1313 | Event {0} of an enrollment does not point to an existing tracked entity. The data in your system might be corrupted | Indicates an anomaly in the existing data whereby enrollments might not reference a tracked entity |
+| E1314 | Generated by program rule (`{0}`) - DataElement `{1}` is mandatory and cannot be deleted. | |
+| E1315 | Status `{0}` does not allow defining data values. Statuses that do allow defining data values are: {1}| |
+| E1316 | No event can transition from status `{0}` to status `{1}`. | |
+| E1317 | Generated by program rule (`{0}`) - Attribute `{1}` is mandatory and cannot be deleted. | |
 | E4000 | Relationship: `{0}` cannot link to itself | |
 | E4001 | Relationship Item `{0}` for Relationship `{1}` is invalid: an Item can link only one Tracker entity. | |
 | E4006 | Could not find relationship Type: `{0}`. | |
 | E4009 | Relationship Type `{0}` is not valid. | |
 | E4010 | Relationship Type `{0}` constraint requires a {1} but a {2} was found. | |
-| E4011 | Relationship: `{0}` cannot be persisted because {1} {2} referenced by this relationship is not valid. | |
 | E4012 | Could not find `{0}`: `{1}`, linked to Relationship. | |
-| E4013 | Relationship Type `{0}` constraint is missing {1}. | |
-| E4014 | Relationship Type `{0}` constraint requires a Tracked Entity having type `{1}` but `{2}` was found. | |
-| E4062 | Start date or end date not specified with ABSOLUTE date period type for item `{0}` | |
-| E4063 | Assigned users cannot be empty when assigned user mode is set to PROVIDED | |
-| E4064 | Organisation unit cannot be empty with `{0}` org unit mode | |
-| E4065 | Data item UID is missing in filter | |
-| E4066 | No data element found for item: `{0}` | |
-| E4067 | Attribute UID is missing in filter | |
-| E4068 | No tracked entity attribute found for attribute: `{0}` | |
+| E4014 | Relationship type `{0}` constraint requires a tracked entity having type `{1}` but `{2}` was found. | |
+| E4015 | Relationship: `{0}`, already exists. | |
+| E4016 | Relationship: `{0}`, do not exist. | |
+| E4017 | Relationship: `{0}`, is already deleted and cannot be modified. | |
+| E4018 | Relationship: `{0}`, linking {1}: `{2}` to {3}: `{4}` already exists. | |
+| E4020 | User: `{0}`, has no write access to relationship: `{1}`. | |
+| E5000 | "{0}" `{1}` cannot be persisted because "{2}" `{3}` referenced by it cannot be persisted. | The importer can't persist a tracker object because a reference cannot be persisted. |
 | E9999 | N/A | Undefined error message. |
 
 ### Validation { #webapi_nti_validation }
