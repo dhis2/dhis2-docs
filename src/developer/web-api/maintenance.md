@@ -612,6 +612,7 @@ The data summary resource provides some metrics about the database and level of 
     - Number of data values updated by day
     - Number of events updated by day
     - Number of users logged in by day
+    - Number of enrollment by day
 
 Data statistics can be accessed with a GET request to :
 
@@ -697,3 +698,9 @@ data_summary_build_info{version="2.42-SNAPSHOT", commit="932e552"} 1737621197
 This metric represents the current version and commit hash of the server. The metric itself is an integer
 and represents the build time as seconds since the epoch. This metric can be easily converted or to
 an actual date when needed.
+
+>**Note**
+>On systems with large amounts of data, the `dataValueCount` and `eventCount` metrics may take a long time to compute due
+>to the large number of records in the database. Users should thus use caution if scraping metrics from this endpoint
+>as it may impact the performance of the server. It should generally be sufficient to scrape this endpoint once per day, since
+>this will provide a good overview of the system usage and performance.

@@ -17,7 +17,7 @@ This is the list of operations we log as part of the audit system:
 - Operations on user accounts (like but not limited to creation, profile edits)
 - Operations on user roles, groups and authority groups
 - Operations on metadata objects (like but not limited to categories, organization units, reports)
-- Operations on tracked objects (like but not limited to instances, attributes, data values)
+- Operations on tracked objects (like but not limited to tracked entities)
 - Jobs configuration
 - Breaking the glass operations
 
@@ -46,7 +46,7 @@ An audit scope is a logical area of the application which can be audited. Curren
 
 | **Scope** | Key       | Audited objects                                              |
 | --------- | --------- | ------------------------------------------------------------ |
-| Tracker   | TRACKER   | Tracked Entity Instance, Tracked Entity Attribute Value, Enrollment, Event. |
+| Tracker   | TRACKER   | Tracked Entity, Enrollment, Event. |
 | Metadata  | METADATA  | All metadata objects (e.g. Data Element, Organisation Unit). |
 | Aggregate | AGGREGATE | Aggregate Data Value.                                        |
 
@@ -68,50 +68,20 @@ An audit type is an action that triggers an audit operation. Currently we suppor
 
 ## Tracked entity audits
 
-Operations on tracked entities like instances, attributes and values are stored, respectively in the `trackedentityinstanceaudit`, `trackedentityattributevalueaudit` and `trackedentitydatavalueaudit` tables.
+Operations on tracked entities are stored in the `trackedentityaudit` table.
 
-### trackedentityinstanceaudit
+### trackedentityaudit
 
 | Column | Type | Description |
 | --- | --- | --- |
-| trackedentityinstanceauditid | integer | Primary key. |
-| trackedentityinstance | text | Tracked entity instance name. |
+| trackedentityauditid | integer | Primary key. |
+| trackedentity | text | Tracked entity name. |
 | created | timestamp without time zone | Time of creation. |
 | accessedby | text | Username of the user performing the audited operation. |
 | audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
 | comment | text | The code of the audited object. |
 
-This data can be retrieved via [API](#webapi_tracked_entity_instance_audits).
-
-### trackedentityattributevalueaudit
-
-| Column | Type | Description |
-| --- | --- | --- |
-| trackedentityattributevalueauditid | integer | Primary key. |
-| trackedentityinstanceid | integer | Instance ID of which the attribute value belongs to. |
-| trackedentityattributeid | integer | Attribute ID. |
-| created | timestamp without time zone | Time of creation. |
-| modifiedby | text | Username of the user performing the audited operation. |
-| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
-| value | text | The value of the audited object. |
-| encryptedvalue | text | The encrypted value if confidentiality flag is set. |
-
-This data can be retrieved via [API](#webapi_tracked_entity_attribute_value_audits).
-
-### trackedentitydatavalueaudit
-
-| Column | Type | Description |
-| --- | --- | --- |
-| trackedentitydatavalueauditid | integer | Primary key. |
-| programstageinstanceid | integer | Program stage ID of which the data value belongs to. |
-| dataelementid | integer | ID of the data element. |
-| created | timestamp without time zone | Time of creation. |
-| modifiedby | text | Username of the user performing the audited operation. |
-| audittype | text | READ, CREATE, UPDATE, DELETE, SEARCH |
-| value | text | The value of the audited object. |
-| providedelsewhere | bool | Indicates whether the user provided the value elsewhere or not. |
-
-This data can be retrieved via [API](#webapi_tracked_entity_data_value_audits).
+This data can be retrieved via the [API](#webapi_tracked_entity_audits).
 
 ## Breaking the glass
 
@@ -125,7 +95,7 @@ The breaking the glass event is stored in the `programtempownershipaudit` table,
 | --- | --- | --- |
 | programtempownershipauditid | integer | Primary key. |
 | programid | integer | Program ID of which the tracked entity belongs to. |
-| trackedentityinstanceid | integer | Instance ID of which the attribute value belongs to. |
+| trackedentityid | integer | Tracked entity ID of which the attribute value belongs to. |
 | created | timestamp without time zone | Time of creation. |
 | accessedby | text | Username of the user performing the audited operation. |
 | reason | text | The reason as inserted in the dialog. |

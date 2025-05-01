@@ -1251,7 +1251,7 @@ otherwise specified.
 | E1000 | User: `{0}`, has no write access to OrganisationUnit: `{1}`. | This typically means that the OrganisationUnit `{1}` is not in the capture scope of the user `{0}` for the write operation to be authorized. |
 | E1001 | User: `{0}`, has no data write access to TrackedEntityType: `{1}`. | The error occurs when the user is not authorized to create or modify data of the TrackedEntityType `{1}`
 | E1002 | TrackedEntity: `{0}`, already exists. | This error is thrown when trying to create a new TrackedEntity with an already existing uid. Make sure a new uid is used when adding a new TrackedEntity. |
-| E1003 | OrganisationUnit: `{0}` of TrackedEntity is outside search scope of User: `{1}`. | |
+| E1003 | User: `{0}`, has no write access to TrackedEntity: `{1}`. | |
 | E1005 | Could not find TrackedEntityType: `{0}`. | Error thrown when trying to fetch a non existing TrackedEntityType with uid `{0}` . This might also mean that the user does not have read access to the TrackedEntityType. |
 | E1006 | Attribute: `{0}`, does not exist. | Error thrown when the system was not able to find a matching TrackedEntityAttribute with uid `{0}`. This might also mean that the user does not have access to the TrackedEntityAttribute. |
 | E1007 | Error validating attribute value type: `{0}`; Error: `{1}`. | Mismatch between value type of a TrackedEntityAttribute and its provided attribute value. The actual validation error will be displayed in `{1}`. |
@@ -1273,17 +1273,14 @@ otherwise specified.
 | E1025 | Property enrolledAt is null. | EnrolledAt Date is mandatory for an Enrollment. Make sure it is not null. |
 | E1029 | Event OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Event payload uses a Program `{1}` which is not configured to be accessible by OrganisationUnit `{0}`. |
 | E1030 | Event: `{0}`, already exists. | This error is thrown when trying to add a new Event with an already existing uid. Make sure a new uid is used when adding a new Event. |
-| E1031 | Event OccurredAt date is missing. | OccurredAt property is either null or has an invalidate date format in the payload. |
+| E1031 | Event occurredAt date is missing. | OccurredAt property is either null or has an invalidate date format in the payload. |
 | E1032 | Event: `{0}`, do not exist. | |
 | E1033 | Event: `{0}`, Enrollment value is NULL. | |
-| E1035 | Event: `{0}`, ProgramStage value is NULL. | |
 | E1039 | ProgramStage: `{0}`, is not repeatable and an event already exists. | An Event already exists for the ProgramStage for the specific Enrollment. Since the ProgramStage is configured to be non-repeatable, another Event for the same ProgramStage cannot be added.  |
 | E1041 | Enrollment OrganisationUnit: `{0}`, and Program: `{1}`, don't match. | The Enrollment payload contains a Program `{1}` which is not configured to be accessible by the OrganisationUnit  `{0}`. |
 | E1043 | Event: `{0}`, completeness date has expired. Not possible to make changes to this event. | A user without 'F_EDIT_EXPIRED' authority cannot update an Event that has passed its expiry days as configured in its Program. |
-| E1045 | Program: `{0}`, expiry date has passed. It is not possible to make changes to this event. | |
 | E1046 | Event: `{0}`, needs to have at least one (event or schedule) date. | Either of occurredAt or scheduledAt property should be present in the Event payload. |
 | E1047 | Event: `{0}`, date belongs to an expired period. It is not possible to create such event. | Event occurredAt or scheduledAt has a value that is earlier than the PeriodType start date.  |
-| E1048 | Object: `{0}`, uid: `{1}`, has an invalid uid format. | A valid uid has 11 characters. The first character has to be an alphabet (a-z or A-Z) and the remaining 10 characters can be alphanumeric (a-z or A-Z or 0-9). |
 | E1049 | Could not find OrganisationUnit: `{0}`, linked to Tracked Entity. | The system could not find an OrganisationUnit with uid `{0}`. |
 | E1050 | Event ScheduledAt date is missing. | ScheduledAt property in the Event payload is either missing or an invalid date format. |
 | E1051 | Event: `{0}`, completedAt must be null when status is `{1}`. | Event completedAt can only be passed in the payload if status is COMPLETED |
@@ -1306,15 +1303,9 @@ otherwise specified.
 | E1081 | Enrollment: `{0}`, do not exist. | Error thrown when trying to fetch a non existing Enrollment with uid `{0}` . This might also mean that the user does not have read access to the Enrollment. |
 | E1082 | Event: `{0}`, is already deleted and can't be modified. | If the event is soft deleted, no modifications on it are allowed. |
 | E1083 | User: `{0}`, is not authorized to modify completed events. | Only a super user or a user with the authority "F_UNCOMPLETE_EVENT" can modify completed events. Completed Events are those Events with status as COMPLETED. |
-| E1084 | File resource: `{0}`, reference could not be found. | |
-| E1085 | Attribute: `{0}`, value does not match value type: `{1}`. | Mismatch between value type of an attribute and its provided attribute value. |
-| E1086 | Event: `{0}`, has a program: `{1}`, that is a registration but its ProgramStage is not valid or missing. | |
-| E1087 | Event: `{0}`, could not find DataElement: `{1}`, linked to a data value. | |
-| E1088 | Event: `{0}`, program: `{1}`, and ProgramStage: `{2}`, could not be found. | |
 | E1089 | Event: `{0}`, references a Program Stage `{1}` that does not belong to Program `{2}`. | The ProgramStage uid and Program uid in the Event payload is incompatible. |
 | E1090 | Attribute: `{0}`, is mandatory in tracked entity type `{1}` but not declared in tracked entity `{2}`. | The payload has missing values for mandatory TrackedEntityTypeAttributes. |
 | E1091 | User: `{0}`, has no data write access to Program: `{1}`. | The Program sharing configuration is such that, the user does not have write access for this Program. |
-| E1094 | Not allowed to update Enrollment: `{0}`, existing Program `{1}`. | The Enrollment payload for an existing Enrollment has a different Program uid than the one it was originally enrolled with. |
 | E1095 | User: `{0}`, has no data write access to ProgramStage: `{1}`. | The ProgramStage sharing configuration is such that, the user does not have write access for this ProgramStage.  |
 | E1096 | User: `{0}`, has no data read access to Program: `{1}`. | The Program sharing configuration is such that, the user does not have read access for this Program. |
 | E1099 | User: `{0}`, has no write access to CategoryOption: `{1}`. | The CategoryOption sharing configuration is such that, the user does not have write access for this CategoryOption |
@@ -1322,7 +1313,6 @@ otherwise specified.
 | E1102 | User: `{0}`, does not have access to the tracked entity: `{1}`, Program: `{2}`, combination. | This error is thrown when the user's OrganisationUnit does not have the ownership of this TrackedEntity for this specific Program. The owning OrganisationUnit of the TrackedEntity-Program combination should fall into the capture scope (in some cases the search scope) of the user. |
 | E1103 | User: `{0}`, is lacking 'F_ENROLLMENT_CASCADE_DELETE' authority to delete Enrollment : `{1}`. | There exists undeleted Events for this Enrollment. If the user does not have 'F_ENROLLMENT_CASCADE_DELETE' authority, then these Events has to be deleted first explicitly to be able to delete the Enrollment. |
 | E1104 | User: `{0}`, has no data read access to program: `{1}`, TrackedEntityType: `{2}`. | The sharing configuration of the TrackedEntityType associated with the Program is such that, the user does not have data read access to it. |
-| E1110 | Not allowed to update Event: `{0}`, existing Program `{1}`. | The Event payload for an existing Event has a different Program uid than the one it was originally created with.  |
 | E1112 | Attribute value: `{0}`, is set to confidential but system is not properly configured to encrypt data. | Either JCE files is missing or the configuration property `encryption.password` might be missing in `dhis.conf`. |
 | E1113 | Enrollment: `{0}`, is already deleted and can't be modified. | If the Enrollment is soft deleted, no modifications on it are allowed. |
 | E1114 | TrackedEntity: `{0}`, is already deleted and can't be modified. | If the TrackedEntity is soft deleted, no modifications on it are allowed. |
@@ -1342,33 +1332,32 @@ otherwise specified.
 | E1128 | Not allowed to update Event property: {0}. | |
 | E1300 | Generated by program rule (`{0}`) - `{1}` | |
 | E1301 | Generated by program rule (`{0}`) - Mandatory DataElement `{1}` is not present | |
-| E1302 | Generated by program rule (`{0}`) - DataElement `{1}` is not valid: `{2}` | |
+| E1302 | DataElement `{0}` is not valid: `{1}` | |
 | E1303 | Mandatory DataElement `{0}` is not present | |
-| E1304 | Generated by program rule (`{0}`) - DataElement `{1}` is not a valid data element | |
-| E1305 | Generated by program rule (`{0}`) - DataElement `{1}` is not part of `{2}` program stage | |
+| E1304 | DataElement `{0}` is not a valid data element | |
+| E1305 | DataElement `{0}` is not part of `{1}` program stage | |
 | E1306 | Generated by program rule (`{0}`) - Mandatory Attribute `{1}` is not present | |
 | E1307 | Generated by program rule (`{0}`) - Unable to assign value to data element `{1}`. The provided value must be empty or match the calculated value `{2}` | |
 | E1308 | Generated by program rule (`{0}`) - DataElement `{1}` is being replaced in event `{2}` | |
 | E1309 | Generated by program rule (`{0}`) - Unable to assign value to attribute `{1}`. The provided value must be empty or match the calculated value `{2}` | |
 | E1310 | Generated by program rule (`{0}`) - Attribute `{1}` is being replaced in te `{2}` | |
-| E1311 | Referral events need to have at least one complete relationship | |
-| E1312 | Referral events need to have both sides of a relationship | |
 | E1313 | Event {0} of an enrollment does not point to an existing tracked entity. The data in your system might be corrupted | Indicates an anomaly in the existing data whereby enrollments might not reference a tracked entity |
 | E1314 | Generated by program rule (`{0}`) - DataElement `{1}` is mandatory and cannot be deleted. | |
+| E1315 | Status `{0}` does not allow defining data values. Statuses that do allow defining data values are: {1}| |
+| E1316 | No event can transition from status `{0}` to status `{1}`. | |
+| E1317 | Generated by program rule (`{0}`) - Attribute `{1}` is mandatory and cannot be deleted. | |
 | E4000 | Relationship: `{0}` cannot link to itself | |
 | E4001 | Relationship Item `{0}` for Relationship `{1}` is invalid: an Item can link only one Tracker entity. | |
 | E4006 | Could not find relationship Type: `{0}`. | |
 | E4010 | Relationship Type `{0}` constraint requires a {1} but a {2} was found. | |
-| E4011 | Relationship: `{0}` cannot be persisted because {1} {2} referenced by this relationship is not valid. | |
 | E4012 | Could not find `{0}`: `{1}`, linked to Relationship. | |
 | E4014 | Relationship type `{0}` constraint requires a tracked entity having type `{1}` but `{2}` was found. | |
 | E4015 | Relationship: `{0}`, already exists. | |
 | E4016 | Relationship: `{0}`, do not exist. | |
 | E4017 | Relationship: `{0}`, is already deleted and cannot be modified. | |
 | E4018 | Relationship: `{0}`, linking {1}: `{2}` to {3}: `{4}` already exists. | |
-| E4019 | User: `{0}`, has no data write access to relationship type: `{1}`. | |
+| E4020 | User: `{0}`, has no write access to relationship: `{1}`. | |
 | E5000 | "{0}" `{1}` cannot be persisted because "{2}" `{3}` referenced by it cannot be persisted. | The importer can't persist a tracker object because a reference cannot be persisted. |
-| E5001 | "{0}" `{1}` cannot be deleted because "{2}" `{3}` referenced by it cannot be deleted. | The importer can't deleted a tracker object because a reference cannot be deleted. |
 | E9999 | N/A | Undefined error message. |
 
 ### Validation { #webapi_tracker_validation }
@@ -1900,18 +1889,34 @@ To query on an attribute using multiple values in an *IN* filter:
 
     GET /api/tracker/trackedEntities?trackedEntityType=nEenWmSyUEp&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:IN:Scott;Jimmy;Santiago
 
-You can use a range of operators for the filtering:
+All of the following operators are supported regardless of the value type. Values are compared using
+text comparison unless stated otherwise. Integer and decimal value types are treated as Postgres
+integer and numeric data types for the specified operators.
 
-|Operator|  Description|
-|---|---|
-|`EQ`|Equal to|
-|`GE`|Greater than or equal to|
-|`GT`|Greater than|
-|`IN`|Equal to one of the multiple values separated by ";"|
-|`LE`|Less than or equal to|
-|`LIKE`|Like (free text match)|
-|`LT`|Less than|
-|`NE`|Not equal to|
+Valid binary operators are:
+- `eq` - equal to (uses integer/numeric semantics for integer/decimal value types)
+- `ieq` - equal to
+- `ge` - greater than or equal to (uses integer/number semantics for integer/decimal value types)
+- `gt` - greater than (uses integer/number semantics for integer/decimal value types)
+- `le` - less than or equal to (uses integer/number semantics for integer/decimal value types)
+- `lt` - less than (uses integer/number semantics for integer/decimal value types)
+- `ne` - not equal to (uses integer/number semantics for integer/decimal value types)
+- `neq` - not equal to (uses integer/number semantics for integer/decimal value types)
+- `nieq` - not equal to
+- `in` - equal to one of the multiple values separated by semicolon ";" (uses integer/number semantics for integer/decimal value types)
+- `ilike` - is like
+- `like` - like (free text match)
+- `nilike` - not like
+- `nlike` - not like
+- `sw` - starts with
+- `ew` - ends with
+
+Right now all matches are case-insensitive so for example `eq` and `ieq` (`i` for `insensitive`)
+behave in the same way.
+
+Valid unary operators are:
+- `null` - has no value
+- `!null` - has a value
 
 ##### Tracked Entities response example
 
@@ -1993,6 +1998,24 @@ F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-0
 F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.066Z,2019-08-21T11:25:38.067Z,TfdH5KvFmMy,"First Name",Sarah,TEXT
 F8yKM85NbxW,Zy2SEgA61ys,2019-08-21T11:25:38.022Z,2019-03-19T00:12:16.624Z,2019-08-21T11:31:33.410Z,2019-03-19T00:12:16.624Z,DiszpKrYNg8,false,false,false,"POINT (-11.7896 8.2593)",8.2593,-11.7896,,,,2019-08-21T11:25:38.388Z,2019-08-21T11:25:38.388Z,aW66s2QSosT,"Last Name",Johnson,TEXT
 ```
+
+##### Tracked Entities Collection limits
+
+The collection endpoint limits results in three ways:
+- KeyTrackedEntityMaxLimit **in System settings**: `KeyTrackedEntityMaxLimit` defines the maximum
+tracked entities in an API response, protecting database and server resources. No limit applies
+when set to 0. Configure it via `/api/systemSettings` as described in the
+[documentation](settings-and-configuration.md?#webapi_system_settings).
+- Max number of TEs to return in **Program or tracked entity type**: it limits results when searching **outside
+the capture scope** with a specified program or tracked entity type. The API returns an error if
+matches exceed this limit. No limit applies when searching within the capture scope
+or when set to 0.
+ This limit is configurable in the maintenance app.
+- **Pagination**: As explained [here](#request-parameters-for-pagination).
+
+For paginated requests with non-zero `KeyTrackedEntityMaxLimit`:
+- If pageSize ≤ KeyTrackedEntityMaxLimit: `pageSize` is enforced
+- If pageSize > KeyTrackedEntityMaxLimit: The API returns an error
 
 #### Tracked Entities single object endpoint `GET /api/tracker/trackedEntities/{uid}`
 
@@ -2225,7 +2248,7 @@ An example of a json response:
 ```
 
 The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
-`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. UPDATE will hold two values: the previous and the current.
+`CREATE` and `DELETE` will always hold a single value: the former shows the current value, and the latter shows the value that was deleted. `UPDATE` will hold two values: the previous and the current.
 
 Change logs are enabled by default and can be configured in `dhis.conf`, as explained [here](../../sysadmin/reference/logging.md#install_changelog)
 
@@ -2976,9 +2999,9 @@ with an access level of *PROTECTED*. Any user with the org unit owner within the
 temporarily access the program-related data by providing a reason for accessing it.
 
 This act of temporarily gaining access is termed *breaking the glass*.
-Currently, temporary access is granted for 3 hours. DHIS2 
+Currently, temporary access is granted for 3 hours. DHIS2
 [audit](../../sysadmin/concepts/audit.md) breaking the glass along with the
-reason specified by the user. This information is also stored in the database, but only if the 
+reason specified by the user. This information is also stored in the database, but only if the
 tracked entity type is configured to allow auditing, which is disabled by default.
 
 It is not possible to gain temporary access to a program that has been
@@ -3469,9 +3492,9 @@ mentioned in the previous section.
 
 ### Program Notification Template
 
-The Program Notification Template allows you to create message templates that can be sent based on different types of events. 
-The message and subject templates are translated into actual values and sent to the configured destination. 
-Each program notification template is transformed into either a MessageConversation object or a ProgramMessage object, depending on whether the recipient is external or internal. 
+The Program Notification Template allows you to create message templates that can be sent based on different types of events.
+The message and subject templates are translated into actual values and sent to the configured destination.
+Each program notification template is transformed into either a MessageConversation object or a ProgramMessage object, depending on whether the recipient is external or internal.
 These intermediate objects will contain only the translated message and subject text.
 
 There are several configuration parameters in the Program Notification Template that are essential for the proper functioning of notifications.
