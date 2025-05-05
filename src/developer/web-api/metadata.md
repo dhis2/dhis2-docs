@@ -254,7 +254,7 @@ The Web API `/api` can be used with a DHIS2 version number, example:
     /api/42/dataElements
 
 Versions `28`-`43` are supported. Calling an endpoint with or without a version does not change the behaviour of the API. The behaviour is the same no matter which approach is used. We aim to remove supporting API calls with versions, so please use API calls without the use of a version number.  
-The support for using versions is due to legacy behaviour, which never materialized how we intended. 
+The support for using versions is due to legacy design, which didn't evolve as originally envisioned. 
 
 ## Metadata object filter { #webapi_metadata_object_filter } 
 
