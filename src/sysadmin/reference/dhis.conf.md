@@ -93,20 +93,23 @@ server.https = off
 # System [Optional]
 # ----------------------------------------------------------------------
 
-# System mode for database read operations only, can be 'off', 'on'
+# System mode for database read operations only, can be 'off', 'on'. (default: 'off').
 system.read_only_mode = off
 
-# Session timeout in seconds, default is 3600
+# Session timeout in seconds. (default: 3600)
 system.session.timeout = 3600
 
-# SQL view protected tables, can be 'on', 'off'
+# SQL view protected tables, can be 'on', 'off'. (default: 'on').
 system.sql_view_table_protection = on
 
-# SQL view write enabled, can be 'on', 'off'
+# SQL view write enabled, can be 'on', 'off'. (default: 'off').
 system.sql_view_write_enabled = off
 
 # Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
 metadata.sync.remote_servers_allowed = https://server1.org/,https://server2.org/
+
+# Set the maximum size for the cache instance to be built. If set to 0, no caching will take place. Cannot be a negative value. (default: 0.5).
+system.cache.max_size.factor = 0.5
 
 # ----------------------------------------------------------------------
 # Encryption [Optional]
@@ -162,6 +165,9 @@ ldap.search.filter = (cn={0})
 
 # Node identifier, optional, useful in clusters
 node.id = 'node-1'
+
+# Primary leader. When true, the node will unconditionally set its node ID during leader election causing it to win the election as long as it is alive. Can be true or false (default: false)
+node.primary_leader = false
 
 # ----------------------------------------------------------------------
 # Monitoring [Optional]
