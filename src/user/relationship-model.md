@@ -74,7 +74,7 @@ side each entity is stored as is insignificant.
 
 ## Example { #relationship_model_example }
 
-<img src="resources/images/relationship_model/relationships.png" width="50%"/>
+![Diagram of possible relationship connection types](resources/images/relationship_model/relationships.png)
 
 * Bidirectional relationship *relA* connects *teA* to *teB* and connects *teB* to *teA*.
 * Unidirectional relationship *relB* connects *teA* to *teC* but DO NOT connect *teC* to *teA*.
