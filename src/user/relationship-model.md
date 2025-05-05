@@ -77,7 +77,7 @@ side each entity is stored as is insignificant.
 ![Diagram of possible relationship connection types](resources/images/relationship_model/relationships.png)
 
 * Bidirectional relationship *relA* connects *teA* to *teB* and connects *teB* to *teA*.
-* Unidirectional relationship *relB* connects *teA* to *teC* but DO NOT connect *teC* to *teA*.
+* Unidirectional relationship *relB* connects *teA* to *teC* but DOES NOT connect *teC* to *teA*.
 * *teA* originates relationships *relA* and *relB*.
 * *teB* originates relationships *relA*.
 * *teC* originates no relationships.
