@@ -96,16 +96,16 @@ server.https = off
 # System identifier
 system.id = hmis1.country.org
 
-# System mode for database read operations only, can be 'off', 'on'
+# System mode for database read operations only, can be 'off', 'on'. (default: 'off').
 system.read_only_mode = off
 
-# Session timeout in seconds, default is 3600
+# Session timeout in seconds. (default: 3600)
 system.session.timeout = 3600
 
-# SQL view protected tables, can be 'on', 'off'
+# SQL view protected tables, can be 'on', 'off'. (default: 'on').
 system.sql_view_table_protection = on
 
-# SQL view write enabled, can be 'on', 'off'
+# SQL view write enabled, can be 'on', 'off'. (default: 'off').
 system.sql_view_write_enabled = off
 
 # Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
