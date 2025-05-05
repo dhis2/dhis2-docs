@@ -392,15 +392,17 @@ Table: Validation rule analysis query parameters
 | maxResults | Max limit for the output | Integer, greater than zero. Maximum as specified by system setting `keyDataQualityMaxLimit`| false | 500 |
 
 Sample POST body request: 
+
 ```json
-{"startDate":"2024-01-01",
-"endDate":"2025-04-10",
-"ou":"ImspTQPwCqd",
-"notification":false,
-"persist":false,
-"vrg":"UP1lctvalPn",
-"maxResults": 500}
-```
+{
+    "startDate":"2024-01-01",
+    "endDate":"2025-04-10",
+    "ou":"ImspTQPwCqd",
+    "notification":false,
+    "persist":false,
+    "vrg":"UP1lctvalPn",
+    "maxResults": 500
+}
 
 Sample output:
 ```json
