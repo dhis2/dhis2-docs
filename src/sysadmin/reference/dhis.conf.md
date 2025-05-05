@@ -169,6 +169,9 @@ ldap.search.filter = (cn={0})
 # Node identifier, optional, useful in clusters
 node.id = 'node-1'
 
+# Primary leader. When true, the node will unconditionally set its node ID during leader election causing it to win the election as long as it is alive. Can be true or false (default: false)
+node.primary_leader = false
+
 # ----------------------------------------------------------------------
 # Monitoring [Optional]
 # ----------------------------------------------------------------------
