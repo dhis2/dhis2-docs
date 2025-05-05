@@ -2,21 +2,29 @@
 
 ## Route { #webapi_route }
 
-The route API allows users to communicate with external HTTP gateways and proxies. It is designed as a simple solution to extend your apps to get and post from services that you use to extend your apps functionality.'
+The route API permits DHIS2 web apps to communicate with external HTTP gateways and proxies. It is designed to be a lightweight solution for extending apps that need to exchange data with third-party services (e.g., civil registry). The route endpoint is available on the URL path `/api/routes`. Routes can be run by issuing an HTTP `GET` or `POST` to `/api/routes/{id}/run`. DHIS2 includes the `X-Forwarded-User` header in every request sent to the route's target. This header contains the DHIS2 username which initiated the request, allowing the target to react accordingly.
 
-```
-/api/routes
-```
+For the examples here we will be using the [Echo API](https://learning.postman.com/docs/developer/echo-api/) from Postman which just returns what you send to it (including body in the case of `POST`).
 
-The endpoint can be found at `/api/routes` and the routes can be run with `GET` or `POST` to `/api/routes/{id}/run`.
+### Required permissions
 
-To be able to externally react to the user which initiated the request from DHIS2 every request has the header:
+In order to be able to configure and view the routes, the current user must either have `ALL` authority, or the `Route` authority should be added to the user's role. The authority can be added by heading to the User Management app -> User roles tab, then search for the word "Route" under Metadata authorities. Then you can assign the authorities to the user's role, and save the updates to the role.
+
+![](resources/images/routes/route-authorities.png)
+
+In addition to authorities, route URLs can only be added or run when the URL has a corresponding entry `route.remote_servers_allowed` setting found in the `dhis.conf` as shown below:
 
 ```properties
-X-Forwarded-User: <username>
+route.remote_servers_allowed = https://server1.com/,https://server2.com/
 ```
 
-For the examples here we will be using the the [Echo API](https://learning.postman.com/docs/developer/echo-api/) from Postman which just returns what you send to it (including body in the case of `POST`).
+`route.remote_servers_allowed` is a comma-separated URL pattern list which is set to `https://*` by default. The DHIS2 administrator should change the default value to a more restricted URL to prevent server-side request forgery (SSRF) attacks. While not recommended for security reasons, one can add wildcard entries to `route.remote_servers_allowed` which avoids having to enumerate each allowed remote server, for example:
+
+```properties
+route.remote_servers_allowed = https://*.server1.com/
+```
+
+Note that paths within the URLs are not accepted.
 
 ### Running a route
 
@@ -119,6 +127,24 @@ A number of authentication modes are supported when running routes. These authen
   }
   ```
 
+* `oauth2-client-credentials`: performs [OAuth2 Client Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) flow and adds the resulting access token to the upstream request. Here is an example to creating a route configured with `oauth2-client-credentials` authentication:
+
+  ```json
+  {
+    "name": "Postman Echo",
+    "code": "postman-get",
+    "disabled": false,
+    "url": "https://postman-echo.com/get",
+    "auth": {
+      "type": "oauth2-client-credentials",
+      "clientId": "alice",
+      "clientSecret": "passw0rd",
+      "tokenUri": "https://token-service/token"
+    }
+  }
+  ```
+
+
 ### Running a route with authentication and custom authority
 
 In the example shown below, we are configuring a route with `http-basic` authentication and assigning a custom authority it:
@@ -139,6 +165,26 @@ In the example shown below, we are configuring a route with `http-basic` authent
 ```
 
 Custom authorities allows a DHIS2 client that does not have the rights to manage the route to still be able to run it. This enables the route to be run from your app.
+
+### Running a route with custom response timeout
+
+For performance reasons, the maximum transfer time for a route response is 5 minutes. When a transfer of the upstream server response body exceeds this limit, the DHIS2 server returns a bad gateway error to the client. On the other hand, the pre-configured timeout for the upstream server response when running a route is 5 seconds. This means that a network-level read taking longer than 5 seconds will result in the DHIS2 server returning a gateway timeout error to the client. However, this timeout can be adjusted when creating or updating a route as demonstrated below:
+
+```json
+{
+  "name": "Postman Echo",
+  "code": "postman-post",
+  "disabled": false,
+  "url": "https://postman-echo.com/post",
+  "responseTimeoutSeconds": 10
+}
+```
+
+The minimum permitted response timeout is 1 second while the maximum permitted timeout is 60 seconds. The `responseTimeoutSeconds` setting should be used with caution since concurrent, long-running routes could degrade DHIS2's overall performance. 
+
+>IMPORTANT: The default route response timeout is 10 seconds for DHIS2 versions older than 42 except for the following versions which have the response timeout of 30 seconds:
+>* \>= 40.8
+>* \>= 41.4
 
 ### Wildcard Routes
 

@@ -85,8 +85,6 @@
 | Add/Update Section                                                   | F_SECTION_ADD                                    |
 | Add/Update Tracked Entity                                            | F_TRACKED_ENTITY_ADD                             |
 | Add/Update Tracked Entity Attributes                                 | F_ALLOW_EDIT_TRACKED_ENTITY_ATTRIBUTES           |
-| Add/Update Tracked Entity Data Value                                 | F_TRACKED_ENTITY_DATAVALUE_ADD                   |
-| Add/Update Tracked Entity Instance                                   | F_TRACKED_ENTITY_INSTANCE_ADD                    |
 | Add/Update User                                                      | F_USER_ADD                                       |
 | Add/Update User Group Managing Relationships                         | F_USERGROUP_MANAGING_RELATIONSHIPS_ADD           |
 | Add/Update User Within Managed Group                                 | F_USER_ADD_WITHIN_MANAGED_GROUP                  |
@@ -110,8 +108,6 @@
 | Constant Management                                                  | F_CONSTANT_MANAGEMENT                            |
 | Copy Excel Item                                                      | F_COPY_EXCEL_ITEM_ADMINISTRATION                 |
 | Create and download backup                                           | F_DASHBOARD_DOWNLOAD_BACKUP                      |
-| Data Admin Locking                                                   | F_DATAADMIN_LOCK                                 |
-| Data Admin Unlocking                                                 | F_DATAADMIN_UNLOCK                               |
 | Delete Attribute                                                     | F_ATTRIBUTE_DELETE                               |
 | Delete Category Option Group                                         | F_CATEGORY_OPTION_GROUP_DELETE                   |
 | Delete Category Option Group Set                                     | F_CATEGORY_OPTION_GROUP_SET_DELETE               |
@@ -152,9 +148,7 @@
 | Delete Tracked Entity                                                | F_TRACKED_ENTITY_DELETE                          |
 | Delete Tracked Entity Attribute                                      | F_TRACKED_ENTITY_ATTRIBUTE_DELETE                |
 | Delete Tracked Entity Attribute Value                                | F_TRACKED_ENTITY_ATTRIBUTEVALUE_DELETE           |
-| Delete Tracked Entity Data Value                                     | F_TRACKED_ENTITY_DATAVALUE_DELETE                |
 | Delete Tracked Entity Form                                           | F_TRACKED_ENTITY_FORM_DELETE                     |
-| Delete Tracked Entity Instance                                       | F_TRACKED_ENTITY_INSTANCE_DELETE                 |
 | Delete Tracked Entity Instance Comment                               | F_TRACKED_ENTITY_COMMENT_DELETE                  |
 | Delete Tracked Entity Instance Visit                                 | F_PROGRAM_STAGE_INSTANCE_DELETE                  |
 | Delete Tracked Entity Relationship                                   | F_RELATIONSHIP_DELETE                            |
@@ -167,7 +161,6 @@
 | Delete Validation Rule Group                                         | F_VALIDATIONRULEGROUP_DELETE                     |
 | Eliminate duplicate data elements                                    | F_ELIMINATE_DUPLICATE_DATA_ELEMENTS              |
 | Excel Reporting Administration                                       | F_EXCEL_REPORT_ADMINISTRATION                    |
-| Execute SQL View                                                     | F_SQLVIEW_EXECUTE                                |
 | Export Activity Plan to XLS file                                     | F_ACTIVITY_PLAN_EXPORT                           |
 | Export data                                                          | F_EXPORT_DATA                                    |
 | Export events                                                        | F_EXPORT_EVENTS                                  |
@@ -189,7 +182,6 @@
 | List User Roles                                                      | F_USERROLE_LIST                                  |
 | Load event reminder messages                                         | F_PROGRAM_STAGE_INSTANCE_REMINDER                |
 | Load Tracked Entity Instance History                                 | F_TRACKED_ENTITY_INSTANCE_HISTORY                |
-| Lock Data Set                                                        | F_DATASET_LOCK                                   |
 | Manage integration routes                                            | F_MANAGE_INTEGRATION_ROUTES                      |
 | Manage Program Indicators                                            | F_PROGRAM_INDICATOR_MANAGEMENT                   |
 | Manage Program Rule                                                  | F_PROGRAM_RULE_MANAGEMENT                        |
@@ -203,11 +195,9 @@
 | Option Set Management                                                | F_OPTIONSET_MANAGEMENT                           |
 | Organisation Unit Registration                                       | F_ORGANISATION_REGISTRATION                      |
 | Perform maintenance tasks                                            | F_PERFORM_MAINTENANCE                            |
-| Program Enrollment                                                   | F_PROGRAM_ENROLLMENT                             |
 | Program Event Management                                             | F_PROGRAM_INSTANCE_MANAGEMENT                    |
 | Program Stage Section Management                                     | F_PROGRAMSTAGE_SECTION_MANAGEMENT                |
 | Program Tracking Management                                          | F_PROGRAM_TRACKING_MANAGEMENT                    |
-| Program Un-enrollment                                                | F_PROGRAM_UNENROLLMENT                           |
 | Prune organisation units                                             | F_PRUNE_ORGANISATION_UNITS                       |
 | Remove Empty Tracked Entity Events                                   | F_TRACKED_ENTITY_REMOVE_EMPTY_EVENTS             |
 | Rename Excel Template file                                           | F_EXCEL_TEMPLATE_MANAGEMENT_RENAME               |
@@ -219,7 +209,6 @@
 | Search Activity Plan                                                 | F_ACTIVITY_PLAN                                  |
 | Search events without registration                                   | F_PROGRAM_STAGE_INSTANCE_SEARCH                  |
 | Search events with registration                                      | F_PROGRAM_TRACKING_SEARCH                        |
-| Search Tracked Entity Instance                                       | F_TRACKED_ENTITY_INSTANCE_SEARCH                 |
 | Search Tracked Entity Instance in All Org Units                      | F_TRACKED_ENTITY_INSTANCE_SEARCH_IN_ALL_ORGUNITS |
 | See API Module                                                       | M_dhis-web-api                                   |
 | See Apps Maintenance module                                          | M_dhis-web-maintenance-appmanager                |
@@ -263,7 +252,6 @@
 | Single Event Without Registration Data Entry                         | F_ANONYMOUS_DATA_ENTRY                           |
 | Single Event With Registration Data Entry                            | F_SINGLE_EVENT_DATA_ENTRY                        |
 | Sql View External Access                                             | F_SQLVIEW_EXTERNAL                               |
-| Sql View Management                                                  | F_SQLVIEW_MANAGEMENT                             |
 | Tracked Entity Aggregation                                           | F_TRACKED_ENTITY_AGGREGATION                     |
 | Tracked Entity Form Management                                       | F_TRACKED_ENTITY_FORM_MANAGEMENT                 |
 | Tracked Entity Instance Dashboard                                    | F_TRACKED_ENTITY_INSTANCE_DASHBOARD              |

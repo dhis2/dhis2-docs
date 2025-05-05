@@ -183,7 +183,7 @@ This endpoint supports two algorithms for detecting outliers:
 
 * **Z-score:** The z-score is defined as the absolute deviation between the score and mean divided by the standard deviation. A threshold parameter referring to the number of standard deviations from the mean must be specified with the z-score algorithm to define the upper and lower boundaries for what is considered an outlier value.
 * **Modified Z-score:** Same as z-score except it uses the median instead of the mean as measure of central tendency. Parameters are same as for Z-score.
-* **Min-max:** Min-max data element values refers to custom boundaries which can be inserted in DHIS 2 based on data element, org unit and category option combination.
+* **Min-max:** Min-max data element values refers to custom boundaries which can be inserted in DHIS2 based on data element, org unit and category option combination.
 
 The outlier values will be *ordered according to significance*, by default by the absolute deviation from the mean, with the most significant value first. This is helpful to quickly identify the outlier values which have the biggest impact on data quality and data analytics.
 
@@ -661,6 +661,39 @@ To get a list of the names of checks for which results are available already use
 
     GET /api/dataIntegrity/summary/completed
 
+### Retrieving completed checks as Prometheus metrics {#webapi_data_integrity_metrics}
+
+Metadata integrity checks which are present in the cache, can be retrieved in the Prometheus
+metrics format by making a request to :
+    GET /api/dataIntegrity/metrics
+
+The response should return a plain text format in the [Prometheus plain text exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format). Several metrics are available
+for each data integrity check.
+ - Count: A count of the number of issues identified by the metadata check. 
+ - Percentage: When available, provides a percentage of the objects which have been identified by the check relative to a baseline. For instance, if check "Organisation units with trailing spaces" has a percent of 2.13, the percentage is calculated by dividing the number of organisation units with trailing spaces by the total number of organisation units. Note that this percentage may not be available for all metadata integrity checks.
+ - Duration: Number of milliseconds that the check took to execute the last time it was run.
+
+An example of the output of this endpoint is provided below:
+
+```text
+# HELP dhis_data_integrity_check_count Data integrity check counts
+# TYPE dhis_data_integrity_check_count gauge
+dhis_data_integrity_check_count{check="orgunits_invalid_geometry"} 1
+dhis_data_integrity_check_count{check="user_groups_scarce"} 0
+dhis_data_integrity_check_count{check="indicator_no_analysis"} 13
+# HELP dhis_data_integrity_check_percentage Data integrity check percentages
+# TYPE dhis_data_integrity_check_percentage gauge
+dhis_data_integrity_check_percentage{check="orgunits_invalid_geometry"} 0.13054830287206268
+dhis_data_integrity_check_percentage{check="user_groups_scarce"} 0.0
+dhis_data_integrity_check_percentage{check="indicator_no_analysis"} 16.0
+# HELP dhis_data_integrity_check_duration Data integrity check durations
+# TYPE dhis_data_integrity_check_duration gauge
+dhis_data_integrity_check_duration{check="orgunits_invalid_geometry"} 11
+dhis_data_integrity_check_duration{check="user_groups_scarce"} 1
+dhis_data_integrity_check_duration{check="indicator_no_analysis"} 0
+```
+
+Data integrity checks which are not currently in the cache will not be returned by this endpoint.  A request would need to be made to the `/summary` endpoint to trigger the checks to be run or alternatively through a scheduled job.
 
 ### Running data integrity details { #webapi_data_integrity_run_details }
 
