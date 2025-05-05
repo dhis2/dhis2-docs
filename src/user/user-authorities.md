@@ -108,8 +108,6 @@
 | Constant Management                                                  | F_CONSTANT_MANAGEMENT                            |
 | Copy Excel Item                                                      | F_COPY_EXCEL_ITEM_ADMINISTRATION                 |
 | Create and download backup                                           | F_DASHBOARD_DOWNLOAD_BACKUP                      |
-| Data Admin Locking                                                   | F_DATAADMIN_LOCK                                 |
-| Data Admin Unlocking                                                 | F_DATAADMIN_UNLOCK                               |
 | Delete Attribute                                                     | F_ATTRIBUTE_DELETE                               |
 | Delete Category Option Group                                         | F_CATEGORY_OPTION_GROUP_DELETE                   |
 | Delete Category Option Group Set                                     | F_CATEGORY_OPTION_GROUP_SET_DELETE               |
@@ -163,7 +161,6 @@
 | Delete Validation Rule Group                                         | F_VALIDATIONRULEGROUP_DELETE                     |
 | Eliminate duplicate data elements                                    | F_ELIMINATE_DUPLICATE_DATA_ELEMENTS              |
 | Excel Reporting Administration                                       | F_EXCEL_REPORT_ADMINISTRATION                    |
-| Execute SQL View                                                     | F_SQLVIEW_EXECUTE                                |
 | Export Activity Plan to XLS file                                     | F_ACTIVITY_PLAN_EXPORT                           |
 | Export data                                                          | F_EXPORT_DATA                                    |
 | Export events                                                        | F_EXPORT_EVENTS                                  |
@@ -185,7 +182,6 @@
 | List User Roles                                                      | F_USERROLE_LIST                                  |
 | Load event reminder messages                                         | F_PROGRAM_STAGE_INSTANCE_REMINDER                |
 | Load Tracked Entity Instance History                                 | F_TRACKED_ENTITY_INSTANCE_HISTORY                |
-| Lock Data Set                                                        | F_DATASET_LOCK                                   |
 | Manage integration routes                                            | F_MANAGE_INTEGRATION_ROUTES                      |
 | Manage Program Indicators                                            | F_PROGRAM_INDICATOR_MANAGEMENT                   |
 | Manage Program Rule                                                  | F_PROGRAM_RULE_MANAGEMENT                        |
