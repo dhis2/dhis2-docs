@@ -93,9 +93,6 @@ server.https = off
 # System [Optional]
 # ----------------------------------------------------------------------
 
-# System identifier
-system.id = hmis1.country.org
-
 # System mode for database read operations only, can be 'off', 'on'. (default: 'off').
 system.read_only_mode = off
 
