@@ -1,8 +1,8 @@
-# Data Entry (beta) app
+# Data Entry app
 
-## About the Data Entry (beta) app { #aggregate_data_entry_app.about }
+## About the Data Entry app { #aggregate_data_entry_app.about }
 
-The Data Entry (beta) app is used to enter aggregate data in DHIS2. Aggregate data is collected at a group level and doesn't belong to any one individual. Looking to enter individual-level data? Check out the [Tracker Capture app](#tracker_capture_app).   
+The Data Entry app is used to enter aggregate data in DHIS2. Aggregate data is collected at a group level and doesn't belong to any one individual. Looking to enter individual-level data? Check out the [Tracker Capture app](#tracker_capture_app).   
 
 ## What makes a data entry form? { #aggregate_data_entry_app.what_makes_a_form }
 
@@ -14,7 +14,7 @@ Data entry forms are filled in for a specific context, which is made up of the f
 
 ## Get to know the app { #aggregate_data_entry_app.get_to_know }
 
-The Data Entry (beta) app is made up of a few different sections:
+The Data Entry app is made up of a few different sections:
 
 ![](resources/images/data_entry_beta/app-layout.png)
 
@@ -91,7 +91,7 @@ If a form is complete but shouldn't be, you can mark it as incomplete by clickin
 
 ### Doing more with data values { #aggregate_data_entry_app.doing_more_with_data_values }
 
-The basic data entry functionality is covered above, but the Data Entry (beta) app offers more actions and information. These actions and information are found in the data details sidebar that's shown on the right of the data workspace.
+The basic data entry functionality is covered above, but the Data Entry app offers more actions and information. These actions and information are found in the data details sidebar that's shown on the right of the data workspace.
 
 ![](resources/images/data_entry_beta/data-details.png) 
 
@@ -174,7 +174,7 @@ To print a data entry form, click the *Options* button in the top bar. From the 
 
 You don't need to be connected to the internet or DHIS2 server to enter data. Data entered into forms while you are offline is saved to your local computer. When you reconnect to the internet/server your locally saved data automatically syncs with your DHIS2 server.
 
-To work offline, you need to open the Data Entry (beta) app while you are connected to the internet so the data entry forms can be downloaded and stored on your local computer. Downloading of forms happens automatically in the background.
+To work offline, you need to open the Data Entry app while you are connected to the internet so the data entry forms can be downloaded and stored on your local computer. Downloading of forms happens automatically in the background.
 
 The badge in the header bar at the top of the screen shows your connection status. If you are not connected to the internet or DHIS2 server, the badge shows *offline*. As well as the offline badge, forms cells you enter data will show the *waiting to sync* status.
 
@@ -188,7 +188,7 @@ The badge in the header bar at the top of the screen shows your connection statu
 
 ## Features not supported in the beta version { #aggregate_data_entry_app.unsupported_features }
 
-The **Data Entry (beta) app** is constantly evolving and new features are being added. There are some features that the previous Data Entry app offered that are supported yet:
+The **Data Entry app** is constantly evolving and new features are being added. There are some features that the previous Data Entry app offered that are supported yet:
 - **Custom forms** don't support CSS/JS yet. We are currently examining the different ways custom forms are used in order to build a more sustainable, flexible solution.
 - **Multi-organisation unit entry** isn't supported.
 
