@@ -207,3 +207,9 @@ GET /api/routes/postman-wildcard/run/get
 POST /api/routes/{id}/run/post
 POST /api/routes/postman-wildcard/run/post
 ```
+
+## The Route Manager app { #route_manager_app }
+
+The Route Manager app provides a user interface to ease the management of routes. The app is not bundled with DHIS2 but it can be installed in the App Managemenet app under the [App Hub](https://apps.dhis2.org/app/5dbe9ab8-46bd-411e-b22f-905f08a81d78) apps.
+
+You can also view and test the app under: https://route-manager.netlify.dhis2.org/ and pointing it to one of the dev servers on: https://debug.dhis2.org/
