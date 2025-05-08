@@ -87,7 +87,7 @@ The JSON editor validates the user's input and will show an error if it is not v
 
 To find a value within the editor, you can use keyboard commands to open up the search palette, which helps you find and/or replace values within your data. For Windows: ```Ctrl + F```. For MacOS: ```Cmd + F```.
 
-![](resources/images/datastore_management/search_palette.png){ width=50%}
+![](resources/images/datastore_management/search_palette.png){ width=90%}
 
 ### Back to the main page
 Click the **DataStore** or **UserDataStore** link in the left panel header to return to the main page with all the namespaces in the selected datastore. 
