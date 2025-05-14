@@ -110,7 +110,7 @@ A number of authentication modes are supported when running routes. These authen
   }
   ```
 
-* `api-query-params`: adds user-defined headers for API authentication. Here is an example to creating a route configured with `api-query-params` authentication:
+* `api-query-params`: adds user-defined query parameters for API authentication. Here is an example to creating a route configured with `api-query-params` authentication:
 
   ```json
   {
