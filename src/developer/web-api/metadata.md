@@ -2908,7 +2908,7 @@ In the Web API this looks like:
 You can replace this with the category mappings that you want the program indicator to use.
 For example, if the program indicator has selected a category combination that combines
 `Gender` and `Outcome`, this field could be edited to contain the mapping ids for these
-categories such as defined in the above `categoryMppings` example:
+categories such as defined in the above `categoryMappings` example:
 
 ```json
 "categoryMappingIds": [
