@@ -83,7 +83,7 @@
 | Add/Update Public User Role                                          | F_USERROLE_PUBLIC_ADD                            |
 | Add/Update Public Validation Rule Group                              | F_VALIDATIONRULEGROUP_PUBLIC_ADD                 |
 | Add/Update Section                                                   | F_SECTION_ADD                                    |
-| Add/Update Tracked Entity                                            | F_TRACKED_ENTITY_ADD                             |
+| Add/Update Tracked Entity Type                                       | F_TRACKED_ENTITY_ADD                             |
 | Add/Update Tracked Entity Attributes                                 | F_ALLOW_EDIT_TRACKED_ENTITY_ATTRIBUTES           |
 | Add/Update User                                                      | F_USER_ADD                                       |
 | Add/Update User Group Managing Relationships                         | F_USERGROUP_MANAGING_RELATIONSHIPS_ADD           |
@@ -145,7 +145,7 @@
 | Delete Section                                                       | F_SECTION_DELETE                                 |
 | Delete SMS                                                           | F_MOBILE_DELETE_SMS                              |
 | Delete SQL View                                                      | F_SQLVIEW_DELETE                                 |
-| Delete Tracked Entity                                                | F_TRACKED_ENTITY_DELETE                          |
+| Delete Tracked Entity Type                                           | F_TRACKED_ENTITY_DELETE                          |
 | Delete Tracked Entity Attribute                                      | F_TRACKED_ENTITY_ATTRIBUTE_DELETE                |
 | Delete Tracked Entity Attribute Value                                | F_TRACKED_ENTITY_ATTRIBUTEVALUE_DELETE           |
 | Delete Tracked Entity Form                                           | F_TRACKED_ENTITY_FORM_DELETE                     |
@@ -261,7 +261,7 @@
 | Update Organisation Unit Level                                       | F_ORGANISATIONUNITLEVEL_UPDATE                   |
 | Update Program Rule                                                  | F_PROGRAM_RULE_UPDATE                            |
 | Update Relationship Type                                             | F_RELATIONSHIPTYPE_UPDATE                        |
-| Update Tracked Entities                                              | F_TRACKED_ENTITY_UPDATE                          |
+| Update Tracked Entity Type                                           | F_TRACKED_ENTITY_UPDATE                          |
 | Update Tracked Entity Attribute                                      | F_TRACKED_ENTITY_ATTRIBUTE_EDIT                  |
 | Upload Excel Template                                                | F_EXCEL_TEMPLATE_MAMAGEMENT_UPLOAD               |
 | View and Search Tracked Entity Attributes and Identifiers            | F_ACCESS_TRACKED_ENTITY_ATTRIBUTES               |
