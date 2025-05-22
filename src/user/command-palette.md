@@ -1,15 +1,16 @@
-# Command Palette { #command_palette } 
+# Command Palette { #command_palette }
 
-The command palette is a one-stop search for apps, shortcuts, and commands in the DHIS2 instance. It is available for all users and across all apps. 
+The command palette is a one-stop search for apps, shortcuts, and commands (coming soon) in the DHIS2 instance. It is available for all users and across all apps.
 
 ## Open the command palette
-There are three (3) ways to open the command palette. 
 
-1. Click the *apps-icon* (9 dots grid) to display it.
+There are three (3) ways to open the command palette.
+
+1. Click the _apps-icon_ (9 dots grid) to display it.
 
 ![](resources/images/command_palette/command_palette_apps_icon.png){ width=30% }
 
-2. Or, tab to the *apps-icon*, and press the **Enter** button.
+2. Or, tab to the _apps-icon_, and press the **Enter** button.
 3. Or, press **CMD/CTRL + K** while anywhere within the DHIS2 instance.
 
 ## Interface
@@ -22,15 +23,15 @@ On launch, the command palette's interface has four (4) distinct features, i.e.
 2. A grid of the logged-in user's top 8 apps
 3. A list of select actions with specific functions, i.e.
 
-    - **Browse Apps** - opens the list of all available apps.
-    - **Browse Commands** - opens the list of all available commands. This action only shows if there are any commands.
-    - **Browse Shortcuts** - opens the list of all available shortcuts. This action only shows if there are any shortcuts. 
-    - **Logout** - logs the user out.
+   - **Browse Apps** - opens the list of all available apps.
+   - **Browse Shortcuts** - opens the list of all available shortcuts. This action only shows if there are any shortcuts.
+   - **Logout** - logs the user out.
 
 4. Lastly, a key legend at the bottom that shows you what key to use while navigating the command palette.
 
 ## Search in the command palette
-- Search for any item using the search bar. 
+
+- Search for any item using the search bar.
 - Clear the search bar using the **Backspace**/**Delete** key or clicking the **clear** icon.
 
 ## Browse Apps
@@ -49,27 +50,25 @@ On launch, the command palette's interface has four (4) distinct features, i.e.
 - You can search for only shortcuts within that section.
 - To go back to the main page, click on the **Back** arrow.
 
-## Browse Commands
-- To see a list of all the commands available on the instance, go to the **Browse Commands** action and click on it.
-- You can search for only commands within that section.
-- To go back to the main page, click on the **Back** arrow.
-
 ## Open an item
+
 - Clicking on **action** or **command** activates it.
-- Clicking on an **app** or **shortcut** opens it. 
+- Clicking on an **app** or **shortcut** opens it.
 - You can also open an app or shortcut in a new tab by pressing **CMD/CTRL** + clicking the item.
 
 ## Navigate the command palette
+
 You can use your keyboard to navigate the command palette. They include:
 
 - **Right**, **Left**, **Up** and **Down** arrow keys for the grid
 - **Up** and **Down** arrow keys for the list items
-- Pressing **Enter** on an item opens/activates it. 
-- When on a category view (Apps, Commands, Shortcuts), pressing the **Backspace** button when the search bar is clear goes back to the main section. 
+- Pressing **Enter** on an item opens/activates it.
+- When on a category view (Apps and Shortcuts), pressing the **Backspace** button when the search bar is clear goes back to the main section.
 
 ## Close the command palette
+
 You can close the command palette in 3 ways:
 
-- Press the **Esc** key, 
+- Press the **Esc** key,
 - Or, click anywhere outside the command palette,
 - Or, press **CMD/CTRL + K** while anywhere within the DHIS2 instance.
