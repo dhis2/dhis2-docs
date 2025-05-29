@@ -52,7 +52,7 @@ In this section, we will show and describe each of the objects used in the Track
 | attributes | A list of tracked entity attribute values owned by the tracked entity. | No | Yes | List of TrackedEntityAttributeValue | See Attribute |
 | enrollments | A list of enrollments owned by the tracked entity. | No | Yes | List of Enrollment | See Enrollment |
 | relationships | A list of relationships connected to the tracked entity. | No | Yes | List of Relationship | See Relationship |
-| programOwners | A list of organisation units that have access through specific programs to this tracked entity. See "Program Ownership" for more. | No | Yes | List of ProgramOwner | See section "Program Ownership" |
+| programOwners | A list of organisation units with access through specific programs to this tracked entity. See "Program Ownership". | No | Yes | List of ProgramOwner | See section "Program Ownership" |
 
 > **Note**
 >
