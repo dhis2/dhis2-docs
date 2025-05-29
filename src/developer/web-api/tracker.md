@@ -2495,43 +2495,60 @@ Returns a list of events based on the provided filters.
 
 The query for all events with children of a particular organisation unit:
 
-    GET /api/tracker/events?orgUnit=YuQRtpLP10I&orgUnitMode=CHILDREN
+```
+GET /api/tracker/events?orgUnit=YuQRtpLP10I&orgUnitMode=CHILDREN
+```
 
 The query for all events with all descendants of a particular organisation unit, implying all
 organisation units in the sub-hierarchy:
 
-    GET /api/tracker/events?orgUnit=O6uvpzGd5pu&orgUnitMode=DESCENDANTS
+```
+GET /api/tracker/events?orgUnit=O6uvpzGd5pu&orgUnitMode=DESCENDANTS
+```
 
 Query for all events with a certain program and organisation unit:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
+```
+GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc
+```
 
 Query for all events with a certain program and organisation unit, sorting by scheduled date
 ascending:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&order=scheduledAt
+```
+GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&order=scheduledAt
+```
 
 Query for the 10 events with the newest occurred date in a certain program and organisation unit -
 by paging and ordering by occurred date descending:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&order=occurredAt:desc&pageSize=10&page=1
+```
+GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&order=occurredAt:desc&pageSize=10&page=1
+```
 
 Query for all events with a certain program and organisation unit for a specific tracked entity:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=M3xtLkYBlKI&trackedEntity=dNpxRu1mWG5
+```
+GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=M3xtLkYBlKI&trackedEntity=dNpxRu1mWG5
+```
 
-Query for all events older or equal to 2024-02-03 and associated with a program and organisation
-unit:
+Query for all events before or equal to 2024-02-03 and associated with a program and organisation unit:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&occurredBefore=2024-02-03
+```
+GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=eBAyeGv0exc&occurredBefore=2024-02-03
+```
 
 A query where multiple operand and filters are specified for a data element UID:
 
-    GET /api/tracker/events?orgUnit=g8upMTyEZGZ&program=M3xtLkYBlKI&filter=rFQNCGMYud2:GT:35&filter=rFQNCGMYud2:LT:50
+```
+GET /api/tracker/events?orgUnit=g8upMTyEZGZ&program=M3xtLkYBlKI&filter=rFQNCGMYud2:GT:35&filter=rFQNCGMYud2:LT:50
+```
 
 A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
-    GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&filter=DanTR5x0WDK:EQ:/:/,//
+```
+GET /api/tracker/events?orgUnit=DiszpKrYNg8&program=lxAQ7Zs9VYR&filter=DanTR5x0WDK:EQ:/:/,//
+```
 
 ##### Events response example
 
