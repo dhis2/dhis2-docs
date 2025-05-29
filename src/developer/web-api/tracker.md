@@ -85,7 +85,7 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 | occurredAt | Timestamp when enrollment occurred. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedAt | Timestamp when the user completed the enrollment. Set on the server if not passed by the client | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedBy | Only for reading data. User that completed the enrollment. Set on the server | No | No | String:any | John Doe |
-| followUp | Indicates whether the enrollment requires follow-up. False if not supplied | No | No | Booelan | Default: False, True |
+| followUp | Indicates whether the enrollment requires follow-up. False if not supplied | No | No | Boolean | Default: False, True |
 | deleted | Indicates whether the enrollment has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
 | geometry | A  geographical representation of the enrollment. Based on the "featureType" of the program | No | No | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
 | storedBy | Client reference for who stored/created the enrollment. | No | No | String:Any | John Doe |
