@@ -2649,7 +2649,9 @@ The purpose of this endpoint is to retrieve one Event given its uid.
 
 A query for an Event:
 
-    GET /api/tracker/events/rgWr86qs0sI
+```
+GET /api/tracker/events/rgWr86qs0sI
+```
 
 ##### Event response example
 
@@ -2773,7 +2775,11 @@ The change log type can be `CREATE`, `UPDATE`, or `DELETE`.
 
 Change logs are enabled by default and can be configured in `dhis.conf`, as explained [here](https://docs.dhis2.org/en/manage/reference/logging.html#install_changelog).
 
-### Relationships (`GET /api/tracker/relationships`)
+### Relationships
+
+```
+GET /api/tracker/relationships
+```
 
 Relationships are links between two entities in the Tracker. These entities can be tracked entities,
 enrollments, and events.
@@ -2782,7 +2788,9 @@ The purpose of this endpoint is to retrieve relationships between objects.
 
 Unlike other tracked objects endpoints, relationships only expose one endpoint:
 
-- `GET /api/tracker/relationships?[trackedEntity={trackedEntityUid}|enrollment={enrollmentUid}|event={eventUid}]&fields=[fields]`
+```
+GET /api/tracker/relationships?[trackedEntity={trackedEntityUid}|enrollment={enrollmentUid}|event={eventUid}]&fields=[fields]
+```
 
 #### Request parameters
 
@@ -2797,9 +2805,9 @@ Unlike other tracked objects endpoints, relationships only expose one endpoint:
 
 The following rules apply to the query parameters.
 
-- only one parameter among `trackedEntity`, `enrollment`, `event` can be passed
+Only one parameter among `trackedEntity`, `enrollment`, `event` can be passed.
 
-> **NOTE**
+> **Note**
 >
 > Using `trackedEntity`, `enrollment` or `event` params, will return any relationship where the
 > trackedEntity, enrollment or event is part of the relationship (either from or to). As long as
@@ -2846,13 +2854,13 @@ The following rules apply to the query parameters.
 }
 ```
 
-## Tracker Access Control { #webapi_tracker_access_control }
+## Tracker access control { #webapi_tracker_access_control }
 
 Tracker has a few different concepts in regards to access control, like sharing, organisation unit
 scopes, ownership, and access levels. The following sections provide a short introduction to the
 different topics.
 
-### Metadata Sharing { #webapi_tracker_metadata_sharing }
+### Metadata sharing { #webapi_tracker_metadata_sharing }
 
 Sharing setting is standard DHIS2 functionality that applies to both Tracker and Aggregate
 metadata/data as well as dashboards and visualization items. At the core of sharing is the ability
@@ -2894,10 +2902,7 @@ mechanisms both at the data and metadata level. These sharing settings can be ap
 the user level or user group level. How exactly to apply a sharing setting depends on the use-case
 at hand.
 
-For more detailed information about data sharing, check out [Data
-sharing](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/configuring-the-system/about-sharing-of-objects.html#data-sharing-for-event-based-programs).
-
-### Organisation Unit Scopes { #webapi_tracker_orgunit_scope }
+### Organisation unit scopes { #webapi_tracker_orgunit_scope }
 
 Organisation units are one of the most fundamental objects in DHIS2. They define a universe under
 which a user is allowed to record and/or read data. There are three types of organisation units that
@@ -2915,13 +2920,15 @@ org unit scope, and so on.
 
 Users can do the fine-tuning by passing a specific value of `orgUnitMode` in their API request:
 
-*api/tracker/trackedEntities?orgUnit=UID&orgUnitMode=specific_organisation_unit_selection_mode*
+```
+/api/tracker/trackedEntities?orgUnit=UID&orgUnitMode=specific_organisation_unit_selection_mode
+```
 
 Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCENDANTS, CAPTURE,
 ACCESSIBLE, and ALL*.
 
 * *SELECTED*: Specified organisation units.
-* *CHILDREN**: Specified organisation unit including immediate children, i.e. organisation units at the immediate level below.
+* *CHILDREN*: Specified organisation unit including immediate children, i.e. organisation units at the immediate level below.
 * *DESCENDANTS*: Specified organisation unit and all organisation units in the sub-hierarchy, i.e. at all organisation unit levels in the sub-hierarchy below the specified organisation units.
 * *CAPTURE*: The data capture organisation units associated with the current user and all organisation units in the sub-hierarchy.
 * *ACCESSIBLE*: The tracker search organisation units associated with the current user and all organisation units in the sub-hierarchy. 
@@ -2995,8 +3002,7 @@ with an access level of *PROTECTED*. Any user with the org unit owner within the
 temporarily access the program-related data by providing a reason for accessing it.
 
 This act of temporarily gaining access is termed *breaking the glass*.
-Currently, temporary access is granted for 3 hours. DHIS2
-[audit](../../sysadmin/concepts/audit.md) breaking the glass along with the
+Currently, temporary access is granted for 3 hours. DHIS2 audit breaking the glass along with the
 reason specified by the user. This information is also stored in the database, but only if the
 tracked entity type is configured to allow auditing, which is disabled by default.
 
@@ -3005,7 +3011,9 @@ configured with an access level of *CLOSED*.
 
 To break the glass for a TrackedEntity-Program combination, the following POST request can be used:
 
-    /api/tracker/ownership/override?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
+```
+/api/tracker/ownership/override?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&reason=patient+showed+up+for+emergency+care
+```
 
 #### Tracker Ownership Transfer { #webapi_tracker_ownership_transfer }
 
@@ -3015,7 +3023,9 @@ Ownership access (or temporary access by breaking the glass) can transfer the ow
 ownership of a TrackedEntity-Program to another organisation unit, the following PUT request can be
 used:
 
-    /api/tracker/ownership/transfer?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
+```
+/api/tracker/ownership/transfer?trackedEntity=DiszpKrYNg8&program=eBAyeGv0exc&ou=EJNxP3WreNP
+```
 
 ### Access levels { #webapi_tracker_access_levels }
 
@@ -3063,7 +3073,7 @@ who has access to the data can transfer the ownership of a TrackedEntity-Program
 another Organisation Unit. If ownership is transferred, the Owner Organisation Unit is updated.
 trackedEntities
 
-## Working Lists
+## Working lists
 
 Working lists allow users to efficiently organize their workflow by saving filters and sorting
 preferences for tracked entities, enrollments, and events. Each type of working list—tracked
@@ -3159,12 +3169,12 @@ Create, update and delete program stage working lists using
 Table: Payload
 
 | Payload values | Description | Example |
-|---|---|---|
-|name|Name of the working list. Required.||
-|description|A description of the working list.||
-|program|Object containing the id of the program. Required.|`{"id" : "uy2gU8kTjF"}`|
-|programStage|Object containing the id of the program stage. Required.|`{"id" : "oRySG82BKE6"}`|
-|programStageQueryCriteria|An object representing various possible filtering values. See *Program Stage Query Criteria* definition table below.
+| --- | --- | --- |
+| name | Name of the working list. Required. | |
+| description | A description of the working list. | |
+| program | Object containing the id of the program. Required.| `{"id" : "uy2gU8kTjF"}` |
+| programStage | Object containing the id of the program stage. Required. | `{"id" : "oRySG82BKE6"}` |
+| programStageQueryCriteria | An object representing various possible filtering values. | See *Program Stage Query Criteria* definition table below. |
 
 Table: Program Stage Query Criteria
 
@@ -3187,7 +3197,7 @@ Table: Program Stage Query Criteria
 |dataFilters|A list of items that contains the filters to be used when querying events|"dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}]|
 |attributeValueFilters|A list of attribute value filters. This is used to specify filters for attribute values when listing tracked entities|"attributeValueFilters":[{"attribute": "ruQQnf6rswq","eq": "15"}]|
 
-See an example payload below:
+See an example payload below.
 
 ```json
 {
@@ -3252,7 +3262,9 @@ See an example payload below:
 
 Create, update and delete event working lists using the following endpoint.
 
-    /api/eventFilters
+```
+/api/eventFilters
+```
 
 #### Payload
 
@@ -3438,9 +3450,9 @@ are deemed mergeable. The mergability is based on whether the two tracked entiti
 conflicts. Conflicts refer to data that cannot be merged automatically. Examples of possible
 conflicts include:
 
-- The same attribute has different values in each tracked entity.
-- Both tracked entities are enrolled in the same program.
-- Tracked entities have different types.
+* The same attribute has different values in each tracked entity.
+* Both tracked entities are enrolled in the same program.
+* Tracked entities have different types.
 
 If any conflict is encountered, an error message is returned to the user.
 
@@ -3458,9 +3470,9 @@ entities , the user can specify whether to keep the original value or move over 
 value. Since the manual merge involves the user explicitly requesting to move data, there are some
 additional checks:
 
-- Relationship cannot be between the original and the duplicate (This results in an invalid
+* Relationship cannot be between the original and the duplicate (This results in an invalid
 self-referencing relationship)
-- Relationship cannot be of the same type and to the same object in both tracked entities (IE.
+* Relationship cannot be of the same type and to the same object in both tracked entities (IE.
 between original and other, and duplicate and other; This would result in a duplicate relationship)
 
 There are two ways to do a manual merge: With and without a payload.
