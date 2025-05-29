@@ -152,7 +152,8 @@ Supported filter parameters include:
 * `created=<ISO-expression>` to match all validation results that were created within the provided period
 * `notificationSent=<boolean>` to match either only validation results for which a notification was or wasn't sent
 
-If filters are combined all conditions have to be true (AND logic).
+
+If filters are combined, all conditions have to be true (AND logic).
 
 Some examples:
 
@@ -203,7 +204,7 @@ The following query parameters are supported.
 | dataStartDate   | Start date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd). |
 | dataEndDate     | End date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd).   |
 | orderBy         | Field to order by. `Z_SCORE` and `MOD_Z_SCORE`algorithm only.| No        | `MEAN_ABS_DEV`, `Z_SCORE`                 |
-| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero. Default: 500. |
+| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero and less than system setting `keyDataQualityMaxLimit` Default: 500. |
 
 [*]  You must specify either data sets with the `ds` parameter, which will include all data elements in the data sets, _or_ specify data elements with the `de` parameter.
 
@@ -378,18 +379,30 @@ To run validation rules and retrieve violations:
 
 The following query parameters are supported:
 
-
-
 Table: Validation rule analysis query parameters
 
-| Query parameter | Description | Option |
-|---|---|---|
-| vrg | Validation rule group | ID |
-| ou | Organisation unit | ID |
-| startDate | Start date for the timespan | Date |
-| endDate | End date for the timespan | Date |
-| persist | Whether to persist violations in the system | false &#124; true |
-| notification | Whether to send notifications about violations | false &#124; true |
+| Query parameter | Description | Option | Required | Default |
+|---|---|---|---|
+| vrg | Validation rule group | ID | false | If omitted, all validation rule groups will be used |
+| ou | Organisation unit | ID |true | |
+| startDate | Start date for the time span | Date (yyyy-MM-dd) | false | Today |
+| endDate | End date for the time span | Date (yyyy-MM-dd) | false | Today |
+| persist | Whether to persist violations in the system | false &#124; true | false | false |
+| notification | Whether to send notifications about violations | false &#124; true | false | false |
+| maxResults | Max limit for the output | Integer, greater than zero. Maximum as specified by system setting `keyDataQualityMaxLimit`| false | 500 |
+
+Sample POST body request: 
+
+```json
+{
+    "startDate":"2024-01-01",
+    "endDate":"2025-04-10",
+    "ou":"ImspTQPwCqd",
+    "notification":false,
+    "persist":false,
+    "vrg":"UP1lctvalPn",
+    "maxResults": 500
+}
 
 Sample output:
 ```json

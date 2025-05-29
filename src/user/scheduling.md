@@ -37,7 +37,7 @@ manually". This action is only available for enabled jobs and queues.
     either **Cron** scheduling or **Delay** scheduling.
 
     1.  For **Cron** scheduled job types you can set a schedule using the
-        [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
+        [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronExpression.html)
         syntax. You can also select a predefined **Cron expression** by clicking
         "Choose from preset times". This schedule will only start a new job run
         if the previous job run has finished, to prevent the system from
@@ -490,7 +490,7 @@ See [Data Administration](#data_admin_data_integrity) for more information about
 1.  Choose a suitable **Name** for the new queue.
 
 1.  Select a cron schedule for the queue. Queues can be scheduled using the
-    [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
+    [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronExpression.html)
     syntax, just like jobs. You can also select a predefined **Cron expression**
     by clicking "Choose from preset times".
 

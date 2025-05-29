@@ -31,7 +31,7 @@ Reference:
 Concepts:
   - Using Gateways for SMS reporting: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/SMS-reporting.md, master)'
   - Debugging as another user: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/user-impersonation.md, master)'
-  - Upgrading: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/upgrading.md, master)'
+  # - Upgrading: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/upgrading.md, master)'
   - Audit: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/audit.md, master)'
   - Deployment Architectures: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/architecture.md, master)'
   - Upgrade Guide: '@github(dhis2/dhis2-docs, src/sysadmin/concepts/Upgrade-Guide.md, master)'

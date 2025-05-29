@@ -110,7 +110,7 @@ A number of authentication modes are supported when running routes. These authen
   }
   ```
 
-* `api-query-params`: adds user-defined headers for API authentication. Here is an example to creating a route configured with `api-query-params` authentication:
+* `api-query-params`: adds user-defined query parameters for API authentication. Here is an example to creating a route configured with `api-query-params` authentication:
 
   ```json
   {
@@ -207,3 +207,12 @@ GET /api/routes/postman-wildcard/run/get
 POST /api/routes/{id}/run/post
 POST /api/routes/postman-wildcard/run/post
 ```
+
+## The Route Manager app { #route_manager_app }
+
+The core team has developed the _Route Manager app_ to provide a user interface for managing routes through the Route API.
+
+You can view the documentation for the app [here](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/maintaining-the-system/route-manager.html).
+
+![Routes Manager app](./resources/images/route-manager/route-manager-list.png)
+
