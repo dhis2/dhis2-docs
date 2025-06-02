@@ -106,7 +106,7 @@ Several other roles play an essential part in DHIS2 management and upgrades, inc
 #### **1. Backup Everything**
 
 - **Database Backup**: Use `pg_dump` to create a full backup of your PostgreSQL database, ensure its tested and stored off-site.
-- **DHIS2 Files Backup**: Backup the DHIS2 home directory, configuration files, and any custom scripts.
+- **DHIS2 Files Backup**: Backup the DHIS2 home directory, configuration files, filestore and any custom scripts.
 - **Server Snapshot**: If running on a virtualized or cloud environment, take a full system snapshot for quick rollback if needed.
 
 #### **2. Review Compatibility and System Requirements**
@@ -226,7 +226,7 @@ There are several methods to perform database backups, with the `pg_dump` utilit
 
 #### Important items to back up before an upgrade.
 
-- *Databases* - All dhis2 database backup, created with `pg_dump`
+- *Databases* - Full dhis2 database backup, created with `pg_dump`
 - dhis.conf, and sometimes it has database encryption password
 - application static files e.g custom logos etc
 - dhis2.war file, -- especially if its been majorly customized, ensure you have its backup. Also, take note of its version information.
@@ -244,7 +244,7 @@ There are several methods to perform database backups, with the `pg_dump` utilit
 - **Documentation:** Document your restore procedures and keep them in an easily accessible location. This can save valuable time during a crisis.
 - **Cloud Backups:** Utilize cloud-based backup solutions for scalability, redundancy, and ease of access.
 - **Snapshot Backups:** If your infrastructure supports it, use snapshot backups to create point-in-time copies of your data and systems.
-- **Compression:* Compress your backups to reduce storage requirements and speed up backup and restore processes.
+- **Compression:** Compress your backups to reduce storage requirements and speed up backup and restore processes.
 
 #### Backup Restore Tips:
 
