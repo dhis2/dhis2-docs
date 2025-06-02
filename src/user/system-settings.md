@@ -8,16 +8,25 @@ Table: General settings
 
 | Setting | Description |
 |---|--|
+| **Maximum number of analytics records** | Increase this number to provide more records from the analytics.<br> <br>The default value is 50,000.<br>      <br>    **Warning**<br>     <br>    Use the setting **Unlimited** carefully, it might result in a very high load on your server. |
+| **Maximum number of SQL view records** | Set the maximum number of records in a SQL view.<br> <br>The default value is Unlimited. |
+| **Maximum number of Tracked Entity records that can be fetched from database** | Sets the limit on maximum tracked entity records that can be fetched from database. If user does not provide any value then default value which is 50,000 will be used.<br>Setting this to 0 or any negative integer will disable this setting. <br>**Warning**<br>Disabling this setting may result in high load on the server.|
 | **Infrastructural indicators** | Defines an indicator group where the member indicators should describe data about the organisation units' infrastructure.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
 | **Infrastructural data elements** | Defines a data element group where the member data elements should describe data about the organisation units' infrastructure.<br> <br>Infrastructural data elements can be population, doctors, beds, Internet connectivity and climate.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
 | **Infrastructural period type** | Sets the frequency for which the data elements in the infrastructural data elements group are captured.<br> <br>This will typically be yearly. When viewing the infrastructural data you will be able to select the time period of the data source.<br> <br>You can view the infrastructural data in the **GIS** app: right-click a facility and click **Show information**. |
 | **Default relative period for analysis** | Setting this value will determine which relative period is selected as the default in the analytics apps. |
 | **Feedback recipients** | Defines a user group where the members will receive all messages sent via the feedback function in the **Dashboard** app.<br> <br>This will typically be members of the super user team who are able to support and answer questions coming from end-users. |
-| **System update notification recipients** | Defines a user group where the members will receive messages about new system updates available for download, the recipients will only receive the message once for each new patch version of the DHIS2 installation. If no such user group is defined, the system defaults to sending it to all users that have the ALL authority.                                                                                                                                                                             |
+| **System update notification recipients** | Defines a user group where the members will receive messages about new system updates available for download, the recipients will only receive the message once for each new patch version of the DHIS2 installation that is available for download. If no such user group is defined, the system defaults to sending it to all users that have the ALL authority.
+
+It is also possible to disable this feature altogether by setting the "system.update_notifications_enabled" configuration variable to "off", in the "dhis.conf" file.
+
+Under the hood, it works by calling (GET, with no parameters) on a REST API endpoint on a central server every day around 2:00 AM.
+
+This is the URL: [https://releases.dhis2.org/v1/versions/stable.json](https://releases.dhis2.org/v1/versions/stable.json)
+                                                                                |
 | **Max offline organisation unit levels** | Defines how many levels in the organisation unit hierarchy will be available offline in the organisation unit tree widget.<br> <br>Under normal circumstances you can leave this on the lowest level, which is default is the default setting.<br> <br>It can be useful to set it to a higher level to reduce initial load time in cases where you have a large number of organisation units, typically more than 30 000. |
 | **Data analysis std dev factor** | Sets the number of standard deviations used in the outlier analysis performed on the captured data in the **Data Entry** app.<br> <br>The default value is 2. A high value will catch less outlier values than a low value. |
 | **Phone number area code** | The area code for the area in which your deployment is located.<br> <br>Used for sending and receiving SMS. Typically, this is a country code.<br> <br>*+260* (country code for Zambia) |
-| **Enable multi-organisation unit forms** | Enables support to enter data forms for multiple organisation units at the same time in the **Data Entry** app.<br> <br>If you've enabled this setting, you can in the **Data Entry** app, click on the parent organisation unit for the children that you want to enter data for, and the data set list will include data sets that are assigned to the children of that parent. |
 | **Acceptance required before approval** | When this setting is selected, acceptance of data will be required first before submission to the next approval level is possible. |
 | **Gather analytical object statistics in dashboard views** | Gather usage analytics data when analytical objects (e.g., maps, charts, etc.) are viewed within a dashboard. Without this setting, analytics data on the objects  is gathered only when the objects are viewed outside of a dashboard. |
 | **Include passive dashboard views in usage analytics statistics** | Gather usage analytics data on the first dashboard shown when the Dashboard app is launched (otherwise only explicit dashboard selections are counted). |
@@ -30,9 +39,9 @@ Table: Analytics settings
 
 | Setting | Description |
 |---|---|
-| **Default relative period for analysis** | Defines the relative period to use by default in analytics app: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. The relative period will be automatically selected when you open these apps.<br> <br>Recommended setting: the most commonly used relative period among your users. |
-| **Property to display in analysis modules** | Sets whether you want to display the metadata objects' names or short names in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Property to display in analysis modules**. |
-| **Default digit group separator to display in analysis modules** | Sets the default digit group separator in the analytics apps: **Data Visualizer**, **Event Reports**, **Event Visualizer**, **GIS** and **Pivot Table** apps. Updating this system setting does not affect already saved visualizations. |
+| **Default relative period for analysis** | Defines the relative period to use by default in analytics apps such as the **Data Visualizer app** and **Maps app**. The relative period will be automatically selected when you open these apps.<br> <br>Recommended setting: the most commonly used relative period among your users. |
+| **Property to display in analysis modules** | Sets whether you want to display the metadata objects' names or short names in analytics apps such as the **Data Visualizer app**, **Maps app** and **Line Listing app**.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Property to display in analysis modules**. |
+| **Default digit group separator to display in analysis modules** | Sets the default digit group separator in analytics apps such as the **Data Visualizer app** and **Line Listing app**. |
 | **Hide daily periods** | Hide daily periods in the analysis tools |
 | **Hide weekly periods** | Hide weekly periods in the analysis tools |
 | **Hide monthly periods** | Hide monthly periods in the analysis tools |
@@ -45,11 +54,13 @@ Table: Analytics settings
 | **Max number of years to hide unapproved data in analytics** | Sets whether and for how long back in time analytics should respect the approval level of the data. Typically, data which is several years old would be considered to be approved by default. In order to speed up analytics requests, you can choose to ignore the actual approval level of historical data.<br> <br>**Never check approval**: no data will be hidden, irrespective of its data approval status.<br> <br>**Check approval for all data**: approval status will always be checked.<br> <br>Other options, for example **Last 3 years**: approval status will be checked for data which is newer than 3 years old; older data will not be checked. |
 | **Respect category option start and end date in analytics table export** | This setting controls whether analytics should filter data which is associated with a category option with a start and end date, but which is not associated with a period within the category options interval of validity. |
 | **Include zero data values in analytics tables** | This setting allows for including zero values in analytics tables. This only applies to data elements where the **Store zero data values** property is enabled. Note that setting **Store zero data values** on large numbers of data elements is strongly discouraged, as it can fill the analytics tables with zeros and cause unnecessary performance overhead.|
-| **Enable embedded dashboards** | If enabled, users are presented with two modes of dashboard creation when creating a new dashboard: 1) Internal: the existing dashboard creation flow, based on data from the current instance. or 2) 2) External: Embed a dashboard built from data external to the instance.
-| **Allow users to switch dashboard favorite view type** | Allows users to switch dashboard favorites' view between charts, pivot tables and maps, using the dashboard item menu. |
-| **Allow users to open dashboard favorite in relevant app** | Allows users to open dashboard items in the app for that type of item, using the dashboard item menu. |
-| **Allow users to show dashboard favorite interpretations and details** | Allows users to see dashboard favorites' interpretations and details, using the dashboard item menu. |
-| **Allow users to view dashboard favorite in fullscreen** | Allows users to view dashboard favorites in fullscreen, using the dashboard item menu. |
+| **Enable embedded dashboards** | If enabled, users are presented with two modes of dashboard creation when creating a new dashboard: 1) Internal: the existing dashboard creation flow, based on data from the current instance. or 2) External: Embed a dashboard built from data external to the instance.
+| **Allow users to switch dashboard item view type** | Allows users to switch dashboard items' view between charts, pivot tables and maps, using the dashboard item menu. |
+| **Allow users to open dashboard item in relevant app** | Allows users to open dashboard items in the app for that type of item, using the dashboard item menu. |
+| **Allow users to show dashboard item interpretations and details** | Allows users to see dashboard items' interpretations and details, using the dashboard item menu. |
+| **Allow users to view dashboard item in fullscreen** | Allows users to view dashboard item in fullscreen, using the dashboard item menu. |
+| **Org unit group set in facility map layers** | Defines the default organisation unit group set which can be used to style facilities, with icons, when using the maps application. |
+| **Org unit level in facility map layers** | Defines the default level for Facility layers when using the maps application. Organisation units for the default level will be displayed, unless a user selects a different level for a given layer. |
 | **Default basemap** | Select which basemap will be selected by default in the **Maps** app. If no value is selected, then **OSM Light** will be used.|
 
 ## Server settings { #system_server_settings } 
@@ -66,15 +77,6 @@ Table: Server settings
 | **Google Maps API key** | Defines the API key for the Google Maps API. Use this key to view Google map layers in DHIS2. Note that there is a different key setup for enabling Google Earth Engine layers in the DHIS2 Maps app. See [documentation](https://docs.dhis2.org/en/topics/tutorials/google-earth-engine-sign-up.html). |
 | **Bing Maps API key** | Defines the API key for the Bing Maps API. Add this key to enable use of Bing basemaps in the DHIS2 Maps app. See [Bing Maps API key documentation](https://www.microsoft.com/en-us/maps/bing-maps/create-a-bing-maps-key) for information on setting up the key. |
 
-Table: Limit settings
-
-| Setting | Description |
-|---|---|
-| **Maximum number of analytics records** | Increase this number to provide more records from the analytics.<br> <br>The default value is 50,000.<br>      <br>    **Warning**<br>     <br>    Use the setting **Unlimited** carefully, it might result in a very high load on your server. |
-| **Maximum number of SQL view records** | Set the maximum number of records in a SQL view.<br> <br>The default value is Unlimited. |
-| **Maximum number of Tracked Entity Instance that can be fetched from database** | Sets the limit on maximum tracked entity instance records that can be fetched from database. If user does not provide any value then default value which is 50,000 will be used.<br>Setting this to 0 or any negative integer will disable this setting. <br>**Warning**<br>Disabling this setting may result in high load on the server.|
-
-
 
 ## Appearance settings { #system_appearance_settings } 
 
@@ -85,12 +87,12 @@ Table: Appearance settings
 | Setting | Description |
 |---|---|
 | **Select language** | Sets the language for which you can then enter translations of the following settings:<br>       * **Application introduction**<br> * **Application title**<br> * **Application notification**<br> * **Application left-side footer**<br> * **Application right-side footer**      <br>    **Note**     <br>    Before each of these settings can accept a translated value, they first need to have a default/fallback value. This value can be set by selecting *System default (fallback)* in this dropdown. |
-| **Application title** | Sets the application title on the top menu. |
 | **Application introduction** | Sets an introduction of the system which will be visible on the top-left part of the login page. |
+| **Application title** | Sets the application title on the top menu. |
 | **Application notification** | Sets a notification which will be visible on the front page under the login area. |
 | **Application left-side footer** | Sets a text in the left-side footer area of the login page. (When using a language written in a right-to-left script, such as Arabic, this will be in the right-footer area of the login page.) |
 | **Application right-side footer** | Sets a text in the right-side footer area of the login page. ((When using a language written in a right-to-left script, such as Arabic, this will be in the left-footer area of the login page.) |
-| **Style** | Sets the style (look-and-feel) of the system.<br> <br>The user can override this setting in the **Settings** app: **User settings** \> **Style**.<br>      <br>    **Note**<br>     <br>    Due to technical reasons, it's not possible to change the color of the newest version of the header bar. The apps with the newest header bar will retain the blue header bar. |
+| **Style (Android)** | This setting influences the style (look and feel) of the DHIS2 android app. This style in general does not apply to web apps. |
 | **Start page** | Sets the page or app which the user will be redirected to after log in.<br> <br>Recommended setting: the **Dashboard** app. |
 | **Enable light-weight start page** | Instructs apps to render a light-weight and fast landing page. Recommended in low-bandwidth environments. |
 | **Help page link** | Defines the URL which users will see when they click **Profile** \>**Help**. |
@@ -101,6 +103,7 @@ Table: Appearance settings
 | **Custom login page logo** | Select this option and upload an image to add your logo to the login page. |
 | **Login page theme** | This lets you select between the default layout, the sidebar layout, or a custom layout for the login app. If you select a custom layout, you need to provide a custom template in the "Login page template" section. |
 | **Login page template** | Here you can paste the HTML to define the layout  and style of the login page. More details for how to define the template are available in the developer documentation. |
+| **Enable Global Shell** | When this property is enabled (set to true, the default), the global shell provides a common interface and navigation tools across all DHIS2 web applications. |
 
 ## Email settings { #system_email_settings } 
 
@@ -120,8 +123,6 @@ Table: Email settings
 
 ## Access settings { #system_access_settings } 
 
-
-
 Table: Access settings
 
 | Setting | Description |
@@ -130,17 +131,31 @@ Table: Access settings
 | **Self registration account organisation unit** | Defines which organisation unit should be associated with self-registered users.<br>      <br>    **Note**<br>     <br>    To enable self-registration, you must also select a **Self registration account user role**. |
 | **Do not require reCAPTCHA for self registration** | Defines whether you want to use reCAPTCHA for user self-registration. This is enabled by default. |
 | **Enable user account recovery** | Defines whether users can restore their own passwords.<br> <br>When this setting is enabled, a link to the account recovery form will be displayed on the front page.<br>      <br>    **Note**<br>     <br>    User account recovery requires that you have configured email settings (SMTP). |
+| **Enforce Verified Email** | Controls whether users must verify their email addresses before accessing the system. This setting can only be enabled if the system is configured to send emails (SMTP).<br> <br>**Note**:<br> If the **keyEmailHostName** or **keyEmailUserName** values are not set in the settings app, the **Enforce Verified Email** checkbox will be disabled and cannot be set to **true**. If these SMTP settings are missing, **Enforce Verified Email** can be set to **false** (if already set to **true**) but cannot be enabled until the required email settings are configured. |
 | **Lock user account temporarily after multiple failed login attempts** | Defines whether the system should lock user accounts after five successive failed login attempts over a timespan of 15 minutes.<br> <br>The account will be locked for 15 minutes, then the user can attempt to log in again. |
 | **Allow users to grant own user roles** | Defines whether users can grant user roles which they have themselves to others when creating new users. |
 | **Allow assigning object to related objects during add or update** | Defines whether users should be allowed to assign an object to a related object when they create or edit metadata objects.<br> <br>You can allow users to assign an organisation unit to data sets and organisation unit group sets when creating or editing the organisation unit. |
 | **Require user account password change** | Defines whether users should be forced to change their passwords every 3, 6 or 12 months.<br> <br>If you don't want to force users to change password, select **Never**. |
-| **Enable password expiry alerts** | When set, users will receive a notification when their password is about to expire. |
+| **Send reminders to users before their password expires** | When set, users will receive a notification when their password is about to expire. |
+| **Number of days before password expiry to send reminder** | This setting will be displayed if you choose to send reminders to users before their password expires. You can choose to send the email between 1 and 28 days before password expiry. |
 | **Minimum characters in password** | Defines the minimum number of characters users must have in their passwords.<br> <br>You can select 8 (default), 10, 12 or 14. |
 | **CORS allowlist** | allowlists a set of URLs which can access the DHIS2 API from another domain. Each URL should be entered on separate lines. Cross-origin resource sharing (CORS) is a mechanism that allows restricted resources (e.g. javascript files) on a web page to be requested from another domain outside the domain from which the first resource was served. |
 
+
+## Notification settings { #system_notification_settings }
+
+Table: Notification settings
+
+| Setting                       | Description                                                             |
+|-------------------------------|-------------------------------------------------------------------------|
+| **notifierLogLevel**          | The level of messages to include in the log/list, default `DEBUG` (all) |
+| **notifierMaxMessagesPerJob** | Each job can at most have this amount of messages in its list (soft enforced allowing momentary exceeding the limit by a few); default is `500` |
+| **notifierMaxAgeDays**        | Job data older than this number of days is discarded (soft enforced, cleanup after 1 minute of idle); default is `7` |
+| **notifierMaxJobsPerType**    | If per job type there are more than this number of jobs with data the oldest are discarded to get below this limit (soft enforced, cleanup after 1 minute idle); default is `500` |
+| **notifierCleanAfterIdleTime** | The time in milliseconds the notifier has to be idle (not moving messages from queue to store) before an automatic store cleanup is run using the `notifierMaxAgeDays` and `notifierMaxJobsPerType` as caps; default is `60`sec |
+| **notifierGistOverview** | When `true` the overview pages will only show the first and last message of the list for each job; default `true` |
+
 ## Calendar settings { #system_calendar_settings } 
-
-
 
 Table: Calendar settings
 
@@ -205,27 +220,9 @@ app.
 
 2.  Click the add button.
 
-3.  Enter **Name**, **Client ID** and **Client secret**.
+3.  Enter **Client ID** and **Client secret**.
 
-4.  Select **Grant types**.
-
-
-    | Grant type | Description |
-    |---|---|
-    | **Password** | TBA |
-    | **Refresh token** | TBA |
-    | **Authorization code** | TBA |
+4.  Select **Grant types**: Refresh token, or Authorization code.
 
 5.  Enter **Redirect URIs**. If you've multiple URIs, separate them with
     a line.
-
-## System update notification { #system_update_notification_settings }
-
-The system will default send a notification in the mail inbox under the "system" category when there is a new patch version available for download. 
-This notification will be sent to the users who have the "ALL" authority, unless the "System update notification recipients" user group is defined, under the "General settings". 
-
-It is also possible to disable this feature altogether by setting the "system.update_notifications_enabled" configuration variable to "off", in the "dhis.conf" file.
-
-Under the hood, it works by calling (GET, with no parameters) on a REST API endpoint on a central server every day around 2:00 AM.
-
-This is the URL: [https://releases.dhis2.org/v1/versions/stable.json](https://releases.dhis2.org/v1/versions/stable.json)

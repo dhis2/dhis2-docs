@@ -152,7 +152,8 @@ Supported filter parameters include:
 * `created=<ISO-expression>` to match all validation results that were created within the provided period
 * `notificationSent=<boolean>` to match either only validation results for which a notification was or wasn't sent
 
-If filters are combined all conditions have to be true (AND logic).
+
+If filters are combined, all conditions have to be true (AND logic).
 
 Some examples:
 
@@ -183,7 +184,7 @@ This endpoint supports two algorithms for detecting outliers:
 
 * **Z-score:** The z-score is defined as the absolute deviation between the score and mean divided by the standard deviation. A threshold parameter referring to the number of standard deviations from the mean must be specified with the z-score algorithm to define the upper and lower boundaries for what is considered an outlier value.
 * **Modified Z-score:** Same as z-score except it uses the median instead of the mean as measure of central tendency. Parameters are same as for Z-score.
-* **Min-max:** Min-max data element values refers to custom boundaries which can be inserted in DHIS 2 based on data element, org unit and category option combination.
+* **Min-max:** Min-max data element values refers to custom boundaries which can be inserted in DHIS2 based on data element, org unit and category option combination.
 
 The outlier values will be *ordered according to significance*, by default by the absolute deviation from the mean, with the most significant value first. This is helpful to quickly identify the outlier values which have the biggest impact on data quality and data analytics.
 
@@ -203,7 +204,7 @@ The following query parameters are supported.
 | dataStartDate   | Start date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd). |
 | dataEndDate     | End date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd).   |
 | orderBy         | Field to order by. `Z_SCORE` and `MOD_Z_SCORE`algorithm only.| No        | `MEAN_ABS_DEV`, `Z_SCORE`                 |
-| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero. Default: 500. |
+| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero and less than system setting `keyDataQualityMaxLimit` Default: 500. |
 
 [*]  You must specify either data sets with the `ds` parameter, which will include all data elements in the data sets, _or_ specify data elements with the `de` parameter.
 
@@ -378,18 +379,30 @@ To run validation rules and retrieve violations:
 
 The following query parameters are supported:
 
-
-
 Table: Validation rule analysis query parameters
 
-| Query parameter | Description | Option |
-|---|---|---|
-| vrg | Validation rule group | ID |
-| ou | Organisation unit | ID |
-| startDate | Start date for the timespan | Date |
-| endDate | End date for the timespan | Date |
-| persist | Whether to persist violations in the system | false &#124; true |
-| notification | Whether to send notifications about violations | false &#124; true |
+| Query parameter | Description | Option | Required | Default |
+|---|---|---|---|
+| vrg | Validation rule group | ID | false | If omitted, all validation rule groups will be used |
+| ou | Organisation unit | ID |true | |
+| startDate | Start date for the time span | Date (yyyy-MM-dd) | false | Today |
+| endDate | End date for the time span | Date (yyyy-MM-dd) | false | Today |
+| persist | Whether to persist violations in the system | false &#124; true | false | false |
+| notification | Whether to send notifications about violations | false &#124; true | false | false |
+| maxResults | Max limit for the output | Integer, greater than zero. Maximum as specified by system setting `keyDataQualityMaxLimit`| false | 500 |
+
+Sample POST body request: 
+
+```json
+{
+    "startDate":"2024-01-01",
+    "endDate":"2025-04-10",
+    "ou":"ImspTQPwCqd",
+    "notification":false,
+    "persist":false,
+    "vrg":"UP1lctvalPn",
+    "maxResults": 500
+}
 
 Sample output:
 ```json
@@ -661,6 +674,39 @@ To get a list of the names of checks for which results are available already use
 
     GET /api/dataIntegrity/summary/completed
 
+### Retrieving completed checks as Prometheus metrics {#webapi_data_integrity_metrics}
+
+Metadata integrity checks which are present in the cache, can be retrieved in the Prometheus
+metrics format by making a request to :
+    GET /api/dataIntegrity/metrics
+
+The response should return a plain text format in the [Prometheus plain text exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format). Several metrics are available
+for each data integrity check.
+ - Count: A count of the number of issues identified by the metadata check. 
+ - Percentage: When available, provides a percentage of the objects which have been identified by the check relative to a baseline. For instance, if check "Organisation units with trailing spaces" has a percent of 2.13, the percentage is calculated by dividing the number of organisation units with trailing spaces by the total number of organisation units. Note that this percentage may not be available for all metadata integrity checks.
+ - Duration: Number of milliseconds that the check took to execute the last time it was run.
+
+An example of the output of this endpoint is provided below:
+
+```text
+# HELP dhis_data_integrity_check_count Data integrity check counts
+# TYPE dhis_data_integrity_check_count gauge
+dhis_data_integrity_check_count{check="orgunits_invalid_geometry"} 1
+dhis_data_integrity_check_count{check="user_groups_scarce"} 0
+dhis_data_integrity_check_count{check="indicator_no_analysis"} 13
+# HELP dhis_data_integrity_check_percentage Data integrity check percentages
+# TYPE dhis_data_integrity_check_percentage gauge
+dhis_data_integrity_check_percentage{check="orgunits_invalid_geometry"} 0.13054830287206268
+dhis_data_integrity_check_percentage{check="user_groups_scarce"} 0.0
+dhis_data_integrity_check_percentage{check="indicator_no_analysis"} 16.0
+# HELP dhis_data_integrity_check_duration Data integrity check durations
+# TYPE dhis_data_integrity_check_duration gauge
+dhis_data_integrity_check_duration{check="orgunits_invalid_geometry"} 11
+dhis_data_integrity_check_duration{check="user_groups_scarce"} 1
+dhis_data_integrity_check_duration{check="indicator_no_analysis"} 0
+```
+
+Data integrity checks which are not currently in the cache will not be returned by this endpoint.  A request would need to be made to the `/summary` endpoint to trigger the checks to be run or alternatively through a scheduled job.
 
 ### Running data integrity details { #webapi_data_integrity_run_details }
 

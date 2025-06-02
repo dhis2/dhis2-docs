@@ -93,26 +93,23 @@ server.https = off
 # System [Optional]
 # ----------------------------------------------------------------------
 
-# System identifier
-system.id = hmis1.country.org
-
-# System mode for database read operations only, can be 'off', 'on'
+# System mode for database read operations only, can be 'off', 'on'. (default: 'off').
 system.read_only_mode = off
 
-# Session timeout in seconds, default is 3600
+# Session timeout in seconds. (default: 3600)
 system.session.timeout = 3600
 
-# SQL view protected tables, can be 'on', 'off'
+# SQL view protected tables, can be 'on', 'off'. (default: 'on').
 system.sql_view_table_protection = on
 
-# SQL view write enabled, can be 'on', 'off'
+# SQL view write enabled, can be 'on', 'off'. (default: 'off').
 system.sql_view_write_enabled = off
 
-# Disable server-side program rule execution, can be 'on', 'off'
-system.program_rule.server_execution = on
-
 # Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
-system.remote_servers_allowed = https://server1.org/,https://server2.org/
+metadata.sync.remote_servers_allowed = https://server1.org/,https://server2.org/
+
+# Set the maximum size for the cache instance to be built. If set to 0, no caching will take place. Cannot be a negative value. (default: 0.5).
+system.cache.max_size.factor = 0.5
 
 # ----------------------------------------------------------------------
 # Encryption [Optional]
@@ -168,6 +165,9 @@ ldap.search.filter = (cn={0})
 
 # Node identifier, optional, useful in clusters
 node.id = 'node-1'
+
+# Primary leader. When true, the node will unconditionally set its node ID during leader election causing it to win the election as long as it is alive. Can be true or false (default: false)
+node.primary_leader = false
 
 # ----------------------------------------------------------------------
 # Monitoring [Optional]
@@ -284,6 +284,14 @@ apphub.api.url = https://apps.dhis2.org/api
 
 # Number of possible concurrent sessions across different clients per user
 max.sessions.per_user = 10
+
+# ----------------------------------------------------------------------
+# Route API [Optional]
+# ----------------------------------------------------------------------
+
+# Remote servers allowed to call from the route endpoint. Default is any HTTPS URL. Wildcards are allowed. 
+# e.g. route.remote_servers_allowed = https://server1.com/,https://server2.com/,https://192.168.*.*
+route.remote_servers_allowed = https://*
 ```
 
 Note that the configuration file supports environment variables. This
@@ -367,8 +375,18 @@ system.system.sql_view_write_enabled = on | off
 
 Enables or disables write permissions for SQL views. This will prohibit SQL view performing underlying writes (query can be a select which requires write permission). Enabling is not recommended. Can be `on` or `off`. Default is `off`.
 
+### Enable TOTP (OTP-based) 2FA:
+
+TOTP (Time-Based One-Time Password) uses apps like **Google Authenticator** or **Authy** to generate a time-sensitive one-time password. To enable TOTP 2FA, set the following:
+
 ```properties
-system.program_rule.server_execution = on | off
+login.security.totp_2fa.enabled = on
 ```
 
-Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
+### Enable Email-Based 2FA:
+
+Email-based 2FA sends a verification code to the user's email address during login. The user must enter this code to complete the login process. To enable email-based 2FA, set the following:
+
+```properties
+login.security.email_2fa.enabled = on
+```

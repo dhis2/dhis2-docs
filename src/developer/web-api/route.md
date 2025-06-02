@@ -8,9 +8,23 @@ For the examples here we will be using the [Echo API](https://learning.postman.c
 
 ### Required permissions
 
-In order to be able to configure and view the routes, the current user must either have "ALL" authority, or the "Route" authority should be added to the user's role. The authority can be added by heading to the User Management app -> User roles tab, then search for the word "Route" under Metadata authorities. Then you can assign the autorities to the user's role, and save the updates to the role.
+In order to be able to configure and view the routes, the current user must either have `ALL` authority, or the `Route` authority should be added to the user's role. The authority can be added by heading to the User Management app -> User roles tab, then search for the word "Route" under Metadata authorities. Then you can assign the authorities to the user's role, and save the updates to the role.
 
 ![](resources/images/routes/route-authorities.png)
+
+In addition to authorities, route URLs can only be added or run when the URL has a corresponding entry `route.remote_servers_allowed` setting found in the `dhis.conf` as shown below:
+
+```properties
+route.remote_servers_allowed = https://server1.com/,https://server2.com/
+```
+
+`route.remote_servers_allowed` is a comma-separated URL pattern list which is set to `https://*` by default. The DHIS2 administrator should change the default value to a more restricted URL to prevent server-side request forgery (SSRF) attacks. While not recommended for security reasons, one can add wildcard entries to `route.remote_servers_allowed` which avoids having to enumerate each allowed remote server, for example:
+
+```properties
+route.remote_servers_allowed = https://*.server1.com/
+```
+
+Note that paths within the URLs are not accepted.
 
 ### Running a route
 
@@ -96,7 +110,7 @@ A number of authentication modes are supported when running routes. These authen
   }
   ```
 
-* `api-query-params`: adds user-defined headers for API authentication. Here is an example to creating a route configured with `api-query-params` authentication:
+* `api-query-params`: adds user-defined query parameters for API authentication. Here is an example to creating a route configured with `api-query-params` authentication:
 
   ```json
   {
@@ -112,6 +126,24 @@ A number of authentication modes are supported when running routes. These authen
     }
   }
   ```
+
+* `oauth2-client-credentials`: performs [OAuth2 Client Credentials](https://datatracker.ietf.org/doc/html/rfc6749#section-4.4) flow and adds the resulting access token to the upstream request. Here is an example to creating a route configured with `oauth2-client-credentials` authentication:
+
+  ```json
+  {
+    "name": "Postman Echo",
+    "code": "postman-get",
+    "disabled": false,
+    "url": "https://postman-echo.com/get",
+    "auth": {
+      "type": "oauth2-client-credentials",
+      "clientId": "alice",
+      "clientSecret": "passw0rd",
+      "tokenUri": "https://token-service/token"
+    }
+  }
+  ```
+
 
 ### Running a route with authentication and custom authority
 
@@ -175,3 +207,12 @@ GET /api/routes/postman-wildcard/run/get
 POST /api/routes/{id}/run/post
 POST /api/routes/postman-wildcard/run/post
 ```
+
+## The Route Manager app { #route_manager_app }
+
+The core team has developed the _Route Manager app_ to provide a user interface for managing routes through the Route API.
+
+You can view the documentation for the app [here](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/maintaining-the-system/route-manager.html).
+
+![Routes Manager app](./resources/images/route-manager/route-manager-list.png)
+

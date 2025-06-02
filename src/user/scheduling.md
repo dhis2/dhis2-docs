@@ -37,7 +37,7 @@ manually". This action is only available for enabled jobs and queues.
     either **Cron** scheduling or **Delay** scheduling.
 
     1.  For **Cron** scheduled job types you can set a schedule using the
-        [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
+        [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronExpression.html)
         syntax. You can also select a predefined **Cron expression** by clicking
         "Choose from preset times". This schedule will only start a new job run
         if the previous job run has finished, to prevent the system from
@@ -283,7 +283,7 @@ Some aspects of the data synchronization feature to be aware of:
 
 - The authority
   `Ignore validation of required fields in Tracker and Event Capture`
-  (`F\_IGNORE\_TRACKER\_REQUIRED\_VALUE\_VALIDATION`) should be used when there
+  (`F_IGNORE_TRACKER_REQUIRED_VALUE_VALIDATION`) should be used when there
   is a requirement that some mandatory attribute / data element has at the same
   time a "Skip synchronization" property turned on. Such a setting will lead to
   validation failure on the central server as the given attribute / data element
@@ -490,7 +490,7 @@ See [Data Administration](#data_admin_data_integrity) for more information about
 1.  Choose a suitable **Name** for the new queue.
 
 1.  Select a cron schedule for the queue. Queues can be scheduled using the
-    [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html)
+    [Spring scheduling](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronExpression.html)
     syntax, just like jobs. You can also select a predefined **Cron expression**
     by clicking "Choose from preset times".
 

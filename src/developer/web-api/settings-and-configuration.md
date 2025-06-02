@@ -127,7 +127,6 @@ Table: System settings
 | keyCacheStrategy | Cache strategy. Default: "CACHE_6AM_TOMORROW" | No |
 | keyCacheability | PUBLIC or PRIVATE. Determines if proxy servers are allowed to cache data or not. | No |
 | phoneNumberAreaCode | Phonenumber area code | No |
-| multiOrganisationUnitForms | Enable multi-organisation unit forms. Default: "false" | No |
 | keyAccountRecovery | Enable user account recovery. Default: "false" | No |
 | keyLockMultipleFailedLogins | Enable locking access after multiple failed logins | No |
 | googleAnalyticsUA | Google Analytic UA key for tracking site-usage | No |
@@ -141,15 +140,17 @@ Table: System settings
 | recaptchaSite | Google API recaptcha site. Default: dhis2 play instance API site, but this will only works on you local instance and not in production. | No |
 | keyCanGrantOwnUserAuthorityGroups | Allow users to grant own user roles. Default: "false" | No |
 | keySqlViewMaxLimit | Max limit for SQL view | No |
+| keyDataQualityMaxLimit | Max limit for data quality results. Must be between zero and 50,000. | No |
 | keyRespectMetaDataStartEndDatesInAnalyticsTableExport | When "true", analytics will skip data not within category option's start and end dates. Default: "false" | No |
 | keySkipDataTypeValidationInAnalyticsTableExport | Skips data type validation in analytics table export | No |
 | keyCustomLoginPageLogo | Logo for custom login page | No |
 | keyCustomTopMenuLogo | Logo for custom top menu | No |
+| globalShellEnabled | When this property is enabled (set to true), apps will be displayed as iframes within a global shell. This global shell provides a consistent header bar across the system which has expanded functionalities compared to the original header bar. Default: true. | No |
 | keyCacheAnalyticsDataYearThreshold | Analytics data older than this value (in years) will always be cached. "0" disabled this setting. Default: 0 | No |
 | analyticsFinancialYearStart | Set financial year start. Default: October | No |
 | keyIgnoreAnalyticsApprovalYearThreshold | "0" check approval for all data. "-1" disable approval checking. "1" or higher checks approval for all data that is newer than "1" year. | No |
 | keyAnalyticsMaxLimit | Maximum number of analytics records. Default: "50000" | No |
-| KeyTrackedEntityMaxLimit | Maximum number of tracked entities. Default: "50000" | No |
+| KeyTrackedEntityMaxLimit | Maximum number of tracked entities that are returned by `/tracker/trackedEntities`. More info [here](tracker.md#tracked-entities-collection-limits). Default: "50000" | No |
 | keyAnalyticsMaintenanceMode | Put analytics in maintenance mode. Default: "false" | No |
 | keyAnalyticsPeriodYearsOffset | Defines the years' offset to be used in the analytics export process. If the year of a respective date is out of the offset the system sends back a warning message during the process. At this point, the period generation step is skipped. ie.: suppose the system user sets the offset value to `5`, and we are in the year 2023. It means that analytics will accept exporting dates from 2018 (inclusive) to 2028 (inclusive). Which translates to: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028]. NOTE: The offset will have a significant influence on resource usage. Higher values will trigger higher usage of memory RAM/HEAP and CPU. Setting negative numbers to this key will disable any kind of validation (which means no warnings) and the internal range of years will be used (1970 to current year plus 10) Default: 22 | No |
 | keyDatabaseServerCpus | Number of database server CPUs. Default: "0" (Automatic) | No |
@@ -189,7 +190,7 @@ Table: System settings
 | keyCustomCss | Custom CSS to be used on the website | No |
 | keyCalendar | The calendar type. Default: "iso8601". | No |
 | keyDateFormat | The format in which dates should be displayed. Default: "yyyy-MM-dd". | No |
-| keyStyle | The style used on the DHIS2 webpages. Default: "light_blue/light_blue.css". | No |
+| keyStyle | The style used by the DHIS2 Android app. Default: "light_blue/light_blue.css". | No |
 | keyRemoteInstanceUrl | Url used to connect to remote instance | No |
 | keyRemoteInstanceUsername | Username used to connect to remote DHIS2 instance | No |
 | keyRemoteInstancePassword | Password used to connect to remote DHIS2 instance | No |
@@ -221,7 +222,7 @@ Table: System settings
 | keyDashboardContextMenuItemShowInterpretationsAndDetails | Allow users to show dashboard favorites' interpretations and details | Yes |
 | keyDashboardContextMenuItemViewFullscreen | Allow users to view dashboard favorites in fullscreen | Yes |
 | jobsRescheduleAfterMinutes | If a job is in state `RUNNING` for this amount of minutes or longer without making progress in form of updating its `lastAlive` timestamp the job is considered stale and reset to `SCHEDULED` state | No |
-| jobsCleanupAfterMinutes | A "run once" job is deleted when this amount of minutes has passed since it finished successful or unsuccessful | No |                                                                                                                                                                                                                        
+| jobsCleanupAfterMinutes | A "run once" job is deleted when this amount of minutes has passed since it finished successful or unsuccessful | No |
 | jobsMaxCronDelayHours | A CRON expression triggered job will only trigger in the window between its target time of the day and this amount of hours later. If it wasn't able to run in that window the execution is skipped and next execution according to the CRON expression is the next target execution | No |
 | jobsLogDebugBelowSeconds | A job with an execution interval below this number of seconds logs its information on debug rather than info | No |
 | keyParallelJobsInAnalyticsTableExport | Returns the number of parallel jobs to use for processing analytics tables. It takes priority over "keyDatabaseServerCpus". Default: -1 | No |
@@ -563,4 +564,10 @@ The appearance of the login dialog can also be modified by defining css variable
 --form-title-font-size
 --form-title-font-weight
 --form-container-title-color
+```
+
+You can reset the login page theme using the API by making a *POST* request to ```/api/41/systemSettings/loginPageLayout``` including the loginPageLayout DEFAULT or SIDEBAR value in the request body, where content type is set to "text/plain". As an example, you can use curl like this:
+
+```bash
+curl "play.im.dhis2.org/stable-2-41-0/api/41/systemSettings/loginPageLayout" -d "DEFAULT" -H "Content-Type: text/plain" -u admin:district
 ```

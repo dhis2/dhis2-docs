@@ -93,8 +93,7 @@ Common log levels are `DEBUG`, `INFO`, `WARN` and `ERROR`.
 DHIS2 writes entries to changelogs when certain entities were changed in the
 system. The entities fall within two categories: _Aggregate_ and _tracker_. The
 _aggregate_ category includes changes to aggregate data values. The _tracker_
-category includes changes to program instances, program temporary ownership
-items, tracked entity attribute values and tracked entity data values.
+category includes changes to tracked entity attribute values and event data values.
 
 The changelog for both categories are enabled by default. You can control
 whether to enable or disable the changelog by category through the `dhis.conf`
@@ -108,9 +107,9 @@ database, and less database storage used. It is recommended to enable
 changelog, and great care should be taken if disabling it.
 
 ```properties
-# Aggregate changelog, can be 'on', 'off'
+# Aggregate changelog, can be 'on' (default), 'off'
 changelog.aggregate = on
 
-# Tracker changelog, can be 'on', 'off'
+# Tracker changelog, can be 'on' (default), 'off'
 changelog.tracker = on
 ```

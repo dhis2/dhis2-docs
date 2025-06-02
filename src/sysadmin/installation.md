@@ -1350,7 +1350,7 @@ system.program_rule.server_execution = on | off
 Enables or disables execution of server-side program rules. This refers to program rules which have actions for assigning values, sending messages or scheduling messages to be sent. Can be `on` or `off`. Default is `on`.
 
 ```properties
-system.remote_servers_allowed = https://server1.org/,https://server2.org/
+metadata.sync.remote_servers_allowed = https://server1.org/,https://server2.org/
 ```
 
 Sets the allowed list of servers to be called in relation to the [metadata pull](#webapi_sync_metadata_pull) functionality. It accepts comma-separated values, and it's recommended that each server end with a `/` for enhanced security. Default value is empty.
@@ -1792,9 +1792,6 @@ server.https = off
 # System [Optional]
 # ----------------------------------------------------------------------
 
-# System identifier
-system.id = hmis1.country.org
-
 # System mode for database read operations only, can be 'off', 'on'
 system.read_only_mode = off
 
@@ -1811,7 +1808,7 @@ system.sql_view_write_enabled = off
 system.program_rule.server_execution = on
 
 # Remote servers which the server is allowed to call, hostnames should end with '/', default is empty
-system.remote_servers_allowed = https://server1.org/,https://server2.org/
+metadata.sync.remote_servers_allowed = https://server1.org/,https://server2.org/
 
 # ----------------------------------------------------------------------
 # Encryption [Optional]
@@ -2011,6 +2008,14 @@ metadata.categories.max_per_combo = 5
 # The maximum for the product of the number of options of the categories in a category combo
 # Must always be >= metadata.categories.max_options
 metadata.categories.max_combinations = 500
+
+# ----------------------------------------------------------------------
+# Route API [Optional]
+# ----------------------------------------------------------------------
+#
+# Remote servers allowed to call from the route endpoint. Default is any HTTPS URL. Wildcards are allowed. 
+# e.g. route.remote_servers_allowed = https://server1.com/,https://server2.com/,https://192.168.*.*
+route.remote_servers_allowed = https://*
 ```
 
 ## Changelog { #install_changelog } 

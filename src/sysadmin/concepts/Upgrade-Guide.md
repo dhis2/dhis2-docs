@@ -1,4 +1,4 @@
-# DHIS2 upgrade guide (Technical)
+# DHIS2 Upgrade Guide for System Administrators
 
 ## Introduction
 
