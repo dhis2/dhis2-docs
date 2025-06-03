@@ -819,7 +819,9 @@ These endpoints will return either the log related to the import or the import s
 After submitting a tracker import request, we can access the following endpoints in order to monitor
 the job progress based on logs:
 
-`GET /tracker/jobs/{uid}`
+```
+GET /tracker/jobs/{uid}
+```
 
 | Parameter|Description|Example
 |---|---|---|
@@ -827,7 +829,9 @@ the job progress based on logs:
 
 #### Request example
 
-`GET /tracker/jobs/PQK63sMwjQp`
+```
+GET /tracker/jobs/PQK63sMwjQp
+```
 
 #### Response example
 
@@ -1115,7 +1119,7 @@ not found.
 The stats object provides an overview of the import operation. After an import is completed, these will be the
 actual counts displaying how many objects were created, updated, deleted and ignored.
 
-Example:
+Example response:
 
 ```json
 {
@@ -1329,7 +1333,7 @@ to provide a better understanding if validation fails for your import.
 #### Required properties
 
 Each of the tracker objects has a few required properties that need to be present when importing
-data. For an exhaustive list of required properties, have a look at the [Tracker Object
+data. For an exhaustive list of required properties, have a look at the [tracker objects
 section](#webapi_tracker_objects).
 
 When validating required properties, we are usually talking about references to other data or
@@ -1355,18 +1359,18 @@ on which property has a wrong format. Some examples of properties that are valid
 
 #### User access
 
-All data imported will be validated based on the metadata  ([Sharing](#webapi_tracker_metadata_sharing))
-and the organisation units ([Organisation Unit Scopes](#webapi_tracker_orgunit_scope)) referenced in the
+All data imported will be validated based on the metadata ([sharing](#webapi_tracker_metadata_sharing))
+and the organisation units ([scopes](#webapi_tracker_orgunit_scope)) referenced in the
 data. You can find more information about sharing and organisation unit scopes in the following
 sections.
 
 Sharing is validated at the same time as references are looked up in the database. Metadata outside
-of the user's access will be treated as if it doesn't exist. The import will validate any metadata
+of the user access scope will be treated as if it does not exist. The import will validate any metadata
 referenced in the data.
 
 Organisation units, on the other hand, serve a dual purpose. It will primarily make sure that data
-can only be imported when imported for an organisation unit the user has within their "capture
-scope". Secondly, organisation units are also used to restrict what programs are available. That
+can only be imported when imported for an organisation unit the user has within their capture
+scope. Secondly, organisation units are also used to restrict what programs are available. That
 means if you are trying to import data for an organisation unit that does not have access to the
 Program you are importing, the import will be invalid.
 
@@ -1402,11 +1406,10 @@ The last part of validations in the importer are validations based on the user's
 relevant metadata. For more information about each configuration, check out the relevant sections.
 Some examples of configurable validations:
 
-- Feature type (For geometry)
+- Feature type (geometry)
 - User-assignable events
 - Allow future dates
 - Enroll once
-- And more.
 
 These configurations will further change how validation is performed during import.
 
@@ -1527,7 +1530,7 @@ expired.
 
 ### Program rules { #webapi_tracker_program_rules }
 
-Users can configure [Program Rules](#webapi_program_rules), which adds conditional behavior to
+Users can configure [program rules](#webapi_program_rules), which adds conditional behavior to
 tracker forms. In addition to running these rules in the tracker apps, the tracker importer will
 also run a selection of these rules. Since the importer is also running these rules, we can ensure
 an additional level of validation.
@@ -1561,8 +1564,8 @@ The results of the program rules depend on the actions defined in those rules:
 
 * Program rule actions may end in 2 different results: Warnings or Errors.
 * Errors will make the validation fail, while the warnings will be reported as a message in the import summary.
-    * SHOWWARNING and WARNINGONCOMPLETION actions can generate only Warnings.
-    * SHOWERROR, ERRORONCOMPLETION, and SETMANDATORYFIELD actions can generate only Errors.
+    * `SHOWWARNING` and `WARNINGONCOMPLETION` actions can generate only Warnings.
+    * `SHOWERROR`, `ERRORONCOMPLETION`, and vSETMANDATORYFIELD` actions can generate only Errors.
     * ASSIGN action can generate both Warnings and Errors.
     * When the action is assigning a value to an empty attribute/data element, a warning is generated.
     * When the action is assigning a value to an attribute/data element that already has the same value to be assigned, a warning is generated.
@@ -1688,14 +1691,18 @@ filter](#webapi_metadata_field_filter) for a more complete guide on how to use `
 ##### Examples
 
 |Parameter example|Meaning|
-|:---|:---|
+|---|---|
 |`fields=*`|returns all fields|
 |`fields=createdAt,uid`|only returns fields `createdAt` and `uid`|
 |`fields=enrollments[*,!uid]`|returns all fields of `enrollments` except `uid`|
 |`fields=enrollments[uid]`|only returns `enrollments` field `uid`|
 |`fields=enrollments[uid,enrolledAt]`|only returns `enrollments` fields `uid` and `enrolledAt`|
 
-### Tracked entities (`GET /api/tracker/trackedEntities`) { #webapi_tracker_export_tracked_entities }
+### Tracked entities { #webapi_tracker_export_tracked_entities }
+
+```
+GET /api/tracker/trackedEntities
+```
 
 Two endpoints are dedicated to tracked entities:
 
@@ -1792,7 +1799,7 @@ The available assigned user modes are explained in the following table.
 Table: Assigned user modes
 
 | Mode | Description |
-|---|---|
+| --- | --- |
 | CURRENT | Includes events assigned to the current logged in user. |
 | PROVIDED | Includes events assigned to the user provided in the request. |
 | NONE | Includes unassigned events only. |
@@ -1804,16 +1811,11 @@ parameters.
 
 - At least one organisation unit must be specified using the `orgUnit`
   parameter (one or many), or `orgUnitMode=ALL` must be specified.
-
 - Only one of the `program` and `trackedEntity` parameters can be
   specified (zero or one).
-
 - If `programStatus` is specified, then `program` must also be specified.
-
 - If `enrollmentStatus` is specified, then `program` must also be specified.
-
 - If `followUp` is specified, then `program` must also be specified.
-
 - If `enrollmentEnrolledAfter` or `enrollmentEnrolledBefore` is specified then
   `program` must also be specified.
 
@@ -1824,16 +1826,22 @@ parameters.
 A query for all tracked entities associated with a specific organisation unit and tracker program
 can look like this:
 
-    GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8
+```
+GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8
+```
 
 To query for tracked entities using one attribute with a filter and one attribute without a filter,
 with one organisation unit using the descendant organisation unit query mode:
 
-    GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:EQ:John
+```
+GET /api/tracker/trackedEntities?program=IpHINAT79UW&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:EQ:John
+```
 
 A query where multiple operand and filters are specified for a filter item:
 
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:GT:150&filter=lw1SqmMlnfh:LT:190
+```
+GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:GT:150&filter=lw1SqmMlnfh:LT:190
+```
 
 A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
