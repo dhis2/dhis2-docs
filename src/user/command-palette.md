@@ -50,10 +50,10 @@ On launch, the command palette's interface has four (4) distinct features, i.e.
 - You can search for only shortcuts within that section.
 - To go back to the main page, click on the **Back** arrow.
 
-## Open an item
+## Select an item
 
-- Clicking on **action** or **command** activates it.
-- Clicking on an **app** or **shortcut** opens it.
+- Clicking an **action** activates it.
+- Clicking an **app** or **shortcut** opens it.
 - You can also open an app or shortcut in a new tab by pressing **CMD/CTRL** + clicking the item.
 
 ## Navigate the command palette
