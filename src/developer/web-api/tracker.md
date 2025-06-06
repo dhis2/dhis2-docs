@@ -47,7 +47,7 @@ In this section, we will show and describe each of the objects used in the Track
 | potentialDuplicate | Indicates whether the tracked entity is a potential duplicate. | No | No | Boolean | Default: false |
 | geometry | A  geographical representation of the tracked entity. Based on the "featureType" of the TrackedEntityType. | No | Yes | GeoJson | {<br>"type": "POINT",<br>"coordinates": [123.0, 123.0]<br>} |
 | storedBy | Client reference for who stored/created the tracked entity. | No | Yes | String:Any | John Doe |
-| createdBy | Only for reading data. User that created the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
+| createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | updatedBy | Only for reading data. User that last updated the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 | attributes | A list of tracked entity attribute values owned by the tracked entity. | No | Yes | List of TrackedEntityAttributeValue | See Attribute |
 | enrollments | A list of enrollments owned by the tracked entity. | No | Yes | List of Enrollment | See Enrollment |
@@ -83,7 +83,7 @@ entity. We represent the enrollment with the `Enrollment` object, which we descr
 | updatedAtClient | Timestamp when the object was last updated on client. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | enrolledAt | Timestamp when the user enrolled the tracked entity. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | occurredAt | Timestamp when enrollment occurred. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| completedAt | Timestamp when the user completed the enrollment. Set on the server if not passed by the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| completedAt | Timestamp when the user completed the enrollment. Set on the server if not set by the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedBy | Only for reading data. User that completed the enrollment. Set on the server. | No | No | String:any | John Doe |
 | followUp | Indicates whether the enrollment requires follow-up. False if not supplied. | No | No | Boolean | Default: False, True |
 | deleted | Indicates whether the enrollment has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
@@ -134,7 +134,7 @@ point out any exceptional cases between these two.
 | updatedAtClient | Timestamp when the event was last updated on client. | No | No | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | scheduledAt | Timestamp when the event was scheduled for. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | occurredAt | Timestamp when something occurred. | Yes | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
-| completedAt | Timestamp when the user completed the event. Set on the server if not passed by the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
+| completedAt | Timestamp when the user completed the event. Set on the server if not set by the client. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | completedBy | Only for reading data. User that completed the event. Set on the server. | No | No | String:any | John Doe |
 | followUp | Only for reading data. Indicates whether the event has been flagged for follow-up. | No | No | Boolean | False, True |
 | deleted | Only for reading data. Indicates whether the event has been deleted. It can only change when deleting. | No | Yes | Boolean | False until deleted |
@@ -295,7 +295,7 @@ enrollment payload. A sample payload is found below.
 | value | The content of the note. | Yes | Yes | String:Any | This is a note |
 | storedAt | Timestamp when the user added the note. Set on the server. | No | Yes | Date:ISO 8601 | YYYY-MM-DDThh:mm:ss |
 | storedBy | Client reference for who stored/created the note. | No | No | String:Any | John Doe |
-| createdBy | Only for reading data. User that created the object. Set on the server | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
+| createdBy | Only for reading data. User that created the object. Set on the server. | No | Yes | User | {<br>"uid": "ABCDEF12345",<br>"username": "username",<br>"firstName": "John",<br>"surname": "Doe"<br>} |
 
 ### Users
 
@@ -1708,7 +1708,7 @@ Two endpoints are dedicated to tracked entities:
 - `GET /api/tracker/trackedEntities`
   - retrieves tracked entities matching given criteria
 - `GET /api/tracker/trackedEntities/{id}`
-  - retrieves a tracked entity given the provided id
+  - retrieves a tracked entity given the provided ID
 
 If not otherwise specified, JSON is the default response for the `GET` method.
 The API also supports CSV export for single and collection endpoints. Furthermore, compressed
@@ -2243,7 +2243,7 @@ Two endpoints are dedicated to enrollments.
 - `GET /api/tracker/enrollments`
     - retrieves enrollments matching given criteria
 - `GET /api/tracker/enrollments/{id}`
-    - retrieves an enrollment given the provided id
+    - retrieves an enrollment given the provided ID
 
 #### Enrollment Collection endpoint `GET /api/tracker/enrollments`
 
@@ -2390,7 +2390,7 @@ Two endpoints are dedicated to events.
 - `GET /api/tracker/events`
     - retrieves events matching given criteria
 - `GET /api/tracker/events/{id}`
-    - retrieves an event given the provided id
+    - retrieves an event given the provided ID
 
 If not otherwise specified, JSON is the default response for the `GET` method.
 The API also supports CSV export for single and collection endpoints. Furthermore, it supports
