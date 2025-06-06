@@ -2253,7 +2253,7 @@ Returns a list of events based on filters.
 |---|---|---|---|
 |`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return enrollments belonging to provided organisation units.|
 |`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`program`|`String`|`uid`|Identifier of a tracker program the enrollment is enrolled into.|
+|`program`|`String`|`uid`|Identifier of a tracker program the enrollment is enrolled into. This parameter is mandatory.|
 |`programStatus` **deprecated for removal in version 43 use `status`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the enrollment.|
 |`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the enrollment.|
 |`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the tracked entity for the given program. Can be `true`&#124;`false` or omitted.|
@@ -2261,20 +2261,12 @@ Returns a list of events based on filters.
 |`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments updated since given duration |
 |`enrolledAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|  Only enrollments newer than this date|
 |`enrolledBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments older than this date|
-|`trackedEntityType`|`String`|`uid`| Identifier of tracked entity type|
 |`trackedEntity`|`String`|`uid`| Identifier of tracked entity|
 |`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `completedAt, createdAt, createdAtClient, enrolledAt, updatedAt, updatedAtClient`.|
 |`enrollments`|`String`|Comma-separated list of enrollment `UID`s.|Filter the result down to a limited set of IDs by using `enrollments=id1,id2`.|
 |`includeDeleted`|`Boolean`| |When true, soft deleted events will be included in your query result.|
 
-The query is case-insensitive. The following rules apply to the query parameters.
-
-- At least one organisation unit must be specified using the `orgUnit` parameter (one or many), or *orgUnitMode=ALL* must be specified.
-- Only one of the *program* and *trackedEntity* parameters can be specified (zero or one).
-- If *programStatus* is specified, then *program* must also be specified.
-- If *enrollmentStatus* is specified, then *program* must also be specified.
-- If *followUp* is specified, then *program* must also be specified.
-- If *enrolledAfter* or *enrolledBefore* is specified, then *program* must also be specified.
+The query is case-insensitive. The only requirement is that the program parameter must be provided.
 
 ##### Example requests
 
