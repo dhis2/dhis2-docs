@@ -1417,7 +1417,6 @@ These configurations will further change how validation is performed during impo
 
 Tracked entity attributes that use automatic generation of unique values
 have three endpoints utilized by apps for generating and reserving these values.
-> More info on how TextPattern works can be found [here](https://docs.dhis2.org/en/use/user-guides/dhis-core-version-master/additional-information/dhis2-tutorials.html#working-with-textpattern)
 
 #### Required values
 
@@ -1554,7 +1553,7 @@ A complete list of the supported program rule actions is presented below.
 | SENDMESSAGE | X |
 | SCHEDULEMESSAGE | X |
 
-Program rules are evaluated in the importer in the same way they are evaluated in the Tracker apps.
+Program rules are evaluated in the importer in the same way they are evaluated in the tracker apps.
 To summarize, the following conditions are considered when enforcing the program rules:
 
 * The program rule must be linked to the data being imported. For example, a program stage or a data element.
@@ -1562,11 +1561,11 @@ To summarize, the following conditions are considered when enforcing the program
 
 The results of the program rules depend on the actions defined in those rules:
 
-* Program rule actions may end in 2 different results: Warnings or Errors.
+* Program rule actions may end in 2 different results: warnings or erors.
 * Errors will make the validation fail, while the warnings will be reported as a message in the import summary.
-    * `SHOWWARNING` and `WARNINGONCOMPLETION` actions can generate only Warnings.
-    * `SHOWERROR`, `ERRORONCOMPLETION`, and vSETMANDATORYFIELD` actions can generate only Errors.
-    * ASSIGN action can generate both Warnings and Errors.
+    * `SHOWWARNING` and `WARNINGONCOMPLETION` actions can generate only warnings.
+    * `SHOWERROR`, `ERRORONCOMPLETION`, and `SETMANDATORYFIELD` actions can generate only errors.
+    * `ASSIGN` action can generate both Warnings and Errors.
     * When the action is assigning a value to an empty attribute/data element, a warning is generated.
     * When the action is assigning a value to an attribute/data element that already has the same value to be assigned, a warning is generated.
     * When the action is assigning a value to an attribute/data element that already has a value and the value to be assigned is different, an error is generated unless the `RULE_ENGINE_ASSIGN_OVERWRITE` system setting is true.
@@ -1655,10 +1654,10 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 
 The following endpoint supports standard parameters for pagination.
 
-- *Tracked entities* `GET /api/tracker/trackedEntities`
-- *Events* `GET /api/tracker/events`
-- *Enrollments `GET /api/tracker/enrollments`
-- *Relationships* `GET /api/tracker/relationships`
+- Tracked entities: `GET /api/tracker/trackedEntities`
+- Events: `GET /api/tracker/events`
+- Enrollments: `GET /api/tracker/enrollments`
+- Relationships: `GET /api/tracker/relationships`
 
 #### Request parameters for pagination
 
@@ -1668,12 +1667,12 @@ The following endpoint supports standard parameters for pagination.
 |`pageSize`|`Integer`|Any positive integer|Page size. Defaults to 50.|
 |`totalPages`|`Boolean`|`true`&#124;`false`|Indicates whether to return the total number of elements and pages. Defaults to `false` as getting the totals is an expensive operation.|
 |`paging`|`Boolean`|`true`&#124;`false`|Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`.|
-|`order`|`String`||Comma-separated list of field and sort direction pairs in format `field:sortDirection`.<br><br>Example: `createdAt:desc`<br><br>Entities are ordered by newest (internal id in descending order) by default, when no order parameter is provided.<br><br>**Note:** `field` is case sensitive. Valid `sortDirections` are `asc` and `desc`. `sortDirection` is case-insensitive. `sortDirection` defaults to `asc` for fields or UIDs without explicit `sortDirection`.|
+|`order`|`String`||Comma-separated list of field and sort direction pairs in format `field:sortDirection`. Example: `createdAt:desc`<br><br>Entities are ordered by newest (internal ID descending) by default. Note: `field` is case sensitive. Valid `sortDirections` are `asc` and `desc`. `sortDirection` is case-insensitive. `sortDirection` defaults to `asc` for fields or UIDs without explicit `sortDirection`.|
 
 > **Note**
 >
-> Be aware that the performance is directly related to the amount of data requested. Larger pages
-> will take more time to return.
+> Be aware that performance is directly related to the amount of data requested. Greater page
+> sizes will take more time to return.
 
 #### Organisation unit selection modes
 
@@ -1730,7 +1729,7 @@ contain the following fields:
   - inactive (boolean)
   - deleted (boolean)
   - potentialDuplicate (boolean)
-  - geometry (WKT, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry.
+  - geometry ([WKT](https://libgeos.org/specifications/wkt/))
     You can omit it in case of a `Point` type and with `latitude` and `longitude` provided)
   - latitude (Latitude of a `Point` type of Geometry)
   - longitude (Longitude of a `Point` type of Geometry)
@@ -1768,7 +1767,7 @@ The endpoint returns a list of tracked entities that match the request parameter
 |---|---|---|---|
 |`filter`|`String`|Comma separated values of attribute filters.|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. A filter like `filter=H9IlTX2X6SL:!null` returns all events where the given attribute has a value. Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. User needs access to the attribute to filter on it.|
 |`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return tracked entities belonging to provided organisation units|
-|`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|Get tracked entities owned by given `orgUnits` relative to the `orgUnitMode` and `program` parameters. Defaults to `ACCESSIBLE` if **no** organisation unit(s) are set via `orgUnits`. Defaults to `SELECTED` if organisation unit(s) are set via `orgUnits`.|
+|`orgUnitMode`|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|Get tracked entities owned by given `orgUnits` relative to the `orgUnitMode` and `program` parameters. Defaults to `ACCESSIBLE` if **no** organisation unit(s) are set via `orgUnits`. Defaults to `SELECTED` if organisation unit(s) are set via `orgUnits`. See [org unit modes](#webapi_tracker_orgunit_scope).|
 |`program`|`String`|Program `UID`|A tracker program `UID` for which tracked entities in the response must be enrolled into.|
 |`programStatus` **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the tracked entities enrollment in the given program.|
 |`programStage`|`String`|`UID`|A program stage `UID` for which tracked entities in the response must have events for.|
@@ -1859,30 +1858,35 @@ All of the following operators are supported regardless of the value type. Value
 text comparison unless stated otherwise. Integer and decimal value types are treated as Postgres
 integer and numeric data types for the specified operators.
 
-Valid binary operators are:
-- `eq` - equal to (uses integer/numeric semantics for integer/decimal value types)
-- `ieq` - equal to
-- `ge` - greater than or equal to (uses integer/number semantics for integer/decimal value types)
-- `gt` - greater than (uses integer/number semantics for integer/decimal value types)
-- `le` - less than or equal to (uses integer/number semantics for integer/decimal value types)
-- `lt` - less than (uses integer/number semantics for integer/decimal value types)
-- `ne` - not equal to (uses integer/number semantics for integer/decimal value types)
-- `neq` - not equal to (uses integer/number semantics for integer/decimal value types)
-- `nieq` - not equal to
-- `in` - equal to one of the multiple values separated by semicolon ";" (uses integer/number semantics for integer/decimal value types)
-- `ilike` - is like
-- `like` - like (free text match)
-- `nilike` - not like
-- `nlike` - not like
-- `sw` - starts with
-- `ew` - ends with
+Supported binary operators:
+
+| Operator | Description |
+| --- | --- |
+| eq | equal to, uses integer/numeric semantics for integer/decimal value types |
+| ieq | equal to, ignoring case |
+| ge | greater than or equal to (uses integer/number semantics for integer/decimal value types) |
+| gt | greater than, uses integer/number semantics for integer/decimal value types |
+| le | less than or equal to, uses integer/number semantics for integer/decimal value types |
+| lt | less than (uses integer/number semantics for integer/decimal value types |
+| ne | not equal to (uses integer/number semantics for integer/decimal value types |
+| neq | not equal to (uses integer/number semantics for integer/decimal value types |
+| nieq | not equal to |
+| in | one of multiple values separated by semicolon ";", uses integer/number semantics for integer/decimal value types |
+| like | like text match |
+| ilike | like text match, ignoring case |
+| nilike | not like |
+| nlike | not like |
+| sw | starts with |
+| ew | ends with |
 
 Right now all matches are case-insensitive so for example `eq` and `ieq` (`i` for `insensitive`)
 behave in the same way.
 
-Valid unary operators are:
-- `null` - has no value
-- `!null` - has a value
+Supported unary operators:
+
+| Operator | Description |
+| null | has no value |
+| !null | has a value |
 
 ##### Tracked entities response
 
