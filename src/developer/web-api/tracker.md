@@ -306,7 +306,9 @@ enrollment payload. A sample payload is found below.
 | firstName | Only for reading data. First name of the user. | No | Yes | String:Any | John |
 | surname | Only for reading data. Last name of the user. | No | Yes | String:Any | Doe |
 
-> One between `uid` or `username` field must be provided. If both are provided, only username is
+> **Note**
+>
+> Either `uid` or `username` must be provided. If both are provided, only username is
 > considered.
 
 ## ID schemes
@@ -519,8 +521,8 @@ automatically.
 >
 > Although nested payloads can be easier for clients to manage, the payload will always be flattened
 > before the import. For large imports, using a flat structured payload offers more control and
-> reduces overhead during the import process. That being said, you cannot nest new tracked entities, 
-> enrollments or events in a relationship.
+> reduces overhead during the import process. However, you cannot nest new tracked entities, 
+> enrollments or events within a relationship.
 
 ```json
 {
@@ -600,8 +602,7 @@ values](#update-data-values).
 
 > **Note**
 >
-> * Deleted tracker objects cannot be updated.
-> * Relationships cannot be updated.
+> Deleted tracker objects and rselationships cannot be updated.
 
 #### Update attribute values
 
@@ -823,9 +824,9 @@ the job progress based on logs:
 GET /tracker/jobs/{uid}
 ```
 
-| Parameter|Description|Example
-|---|---|---|
-|`{uid}`| The UID of an existing tracker import job | ABCDEF12345
+| Parameter | Description | Example |
+| --- | --- | --- |
+| uid | The UID of a tracker import job | eAjkbUGBcZ5 |
 
 #### Request example
 
@@ -2385,16 +2386,21 @@ GET /api/tracker/enrollments/JMgRZyeLWOo
 
 ### Events (`GET /api/tracker/events`) { #webapi_tracker_export_events }
 
-Two endpoints are dedicated to events.
+Two endpoints are dedicated to events. To retrieve events matching specific criteria:
 
-- `GET /api/tracker/events`
-    - retrieves events matching given criteria
-- `GET /api/tracker/events/{id}`
-    - retrieves an event given the provided ID
+```
+GET /api/tracker/events
+```
 
-If not otherwise specified, JSON is the default response for the `GET` method.
-The API also supports CSV export for single and collection endpoints. Furthermore, it supports
-compressed JSON and CSV for the collection endpoint.
+To retrieve an event with a specific ID:
+
+```
+GET /api/tracker/events/{id}
+``` 
+
+If not otherwise specified, JSON is the default response for the `GET` method. The API also 
+supports CSV export for single and collection endpoints. Furthermore, it supports compressed 
+JSON and CSV for the collection endpoint.
 
 #### Events CSV
 
@@ -2453,42 +2459,42 @@ Returns a list of events based on the provided filters.
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`program`|`String`|`uid`| Identifier of a tracker or event program|
-|`programStage`|`String`|`uid`| Identifier of program stage|
-|`programStatus` **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the events enrollment.|
-|`filter`|`String`|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. A filter like `filter=fazCI2ygYkq:!null` returns all events where the given data element has a value. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. User needs access to the data element to filter on it.|
-|`filterAttributes`|`String`|Comma separated values of attribute filters|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filterAttributes=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. A filter like `filter=H9IlTX2X6SL:!null` returns all events where the given attribute has a value. Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same attribute like `filterAttributes=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. User needs access to the attribute to filter on it.|
-|`followUp`|`boolean`| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
-|`trackedEntity`|`String`|`uid`|Identifier of tracked entity|
-|`orgUnit`|`String`|`uid`|Identifier of organisation unit|
-|`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
-|`occurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which occurred after this date.|
-|`occurredBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which occurred up until this date.|
-|`scheduledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were scheduled after this date.|
-|`scheduledBefore`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which were scheduled before this date.|
-|`updatedAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which were updated after this date. Cannot be used together with `updatedWithin`.|
-|`updatedBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were updated up until this date. Cannot be used together with `updatedWithin`.|
-|`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations)| Include only items which are updated within the given duration.<br><br> The format is [ISO-8601#Duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)|
-|`enrollmentStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the events enrollment.|
-|`enrollmentEnrolledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for enrollment in the given program|
-|`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
-|`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for occurred in the given program|
-|`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for occurred in the given program|
-|`idScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. **Note: metadata in `event.relationships` will always be exported using UIDs.**|
-|`dataElementIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for data element references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|`orgUnitIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|`programIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|`programStageIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program stage references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|`categoryOptionComboIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option combo references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|`categoryOptionIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
-|`order`|`String`|Comma-separated list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|
-|`events`|`String`|Comma-separated list of event `UID`s.|Filter the result down to a limited set of IDs by using `event=id1,id2`.|
-|`attributeCategoryCombo` (see note)|`String`|Attribute category combo identifier. Must be combined with `attributeCategoryOptions`.|
-|`attributeCategoryOptions` (see note)|`String`|Comma-separated attribute category option identifiers. Must be combined with `attributeCategoryCombo`.|
-|`includeDeleted`|`Boolean`| |  When true, soft deleted events will be included in your query result.|
-|`assignedUserMode`|`String`| `CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`| Assigned user selection mode|
-|`assignedUsers`|`String`|Comma-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1,id2`.This parameter will only be considered if `assignedUserMode` is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`.|
+|program|String|uid| Identifier of a tracker or event program|
+|programStage|String|uid| Identifier of program stage|
+|programStatus **deprecated for removal in version 43 use `enrollmentStatus`**|String|ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the events enrollment.|
+|filter|String|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. A filter like `filter=fazCI2ygYkq:!null` returns all events where the given data element has a value. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. User needs access to the data element to filter on it.|
+|filterAttributes|String|Comma separated values of attribute filters|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filterAttributes=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. A filter like `filter=H9IlTX2X6SL:!null` returns all events where the given attribute has a value. Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same attribute like `filterAttributes=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. User needs access to the attribute to filter on it.|
+|followUp|boolean| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
+|trackedEntity|String|uid|Identifier of tracked entity|
+|orgUnit|String|uid|Identifier of organisation unit|
+|orgUnitMode see [orgUnitModes](#webapi_tracker_orgunit_scope)|String|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|status|String|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
+|occurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which occurred after this date.|
+|occurredBefore|DateTime| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which occurred up until this date.|
+|scheduledAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were scheduled after this date.|
+|scheduledBefore|DateTime| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which were scheduled before this date.|
+|updatedAfter|DateTime| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which were updated after this date. Cannot be used together with `updatedWithin`.|
+|updatedBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were updated up until this date. Cannot be used together with `updatedWithin`.|
+|updatedWithin|Duration| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations)| Include only items which are updated within the given duration.<br><br> The format is [ISO-8601#Duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)|
+|enrollmentStatus|String|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the events enrollment.|
+|enrollmentEnrolledAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for enrollment in the given program|
+|enrollmentEnrolledBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
+|enrollmentOccurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for occurred in the given program|
+|enrollmentOccurredBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for occurred in the given program|
+|idScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. **Note: metadata in `event.relationships` will always be exported using UIDs.**|
+|dataElementIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for data element references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|orgUnitIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|programIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|programStageIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for program stage references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|categoryOptionComboIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option combo references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|categoryOptionIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for category option references. Defaults to the `idScheme` parameter.|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|
+|order|String|Comma-separated list of property name, attribute or data element UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `assignedUser, assignedUserDisplayName, attributeOptionCombo, completedAt, completedBy, createdAt, createdAtClient, createdBy, deleted, enrolledAt, enrollment, enrollmentStatus, event, followUp, occurredAt, orgUnit, program, programStage, scheduledAt, status, storedBy, trackedEntity, updatedAt, updatedAtClient, updatedBy`.|
+|events|String|Comma-separated list of event `UID`s.|Filter the result down to a limited set of IDs by using `event=id1,id2`.|
+|attributeCategoryCombo (see note)|String|Attribute category combo identifier. Must be combined with `attributeCategoryOptions`.|
+|attributeCategoryOptions (see note)|String|Comma-separated attribute category option identifiers. Must be combined with `attributeCategoryCombo`.|
+|includeDeleted|Boolean| |  When true, soft deleted events will be included in your query result.|
+|assignedUserMode|String| `CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`| Assigned user selection mode|
+|assignedUsers|String|Comma-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1,id2`.This parameter will only be considered if `assignedUserMode` is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`.|
 
 > **Note**
 >
