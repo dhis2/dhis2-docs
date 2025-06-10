@@ -3121,8 +3121,8 @@ Table: Entity query criteria definition
 |enrollmentStatus|The tracked entities enrollment status. Can be none(any enrollmentstatus) or ACTIVE, COMPLETED, CANCELLED||
 |followUp|When this parameter is true, the working list only returns tracked entities that have an enrollment with `followUp=true`.||
 |organisationUnit|To specify the uid of the organisation unit|`{"organisationUnit": "a3kGcGDCuk7"}`|
-|ouMode|To specify the organisation unit selection mode. Possible values are SELECTED,  CHILDREN, DESCENDANTS, ACCESSIBLE, CAPTURE, ALL|`"ouMode": "SELECTED"`|
-|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT,  PROVIDED,  NONE ,  ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
+|ouMode|To specify the organisation unit selection mode. Options are `SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|`"ouMode": "SELECTED"`|
+|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT,  PROVIDED,  NONE ,  ANY. See table below to understand what each value indicates. If `PROVIDED` (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
 |assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|`"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]`|
 |displayColumnOrder|To specify the output ordering of columns|`"displayOrderColumns": ["enrollmentDate", "program"]`|
 |order|To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "orderDimension:direction". Note: Supported orderDimensions are trackedEntity, created, createdAt, createdAtClient, updatedAt, updatedAtClient, enrolledAt, inactive and the tracked entity attributes|`"order"="a3kGcGDCuk6:desc"`|
