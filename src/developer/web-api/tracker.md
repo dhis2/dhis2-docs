@@ -2361,8 +2361,8 @@ GET /api/tracker/enrollment/{uid}
 
 | Request parameter | Type | Allowed values | Description |
 | --- | --- | --- | --- |
-| `uid` | `String` | `uid` | Return the Enrollment with specified `uid` |
-| `fields` | `String` | Any valid field filter (default `*,!relationships,!events,!attributes`) | Include specified sub-objects in the response |
+| uid | String | `uid` | Return the Enrollment with specified `uid` |
+| fields | String | Any valid field filter (default `*,!relationships,!events,!attributes`) | Include specified sub-objects in the response |
 
 ##### Example requests
 
@@ -2720,13 +2720,13 @@ This endpoint retrieves change logs for the data values of a specific event. It 
 
 |Parameter|Type|Allowed values|
 |---|---|---|
-|path `/{uid}`|`String`|Event `UID`.|
-|`order`|`String`|Field and sort direction pair in the format `field:sortDirection`.<br><br>Change logs are ordered by newest (creation date in descending order) by default, when no order parameter is provided.<br><br>Example: `createdAt:desc`<br><br>`field` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `asc` for fields without explicit `sortDirection`. Supported fields are `createdAt`, `change` and `username`, only one at a time. |
-|`filter`|`String`|Colon-separated field name with the `eq` operator and value in the format `field:eq:value`.<br><br>Example: `dataElement:eq:w75KJ2mc4zz`<br><br>Filtering is supported for `field`, `dataElement` and `username` fields, one at a time. Only the `eq` (equals) operator is supported.|
+|path `/{uid}`|String|Event `UID`.|
+|order|String|Field and sort direction pair in the format `field:sortDirection`.<br><br>Change logs are ordered by newest (creation date in descending order) by default, when no order parameter is provided.<br><br>Example: `createdAt:desc`<br><br>`field` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `asc` for fields without explicit `sortDirection`. Supported fields are `createdAt`, `change` and `username`, only one at a time. |
+|filter|String|Colon-separated field name with the `eq` operator and value in the format `field:eq:value`.<br><br>Example: `dataElement:eq:w75KJ2mc4zz`<br><br>Filtering is supported for `field`, `dataElement` and `username` fields, one at a time. Only the `eq` (equals) operator is supported.|
 
 ##### Event data value change logs response example
 
-An example of a json response:
+An example of a JSON response:
 
 ```json
 {
@@ -2814,12 +2814,12 @@ GET /api/tracker/relationships?[trackedEntity={trackedEntityUid}|enrollment={enr
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`trackedEntity`|`String`|`uid`|Identifier of a tracked entity|
-|`enrollment`|`String`|`uid`|Identifier of an enrollment|
-|`event`|`String`|`uid`|Identifier of an event|
-|`fields`|`String`|Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
-|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `createdAt, createdAtClient`.|
-|`includeDeleted`|`Boolean`|`true`, `false`| whether to include soft-deleted elements in your query result|
+|trackedEntity|String|`uid`|Identifier of a tracked entity|
+|enrollment|String|`uid`|Identifier of an enrollment|
+|event|String|`uid`|Identifier of an event|
+|fields|String|Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
+|order|String|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `createdAt, createdAtClient`.|
+|includeDeleted|Boolean|`true`, `false`| whether to include soft-deleted elements in your query result|
 
 The following rules apply to the query parameters.
 
@@ -3414,7 +3414,7 @@ potential duplicates are open by default.
 ```
 
 | Status code | Description
-|---|---|
+| --- | --- |
 | 400 | Input original or duplicate is null or has invalid uid
 | 403 | User do not have access to read original or duplicate TEs
 | 404 | TE not found
@@ -3427,11 +3427,11 @@ PUT /api/potentialDuplicates/<id>
 ```
 
 | Parameter name | Description | Type | Allowed values |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | status | Potential duplicate status | string | `OPEN`, `INVALID` |
 
 | Status code | Description
-|---|---|
+| --- | --- |
 | 400 | You can't update a potential duplicate to MERGED as this is possible only by a merging request
 | 400 | You can't update a potential duplicate that is already in a MERGED status
 
@@ -3450,7 +3450,7 @@ POST /api/potentialDuplicates/<id>/merge
 ```
 
 | Parameter name | Description | Type | Allowed values |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | mergeStrategy | Strategy to use for merging the potentialDuplicate | string | AUTO(default) or MANUAL |
 
 The endpoint accepts a single parameter, `mergeStrategy`, which determines the strategy used when merging. For the `AUTO` strategy, the server will attempt to merge the two tracked entities automatically without user input. This strategy only allows merging tracked entities without conflicting data (see examples below). The `MANUAL` strategy requires the user to send in a payload describing how the merge should be done. For examples and rules for each strategy, see their respective sections below.
