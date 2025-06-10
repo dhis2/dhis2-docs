@@ -3122,7 +3122,7 @@ Table: Entity query criteria definition
 |followUp|When this parameter is true, the working list only returns tracked entities that have an enrollment with `followUp=true`.||
 |organisationUnit|To specify the uid of the organisation unit|`{"organisationUnit": "a3kGcGDCuk7"}`|
 |ouMode|To specify the organisation unit selection mode. Options are `SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|`"ouMode": "SELECTED"`|
-|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT,  PROVIDED,  NONE ,  ANY. See table below to understand what each value indicates. If `PROVIDED` (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
+|assignedUserMode|To specify the assigned user selection mode for events. Options are CURRENT,  PROVIDED,  NONE ,  ANY. See table below to understand what each value indicates. If `PROVIDED` (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
 |assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|`"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]`|
 |displayColumnOrder|To specify the output ordering of columns|`"displayOrderColumns": ["enrollmentDate", "program"]`|
 |order|To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "orderDimension:direction". Note: Supported orderDimensions are trackedEntity, created, createdAt, createdAtClient, updatedAt, updatedAtClient, enrolledAt, inactive and the tracked entity attributes|`"order"="a3kGcGDCuk6:desc"`|
@@ -3131,7 +3131,7 @@ Table: Entity query criteria definition
 |trackedEntities|To specify a list of tracked entities to use when querying tracked entities.|`"trackedEntities"=["a3kGcGDCuk6","b4jGcGDCuk7"]`|
 |enrollmentCreatedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on enrollment created date.|`"enrollmentCreatedDate": {     "period": "LAST_WEEK",     "type": "RELATIVE"   }`|
 |enrollmentIncidentDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on enrollment incident date.|`"enrollmentIncidentDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "startBuffer": -5,     "endBuffer": 5,     "period": "LAST_WEEK",     "type": "RELATIVE"   }`|
-|eventStatus|The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED|`"status":"VISITED"`|
+|eventStatus|The event status. Options are `ACTIVE`, `COMPLETED`, `VISITED`, `SCHEDULE`, `OVERDUE`, `SKIPPED` and `VISITED`|`"status":"VISITED"`|
 |eventDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on event date.|`"eventDate": {"startBuffer": -5,"endBuffer": 5,     "type": "RELATIVE"   }`|
 |lastUpdatedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on last updated date.|`"lastUpdatedDate": {"startDate": "2014-05-01",     "endDate": "2019-03-20",     "type": "ABSOLUTE"   }`|
 
@@ -3142,8 +3142,8 @@ Table: Event filters definition
 |programStage|Which programStage the tracked entity needs an event in to be returned.|`"eaDH9089uMp"`|
 |eventStatus|The events status. Can be none(any event status) or ACTIVE, COMPLETED, SCHEDULE, OVERDUE|`ACTIVE`|
 |eventCreatedPeriod|FilterPeriod object containing a period in which the event must be created. See *Period* definition below.|`{ "periodFrom": -15, "periodTo": 15}`|
-|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user),  PROVIDED (events assigned to users provided in "assignedUsers" list) ,  NONE (events assigned to no one) ,  ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|`"assignedUserMode": "PROVIDED"`|
-|assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|`"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]`|
+|assignedUserMode|To specify the assigned user selection mode for events. Options are `CURRENT` (events assigned to current user), `PROVIDED` (events assigned to users provided in "assignedUsers" list), `NONE` (events assigned to no one) ,  ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|`"assignedUserMode": "PROVIDED"`|
+|assignedUsers|To specify a list of assigned users for events. To be used along with `PROVIDED` assignedUserMode above.|`"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]`|
 
 Table: Period filter definition
 
@@ -3184,18 +3184,18 @@ Table: Program Stage Query Criteria
 
 | Criteria values | Description | Example |
 |---|---|---|
-|eventStatus|The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED|`"status":"VISITED"`|
+|eventStatus|The event status. Options are `ACTIVE`, `COMPLETED`, `VISITED`, `SCHEDULE`, `OVERDUE`, `SKIPPED` and `VISITED`|`"status":"VISITED"`|
 |eventCreatedAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event creation date.|`{"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"}`|
 |eventOccurredAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event occurred date.|`{"type":"RELATIVE","period":"TODAY"}`|
 |eventScheduledAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event scheduled date.|`{"type":"RELATIVE","period":"TODAY"}`|
-|enrollmentStatus|Any valid EnrollmentStatus. Possible values are ACTIVE, COMPLETED and CANCELLED.|`"enrollmentStatus": "COMPLETED"`|
+|enrollmentStatus|Any valid EnrollmentStatus. Options are `ACTIVE`, `COMPLETED` and `CANCELLED`.|`"enrollmentStatus": "COMPLETED"`|
 |followUp|Indicates whether to filter enrollments marked for follow up or not|`"followUp":true`|
 |enrolledAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event enrollment date.|`"enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"}`|
 |enrollmentOccurredAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event occurred date.|`{"type":"RELATIVE","period":"THIS_MONTH"}`|
 |orgUnit|A valid organisation unit UID|`"orgUnit": "Rp268JB6Ne4"`|
 |ouMode|A valid OU selection mode|`"ouMode": "SELECTED"`|
-|assignedUserMode|A valid user selection mode for events. Possible values are CURRENT, PROVIDED, NONE, ANY and ALL. If PROVIDED (or null), non-empty assignedUsers in the payload will be expected.|"assignedUserMode":"PROVIDED"|
-|assignedUsers|A list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|"assignedUsers":["DXyJmlo9rge"]|
+|assignedUserMode|A valid user selection mode for events. Options are `CURRENT`, `PROVIDED`, `NONE`, `ANY` and `ALL`. If `PROVIDED` (or null), non-empty assignedUsers in the payload will be expected.|"assignedUserMode":"PROVIDED"|
+|assignedUsers|A list of assigned users for events. To be used along with `PROVIDED` assignedUserMode above.|"assignedUsers":["DXyJmlo9rge"]|
 |order|List of fields and its directions in comma separated values, the results will be sorted according to it. A single item in order is of the form "orderDimension:direction".|"order": "w75KJ2mc4zz:asc"|
 |displayColumnOrder|Output ordering of columns|"displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"]|
 |dataFilters|A list of items that contains the filters to be used when querying events|"dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}]|
@@ -3286,10 +3286,10 @@ Table: Event query criteria definition
 
 | Property | Description | Example |
 |---|---|---|
-|followUp|Used to filter events based on enrollment followUp flag. Possible values are `true`, `false`.|"followUp": true|
+|followUp|Used to filter events based on enrollment followUp flag. Options are `true`, `false`.|"followUp": true|
 |organisationUnit|To specify the uid of the organisation unit|"organisationUnit": "a3kGcGDCuk7"|
 |ouMode|To specify the OU selection mode. Options are `SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|"ouMode": "SELECTED"|
-|assignedUserMode|To specify the assigned user selection mode for events. Possible values are `CURRENT`, `PROVIDED`, `NONE`, `ANY`. See table below to understand what each value indicates. If `PROVIDED` (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": `PROVIDED`|
+|assignedUserMode|To specify the assigned user selection mode for events. Options are `CURRENT`, `PROVIDED`, `NONE`, `ANY`. See table below to understand what each value indicates. If `PROVIDED` (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": `PROVIDED`|
 |assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]|
 |displayColumnOrder |To specify the output ordering of columns|"displayOrderColumns": ["eventDate", "dueDate", "program"]|
 |order|To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "dataItem:direction".|"order"="a3kGcGDCuk6:desc,eventDate:asc"|
@@ -3551,18 +3551,18 @@ POST /api/programNotificationTemplates
 | Field | Required | Description | Values |
 | --- | --- | --- | --- |
 | name | Yes | Name of the Program Notification Template | case-notification-alert |
-| notificationTrigger | Yes | When notification should be triggered. Possible values are ENROLLMENT, COMPLETION, PROGRAM_RULE, SCHEDULED_DAYS_DUE_DATE | ENROLLMENT |
+| notificationTrigger | Yes | When notification should be triggered. Options are `ENROLLMENT`, `COMPLETION`, `PROGRAM_RULE`, `SCHEDULED_DAYS_DUE_DATE` | `ENROLLMENT` |
 | subjectTemplate | No | Subject template string | Case notification V{org_unit_name} |
 | messageTemplate | Yes | Message template string | Case notification A{h5FuguPFF2j} |
-| notificationRecipient | Yes | Who is going to receive notification. Possible values are USER_GROUP, ORGANISATION_UNIT_CONTACT, TRACKED_ENTITY_INSTANCE, USERS_AT_ORGANISATION_UNIT, DATA_ELEMENT, PROGRAM_ATTRIBUTE, WEB_HOOK | USER_GROUP |
-| deliveryChannels | No | Which channel should be used for this notification. It can be either SMS, EMAIL, or HTTP | SMS |
+| notificationRecipient | Yes | Who is going to receive notification. Options are `USER_GROUP`, `ORGANISATION_UNIT_CONTACT`, `TRACKED_ENTITY_INSTANCE`, `USERS_AT_ORGANISATION_UNIT`, `DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`, `WEB_HOOK` | USER_GROUP |
+| deliveryChannels | No | Which channel should be used for this notification. It can be either `SMS`, `EMAIL`, or `HTTP` | `SMS` |
 | sendRepeatable | No | Whether notification should be sent multiple times | false |
 
 The `WEB_HOOK` notificationRecipient is used exclusively for sending HTTP POST requests to external systems. Ensure that the HTTP delivery channel is selected when using this option.
 
 ## Retrieving and Deleting Program Notification Template
 
-As `ProgramNotificationTemplate` is a type of metadata, you can create, update, and delete it just like other metadata.
+As program notification template is a type of metadata, you can create, update, and delete it just like other metadata.
 
 ### Program Messages
 
