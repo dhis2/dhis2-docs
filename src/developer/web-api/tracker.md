@@ -949,7 +949,7 @@ GET /tracker/jobs/{uid}/report
 | Parameter|Description|Example
 |---|---|---|
 |path `/{uid}`|The UID of an existing tracker import job.|ABCDEF12345|
-|`reportMode`|The level of detail the report should have.|`FULL`&#124;`ERRORS`&#124;`WARNINGS`|
+|`reportMode`|The level of detail the report should have.|`FULL`, `ERRORS`, `WARNINGS`|
 
 #### Request example
 
@@ -1666,8 +1666,8 @@ The following endpoint supports standard parameters for pagination.
 |---|---|---|---|
 |`page`|`Integer`|Any positive integer|Page number to return. Defaults to 1.|
 |`pageSize`|`Integer`|Any positive integer|Page size. Defaults to 50.|
-|`totalPages`|`Boolean`|`true`&#124;`false`|Indicates whether to return the total number of elements and pages. Defaults to `false` as getting the totals is an expensive operation.|
-|`paging`|`Boolean`|`true`&#124;`false`|Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`.|
+|`totalPages`|`Boolean`|`true`, `false`|Indicates whether to return the total number of elements and pages. Defaults to `false` as getting the totals is an expensive operation.|
+|`paging`|`Boolean`|`true`, `false`|Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`.|
 |`order`|`String`||Comma-separated list of field and sort direction pairs in format `field:sortDirection`. Example: `createdAt:desc`<br><br>Entities are ordered by newest (internal ID descending) by default. Note: `field` is case sensitive. Valid `sortDirections` are `asc` and `desc`. `sortDirection` is case-insensitive. `sortDirection` defaults to `asc` for fields or UIDs without explicit `sortDirection`.|
 
 > **Note**
@@ -1768,29 +1768,29 @@ The endpoint returns a list of tracked entities that match the request parameter
 |---|---|---|---|
 |`filter`|`String`|Comma separated values of attribute filters.|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. A filter like `filter=H9IlTX2X6SL:!null` returns all events where the given attribute has a value. Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. User needs access to the attribute to filter on it.|
 |`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return tracked entities belonging to provided organisation units|
-|`orgUnitMode`|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|Get tracked entities owned by given `orgUnits` relative to the `orgUnitMode` and `program` parameters. Defaults to `ACCESSIBLE` if **no** organisation unit(s) are set via `orgUnits`. Defaults to `SELECTED` if organisation unit(s) are set via `orgUnits`. See [org unit modes](#webapi_tracker_orgunit_scope).|
+|`orgUnitMode`|`String`|`SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|Get tracked entities owned by given `orgUnits` relative to the `orgUnitMode` and `program` parameters. Defaults to `ACCESSIBLE` if **no** organisation unit(s) are set via `orgUnits`. Defaults to `SELECTED` if organisation unit(s) are set via `orgUnits`. See [org unit modes](#webapi_tracker_orgunit_scope).|
 |`program`|`String`|Program `UID`|A tracker program `UID` for which tracked entities in the response must be enrolled into.|
-|`programStatus` **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the tracked entities enrollment in the given program.|
+|`programStatus` **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the tracked entities enrollment in the given program.|
 |`programStage`|`String`|`UID`|A program stage `UID` for which tracked entities in the response must have events for.|
-|`followUp`|`Boolean`|`true`&#124;`false`|Indicates whether the tracked entity is marked for follow up for the specified program.|
+|`followUp`|`Boolean`|`true`, `false`|Indicates whether the tracked entity is marked for follow up for the specified program.|
 |`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Start date and time for last updated|
 |`updatedBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | End date and time for last updated|
 |`updatedWithin`|`Duration`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) | Returns tracked entities not older than specified Duration|
-|`enrollmentStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the tracked entities enrollment in the given program.|
+|`enrollmentStatus`|`String`|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the tracked entities enrollment in the given program.|
 |`enrollmentEnrolledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for enrollment in the given program|
 |`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
 |`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time and time and time for occurred in the given program|
 |`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time and time for occurred in the given program|
 |`trackedEntityType`|`String`|UID of tracked entity type|Only returns tracked entities of given type.|
 |`trackedEntities`|`String`|Comma-separated list of tracked entity `UID`s.|Filter the result down to a limited set of tracked entities using explicit uids of the tracked entities by using `trackedEntity=id1,id2`. This parameter will, at the very least, create the outer boundary of the results, forming the list of all tracked entities using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
-|`assignedUserMode`|`String`|`CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`&#124;`ALL`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. Default is `ALL`.|
+|`assignedUserMode`|`String`|`CURRENT`, `PROVIDED`, `NONE`, `ANY`, `ALL`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. Default is `ALL`.|
 |`assignedUsers`|`String`|Comma-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1,id2`. This parameter will only be considered if `assignedUserMode` is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`.|
 |`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported values are `createdAt, createdAtClient, enrolledAt, inactive, trackedEntity, updatedAt, updatedAtClient`.|
-|`eventStatus`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED`|Status of any events in the specified program|
+|`eventStatus`|`String`|`ACTIVE`, `COMPLETED`, `VISITED`, `SCHEDULE`, `OVERDUE`, `SKIPPED`|Status of any events in the specified program|
 |`eventOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for Event for the given Program|
 |`eventOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for Event for the given Program|
-|`includeDeleted`|`Boolean`|`true`&#124;`false`|Indicates whether to include soft-deleted elements|
-|`potentialDuplicate`|`Boolean`|`true`&#124;`false`| Filter the result based on the fact that a tracked entities is a Potential Duplicate. true: return tracked entities flagged as Potential Duplicates. false: return tracked entities NOT flagged as Potential Duplicates. If omitted, we don't check whether a tracked entities is a Potential Duplicate or not.|
+|`includeDeleted`|`Boolean`|`true`, `false`|Indicates whether to include soft-deleted elements|
+|`potentialDuplicate`|`Boolean`|`true`, `false`| Filter the result based on the fact that a tracked entities is a Potential Duplicate. true: return tracked entities flagged as Potential Duplicates. false: return tracked entities NOT flagged as Potential Duplicates. If omitted, we don't check whether a tracked entities is a Potential Duplicate or not.|
 |`idScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. **Note: only metadata in fields `trackedEntity.trackedEntityType`, `orgUnit` and `attributes` is exported in this idScheme. All other fields will always be exported using UIDs.**|
 |`orgUnitIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|
 
@@ -2253,11 +2253,11 @@ Returns a list of events based on filters.
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
 |`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return enrollments belonging to provided organisation units.|
-|`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|`program`|`String`|`uid`|Identifier of a tracker program the enrollment is enrolled into.|
-|`programStatus` **deprecated for removal in version 43 use `status`**|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the enrollment.|
-|`status`|`String`|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the enrollment.|
-|`followUp`|`boolean`| `true`&#124;`false` | Follow up status of the tracked entity for the given program. Can be `true`&#124;`false` or omitted.|
+|`orgUnitMode` see [orgUnitModes](#webapi_tracker_orgunit_scope)|`String`|`SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|`program`|`String`|`uid`|Identifier of a tracker program the enrollment is enrolled into. This parameter is mandatory.|
+|`programStatus` **deprecated for removal in version 43 use `status`**|`String`|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the enrollment.|
+|`status`|`String`|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the enrollment.|
+|`followUp`|`boolean`| `true`, `false` | Follow up status of the tracked entity for the given program. Can be `true`, `false` or omitted.|
 |`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Only enrollments updated after this date|
 |`updatedWithin`|`Duration`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Only enrollments updated since given duration |
 |`enrolledAfter`|`DateTime`| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|  Only enrollments newer than this date|
@@ -2469,14 +2469,14 @@ Returns a list of events based on the provided filters.
 |---|---|---|---|
 |program|String|uid| Identifier of a tracker or event program|
 |programStage|String|uid| Identifier of program stage|
-|programStatus **deprecated for removal in version 43 use `enrollmentStatus`**|String|ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the events enrollment.|
+|programStatus **deprecated for removal in version 43 use `enrollmentStatus`**|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the events enrollment.|
 |filter|String|Comma separated values of data element filters|Narrows response to events matching given filters. A filter is a colon separated property or data element UID with optional operator and value pairs. Example: `filter=fazCI2ygYkq:eq:PASSIVE` with operator starts with `eq` followed by a value. A filter like `filter=fazCI2ygYkq:!null` returns all events where the given data element has a value. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same data element like `filter=qrur9Dvnyt5:gt:70:lt:80` are allowed. User needs access to the data element to filter on it.|
 |filterAttributes|String|Comma separated values of attribute filters|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filterAttributes=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. A filter like `filter=H9IlTX2X6SL:!null` returns all events where the given attribute has a value. Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same attribute like `filterAttributes=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. User needs access to the attribute to filter on it.|
-|followUp|boolean| `true`&#124;`false` | Whether event is considered for follow up in program. Defaults to `true`|
+|followUp|boolean| `true`, `false` | Whether event is considered for follow up in program. Defaults to `true`|
 |trackedEntity|String|uid|Identifier of tracked entity|
 |orgUnit|String|uid|Identifier of organisation unit|
-|orgUnitMode see [orgUnitModes](#webapi_tracker_orgunit_scope)|String|`SELECTED`&#124;`CHILDREN`&#124;`DESCENDANTS`&#124;`ACCESSIBLE`&#124;`CAPTURE`&#124;`ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
-|status|String|`ACTIVE`&#124;`COMPLETED`&#124;`VISITED`&#124;`SCHEDULE`&#124;`OVERDUE`&#124;`SKIPPED` | Status of event|
+|orgUnitMode see [orgUnitModes](#webapi_tracker_orgunit_scope)|String|`SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|The mode of selecting organisation units, can be. Default is `SELECTED`, which refers to the selected organisation units only.|
+|status|String|`ACTIVE`, `COMPLETED`, `VISITED`, `SCHEDULE`, `OVERDUE`, `SKIPPED` | Status of event|
 |occurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which occurred after this date.|
 |occurredBefore|DateTime| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which occurred up until this date.|
 |scheduledAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were scheduled after this date.|
@@ -2484,7 +2484,7 @@ Returns a list of events based on the provided filters.
 |updatedAfter|DateTime| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)| Filter for events which were updated after this date. Cannot be used together with `updatedWithin`.|
 |updatedBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Filter for events which were updated up until this date. Cannot be used together with `updatedWithin`.|
 |updatedWithin|Duration| [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations)| Include only items which are updated within the given duration.<br><br> The format is [ISO-8601#Duration](https://en.wikipedia.org/wiki/ISO_8601#Durations)|
-|enrollmentStatus|String|`ACTIVE`&#124;`COMPLETED`&#124;`CANCELLED`|The status of the events enrollment.|
+|enrollmentStatus|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the events enrollment.|
 |enrollmentEnrolledAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for enrollment in the given program|
 |enrollmentEnrolledBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
 |enrollmentOccurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for occurred in the given program|
@@ -2501,7 +2501,7 @@ Returns a list of events based on the provided filters.
 |attributeCategoryCombo (see note)|String|Attribute category combo identifier. Must be combined with `attributeCategoryOptions`.|
 |attributeCategoryOptions (see note)|String|Comma-separated attribute category option identifiers. Must be combined with `attributeCategoryCombo`.|
 |includeDeleted|Boolean| |  When true, soft deleted events will be included in your query result.|
-|assignedUserMode|String| `CURRENT`&#124;`PROVIDED`&#124;`NONE`&#124;`ANY`| Assigned user selection mode|
+|assignedUserMode|String| `CURRENT`, `PROVIDED`, `NONE`, `ANY`| Assigned user selection mode|
 |assignedUsers|String|Comma-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1,id2`.This parameter will only be considered if `assignedUserMode` is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`.|
 
 > **Note**
@@ -2819,7 +2819,7 @@ GET /api/tracker/relationships?[trackedEntity={trackedEntityUid}|enrollment={enr
 |`event`|`String`|`uid`|Identifier of an event|
 |`fields`|`String`|Any valid field filter (default `relationship,relationshipType,createdAtClient,from[trackedEntity[trackedEntity],enrollment[enrollment],event[event]],to[trackedEntity[trackedEntity],enrollment[enrollment],event[event]]`) |Include specified sub-objects in the response|
 |`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported fields: `createdAt, createdAtClient`.|
-|`includeDeleted`|`Boolean`|`true`&#124;`false`| whether to include soft-deleted elements in your query result|
+|`includeDeleted`|`Boolean`|`true`, `false`| whether to include soft-deleted elements in your query result|
 
 The following rules apply to the query parameters.
 
@@ -2945,20 +2945,14 @@ Users can do the fine-tuning by passing a specific value of `orgUnitMode` in the
 Currently, there are six selection modes available: *SELECTED, CHILDREN, DESCENDANTS, CAPTURE,
 ACCESSIBLE, and ALL*.
 
-* *SELECTED*: Specified organisation units.
-* *CHILDREN*: Specified organisation unit including immediate children, i.e. organisation units at the immediate level below.
-* *DESCENDANTS*: Specified organisation unit and all organisation units in the sub-hierarchy, i.e. at all organisation unit levels in the sub-hierarchy below the specified organisation units.
-* *CAPTURE*: The data capture organisation units associated with the current user and all organisation units in the sub-hierarchy.
-* *ACCESSIBLE*: The tracker search organisation units associated with the current user and all organisation units in the sub-hierarchy. 
-   This includes everything visible to the user, including open and audited
-   programs within its search scope, as well as data in protected and closed programs within the user's
-   capture scope. If a user lacks search organisation units, the system defaults to capture scope,
-   ensuring that the user always has access to at least one universe. The capture scope, being
-   mandatory, serves as a foundational element in guaranteeing a data environment for the user.
-* *ALL*: All organisation units in the system. This mode is reserved for authorized users, specifically those with the authority ALL
-   (super users). Users with the authority F_TRACKED_ENTITY_INSTANCE_SEARCH_IN_ALL_ORGUNITS can also
-search system-wide but need sharing access to the returned program, program stage, and/or tracked
-entity type. Non-authorized users are not permitted to search using this scope.
+| Mode | Description |
+| --- | --- |
+| SELECTED | Specified organisation units. |
+| CHILDREN | Specified organisation unit including immediate children, i.e. organisation units at the immediate level below. |
+| DESCENDANTS | Specified organisation unit and all organisation units in the sub-hierarchy, i.e. at all organisation unit levels in the sub-hierarchy below the specified organisation units. |
+| CAPTURE | The data capture organisation units associated with the current user and all organisation units in the sub-hierarchy. |
+| ACCESSIBLE | The tracker search organisation units associated with the current user and all organisation units in the sub-hierarchy. This includes everything visible to the user, including open and audited programs within its search scope, as well as data in protected and closed programs within the user's capture scope. If a user lacks search organisation units, the system defaults to capture scope, ensuring that the user always has access to at least one universe. The capture scope, being mandatory, serves as a foundational element in guaranteeing a data environment for the user. |
+| ALL | All organisation units in the system. This mode is reserved for authorized users, specifically those with the authority ALL (super users). Users with the authority `F_TRACKED_ENTITY_INSTANCE_SEARCH_IN_ALL_ORGUNITS` can also search system-wide but need sharing access to the returned program, program stage, and/or tracked entity type. Non-authorized users are not permitted to search using this scope. |
 
 The first three modes, *SELECTED*, *CHILDREN* and *DESCENDANTS*, expect an organisation unit to be
 supplied in the request, while the last three, *CAPTURE*, *ACCESSIBLE* and *ALL* do not.
@@ -3132,11 +3126,11 @@ Table: Entity query criteria definition
 | Property | Description | Example |
 | --- |---|---|
 |attributeValueFilters|A list of attributeValueFilters. This is used to specify filters for attribute values when listing tracked entities|`"attributeValueFilters"=[{"attribute": "abcAttributeUid","le": "20","ge": "10","lt": "20","gt": "10","in": ["India", "Norway"],"like": "abc","sw": "abc","ew": "abc","dateFilter": {"startDate": "2014-05-01","endDate": "2019-03-20","startBuffer": -5,"endBuffer": 5,"period": "LAST_WEEK","type": "RELATIVE"}}]`|
-|enrollmentStatus|The tracked entities enrollment status. Can be none(any enrollmentstatus) or ACTIVE&#124;COMPLETED&#124;CANCELLED||
+|enrollmentStatus|The tracked entities enrollment status. Can be none(any enrollmentstatus) or ACTIVE, COMPLETED, CANCELLED||
 |followUp|When this parameter is true, the working list only returns tracked entities that have an enrollment with `followUp=true`.||
 |organisationUnit|To specify the uid of the organisation unit|`{"organisationUnit": "a3kGcGDCuk7"}`|
-|ouMode|To specify the organisation unit selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL|`"ouMode": "SELECTED"`|
-|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
+|ouMode|To specify the organisation unit selection mode. Options are `SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|`"ouMode": "SELECTED"`|
+|assignedUserMode|To specify the assigned user selection mode for events. Options are CURRENT,  PROVIDED,  NONE ,  ANY. See table below to understand what each value indicates. If `PROVIDED` (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
 |assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|`"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]`|
 |displayColumnOrder|To specify the output ordering of columns|`"displayOrderColumns": ["enrollmentDate", "program"]`|
 |order|To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "orderDimension:direction". Note: Supported orderDimensions are trackedEntity, created, createdAt, createdAtClient, updatedAt, updatedAtClient, enrolledAt, inactive and the tracked entity attributes|`"order"="a3kGcGDCuk6:desc"`|
@@ -3145,7 +3139,7 @@ Table: Entity query criteria definition
 |trackedEntities|To specify a list of tracked entities to use when querying tracked entities.|`"trackedEntities"=["a3kGcGDCuk6","b4jGcGDCuk7"]`|
 |enrollmentCreatedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on enrollment created date.|`"enrollmentCreatedDate": {     "period": "LAST_WEEK",     "type": "RELATIVE"   }`|
 |enrollmentIncidentDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on enrollment incident date.|`"enrollmentIncidentDate": {     "startDate": "2014-05-01",     "endDate": "2019-03-20",     "startBuffer": -5,     "endBuffer": 5,     "period": "LAST_WEEK",     "type": "RELATIVE"   }`|
-|eventStatus|The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED|`"status":"VISITED"`|
+|eventStatus|The event status. Options are `ACTIVE`, `COMPLETED`, `VISITED`, `SCHEDULE`, `OVERDUE`, `SKIPPED` and `VISITED`|`"status":"VISITED"`|
 |eventDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on event date.|`"eventDate": {"startBuffer": -5,"endBuffer": 5,     "type": "RELATIVE"   }`|
 |lastUpdatedDate|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object date filtering based on last updated date.|`"lastUpdatedDate": {"startDate": "2014-05-01",     "endDate": "2019-03-20",     "type": "ABSOLUTE"   }`|
 
@@ -3154,10 +3148,10 @@ Table: Event filters definition
 | Property | Description | Example |
 |---|---|---|
 |programStage|Which programStage the tracked entity needs an event in to be returned.|`"eaDH9089uMp"`|
-|eventStatus|The events status. Can be none(any event status) or ACTIVE&#124;COMPLETED&#124;SCHEDULE&#124;OVERDUE|`ACTIVE`|
+|eventStatus|The events status. Can be none(any event status) or ACTIVE, COMPLETED, SCHEDULE, OVERDUE|`ACTIVE`|
 |eventCreatedPeriod|FilterPeriod object containing a period in which the event must be created. See *Period* definition below.|`{ "periodFrom": -15, "periodTo": 15}`|
-|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT (events assigned to current user)&#124; PROVIDED (events assigned to users provided in "assignedUsers" list) &#124; NONE (events assigned to no one) &#124; ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|`"assignedUserMode": "PROVIDED"`|
-|assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|`"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]`|
+|assignedUserMode|To specify the assigned user selection mode for events. Options are `CURRENT` (events assigned to current user), `PROVIDED` (events assigned to users provided in "assignedUsers" list), `NONE` (events assigned to no one) ,  ANY (events assigned to anyone). If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|`"assignedUserMode": "PROVIDED"`|
+|assignedUsers|To specify a list of assigned users for events. To be used along with `PROVIDED` assignedUserMode above.|`"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]`|
 
 Table: Period filter definition
 
@@ -3198,18 +3192,18 @@ Table: Program Stage Query Criteria
 
 | Criteria values | Description | Example |
 |---|---|---|
-|eventStatus|The event status. Possible values are ACTIVE, COMPLETED, VISITED, SCHEDULE, OVERDUE, SKIPPED and VISITED|`"status":"VISITED"`|
+|eventStatus|The event status. Options are `ACTIVE`, `COMPLETED`, `VISITED`, `SCHEDULE`, `OVERDUE`, `SKIPPED` and `VISITED`|`"status":"VISITED"`|
 |eventCreatedAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event creation date.|`{"type":"ABSOLUTE","startDate":"2020-03-01","endDate":"2022-12-30"}`|
 |eventOccurredAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event occurred date.|`{"type":"RELATIVE","period":"TODAY"}`|
 |eventScheduledAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event scheduled date.|`{"type":"RELATIVE","period":"TODAY"}`|
-|enrollmentStatus|Any valid EnrollmentStatus. Possible values are ACTIVE, COMPLETED and CANCELLED.|`"enrollmentStatus": "COMPLETED"`|
+|enrollmentStatus|Any valid EnrollmentStatus. Options are `ACTIVE`, `COMPLETED` and `CANCELLED`.|`"enrollmentStatus": "COMPLETED"`|
 |followUp|Indicates whether to filter enrollments marked for follow up or not|`"followUp":true`|
 |enrolledAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event enrollment date.|`"enrolledAt": {"type":"RELATIVE","period":"THIS_MONTH"}`|
 |enrollmentOccurredAt|[DateFilterPeriod](#webapi_tracker_workinglists_common_objects) object filtering based on the event occurred date.|`{"type":"RELATIVE","period":"THIS_MONTH"}`|
 |orgUnit|A valid organisation unit UID|`"orgUnit": "Rp268JB6Ne4"`|
 |ouMode|A valid OU selection mode|`"ouMode": "SELECTED"`|
-|assignedUserMode|A valid user selection mode for events. Possible values are CURRENT, PROVIDED, NONE, ANY and ALL. If PROVIDED (or null), non-empty assignedUsers in the payload will be expected.|"assignedUserMode":"PROVIDED"|
-|assignedUsers|A list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|"assignedUsers":["DXyJmlo9rge"]|
+|assignedUserMode|A valid user selection mode for events. Options are `CURRENT`, `PROVIDED`, `NONE`, `ANY` and `ALL`. If `PROVIDED` (or null), non-empty assignedUsers in the payload will be expected.|"assignedUserMode":"PROVIDED"|
+|assignedUsers|A list of assigned users for events. To be used along with `PROVIDED` assignedUserMode above.|"assignedUsers":["DXyJmlo9rge"]|
 |order|List of fields and its directions in comma separated values, the results will be sorted according to it. A single item in order is of the form "orderDimension:direction".|"order": "w75KJ2mc4zz:asc"|
 |displayColumnOrder|Output ordering of columns|"displayColumnOrder":["w75KJ2mc4zz","zDhUuAYrxNC"]|
 |dataFilters|A list of items that contains the filters to be used when querying events|"dataFilters":[{"dataItem": "GXNUsigphqK","ge": "10","le": "20"}]|
@@ -3300,10 +3294,10 @@ Table: Event query criteria definition
 
 | Property | Description | Example |
 |---|---|---|
-|followUp|Used to filter events based on enrollment followUp flag. Possible values are true&#124;false.|"followUp": true|
+|followUp|Used to filter events based on enrollment followUp flag. Options are `true`, `false`.|"followUp": true|
 |organisationUnit|To specify the uid of the organisation unit|"organisationUnit": "a3kGcGDCuk7"|
-|ouMode|To specify the OU selection mode. Possible values are SELECTED&#124; CHILDREN&#124;DESCENDANTS&#124;ACCESSIBLE&#124;CAPTURE&#124;ALL|"ouMode": "SELECTED"|
-|assignedUserMode|To specify the assigned user selection mode for events. Possible values are CURRENT&#124; PROVIDED&#124; NONE &#124; ANY. See table below to understand what each value indicates. If PROVIDED (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": "PROVIDED"|
+|ouMode|To specify the OU selection mode. Options are `SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|"ouMode": "SELECTED"|
+|assignedUserMode|To specify the assigned user selection mode for events. Options are `CURRENT`, `PROVIDED`, `NONE`, `ANY`. See table below to understand what each value indicates. If `PROVIDED` (or null), non-empty assignedUsers in the payload will be considered.|"assignedUserMode": `PROVIDED`|
 |assignedUsers|To specify a list of assigned users for events. To be used along with PROVIDED assignedUserMode above.|"assignedUsers": ["a3kGcGDCuk7", "a3kGcGDCuk8"]|
 |displayColumnOrder |To specify the output ordering of columns|"displayOrderColumns": ["eventDate", "dueDate", "program"]|
 |order|To specify ordering/sorting of fields and its directions in comma separated values. A single item in order is of the form "dataItem:direction".|"order"="a3kGcGDCuk6:desc,eventDate:asc"|
@@ -3357,7 +3351,7 @@ Table: DateFilterPeriod object definition
 
 | Property | Description | Example |
 |---|---|---|
-|type|Specify whether the date period type is ABSOLUTE &#124; RELATIVE|`"type" : "RELATIVE"`|
+|type|Specify whether the date period type is `ABSOLUTE`, `RELATIVE`|`"type" : "RELATIVE"`|
 |period|Specify if a relative system defined period is to be used. Applicable only when `type` is RELATIVE. (see [Relative Periods](#webapi_date_relative_period_values) for supported relative periods)|`"period" : "THIS_WEEK"`|
 |startDate|Absolute start date. Applicable only when `type` is ABSOLUTE|`"startDate":"2014-05-01"`|
 |endDate|Absolute end date. Applicable only when `type` is ABSOLUTE|`"startDate":"2014-05-01"`|
@@ -3565,18 +3559,18 @@ POST /api/programNotificationTemplates
 | Field | Required | Description | Values |
 | --- | --- | --- | --- |
 | name | Yes | Name of the Program Notification Template | case-notification-alert |
-| notificationTrigger | Yes | When notification should be triggered. Possible values are ENROLLMENT, COMPLETION, PROGRAM_RULE, SCHEDULED_DAYS_DUE_DATE | ENROLLMENT |
+| notificationTrigger | Yes | When notification should be triggered. Options are `ENROLLMENT`, `COMPLETION`, `PROGRAM_RULE`, `SCHEDULED_DAYS_DUE_DATE` | `ENROLLMENT` |
 | subjectTemplate | No | Subject template string | Case notification V{org_unit_name} |
 | messageTemplate | Yes | Message template string | Case notification A{h5FuguPFF2j} |
-| notificationRecipient | Yes | Who is going to receive notification. Possible values are USER_GROUP, ORGANISATION_UNIT_CONTACT, TRACKED_ENTITY_INSTANCE, USERS_AT_ORGANISATION_UNIT, DATA_ELEMENT, PROGRAM_ATTRIBUTE, WEB_HOOK | USER_GROUP |
-| deliveryChannels | No | Which channel should be used for this notification. It can be either SMS, EMAIL, or HTTP | SMS |
+| notificationRecipient | Yes | Who is going to receive notification. Options are `USER_GROUP`, `ORGANISATION_UNIT_CONTACT`, `TRACKED_ENTITY_INSTANCE`, `USERS_AT_ORGANISATION_UNIT`, `DATA_ELEMENT`, `PROGRAM_ATTRIBUTE`, `WEB_HOOK` | USER_GROUP |
+| deliveryChannels | No | Which channel should be used for this notification. It can be either `SMS`, `EMAIL`, or `HTTP` | `SMS` |
 | sendRepeatable | No | Whether notification should be sent multiple times | false |
 
 The `WEB_HOOK` notificationRecipient is used exclusively for sending HTTP POST requests to external systems. Ensure that the HTTP delivery channel is selected when using this option.
 
 ## Retrieving and Deleting Program Notification Template
 
-As `ProgramNotificationTemplate` is a type of metadata, you can create, update, and delete it just like other metadata.
+As program notification template is a type of metadata, you can create, update, and delete it just like other metadata.
 
 ### Program Messages
 
@@ -3647,11 +3641,11 @@ Below is a sample JSON payload for sending messages using POST requests.
 | recipients | Yes | Recipients of the program message. At least one recipient must be specified. | Can be trackedEntity, organisationUnit, an array of phoneNumbers or an array of emailAddresses. |
 | enrollment | No | Enrollment which ProgramMessage is attached to. | Enrollment ID. |
 | event      | No | Event which ProgramMessage is attached to. | Event ID. |
-| deliveryChannels | Yes | Array of delivery channels. | SMS &#124; EMAIL |
+| deliveryChannels | Yes | Array of delivery channels. | `SMS`, `EMAIL` |
 | notificationTemplate | No | ProgramNotificationTemplate UID is used to cross-check which program message belongs to which notification template. | Text. |
 | subject | No | The message subject. Not applicable for SMS delivery channel. | Text. |
 | text | Yes | The message text. | Text. |
-| storeCopy | No | Whether to store a copy of the program message in DHIS2. | false (default) &#124; true |
+| storeCopy | No | Whether to store a copy of the program message in DHIS2. | `false`, `true` |
 
 ### Querying program messages
 
