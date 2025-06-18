@@ -1653,7 +1653,7 @@ Tracker export endpoints allow you to retrieve the previously imported objects w
 
 ### Common request parameters
 
-The following endpoint supports standard parameters for pagination.
+The following endpoints support standard pagination parameters.
 
 - Tracked entities: `GET /api/tracker/trackedEntities`
 - Events: `GET /api/tracker/events`
@@ -1664,11 +1664,11 @@ The following endpoint supports standard parameters for pagination.
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`page`|`Integer`|Any positive integer|Page number to return. Defaults to 1.|
-|`pageSize`|`Integer`|Any positive integer|Page size. Defaults to 50.|
-|`totalPages`|`Boolean`|`true`, `false`|Indicates whether to return the total number of elements and pages. Defaults to `false` as getting the totals is an expensive operation.|
-|`paging`|`Boolean`|`true`, `false`|Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`.|
-|`order`|`String`||Comma-separated list of field and sort direction pairs in format `field:sortDirection`. Example: `createdAt:desc`<br><br>Entities are ordered by newest (internal ID descending) by default. Note: `field` is case sensitive. Valid `sortDirections` are `asc` and `desc`. `sortDirection` is case-insensitive. `sortDirection` defaults to `asc` for fields or UIDs without explicit `sortDirection`.|
+|page|Integer|Any positive integer|Page number to return. Defaults to 1.|
+|pageSize|Integer|Any positive integer|Page size. Defaults to 50.|
+|totalPages|Boolean|`true`, `false`|Indicates whether to return the total number of elements and pages. Defaults to `false` as getting the totals is an expensive operation.|
+|paging|Boolean|`true`, `false`|Indicates whether paging should be ignored and all rows should be returned. Defaults to `true`, meaning that by default all requests are paginated, unless `paging=false`.|
+|order|String||Comma-separated list of field and sort direction pairs in format `field:sortDirection`. Example: `createdAt:desc`<br><br>Entities are ordered by newest (internal ID descending) by default. Note: `field` is case sensitive. Valid `sortDirections` are `asc` and `desc`, where `sortDirection` is case insensitive, and `sortDirection` defaults to `asc` for fields or UIDs without explicit `sortDirection`.|
 
 > **Note**
 >
@@ -1690,13 +1690,13 @@ filter](#webapi_metadata_field_filter) for a more complete guide on how to use `
 
 ##### Examples
 
-|Parameter example|Meaning|
-|---|---|
-|`fields=*`|returns all fields|
-|`fields=createdAt,uid`|only returns fields `createdAt` and `uid`|
-|`fields=enrollments[*,!uid]`|returns all fields of `enrollments` except `uid`|
-|`fields=enrollments[uid]`|only returns `enrollments` field `uid`|
-|`fields=enrollments[uid,enrolledAt]`|only returns `enrollments` fields `uid` and `enrolledAt`|
+| Query parameter example | Description |
+| --- | --- |
+| fields=* |Returns all fields |
+| fields=createdAt,uid | Returns fields `createdAt` and `uid` |
+| fields=enrollments[\*,!uid] | Returns all fields of `enrollments` except `uid` |
+| fields=enrollments[uid] | Returns `enrollments` field `uid` |
+| fields=enrollments[uid,enrolledAt] | Returns `enrollments` fields `uid` and `enrolledAt` |
 
 ### Tracked entities { #webapi_tracker_export_tracked_entities }
 
