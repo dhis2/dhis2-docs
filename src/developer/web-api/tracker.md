@@ -1855,7 +1855,7 @@ To specify program enrollment dates as part of the query:
 GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=IpHINAT79UW&fields=trackedEntity,enrollments[enrolledAt]&enrollmentEnrolledAfter=2024-01-01
 ```
 
-To query on an attribute using multiple values with an *IN* filter and comma-separated values:
+To query on an attribute using multiple values with an *IN* filter and semicolon-separated values:
 
 ```
 GET /api/tracker/trackedEntities?trackedEntityType=nEenWmSyUEp&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:IN:Scott;Jimmy;Santiago
