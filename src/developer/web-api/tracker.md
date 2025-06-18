@@ -1766,33 +1766,33 @@ The endpoint returns a list of tracked entities that match the request parameter
 
 |Request parameter|Type|Allowed values|Description|
 |---|---|---|---|
-|`filter`|`String`|Comma separated values of attribute filters.|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. A filter like `filter=H9IlTX2X6SL:!null` returns all events where the given attribute has a value. Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. User needs access to the attribute to filter on it.|
-|`orgUnits`|`String`|Comma-separated list of organisation unit `UID`s.|Only return tracked entities belonging to provided organisation units|
-|`orgUnitMode`|`String`|`SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|Get tracked entities owned by given `orgUnits` relative to the `orgUnitMode` and `program` parameters. Defaults to `ACCESSIBLE` if **no** organisation unit(s) are set via `orgUnits`. Defaults to `SELECTED` if organisation unit(s) are set via `orgUnits`. See [org unit modes](#webapi_tracker_orgunit_scope).|
-|`program`|`String`|Program `UID`|A tracker program `UID` for which tracked entities in the response must be enrolled into.|
-|`programStatus` **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the tracked entities enrollment in the given program.|
-|`programStage`|`String`|`UID`|A program stage `UID` for which tracked entities in the response must have events for.|
-|`followUp`|`Boolean`|`true`, `false`|Indicates whether the tracked entity is marked for follow up for the specified program.|
-|`updatedAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Start date and time for last updated|
-|`updatedBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | End date and time for last updated|
-|`updatedWithin`|`Duration`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) | Returns tracked entities not older than specified Duration|
-|`enrollmentStatus`|`String`|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the tracked entities enrollment in the given program.|
-|`enrollmentEnrolledAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for enrollment in the given program|
-|`enrollmentEnrolledBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
-|`enrollmentOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time and time and time for occurred in the given program|
-|`enrollmentOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time and time for occurred in the given program|
-|`trackedEntityType`|`String`|UID of tracked entity type|Only returns tracked entities of given type.|
-|`trackedEntities`|`String`|Comma-separated list of tracked entity `UID`s.|Filter the result down to a limited set of tracked entities using explicit uids of the tracked entities by using `trackedEntity=id1,id2`. This parameter will, at the very least, create the outer boundary of the results, forming the list of all tracked entities using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
-|`assignedUserMode`|`String`|`CURRENT`, `PROVIDED`, `NONE`, `ANY`, `ALL`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. Default is `ALL`.|
-|`assignedUsers`|`String`|Comma-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1,id2`. This parameter will only be considered if `assignedUserMode` is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`.|
-|`order`|`String`|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported values are `createdAt, createdAtClient, enrolledAt, inactive, trackedEntity, updatedAt, updatedAtClient`.|
-|`eventStatus`|`String`|`ACTIVE`, `COMPLETED`, `VISITED`, `SCHEDULE`, `OVERDUE`, `SKIPPED`|Status of any events in the specified program|
-|`eventOccurredAfter`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for Event for the given Program|
-|`eventOccurredBefore`|`DateTime`|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for Event for the given Program|
-|`includeDeleted`|`Boolean`|`true`, `false`|Indicates whether to include soft-deleted elements|
-|`potentialDuplicate`|`Boolean`|`true`, `false`| Filter the result based on the fact that a tracked entities is a Potential Duplicate. true: return tracked entities flagged as Potential Duplicates. false: return tracked entities NOT flagged as Potential Duplicates. If omitted, we don't check whether a tracked entities is a Potential Duplicate or not.|
-|`idScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. **Note: only metadata in fields `trackedEntity.trackedEntityType`, `orgUnit` and `attributes` is exported in this idScheme. All other fields will always be exported using UIDs.**|
-|`orgUnitIdScheme`|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|
+|filter|String|Comma separated values of attribute filters.|Narrows response to tracked entities matching given filters. A filter is a colon separated property or attribute UID with optional operator and value pairs. Example: `filter=H9IlTX2X6SL:sw:A` with operator starts with `sw` followed by a value. A filter like `filter=H9IlTX2X6SL:!null` returns all events where the given attribute has a value. Special characters like `+` need to be percent-encoded, so `%2B` instead of `+`. Characters such as `:` or `,`, as part of the filter value, need to be escaped by `/`. Likewise, `/` needs to be escaped. Multiple operators for the same attribute like `filter=AuPLng5hLbE:gt:438901703:lt:448901704` are allowed. |
+|orgUnits|String|Comma-separated list of organisation unit `UID`s.|Only return tracked entities belonging to provided organisation units|
+|orgUnitMode|String|`SELECTED`, `CHILDREN`, `DESCENDANTS`, `ACCESSIBLE`, `CAPTURE`, `ALL`|Get tracked entities owned by given `orgUnits` relative to the `orgUnitMode` and `program` parameters. Defaults to `ACCESSIBLE` if **no** organisation unit(s) are set via `orgUnits`. Defaults to `SELECTED` if organisation unit(s) are set via `orgUnits`. See [org unit modes](#webapi_tracker_orgunit_scope).|
+|program|String|Program `UID`|A tracker program `UID` for which tracked entities in the response must be enrolled into.|
+|programStatus **deprecated for removal in version 43 use `enrollmentStatus`**|`String`|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the tracked entities enrollment in the given program.|
+|programStage|String|`UID`|A program stage `UID` for which tracked entities in the response must have events for.|
+|followUp|Boolean|`true`, `false`|Indicates whether the tracked entity is marked for follow up for the specified program.|
+|updatedAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | Start date and time for last updated|
+|updatedBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) | End date and time for last updated|
+|updatedWithin|Duration|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) | Returns tracked entities not older than specified Duration|
+|enrollmentStatus|String|`ACTIVE`, `COMPLETED`, `CANCELLED`|The status of the tracked entities enrollment in the given program.|
+|enrollmentEnrolledAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for enrollment in the given program|
+|enrollmentEnrolledBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for enrollment in the given program|
+|enrollmentOccurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time and time and time for occurred in the given program|
+|enrollmentOccurredBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time and time for occurred in the given program|
+|trackedEntityType|String|UID of tracked entity type|Only returns tracked entities of given type.|
+|trackedEntities|String|Comma-separated list of tracked entity `UID`s.|Filter the result down to a limited set of tracked entities using explicit uids of the tracked entities by using `trackedEntity=id1,id2`. This parameter will, at the very least, create the outer boundary of the results, forming the list of all tracked entities using the uids provided. If other parameters/filters from this table are used, they will further limit the results from the explicit outer boundary.|
+|assignedUserMode|String|`CURRENT`, `PROVIDED`, `NONE`, `ANY`, `ALL`|Restricts result to tracked entities with events assigned based on the assigned user selection mode. See table below "Assigned user modes" for explanations. Default is `ALL`.|
+|assignedUsers|String|Comma-separated list of user UIDs to filter based on events assigned to the users.|Filter the result down to a limited set of tracked entities with events that are assigned to the given user IDs by using `assignedUser=id1,id2`. This parameter will only be considered if `assignedUserMode` is either `PROVIDED` or `null`. The API will error out, if for example, `assignedUserMode=CURRENT` and `assignedUser=someId`.|
+|order|String|Comma-separated list of property name or attribute or UID and sort direction pairs in format `propName:sortDirection`.|Supported values are `createdAt, createdAtClient, enrolledAt, inactive, trackedEntity, updatedAt, updatedAtClient`.|
+|eventStatus|String|`ACTIVE`, `COMPLETED`, `VISITED`, `SCHEDULE`, `OVERDUE`, `SKIPPED`|Status of any events in the specified program|
+|eventOccurredAfter|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|Start date and time for Event for the given Program|
+|eventOccurredBefore|DateTime|[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)|End date and time for Event for the given Program|
+|includeDeleted|Boolean|`true`, `false`|Indicates whether to include soft-deleted elements|
+|potentialDuplicate|Boolean|`true`, `false`| Filter the result based on the fact that a tracked entities is a potential duplicate. `true`: returns tracked entities flagged as potential duplicates. `false`: returns tracked entities NOT flagged as potential duplicates. |
+|idScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for all metadata references unless overridden by a metadata specific parameter. Default is `UID`. Note: only metadata in fields `trackedEntity.trackedEntityType`, `orgUnit` and `attributes` is exported in this idScheme. All other fields will always be exported using UIDs.|
+|orgUnitIdScheme|Enum|`UID`, `CODE`, `NAME`, `ATTRIBUTE:{uid}`|IdScheme used for organisation unit references. Defaults to the `idScheme` parameter.|
 
 The available assigned user modes are explained in the following table.
 
@@ -1845,18 +1845,24 @@ GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=ur1Edk5Oe2n&filter
 
 A query filter with a value that needs escaping and will be interpreted as `:,/`:
 
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:EQ:/:/,//
+```
+GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=ur1Edk5Oe2n&filter=lw1SqmMlnfh:EQ:/:/,//
+```
 
 To specify program enrollment dates as part of the query:
 
-    GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=IpHINAT79UW&fields=trackedEntity,enrollments[enrolledAt]&enrollmentEnrolledAfter=2024-01-01
+```
+GET /api/tracker/trackedEntities?orgUnits=DiszpKrYNg8&program=IpHINAT79UW&fields=trackedEntity,enrollments[enrolledAt]&enrollmentEnrolledAfter=2024-01-01
+```
 
-To query on an attribute using multiple values in an *IN* filter:
+To query on an attribute using multiple values with an *IN* filter and semicolon-separated values:
 
-    GET /api/tracker/trackedEntities?trackedEntityType=nEenWmSyUEp&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:IN:Scott;Jimmy;Santiago
+```
+GET /api/tracker/trackedEntities?trackedEntityType=nEenWmSyUEp&orgUnits=DiszpKrYNg8&filter=w75KJ2mc4zz:IN:Scott;Jimmy;Santiago
+```
 
 All of the following operators are supported regardless of the value type. Values are compared using
-text comparison unless stated otherwise. Integer and decimal value types are treated as Postgres
+text comparison unless stated otherwise. Integer and decimal value types are treated as PostgreSQL
 integer and numeric data types for the specified operators.
 
 Supported binary operators:
@@ -1880,8 +1886,7 @@ Supported binary operators:
 | sw | starts with |
 | ew | ends with |
 
-Right now all matches are case-insensitive so for example `eq` and `ieq` (`i` for `insensitive`)
-behave in the same way.
+Matches are case-insensitive, for example `eq` and `ieq` (`i` for `insensitive`) behave in the same way.
 
 Supported unary operators:
 
@@ -1895,10 +1900,9 @@ The API supports CSV and JSON response for `GET /api/tracker/trackedEntities`.
 
 ##### JSON
 
-Responses can be filtered on desired fields, see [Request parameter to filter
-responses](#webapi_tracker_field_filter)
+Responses can be filtered on desired fields, see [field filter](#webapi_tracker_field_filter) for more information.
 
-A JSON response can look like the following:
+A JSON response looks like the following:
 
 ```json
 {
@@ -1961,7 +1965,7 @@ A JSON response can look like the following:
 
 ##### CSV
 
-A CSV response can look like the following:
+A CSV response looks like the following:
 
 ```
 trackedEntity,trackedEntityType,createdAt,createdAtClient,updatedAt,updatedAtClient,orgUnit,inactive,deleted,potentialDuplicate,geometry,latitude,longitude,storedBy,createdBy,updatedBy,attrCreatedAt,attrUpdatedAt,attribute,displayName,value,valueType
