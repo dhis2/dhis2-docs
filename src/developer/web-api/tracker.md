@@ -1191,15 +1191,14 @@ happened.
 
 ### Import summary report level
 
-As previously stated, `GET /tracker/jobs/{uid}/report` can be retrieved using a specific
-`reportMode` parameter. By default the endpoint will return an `importSummary` with `reportMode`
-`ERROR`.
+A import summary report can be retrieved using a specific `reportMode` parameter in a `GET /tracker/jobs/{uid}/report` 
+request. By default the endpoint will return an `importSummary` with `reportMode` `ERROR`.
 
 | Parameter | Description |
-|---|---|
-| `FULL` | Returns everything from `WARNINGS`, plus `timingsStats` |
-| `WARNINGS` | Returns everything from `ERRORS`, plus `warningReports` in `validationReports` |
-| `ERRORS` (default) | Returns only `errorReports` in `validationReports` |
+| --- | --- |
+| FULL | Returns everything from `WARNINGS`, plus `timingsStats` |
+| WARNINGS | Returns everything from `ERRORS`, plus `warningReports` in `validationReports` |
+| ERRORS (default) | Returns only `errorReports` in `validationReports` |
 
 In addition, all `reportModes` will return `status`, `stats`, `bundleReport` and `message` when
 applicable.
