@@ -343,7 +343,7 @@ you'll receive an error like the below.
   "httpStatusCode": 422,
   "status": "ERROR",
   "message": "Not all metadata has an identifier for the requested idScheme. Either change the requested idScheme or add the missing identifiers to the metadata.",
-  "devMessage": "Following metadata listed using their UIDs is missing identifiers for the requested idScheme:\nProgramStage[ATTRIBUTE:Y1LUDU8sWBR]=A03MvHHogjR\nCategoryOptionCombo[ATTRIBUTE:Y1LUDU8sWBR]=HllvX50cXC0\nCategoryOption[ATTRIBUTE:Y1LUDU8sWBR]=xYerKDKCefk\nProgram[ATTRIBUTE:Y1LUDU8sWBR]=IpHINAT79UW\nOrganisationUnit[ATTRIBUTE:Y1LUDU8sWBR]=DiszpKrYNg8"
+  "devMessage": "Following metadata listed using their UIDs is missing identifiers for the requested idScheme: ProgramStage[ATTRIBUTE:Y1LUDU8sWBR]=A03MvHHogjR .."
 }
 ```
 
@@ -946,10 +946,10 @@ summary will only be available after the import has completed:
 GET /tracker/jobs/{uid}/report
 ```
 
-| Parameter|Description|Example
-|---|---|---|
-|path `/{uid}`|The UID of an existing tracker import job.|ABCDEF12345|
-|`reportMode`|The level of detail the report should have.|`FULL`, `ERRORS`, `WARNINGS`|
+| Parameter| Description| Example |
+| --- | --- | --- |
+| path | ID of an existing tracker import job. | ABCDEF12345 |
+| reportMode | Level of detail for the report. | `FULL`, `ERRORS`, `WARNINGS` |
 
 #### Request example
 
