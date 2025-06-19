@@ -343,7 +343,7 @@ you'll receive an error like the below.
   "httpStatusCode": 422,
   "status": "ERROR",
   "message": "Not all metadata has an identifier for the requested idScheme. Either change the requested idScheme or add the missing identifiers to the metadata.",
-  "devMessage": "Following metadata listed using their UIDs is missing identifiers for the requested idScheme:\nProgramStage[ATTRIBUTE:Y1LUDU8sWBR]=A03MvHHogjR\nCategoryOptionCombo[ATTRIBUTE:Y1LUDU8sWBR]=HllvX50cXC0\nCategoryOption[ATTRIBUTE:Y1LUDU8sWBR]=xYerKDKCefk\nProgram[ATTRIBUTE:Y1LUDU8sWBR]=IpHINAT79UW\nOrganisationUnit[ATTRIBUTE:Y1LUDU8sWBR]=DiszpKrYNg8"
+  "devMessage": "Following metadata listed using their UIDs is missing identifiers for the requested idScheme: ProgramStage[ATTRIBUTE:Y1LUDU8sWBR]=A03MvHHogjR .."
 }
 ```
 
@@ -946,10 +946,10 @@ summary will only be available after the import has completed:
 GET /tracker/jobs/{uid}/report
 ```
 
-| Parameter|Description|Example
-|---|---|---|
-|path `/{uid}`|The UID of an existing tracker import job.|ABCDEF12345|
-|`reportMode`|The level of detail the report should have.|`FULL`, `ERRORS`, `WARNINGS`|
+| Parameter| Description| Example |
+| --- | --- | --- |
+| path `/{uid}` | ID of an existing tracker import job. | ABCDEF12345 |
+| reportMode | Level of detail for the report. | `FULL`, `ERRORS`, `WARNINGS` |
 
 #### Request example
 
@@ -1191,15 +1191,14 @@ happened.
 
 ### Import summary report level
 
-As previously stated, `GET /tracker/jobs/{uid}/report` can be retrieved using a specific
-`reportMode` parameter. By default the endpoint will return an `importSummary` with `reportMode`
-`ERROR`.
+A import summary report can be retrieved using a specific `reportMode` parameter in a `GET /tracker/jobs/{uid}/report` 
+request. By default the endpoint will return an `importSummary` with `reportMode` `ERROR`.
 
 | Parameter | Description |
-|---|---|
-| `FULL` | Returns everything from `WARNINGS`, plus `timingsStats` |
-| `WARNINGS` | Returns everything from `ERRORS`, plus `warningReports` in `validationReports` |
-| `ERRORS` (default) | Returns only `errorReports` in `validationReports` |
+| --- | --- |
+| FULL | Returns everything from `WARNINGS`, plus `timingsStats` |
+| WARNINGS | Returns everything from `ERRORS`, plus `warningReports` in `validationReports` |
+| ERRORS (default) | Returns only `errorReports` in `validationReports` |
 
 In addition, all `reportModes` will return `status`, `stats`, `bundleReport` and `message` when
 applicable.
@@ -2008,9 +2007,9 @@ GET /api/tracker/trackedEntities/{uid}?program={programUid}&fields={fields}
 
 | Request parameter | Type | Allowed values | Description |
 | --- | --- | --- | --- |
-| `uid` | `String` | `uid` | Return the tracked entity with specified `uid` |
-| `program` |`String`|`uid` | Include program attributes in the response (only the ones user has access to) |
-| `fields` |`String` | Any valid field filter (default `*,!relationships,!enrollments,!events,!programOwners`) |Include specified sub-objects in the response |
+| uid | String | `uid` | Return the tracked entity with specified `uid` |
+| program | String |`uid` | Include program attributes in the response (only the ones user has access to) |
+| fields | String | Any valid field filter (default `*,!relationships,!enrollments,!events,!programOwners`) | Include specified sub-objects in the response |
 
 ##### Example requests
 
@@ -2178,12 +2177,12 @@ GET /api/tracker/trackedEntities/{uid}/changeLogs
 
 This endpoint retrieves change logs for the attributes of a specific tracked entity. It returns a list of all tracked entity attributes that have changed over time for that entity.
 
-|Parameter|Type|Allowed values|
-|---|---|---|
-|path `/{uid}`|`String`|Tracked entity `UID`.|
-|`program`|`String`|Program `UID` (optional).|
-|`order`|`String`|Field and sort direction pair in the format `field:sortDirection`.<br><br>Change logs are ordered by newest (creation date in descending order) by default, when no order parameter is provided.<br><br>Example: `createdAt:desc`<br><br>`field` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `asc` for fields without explicit `sortDirection`. Supported fields are `attribute`, `createdAt`, and `username`, only one at a time.|
-|`filter`|`String`|Colon-separated field name with the `eq` operator and value in the format `field:eq:value`.<br><br>Example: `attribute:eq:w75KJ2mc4zz`<br><br>Filtering is supported for `attribute` and `username` fields, one at a time. Only the `eq` (equals) operator is supported.|
+| Parameter | Type | Allowed values |
+| --- | --- | --- |
+| path `/{uid}` | String |Tracked entity `UID`. |
+|program|`String`|Program `UID` (optional). |
+|order|`String`|Field and sort direction pair in the format `field:sortDirection`.<br><br>Change logs are ordered by newest (creation date in descending order) by default, when no order parameter is provided.<br><br>Example: `createdAt:desc`<br><br>`field` is case-sensitive. Valid sortDirection values are `asc` and `desc`. `sortDirection` is case-insensitive and defaults to `asc` for fields without explicit `sortDirection`. Supported fields are `attribute`, `createdAt`, and `username`. |
+| filter | String | Colon-separated field name with the `eq` operator and value in the format `field:eq:value`.<br><br>Example: `attribute:eq:w75KJ2mc4zz`<br><br>Filtering is supported for `attribute` and `username` fields, one at a time. Only the `eq` (equals) operator is supported. |
 
 ##### Tracked entity attribute value change logs
 
@@ -2191,45 +2190,45 @@ An example JSON response.
 
 ```json
 {
-   "pager":{
-      "page":1,
-      "pageSize":10
-   },
-   "changeLogs":[
-      {
-         "createdBy":{
-            "uid":"AIK2aQOJIbj",
-            "username":"tracker",
-            "firstName":"Tracker demo",
-            "surname":"User"
-         },
-         "createdAt":"2024-06-20T14:51:16.433",
-         "type":"UPDATE",
-         "change":{
-            "dataValue":{
-               "dataElement":"bx6fsa0t90x",
-               "previousValue":"true",
-               "currentValue":"false"
-            }
-         }
+  "pager": {
+    "page": 1,
+    "pageSize": 10
+  },
+  "changeLogs": [
+    {
+      "createdBy": {
+        "uid": "AIK2aQOJIbj",
+        "username": "tracker",
+        "firstName": "Tracker demo",
+        "surname": "User"
       },
-      {
-         "createdBy":{
-            "uid":"AIK2aQOJIbj",
-            "username":"tracker",
-            "firstName":"Tracker demo",
-            "surname":"User"
-         },
-         "createdAt":"2024-06-20T14:50:32.966",
-         "type":"CREATE",
-         "change":{
-            "dataValue":{
-               "dataElement":"ebaJjqltK5N",
-               "currentValue":"0"
-            }
-         }
+      "createdAt": "2024-06-20T14:51:16.433",
+      "type": "UPDATE",
+      "change": {
+        "dataValue": {
+          "dataElement": "bx6fsa0t90x",
+          "previousValue": "true",
+          "currentValue": "false"
+        }
       }
-   ]
+    },
+    {
+      "createdBy": {
+        "uid": "AIK2aQOJIbj",
+        "username": "tracker",
+        "firstName": "Tracker demo",
+        "surname": "User"
+      },
+      "createdAt": "2024-06-20T14:50:32.966",
+      "type": "CREATE",
+      "change": {
+        "dataValue": {
+          "dataElement": "ebaJjqltK5N",
+          "currentValue": "0"
+        }
+      }
+    }
+  ]
 }
 ```
 
@@ -2597,10 +2596,7 @@ The JSON response can look like the following:
       "attributeCategoryOptions": "xYerKDKCefk",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -11.468912037323042,
-          7.515913998868316
-        ]
+        "coordinates": [-11.468912037323042, 7.515913998868316]
       },
       "dataValues": [
         {
