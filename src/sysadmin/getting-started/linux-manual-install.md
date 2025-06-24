@@ -133,13 +133,15 @@ Install PostgreSQL with below steps
 <!-- *exit*. -->
 ## Java installation { #install_java_installation } 
 ---
-| DHIS2 version | JDK recommended | JDK required | Tomcat Required | 
-|:--------------|:---------------:|:------------:|:---------------:|  
-| 2.41          | 17              | 17           | 8.5.50
-| 2.40          | 17              | 11           | 8.5.50
-| 2.38          | 11              | 11           | 8.5.50
-| 2.35          | 11              | 8            |
-| pre 2.35      | 8               | 8            |
+
+| DHIS2 version | JDK recommended | JDK required |Tomcat required |
+| : ------------- | :--------------- | :------------ | :------------ |
+| 2.42          | 17              | 17           | 10           |
+| 2.41          | 17              | 17           | 9            |
+| 2.40          | 17              | 11           | 9            |
+| 2.38          | 11              | 11           | 9            |
+| 2.35          | 11              | 8            | 9            |
+| pre 2.35      | 8               | 8            | 9            |
 
 The recommended Java JDK for DHIS2 2.40 and above is OpenJDK 17, its required for 2.41. 
 ```
