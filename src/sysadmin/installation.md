@@ -1775,6 +1775,16 @@ connection.pool.preferred.test.query = select 1
 # Determines the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads = 3
 
+# Minimum number of idle connections to maintain (default: 10)
+connection.pool.min_idle = 10
+
+# Interval to keep idle connections alive. Does not reset idle timeout (default: 2 minutes)
+connection.pool.keep_alive_time_seconds = 120
+
+# Connection max lifetime. An in-use connection will never be retired, only when it is idle will
+# it be removed. (default: 30 minutes).
+connection.pool.max_lifetime_seconds =  1800
+
 # Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
 db.pool.type = c3p0
 
