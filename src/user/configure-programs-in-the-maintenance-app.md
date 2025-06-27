@@ -1300,6 +1300,11 @@ date".
 
 ### Reference information: Operators and functions to use in program rule expression { #program_rules_operators_functions } 
 
+> **Note**
+>
+> When using absolute dates in program rule expressions, always use
+> 'YYYY-MM-DD' date format irrespective of the System Date format setting.
+
 > **Tip**
 >
 > You can nest functions within each other and with sub-expressions to
