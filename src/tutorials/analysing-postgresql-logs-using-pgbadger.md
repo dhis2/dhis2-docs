@@ -1,11 +1,11 @@
 ---
-title: Analysing PostgreSQL logs using pgbadger
+title: Analysing PostgreSQL logs using pgBadger
 ---
-# Analysing PostgreSQL logs using pgbadger
+# Analysing PostgreSQL logs using pgBadger
 
 **As a DHIS2 system administrator, knowing what goes on with your PostgreSQL database is of great importance. Looking at the PostgreSQL logs will give you a clue, however simply browsing the logs with a text editor is difficult since the logs become very large with lots of repetitive content.**
 
-The pgbadger PostgreSQL log analysis tool is simple to install and easy to understand. It lets you analyse log files from the command line with simple commands. This tutorials explains how the pgbadger PostgreSQL log analysis tool can help you get useful information from your logs. It is based on a Debian/Ubuntu environment but will be similar in other environments.
+The pgBadger PostgreSQL log analysis tool is simple to install and easy to understand. It lets you analyse log files from the command line with simple commands. This tutorials explains how the pgbadger PostgreSQL log analysis tool can help you get useful information from your logs. It is based on a Debian/Ubuntu environment but will be similar in other environments.
 
 Perl is required, so first make sure you have it installed.
 
@@ -28,7 +28,7 @@ perl Makefile.PL
 make && sudo make install
 ```
 
-You will have to adjust your PostgreSQL configuration file to give pgbadger the information it needs. First you need to set the "log_line_prefix" setting.
+You will have to adjust your PostgreSQL configuration file to give pgBadger the information it needs. First you need to set the "log_line_prefix" setting.
 
 ```
 log_line_prefix = '%t [%p]: [%l-1] '
@@ -60,7 +60,7 @@ select pg_reload_conf();
 
 Of course, logging all statements has a performance impact on your system, so you could enable it for enough time to give you between 50 and 200 Mb worth of logs, then disable it again.
 
-Now with DHIS2 we already know the analytics table generation and indexing process has some very long-running queries. We do not want those to take all attention from pgbadger so we create a new log file where we omit these statements with the following command in a terminal.
+Now with DHIS2 we already know the analytics table generation and indexing process has some very long-running queries. We do not want those to take all attention from pgBadger so we create a new log file where we omit these statements with the following command in a terminal.
 
 ```
 cat pg.log | grep -viE "create index|insert into analytics|vacuum analyze analytics" > pg_clean.log
@@ -74,7 +74,7 @@ pgbadger -j 4 pg_clean.log
 
 Here the "-j" option refers to the number of CPUs you would like to use for the process - by default it uses 1 but allowing more CPUs speeds up the process a lot. Finally, "pg_clean.log" refers to your log file.
 
-Note that if you are on Amazon RDS for PostgreSQL, it does not let you change the "log_line_prefix" setting. Instead, you can run pgbadger with the `-p` option which lets you specify a custom prefix for the analysis.
+Note that if you are on Amazon RDS for PostgreSQL, it does not let you change the "log_line_prefix" setting. Instead, you can run pgBadger with the `-p` option which lets you specify a custom prefix for the analysis.
 
 ```
 pgbadger -j 4 -p '%t:%r:%u@%d:[%p]:' pg_clean.log
