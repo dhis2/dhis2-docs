@@ -28,20 +28,20 @@ perl Makefile.PL
 make && sudo make install
 ```
 
-You will have to adjust your PostgreSQL configuration file to give pgBadger the information it needs. First you need to set the "log_line_prefix" setting.
+You will have to adjust your PostgreSQL configuration file to give pgBadger the information it needs. First you need to set the `log_line_prefix` setting.
 
 ```
 log_line_prefix = '%t [%p]: [%l-1] '
 ```
 
-You should enable the "log_min_duration_statement". This setting causes PostgreSQL to log all statements which run for longer than the given value in milliseconds, where a value of 0 will log everything. Make sure that the "log_statement" is set to "none", otherwise the "log_min_duration_statement" setting will not log anything ("none" is the default value anyway).
+You should enable the `log_min_duration_statement` setting. This setting causes PostgreSQL to log all statements which run for longer than the given value in milliseconds, where a value of 0 will log everything. Make sure that the `log_statement` is set to `none`, otherwise the `log_min_duration_statement` setting will not log anything (`none` is the default value anyway).
 
 ```
 log_statement = 'none'
 log_min_duration_statement = 0
 ```
 
-Third you should enable logging of checkpoints, locks and more to get maximum value out of the log analysis:
+You should enable logging of checkpoints, locks and more to get maximum value out of the log analysis.
 
 ```
 log_checkpoints = on
@@ -58,7 +58,7 @@ You can also get the config snippet here. Note that you do not need to restart P
 select pg_reload_conf();
 ```
 
-Of course, logging all statements has a performance impact on your system, so you could enable it for enough time to give you between 50 and 200 Mb worth of logs, then disable it again.
+Of course, logging all statements has a performance impact on your system, so you could enable it for enough time to give you between 50MB and 200MB worth of logs, then disable it again.
 
 Now with DHIS2 we already know the analytics table generation and indexing process has some very long-running queries. We do not want those to take all attention from pgBadger so we create a new log file where we omit these statements with the following command in a terminal.
 
@@ -72,9 +72,9 @@ We are now ready to do the analysis. Invoke the below command.
 pgbadger -j 4 pg_clean.log
 ```
 
-Here the "-j" option refers to the number of CPUs you would like to use for the process - by default it uses 1 but allowing more CPUs speeds up the process a lot. Finally, "pg_clean.log" refers to your log file.
+Here the `-j` option refers to the number of CPUs you would like to use for the process. By default it uses a single CPU but allowing more CPUs speeds up the process a lot. Finally, `pg_clean.log` refers to your log file.
 
-Note that if you are on Amazon RDS for PostgreSQL, it does not let you change the "log_line_prefix" setting. Instead, you can run pgBadger with the `-p` option which lets you specify a custom prefix for the analysis.
+Note that if you are on Amazon RDS for PostgreSQL, it does not let you change the `log_line_prefix` setting. Instead, you can run pgBadger with the `-p` option which lets you specify a custom prefix for the analysis.
 
 ```
 pgbadger -j 4 -p '%t:%r:%u@%d:[%p]:' pg_clean.log
