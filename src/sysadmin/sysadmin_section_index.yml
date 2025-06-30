@@ -2,7 +2,7 @@
 Manage: '@github(dhis2/dhis2-docs, src/sysadmin/index.md, new_install_docs)'
 Getting Started:
   # alt__DHIS core version new_install_docs:
-  - Automated Install on Ubuntu: '@github(dhis2/dhis2-docs, src/sysadmin/getting-started/linux-automated-install.md, new_install_docs)'
+  - Automated Install on Ubuntu: '@github(dhis2/dhis2-server-tools, docs/getting-started/linux-automated-install.md, main)'
   - Manual install on Ubuntu: '@github(dhis2/dhis2-docs, src/sysadmin/getting-started/linux-manual-install.md, new_install_docs)'
   - Manual Install on Windows: '@github(dhis2/dhis2-docs, src/sysadmin/getting-started/windows-manual-install.md, new_install_docs)'
   # - Post Install: '@github(dhis2/dhis2-docs, src/sysadmin/getting-started/post-install.md, new_install_docs)'
