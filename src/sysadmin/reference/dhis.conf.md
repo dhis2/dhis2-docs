@@ -223,7 +223,7 @@ analytics.connection.url = jdbc:postgresql:analytics
 # Analytics database username
 analytics.connection.username = analytics
 
-# Analytics database password
+# Analytics database password (sensitive)
 analytics.connection.password = xxxx
 
 # Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
