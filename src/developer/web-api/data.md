@@ -509,7 +509,7 @@ Table: Data value set query parameters
 | startDate | Start date for the time span of the values to export. |
 | endDate | End date for the time span of the values to export. |
 | orgUnit | Organisation unit identifier. Can be repeated any number of times. |
-| children | Whether to include the children in the hierarchy of the organisation units. |
+| children | Whether to include the children in the hierarchy of the organisation units. Boolean value (default `false`).|
 | orgUnitGroup | Organisation unit group identifier. Can be repeated any number of times. |
 | attributeOptionCombo | Attribute option combo identifier. Can be repeated any number of times. |
 | includeDeleted | Whether to include deleted data values. |
