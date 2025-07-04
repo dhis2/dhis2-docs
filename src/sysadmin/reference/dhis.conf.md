@@ -229,6 +229,15 @@ analytics.connection.password = xxxx
 # Analytics unlogged tables. Can be 'on' (default), 'off'. On will improve analytics geeneration performance at the cost of no replication.
 analytics.table.unlogged = on
 
+# Analytics database platform. (default: 'POSTGRESQL')
+analytics.database = POSTGRESQL
+
+# Analytics database JDBC catalog name. (default: 'pg_dhis')
+analytics.database.catalog = pg_dhis
+
+# Analytics database JDBC driver filename. (default: 'postgresql.jar')
+analytics.database.driver_filename = postgresql.jar
+
 # ----------------------------------------------------------------------
 # System telemetry [Optional]
 # ----------------------------------------------------------------------
