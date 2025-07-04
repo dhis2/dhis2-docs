@@ -77,6 +77,13 @@ connection.pool.num.helper.threads=3
 # Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
 db.pool.type = c3p0
 
+# Sets hibernate.cache.use_query_cache. (default: true).
+hibernate.cache.use_query_cache
+
+# Sets hibernate.cache.use_second_level_cache. (default: true).
+hibernate.cache.use_second_level_cache
+
+
 # ----------------------------------------------------------------------
 # Server [Mandatory]
 # ----------------------------------------------------------------------
@@ -182,7 +189,7 @@ monitoring.jvm.enabled = on
 # Database connection pool monitoring
 monitoring.dbpool.enabled = on
 
-# Hibernate monitoring, do not use in production
+# Hibernate monitoring, do not use in production (default: off)
 monitoring.hibernate.enabled = off
 
 # Uptime monitoring
