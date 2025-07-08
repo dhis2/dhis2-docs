@@ -1745,34 +1745,34 @@ connection.pool.max_size = 40
 # Database connection pool [Optional]
 # ----------------------------------------------------------------------
 
-# Minimum number of Connections a pool will maintain at any given time (default: 5).
+# Deprecated since v43. Minimum number of Connections a pool will maintain at any given time (default: 5).
 connection.pool.min_size = 5
 
-# Number of connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize.
+# Deprecated since v43. Number of connections a pool will try to acquire upon startup. Should be between minPoolSize and maxPoolSize.
 connection.pool.initial_size = 5
 
-# Determines how many connections at a time will try to acquire when the pool is exhausted.
+# Deprecated since v43. Determines how many connections at a time will try to acquire when the pool is exhausted.
 connection.pool.acquire_incr = 5
 
 # Seconds a Connection can remain pooled but unused before being discarded. Zero means idle connections never expire. (default: 7200)
 connection.pool.max_idle_time = 7200
 
-# Number of seconds that connections in excess of minPoolSize is permitted to remain idle in the pool before being culled (default: 0)
+# Deprecated since v43. Number of seconds that connections in excess of minPoolSize is permitted to remain idle in the pool before being culled (default: 0)
 connection.pool.max_idle_time_excess_con = 0
 
-# If greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
+# Deprecated since v43. If greater than 0, dhis2 will test all idle, pooled but unchecked-out connections, every this number of seconds. (default: 0)
 connection.pool.idle.con.test.period = 0
 
-# If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
+# Deprecated since v43. If on, an operation will be performed at every connection checkout to verify that the connection is valid. (default: false)
 connection.pool.test.on.checkout = false
 
-# If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
+# Deprecated since v43. If on, an operation will be performed asynchronously at every connection checkin to verify that the connection is valid. (default: on)
 connection.pool.test.on.checkin = on
 
 # Determines the query that will be executed for all connection tests
 connection.pool.preferred.test.query = select 1
 
-# Determines the number of helper threads used by dhis2 for jdbc operations. (default: 3)
+# Deprecated since v43. Determines the number of helper threads used by dhis2 for jdbc operations. (default: 3)
 connection.pool.num.helper.threads = 3
 
 # Minimum number of idle connections to maintain (default: 10)
@@ -1785,8 +1785,8 @@ connection.pool.keep_alive_time_seconds = 120
 # it be removed. (default: 30 minutes).
 connection.pool.max_lifetime_seconds =  1800
 
-# Database connection pool type, supported types are 'c3p0' (default), 'hikari', 'unpooled'
-db.pool.type = c3p0
+# Database datasource pool type. Supported pool types are: hikari (default), c3p0 (deprecated), unpooled
+db.pool.type = hikari
 
 # ----------------------------------------------------------------------
 # Server [Mandatory]
