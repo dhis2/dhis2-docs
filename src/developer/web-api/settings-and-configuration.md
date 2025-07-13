@@ -354,36 +354,6 @@ curl "localhost/api/33/configuration/feedbackRecipients" -d "wl5cDMuUhmF"
   -H "Content-Type:text/plain"-u admin:district
 ```
 
-## Read-only configuration { #webapi_readonly_configuration_interface } 
-
-To access all configuration settings and properties you can use the read-only configuration endpoint. This will provide read-only access to *UserSettings, SystemSettings and DHIS2 server configurations* You can get XML and JSON responses through the *Accept* header. You can *GET* all settings from:
-
-    /api/33/configuration/settings
-
-You can get filtered settings based on setting type:
-
-    GET /api/33/configuration/settings/filter?type=USER_SETTING
-
-    GET /api/33/configuration/settings/filter?type=CONFIGURATION
-
-More than one type can be provided:
-
-    GET /api/33/configuration/settings/filter?type=USER_SETTING&type=SYSTEM_SETTING
-
-
-
-Table: SettingType values
-
-| Value | Description |
-|---|---|
-| USER_SETTING | To get user settings |
-| SYSTEM_SETTING | To get system settings |
-| CONFIGURATION | To get DHIS server settings |
-
-> **Note**
->
-> Fields which are confidential will be provided in the output but without values.
-
 ## Tokens { #webapi_tokens } 
 
 The *tokens* resource provides access tokens to various services.
