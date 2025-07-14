@@ -203,7 +203,7 @@ The following query parameters are supported.
 | dataStartDate   | Start date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd). |
 | dataEndDate     | End date for interval for mean and std dev calculation. `Z_SCORE` and `MOD_Z_SCORE` algorithm only. | No        | Date (yyyy-MM-dd).   |
 | orderBy         | Field to order by. `Z_SCORE` and `MOD_Z_SCORE`algorithm only.| No        | `MEAN_ABS_DEV`, `Z_SCORE`                 |
-| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero. Default: 500. |
+| maxResults      | Max limit for the output.                                    | No        | Integer, greater than zero. Maximum as specified by system setting `keyDataQualityMaxLimit` |
 
 [*]  You must specify either data sets with the `ds` parameter, which will include all data elements in the data sets, _or_ specify data elements with the `de` parameter.
 
