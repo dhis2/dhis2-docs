@@ -86,9 +86,9 @@ Table: Appearance settings
 
 | Setting | Description |
 |---|---|
-| **Select language** | Sets the language for which you can then enter translations of the following settings:<br>       * **Application introduction**<br> * **Application title**<br> * **Application notification**<br> * **Application left-side footer**<br> * **Application right-side footer**      <br>    **Note**     <br>    Before each of these settings can accept a translated value, they first need to have a default/fallback value. This value can be set by selecting *System default (fallback)* in this dropdown. |
-| **Application introduction** | Sets an introduction of the system which will be visible on the top-left part of the login page. |
+| **Select language** | Sets the language for which you can then enter translations of the following settings:<br> * **Application title**<br>       * **Application introduction**<br> * **Application notification**<br> * **Application left-side footer**<br> * **Application right-side footer**      <br>    **Note**     <br>    Before each of these settings can accept a translated value, they first need to have a default/fallback value. This value can be set by selecting *System default (fallback)* in this dropdown. |
 | **Application title** | Sets the application title on the top menu. |
+| **Application introduction** | Sets an introduction of the system which will be visible on the top-left part of the login page. |
 | **Application notification** | Sets a notification which will be visible on the front page under the login area. |
 | **Application left-side footer** | Sets a text in the left-side footer area of the login page. (When using a language written in a right-to-left script, such as Arabic, this will be in the right-footer area of the login page.) |
 | **Application right-side footer** | Sets a text in the right-side footer area of the login page. ((When using a language written in a right-to-left script, such as Arabic, this will be in the left-footer area of the login page.) |
