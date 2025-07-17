@@ -139,7 +139,7 @@ The following keys can be configured for the analytics pool, corresponding to th
 
 ## Migrating to HikariCP
 
-HikariCP is simple to configure, well-maintained, arguably outperforms C3P0, and benefits from an active open-source community. For these reasons, beginning from v43, HikariCP is the default connection pool. C3P0 is deprecated and will eventually be removed from DHIS2. As such, server administrators should migrate from C3P0 to HikariCP as soon as possible. The subsequent steps apply to your installation if either (a) the `db.pool.type` property in the `dhis.conf` is undefined and you running a DHIS2 version older than v43, or (b) the `db.pool.type` property is set to `c3p0`.
+HikariCP is simple to configure, well-maintained, arguably outperforms C3P0, and benefits from an active open-source community. For these reasons, beginning from v43, HikariCP is the default connection pool. C3P0 is deprecated and will eventually be removed from DHIS2. As such, server administrators should migrate from C3P0 to HikariCP as soon as possible. The subsequent steps apply to your installation if either (a) the `db.pool.type` property in the `dhis.conf` is undefined and you are running a DHIS2 version older than v43, or (b) the `db.pool.type` property is set to `c3p0`.
 
 1. Set the `db.pool.type` property to `hikari`.
 2. If `connection.pool.initial_size` is set and you are on at least DHIS2 v43, then remove the property and emulate it by setting the `connection.pool.min_idle` property.
