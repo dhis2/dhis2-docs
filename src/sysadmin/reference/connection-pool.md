@@ -13,7 +13,7 @@ Configuration for the connection pools is done in the `dhis.conf` file.
 DHIS2 supports the following database pool types:
 
 *  **[HikariCP](https://github.com/brettwooldridge/HikariCP)**: This is a well-maintained connection pool known for its high performance. Starting from v43, HikariCP replaces C3P0 as the default database pool.
-*  **[C3P0](https://www.mchange.com/projects/c3p0/)**: This is the default connection pool prior to v43. Starting from v43, C3P0 is deprecated and the default pool is HikariCP. Server administrators are encouraged to migrate from C3P0 to HikariCP as soon as possible.
+*  **[C3P0](https://www.mchange.com/projects/c3p0/)**: This is the default connection pool prior to v43. Starting from v43, C3P0 is deprecated and the default pool is HikariCP. Server administrators are encouraged to follow the [migration guide](#migrating-to-hikaricp) to migrate to HikariCP as soon as possible.
 * **Unpooled**: This option does not use a connection pool and creates a new connection for each request. It is primarily intended for use with an external connection pooler like [PgBouncer](https://www.pgbouncer.org/).
 
 ### Selecting a Pool Type
@@ -80,7 +80,7 @@ These parameters apply only when `db.pool.type = hikari`.
 
 | Key                                       | Description                                                                                                                                                     | Default Value    | Version |
 |-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|---------|
-| `connection.pool.timeout`                 | The maximum number of milliseconds a client will wait for a connection from the pool.                                                                           | `30000` (30s)    | 2.36+   |
+| `connection.pool.timeout`                 | The maximum number of milliseconds a client will wait for a connection from the pool. Lowest acceptable connection timeout is 250 ms.                           | `30000` (30s)    | 2.36+   |
 | `connection.pool.validation_timeout`      | The maximum number of milliseconds that the pool will wait for a connection to be validated as alive.                                                           | `5000` (5s)      | 2.36+   |
 | `connection.pool.min_idle`                | The minimum number of idle connections to maintain in the pool.                                                                                                 | `10`             | 43+     |
 | `connection.pool.keep_alive_time_seconds` | The interval in seconds to keep idle connections alive. Does not reset idle timeout.                                                                            | `120` (2 mins)   | 43+     |
@@ -139,10 +139,10 @@ The following keys can be configured for the analytics pool, corresponding to th
 
 ## Migrating to HikariCP
 
-HikariCP is simple to configure, well-maintained, arguably performs better than C3P0, and has an active open-source community supporting it. For these reasons, starting from v43, HikariCP is the default connection pool. C3P0 is deprecated and will eventually be removed from DHIS2. As such, server administrators should migrate from C3P0 to HikariCP as soon as possible. The subsequent steps apply if you have the `db.pool.type` property in the `dhis.conf` set to `c3p0` or are setting any [C3P0-specific parameters](#c3p0-connection-pool)
+HikariCP is simple to configure, well-maintained, arguably outperforms C3P0, and benefits from an active open-source community. For these reasons, beginning from v43, HikariCP is the default connection pool. C3P0 is deprecated and will eventually be removed from DHIS2. As such, server administrators should migrate from C3P0 to HikariCP as soon as possible. The subsequent steps apply if you have the `db.pool.type` property in the `dhis.conf` set to `c3p0` or are setting any [C3P0-specific parameters](#c3p0-connection-pool)
 
 1. Substitute the value `c3p0` in `db.pool.type` with `hikari`.
 2. If `connection.pool.initial_size` is set, remove it and emulate it by setting the `connection.pool.min_idle` property.
 3. If `connection.pool.max_idle_time_excess_con` is set, replace it with the `connection.pool.max_idle_time` property.
-4. Remove any remaining [C3P0-specific parameters](#c3p0-connection-pool). Internally, HikariCP works differently from C3P0 which means that many C3P0 settings cannot be translated to HikariCP settings. 
-
+4. Remove any remaining [C3P0-specific parameters](#c3p0-connection-pool). Internally, HikariCP works differently from C3P0 so many C3P0 settings cannot be translated to HikariCP settings. 
+5. DHIS2 leaves the connection timeout unconfigured for the C3P0 pool type which leads to requests waiting indefinitely when the database connection pool is exhausted. This is considered bad practice so DHIS2 configures the connection timeout for the HikariCP pool type to 30 seconds by default. A slow DHIS2 implementation ought to have its connection timeout cautiously left to the default value. After migration, the administrator should watch the DHIS2 log for connection timeout errors during periods of high activity. If connection timeout errors do occur, then it is recommended that the administrator resolves the performance issues that are causing database connection requests to time out. However, while discouraged, the administrator can set the `connection.pool.timeout` property to increase the connection timeout value in order to mitigate the timeout errors.
