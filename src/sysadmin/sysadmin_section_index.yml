@@ -13,6 +13,7 @@ Hosting:
   - Cloud Hosting: '@github(dhis2/dhis2-docs, src/sysadmin/hosting/cloud-hosting.md, master)'
 Reference:
   - dhis.conf: '@github(dhis2/dhis2-docs, src/sysadmin/reference/dhis.conf.md, master)'
+  - Connection Pool Configuration: '@github(dhis2/dhis2-docs, src/sysadmin/reference/connection-pool.md, master)'
   - File Storage: '@github(dhis2/dhis2-docs, src/sysadmin/reference/file-storage.md, master)'
   - OpenID Connect (OIDC): '@github(dhis2/dhis2-docs, src/sysadmin/reference/oauth.md, master)'
   - Google service account configuration: '@github(dhis2/dhis2-docs, src/sysadmin/reference/google-service-account-config.md, master)'
