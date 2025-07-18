@@ -142,6 +142,7 @@ Table: System settings
 | recaptchaSite | Google API recaptcha site. Default: dhis2 play instance API site, but this will only works on you local instance and not in production. | No |
 | keyCanGrantOwnUserAuthorityGroups | Allow users to grant own user roles. Default: "false" | No |
 | keySqlViewMaxLimit | Max limit for SQL view | No |
+| keyDataQualityMaxLimit | Max limit for data quality results. Must be between zero and 50,000. | No |
 | keyRespectMetaDataStartEndDatesInAnalyticsTableExport | When "true", analytics will skip data not within category option's start and end dates. Default: "false" | No |
 | keySkipDataTypeValidationInAnalyticsTableExport | Skips data type validation in analytics table export | No |
 | keyCustomLoginPageLogo | Logo for custom login page | No |
