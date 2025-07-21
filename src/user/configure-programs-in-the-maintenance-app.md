@@ -1790,7 +1790,7 @@ programs.
     the system.
 
 > [!WARNING]
-> The Confidential flag does not guarantee encryption of data at rest and is not currently functioning as intended. Although it is designed to hide sensitive data from output, its behavior can be inconsistent—toggling the flag on and off may result in mixed states of encrypted and unencrypted values being stored in the database.
+> The Confidential flag does not guarantee encryption of data at rest and is not currently functioning as intended. Currently, values are stored as both encrypted and plain text in the database. 
  > 
  > The DHIS2 Core team therefore discourages use of the Confidential flag for data protection or encryption purposes.
  > 
