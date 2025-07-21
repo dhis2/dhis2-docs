@@ -1798,11 +1798,11 @@ programs.
  > 
  > Going forward, the Confidential flag should be understood strictly as a visibility control mechanism at the API and UI level, and not as a security or encryption feature.
 
-14. (Optional) Select **Display in list without program**.
+13. (Optional) Select **Display in list without program**.
 
-15. (Optional) Assign one or multiple **Legends**.
+14. (Optional) Assign one or multiple **Legends**.
 
-16. Click **Save**.
+15. Click **Save**.
 
 ### Create or edit a tracked entity type { #create_tracked_entity } 
 
