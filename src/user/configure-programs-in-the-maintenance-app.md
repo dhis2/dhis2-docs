@@ -1741,7 +1741,7 @@ programs.
     | Yes/No | Boolean values, renders as drop-down lists in data entry. |
     | Yes only | True values, renders as check-boxes in data entry. |
 
-9.  Select an **Aggregation type**.
+10.  Select an **Aggregation type**.
 
 
 
@@ -1759,7 +1759,7 @@ programs.
     | Standard deviation | Standard deviation (population-based) of data values. |
     | Variance | Variance (population-based) of data values. |
 
-10. Select **Unique** to specify that the values of the tracked entity
+11. Select **Unique** to specify that the values of the tracked entity
     attribute is unique.
 
     There are two options for the unique setting:
@@ -1780,11 +1780,11 @@ programs.
       - **Organisation unit**: The values of the tracked entity
         attribute must not duplicate in the same organisation unit.
 
-11. Select **Inherit** to registry a new entity for relationship with an
+12. Select **Inherit** to registry a new entity for relationship with an
     available entity, all inherit entity attribute values of the entity
     will be pre-filled in the registration form.
 
-12. (Optional) Select **Confidential**.
+13. (Optional) Select **Confidential**.
 
     This option is only available if you have configured encryption for
     the system.
@@ -1798,11 +1798,11 @@ programs.
  > 
  > Going forward, the Confidential flag should be understood strictly as a visibility control mechanism at Analytics Output level, and not as an encryption feature.
 
-13. (Optional) Select **Display in list without program**.
+14. (Optional) Select **Display in list without program**.
 
-14. (Optional) Assign one or multiple **Legends**.
+15. (Optional) Assign one or multiple **Legends**.
 
-15. Click **Save**.
+16. Click **Save**.
 
 ### Create or edit a tracked entity type { #create_tracked_entity } 
 
