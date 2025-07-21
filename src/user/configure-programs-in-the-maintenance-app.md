@@ -1794,9 +1794,9 @@ programs.
  > 
  > The DHIS2 Core team therefore discourages use of the Confidential flag for data protection or encryption purposes.
  > 
- > For implementations requiring encryption of sensitive data, it is recommended to use encryption-at-rest features provided by the underlying database, such as those available in PostgreSQL.
+ > For implementations requiring encryption of sensitive data, it is recommended to use encryption-at-rest features provided by the underlying operating system at the file system level or the block level. Many operating systems support this functionality, including Windows.
  > 
- > Going forward, the Confidential flag should be understood strictly as a visibility control mechanism at the API and UI level, and not as a security or encryption feature.
+ > Going forward, the Confidential flag should be understood strictly as a visibility control mechanism at Analytics Output level, and not as an encryption feature.
 
 13. (Optional) Select **Display in list without program**.
 
