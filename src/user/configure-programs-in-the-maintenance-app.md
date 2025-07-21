@@ -1789,11 +1789,20 @@ programs.
     This option is only available if you have configured encryption for
     the system.
 
-13. (Optional) Select **Display in list without program**.
+> [!WARNING]
+> The Confidential flag does not guarantee encryption of data at rest and is not currently functioning as intended. Although it is designed to hide sensitive data from output, its behavior can be inconsistent—toggling the flag on and off may result in mixed states of encrypted and unencrypted values being stored in the database.
+ > 
+ > The DHIS2 Core team therefore discourages use of the Confidential flag for data protection or encryption purposes.
+ > 
+ > For implementations requiring encryption of sensitive data, it is recommended to use encryption-at-rest features provided by the underlying database, such as those available in  PostgreSQL.
+ > 
+ > Going forward, the Confidential flag should be understood strictly as a visibility control mechanism at the API and UI level, and not as a security or encryption feature.
 
-14. (Optional) Assign one or multiple **Legends**.
+14. (Optional) Select **Display in list without program**.
 
-15. Click **Save**.
+15. (Optional) Assign one or multiple **Legends**.
+
+16. Click **Save**.
 
 ### Create or edit a tracked entity type { #create_tracked_entity } 
 
