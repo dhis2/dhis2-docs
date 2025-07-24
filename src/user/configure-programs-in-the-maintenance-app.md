@@ -1792,11 +1792,11 @@ programs.
 > [!WARNING]
 > The Confidential flag does not guarantee encryption of data at rest and is not currently functioning as intended. Currently, values are stored as both encrypted and plain text values in the database. 
 > 
-> The DHIS2 Core team therefore discourages use of the Confidential flag for data protection or encryption purposes.
-> 
 > For implementations requiring encryption of sensitive data, it is recommended to use encryption-at-rest features provided by the underlying operating system at the file system level or the block level. Many operating systems support this functionality, including Windows.
 > 
 > Going forward, the Confidential flag should be understood strictly as a visibility control mechanism at Analytics Output level, and not as an encryption feature.
+>
+> The DHIS2 Core team therefore discourages use of the Confidential flag for data protection or encryption purposes. Upcoming versions will implement and document consistent functionality and recommendations for security approaches.
 
 14. (Optional) Select **Display in list without program**.
 
