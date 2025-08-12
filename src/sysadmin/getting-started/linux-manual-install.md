@@ -135,7 +135,7 @@ Install PostgreSQL with below steps
 ## Java installation { #install_java_installation } 
 ---
 
-| **DHIS2 Version** | **JDK (Recommended)** | **JDK (Minimum Required)** | **Tomcat Version** | **Recommended Ubuntu LTS** |
+| **DHIS2 Version** | **JRE (Recommended)** | **JRE (Minimum Required)** | **Tomcat Version** | **Recommended Ubuntu LTS** |
 | ----------------- | --------------------- | -------------------------- | ------------------ | -------------------------- |
 | 2.42              | 17                    | 17                         | 10                 | 24.04                      |
 | 2.41              | 17                    | 17                         | 9                  | 22.04                      |
@@ -145,10 +145,10 @@ Install PostgreSQL with below steps
 | Pre-2.35          | 8                     | 8                          | 9                  | 22.04                      |
 
 
-To install the recommended JDK for your DHIS2 version, use the following command — replacing <jdk_version> with the value from the table above:
+To install the recommended JRE for your DHIS2 version, use the following command — replacing <jre_version> with the value from the table above:
 
 ```
-sudo apt-get install -y openjdk-<jdk_version>-jdk
+sudo apt-get install -y openjdk-<jre_version>-jre-headless
 
 ```
 Verify that your installation is correct by invoking:
@@ -217,18 +217,18 @@ connection.password = xxxx
    at the end for the file. 
    `sudo -u dhis vim /home/dhis/tomcat-dhis/bin/setenv.sh`
    ```
-   export JAVA_HOME='/usr/lib/jvm/java-17-openjdk-amd64/'
+   export JAVA_HOME='/usr/lib/jvm/java-<jre_version>-openjdk-amd64/'
    export JAVA_OPTS='-Xms3g -Xmx6g'
    export DHIS2_HOME='/home/dhis/config'
    ```
-      * `JAVA_HOME` sets the location of the JDK installation.
+      * `JAVA_HOME` sets the location of the JRE installation.
       * `JAVA_OPTS` passes parameters to the JVM.
          * `-Xms` sets the initial allocation of memory to the Java heap memory space.
          * `-Xmx` sets the maximum allocation of memory to the Java heap memory space. This should reflect how much memory you would like to allocate to the DHIS2 software application on your server.
       * `DHIS2_HOME` sets the location of the `dhis.conf` configuration file for DHIS2.
    Check that the path the Java binaries are correct as they might vary from
    system to system, e.g. on AMD systems you might see
-   `/java-11-openjdk-amd64`. Note that you should adjust these values to your
+   `/java-<jre_version>-openjdk-amd64`. Note that you should adjust these values to your
    environment.
 
 * DHIS2 should never be run as a privileged user. After you have modified the

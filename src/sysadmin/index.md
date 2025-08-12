@@ -45,7 +45,7 @@ Later DHIS2 versions require the following software versions to operate.
 
   Table: DHIS2 JDK compatibility
 
-  | **DHIS2 Version** | **JDK (Recommended)** | **JDK (Minimum Required)** | **Tomcat Version** | **Recommended Ubuntu LTS** |
+  | **DHIS2 Version** | **JRE (Recommended)** | **JRE (Minimum Required)** | **Tomcat Version** | **Recommended Ubuntu LTS** |
 | ----------------- | --------------------- | -------------------------- | ------------------ | -------------------------- |
 | 2.42              | 17                    | 17                         | 10                 | 24.04                      |
 | 2.41              | 17                    | 17                         | 9                  | 22.04                      |
