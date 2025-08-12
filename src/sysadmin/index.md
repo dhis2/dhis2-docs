@@ -45,13 +45,14 @@ Later DHIS2 versions require the following software versions to operate.
 
   Table: DHIS2 JDK compatibility
 
-  | DHIS2 version | JDK recommended | JDK required |
-  | ------------- | --------------- | ------------ |
-  | 2.41          | 17              | 17           |
-  | 2.40          | 17              | 11           |
-  | 2.38          | 11              | 11           |
-  | 2.35          | 11              | 8            |
-  | pre 2.35      | 8               | 8            |
+  | **DHIS2 Version** | **JDK (Recommended)** | **JDK (Minimum Required)** | **Tomcat Version** | **Recommended Ubuntu LTS** |
+| ----------------- | --------------------- | -------------------------- | ------------------ | -------------------------- |
+| 2.42              | 17                    | 17                         | 10                 | 24.04                      |
+| 2.41              | 17                    | 17                         | 9                  | 22.04                      |
+| 2.40              | 17                    | 11                         | 9                  | 22.04                      |
+| 2.38              | 11                    | 11                         | 9                  | 22.04                      |
+| 2.35              | 11                    | 8                          | 9                  | 22.04                      |
+| Pre-2.35          | 8                     | 8                          | 9                  | 22.04                      |
 
 - PostgreSQL database version 13 or later. A later PostgreSQL 16 is recommended.
 - PostGIS database extension version 2.2 or later, 3 is recommended.

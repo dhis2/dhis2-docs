@@ -134,25 +134,22 @@ Install PostgreSQL with below steps
 <!-- *exit*. -->
 ## Java installation { #install_java_installation } 
 ---
-| DHIS2 version | JDK recommended | JDK required | Tomcat Required | 
-|:--------------|:---------------:|:------------:|:---------------:|  
-| 2.41          | 17              | 17           | 8.5.50          |
-| 2.40          | 17              | 11           | 8.5.50          |
-| 2.38          | 11              | 11           | 8.5.50          |
-| 2.35          | 11              | 8            |                 |
-| Pre 2.35      | 8               | 8            |                 |
 
-The recommended Java JDK for DHIS2 2.40 and above is OpenJDK 17, its required for 2.41. 
+| **DHIS2 Version** | **JDK (Recommended)** | **JDK (Minimum Required)** | **Tomcat Version** | **Recommended Ubuntu LTS** |
+| ----------------- | --------------------- | -------------------------- | ------------------ | -------------------------- |
+| 2.42              | 17                    | 17                         | 10                 | 24.04                      |
+| 2.41              | 17                    | 17                         | 9                  | 22.04                      |
+| 2.40              | 17                    | 11                         | 9                  | 22.04                      |
+| 2.38              | 11                    | 11                         | 9                  | 22.04                      |
+| 2.35              | 11                    | 8                          | 9                  | 22.04                      |
+| Pre-2.35          | 8                     | 8                          | 9                  | 22.04                      |
+
+
+To install the recommended JDK for your DHIS2 version, use the following command — replacing <jdk_version> with the value from the table above:
+
 ```
-sudo apt-get install -y openjdk-17-jdk
-```
-The recommended Java JDK for DHIS2 2.35 - 2.40 is OpenJDK 11. Install it by invoking command below, 
-```
-sudo apt-get install -y openjdk-11-jdk
-```
-For dhis2 versions below 2.35, OpenJDK 8 is required. Install it by invoking command below, 
-```
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get install -y openjdk-<jdk_version>-jdk
+
 ```
 Verify that your installation is correct by invoking:
 ```
@@ -311,3 +308,4 @@ connection.password = xxxx
     http://localhost:8080
 
 ## Creating systemd service to manage the instance  
+
